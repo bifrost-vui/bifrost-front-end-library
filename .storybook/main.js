@@ -1,5 +1,5 @@
 module.exports = {
-  stories: ['../src/stories/**/*.stories.@(ts|mdx)'],
+  stories: ['../projects/front-end-library/**/*.stories.@(ts|mdx)'],
   logLevel: 'debug',
   addons: [
     '@storybook/addon-docs',

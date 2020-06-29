@@ -1,11 +1,10 @@
 {
-  /* tsconfig.json can have comments */
-  // tsconfig.json can have comments
   "lerna": {
     "disabled": true
   },
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "moduleResolution": "node",
@@ -14,7 +13,18 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "target": "es5",
-    "typeRoots": ["../../node_modules/@types", "node_modules/@types"],
-    "lib": ["es2017", "dom"]
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "front-end-library": [
+        "dist/front-end-library/*",
+        "dist/front-end-library"
+      ]
+    }
   }
 }
