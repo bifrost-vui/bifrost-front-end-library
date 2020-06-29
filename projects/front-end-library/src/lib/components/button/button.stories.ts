@@ -12,7 +12,7 @@ const ButtonStory = (args) => ({
 });
 
 export const Basic = ButtonStory.bind({});
-Basic.args = { label: 'Args test', disabled: false };
+Basic.args = { label: 'Label', disabled: false };
 
 export const Disabled = ButtonStory.bind({});
 Disabled.args = { label: 'Disabled', disabled: true };

@@ -3,7 +3,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 @Component({
   selector: "lib-button",
   templateUrl: './button.component.html',
-  styleUrls: ['button.component.scss'],
+  styleUrls: ['../common/style.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class ButtonComponent implements OnInit {
