@@ -5,7 +5,7 @@ addons.setConfig({
   showRoots: true,
   theme: create({
     base: 'light',
-    brandTitle: 'Bifrost',
+    brandTitle: 'Bïfrost',
     brandUrl: 'https://videotron.com/',
     brandImage: '../projects/front-end-library/src/assets/bifrost-logo.png',
   })

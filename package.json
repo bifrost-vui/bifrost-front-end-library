@@ -8,18 +8,17 @@
     "e2e": "ng e2e",
     "ng": "ng",
     "start": "ng serve",
-
     "prebuild-storybook": "npm run storybook:prebuild",
     "build-storybook": "build-storybook -s src/assets",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "npm run twig & npm run storybook:prebuild && start-storybook -p 9008 -s src/assets",
     "storybook:prebuild": "npm run test:generate-output && npm run docs:json",
     "twig": "nodemon server/server.js --watch projects/etiya-components/src/lib -e twig",
-
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:generate-output": "jest --json --config=jest.addon-config.js --outputFile=addon-jest.testresults.json || true",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "chromatic": "npx chromatic --project-token=2a5bytxelfi"
   },
   "dependencies": {
     "@angular/common": "^9.1.0",
@@ -62,6 +61,7 @@
     "@types/node": "^14.0.10",
     "@types/webpack-env": "^1.15.2",
     "babel-plugin-require-context-hook": "^1.0.0",
+    "chromatic": "^5.0.0",
     "global": "^4.3.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.2",
