@@ -4,7 +4,7 @@ import { TwigContainerComponent } from '../../../utils/twig-container/twig-conta
 export default {
   title: 'Components/Button TS',
   component: ButtonComponent,
-//   parameters: { docs: { iframeHeight: 100 } },
+  parameters: { docs: { iframeHeight: 100 } },
 };
 
 const ButtonStory = (args) => ({
@@ -16,7 +16,7 @@ export const DrupalStory = (args) => ({
   component: TwigContainerComponent,
   props: args,
 });
-DrupalStory.args = { label: 'Yolo' };
+DrupalStory.args = { componentName: 'button', label: 'Drupal' };
 
 export const Basic = ButtonStory.bind({});
 Basic.args = { label: 'Basic', };

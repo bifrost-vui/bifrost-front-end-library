@@ -8,17 +8,19 @@
     "e2e": "ng e2e",
     "ng": "ng",
     "start": "ng serve",
+
+    "storybook": "npm run twig & npm run storybook:prebuild && start-storybook -p 9008 -s public",
     "prebuild-storybook": "npm run storybook:prebuild",
-    "build-storybook": "build-storybook -s public/assets",
-    "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
-    "storybook": "npm run twig & npm run storybook:prebuild && start-storybook -p 9008 -s public/assets",
+    "build-storybook": "build-storybook -s public",
     "storybook:prebuild": "npm run test:generate-output && npm run docs:json",
-    "twig": "nodemon server/server.js --watch projects/etiya-components/src/lib -e twig",
+    "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
+    "twig": "nodemon server/server.js --watch projects/etiya-components/src -e twig",
+    "chromatic": "npx chromatic --project-token=2a5bytxelfi",
+
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:generate-output": "jest --json --config=jest.addon-config.js --outputFile=addon-jest.testresults.json || true",
-    "test:watch": "jest --watch",
-    "chromatic": "npx chromatic --project-token=2a5bytxelfi"
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@angular/common": "^9.1.0",
