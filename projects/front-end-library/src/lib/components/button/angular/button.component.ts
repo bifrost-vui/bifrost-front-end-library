@@ -20,10 +20,10 @@ export class ButtonComponent implements OnInit {
   @Input() disabled: boolean;
 
   /** Sets the visual type of the button . */
-  @Input() type: string = 'small' || 'large' || 'icon';
+  @Input() size: string = '' || 'sm' || 'md' || 'lg';
 
   /** Sets the color of the button . */
-  @Input() color: string = 'primary' || 'secondary' || 'reverse' || 'blue';
+  @Input() color: string = 'primary' || 'secondary' || 'reverse';
 
   /** Sets the button in mobile mode (full width). */
   @Input() fullWidth: boolean;

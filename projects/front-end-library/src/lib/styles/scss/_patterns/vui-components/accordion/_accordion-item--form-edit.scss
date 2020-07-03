@@ -1,0 +1,46 @@
+/* *****************************************************************************
+*
+*  Accordion (collapse)
+*
+* ***************************************************************************** */
+
+.accordion-item {
+
+  &.accordion-item--form-edit {
+    position: relative;
+
+    &:before{
+      content: '';
+      @include size(100%);
+      @extend .position-absolute--center;
+      @include transitions(opacity);
+      border: 2px solid $primary;
+      opacity: 0;
+      transition-delay: .2s;
+      pointer-events: none;
+    }
+
+    .accordion-item__header {
+      .tab-btn-collapse__open {display: none;}
+      .tab-btn-collapse__close {display: block;}
+    }
+
+    .accordion-item__collapse-content {
+      //border-top: $border-width solid $border-color;
+    }
+
+    &.active-accordion {
+      &:before{
+        opacity: 1;
+        transition-delay: 0s;
+      }
+
+      .accordion-item__header {
+        background-color: transparentize($primary, 0.9);
+
+        .tab-btn-collapse__open {display: block;}
+        .tab-btn-collapse__close {display: none;}
+      }
+    }
+  }
+}

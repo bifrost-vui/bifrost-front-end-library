@@ -1,0 +1,27 @@
+/* *****************************************************************************
+*
+*  OOCSS generator
+*
+*   input : @include oocss-generate((font-size:fs), ($font-size-base * 0.5), 20);
+*
+* ***************************************************************************** */
+
+@mixin oocss-generate($propArray, $loopPropValueFactor:1, $loopLength:6){
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+      @each $prop, $abbrev in $propArray {
+        $i: 1;
+
+        @while ($i <= $loopLength) {
+          .#{$abbrev}#{$infix}-#{$i} {
+            #{$prop}: $i * $loopPropValueFactor !important;
+          }
+        }
+
+        $i: $i+1;
+      }
+    }
+  }
+}

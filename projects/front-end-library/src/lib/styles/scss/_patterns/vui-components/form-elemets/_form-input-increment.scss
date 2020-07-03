@@ -1,0 +1,85 @@
+/* *****************************************************************************
+*
+*  FORM
+*
+* ***************************************************************************** */
+
+.form-input-increment {
+  position: relative;
+
+  &-sm {
+    .form-input-increment__btn{
+      padding: $spacer-3;
+    }
+
+    .form-input-increment__input {
+      @include size(1.5rem);
+      font-size: $h6-font-size;
+    }
+  }
+
+  &-lg {
+    .form-input-increment__btn{
+      padding: 1.5rem;
+    }
+
+    .form-input-increment__input {
+      @include media-scale(margin-left, .5rem, 0.5rem, 1.5rem);
+      @include media-scale(margin-right, .5rem, 0.5rem, 1.5rem);
+      @include size(2.5rem);
+      font-size: $h2-font-size;
+    }
+  }
+
+  &__btn {
+    padding: $spacer-3;
+  }
+
+  &__input {
+    @include size(2rem);
+    border: none;
+    background: none;
+    font-size: $h3-font-size;
+    margin: 0 $spacer-2;
+
+    &[type='number']::-webkit-inner-spin-button,
+    &[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type='number'] {
+      -moz-appearance:textfield;
+    }
+  }
+
+  .vui--style-black & {
+    &__input {
+      color: $white;
+    }
+
+    .svg-minus ._svg-stroke,
+    .svg-plus ._svg-stroke {
+      stroke: $white;
+    }
+
+    .icon-btn-circle {
+      &:not(.disabled){
+        @include hover-focus{
+          border-color: $gray-600;
+        }
+      }
+
+      &[disabled],
+      &.disabled {
+        background: inherit;
+        border-color: $gray-700;
+
+        .svg-minus ._svg-stroke,
+        .svg-plus ._svg-stroke {
+          stroke: $gray-700;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,347 @@
+/* *****************************************************************************
+*
+*  Utilities
+*
+* ***************************************************************************** */
+
+/* ----------------------------------
+*   Width, height
+*
+*   Use : .w-1, .w-sm-3, .w-lg-5, ...
+*   ---------------------------------- */
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $prop, $abbrev in (width: w, height: h) {
+      @each $size, $length in $sizes {
+        .#{$abbrev}#{$infix}-#{$size} {
+          #{$prop}: $length !important;
+        }
+      }
+    }
+  }
+}
+
+/* ----------------------------------
+*   Min height
+*
+*   Use : .minh-1, .minh-sm-3, .minh-lg-5, ...
+*   ---------------------------------- */
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $prop, $abbrev in (min-height: minh, min-width: minw) {
+      @each $size, $length in $spacers {
+        .#{$abbrev}#{$infix}-#{$size} {
+          #{$prop}: ($length * 2) !important;
+        }
+      }
+    }
+  }
+}
+
+/* ----------------------------------
+*   Max width
+*
+*   Use : .maxw-20, .maxw-sm-100, .maxw-lg-40, ...
+*   ---------------------------------- */
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $prop, $abbrev in (max-height:maxh, max-width: maxw) {
+      @each $size, $length in $sizes {
+        .#{$abbrev}#{$infix}-#{$size} {
+          #{$prop}: $length !important;
+        }
+      }
+    }
+  }
+}
+
+
+
+/* ----------------------------------
+*   Line height
+*
+*   Use : .lh-1, .lh-sm-3, .lh-lg-5, ...
+*   ---------------------------------- */
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $prop, $abbrev in (line-height: lh) {
+      @each $size, $length in $spacers {
+        .#{$abbrev}#{$infix}-#{$size} {
+          #{$prop}: ($length * 1.7) !important;
+        }
+      }
+    }
+  }
+}
+
+
+/* ----------------------------------
+*   Negative margin/padding
+*
+*   Use : .m-minus-1, .mb-minus-sm-3, .ml-minus-lg-5, ...
+*   ---------------------------------- */
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $prop, $abbrev in (margin: m, padding: p) {
+      @each $size, $length in $spacers {
+
+        .#{$abbrev}#{$infix}-minus-#{$size} { #{$prop}: $length !important; }
+        .#{$abbrev}t#{$infix}-minus-#{$size},
+        .#{$abbrev}y#{$infix}-minus-#{$size} {
+          #{$prop}-top: ($length * -1) !important;
+        }
+        .#{$abbrev}r#{$infix}-minus-#{$size},
+        .#{$abbrev}x#{$infix}-minus-#{$size} {
+          #{$prop}-right: ($length * -1) !important;
+        }
+        .#{$abbrev}b#{$infix}-minus-#{$size},
+        .#{$abbrev}y#{$infix}-minus-#{$size} {
+          #{$prop}-bottom: ($length * -1) !important;
+        }
+        .#{$abbrev}l#{$infix}-minus-#{$size},
+        .#{$abbrev}x#{$infix}-minus-#{$size} {
+          #{$prop}-left: ($length * -1) !important;
+        }
+      }
+    }
+  }
+}
+
+/* ----------------------------------
+*   Position
+*
+*   Use : .top-1, .bottom-sm-3, .right-lg-5, ...
+*   ---------------------------------- */
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $prop, $abbrev in (top: top, bottom: bottom, left:left, right:right) {
+      @each $size, $length in $spacers {
+
+        .#{$abbrev}#{$infix}-#{$size} {
+          #{$prop}: ($length * 0.7) !important;
+        }
+        .#{$abbrev}#{$infix}-minus-#{$size} {
+          #{$prop}: ($length * 0.7 * -1) !important;
+        }
+      }
+    }
+  }
+}
+
+
+/* ----------------------------------
+*   Font-size
+*
+*   Use : .fs-1, .fs-2, ...
+*   ---------------------------------- */
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    $i: 1;
+    @while ($i <= 20) {
+      .fs#{$infix}-#{$i} {
+        font-size: $font-size-base*$i*.5 !important;
+      }
+
+      $i: $i+1;
+    }
+
+  }
+}
+
+
+
+// Scale
+// ----------------------------------
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    $i: 1;
+    @while ($i <= 10) {
+      .scale#{$infix}-#{$i} {
+        transform: scale($i*.1) !important;
+        transform-origin: left;
+      }
+
+      $i: $i+1;
+    }
+  }
+}
+
+
+
+// z-index
+// ----------------------------------
+$i: 1;
+@while ($i <= 50) {
+  .z-index-#{$i} {
+    z-index: $i !important;
+  }
+
+  $i: $i+1;
+}
+
+
+// Flex-grow
+// ----------------------------------
+.flex-grow-0 {
+  flex-grow: initial !important;
+}
+@include media-breakpoint-up(sm) {
+  .flex-grow-sm-0 {
+    flex-grow: initial !important;
+  }
+}
+@include media-breakpoint-up(md) {
+  .flex-grow-md-0 {
+    flex-grow: initial !important;
+  }
+}
+@include media-breakpoint-up(lg) {
+  .flex-grow-lg-0 {
+    flex-grow: initial !important;
+  }
+}
+
+$i: 1;
+@while ($i <=5) {
+  .flex-grow-#{$i} {
+    flex-grow: $i !important;
+  }
+  @include media-breakpoint-up(sm) {
+    .flex-grow-sm-#{$i} {
+      flex-grow: $i !important;
+    }
+  }
+  @include media-breakpoint-up(md) {
+    .flex-grow-md-#{$i} {
+      flex-grow: $i !important;
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    .flex-grow-lg-#{$i} {
+      flex-grow: $i !important;
+    }
+  }
+
+  $i: $i+1;
+}
+
+// Flex
+// ----------------------------------
+
+.flex {
+  &-align-center-space-between {
+    @include flex-maker(flex, space-between, center);
+  }
+
+  @include media-breakpoint-up(sm) {
+    &-sm-align-center-space-between {
+      @include flex-maker(flex, space-between, center);
+    }
+  }
+  @include media-breakpoint-up(md) {
+    &-md-align-center-space-between {
+      @include flex-maker(flex, space-between, center);
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    &-lg-align-center-space-between {
+      @include flex-maker(flex, space-between, center);
+    }
+  }
+}
+
+
+
+// List format
+// ----------------------------------
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $size, $length in (1,2,3,4,5,6) {
+      .list-col#{$infix}-#{$size} {
+        column-count: $size;
+      }
+    }
+  }
+}
+
+// Border width
+// ----------------------------------
+$i: 1;
+@while ($i < 11) {
+  .border-width-#{$i} {
+    border-width: $border-width * $i !important;
+  }
+
+  $i: $i+1;
+}
+
+
+// SVG fill
+// ----------------------------------
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $color, $value in $theme-colors {
+      .svg-fill#{$infix}--#{$color} {
+        fill: $value;
+
+        ._svg-fill {
+          fill: $value;
+        }
+
+        ._svg-stroke {
+          stroke: $value;
+        }
+      }
+    }
+  }
+}
+
+// SVG stroke
+// ----------------------------------
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $color, $value in $theme-colors {
+      .svg-stroke#{$infix}--#{$color} {
+          stroke: $value !important;
+      }
+    }
+  }
+}
+
+// SVG size
+// ----------------------------------
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $spacer, $value in $spacers {
+      .svg-size#{$infix}--#{$spacer} {
+        //@include size(($value*.8)+.75);
+        width: ($value*.8)+.75;
+      }
+    }
+  }
+}

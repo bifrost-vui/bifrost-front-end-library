@@ -7,20 +7,20 @@ import { ButtonComponent } from './angular/button.component';
 # Button
 
 <Meta
-  title='Components/Button'
+  title='Components/Button TS/Documentation'
   decorators={[
     withKnobs,
     moduleMetadata({ declarations: [ButtonComponent]})
   ]}
 />
 
-<Story name='Default' parameters={{ decorators: [withKnobs] }}>
+<Story name='Documentation' parameters={{ decorators: [withKnobs] }}>
   {{
     component: ButtonComponent,
     props: {
       label: text('label', 'Default'),
-      type: select('type', ['small', 'large', 'icon'], 'small'),
-      color: select('color', ['primary', 'secondary', 'reverse', 'default-AA', 'blue'], 'primary'),
+      type: select('buttonSize', ['sm', 'md', 'lg'], 'md'),
+      color: select('buttonColor', ['primary', 'secondary', 'reverse', 'default-AA', 'blue'], 'primary'),
       disabled: boolean('disabled', false),
       fullWidth: boolean('fullWidth', false),
       onClick: action('You clicked me...')
@@ -41,15 +41,14 @@ Use `icon="NameOfIcon"` to add icon to the button.
 The default type is `small`
 
 <Preview withSource='close'>
-  <Story name='Types' parameters={{ docs: { iframeHeight: 400 } }}>
+  <Story name='Sizes' parameters={{ docs: { iframeHeight: 400 } }}>
     {{
       template: `
         <div style='display: flex; align-items: center; flex-wrap: wrap;'>
         <div style="padding:20px;width:100%;">
-            <lib-button label='Small'></lib-button>
-            <lib-button label='Large primary' type='large'></lib-button>
-            <lib-button label='Large with icon' icon='ArrowRight' type='large'></lib-button>
-            <lib-button label='Icon button' icon="ArrowRight" type="icon"></lib-button>
+            <lib-button label='Small' size='sm'></lib-button>
+            <lib-button label='Medium'></lib-button>
+            <lib-button label='Large' size='lg'></lib-button>
           </div>
         </div>
       `

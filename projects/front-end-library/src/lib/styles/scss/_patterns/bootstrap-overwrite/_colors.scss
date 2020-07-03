@@ -1,0 +1,42 @@
+/* *****************************************************************************
+*
+*  Colors
+*
+* ***************************************************************************** */
+
+
+// Theme colors
+
+@each $color, $value in $theme-colors {
+  .color--#{$color} {
+    color: $value !important;
+  }
+}
+
+
+// Gray tones
+
+@each $toneValue, $value in $grays {
+  .color-gray--#{$toneValue} {
+    color: $value !important;
+  }
+}
+
+.color--inherit {
+  color: inherit !important;
+}
+
+// Text color class
+
+.text-color {
+  color: $body-color !important; // black
+
+  // inverted color contexts
+  &--inverted,
+  &.bg-dark,        .bg-dark &,
+  &.bg-secondary,   .bg-secondary &,
+  &.bg-danger,      .bg-danger &,
+  &.bg--vui-orange, .bg--vui-orange & {
+    color: $body-color-inverted !important; // white
+  }
+}

@@ -1,0 +1,25 @@
+/* *****************************************************************************
+*
+*  Accordion (collapse)
+*
+* ***************************************************************************** */
+
+.accordion-item {
+  $accordion-item: &;
+
+  &--hierarchy {
+    #{$accordion-item}__header {
+      .accordion-item-toggler[data-toggle="collapse"][aria-expanded="false"]{
+        .icon-arrow-to-right{
+          transform: rotate(45deg) translate(-1px,2px);
+        }
+      }
+
+      .accordion-item-toggler[data-toggle="collapse"][aria-expanded="true"]{
+        .icon-arrow-to-right{
+          transform: rotate(135deg) translate(-2px,2px);
+        }
+      }
+    }
+  }
+}

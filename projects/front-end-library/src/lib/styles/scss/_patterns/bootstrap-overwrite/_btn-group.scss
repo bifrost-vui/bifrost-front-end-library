@@ -1,0 +1,52 @@
+/* *****************************************************************************
+*
+*  Buttons
+*
+* ***************************************************************************** */
+.btn-group {
+  @include media-breakpoint-down(sm){
+    flex-direction: column;
+    width: 100%;
+
+    .btn {
+      margin-left: 0!important;
+      margin-bottom: 0!important;
+
+      &:not(:last-child) {
+        border-bottom: 0;
+      }
+
+      &:first-child {
+        border-top-right-radius: $btn-border-radius!important;
+        border-bottom-left-radius: 0;
+      }
+
+      &:last-child {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: $btn-border-radius;
+      }
+    }
+  }
+
+  .btn {
+    min-width: initial!important;
+    padding-left: $input-padding-x!important;
+    padding-right: $input-padding-x!important;
+  }
+
+  .btn-outline-dark {
+    border-color: $border-color;
+
+    @include hover-focus{
+      background: $gray-100;
+      color: $dark;
+    }
+
+    &.active {
+      background-color: $white!important;
+      border-color: $dark!important;
+      color: $dark!important;
+      box-shadow: none;
+    }
+  }
+}

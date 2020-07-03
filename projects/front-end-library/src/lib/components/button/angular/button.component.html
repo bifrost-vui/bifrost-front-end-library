@@ -1,8 +1,12 @@
 <button 
     type="button" 
-    class="btn btn-{{color}} {{type == 'large' ? 'btn-lg' : type=='icon' ? 'btn-icon' : ''}} {{fullWidth ? 'btn-block': ''}}" 
+    class="
+        btn 
+        {{ color ? 'btn-' + color : '' }}
+        {{ size ? 'btn-' + size : '' }}
+    "
     [disabled]="disabled" 
     (click)="onClick()"
 >
-    {{type !== 'icon' ? label : ''}}
+    {{label}}
 </button>

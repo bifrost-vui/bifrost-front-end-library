@@ -1,0 +1,47 @@
+/* *****************************************************************************
+*
+*  FORM
+*
+* ***************************************************************************** */
+
+.form-checkbox-toggle-switch {
+  $toggleSwitchContainer: &;
+
+  &--2-choices {
+    @extend .vui--font-secondary;
+    width: initial !important;
+    display: flex !important;
+    align-items: center;
+
+    #{$toggleSwitchContainer}__label {
+      @include transitions(color);
+      font-weight: $font-weight-bold;
+    }
+
+    #{$toggleSwitchContainer}__label1 {
+      color: $dark;
+      order: 1;
+    }
+
+    #{$toggleSwitchContainer}__input {
+      @include media-scale(width, 8rem, 5rem, 4rem);
+      background: $vui-yellow !important;
+      order: 2;
+      margin: 0 $spacer-3;
+
+      &:checked {
+        & ~ #{$toggleSwitchContainer}__label1  {
+          color: $gray-400;
+        }
+        & ~ #{$toggleSwitchContainer}__label2  {
+          color: $dark;
+        }
+      }
+    }
+
+    #{$toggleSwitchContainer}__label2 {
+      color: $gray-400;
+      order: 3;
+    }
+  }
+}

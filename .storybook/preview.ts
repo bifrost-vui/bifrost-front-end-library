@@ -8,8 +8,9 @@ import docJson from '../documentation.json';
 setCompodocJson(docJson);
 
 addParameters({
-  docs: {
-    // inlineStories: true,
-    iframeHeight: '60px',
-  },
+    docs: {
+        // inlineStories: true,
+        iframeHeight: '60px',
+    },
+    layout: 'centered'
 });
