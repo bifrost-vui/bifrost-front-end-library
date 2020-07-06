@@ -12,12 +12,6 @@ const ButtonStory = (args) => ({
   props: args,
 });
 
-export const DrupalStory = (args) => ({
-  component: TwigContainerComponent,
-  props: args,
-});
-DrupalStory.args = { componentName: 'button', label: 'Drupal' };
-
 export const Basic = ButtonStory.bind({});
 Basic.args = { label: 'Basic', };
 
@@ -26,3 +20,11 @@ Secondary.args = { label: 'Secondary', color: 'secondary' };
 
 export const Disabled = ButtonStory.bind({});
 Disabled.args = { label: 'Disabled', disabled: true };
+
+export const DrupalStory = (args) => ({
+  component: TwigContainerComponent,
+  props: args,
+  
+});
+DrupalStory.args = { componentName: 'button', label: 'Drupal' };
+DrupalStory.parameters = { docs: { iframeHeight: 200 } };
