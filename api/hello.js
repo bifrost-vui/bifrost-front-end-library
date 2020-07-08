@@ -4,7 +4,7 @@ module.exports = (req, res) => {
     const { TwingEnvironment, TwingLoaderFilesystem } = require('twing');
 
     // let loader = new TwingLoaderFilesystem(path.join(__dirname, '../projects/front-end-library/src/utils/'));
-    let loader = new TwingLoaderFilesystem(path.join(__dirname, './'));
+    let loader = new TwingLoaderFilesystem(path.join(__dirname, '../api'));
     let twing = new TwingEnvironment(loader);
 
     console.log(req);
