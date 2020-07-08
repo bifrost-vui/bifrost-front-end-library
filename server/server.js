@@ -6,6 +6,9 @@
   let twing = new TwingEnvironment(loader);
 
   app.get('/:component', function (req, res) {
+
+      console.log(req, res);
+      console.log(twing);
     
     Object.assign(req.params, req.query);
     twing.render('main.twig', req.params).then((output) => {
