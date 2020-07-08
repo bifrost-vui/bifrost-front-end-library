@@ -10,7 +10,7 @@ module.exports = (req, res) => {
     console.log(req);
 
     // Object.assign(req.params, req.query, { component: 'button' });
-    twing.render('main.twig', req.query).then((output) => {
+    twing.render('./main.twig', req.query).then((output) => {
         res.end(output);
     });
 }
