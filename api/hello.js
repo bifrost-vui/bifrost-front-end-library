@@ -6,6 +6,6 @@ module.exports = (req, res) => {
     // const { name = 'World' } = req.query
     // res.status(200).send(`Yo ${name}!`)
     twing.render('main.twig', req.query).then((output) => {
-        res.status(200).send(output);
+        res.end(output);
     });
 }
