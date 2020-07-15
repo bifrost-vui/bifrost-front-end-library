@@ -23,8 +23,7 @@ Disabled.args = { label: 'Disabled', disabled: true };
 
 export const DrupalStory = (args) => ({
   component: TwigContainerComponent,
-  props: args,
-  
+  props: args
 });
 DrupalStory.args = { componentName: 'button', label: 'Drupal' };
 DrupalStory.parameters = { docs: { iframeHeight: 200 } };
