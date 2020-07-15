@@ -2,7 +2,7 @@ import { ButtonComponent } from './angular/button.component';
 import { TwigContainerComponent } from '../../../utils/twig-container/twig-container.component';
 
 export default {
-  title: 'Components/Button TS',
+  title: 'Components/Button',
   component: ButtonComponent,
   parameters: { docs: { iframeHeight: 100 } },
 };
@@ -21,9 +21,9 @@ Secondary.args = { label: 'Secondary', color: 'secondary' };
 export const Disabled = ButtonStory.bind({});
 Disabled.args = { label: 'Disabled', disabled: true };
 
-export const DrupalStory = (args) => ({
+export const Drupal = (args) => ({
   component: TwigContainerComponent,
   props: args
 });
-DrupalStory.args = { componentName: 'button', label: 'Drupal' };
-DrupalStory.parameters = { docs: { iframeHeight: 200 } };
+Drupal.args = { componentName: 'button', label: 'Drupal', exemple: 'Hello' };
+Drupal.parameters = { docs: { iframeHeight: 200 } };
