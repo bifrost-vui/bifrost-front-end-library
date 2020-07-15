@@ -3,3 +3,9 @@
  */
 
 export * from './lib/components/button/angular/button.component';
+export * from './lib/components/button/angular/button.module';
+
+// TODO
+// export * from './lib/lib.module';
+
+// export * from './lib/styles/base.scss';
