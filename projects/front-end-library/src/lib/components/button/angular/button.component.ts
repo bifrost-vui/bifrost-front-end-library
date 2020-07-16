@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  * API is the same between **Angular** and **Drupal**.
  *
  */
-
+ 
 @Component({
   selector: "lib-button",
   templateUrl: './button.component.html',
@@ -43,7 +43,9 @@ export class ButtonComponent implements OnInit {
    */
   @Output() click: EventEmitter<boolean> = new EventEmitter();
 
-  ngOnInit() {}
+  ngOnInit() {
+      console.log('this', this);
+  }
 
   onClick() {
     this.click.emit(true);
