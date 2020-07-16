@@ -29,7 +29,7 @@ export class TwigContainerComponent implements OnInit {
         if (key !== 'sanitizer' && key !== 'iframeUrl')
             return key + '=' + props[key];
     }).join('&');
-    const baseURL = isDevMode ? 'http://localhost:3001/' : '/'
+    const baseURL = isDevMode() ? 'http://localhost:3001/' : '/'
     const url = baseURL + 'api/twig?' + paramsString;
     this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
