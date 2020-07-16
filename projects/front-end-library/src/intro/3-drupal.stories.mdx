@@ -1,8 +1,8 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta
-    title='Drupal implementation'
-    parameters={{ layout: 'padded' }}
+    title='Implementation/Drupal'
+    parameters={{ layout: 'padded', viewMode: 'docs' }}
 />
 
 # Drupal implementation
@@ -19,17 +19,17 @@ import { Meta } from '@storybook/addon-docs/blocks';
 - **Simphony** requirements?
 - ...
 
-### Install the package
+### 1. Install the package
 In the Drupal Theme.
 ```Shell
 npm install bifrost-front-end-library --save
 ```
 
-### Create Namespace @components
+### 2. Create Namespace @components
 Shortcut to simplify path to components:
 https://symfony.com/doc/4.1/templating/namespaced_paths.html
 
-### Include components in your Twig file
+### 3. Include components in your Twig file
 ```js
 {% include '@components/button/button.twig' with { size:'lg', color:'primary' } %}
 ```
@@ -40,7 +40,7 @@ https://symfony.com/doc/4.1/templating/namespaced_paths.html
 
 <br/>
 
-### Add base style
+### 4. Add base style
 Add `base.min.css` to the main HTML file:
 
 ```html
@@ -49,7 +49,7 @@ Add `base.min.css` to the main HTML file:
 </head>
 ```
 
-### Optionnal: Access global SASS variables
+### 5. Optionnal: Access global SASS variables
 From your SASS file, import the `_variables.scss`.
 ```css
 @import 'node_modules/bifrost-front-end-library/global/_variables.scss'

@@ -1,5 +1,10 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
 
+/**
+ * API is the same between **Angular** and **Drupal**.
+ *
+ */
+
 @Component({
   selector: "lib-button",
   templateUrl: './button.component.html',
