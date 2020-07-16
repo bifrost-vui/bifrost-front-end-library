@@ -30,5 +30,5 @@ export const Drupal = (args) => ({
   component: TwigContainerComponent,
   props: args
 });
-Drupal.args = { componentName: 'button', label: 'Drupal' };
+Drupal.args = { component: 'button', label: 'Drupal' };
 Drupal.parameters = { docs: { iframeHeight: 200 } };
