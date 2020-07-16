@@ -36,6 +36,9 @@ export class ButtonComponent implements OnInit {
   /** Name of the icon */
   @Input() icon: string;
 
+  /** Class override */
+  @Input() styleClass: string;
+
   /**
    * Handler to be called when the button is clicked by a user.
    *
