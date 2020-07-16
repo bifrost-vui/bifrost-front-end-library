@@ -17,12 +17,19 @@
     </head>
     <body>
 
-        <pre>{{ dump(_context) }}</pre>
+        {# For DEBUG puropose: #}
+        {# <pre>{{ dump(_context) }}</pre> #}
 
         <main class='center'>
-            {% if component == 'button' %}
+            
+            {% set component = _context.component %}
+            {% set componentVariant = _context.componentVariant|default(component) %}
+
+            {% include './' ~ component ~ '/twig/' ~ componentVariant ~ '.twig' with _context %}
+
+            {# {% if component == 'button' %}
                 {% include './button/twig/button.twig' with _context %}
-            {% endif %}
+            {% endif %} #}
         <main>
     </body>
 </html>
