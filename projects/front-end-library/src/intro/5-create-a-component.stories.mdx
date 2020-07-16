@@ -14,28 +14,43 @@ import { Meta } from '@storybook/addon-docs/blocks';
 ### 2. Create your component 
 `npm run generate component <component-name>`
 
-### 3. Make sure component is
-- Accessible (use [Pa11y](https://github.com/pa11y/pa11y) => `npm run test`)
+### 3. Develop it with Storybook
+Storybook provides an environment to develop in isolation:
+- `npm run storybook`
+- Open `http://localhost:9008/` and find the page of your component on the sidebar.
+- If needed, in `<your-component>.stories.ts` create stories to showcase the different states of your component.
+
+**Make sure component is:**
+- Accessible (use [Pa11y](https://github.com/pa11y/pa11y) on your storybook component URL, more details soon) 
 - Agnostic/Universal
 - Content resilient
 - Responsive
 - Using design tokens from _variables.scss
 - API is consistent with other components
+- Unit test?
+
+> Try to use the **same component API** and the **same CSS** for Angular and Drupal components. As much as possible.
 
 ### 4. _(Angular only)_ Export component
 - Export Module and/or Component files in `/lib/public-api.ts`.
 
-### 5. _(Angular only)_ Build library
-- Increment the version in `package.json`.
-- In terminal, go to the root of the repo.
-- `npm run build --prod`
-- `npm publish dist/front-end-library`
+### 5. Build library
+- Increment the version in `package.json` with the pattern: **MAJOR.MINOR.PATCH**. If it's a major or minor change, all Design System team should be warn.
+- Then build and publish:
+```Shell
+npm run build
+npm publish
+```
+- Your package version is now available for everyone.
 - Optionnal: Check the registry (TODO: add link)
 
 ### 6. _(Angular only)_ Optionnal: Test implementation
-- Go to `projects/angular-example`
-- `npm i bifrost-front-end-library`
-- You can now import the new component.
+Angular Project `projects/angular-example` is aimed to showcase implementation.
+- `npm i bifrost-front-end-library@<your-new-version>`
+- Now, you will be able to import the new component in `projects/angular-example/src/app/app.module.ts`
+- Add your component in `app.component.html`.
+- `ng serve angular-example`
+- Open the browser at `localhost:4200` to see the result :)
 
 ### 7. Communicate
 - Slack Channel?
