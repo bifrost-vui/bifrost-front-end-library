@@ -1,18 +1,23 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta
-    title='Implementation/Create a component'
-    parameters={{ layout: 'padded', viewMode: 'docs' }}
+    title='Contribute'
+    parameters={{ 
+        layout: 'padded', 
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
 />
 
-# Create a component for Drupal or Angular
+# Contribute
+This page will help you to create or update a component in the design System. We will consider both Drupal and Angular.
 
 <br/>
 
-### 1. Duplicate components/example folder
-
-### 2. Create your component 
+### 2. Generate the structure of your new component 
 `npm run generate component <component-name>`
+
+Or copy `.templates/component-structure` folder and paste it in `/lib/components`.
 
 ### 3. Develop it with Storybook
 Storybook provides an environment to develop in isolation:
@@ -30,6 +35,8 @@ Storybook provides an environment to develop in isolation:
 - Unit test?
 
 > Try to use the **same component API** and the **same CSS** for Angular and Drupal components. As much as possible.
+
+> Since Drupal components are server side, you need to refresh the browser to see changes during development. It's real-time in Angular.
 
 ### 4. _(Angular only)_ Export component
 - Export Module and/or Component files in `/lib/public-api.ts`.

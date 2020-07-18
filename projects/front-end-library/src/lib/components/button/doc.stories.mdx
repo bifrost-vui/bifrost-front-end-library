@@ -1,0 +1,104 @@
+import { moduleMetadata } from '@storybook/angular';
+import { Meta, Story, Preview, Props } from "@storybook/addon-docs/blocks";
+import { TwigContainerComponent } from '../../../utils/twig-container/twig-container.component';
+import { ButtonComponent } from './angular/button.component';
+
+<Meta 
+    title="Components/Button" 
+    component={ButtonComponent} 
+    decorators={[
+        moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent]})
+    ]}
+    argTypes={{
+        component: { control: { disable: true, disabled: true } },
+        color: { control: { type: 'inline-radio', options: ['primary', 'secondary'] } },
+        size: { control: { type: 'inline-radio', options: ['sm', 'md', 'lg'] } },
+    }}
+/>
+
+# Button
+
+Lorem ipsum dolor
+
+export const ButtonStory = (args) => ({
+  component: ButtonComponent,
+  props: args,
+});
+
+<Preview>
+  <Story name="Default" args={{ label: 'Label' }}>
+    {ButtonStory.bind({})}
+  </Story>
+</Preview>
+
+## Colors
+
+<Preview>
+    <Story 
+        name='Colors' 
+        parameters={{ 
+            controls: { disabled: true } 
+        }}
+    >
+    {{
+        template: `
+            <div class='d-flex'>
+                <lib-button label='Primary' color='primary' styleClass='m-1'></lib-button>
+                <lib-button label='Secondary' color='secondary' styleClass='m-1'></lib-button>
+            </div>
+        `
+    }}
+    </Story>
+</Preview>
+
+## Sizes
+
+<Preview>
+    <Story 
+        name='Sizes' 
+        parameters={{ 
+            controls: { disabled: true },
+            docs: { iframeHeight: 150 } 
+        }}
+    >
+    {{
+        template: `
+            <div class='d-flex align-items-center'>
+                <lib-button label='Small' size='sm' styleClass='m-1'></lib-button>
+                <lib-button label='Medium' size='md' styleClass='m-1'></lib-button>
+                <lib-button label='Large' size='lg' styleClass='m-1'></lib-button>
+                <script>
+                    console.log('args', args);
+                </script>
+            </div>
+        `
+    }}
+    </Story>
+</Preview>
+
+## Drupal
+
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args
+});
+
+<Preview>
+    <Story 
+        name="Drupal"
+        args={{ 
+            component: 'button',
+            label: 'Drupal',
+            DrupalSpecificProps: 'Drupal Specific Props'
+        }}
+        parameters={{ docs: { iframeHeight: 150 } }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+## Component API
+**✅  Inputs are equivalent for Angular and Drupal.**
+
+<Props of={ButtonComponent} />

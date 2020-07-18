@@ -47,7 +47,7 @@ export class ButtonComponent implements OnInit {
   @Output() click: EventEmitter<boolean> = new EventEmitter();
 
   ngOnInit() {
-      console.log('this', this);
+      console.log('button his', this);
   }
 
   onClick() {

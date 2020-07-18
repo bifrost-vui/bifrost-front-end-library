@@ -19,13 +19,15 @@
 
         {# For DEBUG puropose: #}
         {# <pre>{{ dump(_context) }}</pre> #}
+        {# <pre>{{ dump(_context|json_encode) }}</pre> #}
 
         <main class='center'>
             
             {% set component = _context.component %}
             {% set componentVariant = _context.componentVariant|default(component) %}
+            {% set context = _context %}
 
-            {% include './' ~ component ~ '/twig/' ~ componentVariant ~ '.twig' with _context %}
+            {% include './' ~ component ~ '/twig/' ~ componentVariant ~ '.twig' with context %}
 
             {# {% if component == 'button' %}
                 {% include './button/twig/button.twig' with _context %}

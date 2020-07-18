@@ -1,0 +1,69 @@
+<div class="form-group {{ class|default('') }}">
+    {% if label is defined and label is not empty %}
+        <label for="{{ inputId|default("") ~ "_dateSelection_day"  }}"
+               class="{{ labelClass|default('') }} d-flex"
+                {{ labelExtraAttribute|default(NULL) }}>{{ label|default('Label') }}
+
+            {# Tooltip : custom content --------- #}
+            {# {% set _BLOCK_tooltip_content = block('BLOCK_tooltip_content') %}
+            {% if _BLOCK_tooltip_content is defined and _BLOCK_tooltip_content is not empty %}
+                {% embed '@molecules/14-tooltip/tooltip-button-custom.twig' with {
+                    class:"ml-1"
+                } %}
+                    {% block tooltip_content %}
+                        {{ _BLOCK_tooltip_content|raw }}
+                    {% endblock %}
+                {% endembed %}
+            {% elseif labelTooltipTxt is defined and labelTooltipTxt is not empty %}
+                {% include '@molecules/14-tooltip/tooltip-button.twig' with {
+                    class:"ml-1",
+                    tooltipTxt: labelTooltipTxt
+                } only %}
+            {% endif %} #}
+        </label>
+    {% endif %}
+
+    <div class="d-md-flex">
+        {% include 'form-select/twig/form-select-native.twig' with {
+            class: "mr-md-2 mb-2 mb-md-0",
+            inputId: inputId|default("") ~ "_dateSelection_day",
+            placeholder: "Day",
+            options: [
+                {label:"1"},{label:"2"},{label:"3"},{label:"4"},{label:"5"},{label:"6"},{label:"7"},{label:"8"},{label:"9"},{label:"10"},
+                {label:"11"},{label:"12"},{label:"13"},{label:"14"},{label:"15"},{label:"16"},{label:"17"},{label:"18"},{label:"19"},{label:"20"},
+                {label:"21"},{label:"22"},{label:"23"},{label:"24"},{label:"25"},{label:"26"},{label:"27"},{label:"28"},{label:"29"},{label:"30"},{label:"31"}
+            ]
+        } only %}
+
+        {% include 'form-select/twig/form-select-native.twig' with {
+            class: "mr-md-2 mb-2 mb-md-0",
+            inputId: inputId|default("") ~ "_dateSelection_month",
+            placeholder: "Month",
+            options: [
+                {label:"January"},
+                {label:"February"},
+                {label:"March"},
+                {label:"April"},
+                {label:"May"},
+                {label:"June"},
+                {label:"July"},
+                {label:"August"},
+                {label:"September"},
+                {label:"October"},
+                {label:"November"},
+                {label:"December"},
+            ]
+        } only %}
+
+        {% include 'form-select/twig/form-select-native.twig' with {
+            class: "mr-md-2 mb-2 mb-md-0",
+            inputId: inputId|default("") ~ "_dateSelection_year",
+            placeholder: "Year",
+            options: [
+                {label:"2020"},
+                {label:"2019"},
+                {label:"2018"},
+            ]
+        } only %}
+    </div>
+</div>
