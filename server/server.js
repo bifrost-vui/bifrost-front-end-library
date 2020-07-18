@@ -14,8 +14,9 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'twig');
 
 app.get('/', function(req, res){
-    Object.assign(req.params, req.query);
-    res.render('index.twig', req.params);
+    // console.log(req.params, req);
+    // Object.assign(req.params, req.query);
+    res.render('index.twig', req.query);
 });
 
 Twig.extendFilter('boolean', function(value, params) {
