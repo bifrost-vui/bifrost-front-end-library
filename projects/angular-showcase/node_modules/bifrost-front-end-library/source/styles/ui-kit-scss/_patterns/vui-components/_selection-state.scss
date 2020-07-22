@@ -1,0 +1,55 @@
+/* *****************************************************************************
+*
+*  Selection
+*
+* ***************************************************************************** */
+
+.selection-state {
+  position: relative;
+
+  // Outline selection
+  &:before {
+    @include transitions(opacity, background-color);
+    @include size(100%);
+    @extend .position-absolute--center;
+    z-index: 5;
+    content: "";
+    opacity: 0;
+    border: 1px solid #000;
+    border-radius: inherit;
+    cursor: pointer;
+    pointer-events: none;
+    //box-sizing: content-box;
+  }
+
+  // check
+  &:after {
+    @include size(2rem);
+    @include transitions(opacity, transform $transition-time-medium $transition-ease-bounce);
+    content:"";
+    background-image: url('/images/icons/svg-atoms/checkbox-selected.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 10;
+    left: 1rem;
+    top: 1rem;
+    opacity: 0;
+    transform: scale(0);
+    pointer-events: none;
+  }
+
+  &--active {
+    @extend .selection-state;
+
+    &:before {
+      opacity: 1;
+      border: 0.1rem solid $primary;
+    }
+
+    &:after {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

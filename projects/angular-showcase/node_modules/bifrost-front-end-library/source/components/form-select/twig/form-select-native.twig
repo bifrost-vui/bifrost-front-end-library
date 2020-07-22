@@ -1,0 +1,56 @@
+{# DEMO purpose #}
+{% if options is not defined or options is empty %}
+    {% set options = [
+        { label:"2018", value:"2018", isSelected:true },
+        { label:"2017", value:"2017" },
+        { label:"2016", value:"2016" },
+        { label:"2015", value:"2015" },
+        { label:"2014", value:"2014" },
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="form-group {{ class|default('') }}">
+    {% if label is defined and label is not empty %}
+        <label for="{{ inputId }}"
+               class="{{ labelClass|default('') }} d-flex"
+                {{ labelExtraAttribute|default(NULL) }}>{{ label|default('Label') }}
+
+            {# Tooltip : custom content --------- #}
+            {# {% set _BLOCK_tooltip_content = block('BLOCK_tooltip_content') %}
+            {% if _BLOCK_tooltip_content is defined and _BLOCK_tooltip_content is not empty %}
+                {% embed '@molecules/14-tooltip/tooltip-button-custom.twig' with {
+                    class:"ml-1"
+                } %}
+                    {% block tooltip_content %}
+                        {{ _BLOCK_tooltip_content|raw }}
+                    {% endblock %}
+                {% endembed %}
+            {% elseif labelTooltipTxt is defined and labelTooltipTxt is not empty %}
+                {% include '@molecules/14-tooltip/tooltip-button.twig' with {
+                    class:"ml-1",
+                    tooltipTxt: labelTooltipTxt
+                } only %}
+            {% endif %} #}
+        </label>
+    {% endif %}
+
+    <div class="select-container {{ displayClass|default('d-block') }} {{ selectClass|default('') }}">
+        <select id="{{ inputId }}" class="custom-select {{ selectClass|default('') }}" {{ extraAttribute|default(NULL) }}>
+            {% if placeholder is defined %}
+                <option value="" disabled selected>{{ placeholder|default('') }}</option>
+            {% endif %}
+
+            {% for option in options %}
+                <option value="{{ option.value }}"
+                        {% if option.isSelected|default(false) %}selected{% endif %}
+                >{{ option.label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="invalid-feedback">
+        {{ invalidMsg|default('This is an invalid error message') }}
+    </div>
+</div>

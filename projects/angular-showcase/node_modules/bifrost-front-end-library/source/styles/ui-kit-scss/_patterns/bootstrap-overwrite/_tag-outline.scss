@@ -1,0 +1,27 @@
+/* *****************************************************************************
+*
+*  Tag outline
+*
+* ***************************************************************************** */
+
+.tag-outline {
+  padding: .157rem .875rem;
+  background: none;
+  border: $border-width solid $border-color;
+  border-radius: 1.5rem;
+  color: $gray-700;
+  font-size: $font-size-base;
+
+  .vui--style-black & {
+    border-color: $gray-700;
+    color: $gray-500;
+  }
+
+  @each $color, $value in $theme-colors {
+    &--#{$color} {
+      border-color: $value;
+      color: $value;
+    }
+  }
+}
+

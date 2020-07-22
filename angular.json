@@ -43,32 +43,32 @@
         }
       }
     },
-    "angular-example": {
+    "angular-showcase": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/angular-example",
-      "sourceRoot": "projects/angular-example/src",
+      "root": "projects/angular-showcase",
+      "sourceRoot": "projects/angular-showcase/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-example",
-            "index": "projects/angular-example/src/index.html",
-            "main": "projects/angular-example/src/main.ts",
-            "polyfills": "projects/angular-example/src/polyfills.ts",
-            "tsConfig": "projects/angular-example/tsconfig.app.json",
+            "outputPath": "dist/angular-showcase",
+            "index": "projects/angular-showcase/src/index.html",
+            "main": "projects/angular-showcase/src/main.ts",
+            "polyfills": "projects/angular-showcase/src/polyfills.ts",
+            "tsConfig": "projects/angular-showcase/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/angular-example/src/favicon.ico",
-              "projects/angular-example/src/assets"
+              "projects/angular-showcase/src/favicon.ico",
+              "projects/angular-showcase/src/assets"
             ],
             "styles": [
-              "projects/angular-example/src/styles.scss"
+              "projects/angular-showcase/src/styles.scss"
             ],
             "preserveSymlinks": true,
             "scripts": []
@@ -77,8 +77,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/angular-example/src/environments/environment.ts",
-                  "with": "projects/angular-example/src/environments/environment.prod.ts"
+                  "replace": "projects/angular-showcase/src/environments/environment.ts",
+                  "with": "projects/angular-showcase/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -107,33 +107,33 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-example:build"
+            "browserTarget": "angular-showcase:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-example:build:production"
+              "browserTarget": "angular-showcase:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-example:build"
+            "browserTarget": "angular-showcase:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/angular-example/src/test.ts",
-            "polyfills": "projects/angular-example/src/polyfills.ts",
-            "tsConfig": "projects/angular-example/tsconfig.spec.json",
-            "karmaConfig": "projects/angular-example/karma.conf.js",
+            "main": "projects/angular-showcase/src/test.ts",
+            "polyfills": "projects/angular-showcase/src/polyfills.ts",
+            "tsConfig": "projects/angular-showcase/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-showcase/karma.conf.js",
             "assets": [
-              "projects/angular-example/src/favicon.ico",
-              "projects/angular-example/src/assets"
+              "projects/angular-showcase/src/favicon.ico",
+              "projects/angular-showcase/src/assets"
             ],
             "styles": [
-              "projects/angular-example/src/styles.scss"
+              "projects/angular-showcase/src/styles.scss"
             ],
             "scripts": []
           }
@@ -142,9 +142,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/angular-example/tsconfig.app.json",
-              "projects/angular-example/tsconfig.spec.json",
-              "projects/angular-example/e2e/tsconfig.json"
+              "projects/angular-showcase/tsconfig.app.json",
+              "projects/angular-showcase/tsconfig.spec.json",
+              "projects/angular-showcase/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -154,12 +154,12 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/angular-example/e2e/protractor.conf.js",
-            "devServerTarget": "angular-example:serve"
+            "protractorConfig": "projects/angular-showcase/e2e/protractor.conf.js",
+            "devServerTarget": "angular-showcase:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-example:serve:production"
+              "devServerTarget": "angular-showcase:serve:production"
             }
           }
         }

@@ -1,0 +1,58 @@
+<div class="form-group {{ class|default('') }}">
+    {% if label is defined and label is not empty %}
+        <label for="{{ inputId }}"
+               class="{{ labelClass|default('') }} d-flex"
+                {{ labelExtraAttribute|default(NULL) }}>{{ label|default('Label') }}
+
+            {# Tooltip : custom content --------- #}
+            {# {% set _BLOCK_tooltip_content = block('BLOCK_tooltip_content') %}
+            {% if _BLOCK_tooltip_content is defined and _BLOCK_tooltip_content is not empty %}
+                {% embed '@molecules/14-tooltip/tooltip-button-custom.twig' with {
+                    class:"ml-1"
+                } %}
+                    {% block tooltip_content %}
+                        {{ _BLOCK_tooltip_content|raw }}
+                    {% endblock %}
+                {% endembed %}
+            {% elseif labelTooltipTxt is defined and labelTooltipTxt is not empty %}
+                {% include '@molecules/14-tooltip/tooltip-button.twig' with {
+                    class:"ml-1",
+                    tooltipTxt: labelTooltipTxt
+                } only %}
+            {% endif %} #}
+        </label>
+    {% endif %}
+
+    <div class="position-relative">
+        <input id="{{ inputId }}"
+               class="form-control {{ inputClass|default('') }}"
+               type="{{ inputType|default('text') }}"
+               value="{{ inputValue|default('') }}"
+               placeholder="{{ inputPlaceholder|default('') }}"
+               name="{{ inputName|default('') }}"
+               {% if isDisabled is defined and isDisabled is same as (true) %}disabled {% endif %}
+               {% if isReadonly is defined and isReadonly is same as (true) %}readonly {% endif %}
+               {% if isChecked is defined and isChecked is same as (true) %}checked {% endif %}
+               {{ extraAttribute|default(NULL) }}
+        >
+        {% if iconName is defined %}
+            <div class="align-items-center d-flex h-100 p-input position-absolute--center-right">
+                {# {% include '@atoms/06-icons/icon-svg.twig' with {
+                    iconName: iconName|default("attention"),
+                    iconSize: iconSize|default(''),
+                    iconClass:""
+                } only %} #}
+            </div>
+        {% endif %}
+
+        {# {% include '@atoms/06-icons/icon-svg-error.twig' with { iconClass:"icon--error d-none" } only %} #}
+    </div>
+
+    <div class="invalid-feedback">
+        {{ invalidMsg|default('This is an invalid error message') }}
+    </div>
+
+    {% if subInfos is defined and  subInfos is not empty%}
+        <p class="mt-2 small">{{ subInfos }}</p>
+    {% endif %}
+</div><!-- /.form-group -->

@@ -1,13 +1,19 @@
 {
   "name": "bifrost",
+  "description": "Videotron Front-End Visual Language.",
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
+  "homepage" : "http://documentcloud.github.com/underscore/",
+  "repository": {
+      "type": "git", 
+      "url": "..."
+},
   "scripts": {
-    "build": "ng build --prod && cp -R projects/front-end-library/src/lib dist/front-end-library/source",
     "e2e": "ng e2e",
     "ng": "ng",
     "start": "ng serve",
+    "build": "ng build --prod && cp -R projects/front-end-library/src/lib dist/front-end-library/source",
     "publish": "npm run build && npm publish dist/front-end-library",
     "storybook": "npm run twig & npm run storybook:prebuild && start-storybook -p 9008 -s public",
     "prebuild-storybook": "npm run storybook:prebuild",
@@ -15,11 +21,7 @@
     "storybook:prebuild": "npm run test:generate-output && npm run docs:json",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "twig": "nodemon server/server.js --watch projects/ -e twig",
-    "chromatic": "npx chromatic --project-token=2a5bytxelfi",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "test:generate-output": "jest --json --config=jest.addon-config.js --outputFile=addon-jest.testresults.json || true",
-    "test:watch": "jest --watch"
+    "chromatic": "npx chromatic --project-token=2a5bytxelfi"
   },
   "dependencies": {
     "@angular/common": "^9.1.0",
@@ -30,7 +32,6 @@
     "@angular/platform-browser-dynamic": "^9.1.0",
     "@angular/router": "^9.1.11",
     "@ngrx/store": "^9.0.0",
-    "bifrost-front-end-library": "0.0.7",
     "bootstrap": "^4.5.0",
     "core-js": "^3.0.1",
     "express": "^4.17.1",
@@ -71,8 +72,6 @@
     "global": "^4.3.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.2",
-    "jest": "^26.0.0",
-    "jest-preset-angular": "^8.2.0",
     "ng-packagr": "^9.1.5",
     "nodemon": "^2.0.4",
     "protractor": "~7.0.0",

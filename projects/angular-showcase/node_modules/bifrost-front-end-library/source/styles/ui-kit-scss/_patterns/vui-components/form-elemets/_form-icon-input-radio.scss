@@ -1,0 +1,36 @@
+/* *****************************************************************************
+*
+*  Input radio
+*
+* ***************************************************************************** */
+
+.form-icon-input-radio {
+  position: relative;
+  padding-left: 3.5rem !important;
+
+  &:before,
+  &:after {
+    @include size(1.3rem);
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    border: 1px solid $dark;
+    left: 0rem;
+    top: 50%;
+    transform: translate(100%, -50%);
+  }
+
+  &:after {
+    @include transitions(opacity);
+    background: $dark;
+    border: none;
+    transform: translate(100%, -50%) scale(0.35);
+    opacity: 0;
+  }
+
+  &--checked {
+    &:after {
+      opacity: 1;
+    }
+  }
+}

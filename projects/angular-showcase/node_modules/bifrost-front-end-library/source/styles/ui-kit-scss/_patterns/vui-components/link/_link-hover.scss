@@ -1,0 +1,33 @@
+/* *****************************************************************************
+*
+*  Links
+*
+* ***************************************************************************** */
+
+.link-hover {
+  @include hover {
+    opacity: 0.6;
+  }
+
+  @each $themeColor, $value in $theme-colors {
+    &--#{$themeColor} {
+      @extend .link--no-decoration;
+      @include transitions(color .05s);
+
+      @include hover-focus(){
+        color: $value !important;
+
+        .icon.icon-arrow-to-right {
+          border-color: $value !important;
+        }
+      }
+    }
+
+    &-border--#{$themeColor} {
+      @extend .link--no-decoration;
+      @include hover-focus(){
+        color: $value !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+/* *****************************************************************************
+*
+*  CSS GRID (billing review side-by-side)
+*
+* ***************************************************************************** */
+.c-billing-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: minmax(min-content, max-content);
+  grid-template-areas:  "billing-header-actual billing-header-new"
+                        "billing-body-actual billing-body-new"
+                        "billing-subtotal-actual billing-subtotal-new"
+                        "billing-footer-actual billing-footer-new";
+  grid-column-gap: 1.5rem;
+
+  .col-actual {
+    opacity: 0.5;
+    //@extend .vui--desactivated;
+  }
+
+  @include media-breakpoint-down(sm){
+      grid-template-columns: 1fr;
+      grid-template-areas:  "billing-header-actual"
+                            "billing-body-actual"
+                            "billing-subtotal-actual"
+                            "billing-footer-actual"
+
+                            "billing-header-new"
+                            "billing-body-new"
+                            "billing-subtotal-new"
+                            "billing-footer-new";
+    }
+
+  .billing-header-actual { grid-area: billing-header-actual; }
+  .billing-header-new { grid-area: billing-header-new; }
+
+  .billing-body-actual { grid-area: billing-body-actual; }
+  .billing-body-new { grid-area: billing-body-new; }
+
+  .billing-subtotal-actual { grid-area: billing-subtotal-actual; }
+  .billing-subtotal-new { grid-area: billing-subtotal-new; }
+
+  .billing-footer-new { grid-area: billing-footer-new; }
+  .billing-footer-new { grid-area: billing-footer-new; }
+
+  // ------------------------------------------------------
+  .billing-header-new,
+  .billing-header-actual {
+    border-bottom: 4px solid $dark;
+    padding-bottom: $spacer-3;
+  }
+
+
+}

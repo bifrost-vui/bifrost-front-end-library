@@ -1,0 +1,98 @@
+import { moduleMetadata } from '@storybook/angular';
+import { Story, Meta, Preview, Props } from '@storybook/addon-docs/blocks';
+import { text, radios, select, boolean, withKnobs } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
+import { ButtonComponent } from './angular/button.component';
+
+# Button
+
+<Meta
+  title='Components/Button/Documentation'
+  decorators={[
+    withKnobs,
+    moduleMetadata({ declarations: [ButtonComponent]})
+  ]}
+/>
+
+<Story name='Documentation' parameters={{ decorators: [withKnobs] }}>
+  {{
+    component: ButtonComponent,
+    props: {
+      label: text('label', 'Default'),
+      type: select('buttonSize', ['sm', 'md', 'lg'], 'md'),
+      color: select('buttonColor', ['primary', 'secondary', 'reverse', 'default-AA', 'blue'], 'primary'),
+      disabled: boolean('disabled', false),
+      fullWidth: boolean('fullWidth', false),
+      onClick: action('You clicked me...')
+    },
+  }}
+</Story>
+
+
+## Drupal
+
+<iframe src='http://localhost:3001/button?buttonLabel=Default&buttonColor=primary&buttonSize=sm' height='100px' width='100%' frameBorder='0' />
+
+
+## Type variant
+The type is changed by adding `type="Small/Large/Icon"`.<br/>
+Use `icon="NameOfIcon"` to add icon to the button.
+**It won't appear with small type.**<br/>
+The default type is `small`
+
+<Preview withSource='close'>
+  <Story name='Sizes' parameters={{ docs: { iframeHeight: 400 } }}>
+    {{
+      template: `
+        <div style='display: flex; align-items: center; flex-wrap: wrap;'>
+        <div style="padding:20px;width:100%;">
+            <lib-button label='Small' size='sm'></lib-button>
+            <lib-button label='Medium'></lib-button>
+            <lib-button label='Large' size='lg'></lib-button>
+          </div>
+        </div>
+      `
+    }}
+  </Story>
+</Preview>
+
+## Color
+<Preview withSource='close'>
+  <Story name='Colors'>
+    {{
+      template: `
+        <div style='display: flex; align-items: center; flex-wrap: wrap;'>
+        <div style="padding:20px;width:100%;">
+            <lib-button label='Primary'></lib-button>
+            <lib-button label='Secondary' color='secondary'></lib-button>
+            <div style="background-color:#1A2C47;padding:5px;margin:5px;">
+              <lib-button label='Reverse' color='reverse'></lib-button>
+            </div>
+        </div>
+        </div>
+      `
+    }}
+  </Story>
+</Preview>
+
+## FullWidth
+The fullWidth style is automatic on mobile devices but can be used anytime by adding `fullWidth="true"`
+<Preview withSource='close'>
+  <Story name='Fallback' parameters={{ docs: { iframeHeight: 200 } }}>
+    {{
+      template: `
+        <div style='display: flex; align-items: center; flex-wrap: wrap;'>
+          <div style="padding:40px;width:100%;">
+            <lib-button label='Mobile small' fullWidth='true'></lib-button>
+            <lib-button label='Mobile large' fullWidth='true' type="large" color="secondary"></lib-button>
+            <lib-button label='Mobile disabled' fullWidth='true' disabled="true" color="secondary"></lib-button>
+          </div>
+        </div>
+      `
+    }}
+  </Story>
+</Preview>
+
+## Props
+
+<Props of={ButtonComponent} />

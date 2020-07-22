@@ -1,0 +1,49 @@
+{# For Demo purposes only #}
+{% if dropdownItems is not defined or dropdownItems is empty %}
+    {% set dropdownItems = [
+        {id:"#", label:"Item 1", class:""},
+        {id:"#", label:"Item 2", class:""},
+        {id:"#", label:"Item 3", class:""},
+    ] %}
+{% endif %}
+
+
+{# Scrollspy configuration #}
+{% if isStickyScrollSpyActive is same as (true) %}
+    {% set scrollSpyClass = 'sticky-top' %}
+    {% set labelClass = ' js-scrollspy-active-section-label' %}
+    {% set scrollSpyNavItemClass = 'js-scrollspy-goto-animate' %}
+{% endif %}
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="dropdown dropdown--selectlist {{ class|default('') }} {{ scrollSpyClass|default(NULL) }}">
+    <button class="rounded vui--style-reset w-100 d-flex align-items-center justify-content-between {{ buttonClass|default() }}"
+            type="button"
+            id="{{ dropdownId|default('dropdownId') }}"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+    >
+        <span class="m-0 {{ labelClass|default('') }}">
+            {{ dropdownSelectedItem|default(dropdownItems[0].label) }}
+        </span>
+    </button>
+
+    <div class="dropdown-menu border-0 rounded" aria-labelledby="{{ dropdownId|default('dropdownId') }}">
+        {% for item in dropdownItems %}
+            <a class="dropdown-item m-0 {{ item.class|default('') }} {{ scrollSpyNavItemClass|default(NULL) }} "
+               href="{{ item.href|default('#') }}">{{ item.label|default('Item') }}
+
+                {% if item.subDropdownItems is defined %}
+                    <div class="dropdown-item__subItem-container">
+                        {% for subItem in item.subDropdownItems %}
+                            <a href="{{ subItem.href|default('#') }}" class="dropdown-item m-0 {{ subItem.class|default('') }}">
+                                {{ subItem.label|default('Item') }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </a>
+        {% endfor %}
+    </div>
+</div>
