@@ -28,6 +28,9 @@ addParameters({
 
     // Controls
     controls: { expanded: true, hideNoControlsWarning: true },
+    argTypes: {
+        component: { control: { disable: true, disabled: true } },
+    },
     
     // Hide addons
     storySource: { disabled: true },
