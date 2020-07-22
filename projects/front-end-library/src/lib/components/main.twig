@@ -20,14 +20,34 @@
         {# For DEBUG puropose: #}
         {# <pre>{{ dump(_context) }}</pre> #}
         {# <pre>{{ dump(_context|json_encode) }}</pre> #}
+        {# 
+        TODO:
+        - Query Booleans are still string and seems difficult to convert. E.g. disabled="true"
+         #}
+
+        {# {% set context = _context|replace({'b': 'z'}) %}
+        <pre>{{ dump(_context) }}</pre> #}
+{# 
+        {% set array = [] %}
+        {% for key, value in _context %}
+            key: {{key}} - value:{{value}}<br/>
+            {% if value is same as("true") %} -{{_val}}- {% endif %}
+            {% set array = array|merge({ key: value }) %}
+        {% endfor %}
+        ---
+        {% for x in array %}
+            {{ x }}<br/>
+        {% endfor %}
+        --- #}
+        {# <pre>{{ dump(array) }}</pre> #}
 
         <main class='center'>
             
             {% set component = _context.component %}
             {% set componentVariant = _context.componentVariant|default(component) %}
-            {% set context = _context %}
+            {# {% set context = _context %} #}
 
-            {% include './' ~ component ~ '/twig/' ~ componentVariant ~ '.twig' with context %}
+            {% include './' ~ component ~ '/twig/' ~ componentVariant ~ '.twig' with _context %}
 
             {# {% if component == 'button' %}
                 {% include './button/twig/button.twig' with _context %}

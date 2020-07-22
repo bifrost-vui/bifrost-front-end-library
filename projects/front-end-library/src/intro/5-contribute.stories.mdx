@@ -10,56 +10,124 @@ import { Meta } from '@storybook/addon-docs/blocks';
 />
 
 # Contribute
-This page will help you to create or update a component in the design System. We will consider both Drupal and Angular.
+
+Create or update an Angular or Twig element in the Design System.
 
 <br/>
 
-### 2. Generate the structure of your new component 
+> Basically, there are 4 kinds of elements:
+- **Components**
+- **Templates** (to help build with components)
+- **Pipes**
+- **Styles** (e.g. Sass variables)
+
+> We support 2 frameworks: **Angular** and **Drupal**.
+
+<br/>
+
+**Frequent questions:**
+
+- [Zeroheight: How to know if the component should be on the Design System?]()
+- [Other documentation]()
+
+<br/>
+
+## 1. Clone the repository
+
+Clone [the Design System repository]() on your local machine and choose the version you want to work on: 
+
+```
+git clone <url>
+git checkout v0.1.0
+```
+
+[Changelogs: List of all versions]()
+
+## 2. Generate the component's structure
+**Optional: Only if you want to create a new component.**
+
+We created a command in order to help you start: 
+
 `npm run generate component <component-name>`
 
-Or copy `.templates/component-structure` folder and paste it in `/lib/components`.
+<br/>
 
-### 3. Develop it with Storybook
-Storybook provides an environment to develop in isolation:
-- `npm run storybook`
-- Open `http://localhost:9008/` and find the page of your component on the sidebar.
-- If needed, in `<your-component>.stories.ts` create stories to showcase the different states of your component.
+This command will:
+- Copy `.templates/component-structure` folder and paste it in `/lib/components`.
+- Then you will have starter files for Angular and Twig.
+- Expose your new component in `public-api.ts`.
 
-**Make sure component is:**
-- Accessible (use [Pa11y](https://github.com/pa11y/pa11y) on your storybook component URL, more details soon) 
-- Agnostic/Universal
-- Content resilient
-- Responsive
-- Using design tokens from _variables.scss
-- API is consistent with other components
-- Unit test?
+## 3. Develop it
+Storybook provides an environment to develop in isolation. Let's open it:
 
-> Try to use the **same component API** and the **same CSS** for Angular and Drupal components. As much as possible.
+`npm run storybook`
 
-> Since Drupal components are server side, you need to refresh the browser to see changes during development. It's real-time in Angular.
+<br/>
 
-### 4. _(Angular only)_ Export component
-- Export Module and/or Component files in `/lib/public-api.ts`.
+Open **[http://localhost:9008]()** on your browser and find the page of your component on the sidebar.
 
-### 5. Build library
-- Increment the version in `package.json` with the pattern: **MAJOR.MINOR.PATCH**. If it's a major or minor change, all Design System team should be warn.
-- Then build and publish:
+**Et voila! Your environment is set up :)**
+
+<br/>
+
+<small>
+
+**Note:** Since **Drupal** components are server side, you need to refresh the browser to see changes during development.
+
+</small>
+
+<br/>
+
+**Ready to push? Make sure component is:**
+
+- [x] Accessible (use [Axe]() inside Storybook panel or [Pa11y](https://github.com/pa11y/pa11y)) 
+- [x] Agnostic / Universal
+- [x] Content resilient
+- [x] Responsive
+- [x] Using design tokens from _variables.scss
+- [x] API is consistent with other components
+- [x] Unit test?
+
+> **Component API:** As much as possible, try to use the **same component API** and the **same CSS** for Angular and Drupal.
+
+> **Document Component States:** You could add stories to showcase the different states of your component. Just add them in `doc.stories.ts`.
+
+## 4. _(Angular only)_ Export component
+Export Module and/or Component files in `/lib/public-api.ts`.
+
+## 5. Build library
+
+Increment the version in `package.json` with the pattern: **MAJOR.MINOR.PATCH**. 
+> If it's a major or minor change, Design System team should be warn.
+
+Then build and publish:
 ```Shell
 npm run build
 npm publish
 ```
-- Your package version is now available for everyone.
-- Optionnal: Check the registry (TODO: add link)
+Your package version is now available for everyone.
+You could check availability on the [NPM registry]() page.
 
-### 6. _(Angular only)_ Optionnal: Test implementation
-Angular Project `projects/angular-example` is aimed to showcase implementation.
-- `npm i bifrost-front-end-library@<your-new-version>`
-- Now, you will be able to import the new component in `projects/angular-example/src/app/app.module.ts`
-- Add your component in `app.component.html`.
-- `ng serve angular-example`
-- Open the browser at `localhost:4200` to see the result :)
+## 6. _(Angular only)_ Optional: Test implementation
+**Angular Example Project** is aimed to showcase implementation.
 
-### 7. Communicate
+Located here: `projects/angular-example`.
+
+<br/>
+
+From the same repo, serve the project:
+
+`ng serve angular-example`
+
+Update the library:
+
+`npm i bifrost-front-end-library@<your-new-version>`
+
+Import the new component in App Module (`projects/angular-example/src/app/app.module.ts`).
+
+Now, you will be able to add your component in a file (e.g. `app.component.html`).
+
+## 7. Communicate
 - Slack Channel?
 
 <br/><br/>
