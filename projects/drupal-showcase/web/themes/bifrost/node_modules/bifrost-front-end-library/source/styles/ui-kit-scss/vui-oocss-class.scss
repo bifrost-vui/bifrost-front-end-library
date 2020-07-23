@@ -1,0 +1,147 @@
+/* *****************************************************************************
+*
+*  Global Videotron UI style class
+*
+* ***************************************************************************** */
+.vui {
+  &--window-freeze{
+    position: fixed;
+    width: 100vw;
+  }
+
+  &--tooltip-desactivated {
+    opacity: .3;
+    user-select: none;
+    cursor: initial!important;
+  }
+
+  &--desactivated {
+    opacity: .3;
+    pointer-events: none;
+  }
+
+  &--hide {
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  &--cursor-pointer {
+    cursor: pointer;
+  }
+
+  &--style-reset {
+    background: none;
+    width: initial;
+    border: none;
+  }
+
+  &--style-black {
+    background-color: $black;
+    color: $white;
+
+    a {
+      &:not(.btn-outline-light){
+        @include plain-hover-focus {
+          color: $white;
+        }
+      }
+    }
+
+    hr {
+      border-top-color: $gray-800 !important;
+    }
+  }
+
+  // Text
+  &--text-highlight {
+    @extend .vui--font-secondary-bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    //font-weight: bold;
+  }
+
+  &--text-dashed {
+    position: relative;
+    display: inline-block;
+
+    &:before {
+      position: absolute;
+      left: 50%;
+      top: 48%;
+      content: '';
+      width: 110%;
+      height: $border-width;
+      background: $dark;
+      transform: translate(-50%, -50%);
+    }
+
+    // All theme variant colors
+    @each $color, $value in $theme-colors {
+      &.color--#{$color},
+      &--#{$color} {
+        color: $value;
+
+        &:before {
+          background: $value;
+        }
+      }
+    }
+
+    @each $color, $value in $grays {
+      &.color-gray--#{$color}{
+        color: $value;
+
+        &:before {
+          background: $value;
+        }
+      }
+    }
+  }
+
+  &--font-base {
+    font-family: $font-family-base!important;
+  }
+
+  &--font-secondary {
+    font-family: $font-family-secondary;
+    //line-height: $headings-line-height;
+  }
+
+  &--font-secondary-light {
+    @extend .vui--font-secondary;
+    font-weight: $font-weight-light;
+  }
+
+  &--font-secondary-bold {
+    @extend .vui--font-secondary;
+    font-weight: $font-weight-bold;
+  }
+
+  // Padding, alignement
+  &--padding-full-viewport {
+    padding: 1.6rem 5rem;
+
+    @include media-breakpoint-down(md) {
+      padding: 1.6rem 2rem;
+    }
+
+    @include media-breakpoint-down(sm) {
+      padding: 1.6rem 1rem;
+    }
+  }
+
+  &--pseudo-center-line{
+    position: relative;
+    z-index: 1;
+
+    &:before {
+      @extend .position-absolute--center;
+      content: "";
+      z-index: -1;
+      background: $gray-200;
+      height: $border-width;
+      width: 100%;
+    }
+  }
+}

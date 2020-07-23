@@ -1,0 +1,178 @@
+/* *****************************************************************************
+*
+*  Librairie datepicker
+*
+* This overrides the default styles from the Pickadate.js library
+*
+* ***************************************************************************** */
+
+.picker {
+  .picker {
+    opacity: 0;
+
+    &--opened {
+      opacity: 1;
+    }
+  }
+
+  .picker__holder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparentize($modal-backdrop-bg, $modal-backdrop-opacity);
+
+    .picker__frame {
+      @include media-scale(max-width, 90vw, $modal-md);
+      margin-bottom: 0;
+      position: static;
+
+      .picker__nav--next,
+      .picker__nav--prev {
+        @include size(2rem);
+        background: $dark;
+        border-radius: 100px;
+        border: none;
+        z-index: 20;
+        padding:0;
+        margin: 0 3px;
+
+        &:before {
+          @extend .position-absolute--center;
+          @include size(0.5rem);
+          content: "";
+          display: block;
+          border-color: $white!important;
+        }
+      }
+
+      .picker__nav--prev {
+        left: 0;
+        top:0;
+
+        &:before {
+          @extend .icon-arrow-to-left;
+          transform: rotate(225deg) translate(3px, 1px)!important;
+        }
+      }
+
+      .picker__nav--next {
+        right: 0;
+        top:0;
+
+        &:before {
+          @extend .icon-arrow-to-right;
+          transform: rotate(45deg) translate(-6px, 1px) !important;
+        }
+      }
+
+      .picker__month,
+      .picker__year {
+        @extend .h2;
+        @extend .vui--font-secondary;
+        font-weight: $font-weight-normal;
+        font-style: normal;
+        color: $black;
+      }
+
+      .picker__table {
+        margin-bottom: 0;
+      }
+    }
+
+    .picker__box {
+      @include media-scale(padding, $spacer-3, $spacer-3, $spacer-6 $spacer-6 $spacer-3);
+      border-radius: 0;
+      border: none;
+
+      .picker__header {
+        margin: 0 0 $spacer-5;
+      }
+    }
+  }
+
+  .picker__day {
+    @include transitions(background, color);
+    @extend .h4;
+    @extend .vui--font-secondary;
+    @extend .border-rounded;
+    font-weight: $font-weight-bold;
+    margin: 3px !important;
+    border: $border-width solid $border-color !important;
+    background: $gray-100;
+
+    @include media-breakpoint-up(md){
+      min-height: ($spacer-4 * 2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &--today {
+      &:before {
+        border-top-color: $primary;
+      }
+    }
+
+    &--highlighted {
+      background: #fff !important;
+    }
+
+    // next month date
+    &--outfocus {
+      opacity: 0.5 !important;
+    }
+
+    &--selected,
+    &--highlighted:hover,
+    &--infocus:hover,
+    &--outfocus:hover {
+      background: $gray-200 !important;
+      color: $dark !important;
+    }
+
+    &--disabled,
+    &--disabled:hover {
+      @extend .vui--desactivated;
+      background: $gray-100 !important;
+      color: $gray-500 !important;
+      border-color: $gray-100 !important;
+    }
+  }
+
+  .picker__weekday {
+    @include media-scale(font-size, $h6-font-size, $h5-font-size);
+    font-weight: $font-weight-bold;
+    color: $body-color;
+  }
+
+  .picker__button--close {
+    //@extend .position-absolute--top-right;
+    @extend .link-underline;
+    @extend .h6;
+    border: none !important;
+    text-align: right;
+    width: 100%;
+    margin-top: $spacer-3;
+
+    &:before {
+      display: none;
+    }
+
+    @include plain-hover-focus{
+      background: $white;
+    }
+  }
+
+  .picker__button--clear:hover,
+  .picker__button--close:hover,
+  .picker__button--today:hover {
+    text-decoration: underline;
+  }
+}
+
+
+
+
+
+
+

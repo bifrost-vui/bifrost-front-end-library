@@ -1,0 +1,58 @@
+/* *****************************************************************************
+*
+*  Navbar
+*
+* ***************************************************************************** */
+
+.tab--button-group{
+  .tab__header {
+    border-bottom: none !important;
+  }
+
+  .nav-tabs {
+    //@extend .btn-group;
+
+    .nav-item {
+      margin: 0;
+
+      &:first-child {
+        .nav-link {
+          border-top-left-radius: $border-radius;
+          border-bottom-left-radius: $border-radius;
+        }
+
+      }
+      &:last-child {
+        .nav-link {
+          border-top-right-radius: $border-radius;
+          border-bottom-right-radius: $border-radius;
+        }
+      }
+
+      .nav-link {
+        @extend .btn;
+        @extend .border;
+        @extend .vui--text-highlight;
+        min-width: initial!important;
+        padding-left: $input-padding-x!important;
+        padding-right: $input-padding-x!important;
+        border-radius:0;
+
+        &:not(.active){
+          @include hover-focus{
+            background: $dark;
+            color: $white;
+          }
+        }
+
+        &.active {
+          border-color: $dark!important;
+        }
+
+        &:before {
+          display:none;
+        }
+      }
+    }
+  }
+}
