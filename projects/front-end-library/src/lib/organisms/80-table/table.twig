@@ -1,0 +1,90 @@
+{% if theadItems is not defined or theadItems is empty %}
+    {% set theadItems = [
+        { label: "Date"},
+        { label: "Ammount Due"},
+        { label: "Reference Number"}
+    ] %}
+{% endif %}
+
+{% if tbodyRows is not defined or tbodyRows is empty %}
+    {% set tbodyRows = [
+        [
+            { cssItemAlign: "center", cellValue: "Oct 10, 2018" },
+            { cssItemAlign: "center", cellValue: "$136.34" },
+            { cssItemAlign: "center", cellValue: "76567687-112" }
+        ],
+        [
+            { cssItemAlign: "center", cellValue: "Oct 10, 2018" },
+            { cssItemAlign: "center", cellValue: "$136.34" },
+            { cssItemAlign: "center", cellValue: "76567687-112" }
+        ]
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="{{ class|default('') }}" data-animate="fade-in">
+    {% if filters is defined and filters is not empty %}
+        <div class="mb-3 d-flex flex-column flex-lg-row justify-content-end">
+            {% for filter in filters %}
+                <div class="ml-md-3">
+                    {% include '@components/form/form-select-native.twig' with {
+                        label: filter.label|default("Filter"),
+                        class:"mb-0",
+                        selectClass: "w-100",
+                        options: filter.options
+                    } only %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="table-responsive text-nowrap scrollbar-custom text-nowrap mb-3">
+        <table class="table border {{ tableClass|default('') }}">
+            {% include 'molecules-table-thead' with {
+                class:"",
+                theadTheme: theadTheme|default('light'),
+                theadItems: theadItems
+            } only %}
+
+            <tbody class="">
+                {% for row in tbodyRows %}
+                    {% if row.title is defined %}
+                        <tr>
+                            <td class="bg-gray--100 p-table-td" colspan="{{ theadItems|length }}">
+                                <p class="mb-0 vui--text-highlight">{{ row.title }}</p>
+                            </td>
+                        </tr>
+                    {% endif %}
+
+                    {% include 'molecules-table-row' with {
+                        class:"",
+                        rowDatas: row.datas,
+                        rowCollapseID: "rowCollapse_" ~ loop.index
+                    } only %}
+                {% endfor %}
+
+                {% for rowDatas in tfooterRows %}
+                    {% include 'molecules-table-row' with {
+                        class:"bg-gray--100",
+                        tdClass: "font-weight-bold",
+                        rowDatas: rowDatas,
+                        rowCollapseID: "rowCollapse_" ~ loop.index
+                    } only %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% if hasNoTableControls is not defined %}
+        <div class="d-md-flex align-items-center justify-content-between">
+            <div class="">
+                {% block table_footer_left_col %}{% endblock %}
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <span class="color-gray--600 mr-3">1-25 of 200</span>
+                {% include '@components/control/control-pagination.twig' with { class:"" } only %}
+            </div>
+        </div>
+    {% endif %}
+</div>

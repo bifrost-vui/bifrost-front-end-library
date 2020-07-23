@@ -1,0 +1,14 @@
+{% if bgImage is defined and bgImage is not empty %}
+    {% set defaultImgSrc = bgImage %}
+{% else %}
+    {% set defaultImgSrc = '/images/hero/hero-block-sample.png' %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<!-- hero-block-equipment.twig -->
+{% embed '@organisms/03-hero/hero-block.twig' with { class:"pb-md-8 pb-lg-8 pb-xl-8 mb-5 gradient gradient-bottom gradient-bottom-left-gray--100" } %}
+    {% block hero_content %}
+        <h1 class="mb-2 mb-lg-8">{{ title|default('Your Helix System') }}</h1>
+    {% endblock %}
+{% endembed %}

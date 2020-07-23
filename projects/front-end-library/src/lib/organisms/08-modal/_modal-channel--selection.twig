@@ -1,0 +1,41 @@
+<!-- Modal -->
+{% set alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'] %}
+{% embed '@molecules/08-modal/modal.twig' with {
+    modalId:"modalChannelSelection",
+    modalLabelledBy:"exampleModalLabel"
+} %}
+    {% block modal_header %}
+        <p class="modal-title" id="exampleModalLabel">All included channels in this</p>
+        <p>Free try-out for your first 3 months</p>
+    {% endblock %}
+
+    {% block modal_body_subcontainer %}
+        <nav id="modal-listing-channels" class="navbar navbar-light bg-light p-0">
+            <ul class="nav flex-align-center-space-between w-100 p-0 text-uppercase">
+                {% for letter in alphabet %}
+                    <li class="w-100">
+                        <a class="nav-link h5 pr-2 font-weight-light" href="#channel_{{ letter }}">{{ letter }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    {% endblock %}
+
+    {% block modal_body %}
+        <section data-spy="scroll" data-target="#modal-listing-channels" data-offset="0">
+            {% for letter in alphabet %}
+                <article id="channel_{{ letter }}" class="py-4 border-top-gray--400 row">
+                    <h1 class="col-1 text-left text-uppercase">{{ letter }}</h1>
+
+                    <div class="col-11">
+                        <ul class="list-col-md-3 list-reset text-left">
+                            {% for i in 1..18 %}
+                                <li class="h4 font-weight-light mb-2">Lorem ipsum</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+    {% endblock %}
+{% endembed %}

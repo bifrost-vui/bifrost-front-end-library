@@ -39,17 +39,20 @@
  * @see html.html.twig
  */
 #}
-  <header class="content-header clearfix">
-    <div class="layout-container">
-      page.header {{ page.header }}
-    </div>
-  </header>
-  yep
+    
+    {# {% include '@bifrost/node_modules/bifrost-front-end-library/source/components/button/twig/button.twig' with { label:'primary'} %} #}
 
-    {% include directory ~ '/node_modules/bifrost-front-end-library/source/components/button/twig/button.twig' with { label:'primary'} %}
+    {% include '@components/button/twig/button.twig' with { 
+        label:'New label'
+    } only %}
+
+    {% include '@templates/contact-form/twig/contact-form.twig' with { 
+        x:'y'
+    } only %}
+
+    <br/><br/><br/>
 
   <div class="layout-container">
-    layout-container
     {{ page.pre_content }}
     {{ page.breadcrumb }}
     <main class="page-content clearfix" role="main">

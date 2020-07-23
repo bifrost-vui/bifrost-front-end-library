@@ -1,0 +1,27 @@
+{% embed "molecules-modal" with {
+    modalId:"modalAreYouSure",
+    modalTitle:"Lorem ipsum",
+    modalSize:"md"
+} %}
+    {% block modal_body %}
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam animi corporis culpa cumque fugiat, incidunt laudantium magni nam nihil nobis non, obcaecati odio possimus quo sunt temporibus totam vitae voluptates?</p>
+
+        <div class="row mt-4">
+            <div class="col-6 col-md-8 d-flex justify-content-end">
+                {% include '@components/button/button-primary.twig' with {
+                    buttonLabel:"Cancel",
+                    buttonClass:"btn-reset link-underline btn--condensed",
+                    dataDismiss:"modal"
+                } %}
+            </div>
+            <div class="col-6 col-md-4">
+                {% include '@components/button/button-primary.twig' with {
+                    buttonLabel:"Confirm",
+                    buttonColor:"primary",
+                    buttonClass:"btn--condensed w-100",
+                    dataDismiss:"modal"
+                } %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}
