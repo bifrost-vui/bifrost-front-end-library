@@ -15,20 +15,25 @@ Create or update an Angular or Twig element in the Design System.
 
 <br/>
 
-> Basically, there are 4 kinds of elements:
+> Basically, there are 5 kinds of elements:
 - **Components**
+- **Organisms** (more complex components)
 - **Templates** (to help build with components)
 - **Pipes**
 - **Styles** (e.g. Sass variables)
+> 
+All theses elements are build and publish as an **NPM package**.
 
 > We support 2 frameworks: **Angular** and **Drupal**.
+
+
 
 <br/>
 
 **Frequent questions:**
 
 - [Zeroheight: How to know if the component should be on the Design System?]()
-- [Other documentation]()
+- [Other documentation...]()
 
 <br/>
 
@@ -113,12 +118,26 @@ You could check availability on the [NPM registry]() page.
 
 Located here: `projects/angular-showcase`.
 
+Serve the project:
+
+`ng serve angular-showcase`
+
+Update the library:
+
+`npm i bifrost-front-end-library@<your-new-version>`
+
+Import the new component in App Module (`projects/angular-showcase/src/app/app.module.ts`).
+
+Now, you will be able to add your component in a file (e.g. `app.component.html`).
+
 ## 6. Test Drupal implementation
 **Drupal showcase Project** is aimed to showcase implementation.
 
-Located here: `projects/drupal-showcase`.
+- Install Drupal in **/drupal-showcase** folder. Mac or Window install...
+- Open Drupal Admin Page and check that **bifrost** theme is active.
+- TODO: Install with local npm package / npm in registry.
+- TODO: Check visual regression with BackStopJS.
 
-Process to recreate environemnt:
 ```Shell
 # From https://www.drupal.org/docs/develop/local-server-setup/linux-development-environments/set-up-a-local-development-drupal-0-3
 
@@ -134,22 +153,9 @@ composer create-project drupal/recommended-project drupal-showcase
 cd drupal-showcase
 composer require --dev drupal/core-dev
 composer global require hirak/prestissimo
-
 ```
 
 <br/>
-
-From the same repo, serve the project:
-
-`ng serve angular-showcase`
-
-Update the library:
-
-`npm i bifrost-front-end-library@<your-new-version>`
-
-Import the new component in App Module (`projects/angular-showcase/src/app/app.module.ts`).
-
-Now, you will be able to add your component in a file (e.g. `app.component.html`).
 
 ## 7. Communicate
 - Slack Channel?
