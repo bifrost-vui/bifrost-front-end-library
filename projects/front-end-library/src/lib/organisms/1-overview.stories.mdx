@@ -1,0 +1,30 @@
+import { Story, Meta, Preview, Props } from '@storybook/addon-docs/blocks';
+import { linkTo } from '@storybook/addon-links';
+import { moduleMetadata } from '@storybook/angular';
+import { TileComponent } from '../../utils/tile/tile.component';
+import { Stack, Tile } from '../../utils/documentation-style.js';
+
+<Meta
+    title='Organisms/All Organisms'
+    parameters={{ 
+        layout: 'padded', 
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+    decorators={[
+        moduleMetadata({ declarations: [TileComponent]})
+    ]}
+/>
+
+# All Organisms
+
+<br/>
+
+<Stack>
+
+<Tile onClick={linkTo('components-button--default-story')} status='pending'>
+    Accordion
+    <iframe title="Default" src="iframe.html?id=components-button--default-story&amp;viewMode=story"></iframe>
+</Tile>
+
+</Stack>

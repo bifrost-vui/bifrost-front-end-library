@@ -9,7 +9,7 @@ export const Drupal = (args) => ({
   props: args
 });
 Drupal.args = { 
-    component: 'form-input-text',
+    elementPath: 'components/form-input-text/twig/form-input-text',
     class: '',
     label: 'Label',
     labelClass: '',

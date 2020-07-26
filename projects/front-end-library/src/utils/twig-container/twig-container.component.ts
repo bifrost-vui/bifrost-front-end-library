@@ -15,7 +15,7 @@ export class TwigContainerComponent implements OnInit {
 
   private iframeUrl: SafeResourceUrl;
 
-  private component: string;
+  private elementPath: string;
 
   ngOnInit() {
     console.log('ngOnInit', this);

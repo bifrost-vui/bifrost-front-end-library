@@ -1,0 +1,32 @@
+import { moduleMetadata } from '@storybook/angular';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { TwigContainerComponent } from '../../../utils/twig-container/twig-container.component';
+
+<Meta 
+    title='Organisms/Test' 
+    decorators={[
+        moduleMetadata({ declarations: [TwigContainerComponent]})
+    ]}
+/>
+
+## Navigation Videotron Unify
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args
+});
+
+<Preview>
+    <Story 
+        name='Drupal'
+        args={{
+            elementPath: 'organisms/test/test',
+        }}
+        height='150px'
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+## Component API
+

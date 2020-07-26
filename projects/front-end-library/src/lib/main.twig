@@ -17,8 +17,7 @@
     </head>
     <body>
 
-        {# For DEBUG puropose: #}
-        {# <pre>{{ dump(_context) }}</pre> #}
+        
         {# <pre>{{ dump(_context|json_encode) }}</pre> #}
         {# 
         TODO:
@@ -42,16 +41,27 @@
         {# <pre>{{ dump(array) }}</pre> #}
 
         <main class='center'>
-            
-            {% set component = _context.component %}
-            {% set componentVariant = _context.componentVariant|default(component) %}
-            {# {% set context = _context %} #}
 
-            {% include './' ~ component ~ '/twig/' ~ componentVariant ~ '.twig' with _context %}
+            {# For DEBUG puropose: #}
+            {# <pre>{{ dump(_context) }}</pre> #}
 
-            {# {% if component == 'button' %}
-                {% include './button/twig/button.twig' with _context %}
-            {% endif %} #}
+            {% if _context.elementPath is defined %}
+                
+                {% set elementPath = _context.elementPath %}
+                {# {% include './button.twig' with _context %} #}
+                {# {% set elementName = _context.elementName %} #}
+                {# {% set elementVariant = _context.elementVariant|default(elementName) %} #}
+                {# {% set context = _context %} #}
+                {% include './' ~ elementPath ~ '.twig' with _context %}
+                {# {% include '@my-project/button.twig' with _context %} #}
+                
+            {% else %}
+
+                <p>Please provide a <b>elementPath</b> properties in URL. </p>
+                <p>E.g. http://localhost:3001/api/twig?elementPath=components/button/twig/button</p>
+                <pre>{{ dump(_context) }}</pre>
+            {% endif %}
+
         <main>
     </body>
 </html>

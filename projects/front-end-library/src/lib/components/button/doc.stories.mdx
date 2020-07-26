@@ -3,9 +3,10 @@ import { Meta, Story, Preview, Props } from "@storybook/addon-docs/blocks";
 import { TwigContainerComponent } from '../../../utils/twig-container/twig-container.component';
 import { ButtonComponent } from './angular/button.component';
 
+<!-- subcomponents={ ListHeading, ListItem } -->
 <Meta 
     title="Components/Button" 
-    component={ButtonComponent} 
+    component={ButtonComponent}
     decorators={[
         moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent]})
     ]}
@@ -46,6 +47,7 @@ Nullam id dolor id nibh ultricies vehicula ut id elit
         parameters={{ 
             controls: { disabled: true } 
         }}
+        height='100px'
     >
     {{
         template: `
@@ -53,7 +55,8 @@ Nullam id dolor id nibh ultricies vehicula ut id elit
                 <lib-button label='Primary' color='primary' styleClass='m-1'></lib-button>
                 <lib-button label='Secondary' color='secondary' styleClass='m-1'></lib-button>
             </div>
-        `
+        `,
+        props: {}
     }}
     </Story>
 </Preview>
@@ -64,9 +67,9 @@ Nullam id dolor id nibh ultricies vehicula ut id elit
     <Story 
         name='Sizes' 
         parameters={{ 
-            controls: { disabled: true },
-            docs: { iframeHeight: 150 } 
+            controls: { disabled: true }
         }}
+        height='100px'
     >
     {{
         template: `
@@ -88,18 +91,23 @@ Nullam id dolor id nibh ultricies vehicula ut id elit
 
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
-    props: args
+    props: args,
 });
+
+<!-- argTypes: { DrupalSpecificProps: { type : ArgTypes.string, defaultValue: 'initial' } } -->
 
 <Preview>
     <Story 
         name="Drupal"
         args={{ 
-            component: 'button',
+            elementPath: 'components/button/twig/button',
             label: 'Drupal',
-            DrupalSpecificProps: 'Drupal Specific Props'
+            DrupalSpecificProps: 'default value'
         }}
-        parameters={{ docs: { iframeHeight: 150 } }}
+        argTypes={{
+            DrupalSpecificProps: { description: 'Description of this property <br/><span class="css-jhru3i">string</span>' },
+        }}
+        height='150px'
     >
         {Drupal.bind({})}
     </Story>
@@ -109,3 +117,22 @@ export const Drupal = (args) => ({
 **✅  Inputs are equivalent for Angular and Drupal.**
 
 <Props of={ButtonComponent} />
+
+
+<!-- 
+
+Note: To refer to another component:
+
+<Story name='basic radio' height='400px'>{{
+  moduleMetadata: {
+    declarations: [RadioButtonComponent]
+  }
+  template: `
+    <div class="some-wrapper-with-padding">
+      <my-radio-btn [checked]="checked">Some Checkbox</my-radio-btn>
+    </div>
+  `,
+  props: {
+    checked: true
+  }
+}}</Story> -->

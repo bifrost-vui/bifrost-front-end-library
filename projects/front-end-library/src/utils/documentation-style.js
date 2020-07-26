@@ -77,7 +77,7 @@ export const Stack = styled.div`
     row-gap: 1rem;
 
     @media (max-width: 768px) {
-        display: block;
+        grid-template-columns: 1fr;
     }
 `;
 
