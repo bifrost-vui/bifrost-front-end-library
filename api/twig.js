@@ -2,6 +2,8 @@ module.exports = (req, res) => {
     var Twig = require("twig"),
         express = require('express'),
         app = express();
+    
+    const path = require('path');
 
     // const port = 3001;
 
@@ -17,7 +19,7 @@ module.exports = (req, res) => {
         }
     });
 
-    app.set('views', '../projects/front-end-library/src/lib');
+    app.set('views', path.join(__dirname, '../projects/front-end-library/src/lib'));
     app.set('view engine', 'twig');
 
     app.render('main.twig', req.query, function(err, html){ 
