@@ -17,7 +17,7 @@ module.exports = (req, res) => {
         }
     });
 
-    app.set('views', 'projects/front-end-library/src/lib');
+    app.set('views', '../projects/front-end-library/src/lib');
     app.set('view engine', 'twig');
 
     app.render('main.twig', req.query, function(err, html){ 
