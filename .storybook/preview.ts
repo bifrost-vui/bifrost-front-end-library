@@ -36,5 +36,6 @@ addParameters({
     storySource: { disabled: true },
     knobs: { disabled: true },
     actions: { disabled: true },
+    design: { disabled: true },
     'design-assets': { disabled: true },
 });

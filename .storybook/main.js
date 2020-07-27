@@ -11,5 +11,6 @@ module.exports = {
     // '@storybook/addon-knobs',
     '@storybook/addon-links',
     // '@storybook/addon-storysource',
+    'storybook-addon-designs',
   ],
 };

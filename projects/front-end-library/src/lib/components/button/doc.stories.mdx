@@ -1,15 +1,24 @@
 import { moduleMetadata } from '@storybook/angular';
-import { Meta, Story, Preview, Props } from "@storybook/addon-docs/blocks";
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withDesign } from 'storybook-addon-designs'
 import { TwigContainerComponent } from '../../../utils/twig-container/twig-container.component';
 import { ButtonComponent } from './angular/button.component';
 
 <!-- subcomponents={ ListHeading, ListItem } -->
 <Meta 
-    title="Components/Button" 
+    title='Components/Button' 
     component={ButtonComponent}
     decorators={[
-        moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent]}),
+        withDesign
     ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            disabled: false
+        },
+    }}
     argTypes={{
         color: { control: { type: 'inline-radio', options: ['primary', 'secondary'] } },
         size: { control: { type: 'inline-radio', options: ['sm', 'md', 'lg'] } },
@@ -30,9 +39,12 @@ export const Default = (args) => ({
 });
 
 <Preview>
-  <Story name="Default" args={{ label: 'Label' }}>
-    {Default.bind({})}
-  </Story>
+    <Story 
+        name='Default' 
+        args={{ label: 'Default' }}
+    >
+        {Default.bind({})}
+    </Story>
 </Preview>
 
 ## Colors
@@ -45,7 +57,7 @@ Nullam id dolor id nibh ultricies vehicula ut id elit
     <Story 
         name='Colors' 
         parameters={{ 
-            controls: { disabled: true } 
+            controls: { disabled: true }
         }}
         height='100px'
     >
@@ -102,7 +114,7 @@ export const Drupal = (args) => ({
 
 <Preview>
     <Story 
-        name="Drupal"
+        name='Drupal'
         args={{ 
             elementPath: 'components/button/twig/button',
             label: 'Drupal',
@@ -132,6 +144,8 @@ export const Drupal = (args) => ({
 
 <Props of={ButtonComponent} />
 
+## Design Guidelines
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>
 
 <!-- 
 
@@ -160,8 +174,8 @@ Note: To refer to another component:
     declarations: [RadioButtonComponent]
   }
   template: `
-    <div class="some-wrapper-with-padding">
-      <my-radio-btn [checked]="checked">Some Checkbox</my-radio-btn>
+    <div class='some-wrapper-with-padding'>
+      <my-radio-btn [checked]='checked'>Some Checkbox</my-radio-btn>
     </div>
   `,
   props: {
