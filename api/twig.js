@@ -22,8 +22,8 @@ module.exports = (req, res) => {
     app.set('views', path.join(__dirname, '../projects/front-end-library/src/lib'));
     app.set('view engine', 'twig');
 
-    app.render('main.twig', req.query).then((output) => {
-        res.status(200).send(output);
+    app.render('main.twig', req.query, function(err, html) {
+        return err ? console.log(err) : html;
     });
 
     // app.get('/', function(req, res){
