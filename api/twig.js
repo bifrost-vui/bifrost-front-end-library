@@ -10,17 +10,17 @@ module.exports = (req, res) => {
         allow_async: true, // Allow asynchronous compiling
         strict_variables: false,
         namespaces: {
-            'components': 'projects/front-end-library/src/lib/components',
-            'organisms': 'projects/front-end-library/src/lib/organisms',
-            'templates': 'projects/front-end-library/src/lib/templates',
-            'pipes': 'projects/front-end-library/src/lib/pipes'
+            'components':   'projects/front-end-library/src/lib/components',
+            'organisms':    'projects/front-end-library/src/lib/organisms',
+            'templates':    'projects/front-end-library/src/lib/templates',
+            'pipes':        'projects/front-end-library/src/lib/pipes'
         }
     });
 
     app.set('views', 'projects/front-end-library/src/lib');
     app.set('view engine', 'twig');
 
-    app.get('/api/twig', function(req, res){
+    app.get('/', function(req, res){
         // console.log(req.params, req);
         // Object.assign(req.params, req.query);
         res.render('main.twig', req.query);
@@ -29,9 +29,5 @@ module.exports = (req, res) => {
     Twig.extendFilter('boolean', function(value, params) {
         // console.log('value', value, params);
         return (value === 0 || value === '0' || value === 'false') ? false : !!value;
-    });
-
-    app.listen(port, () => {
-        console.log('Node.js Express server listening on port '+port);
     });
 }
