@@ -29,7 +29,7 @@ addParameters({
     // Controls
     controls: { expanded: true, hideNoControlsWarning: true },
     argTypes: {
-        elementPath: { control: { disable: true, disabled: true } },
+        elementPath: { table: { disable: true } }
     },
     
     // Hide addons

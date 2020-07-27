@@ -77,6 +77,10 @@ export const Stack = styled.div`
     row-gap: 1rem;
 
     @media (max-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 400px) {
         grid-template-columns: 1fr;
     }
 `;

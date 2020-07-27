@@ -52,8 +52,12 @@ Nullam id dolor id nibh ultricies vehicula ut id elit
     {{
         template: `
             <div class='d-flex'>
-                <lib-button label='Primary' color='primary' styleClass='m-1'></lib-button>
-                <lib-button label='Secondary' color='secondary' styleClass='m-1'></lib-button>
+                <lib-button color='primary' styleClass='m-1'>
+                    Primary
+                </lib-button>
+                <lib-button color='secondary' styleClass='m-1'>
+                    Secondary
+                </lib-button>
             </div>
         `,
         props: {}
@@ -102,10 +106,20 @@ export const Drupal = (args) => ({
         args={{ 
             elementPath: 'components/button/twig/button',
             label: 'Drupal',
-            DrupalSpecificProps: 'default value'
+            DrupalSpecificProps: 'value'
         }}
         argTypes={{
-            DrupalSpecificProps: { description: 'Description of this property <br/><span class="css-jhru3i">string</span>' },
+            DrupalSpecificProps: { 
+                name: 'Specific Name',
+                type: { name: 'string (not display in table?)', required: true },
+                defaultValue: 'defaultValue',
+                description: 'Description of this property <br/><span class="css-jhru3i">string</span>',
+                table: {
+                    type: { summary: 'Something short', detail: 'Something really really long' },
+                    defaultValue: { summary: 'defaultValue' },
+                },
+                control: { type: 'text' }
+            },
         }}
         height='150px'
     >
@@ -120,6 +134,24 @@ export const Drupal = (args) => ({
 
 
 <!-- 
+
+Note: argtypes schema
+
+const argTypes = {
+  label: {
+    name: 'label',
+    type: { name: 'string', required: false },
+    defaultValue: 'Hello',
+    description: 'overwritten description',
+    table: {
+      type: { summary: 'something short', detail: 'something really really long' },
+      defaultValue: { summary: 'Hello' },
+    }
+    control: {
+      type: null
+    }
+  }
+}
 
 Note: To refer to another component:
 
