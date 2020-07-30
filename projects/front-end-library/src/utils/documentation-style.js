@@ -108,9 +108,10 @@ export const Tile = styled.button`
 
     &:before {
         content: '';
+        display: none;
         position: absolute;
-        bottom: .75rem;
-        right: .75rem;
+        top: .75rem;
+        left: .75rem;
         width: .6rem;
         height: .6rem;
         border-radius: 50%;
@@ -124,6 +125,16 @@ export const Tile = styled.button`
             background: orange!important;
             box-shadow: 0 0 2px orange;
         `}
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: .75rem;
+        right: .75rem;
+        width: 2.25rem;
+        height: 1.125rem;
+        background: url('/assets/logo/angular.svg') top left no-repeat, url('/assets/logo/drupal.svg') top right no-repeat;
     }
 
     iframe {

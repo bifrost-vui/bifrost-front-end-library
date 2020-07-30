@@ -39,31 +39,32 @@
  * @see html.html.twig
  */
 #}
-    
-    {# {% include '@bifrost/node_modules/bifrost-front-end-library/source/components/button/twig/button.twig' with { label:'primary'} %} #}
 
     {% include '@components/button/twig/button.twig' with { 
         label:'New label'
     } only %}
 
     {% include '@templates/contact-form/twig/contact-form.twig' with { 
-        x:'y'
+        label:'Contact form',
+        submitButton: {
+            label: 'Nested button'
+        }
     } only %}
 
     <br/><br/><br/>
 
-  <div class="layout-container">
-    {{ page.pre_content }}
-    {{ page.breadcrumb }}
-    <main class="page-content clearfix" role="main">
-      <div class="visually-hidden"><a id="main-content" tabindex="-1"></a></div>
-      {{ page.highlighted }}
-      {% if page.help %}
-        <div class="help">
-          {{ page.help }}
-        </div>
-      {% endif %}
-      {{ page.content }}
-    </main>
+    <div class="layout-container">
+        {{ page.pre_content }}
+        {{ page.breadcrumb }}
+        <main class="page-content clearfix" role="main">
+            <div class="visually-hidden"><a id="main-content" tabindex="-1"></a></div>
+            {{ page.highlighted }}
+            {% if page.help %}
+                <div class="help">
+                    {{ page.help }}
+                </div>
+            {% endif %}
+            {{ page.content }}
+        </main>
 
-  </div>
+    </div>
