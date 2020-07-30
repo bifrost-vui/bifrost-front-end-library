@@ -19,4 +19,4 @@ Front-end Vidéotron Visual language
 
 ## Contributing
 
-If you'd like to contribute, please follow our [contributing guidelines][contributing].
+If you'd like to contribute, please follow our [contributing guidelines](CONTRIBUTING.mdx).
