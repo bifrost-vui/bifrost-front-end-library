@@ -97,9 +97,10 @@ function generateFromTemplate(element) {
                 renameFiles( tempPath, 'pipe-name', name );
 
                 // Files are now ready to be moved in the lib directory
+                const filePath = tempPath + '/' + name + '.pipe.ts';
                 const finalPath = `projects/front-end-library/src/lib/${type}s/`;
-                shell.mv( tempPath + '/' + name, finalPath );
-                shell.rm( tempPath );
+                shell.mv( filePath, finalPath );
+                shell.rm( '-rf', tempPath );
                 return {
                     name, NameReadable, type, finalPath
                 };
