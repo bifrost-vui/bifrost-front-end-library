@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  * TODO: Write a description of the pipe.
  */
 @Pipe({
-  name: 'pipe-name',
+  name: 'pipeName',
 })
 export class PipeNamePipe implements PipeTransform {
     /**
