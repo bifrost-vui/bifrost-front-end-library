@@ -3,6 +3,7 @@ const inquirer = require('inquirer');
 const shell = require('shelljs');
 const fs = require('fs');
 const replace = require('replace-in-file');
+const open = require('open');
 const chalk = require('chalk');
 const textError = chalk.red;
 
@@ -47,16 +48,16 @@ function requestInfo() {
                 const _value = value.trim().toLowerCase();
 
                 if (_value === '') {
-                    return textError('Name is required. 😉');
+                    return textError( 'Name is required. 😉' );
 
-                } else if ( hasSpace(_value) || hasUpperCase(value) ) {
-                    return textError('Spaces and uppercase are not allowed. Use "-" instead. E.g. "radio-button".');
+                } else if (hasSpace(_value) || hasUpperCase(value)) {
+                    return textError( 'Spaces and uppercase are not allowed. Use "-" instead. E.g. "radio-button".' );
 
                 } else if (_value === 'component' || _value === 'pipe') {
-                    return textError('Names `component` and `pipe` are not allowed fo any kind of element.');
+                    return textError( 'Names `component` and `pipe` are not allowed fo any kind of element.' );
 
                 } else if (fs.existsSync('projects/front-end-library/src/lib/components/' + _value)) {
-                    return textError('Component', chalk.bold(_value), 'already exist. 😓 \n Maybe you want to edit component here: "projects/front-end-library/src/lib/components/' + _value + '"');
+                    return textError( 'Component', chalk.bold(_value), 'already exist. 😓 \n Maybe you want to edit component here: "projects/front-end-library/src/lib/components/' + _value + '"' );
 
                 } else {
                     return true;
@@ -100,7 +101,7 @@ function generateFromTemplate(element) {
         (error, results) => {
             // console.log('Replacement results:', results);
             if (error) {
-                return textError('Error occurred:', error);
+                return textError( 'Error occurred:', error );
             }
             
             // Rename Files
@@ -128,12 +129,21 @@ function success ({ name, NameReadable, type, finalPath }) {
     shell.echo( chalk.green.bold('\n👍 Great! \r') );
     shell.echo( chalk.green(`Your new ${type} ${chalk.bold(NameReadable)} is ready to dev.`) );
     shell.echo( `\r` );
-    shell.echo( `${chalk.bold('Open Source Code')}:` );
-    shell.echo( `${chalk.blue(finalPath + name)}` );
+
+    // Display new structure
+    shell.echo( `${chalk.bold('Edit component')}:` );
+    shell.exec( `ls -R -S -1 ${finalPath}${name}` );
     shell.echo( `\r` );
-    shell.echo( `${chalk.bold('Open Storybook')}, if you had previously started it (${chalk.bold('npm run storybook')}):` );
+    
+    // Open Storybook in the default browser.
+    shell.echo( `${chalk.bold('Open Storybook')}, if you had previously started it with ${chalk.bold('npm run storybook')}:` );
     shell.echo( `${chalk.blue(`http://localhost:9008/?path=/story/${type}s-${name}--default`)}` );
     shell.echo( `\r` );
+    (async () => {    
+        await open(`http://localhost:9008/?path=/story/${type}s-${name}--default`);
+    })();
+
+    // Launch Compodoc to generate component API documentation in Storybook
     shell.echo( chalk.green('------------------------------------------------------------------------------------') );
     shell.echo( `\nIn the same time, Compodoc parses all Angular files to generate API documentation of your new ${type}.` );
     shell.echo( `It could take 1 or 2 minutes and it will refresh yoiur browser with the documentation.` );
@@ -146,24 +156,3 @@ function success ({ name, NameReadable, type, finalPath }) {
 requestInfo()
     .then(generateFromTemplate)
     .then(success)
-
-
-// function createAngularStructure(element) {
-//     const type = element.type;
-//     const name = element.name;
-//     console.log( chalk.bold(`Angular CLI creates ${type} ${name}.`) );
-
-//     var deferred = q.defer();
-//     if ( type === 'pipe') {
-//         shell.exec(`ng generate pipe ${type}s/${name} --project front-end-library --skipImport true`, code => {
-//             if (code !== 0) return deferred.reject();
-//             deferred.resolve(element);
-//         });
-//     } else {
-//         shell.exec(`ng generate component ${type}s/${name} --prefix bf --style scss --viewEncapsulation None --project front-end-library --skipImport true`, code => {
-//             if (code !== 0) return deferred.reject();
-//             deferred.resolve(element);
-//         });
-//     }
-//     return deferred.promise;
-// }
