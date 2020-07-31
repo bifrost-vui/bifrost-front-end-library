@@ -27,7 +27,10 @@ addParameters({
     },
 
     // Controls
-    controls: { expanded: true, hideNoControlsWarning: true },
+    controls: { 
+        expanded: true, 
+        hideNoControlsWarning: true
+    },
     argTypes: {
         elementPath: { table: { disable: true } }
     },

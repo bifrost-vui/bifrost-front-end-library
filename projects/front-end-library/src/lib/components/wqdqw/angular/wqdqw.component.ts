@@ -1,17 +1,17 @@
 import { Component, ViewEncapsulation, OnInit, Input } from "@angular/core";
 
 /**
- * Description of the component ComponentName
+ * Description of the component Wqdqw
  *
  */
  
 @Component({
-  selector: "bf-component-name",
-  templateUrl: './component-name.component.html',
+  selector: "bf-wqdqw",
+  templateUrl: './wqdqw.component.html',
   styleUrls: ['../common/style.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ComponentNameComponent implements OnInit {
+export class WqdqwComponent implements OnInit {
     constructor() {}
 
     /**
@@ -25,6 +25,6 @@ export class ComponentNameComponent implements OnInit {
     @Input() styleClass: string;
 
     ngOnInit() {
-        console.log('ComponentName', this);
+        console.log('Wqdqw', this);
     }
 }

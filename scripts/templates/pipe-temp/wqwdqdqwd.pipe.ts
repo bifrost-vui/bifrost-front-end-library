@@ -1,14 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 /**
- * Transforms a string into uppercase.
+ * TODO: Write a description of the pipe.
  */
 @Pipe({
-  name: 'uppercase',
+  name: 'wqwdqdqwd',
 })
-export class UppercasePipe implements PipeTransform {
+export class WqwdqdqwdPipe implements PipeTransform {
     /**
-    * Transforms a string into uppercase.
+    * TODO: Write a description of the transform function.
     * @param value string
     */
     transform(value: string): string {
