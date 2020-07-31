@@ -6,7 +6,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  */
  
 @Component({
-  selector: "lib-button",
+  selector: "bf-button",
   templateUrl: './button.component.html',
   styleUrls: ['../common/style.scss'],
   encapsulation: ViewEncapsulation.None

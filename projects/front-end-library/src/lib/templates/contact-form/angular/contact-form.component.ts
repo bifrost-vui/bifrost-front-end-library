@@ -6,7 +6,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  */
  
 @Component({
-  selector: "lib-template-contact-form",
+  selector: "bf-template-contact-form",
   templateUrl: './contact-form.component.html',
   styleUrls: ['../common/style.scss'],
   encapsulation: ViewEncapsulation.None

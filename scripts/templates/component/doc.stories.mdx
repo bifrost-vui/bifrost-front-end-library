@@ -1,0 +1,83 @@
+import { moduleMetadata } from '@storybook/angular';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withDesign } from 'storybook-addon-designs'
+import { TwigContainerComponent } from '../../../utils/twig-container/twig-container.component';
+import { ComponentNameComponent } from './angular/component-name.component';
+
+<Meta 
+    title='Components/ComponentName' 
+    component={ComponentNameComponent}
+    decorators={[
+        moduleMetadata({ declarations: [ComponentNameComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            disabled: false
+        },
+    }}
+    argTypes={{}}
+/>
+
+# ComponentName
+
+> < TODO: Add a link to **[Design Documentation](https://zeroheight.com)** >
+
+<br/>
+
+< TODO: Write a description of your component. >
+
+export const Default = (args) => ({
+  component: ComponentNameComponent,
+  props: args,
+});
+
+<Preview>
+    <Story 
+        name='Default' 
+        args={{ label: 'Default Label' }}
+    >
+        {Default.bind({})}
+    </Story>
+</Preview>
+
+
+< TODO: Add Stories (variants of your component) as much as you want. >
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Preview>
+    <Story 
+        name='Drupal'
+        args={{ 
+            elementPath: 'components/component-name/twig/component-name',
+            label: 'Drupal Label',
+        }}
+        height='150px'
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+## Component API
+
+< TODO: Add a sentence to clarify if API is consistent between Angular and Drupal. >
+** ✅ Inputs are equivalent for Angular and Drupal.**
+
+<Props of={ComponentNameComponent} />
+
+
+## Design Guidelines
+
+< TODO: Add a link to the component in Figma file. >
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>
