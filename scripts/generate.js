@@ -23,10 +23,10 @@ function requestInfo() {
     shell.echo( '------------------------------------------------------------------------------------' );
     shell.echo( `\r` );
     shell.echo( chalk.bold('Want to add a new component into Bifrost Design System?') );
-    shell.echo( `You are at the right place. We will generate a starter for Angular et Twig.` );
+    shell.echo( `You are at the right place. We will generate a starter for Angular et Twig components.` );
     shell.echo( `\r` );
     shell.echo( `${chalk.bold('Important:')} This command will not help you generate a VARIANT of a component (E.g. button-xxx).` );
-    shell.echo( `${chalk.bold('Need help?')} Please refer to documentation in ${chalk.blue('CONTRIBUTING.mdx')}` );
+    shell.echo( `${chalk.bold('Need help?')} Please refer to the documentation in ${chalk.blue('CONTRIBUTING.mdx')}` );
     shell.echo( `\r` );
     shell.echo( '------------------------------------------------------------------------------------' );
     shell.echo( `\r` );
@@ -54,7 +54,7 @@ function requestInfo() {
                     return textError( 'Spaces and uppercase are not allowed. Use "-" instead. E.g. "radio-button".' );
 
                 } else if (_value === 'component' || _value === 'pipe') {
-                    return textError( 'Names `component` and `pipe` are not allowed fo any kind of element.' );
+                    return textError( 'Names `component` and `pipe` are not allowed.' );
 
                 } else if (fs.existsSync('projects/front-end-library/src/lib/components/' + _value)) {
                     return textError( 'Component', chalk.bold(_value), 'already exist. 😓 \n Maybe you want to edit component here: "projects/front-end-library/src/lib/components/' + _value + '"' );
@@ -113,17 +113,19 @@ function generateFromTemplate(element) {
             }
 
             // Files are now ready to be moved in the lib directory
-            const finalPath = `projects/front-end-library/src/lib/${type}s/`;
+            const finalPath = `projects/front-end-library/src/lib/${typePlural}/`;
             shell.mv( tempPath, finalPath );
             
-            // TODO: add entry in /public-api
-            deferred.resolve({ name, NameReadable, type, finalPath });
+            // TODO: 
+            // Add new entry in /public-api.ts
+
+            deferred.resolve({ name, NameReadable, type, typePlural, finalPath });
         }
     );
     return deferred.promise;
 }
 
-function success ({ name, NameReadable, type, finalPath }) {
+function success ({ name, NameReadable, type, typePlural, finalPath }) {
     shell.echo( `\r` );
     shell.echo( chalk.green('------------------------------------------------------------------------------------') );
     shell.echo( chalk.green.bold('\n👍 Great! \r') );
@@ -136,11 +138,11 @@ function success ({ name, NameReadable, type, finalPath }) {
     shell.echo( `\r` );
     
     // Open Storybook in the default browser.
-    shell.echo( `${chalk.bold('Open Storybook')}, if you had previously started it with ${chalk.bold('npm run storybook')}:` );
-    shell.echo( `${chalk.blue(`http://localhost:9008/?path=/story/${type}s-${name}--default`)}` );
+    shell.echo( `${chalk.bold('We open Storybook right away')}. If you didn't started it yet, enter ${chalk.bold('npm run storybook')}:` );
+    shell.echo( `${chalk.blue(`http://localhost:9008/?path=/story/${typePlural}-${name}--default`)}` );
     shell.echo( `\r` );
     (async () => {    
-        await open(`http://localhost:9008/?path=/story/${type}s-${name}--default`);
+        await open(`http://localhost:9008/?path=/story/${typePlural}-${name}--default`);
     })();
 
     // Launch Compodoc to generate component API documentation in Storybook
