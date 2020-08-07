@@ -1,0 +1,29 @@
+{% embed "molecules-modal" with {
+    modalId:"modalCreditCheckAdjustment",
+    modalClass:"modal-callout--danger",
+    modalSize:"md"
+} %}
+    {% block modal_header %}
+        <div class="d-flex mb-2 align-items-center">
+            {% include '@atoms/06-icons/icon-svg-error.twig' with { iconClass:"mr-3", iconSize:"3" } only %}
+            <h2 class="mb-0">Credit adjustment</h2>
+        </div>
+    {% endblock %}
+
+    {% block modal_body %}
+        <p>The customer didn't pass (or has refused to do) credit check. So a down payment calculated on the equipments needs to be cleared upfront.</p>
+        <p>The amount due has been added above the First Bill.</p>
+        <p>Note that since a down payment will be paid upfront, the price on the equipments has been adjusted.</p>
+
+        <div class="row mt-4">
+            <div class="col-md-4 offset-md-8">
+                {% include '@components/button/button-primary.twig' with {
+                    buttonLabel:"Ok got it!",
+                    buttonColor:"danger",
+                    buttonClass:"btn--condensed w-100",
+                    dataDismiss:"modal"
+                } %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

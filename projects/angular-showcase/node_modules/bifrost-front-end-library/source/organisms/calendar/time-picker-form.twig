@@ -1,0 +1,9 @@
+<form class="row text-center pb-4 pb-lg-0 px-lg-4 timepicker-appointment js-slick-carousel--appointment carousel-appointment {{ class|default('') }}">
+    {% for i in 0..6 %}
+        {% include '@molecules/16-calendar/time-fieldset.twig' with {
+            timePickerOptionClass: (loop.index == 3) ? "already-booked" : "",
+            date: date|date_modify("+" ~ i ~ " day"),
+            dayOfWeek: dayOfWeek|date_modify("+" ~ i ~ " day")}
+        %}
+    {% endfor %}
+</form>

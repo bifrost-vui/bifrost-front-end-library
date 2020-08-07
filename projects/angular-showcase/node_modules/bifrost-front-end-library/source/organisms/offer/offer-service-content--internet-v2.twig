@@ -1,0 +1,89 @@
+{% if internetPlanAdditionalIncludes is not defined %}
+    {% set internetPlanAdditionalIncludes = [
+        'Helix FI Gateway',
+        'Helix FI Gateway',
+        'Helix FI Gateway',
+        'Helix FI Gateway',
+        'Helix FI Gateway',
+    ] %}
+{% endif %}
+
+{% if internetImage is not defined %}
+  {% set internetImage = 'https://source.unsplash.com/450x550/?nature' %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="{{ class|default('') }}">
+    <p class="h4 vui--text-highlight vui--font-secondary-bold text-uppercase">{{ internetPlanTitle|default('Internet 100') }}</p>
+    <p class="h4 font-weight-light mb-0">{{ internetPlanDescription }}</p>
+
+    {% include '@atoms/12-html-elements/hr-bold.twig' with { class:"my-4" } only %}
+
+    <div class="row mt-6">
+        {% if internetImage is defined and internetImage is not empty %}
+            <div class="d-none d-lg-block col-lg-4">
+                {% include '@atoms/11-images/img-lazy-load.twig' with {
+                    class:"",
+                    isSquareMode: true,
+                    src: internetImage
+                } only %}
+            </div>
+        {% endif %}
+
+        <div class="col-md-6 col-lg-3 {{ internetImage is defined and internetImage is not empty ? 'offset-lg-1' : '' }}  mb-5 mb-md-0">
+          {% if downloadCapacityText is defined and downloadCapacityText is not empty %}
+            {% include '@molecules/15-services-widgets/service-icon-with-label.twig' with {
+                class:"mb-5",
+                serviceTitle: downloadCapacityLabel|default('Download capacity'),
+                iconName: "unlimited",
+                iconSize:3,
+                serviceTxt: downloadCapacityText|default('Unlimited download')
+            } only %}
+          {% endif %}
+
+          {% if uploadSpeedText is defined and uploadSpeedText is not empty %}
+            {% include '@molecules/15-services-widgets/service-icon-with-label.twig' with {
+                class:"mb-5",
+                serviceTitle: uploadSpeedLabel|default('Upload speed'),
+                iconName: "upload",
+                iconSize:3,
+                serviceTxt: uploadSpeedText|default("Up until 1000 Mbit/s")
+            } only %}
+          {% endif %}
+
+          {% if downloadSpeedText is defined and downloadSpeedText is not empty %}
+            {% include '@molecules/15-services-widgets/service-icon-with-label.twig' with {
+                class:"mb-5",
+                serviceTitle: downloadSpeedLabel|default('Download capacity'),
+                iconName: "download",
+                iconSize:3,
+                serviceTxt: downloadSpeedText|default("Up until 1000 Mbit/s")
+            } only %}
+          {% endif %}
+
+          {% if simultaneousText is defined and simultaneousText is not empty %}
+            {% include '@molecules/15-services-widgets/service-icon-with-label.twig' with {
+                class:"mb-5",
+                serviceTitle: simultaneousLabel|default('Simultaneous devices'),
+                iconName: "device",
+                iconSize: 2,
+                serviceTxt: simultaneousText|default("12+ devices")
+            } only %}
+          {% endif %}
+        </div>
+
+        <div class="col-md-6 col-lg-3 offset-lg-1">
+          {% if internetPlanAdditionalIncludes is defined and internetPlanAdditionalIncludes is not empty %}
+            <p class="font-weight-bold">{{ includesLabel|default('Includes') }}</p>
+            <ul class="list-checkmark">
+              {% for include in internetPlanAdditionalIncludes %}
+                <li class="list-checkmark__item">
+                  {{ include |striptags }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+    </div>
+</div>

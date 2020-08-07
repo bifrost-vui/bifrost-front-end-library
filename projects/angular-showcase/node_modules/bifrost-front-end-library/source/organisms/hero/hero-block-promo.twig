@@ -1,0 +1,49 @@
+{% if bgImage is not defined or bgImage is not empty %}
+    {% set bgImage = '/images/hero/hero-block-promo-sample.jpg' %}
+{% endif %}
+{% if tagline is not defined %}
+    {% set tagline = 'Pour un temps limité!' %}
+{% endif %}
+{% if title is not defined %}
+    {% set title = 'Obtenez le meilleur Duo Internet+Télé au meilleur prix.' %}
+{% endif %}
+{% if promoDescription is not defined %}
+    {% set promoDescription = 'Internet giga + Télé la totale + Téléphonie + Forfait mobile 2GO' %}
+{% endif %}
+{% if promoDetails is not defined %}
+    {% set promoDetails = 'Téléchargement Illimité  •  158 TV channels, including 30 of your choices from popular and sports channels  •   Appels illimités • Lorem Epsom donor sit amet' %}
+{% endif %}
+
+<!-- hero-block-promo.twig -->
+{% embed '@organisms/03-hero/hero-block.twig' with {
+    class:"hero-block--promo bg--dark color--white",
+    bgImagePosition: "center",
+    cardClass: "card--offset-bottom"
+} %}
+    {% block hero_content %}
+        <div class="row" >
+            <div class="col-lg-6" data-animate-row="">
+                <p data-animate="fade-in" class="h5 vui--font-secondary-bold text-uppercase color--primary">{{ tagline }}</p>
+
+                <h1 data-animate="fade-in" class="mb-2 vui--font-secondary-light">{{ title }}</h1>
+                <p data-animate="fade-in" class="h5 vui--font-secondary-bold text-uppercase mt-3">{{ promoDescription }}</p>
+                <p data-animate="fade-in">{{ promoDetails }}</p>
+            </div>
+
+            <div class="col-lg-5 offset-lg-1 d-none d-lg-block position-relative">
+                {% include '@components/card/action/card-action-promo.twig' with {
+                    class: "position-absolute top-5 z-index-10",
+                    tooltipExtraAttribute: tooltipExtraAttribute|default(NULL),
+                    dataToggle: 'modal'
+                } %}
+            </div>
+        </div>
+        <div class="d-lg-none">
+            {% include '@components/card/action/card-action-promo.twig' with {
+                class:"color--dark",
+                dataToggle: 'modal'
+            } %}
+        </div>
+    {% endblock %}
+{% endembed %}
+

@@ -1,0 +1,71 @@
+{# DEMO PURPOSE #}
+{% if internet is not defined %}
+    {% set internet = true %}
+{% endif %}
+{% if tv is not defined %}
+    {% set tv = true %}
+{% endif %}
+{% if phone is not defined %}
+    {% set phone = true %}
+{% endif %}
+
+{% embed "@molecules/08-modal/modal.twig" with {
+    modalId: modalId|default('modalBundleServiceItemDetails'),
+    modalTitle: modalTitle|default("Helix All-In Pack Bundle"),
+    modalSize:"lg",
+    modalClass: 'js-modal--offer-details',
+} %}
+    {% block modal_body %}
+        {% if internet %}
+            {% include '@organisms/10-offer/offer-service-content--internet.twig' with { class:"mb-6" } %}
+        {% endif %}
+
+        {% if tv %}
+            {% include '@organisms/10-offer/offer-service-content--tv.twig' with { class:"mb-6" } %}
+        {% endif %}
+
+        {% if phone %}
+            {% include '@organisms/10-offer/offer-service-content--home-phone.twig' with { class:"mb-6" } %}
+        {% endif %}
+
+        {% if richText is defined and richText is not empty %}
+            <div class='row mt-4'>
+                <div class='col-12'>
+                    {{ richText|raw }}
+                </div>
+            </div>
+        {% endif %}
+
+        {% if embeddedContent is defined and embeddedContent is not empty %}
+            <div class='row mt-4'>
+                <div class='col-12'>
+                    {{ embeddedContent }}
+                </div>
+            </div>
+        {% endif %}
+
+    {% endblock %}
+
+    {% block modal_footer %}
+        <div class="modal-footer vui--style-black py-3">
+            {% include '@atoms/05-price-box/price-box-with-button.twig' with {
+                class:"w-100",
+                priceClass:"w-100 price-box--sm",
+                priceDollar: priceDollar|default("152"),
+                priceCent: priceCent|default(""),
+                priceInfosSupp: priceInfosSupp|default(" "),
+                priceRecurrencePeriod: recurrencePeriod|default('mo'),
+                priceDetails: priceDetails|default('for 12 month'),
+                priceAsterisk: priceAsterisk|default('*'),
+                priceBoxAlignement:"left",
+                priceBoxSubInfosClass: "color-gray--600",
+                priceBoxSubInfosLabel: priceBoxSubInfosLabel|default("Equipment fees included"),
+                buttonId:shopButtonId,
+                buttonLabel:shopButtonLabel|default('Subscribe'),
+                buttonLink:shopButtonLink|default(''),
+                buttonExtraAttributes: shopButtonExtraAttributes|default(''),
+                buttonHref:"",
+            } only %}
+        </div>
+    {% endblock %}
+{% endembed %}

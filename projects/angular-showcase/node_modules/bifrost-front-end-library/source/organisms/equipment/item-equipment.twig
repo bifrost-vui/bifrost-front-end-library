@@ -1,0 +1,61 @@
+<div class="item-equipment js-DEMO-item-equipment border-0 card card-rounded vui--style-black bg-gray--1000 text-center h-100 {{ class|default('') }}">
+    {% include '@atoms/11-images/img-lazy-load.twig' with {
+        class:"item-equipment__img card-rounded-top",
+        src:equipmentSrc|default('https://source.unsplash.com/300x200/?nature'),
+        alt: imgAlt|default('')
+    } only %}
+
+    <div class="item-equipment__content align-items-center card-body d-flex flex-column justify-content-between" data-animate-row="">
+        {% block item_content %}
+            <p class="h4 mb-5 font-weight-normal" data-animate="fade-in">{{ title|default('XB6 Internet Gateway') }}</p>
+
+            <div class="mb-5" data-animate="fade-in">
+                {% if alert is defined and alert is not empty %}
+                    <div class="p-3 bg-gray--900 text-left">
+                        {% include '@components/display/display-status.twig' with {
+                            class:"mb-0",
+                            label: alert.status.label,
+                            color: alert.status.color
+                        } only %}
+                        <p class="mb-0 small color-gray--600 pl-3">{{ alert.subInfos|default('Lorem ipsum dolor sit amet') }}</p>
+                    </div>
+                {% else %}
+                    <p class="mb-0 small">{{ pricePaymentPlan|default('Rented') }}
+                        {% if pricePaymentPlanInfos is defined and pricePaymentPlanInfos is not empty %}
+                            {% include '@molecules/14-tooltip/tooltip-button.twig' with {
+                                buttonClass: "ml-1 top-2",
+                                buttonDisplay: "inline-flex",
+                                iconColor: "svg-fill--light",
+                                tooltipTxt: pricePaymentPlanInfos
+                            } %}
+                        {% endif %}
+                    </p>
+                {% endif %}
+
+            </div>
+
+
+            <div class="color-gray--800" data-animate="fade-in">
+                <span class="small color-gray--400">Serial # : 09818237192837123</span>
+                <br><span class="small color-gray--400">Mac address : 12:23:42:33:87</span>
+
+                <hr class="mt-2 mb-2">
+
+                <span class="small color-gray--400">{{ warantyAvailability|default('Waranty available for 3 years') }}</span>
+            </div>
+        {% endblock %}
+
+        <div class="item-equipment__unactive-content w-100">
+            {% block unactive_content %}{% endblock %}
+        </div>
+
+        <div class="item-equipment__active-content w-100" data-animate="fade-in">
+            {% include '@atoms/04-link/link-underline.twig' with {
+                class:"btn mb-0 mt-4 d-block text-center js-DEMO-unselect-equipment-item",
+                headingSize: '6',
+                label: "cancel",
+                href: ""
+            } %}
+        </div>
+    </div>
+</div>

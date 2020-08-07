@@ -1,0 +1,15 @@
+{% embed "molecules-modal" with {
+    modalId:"modalAddressFillTheAddress",
+    hasScrollContainer: false
+} %}
+    {% block modal_header %}{% endblock %}
+
+    {% block modal_body %}
+        {% include 'organisms-postal-code-search--fill-the-address' with { class:"" } only %}
+
+        <div class="mt-5 d-flex justify-content-end align-items-end">
+            {% include '@atoms/04-link/link-underline.twig' with { label:"Cancel", headingSize: 5, class:"mr-3 p-3 mb-0" } %}
+            {% include '@components/button/button-primary.twig' with { buttonLabel:"Confirm", buttonType:"Submit", buttonClass:"btn--condensed" } %}
+        </div>
+    {% endblock %}
+{% endembed %}

@@ -1,0 +1,15 @@
+<!-- DXP only -->
+<!-- hero-block-search.twig -->
+
+{% set defaultImgSrc = '/images/hero/hero-block-sample.png' %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+
+{% embed '@organisms/03-hero/hero-block.twig' with { class: class|default('') } %}
+    {% block hero_content %}
+        {% include '@components/form/form-input-search.twig' with { class:"pb-3 pb-md-6" } %}
+        <h1 class="mb-2">{{ title|default('Your Helix System') }}</h1>
+        <p class="h5 mb-0">{{ subTitle|default('Lorem ipsum dolor sitamet consectetur adipiscing') }}</p>
+    {% endblock %}
+{% endembed %}

@@ -10,7 +10,7 @@ export const Drupal = (args) => ({
   props: args
 });
 Drupal.args = { 
-    component: 'form-input-date',
+    elementPath: 'components/form-input-date/twig/form-input-date',
     class: '',
     label: 'Label',
     labelClass: '',

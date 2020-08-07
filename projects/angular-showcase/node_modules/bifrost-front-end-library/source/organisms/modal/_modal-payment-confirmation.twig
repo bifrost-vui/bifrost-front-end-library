@@ -1,0 +1,37 @@
+{% embed "molecules-modal" with {
+    modalId:"modalPaymentConfirmation",
+    modalTitle:"Payment method",
+    modalSubtitle:" ",
+    modalSize: "md",
+    modalHeaderClass: "text-center",
+    modalBodyClass: "text-center",
+} %}
+    {% block modal_header %}
+        <div class="d-flex mb-3 align-items-center justify-content-center">
+            {% include '@atoms/06-icons/icon-svg.twig' with {
+                iconName:"checkbox-selected",
+                iconClass:"",
+                iconSize:"7"
+            } only %}
+        </div>
+
+        <p class="vui--font-secondary lh-3 h3 ">Payment method</p>
+    {% endblock %}
+
+    {% block modal_body %}
+        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt dicta et laboriosam libero natus officia, placeat porro quia quo repellat repellendus ut vel voluptas. Ad amet architecto laudantium obcaecati unde?</p>
+        <div class="d-flex justify-content-center">
+            {#{% include '@components/button/button-secondary.twig' with {#}
+                {#buttonClass:"mb-2 mb-md-0 mr-md-3 w-100--mobile-only",#}
+                {#buttonLabel: "No, cancel",#}
+                {#dataDismiss:"modal"#}
+            {#} %}#}
+
+            {% include '@components/button/button-primary.twig' with {
+                buttonClass:"",
+                buttonLabel:"Ok, got it",
+                dataDismiss:"modal"
+            } %}
+        </div>
+    {% endblock %}
+{% endembed %}
