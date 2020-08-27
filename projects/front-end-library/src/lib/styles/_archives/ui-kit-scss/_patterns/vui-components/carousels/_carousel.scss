@@ -1,0 +1,40 @@
+/* *****************************************************************************
+*
+*  Carousel
+*
+* ***************************************************************************** */
+
+.carousel {
+  &--same-height {
+    .slick-track {
+      display: flex;
+
+      .slick-slide {
+        height: inherit;
+
+        & > * {
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  &--dots-and-arrows {
+    @extend .carousel--same-height;
+
+    .slick-list {
+      overflow: hidden;
+    }
+  }
+
+  &--center-overflow-fade-out {
+    .slick-slide {
+      @include transitions(opacity);
+      opacity: 0.3;
+
+      &.slick-active { opacity: 1; }
+    }
+  }
+}
+
+
