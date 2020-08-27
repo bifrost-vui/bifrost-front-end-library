@@ -6,7 +6,11 @@ const replace = require('replace-in-file');
 const chalk = require('chalk');
 const textError = chalk.red;
 
-const jsonMigrationPaths = require('./migration-path-map.json');
+// Choose between complete migration or button only:
+const migrationJSON = './migration-path-map-button-only.json';
+// const migrationJSON = './migration-path-map.json';
+const jsonMigrationPaths = require(migrationJSON);
+
 const { objFilter } = require('../utils');
 
 

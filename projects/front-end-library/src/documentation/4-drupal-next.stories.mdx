@@ -1,0 +1,113 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta
+    title='Other/Drupal Next'
+    parameters={{ 
+        layout: 'padded', 
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+/>
+
+# Drupal Next
+
+### TODO Videotron:
+- Prepar compiled CSS
+- Look at all CSS files imported (check for doublon)
+
+---
+
+CSS Good practices:
+- Never create CSS in Drupal directly.
+- Use SASS variables.
+
+
+## 3. Include components
+You are now ready to include bifrost elements in your Twig files (E.g. Add theses lines to **templates/page.html.twig**):
+```html
+<!-- Include component -->
+{% include '@components/button/twig/button.twig' with { 
+    label:'This is a button',
+    color:'secondary'
+} only %}
+
+<!-- Include organism -->
+{% include '@organisms/hero/twig/hero.twig' with { 
+    title:'Hero title'
+} only %}
+
+<!-- Include template -->
+{% include '@templates/contact-form/twig/contact-form.twig' with { 
+    title:'Contact form title'
+} only %}
+```
+
+> **Don't forget to clean Drupal cache:** Configuration > Performance > Clean all cache.
+
+<br/>
+
+**API documentation is provided in Storybook:**
+Select any component and go to the **Drupal sub-page**, you will see tabs at the very top:
+- **Docs tab** displays complete documentation with all component variations in a single page. 
+
+    > By default, we display Angular components unless you see the title **Drupal**.
+
+- **Canvas tab**: Please, select **Controls panel**.
+    - Explore the (interactive) API documentation.
+    - Please, consider **Inputs only** for Drupal purpose.
+
+**Help with migration**: [Compare with previous **Pattern Lab**]().
+
+## 4. Add style
+
+? Add `base.min.css`. This will provide the same CSS base for all Videotron websites.
+
+Add `style.min.css`:
+<br/>
+
+### Option 1:
+Create a library **your-theme.libraries.yml**:
+```js
+global-styling:
+  css:
+    theme:
+        styles.css: {}
+        'node_modules/bifrost-front-end-library/source/style.min.css': {}
+```
+
+Then, add this library to **your-theme.info.yml**:
+```js
+libraries:
+  - your-theme/global-styling
+```
+
+### Option 2:
+In your CSS file:
+```css
+@import 'node_modules/bifrost-front-end-library/source/styles/style.min.css';
+/* or */
+@import '~bifrost-front-end-library/source/styles/style.min.css';
+```
+
+### Option 3:
+In the **head** of your pages:
+```html
+<head>
+    <link href="node_modules/bifrost-front-end-library/source/styles/style.min.css" rel='stylesheet'>
+</head>
+```
+
+## 5. _Optional:_ Access global SASS variables
+From your SASS file, import the `_variables.scss`.
+```css
+@import 'node_modules/bifrost-front-end-library/source/globals/_variables.scss'
+
+body {
+    background-color: $primary;
+}
+```
+
+<br/>
+
+### Need help?
+Contact xxx@xxx.com
