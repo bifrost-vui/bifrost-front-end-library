@@ -1,5 +1,14 @@
 const fs = require('fs');
 
+
+const objFilter = (obj, predicate) => {
+    return Object.keys(obj)
+        .filter( key => predicate(obj[key]) )
+        .reduce( (res, key) => (res[key] = obj[key], res), {} );
+}
+exports.objFilter = objFilter;
+
+
 const renameFiles = (path, oldString, newString) => {
     const files = fs.readdirSync(path)
     for (const file of files) {

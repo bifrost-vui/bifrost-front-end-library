@@ -15,7 +15,7 @@ const {
     capitalize, 
     toReadableFormat, 
     lowerCaseFirstLetter 
-} = require('./utils');
+} = require('../utils');
 
 
 function requestInfo() {
@@ -86,10 +86,10 @@ function generateFromTemplate(element) {
     const NameReadable = capitalize(toReadableFormat(nameCamelCase));
     
     // Duplicate templates structure
-    const tempPath = `scripts/templates/${name}`;
+    const tempPath = `scripts/generate/templates/${name}`;
     const referenceFolder = (type === 'pipe') ? 'pipe' : 'component';
     shell.mkdir(tempPath);
-    shell.cp('-R', `scripts/templates/${referenceFolder}/*`, tempPath);
+    shell.cp('-R', `scripts/generate/templates/${referenceFolder}/*`, tempPath);
 
     // Parse content files and rename component name
     replace(

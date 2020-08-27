@@ -1,0 +1,32 @@
+{# Component porperties validation #}
+{% set properties = { 
+    "button" : ["label", "size"],
+    "contact-form" : ["label"],
+} %}
+
+{# Retreive component name from `name` variable ("@components/button/twig/button.twig") #}
+{% set componentName = self|split('/')|last|split('.')|first %}
+
+{# Create an array of unsed properties #}
+{% set propsNotUsed = [] %}
+
+{# Parse context key properties #}
+{% for propKey in context|keys %}
+    {% if propKey not in properties[componentName] %}
+        {# <li>{{ propKey }} - {{ context[propKey] }} is not used</li> #}
+        {% set propsNotUsed = propsNotUsed|merge({ (propKey): context[propKey] }) %}
+    {% endif %}
+{% endfor %}
+
+{# Display error in console #}
+{# <pre>{{ dump(propsNotUsed) }}</pre> #}
+{% if propsNotUsed is not empty %}
+    <script>
+        (function(){
+            let componentName = {{ componentName|json_encode|raw }};
+            let errors = {{ propsNotUsed|json_encode|raw }};
+            console.log('%c Bifrost ' + componentName + ' ', 'background: #FFD200; color: #000000', ' Theses variables are not used in ' + componentName + ':');
+            console.table(errors);
+        })();
+    </script>
+{% endif %}
