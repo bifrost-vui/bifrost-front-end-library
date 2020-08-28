@@ -1,6 +1,15 @@
 # Bifrost
 Front-end Vidéotron Visual language
 
+## What's inside?
+
+This repository contains 3 projects:
+- **Front-End Library**
+The heart of the visual language.
+- **Drupal Showcase**
+- **Angular Showcase**
+In order to check implementation on a local machine.
+
 
 ## The Front-End library
 
@@ -11,10 +20,6 @@ The Front-End library contains:
 - **Templates** (to help build with components)
 - **Pipes**
 - **Styles** (e.g. Sass variables)
-
-> In order to check implementation on a local machine, we create 2 projects:
-> - **Drupal showcase**
-> - **Angular showcase**
 
 
 ## The Front-End library is published to a registry

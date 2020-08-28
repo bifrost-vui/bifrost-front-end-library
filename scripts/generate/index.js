@@ -115,14 +115,28 @@ function generateFromTemplate(element) {
             // Files are now ready to be moved in the lib directory
             const finalPath = `projects/front-end-library/src/lib/${typePlural}/`;
             shell.mv( tempPath, finalPath );
-            
-            // TODO: 
-            // Add new entry in /public-api.ts
 
             deferred.resolve({ name, NameReadable, type, typePlural, finalPath });
         }
     );
     return deferred.promise;
+}
+
+function appendPublicAPI ({ name, NameReadable, type, typePlural, finalPath }) {
+    
+    if (type !== 'pipe') {
+        // const stringExportComponent = `export * from './lib/${typePlural}/${name}/angular/${name}.component'`;
+        const stringExportModule = `export * from './lib/${typePlural}/${name}/angular/${name}.module'`;
+        
+        // Add imports to public-api.ts
+        // shell.exec( 'echo "' + stringExportComponent + '" >> projects/front-end-library/src/public-api.ts' );
+        shell.exec( 'echo "' + stringExportModule + '" >> projects/front-end-library/src/public-api.ts' );
+        
+        // TODO: Insert export in the right section of the public-api.ts file.
+        // shell.exec( "sed '/\Components/a Test Import' projects/front-end-library/src/public-api.ts" );
+    }
+
+    return { name, NameReadable, type, typePlural, finalPath };
 }
 
 function success ({ name, NameReadable, type, typePlural, finalPath }) {
@@ -157,4 +171,5 @@ function success ({ name, NameReadable, type, typePlural, finalPath }) {
 // Start
 requestInfo()
     .then(generateFromTemplate)
+    .then(appendPublicAPI)
     .then(success)

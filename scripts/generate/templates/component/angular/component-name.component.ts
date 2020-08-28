@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, Input } from "@angular/core";
+import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
 /**
  * Description of the component ComponentName
@@ -6,10 +6,10 @@ import { Component, ViewEncapsulation, OnInit, Input } from "@angular/core";
  */
  
 @Component({
-  selector: "bf-component-name",
+  selector: 'bf-component-name',
   templateUrl: './component-name.component.html',
   styleUrls: ['../common/style.scss'],
-  encapsulation: ViewEncapsulation.None
+//   encapsulation: ViewEncapsulation.None
 })
 export class ComponentNameComponent implements OnInit {
     constructor() {}
