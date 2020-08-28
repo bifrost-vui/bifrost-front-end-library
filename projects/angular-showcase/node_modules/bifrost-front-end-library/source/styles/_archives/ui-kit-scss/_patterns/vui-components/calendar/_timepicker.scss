@@ -1,0 +1,87 @@
+/* *****************************************************************************
+*
+*  Calendar timepicker
+*
+* ***************************************************************************** */
+
+.timepicker-appointment {
+  .timepicker-fieldset {
+    &.selected legend {
+      box-shadow: 0px 4px 0px 0px $primary;
+    }
+  }
+
+  .timepicker-appointment-option {
+    .timepicker-appointment-option__label {
+      @include transitions(background, color);
+      @extend .card-rounded;
+      @extend .selection-state;
+      padding: $spacer-5 0;
+      margin: $spacer-2 0 $spacer-3;
+      cursor: pointer;
+      color: $black;
+      width: 100%;
+      border: none;
+      background: $gray-100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      // selected border
+      &:before {
+        border: $input-border-width solid $input-border-color;
+        opacity: 1;
+      }
+
+      // selected checkmark
+      &:after {
+        @include size(1.3rem);
+        max-width: initial;
+        max-height: initial;
+      }
+    }
+
+    // SELECTED
+    &.already-booked .timepicker-appointment-option__label,
+    .timepicker-appointment-option__input:checked ~ .timepicker-appointment-option__label {
+      background: $white;
+      border-color: $primary;
+      pointer-events: none;
+
+      &:before {
+        border: 2px solid $primary;
+      }
+
+      &:after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    // Already booked
+    &.already-booked {
+      .timepicker-appointment-option__label {
+        @extend .vui--desactivated;
+        background: $primary!important;
+      }
+    }
+
+    // HOVER
+    .timepicker-appointment-option__label:hover {
+      background: $gray-200;
+    }
+
+    // DISABLED
+    .timepicker-appointment-option__input:disabled,
+    .timepicker-appointment-option__input.disabled {
+      + label {
+        @extend .vui--desactivated;
+      }
+    }
+  }
+}
+
+
+
+

@@ -1,0 +1,54 @@
+/* *****************************************************************************
+*
+*  Nav tabs : vertical
+*
+* ***************************************************************************** */
+
+.nav-tabs--vertical {
+  display: flex;
+  flex-direction: column;
+  background: $gray-100;
+
+  &__item-link {
+    @include transitions(background .4s);
+    font-family: $font-family-secondary;
+    position: relative;
+    background: $gray-100;
+
+    &:before {
+      @include transitions(opacity .2s, transform .2s);
+      @include size(100%);
+      content: "";
+      position: absolute;
+      background: $primary;
+      opacity: 0;
+      left: 0;
+    }
+
+    &:not(:last-of-type){
+      border-bottom: $border-width solid $border-color;
+    }
+
+    &:not(.active){
+      @include hover {
+        &:before {
+          opacity: 1;
+        }
+      }
+    }
+
+    &.active {
+      background: $white;
+
+      &:before {
+        @include transitions(opacity .3s, transform .3s);
+        transform: translateX(calc(-100% + 0.2rem));
+        opacity: 1;
+      }
+    }
+  }
+
+  & ~ .tab-content {
+    flex-grow: 1;
+  }
+}

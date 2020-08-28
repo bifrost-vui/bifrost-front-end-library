@@ -1,0 +1,45 @@
+/* *****************************************************************************
+*
+*  Accordion (collapse)
+*
+* ***************************************************************************** */
+
+.form-input-radio-credit-card {
+  display: flex;
+  align-items: center;
+
+  &__input:checked ~ &__collapse-content {
+    //border-left-color: transparentize($vui-yellow, 0);
+  }
+
+  &__input:checked ~ &__label {
+    @extend .form-icon-input-radio--checked;
+    font-weight: $font-weight-bold;
+
+    &:after {
+      transform: translate(0%,-50%) scale(.35);
+    }
+  }
+
+  &__label {
+    @extend .form-icon-input-radio;
+    background: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding-left: $spacer-6 !important;
+
+    &:before {
+      transform: translate(0%,-50%);
+    }
+
+    &:after {
+      transform: translate(0%,-50%) scale(0);
+    }
+  }
+
+  &__collapse-content {
+    //@include transitions(border-left-color);
+    //border-left: 4px solid;
+    //border-left-color: transparentize($vui-yellow, 1);
+  }
+}

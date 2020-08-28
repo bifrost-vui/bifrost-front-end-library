@@ -9,7 +9,7 @@ import { Component, ViewEncapsulation, OnInit, Input } from "@angular/core";
   selector: "bf-accordion",
   templateUrl: './accordion.component.html',
   styleUrls: ['../common/style.scss'],
-  encapsulation: ViewEncapsulation.None
+//   encapsulation: ViewEncapsulation.None
 })
 export class AccordionComponent implements OnInit {
     constructor() {}

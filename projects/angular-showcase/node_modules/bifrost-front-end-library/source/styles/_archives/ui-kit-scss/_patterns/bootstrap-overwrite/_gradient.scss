@@ -1,0 +1,106 @@
+/* *****************************************************************************
+*
+*  Gradient
+*
+* ***************************************************************************** */
+
+.gradient {
+  position: relative;
+
+  &:before {
+    @include media-scale(height, 2rem, 3rem, 6rem);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    @include media-breakpoint-up(lg){
+      content: '';
+    }
+  }
+
+  @each $dir, $dirValue in $gradient-direction {
+    @each $color, $value in $theme-colors {
+      &-#{$dir}--#{$color}:before {
+        background-image: linear-gradient(
+                        $dirValue,
+                        $value,
+                        $value 49%,
+                        transparent 50%,
+                        transparent 100%
+        );
+      }
+    }
+  }
+
+  @each $dir, $dirValue in $gradient-direction {
+    @each $toneValue, $value in $grays {
+      &-#{$dir}-gray--#{$toneValue}:before {
+        background-image: linear-gradient(
+                        $dirValue,
+                        $value,
+                        $value 49%,
+                        transparent 50%,
+                        transparent 100%
+        );
+      }
+    }
+  }
+
+  &.gradient-bottom {
+    &:before {
+      top: auto;
+      bottom: 0;
+    }
+
+    @each $dir, $dirValue in $gradient-direction {
+      @each $color, $value in $theme-colors {
+        &-#{$dir}--#{$color}:before {
+          background-image: linear-gradient(
+                          $dirValue,
+                          transparent,
+                          transparent 49%,
+                          $value 50%,
+                          $value 100%
+          );
+        }
+      }
+    }
+
+    @each $dir, $dirValue in $gradient-direction {
+      @each $toneValue, $value in $grays {
+        &-#{$dir}-gray--#{$toneValue}:before {
+          background-image: linear-gradient(
+                          $dirValue,
+                          transparent,
+                          transparent 49%,
+                          $value 50%,
+                          $value 100%
+          );
+        }
+      }
+    }
+
+  }
+
+  &.gradient-horizontal {
+    @each $color, $value in $theme-colors {
+      &-#{$color}:before {
+        background-color: $value;
+      }
+    }
+
+    @each $toneValue, $value in $grays {
+      &-gray--#{$toneValue}:before {
+        background-color: $value;
+      }
+    }
+
+    @for $i from 1 through 9 {
+      &-#{$i}:before {
+        height: $i*10%;
+      }
+    }
+  }
+
+}

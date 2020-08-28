@@ -1,0 +1,50 @@
+/* *****************************************************************************
+*
+*  Item Equipment
+*
+* ***************************************************************************** */
+
+.item-equipment {
+  @extend .selection-state;
+
+  &__img {
+    padding-bottom: 69.37%;
+  }
+
+  &.active {
+    @extend .selection-state--active;
+
+    .form-input-increment__input {
+      color: $primary;
+    }
+
+    &:not(.item-equipment--no-active-content){
+      .item-equipment__unactive-content {
+        display: none;
+      }
+      .item-equipment__active-content {
+        display: block;
+      }
+    }
+  }
+
+  &--desactivated {
+    .item-equipment__img,
+    .item-equipment__content {
+      @extend .vui--desactivated;
+    }
+  }
+
+  &__unactive-content {
+    display: block;
+  }
+  &__active-content {
+    display: none;
+  }
+
+  input {
+    &[type=number] {
+      -moz-appearance:textfield;
+    }
+  }
+}

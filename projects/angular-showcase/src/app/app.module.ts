@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ButtonModule } from 'bifrost-front-end-library';
+// import { ButtonModule, AccordionModule } from 'bifrost-front-end-library';
+import * as Bifrost from 'bifrost-front-end-library';
 
 // TODO: import a complete LibModule
 
@@ -14,7 +15,8 @@ import { ButtonModule } from 'bifrost-front-end-library';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ButtonModule
+    Bifrost.ButtonModule,
+    Bifrost.AccordionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
