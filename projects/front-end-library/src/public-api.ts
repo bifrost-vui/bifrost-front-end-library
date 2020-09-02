@@ -5,9 +5,9 @@
  */
 
 // Components
-// export * from './lib/components/accordion/angular/accordion.component';
+export * from './lib/components/accordion/angular/accordion.component';
 export * from './lib/components/accordion/angular/accordion.module';
-// export * from './lib/components/button/angular/button.component';
+export * from './lib/components/button/angular/button.component';
 export * from './lib/components/button/angular/button.module';
 
 // Organisms
@@ -15,3 +15,6 @@ export * from './lib/components/button/angular/button.module';
 
 // Templates
 // Add template export here
+
+// Lib
+// export * from './lib.module';

@@ -6,11 +6,11 @@ Create or update an Angular or Twig element in the Design System.
 We currently support 2 frameworks: **Angular and Twig**.
 
 Basically, there are 5 kinds of elements:
-- **Components**
-- **Organisms** (more complex components)
+- **Components** / **Organisms** (more complex components)
 - **Templates** (to help build with components)
 - **Pipes**
 - **Styles** (e.g. Sass variables)
+- **Assets** (e.g. Logo, images)
  
 > All theses elements are build and publish as an **NPM package**.
 
@@ -35,36 +35,27 @@ git checkout v0.1.0
 [Changelogs: List of all versions]()
 
 ## 2. Generate the component's structure
-**Optional: Only if you want to create a new component.**
+**Optional: This step is useful only if you want to create a new component.**
+<br/>
 
 We created a command that will help you start a new component: 
+Fust follow the instruction in your terminal. It will ask you the type of element you want to create (component, template, pipes, ...).
 
 ```bash
 # From the root of the repo, enter:
 npm run generate
 
-# It will ask you the type of element you want to create (component, template, pipes, ...).
-# Then, enter the name of your component. Use dash format like 'form-radio-button'.
-# The structure of your new component is ready:
-# /component-name/angular/component-name.component.html
-# /component-name/angular/component-name.component.ts
-# /component-name/angular/component-name.component.spec.ts
-# /component-name/angular/component-name.module.ts
-# /component-name/twig/component-name.twig
-# /component-name/common/style.scss
-# /component-name/docs.stories.mdx
-
-# If you want to see it, launch Storybook:
+# If you want to see your new component, launch Storybook:
 npm run storybook
 ```
 
 
 <br/>
 
-This command will:
+Under the hood, this command will:
 - Copy `.templates/component-structure` folder and paste it in `/lib/components`.
-- Then you will have starter files for Angular and Twig.
-- Expose your new component in `public-api.ts`.
+- Then, you will be able to start working with the right structure.
+- Finally, it will expose your new component in `public-api.ts`.
 
 ## 3. Develop it
 Storybook provides an environment to develop in isolation. Let's open it:
@@ -106,16 +97,15 @@ Export Module and/or Component files in `/lib/public-api.ts`.
 
 ## 5. Build library
 
-Increment the version in `package.json` with the pattern: **MAJOR.MINOR.PATCH**. 
+Increment the version in `projects/front-end-library/package.json` with the pattern: **MAJOR.MINOR.PATCH**. 
 > If it's a major or minor change, Design System team should be warn.
 
 Then build and publish:
-```Shell
-# Don't forget to increment the package version in packages.json.
-# This command will build and publish a new version.
+```bash
+# This command will build and publish a new version of the front-end library.
 npm run publish
 ```
-Your package version is now available for everyone.
+Your new package version is now available for everyone.
 You could check availability on the [NPM registry]() page.
 
 ## 6. Test Angular implementation
@@ -129,11 +119,18 @@ Serve the project:
 
 Update the library:
 
-`npm i bifrost-front-end-library@<your-new-version>`
+```bash
+npm install bifrost-front-end-library@<your-new-version> --save
+# or
+npm install bifrost-front-end-library@latest --save
+```
 
 Import the new component in App Module (`projects/angular-showcase/src/app/app.module.ts`).
 
 Now, you will be able to add your component in a file (e.g. `app.component.html`).
+
+More details in the **Angular implementation page**.
+
 
 ## 6. Test Drupal implementation
 **Drupal showcase Project** is aimed to showcase implementation.

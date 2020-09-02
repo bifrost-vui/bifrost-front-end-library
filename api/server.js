@@ -1,8 +1,12 @@
 var Twig = require("twig"),
     express = require('express'),
-    app = express();
+    app = express(),
+    path = require('path');
 
 const port = 3001;
+
+// Expose Assets. Especially style.min.css
+app.use('/api/public', express.static('public'));
 
 // This section is optional and used to configure twig.
 app.set("twig options", {

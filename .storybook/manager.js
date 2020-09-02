@@ -7,6 +7,6 @@ addons.setConfig({
     base: 'light',
     brandTitle: 'Bïfrost',
     brandUrl: 'https://videotron.com/',
-    brandImage: '/assets/logo/bifrost-logo.png',
+    brandImage: '/logo/bifrost-logo.png',
   })
 });

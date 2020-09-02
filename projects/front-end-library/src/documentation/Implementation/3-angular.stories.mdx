@@ -37,13 +37,13 @@ npm install bifrost-front-end-library --save
 Import component in **app.module.ts**:
 
 ```ts
-import { Button } from 'bifrost-front-end-library';
+import * as Bifrost from 'bifrost-front-end-library';
 
 @NgModule({
   declarations: [],
   imports: [
     //...
-    Button
+    Bifrost.ButtonModule
   ],
   providers: [],
   bootstrap: []
@@ -53,14 +53,14 @@ export class AppModule { }
 
 Use it in your template (note that all components tags are prefix with **bf-**).
 ```html
-<bf-button styleClass='override' label='button from design system'></bf-button>
+<bf-button label='Label' size='sm' color='primary'></bf-button>
 ```
 
 ## 3. Add a base styles
 Add **base.min.css** in **angular.json**:
 ```ts
 "styles": [
-  "node_modules/bifrost-front-end-library/base.min.css",
+  "node_modules/bifrost-front-end-library/source/styles/css/style.min.css",
   //...
 ],
 ```
