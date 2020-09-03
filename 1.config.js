@@ -1,8 +1,5 @@
 const path = require('path');
 
-
-// TODO: copy _variables.scss
-
 module.exports = {
 
 	mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',

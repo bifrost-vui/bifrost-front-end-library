@@ -5,10 +5,16 @@ var Twig = require("twig"),
 
 const port = 3001;
 
+
+// -----------------------------------------------------------------
 // Expose Assets. Especially style.min.css
+
 app.use('/api/public', express.static('public'));
 
-// This section is optional and used to configure twig.
+
+// -----------------------------------------------------------------
+// Expose Twig files
+
 app.set("twig options", {
     allow_async: true, // Allow asynchronous compiling
     strict_variables: false,
@@ -33,6 +39,10 @@ Twig.extendFilter('boolean', function(value, params) {
     // console.log('value', value, params);
     return (value === 0 || value === '0' || value === 'false') ? false : !!value;
 });
+
+
+// -----------------------------------------------------------------
+// Listen
 
 app.listen(port, () => {
     console.log('Node.js Express server listening on port '+port);

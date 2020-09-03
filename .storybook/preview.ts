@@ -36,9 +36,9 @@ addParameters({
     },
     
     // Hide addons
-    storySource: { disabled: true },
-    knobs: { disabled: true },
-    actions: { disabled: true },
-    design: { disabled: true },
-    'design-assets': { disabled: true },
+    storySource: { disable: true },
+    knobs: { disable: true },
+    actions: { disable: true },
+    design: { disable: true },
+    'design-assets': { disable: true },
 });

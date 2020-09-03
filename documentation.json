@@ -397,7 +397,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-6673a0c8a1747c60f187dbecda279e28",
+            "id": "component-ButtonComponent-3567e04f7897789a20cc74539e43d4ae",
             "file": "dist/front-end-library/source/components/button/angular/button.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.None"
@@ -431,7 +431,7 @@
                 },
                 {
                     "name": "fullWidth",
-                    "description": "<p>Sets the button in mobile mode (full width). </p>\n",
+                    "description": "<p>Variant  </p>\n",
                     "line": 37,
                     "type": "boolean"
                 },
@@ -458,13 +458,6 @@
                     "name": "styleClass",
                     "description": "<p>Class override </p>\n",
                     "line": 43,
-                    "type": "string"
-                },
-                {
-                    "name": "variant",
-                    "defaultValue": "'business'",
-                    "description": "<p>Variant  </p>\n",
-                    "line": 34,
                     "type": "string"
                 }
             ],
@@ -501,7 +494,7 @@
             "description": "<p>API is the same between <strong>Angular</strong> and <strong>Drupal</strong>.</p>\n",
             "rawdescription": "API is the same between **Angular** and **Drupal**.",
             "type": "component",
-            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n  selector: \"bf-button\",\n  templateUrl: './button.component.html',\n  styleUrls: ['../common/style.scss'],\n  encapsulation: ViewEncapsulation.None\n})\nexport class ButtonComponent implements OnInit {\n  constructor() {}\n\n  /**\n   * The inner text of the button.\n   *\n   * @required\n   */\n  @Input() label: string;\n\n  /** Sets the button to a disabled state. */\n  @Input() disabled: boolean;\n\n  /** Sets the visual type of the button . */\n  @Input() size: string = '' || 'sm' || 'md' || 'lg';\n\n  /** Sets the color of the button . */\n  @Input() color: string = 'primary' || 'secondary' || 'reverse';\n\n  /** Variant  */\n  @Input() variant: string = 'business';\n\n  /** Sets the button in mobile mode (full width). */\n  @Input() fullWidth: boolean;\n\n  /** Name of the icon */\n  @Input() icon: string;\n\n  /** Class override */\n  @Input() styleClass: string;\n\n  /**\n   * Handler to be called when the button is clicked by a user.\n   *\n   * Will also block the emission of the event if `disabled` is true.\n   */\n  @Output() click: EventEmitter<boolean> = new EventEmitter();\n\n  ngOnInit() {\n      console.log('button', this);\n  }\n\n  onClick() {\n    this.click.emit(true);\n  }\n}\n",
+            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n  selector: \"bf-button\",\n  templateUrl: './button.component.html',\n  styleUrls: ['../common/style.scss'],\n  encapsulation: ViewEncapsulation.None\n})\nexport class ButtonComponent implements OnInit {\n  constructor() {}\n\n  /**\n   * The inner text of the button.\n   *\n   * @required\n   */\n  @Input() label: string;\n\n  /** Sets the button to a disabled state. */\n  @Input() disabled: boolean;\n\n  /** Sets the visual type of the button . */\n  @Input() size: string = '' || 'sm' || 'md' || 'lg';\n\n  /** Sets the color of the button . */\n  @Input() color: string = 'primary' || 'secondary' || 'reverse';\n\n  /** Variant  */\n  // @Input() variant3: string = 'business';\n\n  /** Sets the button in mobile mode (full width). */\n  @Input() fullWidth: boolean;\n\n  /** Name of the icon */\n  @Input() icon: string;\n\n  /** Class override */\n  @Input() styleClass: string;\n\n  /**\n   * Handler to be called when the button is clicked by a user.\n   *\n   * Will also block the emission of the event if `disabled` is true.\n   */\n  @Output() click: EventEmitter<boolean> = new EventEmitter();\n\n  ngOnInit() {\n      console.log('button', this);\n  }\n\n  onClick() {\n    this.click.emit(true);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -519,7 +512,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<button \n    type=\"button\" \n    class=\"\n        btn \n        {{ color ? 'btn-' + color : '' }}\n        {{ size ? 'btn-' + size : '' }}\n        {{ styleClass }}\n    \"\n    [disabled]=\"disabled\" \n    (click)=\"onClick()\"\n>\n    {{ label }}\n    <ng-content></ng-content>\n</button>"
+            "templateData": "<button \n    type=\"button\" \n    class=\"btn {{ color ? 'btn-' + color : '' }} {{ size ? 'btn-' + size : '' }} {{ fullWidth ? 'btn-block' : '' }} {{ styleClass }}\"\n    [disabled]=\"disabled\" \n    (click)=\"onClick()\"\n>\n    {{ label }}\n    <ng-content></ng-content>\n</button>"
         },
         {
             "name": "ButtonComponent",
@@ -1330,7 +1323,11 @@
                 },
                 {
                     "type": "exports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "bootstrap",
@@ -1474,6 +1471,14 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/front-end-library/src/lib/components/1-overview.ts",
+                "type": "",
+                "defaultValue": "ButtonStory.bind({})"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "dist/front-end-library/source/components/button/button.ts",
                 "type": "",
                 "defaultValue": "ButtonStory.bind({})"
@@ -1483,14 +1488,6 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "dist/front-end-library/source/components/button/twig-test.ts",
-                "type": "",
-                "defaultValue": "ButtonStory.bind({})"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/1-overview.ts",
                 "type": "",
                 "defaultValue": "ButtonStory.bind({})"
             },
@@ -1522,6 +1519,14 @@
                 "name": "ButtonStory",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/front-end-library/src/lib/components/1-overview.ts",
+                "type": "",
+                "defaultValue": "(args) => ({\n  component: ButtonComponent,\n  props: args,\n})"
+            },
+            {
+                "name": "ButtonStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "dist/front-end-library/source/components/button/button.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: ButtonComponent,\n  props: args,\n})"
@@ -1533,14 +1538,6 @@
                 "file": "dist/front-end-library/source/components/button/twig-test.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainer2Component,\n  props: args,\n})"
-            },
-            {
-                "name": "ButtonStory",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/1-overview.ts",
-                "type": "",
-                "defaultValue": "(args) => ({\n  component: ButtonComponent,\n  props: args,\n})"
             },
             {
                 "name": "ButtonStory",
@@ -1626,22 +1623,6 @@
                 "name": "Drupal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "dist/front-end-library/source/components/button/button.ts",
-                "type": "",
-                "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
-            },
-            {
-                "name": "Drupal",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "dist/front-end-library/source/components/form-input-text/doc.stories.ts",
-                "type": "",
-                "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
-            },
-            {
-                "name": "Drupal",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "dist/front-end-library/source/components/form-select/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
@@ -1658,23 +1639,23 @@
                 "name": "Drupal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "dist/front-end-library/source/components/button/button.ts",
+                "type": "",
+                "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
+            },
+            {
+                "name": "Drupal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "dist/front-end-library/source/components/form-input-text/doc.stories.ts",
+                "type": "",
+                "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
+            },
+            {
+                "name": "Drupal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "dist/front-end-library/source/components/tag/doc.stories.ts",
-                "type": "",
-                "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
-            },
-            {
-                "name": "Drupal",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
-                "type": "",
-                "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
-            },
-            {
-                "name": "Drupal",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
             },
@@ -1690,6 +1671,22 @@
                 "name": "Drupal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts",
+                "type": "",
+                "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
+            },
+            {
+                "name": "Drupal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
+                "type": "",
+                "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
+            },
+            {
+                "name": "Drupal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/front-end-library/src/lib/components/form-select/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
@@ -1698,7 +1695,7 @@
                 "name": "Drupal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/tag/doc.stories.ts",
+                "file": "projects/front-end-library/src/lib/components/price/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
             },
@@ -1706,7 +1703,7 @@
                 "name": "Drupal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/price/doc.stories.ts",
+                "file": "projects/front-end-library/src/lib/components/tag/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
             },
@@ -1819,6 +1816,24 @@
                     "defaultValue": "(args) => ({\n  component: ButtonComponent,\n  props: args,\n})"
                 }
             ],
+            "projects/front-end-library/src/lib/components/1-overview.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/front-end-library/src/lib/components/1-overview.ts",
+                    "type": "",
+                    "defaultValue": "ButtonStory.bind({})"
+                },
+                {
+                    "name": "ButtonStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/front-end-library/src/lib/components/1-overview.ts",
+                    "type": "",
+                    "defaultValue": "(args) => ({\n  component: ButtonComponent,\n  props: args,\n})"
+                }
+            ],
             "dist/front-end-library/source/components/button/button.ts": [
                 {
                     "name": "Basic",
@@ -1877,24 +1892,6 @@
                     "file": "dist/front-end-library/source/components/button/twig-test.ts",
                     "type": "",
                     "defaultValue": "(args) => ({\n  component: TwigContainer2Component,\n  props: args,\n})"
-                }
-            ],
-            "projects/front-end-library/src/lib/components/1-overview.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/front-end-library/src/lib/components/1-overview.ts",
-                    "type": "",
-                    "defaultValue": "ButtonStory.bind({})"
-                },
-                {
-                    "name": "ButtonStory",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/front-end-library/src/lib/components/1-overview.ts",
-                    "type": "",
-                    "defaultValue": "(args) => ({\n  component: ButtonComponent,\n  props: args,\n})"
                 }
             ],
             "projects/front-end-library/src/lib/components/button/button.ts": [
@@ -2055,16 +2052,6 @@
                     "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
                 }
             ],
-            "dist/front-end-library/source/components/form-input-text/doc.stories.ts": [
-                {
-                    "name": "Drupal",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "dist/front-end-library/source/components/form-input-text/doc.stories.ts",
-                    "type": "",
-                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
-                }
-            ],
             "dist/front-end-library/source/components/form-select/doc.stories.ts": [
                 {
                     "name": "Drupal",
@@ -2093,6 +2080,16 @@
                     "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
                 }
             ],
+            "dist/front-end-library/source/components/form-input-text/doc.stories.ts": [
+                {
+                    "name": "Drupal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "dist/front-end-library/source/components/form-input-text/doc.stories.ts",
+                    "type": "",
+                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
+                }
+            ],
             "dist/front-end-library/source/components/tag/doc.stories.ts": [
                 {
                     "name": "Drupal",
@@ -2103,22 +2100,22 @@
                     "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
                 }
             ],
-            "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts": [
-                {
-                    "name": "Drupal",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
-                    "type": "",
-                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
-                }
-            ],
             "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts": [
                 {
                     "name": "Drupal",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts",
+                    "type": "",
+                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
+                }
+            ],
+            "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts": [
+                {
+                    "name": "Drupal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
                     "type": "",
                     "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
                 }
@@ -2141,22 +2138,22 @@
                     "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
                 }
             ],
-            "projects/front-end-library/src/lib/components/tag/doc.stories.ts": [
-                {
-                    "name": "Drupal",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/front-end-library/src/lib/components/tag/doc.stories.ts",
-                    "type": "",
-                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
-                }
-            ],
             "projects/front-end-library/src/lib/components/price/doc.stories.ts": [
                 {
                     "name": "Drupal",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/front-end-library/src/lib/components/price/doc.stories.ts",
+                    "type": "",
+                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
+                }
+            ],
+            "projects/front-end-library/src/lib/components/tag/doc.stories.ts": [
+                {
+                    "name": "Drupal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/front-end-library/src/lib/components/tag/doc.stories.ts",
                     "type": "",
                     "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
                 }
@@ -2238,9 +2235,9 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "ButtonComponent",
-                "coveragePercent": 76,
-                "coverageCount": "10/13",
-                "status": "very-good"
+                "coveragePercent": 75,
+                "coverageCount": "9/12",
+                "status": "good"
             },
             {
                 "filePath": "dist/front-end-library/source/components/button/button.ts",
