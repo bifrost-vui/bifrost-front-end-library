@@ -1,0 +1,43 @@
+{% if phonePlanAdditionalFeatures is not defined %}
+    {% set phonePlanAdditionalFeatures = [
+        'Number Porting',
+        'Number Porting',
+        'Number Porting',
+        'Number Porting'
+    ] %}
+{% endif %}
+
+{% if phonePlanAdditionalIncludes is not defined %}
+    {% set phonePlanAdditionalIncludes = [
+        'Helix FI Gateway',
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="{{ class|default('') }}">
+    <h3 class="vui--font-secondary-bold mb-0">{{ phonePlanTitle|default('Home phone service') }}</h3>
+    <p>{{ phonePlanDescription|default('Unlimited Canada wide calling') }}</p>
+
+    {% include '@atoms/12-html-elements/hr-bold.twig' with { class:"" } only %}
+
+    <div class="row mt-4">
+        <div class="col-md-8 mb-5 mb-md-0">
+            <div class="">
+                <p class="font-weight-bold">{{ phonePlanAdditionalFeaturesLabel|default('Additional features') }}</p>
+
+                {% for feature in phonePlanAdditionalFeatures %}
+                    <p class="font-weight-normal mb-2">{{ feature|raw }}</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <p class="font-weight-bold">{{ includesLabel|default('Includes') }}</p>
+
+            {% for include in phonePlanAdditionalIncludes %}
+                <p class="font-weight-normal mb-2">{{ include }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>

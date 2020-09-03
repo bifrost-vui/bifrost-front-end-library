@@ -1,0 +1,33 @@
+{% embed '@components/accordion/accordion-item-default.twig' with {
+    isOpen: isOpen|default(true),
+    class: (loop.last) ? "border--0 " ~ class|default('') : 'border-left--0 border-right--0 border-top--0 ' ~ class|default(''),
+    inlineAnchor: "accordion_" ~ channelsListingId,
+    cardHeaderClass: "bg--none px-0"
+} %}
+    {% block collapse_header %}
+        <div class="text-left w-100 d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+            <div class="mb-2 mb-md-0">
+                <p class="h4">{{ collapseTitle|default('Movies & series') }}</p>
+                {% if collapseSubTitle is defined and collapseSubTitle is not empty %}
+                    <p class="mb-0">{{ collapseSubTitle|default('Ces chaînes ne sont pas disponibles dans votre forfait')|raw }}</p>
+                {% endif %}
+            </div>
+
+            {% if collapseInfosRight is defined and collapseInfosRight is not empty %}
+                <p class="mb-0 mr-3">{{ collapseInfosRight|default('35 free channels') }}</p>
+            {% endif %}
+        </div>
+    {% endblock %}
+
+    {% block collapse_content %}
+        <div class="d-flex flex-wrap mb-3">
+            {% for c in 1..23 %}
+                {% include '@molecules/21-form-item/item-channel.twig' with {
+                    class: itemChannelState|default(''),
+                    inputId: channelsListingId ~ "_" ~ c,
+                    inputName: channelsListingId
+                } %}
+            {% endfor %}
+        </div>
+    {% endblock %}
+{% endembed %}

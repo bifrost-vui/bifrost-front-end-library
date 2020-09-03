@@ -1,0 +1,26 @@
+{% embed '@components/accordion/accordion-item-default.twig' with {
+    inlineAnchor: "paymentBill",
+} only %}
+    {% block collapse_header %}
+        <div class="d-flex justify-content-between align-items-center pt-1 w-100">
+            <p class="m-0 h4 font-weight-normal text-left">Lorem ipsum</p>
+            <p class="m-0 h4 font-weight-bold">0,00$</p>
+        </div>
+    {% endblock %}
+
+    {% block collapse_content %}
+        <div class="card-body" >
+            <div data-animate="">
+                {% include '@atoms/07-payment/payment-item-price--subtotal.twig' with { item:"Monthly Plan", price:"0,00$" } only %}
+                <hr>
+                {% include '@atoms/07-payment/payment-item-price--subitem.twig' with { item:"Services", price:"0,00$" } only %}
+                {% include '@atoms/07-payment/payment-item-price--subitem.twig' with { item:"Equipment & Accessories", price:"0,00$", class:"mb-5"} only %}
+
+                <p>EIP taxes</p>
+                <hr>
+                {% include '@atoms/07-payment/payment-item-price--subitem.twig' with { item:"QST (5%)", price:"0,00$"} only %}
+                {% include '@atoms/07-payment/payment-item-price--subitem.twig' with { item:"GST (9.975%)", price:"0,00$"} only %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

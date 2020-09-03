@@ -1,0 +1,28 @@
+{% embed '@components/accordion/accordion-item-form-edit.twig' with {
+    inlineAnchor:"tab_preferredlanguage",
+    btnToggleIconName: "edit",
+    headerTitle:"Preferred language for communications",
+    headerTxt:"English",
+    tabContentTitle: "Communication preferences"
+} only %}
+    {% block collapse_content %}
+        {#<div class="row mb-3">#}
+            {#<div class="col-md-6">#}
+                {#<div class="form-group">#}
+                    {#<div class="d-flex">#}
+                        {#{% include '@components/form/input-selection-btn.twig' with { inputName:"_account_comm_prefernces",inputId:"_account_comm_prefernces_en", labelName:"English", class:"w-100", selected:true  } %}#}
+                        {#{% include '@components/form/input-selection-btn.twig' with { inputName:"_account_comm_prefernces",inputId:"_account_comm_prefernces_fr", labelName:"Français", class:"ml-1 w-100" } %}#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+
+        {% include '@components/form/form-radio-group.twig' with {
+            class:"" ,
+            radioItems: [
+                { label:"English", inputName:"_account_comm_prefernces",inputId:"_account_comm_prefernces_en", isActive:true },
+                { label:"Français", inputName:"_account_comm_prefernces",inputId:"_account_comm_prefernces_en", isActive:false }
+            ]
+        } only %}
+    {% endblock %}
+{% endembed %}

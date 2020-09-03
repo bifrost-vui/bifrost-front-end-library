@@ -1,0 +1,30 @@
+{% embed '@molecules/14-tooltip/tooltip-button-custom.twig' with {
+    class: "mt-2",
+    buttonClass:"w-100",
+    buttonLabel: buttonLabel|default("Details"),
+} %}
+    {% block tooltip_content %}
+        {% if BLOCK_tooltip_content is defined and BLOCK_tooltip_content is not empty %}
+            {{ BLOCK_tooltip_content }}
+        {% else %}
+            <div class="d-flex mb-5 flex-column flex-md-row justify-content-between">
+                <div class="d-flex align-items-center mb-3 mb-md-0">
+                    <img class="" src="/images/logo/channels/tva-sports.svg" height="15" alt="">
+                    <p class="h4 mb-0 ml-3">Tva Sports</p>
+                </div>
+                <div class="d-flex justify-content-md-end align-items-center">
+                    <div class="pr-3"><p class="h4 mb-0">654</p></div>
+                    <div class="px-3 border-left border-right"><img src="/images/icons/flags/4x3/ca.svg" height="17" alt=""></div>
+                    <div class="pl-3"><p class="h4 mb-0">Fr</p></div>
+                </div>
+            </div>
+
+            <p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolorum excepturi exercitationem, minima molestiae nostrum officia quia quidem quod saepe. Aut dolore exercitationem hic illo iusto nulla quo rem voluptates.</p>
+
+            {% include '@components/button/button-primary.twig' with {
+                buttonClass:"mt-3 color--dark",
+                buttonLabel:"Add channel"
+            } %}
+        {% endif %}
+    {% endblock %}
+{% endembed %}

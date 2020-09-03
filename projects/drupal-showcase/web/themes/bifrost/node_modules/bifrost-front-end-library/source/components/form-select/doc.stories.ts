@@ -9,7 +9,7 @@ export const Drupal = (args) => ({
   props: args
 });
 Drupal.args = { 
-    component: 'form-select',
+    elementPath: 'components/form-select/twig/form-select',
     dropdownItems: '',
     isStickyScrollSpyActive: '',
     class: '',
@@ -24,8 +24,7 @@ export const DrupalNative = (args) => ({
   props: args
 });
 DrupalNative.args = { 
-    component: 'form-select',
-    componentVariant: 'form-select-native',
+    elementPath: 'components/form-select/twig/form-select-native',
     label: 'Label',
     labelClass: '',
     labelExtraAttribute: "title=Title",

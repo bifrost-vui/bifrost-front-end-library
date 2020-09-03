@@ -1,0 +1,48 @@
+<!-- DXP only -->
+<!-- hero-block-search-home.twig -->
+
+{% set defaultImgSrc = '/images/hero/hero-block-sample.png' %}
+
+{% if mostPopularTopics is not defined %}
+    {% set mostPopularTopics = [
+        {label:"Popular topic 1"},
+        {label:"popular topic 2"},
+        {label:"popular topic 3"},
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<section
+        class="hero-block py-hero vui--style-black js-image-background {{ bgImagePosition|default('right') }} {{ class|default('') }}"
+        data-bg="{{ bgImage|default(defaultImgSrc) }}"
+        data-md-bg="{{ bgMediumImage|default(defaultImgSrc) }}"
+        data-lg-bg="{{ bgLargeImage|default(defaultImgSrc) }}">
+    <div class="container-fluid {{ containerClass|default('') }}">
+        {% if breadcrumb is defined %}
+            {{ breadcrumb }}
+        {% endif %}
+        <h1 class="mb-5">{{ title|default('How can we help ?') }}</h1>
+        {% block searchForm %}
+            {% include '@components/form/form-input-search.twig' with {
+                class:'pb-3',
+                inputPlaceholder:"What are you looking for ?",
+                inputClass:'form-control-lg fs-4',
+                iconSize:'3'
+            } %}
+        {% endblock %}
+
+        {% if mostPopularTopics is not empty %}
+            <p class="font-weight-bold mb-1">{{ mostPopularTopicsTitle|default('Most popular:') }}</p>
+            <p>
+                {% for item in mostPopularTopics %}
+                    {% include '@atoms/04-link/link.twig' with {
+                        label: item.label,
+                        href: item.href,
+                        class:(not loop.last) ? 'mr-2',
+                    } %}
+                {% endfor %}
+            </p>
+        {% endif %}
+    </div>
+</section>

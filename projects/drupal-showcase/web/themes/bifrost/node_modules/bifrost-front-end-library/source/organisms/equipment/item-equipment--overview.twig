@@ -1,0 +1,43 @@
+{% if detailsButtonId is not defined %}
+    {% set detailsButtonId='modal_equipement' %}
+{% endif %}
+
+{% if logged_in is not defined %}
+    {% set logged_in=true %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% embed '@organisms/25-equipment/item-equipment.twig' %}
+    {% block item_content %}
+        <p class="h4 mb-5 font-weight-normal">{{ equipmentTitle|default('XB6 Internet Gateway') }}</p>
+        <p class="mb-5 small">{{ equipmentDescription|default('Accumsan enim phasellus id sem lorem a vivamus. Maecenas elementum tempus quam fusce elementum vivamus.') }}</p>
+    {% endblock %}
+
+    {% block unactive_content %}
+        <div>
+            {% if logged_in and shopUrl and shopTitle %}
+                {% include '@atoms/04-link/link-button-primary.twig' with {
+                    class:"btn-label--primary w-100 color--dark",
+                    label:shopTitle|default('Shop'),
+                    href:shopUrl
+                } only %}
+            {% endif %}
+
+            <div class="">
+                {% include '@components/button/button-primary.twig' with {
+                    buttonClass:"link-underline h5 d-inline-block color--white",
+                    buttonColor: "reset",
+                    buttonLabel: equipmentDetailsButtonLabel|default('Details'),
+                    dataToggle:"modal",
+                    dataTarget:'#' ~ detailsButtonId
+                } %}
+
+                {% include '@organisms/08-modal/_modal-item-equipment-details.twig' with {
+                    id:detailsButtonId,
+                    modalEquipmentTitle:modalEquipmentTitle|default('XB6 Internet Gateway'),
+                } %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

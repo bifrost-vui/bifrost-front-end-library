@@ -1,0 +1,23 @@
+<div class="bg-gray--100 p-3 {{ class|default('') }}">
+    {% include '@molecules/09-payment/billing-header.twig' with { class:"", title: "One time fee" } only %}
+
+    {% include '@molecules/09-payment/billing-item.twig' with {
+        textLeft:"Installation",
+        subTextLeft: "(Adjustments to your equipment charge will be added to your next bill on a pro-rata basis)",
+        textRight:"$100.00"
+    } only %}
+
+    {% include '@molecules/09-payment/billing-item.twig' with {
+        textLeft:"Lorem ipsum dolor sit amet",
+        subTextLeft: "(Adjustments to your equipment charge will be added to your next bill on a pro-rata basis)",
+        textRight:"$100.00",
+        hasNoBorder: true
+    } only %}
+
+    {% include '@molecules/09-payment/billing-footer.twig' with {
+        class:"",
+        hasNoSubtotal:true,
+        totalLabel: " ",
+        totalPrice: "$200.00"
+    } only %}
+</div>

@@ -1,0 +1,36 @@
+{% embed "molecules-modal" with {
+    modalId:"modalSaveMyCartConfirmation",
+    modalTitle:"Your cart has been sent by email !",
+    modalSize:"md",
+    hasScrollContainer: false
+} %}
+    {% block modal_header %}
+        {{ parent() }}
+        <p>All prices shown are valid until XX/XX/XXXX</p>
+    {% endblock %}
+
+    {% block modal_body %}
+        <div class="d-md-flex justify-content-end">
+            {#{% include '@components/button/button-primary.twig' with {#}
+                {#buttonLabel:"Close",#}
+                {#buttonClass:"btn-reset link-underline btn--condensed",#}
+                {#dataDismiss:"modal"#}
+            {#} %}#}
+
+            {% include '@atoms/04-link/link-button-primary.twig' with {
+                class:"w-100--mobile-only ml-md-3 mb-2 mb-md-0",
+                label:"Print a quote",
+                buttonColor : "csr",
+                href:"/patterns/html-page-(etiya)-site-activation-13-cart-summary--print-a-quote/html-page-(etiya)-site-activation-13-cart-summary--print-a-quote.html",
+                target: "_blank"
+            } %}
+
+            {#{% include '@components/button/button-primary.twig' with {#}
+                {#buttonClass:"btn--condensed w-100--mobile-only",#}
+                {#buttonLabel:"Close",#}
+                {#buttonColor:"primary",#}
+                {#dataDismiss:"modal"#}
+            {#} %}#}
+        </div>
+    {% endblock %}
+{% endembed %}

@@ -9,7 +9,7 @@ export const Drupal = (args) => ({
   props: args
 });
 Drupal.args = { 
-    component: 'tag',
+    elementPath: 'components/tag/twig/tag',
     label: 'Here is a simple <strong>badge to showcase what can be done.</strong>',
     class: '',
     color: '',

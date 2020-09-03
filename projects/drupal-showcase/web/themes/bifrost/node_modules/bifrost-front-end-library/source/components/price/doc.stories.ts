@@ -9,7 +9,7 @@ export const Drupal = (args) => ({
   props: args
 });
 Drupal.args = { 
-    component: 'price',
+    elementPath: 'components/price/twig/price',
     class: '',
     priceBoxSubInfosLabel: '',
     priceBoxSubInfosClass: '',
