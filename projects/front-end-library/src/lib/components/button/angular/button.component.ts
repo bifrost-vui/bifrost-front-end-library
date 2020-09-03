@@ -31,7 +31,7 @@ export class ButtonComponent implements OnInit {
   @Input() color: string = 'primary' || 'secondary' || 'reverse';
 
   /** Variant  */
-  @Input() variant: string = 'business';
+  // @Input() variant2: string = 'business';
 
   /** Sets the button in mobile mode (full width). */
   @Input() fullWidth: boolean;

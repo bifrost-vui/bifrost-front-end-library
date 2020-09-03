@@ -134,7 +134,7 @@ export const Tile = styled.button`
         right: .75rem;
         width: 2.25rem;
         height: 1.125rem;
-        background: url('/assets/logo/angular.svg') top left no-repeat, url('/assets/logo/drupal.svg') top right no-repeat;
+        background: url('/logo/angular.svg') top left no-repeat, url('/logo/drupal.svg') top right no-repeat;
     }
 
     iframe {
