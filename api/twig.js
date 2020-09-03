@@ -1,9 +1,8 @@
 module.exports = (req, res) => {
-    var Twig = require("twig"),
-        express = require('express'),
-        app = express();
-    
-    const path = require('path');
+var Twig = require("twig"),
+    express = require('express'),
+    app = express(),
+    path = require('path');
 
     // const port = 3001;
 
@@ -20,16 +19,35 @@ module.exports = (req, res) => {
     });
 
     app.set('views', path.join(__dirname, '../projects/front-end-library/src/lib'));
+    // app.set('views', '/api');
     app.set('view engine', 'twig');
+    // app.engine('html', require('ejs').renderFile);
 
-    app.render('main.twig', req.query, function(err, html) {
-        return html;
+    // app.render('main.twig');
+    app.render('main.twig', req.query, function(err, html){ 
+        console.log((err) ? err : html);
+        res.status(200).send(html);
     });
+    // app.sendFile('main.twig');
 
+    // twig.render(path.join(__dirname, 'main.html'), req.query, function(err, html) {
+    //     res.status(200).send(html);
+    // });
+
+    // Twig.renderFile('main.twig', req.query).then((output) => {
+    //     res.status(200).send(output);
+    // });
+    // res.status(200).send('main.twig');
+
+    // app.get('/', function (req, res) {
+    // res.send('Admin Homepage')
+    // })
+
+    // res.send('main.html', req.query);
     // app.get('/', function(req, res){
     //     // console.log(req.params, req);
     //     // Object.assign(req.params, req.query);
-    //     res.render('main.twig', req.query);
+    //     res.render('main.html', req.query);
     // });
 
     // Twig.extendFilter('boolean', function(value, params) {
