@@ -20,10 +20,23 @@ import { ButtonComponent } from './angular/button.component';
         },
     }}
     argTypes={{
-        color: { control: { type: 'inline-radio', options: ['primary', 'secondary'] } },
-        size: { control: { type: 'inline-radio', options: ['sm', 'md', 'lg'] } },
+        color: { 
+            defaultValue: 'primary',
+            control: { 
+                type: 'select',
+                options: ['', 'primary', 'primary-alt', 'secondary', 'tertiary' ],
+            }
+        },
+        variant: { 
+            defaultValue: '',
+            control: { 
+                type: 'select',
+                options: ['', 'csr', 'reversed'],
+            }
+        },
     }}
 />
+
 
 # Button
 
@@ -41,11 +54,14 @@ export const Default = (args) => ({
 <Preview>
     <Story 
         name='Default' 
-        args={{ label: 'Default' }}
+        args={{ 
+            label: 'Default'
+        }}
     >
         {Default.bind({})}
     </Story>
 </Preview>
+
 
 ## Colors
 
@@ -57,53 +73,92 @@ Nullam id dolor id nibh ultricies vehicula ut id elit
     <Story 
         name='Colors' 
         parameters={{ 
-            controls: { disable: true }
+            controls: { disable: false }
         }}
         height='100px'
     >
     {{
         template: `
-            <div class='d-flex'>
-                <bf-button color='primary' styleClass='m-2'>
-                    Primary
-                </bf-button>
-                <bf-button color='secondary' styleClass='m-2'>
-                    Secondary
-                </bf-button>
-            </div>
+            <main>
+                <div class='container container-fluid theme-helix'>
+                    <h2>Helix</h2>
+                    <div class='row'>
+                        <div class='col'>
+                            <bf-button color='primary'> Primary </bf-button>
+                            <bf-button color='primary-alt'> Primary Alt </bf-button>
+                            <bf-button color='secondary'> Secondary </bf-button>
+                            <bf-button color='tertiary'> Tertiary </bf-button>
+                            <bf-button variant='csr'> CSR </bf-button>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col'>
+                            <bf-button color='primary' disabled='true'> Primary </bf-button>
+                            <bf-button color='primary-alt' disabled='true'> Primary Alt </bf-button>
+                            <bf-button color='secondary' disabled='true'> Secondary </bf-button>
+                            <bf-button color='tertiary' disabled='true'> Tertiary </bf-button>
+                            <bf-button variant='csr' disabled='true'> CSR </bf-button>
+                        </div>
+                    </div>
+                    <div class='row reversed-bg'>
+                        <div class='col'>
+                            <bf-button color='primary' reversed='true'> Primary </bf-button>
+                            <bf-button color='primary-alt' reversed='true'> Primary Alt </bf-button>
+                            <bf-button color='secondary' reversed='true'> Secondary </bf-button>
+                            <bf-button color='tertiary' reversed='true'> Tertiary </bf-button>
+                            <bf-button variant='csr' reversed='true'> CSR </bf-button>
+                        </div>
+                    </div>
+                    <div class='row reversed-bg'>
+                        <div class='col'>
+                            <bf-button color='primary' reversed='true' disabled='true'> Primary </bf-button>
+                            <bf-button color='primary-alt' reversed='true' disabled='true'> Primary Alt </bf-button>
+                            <bf-button color='secondary' reversed='true' disabled='true'> Secondary </bf-button>
+                            <bf-button color='tertiary' reversed='true' disabled='true'> Tertiary </bf-button>
+                            <bf-button variant='csr' reversed='true' disabled='true'> CSR </bf-button>
+                        </div>
+                    </div>
+                </div>
+                <div class='container container-fluid theme-videotron'>
+                    <h2>Videotron</h2>
+                    <div class='row'>
+                        <div class='col'>
+                            <bf-button color='primary'> Primary </bf-button>
+                            <bf-button color='primary-alt'> Primary Alt </bf-button>
+                            <bf-button color='secondary'> Secondary </bf-button>
+                            <bf-button color='tertiary'> Tertiary </bf-button>
+                            <bf-button variant='csr'> CSR </bf-button>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col'>
+                            <bf-button color='primary' disabled='true'> Primary </bf-button>
+                            <bf-button color='primary-alt' disabled='true'> Primary Alt </bf-button>
+                            <bf-button color='secondary' disabled='true'> Secondary </bf-button>
+                            <bf-button color='tertiary' disabled='true'> Tertiary </bf-button>
+                            <bf-button variant='csr' disabled='true'> CSR </bf-button>
+                        </div>
+                    </div>
+                    <div class='row reversed-bg'>
+                        <div class='col'>
+                            <bf-button color='primary' reversed='true'> Primary </bf-button>
+                            <bf-button color='primary-alt' reversed='true'> Primary Alt </bf-button>
+                            <bf-button color='secondary' reversed='true'> Secondary </bf-button>
+                            <bf-button color='tertiary' reversed='true'> Tertiary </bf-button>
+                            <bf-button variant='csr' reversed='true'> CSR </bf-button>
+                        </div>
+                    </div>
+                </div>
+            </main>
         `,
-        props: {}
+        props: {
+        }
     }}
     </Story>
 </Preview>
 
-## Sizes
-
-<Preview>
-    <Story 
-        name='Sizes' 
-        parameters={{ 
-            controls: { disable: true }
-        }}
-        height='100px'
-    >
-    {{
-        template: `
-            <div class='d-flex align-items-center'>
-                <bf-button label='Small' size='sm' styleClass='m-2'></bf-button>
-                <bf-button label='Medium' size='md' styleClass='m-2'></bf-button>
-                <bf-button label='Large' size='lg' styleClass='m-2'></bf-button>
-                <script>
-                    console.log('args', args);
-                </script>
-            </div>
-        `
-    }}
-    </Story>
-</Preview>
 
 ## Drupal
-
 
 export const Drupal = (args) => ({
     component: TwigContainerComponent,

@@ -46,9 +46,8 @@ Fust follow the instruction in your terminal. It will ask you the type of elemen
 npm run generate
 
 # If you want to see your new component, launch Storybook:
-npm run storybook
+npm run start-dev
 ```
-
 
 <br/>
 
@@ -57,16 +56,24 @@ Under the hood, this command will:
 - Then, you will be able to start working with the right structure.
 - Finally, it will expose your new component in `public-api.ts`.
 
+
 ## 3. Develop it
 Storybook provides an environment to develop in isolation. Let's open it:
 
-`npm run storybook`
+```js
+npm run start-dev
+```
+
+Open **[http://localhost:9008]()** on your browser and find the page of your component on the sidebar.
+**Et voila! Your environment is set up :)**
 
 <br/>
 
-Open **[http://localhost:9008]()** on your browser and find the page of your component on the sidebar.
-
-**Et voila! Your environment is set up :)**
+> Under the hood, `npm run start-dev` will:
+> - Launch an express server to serve twig files.
+> - Watch changes on twig files and auto-reload.
+> - Prebuild Storybook.
+> - Finally, launch Storybook at **http://localhost:9008** (Storybook will auto-reload on changes).
 
 <br/>
 

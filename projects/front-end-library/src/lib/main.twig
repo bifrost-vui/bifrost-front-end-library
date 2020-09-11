@@ -1,16 +1,12 @@
 <html>
     <head>
-        {# 
-            If we are on local, this URL point to the express server (in api/server.js).
-            If we are on Vercel, this URL point to the serverless function (in api/public.js) 
-        #}
-        <link href='/api/public/styles/style.css' rel='stylesheet'>
-
-        {# Style from the local express server #}
-        {# <link href='http://localhost:3001/api/public/styles/style.css' rel='stylesheet'> #}
-
-        {# Or use style from local storybook #}
-        {# <link href='http://localhost:9008/styles/style.css' rel='stylesheet'> #}
+        <script>
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css'; 
+            link.href = '/public/styles/style.css';
+            document.getElementsByTagName('HEAD')[0].appendChild(link);
+        </script>
 
         <style>
             .center {
@@ -25,29 +21,6 @@
     </head>
     <body>
 
-        
-        {# <pre>{{ dump(_context|json_encode) }}</pre> #}
-        {# 
-        TODO:
-        - Query Booleans are still string and seems difficult to convert. E.g. disabled="true"
-         #}
-
-        {# {% set context = _context|replace({'b': 'z'}) %}
-        <pre>{{ dump(_context) }}</pre> #}
-{# 
-        {% set array = [] %}
-        {% for key, value in _context %}
-            key: {{key}} - value:{{value}}<br/>
-            {% if value is same as("true") %} -{{_val}}- {% endif %}
-            {% set array = array|merge({ key: value }) %}
-        {% endfor %}
-        ---
-        {% for x in array %}
-            {{ x }}<br/>
-        {% endfor %}
-        --- #}
-        {# <pre>{{ dump(array) }}</pre> #}
-
         <main class='center'>
 
             {# For DEBUG puropose: #}
@@ -56,12 +29,7 @@
             {% if _context.elementPath is defined %}
                 
                 {% set elementPath = _context.elementPath %}
-                {# {% include './button.twig' with _context %} #}
-                {# {% set elementName = _context.elementName %} #}
-                {# {% set elementVariant = _context.elementVariant|default(elementName) %} #}
-                {# {% set context = _context %} #}
                 {% include './' ~ elementPath ~ '.twig' with _context %}
-                {# {% include '@my-project/button.twig' with _context %} #}
                 
             {% else %}
 

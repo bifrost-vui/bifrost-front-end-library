@@ -8,11 +8,11 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: {
-    'scss': resolve(__dirname, "projects/front-end-library/src/lib/styles/scss/style.scss"),
+    'style': resolve(__dirname, "projects/front-end-library/src/lib/styles/scss/style.scss"),
   },
   output: {
-    path: resolve(__dirname, "projects/front-end-library/src/lib/styles/dist"),
-    filename: "style.css",
+    path: resolve(__dirname, "public/styles"),
+    // filename: "style.css",
   },
 
   devtool: devMode ? 'source-map' : false,
@@ -37,8 +37,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: devMode ? '../css/[name].css' : '../css/[name].[hash].css',
-      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+    //   filename: devMode ? '../css/[name].css' : '../css/[name].[hash].css',
+    //   chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
     })
   ],
 

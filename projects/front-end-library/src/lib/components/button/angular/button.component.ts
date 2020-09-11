@@ -14,9 +14,13 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class ButtonComponent implements OnInit {
   constructor() {}
 
+  /** This input will not be displayed in Storybook docs.
+  * @ignore
+  */
+  @Input() exampleOfIgnore: boolean;
+
   /**
    * The inner text of the button.
-   *
    * @required
    */
   @Input() label: string;
@@ -24,14 +28,16 @@ export class ButtonComponent implements OnInit {
   /** Sets the button to a disabled state. */
   @Input() disabled: boolean;
 
-  /** Sets the visual type of the button . */
-  @Input() size: string = '' || 'sm' || 'md' || 'lg';
+  /** Sets the color of the button. 
+    *
+    * @values primary | primary-alt | primary-alt-reversed | secondary | secondary-reversed | tertiary | tertiary-reversed
+    */
+  @Input() color: string;
 
-  /** Sets the color of the button . */
-  @Input() color: string = 'primary' || 'secondary' || 'reverse';
-
-  /** Variant  */
-  // @Input() variant3: string = 'business';
+  /** Variant  
+    * @values csr
+    */
+  @Input() variant: string = '';
 
   /** Sets the button in mobile mode (full width). */
   @Input() fullWidth: boolean;
