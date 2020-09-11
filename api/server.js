@@ -9,7 +9,7 @@ const port = 3001;
 // -----------------------------------------------------------------
 // Expose Assets. Especially style.min.css
 
-app.use('/public', express.static('public'));
+app.use('/', express.static('public'));
 
 
 // -----------------------------------------------------------------
