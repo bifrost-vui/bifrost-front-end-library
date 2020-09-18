@@ -121,11 +121,9 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-3638865184a62c48d417e43ccd3bb049",
+            "id": "component-ButtonComponent-69162a629e4c21c2334a3cff8c73650b",
             "file": "projects/front-end-library/src/lib/components/button/angular/button.component.ts",
-            "encapsulation": [
-                "ViewEncapsulation.None"
-            ],
+            "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
@@ -143,44 +141,44 @@
                 {
                     "name": "color",
                     "description": "<p>Sets the color of the button. </p>\n",
-                    "line": 35,
+                    "line": 34,
                     "type": "string"
                 },
                 {
                     "name": "disabled",
                     "description": "<p>Sets the button to a disabled state. </p>\n",
-                    "line": 29,
+                    "line": 28,
                     "type": "boolean"
                 },
                 {
                     "name": "fullWidth",
                     "description": "<p>Sets the button in mobile mode (full width). </p>\n",
-                    "line": 43,
+                    "line": 42,
                     "type": "boolean"
                 },
                 {
                     "name": "icon",
                     "description": "<p>Name of the icon </p>\n",
-                    "line": 46,
+                    "line": 45,
                     "type": "string"
                 },
                 {
                     "name": "label",
                     "description": "<p>The inner text of the button.</p>\n",
-                    "line": 26,
+                    "line": 25,
                     "type": "string"
                 },
                 {
                     "name": "styleClass",
                     "description": "<p>Class override </p>\n",
-                    "line": 49,
+                    "line": 48,
                     "type": "string"
                 },
                 {
                     "name": "variant",
                     "defaultValue": "''",
                     "description": "<p>Variant  </p>\n",
-                    "line": 40,
+                    "line": 39,
                     "type": "string"
                 }
             ],
@@ -189,7 +187,7 @@
                     "name": "click",
                     "defaultValue": "new EventEmitter()",
                     "description": "<p>Handler to be called when the button is clicked by a user.</p>\n<p>Will also block the emission of the event if <code>disabled</code> is true.</p>\n",
-                    "line": 56,
+                    "line": 55,
                     "type": "EventEmitter<boolean>"
                 }
             ],
@@ -201,7 +199,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 58
+                    "line": 57
                 },
                 {
                     "name": "onClick",
@@ -209,7 +207,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 62
+                    "line": 61
                 }
             ],
             "hostBindings": [],
@@ -217,11 +215,11 @@
             "description": "<p>API is the same between <strong>Angular</strong> and <strong>Drupal</strong>.</p>\n",
             "rawdescription": "API is the same between **Angular** and **Drupal**.",
             "type": "component",
-            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n  selector: \"bf-button\",\n  templateUrl: './button.component.html',\n  styleUrls: ['../common/style.scss'],\n  encapsulation: ViewEncapsulation.None\n})\nexport class ButtonComponent implements OnInit {\n  constructor() {}\n\n  /** This input will not be displayed in Storybook docs.\n  * @ignore\n  */\n  @Input() exampleOfIgnore: boolean;\n\n  /**\n   * The inner text of the button.\n   * @required\n   */\n  @Input() label: string;\n\n  /** Sets the button to a disabled state. */\n  @Input() disabled: boolean;\n\n  /** Sets the color of the button. \n    *\n    * @values primary | primary-alt | primary-alt-reversed | secondary | secondary-reversed | tertiary | tertiary-reversed\n    */\n  @Input() color: string;\n\n  /** Variant  \n    * @values csr\n    */\n  @Input() variant: string = '';\n\n  /** Sets the button in mobile mode (full width). */\n  @Input() fullWidth: boolean;\n\n  /** Name of the icon */\n  @Input() icon: string;\n\n  /** Class override */\n  @Input() styleClass: string;\n\n  /**\n   * Handler to be called when the button is clicked by a user.\n   *\n   * Will also block the emission of the event if `disabled` is true.\n   */\n  @Output() click: EventEmitter<boolean> = new EventEmitter();\n\n  ngOnInit() {\n      console.log('button', this);\n  }\n\n  onClick() {\n    this.click.emit(true);\n  }\n}\n",
+            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n  selector: \"bf-button\",\n  templateUrl: './button.component.html',\n  styleUrls: ['../common/style.scss'],\n})\nexport class ButtonComponent implements OnInit {\n  constructor() {}\n\n  /** This input will not be displayed in Storybook docs.\n  * @ignore\n  */\n  @Input() exampleOfIgnore: boolean;\n\n  /**\n   * The inner text of the button.\n   * @required\n   */\n  @Input() label: string;\n\n  /** Sets the button to a disabled state. */\n  @Input() disabled: boolean;\n\n  /** Sets the color of the button. \n    *\n    * @values primary | primary-alt | primary-alt-reversed | secondary | secondary-reversed | tertiary | tertiary-reversed\n    */\n  @Input() color: string;\n\n  /** Variant  \n    * @values csr\n    */\n  @Input() variant: string = '';\n\n  /** Sets the button in mobile mode (full width). */\n  @Input() fullWidth: boolean;\n\n  /** Name of the icon */\n  @Input() icon: string;\n\n  /** Class override */\n  @Input() styleClass: string;\n\n  /**\n   * Handler to be called when the button is clicked by a user.\n   *\n   * Will also block the emission of the event if `disabled` is true.\n   */\n  @Output() click: EventEmitter<boolean> = new EventEmitter();\n\n  ngOnInit() {\n      console.log('button', this);\n  }\n\n  onClick() {\n    this.click.emit(true);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../../../styles/scss/style.scss\";",
+                    "data": "// Please import only SASS mixins, functions, variables.\n// Because, you don't want to import classes here.\n@import \"~bootstrap/scss/functions\";\n@import \"../../../styles/scss/_functions/index\";\n@import \"../../../styles/scss/themes/ds-variables-theme-2020\";\n@import \"../../../styles/scss/bootstrap/_bootstrap_variables\";\n\n.btn {\n    font-family: $font-family-secondary;\n    font-weight: 600;\n    text-transform: uppercase;\n}",
                     "styleUrl": "../common/style.scss"
                 }
             ],
@@ -230,7 +228,7 @@
                 "name": "constructor",
                 "description": "",
                 "args": [],
-                "line": 14
+                "line": 13
             },
             "implements": [
                 "OnInit"
@@ -785,6 +783,14 @@
                 "name": "Drupal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
+                "type": "",
+                "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
+            },
+            {
+                "name": "Drupal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/front-end-library/src/lib/components/form-select/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
@@ -794,14 +800,6 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/front-end-library/src/lib/components/price/doc.stories.ts",
-                "type": "",
-                "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
-            },
-            {
-                "name": "Drupal",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
             },
@@ -972,6 +970,16 @@
                     "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
                 }
             ],
+            "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts": [
+                {
+                    "name": "Drupal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
+                    "type": "",
+                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
+                }
+            ],
             "projects/front-end-library/src/lib/components/form-select/doc.stories.ts": [
                 {
                     "name": "Drupal",
@@ -996,16 +1004,6 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/front-end-library/src/lib/components/price/doc.stories.ts",
-                    "type": "",
-                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
-                }
-            ],
-            "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts": [
-                {
-                    "name": "Drupal",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
                     "type": "",
                     "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
                 }

@@ -1,15 +1,16 @@
 import { moduleMetadata } from '@storybook/angular';
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withDesign } from 'storybook-addon-designs'
 import { TwigContainerComponent } from '../../../utils/twig-container/twig-container.component';
 import { ButtonComponent } from './angular/button.component';
+import { docButtonComponent } from './doc.component.ts';
 
 <!-- subcomponents={ ListHeading, ListItem } -->
 <Meta 
     title='Components/Button' 
     component={ButtonComponent}
     decorators={[
-        moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent, docButtonComponent]}),
         withDesign
     ]}
     parameters={{
@@ -53,9 +54,9 @@ export const Default = (args) => ({
 
 <Preview>
     <Story 
-        name='Default' 
+        name='Default'
         args={{ 
-            label: 'Default'
+            label: 'Default',
         }}
     >
         {Default.bind({})}
@@ -69,93 +70,23 @@ Nullam id dolor id nibh ultricies vehicula ut id elit
 
 > Nullam id dolor id nibh ultricies vehicula ut id elit
 
-<Preview>
-    <Story 
-        name='Colors' 
-        parameters={{ 
-            controls: { disable: false }
-        }}
-        height='100px'
-    >
-    {{
-        template: `
-            <main>
-                <div class='container container-fluid theme-helix'>
-                    <h2>Helix</h2>
-                    <div class='row'>
-                        <div class='col'>
-                            <bf-button color='primary'> Primary </bf-button>
-                            <bf-button color='primary-alt'> Primary Alt </bf-button>
-                            <bf-button color='secondary'> Secondary </bf-button>
-                            <bf-button color='tertiary'> Tertiary </bf-button>
-                            <bf-button variant='csr'> CSR </bf-button>
-                        </div>
-                    </div>
-                    <div class='row'>
-                        <div class='col'>
-                            <bf-button color='primary' disabled='true'> Primary </bf-button>
-                            <bf-button color='primary-alt' disabled='true'> Primary Alt </bf-button>
-                            <bf-button color='secondary' disabled='true'> Secondary </bf-button>
-                            <bf-button color='tertiary' disabled='true'> Tertiary </bf-button>
-                            <bf-button variant='csr' disabled='true'> CSR </bf-button>
-                        </div>
-                    </div>
-                    <div class='row reversed-bg'>
-                        <div class='col'>
-                            <bf-button color='primary' reversed='true'> Primary </bf-button>
-                            <bf-button color='primary-alt' reversed='true'> Primary Alt </bf-button>
-                            <bf-button color='secondary' reversed='true'> Secondary </bf-button>
-                            <bf-button color='tertiary' reversed='true'> Tertiary </bf-button>
-                            <bf-button variant='csr' reversed='true'> CSR </bf-button>
-                        </div>
-                    </div>
-                    <div class='row reversed-bg'>
-                        <div class='col'>
-                            <bf-button color='primary' reversed='true' disabled='true'> Primary </bf-button>
-                            <bf-button color='primary-alt' reversed='true' disabled='true'> Primary Alt </bf-button>
-                            <bf-button color='secondary' reversed='true' disabled='true'> Secondary </bf-button>
-                            <bf-button color='tertiary' reversed='true' disabled='true'> Tertiary </bf-button>
-                            <bf-button variant='csr' reversed='true' disabled='true'> CSR </bf-button>
-                        </div>
-                    </div>
-                </div>
-                <div class='container container-fluid theme-videotron'>
-                    <h2>Videotron</h2>
-                    <div class='row'>
-                        <div class='col'>
-                            <bf-button color='primary'> Primary </bf-button>
-                            <bf-button color='primary-alt'> Primary Alt </bf-button>
-                            <bf-button color='secondary'> Secondary </bf-button>
-                            <bf-button color='tertiary'> Tertiary </bf-button>
-                            <bf-button variant='csr'> CSR </bf-button>
-                        </div>
-                    </div>
-                    <div class='row'>
-                        <div class='col'>
-                            <bf-button color='primary' disabled='true'> Primary </bf-button>
-                            <bf-button color='primary-alt' disabled='true'> Primary Alt </bf-button>
-                            <bf-button color='secondary' disabled='true'> Secondary </bf-button>
-                            <bf-button color='tertiary' disabled='true'> Tertiary </bf-button>
-                            <bf-button variant='csr' disabled='true'> CSR </bf-button>
-                        </div>
-                    </div>
-                    <div class='row reversed-bg'>
-                        <div class='col'>
-                            <bf-button color='primary' reversed='true'> Primary </bf-button>
-                            <bf-button color='primary-alt' reversed='true'> Primary Alt </bf-button>
-                            <bf-button color='secondary' reversed='true'> Secondary </bf-button>
-                            <bf-button color='tertiary' reversed='true'> Tertiary </bf-button>
-                            <bf-button variant='csr' reversed='true'> CSR </bf-button>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        `,
-        props: {
-        }
+<!--
+export const Colors = (args) => ({
+  component: docButtonComponent,
+  props: args,
+});
+
+
+<Story 
+    name='ColorPrimary'
+    args={{ 
+        label: 'primary',
+        color: 'primary'
     }}
-    </Story>
-</Preview>
+>
+{Colors.bind({})}
+</Story>
+-->
 
 
 ## Drupal

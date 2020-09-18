@@ -9,7 +9,6 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
   selector: "bf-button",
   templateUrl: './button.component.html',
   styleUrls: ['../common/style.scss'],
-  encapsulation: ViewEncapsulation.None
 })
 export class ButtonComponent implements OnInit {
   constructor() {}

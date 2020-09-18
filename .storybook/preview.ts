@@ -5,6 +5,10 @@ import { setCompodocJson } from '@storybook/addon-docs/angular';
 // eslint-disable-next-line import/extensions, import/no-unresolved
 import docJson from '../documentation.json';
 
+// Import global SCSS styles.
+// Warning: For Angular only! Because Drupal components are served in an iFrame with `style-drupal.css` imported.
+import '!style-loader!css-loader!resolve-url-loader!sass-loader!../projects/front-end-library/src/lib/styles/scss/style.scss';
+
 setCompodocJson(docJson);
 
 addParameters({

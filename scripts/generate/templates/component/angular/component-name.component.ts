@@ -9,7 +9,6 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
   selector: 'bf-component-name',
   templateUrl: './component-name.component.html',
   styleUrls: ['../common/style.scss'],
-//   encapsulation: ViewEncapsulation.None
 })
 export class ComponentNameComponent implements OnInit {
     constructor() {}

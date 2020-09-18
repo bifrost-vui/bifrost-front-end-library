@@ -23,7 +23,9 @@ You have a **Drupal installation** and you want to use Bifrost Design System.
 - ...
 
 ## Migration
-First Step: Create a branch and run your Drupal website on this branch.
+First Step: 
+- Create a branch on the lastest production branch.
+- Run your Drupal website on this branch.
 <br/>
 
 ### Visual regression Test
@@ -58,6 +60,9 @@ In the Drupal Theme.
 npm install bifrost-front-end-library --save
 ```
 
+## Remove Pattern Lab.
+dxp_front_info.yml
+
 ## 2. Create Namespace @components
 [Install components module](https://www.drupal.org/project/components) in Drupal. This will create **namespace/shortcut** to the NPM Package.
 Then, add theses paths to **your-theme.info.yml**:
@@ -78,13 +83,12 @@ component-libraries:
 ```
 
 ## 3. Swith for the new CSS
-Create a library **your-theme.libraries.yml**:
+Create a library **your-theme.libraries.yml** to add the global style from **style-drupal.css**:
 ```js
 global-styling:
   css:
     theme:
-        styles.css: {}
-        'node_modules/bifrost-front-end-library/assets/styles/style.css': {}
+        'node_modules/bifrost-front-end-library/assets/styles/style-drupal.css': {}
 ```
 
 Then, add this library to **your-theme.info.yml**:
@@ -98,8 +102,7 @@ libraries:
 **👉 We will start with the Button component.**
 
 ### Components Path
-- In your terminal, go to: **node_modules/bifrost-front-end-library**.
-- Then run `npm run bf:migrate-twig-path` to replace all path to PatternLab with the new architecture.
+- In your terminal, run `node node_modules/bifrost-front-end-library/scripts/migration` to replace all path to PatternLab with the new architecture.
 <img src={ImageComponentPathDebug} style={{maxWidth: '800px'}} />
 
 ### Component API

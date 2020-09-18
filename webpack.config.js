@@ -6,9 +6,15 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const devMode = process.env.NODE_ENV !== 'production';
 
+
 module.exports = {
   entry: {
-    'style': resolve(__dirname, "projects/front-end-library/src/lib/styles/scss/style.scss"),
+    'style-angular': 
+        resolve(__dirname, "projects/front-end-library/src/lib/styles/scss/style.scss"),
+    'style-drupal': [
+        resolve(__dirname, "projects/front-end-library/src/lib/styles/scss/style.scss"),
+        resolve(__dirname, "projects/front-end-library/src/lib/styles/scss/_drupal-components.scss"),
+    ],
   },
   output: {
     path: resolve(__dirname, "public/styles"),
@@ -72,6 +78,10 @@ module.exports = {
             options: {
               sourceMap: true
             }
+          },
+          {
+            loader: 'resolve-url-loader',
+            options: {}
           },
           {
             loader: "postcss-loader",
