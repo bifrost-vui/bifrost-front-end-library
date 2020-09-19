@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import { Component, OnInit} from "@angular/core";
 
 @Component({
   selector: "doc-button",
@@ -22,7 +22,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
         </div>
         <div class='d-flex flex-column justify-content-start flex-grow-1 pt-3 bg-dark'>
             <div class='row justify-content-md-center'>
-                <bf-button styleClass='m-2' reversed='reversed' [color]='color || secondary'> Primary </bf-button>
+                <bf-button styleClass='m-2' reversed='reversed' color='color'> Primary </bf-button>
                 <bf-button styleClass='m-2' reversed='reversed' color='primary-alt'> Primary Alt </bf-button>
                 <bf-button styleClass='m-2' reversed='reversed' color='secondary'> Secondary </bf-button>
                 <bf-button styleClass='m-2' reversed='reversed' color='tertiary'> Tertiary </bf-button>
