@@ -3,11 +3,138 @@
 @import "~bootstrap/scss/functions";
 @import "../../../styles/scss/_functions/index";
 @import "../../../styles/scss/themes/ds-variables-theme-2020";
+@import "../../../styles/scss/themes/ds-variables-theme-2021";
 @import "../../../styles/scss/bootstrap/_bootstrap_variables";
 
 .btn {
+    min-height: 40px;
+    padding: 0 1.5rem;
+    color: $vui-color-neutral-primary;
     font-family: $font-family-secondary;
-    font-weight: 600;
-    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 500;
     letter-spacing: 1px;
+    text-transform: uppercase;
+
+    &[disabled] {
+        opacity: 1; // override Bootstrap
+    }
+
+    &-primary {
+        border: none;
+        background-color: $vui-color-bg-action-primary;
+
+        &:hover {
+            color: currentColor;
+            background-color: $vui-color-bg-action-primary-hover;
+        }
+    }
+
+    &-primary-alt {
+        color: $vui-color-neutral-primary-reversed;
+        background-color: $vui-color-bg-action-secondary;
+
+        &:hover {
+            background-color: $vui-color-bg-action-secondary-hover;
+        }
+
+        &.btn-reversed {
+            color: $vui-color-bg-action-secondary;
+            background-color: $vui-color-bg-ground;
+
+            &:hover {
+                color: $vui-color-neutral-primary-reversed;
+                background: $vui-color-bg-action-secondary;
+            }
+        }
+
+    }
+
+    &-primary,
+    &-primary-alt,
+    &-csr {
+        &[disabled],
+        &[disabled]:hover {
+            color: $vui-color-neutral-tertiary;
+            background-color: $vui-color-bg-action-disabled;
+
+            &.btn-reversed {
+                background-color: rgba($vui-color-bg-action-disabled-reversed, .5);
+            }
+        }
+    }
+
+    &-secondary {
+        color: $vui-color-bg-action-secondary;
+        border-color: $vui-color-bg-action-secondary;
+        background-color: transparent;
+        will-change: box-shadow;
+        transition: box-shadow .1s ease-in-out;
+
+        &:not([disabled]):hover {
+            color: currentColor;
+            box-shadow: inset 0 0 0 1px $vui-color-bg-action-secondary;
+            border-color: $vui-color-bg-action-secondary-hover;
+            background-color: transparent;
+        }
+
+        &.btn-reversed {
+            color: $vui-color-neutral-primary-reversed;
+            border-color: $vui-color-neutral-primary-reversed;
+
+            &:not([disabled]):hover {
+                color: $vui-color-neutral-primary-reversed;
+                border-color: $vui-color-neutral-primary-reversed;
+                box-shadow: inset 0 0 0 1px $vui-color-neutral-primary-reversed;
+            }
+        }
+
+        &[disabled],
+        &[disabled]:hover {
+            color: $vui-color-neutral-tertiary;
+            background-color: transparent;
+            border-color: $vui-color-stroke-primary;
+        }
+    }
+
+    &-tertiary {
+        background-color: transparent;
+        
+        &:hover {
+            color: currentColor;
+            border-color: $vui-color-bg-action-no-bg-hover;
+            background-color: $vui-color-bg-action-no-bg-hover;
+        }
+
+        &.btn-reversed {
+            color: $vui-color-neutral-primary-reversed;
+
+            &:hover {
+                border-color: $vui-color-neutral-tertiary;
+                background-color: $vui-color-neutral-tertiary;
+            }
+
+            &[disabled],
+            &[disabled]:hover {
+                background-color: rgba($vui-color-bg-action-disabled-reversed, .5);
+            }
+        }
+
+        &[disabled],
+        &[disabled]:hover {
+            color: $vui-color-neutral-tertiary;
+            border-color: transparent;
+            background-color: transparent;
+        }
+    }
+
+    &-csr {
+        color: $vui-color-neutral-primary-reversed;
+        border: none;
+        background-color: $vui-color-csr;
+        
+        &:hover {
+            background-color: $vui-color-csr-hover;
+        }
+    }   
 }

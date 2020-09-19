@@ -38,6 +38,9 @@ export class ButtonComponent implements OnInit {
     */
   @Input() variant: string = '';
 
+  /** Sets the contrast mode. */
+  @Input() reversed: boolean;
+
   /** Sets the button in mobile mode (full width). */
   @Input() fullWidth: boolean;
 

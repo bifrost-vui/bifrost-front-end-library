@@ -219,7 +219,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "// Please import only SASS mixins, functions, variables.\n// Because, you don't want to import classes here.\n@import \"~bootstrap/scss/functions\";\n@import \"../../../styles/scss/_functions/index\";\n@import \"../../../styles/scss/themes/ds-variables-theme-2020\";\n@import \"../../../styles/scss/bootstrap/_bootstrap_variables\";\n\n.btn {\n    font-family: $font-family-secondary;\n    font-weight: 600;\n    text-transform: uppercase;\n}",
+                    "data": "// Please import only SASS mixins, functions, variables.\n// Because, you don't want to import classes here.\n@import \"~bootstrap/scss/functions\";\n@import \"../../../styles/scss/_functions/index\";\n@import \"../../../styles/scss/themes/ds-variables-theme-2020\";\n@import \"../../../styles/scss/bootstrap/_bootstrap_variables\";\n\n.btn {\n    font-family: $font-family-secondary;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 1px;\n}",
                     "styleUrl": "../common/style.scss"
                 }
             ],
@@ -305,6 +305,53 @@
                 "OnInit"
             ],
             "templateData": "<div>\n    Template Contact Form\n</div>"
+        },
+        {
+            "name": "docButtonComponent",
+            "id": "component-docButtonComponent-8440d7b2e2fd996106cdcc57f6c7c57e",
+            "file": "projects/front-end-library/src/lib/components/button/doc.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "doc-button",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<p>\n    <bf-button [label]='label' [color]='color' [disabled]='disabled'></bf-button>\n    <bf-button [label]='label' [color]='color' [disabled]='disabled'></bf-button>\n    <bf-button [label]='label' [color]='color' [disabled]='disabled'></bf-button>\n</p>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n@Component({\n  selector: \"doc-button\",\n  template: `\n    <p>\n        <bf-button [label]='label' [color]='color' [disabled]='disabled'></bf-button>\n        <bf-button [label]='label' [color]='color' [disabled]='disabled'></bf-button>\n        <bf-button [label]='label' [color]='color' [disabled]='disabled'></bf-button>\n    </p>\n  `,\n})\nexport class docButtonComponent implements OnInit {\n  constructor() {}\n\n    ngOnInit() {\n        console.log('docButtonComponent', this);\n    }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 13
+            },
+            "implements": [
+                "OnInit"
+            ]
         },
         {
             "name": "TileComponent",
@@ -775,7 +822,7 @@
                 "name": "Drupal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts",
+                "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
             },
@@ -783,7 +830,7 @@
                 "name": "Drupal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
+                "file": "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
             },
@@ -960,22 +1007,22 @@
                     "defaultValue": "{\n  declarations: [UppercasePipe],\n}"
                 }
             ],
-            "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts": [
-                {
-                    "name": "Drupal",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts",
-                    "type": "",
-                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
-                }
-            ],
             "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts": [
                 {
                     "name": "Drupal",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
+                    "type": "",
+                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
+                }
+            ],
+            "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts": [
+                {
+                    "name": "Drupal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts",
                     "type": "",
                     "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
                 }
@@ -1025,7 +1072,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 11,
+        "count": 10,
         "status": "low",
         "files": [
             {
@@ -1114,6 +1161,15 @@
                 "name": "Secondary",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/front-end-library/src/lib/components/button/doc.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "docButtonComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
