@@ -44,7 +44,7 @@
 
             &:hover {
                 color: $vui-color-neutral-primary-reversed;
-                background: $vui-color-bg-action-secondary;
+                background: $vui-color-bg-action-secondary-hover;
             }
         }
 
@@ -59,6 +59,7 @@
             background-color: $vui-color-bg-action-disabled;
 
             &.btn-reversed {
+                color: $vui-color-neutral-secondary;
                 background-color: rgba($vui-color-bg-action-disabled-reversed, .5);
             }
         }
@@ -66,14 +67,14 @@
 
     &-secondary {
         color: $vui-color-bg-action-secondary;
-        border-color: $vui-color-bg-action-secondary;
+        border-color: $vui-color-neutral-secondary;
         background-color: transparent;
         will-change: box-shadow;
         transition: box-shadow .1s ease-in-out;
 
         &:not([disabled]):hover {
             color: currentColor;
-            box-shadow: inset 0 0 0 1px $vui-color-bg-action-secondary;
+            box-shadow: inset 0 0 0 1px $vui-color-bg-action-secondary-hover;
             border-color: $vui-color-bg-action-secondary-hover;
             background-color: transparent;
         }
@@ -87,22 +88,29 @@
                 border-color: $vui-color-neutral-primary-reversed;
                 box-shadow: inset 0 0 0 1px $vui-color-neutral-primary-reversed;
             }
+            
+            &[disabled],
+            &[disabled]:hover {
+                color: $vui-color-neutral-secondary;
+                background-color: transparent;
+                border-color: $vui-color-stroke-secondary-reversed;
+            }
         }
 
         &[disabled],
         &[disabled]:hover {
             color: $vui-color-neutral-tertiary;
             background-color: transparent;
-            border-color: $vui-color-stroke-primary;
+            border-color: $vui-color-stroke-secondary;
         }
     }
 
     &-tertiary {
+        border: none;
         background-color: transparent;
         
         &:hover {
             color: currentColor;
-            border-color: $vui-color-bg-action-no-bg-hover;
             background-color: $vui-color-bg-action-no-bg-hover;
         }
 
@@ -110,12 +118,12 @@
             color: $vui-color-neutral-primary-reversed;
 
             &:hover {
-                border-color: $vui-color-neutral-tertiary;
-                background-color: $vui-color-neutral-tertiary;
+                background-color: $vui-color-bg-action-disabled-reversed;
             }
 
             &[disabled],
             &[disabled]:hover {
+                color: $vui-color-neutral-secondary;
                 background-color: rgba($vui-color-bg-action-disabled-reversed, .5);
             }
         }
@@ -123,7 +131,6 @@
         &[disabled],
         &[disabled]:hover {
             color: $vui-color-neutral-tertiary;
-            border-color: transparent;
             background-color: transparent;
         }
     }

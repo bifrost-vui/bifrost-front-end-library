@@ -1,5 +1,5 @@
-import { ButtonComponent } from './angular/button.component';
-import { TwigContainer2Component } from '../../../utils/twig-container2/twig-container.component';
+import { ButtonComponent } from '../angular/button.component';
+import { TwigContainer2Component } from '../../../../utils/twig-container2/twig-container.component';
 
 export default {
   title: 'Twig Test',

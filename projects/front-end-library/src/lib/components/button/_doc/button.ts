@@ -1,5 +1,5 @@
-import { ButtonComponent } from './angular/button.component';
-import { TwigContainerComponent } from '../../../utils/twig-container/twig-container.component';
+import { ButtonComponent } from '../angular/button.component';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 
 export default {
   title: 'Components/Button',

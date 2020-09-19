@@ -121,7 +121,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-69162a629e4c21c2334a3cff8c73650b",
+            "id": "component-ButtonComponent-0757a9cdfd32faf6201b1deaf21b5bd0",
             "file": "projects/front-end-library/src/lib/components/button/angular/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -153,13 +153,13 @@
                 {
                     "name": "fullWidth",
                     "description": "<p>Sets the button in mobile mode (full width). </p>\n",
-                    "line": 42,
+                    "line": 45,
                     "type": "boolean"
                 },
                 {
                     "name": "icon",
                     "description": "<p>Name of the icon </p>\n",
-                    "line": 45,
+                    "line": 48,
                     "type": "string"
                 },
                 {
@@ -169,9 +169,15 @@
                     "type": "string"
                 },
                 {
+                    "name": "reversed",
+                    "description": "<p>Sets the contrast mode. </p>\n",
+                    "line": 42,
+                    "type": "boolean"
+                },
+                {
                     "name": "styleClass",
                     "description": "<p>Class override </p>\n",
-                    "line": 48,
+                    "line": 51,
                     "type": "string"
                 },
                 {
@@ -187,7 +193,7 @@
                     "name": "click",
                     "defaultValue": "new EventEmitter()",
                     "description": "<p>Handler to be called when the button is clicked by a user.</p>\n<p>Will also block the emission of the event if <code>disabled</code> is true.</p>\n",
-                    "line": 55,
+                    "line": 58,
                     "type": "EventEmitter<boolean>"
                 }
             ],
@@ -199,7 +205,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 57
+                    "line": 60
                 },
                 {
                     "name": "onClick",
@@ -207,7 +213,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 61
+                    "line": 64
                 }
             ],
             "hostBindings": [],
@@ -215,11 +221,11 @@
             "description": "<p>API is the same between <strong>Angular</strong> and <strong>Drupal</strong>.</p>\n",
             "rawdescription": "API is the same between **Angular** and **Drupal**.",
             "type": "component",
-            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n  selector: \"bf-button\",\n  templateUrl: './button.component.html',\n  styleUrls: ['../common/style.scss'],\n})\nexport class ButtonComponent implements OnInit {\n  constructor() {}\n\n  /** This input will not be displayed in Storybook docs.\n  * @ignore\n  */\n  @Input() exampleOfIgnore: boolean;\n\n  /**\n   * The inner text of the button.\n   * @required\n   */\n  @Input() label: string;\n\n  /** Sets the button to a disabled state. */\n  @Input() disabled: boolean;\n\n  /** Sets the color of the button. \n    *\n    * @values primary | primary-alt | primary-alt-reversed | secondary | secondary-reversed | tertiary | tertiary-reversed\n    */\n  @Input() color: string;\n\n  /** Variant  \n    * @values csr\n    */\n  @Input() variant: string = '';\n\n  /** Sets the button in mobile mode (full width). */\n  @Input() fullWidth: boolean;\n\n  /** Name of the icon */\n  @Input() icon: string;\n\n  /** Class override */\n  @Input() styleClass: string;\n\n  /**\n   * Handler to be called when the button is clicked by a user.\n   *\n   * Will also block the emission of the event if `disabled` is true.\n   */\n  @Output() click: EventEmitter<boolean> = new EventEmitter();\n\n  ngOnInit() {\n      console.log('button', this);\n  }\n\n  onClick() {\n    this.click.emit(true);\n  }\n}\n",
+            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n  selector: \"bf-button\",\n  templateUrl: './button.component.html',\n  styleUrls: ['../common/style.scss'],\n})\nexport class ButtonComponent implements OnInit {\n  constructor() {}\n\n  /** This input will not be displayed in Storybook docs.\n  * @ignore\n  */\n  @Input() exampleOfIgnore: boolean;\n\n  /**\n   * The inner text of the button.\n   * @required\n   */\n  @Input() label: string;\n\n  /** Sets the button to a disabled state. */\n  @Input() disabled: boolean;\n\n  /** Sets the color of the button. \n    *\n    * @values primary | primary-alt | primary-alt-reversed | secondary | secondary-reversed | tertiary | tertiary-reversed\n    */\n  @Input() color: string;\n\n  /** Variant  \n    * @values csr\n    */\n  @Input() variant: string = '';\n\n  /** Sets the contrast mode. */\n  @Input() reversed: boolean;\n\n  /** Sets the button in mobile mode (full width). */\n  @Input() fullWidth: boolean;\n\n  /** Name of the icon */\n  @Input() icon: string;\n\n  /** Class override */\n  @Input() styleClass: string;\n\n  /**\n   * Handler to be called when the button is clicked by a user.\n   *\n   * Will also block the emission of the event if `disabled` is true.\n   */\n  @Output() click: EventEmitter<boolean> = new EventEmitter();\n\n  ngOnInit() {\n      console.log('button', this);\n  }\n\n  onClick() {\n    this.click.emit(true);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "// Please import only SASS mixins, functions, variables.\n// Because, you don't want to import classes here.\n@import \"~bootstrap/scss/functions\";\n@import \"../../../styles/scss/_functions/index\";\n@import \"../../../styles/scss/themes/ds-variables-theme-2020\";\n@import \"../../../styles/scss/bootstrap/_bootstrap_variables\";\n\n.btn {\n    font-family: $font-family-secondary;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 1px;\n}",
+                    "data": "// Please import only SASS mixins, functions, variables.\n// Because, you don't want to import classes here.\n@import \"~bootstrap/scss/functions\";\n@import \"../../../styles/scss/_functions/index\";\n@import \"../../../styles/scss/themes/ds-variables-theme-2020\";\n@import \"../../../styles/scss/themes/ds-variables-theme-2021\";\n@import \"../../../styles/scss/bootstrap/_bootstrap_variables\";\n\n.btn {\n    min-height: 40px;\n    padding: 0 1.5rem;\n    color: $vui-color-neutral-primary;\n    font-family: $font-family-secondary;\n    font-size: 1rem;\n    font-weight: 500;\n    letter-spacing: 1px;\n    text-transform: uppercase;\n\n    &[disabled] {\n        opacity: 1; // override Bootstrap\n    }\n\n    &-primary {\n        border: none;\n        background-color: $vui-color-bg-action-primary;\n\n        &:hover {\n            color: currentColor;\n            background-color: $vui-color-bg-action-primary-hover;\n        }\n    }\n\n    &-primary-alt {\n        color: $vui-color-neutral-primary-reversed;\n        background-color: $vui-color-bg-action-secondary;\n\n        &:hover {\n            background-color: $vui-color-bg-action-secondary-hover;\n        }\n\n        &.btn-reversed {\n            color: $vui-color-bg-action-secondary;\n            background-color: $vui-color-bg-ground;\n\n            &:hover {\n                color: $vui-color-neutral-primary-reversed;\n                background: $vui-color-bg-action-secondary;\n            }\n        }\n\n    }\n\n    &-primary,\n    &-primary-alt,\n    &-csr {\n        &[disabled],\n        &[disabled]:hover {\n            color: $vui-color-neutral-tertiary;\n            background-color: $vui-color-bg-action-disabled;\n\n            &.btn-reversed {\n                background-color: rgba($vui-color-bg-action-disabled-reversed, .5);\n            }\n        }\n    }\n\n    &-secondary {\n        color: $vui-color-bg-action-secondary;\n        border-color: $vui-color-bg-action-secondary;\n        background-color: transparent;\n        will-change: box-shadow;\n        transition: box-shadow .1s ease-in-out;\n\n        &:not([disabled]):hover {\n            color: currentColor;\n            box-shadow: inset 0 0 0 1px $vui-color-bg-action-secondary;\n            border-color: $vui-color-bg-action-secondary-hover;\n            background-color: transparent;\n        }\n\n        &.btn-reversed {\n            color: $vui-color-neutral-primary-reversed;\n            border-color: $vui-color-neutral-primary-reversed;\n\n            &:not([disabled]):hover {\n                color: $vui-color-neutral-primary-reversed;\n                border-color: $vui-color-neutral-primary-reversed;\n                box-shadow: inset 0 0 0 1px $vui-color-neutral-primary-reversed;\n            }\n        }\n\n        &[disabled],\n        &[disabled]:hover {\n            color: $vui-color-neutral-tertiary;\n            background-color: transparent;\n            border-color: $vui-color-stroke-primary;\n        }\n    }\n\n    &-tertiary {\n        background-color: transparent;\n        \n        &:hover {\n            color: currentColor;\n            border-color: $vui-color-bg-action-no-bg-hover;\n            background-color: $vui-color-bg-action-no-bg-hover;\n        }\n\n        &.btn-reversed {\n            color: $vui-color-neutral-primary-reversed;\n\n            &:hover {\n                border-color: $vui-color-neutral-tertiary;\n                background-color: $vui-color-neutral-tertiary;\n            }\n\n            &[disabled],\n            &[disabled]:hover {\n                background-color: rgba($vui-color-bg-action-disabled-reversed, .5);\n            }\n        }\n\n        &[disabled],\n        &[disabled]:hover {\n            color: $vui-color-neutral-tertiary;\n            border-color: transparent;\n            background-color: transparent;\n        }\n    }\n\n    &-csr {\n        color: $vui-color-neutral-primary-reversed;\n        border: none;\n        background-color: $vui-color-csr;\n        \n        &:hover {\n            background-color: $vui-color-csr-hover;\n        }\n    }   \n}",
                     "styleUrl": "../common/style.scss"
                 }
             ],
@@ -308,7 +314,7 @@
         },
         {
             "name": "docButtonComponent",
-            "id": "component-docButtonComponent-8440d7b2e2fd996106cdcc57f6c7c57e",
+            "id": "component-docButtonComponent-79ac6dcc86fdfa5a470674d95bc65343",
             "file": "projects/front-end-library/src/lib/components/button/doc.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -318,7 +324,7 @@
             "selector": "doc-button",
             "styleUrls": [],
             "styles": [],
-            "template": "<p>\n    <bf-button [label]='label' [color]='color' [disabled]='disabled'></bf-button>\n    <bf-button [label]='label' [color]='color' [disabled]='disabled'></bf-button>\n    <bf-button [label]='label' [color]='color' [disabled]='disabled'></bf-button>\n</p>\n",
+            "template": "<main class='d-flex flex-column' style='width: 100vw; height: 100vh'>\n    <div class='d-flex flex-column justify-content-end flex-grow-1 pb-3'>\n        <div class='row justify-content-md-center'>\n            <bf-button styleClass='m-2' color='primary'> Primary </bf-button>\n            <bf-button styleClass='m-2' color='primary-alt'> Primary Alt </bf-button>\n            <bf-button styleClass='m-2' color='secondary'> Secondary </bf-button>\n            <bf-button styleClass='m-2' color='tertiary'> Tertiary </bf-button>\n            <bf-button styleClass='m-2' variant='csr'> CSR </bf-button>\n        </div>\n        <div class='row justify-content-md-center'>\n            <bf-button styleClass='m-2' color='primary' disabled='disabled'> Primary </bf-button>\n            <bf-button styleClass='m-2' color='primary-alt' disabled='disabled'> Primary Alt </bf-button>\n            <bf-button styleClass='m-2' color='secondary' disabled='disabled'> Secondary </bf-button>\n            <bf-button styleClass='m-2' color='tertiary' disabled='disabled'> Tertiary </bf-button>\n            <bf-button styleClass='m-2' variant='csr' disabled='disabled'> CSR </bf-button>\n        </div>\n    </div>\n    <div class='d-flex flex-column justify-content-start flex-grow-1 pt-3 bg-dark'>\n        <div class='row justify-content-md-center'>\n            <bf-button styleClass='m-2' reversed='reversed' color='color'> Primary </bf-button>\n            <bf-button styleClass='m-2' reversed='reversed' color='primary-alt'> Primary Alt </bf-button>\n            <bf-button styleClass='m-2' reversed='reversed' color='secondary'> Secondary </bf-button>\n            <bf-button styleClass='m-2' reversed='reversed' color='tertiary'> Tertiary </bf-button>\n            <bf-button styleClass='m-2' reversed='reversed' variant='csr'> CSR </bf-button>\n        </div>\n        <div class='row justify-content-md-center'>\n            <bf-button styleClass='m-2' reversed='reversed' color='primary' disabled='disabled'> Primary </bf-button>\n            <bf-button styleClass='m-2' reversed='reversed' color='primary-alt' disabled='disabled'> Primary Alt </bf-button>\n            <bf-button styleClass='m-2' reversed='reversed' color='secondary' disabled='disabled'> Secondary </bf-button>\n            <bf-button styleClass='m-2' reversed='reversed' color='tertiary' disabled='disabled'> Tertiary </bf-button>\n            <bf-button styleClass='m-2' reversed='reversed' variant='csr' disabled='disabled'> CSR </bf-button>\n        </div>\n    </div>\n</main>\n",
             "templateUrl": [],
             "viewProviders": [],
             "inputsClass": [],
@@ -331,7 +337,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 16
+                    "line": 45
                 }
             ],
             "hostBindings": [],
@@ -339,7 +345,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n@Component({\n  selector: \"doc-button\",\n  template: `\n    <p>\n        <bf-button [label]='label' [color]='color' [disabled]='disabled'></bf-button>\n        <bf-button [label]='label' [color]='color' [disabled]='disabled'></bf-button>\n        <bf-button [label]='label' [color]='color' [disabled]='disabled'></bf-button>\n    </p>\n  `,\n})\nexport class docButtonComponent implements OnInit {\n  constructor() {}\n\n    ngOnInit() {\n        console.log('docButtonComponent', this);\n    }\n}\n",
+            "sourceCode": "import { Component, OnInit} from \"@angular/core\";\n\n@Component({\n  selector: \"doc-button\",\n  template: `\n    <main class='d-flex flex-column' style='width: 100vw; height: 100vh'>\n        <div class='d-flex flex-column justify-content-end flex-grow-1 pb-3'>\n            <div class='row justify-content-md-center'>\n                <bf-button styleClass='m-2' color='primary'> Primary </bf-button>\n                <bf-button styleClass='m-2' color='primary-alt'> Primary Alt </bf-button>\n                <bf-button styleClass='m-2' color='secondary'> Secondary </bf-button>\n                <bf-button styleClass='m-2' color='tertiary'> Tertiary </bf-button>\n                <bf-button styleClass='m-2' variant='csr'> CSR </bf-button>\n            </div>\n            <div class='row justify-content-md-center'>\n                <bf-button styleClass='m-2' color='primary' disabled='disabled'> Primary </bf-button>\n                <bf-button styleClass='m-2' color='primary-alt' disabled='disabled'> Primary Alt </bf-button>\n                <bf-button styleClass='m-2' color='secondary' disabled='disabled'> Secondary </bf-button>\n                <bf-button styleClass='m-2' color='tertiary' disabled='disabled'> Tertiary </bf-button>\n                <bf-button styleClass='m-2' variant='csr' disabled='disabled'> CSR </bf-button>\n            </div>\n        </div>\n        <div class='d-flex flex-column justify-content-start flex-grow-1 pt-3 bg-dark'>\n            <div class='row justify-content-md-center'>\n                <bf-button styleClass='m-2' reversed='reversed' color='color'> Primary </bf-button>\n                <bf-button styleClass='m-2' reversed='reversed' color='primary-alt'> Primary Alt </bf-button>\n                <bf-button styleClass='m-2' reversed='reversed' color='secondary'> Secondary </bf-button>\n                <bf-button styleClass='m-2' reversed='reversed' color='tertiary'> Tertiary </bf-button>\n                <bf-button styleClass='m-2' reversed='reversed' variant='csr'> CSR </bf-button>\n            </div>\n            <div class='row justify-content-md-center'>\n                <bf-button styleClass='m-2' reversed='reversed' color='primary' disabled='disabled'> Primary </bf-button>\n                <bf-button styleClass='m-2' reversed='reversed' color='primary-alt' disabled='disabled'> Primary Alt </bf-button>\n                <bf-button styleClass='m-2' reversed='reversed' color='secondary' disabled='disabled'> Secondary </bf-button>\n                <bf-button styleClass='m-2' reversed='reversed' color='tertiary' disabled='disabled'> Tertiary </bf-button>\n                <bf-button styleClass='m-2' reversed='reversed' variant='csr' disabled='disabled'> CSR </bf-button>\n            </div>\n        </div>\n    </main>\n  `,\n})\nexport class docButtonComponent implements OnInit {\n  constructor() {}\n\n    ngOnInit() {\n        console.log('docButtonComponent', this);\n    }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -347,7 +353,7 @@
                 "name": "constructor",
                 "description": "",
                 "args": [],
-                "line": 13
+                "line": 42
             },
             "implements": [
                 "OnInit"
@@ -822,7 +828,7 @@
                 "name": "Drupal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
+                "file": "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
             },
@@ -830,7 +836,7 @@
                 "name": "Drupal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts",
+                "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
             },
@@ -846,7 +852,7 @@
                 "name": "Drupal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/price/doc.stories.ts",
+                "file": "projects/front-end-library/src/lib/components/tag/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
             },
@@ -854,7 +860,7 @@
                 "name": "Drupal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/tag/doc.stories.ts",
+                "file": "projects/front-end-library/src/lib/components/price/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
             },
@@ -1007,22 +1013,22 @@
                     "defaultValue": "{\n  declarations: [UppercasePipe],\n}"
                 }
             ],
-            "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts": [
-                {
-                    "name": "Drupal",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
-                    "type": "",
-                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
-                }
-            ],
             "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts": [
                 {
                     "name": "Drupal",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts",
+                    "type": "",
+                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
+                }
+            ],
+            "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts": [
+                {
+                    "name": "Drupal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
                     "type": "",
                     "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
                 }
@@ -1045,22 +1051,22 @@
                     "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
                 }
             ],
-            "projects/front-end-library/src/lib/components/price/doc.stories.ts": [
-                {
-                    "name": "Drupal",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/front-end-library/src/lib/components/price/doc.stories.ts",
-                    "type": "",
-                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
-                }
-            ],
             "projects/front-end-library/src/lib/components/tag/doc.stories.ts": [
                 {
                     "name": "Drupal",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/front-end-library/src/lib/components/tag/doc.stories.ts",
+                    "type": "",
+                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
+                }
+            ],
+            "projects/front-end-library/src/lib/components/price/doc.stories.ts": [
+                {
+                    "name": "Drupal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/front-end-library/src/lib/components/price/doc.stories.ts",
                     "type": "",
                     "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
                 }
@@ -1109,9 +1115,9 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "ButtonComponent",
-                "coveragePercent": 75,
-                "coverageCount": "9/12",
-                "status": "good"
+                "coveragePercent": 76,
+                "coverageCount": "10/13",
+                "status": "very-good"
             },
             {
                 "filePath": "projects/front-end-library/src/lib/components/button/button.ts",

@@ -1,16 +1,16 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withDesign } from 'storybook-addon-designs'
-import { TwigContainerComponent } from '../../../utils/twig-container/twig-container.component';
-import { ButtonComponent } from './angular/button.component';
-import { docButtonComponent } from './doc.component.ts';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { ButtonComponent } from '../angular/button.component';
+import { templateButtonComponent } from './template.component.ts';
 
 <!-- subcomponents={ ListHeading, ListItem } -->
 <Meta 
     title='Components/Button' 
     component={ButtonComponent}
     decorators={[
-        moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent, docButtonComponent]}),
+        moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent, templateButtonComponent]}),
         withDesign
     ]}
     parameters={{
@@ -32,7 +32,7 @@ import { docButtonComponent } from './doc.component.ts';
             defaultValue: '',
             control: { 
                 type: 'select',
-                options: ['', 'csr', 'reversed'],
+                options: ['', 'csr'],
             }
         },
     }}
@@ -72,7 +72,7 @@ Nullam id dolor id nibh ultricies vehicula ut id elit
 
 
 export const Colors = (args) => ({
-  component: docButtonComponent,
+  component: templateButtonComponent,
   props: args,
 });
 

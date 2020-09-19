@@ -1,7 +1,7 @@
 import { Component, OnInit} from "@angular/core";
 
 @Component({
-  selector: "doc-button",
+  selector: "template-button",
   template: `
     <main class='d-flex flex-column' style='width: 100vw; height: 100vh'>
         <div class='d-flex flex-column justify-content-end flex-grow-1 pb-3'>
@@ -22,7 +22,7 @@ import { Component, OnInit} from "@angular/core";
         </div>
         <div class='d-flex flex-column justify-content-start flex-grow-1 pt-3 bg-dark'>
             <div class='row justify-content-md-center'>
-                <bf-button styleClass='m-2' reversed='reversed' color='color'> Primary </bf-button>
+                <bf-button styleClass='m-2' reversed='reversed' color='primary'> Primary </bf-button>
                 <bf-button styleClass='m-2' reversed='reversed' color='primary-alt'> Primary Alt </bf-button>
                 <bf-button styleClass='m-2' reversed='reversed' color='secondary'> Secondary </bf-button>
                 <bf-button styleClass='m-2' reversed='reversed' color='tertiary'> Tertiary </bf-button>
@@ -39,10 +39,10 @@ import { Component, OnInit} from "@angular/core";
     </main>
   `,
 })
-export class docButtonComponent implements OnInit {
+export class templateButtonComponent implements OnInit {
   constructor() {}
 
     ngOnInit() {
-        console.log('docButtonComponent', this);
+        console.log('templateButtonComponent', this);
     }
 }
