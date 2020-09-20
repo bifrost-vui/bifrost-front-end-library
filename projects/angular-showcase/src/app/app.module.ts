@@ -14,8 +14,9 @@ import * as Bifrost from 'bifrost-front-end-library';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    Bifrost.AccordionModule,
     Bifrost.ButtonModule,
-    Bifrost.AccordionModule
+    Bifrost.IconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

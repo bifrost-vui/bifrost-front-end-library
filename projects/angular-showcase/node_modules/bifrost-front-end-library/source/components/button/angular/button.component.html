@@ -1,7 +1,14 @@
 <button 
     type="button" 
-    class="btn {{ color ? 'btn-' + color : '' }} {{ size ? 'btn-' + size : '' }} {{ fullWidth ? 'btn-block' : '' }} {{ styleClass }}"
-    [disabled]="disabled" 
+    class="
+        btn btn-md 
+        {{ color ? 'btn-' + color : '' }}
+        {{ fullWidth ? 'btn-block' : '' }}
+        {{ variant ? 'btn-' + variant : '' }}
+        {{ reversed ? 'btn-reversed' : '' }}
+        {{ styleClass }}
+    "
+    [disabled]="disabled"
     (click)="onClick()"
 >
     {{ label }}
