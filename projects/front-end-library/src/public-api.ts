@@ -7,8 +7,12 @@
 // Components
 export * from './lib/components/accordion/angular/accordion.component';
 export * from './lib/components/accordion/angular/accordion.module';
+
 export * from './lib/components/button/angular/button.component';
 export * from './lib/components/button/angular/button.module';
+
+export * from './lib/components/icon/angular/icon.component';
+export * from './lib/components/icon/angular/icon.module';
 
 // Organisms
 // Add organisms export here

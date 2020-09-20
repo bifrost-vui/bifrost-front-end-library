@@ -1,0 +1,71 @@
+import { moduleMetadata } from '@storybook/angular';
+import { Story, Meta, Preview, Props } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { IconComponent } from '../angular/icon.component';
+
+
+# Icon
+
+<Meta
+    title='Components/Icon'
+    decorators={[
+        moduleMetadata({ declarations: [IconComponent]})
+    ]}
+    argTypes={{
+        size: { 
+            defaultValue: 3,
+            control: { 
+                type: 'select',
+                options: [ 1, 2, 3, 4, 5 ],
+            }
+        },
+        color: { 
+            defaultValue: 'svg-fill--dark',
+            control: { 
+                type: 'select',
+                options: ['svg-fill--dark', 'svg-fill--vui-orange'],
+            }
+        },
+    }}
+/>
+
+
+## Angular
+
+export const Angular = (args) => ({
+  component: IconComponent,
+  props: args,
+});
+
+<Preview>
+    <Story name='Angular'>
+        {Angular.bind({})}
+    </Story>
+</Preview>
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Preview>
+    <Story 
+        name='Drupal'
+        args={{ 
+            elementPath: 'components/icon/twig/icon',
+            size: 3,
+        }}
+        height='150px'
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+## Props
+
+<Props of={IconComponent} />

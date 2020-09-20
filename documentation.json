@@ -121,7 +121,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-0757a9cdfd32faf6201b1deaf21b5bd0",
+            "id": "component-ButtonComponent-4f22b8f791cd8ff4beefda2e0cb4695d",
             "file": "projects/front-end-library/src/lib/components/button/angular/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -141,50 +141,50 @@
                 {
                     "name": "color",
                     "description": "<p>Sets the color of the button. </p>\n",
-                    "line": 34,
+                    "line": 35,
                     "type": "string"
                 },
                 {
                     "name": "disabled",
                     "description": "<p>Sets the button to a disabled state. </p>\n",
-                    "line": 28,
+                    "line": 29,
                     "type": "boolean"
                 },
                 {
                     "name": "fullWidth",
                     "description": "<p>Sets the button in mobile mode (full width). </p>\n",
-                    "line": 45,
+                    "line": 46,
                     "type": "boolean"
                 },
                 {
                     "name": "icon",
                     "description": "<p>Name of the icon </p>\n",
-                    "line": 48,
+                    "line": 49,
                     "type": "string"
                 },
                 {
                     "name": "label",
                     "description": "<p>The inner text of the button.</p>\n",
-                    "line": 25,
+                    "line": 26,
                     "type": "string"
                 },
                 {
                     "name": "reversed",
                     "description": "<p>Sets the contrast mode. </p>\n",
-                    "line": 42,
+                    "line": 43,
                     "type": "boolean"
                 },
                 {
                     "name": "styleClass",
                     "description": "<p>Class override </p>\n",
-                    "line": 51,
+                    "line": 52,
                     "type": "string"
                 },
                 {
                     "name": "variant",
                     "defaultValue": "''",
                     "description": "<p>Variant  </p>\n",
-                    "line": 39,
+                    "line": 40,
                     "type": "string"
                 }
             ],
@@ -193,7 +193,7 @@
                     "name": "click",
                     "defaultValue": "new EventEmitter()",
                     "description": "<p>Handler to be called when the button is clicked by a user.</p>\n<p>Will also block the emission of the event if <code>disabled</code> is true.</p>\n",
-                    "line": 58,
+                    "line": 59,
                     "type": "EventEmitter<boolean>"
                 }
             ],
@@ -205,7 +205,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 60
+                    "line": 61
                 },
                 {
                     "name": "onClick",
@@ -213,7 +213,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 64
+                    "line": 65
                 }
             ],
             "hostBindings": [],
@@ -221,7 +221,7 @@
             "description": "<p>API is the same between <strong>Angular</strong> and <strong>Drupal</strong>.</p>\n",
             "rawdescription": "API is the same between **Angular** and **Drupal**.",
             "type": "component",
-            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n  selector: \"bf-button\",\n  templateUrl: './button.component.html',\n  styleUrls: ['../common/style.scss'],\n})\nexport class ButtonComponent implements OnInit {\n  constructor() {}\n\n  /** This input will not be displayed in Storybook docs.\n  * @ignore\n  */\n  @Input() exampleOfIgnore: boolean;\n\n  /**\n   * The inner text of the button.\n   * @required\n   */\n  @Input() label: string;\n\n  /** Sets the button to a disabled state. */\n  @Input() disabled: boolean;\n\n  /** Sets the color of the button. \n    *\n    * @values primary | primary-alt | primary-alt-reversed | secondary | secondary-reversed | tertiary | tertiary-reversed\n    */\n  @Input() color: string;\n\n  /** Variant  \n    * @values csr\n    */\n  @Input() variant: string = '';\n\n  /** Sets the contrast mode. */\n  @Input() reversed: boolean;\n\n  /** Sets the button in mobile mode (full width). */\n  @Input() fullWidth: boolean;\n\n  /** Name of the icon */\n  @Input() icon: string;\n\n  /** Class override */\n  @Input() styleClass: string;\n\n  /**\n   * Handler to be called when the button is clicked by a user.\n   *\n   * Will also block the emission of the event if `disabled` is true.\n   */\n  @Output() click: EventEmitter<boolean> = new EventEmitter();\n\n  ngOnInit() {\n      console.log('button', this);\n  }\n\n  onClick() {\n    this.click.emit(true);\n  }\n}\n",
+            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\nimport { IconComponent } from \"../../icon/angular/icon.component\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n  selector: \"bf-button\",\n  templateUrl: './button.component.html',\n  styleUrls: ['../common/style.scss'],\n})\nexport class ButtonComponent implements OnInit {\n  constructor() {}\n\n  /** This input will not be displayed in Storybook docs.\n  * @ignore\n  */\n  @Input() exampleOfIgnore: boolean;\n\n  /**\n   * The inner text of the button.\n   * @required\n   */\n  @Input() label: string;\n\n  /** Sets the button to a disabled state. */\n  @Input() disabled: boolean;\n\n  /** Sets the color of the button. \n    *\n    * @values primary | primary-alt | primary-alt-reversed | secondary | secondary-reversed | tertiary | tertiary-reversed\n    */\n  @Input() color: string;\n\n  /** Variant  \n    * @values csr\n    */\n  @Input() variant: string = '';\n\n  /** Sets the contrast mode. */\n  @Input() reversed: boolean;\n\n  /** Sets the button in mobile mode (full width). */\n  @Input() fullWidth: boolean;\n\n  /** Name of the icon */\n  @Input() icon: string;\n\n  /** Class override */\n  @Input() styleClass: string;\n\n  /**\n   * Handler to be called when the button is clicked by a user.\n   *\n   * Will also block the emission of the event if `disabled` is true.\n   */\n  @Output() click: EventEmitter<boolean> = new EventEmitter();\n\n  ngOnInit() {\n      console.log('button', this);\n  }\n\n  onClick() {\n    this.click.emit(true);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -234,12 +234,12 @@
                 "name": "constructor",
                 "description": "",
                 "args": [],
-                "line": 13
+                "line": 14
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<button \n    type=\"button\" \n    class=\"\n        btn btn-md \n        {{ color ? 'btn-' + color : '' }}\n        {{ fullWidth ? 'btn-block' : '' }}\n        {{ variant ? 'btn-' + variant : '' }}\n        {{ reversed ? 'btn-reversed' : '' }}\n        {{ styleClass }}\n    \"\n    [disabled]=\"disabled\"\n    (click)=\"onClick()\"\n>\n    {{ label }}\n    <ng-content></ng-content>\n</button>"
+            "templateData": "<button \n    type=\"button\" \n    class=\"\n        btn btn-md \n        {{ color ? 'btn-' + color : '' }}\n        {{ fullWidth ? 'btn-block' : '' }}\n        {{ variant ? 'btn-' + variant : '' }}\n        {{ reversed ? 'btn-reversed' : '' }}\n        {{ styleClass }}\n    \"\n    [disabled]=\"disabled\"\n    (click)=\"onClick()\"\n>\n    <bf-icon></bf-icon>\n    {{ label }}\n    <ng-content></ng-content>\n</button>"
         },
         {
             "name": "ContactFormComponent",
@@ -311,6 +311,74 @@
                 "OnInit"
             ],
             "templateData": "<div>\n    Template Contact Form\n</div>"
+        },
+        {
+            "name": "IconComponent",
+            "id": "component-IconComponent-aa98fb301950872dea4e7ee56f65f88b",
+            "file": "projects/front-end-library/src/lib/components/icon/angular/icon.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bf-icon",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./icon.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "description": "<p>Sets the color of the icon. </p>\n",
+                    "line": 17,
+                    "type": "string"
+                },
+                {
+                    "name": "size",
+                    "description": "<p>Sets the size of the icon. </p>\n",
+                    "line": 20,
+                    "type": "string"
+                },
+                {
+                    "name": "styleClass",
+                    "description": "<p>Class override </p>\n",
+                    "line": 23,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 25
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>API is the same between <strong>Angular</strong> and <strong>Drupal</strong>.</p>\n",
+            "rawdescription": "API is the same between **Angular** and **Drupal**.",
+            "type": "component",
+            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n  selector: \"bf-icon\",\n  templateUrl: './icon.component.html',\n//   styleUrls: ['../common/style.scss'],\n})\nexport class IconComponent implements OnInit {\n  constructor() {}\n\n  /** Sets the color of the icon. */\n  @Input() color: string;\n\n  /** Sets the size of the icon. */\n  @Input() size: string;\n\n  /** Class override */\n  @Input() styleClass: string;\n\n  ngOnInit() {\n      console.log('icon', this);\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 13
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<!-- {{ color ? color+'' : 'svg-fill--dark' }}\n{{ size ? 'svg-size--' + size : 'svg-size--3' }}\n{{ styleClass }} -->\n\n<div class=\"{{ size }}\">\n    wefw\n</div>\n\n<svg \n    class=\"svg-fill--dark svg-size-sm--2\"\n    xmlns=\"http://www.w3.org/2000/svg\"\n    viewBox=\"0 0 63 63\"\n>\n    <g class=\"_svg-stroke\" transform=\"translate(.301 .301)\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n        <g>\n            <path d=\"M39.703 23.666a8.5 8.5 0 1 1-8.5-8.5 8.259 8.259 0 0 1 8.5 8.125z\"/>\n            <path d=\"M45.179 58.989V46.145a13.744 13.744 0 0 0-13.788-13.788 13.744 13.744 0 0 0-13.788 13.788v12.844\"/>\n        </g>\n        <circle cx=\"31\" cy=\"31\" r=\"31\" transform=\"translate(.2 .2)\"/>\n    </g>\n</svg>\n"
         },
         {
             "name": "templateButtonComponent",
@@ -636,18 +704,28 @@
                     "elements": [
                         {
                             "name": "ButtonComponent"
+                        },
+                        {
+                            "name": "IconComponent"
                         }
                     ]
                 },
                 {
                     "type": "imports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "IconComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "exports",
                     "elements": [
                         {
                             "name": "ButtonComponent"
+                        },
+                        {
+                            "name": "IconComponent"
                         }
                     ]
                 },
@@ -685,6 +763,43 @@
                     "elements": [
                         {
                             "name": "ContactFormComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "IconModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "IconComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "IconComponent"
                         }
                     ]
                 },
@@ -820,7 +935,7 @@
                 "name": "Drupal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts",
+                "file": "projects/front-end-library/src/lib/components/form-select/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
             },
@@ -836,15 +951,7 @@
                 "name": "Drupal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/form-select/doc.stories.ts",
-                "type": "",
-                "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
-            },
-            {
-                "name": "Drupal",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/price/doc.stories.ts",
+                "file": "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
             },
@@ -853,6 +960,14 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/front-end-library/src/lib/components/tag/doc.stories.ts",
+                "type": "",
+                "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
+            },
+            {
+                "name": "Drupal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/front-end-library/src/lib/components/price/doc.stories.ts",
                 "type": "",
                 "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
             },
@@ -1013,26 +1128,6 @@
                     "defaultValue": "{\n  declarations: [UppercasePipe],\n}"
                 }
             ],
-            "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts": [
-                {
-                    "name": "Drupal",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts",
-                    "type": "",
-                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
-                }
-            ],
-            "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts": [
-                {
-                    "name": "Drupal",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
-                    "type": "",
-                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
-                }
-            ],
             "projects/front-end-library/src/lib/components/form-select/doc.stories.ts": [
                 {
                     "name": "Drupal",
@@ -1051,12 +1146,22 @@
                     "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
                 }
             ],
-            "projects/front-end-library/src/lib/components/price/doc.stories.ts": [
+            "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts": [
                 {
                     "name": "Drupal",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/front-end-library/src/lib/components/price/doc.stories.ts",
+                    "file": "projects/front-end-library/src/lib/components/form-input-text/doc.stories.ts",
+                    "type": "",
+                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
+                }
+            ],
+            "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts": [
+                {
+                    "name": "Drupal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/front-end-library/src/lib/components/form-input-date/doc.stories.ts",
                     "type": "",
                     "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
                 }
@@ -1070,6 +1175,16 @@
                     "type": "",
                     "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
                 }
+            ],
+            "projects/front-end-library/src/lib/components/price/doc.stories.ts": [
+                {
+                    "name": "Drupal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/front-end-library/src/lib/components/price/doc.stories.ts",
+                    "type": "",
+                    "defaultValue": "(args) => ({\n  component: TwigContainerComponent,\n  props: args\n})"
+                }
             ]
         },
         "groupedFunctions": {},
@@ -1078,7 +1193,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 10,
+        "count": 12,
         "status": "low",
         "files": [
             {
@@ -1237,6 +1352,15 @@
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
+            },
+            {
+                "filePath": "projects/front-end-library/src/lib/components/icon/angular/icon.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "IconComponent",
+                "coveragePercent": 66,
+                "coverageCount": "4/6",
+                "status": "good"
             },
             {
                 "filePath": "projects/front-end-library/src/lib/components/price/doc.stories.ts",

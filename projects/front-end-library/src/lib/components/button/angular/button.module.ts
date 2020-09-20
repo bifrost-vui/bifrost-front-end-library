@@ -3,8 +3,7 @@ import { ButtonComponent } from './button.component';
 
 @NgModule({
   declarations: [ButtonComponent],
-  imports: [
-  ],
+  imports: [],
   exports: [ButtonComponent]
 })
 export class ButtonModule { }
