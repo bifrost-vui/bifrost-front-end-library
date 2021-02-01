@@ -1,0 +1,42 @@
+{# For Demo purposes only #}
+{% if dropdownItems is not defined or dropdownItems is empty %}
+    {% set dropdownItems = [
+        {id:"#", label:"Item 1", class:""},
+        {id:"#", label:"Item 2", class:""},
+        {id:"#", label:"Item 3", class:""},
+    ] %}
+{% endif %}
+
+{# Scrollspy configuration #}
+{% if isStickyScrollSpyActive is same as (true) %}
+    {% set scrollSpyClass = 'sticky-top' %}
+    {% set scrollSpySelectedItemClass = 'js-scrollspy-active-section-label' %}
+    {% set scrollSpyNavItemClass = 'js-scrollspy-goto-animate' %}
+{% endif %}
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="dropdown w-100 {{ class|default('') }} {{ scrollSpyClass|default(NULL) }}">
+    <button class="btn w-100 d-flex align-items-center border justify-content-between {{ buttonClass|default() }} bg--{{ buttonBg|default('light') }}"
+            type="button"
+            id="{{ dropdownId|default('dropdownMenuButtonScrollSpy') }}"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+    >
+        {% block dropdown_header %}
+            <span title="{{ dropdownSelectedItem|default(dropdownItems[0].label) }}" class="dropdown__selected-text {{ scrollSpySelectedItemClass|default(NULL) }} m-0 {{ labelClass|default('') }}">{{ dropdownSelectedItem|default(dropdownItems[0].label) }}</span>
+        {% endblock %}
+
+        {% include '@atoms/06-icons/icon-arrow-to-bottom.twig' with { iconColorTheme:"dark" } %}
+    </button>
+
+    <div class="dropdown-menu border-0 py-0" aria-labelledby="{{ dropdownId|default('dropdownMenuButtonScrollSpy') }}">
+        {% block dropdown_content %}
+            {% for item in dropdownItems %}
+                <a class="dropdown-item py-3 m-0 {{ item.class|default('') }} {{ scrollSpyNavItemClass|default(NULL) }} "
+                   href="{{ item.id|default('#') }}">{{ item.label|default('Scrllspy anchor link') }}
+                </a>
+            {% endfor %}
+        {% endblock %}
+    </div>
+</div>

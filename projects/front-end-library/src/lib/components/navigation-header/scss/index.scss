@@ -1,0 +1,110 @@
+/* *****************************************************************************
+*
+*  Header
+*
+* ***************************************************************************** */
+
+@import './bf-navigation-header-top-bar';
+
+.bf-header {
+    --color-ground: var(--bf-color-bg-ground);
+    --color-underground: var(--bf-color-bg-underground);
+    --color-text: var(--bf-color-neutral-primary);
+    --color-stroke: var(--bf-color-neutral-secondary-reversed);
+    
+    &.reversed {
+        --color-ground: var(--bf-color-bg-ground-reversed);
+        --color-underground: var(--bf-color-bg-underground-reversed);
+        --color-text: var(--bf-color-neutral-primary-reversed);
+        --color-stroke: var(--bf-color-neutral-secondary);
+    }
+
+    .navbar {
+        background-color: var(--color-ground);
+    }
+
+    .navbar-brand__logo-videotron {
+        background-color: var(--bf-color-bg-action-primary);
+    }
+
+    .navbar-light {
+        .navbar-nav .active>.nav-link,
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-link.show,
+        .navbar-nav .show>.nav-link,
+        .navbar-brand,
+        .navbar-brand:focus,
+        .navbar-brand:hover,
+        .navbar-nav .nav-link,
+        .navbar-nav .nav-link:focus,
+        .navbar-nav .nav-link:hover {
+            color: var(--color-text);
+        }
+     }
+
+    .navbar--videotron-unify.navbar-expand-lg .nav-item {
+        border-color: var(--color-stroke) !important;
+    }
+
+    .icon-arrow-to-bottom,
+    .icon-arrow-to-top {
+        border-color: var(--color-text);
+    }
+
+    .navbar--videotron-unify__main-nav .nav-item>.nav-link:before {
+        background-color: var(--color-text) !important;
+    }
+
+    .svg-fill--dark,
+    .svg-fill--dark ._svg-fill {
+        fill: var(--color-text);
+    }
+
+    .svg-fill--dark ._svg-stroke {
+        stroke: var(--color-text);
+    }
+
+    // Reponsive navbar
+    // -------------------------------------------
+    &.navbar-expand-md {
+        .navbar-brand__logo-videotron-text img {
+            height: 2rem;
+            width: 6.25rem;
+        }
+    }
+
+    .navbar--videotron-unify .dropdown-menu--megamenu {
+        color: var(--color-text);
+        background-color: var(--color-ground);
+        border-top: 1px solid var(--bf-color-stroke-secondary-reversed);
+
+        hr {
+            border-top: 1px solid var(--bf-color-stroke-secondary-reversed);
+        }
+
+        .nav-tabs--vertical {
+            background-color: transparent;
+        }
+        
+        .nav-tabs--vertical__item-link {
+            background-color: transparent;
+        }
+
+        .nav-tabs--vertical {
+            background-color: var(--color-ground);
+
+            &__item-link {
+                background-color: var(--color-underground);
+
+                &.active {
+                    background-color: var(--color-ground);
+                }
+
+                &:not(:last-of-type) {
+                    border-bottom: 1px solid var(--color-stroke);
+                }
+            }
+
+        }
+    }
+}

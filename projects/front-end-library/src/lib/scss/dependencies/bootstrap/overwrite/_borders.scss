@@ -1,0 +1,51 @@
+/* *****************************************************************************
+*
+*  Borders
+*
+* ***************************************************************************** */
+
+$allBorders: (
+        'border': 'border',
+        'border-top': 'border-top',
+        'border-bottom': 'border-bottom',
+        'border-left':'border-left',
+        'border-right':'border-right',
+);
+@include createClassBorders($allBorders, $theme-colors);
+
+$allBordersGray: (
+        'border': 'border-gray',
+        'border-top': 'border-top-gray',
+        'border-bottom': 'border-bottom-gray',
+        'border-left':'border-left-gray',
+        'border-right':'border-right-gray',
+);
+@include createClassBorders($allBordersGray, $grays);
+
+.border-color--transparent {
+  border-color: rgba(0,0,0,0) !important;
+}
+
+// theme-colors
+@each $color, $value in $theme-colors {
+  .border-color--#{$color} {
+    border-color: $value !important;
+  }
+}
+
+@each $color, $value in $grays {
+  .border-color-gray--#{$color} {
+    border-color: $value !important;
+  }
+}
+
+// no border
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .border#{$infix}--0 {
+      border: 0;
+    }
+  }
+}

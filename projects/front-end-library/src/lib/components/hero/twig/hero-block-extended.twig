@@ -1,0 +1,46 @@
+{% if bgImage is defined and bgImage is not empty %}
+    {% set defaultImgSrc = bgImage %}
+{% else %}
+    {% set defaultImgSrc = '/images/hero/hero-block-sample.png' %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<!-- hero-block-extended.twig -->
+{% embed '@bf-components/hero/twig/hero-block.twig' %}
+    {% if mobileBgImage is defined %}
+        {% block hero_mobile_image %}
+            <img src="{{ mobileBgImage }}" alt="{{ title|default('') }}" class="img-fluid d-block pb-3 {{ mobileBgImageClasses|default('') }}" />
+        {% endblock %}
+    {% endif %}
+
+    {% block hero_content %}
+        {% if breadcrumb is defined %}
+            {{ breadcrumb }}
+        {% endif %}
+        <div class="row">
+            <div class="col-12 {{ heroColExtraClasses|default('') }}">
+                {% if topTitle is not defined or topTitle is not empty %}
+                    <p class="h4 text-uppercase vui--font-secondary">{{ topTitle|default('Meis vidisse has ne') }}</p>
+                {% endif %}
+
+                <h1>{{ title|default('Your Helix System') }}</h1>
+
+                {% if subTitle is not defined or subTitle is not empty %}
+                    <p class="h5 mb-0">{{ subTitle|default('Lorem ipsum dolor sitamet consectetur adipiscing') }}</p>
+                {% endif %}
+
+                {% if CTAButtonLabel is not defined or CTAButtonLabel is not empty %}
+                    <div class="mt-5 mb-0">
+                        {% include '@atoms/04-links/' ~ CTAButtonTemplate|default("01-link-button.twig") with {
+                            id: CTAButtonId|default("heroButton"),
+                            label: CTAButtonLabel|default("Call to action"),
+                            href: CTAButtonHref|default("#call-to-action"),
+                            class: CTAButtonExtraClasses|default("color--dark"),
+                        } only %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

@@ -1,0 +1,165 @@
+import { moduleMetadata } from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withDesign } from 'storybook-addon-designs'
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { ButtonComponent } from '../angular/button.component';
+import { templateButtonComponent } from './template.component.ts';
+
+<!-- subcomponents={ ListHeading, ListItem } -->
+<Meta 
+    title='Components/Button' 
+    component={ButtonComponent}
+    decorators={[
+        moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent, templateButtonComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            disable: false
+        },
+    }}
+    argTypes={{
+        color: { 
+            defaultValue: 'primary',
+            control: { 
+                type: 'select',
+                options: ['primary', 'primary-alt', 'secondary', 'tertiary' ],
+            }
+        },
+        variant: { 
+            defaultValue: '',
+            control: { 
+                type: 'select',
+                options: ['', 'csr'],
+            }
+        },
+    }}
+/>
+
+
+# Button
+
+> Explore **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)** (Zeroheight)
+
+export const Angular = (args) => ({
+  component: ButtonComponent,
+  props: args,
+});
+
+<Preview>
+    <Story 
+        name='Angular'
+        args={{ 
+            label: 'Default',
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Preview>
+
+
+## Complete Set
+
+export const CompleteSet = (args) => ({
+  component: templateButtonComponent,
+  props: args,
+});
+
+
+<Preview>
+    <Story 
+        name='Angular Complete set'
+        height='350px'
+        parameters={{
+            controls: {disabled: true}
+        }}
+    >
+        {CompleteSet.bind({})}
+    </Story>
+</Preview>
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<!-- argTypes: { DrupalSpecificProps: { type : ArgTypes.string, defaultValue: 'initial' } } -->
+
+<Preview>
+    <Story 
+        name='Drupal'
+        args={{ 
+            elementPath: 'components/button/twig/button',
+            label: 'Default',
+            DrupalSpecificProps: 'value'
+        }}
+        argTypes={{
+            DrupalSpecificProps: { 
+                name: 'Specific Name',
+                type: { name: 'string (not display in table?)', required: true },
+                defaultValue: 'defaultValue',
+                description: 'Description of this property <br/><span class="css-jhru3i">string</span>',
+                table: {
+                    type: { summary: 'Something short', detail: 'Something really really long' },
+                    defaultValue: { summary: 'defaultValue' },
+                },
+                control: { type: 'text' }
+            },
+        }}
+        height='150px'
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+## Component API
+**✅  Inputs are equivalent for Angular and Drupal.**
+
+<Props of={ButtonComponent} />
+
+
+## Design Guidelines
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>
+
+<!-- 
+
+Note: argtypes schema
+
+const argTypes = {
+  label: {
+    name: 'label',
+    type: { name: 'string', required: false },
+    defaultValue: 'Hello',
+    description: 'overwritten description',
+    table: {
+      type: { summary: 'something short', detail: 'something really really long' },
+      defaultValue: { summary: 'Hello' },
+    }
+    control: {
+      type: null
+    }
+  }
+}
+
+Note: To refer to another component:
+
+<Story name='basic radio' height='400px'>{{
+  moduleMetadata: {
+    declarations: [RadioButtonComponent]
+  }
+  template: `
+    <div class='some-wrapper-with-padding'>
+      <my-radio-btn [checked]='checked'>Some Checkbox</my-radio-btn>
+    </div>
+  `,
+  props: {
+    checked: true
+  }
+}}</Story> -->

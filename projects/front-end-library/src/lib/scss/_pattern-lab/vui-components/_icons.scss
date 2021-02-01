@@ -1,0 +1,122 @@
+/* *****************************************************************************
+*
+*  icons
+*
+* ***************************************************************************** */
+
+.icon {
+  // <i.icon.icon-arrow-to-right>,
+  // <i.icon.icon-arrow-to-left>
+  &-arrow-to {
+    &-right {
+      @include arrow-setup(45deg);
+      transform: rotate(45deg) translateY(-2px);
+      border-color: $body-color;
+
+      &--breadcrumb {
+        @include arrow-setup(45deg, .4rem, 1px);
+        margin-right: 2.6rem;
+      }
+    }
+    &-left {
+      @include arrow-setup(225deg);
+      margin-right: 0.7rem;
+    }
+    &-top {
+      @include arrow-setup(-45deg);
+    }
+    &-bottom {
+      @include arrow-setup(135deg);
+    }
+  }
+
+  &-light {
+    border-width: 1px 1px 0 0;
+    border-color: $white;
+  }
+
+  // <i.icon-step-number>
+  &-step-number {
+    @include size(1.5rem);
+    border-radius: 50%;
+    border: $border-width solid $gray-300;
+    background: $white;
+    color: $black;
+    position: relative;
+
+    .active & {
+      background: $black;
+      color: $white;
+      border-color: $black;
+    }
+
+    .step-done & {
+      &:before {
+        @include size(100%);
+        content: "";
+        mask: url('../../../../../public/images/icons/svg-atoms/checkmark.svg') no-repeat;
+        mask-position: 50%;
+        mask-size: 45%;
+      }
+    }
+
+    &:before {
+      @extend .position-absolute--center;
+      content: attr(data-number);
+      font-size: .8rem;
+    }
+
+    &--grey {
+      @include size(2.3rem);
+      border: none;
+      background: $gray-100;
+
+      &:before {
+        color: $black;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  // <*.icon-box>
+  &-box {
+    @include size(1.1rem);
+    border: $input-border-width solid $input-border-color;
+    border-radius: 0;
+  }
+
+  &-btn-circle {
+    @extend .vui--style-reset;
+    @include size(2.5rem);
+    @include transitions(border-color);
+    display: inline-block;
+    border-radius: 50%;
+    border: $input-border-width solid $gray-200;
+
+    &--lg {
+      @include size(3.8rem);
+    }
+
+    &:not(.disabled){
+      @include hover-focus{
+        border-color: $dark;
+      }
+    }
+
+    &[disabled],
+    &.disabled {
+      background: $gray-200;
+      cursor: initial;
+      pointer-events: none;
+
+      .svg-minus,
+      .svg-plus {
+        fill: $gray-400;
+
+        ._svg-stroke {
+          stroke: $gray-300;;
+        }
+      }
+    }
+  }
+}

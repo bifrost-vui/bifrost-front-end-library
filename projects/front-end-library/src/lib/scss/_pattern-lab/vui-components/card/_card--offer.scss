@@ -1,0 +1,63 @@
+/* *****************************************************************************
+*
+*  CARD
+*
+* ***************************************************************************** */
+.card {
+  &--offer {
+    &:not(&-unavailable){
+      .card-header {
+        background-color: $black;
+        min-height: 15rem;
+      }
+    }
+
+
+    &-unavailable {
+      pointer-events: none;
+
+      .card-header,
+      .card-body,
+      .card-footer {
+        * {
+          color: $gray-400;
+        }
+      }
+
+      .tag-outline {
+        border-color: $gray-400;
+      }
+
+      .card-header {
+        border-left: $border-width solid $border-color;
+        border-right: $border-width solid $border-color;
+        min-height: 15rem;
+
+        .card-offer__header-content {
+          position: relative;
+
+          * { opacity: 0; }
+
+          &:before {
+            @extend .h3;
+            @extend .position-absolute--center;
+            @extend .font-weight-light;
+            content: attr(data-unavailable);
+            color: $body-color;
+          }
+        }
+      }
+
+      .btn {
+        @extend .btn-disabled;
+      }
+    }
+
+    .card-header {
+      @extend .border-top--vui-yellow;
+      @extend .text-center;
+      border-top-width: 4px;
+    }
+  }
+}
+

@@ -1,0 +1,87 @@
+/* *****************************************************************************
+*
+*  Table
+*
+* ***************************************************************************** */
+
+.table {
+  @include media-scale(margin-bottom, 0.3rem, 0.3rem, 0);
+
+  thead {
+    &.thead-dark {
+
+      button {
+        color: $light;
+
+        .icon-arrow-sort,
+        .icon-arrow-sort-asc,
+        .icon-arrow-sort-desc {
+          ._svg-fill {
+            fill: $white;
+          }
+          ._svg-stroke {
+            stroke: $white;
+          }
+        }
+      }
+    }
+
+    &.thead--compress {
+      th {
+        padding-top: .65rem;
+        padding-bottom: .65rem;
+      }
+    }
+
+    th {
+      @extend .vui--text-highlight;
+      @extend .vui--font-secondary-bold;
+      border-width: $border-width;
+      font-size: $h5-font-size;
+
+      .icon-arrow-sort,
+      .icon-arrow-sort-asc,
+      .icon-arrow-sort-desc {
+        width: .4rem;
+      }
+
+      .icon-arrow-sort-asc,
+      .icon-arrow-sort-desc {
+        display: none;
+      }
+
+      .is-sort-desc {
+        .icon-arrow-sort-desc {
+          display: block;
+        }
+
+        .icon-arrow-sort,
+        .icon-arrow-sort-asc {
+          display: none;
+        }
+      }
+
+      .is-sort-asc {
+        .icon-arrow-sort-asc {
+          display: block;
+        }
+
+        .icon-arrow-sort,
+        .icon-arrow-sort-desc {
+          display: none;
+        }
+      }
+    }
+  }
+
+  tr {
+    &:first-child td {
+      border-top: none;
+    }
+  }
+
+  thead th,
+  td {
+    vertical-align: middle;
+  }
+}

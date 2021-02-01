@@ -1,0 +1,30 @@
+<div
+    class="px-7 d-flex align-items-center justify-content-center h-100 w-100"
+    style="background-color: {{ reversed ? 'var(--bf-color-neutral-primary)' : 'var(--bf-color-neutral-primary-reversed)' }};"
+>
+    {% include '@bf-components/input-search/twig/index.twig' with {
+        class                   : class|default(''),
+        reversed                : reversed|default(false)|json_parse,
+        buttonClass             : buttonClass|default(''),
+        iconClass               : iconClass|default(''),
+        invalidMsg              : invalidMsg|default(''),
+
+        isDisabled              : isDisabled|default(false)|json_parse,
+        isChecked               : isChecked|default(false)|json_parse,
+        inputId                 : inputId|default(''),
+        inputClass              : inputClass|default(''),
+        mtValue                 : mtValue|default('0'),
+        inputIconPosition       : inputIconPosition|default(''),
+        inputType               : inputType|default(''),
+        inputPlaceholder        : inputPlaceholder|default(''),
+        inputName               : inputName|default(''),
+        inputValue              : inputValue|default(''),
+        extraAttribute          : extraAttribute|default(''),
+        inputSubmitId           : inputSubmitId|default(''),
+        label                   : label|default(''),
+        labelClass              : labelClass|default(''),
+        labelExtraAttribute     : labelExtraAttribute|default(NULL),
+        inputSubmitValue        : inputSubmitValue|default(''),
+        extraAttributeSubmit    : extraAttributeSubmit|default(NULL),
+    } only %}
+</div>

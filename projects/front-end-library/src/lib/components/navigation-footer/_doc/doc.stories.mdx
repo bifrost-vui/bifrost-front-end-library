@@ -1,0 +1,99 @@
+import { moduleMetadata } from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withDesign } from 'storybook-addon-designs'
+
+import { linkFields, footerLinks } from './data.ts';
+import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
+import { FooterComponent }          from '../angular/footer.component';
+
+
+<Meta 
+    title='Components/Navigation Footer' 
+    component={FooterComponent}
+    decorators={[
+        moduleMetadata({ declarations: [FooterComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI-Kit-Pattern-lab?node-id=11017%3A708',
+            disable: false
+        },
+    }}
+    argTypes={{
+        theme: {
+            defaultValue: "videotron",
+            control: {
+                type: "select",
+                options: ["videotron", "business"],
+            }
+        },
+        logoName: {
+            defaultValue: "videotron",
+            control: {
+                type: "select",
+                options: ["videotron", "business"],
+            }
+        },
+        reversed: {
+            defaultValue: false,
+        }
+    }}
+/>
+
+
+# Navigation Footer
+
+> Explore **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)** (Zeroheight)
+
+<br/>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Preview>
+    <Story 
+        name='Drupal'
+        args={{ 
+            elementPath : 'components/navigation-footer/_doc/template.drupal',
+            linkFields,
+            footerLinks,
+        }}
+        height='500px'
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+## Source Code
+
+```php
+{% include '@bf-components/navigation-footer/twig/index.twig' with {
+    footerLinks         : [],
+    linkFields          : [],
+    logo                : {
+        name    : 'business',
+        href    : '#',
+    },
+    hasBackToTopLink    : true,
+    videotronLegalName  : '',
+    languageBlock       : 'EN',
+    reversed            : false,
+} only %}
+```
+
+
+## Component API
+
+<Props of={FooterComponent} />
+
+
+## Design Guidelines
+
+<iframe width='100%' height='450' src='https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI-Kit-Pattern-lab?node-id=11017%3A708' frameBorder='0' allowFullScreen></iframe>

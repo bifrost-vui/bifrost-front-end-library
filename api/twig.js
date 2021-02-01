@@ -8,10 +8,9 @@ var Twig = require("twig"),
         allow_async: true, // Allow asynchronous compiling
         strict_variables: false,
         namespaces: {
-            'components':   'projects/front-end-library/src/lib/components',
-            'organisms':    'projects/front-end-library/src/lib/organisms',
-            'templates':    'projects/front-end-library/src/lib/templates',
-            'pipes':        'projects/front-end-library/src/lib/pipes'
+            'bf-lib'        :'projects/front-end-library/src/lib',
+            'bf-components' :'projects/front-end-library/src/lib/components',
+            'bf-pipes'      :'projects/front-end-library/src/lib/pipes'
         }
     });
 

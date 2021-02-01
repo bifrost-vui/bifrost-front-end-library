@@ -1,0 +1,81 @@
+/* *****************************************************************************
+*
+*  Tags
+*
+* ***************************************************************************** */
+
+*:not(.token).tag {
+  padding: 0.2rem .8rem;
+  color: #000;
+  display: inline-block;
+  position: relative;
+
+  &:before {
+    @include size(0);
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(100%, 0);
+    border-style: solid;
+    border-width: 2rem .5rem 0 0;
+    border-color: $primary transparent transparent transparent;
+  }
+
+  &--left {
+    &:before {
+      border-width: 0 .5rem 2rem 0;
+      left: 0;
+      right: auto;
+      transform: translate(-99%,0);
+    }
+  }
+
+  @each $theme, $value in $theme-colors {
+    &--#{$theme} {
+      background: $value;
+
+      @if $theme == "dark" {
+        color: $white;
+      }
+
+      &:before {
+        border-color: $value transparent transparent transparent;
+      }
+
+      &.tag--left:before {
+        border-color: transparent $value transparent transparent;
+      }
+      &.tag--reverse:before {
+        border-color: transparent transparent $value transparent;
+      }
+    }
+  }
+
+  &--font-secondary {
+    @extend .vui--font-secondary;
+    font-weight: $font-weight-bold;
+
+    &:before {
+      border-width: 1.6rem .5rem 0 0;
+    }
+    &.tag--reverse:before {
+      border-width: 0 .5rem 1.6rem 0;
+    }
+  }
+}
+
+.tag-outline {
+  padding: 0.2rem .5rem;
+  background: none;
+  border: $border-width solid $border-color;
+  border-radius: $input-border-radius;
+
+  @each $color, $value in $theme-colors {
+    &--#{$color} {
+      border-color: $value;
+      color: $value;
+    }
+  }
+}
+

@@ -1,0 +1,64 @@
+<nav class="
+    bf-navigation-header-top-bar d-none d-lg-block navbar navbar--videotron-unify-secondary px-3
+    {{ class|default('') }} 
+    {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}"
+>
+    <div class="d-flex justify-content-between w-100">
+        <!-- Main navigation -->
+        <ul class="list d-flex align-items-center ml-1">
+            {% for item in topBarItems %}
+                {% if loop.last is not same as (true) %}
+                    {% set itemClass = "pr-3 mr-3 border-right-gray--200" %}
+                {% else %}
+                    {% set itemClass = "" %}
+                {% endif %}
+
+                <li class="d-flex align-items-center {{ itemClass|default('') }}">
+                    <a class="link {{ item.class|default('') }}"
+                       href="{{ item.href|default('#') }}"
+                       rel="{{ item.rel|default('dofollow') }}">
+                        {{ item.label }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Aside navigation -->
+        <ul class="list d-flex align-items-center justify-content-end">
+            <li class="d-flex align-items-center">
+                {% if isConnected is defined and isConnected is same as (true) %}
+                    <span class="small">
+                    {{ accountHello|default('Hello') }} {{ accountName|default('Benjamin Desjardins') }}
+                    </span>
+                    <a class="link ml-1 pl-1"
+                       href="{{ hrefLogOut|default('#') }}"
+                       rel="dofollow">
+                        {{ labelLogOut|default('Logout') }}
+                    </a>
+                {% else %}
+                    <a class="link"
+                       href="{{ hrefConnexion|default('#') }}"
+                       rel="dofollow">
+                        {{ labelConnexion|default('My Customer Centre') }}
+                    </a>
+                {% endif %}
+            </li>
+
+            {% for item in topBarSecondaryItems %}
+                <li class="d-flex align-items-center ml-2 pl-2">
+                    <a class="link {{ item.class|default('') }}"
+                       href="{{ item.href|default('#') }}"
+                       rel="{{ item.rel|default('dofollow') }}">
+                        {{ item.label }}
+                    </a>
+                </li>
+            {% endfor %}
+
+            <li class="d-flex align-items-center border-left ml-3 pl-3">
+                {% block language_switcher_desktop %}
+                    <a href="" class="link">Français</a>
+                {% endblock %}
+            </li>
+        </ul>
+    </div>
+</nav>

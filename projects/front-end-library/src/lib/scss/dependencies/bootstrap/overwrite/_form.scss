@@ -1,0 +1,130 @@
+/* *****************************************************************************
+*
+*  FORM
+*
+* ***************************************************************************** */
+.form-control {
+  font-size: $form-font-size;
+
+  &.readonly,
+  &[readonly] {
+    pointer-events: none;
+    padding-left: 0;
+    padding-right: 0;
+    background: none;
+    border: none;
+  }
+
+  &.is-invalid {
+    background: $form-feedback-invalid-bg;
+    border-color: $form-feedback-invalid-bg;
+    padding-right: 3rem;
+  }
+
+  &-lg {
+    .form-group__input-icon-container {
+      @include media-scale(padding-top, $input-padding-y, $input-padding-y-sm, $input-padding-y-lg);
+      @include media-scale(padding-bottom, $input-padding-y, $input-padding-y-sm, $input-padding-y-lg);
+      @include media-scale(padding-left, $input-padding-x, $input-padding-x-sm, $input-padding-x-lg);
+      @include media-scale(padding-right, $input-padding-x, $input-padding-x-sm, $input-padding-x-lg);
+    }
+  }
+
+  &--dark {
+    background: $dark;
+    color: $white;
+
+    &:focus {
+      background: $dark;
+      color: $white;
+    }
+  }
+}
+
+.form-group {
+  &--w-small {
+    width: 100%;
+    max-width: 200px;
+  }
+  &--w-large {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  &.is-invalid {
+    label {
+      color: $form-feedback-invalid-color;
+    }
+
+    .form-control {
+      background: $form-feedback-invalid-bg;
+      border-color: $form-feedback-invalid-bg;
+      color: $form-feedback-invalid-color-txt;
+    }
+
+    .icon--error {
+      display: flex !important;
+      align-items: center;
+      color: $vui-orange;
+      //padding: $input-padding-y $input-padding-x;
+      position: absolute;
+      right: 1rem;
+      top: 0;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    & > .invalid-feedback {
+      display: block;
+    }
+
+    .form-group__input-icon-container {
+      display: none;
+    }
+  }
+
+  .valid-feedback,
+  .invalid-feedback {
+    padding: $spacer-2 $input-padding-x 0 0;
+  }
+
+  label {
+    @extend .mb-1;
+    font-weight: $font-weight-bold;
+  }
+
+  input {
+    &[disabled],
+    &.disabled {
+      //@extend .vui--style-reset;
+
+      @include plain-hover-focus {
+        cursor: not-allowed;
+      }
+    }
+
+    @include placeholder {
+      font-weight: $font-weight-light;
+      color: $gray-700;
+    }
+  }
+
+  &__input-icon-container {
+    @extend .vui--style-reset;
+    cursor: pointer;
+    padding: $input-padding-y $input-padding-x;
+    position: absolute;
+    right: $input-border-width;
+    top: $input-border-width;
+    height: calc(100% - 2px);
+    display: flex;
+    align-items: center;
+    background: $light;
+
+    &--left {
+      right: initial;
+      left: 0;
+      padding-left: 0;
+    }
+  }
+}

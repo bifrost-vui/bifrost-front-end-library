@@ -1,0 +1,10 @@
+<a class="link-underline h5 {{ class|default('') }}"
+   {% if label is not empty %}data-title="{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}"{% endif %}
+   data-toggle="{{ dataToggle|default('collapse') }}"
+   href="{{ href|default('') }}"
+   role="button"
+   aria-expanded="{{ ariaExpanded|default('false') }}"
+   aria-controls="{{ ariaControls|default('') }}"
+   {{ extraAttribute|default(NULL) }}>
+    {{ label|default('Cancel') }}
+</a>

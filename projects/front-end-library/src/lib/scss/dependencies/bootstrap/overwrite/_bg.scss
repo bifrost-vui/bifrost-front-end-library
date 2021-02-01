@@ -1,0 +1,42 @@
+/* *****************************************************************************
+*
+*  Backgrounds
+*
+* ***************************************************************************** */
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    // theme-colors
+    @each $color, $value in $theme-colors {
+      .bg#{$infix}--#{$color} {
+        background: $value;
+      }
+    }
+
+    // GRAYS theme-colors
+    @each $toneValue, $value in $grays {
+      .bg-gray#{$infix}--#{$toneValue} {
+        background: $value;
+      }
+    }
+
+    // hover transition
+    @each $color, $value in $theme-colors {
+      .bg-hover#{$infix}--#{$color} {
+        @include hover-transition-to(background, $value);
+      }
+    }
+
+    @each $color, $value in $grays {
+      .bg-hover#{$infix}--gray-#{$color} {
+        @include hover-transition-to(background, $value);
+      }
+    }
+
+    .bg#{$infix}--none {
+      background: none;
+    }
+  }
+}

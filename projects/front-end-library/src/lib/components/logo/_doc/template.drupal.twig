@@ -1,0 +1,18 @@
+{# ----------------------------------------------------------------- #}
+{% set reversed     = reversed|default(false)|json_parse %}
+{% set textOnly     = textOnly|default(false)|json_parse %}
+
+<div
+    class="d-flex align-items-center justify-content-center h-100 w-100"
+    style="background-color: {{ reversed ? 'var(--bf-color-neutral-primary)' : 'var(--bf-color-neutral-primary-reversed)' }};"
+>
+
+    {# ----------------------------------------------------------------- #}
+    {% include '@bf-components/logo/twig/index.twig' with {
+        langcode    : langcode,
+        name        : name,
+        textOnly    : textOnly,
+        reversed    : reversed,
+    } only %}
+
+</div>

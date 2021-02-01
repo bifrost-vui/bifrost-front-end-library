@@ -1,4 +1,5 @@
 const { resolve } = require("path");
+
 const SassGlobImporter = require("node-sass-glob-importer");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
@@ -6,24 +7,29 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const devMode = process.env.NODE_ENV !== 'production';
 
-
 module.exports = {
   entry: {
-    'style-angular': 
-        resolve(__dirname, "projects/front-end-library/src/lib/styles/scss/style.scss"),
-    'style-drupal': [
-        resolve(__dirname, "projects/front-end-library/src/lib/styles/scss/style.scss"),
-        resolve(__dirname, "projects/front-end-library/src/lib/styles/scss/_drupal-components.scss"),
-    ],
+    'uikit-marvel': resolve(__dirname, "projects/front-end-library/src/lib/js/index.js"),
+    // 'uikit-marvel-livechat': resolve(__dirname, "projects/front-end-library/src/lib/js/widgets/genesys-live-chat/styles.js"),
+    // 'uikit-marvel-demo-etiya': resolve(__dirname, "projects/front-end-library/src/lib/js/demo/etiya/index.js"),
   },
   output: {
-    path: resolve(__dirname, "public/styles"),
-    // filename: "style.css",
+    path: resolve(__dirname, "public/js/"),
+    filename: "[name].js",
   },
 
   devtool: devMode ? 'source-map' : false,
+  
+  watch: true,
+
   resolve: {
     extensions: ['.js', '.scss']
+  },
+
+  resolve: {
+    alias: {
+      'pickerdate': 'pickadate/lib/picker.date'
+    }
   },
 
   optimization: {
@@ -43,8 +49,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-    //   filename: devMode ? '../css/[name].css' : '../css/[name].[hash].css',
-    //   chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+      filename: devMode ? '../css/[name].css' : '../css/[name].[hash].css',
+      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
     })
   ],
 
@@ -80,17 +86,13 @@ module.exports = {
             }
           },
           {
-            loader: 'resolve-url-loader',
-            options: {}
-          },
-          {
             loader: "postcss-loader",
             options: {
               sourceMap: true,
               plugins: (loader) => [
                 // eslint-disable-line no-unused-vars
                 require("autoprefixer")({
-                  'browsers': ['> 1%', 'last 10 versions']
+                //   'browsers': ['> 1%', 'last 10 versions']
                 }),
                 require("postcss-flexbugs-fixes"),
                 require('cssnano')()
@@ -102,7 +104,7 @@ module.exports = {
             options: {
               sourceMap: true,
             //   includePaths: ["styles/"],
-            //   importer: SassGlobImporter()
+            //   webpackImporter: SassGlobImporter()
             }
           }
         ],

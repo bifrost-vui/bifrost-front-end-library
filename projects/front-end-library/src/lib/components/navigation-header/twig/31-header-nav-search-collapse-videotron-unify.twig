@@ -1,0 +1,35 @@
+{# for demo purpose #}
+{% if links is not defined %}
+    {% set links = [
+        {label: 'Find a store'},
+        {label: 'Experience Helix'},
+        {label: 'My Helix'},
+        {label: 'Internet'},
+        {label: 'Equipment'}
+    ] %}
+{% endif %}
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<!-- Helix search quick-links/suggestion -->
+<div class="navbar--videotron-unify__search__collapse js-helix-global-search-collapse dropdown-menu--megamenu z-index-10">
+    <div class="p-dropdown-megamenu">
+        <div class="js-quick-links">
+            <h3 class="border-bottom fs-4 mb-2 pb-2">{{ quickLinkMenuTitle|default('Quick links') }}</h3>
+
+            {% if links is not empty %}
+                <ul class="list-unstyled">
+                    {% for link in links %}
+                        <li class="py-lg-2">
+                            {% include '@atoms/04-links/00-link.twig' with {
+                                class: "d-block d-lg-inline py-2 py-lg-0 link-default-optimized",
+                                href: link.href,
+                                label: link.label
+                            } %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        {% block collapseSuggestion %}{% endblock %}
+    </div>
+</div>

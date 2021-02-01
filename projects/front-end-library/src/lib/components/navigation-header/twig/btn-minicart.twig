@@ -1,0 +1,59 @@
+{% set class                = "js-dropdown-fixed-viewport" %}
+{% set iconName             = "cart" %}
+{% set iconSize             = 3 %}
+{% set iconColor            = "svg-fill--dark" %}
+{% set dropdownId           = "btnDropdownMiniCart" %}
+{% set dropdownXPlacement   = "bottom-end" %}
+{% set miniCartDatas        = miniCartDatas %}
+
+{% extends '@bf-components/dropdown/twig/08-btn-icon-dropdown.twig' %}
+    {% block dropdown_content %}
+        <div class="p-3">
+            {% if miniCartDatas is not empty %}
+                <p class="h4 mb-3">In your bag</p>
+
+                {% for cart in miniCartDatas %}
+                    <div class="mb-3">
+                        <p class="font-weight-bold border-bottom pb-1 mb-2">{{ cart.category }}</p>
+
+                        {% for item in cart.items %}
+                            <div class="d-flex justify-content-between mb-2">
+                                {# {% if item.tag == 'added' %}
+                                    <span class="color-gray--700">{{ item.title }}</span>
+                                    {% include '@bf-components/tag/twig/badge-tag.twig' with { label:"Added", color: "primary" } only %}
+                                {% elseif item.tag == 'replaced' %}
+                                    <span class="color-gray--700">{{ item.title }}</span>
+                                    {% include '@bf-components/tag/twig/badge-tag.twig' with { label:"Replaced", color: "gray--300" } only %}
+                                {% elseif item.tag == 'removed' %}
+                                    <span class="color-gray--700 vui--text-dashed">{{ item.title }}</span>
+                                    {% include '@bf-components/tag/twig/badge-tag.twig' with { label:"Removed", color: "gray--300" } only %}
+                                {% else %}
+                                    <span class="color-gray--700">{{ item.title }}</span>
+                                {% endif %} #}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                {% include '@bf-components/link/twig/link-button.twig' with {
+                    class:"w-100 color--dark px-3 mt-3",
+                    label: "Review your order",
+                    href: ""
+                } only %}
+            {% else %}
+                <p class="h4 mb-3">Your bag is empty</p>
+
+                <div class="small">
+                    <p class="color-gray--700">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam distinctio dolor doloremque eius fugiat fugit ipsam iste molestiae.s</p>
+                    <p class="color-gray--700">Natus odit ratione, reprehenderit similique, voluptatum. Dignissimos doloremque ipsam labore sequi voluptates?</p>
+                </div>
+
+                {% include '@bf-components/link/twig/link-button.twig' with {
+                    class:"w-100 color--dark px-3 mt-3",
+                    label: "View bundles & deals",
+                    href: ""
+                } only %}
+            {% endif %}
+
+        </div>
+    {% endblock %}

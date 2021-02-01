@@ -1,4 +1,5 @@
 import { addParameters, addDecorator } from '@storybook/angular';
+import { prepareForInline } from '@storybook/addon-docs/angular/inline';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 
 // @ts-ignore
@@ -7,14 +8,24 @@ import docJson from '../documentation.json';
 
 // Import global SCSS styles.
 // Warning: For Angular only! Because Drupal components are served in an iFrame with `style-drupal.css` imported.
-import '!style-loader!css-loader!resolve-url-loader!sass-loader!../projects/front-end-library/src/lib/styles/scss/style.scss';
+// import '!babel-loader!url-loader!style-loader!css-loader!resolve-url-loader!postcss-loader!sass-loader!../projects/front-end-library/src/lib/styles/scss/style.scss';
+// import '../public/styles/test.css';
+// import '!babel-loader!style-loader!css-loader!resolve-url-loader!postcss-loader!sass-loader!../projects/front-end-library/src/lib/styles/scss/style.scss';
+
+// import '../projects/front-end-library/src/lib/scss/style.scss';
+
 
 setCompodocJson(docJson);
 
 addParameters({
     // Docs
     docs: {
-        // inlineStories: true,
+        inlineStories: true,
+        prepareForInline,
+        // prepareForInline: (storyFn, { args }) => {
+        //     const Story = toReact(storyFn());
+        //     return <Story {...args} />;
+        // },
         // iframeHeight: '100px',
     },
     layout: 'centered',
@@ -36,13 +47,14 @@ addParameters({
         hideNoControlsWarning: true
     },
     argTypes: {
-        elementPath: { table: { disable: true } }
+        elementPath: { table: { disable: true } },
+        ngOnInit: { table: { disable: true } }
     },
     
-    // Hide addons
-    storySource: { disable: true },
-    knobs: { disable: true },
-    actions: { disable: true },
-    design: { disable: true },
-    'design-assets': { disable: true },
+    // // Hide addons
+    // storySource: { disable: true },
+    // knobs: { disable: true },
+    // actions: { disable: true },
+    // design: { disable: true },
+    // 'design-assets': { disable: true },
 });

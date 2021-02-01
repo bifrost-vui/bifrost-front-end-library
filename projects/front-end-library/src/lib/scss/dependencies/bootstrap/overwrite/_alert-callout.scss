@@ -1,0 +1,39 @@
+/* *****************************************************************************
+*
+*  Alerts
+*
+* ***************************************************************************** */
+
+.alert-callout {
+  @each $themeColor, $value in $theme-colors {
+    &--#{$themeColor} {
+      color: $body-color;
+      border: none;
+      border-left: $alert-callout-border-width solid $value;
+    }
+  }
+
+  &--danger {
+    .card {
+      background-color: $form-feedback-invalid-bg;
+      * {
+        color: $form-feedback-invalid-color-txt;
+      }
+    }
+  }
+}
+
+.alert-callout-filled {
+  @each $themeColor, $value in $theme-colors {
+    &.alert-callout--#{$themeColor} {
+      border-left-color: $value;
+      color: darken($value, 30%);
+
+      .card {
+        background-color: transparentize($value, 0.85);
+        border-color: transparentize($value, 0.75);
+        border-left: none;
+      }
+    }
+  }
+}

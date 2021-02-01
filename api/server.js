@@ -14,15 +14,15 @@ app.use('/', express.static('public'));
 
 // -----------------------------------------------------------------
 // Expose Twig files
-
+console.log(__dirname);
 app.set("twig options", {
-    allow_async: true, // Allow asynchronous compiling
+    allow_async: false, // Allow asynchronous compiling
     strict_variables: false,
+    allowInlineIncludes: true,
+    rethrow: true,
     namespaces: {
-        'components': 'projects/front-end-library/src/lib/components',
-        'organisms': 'projects/front-end-library/src/lib/organisms',
-        'templates': 'projects/front-end-library/src/lib/templates',
-        'pipes': 'projects/front-end-library/src/lib/pipes'
+        'bf-components': path.resolve(__dirname, '../projects/front-end-library/src/lib/components'),
+        // 'bf-pipes'      :'projects/front-end-library/src/lib/pipes'
     }
 });
 
@@ -35,9 +35,48 @@ app.get('/api/twig', function(req, res){
     res.render('main.twig', req.query);
 });
 
-Twig.extendFilter('boolean', function(value, params) {
-    // console.log('value', value, params);
-    return (value === 0 || value === '0' || value === 'false') ? false : !!value;
+
+// -----------------------------------------------------------------
+// Filters
+
+Twig.extendFilter('clean_class', function(value) {
+    return value;
+});
+
+Twig.extendFilter('clean_id', function(value) {
+    return value;
+});
+
+Twig.extendFilter('format_date', function(value) {
+    return value;
+});
+
+Twig.extendFilter('placeholder', function(value) {
+    return value;
+});
+
+Twig.extendFilter('price_one_line', function(value) {
+    return value;
+});
+
+Twig.extendFilter('render', function(value) {
+    return value;
+});
+
+Twig.extendFilter('safe_join', function(value) {
+    return value;
+});
+
+Twig.extendFilter('t', function(value) {
+    return value;
+});
+
+
+// -----------------------------------------------------------------
+// Custom filters
+
+Twig.extendFilter('json_parse', function(value) {
+    return value && JSON.parse(value);
 });
 
 

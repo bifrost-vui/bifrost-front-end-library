@@ -1,0 +1,7 @@
+{% set class = (reversed is defined and reversed is same as (true)) ? 'bf-icon reversed' : 'bf-icon ' %}
+
+{% include '@bf-components/icon/twig/icon-' ~ name|default('svg-truck') ~ '.twig' with {
+    reversed    : reversed|default(false),
+    size        : iconSize|default('2'),
+    class       : class ~ ' ' ~ iconClass,
+} only %}

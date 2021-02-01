@@ -1,0 +1,73 @@
+/* *****************************************************************************
+*
+*  Footer
+*
+* ***************************************************************************** */
+
+.bf-footer {
+    --color-ground: var(--bf-color-bg-underground);
+    --color-text: var(--bf-color-neutral-primary);
+    --color-text-secondary: var(--bf-color-neutral-secondary);
+    --color-stroke: var(--bf-color-stroke-secondary);
+    
+    &.reversed {
+        --color-ground: var(--bf-color-bg-ground-reversed);
+        --color-text: var(--bf-color-neutral-primary-reversed);
+        --color-text-secondary: var(--bf-color-neutral-secondary-reversed);
+        --color-stroke: var(--bf-color-stroke-secondary-reversed);
+    }
+
+    background-color: var(--color-ground);
+    color: var(--color-text);
+
+    .border-bottom,
+    .card--wider-x {
+        border-bottom-color: var(--color-stroke) !important;
+    }
+
+    .bf-footer-main {
+
+        .navbar-toggler {
+            color: currentColor;
+        }
+
+        .link-back-to-top,
+        .link-back-to-top:hover {
+            color: currentColor;
+        }
+    }
+
+    .link-default-optimized {
+        color: var(--color-text-secondary);
+        text-shadow: 
+            0 -2px 0 var(--color-ground),
+            0 -1px 0 var(--color-ground),
+            0 0 0 var(--color-ground),
+            2px -2px 0 var(--color-ground),
+            2px -1px 0 var(--color-ground),
+            2px 0 0 var(--color-ground),
+            -2px -2px 0 var(--color-ground),
+            -2px -1px 0 var(--color-ground),
+            -2px 0 0 var(--color-ground),
+            1px -2px 0 var(--color-ground),
+            1px -1px 0 var(--color-ground),
+            1px 0 0 var(--color-ground),
+            -1px -2px 0 var(--color-ground),
+            -1px -1px 0 var(--color-ground),
+            -1px 0 0 var(--color-ground),
+            0 -2px 0 var(--color-ground),
+            0 -1px 0 var(--color-ground),
+            0 0 0 var(--color-ground);
+        box-shadow: inset 0 -1px 0 0 var(--color-ground), inset 0 -2px 0 0 transparent;
+
+        &:hover,
+        &:focus {
+            box-shadow: inset 0 -1px 0 0 var(--color-ground), inset 0 -2px 0 0 currentColor;
+        }
+    }
+
+    .icon,
+    a:hover > .icon {
+        border-color: var(--color-text-secondary);
+    }
+}

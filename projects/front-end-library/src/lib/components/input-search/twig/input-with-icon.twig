@@ -1,0 +1,39 @@
+<div class="
+    bf-input-search form-group
+    {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}
+    {{ class|default('') }}"
+>
+    {% if label %}
+    <label for="{{ inputId }}"
+        class="{{ labelClass|default('') }}"
+        {{ labelExtraAttribute|default(NULL) }}>{{ label|default('Label') }}</label>
+    {% endif %}
+    <div class="position-relative">
+        <input id="{{ inputId }}"
+               {% if isDisabled is defined and isDisabled is same as (true) %}disabled {% endif %}
+                {% if isChecked is defined and isChecked is same as (true) %}checked {% endif %}
+               class="form-control mt-{{ mtValue|default('0') }} {{ inputClass|default('') }}"
+               type="{{ inputType|default('text') }}"
+               placeholder="{{ inputPlaceholder|default('') }}"
+               name="{{ inputName|default('') }}"
+               value="{{ inputValue|default('') }}"
+               {{ extraAttribute|default(NULL) }}>
+
+        <div class="form-group__input-icon-container rounded {{ inputIconPosition|default('') }}">
+            {% block icon_container %}
+                {% include '@bf-components/button/twig/button-tooltip.twig' with {
+                    buttonClass:"p-0"
+                } %}
+            {% endblock %}
+        </div>
+
+        <div class="icon--error d-none">
+            {% include '@bf-components/icon/twig/icon-svg-error.twig' with { iconClass:"" } only %}
+        </div>
+    </div>
+
+
+    <div class="invalid-feedback">
+        {{ invalidMsg|default('This is an invalid error message') }}
+    </div>
+</div><!-- /.form-group -->

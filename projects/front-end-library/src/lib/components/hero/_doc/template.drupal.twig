@@ -1,0 +1,25 @@
+{# ----------------------------------------------------------------- #}
+{% set bgImagePosition  = bgImagePosition|default('') %}
+{% set bgImage          = bgImage|default('') %}
+{% set bgMediumImage    = bgMediumImage|default('') %}
+{% set bgLargeImage     = bgLargeImage|default('') %}
+{% set containerClass   = containerClass|default('') %}
+{% set breadcrumb       = breadcrumb|default('') %}
+{% set title            = title|default('') %}
+{% set subTitle         = subTitle|default('') %}
+{% set textOnly         = textOnly|default('') %}
+{% set reversed         = reversed|default(false)|json_parse %}
+
+{# ----------------------------------------------------------------- #}
+{% include '@bf-components/hero/twig/index.twig' with {
+    bgImagePosition  : bgImagePosition,
+    bgImage          : bgImage,
+    bgMediumImage    : bgMediumImage,
+    bgLargeImage     : bgLargeImage,
+    containerClass   : containerClass,
+    breadcrumb       : breadcrumb,
+    title            : title,
+    subTitle         : subTitle,
+    textOnly         : textOnly,
+    reversed         : reversed,
+} only %}

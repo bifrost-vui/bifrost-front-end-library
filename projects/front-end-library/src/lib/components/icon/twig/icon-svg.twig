@@ -1,0 +1,7 @@
+{# Sanitize the icon name to make sure it only uses valid separators and avoid a crash error #}
+{% set iconName = iconName|replace({'_': "-"}) %}
+{% include '@atoms/06-icons/icon-svg-'~ iconName|default('helix') ~'.twig' with {
+    iconColor:iconColor,
+    iconSize:iconSize,
+    iconClass:iconClass
+} only %}

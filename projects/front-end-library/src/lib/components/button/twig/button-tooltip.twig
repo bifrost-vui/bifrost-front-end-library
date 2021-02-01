@@ -1,0 +1,14 @@
+<button type="button"
+        class="button-tooltip vui--style-reset d-{{ buttonDisplay|default('flex') }} align-items-center {{ buttonClass|default('') }} position-{{ buttonPosition|default('relative') }} "
+        data-toggle="{{ dataToggle|default('tooltip') }}"
+        data-placement="top"
+        title="{{ tooltipTxt|default('Tooltip on top') }}"
+        {{ extraAttribute|default(NULL) }}>
+    {% include '@components/icon/twig/icon-svg.twig' with {
+        iconName: "interrogation",
+        iconColor: iconColor|default(''),
+        iconSize: 2,
+        iconColor: iconColor|default(""),
+        iconClass: "d-flex " ~ iconClass|default("")
+    } only %}
+</button>

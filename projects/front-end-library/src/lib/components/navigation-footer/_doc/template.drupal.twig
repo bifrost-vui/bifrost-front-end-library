@@ -1,0 +1,21 @@
+
+{# ----------------------------------------------------------------- #}
+{% set footerLinks          = footerLinks|json_parse %}
+{% set linkFields           = linkFields|json_parse %}
+{% set hasBackToTopLink     = hasBackToTopLink|default(false)|json_parse %}
+{% set reversed             = reversed|default(false)|json_parse %}
+
+
+{# ----------------------------------------------------------------- #}
+{% include '@bf-components/navigation-footer/twig/index.twig' with {
+    footerLinks         : footerLinks,
+    linkFields          : linkFields,
+    logo                : {
+        name    : logoName,
+        href    : logoHref|default('#'),
+    },
+    hasBackToTopLink    : hasBackToTopLink,
+    videotronLegalName  : videotronLegalName,
+    languageBlock       : languageBlock,
+    reversed            : reversed,
+} only %}

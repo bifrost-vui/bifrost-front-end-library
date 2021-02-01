@@ -1,0 +1,5 @@
+<a href="{{ href|default('#') }}"
+   {% if linkLabel is not empty %}data-title="{{ linkLabel|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}"{% endif %}
+   class="hover-translate pseudo-icon--arrow-right h{{ linkSize|default('4') }} font-weight-{{ linkFontWeight|default('normal') }} d-{{ linkDisplay|default('block') }} {{ linkClass|default('') }}"
+   {{ extraAttribute|default(NULL) }}
+><span>{{ linkLabel|default('Link to next')|raw }}</span><span class="pseudo-icon--breaker">.</span></a>
