@@ -4,26 +4,6 @@ var Twig = require("twig"),
     app = express(),
     path = require('path');
 
-    app.set("twig options", {
-        allow_async: false, // Allow asynchronous compiling
-        strict_variables: false,
-        allowInlineIncludes: true,
-        rethrow: true,
-        namespaces: {
-            // 'bf-lib'        :'projects/front-end-library/src/lib',
-            'bf-components' :'projects/front-end-library/src/lib/components',
-            // 'bf-pipes'      :'projects/front-end-library/src/lib/pipes'
-        }
-    });
-
-    app.set('views', path.join(__dirname, '../projects/front-end-library/src/lib'));
-    app.set('view engine', 'twig');
-
-    app.render('main.twig', req.query, function(err, html){ 
-        console.log((err) ? err : html);
-        res.status(200).send(html);
-    });
-
     // -----------------------------------------------------------------
     // Filters
 
@@ -65,5 +45,28 @@ var Twig = require("twig"),
 
     Twig.extendFilter('json_parse', function(value) {
         return value && JSON.parse(value);
+    });
+
+    // -----------------------------------------------------------------
+    // Render
+
+    app.set("twig options", {
+        allow_async: false, // Allow asynchronous compiling
+        strict_variables: false,
+        allowInlineIncludes: true,
+        rethrow: true,
+        namespaces: {
+            // 'bf-lib'        :'projects/front-end-library/src/lib',
+            'bf-components' :'projects/front-end-library/src/lib/components',
+            // 'bf-pipes'      :'projects/front-end-library/src/lib/pipes'
+        }
+    });
+
+    app.set('views', path.join(__dirname, '../projects/front-end-library/src/lib'));
+    app.set('view engine', 'twig');
+
+    app.render('main.twig', req.query, function(err, html){ 
+        console.log((err) ? err : html);
+        res.status(200).send(html);
     });
 }
