@@ -14,7 +14,7 @@ app.use('/', express.static('public'));
 
 // -----------------------------------------------------------------
 // Expose Twig files
-console.log(__dirname);
+
 app.set("twig options", {
     allow_async: false, // Allow asynchronous compiling
     strict_variables: false,

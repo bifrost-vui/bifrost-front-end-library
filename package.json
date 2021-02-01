@@ -19,7 +19,7 @@
     "start-dev": "npm run twig:server & npm run css:build & npm run storybook:prebuild && npm run storybook:start",
     "twig:server": "nodemon api/server.js --watch projects/ --watch public/ -e twig",
     "css:build": "webpack --watch --mode development",
-    "build": "ng build --prod && cp -R projects/front-end-library/src/lib dist/front-end-library/source && cp -R public dist/front-end-library/assets && cp -R scripts dist/front-end-library/scripts",
+    "build": "ng build --prod && cp -R projects/front-end-library/src/lib dist/front-end-library/source && cp -R public dist/front-end-library/assets",
     "publish": "npm run build && npm publish dist/front-end-library --access public",
     "storybook:start": "start-storybook -p 9008 -s public",
     "storybook:build": "build-storybook -s public",

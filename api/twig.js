@@ -5,12 +5,14 @@ var Twig = require("twig"),
     path = require('path');
 
     app.set("twig options", {
-        allow_async: true, // Allow asynchronous compiling
+        allow_async: false, // Allow asynchronous compiling
         strict_variables: false,
+        allowInlineIncludes: true,
+        rethrow: true,
         namespaces: {
-            'bf-lib'        :'projects/front-end-library/src/lib',
+            // 'bf-lib'        :'projects/front-end-library/src/lib',
             'bf-components' :'projects/front-end-library/src/lib/components',
-            'bf-pipes'      :'projects/front-end-library/src/lib/pipes'
+            // 'bf-pipes'      :'projects/front-end-library/src/lib/pipes'
         }
     });
 
@@ -22,8 +24,46 @@ var Twig = require("twig"),
         res.status(200).send(html);
     });
 
-    Twig.extendFilter('boolean', function(value, params) {
-        // console.log('value', value, params);
-        return (value === 0 || value === '0' || value === 'false') ? false : !!value;
+    // -----------------------------------------------------------------
+    // Filters
+
+    Twig.extendFilter('clean_class', function(value) {
+        return value;
+    });
+
+    Twig.extendFilter('clean_id', function(value) {
+        return value;
+    });
+
+    Twig.extendFilter('format_date', function(value) {
+        return value;
+    });
+
+    Twig.extendFilter('placeholder', function(value) {
+        return value;
+    });
+
+    Twig.extendFilter('price_one_line', function(value) {
+        return value;
+    });
+
+    Twig.extendFilter('render', function(value) {
+        return value;
+    });
+
+    Twig.extendFilter('safe_join', function(value) {
+        return value;
+    });
+
+    Twig.extendFilter('t', function(value) {
+        return value;
+    });
+
+
+    // -----------------------------------------------------------------
+    // Custom filters
+
+    Twig.extendFilter('json_parse', function(value) {
+        return value && JSON.parse(value);
     });
 }
