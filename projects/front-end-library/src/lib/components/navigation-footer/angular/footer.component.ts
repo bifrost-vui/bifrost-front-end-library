@@ -21,7 +21,7 @@ export class FooterComponent implements OnInit {
     @Input() linkFields: any[];
 
     /** Sets Footer Links. */
-    @Input() footerLinks: any[];
+    @Input() links: any[];
 
     @Input() logoHref: string;
     @Input() logoName: string;

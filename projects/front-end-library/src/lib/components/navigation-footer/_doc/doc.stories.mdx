@@ -2,7 +2,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withDesign } from 'storybook-addon-designs'
 
-import { linkFields, footerLinks } from './data.ts';
+import { linkFields, links } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { FooterComponent }          from '../angular/footer.component';
 
@@ -62,7 +62,7 @@ export const Drupal = (args) => ({
         args={{ 
             elementPath : 'components/navigation-footer/_doc/template.drupal',
             linkFields,
-            footerLinks,
+            links,
         }}
         height='500px'
     >
@@ -75,7 +75,7 @@ export const Drupal = (args) => ({
 
 ```php
 {% include '@bf-components/navigation-footer/twig/index.twig' with {
-    footerLinks         : [],
+    links               : [],
     linkFields          : [],
     logo                : {
         name    : 'business',

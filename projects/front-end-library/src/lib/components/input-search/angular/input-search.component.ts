@@ -13,33 +13,35 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class InputSearchComponent implements OnInit {
     constructor() {}
 
-    @Input() reversed               : boolean = true;
+    @Input() reversed               : boolean;
     @Input() class                  : string;
 
     @Input() isDisabled             : boolean;
     @Input() isChecked              : boolean;
-    @Input() inputId                : string;
-    @Input() inputClass             : string = 'js-alg-searchbox-input';
+
+    @Input() label                  : string = 'Label';
+    @Input() labelClass             : string;
+    @Input() labelExtraAttribute    : string;
+
     @Input() mtValue                : number = 1;
+
+    @Input() inputId                : string;
+    @Input() inputClass             : string;
     @Input() inputIconPosition      : string;
     @Input() inputType              : string;
     @Input() inputPlaceholder       : string = 'What are you looking for?';
     @Input() inputName              : string;
     @Input() inputValue             : string;
     @Input() extraAttribute         : string;
-    @Input() inputSubmitId          : string;
-
-    @Input() iconColor              : string = 'svg-fill--dark';
-
-    @Input() label                  : string = 'Label';
-    @Input() labelClass             : string;
-    @Input() labelExtraAttribute    : string;
+    
+    @Input() iconColor              : string;
+    @Input() iconClass              : string;
 
     @Input() inputSubmitValue       : string;
-    @Input() extraAttributeSubmit   : string;
+    @Input() inputSubmitId          : string;
+    @Input() inputSubmitExtraAttribute   : string;
 
     @Input() buttonClass            : string;
-    @Input() iconClass              : string;
     @Input() invalidMsg             : string;
 
     ngOnInit() {

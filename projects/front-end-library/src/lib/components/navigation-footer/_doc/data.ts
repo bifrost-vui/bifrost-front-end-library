@@ -1,7 +1,7 @@
 
 export const linkFields = [{ href:"", label:"Abous Us" },{ href:"", label:"Careers" },{ href:"", label:"Terms of Use" },{ href:"", label:"Private" },{ href:"", label:"Accessibility" }];
 
-export const footerLinks = [
+export const links = [
     { sectionTitle:'Discover', links: [
             { href:"", label:"HELIX Experience" },
             { href:"", label:"Internet" },

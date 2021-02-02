@@ -1,12 +1,16 @@
 
 {% include '@bf-components/navigation-header/twig/index.twig' with {
     hasTopBar               : hasTopBar|default(true)|json_parse,
-    topBarItems             : topBarItems|default([])|json_parse,
-    topBarSecondaryItems    : topBarSecondaryItems|default([])|json_parse,
-    logoName                : logoName,
+    topBar                  : {
+        items                   : topBarItems|default([])|json_parse,
+        secondaryItems       : topBarSecondaryItems|default([])|json_parse,
+    },
+    logo                    : {
+        name                    : logoName|default('')
+    },
     navItems                : navItems|default([])|json_parse,
-    hasBackToTopLink        : hasBackToTopLink|default(false)|json_parse,
     hasMiniCartBtn          : hasMiniCartBtn|default(false)|json_parse,
     hasNoSearchBtn          : hasNoSearchBtn|default(false)|json_parse,
     reversed                : reversed|default(false)|json_parse,
+    langcode                : langcode|default('EN')
 } only %}

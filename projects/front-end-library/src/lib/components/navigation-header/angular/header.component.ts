@@ -13,15 +13,19 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class HeaderComponent implements OnInit {
     constructor() {}
 
-    @Input() reversed: boolean;
+    @Input() reversed               : boolean;
 
-    @Input() logoName: string;
+    @Input() logoName               : string;
 
-    @Input() navItems: any[];
-    
-    @Input() hasTopBar: boolean;
-    @Input() topBarItems: any[];
-    @Input() topBarSecondaryItems: any[];
+    @Input() navItems               : any[];
+
+    /** Note: Only visible on desktop. */
+    @Input() hasTopBar              : boolean;
+    @Input() topBarItems            : any[];
+    @Input() topBarSecondaryItems   : any[];
+
+    @Input() hasMiniCartBtn         : boolean;
+    @Input() hasNoSearchBtn         : boolean;
 
     ngOnInit() {
         console.log('Header', this);

@@ -122,7 +122,7 @@
         },
         {
             "name": "FooterComponent",
-            "id": "component-FooterComponent-009dde1cd982845536116f6be2c4c3d3",
+            "id": "component-FooterComponent-57f1cb8c2336d926e5848c4935960e05",
             "file": "projects/front-end-library/src/lib/components/navigation-footer/angular/footer.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -143,12 +143,6 @@
                     "type": "string"
                 },
                 {
-                    "name": "footerLinks",
-                    "description": "<p>Sets Footer Links. </p>\n",
-                    "line": 24,
-                    "type": "any[]"
-                },
-                {
                     "name": "hasBackToTopLink",
                     "line": 29,
                     "type": "boolean"
@@ -162,6 +156,12 @@
                     "name": "linkFields",
                     "description": "<p>Sets Footer Links on Bottom Footer. </p>\n",
                     "line": 21,
+                    "type": "any[]"
+                },
+                {
+                    "name": "links",
+                    "description": "<p>Sets Footer Links. </p>\n",
+                    "line": 24,
                     "type": "any[]"
                 },
                 {
@@ -208,7 +208,7 @@
             "description": "<p>API is the same between <strong>Angular</strong> and <strong>Drupal</strong>.</p>\n",
             "rawdescription": "API is the same between **Angular** and **Drupal**.",
             "type": "component",
-            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n    selector: 'bf-footer',\n    templateUrl: './footer.component.html',\n    // styleUrls: ['../common/style.scss'],\n})\nexport class FooterComponent implements OnInit {\n    constructor() {}\n\n    @Input() theme: string = 'videotron';\n\n    @Input() reversed: boolean;\n\n    /** Sets Footer Links on Bottom Footer. */\n    @Input() linkFields: any[];\n\n    /** Sets Footer Links. */\n    @Input() footerLinks: any[];\n\n    @Input() logoHref: string;\n    @Input() logoName: string;\n\n    @Input() hasBackToTopLink: boolean;\n    @Input() backToTopLabel: string;\n\n    @Input() videotronLegalName: string;\n\n    @Input() languageBlock: string;\n\n    ngOnInit() {\n        console.log('footer', this);\n    }\n    \n}\n",
+            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n    selector: 'bf-footer',\n    templateUrl: './footer.component.html',\n    // styleUrls: ['../common/style.scss'],\n})\nexport class FooterComponent implements OnInit {\n    constructor() {}\n\n    @Input() theme: string = 'videotron';\n\n    @Input() reversed: boolean;\n\n    /** Sets Footer Links on Bottom Footer. */\n    @Input() linkFields: any[];\n\n    /** Sets Footer Links. */\n    @Input() links: any[];\n\n    @Input() logoHref: string;\n    @Input() logoName: string;\n\n    @Input() hasBackToTopLink: boolean;\n    @Input() backToTopLabel: string;\n\n    @Input() videotronLegalName: string;\n\n    @Input() languageBlock: string;\n\n    ngOnInit() {\n        console.log('footer', this);\n    }\n    \n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -225,7 +225,7 @@
         },
         {
             "name": "HeaderComponent",
-            "id": "component-HeaderComponent-51c28e55245a6a853509862f88ede81b",
+            "id": "component-HeaderComponent-2f12f32873d246239349b2fd51774f5b",
             "file": "projects/front-end-library/src/lib/components/navigation-header/angular/header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -241,8 +241,19 @@
             "viewProviders": [],
             "inputsClass": [
                 {
+                    "name": "hasMiniCartBtn",
+                    "line": 27,
+                    "type": "boolean"
+                },
+                {
+                    "name": "hasNoSearchBtn",
+                    "line": 28,
+                    "type": "boolean"
+                },
+                {
                     "name": "hasTopBar",
-                    "line": 22,
+                    "description": "<p>Note: Only visible on desktop. </p>\n",
+                    "line": 23,
                     "type": "boolean"
                 },
                 {
@@ -262,12 +273,12 @@
                 },
                 {
                     "name": "topBarItems",
-                    "line": 23,
+                    "line": 24,
                     "type": "any[]"
                 },
                 {
                     "name": "topBarSecondaryItems",
-                    "line": 24,
+                    "line": 25,
                     "type": "any[]"
                 }
             ],
@@ -280,7 +291,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 26
+                    "line": 30
                 }
             ],
             "hostBindings": [],
@@ -288,7 +299,7 @@
             "description": "<p>API is the same between <strong>Angular</strong> and <strong>Drupal</strong>.</p>\n",
             "rawdescription": "API is the same between **Angular** and **Drupal**.",
             "type": "component",
-            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n    selector: 'bf-header',\n    templateUrl: './header.component.html',\n    // styleUrls: ['../common/style.scss'],\n})\nexport class HeaderComponent implements OnInit {\n    constructor() {}\n\n    @Input() reversed: boolean;\n\n    @Input() logoName: string;\n\n    @Input() navItems: any[];\n    \n    @Input() hasTopBar: boolean;\n    @Input() topBarItems: any[];\n    @Input() topBarSecondaryItems: any[];\n\n    ngOnInit() {\n        console.log('Header', this);\n    }\n    \n}\n",
+            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n    selector: 'bf-header',\n    templateUrl: './header.component.html',\n    // styleUrls: ['../common/style.scss'],\n})\nexport class HeaderComponent implements OnInit {\n    constructor() {}\n\n    @Input() reversed               : boolean;\n\n    @Input() logoName               : string;\n\n    @Input() navItems               : any[];\n\n    /** Note: Only visible on desktop. */\n    @Input() hasTopBar              : boolean;\n    @Input() topBarItems            : any[];\n    @Input() topBarSecondaryItems   : any[];\n\n    @Input() hasMiniCartBtn         : boolean;\n    @Input() hasNoSearchBtn         : boolean;\n\n    ngOnInit() {\n        console.log('Header', this);\n    }\n    \n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -399,8 +410,78 @@
             "templateData": "hero"
         },
         {
+            "name": "IconComponent",
+            "id": "component-IconComponent-6122a2be9b7036264ee405931b98fb6e",
+            "file": "projects/front-end-library/src/lib/components/icon/angular/icon.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bf-icon",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./icon.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "class",
+                    "line": 17,
+                    "type": "string"
+                },
+                {
+                    "name": "color",
+                    "line": 19,
+                    "type": "string"
+                },
+                {
+                    "name": "name",
+                    "line": 18,
+                    "type": "string"
+                },
+                {
+                    "name": "reversed",
+                    "line": 16,
+                    "type": "boolean"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>API is the same between <strong>Angular</strong> and <strong>Drupal</strong>.</p>\n",
+            "rawdescription": "API is the same between **Angular** and **Drupal**.",
+            "type": "component",
+            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n    selector: 'bf-icon',\n    templateUrl: './icon.component.html',\n    // styleUrls: ['../common/style.scss'],\n})\nexport class IconComponent implements OnInit {\n    constructor() {}\n\n    @Input() reversed           : boolean;\n    @Input() class              : string;\n    @Input() name               : string;\n    @Input() color              : string;\n\n    ngOnInit() {\n        console.log('icon', this);\n    }\n    \n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 13
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "icon"
+        },
+        {
             "name": "InputSearchComponent",
-            "id": "component-InputSearchComponent-0d07cd34b8fa643d4d3235e59cb8448b",
+            "id": "component-InputSearchComponent-8f1792e298765f616689b294339df956",
             "file": "projects/front-end-library/src/lib/components/input-search/angular/input-search.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -417,7 +498,7 @@
             "inputsClass": [
                 {
                     "name": "buttonClass",
-                    "line": 41,
+                    "line": 44,
                     "type": "string"
                 },
                 {
@@ -427,75 +508,73 @@
                 },
                 {
                     "name": "extraAttribute",
-                    "line": 29,
-                    "type": "string"
-                },
-                {
-                    "name": "extraAttributeSubmit",
-                    "line": 39,
+                    "line": 35,
                     "type": "string"
                 },
                 {
                     "name": "iconClass",
-                    "line": 42,
+                    "line": 38,
                     "type": "string"
                 },
                 {
                     "name": "iconColor",
-                    "defaultValue": "'svg-fill--dark'",
-                    "line": 32,
+                    "line": 37,
                     "type": "string"
                 },
                 {
                     "name": "inputClass",
-                    "defaultValue": "'js-alg-searchbox-input'",
-                    "line": 22,
+                    "line": 29,
                     "type": "string"
                 },
                 {
                     "name": "inputIconPosition",
-                    "line": 24,
+                    "line": 30,
                     "type": "string"
                 },
                 {
                     "name": "inputId",
-                    "line": 21,
+                    "line": 28,
                     "type": "string"
                 },
                 {
                     "name": "inputName",
-                    "line": 27,
+                    "line": 33,
                     "type": "string"
                 },
                 {
                     "name": "inputPlaceholder",
                     "defaultValue": "'What are you looking for?'",
-                    "line": 26,
+                    "line": 32,
+                    "type": "string"
+                },
+                {
+                    "name": "inputSubmitExtraAttribute",
+                    "line": 42,
                     "type": "string"
                 },
                 {
                     "name": "inputSubmitId",
-                    "line": 30,
+                    "line": 41,
                     "type": "string"
                 },
                 {
                     "name": "inputSubmitValue",
-                    "line": 38,
+                    "line": 40,
                     "type": "string"
                 },
                 {
                     "name": "inputType",
-                    "line": 25,
+                    "line": 31,
                     "type": "string"
                 },
                 {
                     "name": "inputValue",
-                    "line": 28,
+                    "line": 34,
                     "type": "string"
                 },
                 {
                     "name": "invalidMsg",
-                    "line": 43,
+                    "line": 45,
                     "type": "string"
                 },
                 {
@@ -511,28 +590,27 @@
                 {
                     "name": "label",
                     "defaultValue": "'Label'",
-                    "line": 34,
+                    "line": 22,
                     "type": "string"
                 },
                 {
                     "name": "labelClass",
-                    "line": 35,
+                    "line": 23,
                     "type": "string"
                 },
                 {
                     "name": "labelExtraAttribute",
-                    "line": 36,
+                    "line": 24,
                     "type": "string"
                 },
                 {
                     "name": "mtValue",
                     "defaultValue": "1",
-                    "line": 23,
+                    "line": 26,
                     "type": "number"
                 },
                 {
                     "name": "reversed",
-                    "defaultValue": "true",
                     "line": 16,
                     "type": "boolean"
                 }
@@ -546,7 +624,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 45
+                    "line": 47
                 }
             ],
             "hostBindings": [],
@@ -554,7 +632,7 @@
             "description": "<p>API is the same between <strong>Angular</strong> and <strong>Drupal</strong>.</p>\n",
             "rawdescription": "API is the same between **Angular** and **Drupal**.",
             "type": "component",
-            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n    selector: 'bf-input-search',\n    templateUrl: './input-search.component.html',\n    // styleUrls: ['../common/style.scss'],\n})\nexport class InputSearchComponent implements OnInit {\n    constructor() {}\n\n    @Input() reversed               : boolean = true;\n    @Input() class                  : string;\n\n    @Input() isDisabled             : boolean;\n    @Input() isChecked              : boolean;\n    @Input() inputId                : string;\n    @Input() inputClass             : string = 'js-alg-searchbox-input';\n    @Input() mtValue                : number = 1;\n    @Input() inputIconPosition      : string;\n    @Input() inputType              : string;\n    @Input() inputPlaceholder       : string = 'What are you looking for?';\n    @Input() inputName              : string;\n    @Input() inputValue             : string;\n    @Input() extraAttribute         : string;\n    @Input() inputSubmitId          : string;\n\n    @Input() iconColor              : string = 'svg-fill--dark';\n\n    @Input() label                  : string = 'Label';\n    @Input() labelClass             : string;\n    @Input() labelExtraAttribute    : string;\n\n    @Input() inputSubmitValue       : string;\n    @Input() extraAttributeSubmit   : string;\n\n    @Input() buttonClass            : string;\n    @Input() iconClass              : string;\n    @Input() invalidMsg             : string;\n\n    ngOnInit() {\n        console.log('input-search', this);\n    }\n    \n}\n",
+            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n    selector: 'bf-input-search',\n    templateUrl: './input-search.component.html',\n    // styleUrls: ['../common/style.scss'],\n})\nexport class InputSearchComponent implements OnInit {\n    constructor() {}\n\n    @Input() reversed               : boolean;\n    @Input() class                  : string;\n\n    @Input() isDisabled             : boolean;\n    @Input() isChecked              : boolean;\n\n    @Input() label                  : string = 'Label';\n    @Input() labelClass             : string;\n    @Input() labelExtraAttribute    : string;\n\n    @Input() mtValue                : number = 1;\n\n    @Input() inputId                : string;\n    @Input() inputClass             : string;\n    @Input() inputIconPosition      : string;\n    @Input() inputType              : string;\n    @Input() inputPlaceholder       : string = 'What are you looking for?';\n    @Input() inputName              : string;\n    @Input() inputValue             : string;\n    @Input() extraAttribute         : string;\n    \n    @Input() iconColor              : string;\n    @Input() iconClass              : string;\n\n    @Input() inputSubmitValue       : string;\n    @Input() inputSubmitId          : string;\n    @Input() inputSubmitExtraAttribute   : string;\n\n    @Input() buttonClass            : string;\n    @Input() invalidMsg             : string;\n\n    ngOnInit() {\n        console.log('input-search', this);\n    }\n    \n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -571,7 +649,7 @@
         },
         {
             "name": "LogoComponent",
-            "id": "component-LogoComponent-7f54bd4a53a94f850e7eac17bac27c14",
+            "id": "component-LogoComponent-ea9632b8c3659a9fcc26182fe52f65ce",
             "file": "projects/front-end-library/src/lib/components/logo/angular/logo.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -588,17 +666,24 @@
             "inputsClass": [
                 {
                     "name": "name",
-                    "line": 16,
+                    "description": "<p>videotron | business </p>\n",
+                    "line": 17,
                     "type": "string"
                 },
                 {
                     "name": "reversed",
-                    "line": 20,
+                    "line": 24,
                     "type": "boolean"
                 },
                 {
+                    "name": "size",
+                    "description": "<p>medium | small </p>\n",
+                    "line": 20,
+                    "type": "string"
+                },
+                {
                     "name": "textOnly",
-                    "line": 18,
+                    "line": 22,
                     "type": "boolean"
                 }
             ],
@@ -611,7 +696,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 22
+                    "line": 26
                 }
             ],
             "hostBindings": [],
@@ -619,7 +704,7 @@
             "description": "<p>API is the same between <strong>Angular</strong> and <strong>Drupal</strong>.</p>\n",
             "rawdescription": "API is the same between **Angular** and **Drupal**.",
             "type": "component",
-            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n    selector: \"bf-logo\",\n    templateUrl: './logo.component.html',\n    // styleUrls: ['../common/style.scss'],\n})\nexport class LogoComponent implements OnInit {\n    constructor() {}\n\n    @Input() name: string;\n\n    @Input() textOnly: boolean;\n\n    @Input() reversed: boolean;\n\n    ngOnInit() {\n        console.log('logo', this);\n    }\n    \n}\n",
+            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from \"@angular/core\";\n\n/**\n * API is the same between **Angular** and **Drupal**.\n *\n */\n \n@Component({\n    selector: \"bf-logo\",\n    templateUrl: './logo.component.html',\n    // styleUrls: ['../common/style.scss'],\n})\nexport class LogoComponent implements OnInit {\n    constructor() {}\n\n    /** videotron | business */\n    @Input() name: string;\n\n    /** medium | small */\n    @Input() size: string;\n\n    @Input() textOnly: boolean;\n\n    @Input() reversed: boolean;\n\n    ngOnInit() {\n        console.log('logo', this);\n    }\n    \n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -815,7 +900,7 @@
         },
         {
             "name": "TwigContainerComponent",
-            "id": "component-TwigContainerComponent-f208a67e0ba8d036713db6a3dfd6b496",
+            "id": "component-TwigContainerComponent-61511870c86cdd144c959d663de38aa6",
             "file": "projects/front-end-library/src/utils/twig-container/twig-container.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.None"
@@ -932,7 +1017,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter, SecurityContext, SimpleChange} from '@angular/core';\nimport { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';\nimport { isDevMode } from '@angular/core';\n\n@Component({\n  selector: 'twig-container',\n  templateUrl: './twig-container.html',\n  styleUrls: [],\n  encapsulation: ViewEncapsulation.None\n})\nexport class TwigContainerComponent implements OnInit {\n  constructor(private sanitizer: DomSanitizer) {\n      console.log('isDevMode', isDevMode());\n  }\n\n  private iframeUrl: SafeResourceUrl;\n\n  private elementPath: string;\n\n  private props: object;\n\n  ngOnInit() {\n    console.log('ngOnInit', this);\n  }\n\n  ngOnChanges(changes:SimpleChange) {\n    console.log('ngOnChanges', this, changes);\n  }\n\n  ngDoCheck() {\n    console.log('ngDoCheck', this, this.props);\n    \n    const newProps = {...this};\n    delete newProps.props;\n    delete newProps.sanitizer;\n    delete newProps.iframeUrl;\n\n    if (this.elementPath && this.elementPath.length && newProps !== this.props)\n    {\n        this.props = newProps;\n        this.updateIframeUrl(newProps);\n    }\n  }\n\n  updateIframeUrl(props) {\n    const paramsString = Object.keys(props).map(function(key) {\n        console.log('updateIframeUrl', key);\n        if (key !== 'sanitizer' && key !== 'iframeUrl') {\n            const value = (['object'].includes(typeof props[key])) ? JSON.stringify(props[key]) : props[key];\n            if (value !== '') {\n                return key + '=' + value;\n            }\n        }\n    }).join('&');\n    \n    const baseURL = isDevMode() ? 'http://localhost:3001/' : '/'\n    const url = baseURL + 'api/twig?' + paramsString;\n    \n    this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);\n  }\n}\n",
+            "sourceCode": "import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter, SecurityContext, SimpleChange} from '@angular/core';\nimport { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';\nimport { isDevMode } from '@angular/core';\n\n@Component({\n  selector: 'twig-container',\n  templateUrl: './twig-container.html',\n  styleUrls: [],\n  encapsulation: ViewEncapsulation.None\n})\nexport class TwigContainerComponent implements OnInit {\n  constructor(private sanitizer: DomSanitizer) {\n      console.log('isDevMode', isDevMode());\n  }\n\n  private iframeUrl: SafeResourceUrl;\n\n  private elementPath: string;\n\n  private props: object;\n\n  ngOnInit() {\n    console.log('ngOnInit', this);\n  }\n\n  ngOnChanges(changes:SimpleChange) {\n    console.log('ngOnChanges', this, changes);\n  }\n\n  ngDoCheck() {\n    console.log('ngDoCheck', this, this.props);\n    \n    const newProps = {...this};\n    delete newProps.props;\n    delete newProps.sanitizer;\n    delete newProps.iframeUrl;\n\n    if (this.elementPath && this.elementPath.length && newProps !== this.props)\n    {\n        this.props = newProps;\n        this.updateIframeUrl(newProps);\n    }\n  }\n\n  updateIframeUrl(props) {\n    const paramsString = Object.keys(props).map(function(key) {\n        console.log('updateIframeUrl', key);\n        if ( !['iframeUrl', 'sanitizer'].includes(key) && props[key] !== undefined )\n        {\n            const value = (['object'].includes(typeof props[key])) ? JSON.stringify(props[key]) : props[key];\n            if (value !== '')\n            {\n                return key + '=' + value;\n            }\n        }\n    }).join('&');\n    \n    const baseURL = isDevMode() ? 'http://localhost:3001/' : '/'\n    const url = baseURL + 'api/twig?' + paramsString;\n    \n    this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1112,6 +1197,43 @@
             ]
         },
         {
+            "name": "IconModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "IconComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "IconComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
             "name": "InputSearchModule",
             "children": [
                 {
@@ -1274,12 +1396,12 @@
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
             },
             {
-                "name": "footerLinks",
+                "name": "icons",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/front-end-library/src/lib/components/navigation-footer/_doc/data.ts",
+                "file": "projects/front-end-library/src/lib/components/icon/_doc/data.ts",
                 "type": "[]",
-                "defaultValue": "[\n    { sectionTitle:'Discover', links: [\n            { href:\"\", label:\"HELIX Experience\" },\n            { href:\"\", label:\"Internet\" },\n            { href:\"\", label:\"TV\" },\n            { href:\"\", label:\"TOC / Voice\"},\n            { href:\"\", label:\"Domotic\"},\n        ] },\n        { sectionTitle:'Shop', links: [\n            { href:\"\", label:\"Bundle Deals\" },\n            { href:\"\", label:\"Internet Offers\" },\n            { href:\"\", label:\"Equipments\" },\n        ] },\n        { sectionTitle:'My Helix', links: [\n            { href:\"\", label:\"Overview\" },\n            { href:\"\", label:\"Billing Payment\" },\n            { href:\"\", label:\"Services\" },\n            { href:\"\", label:\"Profile Settings\" },\n            { href:\"\", label:\"Pay my Bill\" },\n            { href:\"\", label:\"Manage my Account\" },\n        ] },\n        { sectionTitle:'Support', links: [\n            { href:\"\", label:\"Helix Customer Service\" },\n            { href:\"\", label:\"Bills Payments\" },\n            { href:\"\", label:\"Helix Help\" },\n            { href:\"\", label:\"Support Forums\" },\n        ] },\n        { sectionTitle:'Ressources', links: [\n            { href:\"\", label:\"TV Everywhere\" },\n            { href:\"\", label:\"Webmail\" },\n            { href:\"\", label:\"Club illico\" },\n            { href:\"\", label:\"Store Locator\" },\n            { href:\"\", label:\"Contact Us\" },\n        ] },\n    ]"
+                "defaultValue": "[\n    // '_icon-font-awesome-stack',\n    // '_icon-font-awesome',\n    'arrow-to-bottom',\n    'arrow-to-right--breadcrumb',\n    'arrow-to-right',\n    'arrow-to-top',\n    'bullet-rating',\n    'step-number',\n    'svg-accessibility',\n    'svg-app-store-fr',\n    'svg-application-helix-stream',\n    'svg-application-helix',\n    'svg-arrow-circle-left',\n    'svg-arrow-circle-right',\n    'svg-arrow-sort-asc',\n    'svg-arrow-sort-desc',\n    'svg-arrow-sort',\n    'svg-attention',\n    'svg-boundary',\n    'svg-business',\n    'svg-calendar',\n    'svg-call',\n    'svg-cart-mini',\n    'svg-cart',\n    'svg-check-eligibility',\n    'svg-checkbox-selected',\n    'svg-checkmark-circle',\n    'svg-checkmark',\n    'svg-clock',\n    'svg-cloud-dvr',\n    'svg-collapse-trigger-arrow-down',\n    'svg-collapse-trigger-arrow-up',\n    'svg-device',\n    'svg-download',\n    'svg-edit',\n    'svg-equipment',\n    'svg-error',\n    'svg-external-link',\n    'svg-eye-dashed',\n    'svg-eye',\n    'svg-family',\n    'svg-file-billing',\n    'svg-filter',\n    'svg-gateway',\n    'svg-google-store-fr',\n    'svg-handheld',\n    'svg-handshake',\n    'svg-helix-tv-app',\n    'svg-helix-tv',\n    'svg-helix',\n    'svg-important',\n    'svg-installation',\n    'svg-internet',\n    'svg-interrogation',\n    'svg-letter',\n    'svg-lightbulb',\n    'svg-lock',\n    'svg-logo-videotron',\n    'svg-manage',\n    'svg-mastercard',\n    'svg-minus-bold',\n    'svg-minus-circle',\n    'svg-minus',\n    'svg-move',\n    'svg-other-services',\n    'svg-parental-control',\n    'svg-pdf',\n    'svg-person',\n    'svg-pin',\n    'svg-plus-bold',\n    'svg-plus-circle',\n    'svg-plus',\n    'svg-pod',\n    'svg-reset',\n    'svg-search',\n    'svg-social',\n    'svg-support',\n    'svg-terminal-handheld',\n    'svg-terminal',\n    'svg-tpc',\n    'svg-trash',\n    'svg-travel',\n    'svg-truck',\n    'svg-tv',\n    'svg-uninstallation',\n    'svg-unlimited',\n    'svg-upload',\n    'svg-user-profile',\n    'svg-video-play',\n    'svg-voice-command',\n    'svg-wifi',\n    'svg-x',\n    // 'svg',\n]"
             },
             {
                 "name": "linkFields",
@@ -1288,6 +1410,14 @@
                 "file": "projects/front-end-library/src/lib/components/navigation-footer/_doc/data.ts",
                 "type": "[]",
                 "defaultValue": "[{ href:\"\", label:\"Abous Us\" },{ href:\"\", label:\"Careers\" },{ href:\"\", label:\"Terms of Use\" },{ href:\"\", label:\"Private\" },{ href:\"\", label:\"Accessibility\" }]"
+            },
+            {
+                "name": "links",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/front-end-library/src/lib/components/navigation-footer/_doc/data.ts",
+                "type": "[]",
+                "defaultValue": "[\n    { sectionTitle:'Discover', links: [\n            { href:\"\", label:\"HELIX Experience\" },\n            { href:\"\", label:\"Internet\" },\n            { href:\"\", label:\"TV\" },\n            { href:\"\", label:\"TOC / Voice\"},\n            { href:\"\", label:\"Domotic\"},\n        ] },\n        { sectionTitle:'Shop', links: [\n            { href:\"\", label:\"Bundle Deals\" },\n            { href:\"\", label:\"Internet Offers\" },\n            { href:\"\", label:\"Equipments\" },\n        ] },\n        { sectionTitle:'My Helix', links: [\n            { href:\"\", label:\"Overview\" },\n            { href:\"\", label:\"Billing Payment\" },\n            { href:\"\", label:\"Services\" },\n            { href:\"\", label:\"Profile Settings\" },\n            { href:\"\", label:\"Pay my Bill\" },\n            { href:\"\", label:\"Manage my Account\" },\n        ] },\n        { sectionTitle:'Support', links: [\n            { href:\"\", label:\"Helix Customer Service\" },\n            { href:\"\", label:\"Bills Payments\" },\n            { href:\"\", label:\"Helix Help\" },\n            { href:\"\", label:\"Support Forums\" },\n        ] },\n        { sectionTitle:'Ressources', links: [\n            { href:\"\", label:\"TV Everywhere\" },\n            { href:\"\", label:\"Webmail\" },\n            { href:\"\", label:\"Club illico\" },\n            { href:\"\", label:\"Store Locator\" },\n            { href:\"\", label:\"Contact Us\" },\n        ] },\n    ]"
             },
             {
                 "name": "modules",
@@ -1303,7 +1433,7 @@
                 "subtype": "variable",
                 "file": "projects/front-end-library/src/lib/components/navigation-header/_doc/data.ts",
                 "type": "[]",
-                "defaultValue": "[\n    {\n        label:\"Discover\", href:\"\", class:\"active\",\n        subItems: [\n            {\n                label:\"The Helix experience\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Voice command\", href:\"\", class:\"\" },\n                    { label:\"Helix equipment\", href:\"\", class:\"\" }\n                ]\n            },\n            {\n                label:\"Helix TV\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Your entertainement at a glances\", href:\"\", class:\"\" },\n                    { label:\"Channels\", href:\"\", class:\"\" },\n                    { label:\"Entertainement platforms\", href:\"\", class:\"\" },\n                    { label:\"HElix Internet\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n            {\n                label:\"Mobility\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Coverage and mobile network\", href:\"\", class:\"\" },\n                    { label:\"Travel\", href:\"\", class:\"\" },\n                    { label:\"Wi-Fi calling\", href:\"\", class:\"\" },\n                    { label:\"Club illico mobile\", href:\"\", class:\"\" },\n                    { label:\"Manufacturers\", href:\"\", class:\"\" },\n                ]\n            },\n            {\n                label:\"\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Club illico\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"We recycle program\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"The videotron PLUS program\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Promotions\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n        ],\n        mega: [\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"The videotron PLUS program\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n        ]\n    },{label:\"Shop\", href:\"\",class:\"\",subItemsMultiDropdown: [\n        {catLabel:\"Mobile\", href:\"\", class:\"\",iconName:\"mobility\",\n        subdropdownItems: [{label:\"Explore Mobile section\", href:\"\", class:\"\",listItems: [\n{ label:\"Plans\", href:\"\", class:\"font-weight-bold\" },\n{ label:\"Mobile plans\", href:\"\", class:\"\" },\n{ label:\"Mobile options\", href:\"\", class:\"\" },\n{ label:\"Tablet plans\", href:\"\", class:\"\" },\n{ label:\"Family plans\", href:\"\", class:\"\" },\n{ label:\"Multiline Mobile plans\", href:\"\", class:\"\" },\n{ label:\"Shop by budget\", href:\"\", class:\"font-weight-bold\" }],},{label:\"Mobile devices\", href:\"\", class:\"\",listItems: [\n{ label:\"Mobile phones\", href:\"\", class:\"\" },\n{ label:\"Bring you own phone\", href:\"\", class:\"\" },\n{ label:\"Exhcange your phone\", href:\"\", class:\"\" },\n{ label:\"Phone protection\", href:\"\", class:\"\" },\n{ label:\"Tablets\", href:\"\", class:\"\" },\n{ label:\"Mobile accessories\", href:\"\", class:\"font-weight-bold\" }]},{listItems: [\n{ label:\"Promotions\", href:\"\", class:\"font-weight-bold\" },\n]\n},]},\n            {\n                catLabel:\"Multi-product bundles\", href:\"\", class:\"\",\n                iconName:\"packages\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Helix TV\", href:\"\", class:\"\" },\n                            { label:\"Helix Internet\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other custom bundles\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Promotions\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Internet\", href:\"\", class:\"\",\n                iconName:\"internet\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix Internet plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Helix internet\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Helix equipment\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other Internet plans\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Promotions\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Television\", href:\"\", class:\"\",\n                iconName:\"television\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Helix TV\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Your entertainement at a glance\", href:\"\", class:\"\" },\n                            { label:\"Entertainment platforms\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other TV packages\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Club illico\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", },\n                ]\n            }\n        ]\n    },\n]"
+                "defaultValue": "[]"
             },
             {
                 "name": "navItems1",
@@ -1314,12 +1444,12 @@
                 "defaultValue": "[\n    {\n        label:\"Discover\", href:\"\", class:\"active\",\n        subItems: [\n            {\n                label:\"The Helix experience\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Voice command\", href:\"\", class:\"\" },\n                    { label:\"Helix equipment\", href:\"\", class:\"\" }\n                ]\n            },\n            {\n                label:\"Helix TV\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Your entertainement at a glances\", href:\"\", class:\"\" },\n                    { label:\"Channels\", href:\"\", class:\"\" },\n                    { label:\"Entertainement platforms\", href:\"\", class:\"\" },\n                    { label:\"HElix Internet\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n            {\n                label:\"Mobility\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Coverage and mobile network\", href:\"\", class:\"\" },\n                    { label:\"Travel\", href:\"\", class:\"\" },\n                    { label:\"Wi-Fi calling\", href:\"\", class:\"\" },\n                    { label:\"Club illico mobile\", href:\"\", class:\"\" },\n                    { label:\"Manufacturers\", href:\"\", class:\"\" },\n                ]\n            },\n            {\n                label:\"\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Club illico\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"We recycle program\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"The videotron PLUS program\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Promotions\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n        ],\n        mega: [\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"The videotron PLUS program\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n        ]\n    },\n    {\n        label:\"Shop\", href:\"\", class:\"\",\n        subItemsMultiDropdown: [\n            {\n                catLabel:\"Mobile\", href:\"\", class:\"\",\n                iconName:\"mobility\",\n                subdropdownItems: [\n                    {\n                        label:\"Explore Mobile section\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Plans\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Mobile plans\", href:\"\", class:\"\" },\n                            { label:\"Mobile options\", href:\"\", class:\"\" },\n                            { label:\"Tablet plans\", href:\"\", class:\"\" },\n                            { label:\"Family plans\", href:\"\", class:\"\" },\n                            { label:\"Multiline Mobile plans\", href:\"\", class:\"\" },\n                            { label:\"Shop by budget\", href:\"\", class:\"font-weight-bold\" },\n                        ],\n\n                    },\n                    {\n                        label:\"Mobile devices\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Mobile phones\", href:\"\", class:\"\" },\n                            { label:\"Bring you own phone\", href:\"\", class:\"\" },\n                            { label:\"Exhcange your phone\", href:\"\", class:\"\" },\n                            { label:\"Phone protection\", href:\"\", class:\"\" },\n                            { label:\"Tablets\", href:\"\", class:\"\" },\n                            { label:\"Mobile accessories\", href:\"\", class:\"font-weight-bold\" },\n                        ]\n                    },\n                    {\n                        listItems: [\n                            { label:\"Promotions\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Coverage and mobile network\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Travel\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Wi-Fi calling\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Club illico mobile\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"User Centre +\", href:\"\", class:\"font-weight-bold\" },\n                        ]\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Multi-product bundles\", href:\"\", class:\"\",\n                iconName:\"packages\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Helix TV\", href:\"\", class:\"\" },\n                            { label:\"Helix Internet\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other custom bundles\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Promotions\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Internet\", href:\"\", class:\"\",\n                iconName:\"internet\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix Internet plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Helix internet\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Helix equipment\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other Internet plans\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Promotions\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Television\", href:\"\", class:\"\",\n                iconName:\"television\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Helix TV\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Your entertainement at a glance\", href:\"\", class:\"\" },\n                            { label:\"Entertainment platforms\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other TV packages\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Club illico\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Telephony\", href:\"\", class:\"\",\n                iconName:\"telephony\",\n                subdropdownItems: [\n                    {\n                        label:\"Explore the Residential Telephone section\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Home phone plans\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Long distance\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"À la carte options\", href:\"\", class:\"font-weight-bold\" },\n                        ]\n                    },\n                    {\n                        label:\"Promotions\", href:\"\", class:\"\",\n                        listItems: []\n                    }\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n        ],\n\n    },\n    {\n        label:\"Support\", href:\"\", class:\"\",\n        subItems: [\n            {\n                subItems: [\n                    { label:\"Explore support section\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Account and invoice\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Mobile\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Internet\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Television\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Telephony\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Helix\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n            {\n                label:\"Your Customer Centre\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Your profile\", href:\"\", class:\"\" },\n                    { label:\"Your Internet usage\", href:\"\", class:\"\" },\n                    { label:\"Your mobile usage\", href:\"\", class:\"\" },\n                ]\n            },\n            {\n                subItems: [\n                    { label:\"My Helix Account\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"We recycle program\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n            {\n                label:\"Frequently asked questions\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"How do I reset my voicemail PIN?\", href:\"\", class:\"\" },\n                    { label:\"How do I know when I've reached my data overage limits?\", href:\"\", class:\"\" },\n                    { label:\"How do I program my new illico remote?\", href:\"\", class:\"\" },\n                    { label:\"How do I sign up for the online invoicing service?\", href:\"\", class:\"\" },\n                    { label:\"View all questions\", href:\"\", class:\"link\" },\n                ]\n            },\n        ],\n        mega: [\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n        ]\n    },\n    {\n        label:\"Customer centre\", href:\"\", class:\"\",\n        subItems: [\n            {\n                label:\"Account and invoice\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"View your invoice\", href:\"\", class:\"\" },\n                    { label:\"Sign up for online billing\", href:\"\", class:\"\" },\n                    { label:\"Change your address\", href:\"\", class:\"\" }\n                ]\n            },\n            {\n                label:\"My Helix account and billing\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"View your Helix invoice\", href:\"\", class:\"\" },\n                    { label:\"View your Helix services\", href:\"\", class:\"\" }\n                ]\n            },\n            {\n                label:\"Mobile\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"View your usage\", href:\"\", class:\"\" },\n                    { label:\"Add a data add-on\", href:\"\", class:\"\" },\n                    { label:\"Internet\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"View your usage\", href:\"\", class:\"\" },\n                    { label:\"Add a data add-on\", href:\"\", class:\"\" },\n                ]\n            },\n        {\n            label:\"Television\", href:\"\", class:\"\",\n            subItems: [\n                { label:\"Record a show remotely\", href:\"\", class:\"\" },\n                { label:\"Modify your channel selection\", href:\"\", class:\"\" },\n                { label:\"Telephony\", href:\"\", class:\"font-weight-bold\" },\n                { label:\"Customize your options\", href:\"\", class:\"\" },\n                { label:\"Reset your voicemail PIN\", href:\"\", class:\"\" },\n                { label:\"Download the UC+ app\", href:\"\", class:\"font-weight-bold\" },\n            ]\n        },\n        ],\n            mega: [\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Connect and subscribe to the Customer Centre\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"My Helix Account\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n        ]\n    },\n]"
             },
             {
-                "name": "navItems2",
+                "name": "navItems3",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/front-end-library/src/lib/components/navigation-header/_doc/data.ts",
                 "type": "[]",
-                "defaultValue": "[]"
+                "defaultValue": "[\n    {\n        label:\"Discover\", href:\"\", class:\"active\",\n        subItems: [\n            {\n                label:\"The Helix experience\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Voice command\", href:\"\", class:\"\" },\n                    { label:\"Helix equipment\", href:\"\", class:\"\" }\n                ]\n            },\n            {\n                label:\"Helix TV\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Your entertainement at a glances\", href:\"\", class:\"\" },\n                    { label:\"Channels\", href:\"\", class:\"\" },\n                    { label:\"Entertainement platforms\", href:\"\", class:\"\" },\n                    { label:\"HElix Internet\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n            {\n                label:\"Mobility\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Coverage and mobile network\", href:\"\", class:\"\" },\n                    { label:\"Travel\", href:\"\", class:\"\" },\n                    { label:\"Wi-Fi calling\", href:\"\", class:\"\" },\n                    { label:\"Club illico mobile\", href:\"\", class:\"\" },\n                    { label:\"Manufacturers\", href:\"\", class:\"\" },\n                ]\n            },\n            {\n                label:\"\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Club illico\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"We recycle program\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"The videotron PLUS program\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Promotions\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n        ],\n        mega: [\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"The videotron PLUS program\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n        ]\n    },{label:\"Shop\", href:\"\",class:\"\",subItemsMultiDropdown: [\n        {catLabel:\"Mobile\", href:\"\", class:\"\",iconName:\"mobility\",\n        subdropdownItems: [{label:\"Explore Mobile section\", href:\"\", class:\"\",listItems: [\n{ label:\"Plans\", href:\"\", class:\"font-weight-bold\" },\n{ label:\"Mobile plans\", href:\"\", class:\"\" },\n{ label:\"Mobile options\", href:\"\", class:\"\" },\n{ label:\"Tablet plans\", href:\"\", class:\"\" },\n{ label:\"Family plans\", href:\"\", class:\"\" },\n{ label:\"Multiline Mobile plans\", href:\"\", class:\"\" },\n{ label:\"Shop by budget\", href:\"\", class:\"font-weight-bold\" }],},{label:\"Mobile devices\", href:\"\", class:\"\",listItems: [\n{ label:\"Mobile phones\", href:\"\", class:\"\" },\n{ label:\"Bring you own phone\", href:\"\", class:\"\" },\n{ label:\"Exhcange your phone\", href:\"\", class:\"\" },\n{ label:\"Phone protection\", href:\"\", class:\"\" },\n{ label:\"Tablets\", href:\"\", class:\"\" },\n{ label:\"Mobile accessories\", href:\"\", class:\"font-weight-bold\" }]},{listItems: [\n{ label:\"Promotions\", href:\"\", class:\"font-weight-bold\" },\n]\n},]},\n            {\n                catLabel:\"Multi-product bundles\", href:\"\", class:\"\",\n                iconName:\"packages\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Helix TV\", href:\"\", class:\"\" },\n                            { label:\"Helix Internet\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other custom bundles\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Promotions\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Internet\", href:\"\", class:\"\",\n                iconName:\"internet\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix Internet plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Helix internet\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Helix equipment\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other Internet plans\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Promotions\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Television\", href:\"\", class:\"\",\n                iconName:\"television\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Helix TV\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Your entertainement at a glance\", href:\"\", class:\"\" },\n                            { label:\"Entertainment platforms\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other TV packages\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Club illico\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", },\n                ]\n            }\n        ]\n    },\n]"
             },
             {
                 "name": "require",
@@ -1420,15 +1550,17 @@
                     "type": "literal type"
                 }
             ],
-            "projects/front-end-library/src/lib/components/navigation-footer/_doc/data.ts": [
+            "projects/front-end-library/src/lib/components/icon/_doc/data.ts": [
                 {
-                    "name": "footerLinks",
+                    "name": "icons",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/front-end-library/src/lib/components/navigation-footer/_doc/data.ts",
+                    "file": "projects/front-end-library/src/lib/components/icon/_doc/data.ts",
                     "type": "[]",
-                    "defaultValue": "[\n    { sectionTitle:'Discover', links: [\n            { href:\"\", label:\"HELIX Experience\" },\n            { href:\"\", label:\"Internet\" },\n            { href:\"\", label:\"TV\" },\n            { href:\"\", label:\"TOC / Voice\"},\n            { href:\"\", label:\"Domotic\"},\n        ] },\n        { sectionTitle:'Shop', links: [\n            { href:\"\", label:\"Bundle Deals\" },\n            { href:\"\", label:\"Internet Offers\" },\n            { href:\"\", label:\"Equipments\" },\n        ] },\n        { sectionTitle:'My Helix', links: [\n            { href:\"\", label:\"Overview\" },\n            { href:\"\", label:\"Billing Payment\" },\n            { href:\"\", label:\"Services\" },\n            { href:\"\", label:\"Profile Settings\" },\n            { href:\"\", label:\"Pay my Bill\" },\n            { href:\"\", label:\"Manage my Account\" },\n        ] },\n        { sectionTitle:'Support', links: [\n            { href:\"\", label:\"Helix Customer Service\" },\n            { href:\"\", label:\"Bills Payments\" },\n            { href:\"\", label:\"Helix Help\" },\n            { href:\"\", label:\"Support Forums\" },\n        ] },\n        { sectionTitle:'Ressources', links: [\n            { href:\"\", label:\"TV Everywhere\" },\n            { href:\"\", label:\"Webmail\" },\n            { href:\"\", label:\"Club illico\" },\n            { href:\"\", label:\"Store Locator\" },\n            { href:\"\", label:\"Contact Us\" },\n        ] },\n    ]"
-                },
+                    "defaultValue": "[\n    // '_icon-font-awesome-stack',\n    // '_icon-font-awesome',\n    'arrow-to-bottom',\n    'arrow-to-right--breadcrumb',\n    'arrow-to-right',\n    'arrow-to-top',\n    'bullet-rating',\n    'step-number',\n    'svg-accessibility',\n    'svg-app-store-fr',\n    'svg-application-helix-stream',\n    'svg-application-helix',\n    'svg-arrow-circle-left',\n    'svg-arrow-circle-right',\n    'svg-arrow-sort-asc',\n    'svg-arrow-sort-desc',\n    'svg-arrow-sort',\n    'svg-attention',\n    'svg-boundary',\n    'svg-business',\n    'svg-calendar',\n    'svg-call',\n    'svg-cart-mini',\n    'svg-cart',\n    'svg-check-eligibility',\n    'svg-checkbox-selected',\n    'svg-checkmark-circle',\n    'svg-checkmark',\n    'svg-clock',\n    'svg-cloud-dvr',\n    'svg-collapse-trigger-arrow-down',\n    'svg-collapse-trigger-arrow-up',\n    'svg-device',\n    'svg-download',\n    'svg-edit',\n    'svg-equipment',\n    'svg-error',\n    'svg-external-link',\n    'svg-eye-dashed',\n    'svg-eye',\n    'svg-family',\n    'svg-file-billing',\n    'svg-filter',\n    'svg-gateway',\n    'svg-google-store-fr',\n    'svg-handheld',\n    'svg-handshake',\n    'svg-helix-tv-app',\n    'svg-helix-tv',\n    'svg-helix',\n    'svg-important',\n    'svg-installation',\n    'svg-internet',\n    'svg-interrogation',\n    'svg-letter',\n    'svg-lightbulb',\n    'svg-lock',\n    'svg-logo-videotron',\n    'svg-manage',\n    'svg-mastercard',\n    'svg-minus-bold',\n    'svg-minus-circle',\n    'svg-minus',\n    'svg-move',\n    'svg-other-services',\n    'svg-parental-control',\n    'svg-pdf',\n    'svg-person',\n    'svg-pin',\n    'svg-plus-bold',\n    'svg-plus-circle',\n    'svg-plus',\n    'svg-pod',\n    'svg-reset',\n    'svg-search',\n    'svg-social',\n    'svg-support',\n    'svg-terminal-handheld',\n    'svg-terminal',\n    'svg-tpc',\n    'svg-trash',\n    'svg-travel',\n    'svg-truck',\n    'svg-tv',\n    'svg-uninstallation',\n    'svg-unlimited',\n    'svg-upload',\n    'svg-user-profile',\n    'svg-video-play',\n    'svg-voice-command',\n    'svg-wifi',\n    'svg-x',\n    // 'svg',\n]"
+                }
+            ],
+            "projects/front-end-library/src/lib/components/navigation-footer/_doc/data.ts": [
                 {
                     "name": "linkFields",
                     "ctype": "miscellaneous",
@@ -1436,6 +1568,14 @@
                     "file": "projects/front-end-library/src/lib/components/navigation-footer/_doc/data.ts",
                     "type": "[]",
                     "defaultValue": "[{ href:\"\", label:\"Abous Us\" },{ href:\"\", label:\"Careers\" },{ href:\"\", label:\"Terms of Use\" },{ href:\"\", label:\"Private\" },{ href:\"\", label:\"Accessibility\" }]"
+                },
+                {
+                    "name": "links",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/front-end-library/src/lib/components/navigation-footer/_doc/data.ts",
+                    "type": "[]",
+                    "defaultValue": "[\n    { sectionTitle:'Discover', links: [\n            { href:\"\", label:\"HELIX Experience\" },\n            { href:\"\", label:\"Internet\" },\n            { href:\"\", label:\"TV\" },\n            { href:\"\", label:\"TOC / Voice\"},\n            { href:\"\", label:\"Domotic\"},\n        ] },\n        { sectionTitle:'Shop', links: [\n            { href:\"\", label:\"Bundle Deals\" },\n            { href:\"\", label:\"Internet Offers\" },\n            { href:\"\", label:\"Equipments\" },\n        ] },\n        { sectionTitle:'My Helix', links: [\n            { href:\"\", label:\"Overview\" },\n            { href:\"\", label:\"Billing Payment\" },\n            { href:\"\", label:\"Services\" },\n            { href:\"\", label:\"Profile Settings\" },\n            { href:\"\", label:\"Pay my Bill\" },\n            { href:\"\", label:\"Manage my Account\" },\n        ] },\n        { sectionTitle:'Support', links: [\n            { href:\"\", label:\"Helix Customer Service\" },\n            { href:\"\", label:\"Bills Payments\" },\n            { href:\"\", label:\"Helix Help\" },\n            { href:\"\", label:\"Support Forums\" },\n        ] },\n        { sectionTitle:'Ressources', links: [\n            { href:\"\", label:\"TV Everywhere\" },\n            { href:\"\", label:\"Webmail\" },\n            { href:\"\", label:\"Club illico\" },\n            { href:\"\", label:\"Store Locator\" },\n            { href:\"\", label:\"Contact Us\" },\n        ] },\n    ]"
                 }
             ],
             "projects/front-end-library/src/lib/components/navigation-header/_doc/data.ts": [
@@ -1445,7 +1585,7 @@
                     "subtype": "variable",
                     "file": "projects/front-end-library/src/lib/components/navigation-header/_doc/data.ts",
                     "type": "[]",
-                    "defaultValue": "[\n    {\n        label:\"Discover\", href:\"\", class:\"active\",\n        subItems: [\n            {\n                label:\"The Helix experience\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Voice command\", href:\"\", class:\"\" },\n                    { label:\"Helix equipment\", href:\"\", class:\"\" }\n                ]\n            },\n            {\n                label:\"Helix TV\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Your entertainement at a glances\", href:\"\", class:\"\" },\n                    { label:\"Channels\", href:\"\", class:\"\" },\n                    { label:\"Entertainement platforms\", href:\"\", class:\"\" },\n                    { label:\"HElix Internet\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n            {\n                label:\"Mobility\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Coverage and mobile network\", href:\"\", class:\"\" },\n                    { label:\"Travel\", href:\"\", class:\"\" },\n                    { label:\"Wi-Fi calling\", href:\"\", class:\"\" },\n                    { label:\"Club illico mobile\", href:\"\", class:\"\" },\n                    { label:\"Manufacturers\", href:\"\", class:\"\" },\n                ]\n            },\n            {\n                label:\"\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Club illico\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"We recycle program\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"The videotron PLUS program\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Promotions\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n        ],\n        mega: [\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"The videotron PLUS program\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n        ]\n    },{label:\"Shop\", href:\"\",class:\"\",subItemsMultiDropdown: [\n        {catLabel:\"Mobile\", href:\"\", class:\"\",iconName:\"mobility\",\n        subdropdownItems: [{label:\"Explore Mobile section\", href:\"\", class:\"\",listItems: [\n{ label:\"Plans\", href:\"\", class:\"font-weight-bold\" },\n{ label:\"Mobile plans\", href:\"\", class:\"\" },\n{ label:\"Mobile options\", href:\"\", class:\"\" },\n{ label:\"Tablet plans\", href:\"\", class:\"\" },\n{ label:\"Family plans\", href:\"\", class:\"\" },\n{ label:\"Multiline Mobile plans\", href:\"\", class:\"\" },\n{ label:\"Shop by budget\", href:\"\", class:\"font-weight-bold\" }],},{label:\"Mobile devices\", href:\"\", class:\"\",listItems: [\n{ label:\"Mobile phones\", href:\"\", class:\"\" },\n{ label:\"Bring you own phone\", href:\"\", class:\"\" },\n{ label:\"Exhcange your phone\", href:\"\", class:\"\" },\n{ label:\"Phone protection\", href:\"\", class:\"\" },\n{ label:\"Tablets\", href:\"\", class:\"\" },\n{ label:\"Mobile accessories\", href:\"\", class:\"font-weight-bold\" }]},{listItems: [\n{ label:\"Promotions\", href:\"\", class:\"font-weight-bold\" },\n]\n},]},\n            {\n                catLabel:\"Multi-product bundles\", href:\"\", class:\"\",\n                iconName:\"packages\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Helix TV\", href:\"\", class:\"\" },\n                            { label:\"Helix Internet\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other custom bundles\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Promotions\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Internet\", href:\"\", class:\"\",\n                iconName:\"internet\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix Internet plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Helix internet\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Helix equipment\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other Internet plans\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Promotions\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Television\", href:\"\", class:\"\",\n                iconName:\"television\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Helix TV\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Your entertainement at a glance\", href:\"\", class:\"\" },\n                            { label:\"Entertainment platforms\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other TV packages\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Club illico\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", },\n                ]\n            }\n        ]\n    },\n]"
+                    "defaultValue": "[]"
                 },
                 {
                     "name": "navItems1",
@@ -1456,12 +1596,12 @@
                     "defaultValue": "[\n    {\n        label:\"Discover\", href:\"\", class:\"active\",\n        subItems: [\n            {\n                label:\"The Helix experience\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Voice command\", href:\"\", class:\"\" },\n                    { label:\"Helix equipment\", href:\"\", class:\"\" }\n                ]\n            },\n            {\n                label:\"Helix TV\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Your entertainement at a glances\", href:\"\", class:\"\" },\n                    { label:\"Channels\", href:\"\", class:\"\" },\n                    { label:\"Entertainement platforms\", href:\"\", class:\"\" },\n                    { label:\"HElix Internet\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n            {\n                label:\"Mobility\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Coverage and mobile network\", href:\"\", class:\"\" },\n                    { label:\"Travel\", href:\"\", class:\"\" },\n                    { label:\"Wi-Fi calling\", href:\"\", class:\"\" },\n                    { label:\"Club illico mobile\", href:\"\", class:\"\" },\n                    { label:\"Manufacturers\", href:\"\", class:\"\" },\n                ]\n            },\n            {\n                label:\"\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Club illico\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"We recycle program\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"The videotron PLUS program\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Promotions\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n        ],\n        mega: [\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"The videotron PLUS program\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n        ]\n    },\n    {\n        label:\"Shop\", href:\"\", class:\"\",\n        subItemsMultiDropdown: [\n            {\n                catLabel:\"Mobile\", href:\"\", class:\"\",\n                iconName:\"mobility\",\n                subdropdownItems: [\n                    {\n                        label:\"Explore Mobile section\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Plans\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Mobile plans\", href:\"\", class:\"\" },\n                            { label:\"Mobile options\", href:\"\", class:\"\" },\n                            { label:\"Tablet plans\", href:\"\", class:\"\" },\n                            { label:\"Family plans\", href:\"\", class:\"\" },\n                            { label:\"Multiline Mobile plans\", href:\"\", class:\"\" },\n                            { label:\"Shop by budget\", href:\"\", class:\"font-weight-bold\" },\n                        ],\n\n                    },\n                    {\n                        label:\"Mobile devices\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Mobile phones\", href:\"\", class:\"\" },\n                            { label:\"Bring you own phone\", href:\"\", class:\"\" },\n                            { label:\"Exhcange your phone\", href:\"\", class:\"\" },\n                            { label:\"Phone protection\", href:\"\", class:\"\" },\n                            { label:\"Tablets\", href:\"\", class:\"\" },\n                            { label:\"Mobile accessories\", href:\"\", class:\"font-weight-bold\" },\n                        ]\n                    },\n                    {\n                        listItems: [\n                            { label:\"Promotions\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Coverage and mobile network\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Travel\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Wi-Fi calling\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Club illico mobile\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"User Centre +\", href:\"\", class:\"font-weight-bold\" },\n                        ]\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Multi-product bundles\", href:\"\", class:\"\",\n                iconName:\"packages\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Helix TV\", href:\"\", class:\"\" },\n                            { label:\"Helix Internet\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other custom bundles\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Promotions\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Internet\", href:\"\", class:\"\",\n                iconName:\"internet\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix Internet plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Helix internet\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Helix equipment\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other Internet plans\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Promotions\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Television\", href:\"\", class:\"\",\n                iconName:\"television\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Helix TV\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Your entertainement at a glance\", href:\"\", class:\"\" },\n                            { label:\"Entertainment platforms\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other TV packages\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Club illico\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Telephony\", href:\"\", class:\"\",\n                iconName:\"telephony\",\n                subdropdownItems: [\n                    {\n                        label:\"Explore the Residential Telephone section\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Home phone plans\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Long distance\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"À la carte options\", href:\"\", class:\"font-weight-bold\" },\n                        ]\n                    },\n                    {\n                        label:\"Promotions\", href:\"\", class:\"\",\n                        listItems: []\n                    }\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n        ],\n\n    },\n    {\n        label:\"Support\", href:\"\", class:\"\",\n        subItems: [\n            {\n                subItems: [\n                    { label:\"Explore support section\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Account and invoice\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Mobile\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Internet\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Television\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Telephony\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Helix\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n            {\n                label:\"Your Customer Centre\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Your profile\", href:\"\", class:\"\" },\n                    { label:\"Your Internet usage\", href:\"\", class:\"\" },\n                    { label:\"Your mobile usage\", href:\"\", class:\"\" },\n                ]\n            },\n            {\n                subItems: [\n                    { label:\"My Helix Account\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"We recycle program\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n            {\n                label:\"Frequently asked questions\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"How do I reset my voicemail PIN?\", href:\"\", class:\"\" },\n                    { label:\"How do I know when I've reached my data overage limits?\", href:\"\", class:\"\" },\n                    { label:\"How do I program my new illico remote?\", href:\"\", class:\"\" },\n                    { label:\"How do I sign up for the online invoicing service?\", href:\"\", class:\"\" },\n                    { label:\"View all questions\", href:\"\", class:\"link\" },\n                ]\n            },\n        ],\n        mega: [\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n        ]\n    },\n    {\n        label:\"Customer centre\", href:\"\", class:\"\",\n        subItems: [\n            {\n                label:\"Account and invoice\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"View your invoice\", href:\"\", class:\"\" },\n                    { label:\"Sign up for online billing\", href:\"\", class:\"\" },\n                    { label:\"Change your address\", href:\"\", class:\"\" }\n                ]\n            },\n            {\n                label:\"My Helix account and billing\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"View your Helix invoice\", href:\"\", class:\"\" },\n                    { label:\"View your Helix services\", href:\"\", class:\"\" }\n                ]\n            },\n            {\n                label:\"Mobile\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"View your usage\", href:\"\", class:\"\" },\n                    { label:\"Add a data add-on\", href:\"\", class:\"\" },\n                    { label:\"Internet\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"View your usage\", href:\"\", class:\"\" },\n                    { label:\"Add a data add-on\", href:\"\", class:\"\" },\n                ]\n            },\n        {\n            label:\"Television\", href:\"\", class:\"\",\n            subItems: [\n                { label:\"Record a show remotely\", href:\"\", class:\"\" },\n                { label:\"Modify your channel selection\", href:\"\", class:\"\" },\n                { label:\"Telephony\", href:\"\", class:\"font-weight-bold\" },\n                { label:\"Customize your options\", href:\"\", class:\"\" },\n                { label:\"Reset your voicemail PIN\", href:\"\", class:\"\" },\n                { label:\"Download the UC+ app\", href:\"\", class:\"font-weight-bold\" },\n            ]\n        },\n        ],\n            mega: [\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Connect and subscribe to the Customer Centre\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"My Helix Account\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n        ]\n    },\n]"
                 },
                 {
-                    "name": "navItems2",
+                    "name": "navItems3",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/front-end-library/src/lib/components/navigation-header/_doc/data.ts",
                     "type": "[]",
-                    "defaultValue": "[]"
+                    "defaultValue": "[\n    {\n        label:\"Discover\", href:\"\", class:\"active\",\n        subItems: [\n            {\n                label:\"The Helix experience\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Voice command\", href:\"\", class:\"\" },\n                    { label:\"Helix equipment\", href:\"\", class:\"\" }\n                ]\n            },\n            {\n                label:\"Helix TV\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Your entertainement at a glances\", href:\"\", class:\"\" },\n                    { label:\"Channels\", href:\"\", class:\"\" },\n                    { label:\"Entertainement platforms\", href:\"\", class:\"\" },\n                    { label:\"HElix Internet\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n            {\n                label:\"Mobility\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Coverage and mobile network\", href:\"\", class:\"\" },\n                    { label:\"Travel\", href:\"\", class:\"\" },\n                    { label:\"Wi-Fi calling\", href:\"\", class:\"\" },\n                    { label:\"Club illico mobile\", href:\"\", class:\"\" },\n                    { label:\"Manufacturers\", href:\"\", class:\"\" },\n                ]\n            },\n            {\n                label:\"\", href:\"\", class:\"\",\n                subItems: [\n                    { label:\"Club illico\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"We recycle program\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"The videotron PLUS program\", href:\"\", class:\"font-weight-bold\" },\n                    { label:\"Promotions\", href:\"\", class:\"font-weight-bold\" },\n                ]\n            },\n        ],\n        mega: [\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"The videotron PLUS program\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n            {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n        ]\n    },{label:\"Shop\", href:\"\",class:\"\",subItemsMultiDropdown: [\n        {catLabel:\"Mobile\", href:\"\", class:\"\",iconName:\"mobility\",\n        subdropdownItems: [{label:\"Explore Mobile section\", href:\"\", class:\"\",listItems: [\n{ label:\"Plans\", href:\"\", class:\"font-weight-bold\" },\n{ label:\"Mobile plans\", href:\"\", class:\"\" },\n{ label:\"Mobile options\", href:\"\", class:\"\" },\n{ label:\"Tablet plans\", href:\"\", class:\"\" },\n{ label:\"Family plans\", href:\"\", class:\"\" },\n{ label:\"Multiline Mobile plans\", href:\"\", class:\"\" },\n{ label:\"Shop by budget\", href:\"\", class:\"font-weight-bold\" }],},{label:\"Mobile devices\", href:\"\", class:\"\",listItems: [\n{ label:\"Mobile phones\", href:\"\", class:\"\" },\n{ label:\"Bring you own phone\", href:\"\", class:\"\" },\n{ label:\"Exhcange your phone\", href:\"\", class:\"\" },\n{ label:\"Phone protection\", href:\"\", class:\"\" },\n{ label:\"Tablets\", href:\"\", class:\"\" },\n{ label:\"Mobile accessories\", href:\"\", class:\"font-weight-bold\" }]},{listItems: [\n{ label:\"Promotions\", href:\"\", class:\"font-weight-bold\" },\n]\n},]},\n            {\n                catLabel:\"Multi-product bundles\", href:\"\", class:\"\",\n                iconName:\"packages\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Helix TV\", href:\"\", class:\"\" },\n                            { label:\"Helix Internet\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other custom bundles\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Promotions\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Internet\", href:\"\", class:\"\",\n                iconName:\"internet\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix Internet plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Helix internet\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Helix equipment\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other Internet plans\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Promotions\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Videotron the community Forum\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", href: \"\", title: \"Change for HElix\", text: \"Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.\"},\n                ]\n            },\n            {\n                catLabel:\"Television\", href:\"\", class:\"\",\n                iconName:\"television\",\n                subdropdownItems: [\n                    {\n                        label:\"Helix plans\", href:\"\", class:\"\",\n                        listItems: [\n                            { label:\"Helix TV\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"The Helix experience\", href:\"\", class:\"font-weight-bold\" },\n                            { label:\"Your entertainement at a glance\", href:\"\", class:\"\" },\n                            { label:\"Entertainment platforms\", href:\"\", class:\"\" },\n                        ]\n                    },\n                    {\n                        label:\"Other TV packages\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                    {\n                        label:\"Club illico\", href:\"\", class:\"\",\n                        listItems: []\n                    },\n                ],\n                mega: [\n                    {imgSrc: \"https://source.unsplash.com/400x250/?nature\", imgAlt: \"Thumbnail\", },\n                ]\n            }\n        ]\n    },\n]"
                 },
                 {
                     "name": "topBarItems",
@@ -1487,7 +1627,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 5,
+        "count": 6,
         "status": "low",
         "files": [
             {
@@ -1578,6 +1718,25 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/front-end-library/src/lib/components/icon/_doc/data.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "icons",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/front-end-library/src/lib/components/icon/angular/icon.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "IconComponent",
+                "coveragePercent": 14,
+                "coverageCount": "1/7",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/front-end-library/src/lib/components/input-search/angular/input-search.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -1591,16 +1750,16 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "LogoComponent",
-                "coveragePercent": 16,
-                "coverageCount": "1/6",
-                "status": "low"
+                "coveragePercent": 42,
+                "coverageCount": "3/7",
+                "status": "medium"
             },
             {
                 "filePath": "projects/front-end-library/src/lib/components/navigation-footer/_doc/data.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "footerLinks",
+                "name": "linkFields",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -1610,7 +1769,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "linkFields",
+                "name": "links",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -1649,7 +1808,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "navItems2",
+                "name": "navItems3",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -1679,8 +1838,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "HeaderComponent",
-                "coveragePercent": 11,
-                "coverageCount": "1/9",
+                "coveragePercent": 18,
+                "coverageCount": "2/11",
                 "status": "low"
             },
             {

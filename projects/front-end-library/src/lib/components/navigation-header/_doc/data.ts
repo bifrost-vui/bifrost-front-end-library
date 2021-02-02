@@ -287,7 +287,7 @@ const navItems1 = [
 ];
 
 
-export const navItems = [
+export const navItems3 = [
     {
         label:"Discover", href:"", class:"active",
         subItems: [
@@ -432,7 +432,7 @@ export const navItems = [
     },
 ];
 
-export const navItems2 = [];
+export const navItems = [];
 
 
 export const topBarItems = [

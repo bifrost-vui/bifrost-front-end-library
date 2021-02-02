@@ -40,7 +40,7 @@ component-libraries:
 
 ## 3. Add Base style
 
-Replace `uikit-marvel.css` by the one in the NPMpackage. It will provide the same CSS base for all Videotron websites.
+Replace `uikit-marvel.css` by the one in the NPM Package. It will provide the same CSS base for all Videotron websites.
 
 <br/>
 
@@ -82,7 +82,8 @@ In the **head** of your pages:
 
 <img src={imageStorybookCompnentList} style={{maxWidth: '800px'}} />
 
-- In your page, change the path to the component. For example:
+- Select the **Docs Tab** at the top of the component's page and look at the **Source Code** section.
+- Please, take note that we improved the path to the component. So for example:
 ```php
 {% include '@atoms/02-buttons/10-button-outline.twig' %}
 
@@ -92,7 +93,7 @@ In the **head** of your pages:
     outline : true
 } only %}
 ```
-- Check that your props respect the Component API in Storybook.
+- In the **Component API** section, check that you send the right props to your component.
 
 
 ## 5. Themes
@@ -105,7 +106,16 @@ In the **head** of your pages:
 ```
 
 
-## 6. Test Visual Regression
+## 6. Reversed style
+- Some compoments are available in a reversed style. Then you should see the **reversed** props.
+```php
+{% include '@bf-components/button/twig/index.twig' with {
+    reversed : true
+} only %}
+```
+
+
+## 7. Test Visual Regression
 - Check manually the differences in your localhost.
 
 

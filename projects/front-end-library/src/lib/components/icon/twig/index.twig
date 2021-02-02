@@ -1,7 +1,8 @@
-{% set class = (reversed is defined and reversed is same as (true)) ? 'bf-icon reversed' : 'bf-icon ' %}
+{% set classReversed    = (reversed is defined and reversed is same as (true)) ? ' reversed' : '' %}
+{% set classColor       = (color is defined) ? ' color-' ~ color : '' %}
+{% set classSize        = (size is defined) ? ' size-' ~ size : '' %}
+{% set class            = 'bf-icon' ~ classReversed ~ classColor ~ classSize ~ ' ' ~ class %}
 
 {% include '@bf-components/icon/twig/icon-' ~ name|default('svg-truck') ~ '.twig' with {
-    reversed    : reversed|default(false),
-    size        : iconSize|default('2'),
-    class       : class ~ ' ' ~ iconClass,
+    class : class
 } only %}

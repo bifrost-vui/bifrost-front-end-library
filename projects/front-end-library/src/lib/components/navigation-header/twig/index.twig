@@ -1,10 +1,9 @@
 
 {% if hasTopBar is defined and hasTopBar is same as (true) %}
     {% include '@bf-components/navigation-header/twig/top-bar.twig' with {
-        topBarItems             : topBarItems|default([]),
-        topBarSecondaryItems    : topBarSecondaryItems|default([]),
+        items                   : topBar.items|default([]),
+        secondaryItems          : topBar.secondaryItems|default([]),
         isConnected             : isConnected|default(false),
-        class                   : topBarClass|default(''),
         accountHello            : accountHello|default('Hello'),
         accountName             : accountName|default('Benjamin Desjardins'),
         hrefLogOut              : hrefLogOut|default('#'),
@@ -30,19 +29,14 @@
                         <a href="{{ hrefVideotronLogo|default('#') }}" class="navbar-brand__logo-videotron mr-2 d-flex align-items-center d-flex align-items-center justify-content-center">
                             <img src="/images/logo/logo-videotron-icon.svg" alt="Videotron">
                         </a>
-                        <a href="{{ logoHref|default('#') }}" class="d-flex navbar-brand__logo-videotron-text">
-                            {# <img src="{{ logoUrl|default('') }}" height="20" alt="{{ logoAlt|default('') }}"> #}
+                        <a href="{{ logo.href|default('#') }}" class="d-flex navbar-brand__logo-videotron-text">
                             {% include '@bf-components/logo/twig/index.twig' with {
-                                name        : logoName,
+                                name        : logo.name,
                                 textOnly    : true,
                                 langcode    : langcode|default('EN'),
                                 reversed    : reversed,
                             } only %}
                         </a>
-                        
-                        {# <a href="{{ hrefVideotronTextLogo|default('#') }}" class="d-flex navbar-brand__logo-videotron-text">
-                            <img src="{{ logoUrl|default('/images/logo/logo-videotron-text.svg') }}" alt="{{ logoAlt|default('Videotron') }}">
-                        </a> #}
                     </div>
 
                     <div class="d-flex d-lg-none align-items-center">
@@ -69,10 +63,9 @@
                                 data-target="#navbarSearch"
                                 aria-controls="navbarSearch"
                                 aria-expanded="false">
-                            {% include '@bf-components/icon/twig/icon-svg-search.twig' with {
-                                iconName:"x",
-                                iconSize:2,
-                                iconClass:"icon-close m-1"
+                            {% include '@bf-components/icon/twig/index.twig' with {
+                                name    : "svg-search",
+                                class   : "icon-close m-1"
                             } %}
                         </button>
 
@@ -81,13 +74,14 @@
                                 <div class="col-12">
                                 {% block globalSearchMobile %}
                                     {% include '@bf-components/input-search/twig/index.twig' with {
-                                      class: 'mb-0 ml-2 rounded',
-                                      iconColor: 'svg-fill--dark',
-                                      inputClass: 'js-alg-searchbox-input py-1 py-md-3 border-gray--200',
-                                      inputId: 'alg-searchbox-mobile',
-                                      inputPlaceholder: 'What are you looking for?'|t,
-                                      inputIconPosition: ' ',
-                                      reversed: reversed,
+                                        class   : 'mb-0 ml-2 rounded',
+                                        input   : {
+                                            class           : 'js-alg-searchbox-input py-1 py-md-3',
+                                            id              : 'alg-searchbox-mobile',
+                                            placeholder     : 'What are you looking for?'|t,
+                                            iconPosition    : ' ',
+                                      },
+                                      reversed  : reversed,
                                     } %}
                                 {% endblock %}
                                 </div>
@@ -123,13 +117,14 @@
                           <div class="d-flex align-items-center justify-content-between w-100">
                             {% block globalSearch %}
                               {% include '@bf-components/input-search/twig/index.twig' with {
-                                class: 'mb-0 ml-2 rounded',
-                                iconColor: 'svg-fill--dark',
-                                inputClass: 'js-alg-searchbox-input border-gray--200',
-                                inputId: 'alg-searchbox',
-                                inputPlaceholder: 'What are you looking for?'|t,
-                                inputIconPosition: ' ',
-                                reversed: reversed,
+                                class       : 'mb-0 ml-2 rounded',
+                                input       : {
+                                    class           : 'js-alg-searchbox-input',
+                                    id              : 'alg-searchbox',
+                                    placeholder     : 'What are you looking for?'|t,
+                                    iconPosition    : ' ',
+                                },
+                                reversed    : reversed,
                               } %}
                             {% endblock %}
 

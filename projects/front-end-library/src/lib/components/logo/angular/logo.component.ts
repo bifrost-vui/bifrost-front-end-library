@@ -13,7 +13,11 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class LogoComponent implements OnInit {
     constructor() {}
 
+    /** videotron | business */
     @Input() name: string;
+
+    /** medium | small */
+    @Input() size: string;
 
     @Input() textOnly: boolean;
 

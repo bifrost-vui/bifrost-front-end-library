@@ -1,6 +1,9 @@
 const { resolve } = require("path");
 
-const SassGlobImporter = require("node-sass-glob-importer");
+// To continue using node-sass-glob-importer, we need to use sass-loader@7.X.X:
+// See issue: https://github.com/material-components/material-components-web/issues/5135
+const SassGlobImporter = require('node-sass-glob-importer');
+
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -10,7 +13,7 @@ const devMode = process.env.NODE_ENV !== 'production';
 module.exports = {
   entry: {
     'uikit-marvel': resolve(__dirname, "projects/front-end-library/src/lib/js/index.js"),
-    // 'uikit-marvel-livechat': resolve(__dirname, "projects/front-end-library/src/lib/js/widgets/genesys-live-chat/styles.js"),
+    'uikit-marvel-livechat': resolve(__dirname, "projects/front-end-library/src/lib/js/widgets/genesys-live-chat/styles.js"),
     // 'uikit-marvel-demo-etiya': resolve(__dirname, "projects/front-end-library/src/lib/js/demo/etiya/index.js"),
   },
   output: {
@@ -103,8 +106,8 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
-            //   includePaths: ["styles/"],
-            //   webpackImporter: SassGlobImporter()
+              includePaths: ["styles/"],
+              importer: SassGlobImporter()
             }
           }
         ],

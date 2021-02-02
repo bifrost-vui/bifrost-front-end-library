@@ -1,0 +1,35 @@
+{% set reversed = reversed|default(false)|json_parse %}
+
+<div class="pt-4 {% if reversed %}reversed bf-color-bg-ground{% endif %}">
+    {% if name is defined and name is not same as ("undefined") and name is not same as ("All icons") %}
+
+        <div class="d-flex flex-wrap align-items-center justify-content-center h-100">
+            {% include '@bf-components/icon/twig/index.twig' with {
+                name    : name,
+                color   : color,
+                size    : size,
+                class   : class
+            } only %}
+        </div>
+
+    {% else %}
+
+        <div class="container-fluid d-flex flex-wrap align-content-start h-100">
+            {% if icons|json_parse is defined %}
+                {% for iconName in icons|json_parse %}
+
+                    <div class="m-4" title="{{iconName}}">
+                        {% include '@bf-components/icon/twig/index.twig' with {
+                            name    : iconName,
+                            color   : color,
+                            size    : size,
+                            class   : class
+                        } only %}
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+        </div>
+
+    {% endif %}
+</div>

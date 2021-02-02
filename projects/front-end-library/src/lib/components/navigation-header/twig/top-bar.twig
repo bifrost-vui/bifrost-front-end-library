@@ -1,12 +1,12 @@
 <nav class="
     bf-navigation-header-top-bar d-none d-lg-block navbar navbar--videotron-unify-secondary px-3
     {{ class|default('') }} 
-    {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}"
+    {% if reversed is defined and reversed is same as (false) %}reversed{% endif %}"
 >
     <div class="d-flex justify-content-between w-100">
         <!-- Main navigation -->
         <ul class="list d-flex align-items-center ml-1">
-            {% for item in topBarItems %}
+            {% for item in items %}
                 {% if loop.last is not same as (true) %}
                     {% set itemClass = "pr-3 mr-3 border-right-gray--200" %}
                 {% else %}
@@ -44,7 +44,7 @@
                 {% endif %}
             </li>
 
-            {% for item in topBarSecondaryItems %}
+            {% for item in secondaryItems %}
                 <li class="d-flex align-items-center ml-2 pl-2">
                     <a class="link {{ item.class|default('') }}"
                        href="{{ item.href|default('#') }}"
