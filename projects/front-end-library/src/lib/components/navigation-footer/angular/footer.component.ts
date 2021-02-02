@@ -23,8 +23,8 @@ export class FooterComponent implements OnInit {
     /** Sets Footer Links. */
     @Input() links: any[];
 
-    @Input() logoHref: string;
-    @Input() logoName: string;
+    @Input() logo_href: string;
+    @Input() logo_name: string;
 
     @Input() hasBackToTopLink: boolean;
     @Input() backToTopLabel: string;

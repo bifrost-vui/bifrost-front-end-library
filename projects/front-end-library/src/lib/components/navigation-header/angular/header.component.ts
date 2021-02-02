@@ -15,14 +15,14 @@ export class HeaderComponent implements OnInit {
 
     @Input() reversed               : boolean;
 
-    @Input() logoName               : string;
+    @Input() logo_name               : string;
 
     @Input() navItems               : any[];
 
     /** Note: Only visible on desktop. */
     @Input() hasTopBar              : boolean;
-    @Input() topBarItems            : any[];
-    @Input() topBarSecondaryItems   : any[];
+    @Input() topBar_items            : any[];
+    @Input() topBar_secondaryItems   : any[];
 
     @Input() hasMiniCartBtn         : boolean;
     @Input() hasNoSearchBtn         : boolean;

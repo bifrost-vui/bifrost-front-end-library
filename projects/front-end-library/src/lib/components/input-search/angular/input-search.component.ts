@@ -19,27 +19,27 @@ export class InputSearchComponent implements OnInit {
     @Input() isDisabled             : boolean;
     @Input() isChecked              : boolean;
 
-    @Input() label                  : string = 'Label';
-    @Input() labelClass             : string;
-    @Input() labelExtraAttribute    : string;
+    @Input() label_value             : string = 'Label';
+    @Input() label_class             : string;
+    @Input() label_extraAttribute    : string;
 
-    @Input() mtValue                : number = 1;
-
-    @Input() inputId                : string;
-    @Input() inputClass             : string;
-    @Input() inputIconPosition      : string;
-    @Input() inputType              : string;
-    @Input() inputPlaceholder       : string = 'What are you looking for?';
-    @Input() inputName              : string;
-    @Input() inputValue             : string;
-    @Input() extraAttribute         : string;
+    @Input() input_id                : string;
+    @Input() input_class             : string;
+    @Input() input_iconPosition      : string;
+    @Input() input_type              : string;
+    @Input() input_placeholder       : string = 'What are you looking for?';
+    @Input() input_name              : string;
+    @Input() input_value             : string;
+    @Input() input_extraAttribute    : string;
     
     @Input() iconColor              : string;
     @Input() iconClass              : string;
 
-    @Input() inputSubmitValue       : string;
-    @Input() inputSubmitId          : string;
-    @Input() inputSubmitExtraAttribute   : string;
+    @Input() inputSubmit_value       : string;
+    @Input() inputSubmit_id          : string;
+    @Input() inputSubmit_extraAttribute: string;
+
+    @Input() mtValue                 : number = 1;
 
     @Input() buttonClass            : string;
     @Input() invalidMsg             : string;

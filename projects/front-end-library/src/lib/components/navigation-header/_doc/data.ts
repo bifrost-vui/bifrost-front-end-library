@@ -435,13 +435,13 @@ export const navItems3 = [
 export const navItems = [];
 
 
-export const topBarItems = [
+export const topBar_items = [
     { label:"Personal", href:"", class:"active",  },
     { label:"Business", href:"", class:"" },
 ];
 
 
-export const topBarSecondaryItems = [
+export const topBar_secondaryItems = [
     { label:"Webmail", href:"", class:"" },
     { label:"illico.tv", href:"", class:"" },
     { label:"Locate a store", href:"", class:"" }

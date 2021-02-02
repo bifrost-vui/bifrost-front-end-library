@@ -9,7 +9,7 @@
     {% include '@bf-components/logo/twig/index.twig' with {
         name        : name,
         size        : size|default(''),
-        textOnly    : textOnly|default(false),
+        textOnly    : textOnly|default(false)|json_parse,
         reversed    : reversed,
         langcode    : langcode,
     } only %}
