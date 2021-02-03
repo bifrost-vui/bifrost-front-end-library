@@ -106,7 +106,7 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
-              includePaths: ["styles/"],
+            //   includePaths: ["styles/"],
             //   importer: SassGlobImporter()
             }
           }
