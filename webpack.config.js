@@ -2,7 +2,7 @@ const { resolve } = require("path");
 
 // To continue using node-sass-glob-importer, we need to use sass-loader@7.X.X:
 // See issue: https://github.com/material-components/material-components-web/issues/5135
-const SassGlobImporter = require('node-sass-glob-importer');
+// const SassGlobImporter = require('node-sass-glob-importer');
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
@@ -107,7 +107,7 @@ module.exports = {
             options: {
               sourceMap: true,
               includePaths: ["styles/"],
-              importer: SassGlobImporter()
+            //   importer: SassGlobImporter()
             }
           }
         ],

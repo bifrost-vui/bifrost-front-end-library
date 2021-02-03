@@ -1,4 +1,4 @@
-// require("../scss/style.scss");
+require("../scss/style.scss");
 
 // Vendor
 import 'jquery';
