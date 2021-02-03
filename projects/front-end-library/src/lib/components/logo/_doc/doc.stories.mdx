@@ -43,7 +43,7 @@ import { LogoComponent }          from '../angular/logo.component';
             }
         },
         reversed: {
-            defaultValue: true,
+            defaultValue: false,
         },
     }}
 />
@@ -62,13 +62,16 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview>
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
     <Story 
         name='Drupal'
         args={{ 
             elementPath : 'components/logo/_doc/template.drupal',
         }}
-        height='500px'
+        height='160px'
     >
         {Drupal.bind({})}
     </Story>
@@ -80,7 +83,7 @@ export const Drupal = (args) => ({
 ```php
 {% include '@bf-components/logo/twig/index.twig' with {
     langcode    : 'EN',
-    name        : 'business',
+    name        : 'business'
 } only %}
 ```
 
