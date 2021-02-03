@@ -29,16 +29,56 @@
 // Inputs
 
 .bf-input {
-    ::-webkit-input-placeholder {
-        color: var(--bf-color-neutral-tertiary) !important;
+
+    &.form-group.is-invalid .form-control {
+        color: currentColor;
+        border-color: var(--bf-color-feedback-negative);
+        background-color: transparent;
     }
-    ::-moz-placeholder {
-        color: var(--bf-color-neutral-tertiary) !important;
+
+    .form-control {
+        border-radius: var(--bf-border-radius-small);
+        border: 1px solid var(--bf-color-stroke-secondary);
+
+        &:hover,
+        &:focus {
+            border-color: var(--bf-color-stroke-primary);
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba(129,194,255, .5) !important;
+        }
+
+        &:focus:not(:focus-visible) {
+            box-shadow: none !important;
+        }
+
+        &:disabled,
+        &[readonly] {
+            color: var(--bf-color-neutral-tertiary);
+            border-color: var(--bf-color-stroke-secondary);
+            background-color: var(--bf-color-bg-action-disabled);
+
+            // Reversed exception
+            @at-root .reversed .form-control:disabled {
+                border-color: var(--bf-color-bg-action-disabled);
+            }
+        }
     }
-    :-ms-input-placeholder {
-        color: var(--bf-color-neutral-tertiary) !important;
+
+    .form-control,
+    .form-group__input-icon-container {
+        color: var(--bf-color-neutral-primary);
+        background-color: var(--bf-color-bg-ground);
+        border-radius: var(--bf-border-radius-small);
     }
-    :-moz-placeholder {
+
+    .invalid-feedback {
+        color: var(--bf-color-feedback-negative);
+    }
+
+    input::-webkit-input-placeholder,
+    input::placeholder {
         color: var(--bf-color-neutral-tertiary) !important;
     }
 }
