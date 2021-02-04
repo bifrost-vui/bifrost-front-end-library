@@ -20,7 +20,7 @@
     "
     {% if theme is defined %} data-theme={{theme}} {% endif %}
 >
-    <nav class="navbar navbar-light navbar--videotron-unify navbar-expand-lg p-0 bg-color-ground border-bottom-gray--200 {{ class|default('') }}">
+    <nav class="navbar navbar--videotron-unify navbar-expand-lg p-0 bg-color-ground bf-border-bottom-secondary {{ class|default('') }}">
         <div class="d-flex flex-column flex-lg-row justify-content-between w-100">
             <!-- Navbar brand logo-->
             <div class="navbar__header-responsive" data-animate="fade-in">
@@ -34,7 +34,6 @@
                                 name        : logo.name,
                                 textOnly    : true,
                                 langcode    : langcode|default('EN'),
-                                reversed    : reversed,
                             } only %}
                         </a>
                     </div>
@@ -52,15 +51,12 @@
                         {% endfor %}
 
                         <!-- Mobile : btn account dropdown -->
-                        {% include '@bf-components/navigation-header/twig/btn-account.twig' with { class:"" } only %}
-
-                        <!-- Mobile : btn mini cart -->
-                        {% if hasMiniCartBtn is defined and hasMiniCartBtn is same as (true) %}
-                            {% include '@bf-components/navigation-header/twig/btn-minicart.twig' with { class:"" } only %}
+                        {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
+                            {% include '@bf-components/navigation-header/twig/btn-account.twig' with { class:"" } only %}
                         {% endif %}
 
                         <!-- Mobile : btn search toggle -->
-                        <button class="d-flex vui--style-reset minh-3 mr-2 pl-0 js-search-toggler-btn"
+                        <button class="d-flex vui--style-reset minh-3 pl-0 js-search-toggler-btn"
                                 type="button"
                                 data-toggle="collapse"
                                 data-target="#navbarSearch"
@@ -71,6 +67,11 @@
                                 class   : "icon-close m-1"
                             } %}
                         </button>
+
+                        <!-- Mobile : btn mini cart -->
+                        {% if hasMiniCartBtn is defined and hasMiniCartBtn is same as (true) %}
+                            {% include '@bf-components/navigation-header/twig/btn-minicart.twig' with { class:"" } only %}
+                        {% endif %}
 
                         <div id="navbarSearch" class="alg-searchbox-mobile__container collapse pl-7 pl-md-10 w-100 z-index-10" role="search">
                             <div class="row d-flex align-items-center justify-content-between h-100">

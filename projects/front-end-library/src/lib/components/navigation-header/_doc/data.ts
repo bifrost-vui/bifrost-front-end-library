@@ -9,3 +9,9 @@ export const topBar_secondaryItems = [
     { label:"illico.tv", href:"", class:"" },
     { label:"Locate a store", href:"", class:"" }
 ];
+
+export const rigthIconLinks = [
+    { icon:"email", href:"?", class:"" },
+    { icon:"pin", href:"?", class:"" },
+    { icon:"profile", href:"?", class:"" }
+];

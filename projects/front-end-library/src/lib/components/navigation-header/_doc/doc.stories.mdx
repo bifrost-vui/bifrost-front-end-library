@@ -2,7 +2,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withDesign } from 'storybook-addon-designs'
 
-import { topBar_items, topBar_secondaryItems } from './data';
+import { topBar_items, topBar_secondaryItems, rigthIconLinks } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent }          from '../angular/header.component';
 
@@ -69,6 +69,7 @@ export const Drupal = (args) => ({
             elementPath : 'components/navigation-header/_doc/template.drupal',
             topBar_items,
             topBar_secondaryItems,
+            rigthIconLinks,
         }}
         height='500px'
     >
@@ -90,9 +91,7 @@ export const Drupal = (args) => ({
         name                    : 'business',
     },
     navItems                : [...],
-    hasMiniCartBtn          : false,
-    hasNoSearchBtn          : false,
-    reversed                : false,
+    reversed                : true,
 } only %}
 ```
 
