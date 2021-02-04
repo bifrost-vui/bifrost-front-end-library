@@ -39,11 +39,14 @@
                         </a>
                     </div>
 
-                    <div class="d-flex d-lg-none align-items-center">
+                    <div class="d-flex d-lg-none align-items-center mr-2">
                         {% for link in rigthIconLinks|default([]) %}
                             {% if link.href is not empty and link.icon is not empty %}
-                                <a href="{{ link.href }}" class="link--no-decoration m-1">
-                                    <img src="/images/icons/svg-atoms/{{ link.icon }}.svg" alt="" class="img-fluid">
+                                <a href="{{ link.href }}" class="link--no-decoration m-1 p-1">
+                                    {% include '@bf-components/icon/twig/index.twig' with {
+                                        name    : link.icon,
+                                        class   : link.class
+                                    } %}
                                 </a>
                             {% endif %}
                         {% endfor %}
@@ -64,7 +67,7 @@
                                 aria-controls="navbarSearch"
                                 aria-expanded="false">
                             {% include '@bf-components/icon/twig/index.twig' with {
-                                name    : "svg-search",
+                                name    : "search",
                                 class   : "icon-close m-1"
                             } %}
                         </button>

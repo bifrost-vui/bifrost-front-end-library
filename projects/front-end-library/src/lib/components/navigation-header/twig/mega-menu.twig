@@ -19,7 +19,11 @@
             >
                 {#{{ navItem.label }}#}
                 <span class="mb-0">{{ navItem.label }}</span>
-                {% include '@bf-components/icon/twig/icon-arrow-to-bottom.twig' with { iconClass:"mb-1", iconMarginLeft:"2" } %}
+                {% include '@bf-components/icon/twig/index.twig' with {
+                    name        : "chevron-down",
+                    class       : "d-none d-lg-block",
+                    marginLeft  : 2
+                } %}
             </button>
 
             <!-- Main navigation : multidropdown content -->
@@ -56,7 +60,12 @@
                                     <img src="/images/icons/navigation-unify/res-{{ subItem.iconName|default('internet') }}-ico.svg" alt="" class="img-fluid"
                                         {% if reversed is defined and reversed is same as (true) %}style="filter: invert(1);"{% endif %}
                                     >
-                                    <span class="ml-3 d-none d-lg-inline-block">{{ subItem.catLabel|default('category') }}</span>
+                                    <span class="ml-3 d-none d-lg-inline-block">
+                                        {{ subItem.catLabel|default('category') }}
+                                        {% include '@bf-components/icon/twig/index.twig' with {
+                                            name    : "chevron-right"
+                                        } only %}
+                                    </span>
                                 </a>
                             {% endfor %}
                         </div>

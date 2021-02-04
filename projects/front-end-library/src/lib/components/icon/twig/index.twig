@@ -2,7 +2,11 @@
 {% set classColor       = (color is defined) ? ' color-' ~ color : '' %}
 {% set classSize        = (size is defined) ? ' size-' ~ size : '' %}
 {% set class            = 'bf-icon' ~ classReversed ~ classColor ~ classSize ~ ' ' ~ class %}
+<div class="{{ class|default('') }} ml-{{ marginLeft|default(0) }}">
+    {% include '@bf-components/icon/svg/interface/' ~ name|default('account-balance') ~ '.svg' with {
+        class : class
+    } only %}
+</div>
 
-{% include '@bf-components/icon/twig/icon-' ~ name|default('svg-truck') ~ '.twig' with {
-    class : class
-} only %}
+{# Note: Do not add empty line above the <div>.
+In order to avoid text-decoration continuing in links (for example: Back to top link).#}

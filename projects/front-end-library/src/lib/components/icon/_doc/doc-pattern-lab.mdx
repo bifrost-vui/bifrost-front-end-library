@@ -1,0 +1,70 @@
+import { moduleMetadata } from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withDesign } from 'storybook-addon-designs'
+
+import { iconsPL } from './data';
+import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
+import { IconComponent }     from '../angular/icon.component';
+
+
+<Meta 
+    title='Components/Icon (PL)' 
+    component={IconComponent}
+    decorators={[
+        moduleMetadata({ declarations: [IconComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    argTypes={{
+        color: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['', 'success', 'neutral', 'warning', 'negative'],
+            }
+        },
+        size: {
+            defaultValue: '',
+            type: { required: false },
+            table: { defaultValue: { summary: 'small' } },
+            control: {
+                type: 'select',
+                options: ['', 'xsmall', 'small', 'medium', 'large'],
+            }
+        },
+        name: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['All icons', ...iconsPL],
+            }
+        },
+        icons: {
+            table: { disable: true }
+        }
+    }}
+/>
+
+
+# Icons
+
+## SVG Pattern Lab
+
+export const SVGPatternLab = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Preview
+    withSource='none'
+    style={{ height: '700px' }}
+>
+    <Story 
+        name='SVG (Pattern Lab)'
+        args={{ 
+            elementPath : 'components/icon/_doc/template.svg-pattern-lab',
+            iconsPL,
+        }}
+    >
+        {SVGPatternLab.bind({})}
+    </Story>
+</Preview>

@@ -24,6 +24,7 @@ import { IconComponent }     from '../angular/icon.component';
     argTypes={{
         color: {
             defaultValue: '',
+            description: 'success | neutral | warning | negative',
             control: {
                 type: 'select',
                 options: ['', 'success', 'neutral', 'warning', 'negative'],
@@ -61,7 +62,7 @@ import { IconComponent }     from '../angular/icon.component';
 
 ## Drupal
 
-export const Drupal = (args) => ({
+export const SVG = (args) => ({
     component: TwigContainerComponent,
     props: args,
 });
@@ -71,13 +72,13 @@ export const Drupal = (args) => ({
     style={{ height: '700px' }}
 >
     <Story 
-        name='Drupal'
+        name='SVG'
         args={{ 
-            elementPath : 'components/icon/_doc/template.drupal',
+            elementPath : 'components/icon/_doc/template.svg',
             icons,
         }}
     >
-        {Drupal.bind({})}
+        {SVG.bind({})}
     </Story>
 </Preview>
 
