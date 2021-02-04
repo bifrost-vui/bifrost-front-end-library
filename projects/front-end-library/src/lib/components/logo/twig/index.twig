@@ -1,13 +1,12 @@
 {% set langcode = (langcode is defined and langcode is same as ('FR')) ? 'FR' : 'EN' %}
 {% set name     = (name is defined and name is same as ('business')) ? 'videotron-business' : 'videotron' %}
+{% set size     = (size is defined and size is not empty) ? 'size-' ~ size : '' %}
 
-<div class='bf-logo {% if size is defined %}size-{{size}}{% endif %} langcode-{{langcode}} d-flex align-items-center justify-content-center'>
+<div class='bf-logo {{size}} langcode-{{langcode}} d-flex align-items-center justify-content-center'>
     {% if not textOnly %}
-        <img src="/images/logo/logo-videotron-icon-2.svg" height="24px" alt="Videotron">
+        {% include '@bf-components/logo/svg/logo-videotron-shape.svg' with {} only %}
     {% endif %}
-
-    {% include '@bf-components/logo/twig/logo-' ~ name ~ '-text-' ~ langcode ~ '.twig' with { 
-        reversed: reversed,
-        textOnly: textOnly|default(false),
-    } only %}
+    <div class='logo-text'>
+        {% include '@bf-components/logo/svg/logo-' ~ name ~ '-text-' ~ langcode ~ '.svg' with {} only %}
+    </div>
 </div>

@@ -7,26 +7,48 @@
 
 .bf-logo {
 
-    img {
+    .fill-logo1,
+    .fill-logo2 {
+        fill: #000;
+    }
+
+    @at-root .reversed,
+    &.reversed {
+        .fill-logo1 {
+            fill: var(--bf-color-neutral-primary);
+        }
+        .fill-logo2 {
+            fill: var(--bf-color-highlight);
+        }
+    }
+
+    .logo-videotron-shape {
+        width: 3rem;
         height: 3rem;
         margin-right: 1rem;
     }
 
-    &.langcode-FR svg {
+    &.langcode-FR .logo-text {
         // Improve alignement by removing the height of the vid*é*otron accent.
         margin-top: -1.8%;
     }
 
     &.size-small {
 
-        img {
+        .logo-videotron-shape {
+            width: 1.5rem;
             height: 1.5rem;
-            margin-right: .5rem;
+            margin-right: .4rem;
         }
 
-        svg {
-            transform: scale(.6);
-            transform-origin: left;
+        .logo-text svg {
+            width: 70px;
+            height: auto;
+        }
+
+        &.langcode-FR .logo-text {
+            // Improve alignement by removing the height of the vid*é*otron accent.
+            margin-top: -1%;
         }
     }
 }
