@@ -1,4 +1,5 @@
 {% set reversed = reversed|default(false)|json_parse %}
+{% set iconsPL = iconsPL|default([])|json_parse %}
 
 <div class="pt-4 {% if reversed %}reversed bf-color-bg-ground{% endif %}">
     {% if name is defined and name is not same as ("undefined") and name is not same as ("All icons") %}
@@ -15,8 +16,8 @@
     {% else %}
 
         <div class="container-fluid d-flex flex-wrap align-content-start h-100">
-            {% if icons|json_parse is defined %}
-                {% for iconName in icons|json_parse %}
+            {% if iconsPL is defined %}
+                {% for iconName in iconsPL %}
 
                     <div class="m-4" title="{{iconName}}">
                         {% include '@bf-components/icon/twig/index-pattern-lab.twig' with {

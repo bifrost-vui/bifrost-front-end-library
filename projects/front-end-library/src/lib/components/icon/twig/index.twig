@@ -1,6 +1,6 @@
 {% set classReversed    = (reversed is defined and reversed is same as (true)) ? ' reversed' : '' %}
-{% set classColor       = (color is defined) ? ' color-' ~ color : '' %}
-{% set classSize        = (size is defined) ? ' size-' ~ size : '' %}
+{% set classColor       = (color is defined and color is not empty) ? ' color-' ~ color : '' %}
+{% set classSize        = (size is defined and size is not empty) ? ' size-' ~ size : '' %}
 {% set class            = 'bf-icon' ~ classReversed ~ classColor ~ classSize ~ ' ' ~ class %}
 <div class="{{ class|default('') }} ml-{{ marginLeft|default(0) }}">
     {% include '@bf-components/icon/svg/interface/' ~ name|default('account-balance') ~ '.svg' with {
