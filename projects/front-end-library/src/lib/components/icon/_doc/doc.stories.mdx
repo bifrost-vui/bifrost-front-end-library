@@ -2,7 +2,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withDesign } from 'storybook-addon-designs'
 
-import { icons } from './data';
+import { interfaceIcons, illustrationIcons } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { IconComponent }     from '../angular/icon.component';
 
@@ -43,7 +43,7 @@ import { IconComponent }     from '../angular/icon.component';
             defaultValue: '',
             control: {
                 type: 'select',
-                options: ['All icons', ...icons],
+                options: ['All icons', ...interfaceIcons],
             }
         },
         icons: {
@@ -72,10 +72,26 @@ export const Drupal = (args) => ({
     style={{ height: '700px' }}
 >
     <Story 
-        name='Drupal'
+        name='Drupal - Interface'
         args={{ 
-            elementPath : 'components/icon/_doc/template.svg',
-            icons,
+            elementPath : 'components/icon/_doc/template.drupal',
+            icons       : interfaceIcons,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '700px' }}
+>
+    <Story 
+        name='Drupal - Illustration'
+        args={{ 
+            elementPath : 'components/icon/_doc/template.drupal',
+            icons       : illustrationIcons,
+            type        : 'illustration',
         }}
     >
         {Drupal.bind({})}

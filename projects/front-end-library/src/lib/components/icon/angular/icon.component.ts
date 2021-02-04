@@ -17,7 +17,6 @@ export class IconComponent implements OnInit {
     @Input() class              : string;
     @Input() name               : string;
     @Input() color              : string;
-    @Input() marginLeft         : number;
 
     ngOnInit() {
         console.log('icon', this);
