@@ -22,8 +22,6 @@ module.exports = {
   },
 
   devtool: devMode ? 'source-map' : false,
-  
-  watch: true,
 
   resolve: {
     extensions: ['.js', '.scss']
