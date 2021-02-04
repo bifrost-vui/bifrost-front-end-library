@@ -35,7 +35,7 @@ function requestInfo() {
         type: 'list',
         name: 'type',
         message: 'Choose the kind of element:',
-        choices: ['Component', 'Organism', 'Template', 'Pipe'],
+        choices: ['Component', 'Section', 'Template', 'Pipe'],
     
     }).then(function(response) {
         const type = response.type.toLowerCase();
@@ -95,7 +95,7 @@ function generateFromTemplate(element) {
     replace(
         {
             files: `${tempPath}/**/*`,
-            from: [ /component-type/g, /Component-type/g, /component-name/g, /Component-Readable-Name/g, /componentName/g, /ComponentName/g, /Pipe-Readable-Name/g, /pipe-name/g, /pipeName/g, /PipeName/g ],
+            from: [ /<component-type>/g, /<Component-type>/g, /<component-name>/g, /<Component-Readable-Name>/g, /<componentName>/g, /<ComponentName>/g, /<Pipe-Readable-Name>/g, /<pipe-name>/g, /<pipeName>/g, /<PipeName>/g ],
             to: [ typePlural,          TypePlural,        name,              NameReadable,               nameCamelCase,    NameCamelCase,    NameReadable,          name,         nameCamelCase, NameCamelCase ],
         },
         (error, results) => {
@@ -106,10 +106,10 @@ function generateFromTemplate(element) {
             
             // Rename Files
             if (type === 'pipe') {
-                renameFiles( tempPath, 'pipe-name', name );
+                renameFiles( tempPath, '<pipe-name>', name );
             } else {
-                renameFiles( tempPath+'/angular', 'component-name', name );
-                renameFiles( tempPath+'/twig', 'component-name', name );
+                renameFiles( tempPath+'/angular', '<component-name>', name );
+                renameFiles( tempPath+'/twig', '<component-name>', name );
             }
 
             // Files are now ready to be moved in the lib directory
@@ -126,7 +126,7 @@ function appendPublicAPI ({ name, NameReadable, type, typePlural, finalPath }) {
     
     if (type !== 'pipe') {
         // const stringExportComponent = `export * from './lib/${typePlural}/${name}/angular/${name}.component'`;
-        const stringExportModule = `export * from './lib/${typePlural}/${name}/angular/${name}.module'`;
+        const stringExportModule = `export * from './lib/${typePlural}/${name}/angular/${name}.module';`;
         
         // Add imports to public-api.ts
         // shell.exec( 'echo "' + stringExportComponent + '" >> projects/front-end-library/src/public-api.ts' );
@@ -134,6 +134,11 @@ function appendPublicAPI ({ name, NameReadable, type, typePlural, finalPath }) {
         
         // TODO: Insert export in the right section of the public-api.ts file.
         // shell.exec( "sed '/\Components/a Test Import' projects/front-end-library/src/public-api.ts" );
+
+        // Import component style into style.scss.
+        const strinImportStyle = `@import '../${typePlural}/${name}/scss/index';`;
+        shell.exec( 'echo "' + strinImportStyle + '" >> projects/front-end-library/src/lib/scss/style.scss' );
+        
     }
 
     return { name, NameReadable, type, typePlural, finalPath };
@@ -152,20 +157,21 @@ function success ({ name, NameReadable, type, typePlural, finalPath }) {
     shell.echo( `\r` );
     
     // Open Storybook in the default browser.
-    shell.echo( `${chalk.bold('We open Storybook right away')}. If you didn't started it yet, enter ${chalk.bold('npm run storybook')}:` );
-    shell.echo( `${chalk.blue(`http://localhost:9008/?path=/story/${typePlural}-${name}--default`)}` );
+    shell.echo( `${chalk.bold('We open Storybook right away')}. If you didn't started it yet, enter ${chalk.bold('npm run start-dev')}:` );
+    shell.echo( `${chalk.blue(`http://localhost:9008/?path=/story/${typePlural}-${name}--drupal`)}` );
     shell.echo( `\r` );
     (async () => {    
-        await open(`http://localhost:9008/?path=/story/${typePlural}-${name}--default`);
+        await open(`http://localhost:9008/?path=/story/${typePlural}-${name}--drupal`);
     })();
 
     // Launch Compodoc to generate component API documentation in Storybook
     shell.echo( chalk.green('------------------------------------------------------------------------------------') );
     shell.echo( `\nIn the same time, Compodoc parses all Angular files to generate API documentation of your new ${type}.` );
     shell.echo( `It could take 1 or 2 minutes and it will refresh yoiur browser with the documentation.` );
-    shell.exec( `compodoc -p ./tsconfig.json -e json -d . -t`, code => {
-        if (code !== 0) return textError('Error occurred with Compodoc.');
-    });
+    shell.exec( `compodoc -p .storybook/tsconfig.json -e json -d . -t` );
+    // shell.exec( `compodoc -p ./tsconfig.json -e json -d . -t`, code => {
+    //     if (code !== 0) return textError('Error occurred with Compodoc.');
+    // });
 }
 
 // Start

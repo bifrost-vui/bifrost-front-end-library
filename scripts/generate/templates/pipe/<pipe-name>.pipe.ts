@@ -4,9 +4,9 @@ import { Pipe, PipeTransform } from '@angular/core';
  * TODO: Write a description of the pipe.
  */
 @Pipe({
-  name: 'pipeName',
+  name: '<pipeName>',
 })
-export class PipeNamePipe implements PipeTransform {
+export class <PipeName>Pipe implements PipeTransform {
     /**
     * TODO: Write a description of the transform function.
     * @param value string
