@@ -16,9 +16,10 @@ In order to check implementation on a local machine.
 We currently support 2 frameworks: **Angular and Twig**.
 The Front-End library contains:
 - **Components**
-- **Organisms** (more complex components)
+- **Sections**
 - **Templates** (to help build with components)
 - **Pipes**
+- **Assets** (e.g. Images, Logo)
 - **Styles** (e.g. Sass variables)
 
 
