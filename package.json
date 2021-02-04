@@ -22,7 +22,7 @@
     "build": "ng build --prod && cp -R projects/front-end-library/src/lib dist/front-end-library/source && cp -R public dist/front-end-library/assets && rm -rf dist/front-end-library/assets/logo",
     "publish": "npm run build && npm publish dist/front-end-library --access public",
     "storybook:start": "start-storybook -p 9008 -s public",
-    "storybook:build": "npm run storybook:prebuild && build-storybook -s public",
+    "storybook:build": "webpack:build && npm run storybook:prebuild && build-storybook -s public",
     "storybook:prebuild": "npm run docs:json",
     "docs:json": "compodoc -p .storybook/tsconfig.json -e json -d .",
     "bf:generate": "node scripts/generate",
