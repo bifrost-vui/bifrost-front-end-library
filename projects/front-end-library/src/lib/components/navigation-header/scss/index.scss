@@ -14,6 +14,17 @@
 
     .navbar-brand__logo-videotron {
         background-color: var(--bf-color-bg-action-primary);
+
+        &-text {
+            @include media-breakpoint-down(sm) {
+                margin-left: .25rem !important;
+
+                .bf-logo svg {
+                    width: 90px;
+                    height: auto;
+                }
+            }
+        }
     }
 
     .navbar--videotron-unify.navbar-expand-lg .nav-item {
@@ -28,8 +39,12 @@
             transform: scaleX(1);
         }
 
-        >.nav-link:before {
-            background-color: var(--bf-color-neutral-primary) !important;
+        >.nav-link {
+            color: var(--bf-color-neutral-primary);
+
+            &:before {
+                background-color: var(--bf-color-neutral-primary) !important;
+            }
         }
     }
 
