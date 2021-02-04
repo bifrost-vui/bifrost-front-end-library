@@ -21,14 +21,15 @@
                         <div class="w-100">
                             <h4>{{category.category}}</h4>
                         </div>
-                        <div class="flex-align-center-space-between">
+                        <div class="d-flex flex-wrap">
                             {% for iconName in category.list %}
                                 <div class='mr-3' title='{{iconName}}'>
                                     {% include '@bf-components/icon/twig/index.twig' with {
                                         name    : iconName,
                                         color   : color,
                                         size    : size,
-                                        class   : class
+                                        class   : class,
+                                        type    : type,
                                     } only %}
                                 </div>
                             {% endfor %}
