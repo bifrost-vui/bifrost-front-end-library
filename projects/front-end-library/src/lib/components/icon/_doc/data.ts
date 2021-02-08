@@ -41,10 +41,10 @@ export const interfaceIcons = [
             'plus',
             'minus',
             'checkmark-circle',
-            'x-circle--fill-color',
-            'plus-circle-fill-color',
-            'minus-circle-fill-color',
-            'checkmark-circle-fill-color',
+            'x-circle-filled',
+            'plus-circle-filled',
+            'minus-circle-filled',
+            'checkmark-circle-filled',
         ]
     },
     {
@@ -53,11 +53,11 @@ export const interfaceIcons = [
             'question-circle',
             'exclamation-circle',
             'information-circle',
-            'exclamation-circle-fill-color',
-            'information-circle-fill-color',
+            'exclamation-circle-filled',
+            'information-circle-filled',
             'question-circle-small',
-            'exclamation-circle-fill-color-small24',
-            'information-circle-fill-color-small24',
+            'exclamation-circle-filled-small24',
+            'information-circle-filled-small24',
         ]
     },
     {

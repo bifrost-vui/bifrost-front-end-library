@@ -3,7 +3,7 @@
 {% set classSize        = (size is defined and size is not empty) ? ' size-' ~ size : '' %}
 {% set class            = 'bf-icon' ~ classReversed ~ classColor ~ classSize ~ ' ' ~ class %}
 {% set type             = type|default('interface') %}
-<div class="{{ class|default('') }} type-{{type}}">
+<div class="{{ class|default('') }} type-{{type}}" {% if type is same as ('interface') %}role="decoration"{% endif %}>
     {% include '@bf-components/icon/svg/' ~ type ~ '/' ~ name|default('account-balance') ~ '.svg' with {
         class : class
     } only %}
