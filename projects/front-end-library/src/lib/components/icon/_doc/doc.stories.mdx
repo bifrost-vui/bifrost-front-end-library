@@ -43,12 +43,19 @@ import { IconComponent }     from '../angular/icon.component';
             defaultValue: '',
             control: {
                 type: 'select',
-                options: ['All icons', ...interfaceIcons],
+                options: ['All icons', ...interfaceIcons.map(a => a.list).flat().sort()],
             }
         },
         icons: {
             table: { disable: true }
-        }
+        },
+        type: {
+            defaultValue: '',
+            control: {
+                readOnly: true
+            },
+            table: { defaultValue: { summary: 'interface' } },
+        },
     }}
 />
 
@@ -76,6 +83,7 @@ export const Drupal = (args) => ({
         args={{ 
             elementPath : 'components/icon/_doc/template.drupal',
             icons       : interfaceIcons,
+            type        : 'interface',
         }}
     >
         {Drupal.bind({})}
@@ -103,9 +111,10 @@ export const Drupal = (args) => ({
 
 ```php
 {% include '@bf-components/icon/twig/index.twig' with {
-    name    : 'svg-error',
-    color   : 'negative',
-    size    : 'medium'
+    name    : 'instructions',
+    type    : 'illustration',
+    size    : 'medium',
+    color   : 'negative'
 } only %}
 ```
 
