@@ -56,9 +56,13 @@
                                    aria-controls="v-pills-{{ subItem.catLabel|default('category')|url_encode }}"
                                    aria-selected="true"
                                    tabindex=-1>
-                                    <img src="/images/icons/navigation-unify/res-{{ subItem.iconName|default('internet') }}-ico.svg" alt="" class="img-fluid"
-                                        {% if reversed is defined and reversed is same as (true) %}style="filter: invert(1);"{% endif %}
-                                    >
+                                    {% include '@bf-components/icon/twig/index.twig' with {
+                                        name        : subItem.iconName|default('internet-residentiel'),
+                                        size        : 'medium',
+                                        type        : 'illustration',
+                                        class       : 'img-fluid position-relative',
+                                        reversed    : reversed|default(false),
+                                    } only %}
                                     <span class="ml-3 d-none d-lg-inline-block">
                                         {{ subItem.catLabel|default('category') }}
                                         {% include '@bf-components/icon/twig/index.twig' with {
