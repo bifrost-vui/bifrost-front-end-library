@@ -2,13 +2,13 @@ import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withDesign } from 'storybook-addon-designs'
 
-import { interfaceIcons, illustrationIcons } from './data';
+import { illustrationIcons } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { IconComponent }     from '../angular/icon.component';
 
 
 <Meta 
-    title='Components/Icon' 
+    title='Components/Icon'
     component={IconComponent}
     decorators={[
         moduleMetadata({ declarations: [IconComponent, TwigContainerComponent]}),
@@ -33,17 +33,17 @@ import { IconComponent }     from '../angular/icon.component';
         size: {
             defaultValue: '',
             type: { required: false },
-            table: { defaultValue: { summary: 'small' } },
+            table: { defaultValue: { summary: 'large' } },
             control: {
                 type: 'select',
-                options: ['', 'xsmall', 'small', 'medium', 'large'],
+                options: ['', 'medium', 'large'],
             }
         },
         name: {
             defaultValue: '',
             control: {
                 type: 'select',
-                options: ['All icons', ...interfaceIcons.map(a => a.list).flat().sort()],
+                options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
             }
         },
         icons: {
@@ -73,22 +73,6 @@ export const Drupal = (args) => ({
     component: TwigContainerComponent,
     props: args,
 });
-
-<Preview
-    withSource='none'
-    style={{ height: '700px' }}
->
-    <Story 
-        name='Drupal - Interface'
-        args={{ 
-            elementPath : 'components/icon/_doc/template.drupal',
-            icons       : interfaceIcons,
-            type        : 'interface',
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Preview>
 
 <Preview
     withSource='none'
