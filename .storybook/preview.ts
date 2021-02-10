@@ -1,6 +1,13 @@
 import { addParameters, addDecorator } from '@storybook/angular';
 import { prepareForInline } from '@storybook/addon-docs/angular/inline';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
+import { configure } from '@storybook/html';
+
+import Twig from 'twig';
+// import twigDrupal from 'twig-drupal-filters';
+// twigDrupal(Twig);
+
+configure(require.context('../projects/front-end-library', true, /\.stories\.ts$/), module);
 
 // @ts-ignore
 // eslint-disable-next-line import/extensions, import/no-unresolved
@@ -20,8 +27,8 @@ setCompodocJson(docJson);
 addParameters({
     // Docs
     docs: {
-        inlineStories: true,
-        prepareForInline,
+        // inlineStories: true,
+        // prepareForInline,
         // prepareForInline: (storyFn, { args }) => {
         //     const Story = toReact(storyFn());
         //     return <Story {...args} />;
