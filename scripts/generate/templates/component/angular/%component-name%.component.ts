@@ -1,16 +1,16 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
 /**
- * Description of the component <ComponentName>
+ * Description of the component %ComponentName%
  *
  */
  
 @Component({
-  selector: 'bf-<component-name>',
-  templateUrl: './<component-name>.component.html',
-  styleUrls: ['../scss/index.scss'],
+  selector: 'bf-%component-name%',
+  templateUrl: './%component-name%.component.html',
+  // styleUrls: ['../scss/index.scss'],
 })
-export class <ComponentName>Component implements OnInit {
+export class %ComponentName%Component implements OnInit {
     constructor() {}
 
     /**
@@ -24,6 +24,6 @@ export class <ComponentName>Component implements OnInit {
     @Input() class: string;
 
     ngOnInit() {
-        console.log('<ComponentName>', this);
+        console.log('%ComponentName%', this);
     }
 }
