@@ -2,13 +2,13 @@ import { moduleMetadata } from '@storybook/angular';
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withDesign } from 'storybook-addon-designs'
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
-import { <ComponentName>Component } from '../angular/<component-name>.component';
+import { %ComponentName%Component } from '../angular/%component-name%.component';
 
 <Meta 
-    title='<Component-type>/<Component-Readable-Name>' 
-    component={<ComponentName>Component}
+    title='%Component-type%/%Component-Readable-Name%' 
+    component={%ComponentName%Component}
     decorators={[
-        moduleMetadata({ declarations: [<ComponentName>Component, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [%ComponentName%Component, TwigContainerComponent]}),
         withDesign
     ]}
     parameters={{
@@ -21,7 +21,7 @@ import { <ComponentName>Component } from '../angular/<component-name>.component'
     argTypes={{}}
 />
 
-# <Component-Readable-Name>
+# %Component-Readable-Name%
 
 **// TODO** Write a description of your component.
 > **// TODO**: Add a link to component in **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)**
@@ -41,8 +41,8 @@ export const Drupal = (args) => ({
     <Story 
         name='Drupal'
         args={{ 
-            elementPath : '<component-type>/<component-name>/_doc/template.drupal',
-            label       : '<Component-Readable-Name>',
+            elementPath : '%component-type%/%component-name%/_doc/template.drupal',
+            label       : '%Component-Readable-Name%',
         }}
     >
         {Drupal.bind({})}
@@ -53,9 +53,8 @@ export const Drupal = (args) => ({
 ## Drupal implementation exemple
 
 ```php
-{% include '@bf-components/logo/twig/index.twig' with {
-    langcode    : 'EN',
-    name        : 'business'
+{% include '@bf-components/%component-name%/twig/index.twig' with {
+    // Add relevant props here
 } only %}
 ```
 
@@ -63,7 +62,7 @@ export const Drupal = (args) => ({
 ## Angular
 
 export const Angular = (args) => ({
-  component: <ComponentName>Component,
+  component: %ComponentName%Component,
   props: args,
 });
 
@@ -72,7 +71,7 @@ export const Angular = (args) => ({
 >
     <Story 
         name='Angular' 
-        args={{ label: '<Component-Readable-Name>' }}
+        args={{ label: '%Component-Readable-Name%' }}
     >
         {Angular.bind({})}
     </Story>
@@ -92,7 +91,7 @@ Please, read the [Implementation Page](/?path=/docs/implementation-angular--page
 
 **✅ Inputs are equivalent for Angular and Drupal.**
 
-<Props of={<ComponentName>Component} />
+<Props of={%ComponentName%Component} />
 
 
 ## Design Guidelines
