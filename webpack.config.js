@@ -14,6 +14,7 @@ module.exports = {
   entry: {
     'uikit-marvel': resolve(__dirname, "projects/front-end-library/src/lib/js/index.js"),
     'uikit-marvel-livechat': resolve(__dirname, "projects/front-end-library/src/lib/js/widgets/genesys-live-chat/styles.js"),
+    'uikit-marvel': resolve(__dirname, "projects/front-end-library/src/lib/scss/style.scss"),
     // 'uikit-marvel-demo-etiya': resolve(__dirname, "projects/front-end-library/src/lib/js/demo/etiya/index.js"),
   },
   output: {
