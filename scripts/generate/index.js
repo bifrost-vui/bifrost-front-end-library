@@ -106,10 +106,10 @@ function generateFromTemplate(element) {
             
             // Rename Files
             if (type === 'pipe') {
-                renameFiles( tempPath, '%pipe-name%', name );
+                renameFiles( tempPath, 'pipe-name', name );
             } else {
-                renameFiles( tempPath+'/angular', '%component-name%', name );
-                renameFiles( tempPath+'/twig', '%component-name%', name );
+                renameFiles( tempPath+'/angular', 'component-name', name );
+                renameFiles( tempPath+'/twig', 'component-name', name );
             }
 
             // Files are now ready to be moved in the lib directory
