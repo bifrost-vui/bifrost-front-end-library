@@ -1,0 +1,12 @@
+{% set langcode = (langcode is defined and langcode is same as ('FR')) ? 'FR' : 'EN' %}
+{% set name     = (name is defined and name is same as ('business')) ? 'videotron-business' : 'videotron' %}
+{% set size     = (size is defined and size is not empty) ? 'size-' ~ size : '' %}
+
+<div class='bf-logo {{size}} langcode-{{langcode}} d-inline-flex align-items-center justify-content-center'>
+    {% if not textOnly %}
+        {% include '@bf-components/logo/svg/logo-videotron-shape.svg' with {} only %}
+    {% endif %}
+    <div class='logo-text'>
+        {% include '@bf-components/logo/svg/logo-' ~ name ~ '-text-' ~ langcode ~ '.svg' with {} only %}
+    </div>
+</div>
