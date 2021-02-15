@@ -346,7 +346,7 @@ export const illustrationIcons = [
             'laptop-mobile',
             'multi-product',
             'mobility',
-            'telephony residential',
+            'telephony-residential',
             'tablet-mobile-helix',
             'other-services',
         ]
