@@ -181,6 +181,12 @@ export const interfaceIcons = [
             'helixinternet-wifi_ultime',
         ]
     },
+    {
+        category: 'Documentation',
+        list: [
+            'placeholder',
+        ]
+    }
 ];
 
 export const illustrationIcons = [
