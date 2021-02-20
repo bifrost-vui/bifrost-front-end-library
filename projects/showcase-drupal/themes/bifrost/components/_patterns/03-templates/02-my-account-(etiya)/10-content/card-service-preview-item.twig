@@ -1,0 +1,27 @@
+{% embed 'molecules-card-overview-item' with {
+    title: "House",
+    titleSubInfos: "123 Blvd St Laurent, Montreal, Qc H1W H3W",
+} %}
+    {% block overview_content %}
+        <div class="row align-items-center">
+            <div class="col-md-4 col-lg-3 mb-3 mb-md-0" data-animate-row="">
+                <p class="font-weight-bold mb-1" data-animate="fade-in">Internet</p>
+                <p class="mb-0" data-animate="fade-in">Including equipments</p>
+            </div>
+
+            <div class="col-md-4 col-lg-3 mb-3 mb-md-0" data-animate-row="">
+                <p class="font-weight-bold mb-1" data-animate="fade-in">Mega TV Package</p>
+                <p class="mb-0" data-animate="fade-in">Including equipments</p>
+            </div>
+
+            <div class="col-md-4 col-lg-6 d-flex justify-content-md-end" data-animate="fade-in">
+                {% include '@atoms/07-payment/price-box.twig' with {
+                    priceClass:"pl-md-3 pt-md-2",
+                    priceDollar: "152",
+                    priceCent:"34"
+                } %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}
+

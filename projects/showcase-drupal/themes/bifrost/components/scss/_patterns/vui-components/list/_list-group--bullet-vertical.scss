@@ -1,0 +1,46 @@
+/* *****************************************************************************
+*
+*  List group
+*
+* ***************************************************************************** */
+.list-group {
+
+  &--bullet-vertical {
+    &:before {
+      content: '';
+      background: $gray-200;
+      width: 1px;
+      position: absolute;
+      top: 2.75rem;
+      left: 0.91rem;
+      height: calc(100% - 3.75rem);
+    }
+
+    .list-group-item {
+      position: relative;
+      background: transparent;
+      padding-left: 2rem;
+
+      &:before {
+        content:"";
+        @extend .bullet;
+        @include size(0.6875rem);
+        position: absolute;
+        top: 0.875rem;
+        left: 0.6rem;
+        outline: 3px solid #fff;
+        background: #fff;
+      }
+
+      &.active {
+        background: none;
+        color: $body-color;
+
+        &:before {
+          background: $dark;
+        }
+      }
+    }
+  }
+
+}

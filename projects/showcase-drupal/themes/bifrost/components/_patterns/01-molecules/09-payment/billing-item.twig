@@ -1,0 +1,45 @@
+{% if state is not defined %}
+    {% set state = 'default' %}
+{% endif %}
+
+{% if isCondensed is defined and isCondensed is same as (true) %}
+    {% set colClassItem = "" %}
+    {% set colClassPrice = "" %}
+{% else %}
+    {% set colClassItem = "mb-md-0 col-md-6" %}
+    {% set colClassPrice = "col-md-6" %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="cart-summary-item {{ class|default('') }}">
+    <div class="row align-items-center {{ (state == "removed") ? 'vui--desactivated' : NULL }}">
+
+        <div class="col-12 mb-2 {{ colClassItem|default('') }}">
+            <p class="mb-0 font-weight-medium {{ (state == "removed") ? 'vui--text-dashed' : NULL }} ">{{ textLeft|default('Amount due on the previous bill') }}</p>
+            {% if subTextLeft is defined and subTextLeft is not empty %}
+                <p class="mb-0 small">{{ subTextLeft|raw }}</p>
+            {% endif %}
+        </div>
+
+        <div class="col-12 {{ colClassPrice|default('') }}">
+            <div class="row align-items-center">
+                {% if state is not same as ('default') %}
+                    <div class="col-6">
+                        {% if state == 'added' %}
+                            {% include '@atoms/08-tags/badge-tag.twig' with { label:"Added", color: "primary" } only %}
+                        {% elseif state == 'replaced' %}
+                            {% include '@atoms/08-tags/badge-tag.twig' with { label:"Replaced", color: "gray--300" } only %}
+                        {% elseif state == 'removed' %}
+                            {% include '@atoms/08-tags/badge-tag.twig' with { label:"Removed", color: "gray--300" } only %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                <div class="col text-right">
+                    <p class="mb-0">{{ textRight|default('$ 144.03')|raw }}</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

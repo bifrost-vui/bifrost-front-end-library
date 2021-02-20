@@ -1,0 +1,79 @@
+{% extends "base-page--funnel-services.twig" %}
+
+{% set navStepByStep_tplName = "service" %}
+{% set navStepByStep_activeNumber = 2 %}
+
+{#{% set page_hero_title = "Manage services" %}#}
+{#{% set page_hero_subtitle = "Craft a bundle that best fits your needs" %}#}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container  %}
+    {% include '@organisms/60-content-channel-swap/channel-swap--header.twig' with { class:"" } only %}
+
+    <section class="bg-gray--100 py-4">
+        <div class="container-fluid">
+            {% include '@templates/02-my-account-(etiya)/20-form/search-channel-form.twig' only %}
+        </div>
+    </section>
+
+    {# {% include '@organisms/02-accordion/accordion-channel-swap-filter-bar.twig' with { class:"" } only %} #}
+
+    <section>
+        <div class="container-fluid">
+            {# HD BASIC #}
+            {% include 'templates-channel-swap--listing-channels--hd-basic' with { class:""} only %}
+
+            {# Movies and series #}
+            {% include '@organisms/60-content-channel-swap/channel-swap--listing-channels.twig' with {
+                channelsListingId: "cat_1_channel",
+                collapseTitle: "Movies and Series",
+                collapseSubTitle: "",
+                collapseInfosRight: "",
+                itemChannelState: ""
+            } only %}
+
+            {# Sports #}
+            {% include '@organisms/60-content-channel-swap/channel-swap--listing-channels.twig' with {
+                class: "border-bottom--0",
+                channelsListingId: "cat_sports_channel",
+                collapseTitle: "Sports",
+                collapseSubTitle: "Those channels are not available in your offer",
+                collapseInfosRight: "",
+                itemChannelState: "item-channel--state-locked"
+            } only %}
+        </div>
+    </section>
+
+    <section class="bg-gray--100 py-6">
+        <div class="container-fluid">
+            <h2 class="mb-2">Select your premium channels</h2>
+            <p class="h4 mb-0">1 premium is already included in your offer.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container-fluid">
+            {% include 'templates-channel-swap--listing-channels--premium' only %}
+        </div>
+    </section>
+
+    <section class="bg-gray--100 py-6">
+        <div class="container-fluid">
+            <h2 class="mb-2">Access to specialized contents</h2>
+            <p class="h4 mb-0">If you want more, add a specialized channel to your offer.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container-fluid">
+            {% include 'templates-channel-swap--listing-channels--specialized' only %}
+        </div>
+    </section>
+
+    {#{% include 'templates-faq' with { faqHasSeparator: true } only %}#}
+{% endblock %}
+
+{% block page_sticky_bottom_bar %}
+    {% include '@organisms/15-navigation-sticky-bottom/funnel-nav-sticky-channel-swap.twig' with { class:"" } only %}
+{% endblock %}

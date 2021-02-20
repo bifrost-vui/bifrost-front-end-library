@@ -1,0 +1,22 @@
+{% if withEditContactModal is defined and withEditContactModal is not empty %}
+    {% set dataToggle = "modal"%}
+    {% set dataTarget = "#modalAppointment"%}
+{% endif %}
+
+<div class="timepicker-appointment-option {{ class|default('') }}">
+    <input type="radio" id="{{ date|date("Y-m-j") }}-{{ slot|default('morning') }}"
+           {% if isDisabled is defined and isDisabled is same as (true) %}disabled{% endif %}
+           class="timepicker-appointment-option__input d-none js-timepicker-option"
+           value="{{ date|date("Y-m-j") }}-{{ slot|default('morning') }}"
+           name="appointment-date-time"
+           {% if isChecked is defined and isChecked is same as (true) %}checked="checked"{% endif %}
+    >
+
+    <label class="timepicker-appointment-option__label"
+           for="{{ date|date("Y-m-j") }}-{{ slot|default('morning') }}"
+           {% if dataToggle is defined %}data-toggle="{{ dataToggle|default(NULL) }}"{% endif %}
+           {% if dataTarget is defined %}data-target="{{ dataTarget|default(NULL) }}"{% endif %}>
+        <p class="h6 font-weight-bold mb-1">{{ slotLabel|default("MORNING") }}</p>
+        <p class="h6 m-0">{{ slotLabelTime|default("9h-12h") }}</p>
+    </label>
+</div>

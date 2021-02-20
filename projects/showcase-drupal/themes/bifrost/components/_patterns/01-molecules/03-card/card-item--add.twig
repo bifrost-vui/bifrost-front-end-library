@@ -1,0 +1,26 @@
+<div class="card h-100 w-100 overflow-hidden bg--none card-rounded p-1 {{ class|default('') }}">
+    <div class="d-flex flex-column h-100 justify-content-between p-3 text-center">
+        <div>
+            <div class="w-100 d-flex align-items-center justify-content-center mb-3 minh-4 position-relative">
+                {% include '@atoms/06-icons/icon-svg.twig' with { iconName:iconName|default('cloud-dvr') } only %}
+                {% if quantity > 1 %}
+                <div class="bg-gray--100 font-weight-bold px-2 py-1 position-absolute--bottom bottom-minus-2">{{ quantity|default('') }}X</div>
+                {% endif %}
+            </div>
+       
+            <p class="font-weight-normal h4 mb-1">{{ title|default('Cloud DVR Unlimited') }}</p>
+            <p class="small">
+                {% if quantity is defined %}<span class="bg-gray--100 px-2 font-weight-bold">{{ quantity|default('') }}X</span>{% endif %}
+                {{ text|default('Hours of recording') }}</p>
+        </div>
+
+        <div>
+            <p class="h4 font-weight-bold">{{ price|default('$ 5.00/month') }}</p>
+
+            {% include '@atoms/02-buttons/00-button.twig' with {
+                buttonClass: "w-100 mt-3 " ~ (isBtnDisabled is same as (true) ? ' disabled ' : NULL) ~ buttonClass|default(''),
+                buttonLabel:"Lorem"
+            } only %}
+        </div>
+    </div>
+</div>

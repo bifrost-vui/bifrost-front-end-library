@@ -1,0 +1,41 @@
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{# Theme definition #}
+{% if themeVariant is same as ("reversed") %}
+    {% set _theme_CardColor = "gray--800" %}
+    {% set _theme_ItemColor = "light" %}
+    {% set _theme_IconColor = "svg-fill--light" %}
+{% else %}
+    {% set _theme_CardColor = "gray--100" %}
+    {% set _theme_ItemColor = "dark" %}
+    {% set _theme_IconColor = "svg-fill--dark" %}
+
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<a href="{{ href|default('#') }}"
+   class="card card--btn link--no-decoration bg-{{ _theme_CardColor|default('gray--100') }} {{ class|default('border-0 border-rounded--lg minh-md-7') }}"
+        {{ extraAttribute|default(NULL) }}>
+    <div class="card-body d-flex justify-content-center">
+        <div class="row align-items-center w-100">
+            <div class="col-9 p-0">
+                <div class="h4 m-0 d-inline-block text-{{ _theme_ItemColor|default('dark') }}">
+                    <span class="pr-2">{{ label|default('Long text to test when whe have two line in small device')|raw }}</span>
+                    {% include '@atoms/06-icons/icon-arrow-to-right.twig' with {
+                        iconClass: 'border-color--' ~ _theme_ItemColor,
+                    } %}
+                </div>
+
+                {% if subLabel is defined %}
+                    <p class="small m-0 text-{{ _theme_ItemColor|default('dark') }}">{{ subLabel|default('') }}</p>
+                {% endif %}
+            </div>
+            <div class="col-3 p-0 text-center">
+                {% block icon %}
+                    {% include '@atoms/06-icons/icon-svg-'~ iconName|default('lock') ~'.twig' with { iconSize: iconSize|default(4), iconColor: _theme_IconColor } %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</a>

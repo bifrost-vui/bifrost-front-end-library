@@ -1,0 +1,44 @@
+<div class="card accordion-item--collapse-below-add {{ isActive|default(false) is same as(true) ? 'active' : '' }} {{ class|default('') }}">
+    <button class="card-header card-header--condensed border-0"
+            id="heading{{ inlineAnchor }}"
+            data-toggle="collapse"
+            data-target="#collapse{{ inlineAnchor }}"
+            aria-expanded="{{ isActive is same as(true) ? 'true' : 'false' }}"
+            aria-controls="collapse{{ inlineAnchor }}"
+    >
+        <div class="d-flex align-items-center justify-content-start">
+            <div class="mr-3">
+                {% include '@atoms/06-icons/icon-svg-plus-circle.twig' with { iconClass:"" } only %}
+                {% include '@atoms/06-icons/icon-svg-minus-circle.twig' with { iconClass:"" } only %}
+            </div>
+            <div class="">
+                {% include '@atoms/01-text/text-highlight.twig' with { textLabel:headerTitle, textClass:"m-0" } %}
+            </div>
+        </div>
+    </button>
+
+    <div id="collapse{{ inlineAnchor }}"
+         class="collapse {{ isActive|default(false) is same as(true) ? 'show' : '' }}"
+         aria-labelledby="heading{{ inlineAnchor }}"
+         data-parent="{{ accordionParent|default("") }}"
+    >
+        <div class="card-body border-left--vui-yellow border-width-4">
+            <div class="row">
+                <div class="col-10">
+                    {% if tabContentSubTitle is defined %}
+                        <p class="mb-4">{{ tabContentSubTitle|default('This is the name we user to greet you when you log in to Videotron. Changing it does not affect the name on your bills or services.') }}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% block collapse_content %}{% endblock %}
+
+            {% block collapse_buttons %}
+                {% include '@molecules/06-accordion/accordion-nav-btn--save-cancel.twig' with {
+                    inlineAnchor:inlineAnchor,
+                    isActive:isActive
+                } only %}
+            {% endblock %}
+        </div>
+    </div>
+</div>

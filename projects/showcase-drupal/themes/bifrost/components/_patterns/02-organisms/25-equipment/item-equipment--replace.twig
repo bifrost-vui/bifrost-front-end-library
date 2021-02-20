@@ -1,0 +1,33 @@
+{% embed '@organisms/25-equipment/item-equipment.twig' with {
+    class:"item-equipment--replace"
+} %}
+    {% block unactive_content %}
+        <div>
+            {% embed '@molecules/14-tooltip/01-button-outline-tooltip-custom.twig' with {
+                class: "mt-4 w-100",
+                buttonColor: "light",
+                buttonClass:"w-100",
+                buttonLabel:"Replace"
+            } only %}
+                {% block tooltip_content %}
+                    <h2>Why do you want to replace your equipment ?</h2>
+                    {% include '@atoms/03-form/selectlist.twig' with {
+                        selectClass: "js-DEMO-custom-select",
+                        options: [
+                            { label:"Choose", value:"-", isSelected:true },
+                            { label:"It's damaged", value:"B" },
+                            { label:"It's damaged - client responsability", value:"C" }
+                        ]
+                    } %}
+
+                    {% include '@atoms/02-buttons/00-button.twig' with {
+                        buttonClass:"w-100 color--dark js-DEMO-select-equipment-item",
+                        buttonLabel:"Proceed",
+                        extraAttribute : 'style=display:none;'
+                    } only %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+
+      {% endblock %}
+{% endembed %}

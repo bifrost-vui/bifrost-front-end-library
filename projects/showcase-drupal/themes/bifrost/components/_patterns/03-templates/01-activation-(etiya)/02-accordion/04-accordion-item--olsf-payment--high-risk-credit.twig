@@ -1,0 +1,36 @@
+<div class="card-body">
+    {% include 'molecules-content-h3-with-text' with {
+        title:"Bill payment",
+        text:"Please use a credit card to make a down payment on your equipment."
+    } %}
+
+    <div class="row">
+        <div class="col-md-5">
+            {% include '@molecules/13-dropdown/00-dropdown.twig' with {
+                class:"",
+                buttonClass: "vui--text-highlight",
+                dropdownId:"drop",
+                dropdownItems: [
+                    {label : "XXXX XXXX XXXX 1234", class:"vui--text-highlight"},
+                    {label : "XXXX XXXX XXXX 1234", class:"vui--text-highlight"},
+                    {label : "XXXX XXXX XXXX 1234", class:"vui--text-highlight"},
+                    {label : "Add a new credit card", class:"vui--text-highlight"},
+                ]
+            } only %}
+        </div>
+    </div>
+
+    {#{% include '@organisms/20-form/form-credit-card.twig' with { class:"mb-6" } only %}#}
+    {% include '@organisms/20-form/form-credit-card--filled.twig' with { class:"mb-6" } only %}
+
+    <!-- Credit card billing address  -------------------------------- -->
+    <hr class="my-4">
+    {% include 'organisms-form-billing-address-selection--btn-2-choices' only %}
+
+    {% include 'molecules-accordion-nav-btn' with {
+        'class': 'mt-6',
+        'anchorIdPrev': accordionAnchorIdPrev|default(''),
+        'anchorIdNext': accordionAnchorIdNext|default('')
+    } %}
+</div>
+

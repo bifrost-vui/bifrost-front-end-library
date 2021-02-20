@@ -1,0 +1,10 @@
+<button type="button"
+        {% if buttonLabel is not empty %}data-title="{{ buttonLabel|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}"{% endif %}
+        class="btn btn-outline-{{ buttonColor|default('dark') }} btn-{{ buttonSize|default('md') }} position-relative {{ buttonClass|default('') }}"
+        {{ extraAttribute|default(NULL) }}
+>{{ buttonLabel|default('Label TODO') }}
+
+    <div class="p-input position-absolute--center-left d-flex align-items-center justify-content-center h-100">
+        {% include '@atoms/06-icons/icon-svg-' ~ iconName|default('helix') ~ '.twig' with { iconSize:iconSize|default(1), iconClass:"mr-3" } only %}
+    </div>
+</button>

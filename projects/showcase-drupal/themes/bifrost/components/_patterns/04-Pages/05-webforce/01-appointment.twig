@@ -1,0 +1,30 @@
+{% extends "base-page-helix.twig" %}
+
+{% set heroPageTitle = "Schedule your appointment" %}
+{% set heroPageSubTitle = "Welcome, Benjamin Desjardins" %}
+{% set hasNoSubnav = true %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_header_nav %}{% endblock %}
+
+{% block page_main_container_section %}
+    <section>
+        <div class="container-fluid py-section">
+            {% include '@organisms/30-calendar/appointment.twig' with {
+                class: "",
+                headerClass: "mb-7"
+            } %}
+
+            <div class="text-right mt-8">
+                {% include '@atoms/02-buttons/00-button.twig' with {
+                    buttonClass:"",
+                    buttonLabel:"Save"
+                } %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block page_footer %}{% endblock %}

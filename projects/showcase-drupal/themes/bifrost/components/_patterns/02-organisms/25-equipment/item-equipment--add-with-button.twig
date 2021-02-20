@@ -1,0 +1,23 @@
+{% embed '@organisms/25-equipment/item-equipment.twig' with {
+    class: "item-equipment--replace"
+} %}
+    {% block item_content %}
+        <p class="h4 mb-4 font-weight-normal" data-animate="fade-in">{{ title|default('XB6 Internet Gateway') }}</p>
+
+        {% include '@atoms/03-form/selectlist.twig' with {
+            class: "select-container--dark w-100",
+            selectClass: "vui--font-secondary-bold text-uppercase py-2",
+            options: [
+                { label:"Financial plan - 3,49$/month", value:"lorem", isSelected:true },
+                { label:"Lorem ipsum", value:"lorem" },
+                { label:"Lorem ipsum", value:"lorem" }
+            ]
+        } %}
+
+        {% include '@atoms/02-buttons/10-button-outline.twig' with {
+            buttonClass:"w-100 mt-4 js-DEMO-select-equipment-item",
+            buttonColor: "light",
+            buttonLabel:"Add"
+        } %}
+    {% endblock %}
+{% endembed %}

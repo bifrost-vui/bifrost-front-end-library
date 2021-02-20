@@ -1,0 +1,35 @@
+{# DEMO PURPOSES #}
+{% if items is not defined or items is empty %}
+    {% set items = [
+        {text:"Suivez votre consommation Internet et Mobilité"},
+        {text:"Ajoutez des blocs de données"},
+        {text:"Consultez vos factures"},
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% if splashColor is defined %}
+  {% set splashClass = 'color--white' %}
+  {% set iconColor = 'svg-fill--white' %}
+  {% set connexionBtnClass = 'splash__btn border mb-4' %}
+{% endif %}
+
+<div class="splash {{ splashClass|default('') }}">
+    {% if imgLogo is defined %}
+        <img class="splash__logo-mobile d-block d-md-none mb-3" src="{{ imgLogo|default("/images/logo/helix-full.svg") }}" {% if isAltTextRemoved is defined and isAltTextRemoved is same as (false) %} alt="{{ altLogo|default("Logo Helix") }}" {% endif %}>
+    {% endif %}
+    <h2 class="mb-3 mb-md-4">{{ title|default("Accédez à l'Espace client") }}</h2>
+    <img class="splash__img mb-4 img-fluid d-none d-md-block" src="{{ img|default('/images/assets/screenshot-videotron.png') }}" {% if isAltTextRemoved is defined and isAltTextRemoved is same as (false) %} alt="{{ altImg|default("Image Espace client") }}" {% endif %}>
+    <p class="h6 font-weight-bold mb-3">{{ subtitle|default('Gérez vos services Mobilité, illico, Internet et Téléphonie') }}</p>
+    <ul class="list-reset pl-0 mb-4">
+        {% for item in items %}
+            <li class="mb-2 d-flex align-items-baseline">{% include '@atoms/06-icons/icon-svg-checkmark.twig' with { iconSize:'1', iconClass:'mr-3 h-100' } %} <span>{{ item.text }}</span></li>
+        {% endfor %}
+    </ul>
+    {% include '@atoms/04-links/01-link-button.twig' with { label:connexionLabel|default('Me connecter'), href:connexionHref, class:connexionBtnClass|default('splash__btn'), buttonColor:connexionBtnColor } %}
+
+    {% if labelDiscoverHelix is defined %}
+        {% include '@atoms/04-links/link-underline.twig' with { label:labelDiscoverHelix, href:hrefDiscoverHelix, headingSize:'6' } %}
+    {% endif %}
+</div>

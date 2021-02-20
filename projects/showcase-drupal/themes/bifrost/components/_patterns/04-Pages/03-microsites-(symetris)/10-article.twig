@@ -1,0 +1,41 @@
+{% extends "base-page.twig" %}
+
+{% set mainExtraClass = "js-scrollspy-overflow" %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    {% include 'organisms-hero-block-article' with { class:"" } only %}
+
+    {# SCROLL SPY EXEMPLE #}
+    {% embed '@templates/03-microsites-(symetris)/scrollspy-sticky.twig' with {
+        scrollSpyNavItems: [
+            { id: "#list-item-1", label: "Item 1"},
+            { id: "#list-item-2", label: "Item 2"},
+            { id: "#list-item-3", label: "Item 3"},
+            { id: "#list-item-4", label: "Item 4"},
+        ]
+    } %}
+        {% block scrollspy_content %}
+            <section id="list-item-1" class="js-scrollspy-section mb-6">
+                <h2 class="font-weight-normal">Item 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem minima, rem! Amet delectus deserunt esse ex id natus, numquam, obcaecati porro praesentium quidem sequi temporibus veritatis voluptates. Beatae, earum fugit! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi aspernatur delectus dicta dolorum ducimus, error possimus repellat sed veritatis! Commodi delectus doloribus dolorum est et labore nobis sequi tenetur? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias asperiores aut, autem deleniti, dicta distinctio ea, eaque libero magni natus perspiciatis quod ratione rem saepe sint temporibus totam voluptates? </p>
+            </section>
+
+            <section id="list-item-2" class="js-scrollspy-section mb-6">
+                <h2 class="font-weight-normal">Item 2</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem minima, rem! Amet delectus deserunt esse ex id natus, numquam, obcaecati porro praesentium quidem sequi temporibus veritatis voluptates. Beatae, earum fugit! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi aspernatur delectus dicta dolorum ducimus, error possimus repellat sed veritatis! Commodi delectus doloribus dolorum est et labore nobis sequi tenetur? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias asperiores aut, autem deleniti, dicta distinctio ea, eaque libero magni natus perspiciatis quod ratione rem saepe sint temporibus totam voluptates? </p>
+            </section>
+
+            <section id="list-item-3" class="js-scrollspy-section mb-6">
+                <h2 class="font-weight-normal">Item 3</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem minima, rem! Amet delectus deserunt esse ex id natus, numquam, obcaecati porro praesentium quidem sequi temporibus veritatis voluptates. Beatae, earum fugit! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi aspernatur delectus dicta dolorum ducimus, error possimus repellat sed veritatis! Commodi delectus doloribus dolorum est et labore nobis sequi tenetur? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias asperiores aut, autem deleniti, dicta distinctio ea, eaque libero magni natus perspiciatis quod ratione rem saepe sint temporibus totam voluptates? </p>
+            </section>
+
+            <section id="list-item-4" class="js-scrollspy-section mb-6">
+                <h2 class="font-weight-normal">Item 4</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem minima, rem! Amet delectus deserunt esse ex id natus, numquam, obcaecati porro praesentium quidem sequi temporibus veritatis voluptates. Beatae, earum fugit! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi aspernatur delectus dicta dolorum ducimus, error possimus repellat sed veritatis! Commodi delectus doloribus dolorum est et labore nobis sequi tenetur? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias asperiores aut, autem deleniti, dicta distinctio ea, eaque libero magni natus perspiciatis quod ratione rem saepe sint temporibus totam voluptates? </p>
+            </section>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

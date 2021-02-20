@@ -1,0 +1,64 @@
+{% if isAutomaticPaymentDesactivated is defined and  isAutomaticPaymentDesactivated is same as (true)%}
+    {% set itemRadioCreditCardClass = "vui--desactivated" %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="mb-7">
+    <div data-animate-row="">
+        <h2 class="mb-2" data-animate="">Automatic payment with credit card</h2>
+        <p data-animate="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus atque earum eius nequenon.</p>
+
+        <div class="mb-4" data-animate="">
+            {% include '@atoms/03-form/input-toggle-switch-with-label.twig' with {
+                isChecked: (isAutomaticPaymentDesactivated is same as (true) ) ? false : true,
+                inputId: "isAutomaticPayment",
+                class:"m-0",
+                inputSize: "sm",
+                toggleChoiceTitle: "Automatic payment"
+            } %}
+        </div>
+
+        <div data-animate>
+            {% for i in 1..2 %}
+                {% include '@molecules/05-input/input-radio-credit-card.twig' with {
+                    isSelected : (i == 1) ? true : false,
+                    class:"border-bottom--0 " ~ itemRadioCreditCardClass|default(''),
+                    inputName: "_account_credit_billing_address",
+                    inputId: "billingAddress" ~ i
+                } %}
+            {% endfor %}
+
+            {# Add a credit card------------------------------------------------------ #}
+            {% embed '@molecules/06-accordion/accordion-item--collapse-below-add.twig' with {
+                inlineAnchor:"tab_addCreditCard",
+                headerTitle:"Add a credit card"
+            } %}
+                {% block collapse_content %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            {% include '@atoms/03-form/input-with-label.twig' with { label:"Name on the credit card", inputId:"_creditCard_name", class:"" } %}
+                        </div>
+                        <div class="col-md-6">
+                            {% include '@atoms/03-form/input-with-label.twig' with { label:"Card Number", inputId:"_creditCard_cardNUmber",  class:"" } %}
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-8">
+                                    {% include '@atoms/03-form/input-with-label.twig' with { label:"Date of expiration", inputId:"_creditCard_name_expidation", inputType:"date", class:"" } %}
+                                </div>
+                                <div class="col-4">
+                                    {% include '@atoms/03-form/input-with-label.twig' with { label:"CCV", inputId:"_creditCard_cvv", inputType:"number", class:"" } %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% include 'organisms-form-billing-address-selection--btn-2-choices' only %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+</div>

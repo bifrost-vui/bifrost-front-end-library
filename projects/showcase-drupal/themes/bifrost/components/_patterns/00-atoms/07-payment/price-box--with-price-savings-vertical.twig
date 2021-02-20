@@ -1,0 +1,15 @@
+<div class="">
+    {% include '@atoms/07-payment/price-box.twig' with {
+        priceClass: "w-100",
+        priceDollar: priceDollar|default("152"),
+        priceCent: priceCent|default("34"),
+        priceInfosSupp: priceInfosSupp|default("Taxes incl."),
+        priceBoxAlignement: "left"
+    } only %}
+
+    {% include '@atoms/07-payment/price-savings.twig' with {
+        class:"",
+        priceDashed: priceDashed|default("$200.00/month"),
+        priceSaved: priceSaved|default("<strong>$20.00/month</strong> until January 1st 2020")
+    } only %}
+</div>

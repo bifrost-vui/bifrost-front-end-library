@@ -1,0 +1,174 @@
+{% set tvPlans = [
+    {
+        title: "TV - Absolute",
+        class:"item-is-unavailable",
+        isCurrentPlan: false,
+        subTitle: "23 chaines HD de base",
+        imgHeader: "icons/instant-tv/helix-tv-en.svg",
+        promoLeft: {
+            number: "+30",
+            channelText: "Choices in <strong>Popular & sports</strong> channel",
+            channels : [
+                { imgSrc:"/images/logo/channels/tva-sports.svg"},
+                { imgSrc:"/images/logo/channels/rds.svg"},
+                { imgSrc:"/images/logo/channels/yoopa.svg"}
+            ]
+        },
+        promoRight : {
+            number: "+2",
+            channelText: "<strong>Premium</strong> channel of your choice",
+            channels : [
+                { imgSrc:"/images/logo/channels/illico.svg"},
+                { imgSrc:"/images/logo/channels/superecran.svg"},
+                { imgSrc:"/images/logo/channels/canalplus.svg"}
+            ]
+        }
+    },
+    {
+        title: "TV APP - Discovery Sports",
+        isCurrentPlan: false,
+        subTitle: "23 live stream channels",
+        imgHeader: "icons/instant-tv/helix-tv-app-en.svg",
+        promoLeft: {
+            number: "+15 ",
+            channelText: "Choices in <strong>Popular & sports</strong> channel",
+            channels : [
+                { imgSrc:"/images/logo/channels/tva-sports.svg"},
+                { imgSrc:"/images/logo/channels/rds.svg"},
+                { imgSrc:"/images/logo/channels/yoopa.svg"}
+            ]
+        },
+        promoRight : {}
+    },
+    {
+        title: "TV - Discovery sports",
+        isCurrentPlan: true,
+        subTitle: "23 chaines HD de base",
+        imgHeader: "icons/instant-tv/helix-tv-en.svg",
+        promoLeft: {
+            number: "+30",
+            channelText: "Choices in <strong>Popular & sports</strong> channel",
+            channels : [
+            { imgSrc:"/images/logo/channels/tva-sports.svg"},
+            { imgSrc:"/images/logo/channels/rds.svg"},
+            { imgSrc:"/images/logo/channels/yoopa.svg"}
+        ]
+        },
+        promoRight : {
+            number: "+2",
+            channelText: "<strong>Premium</strong> channel of your choice",
+            channels : [
+                { imgSrc:"/images/logo/channels/illico.svg"},
+                { imgSrc:"/images/logo/channels/superecran.svg"},
+                { imgSrc:"/images/logo/channels/canalplus.svg"}
+            ]
+        }
+    },
+    {
+        title: "TV - Show time",
+        isCurrentPlan: false,
+        subTitle: "23 chaines HD de base",
+        imgHeader: "icons/instant-tv/helix-tv-en.svg",
+        promoLeft: {
+            number: "+30",
+            channelText: "Choices in <strong>Popular & sports</strong> channel",
+            channels : [
+                { imgSrc:"/images/logo/channels/tva-sports.svg"},
+                { imgSrc:"/images/logo/channels/rds.svg"},
+                { imgSrc:"/images/logo/channels/yoopa.svg"}
+            ]
+        },
+        promoRight : {}
+    },
+    {
+        title: "TV - Offer",
+        isCurrentPlan: false,
+        subTitle: "23 chaines HD de base",
+        imgHeader: "icons/instant-tv/helix-tv-en.svg",
+        promoLeft: {
+            number: "+30",
+            channelText: "Choices in <strong>Popular & sports</strong> channel",
+            channels : [
+                { imgSrc:"/images/logo/channels/tva-sports.svg"},
+                { imgSrc:"/images/logo/channels/rds.svg"},
+                { imgSrc:"/images/logo/channels/yoopa.svg"}
+            ]
+        },
+        promoRight : {
+            number: "+2",
+            channelText: "<strong>Premium</strong> channel of your choice",
+            channels : [
+                { imgSrc:"/images/logo/channels/illico.svg"},
+                { imgSrc:"/images/logo/channels/superecran.svg"},
+                { imgSrc:"/images/logo/channels/canalplus.svg"}
+            ]
+        }
+    }
+] %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="mb-8">
+    <div class="mb-4 text-center">
+        <h2 class="mb-2">Choose your TV plan</h2>
+
+        {% if isModeAddTvPlan is defined and isModeAddTvPlan is same as (true) %}
+            {% include '@atoms/04-links/link-underline.twig' with {
+                class:"mb-0",
+                headingSize: '6',
+                label: "Remove TV plan",
+                href: ""
+            }%}
+        {% else %}
+            <div class="col-lg-2 offset-lg-5">
+                {% embed '@molecules/14-tooltip/01-button-outline-tooltip-custom.twig' with {
+                    class: "mt-4 z-index-20",
+                    buttonColor: "none",
+                    buttonClass:"w-100 btn-csr ",
+                    buttonLabel:"Remove TV service"
+                } only %}
+                    {% block tooltip_content %}
+                        <h2>Please specify the reason for cancellation </h2>
+                        {% include '@atoms/03-form/selectlist.twig' with {
+                            selectClass: "js-DEMO-custom-select",
+                            options: [
+                                { label:"Choose", value:"-", isSelected:true },
+                                { label:"Competition", value:"A", },
+                                { label:"Price too high", value:"B" },
+                                { label:"Do not use the product", value:"C" },
+                                { label:"Insatisfaction service", value:"D" },
+                                { label:"Product, invoice", value:"E" },
+                                { label:"Fire / Theft / Vendal / Lost / Destroyed", value:"F" },
+                                { label:"Product offered by employer", value:"G" },
+                                { label:"Tarif increased", value:"H" },
+                            ]
+                        } %}
+
+                        {% include '@atoms/02-buttons/00-button.twig' with {
+                            buttonClass:"w-100 color--dark js-tooltip-custom__confirm-btn js-tooltip-custom__close",
+                            buttonLabel:"Continue",
+                            extraAttribute : 'style=display:none;'
+                        } only %}
+                    {% endblock %}
+                {% endembed %}
+            </div>
+
+        {% endif %}
+    </div>
+
+    {% if isModeAddTvPlan is defined and isModeAddTvPlan is same as (true) %}
+        <div class="d-flex justify-content-center">
+            <div class="col-10 col-md-8 col-lg-4">
+                {% include 'templates-item-service-plan--add' with { class:"" } only %}
+            </div>
+        </div>
+    {% else %}
+        <div class="py-md-4 js-slick-carousel--simulator carousel-simulator carousel-simulator--tv" data-slick='{"initialSlide":2}'>
+            {% for tvPlan in tvPlans %}
+                <div>
+                    {% include 'templates-item-service-plan--tv' with tvPlan only %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

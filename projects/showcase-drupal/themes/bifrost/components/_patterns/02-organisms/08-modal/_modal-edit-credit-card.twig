@@ -1,0 +1,59 @@
+{% embed "molecules-modal" with {
+    modalId:"modalEditCreditCard",
+    modalSize: "md",
+    modalTitle:"Edit a credit card",
+} %}
+    {% block modal_body %}
+        <div class="border card-rounded mb-4">
+            <div class="p-2 p-lg-3 bg-gray--100 d-flex align-items-center">
+                <div class="bg-gray--100 border-rounded p-1 mr-2">
+                    <img class="" src="/images/icons/payment/mastercard.svg" width="28" alt="">
+                </div>
+
+                <p class="font-weight-bold mb-0">**** **** **** 1234</p>
+            </div>
+
+            <div class="p-2 p-lg-3 ">
+                <div class="row">
+                    <div class="mb-3 col-md-6 col-lg-9">
+                        {% include '@atoms/03-form/input-with-label.twig' with {
+                            label:"Name on the credit card",
+                            inputId:"payment_creditCard",
+                            inputValue: "Lorem ipsum",
+                            class:""
+                        } %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 col-lg-6">
+                        {% include '@atoms/03-form/input-with-label.twig' with {
+                            label:"Date of expiration",
+                            inputId:"payment_date",
+                            inputType:"month",
+                            class:"mb-0"
+                        } %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include '@organisms/20-form/form-billing-address-selection--btn-2-choices.twig' only %}
+
+
+        <div class="d-md-flex justify-content-end mt-6">
+            {% include '@atoms/02-buttons/00-button.twig' with {
+                buttonLabel:"Close",
+                buttonClass:"btn-reset link-underline btn--condensed",
+                dataDismiss:"modal"
+            } %}
+
+            {% include '@atoms/02-buttons/00-button.twig' with {
+                buttonClass:"btn--condensed w-100--mobile-only",
+                buttonLabel:"Save",
+                buttonColor:"primary",
+                dataDismiss:"modal"
+            } %}
+        </div>
+    {% endblock %}
+{% endembed %}

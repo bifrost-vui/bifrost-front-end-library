@@ -1,0 +1,67 @@
+<div class="collapse-fixed-aside ">
+    <input type="checkbox"
+           id="collapseFixedAsideContent"
+           class="collapse-fixed-aside__checkbox sr-only"
+           aria-labelledby="collapseFixedAsideContent">
+    <label for="collapseFixedAsideContent" class="collapse-fixed-aside__btn btn btn-primary m-0">View your actual monthly plan</label>
+
+    <div class="collapse-fixed-aside__content">
+        <div class="bg-gray--100 p-5">
+            <div class="mh-60-autoscroll scrollbar-custom">
+                <div class="mb-6">
+                    <p class="vui--font-secondary h2">Your Internet plan :</p>
+
+                    {% include 'templates-item-service-plan--internet' with {
+                        class:"bg-white card border-width-2",
+                        title: "Internet 500",
+                        isCurrentPlan: true,
+                        subTitle: "Unlimited download",
+                        jaugeAnimValue: "500",
+                        jaugeTextValue: "500",
+                        jaugeTextUnit: "MBTS/S",
+                        personValue: "4 - 7"
+                    } only %}
+                </div>
+
+                <div>
+                    <p class="vui--font-secondary h2">Your TV plan :</p>
+
+                    {% include 'templates-item-service-plan--tv' with {
+                        class:"bg-white card border-width-2",
+                        title: "Absolute",
+                        isCurrentPlan: true,
+                        subTitle: "23 chaines HD de base",
+                        promoLeft: {
+                            number: "+30",
+                            channelText: "Choices in <strong>Popular & sports</strong> channel",
+                            channels : [
+                                { imgSrc:"/images/logo/channels/tva-sports.svg"},
+                                { imgSrc:"/images/logo/channels/rds.svg"},
+                                { imgSrc:"/images/logo/channels/yoopa.svg"}
+                            ]
+                        },
+                        promoRight : {
+                            number: "+2",
+                            channelText: "<strong>Premium</strong> channel of your choice",
+                            channels : [
+                                { imgSrc:"/images/logo/channels/illico.svg"},
+                                { imgSrc:"/images/logo/channels/superecran.svg"},
+                                { imgSrc:"/images/logo/channels/canalplus.svg"}
+                            ]
+                        }
+                    } only %}
+                </div>
+
+                <hr>
+
+                {% include '@atoms/07-payment/price-box.twig' with {
+                    priceClass:"w-100",
+                    priceDollar: "152",
+                    priceCent:"34",
+                    priceInfosSupp:"Taxes incl.",
+                    priceBoxAlignement:"left"
+                } only %}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class=''>
+    {# Technical table #}
+    <div class="c-comparative-grid-table">
+        <div class="comparative-body">
+            {% set technical_item_value = '' %}
+            {% set technical_item_name = '' %}
+            {% for group_name,technical_items in technical_groups %}
+                <div class="comparative-divider-left d-flex justify-content-start">
+                    <div class="mt-5">
+                        <p class="font-weight-medium"> {{ group_name }}</p>
+                    </div>
+                </div>
+                {% for item_value in technical_items %}
+                    {% set technical_item_value = item_value.value %}
+                    {% set technical_item_name = item_value.title %}
+                    <div class="comparative-middle-divider">
+                        <div class="comparative-divider-left d-flex align-items-center minh-4 py-2">
+                            <p class="vui--font-base mb-0">{{ technical_item_name }}</p>
+                        </div>
+                        <div class="comparative-divider-right d-flex justify-content-end">
+                            <div class='col-lg-3 col-md-4 d-flex flex-column align-items-start justify-content-center'>
+                                <p class="font-weight-medium mb-0">{{ technical_item_value }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

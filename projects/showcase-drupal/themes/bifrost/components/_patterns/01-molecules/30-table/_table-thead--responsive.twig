@@ -1,0 +1,31 @@
+{% if theadItems is not defined or theadItems is empty %}
+    {% set theadItems = [
+        { label: "Date"},
+        { label: "Ammount Due"},
+        { label: "Reference Number"},
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<thead class="thead-{{ theadTheme|default('light') }} {{ class|default('') }}">
+    <tr class="">
+        {% for item in theadItems %}
+            {% if loop.index > 4 %}
+                {% set td_mobileClass = "d-none d-lg-table-cell" %}
+            {% elseif loop.index > 2 %}
+                {% set td_mobileClass = "d-none d-md-table-cell" %}
+            {% endif %}
+
+            <th class="{{ td_mobileClass }}">{{ item.label }}</th>
+        {% endfor %}
+
+        {# MOBILE : btn toggle #}
+        {% if theadItems|length > 4 %}
+            {% set thCellToggleContentResponsive = 'd-lg-none' %}
+        {% elseif theadItems|length > 2 %}
+            {% set thCellToggleContentResponsive = 'd-md-none' %}
+        {% endif %}
+        <th class="{{ thCellToggleContentResponsive|default('d-none') }}"></th>
+    </tr>
+</thead>

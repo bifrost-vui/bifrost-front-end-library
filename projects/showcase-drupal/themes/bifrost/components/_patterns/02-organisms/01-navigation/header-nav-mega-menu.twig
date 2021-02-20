@@ -1,0 +1,151 @@
+{# for demo purpose #}
+{% if navItems is not defined %}
+    {% set navItems = [
+        { label:"Discover", href:"#", class:"", subItems: [
+            { label:"Experience", href:"#", class:"", subItems: [
+                { label:"Vocal command", href:"#", class:"" },
+                { label:"Familly", href:"#", class:"" },
+                { label:"Sport fans", href:"#", class:"" },
+                { label:"Equipment", href:"#", class:"" },
+            ] },
+            { label:"Television", href:"#", class:"", subItems: [
+                { label:"Multi screens", href:"#", class:"" },
+                { label:"Channels", href:"#", class:"" },
+            ] },
+            { label:"Internet", href:"#", class:"", subItems: [
+                { label:"Wi-Fi", href:"#", class:"" },
+            ] },
+            { label:"Phone", href:"#", class:"", subItems: [
+                { label:"Wi-Fi", href:"#", class:"" },
+            ] },
+        ],
+            mega: [
+            {imgSrc: "https://source.unsplash.com/600x400/?nature", imgAlt: "Thumbnail", href: "#", title: "Comment ré-initialiser un mot de passe perdu?", text: "Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit."},
+            {imgSrc: "https://source.unsplash.com/600x400/?nature", imgAlt: "Thumbnail", href: "#", title: "Comment ré-initialiser un mot de passe perdu?", text: "Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit."},
+        ] },
+        { label:"Shop", href:"#", class:"", subItems: [
+            { label:"Shop Experience", href:"#", class:"", subItems: [
+                { label:"Vocal command", href:"#", class:"" },
+                { label:"Familly", href:"#", class:"" },
+                { label:"Sport fans", href:"#", class:"" },
+                { label:"Equipment", href:"#", class:"" },
+            ] },
+            { label:"Shop Television", href:"#", class:"", subItems: [
+                { label:"Multi screens", href:"#", class:"" },
+                { label:"Channels", href:"#", class:"" },
+            ] },
+            { label:"Shop Internet", href:"#", class:"", subItems: [
+                { label:"Wi-Fi", href:"#", class:"" },
+            ] },
+        ],
+            mega: [] },
+        { label:"Support", href:"#", class:"", subItems: [
+            { label:"Lorem ipsum", href:"#", class:"", subItems: [
+                { label:"Lorem ipsum", href:"#", class:"" },
+                { label:"Lorem ipsum", href:"#", class:"" },
+                { label:"Lorem ipsum", href:"#", class:"" },
+                { label:"Lorem ipsum", href:"#", class:"" },
+            ] },
+            { label:"Lorem ipsum", href:"#", class:"", subItems: [
+                { label:"Lorem ipsum", href:"#", class:"" },
+                { label:"Lorem ipsum", href:"#", class:"" },
+            ] },
+            { label:"Lorem ipsum", href:"#", class:"", subItems: [
+                { label:"Lorem ipsum", href:"#", class:"" },
+            ] },
+            { label:"Lorem ipsum", href:"#", class:"", subItems: [
+                { label:"Lorem ipsum", href:"#", class:"" },
+                { label:"Lorem ipsum", href:"#", class:"" },
+                { label:"Lorem ipsum", href:"#", class:"" },
+                { label:"Lorem ipsum", href:"#", class:"" },
+            ] },
+        ],
+            mega: [] },
+        { label:"My Helix", href:"#", class:"active" },
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<!-- Mega menu -->
+{% for navItem in navItems %}
+    <li class="nav-item dropdown js-dropdown--megamenu position-static js-mega-collapse {{ navItem.class }}" data-animate="fade-in">
+
+        {% if not navItem.subItems %}
+            <a class="nav-link mb-0 h5 {{ navItem.class|default('') }}" href="{{ navItem.href|default('#') }}" rel="{{ navItem.rel|default('dofollow') }}">
+                {{ navItem.label }}
+            </a>
+        {% else %}
+            <button class="position-relative nav-link navbar-toggler js-navbar-toggler navbar-toggler--dynamic-arrow-direction vui--style-reset w-100--mobile-only d-flex justify-content-between align-items-center border-bottom--dark border-lg--0"
+                    type="button"
+                    id="menuDropdown{{ loop.index }}"
+                    data-toggle="dropdown"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <span class="mb-0">{{ navItem.label }}</span>
+
+                {% include '@atoms/06-icons/icon-arrow-to-bottom.twig' with { iconClass:"icon-light", iconMarginLeft:"0" } %}
+            </button>
+
+            <div class="dropdown-menu mega-menu py-lg-4 mt-0 bg-gray--1000"
+                 aria-labelledby="menuDropdown{{ loop.index }}">
+                <div class="container-fluid py-3 py-lg-0">
+                    <div class="row">
+                        {% for subItem in navItem.subItems %}
+                            <ul class="col-lg-3 py-0 pb-4 list-unstyled fs-3">
+                                <li>
+                                    <div class="mb-2">
+                                        {% include '@atoms/04-links/link-default-optimized.twig' with {
+                                            href:subItem.href,
+                                            label:subItem.label,
+                                            class:"color-gray--200 font-weight-bold d-block d-lg-inline py-2 py-lg-0 " ~ subItem.class,
+                                            rel:subItem.rel|default("dofollow"),
+                                            extraAttribute: "tabindex=-1 " ~ subItem.extraAttribute
+                                        } %}
+                                    </div>
+
+                                    {% if subItem.subItems %}
+                                        <ul class="p-0 pl-3 pl-lg-0 list-unstyled fs-3">
+                                            {% for subItem in subItem.subItems %}
+                                                <li class="mb-2">
+                                                    {% include '@atoms/04-links/link-default-optimized.twig' with {
+                                                        href:subItem.href,
+                                                        label:subItem.label,
+                                                        class:"color-gray--200 d-block d-lg-inline py-2 py-lg-0 h5 " ~ subItem.class,
+                                                        rel:subItem.rel|default("dofollow"),
+                                                        extraAttribute: "tabindex=-1 " ~ subItem.extraAttribute
+                                                    } %}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if navItem.mega is not empty %}
+                    <div class="container-fluid  d-none d-lg-block">
+                        <div class="pt-4 border-top-gray--800">
+                            <div class="row">
+                                {% for item in navItem.mega %}
+                                    <div class="col-6">
+                                        {% include '@organisms/01-navigation/mega-menu-block.twig' with {
+                                            class:"color--light",
+                                            imgSrc: item.imgSrc,
+                                            imgAlt: item.imgAlt,
+                                            href: item.href,
+                                            title: item.title,
+                                            text: item.text,
+                                        } %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </li>
+{% endfor %}

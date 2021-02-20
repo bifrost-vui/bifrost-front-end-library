@@ -1,0 +1,67 @@
+{# DEMO PURPOSE #}
+{% if internet is not defined %}
+    {% set internet = true %}
+{% endif %}
+{% if tv is not defined %}
+    {% set tv = true %}
+{% endif %}
+{% if highlightedChannels is not defined %}
+    {% set highlightedChannels = [
+        {imgSrc:"/images/logo/channels/tva-sports.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/canalplus.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/rds.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/yoopa.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/canalplus.svg",imgAlt:"Here is my title"},
+    ] %}
+{% endif %}
+{% if highlightedPremiumChannels is not defined %}
+    {% set highlightedPremiumChannels = [
+        {imgSrc:"/images/logo/channels/canalplus.svg",imgAlt:"Canal Plus"},
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="pt-4 {{ class|default('') }}">
+    {% if internet %}
+        {% include '@organisms/10-offers/component-shop-internet.twig' %}
+    {% endif %}
+    {% if tv %}
+        <h3 class="font-weight-light text-uppercase">{{ tvPlanTitle|default("Showtime TV plan") }}</h3>
+        <div class="service-inclusion mb-3">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 px-0">
+                    {% if bundleLogo is defined and bundleLogo is not empty %}
+                        {% include '@atoms/06-icons/icon-svg.twig' with { iconName: bundleLogo, iconClass:"img-fluid" } only %}
+                    {% else %}
+                        <p class="h5 font-weight-bold">{{ totalChannelCount|default('38') }}</p>
+                    {% endif %}
+                </div>
+                <div class="border-bottom col-lg-8 col-md-6 px-0">
+                    <div class="my-3">
+                        <p class="font-weight-bold mb-1">{{ productLabel|default('Total channel including') }}</p>
+                        <p class="small">{{ channelText|default("23 basic HD channels") }}</p>
+                    </div>
+                    {% if highlightedChannels is not empty %}
+                        <div class="border-top pt-3 mb-3">
+                            <p class="small">{{ highlightedChannelsText|default('15 choices among Sports and Popular') }}</p>
+                            <ul class="list-unstyled d-flex justify-space-around">
+                            {% for item in highlightedChannels %}
+                                <li class="w-20">
+                                    <img class="img-fluid" alt="{{ item.imgAlt }}" src="{{ item.imgSrc }}">
+                                </li>
+                            {% endfor %}
+                          </ul>
+                        </div>
+                    {% endif %}
+                    {% if highlightedPremiumChannels is not empty %}
+                        <div class="border-top pt-3 mb-3">
+                            <p class="small">{{ highlightedPremiumText|default('15 choices among Premium') }}
+                              <img class="img-fluid maxw-25" alt="{{ highlightedPremiumChannels[0].imgAlt }}" src="{{ highlightedPremiumChannels[0].imgSrc }}"></p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,89 @@
+{% extends "base-page--funnel-services.twig" %}
+
+{% set navStepByStep_tplName = "equipments-add" %}
+{% set navStepByStep_activeNumber = 2 %}
+
+{% set page_hero_title = "Cart summary" %}
+{% set page_hero_subtitle = "Lorem ipsum dolor sit amet, consectetur adipisicing elit ? " %}
+
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_content %}
+    <section class="py-section">
+        <div class="mb-4">
+            <h2 class="mb-1">Equipment</h2>
+            <p>Choose how you would like to buy your equipments.</p>
+        </div>
+
+        {% include '@atoms/03-form/input-toggle-switch--2-choices.twig' with {
+            class:"",
+            toggleChoice1Title:"PAYMENT PLAN OVER 36 MONTHS",
+            toggleChoice1SubTitle:"Taxes paid upfront as a one-time fee",
+            toggleChoice2Title:"BUY UPFRONT",
+            toggleChoice2SubTitle:"",
+        } %}
+
+        {% include '@organisms/07-cart-summary/cart-summary--equipments.twig' with { class:"mb-6" } %}
+
+        <h2 class="mb-3">Accessories</h2>
+        {% embed '@molecules/09-payment/cart-summary-table.twig' with {
+            class:"mb-6",
+            subtotalPrice:"$0.00",
+            headerPriceDashed:"X,XX$",
+            headerPriceSaved:"XX,XX$"
+        } %}
+            {% block table_content %}
+                {% include '@molecules/09-payment/cart-summary-item--increment.twig'  %}
+            {% endblock %}
+        {% endembed %}
+
+        <h2 class="mb-3">You might need</h2>
+        {% include '@organisms/07-cart-summary/cart-summary--equipments-warranty.twig' with { class:"mb-6" } %}
+
+        {# Installation -----------------------------------------------------  #}
+        <div class="mb-4">
+            <h2 class="mb-1">Installation</h2>
+            <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+        </div>
+
+        {% include '@atoms/03-form/input-toggle-switch--2-choices.twig' with {
+            class:"",
+            toggleChoice1Title:"Self install",
+            toggleChoice1SubTitle:"(Shipping)",
+            toggleChoice2Title:"Technician install",
+            toggleChoice2SubTitle:"",
+        } %}
+
+        {% include '@molecules/09-payment/cart-summary-table.twig' with {
+            subtotalPrice:"$0.00",
+            headerPriceDashed:"X,XX$",
+            headerPriceSaved:"X,XX$",
+            items: [
+                {
+                    itemTitle:"Lorem ipsum dolar si amet.",
+                    itemSubTitle:"Lorem ipsum dolar si amet.",
+                    itemPrice:"FREE"
+                }
+            ]
+        } %}
+    </section>
+{% endblock %}
+
+{% block page_aside %}
+    <section class="py-section">
+        {% include '@organisms/05-payment/payment-billing-summary.twig' with {
+            class:"mb-4"
+        } %}
+
+        {% include '@atoms/04-links/01-link-button.twig' with {
+            class:"w-100 mb-4",
+            buttonSize: "lg",
+            buttonColor: "primary",
+            label: "Proceed to checkout",
+            href: "/patterns/04-Pages-02-my-account-(etiya)-0345-equipments--checkout/04-Pages-02-my-account-(etiya)-0345-equipments--checkout.html"
+        } only %}
+
+        {% include '@organisms/05-payment/payment-next-bill.twig' %}
+    </section>
+{% endblock %}

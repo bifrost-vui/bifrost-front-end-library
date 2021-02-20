@@ -1,0 +1,14 @@
+<div class="form-group {{ class|default('') }}" {{ formGroupExtraAttributes|default(NULL) }}>
+    <input id="{{ inputId }}"
+           class="mt-{{ mtValue|default('0') }} {{ inputClass|default('') }} btn btn-{{ inputSize|default('md') }} btn-{{ inputColor|default('primary') }}"
+           type="{{ inputType|default('submit') }}"
+           name="{{ inputName|default('') }}"
+           value="{{ inputValue|default('Submit This form') }}"
+           role="alertdialog"
+           aria-busy="true"
+           aria-live="assertive"
+           {{ extraAttribute|default(NULL) }}>
+
+    {% block errorMessage %}{% endblock %}
+
+</div><!-- /.form-group -->

@@ -1,0 +1,31 @@
+{% embed "molecules-modal" with {
+    modalId:"modalInStorePaymentSuccess",
+    modalClass:"modal-callout--primary",
+    modalSize:"md"
+} %}
+    {% block modal_header %}
+        <div class="d-flex mb-2 align-items-center">
+            {% include '@atoms/06-icons/icon-svg.twig' with {
+                iconName: "checkbox-selected",
+                iconSize: 3,
+                iconClass:"mr-3"
+            } only %}
+            <h2 class="mb-0">Success</h2>
+        </div>
+    {% endblock %}
+
+    {% block modal_body %}
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum iusto natus necessitatibus ratione tempore tenetur ullam unde veniam voluptatibus.</p>
+
+        <div class="row mt-4">
+            <div class="col-md-4 offset-md-8">
+                {% include '@atoms/02-buttons/00-button.twig' with {
+                    buttonLabel:"Close",
+                    buttonColor:"",
+                    buttonClass:"btn--condensed w-100",
+                    dataDismiss:"modal"
+                } %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

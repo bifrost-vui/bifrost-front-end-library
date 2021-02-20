@@ -1,0 +1,69 @@
+<div class="{{ class|default("container") }}">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card card--offer h-100 p-6 bg--dark color--white card--offset-bottom">
+                <div class="card-header border-top-0" data-animate="fade-in">
+                    <p class="h6 color--white text-uppercase">{{ offerTitle|default("") }}</p>
+                    <p class="color--white mb-0">{{ contentTitle|default("") }}</p>
+                    {% include '@atoms/07-payment/price-box.twig' with {
+                        priceBoxSubInfosLabel: ' ',
+                        priceDollar: priceDollar,
+                        priceCent: priceCent,
+                        priceInfosSupp: priceInfosSupp,
+                        priceRecurrencePeriod: priceRecurrencePeriod,
+                        itemTitleTooltipInfos: itemTitleTooltipInfos,
+                        priceClass:"justify-content-center color--light",
+                        priceBoxAlignement: "center",
+                        priceInfosSuppColor: "color--vui-yellow",
+                        iconTooltipColor: "svg-fill--white"
+                    } %}
+                </div>
+
+                {% include '@atoms/04-links/01-link-button.twig' with {
+                    id: buttonId|default("stickyNavContinuBtn"),
+                    class:"js-stickyPriceBar__btn color--dark mt-3",
+                    buttonColor: "primary",
+                    label: buttonLabel|default("Confirm"),
+                    href: buttonHref|default(""),
+                    extraAttribute: buttonExtraAttributes|default(''),
+                } only %}
+            </div>
+        </div>
+        <div class="col-lg-8 bg--white">
+            {% if horImage %}
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="box-bundle-included p-6">
+                            {% if horIncludedTitle %}
+                                <div class="border-bottom-gray--100 border-width-2">
+                                    <p class="font-weight-bold mb-3">{{ horIncludedTitle }}</p>
+                                </div>
+                            {% endif %}
+                            {% if horIncludedTxt %}
+                                <p> {{ horIncludedTxt.value | raw }} </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-3 w-100">
+                        {% include '@atoms/11-images/img-lazy-load.twig' with {
+                            class:"img-fluid h-100",
+                            isSquareMode: true,
+                            src: horImage|default('https://source.unsplash.com/450x550/?nature')
+                        } only %}
+                    </div>
+                </div>
+            {% else %}
+                <div class="box-bundle-included p-6">
+                    {% if horIncludedTitle %}
+                        <div class="border-bottom-gray--100 border-width-2">
+                            <p class="font-weight-bold mb-3">{{ horIncludedTitle }}</p>
+                        </div>
+                    {% endif %}
+                    {% if horIncludedTxt %}
+                        <p> {{ horIncludedTxt.value | raw }} </p>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

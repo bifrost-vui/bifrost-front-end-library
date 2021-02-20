@@ -1,0 +1,254 @@
+<div class="card-body">
+    <div class="mb-4">
+        {#<h2 class="mb-2">Review your order</h2>#}
+        <p>A confirmation email will be sent to <strong>example@email.com</strong> after you place the order. This order will be charged on your next bill.</p>
+    </div>
+
+    {# ------------------------------------------------------------------------------------------------------------------ #}
+    <h3 class="mb-2">Informations</h3>
+    <div class="mb-4">
+        <div class="row d-flex">
+            <div class="col-md-6 mb-3">
+                {% include '@molecules/03-card/card-infos--with-body.twig' with {
+                    cardClass:"h-100",
+                    headerTitle:"Personal information",
+                    headerSubtitle:"John Doe",
+                    bodyInfos: [
+                        { title:"Phone number", value:"514-123-2333"},
+                        { title:"Email address", value:"name@gmail.com"},
+                        { title:"Service address", value:"800, rue du Square-Victoria,<br>Montréal, QC, H4Z OA4"}
+                    ]
+                } %}
+            </div>
+            <div class="col-md-6 mb-3">
+                {% embed '@molecules/03-card/card-infos--with-body.twig' with {
+                    cardClass:"h-100",
+                    headerTitle:"Pre-authorized Payment",
+                    headerSubtitle:"Mastercard"
+                } %}
+                    {% block card_body %}
+                        {% set bodyInfos = [
+                            { title:"Name on the credit card", value:"John Dow"},
+                            { title:"Card Number", value:"**** **** **** 1111"},
+                            { title:"Billing address", value:"800, rue du Square-Victoria,<br>Montréal, QC, H4Z OA4"}
+                        ] %}
+
+                        {% for info in bodyInfos %}
+                            <p>
+                                <span class="font-weight-bold">{{ info.title }}</span>
+                                <br>{{ info.value|raw }}
+                            </p>
+                        {% endfor %}
+
+                        <p class="mb-0">Your invoice is available at all times in your Helix account.</p>
+                    {% endblock %}
+                {% endembed %}
+            </div>
+        </div>
+
+        {# DROP 3 (port-in and appointment) #}
+        <div class="row d-flex">
+            <div class="col-md-6 mb-3">
+                {% embed '@molecules/03-card/card-infos--with-body.twig' with {
+                    cardClass:"h-100",
+                    headerTitle:"Port-In services",
+                    headerSubtitle:""
+                } %}
+                    {% block card_body %}
+                        <p class="">Videotron will take care of port-in services for these accounts on Mon. April 5, 2019 :</p>
+
+                        {% set bodyInfos = [
+                            { title:"Internet", value:"Ebox service removal for account 7896534 902"},
+                            { title:"Television", value:"Ebox service removal for account 6534789 653"}
+                        ] %}
+                        {% for info in bodyInfos %}
+                            <p>
+                                <span class="font-weight-bold">{{ info.title }}</span>
+                                <br>{{ info.value|raw }}
+                            </p>
+                        {% endfor %}
+
+                        <p class="mb-0">To ensure that you do not experience any service interruptions, please note that there may be a billing overlap between Videotron and your current provider while your request is being processed.</p>
+                    {% endblock %}
+                {% endembed %}
+            </div>
+            <div class="col-md-6 mb-3">
+                {% include '@molecules/03-card/card-infos--with-body.twig' with {
+                    cardClass:"h-100",
+                    headerTitle:"Installation appointment",
+                    headerSubtitle:"",
+                    bodyInfos: [
+                        { title:"Your appointment is schedule for : ", value:"Saturday, April 7, 2019 between 9h - 12h"},
+                        { title:"Contact", value:"John Doe"},
+                        { title:"Phone number", value:"514 999-9999"}
+                    ]
+                } %}
+            </div>
+        </div>
+
+        <div class="row d-flex">
+            <div class="col-md-6 mb-3">
+                {% embed '@molecules/03-card/card-infos--with-body.twig' with {
+                    cardClass:"h-100",
+                    headerTitle:"Pre-authorized Payment",
+                    headerSubtitle:"Bank transfert"
+                } %}
+                    {% block card_body %}
+                        {% set bodyInfos = [
+                            { title:"Transit number", value:"XXX432"},
+                            { title:"Bank Number", value:"XXX984"},
+                            { title:"Account number", value:"XXX333"}
+                        ] %}
+
+                        {% for info in bodyInfos %}
+                            <p>
+                                <span class="font-weight-bold">{{ info.title }}</span>
+                                <br>{{ info.value|raw }}
+                            </p>
+                        {% endfor %}
+
+                        <p class="mb-0">Your invoice is available at all times in your Helix account.</p>
+                    {% endblock %}
+                {% endembed %}
+            </div>
+            <div class="col-md-6 mb-3">
+                {% embed '@molecules/03-card/card-infos--with-body.twig' with {
+                    cardClass:"h-100",
+                    headerTitle:"Manuel payment",
+                    headerSubtitle:"Financial institution"
+                } %}
+                    {% block card_body %}
+                        <p>All Canadian financial institutions accept online payment of Videotron invoices. Just access your financial institution's website and add Videotron as your beneficiary.</p>
+                        <p class="mb-0">Your invoice is available at all times in your Helix account.</p>
+                    {% endblock %}
+                {% endembed %}
+            </div>
+        </div>
+
+        <div class="row d-flex mb-5">
+            <div class="col-md-6 mb-3 mb-md-0">
+                {% include '@molecules/03-card/card-infos--with-body.twig' with {
+                    cardClass:"h-100",
+                    headerTitle:"Bring your own equipment",
+                    bodyInfos: [
+                        {
+                            title:"You already have the following equipments :",
+                            value:"<br>- Helix Fi Gateway (x1)<br>- Helix TV Terminal (x2)"
+                        }
+                    ]
+                } %}
+            </div>
+        </div>
+    </div>
+
+    {# ------------------------------------------------------------------------------------------------------------------ #}
+    <h3 class="mb-2">Services</h3>
+    {% include '@molecules/09-payment/cart-summary-table.twig' with {
+        class:"mb-4",
+        subtotalPrice:"$143.70/month",
+        headerPriceDashed:"$150.00",
+        headerPriceSaved:"$124.34",
+        headerPromotionInfos:"Promo valid for 6 months from activation",
+        items: [
+            {
+                itemTitle:"Internet Fibre Hybride 60",
+                itemSubTitle: "Unlimited data included",
+                itemTitleTooltipInfos:"Here is a simple tooltip text to be change in the near futur.",
+                itemQty:"1",
+                itemPrice:"$79.00",
+                isItemMontlhyPayment: true,
+                inputIncrement: {
+                    class:"ml-md-minus-6 mt-minus-2",
+                    hasResetCountBtn: false,
+                    inputFontFamily: "base",
+                    inputSize: "sm",
+                    iconSize:3,
+                    isControlsDisabled : true,
+                }
+            },
+            {
+                itemTitle:"All-in TV pack",
+                itemTitleTooltipInfos:"Here is a simple tooltip text to be change in the near futur.",
+                itemQty:"1",
+                itemPrice:"$61.00",
+                isItemMontlhyPayment: true,
+                inputIncrement: {
+                    class:"ml-md-minus-6 mt-minus-2",
+                    hasResetCountBtn: false,
+                    inputFontFamily: "base",
+                    inputSize: "sm",
+                    iconSize:3,
+                    isControlsDisabled : true,
+                }
+            }
+        ]
+    } %}
+
+    <h3 class="mb-2">Equipments</h3>
+    {% include '@molecules/09-payment/cart-summary-table.twig' with {
+        class:"mb-4",
+        subtotalPrice:"$580.00/month",
+        headerPriceDashed:"$125.00",
+        headerPriceSaved:"$125.00",
+        headerPromotionInfos:"Promo valid for 6 months from activation",
+        legalTxt: "<strong>Legal Warranty : </strong>The law gives you a warranty on all goods that you purchase or lease: the goods must be durable in normal use for a reasonable length of time.",
+        items: [
+            {
+                itemTitle:"Helix FI Gateway",
+                itemTitleTooltipInfos:"Here is a simple tooltip text to be change in the near futur.",
+                itemQty:"1",
+                itemPrice:"$6.00",
+                itemSubPriceInfos: "Buy Upfront: $240.00",
+                isItemMontlhyPayment: true,
+                inputIncrement: {
+                    class:"ml-md-minus-6 mt-minus-2",
+                    hasResetCountBtn: false,
+                    inputFontFamily: "base",
+                    inputSize: "sm",
+                    iconSize:3,
+                    isControlsDisabled : true,
+                }
+            },
+            {
+                itemTitle:"Helix TV Terminal",
+                itemTitleTooltipInfos:"Here is a simple tooltip text to be change in the near futur.",
+                itemQty:"1",
+                itemPrice:"$16.00",
+                itemSubPriceInfos: "Buy Upfront: $240.00",
+                isItemMontlhyPayment: true,
+                inputIncrement: {
+                    class:"ml-md-minus-6 mt-minus-2",
+                    hasResetCountBtn: false,
+                    inputFontFamily: "base",
+                    inputSize: "sm",
+                    iconSize:3,
+                    isControlsDisabled : true,
+                }
+            }
+        ]
+    } %}
+
+    <h3 class="mb-2">Installation</h3>
+    {% include '@organisms/07-cart-summary/cart-summary--installation.twig' with { class:"mb-4" }%}
+    {# ------------------------------------------------------------------------------------------------------------------ #}
+
+    {#<div class="row">#}
+        {#<div class="col-12 col-md-8">#}
+            {#{% include '@atoms/03-form/input-checkbox-with-label.twig' with { label:'By placing the order, I am confirming that I\'ve read and agree with the <a href="#" class="link">Terms & Conditions</a>', inputId:"account_review_terms"} %}#}
+            {#{% include '@atoms/03-form/input-checkbox-with-label.twig' with { label:'By placing the order, I accept the <a href="#" class="link">software update on equipments</a>.', inputId:"account_review_software"} %}#}
+            {#{% include '@atoms/03-form/input-checkbox-with-label.twig' with { label:'By placing the order, I am confirming that I accept the <a href="#" class="link">electronic transmissions of contract</a>', inputId:"account_review_electro"} %}#}
+        {#</div>#}
+    {#</div>#}
+
+    <div class="row justify-content-end mt-5">
+        <div class="col-12 col-md-6 text-right">
+            {% include '@atoms/02-buttons/00-button.twig' with {
+                buttonClass:"w-100-mobile-only",
+                buttonSize: "lg",
+                buttonLabel:"Place my order",
+                dataToggle:"modal",
+                dataTarget:"#modalTermsAndConditionsWithCheckbox"
+            } %}
+        </div>
+    </div>
+</div>

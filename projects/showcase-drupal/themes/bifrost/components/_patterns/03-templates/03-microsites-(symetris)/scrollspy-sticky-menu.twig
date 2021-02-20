@@ -1,0 +1,9 @@
+<div id="{{ navId|default('list-example') }}" class="sticky-top pt-3">
+    <div class="list-group list-group--bullet-vertical ">
+        {% for item in scrollSpyNavItems %}
+            <a class="list-group-item border-0 js-scrollspy-link js-scrollspy-goto-animate {{ (loop.first is same as (true)) ? 'active' : null  }}"
+               href="{{ item.id|default('#') }}"
+             >{{ item.label|default('Scrllspy anchor link') }}</a>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<!-- account-service-plan.twig -->
+<div class="{{ class|default('') }}">
+    <div class="row mb-2 mb-md-4">
+        <div class="col-md-6" data-animate>
+            <h2 class="pl-0 mb-0">Helix services</h2>
+        </div>
+
+        {% if isViewCSR is defined and isViewCSR is same as (true) %}
+            <div class="col-md-6 text-right mb-3 mb-md-0" data-animate>
+                <div class="mt-3 mt-md-0">
+                    {% include '@atoms/04-links/01-link-button-outline.twig' with {
+                        label:"Change package",
+                        href: "/patterns/04-Pages-02-my-account-(etiya)-0301-services--simulator/04-Pages-02-my-account-(etiya)-0301-services--simulator.html",
+                        class:"w-100--mobile-only"
+                    } %}
+
+                    {#{% include 'atoms-button-outline-desactivated-with-tooltip' with {#}
+                        {#buttonClass:"w-100--mobile-only",#}
+                        {#buttonLabel:"Change package",#}
+                        {#tooltipTxt:"An order is already in progress! You will be able to proceed when your previous order will be closed"#}
+                    {#} only %}#}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="row mb-4 mb-md-6" >
+        {# Manage your Internet ------------------------------------------------- #}
+        <div class="col-md-6 mb-4 mb-md-0" data-animate="">
+            {% include 'templates-item-service-plan--internet' with {
+                class: (isViewCSR is defined and isViewCSR is same as (true)) ? "mb-3 mb-md-6" : '',
+                cardClass: "bg-primary p-5 py-6",
+                itemContentClass: "minh-md-7",
+                jaugeColor: "dark",
+                borderLeftColor: "border-left--vui-yellow-dark",
+                title: "Internet 400",
+                subTitle: "Unlimited data included",
+                hasNoDetails: true
+            } only %}
+
+            {% if isViewCSR is defined and isViewCSR is same as (true) %}
+                <h2 class="mb-0 mb-md-2" data-animate="">Manage your internet</h2>
+                {% include '@atoms/15-list/list-arrow.twig' with {
+                    class:"mr-md-7",
+                    linkClass:'h5',
+                    listItems:[
+                        { label: "Check your connection speed", href:"" }
+                    ],
+                } only %}
+            {% endif %}
+        </div>
+
+        {# Manage your TV ------------------------------------------------- #}
+        <div class="col-md-6" data-animate="">
+            {% include 'templates-item-service-plan--tv' with {
+                class: (isViewCSR is defined and isViewCSR is same as (true)) ? "mb-3 mb-md-6" : '',
+                cardClass: "vui--style-black p-5 py-6",
+                itemContentClass: "minh-md-7",
+                borderLeftColor: "border-left-gray--900",
+                hasNoDetails: true,
+                title: "Mega Tv Package",
+                subTitle: "23 HD base channels",
+                promoLeft: {
+                    number: "+30",
+                    channelText: "Choices in <strong>Popular <br>& sports</strong> channel",
+                    channels : []
+                },
+                promoRight : {
+                    number: "+2",
+                    channelText: "<strong>Premium</strong> channel<br> of your choice",
+                    channels : []
+                }
+            } only %}
+
+            {% if isViewCSR is defined and isViewCSR is same as (true) %}
+                <h2 class="mb-0 mb-md-2" data-animate="">Manage your TV</h2>
+                {% include '@atoms/15-list/list-arrow.twig' with {
+                    class:"mr-md-7",
+                    linkClass:'h5',
+                    listItems:[
+                        { label: "Modify your channels", href:"/patterns/04-Pages-02-my-account-(etiya)-0302-services--channel-swap/04-Pages-02-my-account-(etiya)-0302-services--channel-swap.html" },
+                        { label: "Manage Cloud DVR", href:"/patterns/04-Pages-02-my-account-(etiya)-0321-cloud-dvr--manage/04-Pages-02-my-account-(etiya)-0321-cloud-dvr--manage.html" }
+                    ],
+                } only %}
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'organisms-box-other-services' with { class:"" } only %}
+</div>

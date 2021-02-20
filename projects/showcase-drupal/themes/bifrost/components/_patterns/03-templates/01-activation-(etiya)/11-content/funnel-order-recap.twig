@@ -1,0 +1,27 @@
+<div class="{{ class|default('') }}">
+    <div class="row">
+        <div class="col-12">
+            {% include 'alert-box.twig' with {
+                class:"alert alert-callout--csr alert--csr alert-csr mb-4 p-4",
+                themeColor: "csr",
+                hasNoCloseButton: true,
+                alertTitle: "Lorem ipsum dolor sit amet",
+                alertTxt: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab eius quis tempora veritatis? Aliquid consectetur, cumque debitis deleniti dolore dolores eaque excepturi maiores nulla numquam pariatur quod ratione repellat totam!</p><p class='mb-0'>Lorem : <strong>ipsum dolor</strong></p><p>Lorem : <strong>ipsum dolor</strong></p>"
+            } only %}
+        </div>
+    </div>
+    <h2 class="mb-4">Order recap</h2>
+    <div class="row mb-4">
+        <div class="col-lg-8 mb-3">
+            {% include '@organisms/06-billing/billing-recap-summary.twig' only %}
+        </div>
+
+        <div class="col-lg-4 mb-3 ">
+            {% if hasAmmountDueBlock is defined and hasAmmountDueBlock is same as (true) %}
+                {% include '@organisms/05-payment/payment-amount-due-today.twig' %}
+            {% endif %}
+
+            {% include '@organisms/05-payment/payment-billing-summary.twig' only %}
+        </div>
+    </div>
+</div>

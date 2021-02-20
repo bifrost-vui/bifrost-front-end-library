@@ -1,0 +1,95 @@
+{# DEMO purpose #}
+{% if tabNavItems is not defined or tabNavItems is empty %}
+    {% set tabNavItems = [
+        {
+            id:"lorem1",
+            isSelected:true,
+            header : {
+                title:"Title",
+                desc: "This is my desc",
+                icon: {
+                    name: "support"
+                }
+            }
+        },
+        {
+            id:"lorem2",
+            isSelected:false,
+            header : {
+                title:"Title"
+            }
+        },
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+<div class="tab tab--card {{ class|default('') }}">
+    <div class="tab__header {{ tabHeaderClass|default('') }}">
+        <div class="position-relative">
+            <ul class="row nav nav-tabs"
+                id="{{ tabId|default('') }}"
+                role="tablist"
+                data-animate="fade-in"
+            >
+                {% for tab in tabNavItems %}
+                    {% set _liClass = "col-md" %}
+                    {% if tabNavItems|length > 4 %}
+                        {% set _liClass = "col-md-3" %}
+                    {% endif %}
+
+                    <li class="col-12 mb-3 {{ _liClass }}">
+                        <a class="  nav-link
+                                    d-flex
+                                    align-items-center
+                                    justify-content-center
+                                    px-3
+                                    py-4
+                                    border
+                                    border-rounded
+                                    w-100
+                                    h-100
+                                    link--no-decoration
+                                    {{ tab.isSelected|default(false) ? 'active' : '' }}"
+                            id="{{ tab.id|default('myTab') }}-tab"
+                            href="#{{ tab.id|default('myTab') }}"
+                            data-toggle="tab"
+                            role="tab"
+                            aria-controls="{{ tab.id|default('myTab') }}"
+                            aria-selected="{{ tab.isSelected|default('false') }}"
+                            {{ tab.extraAttribute|default(NULL)  }}
+                        >
+                            <div class="text-md-center w-100">
+                                <div class="row">
+                                    {% if tab.header.icon is not empty %}
+                                        <div class="col-3 col-md-12 text-center">
+                                            {% include '@atoms/06-icons/icon-svg.twig' with {
+                                                iconName: tab.header.icon.name,
+                                                iconSize: tab.header.icon.size|default(6),
+                                                iconClass:"mb-md-2"
+                                            } only %}
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="col">
+                                        <p class="font-weight-bold mb-1 h4 text-normal">{{ tab.header.title|default("Call me now") }}</p>
+                                        {% if tab.header.desc is not empty %}
+                                            <p class="mb-0 h4 text-normal">{{ tab.header.desc|default("") }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+
+    <section class="tab__section-content {{ sectionTabClass|default('') }}">
+        <div class="tab-content" id="{{ tabId ~ "_content" }}">
+            {% block tab_pane_content %}{% endblock %}
+        </div>
+    </section>
+
+</div>

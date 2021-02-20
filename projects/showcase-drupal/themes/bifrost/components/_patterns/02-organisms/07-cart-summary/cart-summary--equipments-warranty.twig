@@ -1,0 +1,27 @@
+{% embed '@molecules/09-payment/cart-summary-table.twig' with {
+    subtotalPrice:"-",
+    hasNoPriceInfosBar:true,
+    footerInfos:"The law gives you a warranty on all goods that you purchase or lease: the goods must be durable in normal use for a reasonable length of time.",
+    items: [
+        {
+            isItemDesactivated: true,
+            itemTitle:"Helix FI Gateway basic warranty",
+            itemTitleTooltipInfos:"Here is a simple tooltip text to be change in the near futur.",
+            itemSubTitle:"(One per equipment)",
+            itemQty:"-",
+            itemPrice:"+ $34.00"
+        },
+        {
+            isItemDesactivated: true,
+            itemTitle:"Helix TV Terminal basic warranty",
+            itemTitleTooltipInfos:"Here is a simple tooltip text to be change in the near futur.",
+            itemSubTitle:"(One per equipment)",
+            itemQty:"-",
+            itemPrice:"+ $34.00"
+        }
+    ]
+} %}
+    {% block table_price_block_content %}
+        <p class="font-weight-medium h4">-</p>
+    {% endblock %}
+{% endembed %}

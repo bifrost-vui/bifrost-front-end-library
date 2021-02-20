@@ -1,0 +1,37 @@
+<div class="card accordion-item accordion-item--{{ accordionStyle|default('default') }} {{ class|default('') }}  {{ isActive is same as(true) ? 'active-accordion' : '' }} js-accordion-item-toggle-active-class"
+     {% if isAnimationDisabled is not defined %}data-animate=""{% endif %}>
+    <div id="heading{{ accordionAnchorId }}"
+         class="card-header accordion-item__header accordion-item--{{ accordionStyle|default('default') }}__header d-flex justify-content-between align-items-baseline {{ accordionHeaderClass|default('') }}">
+        {% block collapse_header %}
+            <div class="d-flex m-0 h4">
+                <span class="d-block mr-4">{{ headerNumber|default(1) }}</span>
+                <div>
+                    <p class="mb-0">{{ headerTitle|default('Accordion title') }}</p>
+
+                    {% if headerSubtitle is defined and headerSubtitle is not empty %}
+                        <p class="small mt-1 mb-0">{{ headerSubtitle }}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% include '@atoms/02-buttons/00-button.twig' with {
+                buttonLabel:"Modifier",
+                buttonSize:"small",
+                buttonColor:"reset",
+                buttonClass:"card-header__link btn vui--style-reset link-underline p-0 js-collapse-btn",
+                dataTarget:"#collapse" ~ accordionAnchorId,
+                dataToggle: "collapse",
+                ariaControls: "collapse" ~ accordionAnchorId,
+                ariaExpanded: isActive is same as(true) ? 'true' : 'false'
+            } %}
+        {% endblock %}
+    </div>
+
+    <div id="collapse{{ accordionAnchorId }}"
+         class="collapse {{ isActive is same as(true) ? 'show' : '' }} {{ accordionCollapseContentClass|default('') }}"
+         aria-labelledby="heading{{ accordionAnchorId }}"
+         data-parent="{{ accordionParent|default("") }}"
+    >
+        {% block collapse_content %}{% endblock %}
+    </div>
+</div>

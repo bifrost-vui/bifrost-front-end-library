@@ -1,0 +1,140 @@
+{% extends "base-page--funnel.twig" %}
+
+{% set page_hero_title = "Cart summary" %}
+{% set page_hero_subtitle = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, dolores, exercitationem! Ad, aliquam, temporibus." %}
+
+{% set hasTermsAndConditions = true %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container_header %}
+    <section class="pt-section">
+        <div class="container-fluid">
+            {% include 'organisms-box-residential-phone' with {
+                class:"",
+                bgColorClass: "",
+                text: "Residential Phone service requires that one of our agent contact you at the end of this subscription process to finalize your order."
+            } only %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block page_main_content %}
+    <section class="py-section">
+        {# SERVICES -----------------------------------------------------  #}
+        <div class="row mb-3 align-items-center" data-animate="">
+            <div class="col-6 col-md-8">
+                <h2 class="mb-0">Services</h2>
+            </div>
+
+            <div class="col-6 col-md-4 text-right">
+                {% include '@atoms/04-links/link-underline.twig' with { "label":"Change service", headingSize:5, class:"" } %}
+            </div>
+        </div>
+
+        {% include '@organisms/07-cart-summary/cart-summary--services.twig' with { class:"mb-6" } %}
+
+        {# Equipments -----------------------------------------------------  #}
+        <div data-animate="">
+            <div class="mb-3">
+                <h2 class="mb-1">Equipment</h2>
+                <p>Choose how you would like to buy your equipments.</p>
+            </div>
+
+            {#<div class="border w-65 w-100--mobile-only p-3 mb-3">#}
+                {% include '@atoms/03-form/input-toggle-switch--2-choices.twig' with {
+                    class:"mb-3",
+                    toggleChoice1Title:"PAYMENT PLAN OVER 36 MONTHS",
+                    toggleChoice1SubTitle:"Taxes paid upfront as a one-time fee",
+                    toggleChoice2Title:"BUY UPFRONT",
+                    toggleChoice2SubTitle:"",
+                } %}
+            {#</div>#}
+        </div>
+
+        {% include '@organisms/07-cart-summary/cart-summary--equipments.twig' with { class:"mb-6" } %}
+
+        {# Add on -----------------------------------------------------  #}
+        <div class="mb-3" data-animate="">
+            <h2 class="mb-1">Add on</h2>
+            {#<p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>#}
+        </div>
+
+        {% include '@organisms/07-cart-summary/cart-summary--add-on.twig' with { class:"mb-6" } %}
+
+        {#<h2 class="mb-3" data-animate="">You might need</h2>#}
+        {#{% include '@organisms/07-cart-summary/cart-summary--equipments-warranty.twig' with { class:"mb-6" } %}#}
+
+        {# Installation -----------------------------------------------------  #}
+        <div class="row mb-3 align-items-center" data-animate="">
+            <div class="col-6 col-md-8">
+                <h2 class="mb-1">Installation</h2>
+                <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+            </div>
+
+            <div class="col-6 col-md-4 text-right">
+                {% include '@atoms/04-links/link-underline.twig' with {
+                    href: "/patterns/04-Pages-01-activation-(etiya)-05-self-install/04-Pages-01-activation-(etiya)-05-self-install.html",
+                    label:"Change option",
+                    headingSize:5,
+                    class:""
+                } %}
+            </div>
+        </div>
+
+        {% include '@organisms/07-cart-summary/cart-summary--installation.twig' with { class:"mb-6" } %}
+
+
+        {# You might be interested -----------------------------------------------------  #}
+        <h2 data-animate="">You might be interested in</h2>
+        {% set interestedOptions = [
+            { title:"Cloud DVR Unlimited", text:"Hours of recording", price:"$ 00.00/month", iconName:"cloud-dvr", isBtnDisabled: true, quantity:  1, buttonClass:"js-DEMO-add-item-cart-summary"  },
+            { title:"200 Hours of Recording", text:"Details id dolor id nibh ultricies vehicula ut id elit.", price:"$ 00.00", iconName:"gateway", isBtnDisabled: false, quantity:  2, buttonClass:"js-DEMO-add-item-cart-summary" },
+            { title:"Extended warranty", text:"Details id dolor id nibh ultricies vehicula ut id elit.", price:"$ 00.00", iconName:"gateway", isBtnDisabled: false, quantity:  4, buttonClass:"js-DEMO-add-item-cart-summary"  },
+            { title:"Unlimited Hours of Recording*", text:"Details id dolor id nibh ultricies vehicula ut id elit.", price:"$ 00.00", iconName:"cloud-dvr", isBtnDisabled: false, quantity:  1, buttonClass:"js-DEMO-add-item-cart-summary"  },
+            { title:"Unlimited Hours of Recording*", text:"Details id dolor id nibh ultricies vehicula ut id elit.", price:"$ 00.00", iconName:"cloud-dvr", isBtnDisabled: false, quantity:  1, buttonClass:"js-DEMO-add-item-cart-summary"  },
+            { title:"Unlimited Hours of Recording*", text:"Details id dolor id nibh ultricies vehicula ut id elit.", price:"$ 00.00", iconName:"cloud-dvr", isBtnDisabled: false, quantity:  1, buttonClass:"js-DEMO-add-item-cart-summary"  },
+        ] %}
+
+        {% embed 'molecules-carousel--dots-and-arrow' with {
+            class:"js-slick-carousel--dots-and-arrows",
+            interestedOptions: interestedOptions
+        } only %}
+            {% block carousel_content %}
+                {% for option in interestedOptions %}
+                    <div class="px-2 h-100 ">
+                        {% include '@molecules/03-card/card-item--add.twig' with option only %}
+                    </div>
+                {% endfor %}
+            {% endblock %}
+        {% endembed %}
+    </section>
+{% endblock %}
+
+{% block page_aside %}
+    <section class="py-section">
+        {% include '@organisms/05-payment/payment-billing-summary.twig' with { class:"mb-4", isStateCartSummary: true } %}
+        {% include '@organisms/05-payment/payment-next-bill.twig'  %}
+    </section>
+{% endblock %}
+
+{% block modals_container %}
+    {{ parent() }}
+
+    {# MODAL : save my cart #}
+    {% include '@organisms/08-modal/_modal-cart-summary--save-my-cart.twig' %}
+    {% include '@organisms/08-modal/_modal-cart-summary--save-my-cart-confirmation.twig' %}
+
+    {# MODAL : finalize my order#}
+    {% include '@organisms/08-modal/_modal-contact-us.twig' %}
+{% endblock %}
+
+{% block page_sticky_bottom_bar %}
+    {% embed 'templates-sticky-bottom' with { class:"" } %}
+        {% block sticky_bottom_content %}
+            <div class="collapse js-DEMO-collapse-alert-bar">
+                {% include 'molecules-collapse-banner--new-item' with { class:""} only %}
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

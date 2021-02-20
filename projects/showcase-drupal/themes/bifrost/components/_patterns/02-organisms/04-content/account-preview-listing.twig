@@ -1,0 +1,57 @@
+<!-- account-preview-listing.twig -->
+<div class="{{ class|default('') }}">
+    <div class="row align-items-center" data-animate-row="">
+        <div class="col-md-3 pr-md-4 pr-lg-9 border-right-gray-md--200 mb-4 mb-md-0">
+            <div class="d-flex">
+                <h3>House</h3>
+
+                {% if isLabelEditable is defined and isLabelEditable is same as (true) %}
+                    {% include '@molecules/13-dropdown/08-btn-icon-dropdown.twig' with {
+                        class: "ml-2",
+                        iconName: "edit",
+                        dropdownItems: []
+                    } only %}
+                {% endif %}
+
+            </div>
+
+            <p class="mb-0">123 Blvd St-Laurent, Montreal, QC H3H 3H3</p>
+        </div>
+
+        <div class="col-md-9 pl-md-4 pl-lg-9">
+            <div class="row align-items-center">
+                <div class="order-2 order-md-1 col-7 col-md-6 col-lg-3">
+                    <p class="font-weight-bold mb-1">Current Helix Balance</p>
+                    <p class="mb-0">Payment schedules on October 26 2017</p>
+                </div>
+
+                <div class="order-1 order-md-2 col-5 col-md-6 col-lg-4">
+                    {% include '@atoms/07-payment/price-box.twig' with {
+                        priceClass:"pl-md-3",
+                        priceDollar: "136",
+                        priceCent:"34",
+                        priceBoxAlignement:"left"
+                    } %}
+                </div>
+
+                <div class="order-3 col-lg-3 mt-4 mt-md-3 mt-lg-0 ">
+                    <div class="d-flex flex-column flex-md-row flex-lg-column">
+                        {% include '@atoms/02-buttons/13-button-outline-with-icon.twig' with {
+                            buttonLabel:"View my invoice",
+                            buttonClass:"w-100 mb-2 mb-md-0 mb-lg-3 mr-md-3 mr-lg-0",
+                            iconName: "pdf"
+                        } %}
+
+                        {% include '@atoms/04-links/01-link-button.twig' with {
+                            class:"w-100",
+                            buttonColor: "primary",
+                            label: btnNextLabel|default("Make a payment"),
+                            href: btnNextHref|default(''),
+                        } only %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

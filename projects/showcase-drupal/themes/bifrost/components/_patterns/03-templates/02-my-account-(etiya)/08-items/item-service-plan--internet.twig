@@ -1,0 +1,19 @@
+{% embed 'templates-item-service-plan' %}
+    {% block content_left %}
+        {% include '@molecules/15-services-widgets/jauge.twig' with {
+            class:"d-block mw-100 mr-2",
+            jaugeColor: jaugeColor|default(''),
+            jaugeAnimValue: jaugeAnimValue,
+            jaugeTextValue: jaugeTextValue,
+            jaugeTextUnit: jaugeTextUnit
+        } only %}
+    {% endblock %}
+
+    {% block content_right %}
+        {% include '@atoms/06-icons/icon-svg-helix-fi.twig' with {
+            iconColor: '',
+            iconClass: 'ml-2 mt-3'
+        } only %}
+        <div>Helix-Fi Control app</div>
+    {% endblock %}
+{% endembed %}

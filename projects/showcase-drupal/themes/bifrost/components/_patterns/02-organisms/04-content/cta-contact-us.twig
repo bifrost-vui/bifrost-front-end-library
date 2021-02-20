@@ -1,0 +1,74 @@
+{% set contactUsDatas = [
+    {
+        iconName: "call",
+        title: "Call me now",
+        desc: "",
+        ctaStyle: "button",
+        ctaUrl: "",
+        ctaLabel: "Call me now"
+    },
+    {
+        iconName: "manage",
+        title: "Customer center",
+        desc: "Contact one of our agent",
+        ctaStyle: "default",
+        ctaUrl: "",
+        ctaLabel: "1-XXX-XXX-XXXX"
+    },
+    {
+        iconName: "logo-videotron",
+        title: "Visit a store",
+        desc: "Lorem ipsum blah blah blah.",
+        ctaStyle: "link-underline",
+        ctaUrl: "",
+        ctaLabel: "Store locator"
+    }
+] %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="{{ class|default('') }}">
+    <div class="row">
+        {% for data in contactUsDatas %}
+            {% set borderRightClass = (loop.last is same as (true)) ? "" : "border-right-gray-md--200" %}
+            {% set borderBottomClass = (loop.last is same as (true)) ? "" : "border-bottom-gray--200 border-bottom-md--0" %}
+            
+            <div class="col-md-4 px-md-3 px-lg-4 mb-4 mb-md-0 {{ borderRightClass }}">
+                <div class="h-100 pb-3 pb-md-0 {{ borderBottomClass }} ">
+                    <div class="h-100 d-flex flex-column align-items-center text-center justify-content-between">
+                        <div class="d-flex align-items-start d-md-block w-100">
+                            {% include '@atoms/06-icons/icon-svg.twig' with { 
+                                iconName: data.iconName, 
+                                iconSize:4, 
+                                iconClass:"mb-3 col-2 col-md-12 p-md-0 mt-1 mt-md-0"
+                            } only %}
+
+                            <div class="offset-1 offset-md-0 mb-3 ml-4 ml-md-0 text-left text-md-center">
+                                <p class="font-weight-bold mb-1">{{ data.title|default("Call me now") }}</p>
+                                <p class="mb-0">{{ data.desc|default("Let one of our agent call you back promptly.") }}</p>
+                            </div>
+                        </div>
+
+                        <div class="w-100">
+                            <div class="col-9 col-md-12 offset-3 offset-md-0 ml-md-0 minh-md-4 d-flex align-items-center justify-content-md-center">
+                                {% if (data.ctaStyle == "button") %}
+                                    {% include '@atoms/02-buttons/00-button.twig' with {
+                                        buttonClass: "w-100--mobile-only px-4 mb-0 btn-small",
+                                        buttonLabel: data.ctaLabel
+                                    } %}
+                                {% elseif (data.ctaStyle == "link-underline") %}
+                                    {% include '@atoms/04-links/link-underline.twig' with {
+                                        href: data.ctaUrl,
+                                        label: data.ctaLabel,
+                                    } only %}
+                                {% else %}
+                                    <h6 class="font-weight-bold">{{ data.ctaLabel }}</h6>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        {% endfor %}
+    </div>
+</div>

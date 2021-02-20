@@ -1,0 +1,19 @@
+{% if carouselSubtitle is not defined %}
+  {% set carouselSubtitle = 'Specialized TV Channels' %}
+{% endif %}
+
+{% if carouselTitle is not defined %}
+  {% set carouselTitle = 'Enchance your channel lineup' %}
+{% endif %}
+
+<div class="text-center py-section">
+  <p class="text-uppercase h5 mb-2">{{ carouselSubtitle }}</p>
+
+  <h2>{{ carouselTitle }}</h2>
+
+  {% block carouselDescription %}
+    {% include '@atoms/04-links/link-underline.twig' with { label:'Explore Specialized Channels', class:'d-block mb-5' } %}
+  {% endblock %}
+
+  {% include '@organisms/50-carousel/carousel-channel-discover.twig' with { class: carouselClass|default('item-has-inner-shadow') } %}
+</div>

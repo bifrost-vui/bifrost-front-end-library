@@ -1,0 +1,42 @@
+{# DEMO purpose #}
+
+{% if items is not defined %}
+    {% set items = [
+        { itemDescription:'Téléchargement de musique/photos' },
+        { itemDescription:'Streaming vidéo léger' },
+    ] %}
+{% endif %}
+
+{% if itemFirstNb is not defined and itemFirstDescription is not defined %}
+    {% set itemFirstNb = '6-12' %}
+    {% set itemFirstDescription = 'Appareils connectés en simultané' %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="item-internet-speed px-4 py-5 card card-rounded {{ cardColor|default('vui--style-black') }} {{ class|default('') }}">
+    {% block item_header %}
+        {% include '@molecules/15-services-widgets/jauge-gradient.twig' with { class:'pb-4 px-3 d-block m-auto', sizeHeight:'190', jaugeAnimValue:jaugeAnimValue|default('500') } %}
+    {% endblock %}
+    <p class="font-weight-medium">{{ cardTitle|default('Parfait pour:') }}</p>
+
+    {% if itemFirstNb is not empty and itemFirstDescription is not empty %}
+        <div class="d-flex justify-content-between mt-3">
+            <p class="item-internet-speed__icon-nb h5 font-weight-medium">{{ itemFirstNb|default('6-12') }}</p>
+            <p class="item-internet-speed__description mb-0">{{ itemFirstDescription|default('Appareils connectés en simultané') }}</p>
+        </div>
+    {% endif %}
+
+    {% block characteristics %}
+        {% for item in items %}
+            <div class="d-flex justify-content-between mt-3">
+                <div class="item-internet-speed__icon">
+                    {% block block_icon %}
+                        {% include '@atoms/06-icons/icon-svg-internet.twig' with { iconColor:'svg-fill--white', iconClass:'w-100' } %}
+                    {% endblock %}
+                </div>
+                <p class="item-internet-speed__description mb-0">{{ itemDescription|default('Jeux vidéo multi-joueur') }}</p>
+            </div>
+        {% endfor %}
+    {% endblock %}
+</div>

@@ -1,0 +1,49 @@
+{# DEMO purpose #}
+
+{% if footer_links is not defined or footer_links is empty %}
+    {% set footer_links = [
+        { href:"#", label:"Experience" },
+        { href:"#", label:"Equipment" },
+        { href:"#", label:"Soutien" },
+        { href:"#", label:"TV Everywhere" },
+        { href:"#", label:"Webmail"},
+        { href:"#", label:"Store Locator"},
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<!-- footer-nav-1.twig -->
+<nav class="navbar navbar-dark navbar--helix border-bottom py-4 py-md-5">
+    <div class="container-fluid">
+        <div class="row w-100 position-relative">
+            <div class="col-md-3 col-lg-2 border-right-gray-md--800 mr-md-7">
+                {% for footer_link in footer_links %}
+                    {% if loop.index is divisible by(3) or loop.last %}
+                        {% include '@atoms/04-links/link-default-optimized.twig' with {
+                            href:footer_link.href,
+                            label:footer_link.label,
+                            class:"vui--font-base h5 p-0"
+                        } %}
+                    {% else %}
+                        <div class="mb-3">
+                            {% include '@atoms/04-links/link-default-optimized.twig' with {
+                                href:footer_link.href,
+                                label:footer_link.label,
+                                class:"vui--font-base h5 p-0 mb-3"
+                            } %}
+                        </div>
+                    {% endif %}
+
+                    {% if loop.index is divisible by(3) and not loop.last %}
+                        </div>
+                        <hr class="col-12 d-md-none border-top-gray--800">
+                        <div class="col-md-3 col-lg-2">
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            {% include '@atoms/04-links/link-back-to-top.twig' with { label:"Back to top", class:"position-absolute--top-right h6 font-weight-normal" } %}
+        </div>
+    </div>
+</nav>

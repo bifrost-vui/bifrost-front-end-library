@@ -1,0 +1,19 @@
+<div class="js-tooltip-hover position-relative d-inline-flex {{ class|default('') }} ">
+    {% block tooltip_trigger %}
+        <button type="button" class="js-tooltip-hover__btn vui--style-reset d-flex {{ buttonClass|default('') }}"
+                {{ extraAttribute|default(NULL) }}>
+            {% include '@atoms/06-icons/icon-svg.twig' with {
+                iconName: "interrogation",
+                iconSize: 2,
+                iconColor: iconColor|default(""),
+                iconClass: iconClass|default("")
+            } only %}
+        </button>
+    {% endblock %}
+
+    <div class="js-tooltip-hover__content tooltip-custom tooltip-custom--hover border-0 p-4 {{ (isTooltipActive) ? 'show': NULL }}" x-placement="top-center">
+        {% block tooltip_content %}
+            <p class="mb-0">{{ tooltipTxt|default('') }}</p>
+        {% endblock %}
+    </div>
+</div>

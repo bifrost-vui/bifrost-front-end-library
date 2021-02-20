@@ -1,0 +1,55 @@
+<div class="row py-4">
+    <div class="col-md-7 mb-4 mb-md-0">
+        <div class="mb-4">
+            <h6 class="text-uppercase mb-3">TV Package</h6>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="font-weight-medium mb-0">TV la totale</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="font-weight-medium mb-0">Choix de 15 chaînes + 1 Premium</p>
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <h6 class="text-uppercase mb-3">Selected channels</h6>
+
+            <div id="listingChannels" class="w-100 d-flex scrollbar-dark flex-md-wrap pt-2">
+                {% for c in 1..33 %}
+                    {% include '@molecules/21-form-item/item-channel--mini-cart.twig' with {
+                        class: itemChannelState|default(''),
+                        isSelected: true,
+                        inputId: "minicart_channels_" ~ c,
+                        inputName: "minicart_channels"
+                    } %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div>
+            <h6 class="text-uppercase mb-3">Add-on</h6>
+            {% include '@molecules/09-payment/billing-item--mini-cart.twig' with {
+                class:"",
+                isColorInverted:true
+            } only %}
+        </div>
+
+        <hr class="my-4">
+
+        <div>
+            <h6 class="text-uppercase mb-3">Specialized channels</h6>
+            {% include '@molecules/09-payment/billing-item--mini-cart.twig' with {
+                class:"mb-3",
+                title:"HBO",
+                isColorInverted:true
+            } only %}
+            {% include '@molecules/09-payment/billing-item--mini-cart.twig' with {
+                class:"",
+                title:"BenIn Sports",
+                isColorInverted:true
+            } only %}
+        </div>
+    </div>
+</div>

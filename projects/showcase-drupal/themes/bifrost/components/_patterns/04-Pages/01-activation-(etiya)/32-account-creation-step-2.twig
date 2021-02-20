@@ -1,0 +1,26 @@
+{% extends "base-page--funnel.twig" %}
+
+{% set navStepByStep_tplName = "account-creation" %}
+{% set navStepByStep_activeNumber = 1 %}
+
+{#{% set page_hero_title = "" %}#}
+{#{% set page_hero_subtitle = " " %}#}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    <section class="py-section">
+        <div class="container-fluid">
+            <h2>Identification & Account creation</h2>
+
+            {% embed 'templates-step-creation--8-4' with {
+                btnBackStepHref : "/patterns/04-Pages-01-activation-(etiya)-30-account-creation-step-1/04-Pages-01-activation-(etiya)-30-account-creation-step-1.html",
+                btnNextStepHref : "/patterns/04-Pages-01-activation-(etiya)-33-account-creation-step-3/04-Pages-01-activation-(etiya)-33-account-creation-step-3.html"
+            } only %}
+                {% block step_content %}
+                    {% include 'templates-account-creation--step-2' %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </section>
+{% endblock %}

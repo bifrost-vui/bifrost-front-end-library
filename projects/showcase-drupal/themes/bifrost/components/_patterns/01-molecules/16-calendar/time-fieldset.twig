@@ -1,0 +1,47 @@
+<fieldset id="{{ date|date("Y-m-j") }}" class="timepicker-fieldset col">
+    {% include '@molecules/16-calendar/time-picker-header.twig' %}
+
+    {% set range = range(0, 1) %}
+
+    {% for i in 0..3 %}
+        {% if i == 0 %}
+            {% set state = random(range) %}
+            {% include '@molecules/16-calendar/time-picker-option.twig' with {
+                class: timePickerOptionClass|default(""),
+                slot: 'morning',
+                slotLabel: 'AM',
+                slotLabelTime: '9h-12h',
+                isDisabled: (state == 0 and rowIndex > 0) ? true : false,
+                isChecked: (rowIndex == 0) ? true : false,
+                withEditContactModal: withEditContactModal|default(NULL)
+            } only %}
+        {% elseif i == 1 %}
+            {% set state = random(range) %}
+            {% include '@molecules/16-calendar/time-picker-option.twig' with {
+                slot: 'afternoon',
+                slotLabel: 'PM',
+                slotLabelTime: '12h-17h',
+                isDisabled: (state == 0 and rowIndex > 0) ? true : false,
+                withEditContactModal: withEditContactModal|default(NULL)
+            } only %}
+        {% elseif i == 2 %}
+            {% set state = random(range) %}
+            {% include '@molecules/16-calendar/time-picker-option.twig' with {
+                slot: 'evening',
+                slotLabel: 'EVENING',
+                slotLabelTime: '17h-21h',
+                isDisabled: (state == 0 and rowIndex > 0) ? true : false,
+                withEditContactModal: withEditContactModal|default(NULL)
+            } only %}
+        {% elseif i == 3 %}
+            {% set state = random(range) %}
+            {% include '@molecules/16-calendar/time-picker-option.twig' with {
+                slot: 'all day',
+                slotLabel: 'ALL DAY',
+                slotLabelTime: '9h-21h',
+                isDisabled: (state == 0 and rowIndex > 0) ? true : false,
+                withEditContactModal: withEditContactModal|default(NULL)
+            } only %}
+        {% endif %}
+    {% endfor %}
+</fieldset>

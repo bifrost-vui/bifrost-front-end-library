@@ -1,0 +1,13 @@
+<div class="form-group form-radio {{ class|default('') }}">
+    <input type="radio"
+           {% if isDisabled is defined and isDisabled is same as (true) %}disabled {% endif %}
+            {% if isChecked is defined and isChecked is same as (true) %}checked {% endif %}
+           id="{{ inputId|default('defaultRadioInputId') }}"
+           class="sr-only form-radio__input"
+           name="{{ inputName|default('') }}"
+           {{ extraAttribute|default(NULL) }}>
+
+    <label for="{{ inputId|default('defaultRadioInputId') }}" class="form-radio__label" {{ labelExtraAttribute|default(NULL) }}>
+        <p class="mb-0">{{ label|default('Label')|raw }}</p>
+    </label>
+</div>

@@ -1,0 +1,35 @@
+{% extends "base-page--funnel.twig" %}
+
+{% set navStepByStep_tplName = "appointment" %}
+{% set navStepByStep_activeNumber = 1 %}
+
+{% set heroPageTitle = "Appointment" %}
+{% set heroPageSubTitle = "Lorem ipsum dolor sit amet, consectetur adipisicing elit" %}
+
+{% set navBackLabel = "Back to overview" %}
+{% set navBackHref = "/patterns/04-Pages-02-my-account-(etiya)-01-overview/04-Pages-02-my-account-(etiya)-01-overview.html" %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container  %}
+    <section class="py-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-3 ">
+                    {% include 'molecules-card-appointment' with {
+                        class:"h-100",
+                        isStateEdition: true,
+                        isStateMissedAppointment: true
+                    } only %}
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-3">
+                    {% include 'molecules-card-appointment' with {
+                        class:"h-100",
+                        isStateEdition: true
+                    } only %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

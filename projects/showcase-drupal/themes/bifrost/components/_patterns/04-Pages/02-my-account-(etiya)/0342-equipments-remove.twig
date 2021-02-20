@@ -1,0 +1,50 @@
+{% extends "base-page--funnel-services.twig" %}
+
+{% set navStepByStep_tplName = "equipments-remove" %}
+{% set navStepByStep_activeNumber = 1 %}
+
+{% set page_hero_title = "Remove Equipments" %}
+{% set page_hero_subtitle = "What equipment would you like to add to your plan ?" %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    <section class="py-section">
+        <div class="container-fluid">
+            <div class="row mb-6">
+                {% for equipment in equipments %}
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        {% include '@organisms/25-equipment/item-equipment--remove.twig' with {
+                            class: '',
+                            title: equipment.title,
+                            priceDollar: equipment.priceDollar,
+                            pricePaymentPlan: equipment.pricePaymentPlan,
+                            pricePaymentPlanInfos: equipment.pricePaymentPlanInfos,
+                            pricePaymentPlanBalance: equipment.pricePaymentPlanBalance
+                        } only %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block page_sticky_bottom_bar %}
+    {% include '@organisms/15-navigation-sticky-bottom/funnel-nav-sticky-price-box.twig' with {
+        class:"",
+        priceTitle_1: "New Monthly Cost with your equipments",
+        priceboxParams_1: {
+            isMonthlyPayment: true,
+            priceClass:"w-100 price-box--sm",
+            priceDollar: "148",
+            priceCent:"95",
+            priceBoxSubInfosClass:"color--vui-yellow",
+        },
+        priceTitle_2: "EIP due Now",
+        priceboxParams_2: {
+            priceClass:"w-100 price-box--sm",
+            priceDollar: "150",
+            priceCent:"00",
+        }
+    } only %}
+{% endblock %}

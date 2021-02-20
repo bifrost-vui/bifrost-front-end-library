@@ -1,0 +1,35 @@
+{# DEMO purpose #}
+
+{% if videoUrl is not defined %}
+  {% set videoUrl = 'https://videotronen.akamaized.net/media/v1/pmp4/static/clear/23965570001/c085305c-debc-490b-84df-73eb8e8a6df4/9f8d2d7c-5d7a-47be-8b43-e44ade63e015/main.mp4' %}
+{% endif %}
+
+{% if videoPoster is not defined %}
+  {% set videoPoster = 'https://cf-images.us-east-1.prod.boltdns.net/v1/jit/23965570001/c085305c-debc-490b-84df-73eb8e8a6df4/main/1280x720/5s400ms/match/image.jpg' %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<!-- hero-video-background.twig -->
+<section class="hero-video-background position-relative overflow-hidden {{ class|default('') }}">
+
+  <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" poster="{{ videoPoster }}">
+    <source src="{{ videoUrl }}" type="video/mp4">
+  </video>
+
+  <div class="hero-video-background__container container-fluid h-100 z-index-2">
+    <div class="d-flex h-100 {{ class|default('') }}">
+      <div class="hero-video-background__content w-100 py-section">
+        {% block hero_content %}
+          {% if breadcrumb is defined %}
+            {{ breadcrumb }}
+          {% endif %}
+          <h1 class="mb-2" data-animate="fade-in">{{ title|default('Your Helix System') }}</h1>
+          {% if subTitle is not defined or subTitle is not empty %}
+            <p class="h5 mb-0" data-animate="fade-in">{{ subTitle|default('Lorem ipsum dolor sitamet consectetur adipiscing') }}</p>
+          {% endif  %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</section>

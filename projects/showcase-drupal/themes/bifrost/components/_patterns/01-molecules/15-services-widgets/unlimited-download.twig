@@ -1,0 +1,12 @@
+<div class="align-items-center {{ class|default('d-flex') }}">
+
+    {% if unlimitedDownloadIcon is not defined or unlimitedDownloadIcon is null %}
+        {% include '@atoms/06-icons/icon-svg-unlimited.twig' with { class:"" } only %}
+    {% else %}
+        <img src="{{ unlimitedDownloadIcon }}" alt="" class="{{ iconClass|default('') }}">
+    {% endif %}
+
+    <div class="text-center {{ textClass|default('ml-3') }}">
+        <h6 class="mb-0 text-uppercase">{{ unlimitedDownloadText|default('Unlimited <br> download')|raw }}</h6>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{% embed '@molecules/03-card/card-block-content--link-beside.twig' with {
+    class: class|default('') ~ " bg-gray--100 border--0"
+} only  %}
+    {% block block_content %}
+        <div class="d-flex align-items-center">
+            <div class="mr-4 d-none d-lg-block" >
+                {% include '@atoms/06-icons/icon-svg.twig' with {
+                    iconName: "tv",
+                    iconClass: "svg-size-lg--7",
+                    iconSize: 3,
+                } only %}
+            </div>
+
+            <div >
+                <p class="h3 font-weight-normal vui--font-secondary">Lorem ipsum dolor sit amt</p>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, nemo, obcaecati! A aspernatur ipsa libero?.</p>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block block_content_link %}
+        {% include '@atoms/04-links/01-link-button-outline.twig' with {
+            label:"Select your TV channel",
+            href: "",
+            class:"w-100--mobile-only"
+        } %}
+    {% endblock %}
+{% endembed %}

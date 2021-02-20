@@ -1,0 +1,39 @@
+{% extends "base-page.twig" %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    {% include '@organisms/03-hero/hero-block-search-home.twig' with { class:"" } %}
+
+    <section class="py-section">
+        <div class="container-fluid">
+            <div class="row">
+                <aside class="col-lg-3">
+                    <div class="js-sidebar-filter mb-4">
+                        <div class="card border-md--0 js-sidebar-filter__title">
+                            <div class="card-header bg-md--none p-md-0 d-flex justify-content-between align-items-center">
+                                <p class="mb-0 mb-md-4 h3">Filters</p>
+                                {% include '@atoms/06-icons/icon-arrow-to-bottom.twig' with { iconClass:"d-flex d-md-none" } only %}
+                            </div>
+                        </div>
+                        <div class="js-sidebar-filter__content">
+                            {% include '@organisms/20-form/card-search-filter.twig' with { class:"mb-4" } %}
+                            {% include '@organisms/20-form/card-search-filter.twig' with { class:"mb-4" } %}
+                        </div>
+                    </div>
+                </aside>
+                <div class="col-lg-9">
+                    {% include '@molecules/03-card/card-search-result-global.twig' with { img:"/images/assets/search-card-demo.png" } %}
+                    {% include '@molecules/03-card/card-search-result-global.twig' %}
+                    {% include '@molecules/03-card/card-search-result-global.twig' with { iconVideo:true } %}
+                    {% include '@molecules/03-card/card-search-result-global.twig' %}
+                    {% include '@molecules/03-card/card-search-result-global.twig' with { iconPDF:true } %}
+
+                    <p class="h5 mb-0 mt-7 text-center">12 0f 36</p>
+
+                    {% include '@atoms/02-buttons/21-button-load-more.twig' with { class:"mt-3 mb-5" } %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

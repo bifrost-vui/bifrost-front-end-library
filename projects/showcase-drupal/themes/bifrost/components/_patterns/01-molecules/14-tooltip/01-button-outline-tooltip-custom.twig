@@ -1,0 +1,19 @@
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="js-tooltip-custom position-relative {{ class|default('') }} ">
+    {% include '@atoms/02-buttons/10-button-outline.twig' with {
+        buttonClass: "js-tooltip-custom__btn " ~ buttonClass|default('')
+    } %}
+
+    <div class="js-tooltip-custom__content tooltip-custom border-0 p-4" x-placement="top-start">
+        {% block tooltip_content %}{% endblock %}
+
+        {% include '@atoms/04-links/link-underline.twig' with {
+            class:"mb-0 mt-4 d-block text-center js-tooltip-custom__close color--dark",
+            headingSize: '6',
+            label: btn1Label|default("Cancel"),
+            href: btn1Href|default('')
+        } %}
+    </div>
+</div>

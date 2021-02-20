@@ -1,0 +1,194 @@
+{% extends "base-page-helix.twig" %}
+
+{% set siteMainSectionClass = "py-section" %}
+{% set isUserHelixConnected = true %}
+{% set hasNoHeroHeader = true %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container_content %}
+    <div data-animate="">
+        <div class="row">
+            <div class="col-lg-9 mb-3">
+                {% include 'molecules-content-complete-message' with {
+                    class:"",
+                    title: "Congratulations Benjamin Desjardins",
+                    subtitle: "Congratulations Benjamin Desjardins",
+                    txt: ""
+                } only %}
+            </div>
+
+            <div class="col-lg-3 d-flex justify-content-lg-end">
+                {% embed '@atoms/01-text/text-featured.twig' with {
+                    class:"d-inline-block"
+                } only %}
+                    {% block textFeatured_content %}
+                        <div class="mb-2">
+                            <p>Order number <br>
+                                <strong>NFSDG34535345</strong>
+                            </p>
+                        </div>
+
+                        <div class="mb-2">
+                            <p>Order date<br>
+                                <strong>August8, 2019</strong>
+                            </p>
+                        </div>
+
+                        <div>
+                            <p>Legal agreement</p>
+                            {% include '@atoms/04-links/01-link-button.twig' with { label:"Lorem ipsum", class:"d-inline w-100", buttonColor:"csr" } %}
+                        </div>
+
+                    {% endblock %}
+                {% endembed %}
+            </div>
+        </div>
+
+        <hr class="my-6">
+{# Other example of Alert CSR misleading (color crs-light is display)
+        {% include '@molecules/02-alert/alert.twig' with {
+            class:"mb-4",
+            themeColor: "csr",
+            alertTitle: "Lorem ipsum dolor sit amet",
+            alertTxt: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab eius quis tempora veritatis? Aliquid consectetur, cumque debitis deleniti dolore dolores eaque excepturi maiores nulla numquam pariatur quod ratione repellat totam!</p><p class='mb-0'>Lorem : <strong>ipsum dolor</strong></p><p>Lorem : <strong>ipsum dolor</strong></p>"
+        } %}
+#}
+        <h3 class="mb-4">Make sure to follow the steps below to activate your user account</h3>
+        <div class="row mb-6">
+            {% block activation_steps %}
+                {#<div class="col-lg mb-3">#}
+                    {#{% embed '@molecules/03-card/card-rounded--with-header.twig' with {#}
+                        {#class:"h-100",#}
+                        {#cardNumber:"1",#}
+                        {#cardTitle:"Activate your user account",#}
+                        {#cardTxt: "A confirmation link was sent to<br> <span class='font-weight-bold'>example@email.com</span>"#}
+                    {#} %}#}
+                        {#{% block card_content %}#}
+                            {#{{ parent() }}#}
+
+                            {#<p class="mb-0">You have 24 horus to click the link and :</p>#}
+                            {#<ul class="mb-0 pl-3">#}
+                                {#<li>activate your user account</li>#}
+                                {#<li>configure your password</li>#}
+                                {#<li>access the client features</li>#}
+                            {#</ul>#}
+                        {#{% endblock %}#}
+                    {#{% endembed %}#}
+                {#</div>#}
+
+                <div class="col-lg mb-3">
+                    {% embed '@molecules/03-card/card-rounded--with-header.twig' with {
+                        class:"h-100",
+                        cardNumber:"",
+                        cardTitle:"Channels choice",
+                        cardTxt: "Choose your channels among the thematics to craft your perfect TV service."
+                    } %}
+                        {% block card_content %}
+                            {{ parent() }}
+
+                            {% include '@atoms/04-links/link-underline.twig' with {
+                                class:"",
+                                label:"View my channels",
+                                headingSize:6
+                            } %}
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+
+                <div class="col-lg mb-3">
+                    {% embed '@molecules/03-card/card-rounded--with-header.twig' with {
+                        class:"h-100",
+                        cardNumber:"",
+                        cardTitle:"Consult your contract",
+                    } %}
+                        {% block card_content %}
+                            <p>Your latest contract will be available at all time in your My Account. Please allow a short moment before it is available.</p>
+                            <p class="mb-0 small">If you need a paper copy or a specially formatted copy for disabled person, please contact us at 1-888-433-6876...</p>
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+            {% endblock %}
+        </div>
+
+        <h3 class="mb-4">Don't forget</h3>
+        <div class="row mb-4">
+            <div class="col-lg-4 mb-3">
+                {% embed '@molecules/03-card/card-rounded--with-header.twig' with {
+                    class:"h-100",
+                    cardTitle:"Installation appointment"
+                } %}
+                    {% block card_content %}
+                        {% embed '@molecules/02-alert/alert-callout.twig' with {
+                            class:"mb-4",
+                            cardBodyClass: "p-3"
+                        } %}
+                            {% block callout_body %}
+                                <p class="mb-0">
+                                    <span class="">Your appointment is scheduled for : </span>
+                                    <br> <span class="font-weight-bold">Saturday, April 7, 2019 <br> between 9h - 12h</span>
+                                </p>
+                            {% endblock %}
+                        {% endembed %}
+
+                        <div class="mb-4">
+                            <p>
+                                <span class="font-weight-bold">Contact</span>
+                                <br>John Dow
+                            </p>
+                            <p>
+                                <span class="font-weight-bold">Phone</span>
+                                <br>514 514-6654
+                            </p>
+                        </div>
+
+                        {% include '@atoms/04-links/link-underline.twig' with {
+                            class:"",
+                            label:"View appointment",
+                            headingSize:6
+                        } %}
+                    {% endblock %}
+                {% endembed %}
+            </div>
+            <div class="col-lg-4 mb-3">
+                {% embed '@molecules/03-card/card-rounded--with-header.twig' with {
+                    class:"h-100",
+                    cardTitle:"Port-In Services"
+                } %}
+                    {% block card_content %}
+                        <p class="">Videotron will take care of port-in services for these accounts on <span class="badge badge-primary">Mon. April 5, 2019 </span> :</p>
+
+                        {% set bodyInfos = [
+                            { title:"Internet", value:"Ebox service removal for account 7896534 902"},
+                            { title:"Television", value:"Ebox service removal for account 6534789 653"}
+                        ] %}
+                        {% for info in bodyInfos %}
+                            <p>
+                                <span class="font-weight-bold">{{ info.title }}</span>
+                                <br>{{ info.value|raw }}
+                            </p>
+                        {% endfor %}
+
+                        <p class="mb-0">To ensure that you do not experience any service interruptions, please note that there may be a billing overlap between Videotron and your current provider while your request is being processed.</p>
+                    {% endblock %}
+                {% endembed %}
+            </div>
+            <div class="col-lg-4 mb-3">
+                {% embed '@molecules/03-card/card-rounded--with-header.twig' with {
+                    class:"h-100",
+                    cardTitle:"Manuel Payment"
+                } %}
+                    {% block card_content %}
+                        <p>All Canadian financial institutions accept online payment of Videotron invoices. Just access your financial institution's website and add Videotron as your beneficiary.</p>
+                        <p class="mb-0">Your invoice is available at all times in your Helix account.</p>
+                    {% endblock %}
+                {% endembed %}
+            </div>
+        </div>
+
+        <hr class="my-6">
+
+        {% include 'templates-funnel-order-recap' with { hasAmmountDueBlock: false } only %}
+        {% include '@organisms/04-content/helix-directly-on-your-phone.twig' with { class:"mb-5" } %}
+    </div>
+{% endblock %}

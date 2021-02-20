@@ -1,0 +1,32 @@
+<div class="bg-primary {{ class|default('') }}" data-animate="">
+    <div class="row">
+        <div class="col-md-8 order-2 order-md-1">
+            <div class="p-4">
+                <p class="h3">Lorem ipsum dolor sit amet.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad, architecto consectetur delectus dolorem doloribus eaque enim error et hic impedit maxime perspiciatis.</p>
+
+                <div class="d-flex flex-column flex-md-row justify-content-end align-items-baseline mt-6">
+                    {% include '@atoms/04-links/link-underline.twig' with {
+                        class:"mr-md-4 w-100--mobile-only mb-0 py-3",
+                        label:"Learn more"
+                    } %}
+
+                    {% include '@atoms/02-buttons/00-button.twig' with {
+                        buttonClass:"w-100--mobile-only",
+                        buttonColor:"dark",
+                        buttonLabel:"Subscribe now",
+                        dataToggle:"modal",
+                        dataTarget:"#modalVideotronplusSubscribe"
+                    } %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 pr-md-0 order-1 order-md-2">
+            {% include '@atoms/11-images/img-lazy-load.twig' with {
+                class:"img-fluid h-100",
+                src: "/images/assets/videotron-plus/vid-plus_650x440.jpg"
+            } only %}
+        </div>
+    </div>
+</div>

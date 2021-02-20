@@ -1,0 +1,116 @@
+<!-- organisms/06-billing/billing-grid-review.twig -->
+<div class="c-billing-grid-container {{ class|default('') }}">
+    <div class="billing-header-actual col-actual ">
+        <h3>{{ actual_billingTitle|default("Actual monthly plan") }}</h3>
+
+        {% if isCondensed is defined and isCondensed is same as (true) %}
+            {% include '@atoms/07-payment/price-box--with-price-savings-vertical.twig' with actual_headerPricebox|default({}) only %}
+        {% else %}
+            {% include '@atoms/07-payment/price-box--with-price-savings.twig' with actual_headerPricebox|default({}) only %}
+        {% endif %}
+
+        {#<hr class="border-width-4 border-top--dark mb-0">#}
+    </div>
+    <div class="billing-header-new col-new ">
+        <h3>{{ new_billingTitle|default("New monthly plan") }}</h3>
+
+        {% if isCondensed is defined and isCondensed is same as (true) %}
+            {% include '@atoms/07-payment/price-box--with-price-savings-vertical.twig' with new_headerPricebox|default({}) only %}
+        {% else %}
+            {% include '@atoms/07-payment/price-box--with-price-savings.twig' with new_headerPricebox|default({}) only %}
+        {% endif %}
+
+        {#<hr class="border-width-4 border-top--dark mb-0">#}
+    </div>
+
+    <div class="billing-body-actual col-actual ">
+        {% for item in actual_billingItems %}
+            {% include '@molecules/09-payment/billing-item.twig' with {
+                textLeft: item.label|default('Item'),
+                subTextLeft: item.subLabel|default("This is a subdescription"),
+                textRight: "$" ~ item.price|default("50.00") ~ "/month",
+                state: item.state|default("removed")
+            } only %}
+        {% endfor %}
+    </div>
+    <div class="billing-body-new col-new ">
+        {% for item in new_billingItems %}
+            {% include '@molecules/09-payment/billing-item.twig' with {
+                isCondensed: isCondensed|default(false),
+                textLeft: item.label|default('Item'),
+                subTextLeft: item.subLabel|default("This is a subdescription"),
+                textRight: "$" ~ item.price|default("50.00") ~ "/month",
+                state: item.state|default("removed")
+            } only %}
+        {% endfor %}
+    </div>
+
+    <div class="billing-subtotal-actual col-actual">
+        {% if actual_hasNoSubtotal is not defined or actual_subtotal is defined and actual_subtotal is not empty %}
+            {% include '@molecules/09-payment/billing-subtotal.twig' with {
+                class:"",
+                subtotalPrice: actual_subtotal.price|default(''),
+                discount: actual_subtotal.discount|default(''),
+                tps: actual_subtotal.tps|default(''),
+                tvq: actual_subtotal.tvq|default('')
+            } only %}
+        {% endif %}
+    </div>
+    <div class="billing-subtotal-new col-new">
+        {% if new_hasNoSubtotal is not defined or new_subtotal is defined and new_subtotal is not empty %}
+            {% include '@molecules/09-payment/billing-subtotal.twig' with {
+                class:"",
+                subtotalPrice: new_subtotal.price|default(''),
+                discount: new_subtotal.discount|default(''),
+                tps: new_subtotal.tps|default(''),
+                tvq: new_subtotal.tvq|default('')
+            } only %}
+        {% endif %}
+    </div>
+
+    <div class="billing-under-subtotal-actual col-actual">
+        {% if actual_billingItems_under_subtotal is defined and actual_billingItems_under_subtotal is not empty %}
+            <div class="border-top px-3 bg-gray--100">
+                {% for item in actual_billingItems_under_subtotal %}
+                    {% include '@molecules/09-payment/billing-item.twig' with {
+                        textLeft: item.label|default('Item'),
+                        subTextLeft: item.subLabel|default("This is a subdescription"),
+                        textRight: "$" ~ item.price|default("50.00") ~ "/month",
+                        state: item.state|default("removed")
+                    } only %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="billing-under-subtotal-new col-new">
+        {% if new_billingItems_under_subtotal is defined and new_billingItems_under_subtotal is not empty %}
+            <div class=" border-top px-3 bg-gray--100">
+                {% for item in new_billingItems_under_subtotal %}
+                    {% include '@molecules/09-payment/billing-item.twig' with {
+                        isCondensed: isCondensed|default(false),
+                        textLeft: item.label|default('Item'),
+                        subTextLeft: item.subLabel|default("This is a subdescription"),
+                        textRight: "$" ~ item.price|default("50.00") ~ "/month",
+                        state: item.state|default("removed")
+                    } only %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="billing-footer-actual col-actual  mb-6 mb-md-0">
+        {% include '@molecules/09-payment/billing-footer.twig' with {
+            class:"",
+            totalLabel: "Total",
+            totalPrice: actual_footer_price|default("$00.00")
+        } only %}
+    </div>
+    <div class="billing-footer-new col-new ">
+        {% include '@molecules/09-payment/billing-footer.twig' with {
+            class:"",
+            totalLabel: "Total",
+            totalPrice: new_footer_price|default("$00.00")
+        } only %}
+    </div>
+</div>

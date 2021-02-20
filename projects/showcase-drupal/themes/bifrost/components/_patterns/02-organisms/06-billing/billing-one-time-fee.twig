@@ -1,0 +1,45 @@
+{% if demo is defined %}
+    {% set items = [
+        {
+            textLeft:"Wifi modules",
+            subTextLeft: "(Adjustments to your equipment charge will be added to your next bill on a pro-rata basis)",
+            quantity: "2",
+            singlePrice: "$50",
+            textRight:"$100.00"
+        },
+        {
+            textLeft:"Installation",
+            subTextLeft: "(Adjustments to your equipment charge will be added to your next bill on a pro-rata basis)",
+            quantity: "1",
+            singlePrice: "$100",
+            textRight:"$100.00"
+        }
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="bg-gray--100 p-3 {{ class|default('') }}">
+    {% include '@molecules/09-payment/billing-header.twig' with { 
+        class:"mb-4", 
+        title: header_title|default("One time fee")
+    } only %}
+
+    {% include '@molecules/09-payment/billing-item--with-quantity-header.twig' with subHeader|default({
+        textLeft: subHeader_textLeft|default("Added item"),
+        textCol1: subHeader_textCol1|default("Quantity"),
+        textCol2: subHeader_textCol2|default("Item price"),
+        textCol3: subHeader_textCol3|default("Item added"),
+    }) only %}
+
+    {% for item in items %}
+        {% include '@molecules/09-payment/billing-item--with-quantity.twig' with item only %}
+    {% endfor %}
+
+    {% include '@molecules/09-payment/billing-footer.twig' with {
+        class:"",
+        hasNoSubtotal:true,
+        totalLabel: " ",
+        totalPrice: footer_price|default("$200.00")
+    } only %}
+</div>

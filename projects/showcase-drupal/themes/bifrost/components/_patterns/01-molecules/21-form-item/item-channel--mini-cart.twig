@@ -1,0 +1,20 @@
+<div class="item-channel item-channel--mini-cart mr-2 mr-lg-3 mb-3 {{ class|default('') }}">
+    {% embed '@molecules/05-input/input-card-btn.twig' with {
+        class: "",
+        isSelected: isSelected|default(false),
+        isDisabled: isDisabled|default(false),
+        inputId: inputId|default("channel_" ~ loop.index),
+        inputName: inputName|default("channelSelection")
+    } %}
+        {% block label_content %}
+            <div class="card card-rounded {{ tileChannelBgColor|default('bg-gray--100') }} p-3">
+                <img class="my-1" src="/images/logo/channels/tva-sports.svg" width="30" alt="">
+            </div>
+
+            <div class="item-channel__bundle-pseudo-link"></div>
+            <div class="item-channel__a-la-carte-price">
+                <p class="small font-weight-bold mb-0">+12$</p>
+            </div>
+        {% endblock %}
+    {% endembed %}
+</div>

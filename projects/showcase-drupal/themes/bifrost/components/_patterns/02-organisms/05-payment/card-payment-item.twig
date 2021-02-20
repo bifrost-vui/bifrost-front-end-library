@@ -1,0 +1,56 @@
+<div class="{{ class|default('') }}">
+    <div class="card p-3 py-md-0 px-md-4 " data-animate="fade-in">
+        <div class="row align-items-center py-4">
+            <div class="col-6 mb-3 mb-md-0">
+                <p class="h3 vui--font-secondary mb-0">{{ locationLabel|default('House') }}</p>
+                <p class="mb-0 vui--font-secondary">{{ locationAddress|default('123 Blvd St-Laurent, Montreal, QC H1W 1N2') }}</p>
+            </div>
+
+            <div class="col-6 mb-3 mb-md-0 text-right">
+                <p class="font-weight-bold mb-2 small">Automatic payment</p>
+                {% include '@atoms/03-form/input-toggle-switch.twig' with {
+                    class:"m-0 text-left",
+                    isChecked: (isAutomaticPayment is same as (true)) ? true : false,
+                    labelOn:"Yes",
+                    labelOff:"No"
+                }%}
+            </div>
+        </div>
+
+        <hr class="my-0">
+
+        <div class="list-group list-group-flush {{ (isAutomaticPayment is not same as (true)) ? 'vui--desactivated' : '' }}">
+            {% for option in registeredPaymentOptions %}
+                {% include '@molecules/05-input/input-radio-credit-card.twig' with {
+                    isSelected : option.isActivePaymentMethod,
+                    class:"list-group-item p-0" ~ item.class|default(''),
+                    inputName: "_account_credit_billing_address",
+                    inputId: "billingAddress_" ~ option.cardInfos.ending,
+                    cardInfos: option.cardInfos
+                } only %}
+            {% endfor %}
+        </div>
+    </div>
+
+    {#<div class="list-card">#}
+        {#{% embed '@molecules/06-accordion/accordion-item--collapse-below-add.twig' with {#}
+            {#class:"mb-0 border-top--0",#}
+            {#inlineAnchor:"tab_addPayment_creditcard",#}
+            {#headerTitle:"Add a new credit card"#}
+        {#} only %}#}
+            {#{% block collapse_content %}#}
+                {#{% include 'templates-add-credit-card' %}#}
+            {#{% endblock %}#}
+        {#{% endembed %}#}
+        {##}
+        {#{% embed '@molecules/06-accordion/accordion-item--collapse-below-add.twig' with {#}
+            {#class:"mb-0",#}
+            {#inlineAnchor:"tab_addPayment_bankAccount",#}
+            {#headerTitle:"Add a new bank account"#}
+        {#} only %}#}
+            {#{% block collapse_content %}#}
+                {#{% include 'organisms-form-bank-information' with { class:"" } only %}#}
+            {#{% endblock %}#}
+        {#{% endembed %}#}
+    {#</div>#}
+</div>

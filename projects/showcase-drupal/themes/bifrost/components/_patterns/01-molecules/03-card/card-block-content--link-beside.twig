@@ -1,0 +1,24 @@
+<!-- card-block-content.twig -->
+<div class="card card-block-content {{ class|default('') }}" data-animate="">
+    <div class="card-body">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-7 mb-4 mb-md-0 {{ contentWrapperClass|default('') }}" data-animate="fade-in">
+                {% block block_content %}
+                    <p class="font-weight-bold mb-0">{{ title|default('Billing Address') }}</p>
+
+                    {% if subtitle is defined %}
+                        <p class="small">{{ subTitle|default('Here is a subtitle') }}</p>
+                    {% endif %}
+
+                    <p class="mb-0">{{ txt|default('211, Saint-Catherine West, Montreal, QC H3E 9Je')|raw }}</p>
+                {% endblock %}
+            </div>
+
+            <div class="col-12 col-md-4 offset-md-1 text-md-right {{ linkWrapperClass|default('') }}" data-animate="fade-in">
+                {% block block_content_link %}
+                    {% include '@atoms/04-links/link-underline-with-icon--pdf.twig' with { label:"View PDF" } %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>

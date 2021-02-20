@@ -1,0 +1,37 @@
+{% extends "base-page.twig" %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container  %}
+    <section class="py-section">
+        <div class="container-fluid">
+            <h2 class="">Access denied</h2>
+
+            <div class="alert alert-callout--warning fade show p-0" role="alert">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="row d-block d-md-flex align-items-center">
+                            <div class="col-lg-6 mb-4 mb-md-0">
+                                <div class="d-md-flex align-items-center text-center text-md-left">
+                                    {% include '@atoms/06-icons/icon-svg-lock.twig' with { iconSize:"9" } %}
+                                    <p class="mb-0 ml-md-4 mt-4 mt-md-0 text-left">Sorry, you cannot access this page. Please make sure you subscribed to this service and that your profile has the necessary access rights.</p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-5 offset-md-1 mt-5 mt-lg-0">
+                                <div class="d-flex justify-content-end">
+                                    {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                                        buttonLabel: "Log in to my Helix account",
+                                        buttonClass:'px-4'
+                                    } %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.alert -->
+
+        </div>
+    </section>
+{% endblock %}

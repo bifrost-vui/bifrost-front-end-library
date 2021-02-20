@@ -1,0 +1,22 @@
+<a href="{{ href }}" class="link--no-decoration" rel="{{ rel|default('') }}" tabindex=-1 {{ subItem.extraAttribute|default(NULL) }}>
+    <div class="d-flex flex-column flex-md-row align-items-center {{ class|default('') }}">
+        <div class="w-40 pr-md-4 w-100--mobile-only">
+            {#<img class="card-img-top img-fluid"#}
+            {#data-src="{{ imgSrc|default('https://source.unsplash.com/500x200/?nature') }}"#}
+            {#alt="{{ imgAlt|default('Thumbnail') }}"#}
+            {#src="{{ imgSrc|default('https://source.unsplash.com/600x400/?nature') }}"#}
+            {#data-holder-rendered="true">#}
+
+            {% include '@atoms/11-images/img-lazy-load.twig' with {
+                class: '',
+                src: imgSrc|default('https://source.unsplash.com/400x250/?nature'),
+                alt: imgAlt|default('')
+            } %}
+        </div>
+
+        <div class="w-50 w-100--mobile-only">
+            <span class="link-hover js-dropdown-item-link h6 small font-weight-bold h6 small mb-1">{{ title|default('Link') }}</span>
+            <p class="small">{{ text|default('Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.') }}</p>
+        </div>
+    </div>
+</a>

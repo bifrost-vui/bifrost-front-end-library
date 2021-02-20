@@ -1,0 +1,52 @@
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<!-- frequent-links.twig -->
+<div class="{{ class|default('') }}">
+    <div class="row mb-2 mb-md-4" data-animate-row="">
+        <div class="col-md-6" data-animate="">
+            <h2 class="mb-0">Equipments & Accessories</h2>
+        </div>
+
+        {% if isViewCSR is defined and isViewCSR is same as (true) %}
+            <div class="col-md-6 text-right mb-3 mb-md-0" data-animate="">
+                <div class="mt-3 mt-md-0">
+                    {% include '@molecules/13-dropdown/02-button-outline-dropdown.twig' with {
+                        class: "d-inline-block w-100--mobile-only",
+                        buttonClass:"d-inline w-100--mobile-only",
+                        buttonLabel:"Manage my Equipments",
+                        href: "/patterns/04-Pages-02-my-account-(etiya)-0301-services--craft-your-bundle/04-Pages-02-my-account-(etiya)-0301-services--craft-your-bundle.html",
+                        dropdownItems: [
+                            { label: "Add equipment", href:"/patterns/04-Pages-02-my-account-(etiya)-0341-equipments-add/04-Pages-02-my-account-(etiya)-0341-equipments-add.html" },
+                            { label: "Remove equipment", href:"/patterns/04-Pages-02-my-account-(etiya)-0342-equipments-remove/04-Pages-02-my-account-(etiya)-0342-equipments-remove.html" },
+                            { label: "Replace equipment", href:"/patterns/04-Pages-02-my-account-(etiya)-0343-equipments-replace/04-Pages-02-my-account-(etiya)-0343-equipments-replace.html" }]
+                    } only %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    {% include 'organisms-box-warranty' with { class:"mb-4" } only %}
+
+    <div class="row mb-4" >
+        {% for equipment in equipments %}
+            <div class="col-md-6 col-lg-3 mb-3" >
+                {% include '@organisms/25-equipment/item-equipment.twig' with {
+                    class:"h-100",
+                    title: equipment.title,
+                    alert: equipment.alert|default(''),
+                    priceDollar: equipment.priceDollar,
+                    pricePaymentPlan: equipment.pricePaymentPlan,
+                    pricePaymentPlanInfos: equipment.pricePaymentPlanInfos,
+                    pricePaymentPlanBalance: equipment.pricePaymentPlanBalance,
+                    warantyAvailability: equipment.warantyAvailability
+                } only %}
+            </div>
+        {% endfor %}
+    </div>
+
+    {% include '@atoms/02-buttons/21-button-load-more.twig' with {
+        class: "mt-5",
+        buttonLabel:"View more",
+        bgColor:"bg-gray--100"
+    } %}
+</div>

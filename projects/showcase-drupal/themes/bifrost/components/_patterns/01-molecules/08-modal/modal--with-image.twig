@@ -1,0 +1,85 @@
+<div class="modal {{ modalAnimation|default('fade') }} {{ modalClass|default('') }}"
+     id="{{ modalId|default('exampleModal') }}"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="{{ modalLabelledBy|default('exampleModalLabel') }}"
+     aria-hidden="true"
+     {{ extraAttribute|default(NULL) }}
+>
+    <div class="modal-dialog modal-dialog-centered modal-{{ modalSize|default('lg') }}" role="document">
+        <div class="modal-content position-relative">
+            <button type="button"
+                    class="close d-inline-block m-2 m-md-3 m-lg-4 p-1 position-absolute--top-right z-index-1"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    {{ extraAttributeX|default(NULL) }}>
+                <span aria-hidden="true">
+                    {% include '@atoms/06-icons/icon-svg.twig' with {
+                        iconName: iconName|default('x'),
+                        iconSize: iconSize|default('4'),
+                        iconColor: iconColor|default('svg-fill--light'),
+                        iconClass:"px-1 mb-3"
+                    } only %}
+                </span>
+            </button>
+
+            <div class="row">
+                <div class="col-md-7 order-2 order-md-1">
+                    <div class="p-4 p-md-6">
+                        {% if modalTitle is defined %}
+                            <h2 class="w-100">{{ modalTitle|default('Title') }}</h2>
+                        {% endif %}
+
+                        <div class="{{ modalBodyClass|default('') }}">
+                            {% block modal_body %}
+                                {% block modal_body_subcontainer %}{% endblock %}
+
+                                <div class="modal-body__scroll-container">
+                                    {% block modal_body_scroll_container %}
+                                        <p>{{ modalBudy|default('Here is a simple body example') }}</p>
+                                    {% endblock %}
+                                </div>
+                            {% endblock %}
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="d-flex flex-column flex-md-row justify-content-md-end align-items-md-baseline">
+                            {% include '@atoms/02-buttons/40-button-link-underline.twig' with {
+                                buttonClass:"mr-md-4 w-100--mobile-only mb-0 py-3 py-md-2 text-center text-md-left",
+                                buttonColor:"reset",
+                                buttonLabel: buttonSecondaryLabel|default("Cancel"),
+                                dataDismiss:"modal"
+                            } only %}
+
+                            {% if btnNextModalTarget is defined and btnNextModalTarget is not empty %}
+                                {% include '@atoms/02-buttons/00-button.twig' with {
+                                    buttonClass:"w-100--mobile-only",
+                                    buttonLabel: buttonPrimaryLabel|default("I agree"),
+                                    dataDismiss:"modal",
+                                    dataToggle:"modal",
+                                    dataTarget: btnNextModalTarget|default("#modalVideotronplusSubscribeConfirmation")
+                                } only %}
+                            {% else %}
+                                {% include '@atoms/02-buttons/00-button.twig' with {
+                                    buttonClass:"w-100--mobile-only",
+                                    buttonLabel: buttonPrimaryLabel|default("I agree"),
+                                    dataDismiss:"modal",
+                                } only %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-5 pr-md-0 pl-md-0 order-1 order-md-2">
+                    {% include '@atoms/11-images/img-lazy-load.twig' with {
+                        isSquareMode: true,
+                        class:"img-fluid h-100",
+                        src: modalImg|default("https://source.unsplash.com/385x665/?nature")
+                    } only %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

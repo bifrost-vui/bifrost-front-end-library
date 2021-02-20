@@ -1,0 +1,46 @@
+<div class="form-group {{ class|default('') }}">
+    <label for="{{ inputId }}"
+           class="{{ labelClass|default('') }} d-flex"
+           {{ labelExtraAttribute|default(NULL) }}>{{ label|default('Label') }}
+
+        {# Tooltip : custom content --------- #}
+        {% set _BLOCK_tooltip_content = block('BLOCK_tooltip_content') %}
+        {% if _BLOCK_tooltip_content is defined and _BLOCK_tooltip_content is not empty %}
+            {% embed '@molecules/14-tooltip/00-button-icon-tooltip-custom.twig' with {
+                class:"ml-1"
+            } %}
+                {% block tooltip_content %}
+                    {{ _BLOCK_tooltip_content|raw }}
+                {% endblock %}
+            {% endembed %}
+        {% elseif labelTooltipTxt is defined and labelTooltipTxt is not empty %}
+            {% include '@molecules/14-tooltip/00-button-icon-tooltip-custom.twig' with {
+                class:"ml-1",
+                tooltipTxt: labelTooltipTxt
+            } only %}
+        {% endif %}
+    </label>
+
+    <div class="position-relative">
+        <input id="{{ inputId }}"
+               {% if isReadonly is defined and isReadonly is same as (true) %}readonly {% endif %}
+               {% if isDisabled is defined and isDisabled is same as (true) %}disabled {% endif %}
+                {% if isChecked is defined and isChecked is same as (true) %}checked {% endif %}
+               class="form-control mt-{{ mtValue|default('0') }} {{ inputClass|default('') }}"
+               type="{{ inputType|default('text') }}"
+               value="{{ inputValue|default('') }}"
+               placeholder="{{ inputPlaceholder|default('') }}"
+               name="{{ inputName|default('') }}"
+               {{ extraAttribute|default(NULL) }}>
+        {% include '@atoms/06-icons/icon-svg-error.twig' with { iconClass:"icon--error d-none" } only %}
+    </div>
+
+    <div class="invalid-feedback">
+        {{ invalidMsg|default('This is an invalid error message') }}
+    </div>
+
+    {% if subInfos is defined and  subInfos is not empty%}
+        <p class="mt-2 small">{{ subInfos }}</p>
+    {% endif %}
+
+</div><!-- /.form-group -->

@@ -1,0 +1,31 @@
+{% extends "base-page--funnel-services.twig" %}
+
+{% set navStepByStep_tplName = "equipments-add" %}
+{% set navStepByStep_activeNumber = 1 %}
+
+{% set page_hero_title = "Add Equipments" %}
+{% set page_hero_subtitle = "What equipment would you like to add to your plan ?" %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    <section class="py-section">
+        <div class="container-fluid">
+            <div class="row mb-6">
+                {% for equipment in equipments %}
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        {% include '@organisms/25-equipment/item-equipment--add.twig' with equipment only %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </section>
+{% endblock %}
+
+{% block page_sticky_bottom_bar %}
+    {% include '@organisms/15-navigation-sticky-bottom/funnel-nav-sticky-price.twig' with {
+        class:"",
+        stickyNavPriceBtnNextHref: "/patterns/04-Pages-02-my-account-(etiya)-0345-equipments--cart-summary/04-Pages-02-my-account-(etiya)-0345-equipments--cart-summary.html"
+    } only %}
+{% endblock %}

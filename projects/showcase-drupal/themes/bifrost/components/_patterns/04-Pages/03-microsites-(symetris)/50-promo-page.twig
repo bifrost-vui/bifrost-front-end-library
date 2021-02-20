@@ -1,0 +1,76 @@
+{% extends "base-page.twig" %}
+
+{% set planOffers = [1,2,3] %}
+{% set isCollapsePromoOpen = true %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    {% include '@organisms/03-hero/hero-block-promo.twig' %}
+
+    <section class="bg-gray--100">
+        <div class="container-fluid">
+            <div class="accordion-item--arrow-down">
+                {% embed '@atoms/02-buttons/01-button-with-icon.twig' with {
+                    buttonLabel:"View offer details",
+                    buttonColor: "reset",
+                    buttonType:"button",
+                    buttonClass:"vui--style-reset px-0 py-3 w-100",
+                    dataToggle:"collapse",
+                    dataTarget:"#collapsePromoPage",
+                    ariaExpanded: isCollapsePromoOpen ? 'true' : 'false'
+                } %}
+                    {% block icon %}
+                        {% include '@atoms/06-icons/icon-arrow-to-bottom.twig' with {
+                            iconColorTheme:itemColor|default("dark"),
+                            iconClass:"position-relative top-1 mb-2"
+                        } %}
+                    {% endblock %}
+                {% endembed %}
+            </div>
+        </div>
+
+        <div id="collapsePromoPage"
+             class="collapse {{ isCollapsePromoOpen is same as (true) ? 'show' : '' }}"
+             aria-labelledby="heading{{ inlineAnchor|default('defaultAccordionArrowDown') }}">
+
+            <div class="pt-section bg-light">
+                <div class="container-fluid">
+                    {% include '@organisms/09-modal-content/modal-service-content--tv.twig' with { class:"" } %}
+                </div>
+            </div>
+
+            <div class="py-section bg-gray--100 gradient gradient-left--light">
+                <div class="container-fluid">
+                    {% include '@organisms/09-modal-content/modal-service-content--tv.twig' with { class:"" } %}
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-section">
+        <div class="container-fluid">
+            <div>
+                <h2>More promotions for you</h2>
+                <div class="row">
+                    {% for plans in planOffers %}
+                        <div class="col-12 col-md-4 pb-4">
+                            {% include '@organisms/10-offers/component-card-offer-helix.twig' with {
+                                buttonLabel:"Select this offer",
+                                buttonLinkClass: 'js-dxp-btn-link'
+                            } %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    {% include '@templates/03-microsites-(symetris)/discover-channel-carousel.twig' %}
+{% endblock %}
+
+{% block modals_container %}
+    {% include '@organisms/08-modal/_modal-service-bundle-item-detail.twig' %}
+{% endblock %}

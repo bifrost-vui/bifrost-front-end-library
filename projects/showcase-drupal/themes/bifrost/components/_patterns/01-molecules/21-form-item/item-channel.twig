@@ -1,0 +1,27 @@
+<div class="item-channel {{ spacingClasses|default('mr-2 mr-lg-3 mb-6') }} {{ class|default('') }}" {{ extraAttributes|default(NULL) }}>
+    {% embed '@molecules/05-input/input-card-btn.twig' with {
+        class: "",
+        isSelected: isSelected|default(false),
+        isDisabled: isDisabled|default(false),
+        inputId: inputId|default("channel_" ~ loop.index),
+        inputName: inputName|default("channelSelection")
+    } %}
+        {% block label_content %}
+            <div class="card card-rounded {{ tileChannelBgColor|default('bg-gray--100') }} p-3 py-4">
+                <img class="img-fluid px-1" src="{{ channelIcon|default('/images/logo/channels/tva-sports.svg') }}" width="68" height="40" alt="{{ channelIconAlt|default('Logo TVA SPORTS') }}">
+            </div>
+            <div class="item-channel__bundle-pseudo-link"></div>
+        {% endblock %}
+    {% endembed %}
+
+
+    <div class="item-channel__a-la-carte-price mt-3 text-center">
+        <p class="font-weight-bold h5 mb-0">+12$</p>
+    </div>
+
+    {% include '@organisms/60-content-channel-swap/channel-swap--tooltip-details.twig' with {
+        class:"",
+        BLOCK_tooltip_content: BLOCK_tooltip_content|default(''),
+        buttonLabel: buttonLabel|default('Details'),
+    } only %}
+</div>

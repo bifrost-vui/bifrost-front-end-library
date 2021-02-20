@@ -1,0 +1,185 @@
+{% extends "base-page-helix.twig" %}
+
+{% set heroPageTitle = "DEMO Live chat Genesys" %}
+{% set heroPageSubTitle = "" %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_head %}
+    {{ parent() }}
+
+    {#<script>#}
+    {#function SetLanguage(language) {#}
+    {#try {#}
+    {#CXBus.command('App.setLanguage', {lang: language}).done(function (e) {#}
+    {#// App set language successfully started#}
+    {#console.warn("ca marche");#}
+    {#}).fail(function (e) {#}
+    {#// App failed to set language#}
+    {#console.warn("HUM ca marche pas");#}
+    {#});#}
+    {#CXBus.command('App.setTheme', {theme: 'dark'}).done(function (e) {#}
+    {#// App set theme successfully#}
+    {#console.warn("ca marche");#}
+    {#}).fail(function (e) {#}
+    {#// App failed to set theme#}
+    {#console.warn("HUM ca marche pas");#}
+    {#});#}
+    {#CXBus.command('App.reTheme', {html: '<div>Test Theme</div>'}).done(function (e) {#}
+    {#// App set theme successfully#}
+    {#console.warn("ca marche");#}
+    {#}).fail(function (e) {#}
+    {#// App failed to set theme#}
+    {#console.warn("HUM ca marche pas");#}
+    {#});#}
+    {#CXBus.command('SideBar.configure', {#}
+    {#lang: language#}
+    {#}).done(function (e) {#}
+    {#// Sidebar configured successfully#}
+    {#console.warn("SideBar.configure : ca marche");#}
+    {#}).fail(function (e) {#}
+    {#// Sidebar failed to configure properly#}
+    {#console.warn("SideBar.configure : HUM ca marche pas");#}
+    {#});#}
+    {#} catch (e) {#}
+    {#console.warn("HUM ca marche pas : " + e)#}
+    {#}#}
+    {#}#}
+
+    {#function PreLoadCallback() {#}
+    {#try {#}
+    {#CXBus.command('Callback.open', {#}
+    {#form: {#}
+    {#autoSubmit: false,#}
+    {#firstname: 'John',#}
+    {#lastname: 'Smith',#}
+    {#subject: 'Customer Satisfaction',#}
+    {#desiredTime: 'now',#}
+    {#phonenumber: '8881110000'#}
+    {#},#}
+    {#userData: {#}
+    {#key1: 'value1',#}
+    {#key2: 'value2',#}
+    {#ServiceType: 'RES',#}
+    {#ServiceSubType: 'SAC'#}
+    {#}#}
+    {#//formJSON: {...}#}
+    {#}).done(function (e) {#}
+    {#// Callback opened successfully#}
+    {#console.warn("ca marche");#}
+    {#}).fail(function (e) {#}
+    {#// Callback failed to open#}
+    {#console.warn("HUM ca marche pas");#}
+    {#});#}
+    {#} catch (e) {#}
+    {#console.warn("HUM ca marche pas : " + e)#}
+    {#}#}
+    {#}#}
+
+    {#function UpdateUserData() {#}
+    {#try {#}
+    {#CXBus.command('CallbackService.updateUserData', {key3: 'value3', key4: 'value4'}).done(function (e) {#}
+    {#// WebChatService updated user data successfully#}
+    {#console.warn("ca marche");#}
+    {#}).fail(function (e) {#}
+    {#// WebChatService failed to update user data#}
+    {#console.warn("HUM ca marche pas");#}
+    {#});#}
+    {#} catch (e) {#}
+    {#console.warn("HUM ca marche pas : " + e)#}
+    {#}#}
+
+    {#}#}
+    {#</script>#}
+{% endblock %}
+
+{% block page_main_container %}
+    <section>
+        <div class="container-fluid py-section">
+            <div class="mb-6">
+                <p class="h1 vui--font-secondary mb-4">UIKIT</p>
+                <hr class="border-width-4">
+
+                <h3 class="mt-5 mb-3">Modals</h3>
+                {% include '@atoms/02-buttons/00-button.twig' with {
+                    buttonClass:"btn-primary btn--condensed ",
+                    buttonLabel:"DEMO",
+                    dataToggle:"modal",
+                    dataTarget:"#modalContactUs"
+                } %}
+            </div>
+
+            <div>
+                <h1 class="mb-4">Genesys widget</h1>
+                <hr class="border-width-4">
+
+                <h3 class="mt-5 mb-3">Console debug</h3>
+                {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                    buttonClass:"mr-2 w-100--mobile-only mb-2",
+                    buttonColor: "",
+                    buttonLabel:"Open console",
+                    extraAttribute: 'onclick=javascript:CXBus.command("Console.open");'
+                } %}
+
+                <hr>
+
+                <h3 class="mt-5 mb-3">Click on any button below to trigger the designated API event</h3>
+                <div class="mb-4">
+                    {#{% include '@atoms/02-buttons/10-button-outline.twig' with {#}
+                        {#buttonClass:"mr-2 w-100--mobile-only mb-2",#}
+                        {#buttonColor: "",#}
+                        {#buttonLabel:"Toaster",#}
+                        {#extraAttribute: 'onclick=javascript:CXBus.command("Toaster.open");'#}
+                    {#} %}#}
+
+                    {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                        buttonClass:"mr-2 w-100--mobile-only mb-2",
+                        buttonColor: "",
+                        buttonLabel:"Callback",
+                        extraAttribute: 'onclick=javascript:CXBus.command("Callback.open");'
+                    } %}
+
+                    {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                        buttonClass:"mr-2 w-100--mobile-only mb-2",
+                        buttonColor: "",
+                        buttonLabel:"Call us",
+                        extraAttribute: 'onclick=javascript:CXBus.command("CallUs.open");'
+                    } %}
+
+                    {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                        buttonClass:"mr-2 w-100--mobile-only mb-2",
+                        buttonColor: "",
+                        buttonLabel:"Channel selector",
+                        extraAttribute: 'onclick=javascript:CXBus.command("ChannelSelector.open");'
+                    } %}
+
+                    {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                        buttonClass:"mr-2 w-100--mobile-only mb-2",
+                        buttonColor: "",
+                        buttonLabel:"Web chat",
+                        extraAttribute: 'onclick=javascript:CXBus.command("WebChat.open");'
+                    } %}
+
+                    {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                        buttonClass:"mr-2 w-100--mobile-only mb-2",
+                        buttonColor: "",
+                        buttonLabel:"Send message",
+                        extraAttribute: 'onclick=javascript:CXBus.command("SendMessage.open");'
+                    } %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block page_footer %}
+    {{ parent() }}
+
+    <script src="https://contact-lab.videotron.com/data/widgets/cxbus.min.js" onload="javascript:CXBus.configure({debug:true,pluginsPath:'https://contact-lab.videotron.com/data/widgets/plugins/'});CXBus.loadFile('../../js/widgets/genesys-live-chat/widgets.config_local.js').done(function(){CXBus.loadPlugin('widgets-core')});"></script>
+{% endblock %}
+
+
+{% block modals_container %}
+    {% include 'organisms-modal-contact-us' %}
+{% endblock %}

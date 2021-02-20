@@ -1,0 +1,18 @@
+<!-- card-rounded--cta.twig -->
+<div class="card card-rounded border-0 bg-{{ bgColor|default('gray--100') }}  {{ class|default('') }}">
+    <div class="card-body d-flex flex-column justify-content-between">
+        <h3 class="mb-4 font-weight-{{ titleFontWeight|default('light') }}">{{ cardTitle|default('Activate your user account')|raw }}</h3>
+        <p class="mb-4">{{ cardTxt|default('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi cumque dolorum esse inventore iure laborum.') }}</p>
+
+        {% block card_content %}
+            <div class="d-flex">
+                <a href="{{ hrefGoogle|default('') }}" {{ extraAttributeGoogle|default(NULL) }}>
+                    <img src="/images/logo/google-play.svg" class="img-fluid mr-1" alt="">
+                </a>
+                <a href="{{ hrefAppStore|default('') }}" {{ extraAttributeAppStore|default(NULL) }}>
+                    <img src="/images/logo/app-store.svg" class="img-fluid" alt="">
+                </a>
+            </div>
+        {% endblock %}
+    </div>
+</div>

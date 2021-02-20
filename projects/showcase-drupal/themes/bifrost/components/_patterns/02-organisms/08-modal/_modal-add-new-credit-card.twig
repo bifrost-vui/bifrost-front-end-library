@@ -1,0 +1,26 @@
+{% embed "molecules-modal" with {
+    modalId:"modalAddNewCreditCard",
+    modalSize: "md",
+    modalTitle:"Add a new credit card",
+} %}
+    {% block modal_body %}
+        {% include 'templates-add-credit-card' with {
+            class:"mb-6"
+        } %}
+
+        <div class="d-md-flex justify-content-end">
+            {% include '@atoms/02-buttons/00-button.twig' with {
+                buttonLabel:"Close",
+                buttonClass:"btn-reset link-underline btn--condensed",
+                dataDismiss:"modal"
+            } %}
+
+            {% include '@atoms/02-buttons/00-button.twig' with {
+                buttonClass:"btn--condensed w-100--mobile-only",
+                buttonLabel:"Save",
+                buttonColor:"primary",
+                dataDismiss:"modal"
+            } %}
+        </div>
+    {% endblock %}
+{% endembed %}

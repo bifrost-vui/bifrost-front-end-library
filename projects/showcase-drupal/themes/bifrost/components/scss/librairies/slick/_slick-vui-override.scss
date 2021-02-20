@@ -1,0 +1,81 @@
+/* *****************************************************************************
+*
+*  Slick slider override
+*
+* ***************************************************************************** */
+
+.slick-slider {
+  margin-bottom: 3.5rem;
+
+  .slick-dots {
+    @extend .carousel-indicators;
+    margin-bottom: 0;
+    bottom: -2rem;
+
+    li {
+      @extend .bullet;
+
+      & > button {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      &.slick-active {
+        @extend .bullet.active;
+      }
+
+      // Variant in case the style of the block is dark
+      @at-root .bg-dark & {
+        @extend .bullet--white;
+
+        &.slick-active {
+          @extend .bullet--white.active;
+        }
+      }
+    }
+  }
+
+  .slick-prev,
+  .slick-next {
+    @include size(3rem);
+    background: $black;
+    border-radius: 100px;
+    border: none;
+    z-index: 20;
+    color: transparent;
+
+    &:before{
+      @extend .position-absolute--center;
+      @include size(0.5rem);
+      content: "";
+      display: block;
+      border-color: $white!important;
+    }
+
+    &.slick-disabled {
+      @extend .vui--desactivated;
+    }
+  }
+
+  .slick-prev {
+    @extend .position-absolute--center-left;
+    left: -1rem;
+
+    &:before{
+      @extend .icon-arrow-to-left;
+      left: 43%;
+      top: 42%;
+    }
+  }
+
+  .slick-next {
+    @extend .position-absolute--center-right;
+    right: -1rem;
+
+    &:before{
+      @extend .icon-arrow-to-right;
+      left: 35%;
+      top: 43%;
+    }
+  }
+}

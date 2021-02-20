@@ -1,0 +1,40 @@
+{% extends "base-page--funnel-services.twig" %}
+
+{% set navStepByStep_tplName = "service" %}
+{% set navStepByStep_activeNumber = 1 %}
+
+{#{% set page_hero_title = "Manage services" %}#}
+{#{% set page_hero_subtitle = "Craft a bundle that best fits your needs" %}#}
+
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    <section class="py-section">
+        <div class="container-fluid">
+            {% include 'organisms-banner-promo' with { class:"mb-7" } only %}
+        </div>
+
+        {% include 'templates-simulator-internet-plan' with { class:"" } only %}
+        {% include 'templates-simulator-tv-plan' with { class:"" } only %}
+        {#{% include 'templates-simulator-tv-plan--add' with { class:"" } only %}#}
+    </section>
+
+    {#<div class="text-right">#}
+        {#{% include '@atoms/04-links/link-underline-with-icon--reset.twig' with {#}
+            {#class:"mb-0",#}
+            {#headingSize: '6',#}
+            {#label: "Reset to my current plan",#}
+            {#href: ""#}
+        {#} %}#}
+    {#</div>#}
+{% endblock %}
+
+{% block page_sticky_bottom_bar %}
+    {% include '@organisms/15-navigation-sticky-bottom/funnel-nav-sticky-price--simulator.twig' only %}
+    {#{% include '@templates/02-my-account-(etiya)/15-navigation-sticky-bottom/funnel-nav-sticky-price--simulator-downgrade.twig' only %}#}
+{% endblock %}
+
+{% block modals_container %}
+    {% include '@organisms/08-modal/_modal-service-bundle-item-detail.twig' %}
+{% endblock %}

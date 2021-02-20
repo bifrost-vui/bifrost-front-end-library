@@ -1,0 +1,44 @@
+{% embed "molecules-modal" with {
+    modalTheme: "dark",
+    modalId:"modalCrossSell",
+    bgImage: "/images/hero/hero-block-sample.png"
+} %}
+    {% block modal_header %}
+        <p class="mb-0 vui--text-highlight color--primary">For a limited time only</p>
+        <p class="h3">Enjoy this exclusive offer!</p>
+        <hr class="mt-md-4 mb-0">
+    {% endblock %}
+
+    {% block modal_body %}
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+        <div class="row align-items-end">
+            <div class="col-md-7 mb-4 mb-md-0">
+                <div class="d-flex">
+                    {#<p>starting at</p>#}
+
+                    {#<div class="ml-4">#}
+                        {% include '@atoms/07-payment/price-box.twig' with {
+                            priceClass:"mb-2",
+                            priceBoxAlignement:"left",
+                            priceDollar: "152",
+                            priceCent:"34",
+                            priceRecurrencePeriod: "",
+                            itemTitleTooltipInfos: "Lorem ipsum dolor sit amet",
+                            priceInfosSupp:"Taxes excl.",
+                            priceSavings:"Price after promo (12 month): $XXX/month",
+                            priceTxtBelow:"Installation & equipment fees included"
+                        } only %}
+                    {#</div>#}
+                </div>
+            </div>
+
+            <div class="col-md-5 text-md-right">
+                {% include '@atoms/02-buttons/00-button.twig' with {
+                    buttonLabel:"View offers",
+                    buttonClass:"w-100--mobile-only",
+                } %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

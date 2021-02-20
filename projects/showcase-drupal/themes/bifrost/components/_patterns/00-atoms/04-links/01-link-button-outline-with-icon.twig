@@ -1,0 +1,6 @@
+<a class="btn btn-{{ buttonSize|default('md') }} btn-outline-{{ buttonColor|default('dark') }} d-inline-flex justify-content-center align-items-center {{ class|default('') }}"
+   {% if label is not empty %}data-title="{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}"{% endif %}
+   href="{{ href|default('#') }}"
+   target="{{ target|default('_self') }}"
+   {{ extraAttribute|default(NULL) }}
+>{{ label|default('Link button label') }}{% include '@atoms/06-icons/icon-svg-' ~ iconName|default('pdf') ~ '.twig' with { iconSize:iconSize|default(2), iconClass: iconClass|default("ml-2") } only %}</a>

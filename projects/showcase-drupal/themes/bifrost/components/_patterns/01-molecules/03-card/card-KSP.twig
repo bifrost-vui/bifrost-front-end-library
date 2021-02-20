@@ -1,0 +1,23 @@
+<!-- card-KSP.twig -->
+<div class="card border--0 d-inline-block {{ class|default('') }}">
+    <div class="card-KSP h-100 card-body p-4 p-md-6 bg-{{ bgColor|default('primary') }} {{ classStripe|default('') }}" {% if bgImg is defined %}style="background-image:url('{{ bgImg|default('') }}');"{% endif %}>
+        <div class="row align-items-center h-100">
+            {% block block_content %}
+                <div class="col-12 d-flex flex-column justify-content-between h-100">
+                    <div>
+                        <div class="card-KSP__img mb-3">
+                            {% block block_icon %}
+                                {% include '@atoms/06-icons/icon-svg-internet.twig' %}
+                            {% endblock %}
+                        </div>
+                        <h5 class="font-weight-medium text-uppercase mb-1">{{ title|default('Tout le contenu au même endroit') }}</h5>
+                        <p class="mb-3 fs-2 {{ descriptionClass|default('') }}">{{ description|default('Gérer et contrôler facilement vos réglages Wi-Fi') }}</p>
+                    </div>
+                    <div>
+                        {% if href is defined %}{% include '@atoms/04-links/link-underline.twig' with { label:label|default('Learn More') } %}{% endif %}
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="card card-rounded form-input-accordion-item-2 {{ class|default('') }}">
+    <input type="{{ inputType|default('radio') }}"
+           id="{{ inputId|default('defaultInputAccordionItem2') }}"
+           name="{{ inputName }}"
+           class="sr-only form-input-accordion-item-2__input"
+           {% if isSelected is defined and isSelected is same as (true) %}checked="checked"{% endif %}
+    >
+
+    <div class="form-input-accordion-item-2__collapse-content">
+        <label for="{{ inputId|default('defaultInputAccordionItem2')  }}" class="h6 w-100 content-unchecked m-0 py-4 vui--cursor-pointer">
+            {{ inputLabel|default('input label') }}
+        </label>
+
+        <div class="content-checked">
+            {% block collapse_content %}
+                <div class="row align-items-center py-3">
+                    <div class="col-md-5">
+                        <div class="pl-8">
+                            <h3>{{ inputLabel }}</h3>
+                            <p>You will have one XB6 Gateway and/or one Xi6 TV box in your basic equipment. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <img src="/images/assets/helix-equipment.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>

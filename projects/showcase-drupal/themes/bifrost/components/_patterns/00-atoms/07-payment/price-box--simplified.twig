@@ -1,0 +1,26 @@
+<div class="{{ class|default('') }}">
+    {% if pricePreOffer is not defined or pricePreOffer is not empty %}
+        <p class="small {{ pricePaymentPlanClass|default('') }}">
+            {{ pricePreOffer|default('Pre-Offer')|raw }}
+        </p>
+    {% endif %}
+
+    <div class="d-inline-flex align-items-baseline justify-content-center position-relative">
+        <sup class="h{{ dollarSize|default('3') }} position-absolute--top-left mt-2 pt-1">$</sup>
+        <h2 class="fs-{{ priceDollarSize|default('9') }} mb-0 ml-1 pl-2 vui--font-secondary">{{ priceDollar|default('15')}}{% if priceCent is defined and priceCent is not empty %}<span class="d-inline-block fs-{{ priceCentSize|default('4') }} h2 font-weight-light align-top mt-2">{{ priceCent }}</span>{% endif %}</h2>
+        {% if perMonth is defined %}
+            <p class="m-0">/{{ perMonth|default('mo')}}</p>
+        {% endif %}
+    </div>
+    
+    {% if pricePaymentPlan is not defined or pricePaymentPlan is not empty %}
+        <p class="font-weight-normal mt-minus-2 small {{ pricePaymentPlanClass|default('') }}">
+            {{ pricePaymentPlan|default('36 months installment plan')|raw }}
+            {% if pricePaymentPlanInfos is defined and pricePaymentPlanInfos is not empty%}
+                {% include '@atoms/02-buttons/25-button-tooltip.twig' with {
+                    tooltipTxt:pricePaymentPlanInfos
+                } %}
+            {% endif %}
+        </p>
+    {% endif %}
+</div>

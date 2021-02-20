@@ -1,0 +1,30 @@
+{% if bgImage is defined and bgImage is not empty %}
+    {% set defaultImgSrc = bgImage %}
+{% else %}
+    {% set defaultImgSrc = '/images/hero/hero-block-sample.png' %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<!-- hero-block.twig -->
+<section
+        class="hero-block py-hero vui--style-black js-image-background {{ bgImagePosition|default('right') }} {{ bgImageQueries|default(null) }} {{ class|default('') }}"
+        data-bg="{{ bgImage|default(defaultImgSrc) }}"
+        data-md-bg="{{ bgMediumImage|default(defaultImgSrc) }}"
+        data-lg-bg="{{ bgLargeImage|default(defaultImgSrc) }}">
+    {% block hero_mobile_image %}{% endblock %}
+    <div class="container-fluid {{ containerClass|default('') }}" data-animate-row="">
+        {% block hero_content %}
+            {% if breadcrumb is defined %}
+                {{ breadcrumb }}
+            {% endif %}
+
+            {#<div class="mb-3">#}
+                <h1 class="mb-0" data-animate="fade-in">{{ title|default('Your Helix System') }}</h1>
+                {% if subTitle is not defined or subTitle is not empty %}
+                    <p class="h5 mt-2 mb-0" data-animate="fade-in">{{ subTitle|default('Lorem ipsum dolor sitamet consectetur adipiscing') }}</p>
+                {% endif  %}
+            {#</div>#}
+        {% endblock %}
+    </div>
+</section>

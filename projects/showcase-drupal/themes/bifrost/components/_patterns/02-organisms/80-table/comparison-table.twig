@@ -1,0 +1,174 @@
+{# DEMO #}
+{% if comparison_title is not defined %}
+  {% set comparison_title = "Comparison Table (DEMO)" %}
+{% endif %}
+
+{% if comparison_description is not defined %}
+  {% set comparison_description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." %}
+{% endif %}
+
+{% if comparison_header is not defined %}
+  {% set comparison_header = [
+    {
+      name: "Helix TV",
+      product_logo: "https://source.unsplash.com/260x180/?tv",
+      product_logo_alt: "helixTV"
+    }, {
+      name: "Helix TV App",
+      product_logo: "https://source.unsplash.com/260x180/?tv",
+      product_logo_alt: "helixTVApp"
+    }
+  ] %}
+{% endif %}
+
+{% if comparison_chara is not defined %}
+  {% set comparison_chara = {
+    "Live TV channels and On Demand content": {
+      "Helix TV": {
+        link: false,
+        icon: "https://source.unsplash.com/25x45/?icon",
+        icon_alt: "alt-text",
+        title: "Live TV channels and On Demand content",
+        value: "true"
+      },
+      "Helix TV App": {
+        link: false,
+        icon: "https://source.unsplash.com/25x45/?icon",
+        icon_alt: "alt-text",
+        title: "Live TV channels and On Demand content",
+        value: "false"
+      }
+    },
+    "Helix app on Google Play and Apple Store": {
+      "Helix TV": {
+        link: false,
+        icon: "https://source.unsplash.com/260x180/?icon",
+        icon_alt: "alt-text",
+        title: "Helix app on Google Play and Apple Store",
+        value: "1"
+      },
+      "Helix TV App": {
+        link: false,
+        icon: "https://source.unsplash.com/25x45/?icon",
+        icon_alt: "alt-text",
+        title: "Helix app on Google Play and Apple Store",
+        value: "2"
+      }
+    },
+    "Casting with a mobile device": {
+      "Helix TV": {
+        link: false,
+        icon: "https://source.unsplash.com/25x45/?icon",
+        icon_alt: "alt-text",
+        title: "Casting with a mobile device",
+        value: "Release pretty soon"
+      },
+      "Helix TV App": {
+        link: false,
+        icon: "https://source.unsplash.com/25x45/?icon",
+        icon_alt: "alt-text",
+        title: "Casting with a mobile device",
+        value: "Optional"
+      }
+    }
+  } %}
+{% endif %}
+
+{% if comparison_link_new_tab is not defined %}
+  {% set comparison_link_new_tab = true %}
+{% endif %}
+
+{# keeping the space when there's at least one image #}
+{% set chara_class = "" %}
+{% for key,value in comparison_chara %}
+    {% if value|first.icon is not empty %}
+        {% set chara_class = "col-md-1" %}
+    {% endif %}
+{% endfor %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class=''>
+  <div class='container-fluid'>
+    <div class='row'>
+      {% include "@molecules/07-content/content-h3-with-text.twig" with {
+        title: comparison_title|default(" "),
+        titleClass: "h2 vui--font-secondary",
+        text: comparison_description|default(" "),
+        textClass: "vui--font-base"
+      } only %}
+    </div>
+  </div>
+  {# Comparative table #}
+  <div class="c-comparative-grid-table">
+    <div class="comparative-header">
+      <div class="comparative-middle-divider">
+        <div class="comparative-divider-right d-flex text-center align-items-center justify-content-end">
+          {% for header_value in comparison_header %}
+            <div class='col-lg-2 col-md-3 d-flex flex-column align-items-center justify-content-center text-align-center'>
+              {% if header_value.product_logo is defined and header_value.product_logo is not empty %}
+                <div class="w-100">
+                  {% include "@atoms/11-images/img-lazy-load.twig" with {
+                    bgColor: 'light',
+                    src: header_value.product_logo,
+                    alt: header_value.product_logo_alt
+                  } %}
+                </div>
+              {% endif %}
+              <p class="font-weight-medium">{{ header_value.name }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="comparative-body">
+      {% set content_value = '' %}
+      {% for key,value in comparison_chara %}
+
+        {% set icon = value|first.icon %}
+        {% set icon_alt = value|first.icon_alt %}
+        {% set link = value|first.link %}
+
+        <div class="comparative-middle-divider">
+          <div class="comparative-divider-left d-flex align-items-center minh-4 py-2">
+            <div class="{{ chara_class }} m-0 p-0">
+              {% if icon is defined and icon is not empty %}
+                {% include "@atoms/11-images/img-lazy-load.twig" with {
+                  bgColor: 'light',
+                  src: icon,
+                  alt: icon_alt
+                } %}
+              {% endif %}
+            </div>
+            <div class="col-10">
+              {% if link is defined and icon is not empty %}
+                <a href='{{ link }}' target="{{ comparison_link_new_tab ? '_blank' : '_self' }}">{{ key }}</a>
+              {% else %}
+                {{ key }}
+              {% endif %}
+            </div>
+          </div>
+          <div class="comparative-divider-right d-flex justify-content-end">
+            {% for header_value in comparison_header %}
+              {% for sub_key,sub_value in value %}
+                {% if header_value.name == sub_key %}
+                  {% set content_value = sub_value.value %}
+                {% endif %}
+              {% endfor %}
+              <div class='col-lg-2 col-md-3 d-flex flex-column align-items-center justify-content-center'>
+                {% if content_value == 'true' %}
+                  {% include '@atoms/06-icons/icon-svg.twig' with { iconName: 'checkmark', iconSize:'1' } only %}
+                {% elseif content_value == 'false' %}
+                  {% include '@atoms/06-icons/icon-svg.twig' with { iconName: 'minus-bold', iconSize:'1' } only %}
+                {% else %}
+                  {{ content_value }}
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<ul class="list-unstyled row {{ class|default('') }}">
+    {% for link in listItems %}
+        <li class="{{ listItemClass|default('col-md-6') }}">
+            <div class="{{ (loop.last is not same as (true)) ? 'border-bottom' : '' }} py-1">
+                {% include '@atoms/04-links/link-next.twig' with {
+                    linkLabel: link.label,
+                    href: link.href|default('#'),
+                    linkClass:"mb-0 d-block py-3 " ~ linkClass|default(''),
+                    iconClass:"ml-4"
+                } %}
+            </div>
+        </li>
+    {% endfor %}
+</ul>

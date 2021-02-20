@@ -1,0 +1,102 @@
+{% extends "base-page--funnel-services.twig" %}
+
+{% set navStepByStep_tplName = "equipments-add" %}
+{% set navStepByStep_activeNumber = 2 %}
+
+{% set heroPageTitle = "Cart summary" %}
+{% set heroPageSubTitle = "Lorem ipsum dolor sit amet, consectetur adipisicing elit ? " %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_content  %}
+    <section class="py-section">
+        {# SERVICES -----------------------------------------------------  #}
+        <div class="row mb-3 align-items-center" data-animate="">
+            <div class="col-6 col-md-8">
+                <h2 class="mb-0">Services</h2>
+            </div>
+
+            <div class="col-6 col-md-4 text-right">
+                {% include '@atoms/04-links/link-underline.twig' with { "label":"Change service", headingSize:5, class:"" } %}
+            </div>
+        </div>
+
+        {% include '@organisms/07-cart-summary/cart-summary--services.twig' with { class:"mb-6" } %}
+
+        {# Equipments -----------------------------------------------------  #}
+        <div data-animate="">
+            <div class="mb-3">
+                <h2 class="mb-1">Equipment</h2>
+                <p>Choose how you would like to buy your equipments.</p>
+            </div>
+
+            {#<div class="border w-65 w-100--mobile-only p-3 mb-3">#}
+            {% include '@atoms/03-form/input-toggle-switch--2-choices.twig' with {
+                class:"mb-3",
+                toggleChoice1Title:"PAYMENT PLAN OVER 36 MONTHS",
+                toggleChoice1SubTitle:"Taxes paid upfront as a one-time fee",
+                toggleChoice2Title:"BUY UPFRONT",
+                toggleChoice2SubTitle:"",
+            } %}
+            {#</div>#}
+        </div>
+
+        {% include '@organisms/07-cart-summary/cart-summary--equipments.twig' with { class:"mb-6" } %}
+
+        {# Installation -----------------------------------------------------  #}
+        <div class="mb-3" data-animate="">
+            <h2 class="mb-1">Add on</h2>
+            {#<p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>#}
+        </div>
+
+        {% include '@organisms/07-cart-summary/cart-summary--add-on.twig' with { class:"mb-6" } %}
+
+        {#<h2 class="mb-3" data-animate="">You might need</h2>#}
+        {#{% include '@organisms/07-cart-summary/cart-summary--equipments-warranty.twig' with { class:"mb-6" } %}#}
+
+        {# Installation -----------------------------------------------------  #}
+        <div class="mb-3" data-animate="">
+            <h2 class="mb-1">Installation</h2>
+            <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+        </div>
+
+        {% include '@organisms/07-cart-summary/cart-summary--installation.twig' with { class:"mb-6" } %}
+
+
+        {# You might be interested -----------------------------------------------------  #}
+        <h2 data-animate="">You might be interested in</h2>
+        <div class="row mb-4" data-animate="">
+            {% set interestedOptions = [
+                { title:"Cloud DVR Unlimited", text:"Hours of recording", price:"$ 00.00/month", iconName:"cloud-dvr", isBtnDisabled: true, buttonClass:"js-DEMO-add-item-cart-summary"  },
+                { title:"200 Hours of Recording", text:"Details id dolor id nibh ultricies vehicula ut id elit.", price:"$ 00.00", iconName:"gateway", isBtnDisabled: false, buttonClass:"js-DEMO-add-item-cart-summary" },
+                { title:"Unlimited Hours of Recording*", text:"Details id dolor id nibh ultricies vehicula ut id elit.", price:"$ 00.00", iconName:"cloud-dvr", isBtnDisabled: false, buttonClass:"js-DEMO-add-item-cart-summary"  },
+            ] %}
+            {% for option in interestedOptions %}
+                <div class="col-md-4 mb-3">
+                    {% include '@molecules/03-card/card-item--add.twig' with option only %}
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block page_aside %}
+    <section class="py-section">
+        {% include '@organisms/05-payment/payment-billing-summary.twig' with {
+            class:"mb-4"
+        } %}
+
+        {% include '@atoms/04-links/01-link-button.twig' with {
+            class:"w-100 mb-4",
+            buttonSize: "lg",
+            btnColor: "primary",
+            label: "Proceed to checkout",
+            href: "/patterns/04-Pages-02-my-account-(etiya)-0345-equipments--checkout/04-Pages-02-my-account-(etiya)-0345-equipments--checkout.html"
+        } only %}
+
+        {% include '@organisms/05-payment/payment-next-bill.twig' with {
+            class:""
+        } %}
+    </section>
+{% endblock %}

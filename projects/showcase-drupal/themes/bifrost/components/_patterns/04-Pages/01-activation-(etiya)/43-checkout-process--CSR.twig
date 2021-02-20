@@ -1,0 +1,49 @@
+{% extends "base-page--funnel.twig" %}
+
+{% set page_hero_title = "Checkout (CSR view)" %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_content %}
+    <section class="py-section">
+        {#
+             { title: "Account Creation", anchorId: "AccountCreation", tplName: "olsf-account-creation-CSR", isActive:true },
+             { title: "Port in services", anchorId: "PortInServices", tplName: "olsf-port-in-services", isActive:false },
+             { title: "Serial Numbers", anchorId: "SerialNumbers", tplName: "olsf-serial-numbers", isActive:false },
+
+             { title: "Appointment selection", anchorId: "AppointmentSelection", tplName: "olsf-appointment-selection", isActive:false },
+        #}
+        {% include 'templates-accordion--olsf-step-by-step' with {
+            accordionsItems : [
+                { title: "Credit Check", anchorId: "CreditCheck", tplName: "olsf-credit-check", isActive:false },
+                { title: "Payment", anchorId: "Payment", tplName: "olsf-payment", isActive:false },
+                { title: "Pick-up & delivery", anchorId: "PickUpDelivery", tplName: "olsf-pick-up-and-delivery", isActive:true },
+                { title: "Pick-up & delivery (DEMO byod)", anchorId: "PickUpDeliveryBYOD", tplName: "olsf-pick-up-and-delivery--byod", isActive:false },
+                { title: "Order review", anchorId: "OrderReview", tplName: "olsf-order-review", isActive:false }
+            ]
+        } %}
+    </section>
+{% endblock %}
+
+{% block page_aside %}
+    <section class="py-section">
+        <div class="mb-3" data-animate-row="">
+            {% include '@organisms/05-payment/payment-amount-due-today.twig' %}
+            {% include '@organisms/05-payment/payment-billing-summary.twig' %}
+        </div>
+
+        {% include '@organisms/05-payment/payment-next-bill.twig' %}
+    </section>
+{% endblock %}
+
+{% block modals_container %}
+    {{ parent() }}
+
+    {# MODAL : credit adjustment #}
+    {% include '@organisms/08-modal/_modal-funnel--credit-check-adjustment.twig' %}
+
+    {# MODAL : Postal code - fill the address #}
+    {% include 'organisms-modal-address--fill' %}
+
+    {% include 'organisms-modal-are-you-sure' %}
+{% endblock %}

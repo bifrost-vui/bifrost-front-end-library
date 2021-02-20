@@ -1,0 +1,12 @@
+<div class="{{ class|default('') }}" data-animate-row="">
+    {% for link in listItems %}
+        <div class="{{ (loop.last is not same as (true)) ? 'border-bottom' : '' }} py-1 {{ linkClass|default('') }}" data-animate="">
+            {% include '@atoms/04-links/link-next.twig' with {
+                linkLabel: link.label,
+                href: link.href|default('#'),
+                linkClass: linkPaddingClass|default('py-3')  ~ " mb-0 d-block " ~ linkClass|default(''),
+                iconClass:"ml-4"
+            } %}
+        </div>
+    {% endfor %}
+</div>

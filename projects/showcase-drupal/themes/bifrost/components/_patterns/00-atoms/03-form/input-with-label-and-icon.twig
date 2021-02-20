@@ -1,0 +1,26 @@
+<div class="form-group {{ class|default('') }}">
+    <label for="{{ inputId }}"
+           class="{{ labelClass|default('') }}"
+           {{ labelExtraAttribute|default(NULL) }}>{{ label|default('Label') }}</label>
+
+    <div class="position-relative">
+        <input id="{{ inputId }}"
+               class="form-control mt-{{ mtValue|default('0') }} {{ inputClass|default('') }}"
+               type="{{ inputType|default('text') }}"
+               value="{{ inputValue|default('') }}"
+               placeholder="{{ inputPlaceholder|default('') }}"
+               name="{{ inputName|default('') }}"
+               {{ extraAttribute|default(NULL) }}>
+        <div class="align-items-center d-flex h-100 p-input position-absolute--center-right">
+            {% block icon_container %}
+                {% include '@atoms/06-icons/icon-svg-helix.twig' with { iconSize:1 } only %}
+            {% endblock %}
+        </div>
+
+        {% include '@atoms/06-icons/icon-svg-error.twig' with { iconClass:"icon--error d-none" } only %}
+    </div>
+
+    <div class="invalid-feedback">
+        {{ invalidMsg|default('This is an invalid error message') }}
+    </div>
+</div><!-- /.form-group -->

@@ -1,0 +1,52 @@
+{% embed '@molecules/13-dropdown/08-btn-icon-dropdown.twig' with {
+    class: "js-dropdown-fixed-viewport",
+    iconName: "user-profile",
+    iconSize: 3,
+    iconColor: iconColor|default('svg-fill--dark'),
+    dropdownId : "navbarDropdown_accountPerso",
+    dropdownXPlacement: "bottom-end"
+} only %}
+    {% block dropdown_content %}
+        <div class="p-3">
+            {% if isConnected is same as (true) %}
+                {# TODO : get all URL links from array (for multi-subscribers) #}
+                {#{% include '@atoms/15-list/list-arrow.twig' with {#}
+                {#listItems:listItems,#}
+                {#linkClass:'h5',#}
+                {#linkPaddingClass: "py-2"#}
+                {#} %}#}
+
+                {% include '@atoms/04-links/link-next.twig' with {
+                    linkLabel: labelMyAccount|default('My account'),
+                    linkSize: 6,
+                    href: hrefMyAccount|default('#my-account'),
+                    linkClass: "mb-3 d-block " ~ linkClass|default(''),
+                    iconClass:"ml-2"
+                } only %}
+
+                {# Delegate user view #}
+                {#{% include '@atoms/04-links/link-next.twig' with {#}
+                {#linkLabel: labelMyAccount|default('John Dow account'),#}
+                {#linkSize: 6,#}
+                {#href: hrefMyAccount|default('#my-account'),#}
+                {#linkClass: "mb-3 d-block font-weight-bold" ~ linkClass|default(''),#}
+                {#iconClass:"ml-2"#}
+                {#} only %}#}
+
+                {% include '@atoms/04-links/01-link-button-outline.twig' with {
+                    label: labelLogOut|default('Log out'),
+                    href: hrefLogOut|default('#'),
+                    buttonColor: "dark",
+                    class:"w-100 mt-3"
+                } %}
+            {% else %}
+                {% include '@atoms/04-links/01-link-button-outline.twig' with {
+                    label: labelConnexion|default('Log in'),
+                    href: hrefConnexion|default('#'),
+                    buttonColor: "dark",
+                    class:"w-100 mt-3"
+                } %}
+            {% endif %}
+        </div>
+    {% endblock %}
+{% endembed %}

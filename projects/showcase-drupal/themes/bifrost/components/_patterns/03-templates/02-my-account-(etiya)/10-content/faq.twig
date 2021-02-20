@@ -1,0 +1,17 @@
+<!-- faq.twig -->
+{% if faqHasSeparator is defined and faqHasSeparator is same as (true)  %}
+    {% set sectionClass = "py-section" %}
+
+    <div class="container-fluid">
+        <hr class="m-0">
+    </div>
+{% endif %}
+
+<section class="{{ sectionClass|default('pb-section') }} {{ class|default('') }}">
+    <div class="container-fluid">
+        {% include '@organisms/02-accordion/01-qa-accordion-list.twig' with {
+            class:"mb-0",
+            title:"Frequently Asked Questions"
+        } %}
+    </div>
+</section>

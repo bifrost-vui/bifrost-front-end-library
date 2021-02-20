@@ -1,0 +1,52 @@
+{% extends "base-page--funnel.twig" %}
+
+{% set navStepByStep_tplName = "account-creation" %}
+{% set navStepByStep_activeNumber = 1 %}
+
+{#{% set page_hero_title = "" %}#}
+{#{% set page_hero_subtitle = " " %}#}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    <section class="py-section">
+        <div class="container-fluid">
+            <h2>Identification & Account creation</h2>
+
+            {% embed 'templates-step-creation--8-4' with {
+                hasNoSidebar: true,
+                btnNextStepLabel: "Finalize your purchase",
+                btnBackStepHref : "/patterns/04-Pages-01-activation-(etiya)-32-account-creation-step-2/04-Pages-01-activation-(etiya)-32-account-creation-step-2.html",
+                btnNextStepHref : "/patterns/04-Pages-01-activation-(etiya)-34-account-creation-confirmation/04-Pages-01-activation-(etiya)-34-account-creation-confirmation.html"
+            } only %}
+                {% block step_content %}
+                    {% include 'templates-account-creation--step-3' %}
+                {% endblock %}
+            {% endembed %}
+
+            {#<div class="card">#}
+                {#{% include 'templates-account-creation--step-3' %}#}
+
+                {#<div class="card-body pt-0 px-md-6">#}
+                    {#<div class="row">#}
+                        {#<div class="col-6">#}
+                            {#{% include '@atoms/04-links/02-link-back.twig' with {#}
+                                {#class:"h6 m-0 h-100",#}
+                                {#href: "/patterns/04-Pages-01-activation-(etiya)-32-account-creation-step-2/04-Pages-01-activation-(etiya)-32-account-creation-step-2.html",#}
+                                {#label: "Back"#}
+                            {#} %}#}
+                        {#</div>#}
+                        {#<div class="col-6 text-right">#}
+                            {#{% include '@atoms/04-links/01-link-button.twig' with {#}
+                                {#class:"w-100--mobile-only",#}
+                                {#buttonColor: "primary",#}
+                                {#label: "Finalise my purchase",#}
+                                {#href: "/patterns/04-Pages-01-activation-(etiya)-34-account-creation-confirmation/04-Pages-01-activation-(etiya)-34-account-creation-confirmation.html",#}
+                            {#} only %}#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        </div>
+    </section>
+{% endblock %}

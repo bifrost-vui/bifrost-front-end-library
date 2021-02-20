@@ -1,0 +1,21 @@
+<div class="{{ class|default('') }}" {{ extraAttributes|default(NULL) }}>
+    {% embed '@molecules/05-input/input-card-btn.twig' with {
+        class: "h-100",
+        isSelected: isSelected|default(false),
+        isDisabled: isDisabled|default(false),
+        inputId: inputId|default(''),
+        inputName: inputName|default("")
+    } %}
+        {% block label_content %}
+            <div class="card card-rounded p-4 d-block w-100 text-center {{ tileCardBg|default('bg-gray--100') }}">
+                {% include '@atoms/06-icons/icon-svg.twig' with {
+                    iconName: iconName|default(''),
+                    iconSize: iconSize|default(''),
+                    iconClass:"px-1 mb-3"
+                } only %}
+
+                <h5 class="mb-0 text-uppercase">{{ itemLabel|default('Lorem ipsum') }}</h5>
+            </div>
+        {% endblock %}
+    {% endembed %}
+</div>

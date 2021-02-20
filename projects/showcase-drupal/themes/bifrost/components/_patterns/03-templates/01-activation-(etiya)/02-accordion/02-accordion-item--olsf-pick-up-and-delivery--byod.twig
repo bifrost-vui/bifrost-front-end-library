@@ -1,0 +1,42 @@
+<div class="card-body">
+    <div class="mb-4 row">
+        <div class="col-md-8">
+            <h3 class="mb-2">Would you like Videotron to transfer your actual services free of charge?</h3>
+        </div>
+
+        <div class="col-md-4 text-md-right">
+            {% include '@atoms/02-buttons/00-button.twig' with {
+                buttonClass:"link-underline small d-inline-block mb-0 p-0 text-center ",
+                buttonColor: "reset",
+                buttonLabel:"Lorem ipsum",
+                dataToggle:"modal",
+                dataTarget:"#modalAreYouSure"
+            } %}
+        </div>
+    </div>
+
+    <p class="">Please enter a lorem ipsum dolor sit amet.</p>
+    <div class="row mb-4">
+        <div class="col-md-7">
+            {% include '@atoms/03-form/input-with-label.twig' with {
+                class:"mb-0",
+                label:"Helix FI Gateway",
+                labelTooltipTxt:"Here is a tooltip",
+                inputId:"_pickup_byod_serialnumbers_",
+                inputValue:""
+            } %}
+
+            {#<p class="mt-2 mb-0 color-gray--600 font-weight-medium small">Warranty expires XX/XX/XXXX</p>#}
+        </div>
+    </div>
+
+    <p class="">Select John's preferred pick-up option.</p>
+    {% include 'templates-tab-input-selection--pick-up-and-delivery' with { class:"mb-4" } only %}
+    {#{% include 'templates-tab-input-selection--port-in--call-us' with { class:"mb-4" } only %}#}
+
+    {% include '@molecules/06-accordion/accordion-nav-btn.twig' with {
+        'class': 'mt-5',
+        'anchorIdPrev': accordionAnchorIdPrev|default(''),
+        'anchorIdNext': accordionAnchorIdNext|default('')
+    } %}
+</div>

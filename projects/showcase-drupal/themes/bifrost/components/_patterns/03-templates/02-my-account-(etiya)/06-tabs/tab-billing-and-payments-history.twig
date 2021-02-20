@@ -1,0 +1,21 @@
+<!-- tab-billing-and-payments-history.twig -->
+{% embed '@molecules/10-tab/tab--button-group.twig' with {
+    navTabsClass: "",
+    sectionTabClass: "pt-0",
+    tabSectionPaddingBottom:0,
+    tabNavId:"tabBillingAndPaymentHistory",
+    tabContentId:"tabBillingAndPaymentHistoryContent",
+    tabNavItems: [
+        { id:"tabHistory_billing", label:"Billing", isSelected:true },
+        { id:"tabHistory_payment", label:"Payment" },
+    ]
+} only %}
+    {% block tab_btnGroup_pane_content %}
+        <div id="tabHistory_billing" class="tab-pane fade active show" role="tabpanel" aria-labelledby="tabHistory_billing-tab">
+            {% include 'templates-table-billing-history' %}
+        </div>
+        <div id="tabHistory_payment" class="tab-pane fade" role="tabpanel" aria-labelledby="tabHistory_payment-tab">
+            {% include 'templates-table-payment-history' %}
+        </div>
+    {% endblock %}
+{% endembed %}

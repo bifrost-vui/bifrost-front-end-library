@@ -1,0 +1,73 @@
+/* *****************************************************************************
+*
+*  Carousel
+*
+* ***************************************************************************** */
+
+.carousel-internet-speed {
+  .slick-track {
+    display: flex;
+    margin-bottom: 2rem;
+
+    .slick-slide {
+      display: flex;
+      height: auto;
+      align-items: stretch;
+      margin: 0 0.5rem;
+
+      > div {
+        width: 100%;
+      }
+
+    }
+  }
+
+  .slick-list { overflow: hidden; }
+  //.slick-slide:focus { outline: none; }
+
+  .slick-dots {
+    bottom: -20px;
+
+    button { display: none; }
+  }
+
+  .slick-prev,
+  .slick-next {
+    @include size(3rem);
+    background: $white;
+    border-radius: 100px;
+    border: none;
+    z-index: 20;
+
+    &:before{
+      @include size(0.5rem);
+      content: "";
+      display: block;
+      border-color: $dark !important;
+      @extend .position-absolute--center;
+    }
+  }
+
+  .slick-prev {
+    @extend .position-absolute--center-left;
+    left: -6rem;
+
+    &:before{
+      @extend .icon-arrow-to-left;
+      left: 43%;
+      top: 42%;
+    }
+  }
+
+  .slick-next {
+    @extend .position-absolute--center-right;
+    right: -6rem;
+
+    &:before{
+      @extend .icon-arrow-to-right;
+      left: 35%;
+      top: 43%;
+    }
+  }
+
+}

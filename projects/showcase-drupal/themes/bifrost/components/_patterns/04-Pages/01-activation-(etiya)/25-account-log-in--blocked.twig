@@ -1,0 +1,24 @@
+{% extends "base-page--funnel.twig" %}
+
+{% block page_main_container %}
+    <section class="py-section">
+        <div class="container-fluid py-md-4">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <p class="h3">Contact Customer Service</p>
+                    <p class="">Account security notice - Immediate action required</p>
+                    {# Alert callout : suspended acount ---------------------------------------- #}
+                    {% include '@molecules/02-alert/alert.twig' with {
+                        class:"mb-4",
+                        isAnimationDisabled: true,
+                        themeColor: "danger",
+                        alertTitle: "John, your account is presently lock...",
+                        alertTxt: "Contact customer service at <strong>1-888-433-6876</strong> to reactivate it."
+                    } %}
+
+                    <p>To help protect your account from unauthorized use, we’ve lock your Videotron account. Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean eu leo quam. If you need additional help, contact Customer Center!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

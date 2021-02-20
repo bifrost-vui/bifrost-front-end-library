@@ -1,0 +1,30 @@
+{# DEMO purpose #}
+
+{% if channels is not defined or channels is empty %}
+    {% set channels = [
+        { channelHref:"#", channelLogo:"/images/logo/channels/logo-netflix.png", channelDescription:'Mindhunter, Stranger Things, Narco & more' },
+        { channelLogo:"/images/logo/channels/logo-hbo.png" },
+        { channelHref:"#", channelLogo:"/images/logo/channels/logo-club-illico.png", channelDescription:'Les Honorables, Les Disciples, Like-moi! & more' },
+        { channelHref:"#" },
+        { channelHref:"#", channelLogo:"/images/logo/channels/logo-hbo.png", channelDescription:'Games of Thrones, Ballers, Insecure & more' },
+        { channelLogo:"/images/logo/channels/logo-netflix.png", channelDescription:'Mindhunter, Stranger Things, Narco & more' },
+        { channelDescription:'Les Honorables, Les Disciples, Like-moi! & more' },
+        { channelHref:"#", channelLogo:"/images/logo/channels/logo-hbo.png", channelDescription:'Games of Thrones, Ballers, Insecure & more' },
+        { channelLogo:"/images/logo/channels/logo-club-illico.png", channelDescription:'Les Honorables, Les Disciples, Like-moi! & more' },
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div data-slick="{{ dataSlick|default('') }}" class="carousel-channel-discover js-slick-carousel--channel-discover {{ class|default('') }}">
+    {% for channel in channels %}
+        {% include '@molecules/17-offer/item-channel-discover.twig' with {
+            class: 'px-2',
+            channelHref: channel.channelHref,
+            channelLogo: channel.channelLogo,
+            channelImage: channel.channelImage,
+            channelDescription: channel.channelDescription,
+            isAltTextRemoved: channel.isAltTextRemoved,
+        } %}
+    {% endfor %}
+</div>

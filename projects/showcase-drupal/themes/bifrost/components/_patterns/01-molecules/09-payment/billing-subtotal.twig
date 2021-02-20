@@ -1,0 +1,50 @@
+{# ------------------------------------------------------------------------------------------------------------------ #}
+<div class=" {{ class|default('') }}">
+    <div class="cart-summary-item {% if hasNoBorderTop is not defined %}border-top{% endif %}">
+        <div class="row align-items-center">
+            <div class="col-6">
+                <p class="mb-0 h4 vui--font-secondary">{{ subtotalLabel|default('Subtotal') }}</p>
+            </div>
+
+            <div class="col-6 text-right">
+                <p class="mb-0 h4 vui--font-secondary-bold"><strong>{{ subtotalPrice|default('$144.00') }}</strong></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-7 offset-lg-5">
+                {% if subTotalItems is defined and subTotalItems is not empty %}
+                    {% for item in subTotalItems %}
+                        {% include '@atoms/07-payment/payment-item-price--subitem.twig' with {
+                            color: "dark",
+                            item: item.label|default("Item"),
+                            price: item.price|default("$00.00")
+                        } %}
+                    {% endfor %}
+                {% endif %}
+
+                {% if discount is defined and discount is not empty %}
+                    {% include '@atoms/07-payment/payment-item-price--subitem.twig' with {
+                        color: "dark",
+                        item: "Discount",
+                        price: discount|default("$20.00")
+                    } %}
+                {% endif %}
+                {% if tps is defined and tps is not empty %}
+                    {% include '@atoms/07-payment/payment-item-price--subitem.twig' with {
+                        color: "dark",
+                        item: "GST (5%)",
+                        price: tps|default("$20.00")
+                    } %}
+                {% endif %}
+                {% if tvq is defined and tvq is not empty %}
+                    {% include '@atoms/07-payment/payment-item-price--subitem.twig' with {
+                        color: "dark",
+                        item: "QST (9.975%)",
+                        price: tvq|default("$20.00")
+                    } %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

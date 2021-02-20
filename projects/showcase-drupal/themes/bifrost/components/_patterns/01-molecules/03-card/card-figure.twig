@@ -1,0 +1,18 @@
+<!-- card-figure.twig -->
+<div class="card card--figure border-0 bg--none {{ cardClass|default('') }}">
+    <div class="card-figure">
+        {% block mediaContent %}
+            <img class="card-img-top img-fluid"
+                 data-src="{{ cardImgSrc|default('https://source.unsplash.com/400x150/?nature') }}"
+                 alt="{{ cardImgAlt|default('Thumbnail [100%x225]') }}"
+                 style="height: {{ imgHeight|default('inherit') }};"
+                 src="{{ cardImgSrc|default('https://source.unsplash.com/400x150/?nature') }}"
+                 data-holder-rendered="true">
+        {% endblock %}
+    </div>
+
+    <div class="card-body pl-0">
+        <p class="card-title font-weight-normal h3 mb-2 vui--font-secondary {{ headingClass|default('') }}">{{ cardHeading|default('') }}</p>
+        <div class="card-text">{{ cardText|default('') }}</div>
+    </div>
+</div><!-- /.card--figure -->

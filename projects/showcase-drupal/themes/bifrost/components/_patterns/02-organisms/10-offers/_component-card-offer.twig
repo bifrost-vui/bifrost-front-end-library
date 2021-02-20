@@ -1,0 +1,102 @@
+<div class="card card--offer border-0 {{ cardOfferClass|default('') }}">
+    <div class="card-header pb-5 pt-6 position-relative">
+        <div class="position-absolute--top-left">
+            {% include '@atoms/08-tags/tag.twig' with { tagLabel:"Limited time - get voice for free!", tagClass:"tag--vui-yellow tag--font-secondary h5" } %}
+        </div>
+
+        <div class="flex justify-content-center align-items-center mb-2 mt-2">
+            {% include '@atoms/08-tags/tag-outline.twig' with { tagLabel:"Internet", tagClass:"tag-outline--white" } %}
+            {% include '@atoms/08-tags/tag-outline.twig' with { tagLabel:"Intertainment", tagClass:"tag-outline--white ml-1" } %}
+        </div>
+
+        <div class="card-offer__header-content" data-unavailable="Unavailable at this address">
+            {% include '@atoms/07-payment/price-box.twig' with {
+                priceBoxAlignement: "center", priceDollar: "105", priceCent:"70", priceClass:"justify-content-center color--white" } %}
+            {% include '@atoms/07-payment/price-dashed.twig' with {
+                priceDashedLabel: "$151,00",
+                priceDashedPriceClass: "fs-4",
+                priceDashedClass:"vui--text-dashed color--primary mb-3 mt-minus-3 h4"
+            } %}
+
+            <div class="d-flex justify-content-center align-items-center">
+                <p class="m-0 color-gray--400 pl-4">Including equipment fees </p>
+                <button type="button"
+                class="vui--style-reset p-1 pt-2 pl-2"
+                data-toggle="{{ dataToggle|default('modal') }}"
+                data-target="{{ dataTarget|default('#priceInfoModal') }}"
+                >{% include '@atoms/06-icons/icon-svg-important.twig' with { iconClass:'mr-0' } %}</button>
+            </div>
+
+            <p class="color-gray--400">Free installation</p>
+
+            {% include '@atoms/02-buttons/00-button.twig' with {
+                buttonLabel:"Pricing infos",
+                buttonClass:"link-underline btn-reset mt-3 mb-3 font-weight-light color--white",
+                dataToggle:"modal",
+                dataTarget:"#priceInfoModal"
+            } %}
+        </div>
+
+        <!-- BTN select this offer -->
+        {% include '@atoms/02-buttons/00-button.twig' with { buttonLabel:"Select this offer", buttonSize:"lg", buttonClass:" position-absolute--bottom-out w-85" } %}
+    </div>
+
+    <div class="card-body pt-4 pb-4 border-left border-right">
+        <div class="row mt-4 mb-4">
+            <div class="col-6 text-center pr-4">
+                <div class="align-items-center d-flex justify-content-center minh-5">
+                    <h6 class="vui--text-highlight font-weight-light">{{ cardOfferTitle1|default('Internet') }}</h6>
+                </div>
+
+                <div class="align-items-center d-flex justify-content-center minh-3">
+                    <p class="mb-0 small">{{ cardOfferDesc1|default('Download speeds up to') }}</p>
+                </div>
+
+                <div>
+                    <p class="vui--font-secondary fs-13 mb-2">{{ cardOfferHighlightValue1|default('400') }}</p>
+                    <p class="vui--font-secondary h5 mb-0 mt-minus-4">{{ cardOfferHighlightValueProperty1|default('mpbs') }}</p>
+                    <p class="small">{{ cardOfferHighlightValueInfos1|default('Unlimited usage') }}</p>
+                </div>
+            </div>
+
+            <div class="col-6 text-center pl-3 border-left">
+                <div class="align-items-center d-flex justify-content-center minh-5">
+                    <h6 class="vui--text-highlight font-weight-light">{{ cardOfferTitle2|default('All-in') }}</h6>
+                </div>
+
+                <div class="align-items-center d-flex justify-content-center minh-3">
+                    <p class="mb-0 small">{{ cardOfferDesc2|default('HD Basics +') }}</p>
+                </div>
+
+                <div>
+                    <p class="vui--font-secondary fs-13 mb-2">{{ cardOfferHighlightValue2|default('15') }}</p>
+                    <p class="vui--font-secondary h5 mb-0 mt-minus-4">{{ cardOfferHighlightValueProperty2|default('channels') }}</p>
+                    <p class="small">{{ cardOfferHighlightValueInfos2|default('Including popular and sports') }}</p>
+                </div>
+
+                {% include '@atoms/04-links/link-underline.twig' with { label:"View channels", headingSize: 5, } %}
+            </div>
+        </div>
+
+        {% for item in cardOfferPackSubFooterItems %}
+            <div class="flex-align-center-space-between {{ (loop.last is not same as (true)) ? 'border-bottom' : NULL }} pb-2 pt-2">
+                <p class="m-0 font-weight-bold">{{ item.infosLeft|default('Club Illico') }}</p>
+                <p class="m-0 text-right">{{ item.infosRight|default('Included') }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="card-footer pt-4 pb-4 bg-gray--100 border border-top-0">
+        <h3 class="mb-3">Key features</h3>
+
+        <ul class="pl-3 m-0">
+            <li class="mb-1">Unlimited Internet</li>
+            <li class="mb-1">Domotic integration</li>
+            <li class="mb-1">10 hours of 4k cloud X1 DVR service <br>(TV Box or COAM required)</li>
+            <li class="mb-1">Free Residential line with unlimited local calls</li>
+            <li class="mb-1">Unlimited long-distance calls in Canada</li>
+            <li class="mb-1">Speed good for 6 devices at the same time</li>
+            <li class="">VOD - 2 free movies per month for a limited time</li>
+        </ul>
+    </div>
+</div>

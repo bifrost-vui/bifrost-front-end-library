@@ -1,0 +1,22 @@
+{% if channelHref %}
+    <a href="{{ channelHref|default('#') }}">
+{% endif %}
+    <div class="item-channel-discover w-100 border-0 card card-rounded vui--style-black text-center h-100 {{ class|default('') }}">
+        {% include '@atoms/11-images/img-lazy-load.twig' with {
+            class:"item-channel-discover__img card-rounded",
+            src: channelImage|default('https://source.unsplash.com/450x550/?nature'),
+            alt: (isAltTextRemoved == false) ? channelDescription|default('') : '',
+        } only %}
+
+        <div class="content p-4 pt-8">
+            {% if channelLogo %}
+                <img class="pb-3 mb-1 img-fluid" src="{{ channelLogo|default('/images/logo/channels/logo-netflix.png') }}" {% if isAltTextRemoved is defined and isAltTextRemoved == false and channelDescription is defined and channelDescription is not empty %} alt="{{ channelDescription }}" {% endif %}>
+            {% endif %}
+            {% if channelDescription %}
+                <p class="mb-0">{{ channelDescription|default('Mindhunter, Stranger Things, Narco & more') }}</p>
+            {% endif %}
+        </div>
+    </div>
+{% if channelHref %}
+    </a>
+{% endif %}

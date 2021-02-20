@@ -1,0 +1,60 @@
+{# DEMO purpose #}
+
+{% if language is not defined %}
+    {% set language = 'en' %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+<div class="price-box price-box--{{ priceBoxSize|default('lg') }} {{ priceClass|default('')}} ">
+    <div class="d-flex align-items-start justify-content-{{ priceBoxAlignement|default('left') }}">
+    {% if language == 'en' %}
+      <span class="price-box__dollarsign h2">$</span>
+    {% endif %}
+
+        <div>
+            <div class="d-flex mb-1">
+                <span class="price-box__dollar {{ priceDollarClass|default('') }}">{{ priceDollar|default('00')}}</span>
+
+                <div class="price-box__infos">
+                    <div class="mb-1 ml-1 d-flex align-items-baseline">
+                        <span class="price-box__cent">{{ priceCent|default('00')}}</span>
+                        {% if language == 'fr' %}
+                            <span class="price-box__dollarsign h2">$</span>
+                        {% endif %}
+                        <span class="price-box__period">
+                            {% if isMonthlyPayment is defined and isMonthlyPayment is same as (true) %}
+                                /mo
+                            {% elseif priceRecurrencePeriod is defined %}
+                                /{{ priceRecurrencePeriod|default('month') }}
+                            {% endif %}
+
+                            {% if priceAsterisk is defined %}
+                                {{ priceAsterisk|default('*') }}
+                            {% endif %}
+                        </span>
+
+                        {% if itemTitleTooltipInfos is defined and itemTitleTooltipInfos is not empty %}
+                            {% include '@atoms/02-buttons/25-button-tooltip.twig' with {
+                                buttonClass:"pl-1 pr-1 d-inline-flex",
+                                tooltipTxt: itemTitleTooltipInfos,
+                                iconColor: iconTooltipColor|default('svg-fill--dark')
+                            } %}
+                        {% endif %}
+                    </div>
+
+                    {% if priceInfosSupp is defined %}
+                        <p class="mb-0 mt-minus-2 {{ priceInfosSuppColor }}">{{ priceInfosSupp|default('Lorem ipsum')|raw }}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if priceSavings is defined and priceTxtBelow is not empty %}
+                <p class="mb-0 small color--primary">{{ priceSavings|raw }}</p>
+            {% endif %}
+
+            {% if priceTxtBelow is defined and priceTxtBelow is not empty %}
+                <p class="small {{ priceTxtBelowClass }}">{{ priceTxtBelow|price_one_line }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>

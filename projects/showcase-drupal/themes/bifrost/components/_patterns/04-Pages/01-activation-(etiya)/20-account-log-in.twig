@@ -1,0 +1,40 @@
+{% extends "base-page--funnel.twig" %}
+
+{% block page_main_container %}
+    <section class="py-section">
+        <div class="container-fluid py-md-4">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 offset-lg-4 offset-md-3">
+                    <form action="" class="mb-6">
+                        <h2 class="">Already Videotron client</h2>
+
+                        {% include '@atoms/03-form/input-with-label.twig' with {
+                            label:"Helix ID",
+                            labelTooltipTxt:"Here is a tooltip",
+                            inputId:"_signin_user",
+                            inputPlaceholder:"user@videotron.com",
+                            class:""
+                        } %}
+
+                        {% include '@atoms/03-form/input-password.twig' with {
+                            label:"Password",
+                            labelTooltipTxt:"Here is a tooltip",
+                            inputId:"_signin_pass",
+                            inputType:"password",
+                            class:""
+                        } %}
+
+                        {% include '@atoms/03-form/input-submit.twig' with {
+                            class: '',
+                            inputClass: "w-100--mobile-only",
+                            inputId: "_signin_submit",
+                            inputValue: "Sign in"
+                            } %}
+                    </form>
+
+                    <p class="small">Don't have a videotron ID ? <a href="/patterns/04-Pages-01-activation-(etiya)-30-account-creation-step-1/04-Pages-01-activation-(etiya)-30-account-creation-step-1.html" class="link font-weight-bold">Register now</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

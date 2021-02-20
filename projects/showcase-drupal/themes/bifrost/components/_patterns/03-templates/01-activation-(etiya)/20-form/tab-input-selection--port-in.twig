@@ -1,0 +1,82 @@
+<!-- tab-input-selection--port-in.twig -->
+{% embed '@molecules/10-tab/tab.twig' with {
+    tabClass: class|default('') ~ " tab--input-radio",
+    tabNavId:"tabPortIn",
+    tabContentId:"tabPortInContent",
+    tabNavItems: [
+        { id:"_portin_yes", label:"Yes", isSelected:true },
+        { id:"_portin_No", label:"No", isSelected:false}
+    ]
+} %}
+    {% block tab_pane_content %}
+        {# Tab : Yes, transfert my services ---------------------------------------------- #}
+        <div id="_portin_yes" class="tab-pane fade active show" role="tabpanel" aria-labelledby="tab-portin-yes">
+            <div class="card border-top-0">
+                <div class="card-body">
+                    <p>Which services would you like us to transfer for you?</p>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            {% include '@molecules/13-dropdown/00-dropdown.twig' with {
+                                class:"",
+                                buttonClass: "vui--text-highlight",
+                                dropdownId:"dropPortInServices",
+                                dropdownSelectedItem: "Internet and Television",
+                                dropdownItems: [
+                                    {label : "Internet", class:""},
+                                    {label : "Television", class:""},
+                                    {label : "Internet and Television", class:"active"},
+                                    {label : "Telephony", class:""},
+                                    {label : "Internet and Telephony", class:""},
+                                    {label : "Television and Telephony", class:""},
+                                    {label : "Internet, Television and Telephony", class:""},
+                                ]
+                            } only %}
+                        </div>
+                    </div>
+
+                    {#<hr class="mt-4 mb-4">#}
+
+                    <!--  -------------------------------- -->
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-12 col-md-7">
+                            <h3 class="mb-0">Television</h3>
+                        </div>
+                    </div>
+                    {% include '@organisms/20-form/form-service-provider.twig' with { class:"" } only %}
+
+                    <!--   -------------------------------- -->
+                    <hr class="my-4">
+
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-12 col-md-7">
+                            <h3 class="mb-0">Television</h3>
+                        </div>
+                        <div class="col-12 col-md-5 text-md-right mt-2 mt-md-0">
+                            {% include '@atoms/03-form/input-checkbox-with-label.twig' with {
+                                class:"mb-0",
+                                label:'Same as previous service',
+                                inputId:"_portin_service_name_sameas",
+                                isChecked: true,
+                            } %}
+                        </div>
+                    </div>
+
+                    {% include '@organisms/20-form/form-service-provider--same-as-previous.twig' with { class:"mb-4" } only %}
+
+                    {% include '@atoms/03-form/input-checkbox-with-label.twig' with { class:"mb-2", label:"I authorize Videotron to request on my behalf the deactivation of this account from my current service provider.", inputId:"account_port_in_authorization"} %}
+                    <p class="small color-gray--800 ml-4">Legal message related to user’s consent for a deactivation request of his current provider. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.</p>
+                </div>
+            </div>
+        </div>
+
+        {# Tab : No  ---------------------------------------------- #}
+        <div id="_portin_No" class="tab-pane fade" role="tabpanel" aria-labelledby="tab-portin-no">
+            <div class="card border-top-0">
+                <div class="card-body">
+                    <h3>Lorem ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad autem consectetur cumque, doloremque ea et hic id illum ipsam ipsum odio quo repellendus soluta veniam? Culpa eum expedita veritatis!</p>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

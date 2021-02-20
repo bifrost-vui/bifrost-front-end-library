@@ -1,0 +1,31 @@
+<div class="card-body">
+    <h3 class="">Credit rating</h3>
+
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-8 mb-2 mb-md-0"><p class="mb-0">Enter the credit rating (based on legacy)</p></div>
+        <div class="col-md-4">
+            {% include '@atoms/03-form/selectlist.twig' with {
+                options: [
+                    { label:"Rating A", value:"A", isSelected:true },
+                    { label:"Rating B", value:"B" },
+                    { label:"Rating C", value:"C" },
+                    { label:"Rating D", value:"D" },
+                    { label:"Rating E", value:"E" },
+                ]
+            } %}
+        </div>
+    </div>
+
+    <h3>Client authorisation</h3>
+    {% include '@atoms/03-form/input-checkbox-with-label.twig' with {
+        label:"The client authorize Videotron to share their information with the credit department",
+        inputId:"_account_credit_rating_legacy_check"
+    } %}
+
+
+    {% include '@molecules/06-accordion/accordion-nav-btn.twig' with {
+        'class': 'mt-5',
+        'anchorIdPrev': accordionAnchorIdPrev|default(''),
+        'anchorIdNext': accordionAnchorIdNext|default('')
+    } %}
+</div>

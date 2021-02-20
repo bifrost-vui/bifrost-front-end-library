@@ -1,0 +1,169 @@
+<!-- tab-profile-and-settings.twig -->
+{% embed '@molecules/10-tab/tab.twig' with {
+    navTabsClass: "d-lg-inline-block",
+    tabNavId:"tabProfileAndSettings",
+    tabContentId:"tabProfileAndSettingsContent",
+    tabNavItems: [
+        { id:"accountDetail", label:"Account details", isSelected:true },
+        { id:"users", label:"Users", isSelected:false },
+        { id:"communicationPreferences", label:"Communication preferences", isSelected:false}
+    ]
+} %}
+    {% block tab_pane_content %}
+        {# Tab : Account detail---------------------------------------------- #}
+        <div id="accountDetail" class="tab-pane fade active show" role="tabpanel" aria-labelledby="accountDetail-tab">
+            <div class="row mb-4 mb-md-7">
+                <div class="col-12 col-lg-7 pr-lg-0">
+                    <h2 data-animate="">Account Information</h2>
+                    {% include 'templates-accordion-account-details' with { class:"" } %}
+                </div>
+
+                <div class="d-none d-lg-block col-lg-4 offset-lg-1">
+                    {% include '@organisms/04-content/frequent-links-aside.twig' with { class: "h-100" } %}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-lg-7 pr-lg-0">
+                    <h2 data-animate="">Contact Information</h2>
+                    {% include 'templates-accordion-contact-information' with {
+                        class:"mb-4 mb-md-7"
+                    } only %}
+
+                    <h2 data-animate="">Legal and agreement contract</h2>
+                    {% embed '@molecules/03-card/card-block-content--link-beside.twig' with {
+                        class: "mb-4 mb-md-7",
+                        title:"My Helix contract",
+                        subtitle:"Latest version issued",
+                        txt:"If you need a paper copy or a specially formatted copy for disabled person, please contact us at <strong>1-888-433-6876</strong>..."
+                    } only %}
+                        {% block block_content_link %}
+                            {% include 'atoms-link-button-outline-with-icon' with {
+                                class:"w-100",
+                                label:"Printable version",
+                                iconName: "pdf",
+                                target: "_blank'"
+                            } only %}
+                        {% endblock %}
+                    {% endembed %}
+
+
+                    <h2 data-animate="">Videotron PLUS Program</h2>
+                    {% include 'organisms-videotron-plus-banner--small' with { class:"" } only %}
+                </div>
+            </div>
+        </div>
+
+        {# Tab : Users ---------------------------------------------- #}
+        <div id="users" class="tab-pane fade " role="tabpanel" aria-labelledby="users-tab">
+            {#{% include '@molecules/02-alert/alert-callout.twig' with {#}
+                {#class:"mb-4 mb-md-6",#}
+                {#alertTitle: "Lorem ipsum dolor sit amet consectetur adipisvining eli.",#}
+                {#alertTxt: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci eligendi enim "#}
+            {#} %}#}
+
+            <div class="row mb-4 mb-md-7">
+                <div class="col-12 col-lg-7 pr-lg-0">
+                    <div class="mb-4">
+                        <h2 class="mb-2" data-animate="">Household Users</h2>
+                        <p data-animate="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci eligendi enim facere odit, quae recusandae reiciendis repellendus? Amet dicta quae rem rerum! Aspernatur et nemo non, recusandae soluta sunt?</p>
+                    </div>
+
+                    {% include 'templates-account-profile-users' with { class:"" } %}
+                </div>
+
+                <div class="d-none d-lg-block col-lg-4 offset-lg-1">
+                    {% include '@organisms/04-content/frequent-links-aside.twig' with { class: "h-100" } %}
+                </div>
+            </div>
+
+            <div class="row mb-4 mb-md-7" data-animate="">
+                <div class="col-12 col-lg-7 pr-lg-0">
+                    <div class="mb-4">
+                        <h2 class="mb-2">You are a delegate</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci eligendi enim facere odit, quae recusandae reiciendis repellendus? Amet dicta quae rem rerum! Aspernatur et nemo non, recusandae soluta sunt?</p>
+                    </div>
+
+                    <div class="list-card">
+                        {% include '@molecules/06-accordion/accordion-item--collapse-below.twig' with {
+                            class:"",
+                            inlineAnchor:"_resignuser_1",
+                            headerTitle:"Sylvie Dallaire",
+                            headerTxt:" ",
+                            statusLabel: "Active",
+                            statusColor: "success",
+                            btnToggleLabel: "resign",
+                            tabContentTitle: "Do you really want to resign from this user?",
+                            tabContentSubTitle: "Lorem ipsum dolor sit amet doairjs hsiauehf aosidudha sbdasdye laoskdi asd dfeas eriajdf."
+                        } only %}
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-12 col-md-8 mb-4 mb-md-0">
+                                        <div class="row align-items-md-center">
+                                    <div class="col-md-8 mb-4 mb-md-0">
+                                        <p class="font-weight-bold mb-0"><p class="font-weight-bold mb-1">Benjamin Desjardins</p>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        {% include '@atoms/08-tags/status.twig' with {
+                                            class: "small",
+                                            label: statusLabel|default("Invite pending"),
+                                            color: statusColor|default("primary")
+                                        } only %}
+                                    </div>
+                                </div>
+                                    </div>
+                                    <div class="col-12 col-md-4 text-right">
+                                        {% include '@atoms/02-buttons/40-button-link-underline.twig' with {
+                                            buttonClass:"text-left mb-0 mr-3 w-100",
+                                            headingSize: 5,
+                                            buttonLabel:"Decline"
+                                        } %}
+
+                                        {% include '@atoms/02-buttons/00-button.twig' with {
+                                            buttonClass:"",
+                                            buttonSize: "small",
+                                            buttonLabel:"Accept"
+                                        } %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# Tab : Communication preferences  ---------------------------------------------- #}
+        <div id="communicationPreferences" class="tab-pane fade" role="tabpanel" aria-labelledby="communicationPreferences-tab">
+            <div class="row">
+                <div class="col-12 col-lg-7 pr-lg-0">
+                    <div data-animate-row="">
+                        <h2 class="pl-0 mb-2" data-animate="">Communication Preferences</h2>
+                        <p class="mb-4" data-animate="">This allows you to manage your communication preferences for emails and texte messages.</p>
+                        {% include 'templates-accordion-communications-preferences' with { class:"mb-7" } %}
+                    </div>
+
+
+                    <h2 class="pl-0 mb-4" data-animate="">Subscriptions</h2>
+                    {% include 'templates-accordion-subscriptions' with { class:"" } %}
+                </div>
+
+                <div class="d-none d-lg-block col-lg-4 offset-lg-1">
+                    {% include '@organisms/04-content/frequent-links-aside.twig' with {
+                        class: "h-100",
+                        listItems:[
+                            { label: "Bill Summary" },
+                            { label: "View My Services" },
+                            { label: "Profile & Setting" },
+                            { label: "Lingula tristique?" },
+                            { label: "Venenatis Fermentum" },
+                        ]
+                    } %}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

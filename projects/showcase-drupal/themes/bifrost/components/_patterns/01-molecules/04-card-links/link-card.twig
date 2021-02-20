@@ -1,0 +1,12 @@
+<!-- link-card.twig -->
+<a href="{{ href|default('#') }}"
+   class="card card--btn border-rounded--lg bg-{{ cardColor|default('gray--100') }} border-0 link--no-decoration {{ class|default('') }}"
+   {{ extraAttribute|default(NULL) }}>
+    <div class="card-body d-flex flex-column justify-content-center">
+        <div class="h4 m-0 d-inline-block">{{ label|default('Link to next')|raw }}{% include '@atoms/06-icons/icon-arrow-to-right.twig' %}</div>
+
+        {% if subLabel is defined %}
+            <p class="small m-0">{{ subLabel|default('') }}</p>
+        {% endif %}
+    </div>
+</a>

@@ -1,0 +1,51 @@
+{% extends "base-page--funnel-services.twig" %}
+
+{% set navStepByStep_tplName = "cloud-dvr" %}
+{% set navStepByStep_activeNumber = 1 %}
+
+{% set page_hero_title = "Manage Cloud DVR storage" %}
+{% set page_hero_subtitle = "Choose a capacity for your DVR storage" %}
+
+{% set cloudOptions = [
+    { title:"100 Hours of Recording", text:"Details id dolor id nibh ultricies vehicula ut id elit.", price:"Included", priceSavingOriginal:"", priceSavingSaved:""  },
+    { title:"200 Hours of Recording", text:"Details id dolor id nibh ultricies vehicula ut id elit.", price:"$ 1.50/month", priceSavingOriginal:"$ 3.00/month", priceSavingSaved:"50%" },
+    { title:"Unlimited Hours of Recording", text:"Details id dolor id nibh ultricies vehicula ut id elit.", price:"$ 5.00/month", priceSavingOriginal:"", priceSavingSaved:""  },
+] %}
+
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container  %}
+    <section class="py-section">
+        <div class="container-fluid">
+            <div class="row mb-6">
+                {% for cloudOption in cloudOptions %}
+                    <div class="col-md-4 col-lg-3 mb-3">
+                        {% embed '@molecules/05-input/input-card-btn.twig' with {
+                            class: "form-selection-input-card-btn--type-radio h-100",
+                            inputType:"radio",
+                            isSelected: loop.index == 1,
+                            inputId: "cloudDvrPlanSelection_" ~ loop.index,
+                            inputName: "cloudDvrPlanSelection"
+                        } %}
+                            {% block label_content %}
+                                {% include '@molecules/03-card/card-item.twig' with {
+                                    class: (loop.index == 1) ? 'card--current-plan' : NULL,
+                                    title: cloudOption.title,
+                                    text: cloudOption.text,
+                                    price: cloudOption.price,
+                                    priceSavingOriginal: cloudOption.priceSavingOriginal,
+                                    priceSavingSaved: cloudOption.priceSavingSaved
+                                } only %}
+                            {% endblock %}
+                        {% endembed %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block page_sticky_bottom_bar %}
+    {% include '@organisms/15-navigation-sticky-bottom/funnel-nav-sticky-price.twig' with { class:"" } only %}
+{% endblock %}

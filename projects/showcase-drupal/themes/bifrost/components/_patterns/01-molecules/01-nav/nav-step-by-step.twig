@@ -1,0 +1,58 @@
+{# DEMO PURPOSES #}
+{% if items is not defined or items is empty %}
+    {% set items = [
+        {number:"1", label:"Craft Bundle", href:"", class:"active"},
+        {number:"2", label:"Channel Selection", href:""},
+        {number:"3", label:"Order Review", href:""},
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<nav class="navbar navbar-{{ navbarTheme|default('dark') }} navbar--step-by-step p-0 border-bottom">
+    <!-- Navbar content -->
+    <div class="container-fluid">
+        <ul class="navbar-nav flex-row align-items-center w-100">
+            {% for item in items %}
+                {% set itemClass = "" %}
+                {% if loop.index < activeStepBumber %}
+                    {% set itemClass = "step-done" %}
+                {% elseif loop.index == activeStepBumber %}
+                    {% set itemClass = "active" %}
+                {% endif %}
+
+                <li class="navbar--step-by-step__step-item justify-content-center align-items-center {{ (loop.last is same as (false)) ? 'mr-md-5' : NULL }} {{ itemClass }} {{ item.class|default('') }}">
+                    {% include '@atoms/06-icons/icon-step-number.twig' with {
+                        step: item.number,
+                        class: "mr-3"
+                    } %}
+
+                    {% include '@atoms/04-links/link-highlight.twig' with {
+                        label: item.label,
+                        href: item.href,
+                        class:"h4 mb-0"
+                    } %}
+
+                    {#{% if loop.last is same as (false) %}#}
+                        {#{% include '@atoms/06-icons/icon-arrow-to-right--breadcrumb.twig' with {  class: "d-none d-lg-block ml-3" } %}#}
+                    {#{% endif %}#}
+                </li>
+            {% endfor %}
+        </ul>
+
+        {# Mobile ONLY : step indicator #}
+        <div class="d-flex d-md-none w-100 pt-1">
+            {% for item in items %}
+                {% if loop.index < activeStepBumber %}
+                    {% set borderColorClass = "border--light" %}
+                {% elseif loop.index == activeStepBumber %}
+                    {% set borderColorClass = "border--primary" %}
+                {% else %}
+                    {% set borderColorClass = "border-gray--700" %}
+                {% endif %}
+
+                <div class="card-rounded mx-1 w-100 border-width-2 {{ borderColorClass|default('border-gray--700') }}"></div>
+            {% endfor %}
+        </div>
+    </div>
+</nav>

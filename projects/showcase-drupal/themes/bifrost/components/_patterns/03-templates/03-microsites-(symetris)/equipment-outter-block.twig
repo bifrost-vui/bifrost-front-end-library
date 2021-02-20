@@ -1,0 +1,40 @@
+
+{# DEMO purpose #}
+
+{% if equipments is not defined or equipments is empty %}
+    {% set equipments = [
+        { imgText:"Télécommande Felix", img:"https://source.unsplash.com/800x400?nature&auto=yes&bg=777&fg=555", imgAlt:"slide1" },
+        { imgText:"Borne Felix", img:"https://source.unsplash.com/800x400?nature&auto=yes&bg=777&fg=555", imgAlt:"slide2" },
+        { imgText:"Terminal Felix", img:"https://source.unsplash.com/800x400?nature&auto=yes&bg=777&fg=555", imgAlt:"slide3" },
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+
+<div class="card--outer text-center border-0 {{ class|default('') }}">
+    <div class="card--outer__content">
+        {% block card_content %}
+            <div class="row">
+                <div class="col-md-10 col-lg-7 m-auto">
+                    <h2 class="mb-4 mt-5">{{ title|default('Ce que votre boîte comprend') }}</h2>
+                    <p class="h4 mb-6 lh-3">{{ descrpition|default("Lorsque vous aurez complété votre abonnement, vous recevrez une boîte contenant toutes les composantes qui vous permettront de lancer l'expérience Helix dans votre maison.") }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-10 offset-md-1">
+                    <div class="row pb-5 pb-lg-0 js-slick-carousel--overview-visible-sm {{ imgRowAlign|default('justify-content-start') }}" data-slick='{"dots":true}'>
+                        {% for info in equipments %}
+                            <div class="col-12">
+                              <img class="img-fluid mb-4"
+                              {% if info.imgAlt is not empty %} alt="{{ imgAlt|default(info.imgAlt) }}" {% endif %}
+                              src="{{ imgSrc|default(info.img) }}">
+                              <p class="h4 font-weight-normal mb-0">{{ imgText|default(info.imgText) }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+</div>

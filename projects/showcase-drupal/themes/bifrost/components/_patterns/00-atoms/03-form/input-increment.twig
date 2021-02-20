@@ -1,0 +1,80 @@
+{% if isControlsHidden is defined and isControlsHidden is same as (true) %}
+    {% set btnContainerClass = "vui--hide" %}
+{% endif %}
+
+{% if isControlsDisabled is defined and isControlsDisabled is same as (true) %}
+    {% set btnClass = "disabled" %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="input-group form-input-increment form-input-increment-{{ inputSize|default('md') }} js-input-increment d-flex align-items-center {{ class|default('') }}">
+    <div class="d-flex align-items-center justify-content-between justify-content-md-start w-100">
+
+        <div class="d-flex align-items-center {{ flexContainerClass|default() }}">
+            {# Button minus --------------------------------------- #}
+            <div class="position-relative {{ btnContainerClass|default('') }}">
+                <button type="button" class="vui--style-reset form-input-increment__btn js-input-increment__minus position-relative {{ btnClass|default('') }} {{ (hasNoBtnCircleClass is defined and hasNoBtnCircleClass is same as (true) ? NULL : 'icon-btn-circle ') }}">
+                    {% include '@atoms/06-icons/icon-svg-minus.twig' with { iconSize: iconSize|default(4), iconColor:"svg-fill--dark", iconClass:"position-absolute--center"} %}
+                </button>
+
+                {% set _block_btnMinusInfosTooltip = block('btnMinusInfosTooltip') %}
+                {% if _block_btnMinusInfosTooltip is not empty %}
+                    <div class="js-input-increment__minus-infos-tooltip tooltip-custom border-0" x-placement="top-center">
+                        <div class="position-relative p-4 pr-6">
+                            {{ _block_btnMinusInfosTooltip|raw }}
+
+                            <button type="button"
+                                    class="close d-inline-block p-3 m-2 position-absolute--top-right js-input-increment__minus-infos-tooltip-close"
+                                    {{ extraAttributeX|default(NULL) }}>
+                                <span aria-hidden="true">
+                                    {% include '@atoms/06-icons/icon-svg-x.twig' with { iconSize:1 } only %}
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            {# Input --------------------------------------- #}
+            <input type="number"
+                   name="quantity"
+                   aria-label="{{ inputAriaLabel|default('number') }}"
+                   class="text-center form-input-increment__input  js-input-increment__input vui--font-{{ inputFontFamily|default('secondary') }} {{ inputClass|default('') }}"
+                   value="{{ inputValue|default('1') }}"
+                   min="{{ inputMinValue|default('0') }}"
+                   max="{{ inputMaxValue|default('10') }}"
+                    {{ extraAttribute|default(NULL) }}>
+
+            {# Button plus --------------------------------------- #}
+            <div class="position-relative {{ btnContainerClass|default('') }}">
+                <button type="button" class="vui--style-reset form-input-increment__btn js-input-increment__plus position-relative {{ btnClass|default('') }} {{ (hasNoBtnCircleClass is defined and hasNoBtnCircleClass is same as (true) ? NULL : 'icon-btn-circle ') }}">
+                    {% include '@atoms/06-icons/icon-svg-plus.twig' with { iconSize:iconSize|default(4), iconColor:"svg-fill--dark", iconClass:"position-absolute--center"} %}
+                </button>
+
+                {% set _block_btnPlusInfosTooltip = block('btnPlusInfosTooltip') %}
+                {% if _block_btnPlusInfosTooltip is not empty %}
+                    <div class="js-input-increment__plus-infos-tooltip tooltip-custom border-0" x-placement="top-center">
+                        <div class="position-relative p-4 pr-6">
+                            {{ _block_btnPlusInfosTooltip|raw }}
+                            <button type="button"
+                                    class="close d-inline-block p-3 m-2 position-absolute--top-right js-input-increment__plus-infos-tooltip-close"
+                                    {{ extraAttributeX|default(NULL) }}>
+                                <span aria-hidden="true">
+                                    {% include '@atoms/06-icons/icon-svg-x.twig' with { iconSize:1 } only %}
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {# Reset button --------------------------------------- #}
+        {% if hasResetCountBtn is defined and  hasResetCountBtn is same as (true) %}
+            <button type="button" class="ml-md-3 p-0 d-flex vui--style-reset">
+                {% include '@atoms/06-icons/icon-svg-trash.twig' with { iconSize:3, iconClass:"svg-size-md--1" } %}
+            </button>
+        {% endif %}
+    </div>
+</div>

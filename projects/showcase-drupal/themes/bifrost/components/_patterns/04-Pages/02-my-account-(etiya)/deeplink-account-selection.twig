@@ -1,0 +1,37 @@
+{% extends "base-page--myaccount.twig" %}
+
+{#{% set navBackLabel = "Back to overview" %}#}
+{% set navBackHref = "/patterns/04-Pages-02-my-account-(etiya)-01-overview/04-Pages-02-my-account-(etiya)-01-overview.html" %}
+
+{#% set navStepByStep_tplName = "billing-make-a-payment" %#}
+{% set hasNoSubnav = 1 %}
+
+{% set hasNoCarouselHelp = 1 %}
+
+{% set page_hero_title = "Choose an account" %}
+{#{% set page_hero_subtitle = "Lorem ipsum dolor sit amet, consectetur adipisicing elit." %}#}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+<section class="py-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-5 col-md-6 offset-lg-4 offset-md-3">
+                <h1 class="mb-4">Which account would you like to change the channels of ?</h1>
+                <div class="mb-4">
+                    {% include '@molecules/04-card-links/link-card.twig' with { label:"Maison", subLabel: "612 rue St. Jacques, Montreal, Qc H3C 4M8", href:"#", class:"mb-2" } %}
+                    {% include '@molecules/04-card-links/link-card.twig' with { label:"Chalet", subLabel: "612 rue St. Jacques, Montreal, Qc H3C 4M8", href:"#", class:"mb-2" } %}
+                    {% include '@molecules/04-card-links/link-card.twig' with { label:"Cottage", subLabel: "612 rue St. Jacques, Montreal, Qc H3C 4M8", href:"#", class:"mb-2" } %}
+                </div>
+                {% include '@atoms/04-links/link-underline.twig' with {
+                    class:"mb-0",
+                    href: "/patterns/04-Pages-02-my-account-(etiya)-01-overview/04-Pages-02-my-account-(etiya)-01-overview.html",
+                    label:"Go to my helix overview",
+                    headingSize:6
+                } %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

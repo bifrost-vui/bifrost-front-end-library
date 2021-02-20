@@ -1,0 +1,134 @@
+<div class="card-body">
+    <div class="mb-4">
+        {#<h2 class="mb-2">Review your order</h2>#}
+        <p>A confirmation email will be sent to <strong>example@email.com</strong> after you place the order. This order will be charged on your next bill.</p>
+    </div>
+
+    {# ------------------------------------------------------------------------------------------------------------------ #}
+    <h3 class="mb-2">Informations</h3>
+    <div class="mb-4">
+        <div class="row d-flex">
+            <div class="col-md-6 mb-3">
+                {% embed '@molecules/03-card/card-infos--with-body.twig' with {
+                    cardClass:"h-100",
+                    headerTitle:"Pre-authorized Payment",
+                    headerSubtitle:"Mastercard"
+                } %}
+                    {% block card_body %}
+                        {% set bodyInfos = [
+                            { title:"Name on the credit card", value:"John Dow"},
+                            { title:"Card Number", value:"**** **** **** 1111"},
+                            { title:"Billing address", value:"800, rue du Square-Victoria,<br>Montréal, QC, H4Z OA4"}
+                        ] %}
+
+                        {% for info in bodyInfos %}
+                            <p>
+                                <span class="font-weight-bold">{{ info.title }}</span>
+                                <br>{{ info.value|raw }}
+                            </p>
+                        {% endfor %}
+
+                        <p class="mb-0">Your invoice is available at all times in your Helix account.</p>
+                    {% endblock %}
+                {% endembed %}
+            </div>
+
+            <div class="col-md-6 mb-3">
+                {% embed '@molecules/03-card/card-infos--with-body.twig' with {
+                    cardClass:"h-100",
+                    headerTitle:"Shipping",
+                    headerSubtitle:""
+                } %}
+                    {% block card_body %}
+                        <p class="">Standard Shipping (Free)<br> 3 to 5 Business Days</p>
+
+                        <p>
+                            <span class="font-weight-bold">Estimated delivery </span>
+                            <br>May 1st, 2019
+                        </p>
+
+                        <p>
+                            <span class="font-weight-bold">Shipping address</span>
+                            <br>800 rue du Square-Victoria,
+                            <br>Montréal QC H4Z OA4
+                        </p>
+
+                        {% include 'molecules-collapse-input' with {
+                            class:"",
+                            inputLabel: "Delivery contact <br>phone number",
+                            inputValue: "514-444-4444"
+                        } only %}
+                    {% endblock %}
+                {% endembed %}
+            </div>
+        </div>
+    </div>
+
+    {# ------------------------------------------------------------------------------------------------------------------ #}
+    {#<hr>#}
+
+    {# review side by side version #}
+    {% include 'organisms-billing-grid-review--condensed' with {
+        class:"",
+        isCondensed: true,
+        actual_headerPricebox: {
+            priceDollar:"120",
+            priceCent: "00",
+            priceDashed: "$140.00/month",
+            priceInfosSupp: "Taxes excl."
+        },
+        actual_billingItems: [
+            {label: "Internet 400", subLabel: "Serial # : 019292836363737", price:"140.00", state:"default"}
+        ],
+        actual_subtotal: {
+            price: "$140.00",
+            discount: "-$20.00"
+        },
+        actual_billingItems_under_subtotal: [
+            {label: "Instalment Payment Plan", subLabel: "X1 Internet Gateway<br>Taxes paid in full on acquisition", price:"10.00", state:"default"},
+            {label: "Instalment Payment Plan", subLabel: "XB6 Terminal", price:"9.20", state:"default"},
+        ],
+        actual_footer_price: "$120.00",
+
+        new_headerPricebox: {
+            priceDollar:"80",
+            priceCent: "00",
+            priceDashed: "$100.00/month",
+            priceInfosSupp: "Taxes excl."
+        },
+        new_billingItems: [
+            {label: "Internet 400", subLabel: "Unlimited Download", price:"--", state:"removed"},
+            {label: "X1 Internet Gateway", subLabel: "Serial # : 019292836363737", price:"100.00", state:"added"},
+        ],
+        new_subtotal: {
+            price: "$100.00",
+            discount: "-$20.00",
+        },
+        new_billingItems_under_subtotal: [
+            {label: "Instalment Payment Plan", subLabel: "X1 Internet Gateway<br>Taxes paid in full on acquisition", price:"10.00", state:"default"},
+            {label: "Instalment Payment Plan", subLabel: "XB6 Terminal", price:"9.20", state:"default"},
+        ],
+        new_footer_price: "$80.00"
+    } only %}
+
+
+    <div class="row mt-6">
+        {# ONE TIME FEE ----------------------------------------------- #}
+        {% include '@organisms/06-billing/billing-one-time-fee.twig' with {
+            class:"w-100"
+        } only %}
+    </div>
+
+
+    {#<div class="row justify-content-end mt-5">#}
+        {#<div class="col-12 col-md-7 text-right">#}
+            {#{% include '@atoms/02-buttons/00-button.twig' with {#}
+                {#buttonClass:"w-100--mobile-only",#}
+                {#buttonSize: "lg",#}
+                {#buttonLabel:"Place my order",#}
+                {#dataToggle:"modal",#}
+                {#dataTarget:"#modalTermsAndConditions"#}
+            {#} %}#}
+        {#</div>#}
+    {#</div>#}
+</div>

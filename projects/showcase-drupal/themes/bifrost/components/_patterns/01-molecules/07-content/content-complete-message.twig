@@ -1,0 +1,27 @@
+<div class="row align-items-start">
+    <div class="col-md-1 text-center text-md-left mb-3 mb-md-0">
+        {% include '@atoms/06-icons/icon-svg-checkbox-selected.twig' with { iconClass:"pt-2 pr-4", iconSize:"8" } only %}
+    </div>
+
+    <div class="col-md-11 pl-md-3 pl-lg-2">
+        <h1 class="mb-2">{{ title|default('Your order is complete!') }}</h1>
+
+        {% if subtitle is defined and subtitle is not empty %}
+            <p class="h4 font-weight-medium">{{ subtitle|default('Your order is complete') }}</p>
+        {% endif %}
+
+        {% if txt is defined and txt is not empty %}
+            <p class="">{{ txt|default('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur dicta labore magnam molestias nobis quos saepe? Eligendi iure, laudantium obcaecati optio quis quisquam similique temporibus. Beatae commodi dolorum ipsa magnam.') }}</p>
+        {% endif %}
+
+        {% if linkBackLabel is defined and linkBackLabel is not empty %}
+            {% include '@atoms/04-links/link-underline.twig' with {
+                headingSize: 6,
+                label: linkBackLabel|default("Back to services"),
+                href: linkBackURL|default("/patterns/04-Pages-02-my-account-(etiya)-03-services/04-Pages-02-my-account-(etiya)-03-services.html")
+            } only %}
+        {% endif %}
+
+        {% block under_message %}{% endblock %}
+    </div>
+</div>

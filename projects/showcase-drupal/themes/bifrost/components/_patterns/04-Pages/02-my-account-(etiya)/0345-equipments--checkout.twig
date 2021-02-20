@@ -1,0 +1,31 @@
+{% extends "base-page--funnel-services.twig" %}
+
+{% set navStepByStep_tplName = "equipments-add" %}
+{% set navStepByStep_activeNumber = 3 %}
+
+{% set page_hero_title = "Checkout" %}
+{% set page_hero_subtitle = "Lorem ipsum dolor sit amet, consectetur adipisicing elit ? " %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_content  %}
+    <section class="py-section">
+        {% include 'templates-accordion--olsf-step-by-step' with {
+            accordionsItems : [
+                { title: "Appointment selection", anchorId: "AppointmentSelection", tplName: "olsf-appointment-selection", isActive:true },
+                { title: "Credit Check", anchorId: "CreditCheck", tplName: "olsf-credit-check", isActive:false },
+                { title: "Payment (DEMO average / NO PAP)", anchorId: "Payment", tplName: "olsf-payment--average-credit", isActive:false },
+                { title: "Payment (DEMO high risk, risk, average / already PAP)", anchorId: "Payment2", tplName: "olsf-payment--high-risk-credit", isActive:false },
+                { title: "Order review", anchorId: "OrderReview", tplName: "myaccount-order-review", isActive:false }
+            ]
+        } %}
+    </section>
+{% endblock %}
+
+
+{% block page_aside %}
+    <section class="py-section">
+        {% include '@organisms/05-payment/payment-billing-summary.twig' with { class:"mb-3" } %}
+        {% include '@organisms/05-payment/payment-next-bill.twig' with { class:"" } %}
+    </section>
+{% endblock %}

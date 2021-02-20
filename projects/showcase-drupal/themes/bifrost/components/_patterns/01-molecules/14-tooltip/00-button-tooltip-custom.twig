@@ -1,0 +1,37 @@
+<div class="js-tooltip-custom position-relative {{ class|default('') }} ">
+    {% block tooltip_trigger %}
+        <button type="button"
+            {% if buttonLabel is not empty %}data-title="{{ buttonLabel|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}"{% endif %}
+            class="js-tooltip-custom__btn vui--style-reset link {{ buttonClass|default('') }}" {{ extraAttribute|default(NULL) }}>
+            {{ buttonLabel|default('label TODO') }}
+        </button>
+    {% endblock %}
+
+    <div class="js-tooltip-custom__content tooltip-custom border-0 p-3 p-md-4 {{ (isTooltipActive) ? 'show': NULL }}" x-placement={{ xPlacement|default("top-center") }}>
+        {% block tooltip_container_content %}
+            <div class="row">
+                <div class="col-10 col-md-11">
+                    {% block tooltip_content %}{% endblock %}
+                </div>
+                <div class="col-2 col-md-1">
+                    <button type="button"
+                            class="close d-inline-block pl-3 pb-3 js-tooltip-custom__close mt-1"
+                            {{ extraAttributeX|default(NULL) }}>
+                        <span aria-hidden="true">
+                            {% include '@atoms/06-icons/icon-svg-x.twig' only %}
+                        </span>
+                    </button>
+                </div>
+            </div>
+        {% endblock %}
+
+        {% if hasCloseLinkFooter is defined and hasCloseLinkFooter is same as (true) %}
+            {% include '@atoms/04-links/link-underline.twig' with {
+                class:"mb-0 mt-4 d-block text-center js-tooltip-custom__close color--dark",
+                headingSize: '6',
+                label: btnCancelTooltipLabel|default("Cancel"),
+                href: btnCancelTooltipHref|default('')
+            } %}
+        {% endif %}
+    </div>
+</div>

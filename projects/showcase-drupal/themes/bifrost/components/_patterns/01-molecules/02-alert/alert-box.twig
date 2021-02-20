@@ -1,0 +1,41 @@
+<!-- alert-callout.twig -->
+<div class="alert alert-{{ themeColor|default('primary') }} {{ class|default('') }} fade show p-0" role="alert" {% if isAnimationDisabled is not defined %}data-animate=""{% endif %}>
+    {% block callout_body %}
+        <div class="row d-block d-md-flex align-items-{{ flexAlignItems|default('center') }} justify-content-between">
+            <div class="col-md-11">
+                {% if alertDate is defined and alertDate is not empty %}
+                    <p class="mb-1 color-gray--700 small" data-animate="fade-in">{{ alertDate|default('') }}</p>
+                {% endif %}
+
+                {% if alertTitle is defined and alertTitle is not empty %}
+                    <h3>
+                        {% if alertWithIcon %}
+                            {% include 'icon-svg.twig' with {
+                                iconName: alertIconName | default('important'),
+                                iconColor: alertIconColor | default(''),
+                                iconClass: alertIconClass | default('mr-2'),
+                                iconSize: alertIconSize | default(2)
+                            } only %}
+                        {% endif %}
+                        {{ alertTitle|default('Alert heading title') }}
+                    </h3>
+                {% endif %}
+
+                {% block alertContent %}
+                    <p class="mb-0">
+                        {{ alertTxt|default('200 bytes lôrem ïpsum dolor sit àmet, consectetur adipiscing elit. Nam nec pretium nulla. Étiam sollicitudin, turpis ac rhoncus fermentum, ante justo iaculis ïpsum, ac elementum Ôdio arcu nec posueres')|raw }}
+                    </p>
+                {% endblock %}
+            </div>
+            {% if hasNoCloseButton is not defined  %}
+            <button type="button" class="close d-none d-md-block p-3 m-3 position-absolute--top-right"
+                    data-dismiss="alert"
+                    aria-label="Close"
+                    {{ extraAttribute|default(NULL) }}
+            >
+                {% include '@atoms/06-icons/icon-svg-x.twig' with { iconColor:"svg-fill--" ~ svgThemeColor|default('dark'), iconSize:"2" } %}
+            </button>
+            {% endif %}
+        </div>
+    {% endblock %}
+</div>

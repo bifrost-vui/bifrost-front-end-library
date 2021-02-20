@@ -1,0 +1,68 @@
+{% extends "base-page--funnel-services.twig" %}
+
+{% set navStepByStep_tplName = "service" %}
+{% set navStepByStep_activeNumber = 3 %}
+
+{% set page_hero_title = "Add warranty extension" %}
+{% set page_hero_subtitle = " " %}
+
+{% set hasTermsAndConditions = true %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    <section class="py-section">
+        <div class="container-fluid">
+            {# ONE TIME FEE ----------------------------------------------- #}
+            {#{% include '@organisms/06-billing/billing-one-time-fee.twig' with {#}
+                {#class:"mb-6",#}
+                {#hasSubTotal: true#}
+            {#} only %}#}
+
+            {% include 'organisms-billing-review' with {
+                class:"mb-6",
+                hasNoSavings: true,
+                billingTitle: "One time fee",
+                billingItems: [
+                    {
+                        label: "Helix TV Terminal Extended Warranty",
+                        subLabel: "New coverage of 5 years for Serial # 76B4894001D6",
+                        price:"--",
+                        state:"added"
+                    }
+                ],
+                billingFooterLabel: "Charged at next bill"
+            } only %}
+
+
+            <div class="d-md-flex justify-content-end align-items-center">
+                {% include '@atoms/04-links/link-underline.twig' with {
+                    class:"mb-2 mb-d-0 mr-md-4 btn w-100-mobile-only d-block text-center",
+                    headingSize: 6,
+                    label: 'Cancel',
+                    href: ''
+                } %}
+
+                {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                    buttonClass:"mb-2 mb-md-0 mr-md-3 w-100--mobile-only",
+                    buttonLabel: "Save my quote",
+                    buttonId: dropdownId|default('btnOutlineDropdownMenu'),
+                    dataToggle: "modal",
+                    dataTarget:"#modalSaveMyCart"
+                } %}
+
+                {% include '@atoms/04-links/01-link-button.twig' with {
+                    class: "w-100--mobile-only",
+                    label: "Continue",
+                    href: "/patterns/04-Pages-02-my-account-(etiya)-0304-services--confirmation/04-Pages-02-my-account-(etiya)-0304-services--confirmation.html",
+                } only %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block modals_container %}
+    {# MODAL : save my cart #}
+    {% include '@organisms/08-modal/_modal-cart-summary--save-my-cart.twig' %}
+    {% include '@organisms/08-modal/_modal-cart-summary--save-my-cart-confirmation.twig' %}
+{% endblock %}

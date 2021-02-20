@@ -1,0 +1,60 @@
+{% embed "molecules-modal" with {
+    modalId:"modalPrePaymentActivation",
+    modalSize: "md",
+    modalTitle:"Changer de methode de paiement",
+    modalSubtitle:"Maison - 612 rue St. Jacques, Montréal, QC H3C 4M8",
+} %}
+
+    {% set cardInfo = [
+        { label:"Option 1", inputName:"cardActivationSelection", inputId:"cardActivation_1", type:"mastercard", ending: "XXXX-XXXX-XXXX-1234", isSelected:true, canDelete:false },
+        { label:"Option 2", inputName:"cardActivationSelection", inputId:"cardActivation_2", type:"visa", ending: "XXXX-XXXX-XXXX-5555", isSelected:false, canDelete:false }
+    ] %}
+
+    {% block modal_body %}
+        <p class="font-weight-bold m-0">Your credit card</p>
+
+        {% for cardInfos in cardInfo %}
+            <div class="col-12">
+                {% embed '@molecules/05-input/input-radio-credit-card.twig' with {
+                    class: "form-selection-input-card-btn__label w-100 h-100 m-0 d-flex card-rounded",
+                    inputType:"radio",
+                    isSelected: cardInfos.isSelected,
+                    inputId: "cardActivation_" ~ loop.index,
+                    inputName: "cardActivationSelection"
+                } %}
+                {% endembed %}
+            </div>
+        {% endfor %}
+
+        {% include '@atoms/04-links/link-underline-with-icon-left.twig' with {
+            class:"d-block mt-1 ml-2",
+            iconName:"plus-circle",
+            label:"Add a new credit card",
+            dataDismiss:"modal",
+            dataToggle:"modal",
+            dataTarget:"#modalAddNewCreditCard"
+        } %}
+    {% endblock %}
+    {% block modal_footer %}
+        <div class="row justify-content-end mt-4 mb-4">
+            <div class="">
+                {% include '@atoms/02-buttons/00-button.twig' with {
+                    buttonLabel:"Cancel",
+                    buttonClass:"btn-reset link-underline",
+                    dataDismiss:"modal"
+                } %}
+            </div>
+            <div class="mr-4">
+                {% include '@atoms/02-buttons/00-button.twig' with {
+                    buttonClass:"",
+                    buttonLabel:"Save",
+                    buttonColor:"primary",
+                    dataDismiss:"modal"
+                } %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}
+
+
+

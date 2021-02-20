@@ -1,0 +1,44 @@
+{% if accordionsItems is not defined or accordionsItems is empty %}
+    {% set accordionsItems = [
+        { title: "Account Creation", subtitle:"Lorem ipsum dolor sit amet", anchorId: "AccountCreation", tplName: "account-creation-CSR", isActive:false },
+        { title: "Port in services", anchorId: "PortInServices", tplName: "port-in-services", isActive:false },
+        { title: "Serial Numbers", anchorId: "SerialNumbers", tplName: "serial-numbers", isActive:false },
+        { title: "Credit Check", anchorId: "CreditCheck", tplName: "credit-check", isActive:false },
+        { title: "Payment", anchorId: "Payment", tplName: "payment", isActive:false },
+        { title: "Appointment selection", anchorId: "AppointmentSelection", tplName: "appointment-selection", isActive:false },
+        { title: "Order review", anchorId: "OrderReview", tplName: "order-review", isActive:false },
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="accordion accordion-step-by-step js-accordion-step-by-step">
+    {% for item in accordionsItems %}
+        {% if loop.first is same as (false) %}
+            {% set anchorPrev = accordionsItems[loop.index0-1].anchorId %}
+        {% endif %}
+
+        {% if loop.last is same as (false) %}
+            {% set anchorNext = accordionsItems[loop.index].anchorId %}
+        {% endif %}
+
+        {% embed '@molecules/06-accordion/accordion-item.twig' with {
+            isActive : item.isActive,
+            isAnimationDisabled: true,
+            class:"js-accordion-step-by-step__item",
+            accordionCollapseContentClass: "",
+            accordionStyle:"step-by-step",
+            accordionParent: ".accordion-step-by-step",
+            headerTitle: item.title,
+            headerSubtitle: item.subtitle|default(""),
+            headerNumber: loop.index ,
+            accordionAnchorId: item.anchorId,
+            accordionAnchorIdPrev: anchorPrev|default(''),
+            accordionAnchorIdNext: anchorNext|default('')
+        } %}
+            {% block collapse_content %}
+                {% include 'templates-accordion-item--' ~ item.tplName %}
+            {% endblock %}
+        {% endembed %}
+    {% endfor %}
+</div>

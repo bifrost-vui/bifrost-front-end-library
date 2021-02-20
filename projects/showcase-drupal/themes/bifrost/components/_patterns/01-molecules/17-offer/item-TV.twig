@@ -1,0 +1,36 @@
+{# DEMO purpose #}
+
+{% if items is not defined %}
+    {% set items = [
+        { itemNb:'39', itemDescription:'Chaînes au total' },
+        { itemNb:'15', itemDescription:'choix parmi Populaire et Sports' },
+        { itemNb:'23', itemDescription:'chaînes base HD' },
+        { itemNb:'1', itemDescription:'choix parmi les Premium' },
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+{% embed '@molecules/17-offer/item-internet-speed.twig' with {
+    cardTitle: cardTitle|default('Cette offre comprend:'),
+    itemFirstNb: null,
+    items: items,
+} %}
+
+    {% block item_header %}
+        <div class="item-internet-speed__tv-header mb-5 text-center">
+            <img class="mb-3 d-inline-block" src="{{ itemIcon|default('/images/assets/TV-item-demo.svg') }}"
+                {% if imgAlt is not empty %} alt="{{ imgAlt }}" {% endif %}
+            >
+            <h3 class="text-uppercase">{{ itemTitle|default('Fan de films et séries') }}</h3>
+        </div>
+    {% endblock %}
+
+    {% block characteristics %}
+        {% for item in items %}
+        <div class="d-flex justify-content-between mt-3">
+            <p class="item-internet-speed__icon-nb h5 font-weight-medium">{{ item.itemNb|default('33') }}</p>
+            <p class="item-internet-speed__description mb-0">{{ item.itemDescription|default('Chaînes au total') }}</p>
+        </div>
+        {% endfor %}
+    {% endblock %}
+{% endembed %}

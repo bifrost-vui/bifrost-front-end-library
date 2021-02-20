@@ -1,0 +1,48 @@
+<!-- tab-profile-and-settings.twig -->
+{% embed '@molecules/10-tab/tab.twig' with {
+    tabClass: class|default('') ~ " tab--input-radio",
+    tabNavId:"tabPaymentMethod",
+    tabContentId:"tabtabPaymentMethodContent",
+    tabNavItems: [
+        { id:"_payment_ppa_yes", label:"Yes", isSelected:true },
+        { id:"_payment_ppa_No", label:"No", isSelected:false}
+    ]
+} %}
+    {% block tab_pane_content %}
+        {# Tab : Account detail---------------------------------------------- #}
+        <div id="_payment_ppa_yes" class="tab-pane fade active show" role="tabpanel" aria-labelledby="accountDetail-tab">
+            <div class="card border-top-0">
+                <div class="card-body">
+                    <p class="mb-4">Pre-authorized payment allows you to pay your bills automatically. Register now and preserve your peace of mind by avoiding oversights.</p>
+                    {#<div class="row mb-4">#}
+                        {#<div class="col-md-6">#}
+                            {#{% include '@molecules/13-dropdown/00-dropdown.twig' with {#}
+                                {#class:"",#}
+                                {#buttonclass: "vui--text-highlight bg-gray--100",#}
+                                {#dropdownid:"dropautomaticpayment",#}
+                                {#dropdownselecteditem: "select a paiment method",#}
+                                {#dropdownitems: [#}
+                                    {#{label : "item 1", class:""},#}
+                                    {#{label : "item 2", class:""}#}
+                                {#]#}
+                            {#} only %}#}
+                        {#</div>#}
+                    {#</div>#}
+
+                    <!--  -------------------------------- -->
+                    {% include 'templates-add-credit-card' %}
+                </div>
+            </div>
+        </div>
+
+        {# Tab : Communication preferences  ---------------------------------------------- #}
+        <div id="_payment_ppa_No" class="tab-pane fade" role="tabpanel" aria-labelledby="communicationPreferences-tab">
+            <div class="card border-top-0">
+                <div class="card-body">
+                    <h3>Bank payment</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad autem consectetur cumque, doloremque ea et hic id illum ipsam ipsum odio quo repellendus soluta veniam? Culpa eum expedita veritatis!</p>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

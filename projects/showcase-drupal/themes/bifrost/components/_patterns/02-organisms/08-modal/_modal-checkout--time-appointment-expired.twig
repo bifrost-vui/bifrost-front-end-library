@@ -1,0 +1,42 @@
+{% embed "molecules-modal" with {
+    modalId:"modalAppointmentTimeExpired",
+    modalTitle:"Your appointment reservation is about to expired !",
+    hasScrollContainer: false,
+    modalSize:"md"
+} %}
+    {% block modal_header %}
+        <div class="d-flex mb-3 align-items-center justify-content-center">
+            {% include '@atoms/06-icons/icon-svg-error.twig' with { iconColor:"dark", iconClass:"",iconSize:"7" } only %}
+        </div>
+
+        <h3 class="mb-0">Your appointment reservation is about to expired !</h3>
+    {% endblock %}
+
+    {% block modal_body %}
+        <div class="row">
+            <div class="col-12">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <p class="mb-0">Your reserved time slot will again be available for other customers in :</p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <p class="h2 mb-0">4 m 59 sec</p>
+                    </div>
+                </div>
+                <p class="color-gray--600">Please click «Continue» to pursue checkout and secure your appointment.</p>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-4 offset-md-8">
+                <div class="d-flex justify-content-end">
+                    {% include '@atoms/02-buttons/00-button.twig' with {
+                        buttonLabel:"Continue",
+                        buttonClass:"btn-primary btn--condensed w-100",
+                        dataDismiss:"modal"
+                    } %}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

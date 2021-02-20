@@ -1,0 +1,22 @@
+{% if carouselOptions is not defined %}
+    {% set carouselOptions = [
+        { title:"Cloud DVR Unlimited", text:"Hours of recording", price:"$ 00.00/month", iconName:"cloud-dvr", isBtnDisabled: true, buttonClass:"js-DEMO-add-item-cart-summary"  },
+        { title:"200 Hours of Recording", text:"Details id dolor id nibh ultricies vehicula ut id elit.", price:"$ 00.00", iconName:"gateway", isBtnDisabled: false, buttonClass:"js-DEMO-add-item-cart-summary" },
+        { title:"Unlimited Hours of Recording*", text:"Details id dolor id nibh ultricies vehicula ut id elit.", price:"$ 00.00", iconName:"cloud-dvr", isBtnDisabled: false, buttonClass:"js-DEMO-add-item-cart-summary"  },
+        { title:"Unlimited Hours of Recording*", text:"Details id dolor id nibh ultricies vehicula ut id elit.", price:"$ 00.00", iconName:"cloud-dvr", isBtnDisabled: false, buttonClass:"js-DEMO-add-item-cart-summary"  },
+        { title:"Unlimited Hours of Recording*", text:"Details id dolor id nibh ultricies vehicula ut id elit.", price:"$ 00.00", iconName:"cloud-dvr", isBtnDisabled: false, buttonClass:"js-DEMO-add-item-cart-summary"  },
+        { title:"Unlimited Hours of Recording*", text:"Details id dolor id nibh ultricies vehicula ut id elit.", price:"$ 00.00", iconName:"cloud-dvr", isBtnDisabled: false, buttonClass:"js-DEMO-add-item-cart-summary"  },
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div data-slick='{"initialSlide":2}' class="carousel--dots-and-arrows {{ class|default('js-slick-carousel--dots-and-arrows') }}" data-animate="">
+    {% block carousel_content %}
+        {% for option in carouselOptions %}
+            <div class="px-2 h-100 ">
+                {% include '@molecules/03-card/card-item.twig' only %}
+            </div>
+        {% endfor %}
+    {% endblock %}
+</div>

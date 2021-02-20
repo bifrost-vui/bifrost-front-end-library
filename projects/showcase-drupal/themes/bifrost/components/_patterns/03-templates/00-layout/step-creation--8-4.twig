@@ -1,0 +1,49 @@
+{% if hasNoSidebar is not defined %}
+    {% set leftColClass = "col-lg-8 pr-lg-0" %}
+{% endif %}
+
+{% if hasNoSidebar is defined %}
+    {% set rowClass = "justify-content-center" %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="row {{ rowClass|default('') }}">
+    <div class="order-2 order-lg-1 {{ leftColClass|default('col-12') }} ">
+        <div class="card ">
+            {% block step_content %}{% endblock %}
+
+            <div class="card-body pt-0 px-md-6">
+                {% include 'molecules-btn-back-and-next' with {
+                    class:"",
+                    btnBackHref:btnBackStepHref|default(''),
+                    btnBackLabel:btnBackStepLabel|default(''),
+                    btnNextHref:btnNextStepHref|default(''),
+                    btnNextLabel:btnNextStepLabel|default(''),
+                } only %}
+            </div>
+        </div>
+    </div>
+
+    {% if hasNoSidebar is not defined %}
+        <div class="order-1 order-lg-2 col-lg-4 pl-lg-0">
+            <div class="card h-100 bg-gray--100 border-left-md--0">
+                <div class="card-body px-md-6">
+                    <h3 class="mb-4">Lorem upsum dolar sit ament earum?</h3>
+                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci at aut cum dicta earum eligendi, iusto maxime molestias nihil non nostrum odio, pariatur quas, quis quos sequi tempora tempore voluptatibus.</p>
+
+                    {% include 'atoms-list-checkmark' with {
+                        class:"small",
+                        listItems: [
+                            { class:"", label:"Item 1"},
+                            { class:"", label:"Item 2"},
+                            { class:"", label:"Item 3"},
+                            { class:"", label:"Item 4"},
+                            { class:"", label:"Item 5"}
+                        ]
+                    } only %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>

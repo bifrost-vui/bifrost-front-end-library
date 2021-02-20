@@ -1,0 +1,126 @@
+/* *****************************************************************************
+*
+*  Buttons
+*
+* ***************************************************************************** */
+
+.btn {
+  @include transitions(background,color,border-color);
+  @extend .vui--text-highlight;
+  @extend .vui--font-secondary-bold;
+  font-size: $form-font-size;
+  white-space: normal;
+  line-height: 1.5;
+  max-width: 100%;
+
+  .small {
+    font-size: $font-size-base;
+  }
+
+  &.w-100 {
+    justify-content: center;
+  }
+
+  &:not(.btn-small):not(.w-100):not(.link-underline):not(.btn-link-underline) {
+    @include media-breakpoint-up(md){
+      min-width: 12rem;
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  &-link-underline {
+    @extend .btn-reset;
+    @extend .link-underline;
+    display: inline-block;
+    padding: 0;
+  }
+
+  &.btn-reset {
+    background: initial !important;
+    width: initial !important;
+    border: none;
+  }
+
+  &-disabled,
+  &[disabled],
+  &.disabled {
+    @include plain-hover-focus(){
+      background: $input-disabled-bg;
+      border-color: $input-disabled-bg;
+      cursor: inherit;
+      color: $gray-400;
+      //outline: none;
+      pointer-events: none;
+    }
+  }
+
+  &.vui--style-reset {
+    padding: $input-padding-y $input-padding-x;
+  }
+
+  &--condensed {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  &--load-more {
+    @include hover-focus(){
+      padding-left: $btn-padding-y !important;
+      padding-right: $btn-padding-y !important;
+    }
+  }
+
+  &--no-hover {
+    @include hover-focus-active{
+      background: inherit !important;
+    }
+  }
+
+  &--collapse-sticky-bottom {
+    padding: 0.2rem .8rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    font-size: $font-size-base;
+    position: relative;
+
+    &[aria-expanded="true"]{
+      .icon {
+        transform: rotate(-225deg) translate(-0.1rem, 0.1rem);
+      }
+    }
+
+    &:before,
+    &:after {
+      @include size(0);
+      content: "";
+      position: absolute;
+      top: 0;
+      border-style: solid;
+    }
+
+    &:before {
+      left:0;
+      transform: translate(-95%, 0);
+      border-width: 0 0 1.698rem .8rem;
+      border-color: transparent transparent $dark transparent;
+    }
+
+    &:after {
+      right: 0;
+      transform: translate(95%, 0);
+      border-width: 1.698rem 0 0 .8rem;
+      border-color: transparent transparent transparent $dark;
+    }
+  }
+}
+
+button[aria-expanded]{
+  .button-expanded__label-false { display: block;}
+  .button-expanded__label-true { display: none;}
+
+  &[aria-expanded="true"]{
+    .button-expanded__label-false { display: none;}
+    .button-expanded__label-true { display: block;}
+  }
+}

@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mb-3 mb-md-0" data-animate>
+                <h3>{{ title|default('Billing title') }}</h3>
+            </div>
+            <div class="col-lg-4 text-right" data-animate>
+                <p class="color-gray--700 mb-0">Date de facturation:<br>1er mars 2019</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card-body py-0">
+        {% for i in 1..2 %}
+            {% embed '@molecules/06-accordion/accordion-item--arrow-down.twig' with {
+                class: "border-left--0 border-right--0 border-top--0",
+                inlineAnchor: "paymentBill"~ title|url_encode ~ "_" ~ i,
+                cardHeaderClass: "bg--none px-0"
+            } %}
+                {% block collapse_header %}
+                    {% include '@atoms/07-payment/payment-item-price--subtotal.twig' with { item:"Amount due", price:"124,70$&nbsp;", class:"w-100" } only %}
+                {% endblock %}
+
+                {% block collapse_content %}
+                    <div class="card-body pt-0">
+                        {% include '@atoms/07-payment/payment-item-price--subitem.twig' with { item:"Services", price:"105,70$" } only %}
+                        {% include '@atoms/07-payment/payment-item-price--subitem.twig' with { item:"Equipment & Accessories", price:"19,00$"} only %}
+                    </div>
+                {% endblock %}
+            {% endembed %}
+        {% endfor %}
+    </div>
+
+    <div class="border-top--dark border-width-4 card-body bg--none" data-animate="">
+        {% include '@atoms/07-payment/payment-item-price--subtotal.twig' with {
+            item: totalLabel|default('Total due'),
+            price:"667,05$",
+            class:"",
+            fontWeight:"bold"
+        } %}
+    </div>
+</div>

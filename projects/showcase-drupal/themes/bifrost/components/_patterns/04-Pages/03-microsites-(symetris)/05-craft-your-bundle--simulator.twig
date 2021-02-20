@@ -1,0 +1,25 @@
+{% extends "base-page.twig" %}
+
+{% set page_hero_title = "Craft your own bundle" %}
+{% set page_hero_subtitle = "Choose the best internet speed for you and opt for a TV offer for all your needs." %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container  %}
+    <section class="py-section">
+        <div class="container-fluid">
+            {#{% include 'organisms-box-new-client' with { class:"mb-6" } only %}#}
+            {% include 'organisms-box-residential-phone' with { class:"mb-6" } only %}
+            {% include 'templates-simulator-internet-plan' with { class:"" } only %}
+            {% include 'templates-simulator-tv-plan--add' with { class:"" } only %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block page_sticky_bottom_bar %}
+    {% include '@organisms/15-navigation-sticky-bottom/funnel-nav-sticky-price--simulator.twig' only %}
+{% endblock %}
+
+{% block modals_container %}
+    {% include '@organisms/08-modal/_modal-service-bundle-item-detail.twig' %}
+{% endblock %}

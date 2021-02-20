@@ -1,0 +1,40 @@
+{% embed '@organisms/25-equipment/item-equipment.twig' with {
+    class: "item-equipment--no-active-content"
+} %}
+    {% block item_content %}
+        <p class="h4 mb-3 font-weight-normal">{{ title|default('XB6 Internet Gateway') }}</p>
+        <p class="small mb-4">Set of 3 pods</p>
+
+        {% include '@atoms/03-form/selectlist.twig' with {
+            class: "select-container--dark mb-5 w-100",
+            selectClass: "vui--font-secondary-bold text-uppercase py-2",
+            options: [
+                { label:"Financial plan - 3,49$/month", value:"A", isSelected:true },
+                { label:"Rating B", value:"B" },
+                { label:"Rating C", value:"C" }
+            ]
+        } %}
+
+        {% embed '@atoms/03-form/input-increment.twig' with {
+            class:"color--white mb-4",
+            hasResetCountBtn: false,
+            flexContainerClass: "justify-content-between w-100",
+            inputMinValue:0,
+            inputValue: 0,
+            inputMaxValue:6
+        } only %}
+            {% block btnPlusInfosTooltip %}
+                <p class="h5 font-weight-normal">Vous ne pouvez pas posséder plus de 6 terminaux.</p>
+                <p class="font-weight-normal small">Pour assurer la performance de la borne lorem ipsum dolor sit amet consectetur sit amet .</p>
+            {% endblock %}
+        {% endembed %}
+
+        <div class="">
+            {% if isPod is defined and isPod is same as (true) %}
+                <a href="" class="link" target="_blank">How many pods do I need ?</a>
+            {% else %}
+                &nbsp;
+            {% endif %}
+        </div>
+    {% endblock %}
+{% endembed %}

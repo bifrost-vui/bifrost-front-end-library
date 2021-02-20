@@ -1,0 +1,27 @@
+{# DEMO PURPOSE #}
+
+{% if items is not defined %}
+    {% set items = [
+        {imgSrc:"/images/assets/my-helix/carousel-help-01.jpg", title:"Here is my title", desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aperiam, cum delectus deserunt."},
+        {imgSrc:"/images/assets/my-helix/carousel-help-02.jpg", title:"Here is my title", desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aperiam, cum delectus deserunt."},
+        {imgSrc:"/images/assets/my-helix/carousel-help-03.jpg", title:"Here is my title", desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aperiam, cum delectus deserunt."}
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="js-slick-carousel--overflow-visible">
+    {% for item in items %}
+        <div class="row">
+            <div class="col-12">
+                {% include '@molecules/04-card-links/link-card-figure.twig' with {
+                    cardClass:"",
+                    cardImgSrc: item.imgSrc,
+                    cardImgAlt: item.imgAlt,
+                    cardHeading: item.title,
+                    cardText: item.desc
+                } only %}
+            </div>
+        </div>
+    {% endfor %}
+</div>

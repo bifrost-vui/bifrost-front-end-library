@@ -1,0 +1,93 @@
+{# For demo purpose #}
+{% if priceSettings is not defined %}
+    {% set alertTitle = "Exclusive offer for you!" %}
+    {% set alertTxt = "200 bytes lôrem ïpsum dolor sit àmet, consectetur adipiscing elit." %}
+    {% set priceSettings = {
+        dollar: 152,
+        cent: 34,
+        isMonthlyPayment: true,
+        infosSupp: "Taxes excl.",
+        savings: "Lorem ipsum dolor sit amet",
+        disclaimer: "Lorem ipsum dolor sit amet 2",
+    } %}
+    {% set buttonSettings = {
+        label: "view offer",
+        link: "/patterns/04-Pages-02-my-account-(etiya)-50-crosssale-details-page/04-Pages-02-my-account-(etiya)-50-crosssale-details-page.html"
+    } %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+{# Theme definition #}
+{% if themeVariant is same as ("reversed") %}
+    {% set _legacy_ContainerClass = "" %}
+    {% set _legacy_buttonColor = "dark" %}
+{% else %}
+    {% set _legacy_ContainerClass = "vui--style-black" %}
+    {% set _legacy_buttonColor = "light" %}
+    {% set defaultMediumImgSrc = bgLargeImage %}
+    {% set defaultLargeImgSrc = '/images/hero/hero-block-sample.png' %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="bg-image c-banner-promo--{{ themeVariant|default('default') }} card {{ class|default('') }} {{ _legacy_ContainerClass|default('') }} fade show p-0 mb-6" role="alert" data-animate=""
+     data-bg="{{ bgImage|default('') }}"
+     data-md-bg="{{ bgMdImage|default(defaultMediumImgSrc) }}"
+     data-lg-bg="{{ bgLgImage|default(defaultLargeImgSrc) }}">
+    <div class="card-body">
+        <div class="row align-items-center">
+            <div class="col col-md-12 mb-4 mb-lg-0 col-lg">
+                {% if alertTitle is defined %}
+                    <p class="h3 mb-2">{{ alertTitle|default('Exclusive offer for you!') }}</p>
+                {% endif %}
+
+                {% if alertTxt is defined %}
+                    <p class="mb-0">{{ alertTxt|raw }}</p>
+                {% endif %}
+            </div>
+
+            {% if priceSettings is defined and priceSettings is not empty %}
+                <div class="col-12 col-md-6 offset-lg-1 col-lg-3">
+                    {% if priceSettings.text is not empty %}
+                        {{ priceSettings.text }}
+                    {% endif %}
+
+                    {% include '@atoms/07-payment/price-box.twig' with {
+                        language: language,
+                        priceClass: priceSettings.class|default(""),
+                        priceBoxAlignement: priceSettings.boxAlignement|default("left"),
+                        priceDollar: priceSettings.dollar|default(" "),
+                        priceCent: priceSettings.cent,
+                        priceRecurrencePeriod: priceSettings.recurrencePeriod|default(" "),
+                        priceInfosSupp: priceSettings.infosSupp|default(" "),
+                        priceSavings: priceSettings.savings,
+                        priceTxtBelow: priceSettings.disclaimer|default(" "),
+                        priceTxtBelowClass: "mb-0",
+                        itemTitleTooltipInfos: priceSettings.tooltipTitle|default(" "),
+                        iconTooltipColor: 'svg-fill--' ~ _legacy_buttonColor,
+                        dataToggle: 'modal',
+                        extraAttribute: "data-target=#banner-promo-terms-modal-info"
+                    } only %}
+
+                    {% include '@molecules/08-modal/modal.twig' with {
+                      modalId: "banner-promo-terms-modal-info",
+                      modalTitle: priceSettings.tooltipTitle,
+                      modalBudy: priceSettings.tooltipText
+                    } only %}
+                </div>
+            {% endif %}
+
+            {% if buttonSettings is defined and buttonSettings is not empty %}
+                <div class="col-12 col-md-6 col-lg-3 text-md-right mt-4 mt-md-0 fade-in">
+                    {% include '@atoms/04-links/01-link-button-outline.twig' with {
+                        class: buttonSettings.class|default("w-100--mobile-only"),
+                        buttonSize: buttonSettings.size|default(""),
+                        buttonColor: _legacy_buttonColor,
+                        label: buttonSettings.label|default("View offer"),
+                        href: buttonSettings.link|default('/patterns/04-Pages-02-my-account-(etiya)-50-crosssale-details-page/04-Pages-02-my-account-(etiya)-50-crosssale-details-page.html'),
+                    } %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div><!-- /.alert -->

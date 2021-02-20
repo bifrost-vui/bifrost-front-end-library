@@ -1,0 +1,57 @@
+{% extends "base-page.twig" %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    {% include 'organisms-hero-block-extended' with { class:"" } only %}
+
+    <section class="gradient gradient-horizontal-dark gradient-horizontal-5">
+        <div class="container-fluid">
+            {% include 'organisms-carousel-KSP' with { class:"" } only %}
+        </div>
+    </section>
+
+    <div class="bg--light pt-7">
+        <section class="vui--style-black gradient gradient-left--light pb-7">
+            <div class="container-fluid">
+                {# Frequently asked questions ---------------------------------------- #}
+                <div class="row align-items-center">
+                    <div class="d-none d-md-block col-md-6">
+                        {% include '@atoms/11-images/img-lazy-load.twig' with {
+                            isSquareMode: true,
+                            class:"img-fluid",
+                            src: "https://source.unsplash.com/600x600/?nature"
+                        } only %}
+                    </div>
+
+                    <div class="col-md-5 mb-4 mb-md-0 offset-md-1">
+                        {% include '@molecules/07-content/content-suptitle-with-h2.twig' with {
+                            supTitle:"Billing & accounts",
+                            title:"Understanding my phoenix bill"
+                        } %}
+
+                        <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias animi aperiam architecto aspernatur, dolores expedita fuga fugiat in nemo numquam officia placeat quasi quia velit voluptatem voluptatum. Deleniti, praesentium!</p>
+
+                        <div class="col-8 col-md-8 col-lg-6 p-0">
+                            {% include '@atoms/02-buttons/00-button.twig' with { buttonLabel:"Check", buttonClass:" w-100" } %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="py-section bg-gray--100">
+        <div class="container-fluid">
+            {% include 'templates-discover-channel-carousel' with { class:"" } only %}
+        </div>
+    </section>
+
+    <section class="py-section">
+        <div class="container-fluid">
+            {% include 'organisms-directly-on-your-phone' with { class:"" } only %}
+        </div>
+    </section>
+
+    {% include 'organisms-shop-banner' with { class:"" } only %}
+{% endblock %}

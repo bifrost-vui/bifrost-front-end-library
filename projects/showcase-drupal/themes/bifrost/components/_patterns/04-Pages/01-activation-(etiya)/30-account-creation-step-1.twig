@@ -1,0 +1,37 @@
+{% extends "base-page--funnel.twig" %}
+
+{% set navStepByStep_tplName = "account-creation" %}
+{% set navStepByStep_activeNumber = 1 %}
+
+{#{% set page_hero_title = "" %}#}
+{#{% set page_hero_subtitle = " " %}#}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    {% include 'molecules-alert-bar' with {
+        class:"",
+        theme: "primary",
+        alertTitle: "",
+        alertTxt: "If you already have a Videotron account, please use your ID to",
+        characterSymbol: "",
+        href: "#",
+        href_label: "sign-in here."
+    } only %}
+
+    <section class="py-section">
+        <div class="container-fluid">
+            <h2>Identification & Account creation</h2>
+
+            {% embed 'templates-step-creation--8-4' with {
+                stepTitle: "Identification & Account creation",
+                btnBackStepHref : "/patterns/04-Pages-01-activation-(etiya)-20-account-log-in/04-Pages-01-activation-(etiya)-20-account-log-in.html",
+                btnNextStepHref : "/patterns/04-Pages-01-activation-(etiya)-32-account-creation-step-2/04-Pages-01-activation-(etiya)-32-account-creation-step-2.html"
+            } only %}
+                {% block step_content %}
+                    {% include 'templates-account-creation--step-1' %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </section>
+{% endblock %}

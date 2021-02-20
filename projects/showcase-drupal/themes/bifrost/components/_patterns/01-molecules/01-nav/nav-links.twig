@@ -1,0 +1,20 @@
+{# For demo purpose only #}
+{% if navItems is not defined or navItems is empty %}
+    {% set navItems = [
+        { label:"Channel selection", href:"#channelSelection", class:"active" },
+        { label:"Premium & speciality channels", href:"#premiumChannels", class:"" },
+        { label:"Remote control", href:"#remoteControl", class:"" },
+        { label:"Home network", href:"#homeNetwork", class:"" }
+    ] %}
+{% endif %}
+
+{# ----------------------------------------------------------------------------------- #}
+
+<nav class="nav {{ class|default('') }}">
+    {% for nav in navItems %}
+        <a class="nav-link mr-5 pl-0 pr-0 {{ navLinksClass|default('') }} {{ nav.class|default('') }}"
+           href="{{ nav.href|default('#') }}"
+           {{ nav.extraAttribute }}
+        >{{ nav.label|default('label') }}</a>
+    {% endfor %}
+</nav>

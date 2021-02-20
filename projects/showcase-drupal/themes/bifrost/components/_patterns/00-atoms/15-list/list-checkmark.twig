@@ -1,0 +1,17 @@
+{% if listItems is not defined or listItems is empty%}
+    {% set listItems = [
+        { class:"", label:"Item 1"},
+        { class:"", label:"Item 2"},
+        { class:"", label:"Item 3"},
+        { class:"", label:"Item 4"},
+        { class:"", label:"Item 5"},
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<ul class="list-checkmark {{ class|default('') }}" {% if disableAnim is not defined %}data-animate-row=""{% endif %}>
+    {% for item in listItems %}
+        <li class="list-checkmark__item {{ item.class|default('') }}" {% if disableAnim is not defined %}data-animate=""{% endif %}>{{ item.label|default('Item X') }}</li>
+    {% endfor %}
+</ul>

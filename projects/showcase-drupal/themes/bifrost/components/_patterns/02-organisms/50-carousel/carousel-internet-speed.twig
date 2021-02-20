@@ -1,0 +1,18 @@
+{# DEMO purpose #}
+
+{% if cards is not defined or cards is empty %}
+    {% set cards = [
+        { card:'1' },
+        { card:'2' },
+        { card:'3' },
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="carousel-internet-speed js-slick-carousel--internet-speed text-left {{ class|default('') }}">
+    {% for card in cards %}
+        {% include '@molecules/17-offer/item-internet-speed.twig' with { class:"h-100" } %}
+        {% include '@molecules/17-offer/item-TV.twig' %}
+    {% endfor %}
+</div>

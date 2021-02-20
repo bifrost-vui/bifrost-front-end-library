@@ -1,0 +1,28 @@
+{% extends "base-page--funnel.twig" %}
+
+{% set navStepByStep_tplName = "appointment" %}
+{% set navStepByStep_activeNumber = 2 %}
+
+{% set heroPageTitle = "Pick a time" %}
+{% set heroPageSubTitle = "Lorem ipsum dolor sit amet, consectetur adipisicing elit" %}
+
+{% set navBackLabel = "Back to overview" %}
+{% set navBackHref = "/patterns/04-Pages-02-my-account-(etiya)-01-overview/04-Pages-02-my-account-(etiya)-01-overview.html" %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container  %}
+    <section class="py-section">
+        <div class="container-fluid">
+            {% include '@organisms/30-calendar/appointment.twig' with {
+                class: "",
+                headerClass: "mb-7",
+                withEditContactModal: true,
+            } %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block modals_container %}
+    {% include 'organisms-modal-appointment' %}
+{% endblock %}

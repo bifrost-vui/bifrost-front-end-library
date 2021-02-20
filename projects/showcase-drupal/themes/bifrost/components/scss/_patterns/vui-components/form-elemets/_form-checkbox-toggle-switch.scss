@@ -1,0 +1,86 @@
+/* *****************************************************************************
+*
+*  FORM
+*
+* ***************************************************************************** */
+
+.form-checkbox-toggle-switch {
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+  display: inline-block;
+
+  label {
+    cursor: pointer;
+  }
+
+  &__labels {
+    @extend .position-absolute--top-right;
+    @include transitions(transform .2s ease-in-out);
+    @include size(200%, 100%);
+    pointer-events: none;
+    padding: 0 1.2rem;
+    opacity: .5;
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    $inputHeight: 3.6em;
+    @include media-scale(width, 5.5rem, 5.5rem, 4.6rem);
+    @include transitions(background .2s ease-in-out);
+    font-size: $font-size-base;
+    appearance: none;
+    //width: 100%;
+    height: $inputHeight;
+    background: $gray-200 !important;
+    border: none;
+    border-radius: 3em;
+    position: relative;
+    cursor: pointer;
+    //outline: none;
+
+    &.disabled {
+      pointer-events: none;
+
+      &:after {
+        background: transparentize($white, 0.5);
+      }
+    }
+
+    &:after {
+      @include size($inputHeight);
+      @include transitions(left .2s ease-in-out);
+      position: absolute;
+      content: "";
+      border-radius: 50%;
+      background: $white;
+      box-shadow: 1px 1px .25em rgba(0, 0, 0, .2);
+      transform: scale(.7) translate(0, -70%);
+      left: 0;
+      top: 50%;
+    }
+
+    &:checked {
+      background: $vui-yellow !important;
+
+      &:after {
+        left: calc(100% - 4.052em);
+      }
+
+      & ~ .form-checkbox-toggle-switch__labels {
+        transform: translate(50%, 0);
+      }
+    }
+
+    &.form-control-sm {
+      @include media-breakpoint-up(lg) {
+        font-size: $font-size-base * 0.7;
+      }
+    }
+
+    &.form-control-lg {
+      font-size: $font-size-base * 1.1;
+    }
+  }
+}

@@ -1,0 +1,128 @@
+<!-- sales-lead-form.twig -->
+<div class="p-5">
+    <h3>{{ formTitle|default('Be the first to get the ultimate IP TV experience.') }}</h3>
+    <div class="row bm-3">
+        <div class="col-md-6">
+            {% include '@atoms/03-form/input-with-label.twig' with { label:"First Name" } %}
+        </div>
+        <div class="col-md-6">
+            {% include '@atoms/03-form/input-with-label.twig' with { label:"Last Name" } %}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            {% include '@atoms/03-form/input-with-label.twig' with { label:"Email address" } %}
+        </div>
+        <div class="col-md-6">
+            {% include '@atoms/03-form/input-phone.twig' with { label:"Phone Number" } %}
+        </div>
+    </div>
+
+    <!-- ................................................................................... -->
+    <div>
+        {% embed '@molecules/06-accordion/accordion-item--collapse-below-add.twig' with {
+            inlineAnchor:"tab_addCreditCard",
+            headerTitle:"Add a credit card"
+        } %}
+            {% block collapse_content %}
+                <div class="row">
+                    <div class="col-md-6">
+                        {% include '@atoms/03-form/input-with-label.twig' with { label:"Name on the credit card", inputId:"_creditCard_name", class:"" } %}
+                    </div>
+                    <div class="col-md-6">
+                        {% include '@atoms/03-form/input-with-label.twig' with { label:"Card Number", inputId:"_creditCard_cardNUmber",  class:"" } %}
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-8">
+                                {% include '@atoms/03-form/input-with-label.twig' with { label:"Date of expiration", inputId:"_creditCard_name_expidation", inputType:"date", class:"" } %}
+                            </div>
+                            <div class="col-4">
+                                {% include '@atoms/03-form/input-with-label.twig' with { label:"CCV", inputId:"_creditCard_cvv", inputType:"number", class:"" } %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="mb-3">Billing Address</h3>
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-1 mb-md-0">
+                        {% include '@atoms/03-form/input-selection-btn.twig' with { inputName:"_creditCard_paymentBilling",inputId:"paymentBilling_same", labelName:"Use my service address for billing", class:"w-100", selected:true } %}
+                    </div>
+                    <div class="col-md-6 mb-1 mb-md-0">
+                        {% include '@atoms/03-form/input-selection-btn.twig' with { inputName:"_creditCard_paymentBilling",inputId:"paymentBilling_new_billing", labelName:"Enter a new billing address", class:"w-100" } %}
+                    </div>
+                </div>
+            {% endblock %}
+        {% endembed %}
+    </div>
+
+    <!-- ................................................................................... -->
+    <div class="mb-4">
+        {% embed '@molecules/06-accordion/accordion-item--collapse-below-add.twig' with {
+            inlineAnchor:"tab_bestTimeReach",
+            headerTitle:"Best time to reach you (optional)"
+        } %}
+            {% block collapse_content %}
+
+                <h6 class="mb-3 font-weight-medium">Weekdays</h6>
+                <div class="row mb-4">
+                    <div class="col-md-4 mb-1 mb-md-0">
+                        {% include '@atoms/03-form/input-selection-btn.twig' with { inputName:"_weekdays_bestTime",inputId:"bestTime_morning", labelName:"Morning <br/> 8 AM - 12 PM", class:"w-100" } %}
+                    </div>
+                    <div class="col-md-4 mb-1 mb-md-0">
+                        {% include '@atoms/03-form/input-selection-btn.twig' with { inputName:"_weekdays_bestTime",inputId:"bestTime_afternoon", labelName:"Afternoon <br/> 12 AM - 4 PM", class:"w-100" } %}
+                    </div>
+                    <div class="col-md-4 mb-1 mb-md-0">
+                        {% include '@atoms/03-form/input-selection-btn.twig' with { inputName:"_weekdays_bestTime",inputId:"bestTime_evening", labelName:"Evening <br/> 4 PM - 7 PM", class:"w-100" } %}
+                    </div>
+                </div>
+            {% endblock %}
+            {% block collapse_buttons %}{% endblock %}
+        {% endembed %}
+    </div>
+
+    <!-- ................................................................................... -->
+    <div class="row mb-3">
+        <div class="col-12">
+            <h3>Your Address</h3>
+        </div>
+        <div class="col-md-6">
+            {% include '@atoms/03-form/input-with-label.twig' with { label:"Civic address" } %}
+        </div>
+        <div class="col-md-6">
+            {% include '@atoms/03-form/input-with-label.twig' with { label:"Postal code" } %}
+        </div>
+    </div>
+
+    <div class="d-flex align-items-center mb-2">
+        <h3>Communication preferences</h3>
+        {% include '@atoms/06-icons/icon-step-number.twig' with { class:"ml-2", step:"?", dataToggle:"modal", dataTarget:"#priceInfoModal" } %}
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6 d-flex">
+            {% include '@atoms/03-form/input-selection-btn.twig' with { class:"w-50 px-2", inputName:"",inputId:"", labelName:"Français" } %}
+            {% include '@atoms/03-form/input-selection-btn.twig' with { class:"w-50 px-2", inputName:"",inputId:"", labelName:"English" } %}
+        </div>
+    </div>
+
+    <div class="row mb-3 mt-7">
+        <div class="col-12">
+            <p class="small">By pushing the "Get early Access" button, you agree to be contacted by a Videotron customer service representative. </p>
+        </div>
+        <div class="col-md-6 mt-2">
+            {% include '@atoms/03-form/input-submit.twig' with { inputClass:"w-100", inputValue:"Subscribe" } %}
+            {% include '@atoms/03-form/input-submit-outline.twig' with { inputClass:"w-100", inputValue:"Cancel" } %}
+        </div>
+    </div>
+</div>
+
+<!-- ................................................................................... -->
+{# MODAL #}
+{% embed "molecules-modal" with { modalId:"priceInfoModal", modalTitle:"Pricing info" } %}
+    {% block modal_body %}
+    {% endblock %}
+{% endembed %}

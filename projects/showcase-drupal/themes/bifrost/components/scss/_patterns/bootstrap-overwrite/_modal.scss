@@ -1,0 +1,118 @@
+/* *****************************************************************************
+*
+*  Modal
+*
+* ***************************************************************************** */
+.modal {
+
+  &-open {
+    padding-right: 0 !important;
+  }
+
+  &-content {
+    box-shadow: $modal-content-box-shadow-sm-up;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .modal-header {
+    display: block;
+  }
+
+  .modal-title {
+    font-size: $h2-font-size;
+    font-family: $font-family-secondary;
+
+    @include media-breakpoint-down(sm){
+      font-size: 2rem;
+    }
+  }
+
+  &-dialog {
+    &.modal-lg {
+      @include media-breakpoint-up(xl){
+        max-width: 70vw;
+      }
+
+      .modal-header, .modal-body, .modal-footer {
+        @include media-scale(padding, 3.5rem 2rem 2rem, 3.5rem 4rem, 4rem 5.5rem);
+      }
+    }
+    &.modal-md {
+      .modal-header, .modal-body, .modal-footer {
+        @include media-scale(padding, 3.5rem 2rem 2rem, 3.5rem 3rem, 4rem 4.5rem);
+      }
+    }
+    &.modal-sm {
+      .modal-header, .modal-body, .modal-footer {
+        padding: 3.5rem 1.5rem;
+      }
+    }
+  }
+
+  &-body {
+    &__scroll-container {
+      @extend .scrollbar-custom;
+      @include media-scale(max-height, 30vh, 50vh);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 2rem;
+    }
+  }
+
+  &-callout {
+    @each $themeColor, $value in $theme-colors {
+      &--#{$themeColor} {
+        .modal-dialog .modal-content {
+          border-left: $alert-callout-border-width solid $value;
+        }
+
+        .modal-header {
+          svg {
+            ._svg-fill {
+              fill: $value;
+            }
+
+            ._svg-stroke {
+              stroke: $value;
+            }
+          }
+        }
+
+        .modal-body {
+          button.btn-primary {
+            background-color: $value;
+            border-color: $value;
+          }
+        }
+      }
+
+      &--csr,
+      &--danger {
+        .modal-body button.btn-primary {
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .container-fluid {
+    min-width: 0 !important;
+  }
+
+  // Theme
+  &-theme {
+    &--dark {
+      .modal-content {
+        @extend .vui--style-black;
+
+        button.close svg {
+          fill: $white;
+
+          ._svg-fill { fill: $white; }
+          ._svg-stroke { stroke: $white; }
+        }
+      }
+    }
+  }
+}

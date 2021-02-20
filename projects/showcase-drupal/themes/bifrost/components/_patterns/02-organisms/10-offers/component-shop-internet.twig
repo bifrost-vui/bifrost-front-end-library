@@ -1,0 +1,36 @@
+<h3 class="font-weight-light mb-3 text-uppercase">{{ internetPlanTitle|default("Internet 500") }}</h3>
+
+<div class="service-inclusion mb-3">
+    <div class="row border-bottom mb-3 pb-3 align-items-center">
+        <div class="col-2">
+            {% if downloadSpeedIcon is not defined or downloadSpeedIcon is null %}
+                {% include '@atoms/06-icons/icon-svg-download.twig' with { iconSize:3 } %}
+            {% else %}
+                <img src="{{ downloadSpeedIcon }}" alt="" height="40" class="img-fluid {{ iconClass|default('') }}">
+            {% endif %}
+        </div>
+        <div class="col-10">
+            <p class="mb-0">{{ downloadSpeedText|default('Download speed up to 1000 Mbit/s') }}</p>
+        </div>
+    </div>
+    <div class="row border-bottom mb-3 pb-3 align-items-center">
+        <div class="col-2">
+            {% if unlimitedDownloadIcon is not defined or unlimitedDownloadIcon is null %}
+                {% include '@atoms/06-icons/icon-svg-unlimited.twig' with { iconSize:3 } %}
+            {% else %}
+                <img src="{{ unlimitedDownloadIcon }}" alt="" height="40" class="img-fluid {{ iconClass|default('') }}">
+            {% endif %}
+        </div>
+        <div class="col-10">
+            <p class="mb-0">{{ unlimitedDownloadText|default('Unlimited download') }}</p>
+        </div>
+    </div>
+    <div class="row mb-3 pb-3 align-items-center">
+        <div class="col-2">
+            <p class="h5 mb-0 font-weight-bold">{{ personValue|default('1-5') }}</p>
+        </div>
+        <div class="col-10">
+            <p class="mb-0">{{ simultaneousText|default('Connected devices') }}</p>
+        </div>
+    </div>
+</div>

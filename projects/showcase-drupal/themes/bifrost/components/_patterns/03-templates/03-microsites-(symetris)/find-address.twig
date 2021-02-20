@@ -1,0 +1,21 @@
+{% set selectItems = [] %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<section class="find-address-wrapper {{ findClass }}">
+    <form class="mb-1 find-address-form"
+        action="{{ formAction|default('') }}"
+        method="{{ formMethod|default('') }}">
+        {% include '@organisms/11-postal-code/02-postal-code-search--fill-the-address-2.twig' with {
+            class:"",
+            civicNumberLabel: civicNumberLabel,
+            postalCodeLabel: postalCodeLabel,
+            confirmLabel: confirmLabel,
+        } only %}
+        <div class="row mb-3 align-items-end">
+            <div class="col-md-12">
+                {% include '@atoms/03-form/selectlist.twig' with { label:addressLabel|default("Address"), inputId:"address", options:selectItems, extraAttribute:"disabled" } %}
+            </div>
+        </div>
+    </form>
+</section>

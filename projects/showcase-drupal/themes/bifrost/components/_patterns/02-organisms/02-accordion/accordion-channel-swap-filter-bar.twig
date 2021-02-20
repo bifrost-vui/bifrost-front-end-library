@@ -1,0 +1,56 @@
+<section class="border-top sticky-top js-backdrop-on-collapse">
+    <div class="bg-white mh-70-autoscroll">
+        <div class="container-fluid">
+            <div class="collapse" id="collapseChannelFilters">
+                <div class="py-4 py-md-6">
+                    <div class="d-flex mb-3">
+                        <p class="h4 mb-0">Filter your search</p>
+
+                        {% include '@atoms/02-buttons/40-button-link-underline.twig' with {
+                            buttonClass:"ml-4 mb-0 p-0 text-left",
+                            buttonLabel:"Reset filter"
+                        } %}
+                    </div>
+
+                    <div class="d-flex flex-wrap">
+                        {% set categories = ["Movies & series", "News", "Discoveries", "Sports", "Family", "USA", "Variery", "Lifestyle", "Premium", "Specialized"] %}
+                        {% for category in categories %}
+                            {% include '@atoms/03-form/input-selection-btn.twig' with { inputType:"checkbox", inputName:"_channel_cat_filter",inputId:"_channel_cat_filter_"~loop.index, labelName:category, class:"mr-2 mb-2" } %}
+                        {% endfor %}
+                    </div>
+
+                    <hr class="my-md-4">
+
+                    <p class="h4 mb-3">Language</p>
+
+                    <div class="row">
+                        <div class="col-md-9 col-lg-10 mb-3 mb-md-0">
+                            <div class="d-flex flex-wrap">
+                                {% include '@atoms/03-form/input-selection-btn.twig' with { inputType:"checkbox", inputName:"_channel_lang",inputId:"_channel_lang_fr", labelName:"FR", class:"mr-2" } %}
+                                {% include '@atoms/03-form/input-selection-btn.twig' with { inputType:"checkbox", inputName:"_channel_lang",inputId:"_channel_lang_en", labelName:"EN", class:"mr-2" } %}
+                                {% include '@atoms/03-form/input-selection-btn.twig' with { inputType:"checkbox", inputName:"_channel_lang",inputId:"_channel_lang_others", labelName:"Others", class:"" } %}
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-2 text-right">
+                            {% include '@atoms/02-buttons/00-button.twig' with {
+                                buttonClass:"",
+                                buttonLabel:"Apply",
+                                dataToggle:"collapse",
+                                dataTarget:"#collapseChannelFilters",
+                                ariaExpanded: "false",
+                                ariaControls: "collapseChannelFilters",
+                            } %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include '@atoms/02-buttons/30-button-dropdown-label-with-icon.twig' with {
+        buttonClass:"",
+        buttonLabel:"Filter",
+        ariaControls:"collapseChannelFilters"
+    } only %}
+</section>

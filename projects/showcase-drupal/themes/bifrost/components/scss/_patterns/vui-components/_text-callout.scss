@@ -1,0 +1,18 @@
+/* *****************************************************************************
+*
+*  Alerts
+*
+* ***************************************************************************** */
+
+.text-callout {
+  border-left: $alert-callout-border-width solid $primary;
+
+  @each $themeColor, $value in $theme-colors {
+    &--#{$themeColor} {
+      border-left-color: $value;
+      color: darken($value, 30%);
+      background-color: transparentize($value, 0.85);
+    }
+  }
+}
+

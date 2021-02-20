@@ -1,0 +1,37 @@
+<div class="card p-3 p-md-4 py-lg-4 px-lg-6 {{ class|default('') }}">
+    <div class="row align-items-center" data-animate="fade-in">
+        <div class="col-md-3 pr-md-4 pr-lg-6 border-bottom-gray-md--0 border-right-gray-md--200 mb-4 mb-md-0">
+            <div class="d-flex">
+                <h3>{{ title|default('House') }}</h3>
+            </div>
+
+            <p class="mb-0">{{ titleSubInfos|default('123 Blvd St-Laurent, Montreal, QC H3H 3H3') }}</p>
+        </div>
+
+        <div class="col-md-9 pl-md-4 pl-lg-6">
+            <p class="font-weight-bold mb-1">Status</p>
+            {% include '@atoms/08-tags/status.twig' with {
+                class: "",
+                label: "Pending activation",
+                color: "primary"
+            } only %}
+        </div>
+    </div>
+
+
+    <div class="bg-gray--100 p-4 mt-4">
+        <div class="row align-items-center ">
+            <div class="col-md-8 mb-2 mb-md-0">
+                <p class="mb-0">Your equipment should be <strong>delivered on 25 december 2019.</strong></p>
+                <p class="mb-0">When you receive them activate your services.</p>
+            </div>
+            <div class="col-md-4 text-md-right">
+                {% include '@atoms/04-links/01-link-button-outline.twig' with {
+                    label:"View onboarding",
+                    href: "/patterns/04-Pages-02-my-account-(etiya)-00-onboarding/04-Pages-02-my-account-(etiya)-00-onboarding.html",
+                    class:"w-100--mobile-only"
+                } %}
+            </div>
+        </div>
+    </div>
+</div>
