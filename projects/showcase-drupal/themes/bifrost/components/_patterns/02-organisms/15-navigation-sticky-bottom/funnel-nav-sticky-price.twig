@@ -1,0 +1,62 @@
+{% if navItems is not defined %}
+    {% set navItems = [
+        { label: 'Overview', href: '/?p=templates-overview', isActive: true },
+        { label: 'Billing and Payments', href: '/?p=templates-billing-and-payment', isActive: false },
+        { label: 'Services & Equipments', href: '/?p=templates-services', isActive: false },
+        { label: 'Profile and Settings', href: '/?p=templates-profile-and-settings', isActive: false }
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<!-- header-nav-subnav--my-account.twig -->
+<nav id="stickyNavPrice" class="border-bottom-gray--800 js-position-sticky-bottom vui-anim--slide-from-bottom {{ class|default('') }}">
+    {% block nav_content %}
+        <div class="bg--dark color--white py-3">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-9 col-lg-9">
+                        <div class="row">
+                            {% block price_content %}
+                                <div id="stickyNavMonthlyPaymentBlock" class="col-6 col-md-3">
+                                    <div>
+                                        <p class="small font-weight-bold mb-0">Monthly payment</p>
+                                        <div class="d-flex align-items-baseline ">
+                                            <span class="mb-0 fs-4 fs-lg-6 vui--font-secondary">$XXX.XX</span>
+                                            <span class="mb-0 fs-3 fs-lg-5 vui--font-secondary">/month</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="stickyNavOneTimeFeeBlock" style="display: none;" class="col-6 col-md-3 js-stickyPriceBar__one-time-fee">
+                                    <div>
+                                        <p class="small font-weight-bold mb-0">One time fee</p>
+                                        <div class="d-flex align-items-baseline color--primary">
+                                            <span class="mb-0 fs-4 fs-lg-6  vui--font-secondary">$XXX.XX</span>
+                                            <span class="mb-0 fs-3 fs-lg-5 vui--font-secondary"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endblock %}
+                        </div>
+                    </div>
+
+                    <div class="col-12 mt-3 mt-md-0 col-md-3 col-lg-3 text-right">
+                        {% block price_btn_continue %}
+                            {% include '@atoms/04-links/01-link-button.twig' with {
+                                id: "stickyNavContinuBtn",
+                                class:"js-stickyPriceBar__btn color--dark disabled w-100--mobile-only",
+                                buttonColor: "primary",
+                                label: stickyNavPriceBtnNextLabel|default("Continue"),
+                                href: stickyNavPriceBtnNextHref|default("")
+                            } only %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block collapse_content %}{% endblock %}
+</nav>
+
+

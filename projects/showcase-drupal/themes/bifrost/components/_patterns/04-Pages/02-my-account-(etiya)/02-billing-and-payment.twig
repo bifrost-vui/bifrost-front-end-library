@@ -1,0 +1,34 @@
+{% extends "base-page--myaccount.twig" %}
+
+{% set myAccountSubnav_activeSection = "billing-and-payments" %}
+{% set heroPageTitle = "Billing & Payments" %}
+{% set heroPageSubTitle = "Welcome, Benjamin Desjardins" %}
+
+{% set footerHelpCarouselHasSeparator = true %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container_section %}
+    <section class="pb-section">
+        <div class="container-fluid">
+            {% include 'templates-tab-billing-and-payments' %}
+        </div>
+    </section>
+
+    {% include '@organisms/04-content/understanding-my-bill.twig' only %}
+
+    {# Frequently asked questions ---------------------------------------- #}
+    {% include 'templates-faq' with {
+        sectionClass: "py-section"
+    } only %}
+{% endblock %}
+
+{% block modals_container %}
+    {% include 'organisms-modal-pre-payment-activation' %}
+    {% include 'organisms-modal-add-new-payment-method' %}
+    {% include 'organisms-modal-add-new-credit-card' %}
+    {% include 'organisms-modal-edit-credit-card' %}
+    {% include 'organisms-modal-are-you-sure--title-only' %}
+    {% include 'organisms-modal-are-you-sure' %}
+    {% include 'organisms-modal-are-you-sure--warning' %}
+{% endblock %}

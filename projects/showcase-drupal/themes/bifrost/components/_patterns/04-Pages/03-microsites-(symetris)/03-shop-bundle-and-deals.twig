@@ -1,0 +1,95 @@
+{% extends "base-page.twig" %}
+
+{% set page_hero_title = "Bundles & deals" %}
+{% set page_hero_subtitle = "Make Merry Memories! Entertainment your way with Helix!" %}
+
+{% set planOffers = [1,2,3] %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    <section class="py-section">
+        <div class="container-fluid">
+            <div class="row pb-4">
+                <div class="col-lg-10 mb-3">
+                    <div class="d-flex">
+                        <div>
+                            <h2 class="mb-2">Best available offers in your location</h2>
+                            <h4>1234 Sherbrooke East St, H1P2C5 {% include '@atoms/04-links/00-link.twig' with {
+                                    label: "Change location",
+                                    class: "ml-1 pl-2 border-left--dark"
+                                } %}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    {% embed '@atoms/01-text/text-featured.twig' %}
+                        {% block textFeatured_content %}
+                            <p><strong>Already a Helix customer?</strong><br>
+                                Visit my Account to manage your plan.<br>
+                                Simply {% include '@atoms/04-links/00-link.twig' with { label: "Sign In" } %}</p>
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+            </div>
+
+            <div class="row pb-4">
+                <div class="col-12">
+                    {% include '@molecules/02-alert/alert.twig' with {
+                        class: "mb-4",
+                        cardBodyClass: "card-body--condensed",
+                        alertTxt: "Nouveau client : Obtenez toujours les mêmes prix en ligne, par téléphone ou en succursale."
+                    } %}
+                </div>
+            </div>
+
+            <div class="row pb-4">
+                {% for plans in planOffers %}
+                    <div class="col-12 col-md-6 col-lg-4 pb-4">
+                        {% include '@organisms/10-offers/component-card-offer-helix.twig' with {
+                            buttonLabel:"Select this offer",
+                            buttonLinkClass: 'js-dxp-btn-link'
+                        } %}
+                    </div>
+                {% endfor %}
+
+                <div class="col-12">
+                    {% include '@atoms/02-buttons/21-button-load-more.twig' with {
+                        class:"mt-3 mb-5",
+                        buttonLabel: "View more bundles"
+                    } %}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    {% embed '@molecules/03-card/card-block-content--link-beside.twig' with {
+                        class: "bg--dark color--white border-rounded border--0 mb-4",
+                    } %}
+                        {% block block_content %}
+                            <h2 class="vui--font-secondary mb-2">Didn't find the best offer?</h2>
+                            <p class="h4">Build your own custom package, select the options that suit you the best.</p>
+                        {% endblock %}
+                        {% block block_content_link %}
+                            {% include '@atoms/04-links/01-link-button-outline.twig' with {
+                                class: "fs-3",
+                                buttonColor: "white",
+                                label: "Build your package"
+                            } %}
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    {% include '@organisms/02-accordion/01-qa-accordion-list.twig' %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block modals_container %}
+    {% include '@organisms/08-modal/_modal-service-bundle-item-detail.twig' %}
+{% endblock %}

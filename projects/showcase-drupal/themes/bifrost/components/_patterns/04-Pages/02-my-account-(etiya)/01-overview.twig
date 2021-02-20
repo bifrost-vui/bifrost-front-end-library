@@ -1,0 +1,232 @@
+{% extends "base-page--myaccount.twig" %}
+
+{% set myAccountSubnav_activeSection = "overview" %}
+{% set heroPageTitle = "My Helix account" %}
+{% set heroPageSubTitle = "Welcome, Benjamin Desjardins" %}
+
+{% set footerHelpCarouselHasSeparator = true %}
+
+{#{% set blockContentHighlight %}#}
+    {#{% include '@organisms/04-content/account-preview-listing.twig' with { class:"" } %}#}
+{#{% endset %}#}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container_section %}
+    <section class="pb-section">
+        {# overview item ---------------------------------------- #}
+        <div class="mb-7">
+            <div class="gradient gradient-horizontal-5 gradient-horizontal-dark">
+                <div class="container-fluid">
+                    {% include 'molecules-card-overview-item--with-onboarding' with {
+                        class: "card--wider-x mb-3",
+                        title: "Home",
+                        titleSubInfos: "123 Blvd St Laurent, Montreal, Qc H1W H3W",
+                        titleDropdownItems: [
+                            { label:"Home" },
+                            { label:"Cottage" },
+                        ],
+                        balanceTxt: "Due on October 26 2017",
+                        paymentMethodTxt: " "
+                    } only %}
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                {% include '@templates/02-my-account-(etiya)/card/card-overview-item--legacy-invoice.twig' with {
+                    class: "card--wider-x mb-3",
+                    title: "Facture téléphonique",
+                    titleSubInfos: ""
+                } only %}
+
+                {% include 'molecules-card-overview-item--pending-activation' with {
+                    class: "card--wider-x mb-3",
+                    title: "Cottage",
+                    titleSubInfos: "123 Blvd St Laurent, Montreal, Qc H1W H3W",
+                    titleDropdownItems: [
+                        { label:"Home" },
+                        { label:"Cottage" },
+                    ]
+                } only %}
+
+                {% include 'molecules-card-overview-item' with {
+                    class: "card--wider-x mb-3",
+                    title: "Cottage",
+                    titleSubInfos: "123 Blvd St Laurent, Montreal, Qc H1W H3W",
+                    titleDropdownItems: [
+                        { label:"Home" },
+                        { label:"Cottage" },
+                    ]
+                } only %}
+
+                <div class="text-right">
+                    {% include '@atoms/04-links/link-underline-with-icon-left.twig' with {
+                        class:"text-md-right mr-md-4 d-block d-md-inline-block mb-4 mb-md-0",
+                        iconName: "plus-circle",
+                        href: "/patterns/04-Pages-02-my-account-(etiya)-0501-settings-new-user--step-account-permission/04-Pages-02-my-account-(etiya)-0501-settings-new-user--step-account-permission.html",
+                        label: "Add a subscription"
+                    } %}
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            {# Listing options ---------------------------------------- #}
+            <div class="row mb-7" data-animate-row>
+                <div class="col-md-12 col-lg-4 mb-3 mb-lg-0" data-animate>
+                    {% include '@molecules/04-card-links/link-card--with-icon-right.twig' with {
+                        label:"Billing <br>& accounts",
+                        subLabel:"Latest version issued",
+                        href:"/patterns/04-Pages-02-my-account-(etiya)-02-billing-and-payment/04-Pages-02-my-account-(etiya)-02-billing-and-payment.html",
+                        iconName: "file-billing",
+                        iconSize: 5
+                    } only %}
+                </div>
+                <div class="col-md-6 col-lg-4 mb-3 mb-md-0" data-animate>
+                    {% include '@molecules/04-card-links/link-card--with-icon-right.twig' with {
+                        label:"Service Helix",
+                        href:"/patterns/04-Pages-02-my-account-(etiya)-03-services/04-Pages-02-my-account-(etiya)-03-services.html",
+                        iconName: "helix",
+                        iconSize: 7
+                    } only %}
+                </div>
+                <div class="col-md-6 col-lg-4 mb-3 mb-md-0" data-animate>
+                    {% include '@molecules/04-card-links/link-card--with-icon-right.twig' with {
+                        label:"Profile & settings",
+                        href:"/patterns/04-Pages-02-my-account-(etiya)-05-profile-and-settings/04-Pages-02-my-account-(etiya)-05-profile-and-settings.html",
+                        iconName: "user-profile",
+                        iconSize: 7
+                    } only %}
+                </div>
+            </div>
+
+            {% include 'organisms-banner-promo' with {
+                class:"mb-7",
+                alertTitle: "Exclusive offer for you!",
+                alertTxt: "200 bytes lôrem ïpsum dolor sit àmet, consectetur adipiscing elit.",
+                priceSettings: {
+                    dollar: 152,
+                    cent: 34,
+                    isMonthlyPayment: true,
+                    infosSupp: "Taxes excl.",
+                    savings: "Lorem ipsum dolor sit amet",
+                    disclaimer: "Lorem ipsum dolor sit amet 2",
+                },
+                buttonSettings: {
+                    label: "view offer",
+                    link: "/patterns/04-Pages-02-my-account-(etiya)-50-crosssale-details-page/04-Pages-02-my-account-(etiya)-50-crosssale-details-page.html"
+                }
+            } only %}
+
+            <div class="mb-7">
+                {# Alert callout ---------------------------------------- #}
+                {% embed '@molecules/02-alert/alert-callout-with-button.twig' with {
+                    class:"mb-3",
+                    alertTitle: "Mobile client ?"
+                } %}
+                    {% block button_container %}
+                        {% include '@atoms/02-buttons/13-button-outline-with-icon--external-link.twig' with {
+                            buttonLabel: "View services"
+                        } only %}
+                    {% endblock %}
+                {% endembed %}
+
+                {# Alert Expiring Credit Card ---------------------------------------- #}
+                {% embed '@molecules/02-alert/alert-callout-with-button.twig' with {
+                    class:"mb-3",
+                    alertDate: "09/2020",
+                    alertTitle: "Your current credit card is expiring soon.",
+                    alertTxt: "You could update your payment method informations."
+                } %}
+                    {% block button_container %}
+                        {% include '@atoms/02-buttons/13-button-outline-with-icon--external-link.twig' with {
+                            buttonLabel: "Payment methods",
+                             buttonClass:'px-4 ',
+                        } only %}
+                    {% endblock %}
+                {% endembed %}
+
+                {% embed '@molecules/02-alert/alert-callout-with-button.twig' with {
+                    class:"mb-3",
+                    alertDate: "09/2020",
+                    themeColor: "vui-orange",
+                    alertTitle: "Your current credit card has expired.",
+                    alertTxt: "You should update your payment method informations now."
+                } %}
+                    {% block button_container %}
+                        {% include '@atoms/02-buttons/13-button-outline-with-icon--external-link.twig' with {
+                            buttonLabel: "Payment methods",
+                            buttonClass:'px-4 ',
+                        } only %}
+                    {% endblock %}
+                {% endembed %}
+
+                {# Alert callout : request pending ---------------------------------------- #}
+                {% embed '@molecules/02-alert/alert-callout-with-button.twig' with {
+                    class:"mb-3",
+                    alertTitle: "You presently have a request pending!",
+                    alertDate: "03/02/2019",
+                    alertTxt: "Étiam sollicitudin, turpis ac rhoncus fermentum, ante justo iaculis ïpsum."
+                } %}
+                    {% block button_container %}
+                        {% include '@atoms/02-buttons/00-button.twig' with {
+                            buttonClass:"",
+                            buttonLabel:"Accept invitation",
+                            dataToggle:"modal",
+                            dataTarget:"#modalBecomeADelegateConfirmDigit"
+                        } %}
+                    {% endblock %}
+                {% endembed %}
+
+                {# Alert callout : schedule appointments ---------------------------------------- #}
+                {% embed '@molecules/02-alert/alert-callout-with-button.twig' with {
+                    class:"mb-3",
+                    alertTitle: "You presently have <strong>2</strong> scheduled appointments!",
+                    alertDate: "03/02/2019",
+                    alertTxt: " "
+                } %}
+                    {% block button_container %}
+                        {% include '@atoms/04-links/01-link-button.twig' with {
+                            class:"w-100",
+                            buttonColor: "primary",
+                            label: "View details",
+                            href: "/patterns/04-Pages-02-my-account-(etiya)-0101-appointment--selection/04-Pages-02-my-account-(etiya)-0101-appointment--selection.html",
+                        } only %}
+                    {% endblock %}
+                {% endembed %}
+
+                {# Alert callout : suspended acount ---------------------------------------- #}
+                {% include '@molecules/02-alert/alert.twig' with {
+                    class:"mb-0",
+                    themeColor: "vui-orange",
+                    alertTitle: "Your account has been suspended!",
+                    alertDate: "03/02/2019",
+                    alertTxt: "Contact customer service at <strong>1-888-433-6876</strong> to reactivate it."
+                } %}
+            </div>
+
+            {% include 'organisms-videotron-plus-banner' with { class:"mb-6" } only %}
+
+            {# Frequent links ---------------------------------------- #}
+            {% include '@organisms/04-content/frequent-links.twig' %}
+
+            {# Apps ---------------------------------------- #}
+            {% include '@organisms/04-content/helix-directly-on-your-phone.twig' with { class:"" } %}
+        </div>
+    </section>
+
+    {# Frequently asked questions ---------------------------------------- #}
+    {% include 'templates-faq' %}
+{% endblock %}
+
+{#{% block page_main_container_section_under %}#}
+    {# Frequently asked questions ---------------------------------------- #}
+    {#{% include 'templates-faq' %}#}
+{#{% endblock %}#}
+
+
+{% block modals_container %}
+    {% include '@organisms/08-modal/_modal-delegate-confirm-digit.twig' %}
+    {% include 'organisms-modal-videotronplus-subscribe' %}
+    {% include 'organisms-modal-videotronplus-subscribe-confirmation' %}
+{% endblock %}

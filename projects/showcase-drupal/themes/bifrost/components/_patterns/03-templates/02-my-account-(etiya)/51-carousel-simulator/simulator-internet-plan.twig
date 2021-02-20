@@ -1,0 +1,42 @@
+{% set internetPlans = [
+    {
+        title: "Internet 200",
+        isCurrentPlan: false,
+        subTitle: "Unlimited download",
+        jaugeAnimValue: "200",
+        jaugeTextValue: "200",
+        jaugeTextUnit: "MBTS/S",
+    },
+    {
+        title: "Internet GIGA",
+        isCurrentPlan: true,
+        subTitle: "Unlimited download",
+        jaugeAnimValue: "1000",
+        jaugeTextValue: "1",
+        jaugeTextUnit: "GIGA",
+    },
+    {
+        title: "Internet 500",
+        isCurrentPlan: false,
+        subTitle: "Unlimited download",
+        jaugeAnimValue: "500",
+        jaugeTextValue: "500",
+        jaugeTextUnit: "MBTS/S",
+    }
+] %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="mb-8">
+    <div class="text-center">
+        <h2>Choose your internet plan</h2>
+    </div>
+
+    <div class="py-md-4 js-slick-carousel--simulator carousel-simulator carousel-simulator--internet" data-slick='{"initialSlide":1}'>
+        {% for internetPlan in internetPlans %}
+            <div>
+                {% include 'templates-item-service-plan--internet' with internetPlan only %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

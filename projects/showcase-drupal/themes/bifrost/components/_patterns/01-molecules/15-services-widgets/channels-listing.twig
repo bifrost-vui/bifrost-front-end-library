@@ -1,0 +1,29 @@
+{% if channels is not defined or channels is null %}
+    {% set channels = [
+        { imgSrc:"/images/logo/channels/tva-sports.svg"},
+        { imgSrc:"/images/logo/channels/rds.svg"},
+        { imgSrc:"/images/logo/channels/yoopa.svg"},
+        { imgSrc:"/images/logo/channels/vie.svg"}
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="d-flex align-items-center flex-wrap">
+    {% for channel in channels %}
+        <div class="w-20 mb-3">
+            <img src="{{ channel.imgSrc|default('https://source.unsplash.com/25x15/?nature') }}" height="20" alt="{{ channel.imgAlt }}" class=" img-fluid">
+        </div>
+        {% if loop.index is divisible by(5) and not loop.last %}
+            <div class="w-100"></div>
+        {% endif %}
+    {% endfor %}
+
+    {#<div>#}
+        {#{% include '@atoms/04-links/00-link.twig' with {#}
+            {#class:"h6",#}
+            {#label:"+18",#}
+            {#href:""#}
+        {#} %}#}
+    {#</div>#}
+</div>

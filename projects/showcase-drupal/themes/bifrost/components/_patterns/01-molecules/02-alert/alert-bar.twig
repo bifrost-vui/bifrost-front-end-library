@@ -1,0 +1,54 @@
+{# for demo purposes #}
+{% if alertTitle is not defined %}
+    {% set alertTitle = 'Reminder' %}
+{% endif %}
+
+{% if alertTxt is not defined %}
+    {% set alertTxt = 'TPC is included with this offer - Free of charge / VOD - 2 free movies offered per month - For 3 months' %}
+{% endif %}
+
+{% if characterSymbol is not defined %}
+    {% set characterSymbol = '*' %}
+{% endif %}
+
+{% if href is not defined and href_label is not defined %}
+    {% set href = '#' %}
+    {% set href_label = 'Click here for more information' %}
+{% endif %}
+
+{% if isFullWidthContainer is not defined %}
+    {% set isFullWidthContainer = true %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="alert alert-bar text-center fade show {% if theme is defined %} alert-{{ theme|default('info') }}{% endif %} {{ class|default('') }}" role="alert">
+    <div class=" position-relative {% if isFullWidthContainer is defined and isFullWidthContainer is same as (true) %}container-fluid{% endif %}">
+        <div class="align-items-center d-lg-flex justify-content-center">
+            {% if alertTitle is defined and alertTitle is not empty %}
+                <h4 class="text-uppercase mr-1 mb-0 font-weight-medium">{{ alertTitle|default('Reminder') }} </h4>
+            {% endif %}
+
+            {% if alertTxt is defined and alertTxt is not empty %}
+                <p class="mb-0">
+                    {% if characterSymbol is defined and characterSymbol is not empty %} {{ characterSymbol }} {% endif %}
+                    {{ alertTxt|default('TPC is included with this offer - Free of charge / VOD - 2 free movies offered per month - For 3 months')|raw }}
+                    {% if characterSymbol is defined and characterSymbol is not empty %} {{ characterSymbol }} {% endif %}
+                </p>
+            {% endif %}
+
+            {% if href is defined and href is not empty %}
+                <a class="link h6 mb-0 ml-1" href="{{ href|default('#') }}" {{ extraAttribute|default(NULL) }} >{{ href_label|default('Default text link') }}</a>
+            {% endif %}
+        </div>
+
+        {% if hasCloseButton is defined and hasCloseButton is same as (true) %}
+            <button type="button" class="close p-3 position-absolute--center-right {{ alertBtnCloseClass|default('') }}"
+                    data-dismiss="alert"
+                    aria-label="Close"
+                    {{ extraAttribute|default(NULL) }}>
+                {% include '@atoms/06-icons/icon-svg-x.twig' %}
+            </button>
+        {% endif %}
+    </div>
+</div><!-- /.alert -->

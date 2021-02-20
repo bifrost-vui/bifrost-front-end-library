@@ -1,0 +1,26 @@
+{% if inputType == "radio" %}
+    {% set radioVariantClass = "form-selection-input-card-btn--type-radio" %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="form-selection-input-card-btn m-0 card-rounded {{ radioVariantClass|default('') }} {{ class|default('') }} ">
+    <input type="{{ inputType|default('checkbox') }}"
+           id="{{ inputId|default('inputCardBtn') }}"
+           name="{{ inputName|default('') }}"
+           value="{{ inputValue|default('') }}"
+           class="sr-only form-selection-input-card-btn__input {{ inputClass|default('') }}"
+           {% if isDisabled is defined and isDisabled is same as (true) %}disabled="disabled"{% endif %}
+           {% if isSelected is defined and isSelected is same as (true) %}checked="checked"{% endif %}
+           {{ extraAttribute|default(NULL) }}>
+
+    <label for="{{ inputId|default('inputCardBtn') }}"
+           class="form-selection-input-card-btn__label w-100 h-100 m-0 d-flex card-rounded {{ labelClass|default('') }}">
+        {% block label_content %}
+            <!-- The include below is an example, it is not mendatory when using this file as en embed Twig block -->
+            <div class="w-100 d-flex align-items-center card card-rounded bg-gray--100 p-3 py-4">
+                <img class="px-1" src="/images/logo/channels/tva-sports.svg" width="68" height="40" alt="">
+            </div>
+        {% endblock %}
+    </label>
+</div>

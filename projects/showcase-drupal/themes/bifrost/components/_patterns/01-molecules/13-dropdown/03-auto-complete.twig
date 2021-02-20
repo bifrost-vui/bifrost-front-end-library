@@ -1,0 +1,19 @@
+{# For Demo purposes only #}
+{% if autoCompleteItems is not defined or autoCompleteItems is empty %}
+    {% set autoCompleteItems = [
+        {href:"#", search:"It", suggestion:"em 1", class:""},
+        {href:"#", search:"It", suggestion:"em 2", class:""},
+        {href:"#", search:"It", suggestion:"em 3", class:""},
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+<ul id="{{ autoCompleteId|default('') }}" class="list card card-rounded {{ autoCompleteClass|default('') }}">
+    {% for item in autoCompleteItems %}
+        <li class="list__item">
+            <a href="{{ item.href|default('#') }}" class="p-3">
+                <span class="h4 mb-0"><strong>{{ item.search|default('') }}</strong>{{ item.suggestion|default('') }}</span>
+            </a>
+        </li>
+    {% endfor %}
+</ul>

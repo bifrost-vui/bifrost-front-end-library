@@ -1,0 +1,65 @@
+{% embed "molecules-modal" with {
+    modalId:"modalfinalizeMyOffer",
+    modalTitle:"Contact information ",
+    hasScrollContainer: false
+} %}
+    {% block modal_header %}
+        {{ parent() }}
+        <p>We will contact you very soon for your information</p>
+    {% endblock %}
+
+    {% block modal_body %}
+        {# Contact information ------------------------------------------------------------------ #}
+        <div class="row mb-3">
+            <div class="col-md-6">
+                {% include '@atoms/03-form/input-with-label.twig' with { label:"First name", inputId:"account_firstName"} %}
+            </div>
+            <div class="col-md-6 pl-md-1">
+                {% include '@atoms/03-form/input-with-label.twig' with { label:"Last name", inputId:"account_lastName" } %}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                {% include '@atoms/03-form/input-with-label.twig' with { label:"Phone number", inputId:"account_phoneNumber" } %}
+            </div>
+            <div class="col-md-6 pl-md-1">
+                {% include '@atoms/03-form/input-with-label.twig' with { label:"Email address", inputId:"account_lemailAddress", inputType:'email' } %}
+            </div>
+        </div>
+
+        {# COMMUNICATION PREFERENCES ------------------------------------------------------------------ #}
+        <h3>Communication Preferences</h3>
+        <div class="row">
+            <div class="col-md-6 mb-2">
+                <div class="form-group">
+                    <div class="d-flex">
+                        {% include '@atoms/03-form/input-selection-btn.twig' with { inputName:"_account_comm_prefernces",inputId:"_account_comm_prefernces_en", labelName:"English", class:"w-100"  } %}
+                        {% include '@atoms/03-form/input-selection-btn.twig' with { inputName:"_account_comm_prefernces",inputId:"_account_comm_prefernces_fr", labelName:"Français", class:"ml-1 w-100" } %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include '@organisms/02-accordion/02-accordion-best-time.twig' with { class:"mb-5" } only %}
+
+        <div class="row mb-3">
+            <div class="col">
+                {% include '@atoms/03-form/input-checkbox-with-label.twig' with { label:"I accept to receive communication by SMS from Videotron including offers and promotions, but also information about products and services.", inputId:"_account_comm_preferences_agree_sms"} %}
+                {% include '@atoms/03-form/input-checkbox-with-label.twig' with { label:"I accept to receive communication by E-MAIL from Videotron including offers and promotions, but also information about products and services.", inputId:"_account_comm_preferences_agree_email"} %}
+            </div>
+        </div>
+
+        <div class="row mt-6">
+            <div class="col-md-6">
+                <p class="small color-gray--700">By pushing the «Send» button, you agree to be contacted by a Videotron customer service representative.</p>
+            </div>
+            <div class="col-md-4 offset-md-2">
+                {% include '@atoms/02-buttons/00-button.twig' with {
+                    buttonLabel:"Save",
+                    buttonClass:"btn-primary btn--condensed w-100 js-modal-toggle-target",
+                    dataTarget:"#modalFinalizeMyOrderConfirmation"
+                } %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

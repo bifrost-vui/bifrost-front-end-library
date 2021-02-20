@@ -1,0 +1,31 @@
+{% embed "molecules-modal" with {
+    modalId:"modalBecomeADelegateConfirmDigit",
+    modalTitle:"Welcome to John Dow Account ! ",
+    modalSubtitle:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. A consequatur corporis, culpa dignissimos dolor error exercitationem facilis fuga inventore itaque minus nobis numquam placeat quia quo repellat totam veritatis vero.",
+    modalSize: "md",
+    modalHeaderClass: "text-center",
+    modalBodyClass: "text-center",
+} %}
+    {% block modal_body %}
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                {% include '@atoms/03-form/input-password-creation.twig' with {
+                    class:"mb-5",
+                    label:"You 4 digit Pin Number",
+                    inputId:"_becomedelegate_confirm",
+                    inputPlaceholder:"XXXX",
+                    validationList: [
+                        { class:"", label:"Only number" },
+                        { class:"is-invalid", label:"Maximum 4 characters" },
+                    ]
+                } %}
+
+                {% include '@atoms/02-buttons/00-button.twig' with {
+                    buttonLabel:"Confirm",
+                    buttonClass:"btn-primary w-100--mobile-only",
+                    dataDismiss:"modal"
+                } %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

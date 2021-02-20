@@ -1,0 +1,63 @@
+{# Demo content #}
+{% if isStateMissedAppointment is defined %}
+    {% set badgeLabel = "Missed appointment" %}
+    {% set badgeColor = "danger" %}
+
+    {% set cardBodyClass = "vui--desactivated" %}
+{% endif %}
+
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="card card-rounded {{ class|default('') }}">
+    {% include '@atoms/08-tags/badge-tag.twig' with {
+        class:"position-absolute--top-right mr-4 py-2",
+        label: badgeLabel|default("Scheduled"),
+        color: badgeColor|default("primary")
+    } only %}
+
+    <div class="card-body py-6 {{ cardBodyClass|default('') }}">
+        <div class="py-3 border-bottom d-flex align-items-center justify-content-between">
+            <p class="h4 mb-0">Monday - <strong>April 7, 2019</strong></p>
+        </div>
+
+        <div class="py-3 border-bottom d-flex align-items-center">
+            {% include '@atoms/06-icons/icon-svg.twig' with {
+                iconName: "clock",
+                iconClass:"mr-3",
+                iconSize: 2
+            } only %}
+            <p class="mb-0">9h - 12h</p>
+        </div>
+
+        <div class="py-3 d-flex align-items-start">
+            {% include '@atoms/06-icons/icon-svg.twig' with {
+                iconName: "person",
+                iconClass:"mr-3 mt-1",
+                iconSize: 2
+            } only %}
+
+            {% include 'molecules-collapse-input' with {
+                class:"w-100",
+                inputLabel: "John Down",
+                inputValue: "514-444-4444",
+                isNotEditable: true
+            } only %}
+        </div>
+    </div>
+    {% if isStateEdition is defined and isStateEdition is same as (true) %}
+        {% if isStateMissedAppointment is defined %}
+            {% include '@atoms/04-links/01-link-button-outline.twig' with {
+                class: "d-block mx-4 mb-4 mt-minus-4",
+                href: "/patterns/04-Pages-02-my-account-(etiya)-0102-appointment--modification/04-Pages-02-my-account-(etiya)-0102-appointment--modification.html",
+                label: "Reschedule",
+            } %}
+        {% else %}
+            {% include '@atoms/04-links/01-link-button-outline.twig' with {
+                class: "d-block mx-4 mb-4 mt-minus-4",
+                href: "/patterns/04-Pages-02-my-account-(etiya)-0102-appointment--modification/04-Pages-02-my-account-(etiya)-0102-appointment--modification.html",
+                label: "edit",
+            } %}
+        {% endif %}
+    {% endif %}
+</div>

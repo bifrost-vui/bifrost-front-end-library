@@ -1,0 +1,23 @@
+{% if bgImage is defined and bgImage is not empty %}
+    {% set defaultImgSrc = bgImage %}
+{% else %}
+    {% set defaultImgSrc = '/images/hero/hero-block-sample.png' %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="bg-image {{ class|default('') }} alert fade show p-0 color--light" role="alert" data-animate=""
+     data-bg="{{ bgImage|default(defaultImgSrc) }}"
+     data-md-bg="{{ bgMdImage|default(defaultImgSrc) }}"
+     data-lg-bg="{{ bgLgImage|default(defaultImgSrc) }}">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <img class="d-none d-md-block mr-4" src="/images/logo/videotron.svg" height="60" alt="">
+
+            <div>
+                <p class="h3 mb-2">{{ alertTitle|default('Enjoy the Helix experience') }}</p>
+                <p class="mb-1">{{ alertTxt|default('200 bytes lôrem ïpsum dolor sit àmet, consectetur adipiscing elit.') }}</p>
+            </div>
+        </div>
+    </div>
+</div><!-- /.alert -->

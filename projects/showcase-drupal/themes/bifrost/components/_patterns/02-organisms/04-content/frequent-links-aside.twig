@@ -1,0 +1,23 @@
+<!-- frequent-links-aside.twig -->
+
+{% if listItems is not defined %}
+    {% set listItems = [
+        { label: "Bill Summary" },
+        { label: "View My Services" },
+        { label: "Profile & Setting" },
+        { label: "Lingula tristique?" },
+        { label: "Venenatis Fermentum" },
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="bg-gray--100 p-6 {{ class|default('') }}">
+    <h2 class="mb-4" data-animate="">Frequent links</h2>
+
+   {% include '@atoms/15-list/list-arrow.twig' with {
+       listItems:listItems,
+       linkClass:'h5',
+       linkPaddingClass: "py-2"
+   } %}
+</div>

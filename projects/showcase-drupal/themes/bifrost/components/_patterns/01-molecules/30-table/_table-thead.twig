@@ -1,0 +1,30 @@
+{% if theadItems is not defined or theadItems is empty %}
+    {% set theadItems = [
+        { label: "Date", isSortActive: true },
+        { label: "Ammount Due", isSortActive: false },
+        { label: "Reference Number",  isSortActive: false },
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<thead class="thead-{{ theadTheme|default('light') }} {{ class|default('') }}">
+    <tr class="">
+        {% for item in theadItems %}
+            {% if item.isSortActive is same as (true) %}
+                {% set buttonClass = 'is-sort-desc' %}
+            {% else %}
+                {% set buttonClass = '' %}
+            {% endif %}
+            <th class="">
+                <button class="vui--style-reset p-0 d-flex align-items-center vui--font-secondary-bold vui--text-highlight {{ buttonClass|default('') }}">
+                    <span>{{ item.label }}</span>
+
+                     {% include '@atoms/06-icons/icon-svg.twig' with { iconName: "arrow-sort", iconClass:"ml-2" } only %}
+                     {% include '@atoms/06-icons/icon-svg.twig' with { iconName: "arrow-sort-asc", iconClass:"ml-2" } only %}
+                     {% include '@atoms/06-icons/icon-svg.twig' with { iconName: "arrow-sort-desc", iconClass:"ml-2" } only %}
+                </button>
+            </th>
+        {% endfor %}
+    </tr>
+</thead>

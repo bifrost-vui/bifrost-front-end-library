@@ -1,0 +1,68 @@
+{% if isItemDesactivated is defined and isItemDesactivated is same as (true) %}
+    {% set desactivatedClass = 'vui--desactivated' %}
+{% endif %}
+
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="cart-summary-item">
+    <div class="row">
+        <div class="col-8 col-md-6 d-flex align-items-md-center {{ desactivatedClass|default(NULL) }}">
+            <div class="d-flex justify-content-start align-items-start">
+                <div>
+                    <p class="mb-0 font-weight-medium d-flex">
+                        {{ itemTitle|default('Here is a title') }}
+                        {% if itemTitleTooltipInfos is defined and itemTitleTooltipInfos is not empty %}
+                            {% include '@atoms/02-buttons/25-button-tooltip.twig' with {
+                                buttonClass:"ml-1",
+                                buttonDisplay: "inline-flex",
+                                tooltipTxt: itemTitleTooltipInfos
+                            } %}
+                        {% endif %}
+                    </p>
+                    {% if itemSubTitle is defined and itemTitle is not empty %}
+                        <p class="mb-0 small">{{ itemSubTitle|default('(Here is a subtitle)') }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4 col-md-6">
+            <div class="row h-100 align-items-center">
+                <div class="col-md-4 offset-md-1 d-none d-md-block">
+                    {% if inputIncrement is defined %}
+                        {% include '@atoms/03-form/input-increment.twig' with inputIncrement only %}
+
+                    {% else %}
+                        {#<p class="mb-0 ml-md-2">{{ itemQty|default('-') }}</p>#}
+                        {% include '@atoms/03-form/input-increment.twig' with {
+                            class:"ml-md-minus-6 mt-minus-2",
+                            hasResetCountBtn: false,
+                            inputFontFamily: "base",
+                            inputSize: "sm",
+                            iconSize:3,
+                            isControlsHidden : true,
+                            extraAttribute: "readonly disabled"
+                        } only %}
+                    {% endif %}
+                </div>
+
+                <div class="col-12 col-md-7 d-flex flex-column align-items-end">
+                    <p class="mb-0 font-weight-medium {{ desactivatedClass|default(NULL) }}">{{ itemPrice|default('0.00$') }}{% if isItemMontlhyPayment is defined and isItemMontlhyPayment is same as (true) %}<span class="font-weight-light">/month</span></p>{% endif %}
+                    {% if itemSubPriceInfos is defined and itemSubPriceInfos is not empty %}
+                        <p class="mb-0 small color-gray--700 font-italic">{{ itemSubPriceInfos|default('Lorem ipsum') }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {# MOBILE input increment #}
+    {% if inputIncrement is defined %}
+        <div class="d-md-none mt-3">
+            {% include '@atoms/03-form/input-increment.twig' with inputIncrement only %}
+        </div>
+    {% endif %}
+</div>
+

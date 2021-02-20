@@ -1,0 +1,37 @@
+{# For Demo purposes only #}
+{% if dropdownItems is not defined or dropdownItems is empty %}
+    {% set dropdownItems = [
+        {id:"#", href:"", label:"Item 1", class:""},
+        {id:"#", href:"", label:"Item 2", class:""},
+        {id:"#", href:"", label:"Item 3", class:""},
+        {id:"#", href:"", label:"Item 4", class:""},
+        {id:"#", href:"", label:"Item 5", class:""},
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="dropdown dropdown--{{ dropdownTheme|default('light') }} {{ class|default('') }} ">
+    {% include '@atoms/04-links/link-underline-with-icon-left.twig' with {
+        class:"d-block",
+        iconName: iconName|default('edit'),
+        iconSize: iconSize|default(2),
+        iconColor: iconColor|default(""),
+        iconClass: iconClass|default(""),
+        href: "",
+        label: label|default("Changer le nom du compte"),
+        dataToggle: "dropdown"
+    } %}
+
+    <div class="dropdown-menu dropdown-menu--arrow border-0 py-0"
+         x-placement="{{ dropdownXPlacement|default('bottom-center') }}"
+         aria-labelledby="{{ dropdownId|default('btnOutlineDropdownMenu') }}">
+        {% block dropdown_content %}
+            <div class="list-group">
+                {% for item in dropdownItems %}
+                    <button class="list-group-item list-group-item-action">{{ item.label|default('Item') }}</button>
+                {% endfor %}
+            </div>
+        {% endblock %}
+    </div>
+</div>

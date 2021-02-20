@@ -1,0 +1,31 @@
+<div class="form-group {{ class|default('') }}">
+    {% if label is defined %}
+        <label for="{{ inputId }}"
+           class="{{ labelClass|default('') }}"
+           {{ labelExtraAttribute|default(NULL) }}>{{ label|default('Label TODO') }}</label>
+    {% endif %}
+    <div class="d-flex">
+        <div class="w-100">
+            <input id="{{ inputId }}"
+                   class="form-control mt-{{ mtValue|default('1') }} {{ inputClass|default('') }}"
+                   type="{{ inputType|default('text') }}"
+                   placeholder="{{ inputPlaceholder|default('Phone number') }}"
+                   name="{{ inputName|default('') }}"
+                   {{ extraAttribute|default(NULL) }}>
+        </div>
+
+        {# TODO : add dynamic Angular var to show/hide the extnsion #}
+        <div class="col-4 pr-0 d-{{ (isExtAvailable|default(false)) ? 'block' : 'none' }}">
+            <input id="{{ ext_inputId }}"
+                   class="form-control mt-{{ ext_mtValue|default('1') }} {{ ext_inputClass|default('') }}"
+                   type="{{ ext_inputType|default('text') }}"
+                   placeholder="{{ ext_inputPlaceholder|default('Ext.') }}"
+                   name="{{ inputName|default('') }}"
+                   {{ extraAttributeExt|default(NULL) }}>
+        </div>
+    </div>
+
+    <div class="invalid-feedback">
+        {{ invalidMsg|default('This is an invalid error message') }}
+    </div>
+</div><!-- /.form-group -->

@@ -1,0 +1,58 @@
+<div>
+    <h2 class="mb-3 d-inline-block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque distinctio dolorum incidunt?</h2>
+    <div class="row">
+        {% for i in 1..2 %}
+            {% if i == 2 %}
+                {% set price = '$ 60.00' %}
+            {% else %}
+                {% set price = 'free' %}
+            {% endif %}
+
+            <div class="col-md-6 mb-1 mb-md-0">
+                {% embed '@molecules/05-input/input-card-btn.twig' with {
+                    class: "h-100 mb-1 mb-md-0",
+                    isSelected: (loop.first) ? true : false,
+                    isDisabled: false,
+                    inputClass: "js-DEMO-",
+                    inputId: "_self_install_" ~ i,
+                    inputType: "radio",
+                    inputName: "_self_install_"
+                } %}
+                    {% block label_content %}
+                        <div class="card card-rounded d-block w-100 ">
+                            <div class="py-3 px-7">
+                                {% include '@atoms/07-payment/payment-item-price--subtotal.twig' with {
+                                    class: 'h3 mb-1',
+                                    fontWeight: 'bold',
+                                    item: 'Lorem ipsum dolor sit amet,',
+                                    price: price
+                                } only %}
+                            </div>
+
+                            <div class="py-3 px-4 px-md-7">
+                                <div class="mb-4">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias blanditiis cupiditate debitis, dicta dolorum eaque exercitationem facilis in, ipsa ipsam nulla praesentium qui quod tenetur vel. Dignissimos laboriosam perferendis veritatis. </p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias dolore, dicta dolorum eaque exercitationem facilis in, ipsa ipsam nulla praesentium.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias dolore.</p>
+                                </div>
+
+                                <p class="font-weight-medium">Lorem ipsum, dolir sit amet :</p>
+                                <ul class="list-checkmark mb-0">
+                                    <li class="list-checkmark__item">lorem ipsum dolor</li>
+                                    <li class="list-checkmark__item">lorem ipsum dolor</li>
+                                    <li class="list-checkmark__item">lorem ipsum dolor</li>
+                                </ul>
+                            </div>
+                            <div class="py-3 px-4 px-md-7">
+                                {% include '@atoms/01-text/text-information.twig' with {
+                                    class:"mb-2",
+                                    textLabel:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias dolore."
+                                } %}
+                            </div>
+                        </div>
+                    {% endblock %}
+                {% endembed %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

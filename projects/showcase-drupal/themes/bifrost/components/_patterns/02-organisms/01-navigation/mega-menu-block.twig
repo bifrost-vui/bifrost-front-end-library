@@ -1,0 +1,20 @@
+<div class="d-flex align-items-center {{ class|default('') }}">
+    <div class="w-40 pr-4">
+        <img class="card-img-top img-fluid"
+             data-src="{{ imgSrc|default('https://source.unsplash.com/600x400/?nature') }}"
+            {% if imgAlt is not empty %} alt="{{ imgAlt|default('') }}" {% endif %}
+             src="{{ imgSrc|default('https://source.unsplash.com/600x400/?nature') }}"
+             data-holder-rendered="true">
+    </div>
+    <div class="w-50">
+        <p class="h5">
+            {% include '@atoms/04-links/link-default-optimized.twig' with {
+                href:href,
+                label:title|default('Comment ré-initialiser un mot de passe perdu?') ,
+                extraAttribute: "tabindex=-1"
+            } %}
+        </p>
+        <p class="small">{{ text|default('Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit.') }}</p>
+    </div>
+</div>
+

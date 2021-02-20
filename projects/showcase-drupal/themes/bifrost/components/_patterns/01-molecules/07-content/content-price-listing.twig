@@ -1,0 +1,14 @@
+<div class="{{ contentPriceListing_class|default('') }}">
+    <p class="mb-1 h{{ priceHeadingSizeClass|default('5') }} {{ priceHeadingClass|default('') }}">{{ price|default('$57,70/month') }}</p>
+
+    {% if subPrice is defined and subPrice is not empty %}
+        {% include '@atoms/01-text/text-dashed.twig' with {
+            textDashedLabel: subPrice|default("79,00$ /month"),
+            textDashedClass:"d-inline-block mb-0 small color-gray--700"
+        } %}
+    {% endif %}
+
+    {% if subPriceInfos is defined and subPriceInfos is not empty %}
+        <p class="m-0 small color-gray--700">{{ subPriceInfos|default('Promotion available for 12 months') }}</p>
+    {% endif %}
+</div>

@@ -1,0 +1,41 @@
+<!-- Design note:
+  A modal opening another need to be declare in the DOM in the right hierarchy
+    If not, the second modal will open "under" the first one
+
+  To close the first modal then open the second modal, check for bootstrap `data-dismiss="modal"`
+    or has we set un UIKIT button component `dataDismiss:"modal"`,
+ -->
+<!-- Button trigger modal -->
+{% include '@atoms/02-buttons/00-button.twig' with {
+    buttonClass:"btn-primary btn--condensed ",
+    buttonLabel:"DEMO",
+    dataToggle:"modal",
+    dataTarget:"#modalOne"
+} %}
+
+{% embed "molecules-modal" with {
+    modalId:"modalOne",
+    modalSize: "md",
+    modalTitle:"Example Modal One",
+    modalSubtitle:"Lorem Ipsum",
+} %}
+    {% block modal_body_subcontainer %}
+        <!-- Button trigger second modal -->
+        {% include '@atoms/02-buttons/00-button.twig' with {
+            buttonClass:"btn-primary btn--condensed ",
+            buttonLabel:"DEMO",
+            dataToggle:"modal",
+            dataTarget:"#modalTwo"
+        } %}
+    {% endblock %}
+{% endembed %}
+{% embed "molecules-modal" with {
+    modalId:"modalTwo",
+    modalSize: "sm",
+    modalTitle:"Example Modal Two",
+    modalSubtitle:"Lorem Ipsum",
+} %}
+    {% block modal_body %}
+        <div class="">lorem ipsum dolor </div>
+    {% endblock %}
+{% endembed %}

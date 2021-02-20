@@ -1,0 +1,24 @@
+{% embed '@molecules/03-card/card-block-content--link-beside.twig' with {
+    class: class|default('') ~ " bg--none"
+} only  %}
+    {% block block_content %}
+        <div class="d-flex align-items-center">
+            <div class="mr-4 d-none d-lg-block" >
+                {% include '@atoms/06-icons/icon-svg-other-services.twig' only %}
+            </div>
+
+            <div >
+                <p class="h3 font-weight-normal vui--font-secondary">Avez-vous d'autres services avec nous ?</p>
+                <p class="mb-0">Voice & Mobile services are available inside your Customer Center.</p>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block block_content_link %}
+        {% include '@atoms/04-links/link-underline-with-icon--external-link.twig' with {
+            href:"reset",
+            label:"View services",
+            class:"mb-4 h6"
+        } %}
+    {% endblock %}
+{% endembed %}

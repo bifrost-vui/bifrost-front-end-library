@@ -1,0 +1,18 @@
+
+
+<div class="card-body">
+    <p class="mb-4">For security matter, do you, M. John Doe, allow Videotron to register your consent for a credit check and for sharing information with the credit department ?</p>
+
+    {% include '@atoms/01-text/text-information.twig' with {
+        class:"mb-4",
+        textLabel:"If you don't, the equipment will have to be paid as a one time fee at checkout."
+    } %}
+
+    {% include 'templates-tab-input-selection--credit-check' with {} %}
+
+    {% include '@molecules/06-accordion/accordion-nav-btn.twig' with {
+        'class': 'mt-5',
+        'anchorIdPrev': accordionAnchorIdPrev|default(''),
+        'anchorIdNext': accordionAnchorIdNext|default('')
+    } %}
+</div>

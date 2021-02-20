@@ -1,0 +1,26 @@
+<div class="card accordion-item--arrow-down js-scroll-coercion-fix {{ isOpen is same as(true) ? 'active' : '' }} {{ class|default('') }}" {{ extraAttribute|default(NULL) }} data-animate>
+    <button class="vui--style-reset p-0 color--{{ itemColor|default("dark") }}"
+            data-toggle="collapse"
+            data-target="#collapse{{ inlineAnchor|default('defaultAccordionArrowDown') }}"
+            aria-expanded="{{ isOpen is same as(true) ? 'true' : 'false' }}"
+            aria-controls="collapse{{ inlineAnchor|default('defaultAccordionArrowDown') }}"
+    >
+        <div class="card-header border-0 d-flex justify-content-between align-items-center {{ cardHeaderPaddingY|default('py-4') }} {{ cardHeaderClass|default('') }}"
+             id="heading{{ inlineAnchor|default('defaultAccordionArrowDown') }}">
+            {% block collapse_header %}<p class="m-0 h4 text-left lh-3 font-weight-normal">{{ accordionHeaderText|default('Label') }}</p>{% endblock %}
+            {% include '@atoms/06-icons/icon-arrow-to-bottom.twig' with { iconColorTheme:itemColor|default("dark"), iconClass:"p-1" } %}
+        </div>
+    </button>
+
+    <div id="collapse{{ inlineAnchor|default('defaultAccordionArrowDown') }}"
+         class="collapse {{ isOpen is same as(true) ? 'show' : '' }}"
+         aria-labelledby="heading{{ inlineAnchor|default('defaultAccordionArrowDown') }}"
+         data-parent="{{ accordionParent|default("") }}"
+    >
+        {% block collapse_content %}
+            <div class="card-body pt-0">
+                <p class="m-0">{{ accordionCollapseText|default('') }}</p>
+            </div>
+        {% endblock %}
+    </div>
+</div>

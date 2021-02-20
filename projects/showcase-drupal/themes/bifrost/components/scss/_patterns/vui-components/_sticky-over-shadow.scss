@@ -1,0 +1,31 @@
+/* *****************************************************************************
+*
+*  Sticky over shadow
+*
+* ***************************************************************************** */
+
+.sticky-bar--over-shadow {
+  @include transitions(filter);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.0));
+
+  &.js-is-sticky {
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16) );
+  }
+
+  &.js-content-is-collapsed {
+    & ~ .backdrop-over-content {
+      @extend .vui-anim--fade-in;
+      display: block;
+    }
+  }
+
+  & ~ .backdrop-over-content {
+    @include size(100vw, 100vh);
+    display: none;
+    position: fixed;
+    z-index: $zindex-sticky-backdrop;
+    top: 0;
+    left: 0;
+    background: transparentize($modal-backdrop-bg, $modal-backdrop-opacity);
+  }
+}

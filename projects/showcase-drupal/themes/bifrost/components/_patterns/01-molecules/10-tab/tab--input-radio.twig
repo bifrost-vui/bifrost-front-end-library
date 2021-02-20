@@ -1,0 +1,37 @@
+{# DEMO purpose #}
+{% if tabNavItems is not defined or tabNavItems is empty %}
+    {% set tabNavItems = [
+        { id:"billsummary", label:"Bill summary", isSelected:true },
+        { id:"settings", label:"Settings"}
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="tab tab--input-radio {{ tabClass|default('') }}">
+    <div class="tab__header {{ tabHeaderClass|default('') }} border-bottom">
+        <div class="position-relative">
+            <input type="hidden" name="{{ tab.id|default('myTab') }}" value="">
+            <ul class="nav nav-tabs {{ navTabsClass|default('') }}" id="{{ tabNavId|default('myTab') }}" role="tablist"  data-animate="fade-in">
+                {% for tab in tabNavItems %}
+                    <li class="nav-item">
+                        <a class="nav-link vui--font-secondary font-weight-bold h4 mb-0 text-uppercase {{ tab.isSelected|default(false) ? 'active' : '' }}"
+                           id="{{ tab.id|default('myTab') }}-tab"
+                           data-toggle="tab"
+                           href="#{{ tab.id|default('myTab') }}"
+                           role="tab"
+                           aria-controls="{{ tab.id|default('myTab') }}"
+                           aria-selected="{{ tab.isSelected|default('false') }}"
+                                {{ tab.extraAttribute|default(NULL)  }}><div class="nav-link__content">{{ tab.label|default('Default tab link') }}</div></a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <section class="tab__section-content {{ sectionTabClass|default('') }}">
+        <div class="tab-content" id="{{ tabContentId|default('myTabContent') }}">
+            {% block tab_pane_content %}{% endblock %}
+        </div>
+    </section>
+</div>

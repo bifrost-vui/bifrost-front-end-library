@@ -1,0 +1,22 @@
+<div class="card-body">
+    {% include 'molecules-content-h3-with-text' with {
+        title:"Bill payment",
+        text:"Please use a credit card to make a down payment on your equipment."
+    } %}
+
+    {% include '@organisms/20-form/form-credit-card.twig' with { class:"mb-6" } only %}
+
+    <!-- Credit card billing address  -------------------------------- -->
+    {% include 'organisms-form-billing-address-selection--btn-2-choices' only %}
+
+    <hr class="my-6">
+
+    {% include 'templates-tab-input-selection--payment-automatic' with { class:"" } only %}
+
+    {% include 'molecules-accordion-nav-btn' with {
+        'class': 'mt-6',
+        'anchorIdPrev': accordionAnchorIdPrev|default(''),
+        'anchorIdNext': accordionAnchorIdNext|default('')
+    } %}
+</div>
+

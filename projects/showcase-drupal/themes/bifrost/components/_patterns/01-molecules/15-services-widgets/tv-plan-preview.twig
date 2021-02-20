@@ -1,0 +1,22 @@
+{% if channels is not defined %}
+    {% set channels = [
+        { imgSrc:"/images/logo/channels/tva-sports.svg"},
+        { imgSrc:"/images/logo/channels/rds.svg"},
+        { imgSrc:"/images/logo/channels/yoopa.svg"}
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="{{ class|default('') }}">
+    <p class="mb-2 fs-10 vui--font-secondary-light">{{ number|default("+30") }}</p>
+    <p class="text-uppercase small vui--font-secondary mt-minus-2">{{ channelText|default('Choices in <strong>Popular & sports</strong> channel')|raw }}</p>
+
+    <div class="d-flex align-items-center justify-content-center flex-wrap flex-lg-nowrap">
+        {% for channel in channels %}
+            {#<div class="col-6 col-md-4 justify-content-center align-items-center {{ (loop.last) ? "d-none d-md-flex" : NULL }}">#}
+                <img src="{{ channel.imgSrc|default('https://source.unsplash.com/25x15/?nature') }}" alt="" class="img-fluid mb-2 mx-1 ">
+            {#</div>#}
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,131 @@
+<div class="card-body">
+    <div class="mb-4">
+        {#<h2 class="mb-2">Review your order</h2>#}
+        <p>A confirmation email will be sent to <strong>example@email.com</strong> after you place the order. </p>
+    </div>
+
+    {# ------------------------------------------------------------------------------------------------------------------ #}
+    <h3 class="mb-2">Informations</h3>
+    <div class="mb-4">
+        <div class="row d-flex">
+            <div class="col-md-6 mb-3">
+                {% embed '@molecules/03-card/card-infos--with-body.twig' with {
+                    cardClass:"h-100",
+                    headerTitle:"Payment method",
+                    headerSubtitle:"Mastercard"
+                } %}
+                    {% block card_body %}
+                        {% set bodyInfos = [
+                            { title:"Name on the credit card", value:"John Dow"},
+                            { title:"Card Number", value:"**** **** **** 1111"},
+                            { title:"Billing address", value:"800, rue du Square-Victoria,<br>Montréal, QC, H4Z OA4"}
+                        ] %}
+
+                        {% for info in bodyInfos %}
+                            <p>
+                                <span class="font-weight-bold">{{ info.title }}</span>
+                                <br>{{ info.value|raw }}
+                            </p>
+                        {% endfor %}
+
+                        <p class="mb-0">This order will be charged on your next bill.</p>
+                    {% endblock %}
+                {% endembed %}
+            </div>
+            <div class="col-md-6 mb-3">
+                {% embed '@molecules/03-card/card-infos--with-body.twig' with {
+                    cardClass:"h-100",
+                    headerTitle:"Shipping",
+                    headerSubtitle:""
+                } %}
+                    {% block card_body %}
+                        {% set bodyInfos = [
+                            { title:"Lorem ipsum", value:"Dolor sit amet al amena."},
+                            { title:"Lorem ipsum", value:"Dolor sit amet al amena."}
+                        ] %}
+
+                        {% for info in bodyInfos %}
+                            <p>
+                                <span class="font-weight-bold">{{ info.title }}</span>
+                                <br>{{ info.value|raw }}
+                            </p>
+                        {% endfor %}
+
+                        {% include 'molecules-collapse-input' with { class:"" } only %}
+                    {% endblock %}
+                {% endembed %}
+            </div>
+        </div>
+    </div>
+
+    {# ------------------------------------------------------------------------------------------------------------------ #}
+    <h3 class="mb-2">Equipments</h3>
+    {% include '@molecules/09-payment/cart-summary-table.twig' with {
+        class:"mb-4",
+        subtotalPrice:"$580.00",
+        headerPriceDashed:"150,00$",
+        headerPriceSaved:"124,34$",
+        headerPromotionInfos:"Promo valid for 6 months from activation",
+        items: [
+            {
+                itemTitle:"Here is a title",
+                itemTitleTooltipInfos:"Here is a simple tooltip text to be change in the near futur.",
+                itemQty:"1",
+                itemPrice:"$6.00"
+            },
+            {
+                itemTitle:"Here is a title",
+                itemSubTitle:"(Here is a subtitle)",
+                itemTitleTooltipInfos:"Here is a simple tooltip text to be change in the near futur.",
+                itemQty:"1",
+                itemPrice:"$16.00"
+            }
+        ]
+    } %}
+
+    <h3 class="mb-2">Accessories</h3>
+    {% include '@molecules/09-payment/cart-summary-table.twig' with {
+        class:"mb-4",
+        subtotalPrice:"$580.00",
+        headerPriceDashed:"X,XX$",
+        headerPriceSaved:"XX,XX$",
+        items: [
+            {
+                itemTitle:"Item Title",
+                itemSubTitle:"(Item subtitle)",
+                itemTitleTooltipInfos:"Here is a simple tooltip text to be change in the near futur.",
+                itemQty:"1",
+                itemPrice:"$16.00"
+            }
+        ]
+    } %}
+
+    <h3 class="mb-2">Installation</h3>
+    {% include '@molecules/09-payment/cart-summary-table.twig' with {
+        class:"mb-4",
+        subtotalPrice:"$0.00",
+        headerPriceDashed:"X,XX$",
+        headerPriceSaved:"X,XX$",
+        items: [
+            {
+                itemTitle:"Lorem ipsum dolar si amet.",
+                itemSubTitle:"Lorem ipsum dolar si amet.",
+                itemPrice:"FREE"
+            }
+        ]
+    } %}
+
+    {# ------------------------------------------------------------------------------------------------------------------ #}
+
+    <div class="row">
+        <div class="col-12 col-md-8">
+            {% include '@atoms/03-form/input-checkbox-with-label.twig' with { label:'By placing the order, I am confirming that I\'ve read and agree with the <a href="#" class="link">Terms & Conditions</a>', inputId:"account_review_terms"} %}
+        </div>
+    </div>
+
+    <div class="row justify-content-end mt-7">
+        <div class="col-12 col-md-7">
+            {% include '@atoms/02-buttons/00-button.twig' with { buttonLabel:"Place my order", buttonType:"submit", buttonClass:"btn-primary w-100" } %}
+        </div>
+    </div>
+</div>

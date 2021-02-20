@@ -1,0 +1,15 @@
+<!-- input-selection-btn.twig -->
+<div class="form-selection-input-btn d-flex {{ class|default('') }}">
+    <input class="sr-only form-selection-input-btn__input"
+           type="{{ inputType|default('radio') }}"
+           id="{{ inputId|default('radio') }}"
+           value="{{ inputValue|default('option') }}"
+           name="{{ inputName|default('radio') }}"
+           {% if selected is defined and selected is same as (true) %}checked{% endif %}
+            {{ extraAttribute|default(NULL) }}>
+
+    <label class="form-selection-input-btn__label w-100 h-100 d-flex justify-content-center align-items-center text-center text-uppercase {{ labelClass|default('') }}"
+           for="{{ inputId|default('radio') }}"
+            {{ labelExtraAttribute|default(NULL) }}
+    >{{ labelName|default('label')|raw }}</label>
+</div>

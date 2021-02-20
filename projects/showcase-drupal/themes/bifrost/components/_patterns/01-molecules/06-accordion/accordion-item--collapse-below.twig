@@ -1,0 +1,78 @@
+<div class="card accordion-item--collapse-below js-accordion-item-toggle-active-class position-relative {{ isActive|default(false) is same as(true) ? 'active' : '' }} {{ class|default('') }}">
+    <div class="accordion-item__header card-body" id="heading{{ inlineAnchor|default('accordionManagePreference') }}">
+        <div class="row align-items-center">
+            <div class="col-10 col-md-8">
+                {% block accordion_header %}
+                    {% if statusLabel is defined and statusLabel is not empty %}
+                        <div class="row align-items-md-center">
+                            <div class="col-md-8 mb-4 mb-md-0">
+                                <p class="font-weight-bold mb-0">{{ headerTitle|default('Billing Address') }}</p>
+                                {% if headerTxt is defined and headerTxt is not empty %}
+                                    <p class="mb-0">{{ headerTxt|default('211, Saint-Catherine West, Montreal, QC H3E 9Je') }}</p>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4">
+                                {% include '@atoms/08-tags/status.twig' with {
+                                    class: "small",
+                                    label: statusLabel|default("Invite pending"),
+                                    color: statusColor|default("primary")
+                                } only %}
+                            </div>
+                        </div>
+                    {% else %}
+                        <p class="font-weight-bold mb-0">{{ headerTitle|default('Billing Address') }}</p>
+                        <p class="mb-0">{{ headerTxt|default('211, Saint-Catherine West, Montreal, QC H3E 9Je') }}</p>
+                    {% endif %}
+                {% endblock %}
+            </div>
+
+            <div class="col-2 col-md-4 text-right">
+                <button class="tab-btn-collapse btn vui--style-reset p-0 d-flex justify-content-end w-100"
+                        data-toggle="collapse"
+                        data-target="#collapse{{ inlineAnchor }}"
+                        aria-expanded="{{ isActive is same as(true) ? 'true' : 'false' }}"
+                        aria-controls="collapse{{ inlineAnchor}}"
+                >
+                    <div class="tab-btn-collapse__close link-underline">
+                        {% if btnToggleLabel is defined and btnToggleLabel is not empty %}
+                            {{ btnToggleLabel|default('Modifier') }}
+                        {% else %}
+                            {% include '@atoms/06-icons/icon-svg.twig' with {
+                                iconName: btnToggleIconName|default('edit'),
+                                iconSize: btnToggleIconSize|default('3'),
+                                iconClass:"px-1 mb-0"
+                            } only %}
+                        {% endif %}
+                    </div>
+                    {% include '@atoms/06-icons/icon-svg-x.twig' with {iconClass:"tab-btn-collapse__open" } only %}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="collapse{{ inlineAnchor }}"
+         class="collapse {{ isActive|default(false) is same as(true) ? 'show' : '' }}"
+         aria-labelledby="heading{{ inlineAnchor|default('accordionManagePreference') }}"
+         data-parent="{{ accordionParent|default("") }}"
+    >
+        <div class="card-body border-left--vui-yellow border-width-4">
+            {% block collapse_content %}
+                <div class="row">
+                    <div class="col-10">
+                        <h3 class="mb-3">{{ tabContentTitle|default('Account owner name') }}</h3>
+
+                        {% if tabContentSubTitle is defined %}
+                            <p class="mb-4">{{ tabContentSubTitle|default('This is the name we user to greet you when you log in to Videotron. Changing it does not affect the name on your bills or services.') }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endblock %}
+
+            {% include '@molecules/06-accordion/accordion-nav-btn--save-cancel.twig' with {
+                inlineAnchor:inlineAnchor|default('accordionManagePreference'),
+                isActive:isActive
+            } only %}
+        </div>
+    </div>
+</div>

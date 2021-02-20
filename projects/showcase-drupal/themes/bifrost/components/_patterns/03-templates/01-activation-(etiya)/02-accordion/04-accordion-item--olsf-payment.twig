@@ -1,0 +1,37 @@
+{% include 'molecules-alert-bar' with {
+    class:"",
+    isFullWidthContainer: false,
+    theme: "primary",
+    alertTitle: "",
+    alertTxt: "Your credit check is done. Thank you! You can now continue checkout.",
+    characterSymbol: "",
+    href: ""
+} only %}
+
+<div class="card-body">
+    {% include 'molecules-content-h3-with-text' with {
+        title:"Automatic payment",
+        text:"Do you want to subscribe to automatic payment ?"
+    } %}
+
+    {% include 'templates-tab-input-selection--payment' with { class:"mb-4" } only %}
+
+    {% include '@atoms/01-text/text-information.twig' with {
+        class:"mb-4",
+        textLabel:"Your Videotron invoice is available at all times in your My Helix account."
+    } %}
+
+    {% include '@molecules/02-alert/alert.twig' with {
+        class:"mb-4",
+        themeColor: "csr",
+        alertTitle: "Lorem ipsum dolor sit amet",
+        alertTxt: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab eius quis tempora veritatis? Aliquid consectetur, cumque debitis deleniti dolore dolores eaque excepturi maiores nulla numquam pariatur quod ratione repellat totam!</p><p class='mb-0'>Lorem : <strong>ipsum dolor</strong></p><p>Lorem : <strong>ipsum dolor</strong></p>"
+    } %}
+
+    {% include 'molecules-accordion-nav-btn' with {
+        'class': 'mt-6',
+        'anchorIdPrev': accordionAnchorIdPrev|default(''),
+        'anchorIdNext': accordionAnchorIdNext|default('')
+    } %}
+</div>
+

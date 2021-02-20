@@ -1,0 +1,249 @@
+<!-- tab-billing-and-payments.twig -->
+{% embed '@molecules/10-tab/tab.twig' with {
+    navTabsClass: "d-lg-inline-block",
+    tabSectionPaddingBottom:0,
+    tabNavId:"tabPreviewAndSettings",
+    tabContentId:"tabPreviewAndSettingsContent",
+    tabNavItems: [
+        { id:"billSummary", label:"Summary", isSelected:true },
+        { id:"billHistory", label:"History" },
+        { id:"billPreauthorizePayment", label:"Preauthorize payment"},
+        { id:"billPaymentMethod", label:"Payment method"},
+    ]
+} only %}
+    {% block tab_pane_content %}
+        {# Tab : Bill summary ---------------------------------------------- #}
+        <div id="billSummary" class="tab-pane fade active show" role="tabpanel" aria-labelledby="billSummary-tab">
+            <div class="">
+                <div class="row mb-2 mb-md-4 align-items-center" data-animate="fade-in">
+                    <div class="col-md-10">
+                        <h2 class="pl-0 mb-4 mb-md-0" >Preview</h2>
+                    </div>
+
+                    <div class="col-md-2">
+                        {% include '@molecules/13-dropdown/00-dropdown.twig' with {
+                            class:"d-inline-bloc",
+                            buttonClass: "vui--text-highlight",
+                            dropdownId:"dropdownSettingsOverview",
+                            dropdownSelectedItem: "House",
+                            dropdownItems: [
+                                {label : "House", class:""},
+                                {label : "Cabin", class:""}
+                            ]
+                        } only %}
+                    </div>
+                </div>
+
+                {% include 'molecules-card-overview-item' with {
+                    class: "mb-7",
+                    title: "House",
+                    titleSubInfos: "123 Blvd St Laurent, Montreal, Qc H1W H3W"
+                } only %}
+
+                {# TABLE : TV purchase ----------------------------------- #}
+                {#{% include 'molecules-content-heading-with-link-underline' with {#}
+                    {#class:"",#}
+                    {#headingLabel: "TV purchase",#}
+                    {#linkLabel: "View all"#}
+                {#} only %}#}
+                <h2>TV purchase</h2>
+                {% include 'templates-table-billing-tv-purchase' %}
+            </div>
+
+            {#{% include 'templates-billing-summary-side-by-side' only %}#}
+        </div>
+
+        {# Tab : Bill History ---------------------------------------------- #}
+        <div id="billHistory" class="tab-pane fade" role="tabpanel" aria-labelledby="billHistory-tab">
+            <div class="mb-4">
+                <h2 class="mb-2" data-animate="fade-in">Billing & payment history</h2>
+                <p class="" >Please allow 24 hours for the payment to appear in the history. These are your last 36 month Billing Invoice.</p>
+            </div>
+
+            {% include 'templates-tab-billing-and-payments-history' only %}
+        </div>
+
+        {# Tab : Bill preauthorize payment  ---------------------------------------------- #}
+        <div id="billPreauthorizePayment" class="tab-pane fade" role="tabpanel" aria-labelledby="billPreauthorizePayment-tab">
+            <div class="mb-4" data-animate="fade-in">
+                <h2 class="mb-2" >Preauthorize payment</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus atque earum eius nequenon.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-2 mb-md-0">
+                    {% embed '@molecules/03-card/card-infos--with-body.twig' with {
+                        cardClass:"h-100 card-rounded",
+                        headerTitle:"Pre-authorized Payment",
+                        headerSubtitle:"Mastercard"
+                    } %}
+                        {% block card_body %}
+                            <div class="d-flex flex-column h-100 justify-content-center align-items-center ">
+                                <img width="72" src="/images/icons/bifrost/illustration/preauthorize-payment.svg" alt="" class="img-fluid">
+
+                                <p>lorem ipsum dolor sit amet</p>
+
+                                {% include '@atoms/02-buttons/00-button.twig' with {
+                                    buttonColor:"secondary",
+                                    buttonClass:"w-100",
+                                    buttonLabel:"Activate",
+                                    dataToggle:"modal",
+                                    dataTarget:"#modalPrePaymentActivation"
+                                } only %}
+                            </div>
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    {% embed '@molecules/03-card/card-infos--with-body.twig' with {
+                        cardClass:"h-100 card-rounded",
+                        headerTitle:"Pre-authorized Payment",
+                        headerSubtitle:"Mastercard"
+                    } %}
+                        {% block card_body %}
+                            {% include '@atoms/08-tags/status.twig' with {
+                                class: "",
+                                label: "Preauthorize payment active",
+                                color: "success"
+                            } only %}
+
+                            <hr>
+
+                            <div class="">
+                                {% include '@atoms/03-form/selectlist.twig' with {
+                                    label: "Which credit card would you like to pay with?",
+                                    inputId: "payment_method",
+                                    options: [
+                                        { label:"XXXX-XXXX-XXXX-1234", value:"1234" },
+                                        { label:"XXXX-XXXX-XXXX-5678", value:"5678" }
+                                    ]
+                                } %}
+
+                                {% include '@atoms/04-links/link-underline-with-icon-left.twig' with {
+                                    class:"d-block mt-2",
+                                    iconName: "plus-circle",
+                                    label: "Add a new credit card",
+                                    dataToggle:"modal",
+                                    dataTarget: "#modalAddNewCreditCard"
+                                } %}
+                            </div>
+
+                            <hr>
+
+                            {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                                buttonClass:"w-100",
+                                buttonLabel:"Desactivate",
+                                extraAttribute: '',
+                                dataToggle:"modal",
+                                dataTarget:"#modalAreYouSureTitleOnly"
+                            } %}
+
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+            </div>
+        </div>
+
+        {# Tab : Bill Settings  ---------------------------------------------- #}
+        <div id="billPaymentMethod" class="tab-pane fade" role="tabpanel" aria-labelledby="billPaymentMethod-tab">
+            <div class="mb-4" data-animate="fade-in">
+                <h2 class="mb-2" >Payment method</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus atque earum eius nequenon.</p>
+            </div>
+
+            {% for i in 1..2 %}
+                <div class="mb-4">
+                    <h3>Lorem ipsum</h3>
+
+                    <div class="row">
+                        {% set creditCards = [
+                            {type: "Visa", number: "**** **** **** 1234", hasPreauthorizePayment: true},
+                            {type: "Mastercard", number: "**** **** **** 1234", hasPreauthorizePayment: false},
+                        ] %}
+                        {% for card in creditCards %}
+                            <div class="col-md-6 col-lg-4 mb-2 mb-md-3">
+                                {% embed '@molecules/03-card/card-infos--with-body.twig' with {
+                                    cardClass:"h-100 card-rounded",
+                                    header: {
+                                        title: {
+                                            icon: {
+                                                path: "icons/payment/mastercard.svg"
+                                            },
+                                            value: "**** **** **** 1234"
+                                        }
+                                    }
+                                } %}
+                                    {% block card_body %}
+                                        <div class="">
+                                            {% if card.hasPreauthorizePayment %}
+                                                {% include '@atoms/08-tags/status.twig' with {
+                                                    class: "",
+                                                    label: "Preauthorize payment active",
+                                                    color: "success"
+                                                } only %}
+                                            {% else %}
+                                                {% include '@atoms/08-tags/status.twig' with {
+                                                    class: "",
+                                                    label: "No preauthorize payment",
+                                                    color: "default"
+                                                } only %}
+                                            {% endif %}
+
+
+                                            <hr>
+
+                                            <p>Lorem ipsum</p>
+                                            <p>Exp. 05/21</p>
+                                        </div>
+
+                                        <div class="d-flex justify-content-end">
+                                            {% set modalID = "#modalAreYouSure" %}
+                                            {% if card.hasPreauthorizePayment %}
+                                                {% set modalID = "#modalAreYouSureWarning" %}
+                                            {% endif %}
+                                            {% include '@atoms/02-buttons/00-button-icon.twig' with {
+                                                icon: {
+                                                    name: "trash",
+                                                    size: 2
+                                                },
+                                                dataToggle:"modal",
+                                                dataTarget: modalID
+                                            } %}
+                                            {% include '@atoms/02-buttons/00-button-icon.twig' with {
+                                                class: "ml-2",
+                                                icon: {
+                                                    name: "edit",
+                                                    size: 2
+                                                },
+                                                dataToggle:"modal",
+                                                dataTarget: "#modalEditCreditCard"
+                                            } %}
+                                        </div>
+                                    {% endblock %}
+                                {% endembed %}
+                            </div>
+                        {% endfor %}
+
+
+                        <div class="col-md-6 col-lg-4 mb-md-3">
+                            <button class="vui--style-reset p-3 p-sm-10 align-items-center border border-dashed card-rounded d-flex flex-md-column h-100 justify-content-center w-100"
+                                    data-toggle="modal"
+                                    data-target="#modalAddNewCreditCard"
+                            >
+                                {% include '@atoms/06-icons/icon-svg.twig' with {
+                                    iconClass: "mr-2 mr-md-0 mb-md-2 svg-size-md--6",
+                                    iconName:"plus-circle",
+                                    iconSize: 2
+                                } only %}
+
+                                <p class="mb-0">Add a new credit card</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    {% endblock %}
+{% endembed %}

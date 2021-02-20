@@ -1,0 +1,68 @@
+{% if rowDatas is not defined or rowDatas is empty %}
+    {% set rowDatas = [
+        { cellValue: "Oct 10, 2018" },
+        { cellValue: "$136.34" },
+        { cellValue: "76567687-112" }
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<tr class="{{ class|default('') }}">
+    {% for item in rowDatas %}
+        {% if loop.index > 4 %}
+            {% set td_mobileClass = "d-none d-lg-table-cell" %}
+        {% elseif loop.index > 2 %}
+            {% set td_mobileClass = "d-none d-md-table-cell" %}
+        {% endif %}
+
+        <td class="{{ td_mobileClass|default('') }}">
+            {% if item.status is not empty %}
+                {% include '@atoms/08-tags/status.twig' with {
+                    label: item.status.label,
+                    color: item.status.color
+                } only %}
+            {% else %}
+                <p class="mb-1 text-uppercase font-weight-bold">{{ item.cellSubValueInfos }}</p>
+                <span class="h6 mb-0">{{ item.cellValue|raw }}</span>
+            {% endif %}
+        </td>
+    {% endfor %}
+
+    {# MOBILE : btn toggle #}
+    {% if rowDatas|length > 4 %}
+        {% set btnToggleClass = 'd-lg-none' %}
+    {% elseif rowDatas|length > 2 %}
+        {% set btnToggleClass = 'd-md-none' %}
+    {% endif %}
+
+    <td class="{{ btnToggleClass|default('d-none') }}">
+        <button class="vui--style-reset"
+                data-toggle="collapse"
+                data-target="#collapse{{ rowCollapseID }}"
+                aria-expanded="{{ isActive is same as(true) ? 'true' : 'false' }}"
+                aria-controls="collapse{{ rowCollapseID }}"
+        >
+            {% include '@atoms/06-icons/icon-svg.twig' with {
+                iconName: btnToggleIconName|default('plus-circle'),
+                iconSize: btnToggleIconSize|default('3'),
+                iconClass:"px-1 mb-0"
+            } only %}
+            <i class="icon icon-arrow-to-bottom ml-0 icon-dark"></i>
+        </button>
+    </td>
+</tr>
+
+{# MOBILE : collapse info #}
+<tr class="bg-gray--100 d-lg-none">
+    <td colspan="{{ rowDatas|length }}" class="border-top-0 p-0">
+        <div id="collapse{{ rowCollapseID }}"
+             class="collapse"
+             aria-labelledby="heading{{ rowCollapseID }}"
+        >
+            <div class="p-table-td">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi deserunt eum, incidunt iste natus nulla obcaecati, optio possimus quia reiciendis, sint totam voluptates voluptatibus? Accusamus assumenda incidunt quis tempore! Eum.</p>
+            </div>
+        </div>
+    </td>
+</tr>

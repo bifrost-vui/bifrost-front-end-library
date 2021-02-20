@@ -1,0 +1,45 @@
+{% if billingItems is not defined %}
+    {% set billingItems = [
+        {label: "Internet 400", subLabel: "Unlimited Download", price:"--", state:"removed"},
+        {label: "X1 Internet Gateway", subLabel: "Serial # : 019292836363737", price:"10.00", state:"added"},
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="{{ class|default('') }}">
+    {% if hasNoSavings is not defined %}
+        {% set tpl_header = "--with-savings" %}
+    {% endif %}
+
+    {% include '@molecules/09-payment/billing-header' ~ tpl_header|default('') ~ '.twig' with {
+        class:"",
+        title: billingTitle|default("Billing title")
+    } only %}
+
+    {% for item in billingItems %}
+        {% include '@molecules/09-payment/billing-item.twig' with {
+            textLeft: item.label|default('Item'),
+            subTextLeft: item.sublabel|default("This is a subdescription"),
+            textRight: "$" ~ item.price|default("50.00") ~ "/month",
+            state: item.state|default("removed")
+        } only %}
+    {% endfor %}
+
+    <div class="row justify-content-end">
+        <div class="col-11 col-md-8 col-lg-6">
+            {% include '@molecules/09-payment/billing-subtotal.twig' with {
+                isCondensed: true,
+                hasNoBorderTop: true,
+                class:""
+            } only %}
+        </div>
+    </div>
+
+    {% if hasNoFooter is not defined or hasNoFooter is not same as (true) %}
+        {% include '@molecules/09-payment/billing-footer.twig' with {
+            class:"",
+            totalLabel: billingFooterLabel
+        } only %}
+    {% endif %}
+</div>

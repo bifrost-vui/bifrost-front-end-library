@@ -1,0 +1,44 @@
+/* *****************************************************************************
+*
+*  SEARCH
+*
+* ***************************************************************************** */
+
+.helix-global-search {
+  @include transitions(opacity 0.25s ease);
+  opacity: 0;
+  height: 4.1rem;
+
+  @include media-breakpoint-up(lg) {
+    height: 5.26rem !important;
+  }
+
+  &.active {
+    opacity: 1;
+  }
+
+  @include media-breakpoint-down(md) {
+    &.show {
+      position: fixed !important;
+    }
+  }
+}
+
+.helix-global-search-collapse {
+  @include transitions(transform,opacity);
+  pointer-events: none;
+  opacity: 0;
+  display: block;
+  box-shadow: $dropdown-megamenu-box-shadow;
+
+  @include media-breakpoint-down(md) {
+    position: fixed !important;
+    top: 67px;
+    height: 100%;
+  }
+
+  &.is-active {
+    pointer-events: initial;
+    opacity: 1;
+  }
+}

@@ -1,0 +1,43 @@
+<div class="alert alert-callout--{{ themeColor|default('primary') }} {{ class|default('') }} fade show p-0" role="alert" data-animate="">
+    <div class="card">
+        <div class="card-body">
+            <div class="row d-block d-md-flex align-items-center">
+                <div class="col-lg-7 mb-4 mb-lg-0" data-animate-row>
+                    {% if alertDate is defined and alertDate is not empty %}
+                        <p class="mb-1 color-gray--700 small" data-animate="fade-in">{{ alertDate|default('') }}</p>
+                    {% endif %}
+
+                    {% if alertTitle is defined and alertTitle is not empty %}
+                        <p class="h3 mb-2" data-animate="fade-in">{{ alertTitle|default('Alert heading title')|raw }}</p>
+                    {% endif %}
+
+                    <p class="mb-0" data-animate="fade-in">
+                        {{ alertTxt|default('200 bytes lôrem ïpsum dolor sit àmet, consectetur adipiscing elit. Nam nec pretium nulla. Étiam sollicitudin, turpis ac rhoncus fermentum, ante justo iaculis ïpsum, ac elementum Ôdio arcu nec posueres') }}
+                    </p>
+                </div>
+
+                <div class="col-lg-5 " data-animate="fade-in">
+                    <div class="d-flex justify-content-end">
+                        <div class="col-md-9 col-lg-6 p-0 d-flex align-items-center">
+                            {% block button_container %}
+                                {% include '@atoms/02-buttons/13-button-outline-with-icon.twig' with {
+                                    buttonLabel:'Manage your other services',
+                                    buttonClass:'px-4 ',
+                                    iconName:'external-link'
+                                } %}
+                            {% endblock %}
+                        </div>
+
+                        <button type="button" class="close d-none d-md-block p-3 ml-md-3 ml-lg-4"
+                                data-dismiss="alert"
+                                aria-label="Close"
+                                {{ extraAttributeX|default(NULL) }}>
+                            {% include '@atoms/06-icons/icon-svg-x.twig' only %}
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- /.alert -->

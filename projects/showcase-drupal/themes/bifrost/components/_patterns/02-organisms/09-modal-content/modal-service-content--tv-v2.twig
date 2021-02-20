@@ -1,0 +1,125 @@
+{% if tvPlanAdditionalIncludes is not defined %}
+    {% set tvPlanAdditionalIncludes = [
+        'Helix FI Gateway',
+        'Helix FI Gateway',
+        'Helix FI Gateway',
+        'Helix FI Gateway',
+        'Helix FI Gateway',
+    ] %}
+{% endif %}
+
+{% if includedChannels is not defined %}
+    {% set includedChannels = [
+        {imgSrc:"/images/logo/channels/tva-sports.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/canalplus.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/rds.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/yoopa.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/canalplus.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/yoopa.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/rds.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/tva-sports.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/canalplus.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/rds.svg",imgAlt:"Here is my title"}
+    ] %}
+{% endif %}
+
+{% if choiceChannels is not defined %}
+    {% set choiceChannels = [
+        {imgSrc:"/images/logo/channels/tva-sports.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/canalplus.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/rds.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/yoopa.svg",imgAlt:"Here is my title"}
+    ] %}
+{% endif %}
+
+{% if premiumChannels is not defined %}
+    {% set premiumChannels = [
+        {imgSrc:"/images/logo/channels/tva-sports.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/canalplus.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/rds.svg",imgAlt:"Here is my title"},
+        {imgSrc:"/images/logo/channels/yoopa.svg",imgAlt:"Here is my title"}
+    ] %}
+{% endif %}
+
+{% if tvImage is not defined %}
+  {% set tvImage = 'https://source.unsplash.com/450x550/?nature' %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="{{ class|default('') }}">
+    <div class="d-md-flex align-items-end justify-content-between">
+        <div class="mb-3 mb-md-0">
+            <p class="h4 vui--text-highlight vui--font-secondary-bold text-uppercase">{{ tvPlanTitle|default('TV ALL-IN PACK') }}</p>
+            <p class="h4 font-weight-light mb-0">{{ totalChannelCount|default('48') }} {{ totalChannelsTextShort|default('total channels') }}</p>
+        </div>
+
+        {% include '@atoms/04-links/link-underline-with-icon--external-link.twig' with {
+            class:"mb-1",
+            headingSize: 6,
+            label: viewChannelsLabel|default('view channels'),
+            href: viewChannelsHref|default('#view-channels'),
+            extraAttribute: 'target=_blank'
+        } %}
+    </div>
+
+    {% include '@atoms/12-html-elements/hr-bold.twig' with { class:"my-4" } only %}
+
+    <div class="row mt-6">
+        {% if tvImage is defined and tvImage is not empty %}
+            <div class="d-none d-lg-block col-lg-4">
+                {% include '@atoms/11-images/img-lazy-load.twig' with {
+                    class:"",
+                    isSquareMode: true,
+                    src: tvImage
+                } only %}
+            </div>
+        {% endif %}
+
+        <div class="col-md-6 col-lg-3 {{ tvImage is defined and tvImage is not empty ? 'offset-lg-1' : '' }} mb-4 mb-md-0">
+            <p class="font-weight-bold">{{ totalChannelCount }} {{ totalChannelsText|default('channels in total including')}}:</p>
+
+            <div class="mb-5">
+                <p class="font-weight-bold">{{ channelCount|default('23') }} {{ channelCountLabel|default('Basic Channels') }}</p>
+                {% include '@molecules/15-services-widgets/channels-listing.twig' with {
+                    class:"",
+                    channels: includedChannels,
+                } %}
+            </div>
+
+            <div class="mb-5">
+                <p class="font-weight-bold">
+                    +{{ choiceChannelCount|default('15') }} {{ choiceChannelCountLabel|default('channels of your choice') }}</p>
+                <div class="mb-3">
+                    <p class="">{{ highlightedDetailText|default('Popular') }}</p>
+                    {% include '@molecules/15-services-widgets/channels-listing.twig' with {
+                        class:"mb-4",
+                        channels: choiceChannels,
+                    } %}
+                </div>
+            </div>
+
+            {% if showPremiumSection is not defined or showPremiumSection is null or showPremiumSection %}
+                <div class="mb-5">
+                    <p class="font-weight-bold">
+                        +{{ premiumChannelCount|default('1') }} {{ premiumChannelCountLabel|default('Premium choice') }}</p>
+                    {% include '@molecules/15-services-widgets/channels-listing.twig' with {
+                        class:"mb-4",
+                        channels: premiumChannels,
+                    } %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="col-md-6 col-lg-3 offset-lg-1">
+          {% if tvPlanAdditionalIncludes is defined and tvPlanAdditionalIncludes is not empty %}
+            <p class="font-weight-bold">{{ includesLabel|default('Includes') }}</p>
+            <ul class="list-checkmark">
+              {% for include in tvPlanAdditionalIncludes %}
+                  <li class="list-checkmark__item">{{ include|striptags }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+    </div>
+</div>

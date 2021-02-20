@@ -1,0 +1,54 @@
+/* *****************************************************************************
+*
+*  Custom select
+*
+* ***************************************************************************** */
+
+.select-container {
+  position: relative;
+
+  &:before {
+    @include size(1.7rem, 100%);
+    content:"";
+    position: absolute;
+    left: auto;
+    right: 0;
+    top: 0;
+
+    mask: url("/images/icons/svg-atoms/arrow-down.svg") no-repeat;
+    mask-size: 10px 5px;
+    mask-position: left center;
+    background-color: $gray-400;
+    pointer-events: none;
+  }
+
+  .custom-select {
+    @extend .vui--font-secondary-bold;
+    background: $white;
+    font-size: $h6-font-size;
+    padding: 0 $spacer-3;
+    height: 100%;
+    min-height: 2.836rem;
+    //min-height: 45.38px;
+    padding-right: 2.5rem;
+    text-transform: uppercase;
+
+    option:checked {
+      text-transform: uppercase;
+    }
+  }
+
+  &--dark {
+    &:before {
+      background-color: $white;
+    }
+
+    .custom-select {
+      background-color: $gray-800;
+      border-color: $gray-700 !important;
+      color: $white;
+    }
+  }
+}
+
+

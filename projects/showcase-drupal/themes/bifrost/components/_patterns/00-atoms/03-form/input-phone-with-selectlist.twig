@@ -1,0 +1,44 @@
+{% if selectlist_options is not defined %}
+    {% set selectlist_options = [
+        {value:"mobile", label:"Mobile", isSelected: true},
+        {value:"home", label:"Home", isSelected: false},
+        {value:"work", label:"Work", isSelected: false}
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="form-group {{ class|default('') }}">
+    {% if label is defined %}
+        <label for="{{ inputId }}"
+           class="{{ labelClass|default('') }}"
+           {{ labelExtraAttribute|default(NULL) }}>{{ label|default('Label TODO') }}</label>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-5 mb-2 mb-md-0 order-md-2">
+            <label for="{{ selectlist_inputId|default('selectInputID') }}" class="sr-only">{{ labelSelectlist|default('Select options') }}</label>
+            {% include '@atoms/03-form/selectlist.twig' with {
+                class:"mb-0 h-100",
+                inputId: selectlist_inputId|default('selectInputID'),
+                selectContainerClass: selectlist_selectContainerClass|default(''),
+                selectClass: selectlist_selectClass|default(''),
+                extraAttribute: selectlist_extraAttribute|default(''),
+                options: selectlist_options
+            } only %}
+        </div>
+
+        <div class="col-md-7 pr-md-0 order-md-1">
+            <input id="{{ inputId }}"
+                   class="form-control {{ inputClass|default('') }}"
+                   type="{{ inputType|default('text') }}"
+                   placeholder="{{ inputPlaceholder|default('XXX-XXX-XXXX') }}"
+                   name="{{ inputName|default('') }}"
+                   {{ extraAttribute|default(NULL) }}>
+        </div>
+    </div>
+
+    <div class="invalid-feedback">
+        {{ invalidMsg|default('This is an invalid error message') }}
+    </div>
+</div><!-- /.form-group -->

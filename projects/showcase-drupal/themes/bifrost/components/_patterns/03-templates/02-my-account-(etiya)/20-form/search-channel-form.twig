@@ -1,0 +1,54 @@
+<form action="">
+    <div class="row">
+        <div class="col-md-6">
+            {% include '@atoms/03-form/input-search.twig' with {
+                label: "Search channel",
+                inputId: 'search_channel',
+                class: " mb-md-0",
+                mtValue: "0",
+                inputPlaceholder: 'Ex: TVA Sports, 645'
+            } only %}
+        </div>
+        <div class="col-md">
+            {% include '@atoms/03-form/selectlist.twig' with {
+                label: "Category",
+                class: "select-container--light w-100 mb-md-0",
+                selectClass: "vui--font-secondary-bold text-uppercase py-2",
+                options: [
+                { label:"All", value:"0", isSelected:true },
+                {label : "Family", value: "1"},
+                {label : "Lifetyle", value: "2"},
+                {label : "Movies & Series", value: "2"},
+                {label : "Music", value: "2"},
+                {label : "Natural & Discovery", value: "3"},
+                {label : "News", value: "4"},
+                {label : "Sports", value: "5"},
+                {label : "Premium", value: "6"},
+                {label : "Specialized", value: "7"},
+                {label : "Food", value: "8"}
+                ]
+            } %}
+        </div>
+        <div class="col-md">
+            {% include '@atoms/03-form/selectlist.twig' with {
+                label: "Language",
+                class: "select-container--light w-100 mb-md-0",
+                selectClass: "vui--font-secondary-bold text-uppercase py-2",
+                options: [
+                    { label:"All", value:"all", isSelected:true },
+                    { label:"French", value:"fr"},
+                    { label:"English", value: "en" },
+                    { label:"Spanish", value:"es" }
+                ]
+            } %}
+        </div>
+        <div class="col-md-2">
+            {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                buttonColor: "dark",
+                buttonSize: "small",
+                buttonClass: "w-100 mt-md-4 mb-0",
+                buttonLabel:"Search"
+            } %}
+        </div>
+    </div>
+</form>

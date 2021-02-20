@@ -1,0 +1,34 @@
+{# DEmo purpose #}
+
+{% if dataItems is not defined %}
+    {% set dataItems = [
+
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="card {{ class|default('') }}">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6">
+                <p class="m-0 h4 font-weight-medium">{{ headerTextLeft|default('Personal Information') }}</p>
+            </div>
+            <div class="col-6 text-right">
+                <p class="m-0 h4 font-weight-normal">{{ headerTextRight|default('John Doe') }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body py-0">
+        {% for item in dataItems %}
+            {% include '@molecules/09-payment/billing-item.twig' with {
+                textLeft: item.textLeft,
+                subTextLeft: item.subTextLeft|default(''),
+                textRight: item.textRight,
+                state: item.state|default('default'),
+                hasNoBorder: loop.last
+            } only %}
+        {% endfor %}
+    </div>
+</div>

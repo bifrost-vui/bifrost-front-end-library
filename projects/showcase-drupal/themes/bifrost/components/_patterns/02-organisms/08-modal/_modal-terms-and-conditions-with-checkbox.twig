@@ -1,0 +1,36 @@
+{% embed "molecules-modal" with {
+    modalId:"modalTermsAndConditionsWithCheckbox",
+    modalTitle:"Terms & Conditions",
+} %}
+    {% block modal_body %}
+        <div class="modal-body__scroll-container js-DEMO-modal-agree-conditions__legal-text">
+            <p class="font-weight-bold">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempus egestas sed sed risus pretium quam vulputate dignissim. Non blandit massa enim nec dui nunc mattis enim. Ornare massa eget egestas purus viverra accumsan in. Praesent semper feugiat nibh sed. Orci eu lobortis elementum nibh tellus molestie nunc. Duis ultricies lacus sed turpis tincidunt. </p>
+            <p>Fermentum et sollicitudin ac orci phasellus. Purus semper eget duis at tellus at urna condimentum. Massa tempor nec feugiat nisl pretium fusce id. Erat imperdiet sed euismod nisi. Integer quis auctor elit sed vulputate mi sit amet mauris. Vel pretium lectus quam id. Fames ac turpis egestas maecenas pharetra. Varius morbi enim nunc faucibus a pellentesque sit amet. Diam quis enim lobortis scelerisque fermentum dui. Libero id faucibus nisl tincidunt eget. Et pharetra pharetra massa massa ultricies. Mi sit amet mauris commodo quis imperdiet massa tincidunt nunc. Odio euismod lacinia at quis risus sed vulputate odio. Habitant morbi tristique senectus et netus et malesuada fames. Ipsum faucibus vitae aliquet nec ullamcorper sit. Viverra vitae congue eu consequat ac felis donec. Felis donec et odio pellentesque. Urna nunc id cursus metus aliquam eleifend mi in nulla. Bibendum ut tristique et egestas quis ipsum. Sed arcu non odio euismod.</p>
+            <p>Duis tristique sollicitudin nibh sit amet. Id faucibus nisl tincidunt eget nullam non nisi. Mi in nulla posuere sollicitudin aliquam ultrices. Tellus molestie nunc non blandit. Magna fermentum iaculis eu non diam phasellus vestibulum lorem sed. Feugiat nibh sed pulvinar proin gravida hendrerit lectus a. Interdum consectetur libero id faucibus nisl. Ac orci phasellus egestas tellus rutrum tellus pellentesque. Mattis nunc sed blandit libero volutpat sed cras ornare. Nunc scelerisque viverra mauris in aliquam sem fringilla. Ullamcorper malesuada proin libero nunc consequat interdum. Sit amet purus gravida quis blandit turpis. Tempor commodo ullamcorper a lacus. Elit pellentesque habitant morbi tristique senectus et netus et malesuada. Urna molestie at elementum eu facilisis sed. Consequat semper viverra nam libero.</p>
+            <p>Urna cursus eget nunc scelerisque viverra mauris in. Tellus in hac habitasse platea. Eget nunc lobortis mattis aliquam faucibus purus. Volutpat maecenas volutpat blandit aliquam etiam erat velit scelerisque in. Facilisi nullam vehicula ipsum a arcu cursus. Eget magna fermentum iaculis eu non diam phasellus. Quis imperdiet massa tincidunt nunc pulvinar sapien et. Lobortis elementum nibh tellus molestie nunc. Eget duis at tellus at urna condimentum. Diam sollicitudin tempor id eu nisl nunc. Donec enim diam vulputate ut pharetra sit amet. Dui vivamus arcu felis bibendum ut. Non pulvinar neque laoreet suspendisse. Feugiat pretium nibh ipsum consequat nisl vel pretium. Auctor eu augue ut lectus arcu bibendum. Amet massa vitae tortor condimentum lacinia quis.</p>
+            <p>Tortor aliquam nulla facilisi cras fermentum odio eu. Nibh mauris cursus mattis molestie a iaculis at. Amet commodo nulla facilisi nullam vehicula ipsum a arcu cursus. Id nibh tortor id aliquet. Nibh sed pulvinar proin gravida. Adipiscing elit duis tristique sollicitudin. Tortor condimentum lacinia quis vel eros. Dui nunc mattis enim ut tellus elementum sagittis. Vestibulum lorem sed risus ultricies tristique. In iaculis nunc sed augue lacus viverra vitae congue eu. Gravida quis blandit turpis cursus in. Dui vivamus arcu felis bibendum. Sagittis purus sit amet volutpat consequat mauris nunc congue nisi. Turpis in eu mi bibendum neque egestas congue. Porttitor eget dolor morbi non. Sed elementum tempus egestas sed sed risus pretium. Turpis in eu mi bibendum neque egestas congue quisque. Tortor condimentum lacinia quis vel eros donec ac odio. Habitant morbi tristique senectus et netus et. Adipiscing enim eu turpis egestas. Dolor sit amet consectetur adipiscing elit duis. Faucibus scelerisque eleifend donec pretium vulputate sapien nec sagittis. Amet porttitor eget dolor morbi non arcu risus. Velit egestas dui id ornare arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada. Est ante in nibh mauris cursus mattis molestie a.</p>
+        </div>
+
+        <div class="border-top mt-4 pt-4">
+            {% include '@atoms/03-form/input-checkbox-with-label.twig' with {
+                class:"mb-4 js-DEMO-modal-agree-conditions__checkbox-agree vui--desactivated",
+                label:'By placing the order, I accept the software update on equipments.',
+                inputId:"_checkout_terms_agree"
+            } %}
+
+            <div class="d-flex justify-content-center">
+                {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                    buttonClass:"mb-2 mb-md-0 mr-md-3 w-100--mobile-only",
+                    buttonLabel: "Don't agree",
+                    dataDismiss:"modal"
+                } %}
+
+                {% include '@atoms/04-links/01-link-button.twig' with {
+                    class: "disabled js-DEMO-modal-agree-conditions__btn-confirm",
+                    label: "Agree",
+                    href: "http://localhost:8080/patterns/04-Pages-01-activation-(etiya)-70-confirmation/04-Pages-01-activation-(etiya)-70-confirmation.html",
+                } only %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

@@ -1,0 +1,61 @@
+<!-- tab-input-selection--port-in.twig -->
+{% embed '@molecules/10-tab/tab.twig' with {
+    tabClass: class|default('') ~ " tab--input-radio",
+    tabNavId:"tabPortIn",
+    tabContentId:"tabPortInContent",
+    tabNavItems: [
+        { id:"_creditcheck_yes", label:"Yes", isSelected:true },
+        { id:"_creditcheck_no", label:"No", isSelected:false}
+    ]
+} %}
+    {% block tab_pane_content %}
+        {# Tab : Yes, transfert my services ---------------------------------------------- #}
+        <div id="_creditcheck_yes" class="tab-pane fade active show" role="tabpanel" aria-labelledby="tab-creditcheck-yes">
+            <div class="card border-top-0">
+                <div class="card-body">
+                    <h3 class="mb-3">Confirm your informations</h3>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            {% include '@atoms/03-form/input-with-label.twig' with { label:"First name", inputId:"account_creditcheck_firstName"} %}
+                        </div>
+                        <div class="col-md-6">
+                            {% include '@atoms/03-form/input-with-label.twig' with { label:"Last name", inputId:"account_credit_check_lastName" } %}
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+                    <p class="mb-0">Have you been living at this address for at least 2 years?</p>
+                    <p class="font-weight-bold font-italic">4554, Chabot street, Montreal (Quebec) H4I 2H7</p>
+
+                    <div>
+                        {% embed '@molecules/05-input/input-radio-accordion-item-btn--2-choices.twig' with {
+                            inputName: "_account_confirm_credit",
+                            inputId_1: "_account_confirm_credit_yes",
+                            inputId_2: "_account_confirm_credit_no",
+                            inputLabel_1:"Yes",
+                            inputLabel_2:"No"
+                        } %}
+                            {% block collapse_content_2 %}
+                                <div class="mt-3">
+                                    {#{% include 'organisms-address-search' with { class:"" } only %}#}
+                                    {% include '@atoms/03-form/input-with-label.twig' with { label:"Enter an address", inputId:"_account_confirm_credit_address" } %}
+                                    {#{% include '@atoms/04-links/link-underline.twig' with { label:"I Can't find the address", class:" m-0", headingSize:6 } %}#}
+                                </div>
+                            {% endblock %}
+                        {% endembed %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# Tab : No  ---------------------------------------------- #}
+        <div id="_creditcheck_no" class="tab-pane fade" role="tabpanel" aria-labelledby="tab-creditcheck-no">
+            <div class="card border-top-0">
+                <div class="card-body">
+                    <p class="mb-0">No, I don't</p>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

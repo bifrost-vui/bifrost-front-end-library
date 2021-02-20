@@ -1,0 +1,50 @@
+<!-- form-services-disconnect.twig -------------------------------- -->
+<div class="{{ class|default('') }}">
+    {% embed '@molecules/05-input/input-checkbox-accordion-item.twig' with {
+        isSelected : false,
+        class:"mb-2 border-rounded",
+        inputName: "_portin_servicedisconnect_internet",
+        inputLabel:"Internet services",
+    } %}
+        {% set BLOCK_collapse_content %}
+            <div class="card-body px-6 ">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        {% include '@atoms/03-form/input-with-label.twig' with {
+                            label:"Provider",
+                            inputId:"_portin_servicedisconnect_internet_provider"
+                        } only %}
+                    </div>
+                    <div class="col-md-6">
+                        {% include '@atoms/03-form/input-with-label.twig' with {
+                            label:"Account number",
+                            inputId:"_portin_servicedisconnect_internet_accountnumber"
+                        } only %}
+                    </div>
+                </div>
+            </div>
+        {% endset %}
+    {% endembed %}
+
+    {% embed '@molecules/05-input/input-checkbox-accordion-item.twig' with {
+        isSelected : false,
+        class:"mb-2 border-rounded",
+        inputType: "checkbox",
+        inputName: "_portin_servicedisconnect_television",
+        inputLabel:"Television services",
+    } %}
+        {% set BLOCK_collapse_content %}
+            <div class="card-body px-6 ">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        {% include '@atoms/03-form/input-with-label.twig' with { label:"Provider", inputId:"_portin_servicedisconnect_internet_provider"} only %}
+                    </div>
+                    <div class="col-md-6">
+                        {% include '@atoms/03-form/input-with-label.twig' with { label:"Account number", inputId:"_portin_servicedisconnect_internet_accountnumber" } only %}
+                    </div>
+                </div>
+            </div>
+        {% endset %}
+    {% endembed %}
+
+</div>

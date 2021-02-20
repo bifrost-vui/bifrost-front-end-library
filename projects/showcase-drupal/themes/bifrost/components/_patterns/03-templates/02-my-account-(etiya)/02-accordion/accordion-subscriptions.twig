@@ -1,0 +1,33 @@
+<!-- accordion-subscriptions.twig -->
+<div class="{{ class|default('') }}" data-animate="">
+    {#  Subscription ------------------------------------------------------ #}
+    {% embed '@molecules/06-accordion/accordion-item--collapse-below.twig' with {
+        inlineAnchor:"tab_subscriptions",
+        btnToggleIconName: "edit",
+        class:""
+    } %}
+        {% block accordion_header %}
+            <p class="m-0">You may only manage your subscriptions for your account</p>
+        {% endblock %}
+
+        {% block collapse_content %}
+            {% for i in 1..4 %}
+                <div class="row mb-3">
+                    <div class="col-md-8 mb-3 mb-md-0">
+                        <p class="m-0">
+                            <span class="font-weight-medium">Information, latest products and special offers</span>
+                            <br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque dolore excepturi.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row justify-content-end">
+                            <div class="col-6">
+                                {% include '@atoms/03-form/input-toggle-switch.twig' with { class:"m-0", isChecked:true }%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endblock %}
+    {% endembed %}
+</div>

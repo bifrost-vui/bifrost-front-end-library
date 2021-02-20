@@ -1,0 +1,15 @@
+<div class="card card-rounded overflow-hidden {{ class|default('') }}">
+    <div class="card-header vui--style-black">
+        <p class="h4 font-weight-medium mb-0">
+            {% if cardNumber is defined and cardNumber is not empty %}
+                <span class="d-inline-block mr-2">{{ cardNumber|default('1') }}</span>
+            {% endif %}
+            {{ cardTitle|default('Activate your user account') }}</p>
+    </div>
+
+    <div class="card-body">
+        {% block card_content %}
+            <p class="mb-4">{{ cardTxt|default('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi cumque dolorum esse inventore iure laborum.')|raw }}</p>
+        {% endblock %}
+    </div>
+</div>

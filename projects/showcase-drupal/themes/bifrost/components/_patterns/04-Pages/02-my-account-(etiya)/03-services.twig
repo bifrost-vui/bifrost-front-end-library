@@ -1,0 +1,52 @@
+{% extends "base-page--myaccount.twig" %}
+
+{% set myAccountSubnav_activeSection = "services-and-equipments" %}
+{% set heroPageTitle = "My Services & Equipments" %}
+{% set heroPageSubTitle = "Welcome, Benjamin Desjardins" %}
+
+{% set footerHelpCarouselHasSeparator = true %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container_section %}
+    <section class="py-section">
+        <div class="container-fluid">
+            <div class="row mb-2 mb-md-4 align-items-center" data-animate="fade-in">
+                <div class="col-md-10">
+                    <h2 class="pl-0 mb-4 mb-md-0" >Service summary</h2>
+                </div>
+                <div class="col-md-2">
+                    {% include '@molecules/13-dropdown/00-dropdown.twig' with {
+                        class:"d-inline-bloc",
+                        buttonClass: "vui--text-highlight",
+                        dropdownId:"dropdownSettingsOverview",
+                        dropdownSelectedItem: "House",
+                        dropdownItems: [
+                            {label : "House", class:""},
+                            {label : "Cabin", class:""}
+                        ]
+                    } only %}
+                </div>
+            </div>
+
+            {% include 'templates-card-service-preview-item' with { class:"mb-7" } only %}
+
+            {# manage my services  --------------------------------------- #}
+            {% include 'templates-manage-my-services' with { class:"", isViewCSR:true } %}
+        </div>
+    </section>
+
+    <section class="py-section bg-gray--100">
+        <div class="container-fluid">
+            {# Equipments & Accessories --------------------------------------- #}
+            {% include 'templates-manage-my-equipments' with { class:"", isViewCSR:true  } %}
+        </div>
+    </section>
+
+    <section class="py-section">
+        <div class="container-fluid">
+            {# Frequent links---------------------------------------- #}
+            {% include '@organisms/04-content/frequent-links.twig' with { bottomMargin:0 } %}
+        </div>
+    </section>
+{% endblock %}

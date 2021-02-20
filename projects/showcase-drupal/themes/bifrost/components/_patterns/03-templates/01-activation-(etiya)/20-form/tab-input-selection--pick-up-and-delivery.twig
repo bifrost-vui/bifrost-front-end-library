@@ -1,0 +1,55 @@
+<!-- tab-input-selection--port-in.twig -->
+{% embed '@molecules/10-tab/tab.twig' with {
+    tabClass: class|default('') ~ " tab--input-radio",
+    tabNavId:"tabPickUpAndDelivery",
+    tabContentId:"tabPickUpAndDeliveryContent",
+    tabNavItems: [
+        { id:"_pickupAndDelivery_store", label:"In store", isSelected:true },
+        { id:"_pickupAndDelivery_delivery", label:"Delivery", isSelected:false}
+    ]
+} %}
+    {% block tab_pane_content %}
+        {# Tab : Pick up in store  ---------------------------------------------- #}
+        <div id="_pickupAndDelivery_store" class="tab-pane fade active show" role="tabpanel" aria-labelledby="tab-pickupAndDelivery_store">
+            <div class="card border-top-0">
+                <div class="card-body">
+                    <p>Please scan or enter devices' 16-digits serial number.</p>
+
+                    {% for i in 1..2 %}
+                        <div class="row mb-3">
+                            <div class="col-md-7">
+                                {% include '@atoms/03-form/input-with-label.twig' with {
+                                    class:"mb-0",
+                                    label:"Helix FI Gateway",
+                                    labelTooltipTxt:"Here is a tooltip",
+                                    inputId:"_pickup_serialnumbers_" ~ i,
+                                    inputValue:""
+                                } %}
+
+                                {#<p class="mt-2 mb-0 color-gray--600 font-weight-medium small">Warranty expires XX/XX/XXXX</p>#}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+        {# Tab : Delivery  ---------------------------------------------- #}
+        <div id="_pickupAndDelivery_delivery" class="tab-pane fade" role="tabpanel" aria-labelledby="tab-pickupAndDelivery_delivery">
+            <div class="card border-top-0">
+                <div class="card-body">
+                    <div class="mb-4">
+                        <p>The equipment will be shipped at : </p>
+                        <p class="h5 mb-0">4594 Chabot Street,<br>Montreal (Quebec)<br>H2H 1Y3</p>
+                    </div>
+
+                    {% include '@atoms/01-text/text-information.twig' with {
+                        class:"mb-0",
+                        textLabel:"Lorem ipsum dolor sit amet, consectetur adipisicing elit consequuntur."
+                    } %}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

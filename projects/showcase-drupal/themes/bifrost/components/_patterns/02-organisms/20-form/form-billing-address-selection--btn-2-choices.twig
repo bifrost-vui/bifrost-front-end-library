@@ -1,0 +1,23 @@
+<h3 class="mb-3">Billing Address</h3>
+<div class="mb-4">
+    {% embed '@molecules/05-input/input-radio-accordion-item-btn--2-choices.twig' with {
+        inputName: "_creditCard_paymentBilling",
+        defaultSelectedInputId: "paymentBilling_same",
+        inputId_1: "paymentBilling_same",
+        inputId_2: "paymentBilling_new_billing",
+        inputLabel_1:"Use my service address for billing",
+        inputLabel_2:"Enter a new billing address"
+    } %}
+        {% block collapse_content_1 %}
+            <div class="mt-3">
+                <h5 class="color-gray--700">4594, Chabot Street, Montreal (Quebec) H2H 1Y3</h5>
+            </div>
+        {% endblock %}
+        {% block collapse_content_2 %}
+            <div class="mt-3">
+                {% include '@atoms/03-form/input-with-label.twig' with { label:"Enter an address", inputId:"_account_confirm_credit_address" } %}
+                {% include '@atoms/04-links/link-underline.twig' with { label:"I Can't find the address", class:" m-0", headingSize:6 } %}
+            </div>
+        {% endblock %}
+    {% endembed %}
+</div>

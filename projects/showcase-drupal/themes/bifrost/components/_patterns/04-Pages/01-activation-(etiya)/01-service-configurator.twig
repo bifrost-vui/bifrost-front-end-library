@@ -1,0 +1,283 @@
+{% extends "base-page--funnel.twig" %}
+
+{% set page_hero_title = "Sélectionnez maintenant vos équipements Helix" %}
+{#{% set page_hero_subtitle = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur, atque ea eum eveniet expedita iure." %}#}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    {# SECTION : equipment Helix YES/NO ---------------------------------------------- #}
+    <section class="py-section js-fullpage-section">
+        <div class="container-fluid" data-animate="">
+            <div class="row align-items-md-center">
+                <div class="order-2 order-md-1 col-12 offset-0 col-md-5 offset-md-0 col-lg-5 offset-lg-0 mb-4 mb-md-0">
+                    <h2 class="mb-3 d-inline-block">Avez-vous besoin d’acheter un ensemble de départ Helix?</h2>
+                    <p class="">L’ensemble de départ (Helix Internet + Télé) comprend les équipements Helix suivants : la borne Helix Fi, le terminal Helix TV et la télécommande vocale.</p>
+
+                    <p class="mb-5 color-gray--700">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, ad aliquam assumenda blanditiis culpa cupiditate eligendi eos et fugit {% include '@atoms/02-buttons/25-button-tooltip.twig' with {
+                            buttonClass:"ml-2 p-0 top-1",
+                            buttonDisplay: "inline",
+                            tooltipTxt: "lorem ipsum dolor sit amet blah blah.",
+                            iconColor: "svg-fill--info"
+                        } %}</p>
+
+                    {% embed '@atoms/01-text/text-featured.twig' %}
+                        {% block textFeatured_content %}
+                            <p class="mb-2 vui--text-highlight">Attention</p>
+
+                            <ul>
+                                <li>Votre terminal illico et votre routeur ne sont pas compatibles avec les services Helix.</li>
+                                <li>Votre télé doit posséder une entrée HDMI.</li>
+                            </ul>
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+                <div class="order-3 order-md-2 col-12 offset-0 col-md-3 offset-md-1 col-lg-2 offset-lg-1 d-flex flex-md-column">
+                    {% embed '@molecules/05-input/input-card-btn.twig' with {
+                        class: "w-100--mobile-only h-100 mb-md-3 mr-3 mr-md-0",
+                        isSelected: false,
+                        isDisabled: false,
+                        inputClass: "js-fullpage-activate-controls",
+                        inputId: "_byod_yes",
+                        inputType: "radio",
+                        inputName: "_byod"
+                    } %}
+                        {% block label_content %}
+                            <div class="card card-rounded p-4 d-block w-100 text-center">
+                                <p class="vui--font-secondary-bold h5 vui--text-highlight">Oui,</p>
+                                <span class="mb-0 vui--font-secondary h6">je veux acheter les équipements Helix</span>
+                            </div>
+                        {% endblock %}
+                    {% endembed %}
+
+                    {% embed '@molecules/05-input/input-card-btn.twig' with {
+                        class: "w-100--mobile-only h-100",
+                        isSelected: false,
+                        isDisabled: false,
+                        inputClass: "js-fullpage-activate-controls",
+                        inputId: "_byod_no",
+                        inputType: "radio",
+                        inputName: "_byod"
+                    } %}
+                        {% block label_content %}
+                            <div class="card card-rounded p-4 d-block w-100 text-center">
+                                <p class="vui--font-secondary-bold h5 vui--text-highlight">Non,</p>
+                                <span class="mb-0 vui--font-secondary h6">j’ai déjà mes équipements Helix</span>
+                            </div>
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+                <div class="order-1 order-md-3 col-7  offset-2 col-md-3 offset-md-0 col-lg-3 offset-lg-1 mb-3 mb-md-0">
+                    <img src="/images/assets/helix-equipment.png" class="img-fluid w-100" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# SECTION : how many equipment ---------------------------------------------- #}
+    <section id="sectionHowManyEquipments" style="display: none;" class="py-section js-fullpage-section fullpage-section bg-gray--100 mb-5 mb-md-6 border-bottom--white border-width-4">
+        <div class="container-fluid">
+            <div class="row align-items-md-center">
+                <div class="col-md-5 col-lg-5 mb-4 mb-md-0">
+                    <h2 class="mb-3 d-inline-block">Quels équipements Helix possédez-vous?</h2>
+                    <p class="mb-4">Si vous avez acheté vos équipements Helix chez l’un de nos partenaires, renseignez-les ici.</p>
+
+                    {% embed '@atoms/01-text/text-featured.twig' %}
+                        {% block textFeatured_content %}
+                            <p class="mb-2 vui--text-highlight">Attention</p>
+
+                            <ul>
+                                <li>Votre terminal illico et votre routeur ne sont pas compatibles avec les services Helix.</li>
+                            </ul>
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+                <div class="col-md-7 col-lg-6 offset-lg-1">
+                    <div class="row align-items-md-center">
+                        <div class="offset-md-2 col-lg-12 offset-lg-0 d-md-flex flex-md-column">
+                            <div class="row align-items-md-center py-4 border-bottom">
+                                <div class="order-2 order-lg-1 col-8 col-lg-10 ">
+                                    <div class="row align-items-lg-center">
+                                        <div class="order-2 order-lg-1 col-lg-5 ">
+                                            {% include '@atoms/03-form/input-increment.twig' with {
+                                                class: "js-fullpage-activate-controls",
+                                                inputSize: "lg",
+                                                inputMinValue:0,
+                                                inputValue:0,
+                                                inputMaxValue:1
+                                            } only %}
+                                        </div>
+                                        <div class="order-1 order-lg-2 col-lg-5 offset-lg-2  mb-2 mb-lg-0">
+                                            <p class="font-weight-bold mb-0">Borne Helix Fi</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-1 order-lg-2 col-4 col-lg-2 mb-3 mb-lg-0 d-flex justify-content-center">
+                                    {% include '@atoms/06-icons/icon-svg.twig' with {
+                                        iconName: "gateway",
+                                        iconSize: 4,
+                                        iconClass:""
+                                    } only %}
+                                </div>
+                            </div>
+
+                            <div class="row align-items-md-center py-4 border-bottom">
+                                <div class="order-2 order-lg-1 col-8 col-lg-10 ">
+                                    <div class="row align-items-lg-center">
+                                        <div class="order-2 order-lg-1 col-lg-5 ">
+                                            {% include '@atoms/03-form/input-increment.twig' with {
+                                                class: "js-fullpage-activate-controls",
+                                                inputSize: "lg",
+                                                inputMinValue:0,
+                                                inputValue:0,
+                                                inputMaxValue:6
+                                            } only %}
+                                        </div>
+                                        <div class="order-1 order-lg-2 col-lg-5 offset-lg-2  mb-2 mb-lg-0">
+                                            <p class="font-weight-bold mb-0">Terminal Helix TV</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-1 order-lg-2 col-4 col-lg-2 mb-3 mb-lg-0 d-flex justify-content-center">
+                                    {% include '@atoms/06-icons/icon-svg.twig' with {
+                                        iconName: "terminal-handheld",
+                                        iconSize: 7,
+                                        iconClass:""
+                                    } only %}
+                                </div>
+                            </div>
+
+                            <div class="row align-items-md-center py-4">
+                                <div class="order-2 order-lg-1 col-8 col-lg-10 ">
+                                    <div class="row align-items-lg-center">
+                                        <div class="order-2 order-lg-1 col-lg-5 ">
+                                            {% include '@atoms/03-form/input-increment.twig' with {
+                                                class: "js-fullpage-activate-controls",
+                                                inputSize: "lg",
+                                                inputMinValue:0,
+                                                inputValue:0,
+                                                inputMaxValue:18
+                                            } only %}
+                                        </div>
+                                        <div class="order-1 order-lg-2 col-lg-5 offset-lg-2  mb-2 mb-lg-0">
+                                            <p class="font-weight-bold mb-0">Relais Wi-Fi</p>
+                                            <p class=" mb-0">(à l’unité)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-1 order-lg-2 col-4 col-lg-2 mb-3 mb-lg-0 d-flex justify-content-center">
+                                    {% include '@atoms/06-icons/icon-svg.twig' with {
+                                        iconName: "pod",
+                                        iconSize: 4,
+                                        iconClass:""
+                                    } only %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# SECTION : how many tv ---------------------------------------------- #}
+    <section id="sectionHowManyTV" style="display: none;" class="py-section js-fullpage-section fullpage-section bg-gray--100">
+        <div class="container-fluid">
+            <div class="row align-items-md-center mb-6">
+                <div class="order-2 order-md-1 col-12 offset-0 col-md-5 offset-md-0 col-lg-5 offset-lg-0 mb-4 mb-md-0">
+                    <h2 class="mb-3 d-inline-block">Combien de télés HD additionnelles souhaitez-vous connecter à Helix?</h2>
+                    <p class="">Pour chaque télé, vous devez acheter un terminal Helix TV. Une seule borne Helix Fi est nécessaire pour l’ensemble de votre maison.</p>
+
+                    <p class="mb-5 color-gray--700">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, ad aliquam assumenda blanditiis culpa cupiditate eligendi eos et fugit {% include '@atoms/02-buttons/25-button-tooltip.twig' with {
+                            buttonClass:"ml-2 p-0 top-1",
+                            buttonDisplay: "inline",
+                            tooltipTxt: "lorem ipsum dolor sit amet blah blah.",
+                            iconColor: "svg-fill--info"
+                        } %}</p>
+
+                    {% embed '@atoms/01-text/text-featured.twig' %}
+                        {% block textFeatured_content %}
+                            <p class="mb-2 vui--text-highlight">Attention</p>
+
+                            <ul>
+                                <li>Votre télé doit posséder une entrée HDMI.</li>
+                                <li>Votre terminal illico et votre routeur ne sont pas compatibles avec les services Helix.</li>
+                            </ul>
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+                <div class="order-3 order-md-2 col-12 offset-0 col-md-3 offset-md-1 col-lg-2 offset-lg-1 d-flex flex-md-column">
+                    {% include '@atoms/03-form/input-increment.twig' with {
+                        class: "js-fullpage-activate-controls",
+                        inputSize: "lg",
+                        flexContainerClass: "justify-content-center w-100",
+                        inputMinValue:0,
+                        inputValue:0,
+                        inputMaxValue:6
+                    } only %}
+                </div>
+                <div class="order-1 order-md-3 col-7  offset-2 col-md-3 offset-md-0 col-lg-3 offset-lg-1 mb-3 mb-md-0">
+                    <img src="/images/assets/tv.png" class="img-fluid w-100" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# SECTION : TPC  ---------------------------------------------- #}
+    <section id="sectionHasTpc" style="display: none;" class="py-section js-fullpage-section fullpage-section">
+        <div class="container-fluid">
+            <div class="row align-items-md-center">
+                <div class="order-2 order-md-1 col-12 offset-0 col-md-5 offset-md-0 col-lg-5 offset-lg-0 mb-4 mb-md-0">
+                    <h2 class="mb-3 d-inline-block">La Téléphonie Résidentielle vous intéresse ?</h2>
+                    <p class="mb-4">Le modem de téléphonie vous sera fourni gratuitement par Videotron au moment de l’installation. Vous pourrez conserver vos téléphones.</p>
+
+                    {#{% embed '@atoms/01-text/text-featured.twig' %}#}
+                        {#{% block textFeatured_content %}#}
+                            {#<p class="mb-2 vui--text-highlight">Attention</p>#}
+
+                            {#<ul>#}
+                                {#<li>Le terminal illico n’est pas compatible avec les services Helix.</li>#}
+                            {#</ul>#}
+                        {#{% endblock %}#}
+                    {#{% endembed %}#}
+                </div>
+                <div class="order-3 order-md-2 col-12 offset-0 col-md-3 offset-md-1 col-lg-2 offset-lg-1 d-flex flex-md-column">
+                    {% embed '@molecules/05-input/input-card-btn.twig' with {
+                        class: "w-100 mb-md-3 mr-3 mr-md-0",
+                        inputId: "_addTPC-yes",
+                        inputClass: "js-fullpage-activate-controls",
+                        inputType: "radio",
+                        inputName: "_addTPC"
+                    } %}
+                        {% block label_content %}
+                            <div class="card card-rounded p-3 py-4 d-block w-100 text-center minh-7 d-flex align-items-center justify-content-center">
+                                <h5 class="mb-0 text-uppercase">Oui</h5>
+                            </div>
+                        {% endblock %}
+                    {% endembed %}
+
+                    {% embed '@molecules/05-input/input-card-btn.twig' with {
+                        class: "w-100",
+                        inputId: "_addTPC-no",
+                        inputClass: "js-fullpage-activate-controls",
+                        inputType: "radio",
+                        inputName: "_addTPC"
+                    } %}
+                        {% block label_content %}
+                            <div class="card card-rounded p-3 py-4 d-block w-100 text-center minh-7 d-flex align-items-center justify-content-center">
+                                <h5 class="mb-0 text-uppercase">Non</h5>
+                            </div>
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+                <div class="order-1 order-md-3 col-7  offset-2 col-md-3 offset-md-0 col-lg-3 offset-lg-1 mb-3 mb-md-0">
+                    <img src="/images/assets/tpc-phone.png" class="img-fluid w-100" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block page_sticky_bottom_bar %}
+    {% include '@organisms/15-navigation-sticky-bottom/funnel-nav-sticky-price-box--service-configurator.twig' only %}
+{% endblock %}

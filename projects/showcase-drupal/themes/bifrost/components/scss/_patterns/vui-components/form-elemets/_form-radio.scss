@@ -1,0 +1,58 @@
+/* *****************************************************************************
+*
+*  FORM
+*
+* ***************************************************************************** */
+
+.form-radio {
+  &--selected .form-radio__label ,
+  .form-radio__input:checked + .form-radio__label {
+    &:before {
+      border-color: $black;
+      border-width: $custom-checkbox-border-width;
+    }
+
+    &:after {
+      opacity: 1;
+      transform: scale(0.3);
+    }
+  }
+
+  .form-radio__label {
+    position: relative;
+    padding-left: 2rem;
+    font-weight: $font-weight-base;
+    font-size: $font-size-base;
+
+    @include hover-focus {
+      cursor: pointer;
+    }
+
+    &:before {
+      @include transitions(border-color);
+      @extend .icon-box;
+      content: '';
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: translate(0%, 0%);
+      background: $white;
+    }
+
+    &:after {
+      @include transitions(opacity, transform $transition-time-medium $transition-ease-bounce);
+      @include size(1.1rem);
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: 50%;
+      background: $dark;
+      background-position: center;
+      background-size: 60%;
+      opacity: 0;
+      transform: scale(0);
+    }
+  }
+}

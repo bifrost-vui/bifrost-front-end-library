@@ -1,0 +1,76 @@
+<!-- accordion-account-informations.twig -->
+<div class="list-card {{ class|default('') }}" data-animate>
+    {# Account owner name ------------------------------------------------------ #}
+    {% embed '@molecules/06-accordion/accordion-item--collapse-below.twig' with {
+        inlineAnchor:"tab_ownerName",
+        btnToggleIconName: "edit",
+        headerTitle:"Account owner name",
+        headerTxt:"Benjamin Desjardins",
+        class:"",
+        tabContentTitle: "Account owner name",
+        tabContentSubTitle: "This is the name we user to greet you when you log in to Videotron. Changing it does not affect the name on your bills or services."
+    } %}
+        {% block collapse_content %}
+            <div class="row">
+                <div class="col-md-6">
+                    {% include '@atoms/03-form/input-with-label.twig' with { inputValue:"Benjamin", label:"First Name", inputId:"first_name", inputType:"text", class:"" } %}
+                </div>
+                <div class="col-md-6">
+                    {% include '@atoms/03-form/input-with-label.twig' with { inputValue:"Desjardins", label:"Last Name", inputId:"first_name", inputType:"text", class:"is-invalid" } %}
+                </div>
+            </div>
+        {% endblock %}
+    {% endembed %}
+
+    {# Account number ------------------------------------------------------ #}
+    {% include '@molecules/03-card/card-block-content.twig' with { title:"Account number", txt:"1237656524318736", class:"" } %}
+
+    {# Username ------------------------------------------------------ #}
+    {% embed '@molecules/06-accordion/accordion-item--collapse-below.twig' with {
+        inlineAnchor:"tab_emailAddress",
+        btnToggleIconName: "edit",
+        headerTitle:"Username",
+        headerTxt:"benjamin@videotron.ca",
+        class:"",
+        tabContentTitle: "Changing your username",
+        tabContentSubTitle: "Use this email address to easily differentiate between multiple Videotron accounts."
+    } %}
+        {% block collapse_content %}
+            <div class="row">
+                <div class="col">
+                    {% include '@atoms/03-form/input-with-label.twig' with { inputValue:"benjamin@videotron.ca", label:"Email Address", inputId:"email_address", inputType:"email", class:"" } %}
+                </div>
+            </div>
+        {% endblock %}
+    {% endembed %}
+
+    {# Password ------------------------------------------------------ #}
+    {% embed '@molecules/06-accordion/accordion-item--collapse-below.twig' with {
+        inlineAnchor:"tab_password",
+        btnToggleIconName: "edit",
+        headerTitle:"Password",
+        headerTxt:"******",
+        class:"",
+        tabContentTitle: "Changing your password",
+        tabContentSubTitle: "You can change your account password for added security. Password must be 8–16 characters without spaces, and contain at least one letter, one number and / or special character."
+    } %}
+        {% block collapse_content %}
+            <div class="row">
+                <div class="col-md-6">
+                    {% include '@atoms/03-form/input-password-creation.twig' with { label:"Current Password", inputId:"input_password", class:"" } %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {% include '@atoms/03-form/input-password-creation.twig' with { label:"New Password", inputId:"input_password", class:"" } %}
+                </div>
+                <div class="col-md-6">
+                    {% include '@atoms/03-form/input-password-creation.twig' with { label:"Confirm new Password", inputId:"input_password", class:"" } %}
+                </div>
+            </div>
+        {% endblock %}
+    {% endembed %}
+
+    {# Service address ------------------------------------------------------ #}
+    {% include '@molecules/03-card/card-block-content.twig' with { title:"Service address", txt:"1211, Main Street, Montreal, QC H3E 1W9"} %}
+</div>

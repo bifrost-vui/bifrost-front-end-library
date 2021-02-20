@@ -1,0 +1,100 @@
+{% if bgImage is defined and bgImage is not empty %}
+    {% set defaultImgSrc = bgImage %}
+{% else %}
+    {% set defaultImgSrc = '/images/hero/helix-box-small.jpg' %}
+{% endif %}
+
+{% if bgMediumImage is defined and bgMediumImage is not empty %}
+    {% set defaultMediumImgSrc = bgMediumImage %}
+{% else %}
+    {% set defaultMediumImgSrc = '/images/hero/helix-box-medium.jpg' %}
+{% endif %}
+
+{% if bgLargeImage is defined and bgLargeImage is not empty %}
+    {% set defaultLargeImgSrc = bgLargeImage %}
+{% else %}
+    {% set defaultLargeImgSrc = '/images/hero/helix-box.jpg' %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<section class="hero-block hero-background vui--style-black js-image-background {{ bgImagePosition|default('right') }} {{ bgImageQueries|default(null) }} pt-6 pb-6 {{ class|default('') }}"
+         data-bg="{{ bgImage|default(defaultImgSrc) }}"
+         data-md-bg="{{ bgMediumImage|default(defaultMediumImgSrc) }}"
+         data-lg-bg="{{ bgLargeImage|default(defaultLargeImgSrc) }}">
+    <div class="container-fluid {{ containerClass|default('') }}">
+        {% if breadcrumb is defined %}
+            {{ breadcrumb }}
+        {% endif %}
+
+        <div class="col-12 col-lg-6 py-2 py-md-5 pl-lg-6">
+            <h1 class="mb-3">{{ title|default('The lastest Helix deals right around the corner.') }}</h1>
+            {% if description is not defined or description is not empty %}
+                <p>{{ description|default('Nous vous proposerons les meilleures offres et forfaits disponibles pour vous.') }}</p>
+            {%  endif %}
+        </div>
+
+        <div class="mt-lg-3 {{ class|default('') }}">
+            <div class="d-flex flex-wrap align-items-center bg-gray--900 px-3 py-4 p-lg-6 {{ cardContentClass|default('') }}">
+                <div class="col-12 col-lg-8 pr-lg-6">
+                <h2 class="mb-3">{{ subTitle|default('All we need is your address') }}</h2>
+                    {% block check_eligibitlity_form %}
+                        <form class="d-flex flex-column flex-md-row mb-1"
+                              action="{{ formAction|default('') }}"
+                              method="{{ formMethod|default('') }}">
+
+                            {% include '@atoms/03-form/input.twig' with {
+                                class: "w-100 pr-0 pr-md-3 mb-1"
+                            } %}
+
+                            {% include '@atoms/03-form/input-submit.twig' with {
+                                class: '',
+                                inputClass: "w-100--mobile-only",
+                                inputId: submitInputId,
+                                inputValue: submitInputValue|default('Check'),
+                                extraAttribute:"disabled"
+                            } %}
+
+                        </form>
+                    {% endblock %}
+                    {% include '@atoms/04-links/link-underline.twig' with {
+                        href: hrefNotFind|default(''),
+                        label: labelNotFind|default("I can't find the address"),
+                        headingSize: "6",
+                        class: "d-inline-block mb-4 mb-lg-0 cant-find-address"
+                    } %}
+                </div>
+
+                <div class="col-12 col-lg-4 pt-3 py-lg-0 pl-lg-6 border-top-gray--700 border-top-lg--0 border-left-gray-lg--700">
+                    <h2 class="mb-2">{{ titleCustomer|default('Already a Helix customer?') }}</h2>
+                    <p class="">{{ textCustomer|default('Visit my Account to manage your plan.') }}</p>
+                    <p class="mb-0">{% if textSignIn %}{{ textSignIn|default('Simply') }}{% endif %}
+                        {% include '@atoms/04-links/01-link-button-outline.twig' with {
+                            class: "w-100--mobile-only",
+                            buttonSize: "",
+                            buttonColor: "light",
+                            label: labelSignIn|default("Sign In"),
+                            href: hrefSignIn|default(''),
+                        } %}
+                    </p>
+
+                    {% if textFeatureMessage is defined and textFeatureMessage is not empty %}
+                        {% embed '@atoms/01-text/text-featured.twig' with { class:"mt-4" } %}
+                            {% block textFeatured_content %}
+                                {{ textFeatureMessage }}
+                            {% endblock %}
+                        {% endembed %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include '@templates/03-microsites-(symetris)/find-address.twig' with {
+    findClass: 'd-none',
+    civicNumberLabel: civicNumberLabel,
+    postalCodeLabel: postalCodeLabel,
+    addressLabel: addressLabel,
+    confirmLabel: confirmLabel,
+} %}

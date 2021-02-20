@@ -1,0 +1,96 @@
+<!-- accordion-communicatons-preferences.twig -->
+<div class="list-card {{ class|default('') }}" data-animate="">
+    {# preferences 1  ------------------------------------------------------ #}
+    {% embed '@molecules/06-accordion/accordion-item--collapse-below.twig' with {
+        inlineAnchor:"tab_preferences1",
+        btnToggleIconName: "edit",
+        tabContentTitle: "Manage preferences",
+        class:""
+    } %}
+        {% block accordion_header %}
+            <p class="m-0 mb-3">
+                <span class="font-weight-medium">Phone Number 1</span>
+                <br>(438) 733-83736 - Mobile
+            </p>
+            <p class="m-0">
+                <span class="font-weight-medium">Personal Email</span>
+                <br>benjamin@videotron.ca
+            </p>
+        {% endblock %}
+
+        {% block collapse_content %}
+            <div class="row mb-3 d-none d-md-block">
+                <div class="col-md-4 offset-md-8">
+                    <div class="row">
+                        <div class="col-6 d-flex justify-content-center"><span class="font-weight-medium">Courriel</span></div>
+                        <div class="col-6 d-flex justify-content-center"><span class="font-weight-medium">Text</span></div>
+                    </div>
+                </div>
+            </div>
+
+            {% for i in 1..4 %}
+                <div class="row mb-4">
+                    <div class="col-md-8 mb-3 mb-md-0">
+                        <p class="m-0">
+                            <span class="font-weight-medium">Information, latest products and special offers</span>
+                            <br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque dolore excepturi.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row mb-3 mb-md-0">
+                            <div class="col-md-6 d-md-flex justify-content-center flex-column align-items-center mb-3 mb-md-0">
+                                <div class="row">
+                                    <div class="col-6 d-md-none d-flex align-items-center">
+                                        <p class="font-weight-medium m-0">Courriel</p>
+                                    </div>
+                                    <div class="col-6 col-md-12">
+                                        {% include '@atoms/03-form/input-toggle-switch.twig' with { class:"m-0", isChecked:true } %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 d-md-flex justify-content-center flex-column align-items-center">
+                                <div class="row">
+                                    <div class="col-6 d-md-none d-flex align-items-center">
+                                        <p class="font-weight-medium m-0">Text</p>
+                                    </div>
+                                    <div class="col-6 col-md-12">
+                                        {% include '@atoms/03-form/input-toggle-switch.twig' with { class:"m-0" } %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endblock %}
+    {% endembed %}
+
+    {# Preferences 2 ------------------------------------------------------ #}
+    {% embed '@molecules/06-accordion/accordion-item--collapse-below.twig' with {
+        inlineAnchor:"tab_preferences2",
+        btnToggleIconName: "edit",
+        headerTitle:"Personnal Email",
+        headerTxt:"john.dow2@gmail.com",
+        class:""
+    } %}
+        {% block collapse_content %}
+            {% for i in 1..4 %}
+                <div class="row mb-4">
+                    <div class="col-md-8 mb-3 mb-md-0">
+                        <p class="m-0">
+                            <span class="font-weight-medium">Information, latest products and special offers</span>
+                            <br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque dolore excepturi.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row justify-content-end">
+                            <div class="col-6">
+                                {% include '@atoms/03-form/input-toggle-switch.twig' with { class:"m-0", isChecked:true }%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endblock %}
+    {% endembed %}
+</div>

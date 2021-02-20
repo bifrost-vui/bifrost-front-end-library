@@ -1,0 +1,67 @@
+{% if links is not defined %}
+    {% set links = [
+        {href:"", label: "Lorem ispsum"},
+        {href:"", label: "Lorem ispsum"},
+        {href:"", label: "Lorem ispsum"},
+        {href:"", label: "Lorem ispsum"},
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="c-content-step pb-8 {{ class|default('') }}" data-animate="">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-2 text-center">
+                    <div class="bg-white mb-4">
+                        {% if isStepDone is defined %}
+                            {% include '@atoms/06-icons/icon-svg.twig' with {
+                                iconName: "checkbox-selected",
+                                iconSize: 6,
+                                iconClass: ""
+                            } only %}
+                        {% else %}
+                            <div class="mt-3">
+                                {% include '@atoms/06-icons/icon-svg.twig' with {
+                                    iconName: iconName|default(''),
+                                    iconSize: iconSize|default('6'),
+                                    iconClass: iconClass|default('')
+                                } only %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="c-content-step__progress-line h-100 hr--vertical m-auto my-0"></div>
+                </div>
+
+                <div class="col-10">
+                    <h2 class="mb-2">{{ title|default('Lorem ipsum dolor sit amet ametids') }}</h2>
+
+                    {% if subTitle is defined %}
+                        <p class="mb-0">{{ subTitle|default('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam nesciunt, tempora.') }}</p>
+                    {% endif %}
+
+                    <div class="mt-4">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 offset-2 offset-md-1">
+            {% block aside %}
+                <div class="mt-md-3">
+                    {% for link in links %}
+                        {% include '@atoms/04-links/link-underline.twig' with {
+                            class: "mb-3 d-block",
+                            href: link.href,
+                            label: link.label|default('Lorem ipsum'),
+                            headingSize:6
+                        } %}
+                    {% endfor %}
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<!-- sscrollspy-sticky.twig -->
+<div class="position-relative {{ class|default('') }}">
+
+    {# MOBILE DROPDOWN TOOGLE #}
+    {% include '@molecules/13-dropdown/01-scrollspy-dropdown.twig' with {
+        scrollSpyClass:"d-lg-none js-dropdown-sticky",
+        dropdownId:"dropdownMenuButtonScrollSpy",
+        isStickyScrollSpyActive:true,
+        dropdownItems:scrollSpyNavItems
+    } only %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-8 py-section">
+                {% block scrollspy_content %}{% endblock %}
+            </div>
+
+            <div class="d-none d-lg-block col-lg-3 offset-lg-1 pt-6">
+               {% include '@templates/03-microsites-(symetris)/scrollspy-sticky-menu.twig' %}
+            </div>
+        </div>
+    </div>
+</div>

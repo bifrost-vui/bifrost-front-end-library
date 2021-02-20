@@ -1,0 +1,75 @@
+{% extends "base-page--funnel-services.twig" %}
+
+{% set navStepByStep_tplName = "service-add-tv" %}
+{% set navStepByStep_activeNumber = 4 %}
+
+{% set page_hero_title = "Checkout" %}
+{% set page_hero_subtitle = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, alias amet culpa eos est ex explicabo fugit laborum maxime modi." %}
+
+{% set hasTermsAndConditions = true %}
+
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+
+{% block page_main_content %}
+    <section class="py-section">
+        {% include 'templates-accordion--olsf-step-by-step' with {
+            accordionsItems : [
+                { title: "Port in services", anchorId: "PortInServices", tplName: "myaccount-port-in-services", isActive:false },
+                { title: "Payment", anchorId: "Payment", tplName: "myaccount-payment", isActive:false },
+                { title: "Installation", anchorId: "Installation", tplName: "myaccount-installation", isActive:false },
+                { title: "Order review", anchorId: "OrderReview", tplName: "myaccount-order-review", isActive:true }
+            ]
+        } %}
+    </section>
+{% endblock %}
+
+{% block page_aside %}
+    <section class="py-section">
+        <div class="mb-3" data-animate-row="">
+
+            {% embed '@organisms/05-payment/payment-billing-summary.twig' with {
+                class:"mb-4",
+            } %}
+                {% block asidePrimaryActions %}
+                    {% include '@atoms/02-buttons/00-button.twig' with {
+                        buttonClass:"w-100",
+                        buttonSize: "",
+                        buttonLabel:"Place my order",
+                        dataToggle:"modal",
+                        dataTarget:"#modalTermsAndConditions"
+                    } %}
+                {% endblock %}
+            {% endembed %}
+
+            {#{% embed '@organisms/05-payment/payment-billing-summary.twig' with {#}
+                {#class:"mb-4",#}
+            {#} %}#}
+                {#{% block asidePrimaryActions %}#}
+                    {#{% include '@atoms/02-buttons/00-button.twig' with {#}
+                        {#buttonClass:"",#}
+                        {#buttonLabel:"Place my order",#}
+                        {#dataToggle:"modal",#}
+                        {#dataTarget:"#modalServicePlaceMyOrder"#}
+                    {#} %}#}
+                {#{% endblock %}#}
+            {#{% endembed %}#}
+        </div>
+
+        {% include '@organisms/05-payment/payment-next-bill.twig' %}
+    </section>
+{% endblock %}
+
+{% block modals_container %}
+    {{ parent() }}
+
+    {# MODAL : credit adjustment #}
+    {% include '@organisms/08-modal/_modal-funnel--credit-check-adjustment.twig' %}
+
+    {# MODAL : place my order #}
+    {% include '@organisms/08-modal/_modal-terms-and-conditions.twig' %}
+
+    {# MODAL : Postal code - fill the address #}
+    {% include 'organisms-modal-address--fill' %}
+{% endblock %}

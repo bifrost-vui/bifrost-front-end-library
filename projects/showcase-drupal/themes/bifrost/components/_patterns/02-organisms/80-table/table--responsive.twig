@@ -1,0 +1,43 @@
+{% if theadItems is not defined or theadItems is empty %}
+    {% set theadItems = [
+        { label: "Date"},
+        { label: "Ammount Due"},
+        { label: "Reference Number"}
+    ] %}
+{% endif %}
+
+{% if tbodyRows is not defined or tbodyRows is empty %}
+    {% set tbodyRows = [
+        [
+            { cssItemAlign: "center", cellValue: "Oct 10, 2018" },
+            { cssItemAlign: "center", cellValue: "$136.34" },
+            { cssItemAlign: "center", cellValue: "76567687-112" }
+        ],
+        [
+            { cssItemAlign: "center", cellValue: "Oct 10, 2018" },
+            { cssItemAlign: "center", cellValue: "$136.34" },
+            { cssItemAlign: "center", cellValue: "76567687-112" }
+        ]
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="table-responsive scrollbar-custom {{ class|default('') }}" data-animate="fade-in">
+    <table class="table border {{ tableClass|default('') }}">
+        {% include 'molecules-table-thead--responsive' with {
+            class:"",
+            theadItems : theadItems
+        } only %}
+
+        <tbody class="">
+            {% for rowDatas in tbodyRows %}
+                {% include 'molecules-table-row--responsive' with {
+                    class:"",
+                    rowDatas: rowDatas,
+                    rowCollapseID: "rowCollapse_" ~ loop.index
+                } only %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,47 @@
+<div class="form-input-radio-credit-card {{ class|default('') }}">
+    <input type="{{ inputType|default('radio') }}"
+           id="{{ inputId|default('defaultInputCreditCard') }}"
+           name="{{ inputName }}"
+           class="sr-only form-input-radio-credit-card__input"
+           {% if isSelected is defined and isSelected is same as (true) %}checked="checked"{% endif %}
+    >
+
+    <label for="{{ inputId|default('defaultInputCreditCard')  }}"
+           class="form-input-radio-credit-card__label"></label>
+
+    <div class="form-input-radio-credit-card__collapse-content w-100">
+        <div class="py-3">
+            <div class="row py-2">
+                <div class="col-md-10 mb-3 mb-md-0 ">
+                    <div class="d-flex align-items-center">
+                        <div class="small">
+                            <p class="mb-2 font-weight-bold">Credit card</p>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-rounded bg-gray--100 p-2 mr-3 text-center">
+                                    <img src="/images/icons/payment/{{ cardInfos.type|default('mastercard') }}.png" alt="" width="33" class="img-fluid">
+                                </div>
+
+                                <p class="m-0">Ending with {{ cardInfos.ending|default('XXXX') }}<br>Exp. {{ cardInfos.expirationDate|default('XX/XX') }}</p>
+                            </div>
+                        </div>
+
+                        {#<p class="mb-0 font-weight-bold ml-6">Lorem ipsum</p>#}
+                    </div>
+                </div>
+
+                {% if (cardInfos.canDelete is defined and cardInfos.canDelete is same as (true)) or cardInfos.canDelete is not defined %}
+                    <div class="col-md-2 d-flex align-items-center justify-content-end">
+                        <button class="vui--style-reset p-0">
+                            {% include '@atoms/06-icons/icon-svg.twig' with {
+                                iconName: "trash",
+                                iconSize: 2,
+                                iconClass:""
+                            } only %}
+                        </button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

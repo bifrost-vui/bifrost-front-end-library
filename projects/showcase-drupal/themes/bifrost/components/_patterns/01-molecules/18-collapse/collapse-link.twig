@@ -1,0 +1,27 @@
+{% if isCollapse is defined and isCollapse is same as (true) %}
+    {% set isAriaExpanded = 'true' %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="c-collapse-link {{ class|default('') }}">
+    <button class="vui--style-reset p-0 link {{ buttonClass|default('') }}"
+            type="button"
+            data-toggle="collapse"
+            data-target="#{{ collapseId|default('collapseLinkId') }}"
+            aria-expanded="{{ isAriaExpanded|default('false') }}"
+            aria-controls="{{ collapseId|default('collapseLinkId') }}">
+        <span class="button-expanded__label-false">{{ collapseLabelShow|default('View details') }}</span>
+        <span class="button-expanded__label-true">{{ collapseLabelHide|default('Hide details') }}</span>
+    </button>
+
+    <div class="collapse {{ (isAriaExpanded) ? 'show' : '' }}" id="{{ collapseId|default('collapseLinkId') }}">
+        <div class="mt-2 p-3 bg-gray--100">
+            {% block collapse_content %}
+                <div class="card card-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi mollitia quas sapiente. Accusantium blanditiis eligendi error facere, illum in iste modi optio quam quas qui quibusdam quidem quo repellat similique.
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>

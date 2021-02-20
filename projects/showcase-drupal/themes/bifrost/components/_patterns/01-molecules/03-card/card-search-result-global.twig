@@ -1,0 +1,39 @@
+<div class="card border-0 {{ class }}">
+    <a class="link--no-decoration" href="{{ href|default('#') }}">
+    <div class="d-flex py-3 p-lg-5 {{ (loop.first is same as (true)) ? 'pt-0' : '' }}">
+        {% if img is defined %}
+            <div class="mr-3 mr-lg-4 card-search-result-global__img">
+                <img class="w-100--mobile-only minw-3" src="{{ img|default('/images/assets/search-card-demo.png') }}"
+                     alt="{{ imgAlt|default('Equipment Image') }}">
+            </div>
+        {% endif %}
+        <div>
+            <div class="d-flex flex-column flex-lg-row align-items-lg-center">
+                {% if iconPDF is defined %}
+                    {% include '@atoms/06-icons/icon-svg-pdf.twig' with { iconClass:'mr-2' } %}
+                {% endif %}
+                {% if iconVideo is defined %}
+                    {% include '@atoms/06-icons/icon-svg-video-play.twig' with { iconSize:'2', iconClass:'mr-2' } %}
+                {% endif %}
+                <p class="h4 mb-1">{{ title|default('My Helix equipment overview') }}</p>
+            </div>
+            <div class="d-flex">
+                {% block category_block %}
+                    <p class="small">{{ tagLabel|default('Dans') }}
+                        <span class="font-weight-bold text-underline">Support</span>
+                        <span class="font-weight-bold"> / </span>
+                        <span class="font-weight-bold text-underline">Compte et Facturation</span>
+                    </p>
+                {% endblock %}
+            </div>
+            <p class="mb-0">{{ description|default('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam') }}
+                ...
+                {% include '@atoms/04-links/link-underline.twig' with { label:moreLabel|default("More"), headingSize: 5, class:"text-capitalize" } %}
+            </p>
+        </div>
+    </div>
+    <div class="py-3 py-lg-0 px-lg-5 {{ (loop.last is same as (true)) ? 'd-none' : '' }}">
+        <hr class="m-0"/>
+    </div>
+    </a>
+</div>

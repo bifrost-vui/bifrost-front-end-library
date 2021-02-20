@@ -1,0 +1,52 @@
+{# Demo content #}
+{% if promoPriceDetail is not defined %}
+    {% set promoPriceDetail = [
+        'Prix après promo : 199,00 $ /mois.',
+        'Frais d’équipement inclus.'
+    ] %}
+{% endif %}
+{% if itemTitleTooltipInfos is not defined %}
+  {% set itemTitleTooltipInfos = 'Informative tooltip (placeholder)' %}
+{% endif %}
+{% if priceDollar is not defined %}
+  {% set priceDollar = "115" %}
+{% endif %}
+{% if priceCent is not defined %}
+  {% set priceCent = "00" %}
+{% endif %}
+
+{# End demo content #}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="bg--vui-yellow color--dark p-7 text-center {{ class|default('') }}">
+    <div data-animate="fade-in">
+        <p class="mb-3 text-uppercase font-weight-bold ">{{ offerTitle|default("Internet + TV") }}</p>
+        {% include '@atoms/07-payment/price-box.twig' with {
+            priceClass: priceClass|default("w-100 mb-3"),
+            itemTitleTooltipInfos: itemTitleTooltipInfos|default("This is some infos"),
+            extraAttribute: tooltipExtraAttribute,
+            dataToggle: dataToggle|default('tooltip'),
+            priceDollar: priceDollar,
+            priceCent: priceCent,
+            priceAsterisk: priceAsterisk|default(" "),
+            priceRecurrencePeriod: priceRecurrencePeriod|default("mois"),
+            priceInfosSupp: priceInfosSupp|default("pour 12 mois"),
+            priceBoxAlignement:priceBoxAlignement|default("center"),
+        } only %}
+
+        {% for detail in promoPriceDetail %}
+            <p class="small mb-0 color-gray--800">{{ detail }}</p>
+        {% endfor %}
+
+        <!-- BTN select this offer -->
+        {% include '@atoms/02-buttons/00-button.twig' with {
+            buttonClass: buttonClass|default("w-100 btn-dark mb-0 mt-4"),
+            buttonLabel: buttonLabel|default("Get this offer")
+        } %}
+
+        {#{% include '@atoms/04-links/00-link.twig' with {#}
+            {#class: "bg--vui-yellow color--dark font-italic h6"#}
+        {#} %}#}
+    </div>
+</div>

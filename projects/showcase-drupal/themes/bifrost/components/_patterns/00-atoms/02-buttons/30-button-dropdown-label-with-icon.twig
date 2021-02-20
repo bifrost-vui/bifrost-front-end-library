@@ -1,0 +1,16 @@
+<div class="text-center">
+    {% embed '@atoms/02-buttons/01-button-with-icon.twig' with {
+        buttonClass:"btn-label" ~ buttonClass|default(''),
+        btnDisplayClass: "d-inline-block",
+        buttonColor: "label--" ~ buttonColor|default('white'),
+        buttonLabel: buttonLabel|default("Filter"),
+        dataToggle:"collapse",
+        dataTarget:"#" ~ ariaControls|default("collapseExample"),
+        ariaExpanded: "false",
+        ariaControls: ariaControls|default("collapseExample"),
+    } %}
+        {% block icon %}
+            {% include '@atoms/06-icons/icon-svg-filter.twig' with { iconClass:"ml-2" } %}
+        {% endblock %}
+    {% endembed %}
+</div>

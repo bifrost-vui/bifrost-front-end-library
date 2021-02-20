@@ -1,0 +1,39 @@
+<div class="card border--0 d-inline-block {{ class|default('') }}">
+  <div class="card-KSP-with-icon-bottom-right card-rounded h-100 card-body p-4 p-md-6 bg-{{ bgColor|default('primary') }}">
+    <div class="row align-items-center h-100">
+      {% block block_content %}
+        <div class="col-12">
+          <h2 class="col-12 pl-0 mb-3">{{ title|default('Tout le contenu au même endroit') }}</h2>
+        </div>
+        <div class="row col-12 align-items-end d-flex justify-content-between">
+          <div class="col-12 col-md-8 col-lg-7">
+            <span class="pl-0 mb-0 fs-2 {{ mainTextClass|default('') }}">{{ mainText|raw }}</span>
+            <div class="pl-0 pr-lg-3">
+              {% if genesysCommand is defined and genesysCommand is not null %}
+                {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                  buttonClass: buttonClass|default('mr-md-2 w-100 mb-3 mb-md-0'),
+                  buttonColor: buttonColor|default(''),
+                  buttonLabel: buttonLabel,
+                  extraAttribute: extraAttribute|default(''),
+                } %}
+              {% elseif buttonHref is defined and buttonHref is not empty %}
+                {% include '@atoms/04-links/01-link-button-outline.twig' with {
+                  buttonColor: buttonColor|default(''),
+                  class: buttonClass|default('mr-md-2 w-100 mb-3 mb-md-0'),
+                  extraAttribute: extraAttribute|default(''),
+                  href: buttonHref|default(''),
+                  label: buttonLabel|default(''),
+                } %}
+              {% endif %}
+            </div>
+          </div>
+          <div class="card-KSP-with-icon-bottom-right__img mb-0 col-12 col-md-4 col-lg-5 align-bottom align-items-end d-flex justify-content-end">
+            {% if icon is defined and icon is not empty %}
+              <img class=" {{ iconClass|default('') }}" src="{{ icon }}" alt="{{ title|default('Tout le contenu au même endroit') }}">
+            {% endif %}
+          </div>
+        </div>
+      {% endblock %}
+    </div>
+  </div>
+</div>

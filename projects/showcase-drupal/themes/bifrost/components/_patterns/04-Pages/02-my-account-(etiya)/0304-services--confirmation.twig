@@ -1,0 +1,149 @@
+{% extends "base-page.twig" %}
+
+{% set isUserHelixConnected = true %}
+
+{% set page_hero_title = "Confirmation" %}
+{% set page_hero_subtitle = "Here is a complete resume of your modifications." %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container  %}
+    <section class="py-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-9 mb-3">
+                    {% include 'molecules-content-complete-message' with {
+                        class:"",
+                        title: "Congratulations Benjamin Desjardins",
+                        subtitle: "Your order is complete"
+                    } only %}
+                </div>
+
+                <div class="col-lg-3 d-flex justify-content-lg-end">
+                    {% embed '@atoms/01-text/text-featured.twig' with {
+                        class:"d-inline-block"
+                    } only %}
+                        {% block textFeatured_content %}
+                            <div class="mb-2">
+                                <p>Order number <br>
+                                    <strong>NFSDG34535345</strong>
+                                </p>
+                            </div>
+
+                            <div class="mb-2">
+                                <p>Order date<br>
+                                    <strong>August8, 2019</strong>
+                                </p>
+                            </div>
+
+                            <div>
+                                <p>Legal agreement</p>
+                                {% include '@atoms/04-links/01-link-button.twig' with { label:"Lorem ipsum", class:"d-inline w-100", buttonColor:"csr" } %}
+                            </div>
+
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+            </div>
+
+            <hr class="mb-4 mt-4">
+
+            <h3 class="mb-4">Make sure to follow the steps below.</h3>
+            <div class="row mb-4">
+
+                {% set nbElems = (random(4)+1) %}
+
+                {% if nbElems == 1 %}
+                    {# In cas of only 1 activation step #}
+                    {% set colClass = "col-12" %}
+                {% elseif nbElems == 2 %}
+                    {# In cas of only 2 activation steps #}
+                    {% set colClass = "col-12 col-md-6" %}
+                {% else %}
+                    {# All of the other case we display the informations in 3 columns #}
+                    {% set colClass = "col-12 col-md-6 col-lg-4" %}
+                {% endif %}
+
+                {% for i in 1..nbElems %}
+                    <div class="{{ colClass|default('col-12 col-md-6 col-lg-4') }} mb-3">
+                        {% embed '@molecules/03-card/card-rounded--with-header.twig' with {
+                            class:"h-100",
+                            cardNumber: i,
+                            cardTitle:"Activate your user account",
+                            cardTxt:"A confirmation link was sent to : <strong>example@email.com</strong>"
+                        } %}
+                            {% block card_content %}
+                                <p>You have 30 days to click the link and :</p>
+                                <ul class="mb-0 pl-3">
+                                    <li>activate your user account</li>
+                                    <li>configure your password</li>
+                                    <li>access the client features</li>
+                                </ul>
+                            {% endblock %}
+                        {% endembed %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <h3 class="mb-4">Don't forget</h3>
+            <div class="row mb-4">
+                <div class="col-lg-4 mb-3">
+                    {% embed '@molecules/03-card/card-rounded--with-header.twig' with {
+                        class:"h-100",
+                        cardTitle:"Port-In Services",
+                        cardTxt:"Videotron will take care of port-in services for these accounts within the next 24 hours (free of charge) :"
+                    } %}
+                        {% block card_content %}
+                            <div class="small">
+                                {% for i in 1..3 %}
+                                    <p><span class="font-weight-bold">Telephony</span>
+                                        <br>Bell service removal for account
+                                        <br>514 999-9999
+                                    </p>
+                                {% endfor %}
+                            </div>
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+                <div class="col-lg-4 mb-3">
+                    {% embed '@molecules/03-card/card-rounded--with-header.twig' with {
+                        class:"h-100",
+                        cardTitle:"Installation appointment",
+                        cardTxt:"Your appointment is scheduled for :"
+                    } %}
+                        {% block card_content %}
+                            <div class="small mb-4">
+                                <p><span class="font-weight-bold">Contact</span>
+                                    <br>John Dow
+                                </p>
+                            </div>
+
+                            {% include '@atoms/04-links/link-underline.twig' with {
+                                class:"",
+                                label:"View appointment",
+                                headingSize:6
+                            } %}
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+                <div class="col-lg-4 mb-3">
+                    {% include '@molecules/03-card/card-rounded--with-header.twig' with {
+                        class:"h-100",
+                        cardTitle:"Manuel Payment",
+                        cardTxt:"All Canadian financial institutions accept online payment of Videotron invoices. Just access your financial institution’s website and add Videotron as your beneficiary. Your Videotron invoices are available at all time in your My Helix Account."
+                    } %}
+                </div>
+            </div>
+
+            {% include 'templates-funnel-order-recap' with { class:"mb-7" } only %}
+
+            <div class="d-flex justify-content-end">
+                {% include '@atoms/04-links/link-underline.twig' with {
+                    class:"",
+                    label: 'Back to services',
+                    href: '/patterns/04-Pages-02-my-account-(etiya)-03-services/04-Pages-02-my-account-(etiya)-03-services.html'
+                } %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

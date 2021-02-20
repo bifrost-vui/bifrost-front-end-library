@@ -1,0 +1,67 @@
+{# DEMO purpose #}
+{% if link_fields is not defined %}
+    {% set link_fields = [
+        { href:"#", label:"Abous Us" },
+        { href:"#", label:"Careers" },
+        { href:"#", label:"Terms of Use" },
+        { href:"#", label:"Private" },
+        { href:"#", label:"Accessibility" },
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<!-- footer-nav-2.twig -->
+<nav class="navbar-dark py-4">
+    <div class="container-fluid">
+        {% if hasBackToTopLink is defined and hasBackToTopLink is same as (true) %}
+            <div class="d-flex justify-content-center justify-content-md-end w-100 mb-5 mb-md-4">
+                {% include '@atoms/04-links/link-back-to-top.twig' with {
+                    label:"Back to top",
+                    class:"h6 mb-0"
+                } %}
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-12 col-md-3 order-2 order-md-1 py-0 mt-2 pt-4 mt-md-0 pt-md-0" data-animate="fade-in">
+                <div class="d-flex flex-row align-items-start">
+                    <a href="{{ hrefHelixLogo|default('#') }}">
+                        <img src="/images/logo/helix.svg" height="20" alt="Helix">
+                    </a>
+                    <a href="{{ hrefVideotronLogo|default('#') }}">
+                        <img src="/images/logo/videotron.svg" height="20" alt="Videotron">
+                    </a>
+                </div>
+                <p class="m-0 mt-2">&copy; {{ videotronLegalName|default('Videotron') }} {{ now|date('Y') }}</p>
+            </div>
+
+            <div class="col-12 col-md-9 order-1 order-md-2">
+                <ul class="list-reset pl-0 mb-0 d-flex flex-wrap justify-content-start justify-content-lg-end" data-animate-row="">
+                    {% for link_field in link_fields %}
+                        <li class="mb-3 pr-4 mb-md-0" data-animate="fade-in">
+                            {% include '@atoms/04-links/link-default-optimized.twig' with {
+                                href:link_field.href,
+                                label:link_field.label,
+                                class:"",
+                                rel:link_field.rel|default("dofollow")
+                            } %}
+                        </li>
+                    {% endfor %}
+
+                    {% if languageBlock is defined %}
+                        {{ languageBlock }}
+                    {% else %}
+                        <li class="mb-3 mb-md-0" data-animate="fade-in">
+                            {% include '@atoms/04-links/link-default-optimized.twig' with {
+                                href:"",
+                                label:"FR",
+                                class:""
+                            } %}
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,90 @@
+{% extends "base-page--funnel.twig" %}
+
+{% set navBackLabel = "Back to overview" %}
+{% set navBackHref = "/patterns/04-Pages-02-my-account-(etiya)-01-overview/04-Pages-02-my-account-(etiya)-01-overview.html" %}
+
+{% set planOffers = [1,2,3] %}
+{% set isCollapsePromoOpen = false %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{#{% block page_header_nav %}#}
+    {#{% include 'organisms-header-nav-helix--funnel-2' %}#}
+{#{% endblock %}#}
+
+
+{% block page_main_container %}
+    {% include '@organisms/03-hero/hero-block-promo.twig' %}
+
+    {#{% embed '@molecules/06-accordion/accordion-item--collapse-below-add.twig' with {#}
+        {#inlineAnchor:"collapse_crosssaleDetails",#}
+        {#headerTitle:"View offer details"#}
+    {#} %}#}
+        {#{% block collapse_content %}#}
+            {#<p></p>#}
+        {#{% endblock %}#}
+    {#{% endembed %}#}
+
+    <section class="bg-gray--100">
+        <div class="container-fluid">
+            <div class="accordion-item--collapse-below-add" data-animate="fade-in">
+                <button class="vui--style-reset px-0 py-3 w-100 "
+                            id="headingcollapsePromoPage"
+                            data-toggle="collapse"
+                            data-target="#collapsePromoPage"
+                            aria-expanded="{{ isCollapsePromoOpen is same as (true) ? 'true' : 'false' }}"
+                            aria-controls="collapsePromoPage"
+                    >
+                        <div class="d-flex align-items-center justify-content-start">
+                            <div class="mr-3">
+                                {% include '@atoms/06-icons/icon-svg-plus-circle.twig' with { iconSize:2, iconClass:"" } only %}
+                                {% include '@atoms/06-icons/icon-svg-minus-circle.twig' with { iconSize:2, iconClass:"" } only %}
+                            </div>
+                            <div class="">
+                                {% include '@atoms/01-text/text-highlight.twig' with { textLabel: "View offer details", textClass:"m-0" } %}
+                            </div>
+                        </div>
+                    </button>
+            </div>
+        </div>
+
+        <div id="collapsePromoPage"
+             class="collapse {{ isCollapsePromoOpen is same as (true) ? 'show' : '' }}"
+             aria-labelledby="heading{{ inlineAnchor|default('defaultAccordionArrowDown') }}">
+
+            <div class="bg-gray--100 gradient gradient-bottom gradient-bottom-left--light py-section">
+                <div class="container-fluid" data-animate="fade-in">
+                    <p class="h2 vui--font-secondary mb-4">Included in this limited offer</p>
+
+                    {% include '@organisms/09-modal-content/modal-service-content--internet-v2.twig' with {
+                        class:"mb-8",
+                        downloadCapacityText: "lorem ipad"
+                    } %}
+                    {% include '@organisms/09-modal-content/modal-service-content--tv-v2.twig' with { class:"mb-8" } %}
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-section" data-animate="fade-in">
+        <div class="container-fluid">
+            <div>
+                <h2>More promotions for you</h2>
+                <div class="row">
+                    {% for plans in planOffers %}
+                        <div class="col-12 col-md-4 pb-4">
+                            {% include '@organisms/10-offers/component-card-offer-helix.twig' with {
+                                buttonLabel:"Select this offer"
+                            } %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block modals_container %}
+    {% include '@organisms/08-modal/_modal-service-bundle-item-detail.twig' %}
+{% endblock %}

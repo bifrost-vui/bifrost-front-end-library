@@ -1,0 +1,50 @@
+{# Demo purposes #}
+{% if bodyInfos is not defined or bodyInfos is empty %}
+    {% set bodyInfos = [
+        { title:"Email address", value:"name@gmail.com"},
+        { title:"Service address", value:"800, rue du Square-Victoria,<br>Montréal, QC, H4Z OA4"}
+    ] %}
+{% endif %}
+
+
+{# ------------------------------------------------------------------------- #}
+
+<div class="card {{ cardClass|default('') }}">
+    <div class="card-header d-flex flex-column py-3 justify-content-center">
+        {% if header.suptitle is defined %}
+            <div class="d-flex mb-2">
+                {% if header.suptitle.icon is defined %}
+                    <img class="mr-2 " src="/images/{{ header.suptitle.icon.path }}" width="28" alt="">
+                {% endif %}
+
+                <p class="mb-0">{{ header.suptitle.value }}</p>
+            </div>
+        {% endif %}
+
+        <div class="d-flex">
+            {% if header.title.icon is defined %}
+                <img class="mr-2 " src="/images/{{ header.title.icon.path }}" width="28" alt="">
+            {% endif %}
+
+            <p class="h5 font-weight-medium mb-0">{{ header.title.value|default(headerTitle) }}</p>
+        </div>
+
+
+        {% if header.subtitle is defined and header.subtitle is not empty %}
+            <p class="my-1">{{ header.subtitle|default(headerSubtitle) }}</p>
+        {% endif %}
+    </div>
+
+    <div class="card-body">
+        {% block card_body %}
+            {% if bodyInfos is defined and bodyInfos is not empty %}
+                {% for info in bodyInfos %}
+                    <p>
+                        <span class="font-weight-bold">{{ info.title }}</span>
+                        <br>{{ info.value|raw }}
+                    </p>
+                {% endfor %}
+            {% endif %}
+        {% endblock %}
+    </div>
+</div>

@@ -1,0 +1,254 @@
+{% extends "base-page--no-header-footer.twig" %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    <section class="py-hero vui-print--avoid-break">
+        <div class="container-fluid">
+            <div class="mb-4">
+                <h1 class="mb-2">Dive into the Helix universe</h1>
+                <p class="h5 mb-0">Thank you for choosing Videotron, we are happy to serve you. Following our discussion, we will send you your quote. Note that the rates and promotions offered in this document are guaranteed for a period of seven days.</p>
+            </div>
+
+            <div class="card mb-4 border-width-4 border-color--primary">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <p class="mb-0">Employee Number:</p>
+                                <p class="mb-0 font-weight-bold">XXXXXXX</p>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <p class="mb-0">Employee Name:</p>
+                                <p class="mb-0 font-weight-bold">John</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 d-flex justify-content-between">
+                            <p class="mb-0">Store:</p>
+                            <div class="text-right">
+                                <p class="mb-0 font-weight-bold">Quartier X30</p>
+                                <p class="mb-0">9399 boul. Leduc,<br>Pignon sur rue,<br>Brossard, QC J4Y 0H3</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {# BILL infos -----------------------------------------------------  #}
+            <div class="row mb-4">
+                <div class="col-md-6 vui-print--avoid-break">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="">Submission for this address:</h2>
+                            <p class="font-weight-bold h3 mb-3 mb-6">4594 Rue Chabot,<br>Montreal, Quebec, H2H 1Y3</p>
+
+                            {% include '@atoms/07-payment/payment-item-price--subitem.twig' with { item:"Subscription number", price:"00000000" } only %}
+                            {% include '@atoms/07-payment/payment-item-price--subitem.twig' with { item:"Date of creation", price:"Sept. 13, 2019" } only %}
+                            {% include '@atoms/07-payment/payment-item-price--subitem.twig' with { item:"Date of expiration", price:"Sept. 13, 2019" } only %}
+
+                            <hr>
+                            {% include '@atoms/07-payment/payment-item-price--subitem.twig' with { item:"Name", price:"John Dow" } only %}
+                            {% include '@atoms/07-payment/payment-item-price--subitem.twig' with { item:"Language preference", price:"English" } only %}
+                            {% include '@atoms/07-payment/payment-item-price--subitem.twig' with { item:"Email address", price:"exemple@exemple.com" } only %}
+                            {% include '@atoms/07-payment/payment-item-price--subitem.twig' with { item:"Phone number", price:"514-444-4444" } only %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 vui-print--avoid-break">
+                    {% include '@organisms/05-payment/payment-billing-summary.twig' with {
+                        class:"",
+                        isMonthlyPlanCollapse: true,
+                        isAnimationDisabled: true
+                    } %}
+                </div>
+            </div>
+
+            {% embed 'molecules-alert-callout' with {
+                class: "",
+                cardBodyClass: "",
+            } %}
+                {% block callout_body %}
+                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias animi dolorem enim error, exercitationem itaque molestiae nemo officiis.</p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="font-weight-bold mb-0">Customer center</p>
+                            <p class="mb-0">Contact one of our agent at : <span class="link-underline">1-888-888-8888</span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="font-weight-bold mb-0">Visit a store</p>
+                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </div>
+                    </div>
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </section>
+
+    <section class="py-section vui-print--avoid-break">
+        <div class="container-fluid">
+            <h2 class="">Detail about your subscription</h2>
+
+            {# SERVICES -----------------------------------------------------  #}
+            <div class="mb-6">
+                <div class="mb-3">
+                    <h2 class="mb-1">Services</h2>
+                </div>
+
+                {% include '@molecules/09-payment/cart-summary-table.twig' with {
+                    isAnimationDisabled: true,
+                    isMonthlyPayment: false,
+                    subtotalPrice:"00.00$/month",
+                    subTotalExtraInfos: "(monthly paiements)",
+                    headerPriceDashed:"000.00$/month",
+                    headerPriceSaved:"00.00$/month",
+                    headerPromotionInfos:"Lorem ipsum dolor sit amet",
+                    items: [
+                        {
+                            itemTitle:"This is a title",
+                            itemSubTitle: "Here is a subtitle",
+                            itemQty:"1",
+                            itemPrice:"00.00$",
+                            isItemMontlhyPayment: true
+                        },
+                        {
+                            itemTitle:"This is a title",
+                            itemQty:"1",
+                            itemPrice:"00.00$",
+                            isItemMontlhyPayment: true
+                        }
+                    ]
+                } %}
+            </div>
+
+
+            {# Equipments -----------------------------------------------------  #}
+            <div class="mb-6">
+                <div>
+                    <div class="mb-3">
+                        <h2 class="mb-1">Equipment</h2>
+                        <p>Lorem ipsum dolor sit amt.</p>
+                    </div>
+                </div>
+
+                {% include '@molecules/09-payment/cart-summary-table.twig' with {
+                    isAnimationDisabled: true,
+                    isMonthlyPayment: false,
+                    subtotalPrice:"00.00$/month",
+                    headerPriceDashed:"000.00$/month",
+                    headerPriceSaved:"00.00$/month",
+                    headerPromotionInfos:"Lorem ipsum dolor sit amet",
+                    legalTxt: "<strong>Lorem ipsum : </strong>Volutpat est velit egestas dui id ornare arcu. Eget duis at tellus at urna condimentum. Ac ut consequat semper viverra nam. Tempor id eu nisl nunc mi ipsum.",
+                    items: [
+                        {
+                            itemTitle:"This is a title",
+                            itemQty:"1",
+                            itemPrice:"00.00$",
+                            itemSubPriceInfos: "Buy Upfront: $240.00",
+                            isItemMontlhyPayment: true
+                        },
+                        {
+                            itemTitle:"This is a title",
+                            itemQty:"1",
+                            itemPrice:"00.00$",
+                            itemSubPriceInfos: "Buy Upfront: $240.00",
+                            isItemMontlhyPayment: true
+                        }
+                    ]
+                } %}
+            </div>
+
+
+            {# Installation -----------------------------------------------------  #}
+            <div class="mb-6">
+                <div class="mb-3">
+                    <h2 class="mb-1">Add on</h2>
+                </div>
+
+                {% include '@molecules/09-payment/cart-summary-table.twig' with {
+                    isAnimationDisabled: true,
+                    isMonthlyPayment: false,
+                    subtotalPrice:"00.00$",
+                    items: [
+                        {
+                            itemTitle:"This is a title",
+                            itemSubTitle: "(Lorem ipsum dolor)",
+                            itemQty:"1",
+                            itemPrice:"00.00$",
+                            isItemMontlhyPayment: false
+                        },
+                        {
+                            itemTitle:"This is a title",
+                            itemSubTitle: "(Lorem ipsum dolor)",
+                            itemQty:"1",
+                            itemPrice:"00.00$",
+                            isItemMontlhyPayment: false
+                        }
+                    ]
+                } %}
+            </div>
+
+            {# Installation -----------------------------------------------------  #}
+            <div class="mb-6">
+                <div class="mb-3">
+                    <h2 class="mb-1">Installation</h2>
+                    <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                </div>
+
+                {% include '@molecules/09-payment/cart-summary-table.twig' with {
+                    isAnimationDisabled: true,
+                    isMonthlyPayment: false,
+                    subtotalPrice:"00.00$",
+                    headerPriceDashed:"15.00$",
+                    headerPriceSaved:"15.00$",
+                    items: [
+                        {
+                            itemTitle:"This is a title",
+                            itemQty:"-",
+                            itemPrice:"15.00$",
+                            isItemMontlhyPayment: false
+                        }
+                    ]
+                } %}
+            </div>
+
+            <div class="color-gray--700 small">
+                <p>*Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias corporis eum laborum, non optio quis quo quos totam vero.</p>
+
+                <p>1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Commodo viverra maecenas accumsan lacus vel facilisis. Duis at tellus at urna condimentum mattis pellentesque id nibh. Maecenas accumsan lacus vel facilisis volutpat est. Tempor commodo ullamcorper a lacus. Pharetra vel turpis nunc eget lorem dolor. Varius vel pharetra vel turpis nunc. Felis donec et odio pellentesque diam volutpat commodo sed egestas. At ultrices mi tempus imperdiet nulla. Est ultricies integer quis auctor elit sed vulputate mi sit.</p>
+                <p>Volutpat est velit egestas dui id ornare arcu. Eget duis at tellus at urna condimentum. Ac ut consequat semper viverra nam. Tempor id eu nisl nunc mi ipsum. Orci ac auctor augue mauris. Est placerat in egestas erat. Ultricies mi eget mauris pharetra et ultrices neque ornare. Fusce id velit ut tortor pretium viverra suspendisse. Vitae aliquet nec ullamcorper sit amet risus nullam eget. Et ultrices neque ornare aenean euismod elementum nisi. Nisl tincidunt eget nullam non. Urna neque viverra justo nec ultrices. Scelerisque eleifend donec pretium vulputate sapien.</p>
+
+                <p>2. Nisl purus in mollis nunc sed id semper risus in. Vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi. Cras ornare arcu dui vivamus arcu felis bibendum ut. Elementum nisi quis eleifend quam adipiscing vitae. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem. Odio morbi quis commodo odio aenean sed adipiscing diam donec. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing. Non blandit massa enim nec dui nunc. Scelerisque mauris pellentesque pulvinar pellentesque habitant morbi. Scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. Vestibulum morbi blandit cursus risus at ultrices. A scelerisque purus semper eget. Dictum varius duis at consectetur lorem donec massa sapien faucibus. Porttitor leo a diam sollicitudin tempor id eu. At imperdiet dui accumsan sit amet nulla facilisi morbi tempus. Purus in massa tempor nec feugiat. Diam donec adipiscing tristique risus nec feugiat in fermentum. Elementum sagittis vitae et leo.</p>
+                <p>Nunc mattis enim ut tellus elementum sagittis vitae. Quisque non tellus orci ac auctor augue mauris. Viverra vitae congue eu consequat ac felis donec. Sit amet est placerat in egestas erat. Magna sit amet purus gravida. Cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Diam volutpat commodo sed egestas egestas fringilla. Non curabitur gravida arcu ac. A erat nam at lectus urna. Mattis molestie a iaculis at erat pellentesque adipiscing. Porta lorem mollis aliquam ut porttitor. Commodo nulla facilisi nullam vehicula ipsum. Ultrices neque ornare aenean euismod elementum nisi quis eleifend quam. Purus sit amet luctus venenatis lectus magna fringilla urna porttitor.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-section small color-gray--700">
+        <div class="container-fluid">
+            <div class="row mb-6 align-items-md-end">
+                <div class="col-md-3">
+                    <p>Supported payment types: </p>
+                    <div class="d-flex align-items-center">
+                        <img src="/images/icons/payment/mastercard.svg" alt="" height="30" class=" mr-3">
+                        <img src="/images/icons/payment/visa.svg" alt="" height="25" class="">
+                    </div>
+                </div>
+                <div class="col-md-9 text-md-right">
+                    Any questions, call our Customer Center 1-XXX-XXX-XXXX<br>For technical Support 1-XXX-XXX-XXXX
+                </div>
+            </div>
+
+            {#{% include 'organisms-box-new-client' with { class:"" } only %}#}
+        </div>
+    </section>
+
+    <section class="py-section border-top">
+        <div class="container-fluid">
+            <p class="small color-gray--700 text-center">© Videotron 2019 A Quebecor Media Company | 612, Saint-Jacques Street, Montréal (Quebec) H3C 4M8</p>
+        </div>
+    </section>
+{% endblock %}

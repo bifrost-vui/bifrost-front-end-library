@@ -1,0 +1,67 @@
+<div class="card p-3 p-md-4 py-lg-4 px-lg-6 {{ class|default('') }}">
+    <div class="row align-items-center" data-animate="fade-in">
+        <div class="col-md-3 pr-md-4 pr-lg-6 border-bottom-gray-md--0 border-right-gray-md--200 mb-4 mb-md-0">
+            <div class="d-flex">
+                <h3>{{ title|default('House') }}</h3>
+            </div>
+
+            <p>{{ titleSubInfos|default('123 Blvd St-Laurent, Montreal, QC H3H 3H3') }}</p>
+
+            {% if titleDropdownItems is defined %}
+                {% include '@molecules/13-dropdown/link-underline-with-icon-left-dropdown.twig' with {
+                    class:"d-block",
+                    iconName: "edit",
+                    iconSize: 1,
+                    href: "",
+                    label: "Change name",
+                    dropdownItems: titleDropdownItems
+                } %}
+            {% endif %}
+        </div>
+
+        <div class="col-md-9 pl-md-4 pl-lg-6">
+            {% block overview_content %}
+                <div class="row align-items-center">
+                    {#<div class="order-2 order-md-1 col-7 col-md-6 col-lg-3">#}
+                        {#<p class="font-weight-bold mb-1">Current Helix Balance</p>#}
+                        {#<p class="mb-0">{{ balanceTxt|default('Payment schedules on <br>October 26 2017')|raw }}</p>#}
+                    {#</div>#}
+
+                    <div class="order-1 order-md-2 col-12 col-md-6 col-lg-4 mb-4 mb-md-0">
+                        {% include '@atoms/07-payment/price-box.twig' with {
+                            priceClass:"",
+                            priceDollar: "136",
+                            priceCent:"34",
+                            priceBoxAlignement:"left"
+                        } %}
+                        <p class="mb-0 small">To be paid for account : <strong>800000205256</strong></p>
+                    </div>
+
+                    <div class="order-3 order-md-3 col-12 col-md-6 col-lg-4">
+                        <p class="font-weight-bold mb-1">Payment</p>
+                        <p class="mb-0 small">{{ balanceTxt|default('Schedules on October 26 2017')|raw }}</p>
+                        <p class="mb-0 small">{{ paymentMethodTxt|default('VISA **** **** **** 5224') }}</p>
+                    </div>
+
+                    <div class="order-4 col-lg-4 mt-4 mt-md-3 mt-lg-0 ">
+                        <div class="d-flex flex-column flex-md-row flex-lg-column">
+                            {% include 'atoms-link-button-outline-with-icon' with {
+                                class:"w-100 mb-2 mb-md-0 mb-lg-2 mr-md-3 mr-lg-0",
+                                label:"View my invoice",
+                                iconName: "pdf",
+                                target: "_blank'"
+                            } only %}
+
+                            {% include '@atoms/04-links/01-link-button.twig' with {
+                                class:"w-100",
+                                buttonColor: "primary",
+                                label: "Make a payment",
+                                href: "/patterns/04-Pages-02-my-account-(etiya)-0201-payment--make-a-payment/04-Pages-02-my-account-(etiya)-0201-payment--make-a-payment.html",
+                            } only %}
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>

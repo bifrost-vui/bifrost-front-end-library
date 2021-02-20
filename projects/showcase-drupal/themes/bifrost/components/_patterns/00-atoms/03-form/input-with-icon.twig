@@ -1,0 +1,35 @@
+<div class="form-group {{ class|default('') }}">
+    {% if label %}
+    <label for="{{ inputId }}"
+        class="{{ labelClass|default('') }}"
+        {{ labelExtraAttribute|default(NULL) }}>{{ label|default('Label') }}</label>
+    {% endif %}
+    <div class="position-relative">
+        <input id="{{ inputId }}"
+               {% if isDisabled is defined and isDisabled is same as (true) %}disabled {% endif %}
+                {% if isChecked is defined and isChecked is same as (true) %}checked {% endif %}
+               class="form-control mt-{{ mtValue|default('0') }} {{ inputClass|default('') }}"
+               type="{{ inputType|default('text') }}"
+               placeholder="{{ inputPlaceholder|default('') }}"
+               name="{{ inputName|default('') }}"
+               value="{{ inputValue|default('') }}"
+               {{ extraAttribute|default(NULL) }}>
+
+        <div class="form-group__input-icon-container {{ inputIconPosition|default('') }}">
+            {% block icon_container %}
+                {% include '@atoms/02-buttons/25-button-tooltip.twig' with {
+                    buttonClass:"p-0"
+                } %}
+            {% endblock %}
+        </div>
+
+        <div class="icon--error d-none">
+            {% include '@atoms/06-icons/icon-svg-error.twig' with { iconClass:"" } only %}
+        </div>
+    </div>
+
+
+    <div class="invalid-feedback">
+        {{ invalidMsg|default('This is an invalid error message') }}
+    </div>
+</div><!-- /.form-group -->

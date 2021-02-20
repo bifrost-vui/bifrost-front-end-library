@@ -1,0 +1,36 @@
+{# for demo purpose #}
+{% if links is not defined %}
+    {% set links = [
+        {label: 'Find a store'},
+        {label: 'Experience Helix'},
+        {label: 'My Helix'},
+        {label: 'Internet'},
+        {label: 'Equipment'}
+    ] %}
+{% endif %}
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<!-- Helix search quick-links/suggestion -->
+<div class="js-helix-global-search-collapse helix-global-search-collapse vui--style-dark-gray position-absolute z-index-10 bg-gray--1000 color--white w-100">
+    <div class="container-fluid py-4">
+        <div class="row js-quick-links">
+            <div class="col-12 col-lg-4 offset-lg-2 px-3 pl-lg-8">
+                <h3 class="border-bottom-gray--800 fs-4 mb-2 pb-2">{{ quickLinkMenuTitle|default('Quick links') }}</h3>
+                {% if links is not empty %}
+                    <ul class="list-unstyled">
+                        {% for link in links %}
+                            <li class="py-lg-2">
+                                {% include '@atoms/04-links/00-link.twig' with {
+                                    class: "d-block d-lg-inline py-2 py-lg-0 link-default-optimized color--white",
+                                    href: link.href,
+                                    label: link.label
+                                } %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+        {% block collapseSuggestion %}{% endblock %}
+    </div>
+</div>

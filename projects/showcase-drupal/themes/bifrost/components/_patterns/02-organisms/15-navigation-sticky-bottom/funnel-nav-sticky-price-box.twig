@@ -1,0 +1,57 @@
+{% if navItems is not defined %}
+    {% set navItems = [
+        { label: 'Overview', href: '/?p=templates-overview', isActive: true },
+        { label: 'Billing and Payments', href: '/?p=templates-billing-and-payment', isActive: false },
+        { label: 'Services & Equipments', href: '/?p=templates-services', isActive: false },
+        { label: 'Profile and Settings', href: '/?p=templates-profile-and-settings', isActive: false }
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<!-- header-nav-subnav--my-account.twig -->
+<nav id="stickyNavPrice" class="nav-sticky-bottom border-bottom-gray--800 js-position-sticky-bottom vui-anim--slide-from-bottom {{ class|default('') }}">
+    {% block nav_content %}
+        <div class="bg--dark color--white py-3">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-8 col-lg-9">
+                        <div class="row">
+                            {% block price_content %}
+                                <div class="col-6 col-lg-3">
+                                    <div>
+                                        <p class="small font-weight-bold mb-0">{{ priceTitle_1|default('Lorem ipsum') }}</p>
+
+                                        {% include '@atoms/07-payment/price-box.twig' with priceboxParams_1|default({}) only %}
+                                    </div>
+                                </div>
+                                <div class="col-6 col-lg-3">
+                                    <div>
+                                        <p class="small font-weight-bold mb-0 color--primary">{{ priceTitle_2|default('Lorem ipsum') }}</p>
+
+                                        {% include '@atoms/07-payment/price-box.twig' with priceboxParams_2|default({}) only %}
+                                    </div>
+                                </div>
+                            {% endblock %}
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 col-md-4 col-lg-3 mt-3 mt-md-0 text-right">
+                        {% block price_btn_continue %}
+                            {% include '@atoms/04-links/01-link-button.twig' with {
+                                id: "stickyNavContinuBtn",
+                                class:"color--dark w-100--mobile-only",
+                                buttonColor: "primary",
+                                label: stickyNavPriceBtnNextLabel|default("Continue"),
+                                href: stickyNavPriceBtnNextHref|default("")
+                            } only %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+</nav>
+
+

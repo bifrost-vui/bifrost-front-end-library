@@ -1,0 +1,25 @@
+{% embed 'templates-item-service-plan'  %}
+    {% block item_content %}
+        {% if promoLeft is not empty %}
+            <div class="col-6 d-flex justify-content-center">
+                {% include '@molecules/15-services-widgets/tv-plan-preview.twig' with {
+                    class:" mw-100 px-2",
+                    number: promoLeft.number,
+                    channelText: promoLeft.channelText,
+                    channels : promoLeft.channels
+                } only %}
+            </div>
+        {% endif %}
+
+        {% if promoRight is not empty %}
+            <div class="col-6 justify-content-center {{ borderLeftColor|default('border-left') }}">
+                {% include '@molecules/15-services-widgets/tv-plan-preview.twig' with {
+                    class:" mw-100 px-2",
+                    number: promoRight.number,
+                    channelText: promoRight.channelText,
+                    channels : promoRight.channels
+                } only %}
+            </div>
+        {% endif %}
+    {% endblock %}
+{% endembed %}

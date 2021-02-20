@@ -1,0 +1,16 @@
+{# DEMO PURPOSE #}
+{% if items is not defined %}
+    {% set items = [
+        {imgSrc:"https://source.unsplash.com/800x400?nature&auto=yes&bg=777&fg=555", imgAlt:"Here is my title"},
+        {imgSrc:"https://source.unsplash.com/800x400?nature&auto=yes&bg=777&fg=555", imgAlt:"Here is my title"},
+        {imgSrc:"https://source.unsplash.com/800x400?nature&auto=yes&bg=777&fg=555", imgAlt:"Here is my title"}
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div id="{{ carouselId|default('') }}" class="js-slick-carousel--img-gallery carousel-img-gallery">
+    {% for item in items %}
+        <img class="img-fluid" alt="{{ item.alt }}" src="{{ item.imgSrc }}">
+    {% endfor %}
+</div>

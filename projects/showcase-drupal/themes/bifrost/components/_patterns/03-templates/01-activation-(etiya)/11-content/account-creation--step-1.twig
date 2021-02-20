@@ -1,0 +1,65 @@
+
+<div class="card-body px-md-6">
+    <h4 class="mb-3 text-uppercase">Step 1 of 3</h4>
+
+    <div class="mb-4">
+        <h3>Identification and account creation</h3>
+        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid dolor dolorem eligendi.</p>
+    </div>
+
+    <!-- Civility -------------------------------- -->
+    <div class="row">
+        <div class="col-md-4 col-lg-3">
+            {% include '@atoms/03-form/selectlist.twig' with {
+                class:"minw-7",
+                selectContainerClass: "w-100",
+                selectClass: "w-100",
+                label: "Civility",
+                options: [
+                    { label:"Mr", value:"mr", isSelected:true },
+                    { label:"Ms", value:"ms" },
+                    { label:"Else", value:"else" }
+                ]
+            } %}
+        </div>
+    </div>
+
+    <!-- First / last name -------------------------------- -->
+    <div class="row">
+        <div class="col-md-6">
+            {% include '@atoms/03-form/input-with-label.twig' with { label:"First name", inputId:"account_firstName"} %}
+        </div>
+        <div class="col-md-6">
+            {% include '@atoms/03-form/input-with-label.twig' with { label:"Last name", inputId:"account_lastName" } %}
+        </div>
+    </div>
+
+    <!-- Birthday -------------------------------- -->
+    <div class="row">
+        <div class="col-md-6">
+            {% include '@atoms/03-form/input-with-label.twig' with { label:"Birthdate", inputId:"account_birthdate", inputType:"date", class:"", inputClass:"text-uppercase" } %}
+        </div>
+
+        <!-- Phone number -------------------------------- -->
+        <div class="col-md-6">
+            {% include '@atoms/03-form/input-phone-with-selectlist.twig' with {
+                label:"Phone number",
+                inputId:"_account_phoneNumber",
+                class:""
+            } %}
+        </div>
+    </div>
+
+
+
+    <!-- Address -------------------------------- -->
+    {% include '@atoms/03-form/input-readonly-with-label.twig' with {
+        label: "Service address",
+        inputId:"account_address",
+        inputValue:"4594, Chabot Street, Montreal (Quebec) H2H 1Y3",
+        inputClass:"pt-0 pl-0 pb-0",
+        class:"mb-0"
+    } %}
+</div>
+
+

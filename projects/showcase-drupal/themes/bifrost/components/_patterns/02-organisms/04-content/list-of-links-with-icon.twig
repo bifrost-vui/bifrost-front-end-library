@@ -1,0 +1,45 @@
+{# DEMO #}
+{% if blockItems is not defined %}
+    {% set blockItems = [
+        {
+          title: 'Helix Internet',
+          link: '#',
+          icon: 'tv'
+        } , {
+          title: 'Television illico',
+          link: '#',
+          icon: 'tv'
+        } , {
+          title: 'Commande vocale',
+          link: '#',
+          icon: ''
+        } , {
+          title: 'Mon compte Helix',
+          link: '#',
+          icon: ''
+        } , {
+          title: 'Installation',
+          link: '#',
+          icon: ''
+        } , {
+          title: 'Compte et facturation',
+          link: '#',
+          icon: ''
+        }
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="c-grid-link-with-icon row mx-0">
+    {% for item in blockItems %}
+        {% include '@molecules/04-card-links/link-card--with-icon-right.twig' with {
+            class: 'border--light col-lg-3 col-md-6 col-sm-12 p-0 pr-md-1 minh-7',
+            themeVariant: themeVariant,
+            label: item["title"],
+            href: item["link"],
+            iconName: item["icon"],
+        } %}
+    {% endfor %}
+</div>
+

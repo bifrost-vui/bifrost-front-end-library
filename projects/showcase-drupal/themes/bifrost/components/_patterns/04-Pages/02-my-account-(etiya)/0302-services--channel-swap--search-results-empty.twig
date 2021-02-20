@@ -1,0 +1,33 @@
+{% extends "base-page--funnel-services.twig" %}
+
+{% set navStepByStep_tplName = "service" %}
+{% set navStepByStep_activeNumber = 2 %}
+
+{#{% set page_hero_title = "Manage services" %}#}
+{#{% set page_hero_subtitle = "Craft a bundle that best fits your needs" %}#}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container  %}
+    {% include '@organisms/60-content-channel-swap/channel-swap--header.twig' with { class:"" } only %}
+
+    <section class="bg-gray--100 py-4">
+        <div class="container-fluid">
+            {% include '@templates/02-my-account-(etiya)/20-form/search-channel-form.twig' only %}
+        </div>
+    </section>
+    <section>
+        <div class="container-fluid">
+            <div class="mt-4 mb-6">
+                <p class="h2 font-weight-normal mb-4">No results found</p>
+                <p>Please make sure you searched for channel name or number.</br>Our engine strictly searches for channel ID.</p>
+                <p>You may want to check spelling.</p>
+                <p>Or try browsing by categories.</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block page_sticky_bottom_bar %}
+    {% include '@organisms/15-navigation-sticky-bottom/funnel-nav-sticky-channel-swap.twig' with { class:"" } only %}
+{% endblock %}

@@ -1,0 +1,58 @@
+{% set channelsListingId = "cat_premium_channel" %}
+{% embed '@molecules/06-accordion/accordion-item--arrow-down.twig' with {
+    isOpen: true,
+    class: 'border--0 ' ~ class|default(''),
+    inlineAnchor: "accordion_" ~ channelsListingId,
+    cardHeaderClass: "bg--none px-0"
+} %}
+    {% block collapse_header %}
+        <div class="text-left w-100 d-flex justify-content-between align-items-center">
+            <div>
+                <p class="h4 mb-0">Premium channels</p>
+                {#<p class="mb-0"><strong>1/1</strong> Selected channels</p>#}
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block collapse_content %}
+        <p>AMC (2) <span class="h5 font-weight-bold ml-3">Included</span></p>
+        <div class="d-flex flex-wrap">
+            {% for c in 1..4 %}
+                {% if loop.first %}
+                    {% set channelStateClass = " bundle-first " %}
+                {% elseif loop.last %}
+                    {% set channelStateClass = " bundle-last " %}
+                {% else %}
+                    {% set channelStateClass = "" %}
+                {% endif %}
+
+                {% include '@molecules/21-form-item/item-channel.twig' with {
+                    class: "item-channel--bundle " ~ channelStateClass|default(),
+                    isSelected: true,
+                    inputId: channelsListingId ~ "_" ~ c,
+                    inputName: channelsListingId
+                } %}
+            {% endfor %}
+        </div>
+
+        <p>USA combo (2) <span class="h5 font-weight-bold ml-3">10$/month</span></p>
+        <div class="d-flex flex-wrap">
+            {% for c in 1..4 %}
+                {% if loop.first %}
+                    {% set channelStateClass = " bundle-first " %}
+                {% elseif loop.last %}
+                    {% set channelStateClass = " bundle-last " %}
+                {% else %}
+                    {% set channelStateClass = "" %}
+                {% endif %}
+
+                {% include '@molecules/21-form-item/item-channel.twig' with {
+                    class: "item-channel--bundle " ~ channelStateClass|default(),
+                    isSelected: false,
+                    inputId: channelsListingId ~ "2_" ~ c,
+                    inputName: channelsListingId ~ "2_"
+                } %}
+            {% endfor %}
+        </div>
+    {% endblock %}
+{% endembed %}

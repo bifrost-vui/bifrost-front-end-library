@@ -1,0 +1,69 @@
+{% extends "base-page--funnel.twig" %}
+
+{#{% set navBackLabel = "Back to overview" %}#}
+{% set navBackHref = "/patterns/04-Pages-02-my-account-(etiya)-01-overview/04-Pages-02-my-account-(etiya)-01-overview.html" %}
+
+{#% set navStepByStep_tplName = "billing-make-a-payment" %#}
+{% set navStepByStep_activeNumber = 1 %}
+{% set navBackLabel = "Retour au sommaire"%}
+
+{% set page_hero_title = "Make a payment" %}
+{#{% set page_hero_subtitle = "Lorem ipsum dolor sit amet, consectetur adipisicing elit." %}#}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+<section class="py-section">
+    <div class="container-fluid">
+        {% embed 'templates-step-creation--8-4' with {
+            btnBackStepHref : "/patterns/04-Pages-02-my-account-(etiya)-01-overview/04-Pages-02-my-account-(etiya)-01-overview.html",
+            btnNextStepHref : "/patterns/04-Pages-02-my-account-(etiya)-0205-payment--make-a-payment-confirmation/04-Pages-02-my-account-(etiya)-0205-payment--make-a-payment-confirmation.html",
+            btnNextStepLabel : "Pay now",
+            hasNoSidebar: false,
+            leftColClass: "col-lg-6"
+        } only %}
+            {% block step_content %}
+                <div class="card-body px-md-6">
+                    <div class="mb-4">
+                        <h2 class="mb-4">Combien voulez-vous payez</h2>
+
+                        <p class="font-weight-bold">Balance actuelle</p>
+                        {% include '@atoms/07-payment/price-box.twig' with {
+                            priceClass:"",
+                            priceDollar: "152",
+                            priceCent:"34",
+                            priceInfosSupp:" ",
+                            priceBoxAlignement:"left"
+                        } only %}
+                    </div>
+                    <div class="">
+                        {% include '@atoms/03-form/input-with-label.twig' with { label:"Payment amount", inputId:"payment_amount"} %}
+                        {#<p>Need help ? <a class="" href="">See how to make a payment online</a></p>#}
+                    </div>
+                    <div class="">
+                        {% include '@atoms/03-form/selectlist.twig' with {
+                            label: "Which credit card would you like to pay with?",
+                            inputId: "payment_method",
+                            options: [
+                                { label:"XXXX-XXXX-XXXX-1234", value:"1234" },
+                                { label:"XXXX-XXXX-XXXX-5678", value:"5678" }
+                            ]
+                        } %}
+                        {% include '@atoms/04-links/link-underline-with-icon-left.twig' with {
+                            class:"d-block",
+                            iconName: "plus-circle",
+                            href: "/patterns/04-Pages-02-my-account-(etiya)-0201-payment--make-a-payment--new-credit-card/04-Pages-02-my-account-(etiya)-0201-payment--make-a-payment--new-credit-card.html",
+                            label: "Add a new credit card"
+                        } %}
+                    </div>
+                </div>
+            {% endblock %}
+        {% endembed %}
+    </div>
+</section>
+{% endblock %}
+
+{% block modals_container %}
+    {#{% include 'organisms-modal-add-new-payment-method' %}#}
+    {% include 'organisms-modal-add-new-credit-card' %}
+{% endblock %}

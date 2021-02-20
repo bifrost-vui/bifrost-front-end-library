@@ -1,0 +1,38 @@
+{% extends "base-page--funnel.twig" %}
+
+{#{% set navBackLabel = "Back to overview" %}#}
+{% set navBackHref = "/patterns/04-Pages-02-my-account-(etiya)-01-overview/04-Pages-02-my-account-(etiya)-01-overview.html" %}
+
+{#% set navStepByStep_tplName = "billing-make-a-payment" %#}
+{% set navStepByStep_activeNumber = 1 %}
+{% set navBackLabel = "Retour au sommaire"%}
+
+{% set page_hero_title = "Add a new credit card" %}
+{#{% set page_hero_subtitle = "Lorem ipsum dolor sit amet, consectetur adipisicing elit." %}#}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+<section class="py-section">
+    <div class="container-fluid">
+        {% embed 'templates-step-creation--8-4' with {
+            btnBackStepHref : "/patterns/04-Pages-02-my-account-(etiya)-0201-payment--make-a-payment/04-Pages-02-my-account-(etiya)-0201-payment--make-a-payment.html",
+            btnNextStepHref : "/patterns/04-Pages-02-my-account-(etiya)-0201-payment--make-a-payment/04-Pages-02-my-account-(etiya)-0201-payment--make-a-payment.html",
+            btnNextStepLabel : "Add card",
+            hasNoSidebar: false,
+            leftColClass: "col-lg-6"
+        } only %}
+            {% block step_content %}
+                <div class="card-body px-md-6">
+                    <h2 class="mb-4">Credit card information</h2>
+
+                    {% include 'templates-add-credit-card' with {
+                        class:"mb-4",
+                        hasCheckboxSaveMyCard: false
+                    } %}
+                </div>
+            {% endblock %}
+        {% endembed %}
+    </div>
+</section>
+{% endblock %}

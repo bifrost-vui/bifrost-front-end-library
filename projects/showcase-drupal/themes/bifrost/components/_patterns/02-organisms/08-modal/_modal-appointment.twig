@@ -1,0 +1,43 @@
+{% embed "molecules-modal" with {
+    modalId:"modalAppointment",
+    modalTitle:"Installation",
+    modalSubtitle:"24 septembre, 12-17h",
+    modalSize:"md"
+} %}
+    {% block modal_body %}
+        <div class="mb-4 border-left border-width-4 mb-4 pl-3">
+            <p class="h4">Maison</p>
+            <address>1234 Sherbrooke Est street, H1P2C5</address>
+        </div>
+
+        {% include '@atoms/03-form/input-with-label.twig' with {
+            label:"Contact name",
+            inputId:"appointment_contactName"
+        } %}
+        {% include '@atoms/03-form/input-with-label.twig' with {
+            label:"Phone number",
+            inputId:"appointment_contactPhone"
+        } %}
+
+        {% include '@atoms/01-text/text-information.twig' with {
+            class:"mb-2",
+            textLabel:"Be informed that a person aged <strong>18 years or older</strong> must be present during technician's visit."
+        } %}
+
+        {# ------------------------------------------------------------------------------------------------------------------ #}
+        <div class="d-flex justify-content-end mt-4">
+            {% include '@atoms/02-buttons/00-button.twig' with {
+                buttonLabel:"Cancel",
+                buttonClass:"btn-reset link-underline btn--condensed js-timepicker-modal",
+                dataDismiss:"modal"
+            } %}
+
+            {% include '@atoms/04-links/01-link-button.twig' with {
+                class: "w-100--mobile-only",
+                label: "Reserve slot",
+                href: "/patterns/04-Pages-02-my-account-(etiya)-0103-appointment--confirmation/04-Pages-02-my-account-(etiya)-0103-appointment--confirmation.html",
+            } only %}
+        </div>
+
+    {% endblock %}
+{% endembed %}

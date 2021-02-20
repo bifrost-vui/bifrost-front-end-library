@@ -1,0 +1,17 @@
+{% embed "@molecules/08-modal/modal.twig" with {
+    modalId:id,
+    modalTitle:modalEquipmentTitle|default(''),
+    modalSize:modalEquipmentSize|default('lg'),
+    hasScrollContainer: false
+} %}
+    {% block modal_header %}
+        <h2 class="mb-2 color--dark">{{ modalEquipmentTitle|default('Title') }}</h2>
+    {% endblock %}
+
+    {% block modal_body %}
+        <div class="color--dark">
+            {{ modalEquipmentContent|default('<p>Vel accumsan gravida leo phasellus sed tortor vivamus enim euismod lacus magna commodo eu suspendisse magna metus fusce euismod eros consectetur id dolor sem lacus.</p>
+            <p>Nunc condimentum ac eu id diam mi rutrum eget placerat nisl varius id a vivamus felis quisque elit enim magna mi cursus commodo nisl suspendisse.</p>')|raw }}
+        </div>
+    {% endblock %}
+{% endembed %}

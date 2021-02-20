@@ -1,0 +1,112 @@
+{% embed '@organisms/15-navigation-sticky-bottom/funnel-nav-sticky-price-box.twig' with {
+    class:"",
+    stickyNavPriceBtnNextLabel:"Continue",
+    stickyNavPriceBtnNextHref: "/patterns/04-Pages-02-my-account-(etiya)-0302-services--channel-swap/04-Pages-02-my-account-(etiya)-0302-services--channel-swap.html",
+    priceTitle_1: "Actual plan",
+    priceboxParams_1: {
+        priceClass:"w-100 price-box--sm",
+        priceDollar: "152",
+        priceCent:"34",
+        priceRecurrencePeriod: "/mo",
+        priceInfosSupp:"Taxes incl.",
+        priceBoxAlignement:"left",
+        priceBoxSubInfosClass:"color--vui-yellow",
+        priceBoxSubInfosLabel: "You save each months: <strong>124,34$</strong>",
+    },
+    priceTitle_2: "New monthly plan",
+    priceboxParams_2: {
+        priceClass:"w-100 price-box--sm",
+        priceDollar: "152",
+        priceCent:"34",
+        priceRecurrencePeriod: "/mo",
+        priceInfosSupp:"Taxes incl.",
+        priceBoxAlignement:"left",
+        priceBoxSubInfosClass:"color--vui-yellow",
+        priceBoxSubInfosLabel: "You save each months: <strong>124,34$</strong>",
+    }
+} only %}
+    {% block nav_content %}
+        <div class="container-fluid">
+            {% embed '@atoms/02-buttons/01-button-with-icon.twig' with {
+                buttonLabel:"View actual plan",
+                buttonClass:"btn--collapse-sticky-bottom w-100--mobile-only text-center",
+                buttonSize:"small",
+                buttonColor: "dark",
+                buttonLabel:"View actual plan",
+                dataToggle:"collapse",
+                dataTarget:"#collapseNavStickySimulatorActualPlan",
+                ariaExpanded: "false",
+                ariaControls: "collapseNavStickySimulatorActualPlan",
+            } %}
+                {% block icon %}
+                    {% include '@atoms/06-icons/icon-arrow-to-top.twig' with {
+                        iconColorTheme: itemColor|default("light"),
+                        iconClass:"position-relative top-1 mb-2 mt-1 ml-3"
+                    } %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+
+        <div class="collapse bg-gray--100 col-md-6 col-lg-5" id="collapseNavStickySimulatorActualPlan">
+            <div class="p-4">
+                <div class="mh-60-autoscroll scrollbar-custom">
+                    <div class="mb-6">
+                        <p class="vui--font-secondary h2">Your Internet plan :</p>
+
+                        {% include 'templates-item-service-plan--internet' with {
+                            class:"bg-white card border-width-2",
+                            title: "Internet 500",
+                            isCurrentPlan: true,
+                            subTitle: "Unlimited download",
+                            jaugeAnimValue: "500",
+                            jaugeTextValue: "500",
+                            jaugeTextUnit: "MBTS/S",
+                            personValue: "4 - 7"
+                        } only %}
+                    </div>
+
+                    <div>
+                        <p class="vui--font-secondary h2">Your TV plan :</p>
+
+                        {% include 'templates-item-service-plan--tv' with {
+                            class:"bg-white card border-width-2",
+                            title: "Absolute",
+                            isCurrentPlan: true,
+                            subTitle: "23 chaines HD de base",
+                            promoLeft: {
+                                number: "+30",
+                                channelText: "Choices in <strong>Popular & sports</strong> channel",
+                                channels : [
+                                    { imgSrc:"/images/logo/channels/tva-sports.svg"},
+                                    { imgSrc:"/images/logo/channels/rds.svg"},
+                                    { imgSrc:"/images/logo/channels/yoopa.svg"}
+                                ]
+                            },
+                            promoRight : {
+                                number: "+2",
+                                channelText: "<strong>Premium</strong> channel of your choice",
+                                channels : [
+                                    { imgSrc:"/images/logo/channels/illico.svg"},
+                                    { imgSrc:"/images/logo/channels/superecran.svg"},
+                                    { imgSrc:"/images/logo/channels/canalplus.svg"}
+                                ]
+                            }
+                        } only %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ parent() }}
+    {% endblock %}
+
+    {% block collapse_content %}
+        <div class="collapse js-DEMO-collapse-banner">
+            {% include 'molecules-collapse-banner--text-with-button-outline' with {
+                class:"",
+                itemTitle:"Exclusive offer",
+                itemTxt:"Pay $169.00/mo (taxes excl.) for this bundle until July 11 2020 - New conditions apply",
+            } only %}
+        </div>
+    {% endblock %}
+{% endembed %}

@@ -1,0 +1,21 @@
+<div class="card form-input-accordion-item form-input-accordion-item--tab {{ class|default('') }}">
+    <input type="{{ inputType|default('radio') }}"
+           id="{{ inputId|default('defaultInputAccordionItemTab') }}"
+           name="{{ inputName }}"
+           class="sr-only form-input-accordion-item__input"
+           {% if isSelected is defined and isSelected is same as (true) %}checked="checked"{% endif %}
+    >
+
+    <label for="{{ inputId|default('defaultInputAccordionItemTab')  }}"
+           class="card-header form-input-accordion-item__label">
+        {{ inputLabel|default('input label') }}
+    </label>
+
+    <div class="form-input-accordion-item__collapse-content">
+        {% block collapse_content %}
+            <div class="card-body">
+                <p>Here is the collapse content of the input.</p>
+            </div>
+        {% endblock %}
+    </div>
+</div>

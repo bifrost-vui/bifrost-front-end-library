@@ -1,0 +1,33 @@
+<div>
+    {% include '@molecules/09-payment/billing-table.twig' with {
+        headerTextLeft: "Personal Information",
+        headerTextRight: "John Doe",
+        dataItems: [
+            {textLeft: "Email address", textRight: "name@gmail.com"},
+            {textLeft: "Phone number", textRight: "(514) 999-9999"},
+            {textLeft: "Service address", textRight: "800 rue du Square-Victoria,<br>Montreal QC H4G 7H7"}
+        ]
+    } only %}
+
+    {% include '@molecules/09-payment/billing-table.twig' with {
+        class: "border-top-0",
+        headerTextLeft: "Payment method",
+        headerTextRight: "Mastercard",
+        dataItems: [
+            {textLeft: "Name on the credit card", textRight: "John Doe"},
+            {textLeft: "Card number", textRight: "**** **** **** 8762"},
+            {textLeft: "Billing address", textRight: "800 rue du Square-Victoria,<br>Montreal QC H4G 7H7"}
+        ]
+    } only %}
+
+    {% include '@molecules/09-payment/billing-table.twig' with {
+        class: "border-top-0",
+        headerTextLeft: "Service recap",
+        headerTextRight: "",
+        dataItems: [
+            {textLeft: "Internet", textRight: "Hybrid fiver 100"},
+            {textLeft: "Television", textRight: "All-in pack"},
+            {textLeft: "Equipment", textRight: "Helix FI Gateway,<br>Helix TV Terminal (x2)<br>Helix TV Terminal extended warranty"}
+        ]
+    } only %}
+</div>

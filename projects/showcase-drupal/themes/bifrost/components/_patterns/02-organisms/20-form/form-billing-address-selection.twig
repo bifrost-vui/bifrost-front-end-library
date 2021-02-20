@@ -1,0 +1,32 @@
+<h3 class="mb-3">Billing Address</h3>
+
+{% embed '@molecules/05-input/input-radio-accordion-item.twig' with {
+    isSelected : true,
+    class:"border-bottom--0",
+    inputName: "_account_credit_billing_address",
+    inputId: "billingAddress1",
+    inputLabel:"Use my service address for billing",
+} %}
+    {% block collapse_content %}
+        <div class="card-body px-6 py-3">
+            <h5>4594, Chabot Street,
+                <br>Montreal (Quebec) H2H 1Y3
+            </h5>
+        </div>
+    {% endblock %}
+{% endembed %}
+
+{% embed '@molecules/05-input/input-radio-accordion-item.twig' with {
+    isSelected : false,
+    class:"",
+    inputName: "_account_credit_billing_address",
+    inputId: "billingAddress2",
+    inputLabel:"Enter a new billing address",
+} %}
+    {% block collapse_content %}
+        <div class="card-body px-6 py-4">
+            {% include '@organisms/11-postal-code/01-postal-code-search.twig' %}
+            {#{% include '@organisms/11-postal-code/02-postal-code-search--fill-the-address-2.twig' %}#}
+        </div>
+    {% endblock %}
+{% endembed %}

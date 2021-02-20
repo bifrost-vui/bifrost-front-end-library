@@ -1,0 +1,91 @@
+{% if navItems is not defined %}
+    {% set navItems = [
+        { label: 'Overview', href: '/?p=templates-overview', isActive: true },
+        { label: 'Billing and Payments', href: '/?p=templates-billing-and-payment', isActive: false },
+        { label: 'Services & Equipments', href: '/?p=templates-services', isActive: false },
+        { label: 'Profile and Settings', href: '/?p=templates-profile-and-settings', isActive: false }
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<!-- header-nav-subnav--my-account.twig -->
+<nav id="stickyNavPrice" class="border-bottom-gray--800 js-position-sticky-bottom vui-anim--slide-from-bottom {{ class|default('') }}">
+    {#<div class="progress" style="height: 7px">#}
+        {#<div class="progress-bar bg-primary js-DEMO-byod-progress-bar" role="progressbar" style="width: 0" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>#}
+    {#</div>#}
+
+    {% block nav_content %}
+        <div class="bg--dark color--white py-3">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-8 col-lg-8">
+                        <div class="row">
+                            <div class="col-6 col-lg-4">
+                                <div>
+                                    <p class="small font-weight-bold mb-1">Prix des équipements{% include '@atoms/02-buttons/25-button-tooltip.twig' with {
+                                            buttonClass:"ml-2 p-0 position-absolute",
+                                            buttonDisplay: "inline",
+                                            tooltipTxt: "Les équipements Helix doivent être achetés avec un plan de versements de 36 mois ou en paiement unique.",
+                                            iconColor: "svg-fill--white"
+                                        } %}</p>
+
+
+                                    {% include '@atoms/07-payment/price-box.twig' with {
+                                        priceBoxSize:"sm",
+                                        priceClass:"w-100",
+                                        priceDollar: "00",
+                                        priceCent:"00",
+                                        priceAsterisk: " ",
+                                        priceRecurrencePeriod: "mois",
+                                        priceInfosSupp: " ",
+                                        priceBoxAlignement:"left"
+                                    } only %}
+                                    {#<p class="font-weight-normal small mb-0 color--primary {{ priceBoxSubInfosClass|default('') }}">{{ priceBoxSubInfosLabel|default('Vous économisez : <strong>124,34$</strong>/mois')|raw }}</p>#}
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-4">
+                                <div>
+                                    <p class="small font-weight-bold mb-1">Coût total</p>
+
+                                    {% include '@atoms/07-payment/price-box.twig' with {
+                                        priceBoxSize:"sm",
+                                        priceClass:"w-100",
+                                        priceDollar: "00",
+                                        priceCent:"00",
+                                        priceAsterisk: " ",
+                                        priceRecurrencePeriod: "mois",
+                                        priceInfosSupp: " ",
+                                        priceBoxAlignement:"left"
+                                    } only %}
+                                    <p class="font-weight-normal small mb-0 color--primary {{ priceBoxSubInfosClass|default('') }}">{{ priceBoxSubInfosLabel|default('Vous économisez : <strong>124,34$</strong>/mois')|raw }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4 col-lg-4 mt-3 mt-md-0 text-right">
+                        {% include '@atoms/04-links/01-link-button.twig' with {
+                            id: "stickyNavBtnNext",
+                            class:"color--dark w-100--mobile-only disabled js-fullpage-btn-next-step",
+                            btnColor: "primary",
+                            label: "Suivant",
+                            href: ""
+                        } only %}
+
+                        {% include '@atoms/04-links/01-link-button.twig' with {
+                            id: "stickyNavBtnProceedToCheckout",
+                            class:"color--dark w-100--mobile-only disabled js-fullpage-btn-next-page",
+                            btnColor: "primary",
+                            label: "Continuer",
+                            href: "/patterns/04-Pages-01-activation-(etiya)-05-self-install/04-Pages-01-activation-(etiya)-05-self-install.html",
+                            extraAttribute: "style=display:none;"
+                        } only %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+</nav>
+
+

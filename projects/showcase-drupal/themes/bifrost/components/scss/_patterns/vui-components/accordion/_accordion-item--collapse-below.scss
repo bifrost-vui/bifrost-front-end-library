@@ -1,0 +1,23 @@
+/* *****************************************************************************
+*
+*  Accordion (collapse)
+*
+* ***************************************************************************** */
+
+.accordion-item {
+  // Version toggle with header gray
+  &--collapse-below {
+    .tab-btn-collapse__open {display: none;}
+    .tab-btn-collapse__close {display: block;}
+
+    &.active-accordion {
+      .accordion-item__header {
+        @include transitions(background-color);
+        background-color: $gray-100;
+
+        .tab-btn-collapse__open {display: block;}
+        .tab-btn-collapse__close {display: none;}
+      }
+    }
+  }
+}

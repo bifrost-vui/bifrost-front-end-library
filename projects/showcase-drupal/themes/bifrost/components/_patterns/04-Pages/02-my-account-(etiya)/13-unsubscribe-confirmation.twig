@@ -1,0 +1,35 @@
+{% extends "base-page--funnel.twig" %}
+
+{% set page_hero_title = "Manage Your Communication Preferences" %}
+{% set page_hero_subtitle = "Get updates on the topics that interest you" %}
+
+{% set hasNoLegalBar = true %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+{% block page_header_nav %}
+    {% include 'organisms-header-nav-helix--funnel-myaccount' with {
+        label:"Back to Helix",
+        href: ""
+    } %}
+{% endblock %}
+
+{% block page_main_container %}
+    <section class="py-section">
+        <div class="container-fluid">
+            <div class="d-flex align-items-start flex-column flex-md-row">
+                <div class="d-flex justify-content-center mb-4 w-100--mobile-only pr-md-4">
+                    {% include '@atoms/06-icons/icon-svg-checkbox-selected.twig' with { iconClass:"pt-2", iconSize:"6" } only %}
+                </div>
+
+                <div class="">
+                    <div class="mb-6">
+                        <h2 class="mb-2">You have successfully unsubscribed.</h2>
+                        <p>We have updated your email subscription settings for <span class="font-weight-bold">John.Doe2@gmail.com</span>. It may take a short time to go into effect.</p>
+                    </div>
+
+                    <p>To customize your email settings, <a href="" class="link">Manage your Email Preferences</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

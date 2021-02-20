@@ -1,0 +1,25 @@
+{% if isColorInverted is defined and isColorInverted is same as (true) %}
+    {% set invertButtonClass = "vui--style-reset" %}
+    {% set invertIconColor = "svg-fill--light" %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="row align-items-center {{ class|default('') }}">
+    <div class="col-6 col-md-7">
+        <p class="font-weight-medium mb-0">{{ title|default('Bloc de 5 chaînes') }}</p>
+    </div>
+    <div class="col-6 col-md-5 text-right">
+        <div class="row justify-content-end">
+            <div class="col-3">
+                {% include '@atoms/02-buttons/50-button-with-icon--delete.twig' with {
+                    buttonClass: buttonClass|default('') ~ " p-0 " ~ invertButtonClass|default(''),
+                    iconColor: iconColor|default('') ~ " " ~ invertIconColor|default('')
+                } only %}
+            </div>
+            <div class="col-9">
+                <p class="font-weight-medium mb-0">{{ price|default('+ 6.00$/month') }}</p>
+            </div>
+        </div>
+    </div>
+</div>

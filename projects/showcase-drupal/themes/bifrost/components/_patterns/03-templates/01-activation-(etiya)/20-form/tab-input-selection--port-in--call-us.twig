@@ -1,0 +1,59 @@
+<!-- tab-input-selection--port-in.twig -->
+{% embed '@molecules/10-tab/tab.twig' with {
+    tabClass: class|default('') ~ " tab--input-radio",
+    tabNavId:"tabPortInCallUs",
+    tabContentId:"tabPortInCallUsContent",
+    tabNavItems: [
+        { id:"_portin_callus_yes", label:"Yes", isSelected:true },
+        { id:"_portin_callus_no", label:"No", isSelected:false}
+    ]
+} %}
+    {% block tab_pane_content %}
+        {# Tab : Yes, transfert my services ---------------------------------------------- #}
+        <div id="_portin_callus_yes" class="tab-pane fade active show" role="tabpanel" aria-labelledby="tab-portin-yes">
+            <div class="card border-top-0">
+                <div class="card-body">
+                    <p>Which services would you like us to transfer for you?</p>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            {% include '@molecules/13-dropdown/00-dropdown.twig' with {
+                                class:"",
+                                buttonClass: "vui--text-highlight",
+                                dropdownId:"dropPortInServices",
+                                dropdownSelectedItem: "Internet, Television and Telephony",
+                                dropdownItems: [
+                                    {label : "Internet", class:""},
+                                    {label : "Television", class:""},
+                                    {label : "Internet and Television", class:"active"},
+                                    {label : "Telephony", class:""},
+                                    {label : "Internet and Telephony", class:""},
+                                    {label : "Television and Telephony", class:""},
+                                    {label : "Internet, Television and Telephony", class:""},
+                                ]
+                            } only %}
+                        </div>
+                    </div>
+
+                    <h3>Please contact us</h3>
+                    <p>In order to successfully complete your telephony services port in, click on call me now and get the assistance of one of our agent promptly. Note that by doing so, the agent will cordially complete the whole transaction with you over the phone in no time.</p>
+                    {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                        buttonLabel:"Contact us",
+                        extraAttribute: ''
+                    } %}
+                    {#{% include 'organisms-cta-contact-us' with { class:"" } only %}#}
+                </div>
+            </div>
+        </div>
+
+        {# Tab : No  ---------------------------------------------- #}
+        <div id="_portin_callus_no" class="tab-pane fade" role="tabpanel" aria-labelledby="tab-portin-no">
+            <div class="card border-top-0">
+                <div class="card-body">
+                    <h3>Lorem ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad autem consectetur cumque, doloremque ea et hic id illum ipsam ipsum odio quo repellendus soluta veniam? Culpa eum expedita veritatis!</p>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

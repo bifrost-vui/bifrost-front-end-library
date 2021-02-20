@@ -1,0 +1,29 @@
+{% set billingItems = [
+    {
+        title:"Previous Bill",
+        totalLabel: "Balance Due"
+    },
+    {
+        title:"Current Bill",
+        totalLabel: "Total amount Due"
+    }
+] %}
+
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="{{ class|default('') }}">
+    <h2 data-animate="">Billing Summary</h2>
+
+    <div class="row">
+        {% for billItem in billingItems %}
+            <div class="col-md-6 mb-3 mb-md-0" data-animate>
+                {% include '@organisms/06-billing/billing-summary-table.twig' with {
+                    class:"",
+                    title: billingItem.title,
+                    totalLabel: billingItem.totalLabel
+                } only %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

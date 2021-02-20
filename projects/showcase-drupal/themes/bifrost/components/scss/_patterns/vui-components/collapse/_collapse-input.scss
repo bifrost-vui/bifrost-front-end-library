@@ -1,0 +1,37 @@
+/* *****************************************************************************
+*
+*  Collapse input
+*
+* ***************************************************************************** */
+
+.collapse-input {
+  $_this: &;
+
+  &.active-toggle {
+
+    #{$_this}__btn {
+      opacity: 0;
+    }
+
+    #{$_this}__content1 {
+      display: none;
+    }
+    #{$_this}__content2 {
+      display: block;
+    }
+  }
+
+  &__btn {
+    @include transitions(opacity .01s);
+    opacity: 1;
+  }
+
+  &__content1 {
+    @extend .vui-anim--fade-in;
+    display: block;
+  }
+  &__content2 {
+    @extend .vui-anim--fade-in;
+    display: none;
+  }
+}

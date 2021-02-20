@@ -1,0 +1,70 @@
+{% extends "base-page-helix.twig" %}
+
+{#{% set navBackLabel = "Back to overview" %}#}
+{#{% set navBackHref = "/patterns/04-Pages-02-my-account-(etiya)-01-overview/04-Pages-02-my-account-(etiya)-01-overview.html" %}#}
+
+{#{% set navStepByStep_tplName = "billing-make-a-payment" %}#}
+{#{% set navStepByStep_activeNumber = 2 %}#}
+
+{% set page_hero_title = "Confirmation" %}
+{% set page_hero_subtitle = "Lorem ipsum dolor sit amet, consectetur adipisicing elit." %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    <section class="py-section">
+        <div class="container-fluid">
+            <div class="row mb-4">
+                <div class="col-lg-9 mb-3">
+                    {% embed 'molecules-content-complete-message' with {
+                        class:"",
+                        title: "Payment complete!",
+                        txt: "We've sent you an email with all the detail of your payment. You can track this payment using this reference number!"
+                    } only %}
+                        {% block under_message %}
+                            <a href="" class="link font-weight-bold h6">Subscribe to pre-authorized payments</a>
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+
+                <div class="col-lg-3 d-flex justify-content-lg-end">
+                    <div>
+                        {% embed '@atoms/01-text/text-featured.twig' with {
+                            class:"d-inline-block"
+                        } only %}
+                            {% block textFeatured_content %}
+                                <div class="mb-2">
+                                    <p>Reference number <br>
+                                        <strong>NFSDG34535345</strong>
+                                    </p>
+                                </div>
+
+                                <div class="mb-2">
+                                    <p>Order date<br>
+                                        <strong>August8, 2019</strong>
+                                    </p>
+                                </div>
+                            {% endblock %}
+                        {% endembed %}
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            {% include '@atoms/01-text/text-information.twig' with {
+                class:"mb-4",
+                textLabel:'If you have legacy services go to the <a class="link font-weight-bold" href="">legacy website</a> to pay them.'
+            } %}
+
+            <div class="d-flex justify-content-end">
+                {% include '@atoms/04-links/link-underline.twig' with {
+                    class:"",
+                    label: 'Go to overview',
+                    href: '/patterns/04-Pages-02-my-account-(etiya)-01-overview/04-Pages-02-my-account-(etiya)-01-overview.html'
+                } %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

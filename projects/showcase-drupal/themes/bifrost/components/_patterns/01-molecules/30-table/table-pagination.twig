@@ -1,0 +1,37 @@
+{% if pageItems is not defined or pageItems is empty %}
+    {% set pageItems = [
+        { pageNumber:"1", isActive:false },
+        { pageNumber:"2", isActive:false },
+        { pageNumber:"3", isActive:true },
+        { pageNumber:"4", isActive:false },
+        { pageNumber:"5", isActive:false }
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<nav aria-label="" class="{{ class|default('') }}">
+    <ul class="pagination">
+        <li class="page-item disabled">
+            <a class="page-link vui--text-highlight" href="#" tabindex="-1">Previous</a>
+        </li>
+
+        {% for item in pageItems %}
+            {% if item.isActive is same as (true) %}
+                {% set pageItemClass = 'active' %}
+            {% elseif loop.first is same as (true) or loop.last is same as (true) %}
+                {% set pageItemClass = '' %}
+            {% else %}
+                {% set pageItemClass = 'd-none d-md-block' %}
+            {% endif %}
+
+            <li class="page-item {{ pageItemClass|default('') }}">
+                <a class="page-link" href="#">{{ item.pageNumber }} {% if item.isActive %}<span class="sr-only">(current)</span>{% endif %}</a>
+            </li>
+        {% endfor %}
+
+        <li class="page-item">
+            <a class="page-link vui--text-highlight" href="#">Next</a>
+        </li>
+    </ul>
+</nav>

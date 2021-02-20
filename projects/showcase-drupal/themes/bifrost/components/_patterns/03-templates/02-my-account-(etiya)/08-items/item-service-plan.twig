@@ -1,0 +1,70 @@
+<div class="item-service-plan card-rounded overflow-hidden  {{ class|default('') }}">
+    {% if isCurrentPlan is defined and isCurrentPlan is same as (true) %}
+        {% include '@atoms/08-tags/tag--my-plan.twig' only %}
+    {% endif %}
+
+    <div class="available-content">
+        <div class="text-center py-4 px-3 {{ cardClass|default('') }}" data-animate-row="">
+            <div class="mb-3">
+                <h3 class="font-weight-bold text-uppercase" data-animate="fade-in">{{ title|default('Internet 400') }}</h3>
+                <h6 class="text-uppercase mb-0" data-animate="fade-in">{{ subTitle|default('Unlimited data included') }}</h6>
+
+                {% if imgHeader is defined %}
+                    <div class="text-center mt-2">
+                        <img src="/images/{{ imgHeader }}" alt="" class="img-fluid d-inline-block">
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="row justify-content-center {{ itemContentClass|default('') }}" data-animate="fade-in">
+                {% block item_content %}
+                    <div class="col-6 d-flex justify-content-center align-items-center">
+                        {% block content_left %}
+                            {% include '@molecules/15-services-widgets/jauge.twig' with {
+                                class:"d-block mw-100 pr-2",
+                                jaugeColor: "dark",
+                                size: "md",
+                                jaugeAnimValue: jaugeAnimValue,
+                                jaugeTextValue: jaugeTextValue,
+                                jaugeTextUnit: jaugeTextUnit
+                            } only %}
+                        {% endblock %}
+                    </div>
+
+                    <div class="col-6 justify-content-center align-items-center {{ borderLeftColor|default('border-left') }}">
+                        {% block content_right %}
+                            {% include '@molecules/15-services-widgets/persons.twig' with {
+                                class:"d-block",
+                                personValue: personValue
+                            } only %}
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+
+        {% if hasNoDetails is not defined %}
+            <div class="bg-gray--100 p-3 text-center">
+                {% include '@atoms/02-buttons/00-button.twig' with {
+                    buttonClass:"link-underline small d-inline-block mb-0 p-0 text-center",
+                    buttonColor: "reset",
+                    buttonLabel:"Details",
+                    dataToggle:"modal",
+                    dataTarget:"#modalBundleServiceItemDetails"
+                } %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="unavailable-content p-4 d-flex flex-column align-items-center justify-content-center text-center">
+        {% include '@atoms/06-icons/icon-svg.twig' with {
+            iconName: "attention",
+            iconColor: "svg-fill--light",
+            iconSize: 3,
+            iconClass:"mb-3"
+        } only %}
+        <p class="h4 vui--text-highlight mb-0">{{ title|default('Internet 400') }}</p>
+        <p>This TV plan is not available if combine with this internet Plan.</p>
+    </div>
+
+</div>

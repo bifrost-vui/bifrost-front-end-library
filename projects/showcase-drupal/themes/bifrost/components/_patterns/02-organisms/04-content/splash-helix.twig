@@ -1,0 +1,24 @@
+{# DEMO PURPOSES #}
+{% if items is not defined or items is empty %}
+    {% set items = [
+        {text:"Visualisez vos factures"},
+        {text:"Modifiez votre sélection de chaînes"},
+        {text:"Gérez vos informations personnelles"},
+    ] %}
+{% endif %}
+
+
+
+{# DON'T USE IT AS INCLUDE, THIS IS JUST FOR DEMO PURPOSES #}
+
+{% include '@organisms/04-content/splash.twig' with {
+  title:'Accédez au Compte Helix',
+  subtitle:'Consultez vos services et équipements Helix',
+  img:'/images/assets/screenshot-helix.png',
+  altImg:'Image Compte Helix',
+  connexionBtnClass:'splash__btn color--white mr-0 mr-md-3',
+  connexionBtnColor:'dark',
+  labelDiscoverHelix:'Découvrez Helix',
+  imgLogo:'/images/logo/helix-full.svg',
+
+} %}

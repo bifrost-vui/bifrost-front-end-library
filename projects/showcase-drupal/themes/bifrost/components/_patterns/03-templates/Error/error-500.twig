@@ -1,0 +1,22 @@
+<div class="bg--vui-yellow error-bg error-bg--500">
+    <img class="img-fluid d-block d-md-none" src="/images/error/helix_500_img_mobile.png" alt="">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-6 mb-8 mb-md-0">
+                <p class="h3 vui--font-secondary">{{ errorType|default('ERREUR 500') }}</p>
+                <h1 class="mb-3">{{ errorTitle|default('Une erreur est survenue.') }}</h1>
+                <p class="h4 lh-3">{{ errorText|default("Désolé, à la suite d'un problème technique, cette page est inaccessible pour le moment. Nous travaillons fort pour remédier rapidement à la situation.") }}</p>
+
+                {% block error_content %}
+                    <div class="border-left--dark border-width-3 pl-4 mt-4">
+                        <p class="font-weight-bold h4 mb-3">Pour tenter d'accéder à nouveau à cette page, vous pouvez :</p>
+                        <ul class="mb-0 h4">
+                            <li>Cliquer sur le bouton &laquo; Rafraîchir &raquo; de votre fureteur.</li>
+                            <li>Réessayer dans quelque minutes.</li>
+                        </ul>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>

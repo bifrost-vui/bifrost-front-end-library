@@ -1,0 +1,18 @@
+<div class="{{ class|default('') }}">
+    <p class="font-weight-bold">{{ serviceTitle|default('Download capacity') }}</p>
+
+    <div class="row align-items-center">
+        {% if icon is defined %}
+            <div class="col-2">
+                {% include '@atoms/06-icons/icon-svg.twig' with {
+                    iconName: iconName|default("download"),
+                    iconSize: iconSize|default()
+                } only %}
+            </div>
+        {% endif %}
+
+        <div class="col-10 ">
+            <span class="mb-0 font-weight-light h4">{{ serviceTxt|default("Up until 1000 Mbit/s") }}</span>
+        </div>
+    </div>
+</div>

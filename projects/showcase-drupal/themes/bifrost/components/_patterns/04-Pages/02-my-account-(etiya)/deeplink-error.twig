@@ -1,0 +1,44 @@
+{% extends "base-page--myaccount.twig" %}
+
+{% set navBackHref = "/patterns/04-Pages-02-my-account-(etiya)-01-overview/04-Pages-02-my-account-(etiya)-01-overview.html" %}
+
+{% set hasNoSubnav = 1 %}
+
+{% set hasNoCarouselHelp = 1 %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container  %}
+    <section class="py-section">
+        <div class="container-fluid">
+            <div class="mb-4">
+                {% embed '@molecules/02-alert/alert-callout.twig' with {
+                    themeColor:"warning",
+                    flexAlignItems:"start",
+                    alertTitle:"You cannot access this service",
+                    hasNoCloseButton: 1
+                } %}
+                    {% block callout_content %}
+                        <p class="mb-0">You cannot access Channel Selection because it is an Helix TV service.</p>
+                    {% endblock %}
+                {% endembed %}
+            </div>
+            <div class="mb-2">
+                {% include '@atoms/04-links/link-underline.twig' with {
+                    class:"",
+                    href: "/patterns/04-Pages-02-my-account-(etiya)-01-overview/04-Pages-02-my-account-(etiya)-01-overview.html",
+                    label:"Add Helix Tv to my Helix",
+                    headingSize:6
+                } %}
+            </div>
+            <div>
+                {% include '@atoms/04-links/link-underline.twig' with {
+                    class:"",
+                    href: "/patterns/04-Pages-02-my-account-(etiya)-01-overview/04-Pages-02-my-account-(etiya)-01-overview.html",
+                    label:"Go to my helix overview",
+                    headingSize:6
+                } %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

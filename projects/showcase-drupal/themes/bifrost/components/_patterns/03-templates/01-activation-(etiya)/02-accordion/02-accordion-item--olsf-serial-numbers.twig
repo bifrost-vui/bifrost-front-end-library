@@ -1,0 +1,73 @@
+{% embed '@molecules/02-alert/alert-callout.twig' with {
+    class:"",
+    themeColor:"danger",
+    flexAlignItems:"start"
+} %}
+    {% block callout_body %}
+        <p class="">The device is already addigned to another account and can't be activated in your account. Please verify the serial number and enter it again, or choose another device.</p>
+        {% include '@atoms/04-links/00-link.twig' with { label:"Go back to Equipment Configurator", class:"font-weight-bold h6" } %}
+    {% endblock %}
+{% endembed %}
+
+<div class="card-body">
+    <div class="mb-4">
+        <h3 class="">Enter your devices serial numbers</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus autem consequatur corporis debitis.</p>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-7">
+            {% embed '@atoms/03-form/input-with-label.twig' with {
+                class:"mb-0",
+                label:"Helix FI Gateway serial number",
+                inputId:"_serialnumbers_1"
+            } %}
+                {% block BLOCK_tooltip_content %}
+                    <img src="/images/assets/serial-number/borne.png" alt="" class="img-fluid">
+                {% endblock %}
+            {% endembed %}
+
+            <p class="mt-2 mb-0 color-gray--600 font-weight-medium small">Warranty expires XX/XX/XXXX</p>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-7">
+            {% embed '@atoms/03-form/input-with-label.twig' with {
+                class:"mb-0",
+                label:"Helix Xi6 serial number",
+                labelTooltipTxt:"Here is a tooltip",
+                inputId:"_serialnumbers_2"
+            } %}
+                {% block BLOCK_tooltip_content %}
+                    <img src="/images/assets/serial-number/xi6.png" alt="" class="img-fluid">
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-7">
+            {% embed '@atoms/03-form/input-with-label.twig' with {
+                class:"mb-0",
+                label:"Pod",
+                labelTooltipTxt:"Here is a tooltip",
+                inputId:"_serialnumbers_3",
+                tooltipTxt: "Lorem ipsum here is a quick guide to help you."
+            } %}
+                {% block BLOCK_tooltip_content %}
+                    <img src="/images/assets/serial-number/pod.png" alt="" class="img-fluid">
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+
+    <p>Need to modify your equipments ? {% include '@atoms/04-links/00-link.twig' with { label:"Go back to Equipment Configurator"} %}</p>
+
+
+    {% include '@molecules/06-accordion/accordion-nav-btn.twig' with {
+        'class': 'mt-6',
+        'anchorIdPrev': accordionAnchorIdPrev|default(''),
+        'anchorIdNext': accordionAnchorIdNext|default('')
+    } %}
+</div>

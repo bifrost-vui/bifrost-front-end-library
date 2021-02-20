@@ -1,0 +1,57 @@
+{% if bgImage is defined and bgImage is not empty %}
+    {% set defaultImgSrc = bgImage %}
+{#{% else %}#}
+    {#{% set defaultImgSrc = '/images/hero/hero-block-sample.png' %}#}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="modal {{ modalAnimation|default('fade') }} {{ modalClass|default('') }}  modal-theme--{{ modalTheme|default('light') }}"
+     id="{{ modalId|default('exampleModal') }}"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="{{ modalLabelledBy|default('exampleModalLabel') }}"
+     aria-hidden="true"
+     {{ extraAttribute|default(NULL) }}
+>
+    <div class="modal-dialog modal-dialog-centered modal-{{ modalSize|default('lg') }}" role="document">
+        <div class="modal-content position-relative bg-image bg-image--right-bottom {{ modalContentCLass|default('') }}"
+             data-bg="{{ bgImage|default('') }}"
+             data-md-bg="{{ bgMdImage|default(bgLargeImage) }}"
+             data-lg-bg="{{ bgLgImage|default(defaultImgSrc) }}">
+            <button type="button"
+                    class="close d-inline-block m-2 m-md-3 m-lg-4 p-3 position-absolute--top-right"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    {{ extraAttributeX|default(NULL) }}>
+                <span aria-hidden="true">
+                    {% include '@atoms/06-icons/icon-svg-x.twig' only %}
+                </span>
+            </button>
+
+            <div class="modal-header border-bottom-0 pb-3 {{ modalHeaderClass|default('') }}">
+                {% block modal_header %}
+                    <h2 class="mb-2 w-100">{{ modalTitle|default('Title') }}</h2>
+
+                    {% if modalSubtitle is defined and modalSubtitle is not empty %}
+                        <p class="mb-0">{{ modalSubtitle|default('This is a subtitle') }}</p>
+                    {% endif %}
+                {% endblock %}
+            </div>
+
+            <div class="modal-body pt-3 {{ modalBodyClass|default('') }}">
+                {% block modal_body %}
+                    {% block modal_body_subcontainer %}{% endblock %}
+
+                    <div class="modal-body__scroll-container">
+                        {% block modal_body_scroll_container %}
+                            <p>{{ modalBudy|default('Here is a simple body example') }}</p>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </div>
+
+            {% block modal_footer %}{% endblock %}
+        </div>
+    </div>
+</div>

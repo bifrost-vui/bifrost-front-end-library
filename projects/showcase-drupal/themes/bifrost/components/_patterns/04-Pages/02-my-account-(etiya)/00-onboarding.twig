@@ -1,0 +1,118 @@
+{% extends "base-page--myaccount.twig" %}
+
+{#{% set myAccountSubnav_activeSection = "-" %}#}
+{% set heroPageTitle = "My Helix account" %}
+{% set heroPageSubTitle = "Welcome, Benjamin Desjardins" %}
+
+{% set hasNoCarouselHelp = true %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container_section %}
+    <section class="pb-section">
+        {# overview item ---------------------------------------- #}
+        <div class="mb-7">
+            <div class="gradient gradient-horizontal-5 gradient-horizontal-dark">
+                <div class="container-fluid">
+                    <div class="card card--wider-x text-lg-center">
+                        <div class="px-lg-12">
+                            <h2>Welcome Benjamin</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto cupiditate dignissimos eligendi, enim exercitationem facere hic nemo nesciunt optio perferendis possimus quas qui quis quisquam sapiente sequi sunt voluptates voluptatum?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="col-lg-10 m-auto">
+                {% include 'molecules-content-step-content' with {
+                    class:"mb-3",
+                    isStepDone:true,
+                    title:"Lorem ipsum dolir sit amet",
+                    subTitle: "",
+                    links: [
+                        {href:"", label: "Got trouble with your delivery?"},
+                        {href:"", label: "View details"},
+                    ]
+                } only %}
+
+                {% embed 'molecules-content-step-content' with {
+                    class:"mb-3",
+                    iconName:"truck",
+                    iconClass: "svg-size-lg--7",
+                    iconSize: 4,
+                    title:"Lorem ipsum dolir sit amet",
+                    subTitle: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam nesciunt, tempora."
+                } only %}
+                    {% block content %}
+                        <ul class="p-0 list-reset">
+                            {% for i in 1..3 %}
+                                <li class="border-bottom py-3">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="mb-0">Lorem ipsum dolor</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="mb-0 font-weight-bold">Lorem ipsum dolor</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endblock %}
+                {% endembed %}
+
+                {% embed 'molecules-content-step-content' with {
+                    class:"mb-3",
+                    iconName:"helix",
+                    iconClass: "svg-size-lg--6",
+                    iconSize: 4,
+                    title:"Lorem ipsum dolir sit amet",
+                    subTitle: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam nesciunt, tempora."
+                } only %}
+                    {% block aside %}
+                        {% include '@atoms/02-buttons/00-button.twig' with {
+                            buttonClass:"mt-md-2",
+                            buttonLabel:"Activate your service",
+                            dataToggle:"modal",
+                            dataTarget:"#modalAreYouSure"
+                        } %}
+                    {% endblock %}
+                {% endembed %}
+
+                {% include 'molecules-content-step-content' with {
+                    class:"mb-3 c-content-step--last-step",
+                    iconName:"equipment",
+                    iconClass: "svg-size-lg--6",
+                    iconSize: 4,
+                    title:"Lorem ipsum dolir sit amet",
+                    subTitle: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam nesciunt, tempora."
+                } only %}
+
+                {% include 'organisms-box-choose-service' with { class:"mb-4 mb-lg-6" } only %}
+
+                <div class="text-center">
+                    {% include '@atoms/04-links/01-link-button-outline.twig' with {
+                        label:"Skip",
+                        href: "",
+                        class:"w-100--mobile-only"
+                    } %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{#{% block page_main_container_section_under %}#}
+    {# Frequently asked questions ---------------------------------------- #}
+    {#{% include 'templates-faq' %}#}
+{#{% endblock %}#}
+
+
+{% block modals_container %}
+    {{ parent() }}
+
+    {% include 'organisms-modal-are-you-sure' %}
+{% endblock %}

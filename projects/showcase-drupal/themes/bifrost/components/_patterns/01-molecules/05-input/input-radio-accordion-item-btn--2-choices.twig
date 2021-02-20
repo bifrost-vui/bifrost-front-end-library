@@ -1,0 +1,38 @@
+<div class="form-input-radio-accordion">
+    <input type="{{ inputType|default('radio') }}"
+           {% if defaultSelectedInputId is defined and defaultSelectedInputId is same as (inputId_1)%}checked="checked"{% endif %}
+           id="{{ inputId_1|default('defaultInputRadioId1') }}"
+           name="{{ inputName }}"
+           class="sr-only form-input-radio-accordion__input-1">
+
+    <input type="{{ inputType|default('radio') }}"
+           {% if defaultSelectedInputId is defined and defaultSelectedInputId is same as (inputId_2)%}checked="checked"{% endif %}
+           id="{{ inputId_2|default('defaultInputRadioId2') }}"
+           name="{{ inputName }}"
+           class="sr-only form-input-radio-accordion__input-2">
+
+    <div class="d-flex labels-container">
+        <div class="form-radio">
+            <label for="{{ inputId_1|default('defaultInputRadioId1') }}"
+                   class="form-radio__label form-input-radio-accordion__label-1 mb-0">
+                {{ inputLabel_1|default('input label') }}
+            </label>
+        </div>
+        <div class="form-radio ml-5">
+            <label for="{{ inputId_2|default('defaultInputRadioId2') }}"
+                   class="form-radio__label form-input-radio-accordion__label-2 mb-0">
+                {{ inputLabel_2|default('input label') }}
+            </label>
+        </div>
+    </div>
+
+    <div class="collapse-container border-left--primary pl-4">
+        <div class="form-input-radio-accordion__collapse-content-1 mt-4">
+            {% block collapse_content_1 %}{% endblock %}
+        </div>
+
+        <div class="form-input-radio-accordion__collapse-content-2 mt-4">
+            {% block collapse_content_2 %}{% endblock %}
+        </div>
+    </div>
+</div>

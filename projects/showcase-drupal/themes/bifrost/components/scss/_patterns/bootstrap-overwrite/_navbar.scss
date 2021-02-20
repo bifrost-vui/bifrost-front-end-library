@@ -1,0 +1,129 @@
+/* *****************************************************************************
+*
+*  Navbar
+*
+* ***************************************************************************** */
+
+// Default navbar styles
+// ----------------------------------------------
+.navbar {
+  padding-left: 0;
+  padding-right: 0;
+
+  &-dark {
+    background-color: $black;
+    color: $light;
+
+    a:not(.btn) {
+      @include plain-hover-focus{
+        color: $light;
+      }
+    }
+
+    .nav-item .dropdown:not(.dropdown--light) {
+      a {
+        @include plain-hover-focus {
+          color: $white;
+        }
+      }
+
+      hr {
+        border-top-color: $gray-800 !important;
+      }
+    }
+
+    .icon,
+    .nav-item.dropdown .nav-link:after {
+      border-color: $white;
+    }
+  }
+
+  .navbar-toggler {
+    //outline: none;
+
+    @include media-breakpoint-up(lg) {
+      line-height: inherit;
+    }
+
+    .icon-open { display: block; }
+    .icon-close { display: none; }
+
+    &[aria-expanded="true"] {
+      .icon-open { display: none; }
+      .icon-close { display: block; }
+    }
+
+    .navbar-toggler-icon {
+      @include size(2.4em)
+    }
+  }
+
+  &-nav {
+
+    &:hover .nav-item:not(:hover) .nav-link:before {
+      transform: scaleY(0) !important;
+    }
+
+    .nav-item {
+      padding-left:  1.2rem;
+      padding-right:  1.2rem;
+
+      .nav-link {
+        @extend .link-highlight;
+        @extend .font-weight-normal;
+        padding-left: 0;
+        padding-right: 0;
+
+        &.nav-link--no-hover {
+          @include hover-focus {
+            &:before {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .dropdown-toggle:after {
+        @include arrow-setup(135deg);
+        transform: rotate(135deg) translate(-50%, 0%);
+      }
+
+      &.active {
+        .nav-link {
+          @extend .link-highlight--active;
+        }
+      }
+    }
+  }
+
+  &-dark {
+    background-color: $dark;
+
+    &.border-bottom {
+      border-color: $gray-800 !important;
+    }
+    .navbar-nav .nav-item .nav-link:before {
+      background: $gray-400 !important;
+    }
+  }
+
+  .nav-item.show {
+    .nav-link {
+      &:before {
+        transform: scaleY(1);
+      }
+    }
+  }
+}
+
+.navbar-toggler--dynamic-arrow-direction {
+  &[aria-expanded="true"] {
+    .icon {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+
+
+

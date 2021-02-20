@@ -1,0 +1,76 @@
+{% if theadItems is not defined or theadItems is empty %}
+    {% set theadItems = [
+        { label: "Date"},
+        { label: "Ammount Due"},
+        { label: "Reference Number"}
+    ] %}
+{% endif %}
+
+{% if tbodyRows is not defined or tbodyRows is empty %}
+    {% set tbodyRows = [
+        [
+            { cssItemAlign: "center", cellValue: "Oct 10, 2018" },
+            { cssItemAlign: "center", cellValue: "$136.34" },
+            { cssItemAlign: "center", cellValue: "76567687-112" }
+        ],
+        [
+            { cssItemAlign: "center", cellValue: "Oct 10, 2018" },
+            { cssItemAlign: "center", cellValue: "$136.34" },
+            { cssItemAlign: "center", cellValue: "76567687-112" }
+        ]
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="{{ class|default('') }}" data-animate="fade-in">
+    {% if filters is defined and filters is not empty %}
+        <div class="mb-3 d-flex flex-column flex-lg-row justify-content-end">
+            {% for filter in filters %}
+                <div class="ml-md-3">
+                    {% include '@atoms/01-text/text-highlight.twig' with {
+                        textClass:"mb-1",
+                        textLabel: filter.label|default("Filter")
+                    } %}
+
+                    <div class="pr-0">
+                        {% include '@atoms/03-form/selectlist.twig' with {
+                            class:"mb-0 minw-7 d-inline-flex",
+                            selectContainerClass: "w-100",
+                            selectClass: "w-100",
+                            options: filter.options
+                        } %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="table-responsive text-nowrap scrollbar-custom text-nowrap mb-3">
+        <table class="table border {{ tableClass|default('') }}">
+            {% include 'molecules-table-thead' with {
+                class:"",
+                theadItems : theadItems
+            } only %}
+
+            <tbody class="">
+            {% for rowDatas in tbodyRows %}
+                {% include 'molecules-table-row' with {
+                    class:"",
+                    rowDatas: rowDatas,
+                    rowCollapseID: "rowCollapse_" ~ loop.index
+                } only %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-md-flex align-items-center justify-content-between">
+        <div class="order-1 order-md-2">
+            {% include 'molecules-table-line-selection' with { class:"" } only %}
+        </div>
+        <div class="order-2 order-md-1 d-flex justify-content-center d-md-block">
+            {% include 'molecules-table-pagination' with { class:"" } only %}
+        </div>
+    </div>
+</div>

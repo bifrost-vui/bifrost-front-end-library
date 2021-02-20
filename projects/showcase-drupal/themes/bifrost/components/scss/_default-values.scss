@@ -1,0 +1,112 @@
+/* *****************************************************************************
+*
+*  Global Videotron UI style class
+*
+* ***************************************************************************** */
+
+hr {
+  border-top-color: $gray-200;
+}
+
+ol,ul {
+  padding-left: $spacer-3;
+}
+
+p, ul, ol {
+  font-size: $h6-font-size;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-base;
+
+  &.small,
+  .small & {
+    font-size: $small-font-size;
+  }
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: $font-family-secondary;
+  font-weight: $font-weight-normal;
+  line-height: $headings-line-height;
+}
+
+h1,h2,h3,h4,h5,h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  //&:not(.vui--font-secondary){
+  //  font-weight: $font-weight-light;
+  //}
+
+  a,
+  a:hover {
+    color: $body-color;
+  }
+}
+
+h1, .h1 {
+  line-height: 1;
+
+  @include media-breakpoint-down(sm){
+    font-size: $h2-font-size;
+  }
+}
+
+h2 {
+  @include media-scale(margin-bottom, $spacer-3, $spacer-3, $spacer-4);
+}
+
+h2, .h2 {
+  @include media-breakpoint-down(sm){
+    font-size: $h3-font-size;
+  }
+}
+
+h3, .h3 {
+  line-height: 1.2;
+}
+
+h4, .h4 {
+  @extend .lh-3;
+}
+
+h5, .h5 {
+  line-height: 1.4;
+}
+
+
+
+pre {
+  background: $black;
+  color: white;
+}
+
+b,strong {
+  font-weight: $font-weight-bold;
+}
+
+img:not([usemap]) {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+::selection {
+  color: #000;
+  background-color: transparentize($vui-yellow, 0.7);
+}
+::-moz-selection {
+  color: #000;
+  background-color: transparentize($vui-yellow, 0.7);
+}
+
+// SCROLLBAR
+//::-webkit-scrollbar {
+//  width: .5rem;
+//  background: $white;
+//}
+//::-webkit-scrollbar-thumb {
+//  background: $gray-400;
+//  border-radius: 20px;
+//}
+//::-webkit-scrollbar-track {
+//  background: $white;
+//  border: 1px solid $gray-300;
+//  border-radius: 20px;
+//}

@@ -1,0 +1,13 @@
+<div class="card card-product text-center {{ card_itp_class|default('') }}">
+    <div class="card-body align-items-center d-flex flex-column">
+        <img src="{{ card_itp_img|default('https://source.unsplash.com/400x150/?nature') }}"
+             height="80"
+             alt="">
+
+        {% if card_itp_text is defined %}
+            <p class="mt-4 mb-2">{{ card_itp_text|default('Lorem ipsum dolor sitamet consecteur adipiscing.') }}</p>
+        {% endif %}
+
+        {% include '@atoms/07-payment/price-box.twig' with { priceDollar: card_itp_price, priceLength:"&nbsp;", priceClass:"mt-4" } %}
+    </div>
+</div><!-- /.card-product -->

@@ -1,0 +1,69 @@
+<!-- accordion-profile-users.twig -->
+<div class="{{ class|default('') }}" data-animate>
+    <div class="list-card mb-3">
+        {% include '@molecules/03-card/card-block-content.twig' with {
+            title:"Benjamin Desjardins",
+            txt:"Owner (Admin)",
+            class:""
+        } %}
+
+        {# Secondary user : status pending  ------------------------------------------------------ #}
+        {% include '@molecules/06-accordion/accordion-item--collapse-below.twig' with {
+            class:"",
+            inlineAnchor:"tab_user1",
+            headerTitle:"John Dohn",
+            headerTxt:"Secondary user",
+            statusLabel: "Active",
+            statusColor: "success",
+            btnToggleIconName: "trash",
+            tabContentTitle: "Do you want to remove John Dohn ?",
+            tabContentSubTitle: "Lorem ipsum dolor sit amet doairjs hsiauehf aosidudha sbdasdye laoskdi asd dfeas eriajdf."
+        } %}
+        {# Secondary user : status pending  ------------------------------------------------------ #}
+        {% include '@molecules/06-accordion/accordion-item--collapse-below.twig' with {
+            class:"",
+            inlineAnchor:"tab_user2",
+            headerTitle:"John Dohn",
+            headerTxt:"Secondary user",
+            statusLabel: "Pending",
+            btnToggleIconName: "trash",
+            tabContentTitle: "Do you want to remove John Dohn ?",
+            tabContentSubTitle: "Lorem ipsum dolor sit amet doairjs hsiauehf aosidudha sbdasdye laoskdi asd dfeas eriajdf."
+        } %}
+
+        {# Secondary user : status declined  ------------------------------------------------------ #}
+        {% include '@molecules/06-accordion/accordion-item--collapse-below.twig' with {
+            class:"",
+            inlineAnchor:"tab_user3",
+            headerTitle:"John Dohn",
+            headerTxt:"Secondary user",
+            statusLabel: "Declined",
+            statusColor: "danger",
+            btnToggleIconName: "trash",
+            tabContentTitle: "Do you want to remove John Dohn ?",
+            tabContentSubTitle: "Lorem ipsum dolor sit amet doairjs hsiauehf aosidudha sbdasdye laoskdi asd dfeas eriajdf."
+        } %}
+        {# Secondary user : status expired  ------------------------------------------------------ #}
+        {% include '@molecules/06-accordion/accordion-item--collapse-below.twig' with {
+            class:"",
+            inlineAnchor:"tab_user4",
+            headerTitle:"John Dohn",
+            headerTxt:"Secondary user",
+            statusLabel: "Expired",
+            statusColor: "danger",
+            btnToggleIconName: "trash",
+            tabContentTitle: "Do you want to remove John Dohn ?",
+            tabContentSubTitle: "Lorem ipsum dolor sit amet doairjs hsiauehf aosidudha sbdasdye laoskdi asd dfeas eriajdf."
+        } %}
+    </div>
+
+    {# Add a new user  ------------------------------------------------------ #}
+    <div class="d-flex justify-content-end">
+        {% include '@atoms/04-links/link-underline-with-icon-left.twig' with {
+            iconName: "plus-circle",
+            href: "/patterns/04-Pages-02-my-account-(etiya)-0501-settings-new-user--step-account-permission/04-Pages-02-my-account-(etiya)-0501-settings-new-user--step-account-permission.html",
+            label: "Add a new user"
+        } %}
+    </div>
+
+</div>

@@ -1,0 +1,21 @@
+{% embed '@organisms/01-navigation/header-nav-helix.twig' with {
+    class: "py-lg-3",
+    hasNoSearchBtn: true
+} only %}
+    {% block navbar_content %}
+        <li class="nav-item mr-0 ml-minus-3" data-animate="fade-in">
+            <div class="nav-link nav-link--no-hover py-lg-2">
+                {% embed '@atoms/02-buttons/01-button-with-icon-left.twig' with {
+                    buttonClass:"btn-reset link-underline h6 pl-4 vui--style-reset w-100 color--light mb-0 p-0",
+                    buttonLabel:"Back to shop",
+                    dataToggle:"modal",
+                    dataTarget:"#modalBackToShop"
+                } %}
+                    {% block content_icon %}
+                        <i class="icon icon-arrow-to-left"></i>
+                    {% endblock %}
+                {% endembed %}
+            </div>
+        </li>
+    {% endblock %}
+{% endembed %}

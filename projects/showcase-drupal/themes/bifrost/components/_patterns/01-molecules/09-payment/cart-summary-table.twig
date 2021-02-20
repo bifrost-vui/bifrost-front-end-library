@@ -1,0 +1,91 @@
+<div class="cart-summary-table vui-print--avoid-break {{ class|default('') }}" {% if isAnimationDisabled is not defined %}data-animate=""{% endif %}>
+    {# Table header ----------------------------------------------- #}
+    <div class="card-header card-header--condensed border-0 px-3">
+        <div class="row">
+            <div class="offset-6 col-6">
+                <div class="row h-100">
+                    <div class="col-md-4 d-none d-md-block">
+                        <p class="m-0 ml-2">Quantity </p>
+                    </div>
+
+                    <div class="col-12 col-md-7 offset-md-1 text-right">
+                        <p class="m-0">Price</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Table content ----------------------------------------------- #}
+    <div>
+        {% block table_content %}
+            {% for item in items %}
+                {% include '@molecules/09-payment/cart-summary-item.twig' with item only %}
+            {% endfor %}
+        {% endblock %}
+    </div>
+
+    {# Table price total  ----------------------------------------------- #}
+    <div class="border-color--dark border-top border-width-4 pt-3 pt-md-4">
+        <div class="row vui--font-secondary">
+            <div class="col-6">
+                <div class="d-md-flex align-items-baseline">
+                    <p class="h3 m-0">{{ subtotalLabel|default('Subtotal') }}</p>
+
+                    {% if subTotalExtraInfos is defined %}
+                        <p class="m-0 ml-md-2">{{ subTotalExtraInfos|default('(Monthly payments)') }}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-6 text-right">
+                <div class="h3 mb-0 font-weight-bold">{{ subtotalPrice|default('$143.70') }}{% if isMonthlyPayment is defined and isMonthlyPayment is same as (true) %}<span class="font-weight-light">/month</span>{% endif %}</div>
+            </div>
+        </div>
+
+        {% if hasNoPriceInfosBar is not defined or hasNoPriceInfosBar is same as (false) %}
+            <div class="d-flex justify-content-end">
+                <div class="text-right">
+                    {% block table_price_block_content %}
+                        <div class="d-flex align-items-baseline justify-content-end small">
+                            {% if headerPriceDashed is defined and headerPriceDashed is not empty %}
+                                <p class="vui--text-dashed mb-0 mr-2">{{ headerPriceDashed|default('150,00$') }}</p>
+                            {% endif %}
+
+                            {% if headerPriceSaved is defined and headerPriceSaved is not empty %}
+                                {% include 'atoms-price-you-save' with { class:"", savingPrice:headerPriceSaved } only %}
+                            {% endif %}
+                        </div>
+
+                        {% if headerPromotionInfos is defined and headerPromotionInfos is not empty %}
+                            <p class="small mb-2 font-weight-normal">{{ headerPromotionInfos|default('Promotion ends on January 1st, 2020') }}</p>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+            </div>
+        {% endif %}
+
+        {% if legalTxt is defined %}
+            <p class="mt-3 small color-gray--700">{{ legalTxt|default('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, eaque eligendi excepturi illo ipsum maiores necessitatibus pariatur.')|raw }}</p>
+        {% endif %}
+    </div>
+
+
+    {# Table sub content infos  ----------------------------------------------- #}
+    {% block table_subcontent %}
+        {% if footerInfos is defined and footerInfos is not empty%}
+            <div class="card-footer card-footer--condensed border-0">
+                <div class="row align-items-center">
+                    <div class="col-2 col-md-1 pr-0">
+                        {% include '@atoms/06-icons/icon-svg-important.twig' only %}
+                    </div>
+                    <div class="col-10 col-md-11 pl-0 d-flex align-items-center">
+                        <p class="mb-0 small">
+                            {{ footerInfos|default('') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endblock %}
+</div>

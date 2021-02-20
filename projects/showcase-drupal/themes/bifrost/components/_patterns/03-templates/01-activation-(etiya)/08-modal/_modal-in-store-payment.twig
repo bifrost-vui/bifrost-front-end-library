@@ -1,0 +1,35 @@
+{% embed "molecules-modal" with {
+    modalId:"modalInStorePayment",
+    modalClass:"modal-callout--csr",
+    modalSize:"md"
+} %}
+    {% block modal_header %}
+        <div class="d-flex mb-2 align-items-center">
+            {% include '@atoms/06-icons/icon-svg.twig' with {
+                iconName: "error",
+                iconSize: 3,
+                iconClass:"mr-3"
+            } only %}
+            <h2 class="mb-0">In store payment</h2>
+        </div>
+    {% endblock %}
+
+    {% block modal_body %}
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum iusto natus necessitatibus ratione tempore tenetur ullam unde veniam voluptatibus.</p>
+
+        <p class="h2 mb-3">1234 1233 1233</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+        <div class="row mt-4">
+            <div class="col-md-4 offset-md-8">
+                {% include '@atoms/02-buttons/00-button.twig' with {
+                    buttonLabel:"Ok got it!",
+                    buttonColor:"",
+                    buttonClass:"btn--condensed w-100",
+                    dataDismiss:"modal"
+                } %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

@@ -1,0 +1,113 @@
+{% extends "base-page--funnel-services.twig" %}
+
+{% set navStepByStep_tplName = "service" %}
+{% set navStepByStep_activeNumber = 3 %}
+
+{% set page_hero_title = "Review your order" %}
+{% set page_hero_subtitle = " " %}
+
+{% set hasTermsAndConditions = true %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    <section class="py-section">
+        <div class="container-fluid">
+            {#{% include 'templates-billing-order-review-side-by-side' with {#}
+                {#class: "mb-4 mb-md-6"#}
+            {#} only %}#}
+
+            {% include 'organisms-billing-grid-review' with {
+                class:"mb-6",
+                actual_headerPricebox: {
+                    priceDollar:"137",
+                    priceCent: "97",
+                    priceDashed: "$160.97/month"
+                },
+                actual_billingItems: [
+                    {label: "Internet 400", subLabel: "Serial # : 019292836363737", price:"140.00", state:"default"}
+                ],
+                actual_subtotal: {
+                    price: "$140.00",
+                    discount: "-$20.00",
+                    tps: "$6.00",
+                    tvq: "$11.97",
+                },
+                actual_footer_price: "$137.97",
+
+                new_headerPricebox: {
+                    priceDollar:"91",
+                    priceCent: "98",
+                    priceDashed: "$114.98/month"
+                },
+                new_billingItems: [
+                    {label: "Internet 400", subLabel: "Unlimited Download", price:"--", state:"removed"},
+                    {label: "X1 Internet Gateway", subLabel: "Serial # : 019292836363737", price:"100.00", state:"added"},
+                ],
+                new_subtotal: {
+                    price: "$100.00",
+                    discount: "-$20.00",
+                    tps: "$4.00",
+                    tvq: "$7.98",
+                },
+                new_footer_price: "$91.98"
+            } only %}
+
+            <div class="row mb-6">
+                <div class="col-12">
+                    {# ONE TIME FEE ----------------------------------------------- #}
+                    {% include '@organisms/06-billing/billing-one-time-fee.twig' with {
+                        class:"mb-6",
+                        demo: true
+                    } only %}
+
+                    <div class="mb-6">
+                        {% include '@atoms/01-text/text-information.twig' with {
+                            class:"mb-2",
+                            textLabel:"Adjustments to your services charge will be added to your next bill on a pro-rate basis."
+                        } %}
+                        {% include '@atoms/01-text/text-information-alert.twig' with {
+                            class:"",
+                            textLabel:"Downgrading your service will cancel your actual monthly discount."
+                        } %}
+                    </div>
+
+                    {#{% include '@atoms/03-form/input-checkbox-with-label.twig' with {#}
+                        {#class:"mb-0",#}
+                        {#label:'By placing the order, I am confirming that I accept the <a href="#" class="link">electronic transmission of contract</a>',#}
+                        {#inputId:"_account_service_confirm_transmission_contract"#}
+                    {#} %}#}
+                </div>
+            </div>
+
+            <div class="d-md-flex justify-content-end align-items-center">
+                {% include '@atoms/04-links/link-underline.twig' with {
+                    class:"mb-2 mb-d-0 mr-md-4 btn w-100-mobile-only d-block text-center",
+                    headingSize: 6,
+                    label: 'Cancel',
+                    href: ''
+                } %}
+
+                {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                    buttonClass:"mb-2 mb-md-0 mr-md-3 w-100--mobile-only",
+                    buttonLabel: "Save my quote",
+                    buttonId: dropdownId|default('btnOutlineDropdownMenu'),
+                    dataToggle: "modal",
+                    dataTarget:"#modalSaveMyCart"
+                } %}
+
+                {% include '@atoms/04-links/01-link-button.twig' with {
+                    class: "w-100--mobile-only",
+                    label: "Continue",
+                    href: "/patterns/04-Pages-02-my-account-(etiya)-0304-services--confirmation/04-Pages-02-my-account-(etiya)-0304-services--confirmation.html",
+                } only %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block modals_container %}
+    {# MODAL : save my cart #}
+    {% include '@organisms/08-modal/_modal-cart-summary--save-my-cart.twig' %}
+    {% include '@organisms/08-modal/_modal-cart-summary--save-my-cart-confirmation.twig' %}
+{% endblock %}

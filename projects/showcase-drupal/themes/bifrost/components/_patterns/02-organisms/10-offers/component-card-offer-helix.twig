@@ -1,0 +1,91 @@
+{# Demo content #}
+{% if priceDetails is not defined %}
+    {% set priceDetails = [
+        'Price after promo : 123.23 $',
+        'Intallation included',
+    ] %}
+{% endif %}
+
+{% if inclusions is not defined %}
+    {% set inclusions = [
+        'Téléphonie résidentielle incluse',
+        '100 heures de capacité d\'enregistrement',
+        'Frais d\'équipement inclus',
+    ] %}
+{% endif %}
+{# End demo content #}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+<div class="card card--offer border-0 h-100 pt-4 {{ cardOfferClass|default('') }}">
+
+    {% if tagLabel is not defined or tagLabel is not empty %}
+        <div class="card-tag position-absolute top-3">
+            {% include '@atoms/08-tags/tag.twig' with {
+                tagLabel: tagLabel|default("Get IP telephony for free"),
+                tagClass:"mb-0 tag--reverse tag--vui-yellow tag--font-secondary h6"
+            } %}
+        </div>
+    {% endif %}
+
+    <div class="card-header pb-5 pt-6 position-relative color--light border-top-0">
+      {% if headerMessage is defined and headerMessage is not empty %}
+        {{ headerMessage|raw }}
+      {% else %}
+        <p class="h6 color--white text-uppercase">{{ offerTitle|default("Internet + TV") }}</p>
+
+        <div class="card-offer__header-content" data-unavailable="Unavailable at this address">
+            {% include '@atoms/07-payment/price-box.twig' with {
+                priceBoxAlignement: "center",
+                priceDollar: priceDollar|default("115"),
+                priceCent: priceCent|default("00"),
+                priceClass:"justify-content-center color--light",
+                itemTitleTooltipInfos: itemTitleTooltipInfos|default("This is some infos"),
+                extraAttribute: tooltipExtraAttribute|default(NULL)
+            } %}
+
+            <div class="small my-3 color-gray--600">
+                {% for detail in priceDetails %}
+                    <p class="font-weight-normal mb-0 ">{{ detail }}</p>
+                {% endfor %}
+            </div>
+        </div>
+      {% endif %}
+        <!-- BTN select this offer -->
+        {% if buttonLink is defined and buttonLink is not empty %}
+            {% include '@atoms/04-links/01-link-button.twig' with {
+              href: buttonLink, label: buttonLabel,
+              class: buttonLinkClass|default("")
+            } %}
+        {% else %}
+            {% include '@atoms/02-buttons/00-button.twig' with {
+              buttonLabel: buttonLabel,
+              buttonClass: "position-absolute--bottom-out w-85 " ~  buttonExtrasClass|default(""),
+            } %}
+        {% endif %}
+    </div>
+
+    <div class="card-body pt-4 pb-4 border-left border-right">
+        {% include '@organisms/10-offers/component-shop-bundle.twig' %}
+    </div>
+
+    <div class="card-footer pt-4 bg-gray--100 border border-top-0">
+        <div class="border-bottom mb-3">
+            <p class="font-weight-bold">{{ inclusionsTitle|default('Aussi inclus avec Hélix') }}</p>
+            <div class="row align-items-center w-100 mb-3">
+                {% for inclusion in inclusions %}
+                    <div class="col-2">
+                        {% include '@atoms/06-icons/icon-svg-checkmark.twig' with { iconSize: 1 } %}
+                    </div>
+                    <div class="col-10 small mb-1">{{ inclusion|raw }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <p class="mb-0 text-center vui--font-secondary font-weight-bold text-uppercase">
+            {% include '@atoms/04-links/00-link.twig' with {
+                label: viewMoreLabel|default('View More'),
+                class: 'link--no-decoration',
+                extraAttribute: modalExtraAttribute|default("data-toggle=modal data-target=#" ~ detailsModalId)
+            } %}
+        </p>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="item-cloud-dvr card h-100 w-100 {{ class|default('') }} bg--none card-rounded">
+    {% include '@atoms/08-tags/tag--my-plan.twig' with {
+        tagClass: "card--current-plan__tag d-none",
+        tagLabel: "Your offer"
+    } only %}
+
+    <div class="card-body text-center py-6 ">
+        <div class="w-100 justify-content-center">
+            {% include '@atoms/06-icons/icon-svg-cloud-dvr.twig' with { iconClass:"mb-6 d-inline" } only %}
+        </div>
+
+        <p class="font-weight-normal h4">{{ title|default('100 Hours of recording') }}</p>
+        <p class="small mb-6">{{ text|default('Details id dolor id nibh ultricies vehicula ut id elit.') }}</p>
+
+        <p class="h4 font-weight-bold">{{ price|default('Included') }}</p>
+
+        {% if priceSavingOriginal is not empty %}
+            {% include '@atoms/07-payment/price-savings.twig' with {
+                class:"justify-content-center",
+                priceDashed: priceSavingOriginal,
+                priceSaved: priceSavingSaved
+            } only %}
+        {% endif %}
+    </div>
+</div>

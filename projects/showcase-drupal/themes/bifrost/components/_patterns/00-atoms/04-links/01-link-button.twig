@@ -1,0 +1,7 @@
+<a id="{{ id|default('') }}"
+   class="btn btn-{{ buttonSize|default('md') }} btn-{{ buttonColor|default('primary') }}  {{ class|default('') }}"
+   {% if label is not empty %}data-title="{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}"{% endif %}
+   href="{{ href|default('#') }}"
+   target="{{ target|default('_self') }}"
+   {{ extraAttribute|default(NULL) }}
+>{{ label|default('Link button label') }}</a>

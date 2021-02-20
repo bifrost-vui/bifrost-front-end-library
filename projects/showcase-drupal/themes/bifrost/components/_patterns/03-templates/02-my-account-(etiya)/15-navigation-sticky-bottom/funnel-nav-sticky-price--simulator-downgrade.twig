@@ -1,0 +1,38 @@
+{% embed '@organisms/15-navigation-sticky-bottom/funnel-nav-sticky-price.twig' with {
+    class:"",
+    stickyNavPriceBtnNextLabel:"Continue",
+    stickyNavPriceBtnNextHref: "/patterns/04-Pages-02-my-account-(etiya)-0302-services--channel-swap/04-Pages-02-my-account-(etiya)-0302-services--channel-swap.html"
+} only %}
+    {% block nav_content %}
+        <div class="bg--dark color--white border-bottom-gray--800 py-3">
+            <div class="container-fluid">
+                {% include '@atoms/07-payment/price-box-with-button.twig' with {
+                    class:"justify-content-md-center",
+                    priceBoxSize:"sm",
+                    itemTitleTooltipInfos: "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+                    iconTooltipColor: "svg-fill--light",
+                    priceClass:"w-100 ",
+                    priceDollar: "152",
+                    priceCent:"34",
+                    priceInfosSupp:" ",
+                    priceBoxAlignement:"left",
+                    priceBoxSubInfosClass:"color--danger",
+                    priceBoxSubInfosLabel: "Downgrading your service will cancel your actual montlhy discount",
+                    buttonId:"stickyNavContinuBtn",
+                    buttonLabel:"Confirm",
+                    buttonHref:"/patterns/04-Pages-02-my-account-(etiya)-0302-services--channel-swap/04-Pages-02-my-account-(etiya)-0302-services--channel-swap.html",
+                } only %}
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block collapse_content %}
+        <div class="collapse js-DEMO-collapse-banner">
+            {% include 'molecules-collapse-banner--text-with-button-outline' with {
+                class:"",
+                itemTitle:"Exclusive offer",
+                itemTxt:"Pay $169.00/mo (taxes excl.) for this bundle until July 11 2020 - New conditions apply",
+            } only %}
+        </div>
+    {% endblock %}
+{% endembed %}

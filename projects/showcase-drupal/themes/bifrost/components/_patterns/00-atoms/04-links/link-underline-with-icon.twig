@@ -1,0 +1,5 @@
+<a href="{{ href|default('') }}"
+   {% if label is not empty %}data-title="{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}"{% endif %}
+   class="link-underline h{{ headingSize|default(6) }} mb-0 d-inline-flex align-items-center {{ class }}"
+   {{ extraAttribute|default(NULL) }}
+>{{ label|default('Underline link') }}{% block icon %}{% include '@atoms/06-icons/icon-svg-' ~ iconName|default('helix') ~ '.twig' with { iconSize:iconSize|default(1), iconClass: iconClass|default("ml-2") } only %}{% endblock %}</a>

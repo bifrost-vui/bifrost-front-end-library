@@ -1,0 +1,59 @@
+{% if navItems is not defined %}
+    {% set navItems = [
+        { label: 'Overview', href: '/?p=templates-overview', isActive: true },
+        { label: 'Billing and Payments', href: '/?p=templates-billing-and-payment', isActive: false },
+        { label: 'Services & Equipments', href: '/?p=templates-services', isActive: false },
+        { label: 'Profile and Settings', href: '/?p=templates-profile-and-settings', isActive: false }
+    ] %}
+{% endif %}
+
+{% if isNavVideotronUnified %}
+    {% set subnavClass = "" %}
+{% else %}
+    {% set subnavClass = " navbar--subnav-dark " %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<!-- header-nav-subnav--my-account.twig -->
+<nav class="navbar navbar--subnav {{ subnavClass|default('') }} navbar-expand-md p-0 border-bottom sticky-top z-index-3 js-navbar-sticky-top vui--style-black" aria-label="Secondary Navigation">
+    <div class="container-fluid">
+        {% if hasSubNavTitle is defined and hasSubNavTitle is same as (true) %}
+            <a class="d-none d-md-block navbar-brand pr-md-5 mr-md-5 border-right" href="#" data-animate="fade-in">
+                <span class="mb-0 h5">{{ subnavTitle|default('My Helix') }}</span>
+            </a>
+        {% endif %}
+
+        <button class="navbar-toggler vui--style-reset minh-3 pl-3 pr-3 w-100 justify-content-between align-items-center"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                data-animate="fade-in"
+        >
+            <span class="pr-md-5 p-0 h4 vui--font-secondary mb-0 color--light" href="#"> {{ subnavTitle|default('My Helix') }}</span>
+            {% include '@atoms/06-icons/icon-arrow-to-bottom.twig' with { iconClass:"icon-light p-1", iconMarginLeft:"0" } %}
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav " data-animate-row="">
+                {% for nav in navItems %}
+                    <li class="nav-item {{ (nav.isActive|default(false)) ? 'active' : '' }} {{ (loop.first) ? 'ml-0': NULL }}" data-animate="fade-in">
+                        <a class="nav-link mb-0" href="{{ nav.href|default('') }}"
+                           {% if nav.isActive is same as (true) %}aria-current="page"{% endif %}>
+                            {{ nav.label }}
+                            {% if nav.isActive is same as (true) %}
+                                <span class="sr-only">(current)</span>
+                            {% endif %}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+

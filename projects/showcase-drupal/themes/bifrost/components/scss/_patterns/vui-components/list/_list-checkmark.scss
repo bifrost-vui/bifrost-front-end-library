@@ -1,0 +1,26 @@
+/* *****************************************************************************
+*
+*  List
+*
+* ***************************************************************************** */
+.list-checkmark {
+  list-style-type: none;
+
+  &__item {
+    position: relative;
+    padding-left: 1rem;
+    margin-bottom: $spacer-1;
+
+    &:before {
+      @include size(0.875rem, 100%);
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.4rem;
+      transform: translate(-100%, 0);
+      background-image: url("#{$path-images}icons/svg-atoms/checkmark.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+}

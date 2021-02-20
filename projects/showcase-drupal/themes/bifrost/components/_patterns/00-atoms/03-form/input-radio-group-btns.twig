@@ -1,0 +1,21 @@
+{% if radioItems is not defined or radioItems is empty %}
+    {% set radioItems = [
+        { label:"Option 1", inputName:"options", isActive:true },
+        { label:"Option 2", inputName:"options", isActive:false },
+        { label:"Option 3", inputName:"options", isActive:false }
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="btn-group {{ class|default('') }}" data-toggle="buttons">
+    {% for item in radioItems %}
+        <label class="btn mb-0 btn-outline-dark {% if item.isActive is same as (true) %}active{% endif %}">
+            <input type="radio"
+                   name="{{ item.inputName }}"
+                   id="{{ item.inputName ~ '_' ~ loop.index }}"
+                   class="sr-only"
+                   {% if item.isActive is same as (true) %}checked{% endif %}> {{ item.label }}
+        </label>
+    {% endfor %}
+</div>

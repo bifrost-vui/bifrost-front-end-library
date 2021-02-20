@@ -1,0 +1,24 @@
+<!-- input-search.twig -->
+{% embed '@atoms/03-form/input-with-icon.twig' with {
+    class: class ~ " w-100 form-group--search-input",
+    inputClass: inputClass ~ " js-input-search",
+    inputIconPosition: inputIconPosition ~ " pt-3",
+    extraAttribute: "autocomplete=off"
+} %}
+    {% block icon_container %}
+        <div class="position-relative pointer-none">
+            {% include '@atoms/06-icons/icon-svg-search.twig' with {
+                iconColor: iconColor|default("svg-fill--white"),
+                iconSize: "2"
+            } %}
+        </div>
+
+        <input id="{{ inputSubmitId|default('') }}"
+               class="btn h-100 m-0 p-0 position-absolute--center-right vui--style-reset w-100 sr-only"
+               type="submit"
+               placeholder="{{ inputPlaceholder|default('') }}"
+               value="{{ inputSubmitValue|default('search') }}"
+                {{ extraAttributeSubmit|default(NULL) }}
+        >
+    {% endblock %}
+{% endembed %}

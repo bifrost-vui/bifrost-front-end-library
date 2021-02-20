@@ -1,0 +1,279 @@
+<!-- header-nav-helix.twig -->
+<header role="banner">
+    <nav class="navbar navbar-dark navbar--helix navbar-expand-lg p-0 border-bottom-gray--800 {{ class|default('') }}">
+        <div class="container-fluid">
+            <div class="navbar__header-responsive" data-animate="fade-in">
+                <div class="w-100 d-flex align-items-center justify-content-between">
+                    <button class="navbar-toggler vui--style-reset minh-3 pl-0 py-lg-3 pr-3 {{ btnHamburgerClass }}"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navbarHelix"
+                            aria-controls="navbarHelix"
+                            aria-expanded="false"
+                            aria-label="{{ hamburgerLabel|default('Open the main menu')}}">
+                        <span class="navbar-toggler-icon icon-open" aria-hidden=”true”></span>
+                        {% include '@atoms/06-icons/icon-svg-x.twig' with { iconColor:"svg-fill--white", iconSize:3, iconClass:"icon-close m-1" } %}
+                    </button>
+                    <div class="navbar-brand d-flex flex-row align-items-start p-3 p-lg-0">
+                        <a href="{{ hrefHelixLogo|default('#') }}">
+                            <img src="{{ helixLogoIcon|default('/images/logo/helix.svg') }}" height="28" alt="Helix">
+                        </a>
+                        {% if isVideotronLogoHidden is defined and isVideotronLogoHidden is same as (false) %}
+                            <a href="{{ hrefVideotronLogo|default('#') }}">
+                                <img src="{{ videotronLogoIcon|default('/images/logo/videotron.svg') }}" height="28" alt="Videotron">
+                            </a>
+                        {% endif %}
+
+                    </div>
+                    {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
+                        <!-- Mobile searchToggle -->
+                        <button class="d-flex d-lg-none vui--style-reset minh-3 pt-2 pl-3 js-search-toggler-btn"
+                                type="button"
+                                data-toggle="collapse"
+                                data-target="#navbarSearch"
+                                aria-controls="navbarSearch"
+                                aria-expanded="false">
+                            {% include '@atoms/06-icons/icon-svg-search.twig' with {
+                                iconColor:"svg-fill--white",
+                                iconSize:2,
+                                iconClass:"icon-close m-1"
+                            } %}
+                        </button>
+                    {% endif %}
+                    {% if hasSimplified %}
+                        {{ block('language_switcher_mobile') }}
+                    {% endif %}
+                    
+                </div>
+            </div>
+
+            <!-- Mega menu -->
+            <div class="collapse navbar-collapse d-lg-flex js-collapse-full-height" id="navbarHelix">
+                <ul class="navbar-nav d-block d-lg-flex pb-3 pb-lg-0 pl-lg-3 pr-lg-0 w-100 justify-content-start" data-animate-row="">
+                    {% block navbar_content %}
+                        {% include '@organisms/01-navigation/header-nav-mega-menu.twig' %}
+                    {% endblock %}
+
+                    {% if hasNoLoginBtn is not defined %}
+                        {# My account connected : Dropdown Mobile version #}
+                        <li class="nav-item d-flex d-lg-none align-items-center" data-animate="fade-in">
+                            {% if isConnected is defined and isConnected is same as (true) %}
+                                <a class="nav-link nav-link--no-hover d-flex justify-content-start align-items-center vui--font-secondary color--white text-uppercase font-weight-bold"
+                                   href="{{ hrefLogOut|default('#') }}">{% include '@atoms/06-icons/icon-svg-user-profile.twig' with { iconClass:"mr-3", iconColor: 'svg-fill--white' } %}{{ labelLogOut|default('Log out') }}</a>
+                            {% else %}
+                                <a class="nav-link nav-link--no-hover d-flex py-0" href="{{ hrefConnexion|default('#') }}"><span
+                                            class="tag-outline font-weight-medium h6 text-uppercase p-2 mb-0">{{ labelConnexion|default('Connexion') }}</span></a>
+                            {% endif %}
+                            {% if hasSimplified is not defined or hasSimplified == false %}
+                                {% block language_switcher_mobile %}
+                                    <a class="link-hover--primary h4 mb-0 color--white text-right pr-4" href="#">EN</a>
+                                {% endblock %}
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                </ul>
+                {% if hasNoLoginBtn is not defined and isConnected is defined and isConnected is same as (true) %}
+                    {# My account connected : MOBILE version #}
+                    <div class="d-block d-lg-none p-3 bg-gray--900 small flex-grow-1 w-100 pl-responsive pr-responsive">
+                        <p class="font-weight-medium ">{{ accountHello|default('Hello') }} {{ accountName|default('John Snow') }}</p>
+                        {% if accountNumber is defined %}
+                            <p class="color--white">
+                                {{ accountNumber|default('Account 8334 4000 9384 2333') }}
+                                <br>{{ accountAddress|default('1717, Rue Brodeur, Montreal') }}
+                            </p>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <ul class="navbar-nav d-none d-lg-flex align-items-center" data-animate-row="">
+                {% if hasNoLoginBtn is not defined %}
+                    {% if isConnected is defined and isConnected is same as (true) %}
+                        {# My account connected : DESKTOP version #}
+                        <li class="nav-item px-1" data-animate="fade-in">
+                            <div class="d-flex align-items-center">
+                                <span class="vui--text-highlight color-gray--300">{{ accountName|default('Benjamin Desjardins') }}</span>
+
+                                {% embed '@molecules/13-dropdown/08-btn-icon-dropdown.twig' with {
+                                    class: "",
+                                    iconName: "user-profile",
+                                    iconSize: 3,
+                                    iconColor: "svg-fill--light",
+                                    dropdownId : "navbarDropdown_accountPerso",
+                                    dropdownXPlacement: "bottom-end",
+                                    labelMyAccount: labelMyAccount,
+                                    hrefMyAccount: hrefMyAccount,
+                                    labelLogOut: labelLogOut,
+                                    hrefLogOut: hrefLogOut
+                                } only %}
+                                    {% block dropdown_content %}
+                                        <div class="p-3">
+                                            {# TODO : get all URL links from array (for multi-subscribers) #}
+                                            {#{% include '@atoms/15-list/list-arrow.twig' with {#}
+                                            {#listItems:listItems,#}
+                                            {#linkClass:'h5',#}
+                                            {#linkPaddingClass: "py-2"#}
+                                            {#} %}#}
+
+                                            {% include '@atoms/04-links/link-next.twig' with {
+                                                linkLabel: labelMyAccount|default('My account'),
+                                                linkSize: 6,
+                                                href: hrefMyAccount|default('#my-account'),
+                                                linkClass: "mb-3 d-block " ~ linkClass|default(''),
+                                                iconClass:"ml-2"
+                                            } only %}
+
+                                            {# Delegate user view #}
+                                            {#{% include '@atoms/04-links/link-next.twig' with {#}
+                                            {#linkLabel: labelMyAccount|default('John Dow account'),#}
+                                            {#linkSize: 6,#}
+                                            {#href: hrefMyAccount|default('#my-account'),#}
+                                            {#linkClass: "mb-3 d-block font-weight-bold" ~ linkClass|default(''),#}
+                                            {#iconClass:"ml-2"#}
+                                            {#} only %}#}
+
+                                            {% include '@atoms/04-links/01-link-button-outline.twig' with {
+                                                label: labelLogOut|default('Log out'),
+                                                href: hrefLogOut|default('#'),
+                                                buttonColor: "dark",
+                                                class:"w-100 mt-3"
+                                            } %}
+                                        </div>
+                                    {% endblock %}
+                                {% endembed %}
+                            </div>
+                        </li>
+                    {% else %}
+                        {# My account NOT connected : DESKTOP version #}
+                        <li class="nav-item d-none d-lg-block px-1" data-animate="fade-in">
+                            {% include '@atoms/04-links/01-link-button-outline.twig' with {
+                                label: labelConnexion|default('Connexion'),
+                                href: hrefConnexion|default('#'),
+                                buttonColor: "light",
+                                class:"p-2 color-gray--300 py-1 px-3 btn-small"
+                            } %}
+                        </li>
+                    {% endif %}
+                {% endif %}
+
+                {# MINI cart : Desktop version #}
+                {% if hasMiniCartBtn is defined %}
+                    <li class="nav-item px-1" data-animate="fade-in">
+                        {% embed '@molecules/13-dropdown/08-btn-icon-dropdown.twig' with {
+                            class: "",
+                            iconName: "cart",
+                            iconSize: 3,
+                            iconColor: "svg-fill--light",
+                            dropdownId : "btnDropdownMiniCart",
+                            dropdownXPlacement: "bottom-end",
+                            miniCartDatas:miniCartDatas
+                        } only %}
+                            {% block dropdown_content %}
+                                <div class="p-3">
+                                    {% if miniCartDatas is not empty %}
+                                        <p class="h4 mb-3">In your bag</p>
+
+                                        {% for cart in miniCartDatas %}
+                                            <div class="mb-3">
+                                                <p class="font-weight-bold border-bottom pb-1 mb-2">{{ cart.category }}</p>
+
+                                                {% for item in cart.items %}
+                                                    <div class="d-flex justify-content-between mb-2">
+                                                        {% if item.tag == 'added' %}
+                                                            <span class="color-gray--700">{{ item.title }}</span>
+                                                            {% include '@atoms/08-tags/badge-tag.twig' with { label:"Added", color: "primary" } only %}
+                                                        {% elseif item.tag == 'replaced' %}
+                                                            <span class="color-gray--700">{{ item.title }}</span>
+                                                            {% include '@atoms/08-tags/badge-tag.twig' with { label:"Replaced", color: "gray--300" } only %}
+                                                        {% elseif item.tag == 'removed' %}
+                                                            <span class="color-gray--700 vui--text-dashed">{{ item.title }}</span>
+                                                            {% include '@atoms/08-tags/badge-tag.twig' with { label:"Removed", color: "gray--300" } only %}
+                                                        {% else %}
+                                                            <span class="color-gray--700">{{ item.title }}</span>
+                                                        {% endif %}
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        {% endfor %}
+
+                                        {% include '@atoms/04-links/01-link-button.twig' with {
+                                            class:"w-100 color--dark px-3 mt-3",
+                                            label: "Review your order",
+                                            href: ""
+                                        } only %}
+                                    {% else %}
+                                        <p class="h4 mb-3">Your bag is empty</p>
+
+                                        <div class="small">
+                                            <p class="color-gray--700">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam distinctio dolor doloremque eius fugiat fugit ipsam iste molestiae.s</p>
+                                            <p class="color-gray--700">Natus odit ratione, reprehenderit similique, voluptatum. Dignissimos doloremque ipsam labore sequi voluptates?</p>
+                                        </div>
+
+                                        {% include '@atoms/04-links/01-link-button.twig' with {
+                                            class:"w-100 color--dark px-3 mt-3",
+                                            label: "View bundles & deals",
+                                            href: ""
+                                        } only %}
+                                    {% endif %}
+
+                                </div>
+                            {% endblock %}
+                        {% endembed %}
+                    </li>
+                {% endif %}
+
+                <li class="nav-item px-1" data-animate="fade-in">
+                    {% block language_switcher_desktop %}
+                        <div class="p-2">
+                            {% include '@atoms/04-links/link-default-optimized.twig' with {
+                                href:"",
+                                label:"EN",
+                                class:"nav-link nav-link--no-hover p-0 fs-3"
+                            } %}
+                        </div>
+                    {% endblock %}
+                </li>
+
+                {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
+                    <li class="nav-item mr-lg-0 border-left-gray-lg--800 pl-lg-1 ml-1 pr-0" data-animate="fade-in">
+                        <button class="d-flex vui--style-reset minh-3 js-search-toggler-btn"
+                                type="button"
+                                data-toggle="collapse"
+                                data-target="#navbarSearch"
+                                aria-controls="navbarSearch"
+                                aria-expanded="false">
+                            {% include '@atoms/06-icons/icon-svg-search.twig' with {
+                                iconColor:"svg-fill--white",
+                                iconSize:2,
+                                iconClass:"icon-close m-1"
+                            } %}
+                        </button>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+
+        {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
+            <!-- Helix Global Search -->
+            <div class="collapse js-helix-global-search-collapse helix-global-search js-helix-global-search w-100 position-absolute top-0 bg--dark pt-lg-1" role="search" id="navbarSearch">
+                <div class="container-fluid h-100">
+                    <div class="row d-flex align-items-center justify-content-between h-100">
+                        <div class="col-12 col-lg-10 offset-lg-2">
+                            {% block searchForm %}
+                                {% include '@organisms/20-form/form-global-search.twig' with {
+                                    class:"mb-0 ml-2 pl-lg-3 bg--dark",
+                                    inputClass: "form-control--dark border--0",
+                                    inputIconPosition: "form-group__input-icon-container--left",
+                                } %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </nav>
+
+    {% block headerNavSearchCollapse %}
+        {% include '@organisms/01-navigation/header-nav-search-collapse.twig' %}
+    {% endblock %}
+</header>

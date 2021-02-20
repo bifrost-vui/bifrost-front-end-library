@@ -1,0 +1,13 @@
+<div class="d-flex align-items-center {{ class|default('') }}">
+
+    {% if personIcon is not defined or personIcon is null %}
+        {% include '@atoms/06-icons/icon-svg-person.twig' with { class:"" } only %}
+    {% else %}
+        <img src="{{ personIcon }}" alt="" height="40" class="img-fluid {{ iconClass|default('') }}">
+    {% endif %}
+
+    <div class="text-center ml-3">
+        <p class="vui--font-secondary fs-4 mb-0">{{ personValue|default('7+') }}</p>
+        <p class="mb-0 mt-minus-1 small vui--font-secondary text-uppercase">{{ personsLabel|default('Persons') }} }}</p>
+    </div>
+</div>

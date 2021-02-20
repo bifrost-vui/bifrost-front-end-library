@@ -1,0 +1,20 @@
+{# --- we need the .lang_en or .lang_fr to change the language of in the background-image --- #}
+<div class="bg--dark color--white error-bg error-bg--404 lang_fr">
+    <img class="img-fluid d-block d-md-none" src="/images/error/helix_404_img_FR_mobile.png" alt="">
+    <!-- <img class="img-fluid d-block d-md-none" src="/images/error/helix_404_img_EN_mobile.png" alt=""> -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-5">
+                <p class="h3 vui--font-secondary color--vui-yellow">{{ errorType|default('ERREUR 404') }}</p>
+                <h1 class="mb-3">{{ errorTitle|default('Pas de chance!') }}</h1>
+                <p class="h4 lh-3 mb-5">{{ errorText|default("Le biscuit l'avait prédit... La page que vous voulez visiter n'existe pas, ou n'existe plus.") }}</p>
+                {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                    buttonLabel: "Retour à l'accueil",
+                    buttonColor: 'white',
+                    buttonSize: "lg",
+                    buttonClass:'mb-8 fs-3 w-100--mobile-only'
+                } %}
+            </div>
+        </div>
+    </div>
+</div>

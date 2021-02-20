@@ -1,0 +1,100 @@
+{% if navItems is not defined %}
+    {% set navItems = [
+        { label: 'Overview', href: '/?p=templates-overview', isActive: true },
+        { label: 'Billing and Payments', href: '/?p=templates-billing-and-payment', isActive: false },
+        { label: 'Services & Equipments', href: '/?p=templates-services', isActive: false },
+        { label: 'Profile and Settings', href: '/?p=templates-profile-and-settings', isActive: false }
+    ] %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<!-- header-nav-subnav--my-account.twig -->
+<nav class="js-backdrop-on-collapse navbar--channel-swap-sticky border-bottom-gray--800 js-is-sticky js-position-sticky-bottom vui-anim--slide-from-bottom {{ class|default('') }}">
+    <div class="bg--dark color--white">
+        <div class="position-relative">
+            {#{% include '@atoms/02-buttons/00-button.twig' with {#}
+                {#buttonClass:"btn-collapse-arrow-half-circle",#}
+                {#buttonColor: "-",#}
+                {#buttonLabel:" ",#}
+                {#dataToggle:"collapse",#}
+                {#dataTarget:"#collapseNavStickyChannelSwap",#}
+                {#ariaExpanded: "false",#}
+                {#ariaControls: "collapseNavStickyChannelSwap",#}
+            {#} %} #}
+
+            <div class="collapse vui--style-black border-bottom-gray--800" id="collapseNavStickyChannelSwap">
+                <div class="mh-70-autoscroll container-fluid pr-3 scrollbar-dark">
+                    {% include '@organisms/60-content-channel-swap/channel-swap--collapse-content.twig' with { class:"" } only %}
+                </div>
+            </div>
+
+            <div class="container-fluid py-3">
+                <div class="row align-items-center">
+                    <div class="col-md-12 col-lg-8 mb-3 mb-lg-0">
+                        <div class="row">
+                            <div class="col-3">
+                                <div>
+                                    {% include '@organisms/60-content-channel-swap/channel-swap--tooltip-more-channels.twig' with { class:"" } only %}
+                                    <p class="small font-weight-bold mb-0">Channels</p>
+                                    <p class="mb-0 fs-3 fs-md-6 vui--font-secondary color--danger">16/15</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div>
+                                    <p class="small font-weight-bold mb-0">Premium <span class="d-none d-md-inline-block">channels</span></p>
+                                    <p class="mb-0 fs-3 fs-md-6 vui--font-secondary ">0/1</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div>
+                                    <p class="small font-weight-bold mb-0">Specialised <span class="d-none d-md-inline-block">channels</span></p>
+                                    <p class="mb-0 fs-3 fs-md-6 vui--font-secondary color--primary">2</p>
+                                </div>
+                            </div>
+
+                            <div class="col-4 col-sm-3 border-left-gray-sm--800 pl-sm-4">
+                                <div>
+                                    <p class="small font-weight-bold mb-0">Extra fees</p>
+                                    <p class="mb-0 fs-3 fs-md-4 mt-lg-1 vui--font-secondary color--primary">20.00$/mo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-lg-4 text-right">
+                        <div class="row">
+                            <div class="col-md"> 
+                                {% include '@atoms/04-links/01-link-button.twig' with {
+                                    id: "stickyNavContinuBtn",
+                                    class:"js-stickyPriceBar__btn color--dark w-100 mb-2 mb-md-0",
+                                    buttonColor: "primary",
+                                    label: stickyNavPriceBtnNextLabel|default("Continue"),
+                                    href: "/patterns/04-Pages-02-my-account-(etiya)-0303-services--order-review/04-Pages-02-my-account-(etiya)-0303-services--order-review.html"
+                                } only %}
+                            </div>
+                            <div class="col-md order-md-first">
+                                {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                                    buttonColor: "light",
+                                    buttonSize: "small",
+                                    buttonClass: "w-100",
+                                    buttonLabel:"View my selection",
+                                    dataToggle:"collapse",
+                                    dataTarget:"#collapseNavStickyChannelSwap",
+                                    ariaExpanded: "false",
+                                    ariaControls: "collapseNavStickyChannelSwap",
+                                } %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="collapse js-DEMO-collapse-banner">
+        {% include 'molecules-collapse-banner--new-item-with-price' with {
+            class:"",
+        } only %}
+    </div>
+</nav>

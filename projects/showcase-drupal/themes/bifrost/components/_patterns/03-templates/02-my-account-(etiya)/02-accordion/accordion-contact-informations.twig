@@ -1,0 +1,147 @@
+<!-- accordion-contact-informations.twig -->
+<div class="{{ class|default('') }}" data-animate="">
+    <div class="list-card mb-4">
+        {# Account owner name ------------------------------------------------------ #}
+        {% embed '@molecules/06-accordion/accordion-item--collapse-below.twig' with {
+            inlineAnchor:"tab_preferredlanguage",
+            btnToggleIconName: "edit",
+            headerTitle:"Preferred language for communications",
+            headerTxt:"English",
+            tabContentTitle: "Communication preferences"
+        } only %}
+            {% block collapse_content %}
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="d-flex">
+                                {% include '@atoms/03-form/input-selection-btn.twig' with { inputName:"_account_comm_prefernces",inputId:"_account_comm_prefernces_en", labelName:"English", class:"w-100", selected:true  } %}
+                                {% include '@atoms/03-form/input-selection-btn.twig' with { inputName:"_account_comm_prefernces",inputId:"_account_comm_prefernces_fr", labelName:"Français", class:"ml-1 w-100" } %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        {% endembed %}
+
+        {# Phone number ------------------------------------------------------ #}
+        {% for i in 1..2 %}
+            {% embed '@molecules/06-accordion/accordion-item--collapse-below.twig' with {
+                inlineAnchor:"tab_phoneNumber" ~ i,
+                btnToggleIconName: "edit",
+                headerTitle:"Phone number " ~ i,
+                headerTxt:"(438) 999-9999 - Mobile",
+                tabContentTitle: "Phone Number " ~ i
+            } only %}
+                {% block collapse_content %}
+                    <div class="row align-items-end mb-3">
+                        <div class="col-md-6 mb-1 mb-md-0">
+                            {% include '@atoms/03-form/input-with-label.twig' with { inputValue:"(438) 999-9999", label:"Phone number" , inputId:"_account_phoneNumber"~i, class:"mb-0" } %}
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                {% include '@atoms/03-form/input-selection-btn.twig' with { inputName:"_account_phone"~i, inputId:"_account_phone_mobile"~i, labelName:"Mobile", class:"w-100 mr-1", selected:true } %}
+                                {% include '@atoms/03-form/input-selection-btn.twig' with { inputName:"_account_phone"~i, inputId:"_account_phone_home"~i, labelName:"Home", class:"mr-1 w-100" } %}
+                                {% include '@atoms/03-form/input-selection-btn.twig' with { inputName:"_account_phone"~i, inputId:"_account_phone_work"~i, labelName:"Work", class:"w-100" } %}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% include '@atoms/04-links/link-underline.twig' with { label:"Remove phone number", headingSize: 6, class:" mb-4 d-inline-block"} %}
+
+
+                    {% include '@atoms/03-form/input-checkbox-with-label.twig' with {
+                        class:"mb-4",
+                        label:'I agree to receive communications from Videotron',
+                        inputId:"_account_" ~ i ~ "_accept-termsconditions"
+                    } %}
+                {% endblock %}
+            {% endembed %}
+        {% endfor %}
+
+        {# Add a phone number ------------------------------------------------------ #}
+        {% embed '@molecules/06-accordion/accordion-item--collapse-below-add.twig' with {
+            class:"mb-0",
+            btnToggleIconName: "edit",
+            inlineAnchor:"tab_addPhoneNumber",
+            headerTitle:"Add a phone Number"
+        } only %}
+            {% block collapse_content %}
+                <div class="row align-items-end mb-4">
+                    <div class="col-md-6 mb-1 mb-md-0">
+                        {% include '@atoms/03-form/input-with-label.twig' with { label:"Phone number" , inputId:"_account_phoneNumber"~i, class:"mb-0" } %}
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex">
+                            {% include '@atoms/03-form/input-selection-btn.twig' with { inputName:"_account_phone_add", inputId:"_account_phone_mobile_add", labelName:"Mobile", class:"w-100 mr-1", selected:true } %}
+                            {% include '@atoms/03-form/input-selection-btn.twig' with { inputName:"_account_phone_add", inputId:"_account_phone_home_add", labelName:"Home", class:"mr-1 w-100" } %}
+                            {% include '@atoms/03-form/input-selection-btn.twig' with { inputName:"_account_phone_add", inputId:"_account_phone_work_add", labelName:"Work", class:"w-100" } %}
+                        </div>
+                    </div>
+                </div>
+
+                {% include '@atoms/03-form/input-checkbox-with-label.twig' with {
+                    class:"mb-4",
+                    label:'I agree to receive communications from Videotron',
+                    inputId:"_newuser_accept-termsconditions"
+                } %}
+            {% endblock %}
+        {% endembed %}
+    </div>
+
+    <div class="list-card">
+        {# Email address ------------------------------------------------------ #}
+        {% embed '@molecules/06-accordion/accordion-item--collapse-below.twig' with {
+            inlineAnchor:"tab_primaryEmailAddress",
+            btnToggleIconName: "edit",
+            headerTitle:"Primary email address ",
+            headerTxt:"john.dow@gmail.com"
+        } only %}
+            {% block collapse_content %}
+                <div class="row mb-4">
+                    <div class="col-12">
+                        {% include '@atoms/03-form/input-with-label.twig' with { label:"Personnal Email Address", inputId:"_emailAddress_1_email", inputType:"email", class:"" } %}
+                    </div>
+                    <div class="col-12">
+                        {% include '@atoms/03-form/input-with-label.twig' with { label:"Re-enter Email Address", inputId:"_emailAddress_1_email_confirm", inputType:"email", class:"" } %}
+                    </div>
+                </div>
+
+                {% include '@atoms/03-form/input-checkbox-with-label.twig' with {
+                    class:"mb-4",
+                    label:'I agree to receive communications from Videotron',
+                    inputId:"_emailAddress_accept-termsconditions"
+                } %}
+
+                {% include '@atoms/01-text/text-information.twig' with {
+                    class:"mb-4",
+                    textLabel:"Notice that the modification of your primary e-mail address <strong>won't change your username</strong>"
+                } %}
+            {% endblock %}
+        {% endembed %}
+
+        {# Add an email address ------------------------------------------------------ #}
+        {% embed '@molecules/06-accordion/accordion-item--collapse-below-add.twig' with {
+            inlineAnchor:"tab_addEmailAddress",
+            headerTitle:"Add an email address"
+        } only %}
+            {% block collapse_content %}
+                <div class="row mb-4">
+                    <div class="col-12">
+                        {% include '@atoms/03-form/input-with-label.twig' with { label:"Personnal Email Address", inputId:"_emailAddress_add", inputType:"email", class:"" } %}
+                    </div>
+                    <div class="col-12">
+                        {% include '@atoms/03-form/input-with-label.twig' with { label:"Re-enter Email Address", inputId:"_emailAddress_add_confirm", inputType:"email", class:"" } %}
+                    </div>
+                </div>
+
+                {% include '@atoms/03-form/input-checkbox-with-label.twig' with {
+                    class:"mb-4",
+                    label:'I agree to receive communications from Videotron',
+                    inputId:"_emailAddress_accept-termsconditions"
+                } %}
+            {% endblock %}
+        {% endembed %}
+    </div>
+</div>
+
+

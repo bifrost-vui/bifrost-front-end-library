@@ -1,0 +1,143 @@
+{% extends "base-page.twig" %}
+
+
+{% set page_hero_title = "Nous joindre" %}
+{% set page_hero_subtitle = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci, aliquam blanditiis eius expedita facere illum ipsum molestias natus odio quidem reiciendis rem, veniam. Autem consectetur dolore dolores nulla veniam." %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+{% block page_main_container %}
+    <section class="py-section">
+        <div class="container-fluid">
+            <div class="mb-5">
+                <h2 class="mb-3" >{{ title|default('Comment pouvons-nous vous aider?') }}</h2>
+                <p class="font-weight-normal mb-0">{{ subTitle|default("This is a subtitle") }}</p>
+            </div>
+
+            {% embed '@molecules/10-tab/tab-card.twig' with {
+                class: "mb-10",
+                tabId:"tabContactUs",
+                tabNavItems: [
+                    {
+                        id:"lorem1",
+                        isSelected:true,
+                        header : {
+                            title:"Title",
+                            desc: "This is my desc",
+                            icon: {
+                                name: "support"
+                            }
+                        }
+                    },
+                    {
+                        id:"lorem2",
+                        isSelected:false,
+                        header : {
+                            title:"Title"
+                        }
+                    }
+                ]
+            } only %}
+                {% block tab_pane_content %}
+                    {# Tab : Item 1 ---------------------------------------------- #}
+                    <div id="lorem1" class="tab-pane fade active show" role="tabpanel" aria-labelledby="lorem1-tab">
+                        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam facilis repudiandae totam!</h2>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="p-5 bg-gray--100">
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-2">
+                                            {% include '@atoms/06-icons/icon-svg.twig' with {
+                                                iconName: "call",
+                                                iconSize: 6,
+                                                iconClass:"mb-md-2"
+                                            } only %}
+                                        </div>
+                                        <div class="col-md-8 col-lg-10">
+                                            <img src="https://source.unsplash.com/300x90/" alt="" class="img-fluid mb-4">
+                                            <p class="color-gray--700">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta enim id maiores non praesentium quia quod reprehenderit totam ullam! Commodi consequuntur distinctio dolorum impedit iusto natus necessitatibus omnis perferendis totam.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <div class="bg-gray--100 p-5 h-100">
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-2">
+                                            {% include '@atoms/06-icons/icon-svg.twig' with {
+                                                iconName: "call",
+                                                iconSize: 6,
+                                                iconClass:"mb-md-2"
+                                            } only %}
+                                        </div>
+                                        <div class="col-md-8 col-lg-10">
+                                            <p class="font-weight-bold">Lorem ipsum dolor sit amet.</p>
+                                            <p class="">Lorem ipsum dolor sit amet.</p>
+
+                                            {% include '@atoms/04-links/link-underline.twig' with {
+                                                class: "",
+                                                href: "",
+                                                label: "Here is a link",
+                                            } %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                {% embed 'molecules-collapse-link' with {
+                                    class:"",
+                                    buttonClass: "d-print-none h5",
+                                    isCollapse: false,
+                                    collapseId: "collapseContactATS",
+                                    collapseLabelShow: "Show lorem ipsum dolor sit amet",
+                                    collapseLabelHide: "Hide lorem ipsum dolor sit amet",
+                                } only %}
+                                    {% block collapse_content %}
+                                        <div>
+                                            <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                            <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                            <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+                                            <p class="mt-3 color-gray--700">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                        </div>
+                                    {% endblock %}
+                                {% endembed %}
+                            </div>
+                        </div>
+                    </div>
+
+                    {# Tab : Item 2 ---------------------------------------------- #}
+                    <div id="lorem2" class="tab-pane fade" role="tabpanel" aria-labelledby="lorem2-tab">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eveniet fugiat illo, ipsam iusto omnis pariatur quaerat? Assumenda deserunt fugit ipsum modi pariatur quod quos, reiciendis sit temporibus totam voluptatem.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eveniet fugiat illo, ipsam iusto omnis pariatur quaerat? Assumenda deserunt fugit ipsum modi pariatur quod quos, reiciendis sit temporibus totam voluptatem.</p>
+                    </div>
+                {% endblock %}
+            {% endembed %}
+
+
+            {% include '@organisms/02-accordion/01-qa-accordion-list.twig' with {
+                class:"mb-0",
+                title:"Frequently Asked Questions"
+            } %}
+        </div>
+    </section>
+
+    <section class="py-section bg-gray--100">
+        <div class="container-fluid">
+            <h2 class="mb-4" data-animate>We are here to help</h2>
+
+            <div data-animate>
+                {% include '@molecules/12-carousel/carousel--overflow-visible.twig' with {
+                    items: [
+                        {imgSrc:"/images/assets/my-helix/carousel-help-01.jpg", title:"Visit our Community", desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aperiam, cum delectus deserunt."},
+                        {imgSrc:"/images/assets/my-helix/carousel-help-02.jpg", title:"Visit our Support", desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aperiam, cum delectus deserunt."},
+                        {imgSrc:"/images/assets/my-helix/carousel-help-03.jpg", title:"Visit our Support", desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aperiam, cum delectus deserunt."},
+                    ]
+                } only %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

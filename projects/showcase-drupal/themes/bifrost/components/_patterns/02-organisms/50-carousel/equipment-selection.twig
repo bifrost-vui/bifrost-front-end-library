@@ -1,0 +1,14 @@
+<div class="js-slick-carousel--img-equipment-selection">
+    {% for i in 1..6 %}
+        <div class="col-md-11 offset-md-1 offset-lg-2 col-lg-8 d-flex justify-content-between flex-column flex-md-row ">
+            <img src="/images/assets/helix-tv/{{ i }}tv.svg" height="205" alt="">
+
+            {% include '@atoms/09-slick-carousel/slick-arrow--btn-increment.twig' with {
+                class:"flex-md-column-reverse justify-content-md-between mt-5 mt-md-0",
+                number: i,
+                btnMinusClass: (loop.first) ? 'disabled' : NULL,
+                btnPlusClass: (loop.last) ? 'disabled' : NULL
+            } %}
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,22 @@
+<div class="card {{ class }}">
+    <div class="card-body">
+        <p class="vui--text-highlight mb-1">{{ tag|default('Equipment') }}</p>
+        <div class="d-flex align-items-center">
+            {% if iconName is defined %}
+                {% include '@atoms/06-icons/icon-svg-' ~ iconName|default('helix') ~ '.twig' with { iconSize:iconSize|default(3), iconClass:'mr-2' } %}
+            {% endif %}
+            <h3 class="mb-0">{{ title|default('My Helix equipment overview') }}</h3>
+        </div>
+        {% if duration is defined %}
+            <div class="d-flex align-items-center mt-2">
+                {% include '@atoms/06-icons/icon-svg-clock.twig' with { iconSize:2 } only %}
+                <p class="h6 ml-2 mb-0">{{ duration|default('1-5 minutes') }}</p>
+            </div>
+        {% endif %}
+        <hr/>
+        <p class="mb-0">{{ description|default('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam') }}
+            ...
+            {% include '@atoms/04-links/link-underline.twig' with { label:moreLabel|default("More"), headingSize: 5, class:"text-capitalize" } %}
+        </p>
+    </div>
+</div>

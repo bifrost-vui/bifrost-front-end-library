@@ -1,0 +1,20 @@
+<div class="d-flex align-items-center justify-content-between {{ class|default('') }}">
+    {% block globalSearch %}
+        {% include '@atoms/03-form/input-search-global.twig' with {
+            iconColor: iconColor|default("svg-fill--white")
+        } %}
+    {% endblock %}
+
+    <button class="vui--style-reset minh-3 ml-1 pl-0 js-search-toggler-btn mb-0 pb-0 d-flex"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSearch"
+            aria-controls="navbarSearch"
+            aria-expanded="false">
+        {% include '@atoms/06-icons/icon-svg-x.twig' with {
+            iconColor: iconColor|default("svg-fill--white"),
+            iconSize:2,
+            iconClass:"icon-close m-1"
+        } %}
+    </button>
+</div>

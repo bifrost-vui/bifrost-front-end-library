@@ -1,0 +1,29 @@
+<div class="collapse-input js-collapse-input {{ class|default('') }}">
+    <div class="d-flex w-100 justify-content-between align-items-center">
+        <p class="font-weight-bold mb-0">{{ inputLabel|default('Here is a title')|raw }}</p>
+
+        {% if isNotEditable is not defined or isNotEditable is not same as (true) %}
+            {% include '@atoms/02-buttons/00-button.twig' with {
+                buttonClass:"p-0 mb-0 link-underline h6 d-inline-block js-collapse-toggle-btn collapse-input__btn",
+                buttonColor: "reset",
+                buttonLabel:"Edit"
+            } %}
+        {% endif %}
+    </div>
+
+    <div class="collapse-input__content1">{{ inputValue|default('514-444-4444') }}</div>
+    <div class="collapse-input__content2">
+        <div class="d-md-flex mt-2">
+            {% include '@atoms/03-form/input.twig' with {
+                class: "w-100 pr-0 pr-md-2 mb-2 mb-md-0",
+                mtValue: "0",
+                inputValue: inputValue|default('514-444-4444')
+            } %}
+            {% include '@atoms/02-buttons/10-button-outline.twig' with {
+                buttonLabel: "Save",
+                buttonSize: "small",
+                buttonClass:'px-4 js-collapse-toggle-btn'
+            } %}
+        </div>
+    </div>
+</div>

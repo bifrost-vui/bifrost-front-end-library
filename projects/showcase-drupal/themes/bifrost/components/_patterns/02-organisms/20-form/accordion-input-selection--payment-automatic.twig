@@ -1,0 +1,29 @@
+<!-- tab-profile-and-settings.twig -->
+<p>Do you want to subscribe to automatic payment of your bills with your credit card? </p>
+{% embed '@molecules/05-input/input-radio-accordion-item.twig' with {
+    isSelected : true,
+    class:"border-bottom--0",
+    inputName: "_payment_ppa",
+    inputId: "_payment_ppa_yes",
+    inputLabel:"Yes",
+} %}
+    {% block collapse_content %}
+        <div class="card-body px-6 py-3">
+            <p>Pre-authorized payment allows you to pay your bills automatically by credit card. Register now and preserve your peace of mind by avoiding oversights.</p>
+        </div>
+    {% endblock %}
+{% endembed %}
+
+{% embed '@molecules/05-input/input-radio-accordion-item.twig' with {
+    isSelected : false,
+    class:"",
+    inputName: "_payment_ppa",
+    inputId: "_payment_ppa_no",
+    inputLabel:"No",
+} %}
+    {% block collapse_content %}
+        <div class="card-body px-6 py-4">
+            <p>All Canadian financial institutions accept online payment of Videotron invoices. Just access your financial institution's website and add Videotron as your beneficiary. Your Videotron invoices are available at all time in your My Helix Account.</p>
+        </div>
+    {% endblock %}
+{% endembed %}

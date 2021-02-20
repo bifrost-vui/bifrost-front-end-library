@@ -1,0 +1,44 @@
+{% if subTotalItems is not defined %}
+    {% set subTotalItems = [
+        {label:"Discount", price:"-$23.00"},
+        {label:"GST (5%)", price:"$7.85"},
+        {label:"QST (9.975%)", price:"$14.22"}
+    ] %}
+{% endif %}
+
+{% if isCondensed is defined or isCondensed is same as (true) %}
+    {% set colClass = "col-lg-7 offset-lg-5" %}
+{% else %}
+    {% set colClass = "col-lg-5 offset-lg-7" %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+<div class="{{ class|default('') }}">
+    <hr class="border-width-4 border-top--dark m-0">
+
+    <div class="cart-summary-item pb-3">
+        <div class="row align-items-center">
+            <div class="col-6">
+                <p class="mb-0 h3 vui--font-secondary">{{ totalLabel|default('Total') }}</p>
+            </div>
+
+            <div class="col-6 text-right">
+                <p class="mb-0 h3 vui--font-secondary-bold"><strong>{{ totalPrice|default('$152.00') }}</strong></p>
+            </div>
+        </div>
+
+        {% if subItems is defined %}
+            <div class="row">
+                <div class="{{ colClass|default('') }}">
+                    {% for item in subItems %}
+                        {% include '@atoms/07-payment/payment-item-price--subitem.twig' with {
+                            color: "dark",
+                            item: item.label|default("Discount"),
+                            price: item.price|default("$23,00")
+                        } %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>

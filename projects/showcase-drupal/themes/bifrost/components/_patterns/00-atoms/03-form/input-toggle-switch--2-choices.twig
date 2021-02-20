@@ -1,0 +1,22 @@
+<div class="form-group form-checkbox-toggle-switch form-checkbox-toggle-switch--2-choices {{ class|default('') }}">
+    <input type="checkbox"
+           {% if isDisabled is defined and isDisabled is same as (true) %}disabled {% endif %}
+            {% if isChecked is defined and isChecked is same as (true) %}checked {% endif %}
+           class="form-control form-checkbox-toggle-switch__input form-control-{{ inputSize|default('sm') }} {% if isDisabled is defined or isDisabled is same as (true) %}disabled{% endif %}"
+           name="{{ inputName|default('') }}"
+            {{ extraAttribute|default(NULL) }}>
+
+    <p class="form-checkbox-toggle-switch__label form-checkbox-toggle-switch__label1 mb-0 lh-2">
+        <span class="text-uppercase">{{ toggleChoice1Title|default('Item 1') }}</span>
+        {% if toggleChoice1SubTitle is defined and toggleChoice1SubTitle is not empty %}
+            <br> {{ toggleChoice1SubTitle }}
+        {% endif %}
+    </p>
+
+    <p class="form-checkbox-toggle-switch__label form-checkbox-toggle-switch__label2 mb-0 lh-2">
+        <span class="text-uppercase">{{ toggleChoice2Title|default('Item 2') }}</span>
+        {% if toggleChoice2SubTitle is defined and toggleChoice2SubTitle is not empty %}
+            <br> {{ toggleChoice2SubTitle }}
+        {% endif %}
+    </p>
+</div>
