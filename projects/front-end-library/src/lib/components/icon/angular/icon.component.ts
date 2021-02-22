@@ -13,13 +13,14 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class IconComponent implements OnInit {
     constructor() {}
 
-    @Input() reversed           : boolean;
-    @Input() class              : string;
+    @Input() type               : string;
     @Input() name               : string;
+    @Input() size               : string;
     @Input() color              : string;
+    @Input() class              : string;
+    @Input() reversed           : boolean;
 
     ngOnInit() {
         console.log('icon', this);
     }
-    
 }
