@@ -1,6 +1,7 @@
 {# ----------------------------------------------------------------- #}
 {% set reversed     = reversed|default(false)|json_parse %}
 
+{# ----------------------------------------------------------------- #}
 <div
     class="d-flex align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
 >
@@ -8,9 +9,7 @@
     {# ----------------------------------------------------------------- #}
     {% include '@bf-components/logo/twig/index.twig' with {
         name        : name,
-        size        : size|default(''),
-        textOnly    : textOnly|default(false)|json_parse,
-        reversed    : reversed,
+        size        : size,
         langcode    : langcode,
     } only %}
 </div>
