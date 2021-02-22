@@ -1,0 +1,102 @@
+
+
+    <div class="bf-card  d-flex  {{ cardType|default('plan') }} {{ cardStatus|default('active') }}" >
+
+        {% if isImage is defined and isImage is same as (true) %}
+        <div class="card-Image" >
+            <img class="d-table-cell align-middle"
+            data-src="{{ imageGifSrc|default('https://source.unsplash.com/64x64/?nature') }}" 
+            alt="{{ imageGifAlt|default('https://source.unsplash.com/64x64/?nature') }}" 
+            src="{{ imageGifSrc|default('https://source.unsplash.com/64x64/?nature') }}"  >            
+        </div>
+        {% endif %}
+
+        <div class="cardHeader {% if isImage is defined and isImage is same as (false) %} col-12 {% endif %} align-items-center ">
+        <a href='{{ productDetailURL|default('') }}'>
+            {% if surTitle is defined %}                               
+                <div class="surTitle" >{{ surTitleCard|default('Free with any purchase of this phone, valuted at $239.38.') }}</div>
+            {% endif %}
+            <h3 class="title">{{ titleCard|default('') }}</h3>
+            <p class="description">{{ subTitleCard|default('Free with any purchase of this phone, valuted at $239.38.') }}</p>
+            {% if linkLearnMoreCard is defined %} 
+            <a href="">{{ linkLearnMoreCard|default('Learn more') }}</a>
+            {% endif %}
+        </a>
+        </div>
+
+        {% if isTag is defined and isTag is same as (true) %}
+        {% include '@bf-components/tag/twig/index.twig'  with {
+            variant     : "",
+            align       : align|default('right'),
+            tagLabel    : tagLabel|default('FREE'),
+            } only
+         %}
+        {% endif %}
+
+        {% if cardType is defined and cardType is same as ('plan') %}
+            <div class="card-Body col-12"> 
+
+                {% if optionList is defined %}
+                <ul>
+                    {% for optionlabel in optionList %}
+                    <li>
+                    {% include '@bf-components/icon/twig/index.twig' with {
+                                        name    : optionIcon,
+                                        color   : color,
+                                        size    : 'xsmall',
+                                    } only %}
+
+                        {{ optionlabel|default('Club Illico') }}
+                    </li>
+                    {% endfor %}                
+                </ul>
+                {% endif %}
+
+                {% include '@bf-components/price/twig/price.twig' with {
+                    priceClass: "w-100",
+                    priceDollar: priceDollar|default("152"),
+                    priceCent: priceCent|default("34"),
+                    priceInfosSupp: priceInfosSupp|default("Taxes incl."),
+                    priceBoxAlignement: "left",
+                    priceDashed: priceDashed|default("$150"),
+                    priceSaved: priceSaved|default("<strong>$30</strong>")
+                } only %}
+
+                {% if cardStatus != 'disable' %}
+
+                {% include "@bf-components/button/twig/button.twig" with { 
+                    label: labelBtn|default('add a phone with this plan'),
+                    styleClass : 'w-100'
+                     } only %}
+                    {% if phoneSelected != 'selected' %}
+                     <p class="mb-0 text-center vui--font-secondary font-weight-bold- text-uppercase" ><a href="" class="link link--no-decoration">{{ labelLink|default('All-Inclusive 12 GB Mobile') }}</a></p> 
+                    {% endif %} 
+                                        
+                 {% endif %}
+
+                 {% if cardStatus == 'disable' %}
+                <div class='d-inline-flex'>
+                    <div class='warningIcon'>
+                    {% include '@bf-components/icon/twig/index.twig' with {
+                                            name    : 'information-circle-fill-color',
+                                            color   : color,
+                                            size    : 'xsmall',
+                                            type    : 'interface'
+                                        } only %}
+                    </div>
+                    <div class="warningLabel">                    
+                        {{ labelInfo|default('Only plans with a minimum of $40.00 per month are available with that phone.') }}
+                    </div>
+                </div>    
+                {% endif %}
+
+
+            </div>
+
+
+        {% endif %}
+
+
+
+
+    <div>

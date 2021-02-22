@@ -1,0 +1,30 @@
+{% set isTag = isTag|default(false)|json_parse %}
+{% set isImage = isImage|default(false)|json_parse %}
+{% set cardType = cardType|default('plan') %}
+
+<div
+    class="px-7 d-flex align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
+>
+    {% include '@bf-components/price/twig/index.twig' with {
+        class                   : class|default(''),
+        cardType                : cardType,
+        isImage                 : isImage,
+        isTag                   : isTag,
+        buttonClass             : buttonClass|default(''),
+        iconClass               : iconClass|default(''),
+        label                   : {
+            value                   : label_value|default(''),
+            class                   : label_class|default(''),
+            extraAttribute          : label_extraAttribute|default(NULL),
+        }        
+    } only %}
+</div>
+
+{% if isInvalid|default(false)|json_parse %}
+    <script>
+        function setInvalid() {
+            document.getElementsByClassName('form-group')[0].classList.add('is-invalid');
+        }
+        setInvalid();
+    </script>
+{% endif %}

@@ -1,0 +1,46 @@
+{% set isTag = isTag|default(false)|json_parse %}
+{% set isImage = isImage|default(false)|json_parse %}
+{% set titleCard = titleCard|default('') %}
+{% set subTitleCard = subTitleCard|default('') %}
+{% set labelLink = labelLink|default('') %}
+{% set cardType = cardType|default('plan') %}
+{% set cardStatus = cardStatus|default('active') %}
+{% set phoneSelected = phoneSelected|default('notSelected') %}
+{% set optionList = optionList|json_parse %}
+
+<div
+    class="px-7 d-flex align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
+>
+    {% include '@bf-components/card/twig/index.twig' with {
+        class                   : class|default(''),
+        cardType                : cardType,
+        isImage                 : isImage,
+        isTag                   : isTag,
+        buttonClass             : buttonClass|default(''),
+        iconClass               : iconClass|default(''),
+        titleCard               : titleCard|default(''),
+        subTitleCard            : subTitleCard|default(''),
+        labelBtn               : labelBtn|default(''),
+        labelLink               : labelLink|default(''),
+        cardStatus              : cardStatus|default('active'),
+        phoneSelected           : phoneSelected|default('notSelected'),
+        optionList              : {
+            optionLable: optionLable, 
+            optionIcon: optionIcon,
+        },        
+                
+    } only %}
+
+ 
+
+</div>
+
+
+{% if isInvalid|default(false)|json_parse %}
+    <script>
+        function setInvalid() {
+            document.getElementsByClassName('form-group')[0].classList.add('is-invalid');
+        }
+        setInvalid();
+    </script>
+{% endif %}
