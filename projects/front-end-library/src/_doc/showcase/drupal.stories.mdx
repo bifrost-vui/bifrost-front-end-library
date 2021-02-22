@@ -1,0 +1,58 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta
+    title='Showcase/Drupal'
+    parameters={{ 
+        layout: 'padded', 
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+/>
+
+
+# Showcase Drupal
+Showcase are created in order to test Bifrost components in a Drupal environment.
+
+<br/><br/>
+
+## Install
+
+> Note: In this repository, you should have a folder `/projects/showcase-drupal` with only the Bifrost Theme.
+
+- Install PHP: Check the step 1 of [this page](https://www.drupal.org/docs/installing-drupal/drupal-quick-start-command).
+
+- Run theses commands:
+
+```bash
+# Install Drupal
+cd projects/showcase-drupal
+curl -sSL https://www.drupal.org/download-latest/tar.gz | tar -xz --strip-components
+
+# Launch it
+php ./core/scripts/drupal quick-start bifrost
+# The website will open in your browser
+```
+
+- Add Components Module.
+
+Go to **Extend** administration page. Find and check the **Components** module (it's in category **Other**). Then click **Install**.
+
+```bash
+# Install theme dependencies
+cd themes/bifrost
+npm install
+```
+
+- Install Bifrost Theme.
+
+Go to the **Appearance** administration page. Bifrost Theme: **Install and set as default**.
+
+<br/><br/>
+
+> **Note: After each changes, you need to clear caches:**
+> - Go to **Configuration** Panel, then **Performance**. Click on **Clear all caches** You can now refresh your front-end web page.
+
+<br/><br/>
+
+### Need Help?
+More details on [Drupal quick start](https://www.drupal.org/docs/installing-drupal/drupal-quick-start-command).
