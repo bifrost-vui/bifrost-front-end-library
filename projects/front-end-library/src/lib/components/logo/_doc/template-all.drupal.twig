@@ -1,0 +1,28 @@
+{% set reversed = reversed|default(false)|json_parse %}
+
+<div class='{% if reversed %}reversed bf-color-bg-ground{% endif %}'>
+    <div class='container-fluid'>
+
+        {% for category in allLogoCategories|json_parse %}
+            <div class='row py-4'>
+
+                <div class='col'>
+                    <h4>{{category.categoryName}}</h4>
+                </div>
+
+                {% for logo in category.list %}
+                    <div class='col'>
+                        {% include '@bf-components/logo/twig/index.twig' with {
+                            name        : logo.name,
+                            size        : logo.size,
+                            langcode    : logo.langcode,
+                            class       : ''
+                        } only %}
+                    </div>
+                {% endfor %}
+                        
+            </div>
+        {% endfor %}
+        
+    </div>
+</div>

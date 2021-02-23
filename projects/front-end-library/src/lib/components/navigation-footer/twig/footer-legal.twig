@@ -14,7 +14,6 @@
             <div class="col-12 col-md-3 order-2 order-md-1 py-0 mt-2 pt-4 mt-md-0 pt-md-0" data-animate="fade-in">
                 <div class="d-flex flex-row align-items-start">
                     <a href="{{ logo.href|default('#') }}">
-                        {# <img src="{{ logoUrl|default('') }}" height="20" alt="{{ logoAlt|default('') }}"> #}
                         {% include '@bf-components/logo/twig/index.twig' with {
                             name        : logo.name,
                             size        : 'small',
@@ -22,11 +21,6 @@
                             reversed    : reversed,
                         } only %}
                     </a>
-                    {# {% if miniVideotronLogo is defined and miniVideotronLogo is same as (true) %}
-                        <a href="{{ hrefVideotronLogo|default('#') }}">
-                            <img src="/images/logo/videotron.svg" height="20" alt="Videotron">
-                        </a>
-                    {% endif %} #}
                 </div>
                 <p class="m-0 mt-2 bf-p-medium bf-color-neutral-secondary">&copy; {{ videotronLegalName|default('Videotron') }} {{ now|date('Y') }}</p>
             </div>

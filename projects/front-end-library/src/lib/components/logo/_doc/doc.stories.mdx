@@ -2,8 +2,9 @@ import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withDesign } from 'storybook-addon-designs'
 
+import { allLogoCategories }                 from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
-import { LogoComponent }          from '../angular/logo.component';
+import { LogoComponent }            from '../angular/logo.component';
 
 
 <Meta 
@@ -29,10 +30,10 @@ import { LogoComponent }          from '../angular/logo.component';
             }
         },
         size: {
-            defaultValue: "",
+            defaultValue: "medium",
             control: { 
                 type: "select",
-                options: ["medium", "small"],
+                options: ["large", "medium", "small"],
             }
         },
         langcode: {
@@ -45,6 +46,9 @@ import { LogoComponent }          from '../angular/logo.component';
         reversed: {
             defaultValue: false,
         },
+        allLogoCategories: {
+            control: { disable: true }
+        }
     }}
 />
 
@@ -91,3 +95,22 @@ export const Drupal = (args) => ({
 ## Component API
 
 <Props of={LogoComponent} />
+
+
+## Drupal All Logos
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal - All logos'
+        args={{ 
+            elementPath : 'components/logo/_doc/template-all.drupal',
+            allLogoCategories
+        }}
+        height='160px'
+    >
+        {Drupal.bind()}
+    </Story>
+</Preview>

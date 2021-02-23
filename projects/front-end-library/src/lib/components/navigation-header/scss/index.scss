@@ -16,15 +16,28 @@
         background-color: var(--bf-color-bg-action-primary);
 
         &-text {
+            margin-left: 0 !important; // Override PL
+            margin-top: 0 !important; // Override PL
+
             @include media-breakpoint-down(sm) {
-                margin-left: .25rem !important;
+                // margin-left: .25rem !important;
 
                 .bf-logo svg {
-                    width: 90px;
-                    height: auto;
+                    width: auto;
+                    height: 100%;
                 }
             }
         }
+    }
+
+    .alg-searchbox-mobile__container.show {
+        position: absolute;
+        right: 1rem;
+        width: calc(100% - 7rem) !important;
+    }
+
+    #navbarSearch.show .js-search-toggler-btn {
+        // display: block !important;
     }
 
     .navbar--videotron-unify.navbar-expand-lg .nav-item {
@@ -49,7 +62,7 @@
     }
 
     .navbar--videotron-unify .dropdown-menu--megamenu {
-        margin: 1px;
+        margin: 1px 0 0 0;
         color: var(--bf-color-neutral-primary);
         background-color: var(--bf-color-bg-ground);
 
@@ -71,16 +84,30 @@
             &__item-link {
                 background-color: var(--bf-color-bg-underground);
                 
+                &:hover,
                 &:focus {
+                    background-color: var(--bf-color-bg-ground);
                     outline: none;
                 }
 
                 &.active {
                     background-color: var(--bf-color-bg-ground);
+
+                    &:before {
+                        transform: translate(0);
+                    }
                 }
 
                 &:not(:last-of-type) {
                     border-bottom: 1px solid var(--bf-color-stroke-secondary);
+                }
+                
+                &:before {
+                    background-color: var(--bf-color-bg-action-primary);
+                    transform: none; // PL Override
+                    width: .2rem;
+                    transform: translate(-100%);
+                    transition-duration: .2s;
                 }
 
                 img {
