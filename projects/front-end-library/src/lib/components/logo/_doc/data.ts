@@ -15,32 +15,6 @@ export const allLogoCategories = [
         ]
     },
     {
-        categoryName: 'Medium',
-        list: [
-            {
-                size        : 'medium',
-                langcode    : 'EN'
-            },
-            {
-                size        : 'medium',
-                langcode    : 'FR'
-            },
-        ]
-    },
-    {
-        categoryName: 'Small',
-        list: [
-            {
-                size        : 'small',
-                langcode    : 'EN'
-            },
-            {
-                size        : 'small',
-                langcode    : 'FR'
-            },
-        ]
-    },
-    {
         categoryName: 'Business Large',
         list: [
             {
@@ -56,6 +30,19 @@ export const allLogoCategories = [
         ]
     },
     {
+        categoryName: 'Medium',
+        list: [
+            {
+                size        : 'medium',
+                langcode    : 'EN'
+            },
+            {
+                size        : 'medium',
+                langcode    : 'FR'
+            },
+        ]
+    },
+    {
         categoryName: 'Business Medium',
         list: [
             {
@@ -66,6 +53,19 @@ export const allLogoCategories = [
             {
                 name        : 'business',
                 size        : 'medium',
+                langcode    : 'FR'
+            },
+        ]
+    },
+    {
+        categoryName: 'Small (Deprecated)',
+        list: [
+            {
+                size        : 'small',
+                langcode    : 'EN'
+            },
+            {
+                size        : 'small',
                 langcode    : 'FR'
             },
         ]
