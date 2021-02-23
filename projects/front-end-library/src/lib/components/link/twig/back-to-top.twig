@@ -1,0 +1,11 @@
+<a 
+    href="{{ href|default('javascript:window.scrollTo(0,0);') }}"
+    {% if label is not empty %}data-title="{{ label|render|default(NULL) }}"{% endif %}
+    class="link-back-to-top {{ class|default('') }}"
+    {{ extraAttribute|default(NULL) }}
+>
+    {{ label|default('Back to top') }}
+    {% include '@bf-components/icon/twig/index.twig' with {
+        name: 'chevron-up'
+    } only %}
+</a>

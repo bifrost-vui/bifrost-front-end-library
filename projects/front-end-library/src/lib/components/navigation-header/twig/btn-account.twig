@@ -5,7 +5,7 @@
 {% set dropdownId           = "navbarDropdown_accountPerso" %}
 {% set dropdownXPlacement   = "bottom-end" %}
 
-{% extends '@bf-components/dropdown/twig/btn-icon-dropdown.twig' %}
+{% extends '@bf-components/dropdown/twig/index.twig' %}
     {% block dropdown_content %}
         <div class="p-3">
             {% if isConnected is same as (true) %}
@@ -16,7 +16,7 @@
                 {#linkPaddingClass: "py-2"#}
                 {#} %}#}
 
-                {% include '@bf-components/link/twig/link-next.twig' with {
+                {% include '@bf-components/link/twig/next.twig' with {
                     linkLabel: labelMyAccount|default('My account'),
                     linkSize: 6,
                     href: hrefMyAccount|default('#my-account'),
@@ -25,7 +25,7 @@
                 } only %}
 
                 {# Delegate user view #}
-                {#{% include '@atoms/04-links/link-next.twig' with {#}
+                {#{% include '@atoms/04-links/next.twig' with {#}
                 {#linkLabel: labelMyAccount|default('John Dow account'),#}
                 {#linkSize: 6,#}
                 {#href: hrefMyAccount|default('#my-account'),#}
@@ -33,14 +33,14 @@
                 {#iconClass:"ml-2"#}
                 {#} only %}#}
 
-                {% include '@bf-components/link/twig/link-button-outline.twig' with {
+                {% include '@bf-components/link/twig/button-outline.twig' with {
                     label: labelLogOut|default('Log out'),
                     href: hrefLogOut|default('#'),
                     buttonColor: "dark",
                     class:"w-100 mt-3"
                 } %}
             {% else %}
-                {% include '@bf-components/link/twig/link-button-outline.twig' with {
+                {% include '@bf-components/link/twig/button-outline.twig' with {
                     label: labelConnexion|default('Log in'),
                     href: hrefConnexion|default('#'),
                     buttonColor: "dark",
