@@ -1,0 +1,396 @@
+/* *****************************************************************************
+*
+*  Navbar videotron unify
+*
+* ***************************************************************************** */
+
+@mixin navbar-videotron-unify-responsive-setup($breakpoint: sm) {
+  @include media-breakpoint-down($breakpoint) {
+    .navbar-brand {
+      &__logo-videotron {
+      }
+
+      &__logo-videotron-text {
+        img {
+          margin-left: -0.1rem;
+          height: 0.875rem;
+          width: 4.875rem;
+        }
+      }
+    }
+
+    .nav-item {
+      flex: 1 1 auto;
+      border: $border-width solid $border-color;
+      border-right: none;
+
+      &[data-animate] {
+        opacity: 1;
+        animation: none;
+      }
+
+      & > .nav-link {
+        text-align: center;
+        padding: 0.844rem $spacer-2;
+        display: block;
+        width: 100%;
+        margin-right: 0;
+        min-height: 3.063rem;
+
+        &--btn-dropdown {
+          width: 100%;
+          justify-content: center;
+
+          .icon-arrow-to-bottom {
+            display: none;
+          }
+        }
+      }
+
+      .dropdown-menu--megamenu {
+        //@extend .scrollbar-custom;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 2rem;
+        height: 100vh;
+
+        .btn-close {
+          display: block;
+        }
+
+        .nav-tabs--vertical {
+          position: fixed;
+          height: 100%;
+          display: block;
+          overflow-y: auto;
+
+          &__item-link {
+            width: 4.4rem;
+            padding: $spacer-2;
+
+            img {
+              width: 90%;
+              height: auto;
+              margin: auto;
+            }
+          }
+
+          & ~ .tab-content {
+            padding-left: $spacer-7;
+          }
+        }
+      }
+
+      .p-dropdown-megamenu {
+        padding: 1.45rem 1.75rem;
+      }
+    }
+
+    .navbar__header-responsive {
+      // mobile : aside dropdown (account, minicart)
+      .dropdown {
+        button[data-toggle="dropdown"][aria-expanded="true"] {
+          &:before {
+            opacity: 1;
+          }
+        }
+
+        button[data-toggle="dropdown"] {
+          height: 2.7rem;
+          width: 2.7rem;
+
+          &:before {
+            @include transitions(opacity);
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 0;
+            border-color: transparent transparent $border-color;
+            border-style: solid;
+            border-width: 0 0.7rem 0.7rem;
+            position: absolute;
+            top: auto;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 60%);
+            pointer-events: none;
+            opacity: 0;
+          }
+        }
+
+        .dropdown-menu {
+          &.dropdown-menu--arrow {
+            position: fixed !important;
+            transform: translate3d(0rem, 3rem, 0);
+            filter: none;
+            border-top: $border-width solid $border-color !important;
+            width: 100vw;
+
+            &:before {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.navbar--videotron-unify {
+  &__main-nav {
+    // z-index: 25;
+  }
+  .navbar__header-responsive {
+    padding: 0;
+
+    .navbar-brand {
+    //   &__logo-videotron {
+    //     @include media-scale(width, 3.125rem, 4.875rem);
+    //     @include media-scale(height, 3.125rem, 4.875rem);
+
+    //     img {
+    //       @include media-scale(width, 1.375rem, 2rem);
+    //     }
+    //   }
+
+    //   &__logo-videotron-text {
+    //     margin-left: 0.875rem;
+    //     margin-top: -0.2rem;
+    //   }
+    }
+  }
+
+  .navbar-nav {
+    &:hover .nav-item:not(:hover) .nav-link:before {
+      transform: scaleX(0) !important;
+    }
+
+    .nav-item {
+      @include media-breakpoint-down(md) {
+        overflow-y: hidden !important;
+      }
+
+      & > .nav-link {
+        font-family: $font-family-secondary;
+        font-weight: $font-weight-normal;
+        padding: 1.6rem 0;
+        line-height: inherit;
+        letter-spacing: 0.045rem;
+
+        @include media-breakpoint-down(md) {
+          &.link-highlight {
+            &--active,
+            .active &,
+            &.active,
+            &:hover {
+              &:before {
+                @include transitions(transform $transition-time-base ease-in-out);
+                transform: scaleX(0);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .dropdown {
+      .dropdown-menu--arrow {
+        min-width: 18rem;
+      }
+    }
+  }
+
+  &__main-nav {
+    .nav-item {
+      @include flex-maker(inline-flex, flex-start, center);
+      padding: 0;
+
+      &:not(:last-of-type):after {
+        display: none;
+      }
+
+      &.active,
+      &.dropdown .open {
+        .nav-link {
+          font-weight: $font-weight-bold !important;
+
+          &:before {
+            transform: scaleX(0) !important;
+          }
+        }
+      }
+
+      &.dropdown {
+        &.open {
+          .nav-link {
+            .icon-arrow-to-bottom {
+              transform: rotate(315deg) translate(-0.15rem, 0.1rem);
+            }
+          }
+
+          .dropdown-menu--megamenu {
+            @include transitions(opacity $transition-time-medium);
+            pointer-events: auto;
+            opacity: 1;
+            transition-delay: 0.2s;
+          }
+        }
+
+        .dropdown-menu--megamenu {
+          @include transitions(opacity $transition-time-base);
+          right: -1.5rem;
+          opacity: 0;
+          pointer-events: none;
+          display: block;
+          transition-delay: 0s;
+
+          .btn-close {
+            @extend .vui--style-reset;
+            @extend .mt-2;
+            @extend .mr-2;
+            @extend .p-3;
+            display: none;
+            position: fixed;
+            left: auto;
+            right: 0;
+
+            img {
+              width: 0.95rem;
+            }
+          }
+
+          .nav-tabs--vertical {
+            max-width: 14.375rem;
+
+            @include media-breakpoint-up(lg) {
+              min-width: 14.375rem;
+            }
+
+            &__item-link {
+              padding: $spacer-3;
+
+              &.active {
+                span {
+                  font-weight: $font-weight-bold;
+                }
+              }
+
+              span {
+                font-family: $font-family-secondary;
+                font-size: $h4-font-size;
+                line-height: 1;
+                position: relative;
+
+                &:after {
+                  @include size(0.5rem, 0.25rem);
+                  background: url(https://videotron.com/residential/static/img/dropdown-arrow.svg) no-repeat;
+                  background-size: 100%;
+                  content: "";
+                  display: inline-block;
+                  margin-left: $spacer-1;
+                  transform: rotate(-90deg);
+                  vertical-align: middle;
+                }
+              }
+
+              img {
+                @include size(3.75rem);
+              }
+            }
+          }
+        }
+      }
+
+      & > .nav-link {
+        @include media-scale(font-size, 0.9375rem, $h4-font-size);
+        margin-right: 2.5rem;
+        padding: $spacer-2 0;
+
+        @include hover-focus {
+          &:before {
+            transform: scaleX(1);
+          }
+        }
+
+        &:before {
+          @include transitions(transform 0.2s ease-out);
+          background: $dark !important;
+          transform: scaleX(0);
+          transform-origin: center left;
+        }
+
+        &--btn-dropdown {
+          @extend .vui--style-reset;
+          font-family: $font-family-secondary;
+
+          @include media-breakpoint-down(md) {
+            &:before {
+              display: none !important;
+            }
+          }
+
+          .icon-arrow-to-bottom {
+            border-width: 1px 1px 0 0;
+          }
+        }
+      }
+    }
+  }
+
+  .dropdown-menu--megamenu {
+    position: relative;
+    background: $white;
+    filter: none;
+    width: 100vw;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-shadow: $oc11_drop-shadow-megamenu; // Videotron OC11 (videotron.com) drop-shadow
+
+    &:before {
+      content: "";
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      box-shadow: inset 0 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.2); // Videotron OC11 (videotron.com) drop-shadow
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .p-dropdown-megamenu {
+      @include media-scale(padding-left, $spacer-3, $spacer-3, $spacer-6);
+      @include media-scale(padding-right, $spacer-3, $spacer-3, $spacer-6);
+      padding-top: 1.45rem;
+      padding-bottom: 1.45rem;
+    }
+  }
+
+  &__search {
+    @include transitions(opacity);
+    opacity: 0;
+    z-index: 30;
+
+    &.is-active {
+      opacity: 1;
+
+      .navbar--videotron-unify__search__collapse {
+        opacity: 1;
+      }
+    }
+
+    &__collapse {
+      @include transitions(opacity);
+      opacity: 0;
+    }
+  }
+
+  // Reponsive navbar
+  // -------------------------------------------
+  &.navbar-expand-md {
+    @include navbar-videotron-unify-responsive-setup(sm);
+  }
+
+  &.navbar-expand-lg {
+    @include navbar-videotron-unify-responsive-setup(md);
+  }
+}
