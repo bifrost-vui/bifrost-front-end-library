@@ -10,29 +10,81 @@
 
     &__nav {
         display: grid;
-        grid-template-columns: min-content max-content auto;
+        grid-template-columns: auto 1fr auto;
         background-color: var(--bf-color-bg-ground);
     }
 
     &__logo {
-        @include media-breakpoint-down(md) {
-            grid-column: 2;
-        }
-
         @include media-breakpoint-down(sm) {
             .bf-logo svg {
                 width: auto;
                 height: 3rem;
             }
         }
+    }
 
-        &-text {
-            margin-left: 0 !important; // Override PL
-            margin-top: 0 !important; // Override PL
+    &__nav-main {
+        z-index: 25;
+
+        @include media-breakpoint-down(md) {
+            grid-column: 1/3;
+            grid-row: 2;
+        }
+
+        .nav-item {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            color: var(--bf-color-neutral-primary);
 
             @include media-breakpoint-down(md) {
-                grid-column: 1/4;
-                grid-row: 2;
+                min-height: 2rem;
+                flex: 1;
+                padding-left: 0;
+                padding-right: 0;
+                border: 1px solid var(--bf-color-stroke-secondary);
+                border-right: none;
+
+                &:first-child {
+                    border-left: none;
+                }
+            }
+
+            .nav-link {
+                padding: 1rem 0;
+                background: none;
+                width: auto;
+                border: none;
+                color: var(--bf-color-neutral-primary);
+                font-family: BlenderPro, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: inherit;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+
+                @include media-breakpoint-down(md) {
+                    width: 100%;
+                    justify-content: center;
+                    padding: .5rem 1rem;
+                }
+
+                @include media-breakpoint-down(sm) {
+                    padding: .25rem;
+                    font-size: .75rem;
+                }
+
+                &:before {
+                    background-color: var(--bf-color-neutral-primary) !important; // Override PL
+                }
+            }
+
+            &.active .nav-link {
+                font-weight: 700!important;
+            }
+
+            &.open .nav-link:before,
+            .nav-link:hover:before {
+                transform: scaleX(1);
             }
         }
     }
@@ -54,91 +106,10 @@
             @include transitions(all .2s ease-out);
             opacity: 0;
 
-            &.show {
-                display: block !important;
-                opacity: 1 !important;
-            }
-        }
-    }
-
-    // .alg-searchbox-mobile__container.show {
-    //     position: absolute;
-    //     right: 1rem;
-    //     width: calc(100% - 7rem) !important;
-    // }
-
-    // #navbarSearch.show .js-search-toggler-btn {
-    //     // display: block !important;
-    // }
-
-    .nav-item {
-        padding-left: 1rem;
-        padding-right: 1rem;
+    .navbar--videotron-unify .dropdown-menu--megamenu {
+        margin: 1px 0 0 0;
         color: var(--bf-color-neutral-primary);
-
-        @include media-breakpoint-down(md) {
-            min-height: 2rem;
-            flex: 1;
-            padding-left: 0;
-            padding-right: 0;
-            border: 1px solid var(--bf-color-stroke-secondary);
-            border-right: none;
-            border-bottom: none;
-
-            &:first-child {
-                border-left: none;
-            }
-        }
-
-        .nav-link {
-            position: relative;
-            padding: 1rem 0;
-            background: none;
-            width: auto;
-            border: none;
-            // color: var(--bf-color-neutral-primary);
-            font-family: $font-family-secondary;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: inherit;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-
-            @include media-breakpoint-down(md) {
-                width: 100%;
-                justify-content: center;
-                padding: .5rem 1rem;
-            }
-
-            @include media-breakpoint-down(sm) {
-                padding: .25rem;
-                font-size: .75rem;
-            }
-            
-            @include media-breakpoint-up(lg) {
-                &:before {
-                    content: '';
-                    @include transitions(transform .2s ease-out);
-                    position: absolute;
-                    bottom: 0;
-                    top: auto;
-                    left: 0;
-                    transform: scaleX(0);
-                    transform-origin: center left;
-                    width: 100%;
-                    height: 3px;
-                    background-color: var(--bf-color-neutral-primary);
-
-                    &:hover,
-                    &:focus {
-                        transform: scaleX(1);
-                    }
-                }
-            }
-        }
-    }
-
-    .bf-megamenu {
+        background-color: var(--bf-color-bg-ground);
 
         &__nav-item.open {
 
@@ -246,10 +217,10 @@
     }
 
     // Override PL
-    @include media-breakpoint-down(md) {
-        .navbar--videotron-unify.navbar-expand-lg .navbar__header-responsive .dropdown button[data-toggle=dropdown] {
-            width: auto;
-            height: auto;
-        }
-    }
+    // @include media-breakpoint-down(md) {
+    //     .navbar--videotron-unify.navbar-expand-lg .navbar__header-responsive .dropdown button[data-toggle=dropdown] {
+    //         width: auto;
+    //         height: auto;
+    //     }
+    // }
 }

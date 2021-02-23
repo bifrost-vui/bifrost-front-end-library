@@ -15,16 +15,16 @@
 {% endif %}
 
 <header
-    role='banner'
-    class='bf-header z-index-18
-           {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}'
+    role="banner"
+    class="bf-header position-relative z-index-18
+           {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}"
     {% if theme is defined %} data-theme={{theme}} {% endif %}
 >
-    <nav class='bf-header__nav w-100 bf-border-bottom-secondary {{ class|default('') }}'>
+    <nav class="bf-header__nav w-100 bf-border-bottom-secondary {{ class|default('') }}">
 
         <!-- Logo -->
-        <div class='bf-header__logo' data-animate='fade-in'>
-            <a href='{{ logo.href|default('#') }}' class='d-flex'>
+        <div class="bf-header__logo" data-animate="fade-in">
+            <a href="{{ logo.href|default('#') }}" class="d-flex">
                 {% include '@bf-components/logo/twig/index.twig' with {
                     name        : logo.name,
                     size        : 'large',
@@ -34,8 +34,8 @@
         </div>
 
         <!-- Main Nav -->
-        <div class='bf-header__nav-main js-collapse-full-height' data-animate-row=''>
-            <ul class='bf-megamenu d-flex list h-100'>
+        <div class="bf-header__nav-main js-collapse-full-height" id="unifyNavbarVideotron" data-animate-row="">
+            <ul class="d-flex list h-100">
                 {% block navbar_content %}
                     {% include '@bf-components/navigation-header/twig/mega-menu.twig' with { 
                         navItems    : navItems,
@@ -46,15 +46,15 @@
         </div>
 
         <!-- Actions -->
-        <div class='bf-header__actions d-flex align-items-center justify-content-end w-100  h-100 pr-3' data-animate='fade-in'>
+        <div class="bf-header__actions w-100 d-flex align-items-center justify-content-end h-100" data-animate="fade-in">
 
-            <div class='d-flex d-lg-none align-items-center'>
+            <div class="d-flex d-lg-none align-items-center">
                 {% for link in rigthIconLinks|default([]) %}
                     {% if link.href is not empty and link.icon is not empty %}
-                        <a href='{{ link.href }}' class='link--no-decoration m-1 p-1'>
+                        <a href="{{ link.href }}" class="link--no-decoration m-1 p-1">
                             {% include '@bf-components/icon/twig/index.twig' with {
-                                name    : "search",
-                                class   : "icon-close"
+                                name    : link.icon,
+                                class   : link.class
                             } %}
                         </a>
                     {% endif %}
@@ -62,36 +62,54 @@
 
                 <!-- Mobile : btn account dropdown -->
                 {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
-                    {% include '@bf-components/navigation-header/twig/btn-account.twig' with { class:'' } only %}
+                    {% include '@bf-components/navigation-header/twig/btn-account.twig' with { class:"" } only %}
                 {% endif %}
 
                 <!-- Mobile : btn search toggle -->
-                <label for="elem">
-                <button class='d-flex d-md-none vui--style-reset m-1 p-1 js-bf-search-toggler'
-                        type='button'
-                        data-toggle='collapse'
-                        data-target='#navbarSearch'
-                        aria-controls='navbarSearch'
-                        aria-expanded='false'>
+                <button class="d-flex vui--style-reset m-1 p-1 js-search-toggler-btn"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarSearch"
+                        aria-controls="navbarSearch"
+                        aria-expanded="false">
                     {% include '@bf-components/icon/twig/index.twig' with {
-                        name    : 'search',
-                        class   : ''
+                        name    : "search",
+                        class   : "icon-close"
                     } %}
                 </button>
-                </label>
 
                 <!-- Mobile : btn mini cart -->
                 {% if hasMiniCartBtn is defined and hasMiniCartBtn is same as (true) %}
-                    {% include '@bf-components/navigation-header/twig/btn-minicart.twig' with { class:'' } only %}
+                    {% include '@bf-components/navigation-header/twig/btn-minicart.twig' with { class:"" } only %}
                 {% endif %}
+
+                <div id="navbarSearch" class="alg-searchbox-mobile__container collapse pl-7 pl-md-10 w-100 z-index-10" role="search">
+                    <div class="row d-flex align-items-center justify-content-between h-100">
+                        <div class="col-12">
+                        {% block globalSearchMobile %}
+                            {% include '@bf-components/input-search/twig/index.twig' with {
+                                class   : 'mb-0 ml-2 rounded',
+                                input   : {
+                                    class           : 'js-alg-searchbox-input py-1 py-md-3',
+                                    id              : 'alg-searchbox-mobile',
+                                    placeholder     : 'What are you looking for?'|t,
+                                    iconPosition    : ' ',
+                                },
+                                reversed  : reversed,
+                            } %}
+                        {% endblock %}
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Search -->
-            {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
-                <div class='bf-header__search-bar js-bf-header__search-bar d-none d-md-block ml-1' id='navbarSearch' data-animate='fade-in'>
-                    <div class='d-flex align-items-center justify-content-between w-100'>
-                        {% block globalSearch %}
-                            {% include '@bf-components/input-search/twig/index.twig' with {
+            <div class="bf-header__search-bar ml-1 mr-3" data-animate="fade-in">
+                {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
+                    <div class="nav-item d-none d-md-block mr-lg-0 pl-lg-1 ml-1 pr-0" data-animate="fade-in">
+                        <div class="d-flex align-items-center justify-content-between w-100">
+                            {% block globalSearch %}
+                                {% include '@bf-components/input-search/twig/index.twig' with {
                                 class       : 'mb-0',
                                 input       : {
                                     placeholder     : 'What are you looking for?'|t,
@@ -99,18 +117,15 @@
                                     id              : "elem"
                                 },
                                 reversed    : reversed,
-                            } %}
-                        {% endblock %}
+                                } %}
+                            {% endblock %}
+                        </div>
                     </div>
-                </div>
-            {% endif %}
-
-                          </div>
-                        </li>
-                    {% endif %}
-                </ul>
+                {% endif %}
             </div>
+
         </div>
+
     </nav>
 
   {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
