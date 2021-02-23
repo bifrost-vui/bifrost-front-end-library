@@ -10,26 +10,47 @@
     }
 </style>
 
+{# Pattern Lab #}
+<link rel="stylesheet" href="{{ base_path ~ directory }}/components/assets/css/uikit-marvel.css">
+<link rel="stylesheet" href="{{ base_path ~ directory }}/components/assets/css/uikit-marvel-livechat.css">
+<script type="text/javascript" src="{{ base_path ~ directory }}/components/assets/js/uikit-marvel.js"></script>
+
+{# Bifrost #}
 <link rel="stylesheet" href="{{ base_path ~ directory }}/node_modules/@videotron-ui/bifrost-front-end-library/assets/css/uikit-marvel.css">
 <script type="text/javascript" src="{{ base_path ~ directory }}/node_modules/@videotron-ui/bifrost-front-end-library/assets/js/uikit-marvel.js"></script>
 
 <div class='loaded-end'>
     <div class='videotron-ui bf-base' style='min-height: 100vh'>
 
+        <h2>Navigation Header</h2>
+
+        <h3>Bifrost</h3>
         {% include '@bifrost/includes/components/navigation-header.html.twig' %}
 
+        <h3>Pattern-Lab</h3>
+        {% include '@organisms/00-navigation-videotron-unify/30-header-nav-videotron-unify.twig' %}
+
+        <h2>Navigation Footer</h2>
+
+        <h3>Bifrost</h3>
+        {% include '@bifrost/includes/components/navigation-footer.html.twig' %}
+
+        <h3>Pattern-Lab</h3>
+        {% include '@organisms/00-navigation-videotron-unify/unify-footer-all.twig' %}
+
         <div class='container-fluid my-6'>
+            
+            <h2>Logo</h2>
+            <h3>Bifrost</h3>
             {% include '@bifrost/includes/components/logo.html.twig' %}
             
-            <div class='reversed bf-color-bg-ground'>
+            {# <div class='reversed bf-color-bg-ground'>
                 {% include '@bifrost/includes/components/input-search.html.twig' with {
                     class: 'p-4',
                     reversed: true,
                 } only %}
-            </div>
+            </div> #}
         </div>
-
-        {% include '@bifrost/includes/components/navigation-footer.html.twig' %}
 
     </div>
 </div>
