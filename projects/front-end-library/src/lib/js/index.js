@@ -1,4 +1,4 @@
-import '../scss/style.scss';
+import '../scss/index.scss';
 
 // Vendor
 import 'jquery';

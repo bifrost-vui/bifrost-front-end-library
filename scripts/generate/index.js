@@ -135,9 +135,9 @@ function appendPublicAPI ({ name, NameReadable, type, typePlural, finalPath }) {
         // TODO: Insert export in the right section of the public-api.ts file.
         // shell.exec( "sed '/\Components/a Test Import' projects/front-end-library/src/public-api.ts" );
 
-        // Import component style into style.scss.
+        // Import component style into index.scss.
         const strinImportStyle = `@import '../${typePlural}/${name}/scss/index';`;
-        shell.exec( 'echo "' + strinImportStyle + '" >> projects/front-end-library/src/lib/scss/style.scss' );
+        shell.exec( 'echo "' + strinImportStyle + '" >> projects/front-end-library/src/lib/scss/index.scss' );
         
     }
 
