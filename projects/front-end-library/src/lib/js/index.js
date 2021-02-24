@@ -1,4 +1,4 @@
-// require("../scss/style.scss");
+import '../scss/style.scss';
 
 // Vendor
 import 'jquery';
@@ -41,6 +41,6 @@ require("./components/animation.js");
 require("./components/widgets-override/livechat-genesys.js");
 
 // DEMO
-require("./demo/etiya/index.js");
+// require("./demo/etiya/index.js");
 
 require("./onload.js");
