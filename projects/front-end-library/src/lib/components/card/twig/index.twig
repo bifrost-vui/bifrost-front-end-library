@@ -1,42 +1,44 @@
     <div class="bf-card  d-flex  {{ cardType|default('plan') }} {{ cardStatus|default('active') }}" >
 
+        <div class="cardHeader d-flex flex-row {% if isImage is defined and isImage is same as (false) %} col-12 {% endif %} align-items-center ">
+
         {% if isImage is defined and isImage is same as (true) %}
-        <div class="card-Image d-flex flex-wrap align-items-center" >
-            
-             {% if imageGifSrc is defined  %}
-            <img 
-            data-src="{{ imageGifSrc|default('https://source.unsplash.com/72x72/?nature') }}" 
-            alt="{{ imageGifAlt|default('https://source.unsplash.com/72x72/?nature') }}" 
-            src="{{ imageGifSrc|default('https://source.unsplash.com/72x72/?nature') }}"  >
-            {% endif %}
+            <div class="cardImage d-flex flex-wrap align-items-center" >
+                
+                {% if imageGifSrc is defined  %}
+                <img 
+                data-src="{{ imageGifSrc|default('https://source.unsplash.com/72x72/?nature') }}" 
+                alt="{{ imageGifAlt|default('https://source.unsplash.com/72x72/?nature') }}" 
+                src="{{ imageGifSrc|default('https://source.unsplash.com/72x72/?nature') }}"  >
+                {% endif %}
 
-            {% if imageIcon is defined  %}
-            {% include '@bf-components/icon/twig/index.twig' with {
-                                            name    : imageIcon,
-                                            color   : color,
-                                            size    : 'small',
-                                            type    : 'illustration',
-                                        } only %}
-            {% endif %}
-        </div>
+                {% if imageIcon is defined  %}
+                {% include '@bf-components/icon/twig/index.twig' with {
+                                                name    : imageIcon,
+                                                color   : color,
+                                                size    : 'small',
+                                                type    : 'illustration',
+                                            } only %}
+                {% endif %}
+            </div>
         {% endif %}
+            <div class="title" >
+            <a href='{{ productDetailURL|default('') }}'>
+                {% if upperTitle is defined %}                               
+                    <div class="upperTitle" >{{ upperTitleCard|default('Free with any purchase of this phone, valuted at $239.38.') }}</div>
+                {% endif %}
+                <h3 class="title">{{ titleCard|default('') }}</h3>
+                {% if subTitleCard is defined %}
+                    <p class="description">{{ subTitleCard }}</p>
+                {% endif %}  
 
-        <div class="cardHeader {% if isImage is defined and isImage is same as (false) %} col-12 {% endif %} align-items-center ">
-        <a href='{{ productDetailURL|default('') }}'>
-            {% if surTitle is defined %}                               
-                <div class="surTitle" >{{ surTitleCard|default('Free with any purchase of this phone, valuted at $239.38.') }}</div>
-            {% endif %}
-            <h3 class="title">{{ titleCard|default('') }}</h3>
-            {% if subTitleCard is defined %}
-                <p class="description">{{ subTitleCard }}</p>
-            {% endif %} 
-
-            {% if linkLearnMoreCard is defined %} 
-                <a href="{{ linkLearnMoreURL|default('#') }}">{{ linkLearnMoreCard|default('Learn more') }}</a>
-            {% endif %}
-        </a>
+                {% if linkLearnMoreCard is defined %} 
+                    <a href="{{ linkLearnMoreURL|default('#') }}">{{ linkLearnMoreCard|default('Learn more') }}</a>
+                {% endif %}
+            </a>
+            </div> 
         </div>
-
+ 
         {% if isTag is defined and isTag is same as (true) %}
         {% include '@bf-components/tag/twig/index.twig'  with {
             variant     : "",
