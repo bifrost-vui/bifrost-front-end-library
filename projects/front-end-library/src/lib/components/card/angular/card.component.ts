@@ -13,7 +13,6 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class CardComponent implements OnInit {
     constructor() {}
 
-    @Input() optionList: string;
     @Input() labelBtn: string;
     @Input() isImage: boolean;
     @Input() isTag: boolean;

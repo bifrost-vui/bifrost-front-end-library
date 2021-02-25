@@ -1,15 +1,58 @@
-export const optionList = [
+export const optionListData = [
     {
-        optionlabel: 'Club Illico',
-        optionIcon: 'forfait-tv-le-fan-de-films-et-series',
+        title: 'TV Pupolaire',
+        description: '40 chaines',
+        option: [
+            {
+                label: 'Club Illico',
+                icon: 'forfait-tv-le-fan-de-films-et-series', 
+            },
+            {
+                label: 'Club Illico',
+                icon: 'forfait-tv-le-fan-de-films-et-series', 
+            },
+            {
+                label: 'Club Illico',
+                icon: 'forfait-tv-le-fan-de-films-et-series', 
+            },
+
+        ],
     },
     {
-        optionlabel: '100 GB annual data in Canada',
-        optionIcon: 'forfait-tv-la-totale',
-    },
+        title: 'Internet Modéré',
+        description: 'illimité',
+        option: [
+            {
+                label: 'Utilisation illimité',
+                icon: 'forfait-tv-le-fan-de-films-et-series', 
+            },
+            {
+                label: 'Vitesse de téléchargement jusqu a 100mbit/s',
+                icon: 'forfait-tv-le-fan-de-films-et-series', 
+            },
+
+        ],
+    }
+];
+
+
+export const optionListNoTitleData = [
     {
-        optionlabel: 'Free & Unlimited Go after 10Go',
-        optionIcon: 'forfait-tv-le-fan-de-films-et-series',
-    },
+        option: [
+            {
+                label: 'Club Illico',
+                icon: 'forfait-tv-le-fan-de-films-et-series', 
+            },
+            {
+                label: 'Club Illico',
+                icon: 'forfait-tv-le-fan-de-films-et-series', 
+            },
+            {
+                label: 'Club Illico',
+                icon: 'forfait-tv-le-fan-de-films-et-series', 
+            },
+
+        ],
+    }
 ];
 

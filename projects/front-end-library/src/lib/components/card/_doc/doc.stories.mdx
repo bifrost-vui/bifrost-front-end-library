@@ -2,7 +2,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withDesign } from 'storybook-addon-designs'
 
-import { optionListData } from './data';
+import { optionListData, optionListNoTitleData } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { CardComponent }     from '../angular/card.component';
 
@@ -67,7 +67,7 @@ export const Drupal = (args) => ({
             isTag : true,
             isImage : true,
             titleCard : 'Galaxy Buds Live',
-            subTitleCard : 'Free with any purchase of this phone, valuted at $239.38.'
+            subTitleCard : 'Free with any purchase of this phone, valuted at $239.38.',
         }}
     >
         {Drupal.bind({})}
@@ -86,6 +86,24 @@ export const Drupal = (args) => ({
             titleCard : 'All-Inclusive 12 GB Mobile',
             subTitleCard : 'So you can do what you want, when you want, without worrying about your data.',
             labelLink : 'buy only this plan',
+            optionList: optionListNoTitleData,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='TV + Internet Card'
+        args={{ 
+            elementPath : 'components/card/_doc/template.drupal',
+            cardType : 'plan',
+            titleCard : 'TV Populaire Premium et Internet Modéré',
+            optionList: optionListData,
         }}
     >
         {Drupal.bind({})}

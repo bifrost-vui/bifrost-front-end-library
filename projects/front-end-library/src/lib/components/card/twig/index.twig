@@ -1,13 +1,22 @@
-
-
     <div class="bf-card  d-flex  {{ cardType|default('plan') }} {{ cardStatus|default('active') }}" >
 
         {% if isImage is defined and isImage is same as (true) %}
-        <div class="card-Image" >
-            <img class="d-table-cell align-middle"
-            data-src="{{ imageGifSrc|default('https://source.unsplash.com/64x64/?nature') }}" 
-            alt="{{ imageGifAlt|default('https://source.unsplash.com/64x64/?nature') }}" 
-            src="{{ imageGifSrc|default('https://source.unsplash.com/64x64/?nature') }}"  >            
+        <div class="card-Image d-flex flex-wrap align-items-center" >
+            
+             {% if imageGifSrc is defined  %}
+            <img 
+            data-src="{{ imageGifSrc|default('https://source.unsplash.com/72x72/?nature') }}" 
+            alt="{{ imageGifAlt|default('https://source.unsplash.com/72x72/?nature') }}" 
+            src="{{ imageGifSrc|default('https://source.unsplash.com/72x72/?nature') }}"  >
+            {% endif %}
+
+            {% if imageIcon is defined  %}
+            {% include '@bf-components/icon/twig/index.twig' with {
+                                            name    : imageIcon,
+                                            color   : color,
+                                            size    : 'xsmall',
+                                        } only %}
+            {% endif %}
         </div>
         {% endif %}
 
@@ -17,9 +26,12 @@
                 <div class="surTitle" >{{ surTitleCard|default('Free with any purchase of this phone, valuted at $239.38.') }}</div>
             {% endif %}
             <h3 class="title">{{ titleCard|default('') }}</h3>
-            <p class="description">{{ subTitleCard|default('Free with any purchase of this phone, valuted at $239.38.') }}</p>
+            {% if subTitleCard is defined %}
+                <p class="description">{{ subTitleCard }}</p>
+            {% endif %}
+
             {% if linkLearnMoreCard is defined %} 
-            <a href="">{{ linkLearnMoreCard|default('Learn more') }}</a>
+                <a href="{{ linkLearnMoreURL|default('#') }}">{{ linkLearnMoreCard|default('Learn more') }}</a>
             {% endif %}
         </a>
         </div>
@@ -31,26 +43,39 @@
             tagLabel    : tagLabel|default('FREE'),
             } only
          %}
-        {% endif %}
+        {% endif %} 
 
         {% if cardType is defined and cardType is same as ('plan') %}
-            <div class="card-Body col-12"> 
+            <div class="card-Body col-12">                 
 
-                {% if optionList is defined %}
-                <ul>
-                    {% for optionlabel in optionList %}
-                    <li>
-                    {% include '@bf-components/icon/twig/index.twig' with {
-                                        name    : optionIcon,
-                                        color   : color,
-                                        size    : 'xsmall',
-                                    } only %}
-
-                        {{ optionlabel|default('Club Illico') }}
-                    </li>
-                    {% endfor %}                
-                </ul>
-                {% endif %}
+            {% if optionList is defined %}
+                {% for option in optionList %}
+                        {% if option.title is defined %}     
+                        <div class="d-flex w-100 optionCard" >
+                            <div class="w-60">
+                                <p class="title">{{option.title}}</p>
+                            </div>
+                            <div class="w-40 text-right">
+                                {{option.description}}
+                            </div>
+                        </div>
+                        {% endif %}
+                        <ul class="w-100"> 
+                            
+                            {% for option in option.option %}
+                            <li class="d-flex flex-row">
+                            {% include '@bf-components/icon/twig/index.twig' with {
+                                            name    : option.icon,
+                                            color   : color,
+                                            size    : 'xsmall',
+                                        } only %}
+                             <div class="optionLabel">{{option.label}}</div>
+                            {% endfor %}
+                            </li> 
+                        </ul>                                
+                {% endfor %}
+            {% endif %}
+            
 
                 {% include '@bf-components/price/twig/price.twig' with {
                     priceClass: "w-100",
