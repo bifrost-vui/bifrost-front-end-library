@@ -10,11 +10,15 @@
 
     &__nav {
         display: grid;
-        grid-template-columns: auto 1fr auto;
+        grid-template-columns: min-content max-content auto;
         background-color: var(--bf-color-bg-ground);
     }
 
     &__logo {
+        @include media-breakpoint-down(md) {
+            grid-column: 2;
+        }
+
         @include media-breakpoint-down(sm) {
             .bf-logo svg {
                 width: auto;
@@ -27,65 +31,8 @@
         z-index: 25;
 
         @include media-breakpoint-down(md) {
-            grid-column: 1/3;
+            grid-column: 1/4;
             grid-row: 2;
-        }
-
-        .nav-item {
-            padding-left: 1rem;
-            padding-right: 1rem;
-            color: var(--bf-color-neutral-primary);
-
-            @include media-breakpoint-down(md) {
-                min-height: 2rem;
-                flex: 1;
-                padding-left: 0;
-                padding-right: 0;
-                border: 1px solid var(--bf-color-stroke-secondary);
-                border-right: none;
-
-                &:first-child {
-                    border-left: none;
-                }
-            }
-
-            .nav-link {
-                padding: 1rem 0;
-                background: none;
-                width: auto;
-                border: none;
-                color: var(--bf-color-neutral-primary);
-                font-family: BlenderPro, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-                font-size: 1rem;
-                font-weight: 400;
-                line-height: inherit;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-
-                @include media-breakpoint-down(md) {
-                    width: 100%;
-                    justify-content: center;
-                    padding: .5rem 1rem;
-                }
-
-                @include media-breakpoint-down(sm) {
-                    padding: .25rem;
-                    font-size: .75rem;
-                }
-
-                &:before {
-                    background-color: var(--bf-color-neutral-primary) !important; // Override PL
-                }
-            }
-
-            &.active .nav-link {
-                font-weight: 700!important;
-            }
-
-            &.open .nav-link:before,
-            .nav-link:hover:before {
-                transform: scaleX(1);
-            }
         }
     }
 
@@ -93,8 +40,6 @@
         position: absolute;
         right: 1rem;
         width: calc(100% - 7rem) !important;
-    }
-
     &__search-bar {
         width: 100%;
         max-width: 17rem;
@@ -106,10 +51,129 @@
             @include transitions(all .2s ease-out);
             opacity: 0;
 
-    .navbar--videotron-unify .dropdown-menu--megamenu {
-        margin: 1px 0 0 0;
+            &.show {
+                display: block !important;
+                opacity: 1 !important;
+            }
+        }
+    }
+
+    #navbarSearch.show .js-search-toggler-btn {
+        // display: block !important;
+    // .alg-searchbox-mobile__container.show {
+    //     position: absolute;
+    //     right: 1rem;
+    //     width: calc(100% - 7rem) !important;
+    // }
+
+        &:before {
+            content: none; // Override PL: Remove box-shadow
+        }
+    // #navbarSearch.show .js-search-toggler-btn {
+    //     // display: block !important;
+    // }
+
+        }
+    .nav-item {
+        padding-left: 1rem;
+        padding-right: 1rem;
         color: var(--bf-color-neutral-primary);
-        background-color: var(--bf-color-bg-ground);
+
+
+                .bf-icon {
+                    transform: rotate(180deg);
+                }
+            }
+            .bf-megamenu__panel {
+                @include transitions(opacity $transition-time-medium);
+                pointer-events: auto;
+                opacity: 1;
+                transition-delay: 0.2s;
+            }
+        hr {
+            border-top: 1px solid var(--bf-color-stroke-secondary);
+        @include media-breakpoint-down(md) {
+            min-height: 2rem;
+            flex: 1;
+            padding-left: 0;
+            padding-right: 0;
+            border: 1px solid var(--bf-color-stroke-secondary);
+            border-right: none;
+            border-bottom: none;
+
+            &:first-child {
+                border-left: none;
+            }
+        }
+
+    }
+        .nav-tabs--vertical {
+            background-color: var(--bf-color-bg-underground);
+        .nav-link {
+            position: relative;
+            padding: 1rem 0;
+            background: none;
+            width: auto;
+            border: none;
+            // color: var(--bf-color-neutral-primary);
+            font-family: $font-family-secondary;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: inherit;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            &__item-link {
+                background-color: var(--bf-color-bg-underground);
+                
+                &:hover,
+                &:focus {
+                    background-color: var(--bf-color-bg-ground);
+                    outline: none;
+                }
+            @include media-breakpoint-down(md) {
+                width: 100%;
+                justify-content: center;
+                padding: .5rem 1rem;
+            }
+
+                &.active {
+                    background-color: var(--bf-color-bg-ground);
+            @include media-breakpoint-down(sm) {
+                padding: .25rem;
+                font-size: .75rem;
+            }
+            
+            @include media-breakpoint-up(lg) {
+                &:before {
+                    content: '';
+                    @include transitions(transform .2s ease-out);
+                    position: absolute;
+                    bottom: 0;
+                    top: auto;
+                    left: 0;
+                    transform: scaleX(0);
+                    transform-origin: center left;
+                    width: 100%;
+                    height: 3px;
+                    background-color: var(--bf-color-neutral-primary);
+
+                    &:before {
+                        transform: translate(0);
+                    &:hover,
+                    &:focus {
+                        transform: scaleX(1);
+                    }
+                }
+            }
+        }
+    }
+
+                &:not(:last-of-type) {
+                    border-bottom: 1px solid var(--bf-color-stroke-secondary);
+                }
+                
+    .bf-megamenu {
 
         &__nav-item.open {
 
@@ -117,6 +181,7 @@
                 &:before {
                     transform: scaleX(1);
                 }
+            }
 
                 .bf-icon {
                     transform: rotate(180deg);
