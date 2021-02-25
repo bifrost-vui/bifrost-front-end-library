@@ -15,6 +15,8 @@ export class CardComponent implements OnInit {
 
     @Input() labelBtn: string;
     @Input() isImage: boolean;
+    @Input() imageGifSrc: string;
+    @Input() imageIcon: string;
     @Input() isTag: boolean;
     @Input() phoneSelected          : string;
     @Input() cardStatus             : string;
