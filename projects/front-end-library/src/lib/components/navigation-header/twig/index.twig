@@ -14,120 +14,96 @@
     } only %}
 {% endif %}
 
-<header role="banner" class="
-        bf-header position-relative z-index-18
-        {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}
-    "
+<header
+    role='banner'
+    class='bf-header z-index-18
+           {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}'
     {% if theme is defined %} data-theme={{theme}} {% endif %}
 >
-    <nav class="navbar navbar--videotron-unify navbar-expand-lg p-0 bg-color-ground bf-border-bottom-secondary {{ class|default('') }}">
-        <div class="d-flex flex-column flex-lg-row justify-content-between w-100">
-            <!-- Navbar brand logo-->
-            <div class="navbar__header-responsive" data-animate="fade-in">
-                <div class="w-100 d-flex align-items-center justify-content-between h-100">
-                    <div class="navbar-brand p-0 d-flex align-items-center h-100">
-                        <a href="{{ logo.href|default('#') }}" class="d-flex navbar-brand__logo-videotron-text">
-                            {% include '@bf-components/logo/twig/index.twig' with {
-                                name        : logo.name,
-                                size        : 'large',
-                                langcode    : langcode|default('EN'),
-                            } only %}
-                        </a>
-                    </div>
+    <nav class='bf-header__nav w-100 bf-border-bottom-secondary {{ class|default('') }}'>
 
-                    <div class="d-flex d-lg-none align-items-center mr-2">
-                        {% for link in rigthIconLinks|default([]) %}
-                            {% if link.href is not empty and link.icon is not empty %}
-                                <a href="{{ link.href }}" class="link--no-decoration m-1 p-1">
-                                    {% include '@bf-components/icon/twig/index.twig' with {
-                                        name    : link.icon,
-                                        class   : link.class
-                                    } %}
-                                </a>
-                            {% endif %}
-                        {% endfor %}
+        <!-- Logo -->
+        <div class='bf-header__logo' data-animate='fade-in'>
+            <a href='{{ logo.href|default('#') }}' class='d-flex'>
+                {% include '@bf-components/logo/twig/index.twig' with {
+                    name        : logo.name,
+                    size        : 'large',
+                    langcode    : langcode|default('EN'),
+                } only %}
+            </a>
+        </div>
 
-                        <!-- Mobile : btn account dropdown -->
-                        {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
-                            {% include '@bf-components/navigation-header/twig/btn-account.twig' with { class:"" } only %}
-                        {% endif %}
+        <!-- Main Nav -->
+        <div class='bf-header__nav-main js-collapse-full-height' data-animate-row=''>
+            <ul class='bf-megamenu d-flex list h-100'>
+                {% block navbar_content %}
+                    {% include '@bf-components/navigation-header/twig/mega-menu.twig' with { 
+                        navItems    : navItems,
+                        reversed    : reversed
+                    } only %}
+                {% endblock %}
+            </ul>
+        </div>
 
-                        <!-- Mobile : btn search toggle -->
-                        <button class="d-flex vui--style-reset m-1 p-1 js-search-toggler-btn"
-                                type="button"
-                                data-toggle="collapse"
-                                data-target="#navbarSearch"
-                                aria-controls="navbarSearch"
-                                aria-expanded="false">
+        <!-- Actions -->
+        <div class='bf-header__actions d-flex align-items-center justify-content-end w-100  h-100 pr-3' data-animate='fade-in'>
+
+            <div class='d-flex d-lg-none align-items-center'>
+                {% for link in rigthIconLinks|default([]) %}
+                    {% if link.href is not empty and link.icon is not empty %}
+                        <a href='{{ link.href }}' class='link--no-decoration m-1 p-1'>
                             {% include '@bf-components/icon/twig/index.twig' with {
                                 name    : "search",
                                 class   : "icon-close"
                             } %}
-                        </button>
+                        </a>
+                    {% endif %}
+                {% endfor %}
 
-                        <!-- Mobile : btn mini cart -->
-                        {% if hasMiniCartBtn is defined and hasMiniCartBtn is same as (true) %}
-                            {% include '@bf-components/navigation-header/twig/btn-minicart.twig' with { class:"" } only %}
-                        {% endif %}
+                <!-- Mobile : btn account dropdown -->
+                {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
+                    {% include '@bf-components/navigation-header/twig/btn-account.twig' with { class:'' } only %}
+                {% endif %}
 
-                        <div id="navbarSearch" class="alg-searchbox-mobile__container collapse pl-7 pl-md-10 w-100 z-index-10" role="search">
-                            <div class="row d-flex align-items-center justify-content-between h-100">
-                                <div class="col-12">
-                                {% block globalSearchMobile %}
-                                    {% include '@bf-components/input-search/twig/index.twig' with {
-                                        class   : 'mb-0 ml-2 rounded',
-                                        input   : {
-                                            class           : 'js-alg-searchbox-input py-1 py-md-3',
-                                            id              : 'alg-searchbox-mobile',
-                                            placeholder     : 'What are you looking for?'|t,
-                                            iconPosition    : ' ',
-                                      },
-                                      reversed  : reversed,
-                                    } %}
-                                {% endblock %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Mobile : btn search toggle -->
+                <label for="elem">
+                <button class='d-flex d-md-none vui--style-reset m-1 p-1 js-bf-search-toggler'
+                        type='button'
+                        data-toggle='collapse'
+                        data-target='#navbarSearch'
+                        aria-controls='navbarSearch'
+                        aria-expanded='false'>
+                    {% include '@bf-components/icon/twig/index.twig' with {
+                        name    : 'search',
+                        class   : ''
+                    } %}
+                </button>
+                </label>
 
-                </div>
+                <!-- Mobile : btn mini cart -->
+                {% if hasMiniCartBtn is defined and hasMiniCartBtn is same as (true) %}
+                    {% include '@bf-components/navigation-header/twig/btn-minicart.twig' with { class:'' } only %}
+                {% endif %}
             </div>
 
-            <div class="navbar--videotron-unify__main-nav js-collapse-full-height d-lg-flex align-items-center justify-content-between w-100" id="unifyNavbarVideotron">
-                <!-- Main navigation -->
-                <ul class="navbar-nav flex-row pl-lg-4 pr-lg-0 h-100 justify-content-start" data-animate-row="">
-                    {% block navbar_content %}
-                        {% include '@bf-components/navigation-header/twig/mega-menu.twig' with { 
-                            navItems    : navItems,
-                            reversed    : reversed
-                        } only %}
-                    {% endblock %}
-                </ul>
-
-                <!-- Aside navigation -->
-                <ul class="navbar-nav d-none d-lg-flex align-items-center mr-md-3" data-animate-row="">
-                    {# MINI cart : Desktop version #}
-                    {% if hasMiniCartBtn is defined and hasMiniCartBtn is same as (true) %}
-                        <li class="nav-item px-1" data-animate="fade-in">
-                            {% include '@bf-components/navigation-header/twig/btn-minicart.twig' with { class:"" } only %}
-                        </li>
-                    {% endif %}
-
-                    {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
-                        <li class="nav-item mr-lg-0 pl-lg-1 ml-1 pr-0" data-animate="fade-in">
-                          <div class="d-flex align-items-center justify-content-between w-100">
-                            {% block globalSearch %}
-                              {% include '@bf-components/input-search/twig/index.twig' with {
-                                class       : 'mb-0 ml-2 rounded',
+            <!-- Search -->
+            {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
+                <div class='bf-header__search-bar js-bf-header__search-bar d-none d-md-block ml-1' id='navbarSearch' data-animate='fade-in'>
+                    <div class='d-flex align-items-center justify-content-between w-100'>
+                        {% block globalSearch %}
+                            {% include '@bf-components/input-search/twig/index.twig' with {
+                                class       : 'mb-0',
                                 input       : {
-                                    class           : 'js-alg-searchbox-input',
-                                    id              : 'alg-searchbox',
                                     placeholder     : 'What are you looking for?'|t,
-                                    iconPosition    : ' ',
+                                    name            : "elem",
+                                    id              : "elem"
                                 },
                                 reversed    : reversed,
-                              } %}
-                            {% endblock %}
+                            } %}
+                        {% endblock %}
+                    </div>
+                </div>
+            {% endif %}
 
                           </div>
                         </li>
@@ -138,8 +114,8 @@
     </nav>
 
   {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
-    <div class="align-items-center justify-content-between w-100">
-      <div id="alg-hits" class="ais-Hits bg-white alg-hidden"></div>
+    <div class='align-items-center justify-content-between w-100'>
+      <div id='alg-hits' class='ais-Hits bg-white alg-hidden'></div>
     </div>
   {% endif %}
 

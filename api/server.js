@@ -21,8 +21,8 @@ app.set("twig options", {
     allowInlineIncludes: true,
     rethrow: true,
     namespaces: {
-        'bf-components': path.resolve(__dirname, '../projects/front-end-library/src/lib/components'),
-        // 'bf-pipes'      :'projects/front-end-library/src/lib/pipes'
+        'bf-components' : path.resolve(__dirname, '../projects/front-end-library/src/lib/components'),
+        'bf-utils'      : path.resolve(__dirname, '../projects/front-end-library/src/lib/utils'),
     }
 });
 

@@ -1,0 +1,62 @@
+import { moduleMetadata } from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+
+import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
+import { ButtonIconComponent }              from '../angular/button-icon.component';
+
+
+<Meta 
+    title='Components/Button Icon' 
+    component={ButtonIconComponent}
+    decorators={[
+        moduleMetadata({ declarations: [ButtonIconComponent, TwigContainerComponent]})
+    ]}
+    argTypes={{
+        reversed: {
+            defaultValue: false,
+        },
+    }}
+/>
+
+
+# Button Icon
+
+<!-- > Explore **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)** (Zeroheight) -->
+
+<br/>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal'
+        args={{ 
+            elementPath : 'components/button-icon/_doc/template.drupal',
+        }}
+        height='160px'
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+## Source Code
+
+```php
+{% include '@bf-components/button-icon/twig/index.twig' with {
+    icon        : 'x'
+} only %}
+```
+
+
+## Component API
+
+<Props of={ButtonIconComponent} />

@@ -1,0 +1,17 @@
+{# ----------------------------------------------------------------- #}
+{% set reversed     = reversed|default(false)|json_parse %}
+
+{# ----------------------------------------------------------------- #}
+<div
+    class="d-flex align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
+>
+    {% include '@bf-components/button-icon/twig/index.twig' with {
+        icon        : icon,
+        size        : size,
+    } only %}
+
+    {% include '@bf-components/button-icon/twig/index.twig' with {
+        icon        : 'x',
+        size        : size,
+    } only %}
+</div>

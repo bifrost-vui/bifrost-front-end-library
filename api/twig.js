@@ -58,6 +58,7 @@ var Twig = require("twig"),
         namespaces: {
             // 'bf-lib'        :'projects/front-end-library/src/lib',
             'bf-components' :'projects/front-end-library/src/lib/components',
+            'bf-utils'      :'projects/front-end-library/src/lib/utils',
             // 'bf-pipes'      :'projects/front-end-library/src/lib/pipes'
         }
     });
