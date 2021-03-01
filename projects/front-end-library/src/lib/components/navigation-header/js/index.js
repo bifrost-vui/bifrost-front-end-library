@@ -15,15 +15,15 @@ $(function ()
     let isDropdownMegamenuOpen = false;
 
     // Tabs
-    const tabsTab       = 'js-nav-tabs--vertical__item-link';
+    const tabsTab       = '.js-bf-tabs__tab';
 
 	const closeMegamenu = function(e)
 	{
 		if(isDropdownMegamenuOpen)
 		{
-				$(navItem, navMain).removeClass('open');
-				_window.unfreeze();
-				isDropdownMegamenuOpen = false;
+            $(navItem, navMain).removeClass('open');
+            _window.unfreeze();
+            isDropdownMegamenuOpen = false;
 		}
 	};
 
@@ -97,7 +97,7 @@ $(function ()
 	$(navItem).on('dropdownOpen', function(e) {
 		let $this  = $(this);
 		let $tabs  = $this.find(tabsTab);
-		let $links = $this.find('.js-dropdown-item-link');
+		let $links = $this.find('.js-bf-dropdown-item-link');
 
 		if($this.hasClass('open')) {
 			$tabs.attr('tabindex', 0);
@@ -111,7 +111,7 @@ $(function ()
 
 		$closed.each(function(){
 			let $tabsClosed  = $(this).find(tabsTab);
-			let $linksClosed = $(this).find('.js-dropdown-item-link');
+			let $linksClosed = $(this).find('.js-bf-dropdown-item-link');
 			$tabsClosed.attr('tabindex', -1);
 			$linksClosed.attr('tabindex', -1);
 		});
@@ -124,14 +124,15 @@ const keyTab = 9;
 $(function () {
 	'use strict';
     
+    const navMain       = '.bf-header';
     const navItem       = '.js-bf-megamenu__nav-item';
     const navLink       = '.js-bf-megamenu__nav-link';
-    const tabsTab       = '.js-nav-tabs--vertical__item-link';
+    const tabsTab       = '.js-bf-tabs__tab';
 
-	const $megamenuLink         = $('.js-dropdown-item-link');
+	const $megamenuLink = $('.js-bf-dropdown-item-link');
 
     // Search Bar
-	const megamenuSearchBtn    = '.js-bf-search-toggler';
+	const searchBtn    = '.js-bf-search-toggler';
 
 
 	$(navLink).keydown(function (e) {
@@ -163,7 +164,7 @@ $(function () {
 					if($parent.find(tabsTab).length > 0) {
 						$megamenuItems = $parent.find(tabsTab);
 					} else {
-						$megamenuItems = $parent.find('.js-dropdown-item-link');
+						$megamenuItems = $parent.find('.js-bf-dropdown-item-link');
 					}
 					$megamenuItems.first().focus();
 					e.preventDefault();
@@ -174,11 +175,11 @@ $(function () {
 
 	$(tabsTab).keydown(function (e) {
 		if (e.which == keyTab) {
-			const $parent = $(this).parents().closest('.js-dropdown-menu--megamenu');
-			let $megamenuItems = $parent.find('.js-nav-tabs--vertical__item-link');
-			let $megamenuPane  = $parent.find('.js-tab-pane.show.active');
-			let $megamenuLinks = $megamenuPane.find('.js-dropdown-item-link');
-			let $megamenuItemsDropdown = $('.js-nav-item--dropdown-megamenu');
+			const $parent = $(this).parents().closest('.js-bf-megamenu__panel');
+			let $megamenuItems = $parent.find(tabsTab);
+			let $megamenuPane  = $parent.find('.js-bf-tab-pane.show.active');
+			let $megamenuLinks = $megamenuPane.find('.js-bf-dropdown-item-link');
+			let $megamenuItemsDropdown = $('.js-bf-megamenu__nav-item');
 
 			// don't use e.preventDefault outside conditions
 			// the default behavior is good enough for navigation
@@ -186,7 +187,7 @@ $(function () {
 				if($megamenuItems.last().is(':focus')) {
 					let $itemActive = $megamenuItemsDropdown.filter('.open');
 					if($itemActive.next().length > 0) {
-						$itemActive.next().find('.js-dropdown-megamenu-toggler').focus();
+						$itemActive.next().find('.js-bf-megamenu__nav-link').focus();
 					} else {
 						$(megamenuSearchBtn).focus();
 					}
@@ -205,15 +206,15 @@ $(function () {
 
 	$megamenuLink.keydown(function (e) {
 		if (e.which == keyTab) {
-			const $parent = $(this).parents().closest('.js-dropdown-menu--megamenu');
-			let $megamenuPaneTabs  = $parent.find('.js-tab-pane.show.active');
-			let $megamenuPaneItem  = $parent.find('.js-dropdown-megamenu');
-			let $megamenuTabsLinks = $megamenuPaneTabs.find('.js-dropdown-item-link');
-			let $megamenuItemLinks = $megamenuPaneItem.find('.js-dropdown-item-link');
+			const $parent = $(this).parents().closest('.js-bf-megamenu__panel');
+			let $megamenuPaneTabs  = $parent.find('.js-bf-tab-pane.show.active');
+			let $megamenuPaneItem  = $parent.find('.js-bf-dropdown-megamenu');
+			let $megamenuTabsLinks = $megamenuPaneTabs.find('.js-bf-dropdown-item-link');
+			let $megamenuItemLinks = $megamenuPaneItem.find('.js-bf-dropdown-item-link');
 
 			if($megamenuTabsLinks.first().is(':focus')) {
 				if(e.shiftKey === true) {
-					let $megamenuItems = $parent.find('.js-nav-tabs--vertical__item-link');
+					let $megamenuItems = $parent.find(tabsTab);
 					let $itemActive = $megamenuItems.filter('.active');
 					$itemActive.focus();
 					e.preventDefault();
@@ -233,7 +234,7 @@ $(function () {
 					}
 
 					// Redirect the focus to the next tab on the list
-					let $megamenuItems = $parent.find('.js-nav-tabs--vertical__item-link');
+					let $megamenuItems = $parent.find(tabsTab);
 					let $itemActive = $megamenuItems.filter('.active');
 					$itemActive.next().focus();
 				}
@@ -241,14 +242,15 @@ $(function () {
 		}
 	});
 
-	$(megamenuSearchBtn).keydown(function (e) {
+	$(searchBtn).keydown(function (e) {
+        debugger;
 		// This lets us 'shift + tab' to the last visible tab
 		if (e.which == keyTab && e.shiftKey) {
-			let $megamenuTabs = $('.js-nav-tabs--vertical__item-link.active').parent().find('.js-nav-tabs--vertical__item-link');
-			let $megamenuDropdownItem = $('.js-nav-item--dropdown-megamenu.open');
+			let $megamenuTabs = $('.js-bf-tabs__tab.active').parent().find(tabsTab);
+			let $megamenuDropdownItem = $('.js-bf-megamenu__nav-item.open');
 			let $megamenuDropdownNext = $megamenuDropdownItem.next().children();
 
-			if($megamenuDropdownItem.find('.js-nav-tabs--vertical__item-link').length > 0) {
+			if($megamenuDropdownItem.find(tabsTab).length > 0) {
 				if($megamenuDropdownNext.length <= 0) {
 					$megamenuTabs.last().focus();
 					e.preventDefault();
@@ -256,5 +258,13 @@ $(function () {
 			}
 		}
 	});
+
+    const displaySearchBar = function() {
+        setTimeout(function() {
+            $('.js-input-search').focus();
+        }, 1000);
+    }
+
+    $(searchBtn, navMain).on('click', displaySearchBar);
 });
 

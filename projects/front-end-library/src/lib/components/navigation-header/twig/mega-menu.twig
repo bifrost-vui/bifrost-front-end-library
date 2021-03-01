@@ -1,8 +1,6 @@
 {% for navItem in navItems %}
 
-    <li 
-        {# dropdown #}
-        {# js-nav-item--dropdown-megamenu #}
+    <li
         class="nav-item bf-megamenu__nav-item js-bf-megamenu__nav-item position-static {{ navItem.class }}"
         data-animate="fade-in"
     >
@@ -19,8 +17,7 @@
             
         {% else %}
 
-            <button 
-                {# nav-link--btn-dropdown #}
+            <button
                 class="nav-link js-bf-megamenu__nav-link d-flex align-items-center h-100"
                 type="button"
                 id="menuDropdown{{ loop.index }}"
@@ -38,8 +35,6 @@
 
             {% if navItem.subItemsMultiDropdown %}
                 
-                {# dropdown-menu dropdown-menu--megamenu #}
-                 {# js-dropdown-menu--megamenu js-dropdown-menu--full-height #}
                 <div class="bf-megamenu__panel js-bf-megamenu__panel js-bf-megamenu__full-height" aria-labelledby="menuDropdown{{ loop.index }}">
 
                     {% include '@bf-components/button-icon/twig/index.twig' with {
@@ -49,8 +44,7 @@
                     
                     <div class="d-flex h-100">
                         
-                        {# // TODO: replace nav and nav-tabs--vertical by d-flex flex-column #}
-                        <div class="bf-tabs d-flex flex-column js-bf-megamenu__full-height"
+                        <div class="bf-tabs nav d-flex flex-column js-bf-megamenu__full-height"
                              id="v-pills-tab"
                              role="tablist"
                              aria-orientation="vertical"
@@ -92,12 +86,12 @@
                                     {% set tabPaneClass = " show active " %}
                                 {% endif %}
 
-                                <div class="tab-pane js-tab-pane fade h-100 {{ tabPaneClass }}"
+                                <div class="tab-pane js-bf-tab-pane fade h-100 {{ tabPaneClass }}"
                                      id="v-pills-{{ dropdownSubItem.catLabel|default('category')|url_encode }}"
                                      role="tabpanel"
                                      aria-labelledby="v-pills-{{ dropdownSubItem.catLabel|default('category')|url_encode }}-tab"
                                 >
-                                    <div class="p-dropdown-megamenu js-dropdown-megamenu h-100 d-flex flex-column justify-content-between p-3 py-md-4 px-md-5">
+                                    <div class="p-dropdown-megamenu js-bf-dropdown-megamenu h-100 d-flex flex-column justify-content-between p-3 py-md-4 px-md-5">
                                         <div class="row">
                                             {% for subItem in dropdownSubItem.subdropdownItems %}
                                                 {% set fullWidth = subItem.isFullWidth ? 'col-lg-12' : 'col-lg-3'  %}
@@ -106,7 +100,7 @@
                                                     {% if subItem.label is defined and subItem.label is not empty %}
                                                         <div class="mb-2">
                                                             <a href="{{ subItem.href }}"
-                                                               class=" link-hover js-dropdown-item-link h6 small font-weight-bold"
+                                                               class=" link-hover js-bf-dropdown-item-link h6 small font-weight-bold"
                                                                rel="{{ subItem.rel|default('') }}"
                                                                tabindex=-1
                                                                     {{ subItem.extraAttribute|default(NULL) }}
@@ -119,7 +113,7 @@
                                                             {% for subItem in subItem.listItems %}
                                                                 <li class="mb-2">
                                                                     <a href="{{ subItem.href }}"
-                                                                        class=" link-hover js-dropdown-item-link h6 small d-block d-lg-inline py-1 py-lg-0 small {{ subItem.class }}"
+                                                                        class=" link-hover js-bf-dropdown-item-link h6 small d-block d-lg-inline py-1 py-lg-0 small {{ subItem.class }}"
                                                                         rel="{{ subItem.rel|default('dofollow') }}"
                                                                         tabindex=-1
                                                                             {{ subItem.extraAttribute|default(NULL) }}
@@ -191,7 +185,6 @@
                         class       : 'btn-close d-block d-lg-none m-4 z-index-10 js-bf-megamenu__close',
                     } only %}
                     
-                    {# p-dropdown-megamenu js-dropdown-megamenu #}
                     <div class="p-3 py-md-4 px-md-5">
                         <div class="row">
                             {% for subItem in navItem.subItems %}
@@ -202,7 +195,7 @@
                                     {% if subItem.label is defined and subItem.label is not empty %}
                                         <div class="mb-2">
                                             <a href="{{ subItem.href }}"
-                                               class=" link-hover js-dropdown-item-link h6 small font-weight-bold"
+                                               class=" link-hover js-bf-dropdown-item-link h6 small font-weight-bold"
                                                rel="{{ subItem.rel|default('') }}"
                                                tabindex=-1
                                                     {{ subItem.extraAttribute|default(NULL) }}
@@ -215,7 +208,7 @@
                                             {% for subItem in subItem.subItems %}
                                                 <li class="mb-2">
                                                     <a href="{{ subItem.href }}"
-                                                       class=" link-hover js-dropdown-item-link h6 small d-block d-lg-inline py-1 py-lg-0 small {{ subItem.class }}"
+                                                       class=" link-hover js-bf-dropdown-item-link h6 small d-block d-lg-inline py-1 py-lg-0 small {{ subItem.class }}"
                                                        rel="{{ subItem.rel|default('dofollow') }}"
                                                        tabindex=-1
                                                             {{ subItem.extraAttribute|default(NULL) }}

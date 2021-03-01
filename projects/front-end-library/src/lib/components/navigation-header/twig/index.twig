@@ -1,4 +1,3 @@
-
 {% if hasTopBar is defined and hasTopBar is same as (true) %}
     {% include '@bf-components/navigation-header/twig/top-bar.twig' with {
         items                   : topBar.items|default([]),
@@ -21,7 +20,7 @@
     {% if theme is defined %} data-theme={{theme}} {% endif %}
 >
     <nav class='bf-header__nav w-100 bf-border-bottom-secondary {{ class|default('') }}'>
-
+        
         <!-- Logo -->
         <div class='bf-header__logo' data-animate='fade-in'>
             <a href='{{ logo.href|default('#') }}' class='d-flex'>
@@ -46,7 +45,7 @@
         </div>
 
         <!-- Actions -->
-        <div class='bf-header__actions d-flex align-items-center justify-content-end w-100  h-100 pr-3' data-animate='fade-in'>
+        <div class='bf-header__actions d-flex align-items-center justify-content-end w-100 h-100 pr-3' data-animate='fade-in'>
 
             <div class='d-flex d-lg-none align-items-center'>
                 {% for link in rigthIconLinks|default([]) %}
@@ -60,13 +59,17 @@
                     {% endif %}
                 {% endfor %}
 
-                <!-- Mobile : btn account dropdown -->
-                {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
+                <!-- Btn account dropdown -->
+                {# {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
                     {% include '@bf-components/navigation-header/twig/btn-account.twig' with { class:'' } only %}
                 {% endif %}
 
-                <!-- Mobile : btn search toggle -->
-                <label for="elem">
+                <!-- Btn mini cart -->
+                {% if hasMiniCartBtn is defined and hasMiniCartBtn is same as (true) %}
+                    {% include '@bf-components/navigation-header/twig/btn-minicart.twig' with { class:'' } only %}
+                {% endif %} #}
+
+                <!-- Btn search toggle -->
                 <button class='d-flex d-md-none vui--style-reset m-1 p-1 js-bf-search-toggler'
                         type='button'
                         data-toggle='collapse'
@@ -78,12 +81,6 @@
                         class   : ''
                     } %}
                 </button>
-                </label>
-
-                <!-- Mobile : btn mini cart -->
-                {% if hasMiniCartBtn is defined and hasMiniCartBtn is same as (true) %}
-                    {% include '@bf-components/navigation-header/twig/btn-minicart.twig' with { class:'' } only %}
-                {% endif %}
             </div>
 
             <!-- Search -->
@@ -94,22 +91,25 @@
                             {% include '@bf-components/input-search/twig/index.twig' with {
                                 class       : 'mb-0',
                                 input       : {
-                                    placeholder     : 'What are you looking for?'|t,
-                                    name            : "elem",
-                                    id              : "elem"
+                                    placeholder     : search.placeholder|default('')|t,
                                 },
                                 reversed    : reversed,
                             } %}
                         {% endblock %}
+                        <button class='d-flex d-md-none vui--style-reset m-1 p-1'
+                                type='button'
+                                data-toggle='collapse'
+                                data-target='#navbarSearch'
+                                aria-controls='navbarSearch'
+                                aria-expanded='false'>
+                            {% include '@bf-components/icon/twig/index.twig' with {
+                                name    : 'x',
+                                class   : ''
+                            } %}
+                        </button>
                     </div>
                 </div>
             {% endif %}
-
-                          </div>
-                        </li>
-                    {% endif %}
-                </ul>
-            </div>
 
         </div>
 
