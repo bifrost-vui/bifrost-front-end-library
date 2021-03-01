@@ -1,0 +1,54 @@
+    <div class="bf-card  d-flex flex-column" >
+
+        <div class="cart-selection col-12   ">
+            <h3 class="title">{{ title|default('') }}</h3>
+        
+            <div class="col-12"> 
+                    <div class="item col-9" >
+                    Samsung Galaxy<br>
+                    Navy Blue
+                    </div>
+                    <div class="col-3" > 
+                    {% include '@bf-components/price/twig/price.twig' with {
+                        priceClass: "w-100",
+                        priceDollar: priceDollar,
+                        priceCent: priceCent|default("00"),
+                        priceInfosSupp: priceInfosSupp|default("/month"),
+                        priceBoxAlignement: "left",
+                    } only %}        
+                    </div>
+
+            </div>
+
+            <div class="col-12">
+                    <div class="item col-9">
+                    Samsung Galaxy<br>
+                    Navy Blue
+                    </div>
+                    <div class="col-3" >
+                    {% include '@bf-components/price/twig/price.twig' with {
+                        priceClass: "w-100",
+                        priceDollar: priceDollar,
+                        priceCent: priceCent|default("00"),
+                        priceInfosSupp: priceInfosSupp|default("/month"),
+                        priceBoxAlignement: "left",
+                    } only %}        
+                    </div> 
+
+            </div>
+
+
+            <div class="total col-12 d-flex flex-row" >
+                <div class="col-9" >
+                    Total<br>
+                    Plus applicables taxes
+                </div>        
+                <div class="col-3" >
+                    $80.00 /month<br>
+                    (for  24 month)
+                </div>        
+            </div>
+
+        </div>
+
+    <div>

@@ -94,10 +94,14 @@
 
                 {% include "@bf-components/button/twig/button.twig" with { 
                     label: labelBtn|default('add a phone with this plan'),
-                    styleClass : 'w-100'
+                    styleClass : 'w-100 btn-primary'
                      } only %}
                     {% if phoneSelected != 'selected' %}
-                     <p class="mb-0 text-center vui--font-secondary font-weight-bold- text-uppercase" ><a href="" class="link link--no-decoration">{{ labelLink|default('All-Inclusive 12 GB Mobile') }}</a></p> 
+                    
+                    {% include "@bf-components/button/twig/button.twig" with { 
+                    label: labelBtn|default('All-Inclusive 12 GB Mobile'),
+                    styleClass : 'w-100 btn-secondary' 
+                     } only %}
                     {% endif %} 
                                         
                  {% endif %}

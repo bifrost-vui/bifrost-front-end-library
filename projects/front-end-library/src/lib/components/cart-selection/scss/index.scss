@@ -6,13 +6,24 @@
 
 .bf-card {
 
-    border: 1px solid var(--bf-color-stroke-primary);
-    border-radius: var(--bf-border-radius-medium);
-    overflow: hidden;
-    max-width: 22.75rem;
-    min-width: 20rem;
-    position: relative;
-    box-sizing: border-box;
+    background-color: #f00 !important;
+    
+
+    .cart-selection {
+        padding: var(--bf-spacer-medium);
+        font-size: 0.875rem;
+        line-height: 1.3125rem;
+        .price-box {
+
+            .price-box__dollar  {
+                font-size: 0.875rem !important;
+            }
+        }
+
+        .total {
+            font-size: 0.875rem;
+        }
+    }
 
 
     &.active {
@@ -42,7 +53,7 @@
         padding: 0rem 0.675rem;
         size: 0.675rem;
         &:before  {
-            border-width: 1.5rem 0 0 .5rem !important;
+            
         }      
     }  
 
@@ -54,32 +65,29 @@
         border: 1px solid var(--bf-color-bg-underground);
 
         .cardHeader {
+            padding: 1rem 2rem;
             border:0px;
-            padding: 0rem 1.5rem 0rem 1rem !important;
-
-            div.title {
-                padding: 1rem 1.5rem 1rem 0.5rem;
-            }
+            padding: 1rem 1.5rem 1rem 0.75rem;
 
             img {
-                vertical-align: middle; 
+                vertical-align: middle;
                 margin: auto; 
-
+                border: 1px solid #f00;
             }
 
-            h3.title { 
+            h3 { 
                 margin: 0;
                 font-family: $font-family-base;
                 font-size: 0.75rem;
-                font-weight: 700;  
+                font-weight: 900;  
                 line-height: 1rem;
                 margin: 0;
             }
             p { margin: 0}
-        } 
+        }
 
-        .cardImage {
-            padding: 0.5rem 0rem 0.5rem 0rem;
+        .card-Image {
+            padding: 0.625rem 0rem 0.625rem 1.5rem;
         }
 
         p {
@@ -91,24 +99,18 @@
     &.plan {
         flex-direction: column;      
         .cardHeader {
-            padding: 1.5rem; 
+            padding: 1.5rem;
             background-color: var(--bf-color-bg-underground);
             border: 0px;
 
-            h3.title { 
-                margin: 0;
-                font-family: $font-family-base;
-                font-size: 1.5rem;
-                font-weight: 500;  
-                line-height: 2rem;
-                padding: 0;
-                font-family: $font-family-secondary;
-            }
 
             .surtitle {
                 font-size : 0.875rem;
             }
-
+            .title {
+                font-size : 1.625rem;
+                font-weight: 700;
+            }
             .description {
                 font-size : 0.875rem;
                 margin-bottom: 0;
@@ -120,22 +122,8 @@
         } 
     
         .card-Body {
-            padding: 1rem 1.5rem;
+            padding: 1.5rem;
             background-color: var(--bf-color-bg-ground);
-
-            .optionCard {
-                font-size: 0.875rem;
-
-                p.title { 
-                    font-size: 0.875rem;
-                    line-height: 1.3125rem;
-                    font-weight: 700;
-                    font-family: $font-family-base;
-                    margin: 0 0 0.5rem; 
-                } 
-
-            }
-
             ul {
                 padding: 0 0 0.3125rem 0;
                 border-bottom: 1px solid var(--bf-color-stroke-primary);
@@ -145,11 +133,7 @@
                     list-style: none;
                     font-size: 0.875rem;
                     line-height: 1.3125rem;
-                    padding: 0 0 0.5rem 0;
-                    
-                    .optionLabel {
-                        margin: 0 0 0 0.5rem;
-                    }
+                    padding: 0 0 0.6875rem 0;
                 }
 
 
@@ -186,7 +170,13 @@
             line-height: 1.3125rem;
         }
 
-    
+        .btn {
+            background-color: var(--bf-color-neutral-primary);
+            border-color: var(--bf-color-neutral-primary);
+            color: #fff;
+            font-size: 0.875rem;
+
+        }
 
         a.link {
             display: block;
