@@ -1,54 +1,73 @@
-    <div class="bf-card  d-flex flex-column" >
+    <div class="bf-card  d-flex flex-column cart-selection" >
 
-        <div class="cart-selection col-12   ">
-            <h3 class="title">{{ title|default('') }}</h3>
-        
-            <div class="col-12"> 
-                    <div class="item col-9" >
-                    Samsung Galaxy<br>
-                    Navy Blue
+            <h3 class="title">{{ title }}</h3>
+
+                {% if cart is defined %}
+                    <div class="item-wrapper" >
+                        {% for item in cart %}
+                        <div class="col-12 d-flex flex-row item"> 
+                            
+                            <div class="col-sm-8 label " >
+
+                                {% if item.title is defined %}
+                                <p class="title" >{{ item.title }}</p>
+                                {% endif %}     
+
+
+                                {% if item.description is defined %}
+                                <p class="description bf-color-neutral-secondary" >{{ item.description }}</p>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-sm-4" > 
+                                    <div class="editing d-flex justify-content-end" >
+                                    {% include '@bf-components/icon/twig/index.twig' with {
+                                                                name    : 'bin',
+                                                                color   : color,
+                                                                size    : 'xsmall',
+                                                                type    : 'interface',
+
+                                                            } only %}
+                                    {% include '@bf-components/icon/twig/index.twig' with {
+                                                                name    : 'edit',
+                                                                color   : color,
+                                                                size    : 'xsmall',
+                                                                type    : 'interface',
+                                                            } only %}
+                                    </div>
+                                
+                                    <div class="monthly-price" >
+                                        <span class="bf-color-neutral-secondary">{{ item.price }}/{{ month }}<span>
+                                       {% if item.saving is defined %}
+                                       <div class="d-inline-flex" >
+                                            <div>
+                                            <p class="vui--text-dashed mb-0">{{ item.fullPrice }}</p>
+                                            </div>
+                                            <div class="badge badge-primary d-inline-flex small flex-wrap">
+                                                <p class="font-weight-normal mb-0">{{ savingLabel }}</p>
+                                                <p class="mb-0 ml-1 font-weight-bold"> {{ item.saving }}</p>
+                                            </div>
+                                        </div> 
+                                        {% endif %}  
+                                    </div> 
+                                </div>     
+                            
+                            </div>
+                        {% endfor %}
                     </div>
-                    <div class="col-3" > 
-                    {% include '@bf-components/price/twig/price.twig' with {
-                        priceClass: "w-100",
-                        priceDollar: priceDollar,
-                        priceCent: priceCent|default("00"),
-                        priceInfosSupp: priceInfosSupp|default("/month"),
-                        priceBoxAlignement: "left",
-                    } only %}        
-                    </div>
+                {% endif %}
+            
 
-            </div>
-
-            <div class="col-12">
-                    <div class="item col-9">
-                    Samsung Galaxy<br>
-                    Navy Blue
-                    </div>
-                    <div class="col-3" >
-                    {% include '@bf-components/price/twig/price.twig' with {
-                        priceClass: "w-100",
-                        priceDollar: priceDollar,
-                        priceCent: priceCent|default("00"),
-                        priceInfosSupp: priceInfosSupp|default("/month"),
-                        priceBoxAlignement: "left",
-                    } only %}        
-                    </div> 
-
-            </div>
-
-
-            <div class="total col-12 d-flex flex-row" >
-                <div class="col-9" >
-                    Total<br>
-                    Plus applicables taxes
+            <div class="col-sm-12 total  d-flex flex-row" >
+                <div class="col-8" >
+                    <span class="font-weight-bold">Total</span><br>
+                    <span class="bf-color-neutral-secondary" >{{ subtitleTotal }}</span>
                 </div>        
-                <div class="col-3" >
-                    $80.00 /month<br>
-                    (for  24 month)
+                <div class="col-4 text-right" >
+                    <span class="font-weight-bold">{{totalPrice}}/{{ month}}</span><br>
+                    <span>({{forLabel}} {{ duration }} {{ month}})</span>
                 </div>        
             </div>
 
-        </div>
 
     <div>
