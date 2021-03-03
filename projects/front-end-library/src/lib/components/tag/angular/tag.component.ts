@@ -12,16 +12,8 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 })
 export class TagComponent implements OnInit {
     constructor() {}
-
-    /** videotron | business */
-    @Input() name: string;
-
-    /** medium | small */
-    @Input() size: string;
-
-    @Input() textOnly: boolean;
-
-    @Input() reversed: boolean;
+    @Input() label      : string;
+    @Input() reversed   : boolean;
 
     ngOnInit() {
         console.log('tag', this);
