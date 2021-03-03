@@ -1,8 +1,8 @@
     <div class="bf-card  d-flex  {{ cardType|default('plan') }} {{ cardStatus|default('active') }}" >
 
-        <div class="cardHeader d-flex flex-row {% if isImage is defined and isImage is same as (false) %} col-12 {% endif %} align-items-center ">
+        <div class="cardHeader d-flex flex-row {% if hasImage is defined and hasImage is same as (false) %} col-12 {% endif %} align-items-center ">
 
-        {% if isImage is defined and isImage is same as (true) %}
+        {% if hasImage is defined and hasImage is same as (true) %}
             <div class="cardImage d-flex flex-wrap align-items-center" >
                 
                 {% if imageGifSrc is defined  %}
@@ -39,7 +39,7 @@
             </div> 
         </div>
  
-        {% if isTag is defined and isTag is same as (true) %}
+        {% if hasTag is defined and hasTag is same as (true) %}
         {% include '@bf-components/tag/twig/index.twig'  with {
             variant     : "",
             align       : align|default('right'),
@@ -110,7 +110,7 @@
                 <div class='d-inline-flex'>
                     <div class='warningIcon'>
                     {% include '@bf-components/icon/twig/index.twig' with {
-                                            name    : 'information-circle-fill-color',
+                                            name    : 'information-circle-filled',
                                             color   : color,
                                             size    : 'xsmall',
                                             type    : 'interface'

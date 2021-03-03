@@ -3,7 +3,7 @@
     <div class="container-fluid">
         {% if hasBackToTopLink is defined and hasBackToTopLink is same as (true) %}
             <div class="d-flex justify-content-center justify-content-md-end w-100 mb-5 mb-md-4">
-                {% include '@bf-components/link/twig/link-back-to-top.twig' with {
+                {% include '@bf-components/link/twig/back-to-top.twig' with {
                     label:"Back to top",
                     class:"h6 mb-0"
                 } %}
@@ -14,7 +14,6 @@
             <div class="col-12 col-md-3 order-2 order-md-1 py-0 mt-2 pt-4 mt-md-0 pt-md-0" data-animate="fade-in">
                 <div class="d-flex flex-row align-items-start">
                     <a href="{{ logo.href|default('#') }}">
-                        {# <img src="{{ logoUrl|default('') }}" height="20" alt="{{ logoAlt|default('') }}"> #}
                         {% include '@bf-components/logo/twig/index.twig' with {
                             name        : logo.name,
                             size        : 'small',
@@ -22,11 +21,6 @@
                             reversed    : reversed,
                         } only %}
                     </a>
-                    {# {% if miniVideotronLogo is defined and miniVideotronLogo is same as (true) %}
-                        <a href="{{ hrefVideotronLogo|default('#') }}">
-                            <img src="/images/logo/videotron.svg" height="20" alt="Videotron">
-                        </a>
-                    {% endif %} #}
                 </div>
                 <p class="m-0 mt-2 bf-p-medium bf-color-neutral-secondary">&copy; {{ videotronLegalName|default('Videotron') }} {{ now|date('Y') }}</p>
             </div>
@@ -35,7 +29,7 @@
                 <ul class="list-reset pl-0 mb-0 d-flex flex-wrap justify-content-start justify-content-lg-end" data-animate-row="">
                     {% for linkField in linkFields %}
                         <li class="mb-3 pr-4 mb-md-0" data-animate="fade-in">
-                            {% include '@bf-components/link/twig/link-default-optimized.twig' with {
+                            {% include '@bf-components/link/twig/index.twig' with {
                                 href:linkField.href,
                                 label:linkField.label,
                                 class:"bf-p-small bf-color-neutral-secondary",
@@ -48,7 +42,7 @@
                         {{ languageBlock }}
                     {% else %}
                         <li class="mb-3 mb-md-0" data-animate="fade-in">
-                            {% include '@bf-components/link/twig/link-default-optimized.twig' with {
+                            {% include '@bf-components/link/twig/index.twig' with {
                                 href:"",
                                 label:"FR",
                                 class:"bf-p-small bf-color-neutral-secondary",

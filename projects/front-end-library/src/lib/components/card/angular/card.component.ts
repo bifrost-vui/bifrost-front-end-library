@@ -14,10 +14,10 @@ export class CardComponent implements OnInit {
     constructor() {}
 
     @Input() labelBtn: string;
-    @Input() isImage: boolean;
+    @Input() hasImage: boolean;
     @Input() imageGifSrc: string;
     @Input() imageIcon: string;
-    @Input() isTag: boolean;
+    @Input() hasTag: boolean;
     @Input() phoneSelected          : string;
     @Input() cardStatus             : string;
     @Input() cardType               : string;

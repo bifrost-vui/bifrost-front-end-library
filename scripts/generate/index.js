@@ -95,7 +95,7 @@ function generateFromTemplate(element) {
     replace(
         {
             files: `${tempPath}/**/*`,
-            from: [ /<component-type>/g, /<Component-type>/g, /<component-name>/g, /<Component-Readable-Name>/g, /<componentName>/g, /<ComponentName>/g, /<Pipe-Readable-Name>/g, /<pipe-name>/g, /<pipeName>/g, /<PipeName>/g ],
+            from: [ /%component-type%/g, /%Component-type%/g, /%component-name%/g, /%Component-Readable-Name%/g, /%componentName%/g, /%ComponentName%/g, /%Pipe-Readable-Name%/g, /%pipe-name%/g, /%pipeName%/g, /%PipeName%/g ],
             to: [ typePlural,          TypePlural,        name,              NameReadable,               nameCamelCase,    NameCamelCase,    NameReadable,          name,         nameCamelCase, NameCamelCase ],
         },
         (error, results) => {
@@ -106,10 +106,10 @@ function generateFromTemplate(element) {
             
             // Rename Files
             if (type === 'pipe') {
-                renameFiles( tempPath, '<pipe-name>', name );
+                renameFiles( tempPath, 'pipe-name', name );
             } else {
-                renameFiles( tempPath+'/angular', '<component-name>', name );
-                renameFiles( tempPath+'/twig', '<component-name>', name );
+                renameFiles( tempPath+'/angular', 'component-name', name );
+                renameFiles( tempPath+'/twig', 'component-name', name );
             }
 
             // Files are now ready to be moved in the lib directory
@@ -135,9 +135,9 @@ function appendPublicAPI ({ name, NameReadable, type, typePlural, finalPath }) {
         // TODO: Insert export in the right section of the public-api.ts file.
         // shell.exec( "sed '/\Components/a Test Import' projects/front-end-library/src/public-api.ts" );
 
-        // Import component style into style.scss.
+        // Import component style into index.scss.
         const strinImportStyle = `@import '../${typePlural}/${name}/scss/index';`;
-        shell.exec( 'echo "' + strinImportStyle + '" >> projects/front-end-library/src/lib/scss/style.scss' );
+        shell.exec( 'echo "' + strinImportStyle + '" >> projects/front-end-library/src/lib/scss/index.scss' );
         
     }
 

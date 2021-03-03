@@ -1,16 +1,18 @@
 {% set reversed = reversed|default(false)|json_parse %}
 {% set icons    = icons|json_parse %}
 
-<div class='pt-4 {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
+<div class='pt-4 {% if reversed %}reversed bf-color-bg-ground{% endif %}' style="height: fit-content; min-height: 100%;">
 
     {% if name is defined and name is not same as ('undefined') and name is not same as ('All icons') %}
-        <div class='d-flex flex-wrap align-items-center justify-content-center h-100'>
+        <div class='d-flex flex-wrap flex-column align-items-center justify-content-center h-100'>
             {% include '@bf-components/icon/twig/index.twig' with {
                 name    : name,
                 color   : color,
                 size    : size,
-                class   : class
+                class   : class,
+                type    : type,
             } only %}
+            <p class="bf-p-small bf-color-neutral-secondary pt-1">{{name}}</p>
         </div>
 
     {% else %}
@@ -21,9 +23,9 @@
                         <div class="w-100">
                             <h4>{{category.category}}</h4>
                         </div>
-                        <div class="d-flex flex-wrap">
+                        <div class="doc-list {% if type is same as ('illustration') %}doc-list--illustration{% endif %}">
                             {% for iconName in category.list %}
-                                <div class='mr-3' title='{{iconName}}'>
+                                <div class='d-flex flex-column align-items-center p-3' title='{{iconName}}'>
                                     {% include '@bf-components/icon/twig/index.twig' with {
                                         name    : iconName,
                                         color   : color,
@@ -31,6 +33,7 @@
                                         class   : class,
                                         type    : type,
                                     } only %}
+                                    <p class="bf-p-small bf-color-neutral-secondary text-center pt-1">{{iconName}}</p>
                                 </div>
                             {% endfor %}
                         </div>
@@ -41,3 +44,16 @@
     {% endif %}
 
 </div>
+
+<style>
+    .doc-list {
+        --minmax: 80px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax( var(--minmax), 1fr));
+        width: 100%;
+    }
+
+    .doc-list--illustration {
+        --minmax: 120px;
+    }
+</style>

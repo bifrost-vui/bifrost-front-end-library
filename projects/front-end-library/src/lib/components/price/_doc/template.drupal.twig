@@ -1,5 +1,5 @@
-{% set isTag = isTag|default(false)|json_parse %}
-{% set isImage = isImage|default(false)|json_parse %}
+{% set hasTag = hasTag|default(false)|json_parse %}
+{% set hasImage = hasImage|default(false)|json_parse %}
 {% set cardType = cardType|default('plan') %}
 
 <div
@@ -8,8 +8,8 @@
     {% include '@bf-components/price/twig/index.twig' with {
         class                   : class|default(''),
         cardType                : cardType,
-        isImage                 : isImage,
-        isTag                   : isTag,
+        hasImage                 : hasImage,
+        hasTag                   : hasTag,
         buttonClass             : buttonClass|default(''),
         iconClass               : iconClass|default(''),
         label                   : {

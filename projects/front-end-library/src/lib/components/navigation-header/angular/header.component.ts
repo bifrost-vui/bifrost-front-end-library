@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
     @Input() reversed                : boolean;
     @Input() logo_name               : string;
+    @Input() search_placeholder      : string;
 
     /** Note: Only visible on desktop. */
     @Input() hasTopBar               : boolean;
@@ -23,8 +24,8 @@ export class HeaderComponent implements OnInit {
 
     @Input() navItems                : any[];
     @Input() rigthIconLinks          : any[];
-    @Input() hasAccountBtn           : boolean;
-    @Input() hasMiniCartBtn          : boolean;
+    // @Input() hasAccountBtn           : boolean;
+    // @Input() hasMiniCartBtn          : boolean;
     @Input() hasNoSearchBtn          : boolean;
 
     ngOnInit() {

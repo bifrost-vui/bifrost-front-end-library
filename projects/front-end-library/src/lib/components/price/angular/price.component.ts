@@ -13,8 +13,8 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class PriceComponent implements OnInit {
     constructor() {}
 
-    @Input() isImage: boolean;
-    @Input() isTag: boolean;
+    @Input() hasImage: boolean;
+    @Input() hasTag: boolean;
     @Input() cardType               : string;
     @Input() class                  : string;
     @Input() variant                : string;

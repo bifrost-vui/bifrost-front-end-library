@@ -1,5 +1,5 @@
-{% set isTag = isTag|default(false)|json_parse %}
-{% set isImage = isImage|default(false)|json_parse %}
+{% set hasTag = hasTag|default(false)|json_parse %}
+{% set hasImage = hasImage|default(false)|json_parse %}
 {% set titleCard = titleCard|default('') %}
 {% set subTitleCard = subTitleCard|default('') %}
 {% set labelLink = labelLink|default('') %}
@@ -14,11 +14,10 @@
     {% include '@bf-components/card/twig/index.twig' with {
         class                   : class|default(''),
         cardType                : cardType,
-        isImage                 : isImage,
-        isImage                 : isImage,
+        hasImage                 : hasImage,
         imageGifSrc             : imageGifSrc,
         imageIcon               : imageIcon,                
-        isTag                   : isTag,
+        hasTag                   : hasTag,
         buttonClass             : buttonClass|default(''),
         iconClass               : iconClass|default(''),
         titleCard               : titleCard|default(''),

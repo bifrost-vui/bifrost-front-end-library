@@ -18,6 +18,10 @@
             fill: var(--bf-color-feedback-neutral);
         }
 
+        .fill-highlight-reversed {
+            fill: var(--bf-color-neutral-primary);
+        }
+
         // PL version
         ._svg-fill {
             fill: currentColor;
@@ -45,7 +49,23 @@
         color: var(--bf-color-feedback-negative);
     }
 
-    // Size
+    @at-root .reversed,
+    &.color-success,
+    &.color-neutral,
+    &.color-warning,
+    &.color-negative {
+        svg .fill-highlight {
+            fill: currentColor;
+        }
+
+        svg .fill-highlight-reversed {
+            fill: var(--bf-color-bg-ground);
+        }
+    }
+
+
+    // Size by Types
+
     &.type-interface {
         width: 1.5rem;
         height: 1.5rem;
@@ -54,20 +74,16 @@
             width: 1rem;
             height: 1rem;
         }
-
-        &.size-medium {
-            width: 3rem;
-            height: 3rem;
-        }
-
-        &.size-large {
-            width: 4.5rem;
-            height: 4.5rem;
-        }
     }
 
     &.type-illustration {
         width: 4.5rem;
         height: 4.5rem;
+
+        &.size-medium {
+            width: 3rem;
+            height: 3rem;
+            min-width: 3rem;
+        }
     }
 }

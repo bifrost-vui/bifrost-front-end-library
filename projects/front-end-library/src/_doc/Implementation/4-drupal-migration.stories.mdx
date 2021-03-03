@@ -37,10 +37,17 @@ component-libraries:
       - node_modules/@videotron-ui/bifrost-front-end-library/source/components/
 ```
 
+## 3. Add Base JS
 
-## 3. Add Base style
+Replace `uikit-marvel.js` by `bifrost.js` from the NPM Package:
+`node_modules/@videotron-ui/bifrost-front-end-library/assets/js/bifrost.js`.
 
-Replace `uikit-marvel.css` by the one in the NPM Package. It will provide the same CSS base for all Videotron websites.
+
+
+## 4. Add Base style
+
+Replace `uikit-marvel.css` by `bifrost.css` from the NPM Package, in order to provide the same CSS base for all Videotron websites.
+Here 4 possibles options:
 
 <br/>
 
@@ -51,7 +58,7 @@ global-styling:
   css:
     theme:
         styles.css: {}
-        'node_modules/@videotron-ui/bifrost-front-end-library/assets/css/uikit-marvel.css': {}
+        'node_modules/@videotron-ui/bifrost-front-end-library/assets/css/bifrost.css': {}
 ```
 
 Then, add this library to **your-theme.info.yml**:
@@ -63,21 +70,21 @@ libraries:
 ### Option 2:
 In your **CSS file**:
 ```css
-@import 'node_modules/@videotron-ui/bifrost-front-end-library/assets/css/uikit-marvel.css';
+@import 'node_modules/@videotron-ui/bifrost-front-end-library/assets/css/bifrost.css';
 
 /* Or if you are using SASS: */
-@import '~@videotron-ui/bifrost-front-end-library/assets/css/uikit-marvel.css';
+@import '~@videotron-ui/bifrost-front-end-library/assets/css/bifrost.css';
 ```
 
 ### Option 3:
 In the **head** of your pages:
 ```html
 <head>
-    <link href="./node_modules/@videotron-ui/bifrost-front-end-library/assets/css/uikit-marvel.css" rel='stylesheet' />
+    <link href="./node_modules/@videotron-ui/bifrost-front-end-library/assets/css/bifrost.css" rel='stylesheet' />
 </head>
 ```
 
-## 4. Migrate a Component
+## 5. Migrate a Component
 - All Bifrost components are visible on this Storybook. In the sidebar, check if your component is available:
 
 <img src={imageStorybookCompnentList} style={{maxWidth: '800px'}} />
@@ -96,7 +103,7 @@ In the **head** of your pages:
 - In the **Component API** section, check that you send the right props to your component.
 
 
-## 5. Themes
+## 6. Themes
 - On Storybook, check if the component is available in a specific theme.
 - Wrap the component with a `data-theme='x'`. For example:
 ```html
@@ -106,7 +113,7 @@ In the **head** of your pages:
 ```
 
 
-## 6. Reversed style
+## 7. Reversed style
 - Some compoments are available in a reversed style. Then you should see the **reversed** props.
 ```php
 {% include '@bf-components/button/twig/index.twig' with {
@@ -115,7 +122,7 @@ In the **head** of your pages:
 ```
 
 
-## 7. Test Visual Regression
+## 8. Test Visual Regression
 - Check manually the differences in your localhost.
 
 
