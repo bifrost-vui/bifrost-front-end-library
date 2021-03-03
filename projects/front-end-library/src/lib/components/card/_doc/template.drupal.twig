@@ -7,6 +7,7 @@
 {% set cardStatus = cardStatus|default('active') %}
 {% set phoneSelected = phoneSelected|default('notSelected') %}
 {% set optionList = optionList|json_parse %}
+{% set warningLabel = warningLabel|default('Only plans with a minimum of $40.00 per month are available with that phone.') %}
 
 <div
     class="px-7 d-flex align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
@@ -29,19 +30,10 @@
         linkLearnMoreCard       : linkLearnMoreCard,
         imageGifAlt             : imageGifAlt,
         imageIcon               : imageIcon,
+        warningLabel            : warningLabel,
         optionList              : optionList,
                 
     } only %}
 
 
 </div>
-
-
-{% if isInvalid|default(false)|json_parse %}
-    <script>
-        function setInvalid() {
-            document.getElementsByClassName('form-group')[0].classList.add('is-invalid');
-        }
-        setInvalid();
-    </script>
-{% endif %}
