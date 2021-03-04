@@ -1,10 +1,10 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import { withDesign } from 'storybook-addon-designs'
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { withDesign }                           from 'storybook-addon-designs'
 
-import { optionListData, optionListNoTitleData } from './data';
-import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
-import { CardComponent }     from '../angular/card.component';
+import { contentLists, contentListsNoTitle }        from './data';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { CardComponent }                        from '../angular/card.component';
 
 
 <Meta 
@@ -21,27 +21,11 @@ import { CardComponent }     from '../angular/card.component';
             disable: false
         },
     }}
-    argTypes={{
-        hasImage: {
-            type : 'boolean',
-            defaultValue: false,
-            description: 'add image in the card title',
-        },
-        gift: {
-            type : 'boolean',
-            defaultValue: false,
-            description: 'gift card model',
-        },
-        hasTag: {
-            type : 'boolean',
-            defaultValue: false,
-            description: 'add tag in the card title',
-        }
-    }}
+    argTypes={{}}
 />
 
 
-# Promo
+# Card
 
 > Explore **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)** (Zeroheight)
 
@@ -50,48 +34,57 @@ import { CardComponent }     from '../angular/card.component';
 
 ## Drupal
 
+export const globalProps = {
+    disabled        : false,
+    upperTitle      : 'upperTitle',
+    title           : 'All-Inclusive 12 GB Mobile',
+    description     : 'So you can do what you want, when you want, without worrying about your data.',
+    link            : {
+        label           : 'Learn more',
+        href            : 'www.videotron.com',
+    },
+    badge           : 'PROMOTION',
+    contentLists    : contentLists,
+    price           : {
+        class           : '',
+        dollar          : '152',
+        cent            : '34',
+        infosSupp       : 'Taxes incl.',
+        boxAlignement   : 'left',
+        dashed          : '$150',
+        saved           : '<strong>$30</strong>',
+    },
+    buttons           : [
+        {
+            label       : 'Add a phone with this plan',
+            hierarchy   : 'primary',
+            reverse     : true,
+            href        : 'www.videotron.com',
+        },
+        {
+            label       : 'BUY only this PLAN',
+            hierarchy   : 'tertiary',
+            href        : 'www.videotron.com',
+        }
+    ],
+    message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
+};
+
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
-    props: args,
+    props: {
+        elementPath : 'components/card/_doc/template-plan.drupal',
+        ...args,
+    }
 });
 
-
 <Preview
     withSource='none'
     style={{ height: '300px' }}
 >
     <Story 
-        name='Promo Card image'
-        args={{ 
-            elementPath : 'components/card/_doc/template.drupal',
-            cardType : 'gift',
-            hasTag : true,
-            hasImage : true,
-            imageGifSrc : 'https://source.unsplash.com/72x72/?nature',
-            titleCard : 'Galaxy Buds Live',
-            subTitleCard : 'Free with any purchase of this phone, valuted at $239.38.',
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Preview>
-
-
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
-        name='Promo Card icon'
-        args={{ 
-            elementPath : 'components/card/_doc/template.drupal',
-            cardType : 'gift',
-            hasTag : true,
-            hasImage : true,
-            imageIcon : 'mobile-multiline',
-            titleCard : 'Galaxy Buds Live',
-            subTitleCard : 'Free with any purchase of this phone, valuted at $239.38.',
-        }}
+        name='Plan'
+        args={{ ...globalProps }}
     >
         {Drupal.bind({})}
     </Story>
@@ -102,73 +95,10 @@ export const Drupal = (args) => ({
     style={{ height: '300px' }}
 >
     <Story 
-        name='Plan Card'
-        args={{ 
-            elementPath : 'components/card/_doc/template.drupal',
-            cardType : 'plan',
-            titleCard : 'All-Inclusive 12 GB Mobile',
-            subTitleCard : 'So you can do what you want, when you want, without worrying about your data.',
-            labelLink : 'buy only this plan',
-            optionList: optionListNoTitleData,
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Preview>
-
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
-        name='TV + Internet Card'
-        args={{ 
-            elementPath : 'components/card/_doc/template.drupal',
-            cardType : 'plan',
-            titleCard : 'TV Populaire Premium et Internet Modéré',
-            optionList: optionListData,
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Preview>
-
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
-        name='Card disable'
-        args={{ 
-            elementPath : 'components/card/_doc/template.drupal',
-            cardType : 'plan',
-            titleCard : 'All-Inclusive 12 GB Mobile',
-            subTitleCard : 'So you can do what you want, when you want, without worrying about your data.',
-            labelLink : 'buy only this plan',
-            labelBtn : 'Add a phone with this plan',
-            cardStatus: 'disable'
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Preview>
-
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
-        name='Phone selected Card'
-        args={{ 
-            elementPath : 'components/card/_doc/template.drupal',
-            cardType : 'plan',
-            titleCard : 'All-Inclusive 12 GB Mobile',
-            subTitleCard : 'So you can do what you want, when you want, without worrying about your data.',
-            labelLink : 'buy only this plan',
-            labelBtn : 'Choose this plan',
-            cardStatus: 'active',
-            phoneSelected : 'selected',
-            hasTag : true
+        name='Plan Disabled'
+        args={{
+            ...globalProps,
+            disabled: true,
         }}
     >
         {Drupal.bind({})}

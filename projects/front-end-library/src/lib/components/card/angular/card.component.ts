@@ -13,22 +13,17 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class CardComponent implements OnInit {
     constructor() {}
 
-    @Input() labelBtn: string;
-    @Input() hasImage: boolean;
-    @Input() imageGifSrc: string;
-    @Input() imageIcon: string;
-    @Input() hasTag: boolean;
-    @Input() phoneSelected          : string;
-    @Input() cardStatus             : string;
-    @Input() cardType               : string;
+    @Input() upperTitle             : string;
+    @Input() title                  : string;
+    @Input() description            : string;
+    @Input() link                   : object;
+    @Input() badge                  : string;
+    @Input() contentLists           : object;
+    @Input() price                  : object;
+    @Input() buttons                : object;
+    @Input() message                : string;
     @Input() class                  : string;
-    @Input() variant                : string;
-
-    @Input() label_value             : string = 'Label';
-    @Input() label_class             : string;
-    @Input() label_extraAttribute    : string;
-
-    @Input() buttonClass            : string;
+    @Input() disabled               : boolean;
 
     ngOnInit() {
         console.log('card', this);
