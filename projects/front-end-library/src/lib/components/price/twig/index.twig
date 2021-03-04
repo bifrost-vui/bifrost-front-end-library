@@ -4,24 +4,24 @@
 
 {# ------------------------------------------------------------------------------------------------------------------ #}
 
-<div class="price-box price-box--{{ boxSize|default('lg') }} {{ class|default('')}} d-inline-flex justify-content-between">
-    <div class="d-inline-flex">
+<div class='bf-price price-box price-box--{{ boxSize|default('lg') }} {{ class|default('')}} d-inline-flex justify-content-between'>
+    <div class='d-inline-flex'>
     {% if language == 'en' %}
-      <span class="price-box__dollarsign h2 mb-0">$</span>
+      <span class='price-box__dollarsign h2 mb-0'>$</span>
     {% endif %}
 
-        <div class="" >
-            <div class="d-flex mb-0">
-                <span class="price-box__dollar {{ dollarClass|default('') }}">{{ dollar|default('00')}}</span>
-                <div class="price-box__infos">
-                    <div class="mb-0 ml-1 d-flex align-items-baseline">
+        <div class=''>
+            <div class='d-flex mb-0'>
+                <span class='price-box__dollar {{ dollarClass|default('') }}'>{{ dollar|default('00')}}</span>
+                <div class='price-box__infos'>
+                    <div class='mb-0 ml-1 d-flex align-items-baseline'>
  
-                        <span class="price-box__cent">{{ cent|default('00')}}</span>
+                        <span class='price-box__cent'>{{ cent|default('00')}}</span>
                         {% if language == 'fr' %}
-                            <span class="price-box__dollarsign h2 mb-0">$</span>
+                            <span class='price-box__dollarsign h2 mb-0'>$</span>
                         {% endif %}
 
-                        <span class="price-box__period">
+                        <span class='price-box__period'>
                             {% if isMonthlyPayment is defined and isMonthlyPayment is same as (true) %}
                                 /mo
                             {% elseif recurrencePeriod is defined %}
@@ -36,7 +36,7 @@
                         {# 
                         {%  if itemTitleTooltipInfos is defined and itemTitleTooltipInfos is not empty %}
                             {% include '@atoms/02-buttons/25-button-tooltip.twig' with {
-                                buttonClass:"pl-1 pr-1 d-inline-flex",
+                                buttonClass:'pl-1 pr-1 d-inline-flex',
                                 tooltipTxt: itemTitleTooltipInfos,
                                 iconColor: iconTooltipColor|default('svg-fill--dark')
                             } %}
@@ -45,31 +45,30 @@
                     </div>
 
                     {% if infosSupp is defined %}
-                        <p class="mb-0 mt-minus-2 {{ infosSuppColor }}">{{ infosSupp|default('Lorem ipsum')|raw }}</p>
+                        <p class='mb-0 mt-minus-2 {{ infosSuppColor }}'>{{ infosSupp|default('Lorem ipsum')|raw }}</p>
                     {% endif %}
                 </div>
             </div>
 
             {% if priceSavings is defined and txtBelow is not empty %}
-                <p class="mb-0 small color--primary">{{ priceSavings|raw }}</p>
+                <p class='mb-0 small color--primary'>{{ priceSavings|raw }}</p>
             {% endif %}
 
             {% if txtBelow is defined and txtBelow is not empty %}
-                <p class="small {{ txtBelowClass }}">{{ txtBelow|price_one_line }}</p>
+                <p class='small {{ txtBelowClass }}'>{{ txtBelow|price_one_line }}</p>
             {% endif %}
-
         </div>
     </div>
 
-    <div class="d-inline-flex   {{ class|default('') }}">
+    <div class='d-inline-flex'>
         <div>
-            <p class="vui--text-dashed mb-0">{{ priceDashed|default('150$') }}</p>
+            <p class='vui--text-dashed mr-2 mb-0'>{{ priceDashed|default('150$') }}</p>
         </div>
 
         <div>
-            <div class="badge badge-primary d-inline-flex small flex-wrap">
-                <p class="font-weight-normal mb-0">You save :</p>
-                <p class="mb-0 ml-1 font-weight-bold">{{ priceSaved|default('20$')|raw }}</p>
+            <div class='badge badge-primary d-inline-flex small flex-wrap'>
+                <p class='font-weight-normal mb-0'>You save :</p>
+                <p class='mb-0 ml-1 font-weight-bold'>{{ priceSaved|default('20$')|raw }}</p>
             </div>
         </div>
     </div>       
