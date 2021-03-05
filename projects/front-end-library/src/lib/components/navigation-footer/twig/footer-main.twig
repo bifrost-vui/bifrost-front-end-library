@@ -39,13 +39,15 @@
                     </div>
                 {% endfor %}
             </div>
-
-            <div class='col-lg-2 order-1 order-lg-2 py-3 text-center' data-animate='fade-in'>
-                {% include '@bf-components/link/twig/back-to-top.twig' with {
-                    label   : backToTopLabel|default('Back to top'),
-                    class   : 'h6 font-weight-normal'
-                } %}
-            </div>
+            
+            {% if hasBackToTopLink is not same as (false) %}
+                <div class='col-lg-2 order-1 order-lg-2 py-3 text-center' data-animate='fade-in'>
+                    {% include '@bf-components/link/twig/back-to-top.twig' with {
+                        label   : backToTopLabel|default('Back to top'),
+                        class   : 'h6 font-weight-normal'
+                    } %}
+                </div>
+            {% endif %}
         </div>
     </div>
 </nav>

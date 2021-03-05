@@ -2,9 +2,12 @@
     class='
         bf-footer
         {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}
+        {% if isReduced is defined and isReduced is same as (true) %}bf-footer--reduced{% endif %}
     '
     {% if theme is defined %} data-theme={{theme}} {% endif %}
 >
-    {% include '@bf-components/navigation-footer/twig/footer-main.twig' %}
+    {% if isReduced is not same as (true) %}
+        {% include '@bf-components/navigation-footer/twig/footer-main.twig' %}
+    {% endif %}
     {% include '@bf-components/navigation-footer/twig/footer-legal.twig' %}
 </footer>

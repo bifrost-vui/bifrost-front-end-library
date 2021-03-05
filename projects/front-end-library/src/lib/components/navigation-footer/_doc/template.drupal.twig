@@ -2,8 +2,9 @@
 {# ----------------------------------------------------------------- #}
 {% set links                = links|json_parse %}
 {% set linkFields           = linkFields|json_parse %}
-{% set hasBackToTopLink     = hasBackToTopLink|default(false)|json_parse %}
-{% set reversed             = reversed|default(false)|json_parse %}
+{% set hasBackToTopLink     = hasBackToTopLink|json_parse|default(true) %}
+{% set isReduced            = isReduced|json_parse|default(false) %}
+{% set reversed             = reversed|json_parse|default(false) %}
 
 
 {# ----------------------------------------------------------------- #}
@@ -16,6 +17,7 @@
     },
     hasBackToTopLink    : hasBackToTopLink,
     languageBlock       : languageBlock,
+    isReduced           : isReduced,
     reversed            : reversed,
     langcode            : langcode|default('EN'),
 } only %}

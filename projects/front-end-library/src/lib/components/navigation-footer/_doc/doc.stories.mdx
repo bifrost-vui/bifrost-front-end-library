@@ -69,7 +69,27 @@ export const Drupal = (args) => ({
     <Story 
         name='Drupal'
         args={{ 
-            elementPath : 'components/navigation-footer/_doc/template.drupal',
+            elementPath         : 'components/navigation-footer/_doc/template.drupal',
+            hasBackToTopLink    : true,
+            linkFields,
+            links,
+        }}
+        height='500px'
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+<Preview
+    withSource='none'
+>
+    <Story 
+        name='Drupal - Reduced'
+        args={{ 
+            elementPath         : 'components/navigation-footer/_doc/template.drupal',
+            hasBackToTopLink    : true,
+            isReduced           : true,
             linkFields,
             links,
         }}
@@ -90,7 +110,6 @@ export const Drupal = (args) => ({
         name                : 'business',
         href                : '#',
     },
-    hasBackToTopLink    : true,
     reversed            : false,
 } only %}
 ```
