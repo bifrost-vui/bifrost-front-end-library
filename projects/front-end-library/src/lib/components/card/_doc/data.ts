@@ -39,15 +39,15 @@ export const contentListsNoTitle = [
     {
         content: [
             {
-                label: 'Club Illico',
-                icon: 'forfait-tv-le-fan-de-films-et-series', 
+                label: 'Free and Unlimited Go after 10Go',
+                icon: 'unlimited',
             },
             {
-                label: 'Club Illico',
-                icon: 'forfait-tv-le-fan-de-films-et-series', 
+                label: '100 GB annual data in Canada',
+                icon: 'support',
             },
             {
-                label: 'Club Illico',
+                label: 'Club illico included',
                 icon: 'forfait-tv-le-fan-de-films-et-series', 
             },
         ],

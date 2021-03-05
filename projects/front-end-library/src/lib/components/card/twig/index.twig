@@ -4,13 +4,13 @@
 >
 
     {% if hasImage is defined and hasImage is same as (true) %}
-        <div class='cardImage d-flex flex-wrap align-items-center' >
+        <div class='cardImage d-flex flex-wrap align-items-center'>
             
             {% if imageGifSrc is defined  %}
-            <img
-                data-src='{{ imageGifSrc|default('https://source.unsplash.com/72x72/?nature') }}' 
-                alt='{{ imageGifAlt|default('https://source.unsplash.com/72x72/?nature') }}'
-            >
+                <img
+                    data-src='{{ imageGifSrc|default('https://source.unsplash.com/72x72/?nature') }}' 
+                    alt='{{ imageGifAlt|default('https://source.unsplash.com/72x72/?nature') }}'
+                >
             {% endif %}
 
             {% if imageIcon is defined  %}
@@ -26,7 +26,7 @@
 
     <header class='bf-card__header'>
 
-        {% if upperTitle is defined %}                        
+        {% if upperTitle is defined %}
             <p class='mb-1'>
                 {{ upperTitle|default('') }}
             </p>
@@ -97,9 +97,12 @@
     </div>
 
     <div class='bf-card__footer'>
-
+        
         {% if price is defined %}
-            {% set price = price|merge( { 'class': 'w-100 mb-4 ' ~ price.class } ) %}
+            {% set price = price|merge({
+                'class'     : 'w-100 mb-4 ' ~ price.class,
+                'language'  : language
+            }) %}
             {% include '@bf-components/price/twig/index.twig' with price only %}
         {% endif %}
 
@@ -119,7 +122,7 @@
                     class   : 'mr-2'
                 } only %}
                 <p class='mb-0'>
-                    {{ message|default('Only plans with a minimum of $40.00 per month are available with that phone.') }}
+                    {{ message|default('') }}
                 </p>
             </div>
         {% endif %}

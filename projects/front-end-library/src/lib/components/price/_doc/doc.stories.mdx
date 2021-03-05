@@ -3,7 +3,7 @@ import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/block
 import { withDesign } from 'storybook-addon-designs'
 
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
-import { PriceComponent }     from '../angular/price.component';
+import { PriceComponent }           from '../angular/price.component';
 
 
 <Meta 
@@ -21,21 +21,6 @@ import { PriceComponent }     from '../angular/price.component';
         },
     }}
     argTypes={{
-        hasImage: {
-            type : 'boolean',
-            defaultValue: false,
-            description: 'add image in the card title',
-        },
-        gift: {
-            type : 'boolean',
-            defaultValue: false,
-            description: 'gift card model',
-        },
-        hasTag: {
-            type : 'boolean',
-            defaultValue: false,
-            description: 'add tag in the card title',
-        }
     }}
 />
 
@@ -62,6 +47,23 @@ export const Drupal = (args) => ({
         name='Price - Drupal'
         args={{ 
             elementPath : 'components/price/_doc/template.drupal',
+            dollar                  : '30',
+            dollarClass             : '',
+            cent                    : '99',
+            isMonthlyPayment        : false,
+            recurrencePeriod        : 'month',
+            hasAsterisk             : true,
+            priceDashed             : '150$',
+            priceSavings            : '10$',
+            priceSaved              : '15$',
+            priceSavedLabel         : 'Saved:',
+            infosSupp               : '',
+            infosSuppColor          : '',
+            txtBelow                : 'Text below',
+            txtBelowClass           : '',
+            class                   : '',
+            boxSize                 : 'sm',
+            language                : 'fr',
         }}
     >
         {Drupal.bind({})}

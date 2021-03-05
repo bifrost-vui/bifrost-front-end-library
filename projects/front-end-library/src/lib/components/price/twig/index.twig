@@ -1,22 +1,32 @@
+
 {% if language is not defined %}
     {% set language = 'en' %}
 {% endif %}
 
 {# ------------------------------------------------------------------------------------------------------------------ #}
-
-<div class='bf-price price-box price-box--{{ boxSize|default('lg') }} {{ class|default('')}} d-inline-flex justify-content-between'>
+<div class='bf-price price-box price-box--{{ boxSize|default('sm') }} {{ class|default('')}} d-inline-flex justify-content-between'>
     <div class='d-inline-flex'>
-    {% if language == 'en' %}
-      <span class='price-box__dollarsign h2 mb-0'>$</span>
-    {% endif %}
+
+        {% if language == 'en' %}
+            <span class='price-box__dollarsign h2 mb-0'>$</span>
+        {% endif %}
 
         <div class=''>
             <div class='d-flex mb-0'>
-                <span class='price-box__dollar {{ dollarClass|default('') }}'>{{ dollar|default('00')}}</span>
+                
+                <span class='price-box__dollar {{ dollarClass|default('') }}'>
+                    {{ dollar|default('00')}}
+                </span>
+                
                 <div class='price-box__infos'>
-                    <div class='mb-0 ml-1 d-flex align-items-baseline'>
- 
-                        <span class='price-box__cent'>{{ cent|default('00')}}</span>
+                    <div class='d-flex align-items-baseline mb-0 ml-1'>
+
+                        {% if cent is defined %}
+                            <span class='price-box__cent'>
+                                {{ cent|default('00')}}
+                            </span>
+                        {% endif %}
+
                         {% if language == 'fr' %}
                             <span class='price-box__dollarsign h2 mb-0'>$</span>
                         {% endif %}
@@ -28,10 +38,9 @@
                                 /{{ recurrencePeriod|default('month') }}
                             {% endif %}
 
-                            {% if asterisk is defined %}
-                                {{ asterisk|default('*') }}
+                            {% if hasAsterisk is defined and hasAsterisk is same as (true) %}
+                                *
                             {% endif %}
-
                         </span>
                         {# 
                         {%  if itemTitleTooltipInfos is defined and itemTitleTooltipInfos is not empty %}
@@ -45,32 +54,50 @@
                     </div>
 
                     {% if infosSupp is defined %}
-                        <p class='mb-0 mt-minus-2 {{ infosSuppColor }}'>{{ infosSupp|default('Lorem ipsum')|raw }}</p>
+                        <p class='mb-0 mt-minus-2 {{ infosSuppColor }}'>
+                            {{ infosSupp|default('')|raw }}
+                        </p>
                     {% endif %}
                 </div>
             </div>
 
-            {% if priceSavings is defined and txtBelow is not empty %}
-                <p class='mb-0 small color--primary'>{{ priceSavings|raw }}</p>
+            {% if priceSavings is defined and priceSavings is not empty %}
+                <p class='small color--primary mb-0'>
+                    {{ priceSavings|raw }}
+                </p>
             {% endif %}
 
             {% if txtBelow is defined and txtBelow is not empty %}
-                <p class='small {{ txtBelowClass }}'>{{ txtBelow|price_one_line }}</p>
+                <p class='small {{ txtBelowClass }}'>
+                    {{ txtBelow|price_one_line }}
+                </p>
             {% endif %}
         </div>
     </div>
 
     <div class='d-inline-flex'>
-        <div>
-            <p class='vui--text-dashed mr-2 mb-0'>{{ priceDashed|default('150$') }}</p>
-        </div>
 
+        {% if priceDashed is defined and priceDashed is not empty %}
+            <div>
+                <p class='vui--text-dashed mr-2 mb-0'>
+                    {{ priceDashed|default('') }}
+                </p>
+            </div>
+        {% endif %}
+
+        {% if priceSaved is defined and priceSaved is not empty %}
         <div>
-            <div class='badge badge-primary d-inline-flex small flex-wrap'>
-                <p class='font-weight-normal mb-0'>You save :</p>
-                <p class='mb-0 ml-1 font-weight-bold'>{{ priceSaved|default('20$')|raw }}</p>
+            <div class='badge small bf-color-bg-action-primary d-inline-flex flex-wrap'>
+                <p class='font-weight-normal mb-0'>
+                    {{ priceSavedLabel|default('You save :') }}
+                </p>
+                <p class='font-weight-bold mb-0 ml-1'>
+                    {{ priceSaved|default('')|raw }}
+                </p>
             </div>
         </div>
+        {% endif %}
+
     </div>       
 </div>
 

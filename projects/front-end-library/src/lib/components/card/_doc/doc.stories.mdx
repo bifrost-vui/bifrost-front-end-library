@@ -53,6 +53,7 @@ export const globalProps = {
         boxAlignement   : 'left',
         dashed          : '$150',
         saved           : '<strong>$30</strong>',
+        recurrencePeriod: undefined,
     },
     buttons           : [
         {
@@ -68,6 +69,7 @@ export const globalProps = {
         }
     ],
     message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
+    language            : 'en',
 };
 
 export const Drupal = (args) => ({
@@ -99,6 +101,37 @@ export const Drupal = (args) => ({
         args={{
             ...globalProps,
             disabled: true,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Plan - Phone selected'
+        args={{
+            ...globalProps,
+            upperTitle      : undefined,
+            contentLists    : contentListsNoTitle,
+            price           : {
+                class           : '',
+                dollar          : '20',
+                boxAlignement   : 'left',
+                recurrencePeriod: 'month',
+            },
+            buttons           : [
+                {
+                    label       : 'Choose this plan',
+                    hierarchy   : 'primary',
+                    reverse     : true,
+                    href        : 'www.videotron.com',
+                }
+            ],
+            message             : undefined,
         }}
     >
         {Drupal.bind({})}

@@ -1,21 +1,24 @@
-{% set hasTag = hasTag|default(false)|json_parse %}
-{% set hasImage = hasImage|default(false)|json_parse %}
-{% set cardType = cardType|default('plan') %}
 
 <div
     class="px-7 d-flex align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
 >
     {% include '@bf-components/price/twig/index.twig' with {
+        dollar                  : dollar|default(''),
+        dollarClass             : dollarClass|default(''),
+        cent                    : cent|default(''),
+        isMonthlyPayment        : isMonthlyPayment|default(false)|json_parse,
+        recurrencePeriod        : recurrencePeriod|default(''),
+        hasAsterisk             : hasAsterisk|default(false)|json_parse,
+        priceSavings            : priceSavings|default(''),
+        priceDashed             : priceDashed|default(''),
+        priceSaved              : priceSaved|default(''),
+        priceSavedLabel         : priceSavedLabel|default(''),
+        infosSupp               : infosSupp|default(''),
+        infosSuppColor          : infosSuppColor|default(''),
+        txtBelow                : txtBelow|default(''),
+        txtBelowClass           : txtBelowClass|default(''),
         class                   : class|default(''),
-        cardType                : cardType,
-        hasImage                 : hasImage,
-        hasTag                   : hasTag,
-        buttonClass             : buttonClass|default(''),
-        iconClass               : iconClass|default(''),
-        label                   : {
-            value                   : label_value|default(''),
-            class                   : label_class|default(''),
-            extraAttribute          : label_extraAttribute|default(NULL),
-        }        
+        boxSize                 : boxSize|default(''),
+        language                : language|default('en'),
     } only %}
 </div>

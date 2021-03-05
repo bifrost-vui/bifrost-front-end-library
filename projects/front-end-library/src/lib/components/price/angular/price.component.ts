@@ -13,20 +13,29 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class PriceComponent implements OnInit {
     constructor() {}
 
-    @Input() hasImage: boolean;
-    @Input() hasTag: boolean;
-    @Input() cardType               : string;
+    @Input() dollar                 : string;
+    @Input() dollarClass            : string;
+    @Input() cent                   : string;
+    @Input() isMonthlyPayment       : boolean;
+    @Input() recurrencePeriod       : string;
+    @Input() hasAsterisk            : boolean;
+    
+    @Input() priceSavings           : string;
+    @Input() priceDashed            : string;
+    @Input() priceSaved             : string;
+    @Input() priceSavedLabel        : string;
+    
+    @Input() infosSupp              : string;
+    @Input() infosSuppColor         : string;
+    @Input() txtBelow               : string;
+    @Input() txtBelowClass          : string;
+
     @Input() class                  : string;
-    @Input() variant                : string;
+    @Input() boxSize                : string;
 
-    @Input() label_value             : string = 'Label';
-    @Input() label_class             : string;
-    @Input() label_extraAttribute    : string;
-
-    @Input() buttonClass            : string;
+    @Input() language               : string;
 
     ngOnInit() {
         console.log('Price', this);
     }
-    
 }
