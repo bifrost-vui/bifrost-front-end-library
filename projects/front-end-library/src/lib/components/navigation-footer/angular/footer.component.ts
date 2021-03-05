@@ -29,8 +29,6 @@ export class FooterComponent implements OnInit {
     @Input() hasBackToTopLink: boolean;
     @Input() backToTopLabel: string;
 
-    @Input() videotronLegalName: string;
-
     @Input() languageBlock: string;
 
     ngOnInit() {
