@@ -1,0 +1,32 @@
+{# {% set title            = title|default('My Selection') %}
+{% set month            = month|default('month') %}
+{% set forLabel         = forLabel|default('For') %}
+{% set duration         = duration|default('24') %}
+{% set savingLabel      = savingLabel|default('You save:') %}
+{% set subtitleTotal    = subtitleTotal|default('Plus applicables taxes') %}
+{% set totalPrice       = totalPrice|default('$80') %}
+{% set content          = content|json_parse %} #}
+
+{% set contentLists         = contentLists|json_parse|default([]) %}
+
+{% set savingLabel          = savingLabel|default('') %}
+{% set subtitleTotal        = subtitleTotal|default('') %}
+{% set totalPrice           = totalPrice|default('') %}
+{% set totalPriceDetails    = totalPriceDetails|default('') %}
+{% set month                = month|default('') %}
+{% set class                = class|default('') %}
+
+<div
+    class="px-7 d-flex align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
+>
+    {% include '@bf-components/block/twig/index.twig' with {
+        title               : title,
+        contentLists        : contentLists,
+        totalPrice          : totalPrice,
+        savingLabel         : savingLabel,
+        subtitleTotal       : subtitleTotal,
+        totalPriceDetails   : totalPriceDetails,
+        month               : month,
+        class               : class,
+    } only %}
+</div>

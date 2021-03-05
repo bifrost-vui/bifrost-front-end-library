@@ -1,0 +1,52 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { contentListsData }                     from './data';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { BlockComponent }                       from '../angular/block.component';
+
+
+<Meta 
+    title='Components/Block' 
+    component={BlockComponent}
+    decorators={[
+        moduleMetadata({ declarations: [BlockComponent, TwigContainerComponent]}),
+    ]}
+/>
+
+# Block
+
+<br/>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Selection'
+        args={{ 
+            elementPath         : 'components/block/_doc/template.drupal',
+            title               : 'My Selection',
+            contentLists        : contentListsData,
+            totalPrice          : '$80',
+            savingLabel         : '',
+            subtitleTotal       : 'Plus applicables taxes',
+            totalPriceDetails   : '(for 24 month)',
+            month               : 'month',
+            class               : '',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+## Component API
+
+<Props of={BlockComponent} />

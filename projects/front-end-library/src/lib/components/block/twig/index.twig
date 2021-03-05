@@ -1,0 +1,84 @@
+<article class='bf-block bf-block--selection d-flex flex-column p-4 {{class}}'>
+
+    <header class='mb-1'>
+        <h1 class='h3'>{{ title }}</h1>
+    </header>
+
+    {% if contentLists is defined %}
+        <ul class='list-unstyled'>
+            {% for item in contentLists %}
+                <li class='bf-block__item d-flex flex-row bf-border-top-secondary py-2'> 
+                    
+                    <div class='label'>
+                        {% if item.title is defined %}
+                            <h2 class='bf-text font-weight-bold'>
+                                {{ item.title }}
+                            </h2>
+                        {% endif %}
+
+                        {% if item.description is defined %}
+                            <p class='description bf-color-neutral-secondary'>
+                                {{ item.description }}
+                            </p>
+                        {% endif %}
+                    </div>
+
+                    <div class=''>
+                        <div class='d-flex justify-content-end pb-1'>
+                            {% include '@bf-components/icon/twig/index.twig' with {
+                                name    : 'bin',
+                                class   : 'mx-1'
+                            } only %}
+                            {% include '@bf-components/icon/twig/index.twig' with {
+                                name    : 'edit',
+                                class   : 'mx-1'
+                            } only %}
+                        </div>
+                    
+                        <div class='monthly-price'>
+                            <span class='bf-color-neutral-secondary'>
+                                {{ item.price }}/{{ month }}
+                            </span>
+                            {% if item.saving is defined %}
+                                <div class='d-inline-flex'>
+                                    <p class='vui--text-dashed mb-0'>
+                                        {{ item.fullPrice }}
+                                    </p>
+                                    <div class='badge badge-primary d-inline-flex small flex-wrap'>
+                                        <p class='font-weight-normal mb-0'>
+                                            {{ savingLabel }}
+                                        </p>
+                                        <p class='mb-0 ml-1 font-weight-bold'>
+                                            {{ item.saving }}
+                                        </p>
+                                    </div>
+                                </div>
+                            {% endif %}  
+                        </div> 
+                    </div>     
+                
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <footer class='col-sm-12 d-flex pt-3 flex-row bf-border-top-primary'>
+        <div class='col-8'>
+            <p class='font-weight-bold mb-0'>
+                Total
+            </p>
+            <p class='bf-color-neutral-secondary mb-0'>
+                {{ subtitleTotal }}
+            </p>
+        </div>
+        <div class='col-4 text-right'>
+            <p class='font-weight-bold mb-0'>
+                {{ totalPrice }} /{{ month }}
+            </p>
+            <p class='bf-color-neutral-secondary mb-0'>
+                {{ totalPriceDetails }}
+            </p>
+        </div>
+    </footer>
+
+<article>
