@@ -58,7 +58,7 @@ export const allLogoCategories = [
         ]
     },
     {
-        categoryName: 'Small (Deprecated)',
+        categoryName: 'Small',
         list: [
             {
                 size        : 'small',
