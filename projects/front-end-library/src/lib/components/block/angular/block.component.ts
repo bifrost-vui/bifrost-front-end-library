@@ -14,14 +14,14 @@ export class BlockComponent implements OnInit {
     constructor() {}
     
     @Input() title              : string;
+    @Input() topLink            : object;
+    @Input() contentTop         : object;
     @Input() contentLists       : object;
 
-    @Input() totalPrice         : string;
-    @Input() savingLabel        : string;
-    @Input() subtitleTotal      : string;
-    @Input() totalPriceDetails  : string;
+    @Input() totalPrice         : object;
     @Input() month              : string;
 
+    @Input() isListingMode      : boolean;
     @Input() class              : string;
 
     ngOnInit() {

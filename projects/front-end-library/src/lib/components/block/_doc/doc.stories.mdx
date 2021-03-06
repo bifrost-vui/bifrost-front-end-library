@@ -24,6 +24,20 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+export const commonProps = {
+    elementPath         : 'components/block/_doc/template.drupal',
+    title               : 'My selection',
+    contentLists        : contentListsData,
+    totalPrice          : {
+        label               : 'Total',
+        details             : 'Plus applicable taxes',
+        price               : '$80.00',
+        priceDetails        : '(for 24 month)',
+    },
+    month               : 'month',
+    class               : '',
+}
+
 <Preview
     withSource='none'
     style={{ height: '300px' }}
@@ -31,15 +45,32 @@ export const Drupal = (args) => ({
     <Story 
         name='Selection'
         args={{ 
-            elementPath         : 'components/block/_doc/template.drupal',
-            title               : 'My Selection',
-            contentLists        : contentListsData,
-            totalPrice          : '$80',
-            savingLabel         : '',
-            subtitleTotal       : 'Plus applicables taxes',
-            totalPriceDetails   : '(for 24 month)',
-            month               : 'month',
-            class               : '',
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Selection - Listing'
+        args={{ 
+            ...commonProps,
+            isListingMode       : true,
+            topLink             : {
+                href        : 'www.videotron.com',
+                label       : 'FINALIZE',
+            },
+            contentTop          : {
+                label       : 'No device',
+                linkHref    : 'www.videotron.com',
+                linkLabel   : 'ADD A PHONE',
+            },
+            totalPrice      : false,
         }}
     >
         {Drupal.bind({})}
