@@ -1,4 +1,4 @@
-{% set reversed = reversed|default(false)|json_parse %}
+{% set reversed = reversed|json_parse|default(false) %}
 
 <div
     class="px-7 d-flex align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
@@ -9,8 +9,8 @@
         buttonClass             : buttonClass|default(''),
         iconClass               : iconClass|default(''),
         invalidMsg              : invalidMsg|default(''),
-        isDisabled              : isDisabled|default(false)|json_parse,
-        isChecked               : isChecked|default(false)|json_parse,
+        isDisabled              : isDisabled|json_parse|default(false),
+        isChecked               : isChecked|json_parse|default(false),
         input                   : {
             id                      : input_id|default(''),
             class                   : input_class|default(''),
@@ -36,7 +36,7 @@
     } only %}
 </div>
 
-{% if isInvalid|default(false)|json_parse %}
+{% if isInvalid|json_parse|default(false) %}
     <script>
         function setInvalid() {
             document.getElementsByClassName('form-group')[0].classList.add('is-invalid');
