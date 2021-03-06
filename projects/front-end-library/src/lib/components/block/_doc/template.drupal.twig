@@ -3,12 +3,12 @@
 >
     {% include '@bf-components/block/twig/index.twig' with {
         title               : title|default(''),
-        topLink             : topLink|default({})|json_parse,
-        contentTop          : contentTop|default({})|json_parse,
-        contentLists        : contentLists|default([])|json_parse,
-        totalPrice          : totalPrice|default({})|json_parse,
+        topLink             : topLink|json_parse|default({}),
+        contentTop          : contentTop|json_parse|default({}),
+        contentLists        : contentLists|json_parse|default([]),
+        totalPrice          : totalPrice|json_parse|default({}),
         month               : month|default(''),
-        isListingMode       : isListingMode|default(false)|json_parse,
+        isListingMode       : isListingMode|json_parse|default(false),
         class               : class|default(''),
     } only %}
 </div>
