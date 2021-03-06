@@ -12,6 +12,10 @@
     border-radius: var(--bf-border-radius-medium);
     overflow: hidden;
 
+    &--has-visual .bf-card__header {
+        background-color: transparent;
+    }
+
     &[disabled] {
         cursor: default;
         pointer-events:  none;
@@ -31,12 +35,22 @@
         }
     }
 
-    // &__header {}
+    &__visual {
+        min-height: 9rem;
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    &__header {
+        @extend .bf-color-bg-underground;
+    }
 
     &__body {
-        padding: 1rem 1.5rem;
 
         .bf-card__content-list {
+            padding: 1rem 1.5rem;
             @extend .mb-3;
 
             &:last-child { @extend .mb-0 }

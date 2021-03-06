@@ -1,48 +1,50 @@
+{% set hasImage     = image.src is defined and image.src is not empty %}
+{% set hasIcon      = iconName is defined and iconName is not empty %}
+{% set hasVisual    = hasImage or hasIcon %}
+
 <article
-    class='bf-card d-flex flex-column'
+    class='bf-card {% if hasVisual %}bf-card--has-visual{% endif %} d-flex flex-column'
     {% if disabled is defined and disabled is same as (true) %}disabled{% endif %}
 >
 
-    {% if hasImage is defined and hasImage is same as (true) %}
-        <div class='cardImage d-flex flex-wrap align-items-center'>
-            
-            {% if imageGifSrc is defined  %}
+    {% if hasVisual %}
+        <div class='bf-card__visual bf-color-bg-underground d-flex justify-content-center align-items-center p-3'>
+            {% if hasImage %}
                 <img
-                    data-src='{{ imageGifSrc|default('https://source.unsplash.com/72x72/?nature') }}' 
-                    alt='{{ imageGifAlt|default('https://source.unsplash.com/72x72/?nature') }}'
-                >
-            {% endif %}
-
-            {% if imageIcon is defined  %}
+                    data-src='{{ image.src|default('') }}'
+                    alt='{{ image.alt|default('') }}'
+                />
+            {% elseif hasIcon %}
                 {% include '@bf-components/icon/twig/index.twig' with {
-                    name    : imageIcon,
-                    color   : color,
-                    size    : 'small',
+                    name    : iconName,
                     type    : 'illustration',
+                    size    : 'large'
                 } only %}
             {% endif %}
         </div>
     {% endif %}
 
-    <header class='bf-card__header bf-color-bg-underground p-4'>
-
-        {% if upperTitle is defined %}
+    <header class='bf-card__header p-4'>
+    
+        {% if upperTitle is defined and upperTitle is not empty %}
             <p class='mb-1'>
                 {{ upperTitle|default('') }}
             </p>
         {% endif %}
         
-        <h1 class='h3 mb-1'>
-            {{ title|default('') }}
-        </h1>
+        {% if title is defined and title is not empty %}
+            <h1 class='h3 mb-1'>
+                {{ title|default('') }}
+            </h1>
+        {% endif %}
 
-        {% if description is defined %}
+        {% if description is defined and description is not empty %}
             <p class='mb-1'>
                 {{ description }}
             </p>
         {% endif %}
 
-        {% if link['href'] is defined %} 
+        {% if link.href is defined and link.href is not empty %} 
             <a
                 href='{{ link.href|default('') }}'
                 class='bf-link'
@@ -62,7 +64,6 @@
     <div class='bf-card__body'>
 
         {% if contentLists is defined %}
-
             {% for list in contentLists %}
                 <div class='bf-card__content-list'>
 
@@ -94,9 +95,10 @@
                 </div>
             {% endfor %}
         {% endif %}
+
     </div>
 
-    <div class='bf-card__footer bf-border-top-secondary pt-4'>
+    <footer class='bf-card__footer bf-border-top-secondary pt-4'>
         
         {% if price is defined %}
             {% set price = price|merge({
@@ -104,6 +106,12 @@
                 'language'  : language
             }) %}
             {% include '@bf-components/price/twig/index.twig' with price only %}
+        {% endif %}
+
+        {% if note is defined and note is not empty %}
+            <p class='small'>
+                {{ note }}
+            </p>
         {% endif %}
 
         <div class='bf-card__buttons'>
@@ -127,6 +135,6 @@
             </div>
         {% endif %}
 
-    </div>
+    </footer>
 
 </article>

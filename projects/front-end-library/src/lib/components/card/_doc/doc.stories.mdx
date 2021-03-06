@@ -34,7 +34,7 @@ import { CardComponent }                        from '../angular/card.component'
 
 ## Drupal
 
-export const globalProps = {
+export const commonProps = {
     disabled        : false,
     upperTitle      : 'upperTitle',
     title           : 'All-Inclusive 12 GB Mobile',
@@ -75,7 +75,7 @@ export const globalProps = {
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
     props: {
-        elementPath : 'components/card/_doc/template-plan.drupal',
+        elementPath : 'components/card/_doc/template.drupal',
         ...args,
     }
 });
@@ -86,7 +86,7 @@ export const Drupal = (args) => ({
 >
     <Story 
         name='Plan'
-        args={{ ...globalProps }}
+        args={{ ...commonProps }}
     >
         {Drupal.bind({})}
     </Story>
@@ -99,7 +99,7 @@ export const Drupal = (args) => ({
     <Story 
         name='Plan Disabled'
         args={{
-            ...globalProps,
+            ...commonProps,
             disabled: true,
         }}
     >
@@ -114,7 +114,7 @@ export const Drupal = (args) => ({
     <Story 
         name='Plan - Phone selected'
         args={{
-            ...globalProps,
+            ...commonProps,
             upperTitle      : undefined,
             contentLists    : contentListsNoTitle,
             price           : {
@@ -132,6 +132,78 @@ export const Drupal = (args) => ({
                 }
             ],
             message             : undefined,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Phone'
+        args={{
+            elementPath     : 'components/card/_doc/template.drupal',
+            image           : {
+                src             : '/images/_docs/abstract-background.png',
+                alt             : 'iPhone 12 Mini',
+            },
+            title           : 'iPhone 12 Mini',
+            price           : {
+                class           : '',
+                dollar          : '152',
+                cent            : '34',
+                infosSupp       : 'Taxes incl.',
+                boxAlignement   : 'left',
+                dashed          : '$150',
+                saved           : '<strong>$30</strong>',
+                recurrencePeriod: undefined,
+            },
+            note                : 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
+            buttons           : [
+                {
+                    label       : 'Configurate',
+                    hierarchy   : 'primary',
+                    reverse     : true,
+                    href        : 'www.videotron.com',
+                }
+            ],
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Protection'
+        args={{
+            elementPath     : 'components/card/_doc/template.drupal',
+            iconName        : 'apple',
+            title           : 'Apple Care+ for iPhone',
+            price           : {
+                class           : '',
+                dollar          : '152',
+                cent            : '34',
+                infosSupp       : 'Taxes incl.',
+                boxAlignement   : 'left',
+                dashed          : '$150',
+                saved           : '<strong>$30</strong>',
+                recurrencePeriod: undefined,
+            },
+            buttons           : [
+                {
+                    label       : 'Add this protection',
+                    hierarchy   : 'primary',
+                    reverse     : true,
+                    href        : 'www.videotron.com',
+                }
+            ],
         }}
     >
         {Drupal.bind({})}
