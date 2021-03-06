@@ -1,20 +1,14 @@
-{% set topLink          = topLink|json_parse %}
-{% set contentTop       = contentTop|json_parse %}
-{% set contentLists     = contentLists|json_parse %}
-{% set totalPrice       = totalPrice|json_parse %}
-{% set isListingMode    = isListingMode|json_parse %}
-
 <div
     class="px-7 d-flex align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
 >
     {% include '@bf-components/block/twig/index.twig' with {
         title               : title|default(''),
-        topLink             : topLink|default({}),
-        contentTop          : contentTop|default({}),
-        contentLists        : contentLists|default([]),
-        totalPrice          : totalPrice|default({}),
+        topLink             : topLink|default({})|json_parse,
+        contentTop          : contentTop|default({})|json_parse,
+        contentLists        : contentLists|default([])|json_parse,
+        totalPrice          : totalPrice|default({})|json_parse,
         month               : month|default(''),
-        isListingMode       : isListingMode|default(false),
+        isListingMode       : isListingMode|default(false)|json_parse,
         class               : class|default(''),
     } only %}
 </div>
