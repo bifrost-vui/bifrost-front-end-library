@@ -1,5 +1,3 @@
-{% set image = image|json_parse %}
-
 <div
     class="px-7 d-flex flex-column align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
 >
@@ -8,10 +6,7 @@
         title                   : title|default(''),
         paragraph               : paragraph|default(''),
         badge                   : badge|default(''),
-        image                   : {
-            url:    image.url|default(''),
-            alt:    image.alt|default(''),
-        },
+        image                   : image|json_parse|default({}),
         class                   : class|default('mb-4'),
     } only %}
 

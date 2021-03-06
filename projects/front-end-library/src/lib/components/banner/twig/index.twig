@@ -1,4 +1,4 @@
-{% set hasImage     = image['url'] is defined and image['url'] is not empty %}
+{% set hasImage     = image.src is defined and image.src is not empty %}
 {% set hasIcon      = iconName is defined and iconName is not empty %}
 {% set hasVisual    = hasImage or hasIcon %}
 
@@ -11,8 +11,8 @@
         <div class='bf-banner__visual'>
             {% if hasImage %}
                 <img
-                    data-src='{{ image['url']|default('') }}'
-                    alt='{{ image['alt']|default('') }}'
+                    data-src='{{ image.src|default('') }}'
+                    alt='{{ image.alt|default('') }}'
                 />
             {% elseif hasIcon %}
                 {% include '@bf-components/icon/twig/index.twig' with {
@@ -36,8 +36,7 @@
 
     {% if badge is defined and badge is not empty %}
         {% include '@bf-components/tag/twig/index.twig' with {
-            variant     : '',
-            align       : align|default('right'),
+            align       : 'right',
             label       : badge|default(''),
         } only %}
     {% endif %} 
