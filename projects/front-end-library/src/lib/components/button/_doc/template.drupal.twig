@@ -1,0 +1,63 @@
+{% set isDisabled   = isDisabled|json_parse %}
+{% set hasLoading   = hasLoading|json_parse %}
+{% set isLoading    = isLoading|json_parse %}
+{% set fullWidth    = fullWidth|json_parse %}
+
+{% set hierarchyList = hierarchy is defined ? [hierarchy] : ['primary', 'primary-alt', 'secondary', 'tertiary'] %}
+
+
+<div class='d-flex flex-column h-100 w-100'>
+    {% for index in [1,2] %}
+        
+        <div class='d-flex flex-column align-items-center justify-content-center flex-grow-1 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
+
+            {% for _hierarchy in hierarchyList %}
+                <div class='row'>
+                    
+                    {% include '@bf-components/button/twig/index.twig' with {
+                        label       : label|default(_hierarchy),
+                        hierarchy   : hierarchy|default(_hierarchy),
+                        isDisabled  : isDisabled,
+                        hasLoading  : hasLoading,
+                        isLoading   : isLoading,
+                        fullWidth   : fullWidth,
+                        class       : class|default(''),
+                    } only %}
+
+                    {% include '@bf-components/button/twig/index.twig' with {
+                        label       : label|default(_hierarchy),
+                        hierarchy   : hierarchy|default(_hierarchy),
+                        isDisabled  : isDisabled|default(true),
+                        hasLoading  : hasLoading,
+                        isLoading   : isLoading,
+                        fullWidth   : fullWidth,
+                        class       : class|default(''),
+                    } only %}
+
+                    {% include '@bf-components/button/twig/index.twig' with {
+                        label       : label|default(_hierarchy),
+                        hierarchy   : hierarchy|default(_hierarchy),
+                        hasLoading  : hasLoading,
+                        isDisabled  : isDisabled,
+                        fullWidth   : fullWidth,
+                        isLoading   : isLoading|default(true),
+                        class       : class|default(''),
+                    } only %}
+
+                </div>
+            {% endfor %}
+
+        </div>
+        
+    {% endfor %}
+</div>
+
+
+{% if isLoading|json_parse|default(false) %}
+    <script>
+        function setLoading() {
+            document.getElementsByClassName('.bf-button')[0].classList.add('loading');
+        }
+        setLoading();
+    </script>
+{% endif %}

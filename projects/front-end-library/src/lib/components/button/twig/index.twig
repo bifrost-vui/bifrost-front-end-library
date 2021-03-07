@@ -1,13 +1,24 @@
 <button 
     type='button'
     class='
-        btn
-        btn-{{ size|default('md') }}
-        btn-{{ hierarchy|default('secondary') }}
+        bf-button
+        bf-button--{{ hierarchy|default('secondary') }}
         {% if reversed is same as (true) %}reversed{% endif %}
         {% if fullWidth is same as (true) %}btn-block{% endif %}
-        {{ class|default('') }}
-    {% if disabled is same as ('true') %}disabled{% endif %}'
+        {% if isDisabled is same as (true) %}disabled{% endif %}
+        {% if isLoading is same as (true) %}loading{% endif %}
+        {{ class|default('') }}'
+    {% if isDisabled is same as (true) %}disabled='disabled'{% endif %}
 >
-    {{ label|default('Default') }}
+    <span class='bf-button__label'>
+        {{ label|default('') }}
+    </span>
+
+    {% if isLoading is same as (true) or hasLoading is same as (true) %}
+        <div class='bf-button__loading' role='decoration'>
+            <i></i>
+            <i></i>
+            <i></i>
+        </div>
+    {% endif %}
 </button>

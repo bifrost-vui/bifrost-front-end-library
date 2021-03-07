@@ -1,0 +1,68 @@
+import { moduleMetadata } from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+
+import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
+import { ButtonComponent }                  from '../angular/button.component';
+
+
+<Meta 
+    title='Components/Button' 
+    component={ButtonComponent}
+    decorators={[
+        moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent]})
+    ]}
+    argTypes={{
+        hierarchy: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['', 'primary', 'primary-alt', 'secondary', 'tertiary' ]
+            }
+        },
+    }}
+/>
+
+
+# Button
+
+<br/>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal'
+        args={{ 
+            elementPath : 'components/button/_doc/template.drupal',
+            class       : 'ml-4 mb-3',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+## Source Code
+
+```php
+{% include '@bf-components/button/twig/index.twig' with {
+    label       : 'Button label',
+    hierarchy   : 'primary',
+    isDisabled  : false,
+    isLoading   : false,
+    class       : 'mt-3',
+} only %}
+```
+
+
+## Component API
+
+<Props of={ButtonComponent} />
