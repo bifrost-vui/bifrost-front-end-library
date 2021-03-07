@@ -1,4 +1,7 @@
-<button class='bf-button-icon vui--style-reset p-2 m-0 {{class}}'>
+<button
+    class='bf-button-icon vui--style-reset p-2 m-0 {{ class }}'
+    {% if isDisabled is defined and isDisabled is same as (true) %}disabled='disabled'{% endif %}
+>
     {% include '@bf-components/icon/twig/index.twig' with {
         name    : icon|default('placeholder')
     } only %}
