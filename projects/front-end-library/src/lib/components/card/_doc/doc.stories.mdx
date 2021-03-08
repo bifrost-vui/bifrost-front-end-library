@@ -1,0 +1,205 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+
+import { contentLists, contentListsNoTitle }    from './data';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { CardComponent }                        from '../angular/card.component';
+
+
+<Meta 
+    title='Components/Card' 
+    component={CardComponent}
+    decorators={[
+        moduleMetadata({ declarations: [CardComponent, TwigContainerComponent]})
+    ]}
+    argTypes={{}}
+/>
+
+
+# Card
+
+<br/>
+
+## Drupal
+
+export const commonProps = {
+    isDisabled      : false,
+    upperTitle      : 'upperTitle',
+    title           : 'All-Inclusive 12 GB Mobile',
+    description     : 'So you can do what you want, when you want, without worrying about your data.',
+    link            : {
+        label           : 'Learn more',
+        href            : 'www.videotron.com',
+    },
+    badge           : 'PROMOTION',
+    contentLists    : contentLists,
+    price           : {
+        class           : '',
+        dollar          : '152',
+        cent            : '34',
+        infosSupp       : 'Taxes incl.',
+        boxAlignement   : 'left',
+        dashed          : '$150',
+        saved           : '<strong>$30</strong>',
+    },
+    buttons           : [
+        {
+            label       : 'Add a phone with this plan',
+            hierarchy   : 'primary-alt',
+            reverse     : true,
+            href        : 'www.videotron.com',
+        },
+        {
+            label       : 'BUY only this PLAN',
+            hierarchy   : 'tertiary',
+            href        : 'www.videotron.com',
+        }
+    ],
+    message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
+    language            : 'en',
+};
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: {
+        elementPath : 'components/card/_doc/template.drupal',
+        ...args,
+    }
+});
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Plan'
+        args={{ ...commonProps }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Plan Disabled'
+        args={{
+            ...commonProps,
+            isDisabled: true,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Plan - Phone selected'
+        args={{
+            ...commonProps,
+            upperTitle      : undefined,
+            contentLists    : contentListsNoTitle,
+            price           : {
+                class           : '',
+                dollar          : '20',
+                boxAlignement   : 'left',
+            },
+            buttons           : [
+                {
+                    label       : 'Choose this plan',
+                    hierarchy   : 'primary-alt',
+                    href        : 'www.videotron.com',
+                }
+            ],
+            message             : undefined,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<!-- detailsColors   : ['#4B4A46', '#2C4651', '#D4BBA5', '#C0C0C0'], -->
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Phone'
+        args={{
+            elementPath     : 'components/card/_doc/template.drupal',
+            image           : {
+                src             : '/images/_docs/abstract-background.png',
+                alt             : 'iPhone 12 Mini',
+            },
+            title           : 'iPhone 12 Mini',
+            detailsColors   : [
+                { value :'4B4A46', name : 'Lorem' },
+                { value :'2C4651', name : 'Ipsum' },
+                { value :'D4BBA5', name : 'Dolor' },
+                { value :'C0C0C0', name : 'Amet' },
+            ],
+            detailsStorage : ['128 Go', '256 Go'],
+            price           : {
+                uppertitle      : 'From',
+                dollar          : '86',
+                cent            : '99',
+                details         : '/month',
+                boxAlignement   : 'left',
+                dashed          : '$150.00',
+                saved           : '$30.00',
+                savedLabel      : 'You save:',
+            },
+            note                : 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
+            buttons           : [
+                {
+                    label       : 'Configurate',
+                    hierarchy   : 'primary-alt',
+                    href        : 'www.videotron.com',
+                }
+            ],
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Protection'
+        args={{
+            elementPath     : 'components/card/_doc/template.drupal',
+            iconName        : 'apple',
+            title           : 'Apple Care+ for iPhone',
+            price           : {
+                class           : '',
+                dollar          : '152',
+                cent            : '34',
+                infosSupp       : 'Taxes incl.',
+                boxAlignement   : 'left',
+                dashed          : '$150',
+                saved           : '<strong>$30</strong>',
+            },
+            buttons           : [
+                {
+                    label       : 'Add this protection',
+                    hierarchy   : 'primary-alt',
+                    href        : 'www.videotron.com',
+                }
+            ],
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+## Component API
+
+<Props of={CardComponent} />

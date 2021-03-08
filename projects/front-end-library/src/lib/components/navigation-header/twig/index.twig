@@ -49,13 +49,12 @@
 
             <div class='d-flex d-lg-none align-items-center'>
                 {% for link in rigthIconLinks|default([]) %}
-                    {% if link.href is not empty and link.icon is not empty %}
-                        <a href='{{ link.href }}' class='link--no-decoration m-1 p-1'>
-                            {% include '@bf-components/icon/twig/index.twig' with {
-                                name    : link.icon,
-                                class   : link.class
-                            } %}
-                        </a>
+                    {% if link is not empty %}
+                        {% include '@bf-components/button-icon/twig/index.twig' with {
+                            href    : link.href,
+                            icon    : link.icon,
+                            class   : 'm-1 p-1 ' ~ link.class
+                        } only %}
                     {% endif %}
                 {% endfor %}
 
@@ -70,17 +69,14 @@
                 {% endif %} #}
 
                 <!-- Btn search toggle -->
-                <button class='d-flex d-md-none vui--style-reset m-1 p-1 js-bf-search-toggler'
-                        type='button'
-                        data-toggle='collapse'
-                        data-target='#navbarSearch'
-                        aria-controls='navbarSearch'
-                        aria-expanded='false'>
-                    {% include '@bf-components/icon/twig/index.twig' with {
-                        name    : 'search',
-                        class   : ''
-                    } %}
-                </button>
+                {% include '@bf-components/button-icon/twig/index.twig' with {
+                    icon            : 'search',
+                    dataToggle      : 'collapse',
+                    dataTarget      : '#navbarSearch',
+                    ariaControls    : 'navbarSearch',
+                    ariaExpanded    : 'false',
+                    class           : 'd-flex d-md-none m-1 p-1 js-bf-search-toggler'
+                } only %}
             </div>
 
             <!-- Search -->
@@ -96,17 +92,14 @@
                                 reversed    : reversed,
                             } %}
                         {% endblock %}
-                        <button class='d-flex d-md-none vui--style-reset m-1 p-1'
-                                type='button'
-                                data-toggle='collapse'
-                                data-target='#navbarSearch'
-                                aria-controls='navbarSearch'
-                                aria-expanded='false'>
-                            {% include '@bf-components/icon/twig/index.twig' with {
-                                name    : 'x',
-                                class   : ''
+                            {% include '@bf-components/button-icon/twig/index.twig' with {
+                                icon            : 'x',
+                                dataToggle      : 'collapse',
+                                dataTarget      : '#navbarSearch',
+                                ariaControls    : 'navbarSearch',
+                                ariaExpanded    : 'false',
+                                class           : 'd-flex d-md-none m-1 p-1'
                             } %}
-                        </button>
                     </div>
                 </div>
             {% endif %}
@@ -115,10 +108,10 @@
 
     </nav>
 
-  {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
-    <div class='align-items-center justify-content-between w-100'>
-      <div id='alg-hits' class='ais-Hits bg-white alg-hidden'></div>
-    </div>
-  {% endif %}
+    {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
+        <div class='align-items-center justify-content-between w-100'>
+            <div id='alg-hits' class='ais-Hits bg-white alg-hidden'></div>
+        </div>
+    {% endif %}
 
 </header>

@@ -1,0 +1,39 @@
+import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+
+/**
+ * API is the same between **Angular** and **Drupal**.
+ *
+ */
+ 
+@Component({
+    selector: "bf-button",
+    templateUrl: './button.component.html',
+    // styleUrls: ['../common/style.scss'],
+})
+export class ButtonComponent implements OnInit {
+    constructor() {}
+
+    @Input() label          : string;
+    @Input() hierarchy      : string;
+    @Input() isDisabled     : boolean;
+    @Input() hasLoading     : boolean;
+    @Input() isLoading      : boolean;
+    @Input() fullWidth      : boolean;
+
+    @Input() iconName       : string;
+    @Input() iconPosition   : string;
+
+    @Input() dataDismiss    : string;
+    @Input() dataToggle     : string;
+    @Input() dataTarget     : string;
+    @Input() ariaControls   : string;
+    @Input() ariaExpanded   : string;
+    @Input() ariaLabel      : string;
+    @Input() extraAttribute : string;
+    @Input() class          : string;
+
+    ngOnInit() {
+        console.log('button', this);
+    }
+    
+}

@@ -1,0 +1,44 @@
+{% set hasImage     = image.src is defined and image.src is not empty %}
+{% set hasIcon      = iconName is defined and iconName is not empty %}
+{% set hasVisual    = hasImage or hasIcon %}
+
+<a
+    class='bf-banner d-flex align-items-center {% if hasVisual %}bf-banner--has-visual{% endif %} {{class|default('')}}'
+    href='{{ href|default('') }}'
+>
+
+    {% if hasVisual %}
+        <div class='bf-banner__visual'>
+            {% if hasImage %}
+                <img
+                    data-src='{{ image.src|default('') }}'
+                    alt='{{ image.alt|default('') }}'
+                />
+            {% elseif hasIcon %}
+                {% include '@bf-components/icon/twig/index.twig' with {
+                    name    : iconName,
+                    type    : 'illustration',
+                } only %}
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <div class='bf-banner__content'>
+        <p class='small font-weight-bold mb-1'>
+            {{ title|default('') }}
+        </p>
+        {% if paragraph is defined %}
+            <p class='small m-0'>
+                {{ paragraph }}
+            </p>
+        {% endif %}
+    </div>
+
+    {% if badge is defined and badge is not empty %}
+        {% include '@bf-components/tag/twig/index.twig' with {
+            align       : 'right',
+            label       : badge|default(''),
+        } only %}
+    {% endif %} 
+
+</a>

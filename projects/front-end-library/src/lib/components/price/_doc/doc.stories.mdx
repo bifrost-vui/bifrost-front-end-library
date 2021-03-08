@@ -1,0 +1,73 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { PriceComponent }                       from '../angular/price.component';
+
+
+<Meta 
+    title='Components/Price' 
+    component={PriceComponent}
+    decorators={[
+        moduleMetadata({ declarations: [PriceComponent, TwigContainerComponent]}),
+    ]}
+    argTypes={{
+    }}
+/>
+
+
+# Promo
+
+<br/>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+            <!-- elementPath : 'components/price/_doc/template.drupal',
+            dollar                  : '30',
+            dollarClass             : '',
+            cent                    : '99',
+            recurrencePeriod        : 'month',
+            hasAsterisk             : true,
+            priceDashed             : '150$',
+            priceSavings            : '10$',
+            priceSaved              : '15$',
+            priceSavedLabel         : 'Saved:',
+            infosSupp               : '',
+            txtBelow                : 'Text below',
+            class                   : '',
+            language                : 'fr', -->
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal'
+        args={{ 
+            elementPath     : 'components/price/_doc/template.drupal',
+            subtitle        : 'From',
+            dollar          : '30',
+            dollarClass     : '',
+            cent            : '99',
+            hasAsterisk     : false,
+            details         : '/month',
+            dashed          : '$150',
+            saved           : '$10',
+            message         : 'Lorem ipsum dolor sit amet',
+            class           : '',
+            size            : 'sm',
+            language        : 'en',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+## Component API
+
+<Props of={PriceComponent} />
