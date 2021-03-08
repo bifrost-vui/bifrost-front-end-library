@@ -1,7 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-import { withDesign }                           from 'storybook-addon-designs'
 
+import { illustrationIcons }                    from '../../icon/_doc/data';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { BannerComponent }                      from '../angular/banner.component';
 
@@ -12,16 +12,21 @@ import { BannerComponent }                      from '../angular/banner.componen
     decorators={[
         moduleMetadata({ declarations: [BannerComponent, TwigContainerComponent]})
     ]}
-    argTypes={{}}
+    argTypes={{
+        iconName: {
+            defaultValue: 'mobile-multiline',
+            control: {
+                type: 'select',
+                options: ['', ...illustrationIcons.map(a => a.list).flat().sort()]
+            }
+        },
+    }}
 />
 
 
 # Promo
 
-> Explore **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)** (Zeroheight)
-
 <br/>
-
 
 ## Drupal
 
@@ -46,8 +51,8 @@ export const Drupal = (args) => ({
                 src: 'https://source.unsplash.com/72x72/?nature',
                 alt: 'Alt description'
             },
-            iconName    : 'mobile-multiline',
             badge       : 'FREE',
+            class       : 'mb-4',
         }}
     >
         {Drupal.bind({})}
@@ -57,8 +62,3 @@ export const Drupal = (args) => ({
 ## Component API
 
 <Props of={BannerComponent} />
-
-
-## Design Guidelines
-
-<iframe width='100%' height='450' src='https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI-Kit-Pattern-lab?node-id=11017%3A708' frameBorder='0' allowFullScreen></iframe>
