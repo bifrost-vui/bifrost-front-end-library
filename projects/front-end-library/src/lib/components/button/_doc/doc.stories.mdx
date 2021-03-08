@@ -1,8 +1,9 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
-import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
-import { ButtonComponent }                  from '../angular/button.component';
+import { interfaceIcons }                       from '../../icon/_doc/data.ts';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { ButtonComponent }                      from '../angular/button.component';
 
 
 <Meta 
@@ -17,6 +18,20 @@ import { ButtonComponent }                  from '../angular/button.component';
             control: {
                 type: 'select',
                 options: ['', 'primary', 'primary-alt', 'secondary', 'tertiary' ]
+            }
+        },
+        iconName: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['', 'placeholder', ...interfaceIcons.map(a => a.list).flat().sort()]
+            }
+        },
+        iconPosition: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['', 'left', 'right']
             }
         },
     }}
@@ -43,6 +58,13 @@ export const Drupal = (args) => ({
         args={{ 
             elementPath : 'components/button/_doc/template.drupal',
             class       : 'ml-4 mb-3',
+            dataDismiss    : 'dataDismiss',
+            dataToggle     : 'dataToggle',
+            dataTarget     : 'dataTarget',
+            ariaControls   : 'ariaControls',
+            ariaExpanded   : 'ariaExpanded',
+            ariaLabel      : 'ariaLabel',
+            extraAttribute : 'extraAttribute',
         }}
     >
         {Drupal.bind({})}
@@ -54,11 +76,13 @@ export const Drupal = (args) => ({
 
 ```php
 {% include '@bf-components/button/twig/index.twig' with {
-    label       : 'Button label',
-    hierarchy   : 'primary',
-    isDisabled  : false,
-    isLoading   : false,
-    class       : 'mt-3',
+    label           : 'Button label',
+    hierarchy       : 'primary',
+    isDisabled      : false,
+    isLoading       : false,
+    iconName        : 'placeholder',
+    iconPosition    : 'right',
+    class           : 'mt-3',
 } only %}
 ```
 

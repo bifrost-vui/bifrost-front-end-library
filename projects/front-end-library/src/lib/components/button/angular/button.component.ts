@@ -18,9 +18,18 @@ export class ButtonComponent implements OnInit {
     @Input() isDisabled     : boolean;
     @Input() hasLoading     : boolean;
     @Input() isLoading      : boolean;
-
     @Input() fullWidth      : boolean;
 
+    @Input() iconName       : string;
+    @Input() iconPosition   : string;
+
+    @Input() dataDismiss    : string;
+    @Input() dataToggle     : string;
+    @Input() dataTarget     : string;
+    @Input() ariaControls   : string;
+    @Input() ariaExpanded   : string;
+    @Input() ariaLabel      : string;
+    @Input() extraAttribute : string;
     @Input() class          : string;
 
     ngOnInit() {

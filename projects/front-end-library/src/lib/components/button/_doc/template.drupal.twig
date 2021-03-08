@@ -5,45 +5,48 @@
 
 {% set hierarchyList = hierarchy is defined ? [hierarchy] : ['primary', 'primary-alt', 'secondary', 'tertiary'] %}
 
-
 <div class='d-flex flex-column h-100 w-100'>
     {% for index in [1,2] %}
         
-        <div class='d-flex flex-column align-items-center justify-content-center flex-grow-1 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
+        <div class='d-flex flex-column justify-content-center flex-grow-1 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
 
             {% for _hierarchy in hierarchyList %}
                 <div class='row'>
-                    
-                    {% include '@bf-components/button/twig/index.twig' with {
-                        label       : label|default(_hierarchy),
-                        hierarchy   : hierarchy|default(_hierarchy),
-                        isDisabled  : isDisabled,
-                        hasLoading  : hasLoading,
-                        isLoading   : isLoading,
-                        fullWidth   : fullWidth,
-                        class       : class|default(''),
-                    } only %}
-
-                    {% include '@bf-components/button/twig/index.twig' with {
-                        label       : label|default(_hierarchy),
-                        hierarchy   : hierarchy|default(_hierarchy),
-                        isDisabled  : isDisabled|default(true),
-                        hasLoading  : hasLoading,
-                        isLoading   : isLoading,
-                        fullWidth   : fullWidth,
-                        class       : class|default(''),
-                    } only %}
-
-                    {% include '@bf-components/button/twig/index.twig' with {
-                        label       : label|default(_hierarchy),
-                        hierarchy   : hierarchy|default(_hierarchy),
-                        hasLoading  : hasLoading,
-                        isDisabled  : isDisabled,
-                        fullWidth   : fullWidth,
-                        isLoading   : isLoading|default(true),
-                        class       : class|default(''),
-                    } only %}
-
+                    <div class='flex-grow-1'>
+                        {% include '@bf-components/button/twig/index.twig' with {
+                            label       : label|default(_hierarchy),
+                            hierarchy   : hierarchy|default(_hierarchy),
+                        } %}
+                    </div>
+                    <div class='flex-grow-1'>
+                        {% include '@bf-components/button/twig/index.twig' with {
+                            label       : label|default(_hierarchy),
+                            hierarchy   : hierarchy|default(_hierarchy),
+                            iconName    : iconName|default('placeholder'),
+                        } %}
+                    </div>
+                    <div class='flex-grow-1'>
+                        {% include '@bf-components/button/twig/index.twig' with {
+                            label       : label|default(_hierarchy),
+                            hierarchy   : hierarchy|default(_hierarchy),
+                            iconName    : iconName|default('placeholder'),
+                            iconPosition: iconPosition|default('right'),
+                        } %}
+                    </div>
+                    <div class='flex-grow-1'>
+                        {% include '@bf-components/button/twig/index.twig' with {
+                            label       : label|default(_hierarchy),
+                            hierarchy   : hierarchy|default(_hierarchy),
+                            isDisabled  : isDisabled|default(true),
+                        } %}
+                    </div>
+                    <div class='flex-grow-1'>
+                        {% include '@bf-components/button/twig/index.twig' with {
+                            label       : label|default(_hierarchy),
+                            hierarchy   : hierarchy|default(_hierarchy),
+                            isLoading   : isLoading|default(true),
+                        } %}
+                    </div>
                 </div>
             {% endfor %}
 
