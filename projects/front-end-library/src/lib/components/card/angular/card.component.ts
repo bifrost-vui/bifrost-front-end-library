@@ -23,6 +23,8 @@ export class CardComponent implements OnInit {
     @Input() badge                  : string;
 
     @Input() contentLists           : object;
+    @Input() detailsColors          : object;
+    @Input() detailsStorage        : object;
 
     @Input() price                  : object;
     @Input() note                   : string;

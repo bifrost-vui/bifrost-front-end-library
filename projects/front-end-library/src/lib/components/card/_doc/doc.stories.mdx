@@ -1,8 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-import { withDesign }                           from 'storybook-addon-designs'
 
-import { contentLists, contentListsNoTitle }        from './data';
+import { contentLists, contentListsNoTitle }    from './data';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { CardComponent }                        from '../angular/card.component';
 
@@ -11,31 +10,20 @@ import { CardComponent }                        from '../angular/card.component'
     title='Components/Card' 
     component={CardComponent}
     decorators={[
-        moduleMetadata({ declarations: [CardComponent, TwigContainerComponent]}),
-        withDesign
+        moduleMetadata({ declarations: [CardComponent, TwigContainerComponent]})
     ]}
-    parameters={{
-        design: {
-            type: 'figma',
-            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI-Kit-Pattern-lab?node-id=11017%3A708',
-            disable: false
-        },
-    }}
     argTypes={{}}
 />
 
 
 # Card
 
-> Explore **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)** (Zeroheight)
-
 <br/>
-
 
 ## Drupal
 
 export const commonProps = {
-    disabled        : false,
+    isDisabled      : false,
     upperTitle      : 'upperTitle',
     title           : 'All-Inclusive 12 GB Mobile',
     description     : 'So you can do what you want, when you want, without worrying about your data.',
@@ -53,7 +41,6 @@ export const commonProps = {
         boxAlignement   : 'left',
         dashed          : '$150',
         saved           : '<strong>$30</strong>',
-        recurrencePeriod: undefined,
     },
     buttons           : [
         {
@@ -100,7 +87,7 @@ export const Drupal = (args) => ({
         name='Plan Disabled'
         args={{
             ...commonProps,
-            disabled: true,
+            isDisabled: true,
         }}
     >
         {Drupal.bind({})}
@@ -121,7 +108,6 @@ export const Drupal = (args) => ({
                 class           : '',
                 dollar          : '20',
                 boxAlignement   : 'left',
-                recurrencePeriod: 'month',
             },
             buttons           : [
                 {
@@ -137,6 +123,7 @@ export const Drupal = (args) => ({
     </Story>
 </Preview>
 
+<!-- detailsColors   : ['#4B4A46', '#2C4651', '#D4BBA5', '#C0C0C0'], -->
 <Preview
     withSource='none'
     style={{ height: '300px' }}
@@ -150,15 +137,22 @@ export const Drupal = (args) => ({
                 alt             : 'iPhone 12 Mini',
             },
             title           : 'iPhone 12 Mini',
+            detailsColors   : [
+                { value :'4B4A46', name : 'Lorem' },
+                { value :'2C4651', name : 'Ipsum' },
+                { value :'D4BBA5', name : 'Dolor' },
+                { value :'C0C0C0', name : 'Amet' },
+            ],
+            detailsStorage : ['128 Go', '256 Go'],
             price           : {
-                class           : '',
-                dollar          : '152',
-                cent            : '34',
-                infosSupp       : 'Taxes incl.',
+                uppertitle      : 'From',
+                dollar          : '86',
+                cent            : '99',
+                details         : '/month',
                 boxAlignement   : 'left',
-                dashed          : '$150',
-                saved           : '<strong>$30</strong>',
-                recurrencePeriod: undefined,
+                dashed          : '$150.00',
+                saved           : '$30.00',
+                savedLabel      : 'You save:',
             },
             note                : 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
             buttons           : [
@@ -192,7 +186,6 @@ export const Drupal = (args) => ({
                 boxAlignement   : 'left',
                 dashed          : '$150',
                 saved           : '<strong>$30</strong>',
-                recurrencePeriod: undefined,
             },
             buttons           : [
                 {
@@ -210,8 +203,3 @@ export const Drupal = (args) => ({
 ## Component API
 
 <Props of={CardComponent} />
-
-
-## Design Guidelines
-
-<iframe width='100%' height='450' src='https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI-Kit-Pattern-lab?node-id=11017%3A708' frameBorder='0' allowFullScreen></iframe>

@@ -96,10 +96,36 @@
             {% endfor %}
         {% endif %}
 
+        {% if detailsColors is defined or detailsStorage is defined %}
+            <div class='d-flex mx-4 mb-4'>
+                {% if detailsColors is defined %}
+                    <ul class='bf-card__details-colors list-unstyled d-flex mb-0 mr-2'>
+                        {% for color in detailsColors|default([]) %}
+                            <li
+                                style='background-color: #{{ color.value }}'
+                                title='Color {{ color.name }}'
+                            ></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                {% if detailsStorage is defined and detailsStorage is not empty %}
+                    <p class='small mb-0'>
+                        {% for stockage in detailsStorage|default([]) %}
+                            <span class='font-weight-bold'>
+                                {{ stockage }}
+                            </span>
+                            {% if loop.last is same as (false) %}/{% endif %}
+                        {% endfor %}
+                    </p>
+                {% endif %}
+            </div>
+        {% endif %}
+
     </div>
 
     <footer class='bf-card__footer bf-border-top-secondary pt-4'>
-        
+
         {% if price is defined %}
             {% set price = price|merge({
                 'class'     : 'w-100 mb-4 ' ~ price.class,
@@ -109,7 +135,7 @@
         {% endif %}
 
         {% if note is defined and note is not empty %}
-            <p class='small'>
+            <p class='small bf-color-neutral-secondary'>
                 {{ note }}
             </p>
         {% endif %}
