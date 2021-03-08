@@ -21,29 +21,8 @@ import { TagComponent }          from '../angular/tag.component';
         },
     }}
     argTypes={{
-        name: {
-            defaultValue: "videotron",
-            control: { 
-                type: "select",
-                options: ["videotron", "business"],
-            }
-        },
-        size: {
-            defaultValue: "",
-            control: { 
-                type: "select",
-                options: ["medium", "small"],
-            }
-        },
-        langcode: {
-            defaultValue: "FR",
-            control: { 
-                type: "select",
-                options: ["EN", "FR"],
-            }
-        },
         reversed: {
-            defaultValue: true,
+            defaultValue: false,
         },
     }}
 />
@@ -70,6 +49,7 @@ export const Drupal = (args) => ({
         name='Drupal'
         args={{ 
             elementPath : 'components/tag/_doc/template.drupal',
+            label       : 'FREE'
         }}
     >
         {Drupal.bind({})}
@@ -81,8 +61,7 @@ export const Drupal = (args) => ({
 
 ```php
 {% include '@bf-components/tag/twig/index.twig' with {
-    langcode    : 'EN',
-    name        : 'business',
+    label    : 'FREE',
 } only %}
 ```
 

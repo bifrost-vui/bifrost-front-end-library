@@ -1,0 +1,83 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { contentListsData }                     from './data';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { BlockComponent }                       from '../angular/block.component';
+
+
+<Meta 
+    title='Components/Block' 
+    component={BlockComponent}
+    decorators={[
+        moduleMetadata({ declarations: [BlockComponent, TwigContainerComponent]}),
+    ]}
+/>
+
+# Block
+
+<br/>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+export const commonProps = {
+    elementPath         : 'components/block/_doc/template.drupal',
+    title               : 'My selection',
+    contentLists        : contentListsData,
+    totalPrice          : {
+        label               : 'Total',
+        details             : 'Plus applicable taxes',
+        price               : '$80.00',
+        priceDetails        : '(for 24 month)',
+    },
+    month               : 'month',
+    class               : '',
+}
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Selection'
+        args={{ 
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Selection - Listing'
+        args={{ 
+            ...commonProps,
+            isListingMode       : true,
+            topLink             : {
+                href        : 'www.videotron.com',
+                label       : 'FINALIZE',
+            },
+            contentTop          : {
+                label       : 'No device',
+                linkHref    : 'www.videotron.com',
+                linkLabel   : 'ADD A PHONE',
+            },
+            totalPrice      : false,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+## Component API
+
+<Props of={BlockComponent} />

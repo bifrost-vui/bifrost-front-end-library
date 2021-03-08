@@ -1,17 +1,26 @@
-{# ----------------------------------------------------------------- #}
-{% set reversed     = reversed|default(false)|json_parse %}
+<div class='px-7 d-flex flex-column align-items-center justify-content-center h-100 w-100'>
+    {% for index in [1,2] %}
+        
+        <div class='p-5 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
 
-{# ----------------------------------------------------------------- #}
-<div
-    class="d-flex align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
->
-    {% include '@bf-components/button-icon/twig/index.twig' with {
-        icon        : icon,
-        size        : size,
-    } only %}
+            {% include '@bf-components/button-icon/twig/index.twig' with {
+                icon        : icon,
+                size        : size,
+            } only %}
 
-    {% include '@bf-components/button-icon/twig/index.twig' with {
-        icon        : 'x',
-        size        : size,
-    } only %}
+            {% include '@bf-components/button-icon/twig/index.twig' with {
+                icon        : icon,
+                size        : size,
+                isDisabled  : isDisabled|json_parse|default(true)
+            } only %}
+
+            {% include '@bf-components/button-icon/twig/index.twig' with {
+                href        : '#',
+                icon        : icon,
+                size        : size,
+            } only %}
+
+        </div>
+        
+    {% endfor %}
 </div>

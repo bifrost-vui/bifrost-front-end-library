@@ -1,4 +1,4 @@
-{% set reversed = reversed|default(false)|json_parse %}
+{% set reversed = reversed|json_parse|default(false) %}
 {% set icons    = icons|json_parse %}
 
 <div class='pt-4 {% if reversed %}reversed bf-color-bg-ground{% endif %}' style="height: fit-content; min-height: 100%;">
@@ -12,7 +12,7 @@
                 class   : class,
                 type    : type,
             } only %}
-            <p class="bf-p-small bf-color-neutral-secondary pt-1">{{name}}</p>
+            <p class="small bf-color-neutral-secondary pt-1">{{name}}</p>
         </div>
 
     {% else %}
@@ -33,7 +33,7 @@
                                         class   : class,
                                         type    : type,
                                     } only %}
-                                    <p class="bf-p-small bf-color-neutral-secondary text-center pt-1">{{iconName}}</p>
+                                    <p class="small bf-color-neutral-secondary text-center pt-1">{{iconName}}</p>
                                 </div>
                             {% endfor %}
                         </div>

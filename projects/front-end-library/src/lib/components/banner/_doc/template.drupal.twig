@@ -1,0 +1,19 @@
+{% set image = image|json_parse %}
+
+<div
+    class='px-7 d-flex flex-column align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}'
+>
+    {% include '@bf-components/banner/twig/index.twig' with {
+        image       : NULL,
+        iconName    : NULL,
+    } %}
+
+    {% include '@bf-components/banner/twig/index.twig' with {
+        image       : NULL,
+    } %}
+
+    {% include '@bf-components/banner/twig/index.twig' with {
+        iconName    : NULL,
+    } %}
+
+</div>

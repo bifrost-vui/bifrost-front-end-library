@@ -1,0 +1,40 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+
+
+<Meta 
+    title='Components/Link'
+    decorators={[
+        moduleMetadata({ declarations: [TwigContainerComponent]})
+    ]}
+    argTypes={{}}
+/>
+
+
+# Link
+
+<br/>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Default'
+        args={{
+            elementPath : 'components/link/_doc/template.drupal',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>

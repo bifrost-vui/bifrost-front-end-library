@@ -1,0 +1,143 @@
+/* *****************************************************************************
+*
+*  Button
+*
+* ***************************************************************************** */
+
+
+.bf-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5rem;
+    padding: 0 1.5rem;
+    color: inherit;
+    font-family: $font-family-secondary;
+    font-size: 1rem;
+    @extend .font-weight-bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    @extend .bf-border-radius-small;
+    appearance: none;
+    border: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &.disabled {
+        pointer-events: none;
+        @extend .bf-color-neutral-tertiary;
+        @extend .bf-color-bg-action-disabled;
+    }
+
+    &--primary {
+        @extend .bf-color-bg-action-primary;
+
+        &:hover {
+            @extend .bf-color-bg-action-primary-hover;
+        }
+    }
+
+    &--primary-alt {
+        @extend .bf-color-bg-action-secondary;
+
+        &:not(.disabled) {
+            color: var(--bf-color-bg-ground);
+        }
+
+        &:hover {
+            @extend .bf-color-bg-action-secondary-hover;
+        }
+    }
+
+    &--secondary {
+        background-color: transparent;
+        border: 1px solid var(--bf-color-stroke-secondary);
+        transition: border-color .25s;
+
+        &:hover {
+            border-color: var(--bf-color-neutral-primary);
+        }
+        
+        &.disabled {
+            background-color: transparent;
+        }
+    }
+
+    &--tertiary {
+        background-color: transparent;
+        
+        &:hover {
+            @extend .bf-color-bg-action-no-bg-hover;
+        }
+        
+        &.disabled {
+            background-color: transparent;
+        }
+    }
+
+    &.loading {
+        pointer-events: none;
+        
+        .bf-button__label {
+            visibility: hidden;
+        }
+
+        .bf-button__loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+
+            > i {
+                width: .5rem;
+                height: .5rem;
+                border-radius: 50%;
+                background-color: currentColor;
+                transform: scale(.8);
+                opacity: .5;
+                animation: loading-dot .9s alternate infinite ease-in-out;
+                
+                &:nth-child(2) { animation-delay: .3s }
+                &:nth-child(3) { animation-delay: .6s }
+            }
+        }
+    }
+
+    &__label {
+        display: flex;
+        justify-content: center;
+        gap: .5rem;
+    }
+
+    &__icon--right {
+        order: 2;
+    }
+}
+
+@keyframes loading-dot  {
+    from    { transform: scale(.75); opacity: .5; }
+    to      { transform: scale(1); opacity: 1; }
+}
+
+
+// Apply Dark color on reversed Primary and Primary-alt.
+// TODO: Find a more elegant wy to give access to initial css variables in reversed.
+@at-root 
+.reversed .bf-button,
+.reversed.bf-button {
+    
+    &--primary,
+    &--primary-alt {
+
+        &:not(.disabled) {
+            color: var(--bf-color-bg-ground) !important;
+        }
+    }
+}

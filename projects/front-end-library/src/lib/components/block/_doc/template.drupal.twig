@@ -1,0 +1,14 @@
+<div
+    class="px-7 d-flex align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
+>
+    {% include '@bf-components/block/twig/index.twig' with {
+        title               : title|default(''),
+        topLink             : topLink|json_parse|default({}),
+        contentTop          : contentTop|json_parse|default({}),
+        contentLists        : contentLists|json_parse|default([]),
+        totalPrice          : totalPrice|json_parse|default({}),
+        month               : month|default(''),
+        isListingMode       : isListingMode|json_parse|default(false),
+        class               : class|default(''),
+    } only %}
+</div>

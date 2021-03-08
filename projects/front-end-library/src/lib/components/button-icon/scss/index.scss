@@ -6,4 +6,20 @@
 
 
 .bf-button-icon {
+    display: inline-block;
+    color: inherit;
+    border-radius: 50%;
+    transition: background-color .25s;
+
+    &:hover {
+        background-color: var(--bf-color-bg-action-no-bg-hover);
+    }
+
+    &[disabled] {
+        pointer-events: none;
+
+        .bf-icon {
+            color: var(--bf-color-neutral-tertiary);
+        }
+    }
 }

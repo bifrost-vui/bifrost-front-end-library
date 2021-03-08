@@ -1,0 +1,64 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+
+import { illustrationIcons }                    from '../../icon/_doc/data';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { BannerComponent }                      from '../angular/banner.component';
+
+
+<Meta 
+    title='Components/Banner' 
+    component={BannerComponent}
+    decorators={[
+        moduleMetadata({ declarations: [BannerComponent, TwigContainerComponent]})
+    ]}
+    argTypes={{
+        iconName: {
+            defaultValue: 'mobile-multiline',
+            control: {
+                type: 'select',
+                options: ['', ...illustrationIcons.map(a => a.list).flat().sort()]
+            }
+        },
+    }}
+/>
+
+
+# Promo
+
+<br/>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Default'
+        args={{
+            elementPath : 'components/banner/_doc/template.drupal',
+            href        : 'https://videotron.com',
+            title       : 'Galaxy Buds Live',
+            paragraph   : 'Free with any purchase of this phone, valuted at $239.38.',
+            image       : {
+                src: 'https://source.unsplash.com/72x72/?nature',
+                alt: 'Alt description'
+            },
+            badge       : 'FREE',
+            class       : 'mb-4',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+## Component API
+
+<Props of={BannerComponent} />
