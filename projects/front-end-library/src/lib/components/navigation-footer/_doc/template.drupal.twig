@@ -2,7 +2,8 @@
 {# ----------------------------------------------------------------- #}
 {% set links                = links|json_parse %}
 {% set linkFields           = linkFields|json_parse %}
-{% set hasBackToTopLink     = hasBackToTopLink|json_parse|default(false) %}
+{% set hasBackToTopLink     = hasBackToTopLink|json_parse|default(true) %}
+{% set isReduced            = isReduced|json_parse|default(false) %}
 {% set reversed             = reversed|json_parse|default(false) %}
 
 
@@ -15,7 +16,8 @@
         href                : logo_href|default('#'),
     },
     hasBackToTopLink    : hasBackToTopLink,
-    videotronLegalName  : videotronLegalName,
     languageBlock       : languageBlock,
+    isReduced           : isReduced,
     reversed            : reversed,
+    langcode            : langcode|default('EN'),
 } only %}

@@ -13,25 +13,23 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class FooterComponent implements OnInit {
     constructor() {}
 
-    @Input() theme: string = 'videotron';
-
-    @Input() reversed: boolean;
-
     /** Sets Footer Links on Bottom Footer. */
-    @Input() linkFields: any[];
+    @Input() linkFields         : any[];
 
     /** Sets Footer Links. */
-    @Input() links: any[];
+    @Input() links              : any[];
 
-    @Input() logo_href: string;
-    @Input() logo_name: string;
+    @Input() logo_href          : string;
+    @Input() logo_name          : string;
 
-    @Input() hasBackToTopLink: boolean;
-    @Input() backToTopLabel: string;
+    @Input() hasBackToTopLink   : boolean;
+    @Input() backToTopLabel     : string;
 
-    @Input() videotronLegalName: string;
+    @Input() isReduced          : boolean;
 
-    @Input() languageBlock: string;
+    @Input() theme              : string = 'videotron';
+    @Input() reversed           : boolean;
+    @Input() languageBlock      : any;
 
     ngOnInit() {
         console.log('footer', this);
