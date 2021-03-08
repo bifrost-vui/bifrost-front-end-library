@@ -287,12 +287,12 @@
 ] %}
 
 {% include '@bf-components/navigation-header/twig/index.twig' with {
-    hasTopBar               : hasTopBar|default(true)|json_parse,
+    hasTopBar               : hasTopBar|json_parse|default(true),
     topBar                  : {
-        items                   : topBar_items|default([])|json_parse,
-        secondaryItems          : topBar_secondaryItems|default([])|json_parse,
+        items                   : topBar_items|json_parse|default([]),
+        secondaryItems          : topBar_secondaryItems|json_parse|default([]),
     },
-    rigthIconLinks          : rigthIconLinks|default([])|json_parse,
+    rigthIconLinks          : rigthIconLinks|json_parse|default([]),
     logo                    : {
         name                    : logo_name|default('')
     },
@@ -300,9 +300,9 @@
         placeholder             : placeholder|default('What are you looking for?')
     },
     navItems                : navItems,
-    hasAccountBtn           : hasAccountBtn|default(false)|json_parse,
-    hasMiniCartBtn          : hasMiniCartBtn|default(false)|json_parse,
-    hasNoSearchBtn          : hasNoSearchBtn|default(false)|json_parse,
-    reversed                : reversed|default(false)|json_parse,
+    hasAccountBtn           : hasAccountBtn|json_parse|default(false),
+    hasMiniCartBtn          : hasMiniCartBtn|json_parse|default(false),
+    hasNoSearchBtn          : hasNoSearchBtn|json_parse|default(false),
+    reversed                : reversed|json_parse|default(false),
     langcode                : langcode|default('EN')
 } only %}
