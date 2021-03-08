@@ -1,24 +1,7 @@
+{% set hasAsterisk      = hasAsterisk|json_parse %}
 
 <div
     class="px-7 d-flex align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
 >
-    {% include '@bf-components/price/twig/index.twig' with {
-        dollar                  : dollar|default(''),
-        dollarClass             : dollarClass|default(''),
-        cent                    : cent|default(''),
-        isMonthlyPayment        : isMonthlyPayment|json_parse|default(false),
-        recurrencePeriod        : recurrencePeriod|default(''),
-        hasAsterisk             : hasAsterisk|json_parse|default(false),
-        priceSavings            : priceSavings|default(''),
-        priceDashed             : priceDashed|default(''),
-        priceSaved              : priceSaved|default(''),
-        priceSavedLabel         : priceSavedLabel|default(''),
-        infosSupp               : infosSupp|default(''),
-        infosSuppColor          : infosSuppColor|default(''),
-        txtBelow                : txtBelow|default(''),
-        txtBelowClass           : txtBelowClass|default(''),
-        class                   : class|default(''),
-        boxSize                 : boxSize|default(''),
-        language                : language|default('en'),
-    } only %}
+    {% include '@bf-components/price/twig/index.twig' %}
 </div>

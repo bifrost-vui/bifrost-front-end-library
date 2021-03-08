@@ -13,25 +13,20 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class PriceComponent implements OnInit {
     constructor() {}
 
+    @Input() uppertitle             : string;
+
     @Input() dollar                 : string;
     @Input() dollarClass            : string;
     @Input() cent                   : string;
-    @Input() isMonthlyPayment       : boolean;
-    @Input() recurrencePeriod       : string;
     @Input() hasAsterisk            : boolean;
-    
-    @Input() priceSavings           : string;
-    @Input() priceDashed            : string;
-    @Input() priceSaved             : string;
-    @Input() priceSavedLabel        : string;
-    
-    @Input() infosSupp              : string;
-    @Input() infosSuppColor         : string;
-    @Input() txtBelow               : string;
-    @Input() txtBelowClass          : string;
+    @Input() dashed                 : string;
+    @Input() saved                  : string;
+    @Input() savedLabel             : string;
+    @Input() details                : string;
+    @Input() message                : string;
 
     @Input() class                  : string;
-    @Input() boxSize                : string;
+    @Input() size                   : string;
 
     @Input() language               : string;
 

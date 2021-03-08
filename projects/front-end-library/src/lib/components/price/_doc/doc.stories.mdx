@@ -1,9 +1,8 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import { withDesign } from 'storybook-addon-designs'
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
-import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
-import { PriceComponent }           from '../angular/price.component';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { PriceComponent }                       from '../angular/price.component';
 
 
 <Meta 
@@ -11,15 +10,7 @@ import { PriceComponent }           from '../angular/price.component';
     component={PriceComponent}
     decorators={[
         moduleMetadata({ declarations: [PriceComponent, TwigContainerComponent]}),
-        withDesign
     ]}
-    parameters={{
-        design: {
-            type: 'figma',
-            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI-Kit-Pattern-lab?node-id=11017%3A708',
-            disable: false
-        },
-    }}
     argTypes={{
     }}
 />
@@ -27,10 +18,7 @@ import { PriceComponent }           from '../angular/price.component';
 
 # Promo
 
-> Explore **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)** (Zeroheight)
-
 <br/>
-
 
 ## Drupal
 
@@ -39,18 +27,10 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
-        name='Price - Drupal'
-        args={{ 
-            elementPath : 'components/price/_doc/template.drupal',
+            <!-- elementPath : 'components/price/_doc/template.drupal',
             dollar                  : '30',
             dollarClass             : '',
             cent                    : '99',
-            isMonthlyPayment        : false,
             recurrencePeriod        : 'month',
             hasAsterisk             : true,
             priceDashed             : '150$',
@@ -58,12 +38,30 @@ export const Drupal = (args) => ({
             priceSaved              : '15$',
             priceSavedLabel         : 'Saved:',
             infosSupp               : '',
-            infosSuppColor          : '',
             txtBelow                : 'Text below',
-            txtBelowClass           : '',
             class                   : '',
-            boxSize                 : 'sm',
-            language                : 'fr',
+            language                : 'fr', -->
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal'
+        args={{ 
+            elementPath     : 'components/price/_doc/template.drupal',
+            subtitle        : 'From',
+            dollar          : '30',
+            dollarClass     : '',
+            cent            : '99',
+            hasAsterisk     : false,
+            details         : '/month',
+            dashed          : '$150',
+            saved           : '$10',
+            message         : 'Lorem ipsum dolor sit amet',
+            class           : '',
+            size            : 'sm',
+            language        : 'en',
         }}
     >
         {Drupal.bind({})}
@@ -73,8 +71,3 @@ export const Drupal = (args) => ({
 ## Component API
 
 <Props of={PriceComponent} />
-
-
-## Design Guidelines
-
-<iframe width='100%' height='450' src='https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI-Kit-Pattern-lab?node-id=11017%3A708' frameBorder='0' allowFullScreen></iframe>
