@@ -72,22 +72,10 @@ export const Drupal = (args) => ({
     style={{ height: '300px' }}
 >
     <Story 
-        name='Plan'
-        args={{ ...commonProps }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Preview>
-
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
-        name='Plan Disabled'
+        name='Drupal - Plan'
         args={{
             ...commonProps,
-            isDisabled: true,
+            cardVariant : 'plan'
         }}
     >
         {Drupal.bind({})}
@@ -99,9 +87,26 @@ export const Drupal = (args) => ({
     style={{ height: '300px' }}
 >
     <Story 
-        name='Plan - Phone selected'
+        name='Drupal - Plan Disabled'
         args={{
             ...commonProps,
+            cardVariant : 'plan',
+            isDisabled  : true,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal - Plan Selected'
+        args={{
+            ...commonProps,
+            cardVariant     : 'plan',
             upperTitle      : undefined,
             contentLists    : contentListsNoTitle,
             price           : {
@@ -123,45 +128,52 @@ export const Drupal = (args) => ({
     </Story>
 </Preview>
 
-<!-- detailsColors   : ['#4B4A46', '#2C4651', '#D4BBA5', '#C0C0C0'], -->
+export const phoneCommonProps = {
+    badge           : 'PROMOTION',
+    badgeColor      : 'dark',
+    image           : {
+        src             : '/images/_docs/abstract-background.png',
+        alt             : 'iPhone 12 Mini',
+        badgeIconName   : 'security'
+    },
+    title           : 'iPhone 12 Mini',
+    detailsColors   : [
+        { value :'4B4A46', name : 'Lorem' },
+        { value :'2C4651', name : 'Ipsum' },
+        { value :'D4BBA5', name : 'Dolor' },
+        { value :'C0C0C0', name : 'Amet' },
+    ],
+    detailsStorage : ['128 Go', '256 Go'],
+    price           : {
+        upperTitle      : 'From',
+        dollar          : '86',
+        cent            : '99',
+        details         : '/month',
+        boxAlignement   : 'left',
+        dashed          : '$150.00',
+        saved           : '$30.00',
+        savedLabel      : 'You save:',
+    },
+    note                : 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
+    buttons           : [
+        {
+            label       : 'Configurate',
+            hierarchy   : 'primary-alt',
+            href        : 'www.videotron.com',
+        }
+    ],
+};
+
 <Preview
     withSource='none'
     style={{ height: '300px' }}
 >
     <Story 
-        name='Phone'
+        name='Drupal - Phone'
         args={{
             elementPath     : 'components/card/_doc/template.drupal',
-            image           : {
-                src             : '/images/_docs/abstract-background.png',
-                alt             : 'iPhone 12 Mini',
-            },
-            title           : 'iPhone 12 Mini',
-            detailsColors   : [
-                { value :'4B4A46', name : 'Lorem' },
-                { value :'2C4651', name : 'Ipsum' },
-                { value :'D4BBA5', name : 'Dolor' },
-                { value :'C0C0C0', name : 'Amet' },
-            ],
-            detailsStorage : ['128 Go', '256 Go'],
-            price           : {
-                uppertitle      : 'From',
-                dollar          : '86',
-                cent            : '99',
-                details         : '/month',
-                boxAlignement   : 'left',
-                dashed          : '$150.00',
-                saved           : '$30.00',
-                savedLabel      : 'You save:',
-            },
-            note                : 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
-            buttons           : [
-                {
-                    label       : 'Configurate',
-                    hierarchy   : 'primary-alt',
-                    href        : 'www.videotron.com',
-                }
-            ],
+            cardVariant     : 'phone',
+            ...phoneCommonProps
         }}
     >
         {Drupal.bind({})}
@@ -173,13 +185,37 @@ export const Drupal = (args) => ({
     style={{ height: '300px' }}
 >
     <Story 
-        name='Protection'
+        name='Drupal - Phone Disabled'
         args={{
             elementPath     : 'components/card/_doc/template.drupal',
+            cardVariant     : 'phone',
+            ...phoneCommonProps,
+            isDisabled      : true,
+            message         : 'Not available with this plan.',
+            messageLink     : {
+                url             : '',
+                label           : 'Choose another Plan',
+                class           : ''
+            }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal - Protection'
+        args={{
+            elementPath     : 'components/card/_doc/template.drupal',
+            cardVariant     : 'protection',
             iconName        : 'apple',
             title           : 'Apple Care+ for iPhone',
             price           : {
-                class           : '',
+                upperTitle      : 'From',
                 dollar          : '152',
                 cent            : '34',
                 infosSupp       : 'Taxes incl.',
@@ -187,6 +223,7 @@ export const Drupal = (args) => ({
                 dashed          : '$150',
                 saved           : '<strong>$30</strong>',
             },
+            message           : 'Lorem ipsum dolor.',
             buttons           : [
                 {
                     label       : 'Add this protection',
