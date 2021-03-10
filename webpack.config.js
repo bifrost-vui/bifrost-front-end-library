@@ -18,9 +18,7 @@ module.exports = (env) => {
             publicPath: '/public/'
         },
         resolve: {
-            extensions: ['.js', '.scss']
-        },
-        resolve: {
+            extensions: ['.js', '.scss'],
             alias: {
                 'pickerdate': 'pickadate/lib/picker.date'
             }
@@ -48,16 +46,20 @@ module.exports = (env) => {
                     use: [
                         MiniCssExtractPlugin.loader,
                         {
-                            loader: "css-loader",
-                            options: { importLoaders: 1 },
+                            loader: 'css-loader',
+                            options: {
+                                url: false,
+                                // modules: true,
+                                importLoaders: 1
+                            },
                         },
                         {
-                            loader: "postcss-loader",
+                            loader: 'postcss-loader',
                             options: {
                                 sourceMap: true,
                                 plugins: (loader) => [
-                                    require("autoprefixer")(),
-                                    require("postcss-flexbugs-fixes"),
+                                    require('autoprefixer')(),
+                                    require('postcss-flexbugs-fixes'),
                                     // require('cssnano')()
                                 ]
                             }
