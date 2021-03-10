@@ -3,14 +3,14 @@ import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/block
 import { withDesign } from 'storybook-addon-designs'
 
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
-import { TagComponent }          from '../angular/tag.component';
+import { BadgeComponent }          from '../angular/badge.component';
 
 
 <Meta 
-    title='Components/Tag' 
-    component={TagComponent}
+    title='Components/Badge' 
+    component={BadgeComponent}
     decorators={[
-        moduleMetadata({ declarations: [TagComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [BadgeComponent, TwigContainerComponent]}),
         withDesign
     ]}
     parameters={{
@@ -48,8 +48,9 @@ export const Drupal = (args) => ({
     <Story 
         name='Drupal'
         args={{ 
-            elementPath : 'components/tag/_doc/template.drupal',
-            label       : 'FREE'
+            elementPath : 'components/badge/_doc/template.drupal',
+            label       : 'FREE',
+            color       : 'dark'
         }}
     >
         {Drupal.bind({})}
@@ -60,7 +61,7 @@ export const Drupal = (args) => ({
 ## Source Code
 
 ```php
-{% include '@bf-components/tag/twig/index.twig' with {
+{% include '@bf-components/badge/twig/index.twig' with {
     label    : 'FREE',
 } only %}
 ```
@@ -68,4 +69,4 @@ export const Drupal = (args) => ({
 
 ## Component API
 
-<Props of={TagComponent} />
+<Props of={BadgeComponent} />

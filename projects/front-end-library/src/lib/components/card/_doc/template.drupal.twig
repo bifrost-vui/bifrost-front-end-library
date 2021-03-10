@@ -6,9 +6,10 @@
 {% set price           = price|json_parse %}
 {% set buttons         = buttons|json_parse %}
 {% set isDisabled      = isDisabled|json_parse %}
+{% set messageLink     = messageLink|json_parse %}
 
 <div
     class="px-7 d-flex align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
 >
-    {% include '@bf-components/card/twig/index.twig' %}
+    {% include '@bf-components/card/twig/' ~ cardVariant|default('index') ~ '.twig' %}
 </div>

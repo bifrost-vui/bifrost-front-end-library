@@ -1,10 +1,15 @@
 /* *****************************************************************************
 *
-*  Tag 
+*  Badge
 *
 * ***************************************************************************** */
 
-.bf-tag {
+.bf-badge {
+
+    &--dark .bf-badge__container {
+        color: var(--bf-color-bg-underground);
+        background-color: var(--bf-color-highlight);
+    }
     
     &__container {
         min-height: 1.5rem;
@@ -13,6 +18,12 @@
         font-family: $font-family-secondary;
         color: var(--bf-color-neutral-primary);
         background-color: var(--bf-color-feedback-neutral);
+
+        @at-root
+        .reversed.bf-badge__container,
+        .reversed .bf-badge__container {
+            color: var(--bf-color-bg-ground);
+        }
 
         &:before {
             content: '';

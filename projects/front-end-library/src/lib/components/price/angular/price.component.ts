@@ -13,7 +13,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class PriceComponent implements OnInit {
     constructor() {}
 
-    @Input() uppertitle             : string;
+    @Input() upperTitle             : string;
 
     @Input() dollar                 : string;
     @Input() dollarClass            : string;

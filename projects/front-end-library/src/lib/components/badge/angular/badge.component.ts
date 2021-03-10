@@ -6,17 +6,19 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  */
  
 @Component({
-    selector: "bf-tag",
-    templateUrl: './tag.component.html',
+    selector: "bf-badge",
+    templateUrl: './badge.component.html',
     // styleUrls: ['../common/style.scss'],
 })
-export class TagComponent implements OnInit {
+export class BadgeComponent implements OnInit {
     constructor() {}
+    
     @Input() label      : string;
+    @Input() color      : string;
     @Input() reversed   : boolean;
 
     ngOnInit() {
-        console.log('tag', this);
+        console.log('badge', this);
     }
     
 }

@@ -3,8 +3,13 @@
 {% set hasVisual    = hasImage or hasIcon %}
 
 <article
-    class='bf-card {% if hasVisual %}bf-card--has-visual{% endif %} d-flex flex-column'
-    {% if disabled is defined and disabled is same as (true) %}disabled{% endif %}
+    class='
+        bf-card
+        {% if hasVisual %}bf-card--has-visual{% endif %} d-flex flex-column
+        {% if isDisabled is same as (true) %}disabled{% endif %}
+        {{ class|default('') }}
+        '
+    {% if isDisabled is defined and isDisabled is same as (true) %}disabled{% endif %}
 >
 
     {% if hasVisual %}
@@ -14,6 +19,14 @@
                     data-src='{{ image.src|default('') }}'
                     alt='{{ image.alt|default('') }}'
                 />
+                {% if image.badgeIconName is defined %}
+                    <div class='bf-badge-icon'>
+                        {% include '@bf-components/icon/twig/index.twig' with {
+                            name    : image.badgeIconName,
+                            type    : 'illustration'
+                        } only %}
+                    </div>
+                {% endif %}
             {% elseif hasIcon %}
                 {% include '@bf-components/icon/twig/index.twig' with {
                     name    : iconName,
@@ -54,8 +67,9 @@
         {% endif %}
         
         {% if badge is defined and badge is not empty %}
-            {% include '@bf-components/tag/twig/index.twig' with {
-                label   : badge|default(''),
+            {% include '@bf-components/badge/twig/index.twig' with {
+                label       : badge|default(''),
+                color       : badgeColor|default(NULL)
             } only %}
         {% endif %}
 
@@ -96,8 +110,8 @@
             {% endfor %}
         {% endif %}
 
-        {% if detailsColors is defined or detailsStorage is defined %}
-            <div class='d-flex mx-4 mb-4'>
+        {% if detailsColors is defined and detailsColors is not empty or detailsStorage is defined and detailsStorage is not empty %}
+            <div class='d-flex mx-4'>
                 {% if detailsColors is defined %}
                     <ul class='bf-card__details-colors list-unstyled d-flex mb-0 mr-2'>
                         {% for color in detailsColors|default([]) %}
@@ -124,18 +138,18 @@
 
     </div>
 
-    <footer class='bf-card__footer bf-border-top-secondary pt-4'>
+    <footer class='bf-card__footer pt-3'>
 
         {% if price is defined %}
             {% set price = price|merge({
-                'class'     : 'w-100 mb-4 ' ~ price.class,
+                'class'     : 'w-100 ' ~ price.class,
                 'language'  : language
             }) %}
             {% include '@bf-components/price/twig/index.twig' with price only %}
         {% endif %}
 
         {% if note is defined and note is not empty %}
-            <p class='small bf-color-neutral-secondary'>
+            <p class='small bf-color-neutral-secondary mb-0'>
                 {{ note }}
             </p>
         {% endif %}
@@ -150,13 +164,16 @@
         </div>
 
         {% if message is defined and message is not empty %}
-            <div class='bf-card__message d-flex mt-3'>
+            <div class='bf-card__message d-flex'>
                 {% include '@bf-components/icon/twig/index.twig' with {
                     name    : 'information-circle-filled-small24',
                     class   : 'mr-2'
                 } only %}
                 <p class='mb-0'>
                     {{ message|default('') }}
+                    {% if messageLink is defined and messageLink is not empty %}
+                        <a href='{{ messageLink.href }}' class='bf-link mt-1 {{ messageLink.class|default('') }}'>{{ messageLink.label }}</a>
+                    {% endif %}
                 </p>
             </div>
         {% endif %}

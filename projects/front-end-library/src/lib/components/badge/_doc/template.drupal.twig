@@ -1,0 +1,20 @@
+{# ----------------------------------------------------------------- #}
+{% set reversed = reversed|json_parse|default(false) %}
+
+<div
+    class="d-flex align-items-center justify-content-center h-100 w-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
+>
+
+    <div class='p-4'>
+        {% include '@bf-components/badge/twig/index.twig' with {
+            color   : NULL
+        } %}
+    </div>
+
+    <div class='p-4'>
+        {% include '@bf-components/badge/twig/index.twig' with {
+            color   : color|default(NULL)
+        } %}
+    </div>
+
+</div>

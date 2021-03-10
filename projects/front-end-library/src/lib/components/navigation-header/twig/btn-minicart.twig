@@ -20,13 +20,13 @@
                             <div class="d-flex justify-content-between mb-2">
                                 {% if item.tag == 'added' %}
                                     <span class="color-gray--700">{{ item.title }}</span>
-                                    {% include '@bf-components/tag/twig/badge-tag.twig' with { label:"Added", color: "primary" } only %}
+                                    {% include '@bf-components/badge/twig/badge-tag.twig' with { label:"Added", color: "primary" } only %}
                                 {% elseif item.tag == 'replaced' %}
                                     <span class="color-gray--700">{{ item.title }}</span>
-                                    {% include '@bf-components/tag/twig/badge-tag.twig' with { label:"Replaced", color: "gray--300" } only %}
+                                    {% include '@bf-components/badge/twig/badge-tag.twig' with { label:"Replaced", color: "gray--300" } only %}
                                 {% elseif item.tag == 'removed' %}
-                                    <span class="color-gray--700 vui--text-dashed">{{ item.title }}</span>
-                                    {% include '@bf-components/tag/twig/badge-tag.twig' with { label:"Removed", color: "gray--300" } only %}
+                                    <span class="color-gray--700 text-strike">{{ item.title }}</span>
+                                    {% include '@bf-components/badge/twig/badge-tag.twig' with { label:"Removed", color: "gray--300" } only %}
                                 {% else %}
                                     <span class="color-gray--700">{{ item.title }}</span>
                                 {% endif %}
