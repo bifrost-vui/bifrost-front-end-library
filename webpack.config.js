@@ -1,5 +1,6 @@
 const path                  = require('path')
 const webpack               = require('webpack')
+const globImporter          = require('node-sass-glob-importer');
 const ExtractTextPlugin     = require('extract-text-webpack-plugin')
 const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
 
@@ -61,7 +62,14 @@ module.exports = (env) => {
                                 ]
                             }
                         },
-                        'sass-loader',
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sassOptions : {
+                                    importer: globImporter()
+                                }
+                            }
+                        }
                     ],
                 },
             ]
