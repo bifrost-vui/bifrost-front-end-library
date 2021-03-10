@@ -171,6 +171,9 @@
                 } only %}
                 <p class='mb-0'>
                     {{ message|default('') }}
+                    {% if messageLink is defined and messageLink is not empty %}
+                        <a href='{{ messageLink.href }}' class='bf-link mt-1 {{ messageLink.class|default('') }}'>{{ messageLink.label }}</a>
+                    {% endif %}
                 </p>
             </div>
         {% endif %}
