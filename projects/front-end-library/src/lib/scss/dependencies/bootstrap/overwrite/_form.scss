@@ -5,20 +5,19 @@
 * ***************************************************************************** */
 .form-control {
   font-size: $form-font-size;
+  padding-right: 3rem;
 
   &.readonly,
   &[readonly] {
     pointer-events: none;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
     background: none;
     border: none;
   }
 
   &.is-invalid {
-    background: $form-feedback-invalid-bg;
-    border-color: $form-feedback-invalid-bg;
-    padding-right: 3rem;
+    background: fade_out($form-feedback-invalid-color, .8);
+    border-color: fade_out($form-feedback-invalid-color, .8);
   }
 
   &-lg {
@@ -42,6 +41,12 @@
 }
 
 .form-group {
+  label {
+    font-size: $h6-font-size;
+    margin-bottom: .45rem !important;
+    min-height: 1.5rem;
+  }
+
   &--w-small {
     width: 100%;
     max-width: 200px;
@@ -114,12 +119,11 @@
     cursor: pointer;
     padding: $input-padding-y $input-padding-x;
     position: absolute;
-    right: $input-border-width;
-    top: $input-border-width;
-    height: calc(100% - 2px);
+    right: 0;
+    top: 0;
+    height: 100%;
     display: flex;
     align-items: center;
-    background: $light;
 
     &--left {
       right: initial;

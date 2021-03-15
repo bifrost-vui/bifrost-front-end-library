@@ -8,7 +8,9 @@
   @include transitions(background,color,border-color);
   @extend .vui--text-highlight;
   @extend .vui--font-secondary-bold;
+  font-size: $form-font-size;
   white-space: normal;
+  line-height: 1.5;
   max-width: 100%;
 
   .small {
@@ -19,8 +21,12 @@
     justify-content: center;
   }
 
-  &:not(.btn-sm):not(.btn-small):not(.w-100):not(.link-underline):not(.btn-link-underline) {
-      min-width: 10rem;
+  &:not(.btn-small):not(.w-100):not(.link-underline):not(.btn-link-underline) {
+    @include media-breakpoint-up(md){
+      min-width: 12rem;
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
   }
 
   &-link-underline {

@@ -5,24 +5,12 @@
 * ***************************************************************************** */
 
 .dropdown {
-  &--selectlist {
-    @include hover-focus{
-      // All buttons dropdown except those in a navbar
-      //button[data-toggle='dropdown']:not(.navbar-toggler){
-      //  background: $gray-100;
-      //}
-    }
 
-  // All buttons dropdown except those in a navbar
-  button[data-toggle='dropdown']:not(.navbar-toggler){
-      border: $input-border-width solid $input-border-color!important;
-      padding: $custom-select-padding-y $custom-select-padding-x;
 
-      //&[aria-expanded=true]{
-      //  background: $gray-100;
-      //  //border-color: $dark!important;
-      //}
-    }
+  &__selected-text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   &-menu {
@@ -37,6 +25,7 @@
 
     .dropdown-item {
       white-space: initial;
+      font-size: $h6-font-size;
     }
 
     &--arrow {
@@ -86,8 +75,8 @@
         &:before {
           transform: translate(-170%, -99%);
           left: auto;
-          right: 0;
-        }
+          right: 0
+;        }
       }
     }
   }

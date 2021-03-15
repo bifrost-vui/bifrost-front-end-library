@@ -7,70 +7,33 @@
 .table {
   @include media-scale(margin-bottom, 0.3rem, 0.3rem, 0);
 
-  thead {
-    &.thead-dark {
+  thead th {
+    @extend .vui--text-highlight;
+    @extend .vui--font-secondary-bold;
+    border-width: $border-width;
+    font-size: $h5-font-size;
 
-      button {
-        color: $light;
-
-        .icon-arrow-sort,
-        .icon-arrow-sort-asc,
-        .icon-arrow-sort-desc {
-          ._svg-fill {
-            fill: $white;
-          }
-          ._svg-stroke {
-            stroke: $white;
-          }
-        }
-      }
+    .icon-arrow-sort,
+    .icon-arrow-sort-asc,
+    .icon-arrow-sort-desc {
+      width: .4rem;
     }
 
-    &.thead--compress {
-      th {
-        padding-top: .65rem;
-        padding-bottom: .65rem;
-      }
-    }
+    .icon-arrow-sort-asc,
+    .icon-arrow-sort-desc { display: none; }
 
-    th {
-      @extend .vui--text-highlight;
-      @extend .vui--font-secondary-bold;
-      border-width: $border-width;
-      font-size: $h5-font-size;
+    .is-sort-desc {
+      .icon-arrow-sort-desc { display: block; }
 
       .icon-arrow-sort,
-      .icon-arrow-sort-asc,
-      .icon-arrow-sort-desc {
-        width: .4rem;
-      }
+      .icon-arrow-sort-asc { display: none; }
+    }
 
-      .icon-arrow-sort-asc,
-      .icon-arrow-sort-desc {
-        display: none;
-      }
+    .is-sort-asc {
+      .icon-arrow-sort-asc { display: block; }
 
-      .is-sort-desc {
-        .icon-arrow-sort-desc {
-          display: block;
-        }
-
-        .icon-arrow-sort,
-        .icon-arrow-sort-asc {
-          display: none;
-        }
-      }
-
-      .is-sort-asc {
-        .icon-arrow-sort-asc {
-          display: block;
-        }
-
-        .icon-arrow-sort,
-        .icon-arrow-sort-desc {
-          display: none;
-        }
-      }
+      .icon-arrow-sort,
+      .icon-arrow-sort-desc { display: none; }
     }
   }
 

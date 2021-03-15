@@ -16,7 +16,7 @@
     @each $prop, $abbrev in (min-height: minh, min-width: minw) {
       @each $size, $length in $spacers {
         .#{$abbrev}#{$infix}-#{$size} {
-          #{$prop}: $length !important;
+          #{$prop}: ($length * 2) !important;
         }
       }
     }
@@ -112,6 +112,9 @@
 
         .#{$abbrev}#{$infix}-#{$size} {
           #{$prop}: ($length * 0.7) !important;
+        }
+        .#{$abbrev}#{$infix}-minus-#{$size} {
+          #{$prop}: -($length * 0.7) !important;
         }
       }
     }
@@ -317,7 +320,8 @@ $i: 1;
 
     @each $spacer, $value in $spacers {
       .svg-size#{$infix}--#{$spacer} {
-        width: ($value*0.5) + 1;
+        //@include size(($value*.8)+.75);
+        width: ($value*.8)+.75;
       }
     }
   }
