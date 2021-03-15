@@ -1,0 +1,52 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { TabComponent }                         from '../angular/tab.component';
+
+
+<Meta 
+    title='Components/Tab' 
+    component={TabComponent}
+    decorators={[
+        moduleMetadata({ declarations: [TabComponent, TwigContainerComponent]}),
+    ]}
+    argTypes={{
+    }}
+/>
+
+
+# Tab
+
+<br/>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal'
+        args={{ 
+            elementPath     : 'components/tab/_doc/template.drupal',
+            navItems        : [
+                { label:'Channel selection',                href:'/channelSelection', class:'active' },
+                { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
+                { label:'Remote control',                   href:'/remoteControl', class:'' },
+                { label:'Home network',                     href:'/homeNetwork', class:'' }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+## Component API
+
+<Props of={TabComponent} />

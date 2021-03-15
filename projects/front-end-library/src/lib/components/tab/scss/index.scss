@@ -1,0 +1,34 @@
+/* *****************************************************************************
+*
+*  Tab
+*
+* ***************************************************************************** */
+
+.bf-tab {
+    @extend .align-items-end;
+    @extend .bf-border-bottom-secondary;
+    flex-flow: row;
+    // overflow-x: auto;
+    width: max-content;
+
+    .nav-link {
+        @extend .h3;
+        margin-top: 0 !important;
+        color: var(--bf-color-neutral-secondary);
+        text-transform: none;
+        letter-spacing: 0;
+
+        flex: 1 0;
+        text-align: center;
+        padding: 10px;
+        overflow: hidden;
+        
+        &.active {
+            color: inherit;
+
+            &:before {
+                background-color: var(--bf-color-bg-action-primary);
+            }
+        }
+    }
+}
