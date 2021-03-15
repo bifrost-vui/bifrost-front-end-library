@@ -36,9 +36,18 @@
             border-color: var(--bf-color-stroke-secondary);
             background-color: var(--bf-color-bg-action-disabled);
 
+            & ~ .form-group__input-icon-container {
+                cursor: not-allowed;
+                background-color: var(--bf-color-bg-action-disabled);
+            }
+
             // Reversed exception
             @at-root .reversed .form-control:disabled {
                 border-color: var(--bf-color-bg-action-disabled);
+
+                & ~ .form-group__input-icon-container {
+                    background-color: var(--bf-color-bg-action-disabled);
+                }
             }
         }
     }
@@ -48,6 +57,12 @@
         color: var(--bf-color-neutral-primary);
         background-color: var(--bf-color-bg-ground);
         border-radius: var(--bf-border-radius-small);
+    }
+
+    .form-group__input-icon-container {
+        top: 1px;
+        right: 1px;
+        height: calc(100% - 2px);
     }
 
     .invalid-feedback {
