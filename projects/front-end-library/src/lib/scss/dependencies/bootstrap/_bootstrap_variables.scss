@@ -175,6 +175,7 @@ $spacer-1: ($spacer * .25);     // 4px
 $spacer-2: ($spacer * .5);      // 8px
 $spacer-3: $spacer;             // 16px
 $spacer-4: ($spacer * 1.5);     // 24px
+$spacer-4-5: ($spacer * 2);     // 32px (Deprecated: Currently used only in PatternLab)
 $spacer-5: ($spacer * 2.5);     // 40px
 $spacer-6: ($spacer * 3);       // 48px
 $spacer-7: ($spacer * 4.5);     // 72px
@@ -187,9 +188,11 @@ $spacers: map-merge((
         2: $spacer-2,
         3: $spacer-3,
         4: $spacer-4,
+        '4-5': $spacer-4-5,
         5: $spacer-5,
         6: $spacer-6,
         7: $spacer-7,
+        8: $spacer-8,
 ), $spacers);
 
 // This variable affects the `.h-*`, `.w-*`, `.maxw-*` classes.
@@ -324,8 +327,8 @@ $font-family-icons:           'Font Awesome 5 Free'!default;
 // stylelint-enable value-keyword-case
 
 $font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
-$font-size-lg:                ($font-size-base * 1.25) !default;
-$font-size-sm:                ($font-size-base * .75) !default;
+$font-size-lg:                1rem !default;
+$font-size-sm:                1rem !default;
 
 $font-weight-light:           300 !default;
 $font-weight-normal:          400 !default;
