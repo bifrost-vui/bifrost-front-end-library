@@ -1,109 +1,135 @@
 <article class='
     bf-block bf-block--selection
-    d-flex flex-column p-3 p-sm-4
+    d-flex flex-column
     {% if isListingMode is defined and isListingMode is same as (true) %}bf-block--listing{% endif %}
     {{ class }}'
 >
 
-    <header class='d-flex justify-content-between align-items-center mb-1'>
-        <h1 class='h3'>
-            {{ title }}
-        </h1>
-        {% if topLink is defined and topLink is not empty %}
-            <a href='{{ topLink.href }}' class='bf-link text-right'>
-                {{ topLink.label }}
-            </a>
-        {% endif %}
-    </header>
-    
-    {% if contentTop is defined and contentTop is not empty %}
-        <div class='d-flex flex-align-center-space-between bf-border-bottom-secondary py-3'>
-            <p class='font-weight-bold m-0'>
-                {{ contentTop.label }}
-            </p>
-            <a href='{{ contentTop.linkHref }}' class='bf-link text-right'>
-                {{ contentTop.linkLabel }}
-            </a>
+    <button
+        class='bf-block__toggle'
+        type='button'
+        data-toggle='collapse'
+        data-target='#bf-block-collapse'
+        aria-expanded='true'
+        aria-controls='bf-block-collapse'
+    >
+        <div class='d-flex flex-row justify-content-between align-items-center p-3 p-sm-4'>
+            <h1 class='h3 m-0'>
+                {{ title }}
+            </h1>
+            {% include '@bf-components/icon/twig/index.twig' with {
+                name    : 'plus',
+                class   : 'icon-plus ml-2'
+            } only %}
+            {% include '@bf-components/icon/twig/index.twig' with {
+                name    : 'minus',
+                class   : 'icon-minus ml-2'
+            } only %}
         </div>
-    {% endif %}
+    </button>
 
-    {% if contentLists is defined %}
-        <ul class='list'>
-            {% for item in contentLists %}
-                <li class='bf-block__item d-flex justify-content-between align-items-end bf-border-top-secondary py-3'> 
-                    
-                    <div class='label'>
-                        {% if item.title is defined %}
-                            <h2 class='bf-text font-weight-bold'>
-                                {{ item.title }}
-                            </h2>
-                        {% endif %}
+    <div class='p-3 p-sm-4 collapse show' id='bf-block-collapse'>
+        <header class='d-flex justify-content-between align-items-center mb-1'>
+            <h1 class='h3'>
+                {{ title }}
+            </h1>
+            {% if topLink is defined and topLink is not empty %}
+                <a href='{{ topLink.href }}' class='bf-link text-right'>
+                    {{ topLink.label }}
+                </a>
+            {% endif %}
+        </header>
+        
+        {% if contentTop is defined and contentTop is not empty %}
+            <div class='d-flex flex-align-center-space-between bf-border-bottom-secondary py-3'>
+                <p class='font-weight-bold m-0'>
+                    {{ contentTop.label }}
+                </p>
+                <a href='{{ contentTop.linkHref }}' class='bf-link text-right'>
+                    {{ contentTop.linkLabel }}
+                </a>
+            </div>
+        {% endif %}
 
-                        {% if item.description is defined %}
-                            <p class='description bf-color-neutral-secondary mb-0'>
-                                {{ item.description }}
-                            </p>
-                        {% endif %}
-                    </div>
+        {% if contentLists is defined %}
+            <ul class='list'>
+                {% for item in contentLists %}
+                    <li class='bf-block__item d-flex justify-content-between align-items-end bf-border-top-secondary py-3'> 
+                        
+                        <div class='label'>
+                            {% if item.title is defined %}
+                                <h2 class='bf-text font-weight-bold'>
+                                    {{ item.title }}
+                                </h2>
+                            {% endif %}
 
-                    <div class=''>
-                        <div class='d-flex justify-content-end pb-1'>
-                            {% include '@bf-components/button-icon/twig/index.twig' with {
-                                icon    : 'bin',
-                                class   : 'ml-2'
-                            } only %}
-                            {% include '@bf-components/button-icon/twig/index.twig' with {
-                                icon    : 'edit',
-                                class   : 'ml-2'
-                            } only %}
+                            {% if item.description is defined %}
+                                <p class='description bf-color-neutral-secondary mb-0'>
+                                    {{ item.description }}
+                                </p>
+                            {% endif %}
                         </div>
-                    
-                        <div class='text-right'>
-                            <span class='bf-color-neutral-secondary'>
-                                {{ item.price }} /{{ month }}
-                            </span>
-                            {% if item.saving is defined %}
-                                <div class='d-inline-flex align-items-center mt-2'>
-                                    <p class='small text-strike mb-0'>
-                                        {{ item.fullPrice }}
-                                    </p>
-                                    <div class='bf-display-highlight d-inline-flex flex-wrap ml-2'>
-                                        <p class='mb-0'>
-                                            {{ savingLabel }}
-                                            <span class='font-weight-bold ml-1'>
-                                                {{ item.saving }}
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                            {% endif %}  
-                        </div> 
-                    </div>     
-                
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
 
-    {% if totalPrice is defined and totalPrice is not empty %}
-        <footer class='d-flex justify-content-between pt-3 bf-border-top-primary'>
-            <div>
-                <p class='font-weight-bold mb-0'>
-                    {{ totalPrice.label|default('Total')}}
-                </p>
-                <p class='bf-color-neutral-secondary mb-0'>
-                    {{ totalPrice.details }}
-                </p>
-            </div>
-            <div class='text-right'>
-                <p class='font-weight-bold mb-0'>
-                    {{ totalPrice.price }} /{{ month }}
-                </p>
-                <p class='bf-color-neutral-secondary mb-0'>
-                    {{ totalPrice.priceDetails }}
-                </p>
-            </div>
-        </footer>
-    {% endif %}
+                        <div class=''>
+                            <div class='d-flex justify-content-end pb-1'>
+                                {% include '@bf-components/button-icon/twig/index.twig' with {
+                                    icon    : 'bin',
+                                    class   : 'ml-2'
+                                } only %}
+                                {% include '@bf-components/button-icon/twig/index.twig' with {
+                                    icon    : 'edit',
+                                    class   : 'ml-2'
+                                } only %}
+                            </div>
+                        
+                            <div class='text-right'>
+                                <span class='bf-color-neutral-secondary'>
+                                    {{ item.price }} /{{ month }}
+                                </span>
+                                {% if item.saving is defined %}
+                                    <div class='d-inline-flex align-items-center mt-2'>
+                                        <p class='small text-strike mb-0'>
+                                            {{ item.fullPrice }}
+                                        </p>
+                                        <div class='bf-display-highlight d-inline-flex flex-wrap ml-2'>
+                                            <p class='mb-0'>
+                                                {{ savingLabel }}
+                                                <span class='font-weight-bold ml-1'>
+                                                    {{ item.saving }}
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                {% endif %}  
+                            </div> 
+                        </div>     
+                    
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if totalPrice is defined and totalPrice is not empty %}
+            <footer class='d-flex justify-content-between pt-3 bf-border-top-primary'>
+                <div>
+                    <p class='font-weight-bold mb-0'>
+                        {{ totalPrice.label|default('Total')}}
+                    </p>
+                    <p class='bf-color-neutral-secondary mb-0'>
+                        {{ totalPrice.details }}
+                    </p>
+                </div>
+                <div class='text-right'>
+                    <p class='font-weight-bold mb-0'>
+                        {{ totalPrice.price }} /{{ month }}
+                    </p>
+                    <p class='bf-color-neutral-secondary mb-0'>
+                        {{ totalPrice.priceDetails }}
+                    </p>
+                </div>
+            </footer>
+        {% endif %}
+
+    </div>
 
 </article>
