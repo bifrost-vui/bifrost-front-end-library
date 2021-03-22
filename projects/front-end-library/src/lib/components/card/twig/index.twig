@@ -155,12 +155,12 @@
         {% endif %}
 
         <div class='bf-card__buttons'>
-            {% for button in buttons %}
-
-                {% set button = button|merge( { 'class': 'w-100 ' ~ button.class } ) %}
-                {% include '@bf-components/button/twig/index.twig' with button only %}
-
-            {% endfor %}        
+            {% block buttons %}
+                {% for button in buttons %}
+                    {% set button = button|merge( { 'class': 'w-100 ' ~ button.class } ) %}
+                    {% include '@bf-components/button/twig/index.twig' with button only %}
+                {% endfor %}
+            {% endblock %}
         </div>
 
         {% if message is defined and message is not empty %}
