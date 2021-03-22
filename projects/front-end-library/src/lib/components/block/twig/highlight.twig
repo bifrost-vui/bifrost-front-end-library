@@ -1,0 +1,39 @@
+{% set hasImage     = image.src is defined and image.src is not empty %}
+
+<article class='
+    bf-block bf-block--highlight
+    d-flex flex-column flex-sm-row
+    {% if fullWidth is defined and fullWidth is same as (true) %}bf-block--fullwidth{% endif %}
+    {{ class }}'
+>
+
+    {% if hasImage %}
+        <div class='bf-block__visual d-flex justify-content-center align-items-center bf-color-bg-brand'>
+            <img
+                data-src='{{ image.src|default('') }}'
+                alt='{{ image.alt|default('') }}'
+            />
+        </div>
+    {% endif %}
+    
+    <div class='p-5'>
+        {% if title is defined %}
+            <h2>
+                {{ title }}
+            </h2>
+        {% endif %}
+        {% if paragraph is defined %}
+            <p>
+                {{ paragraph }}
+            </p>
+        {% endif %}
+        {% if button is defined %}
+            {% include '@bf-components/button/twig/index.twig' with {
+                label       : button.label|default(''),
+                hierarchy   : button.hierarchy|default('secondary'),
+                class       : button.class|default(''),
+            } only %}
+        {% endif %}
+    </div>
+
+</article>
