@@ -5,6 +5,7 @@
 * ***************************************************************************** */
 
 .bf-block {
+    width: 100%;
     border: 1px solid var(--bf-color-stroke-primary);
     border-radius: var(--bf-border-radius-medium);
     overflow: hidden;
@@ -13,8 +14,6 @@
         border-color: var(--bf-color-stroke-secondary);
 
         &.bf-block--fullwidth {
-            width: 100%;
-            max-width: none;
             @extend .bf-color-bg-underground;
         }
 
@@ -36,11 +35,50 @@
     }
 
     &--selection {
-        max-width: 30rem;
-    }
 
-    &--listing {
-        @extend .bf-color-bg-underground;
+        &.bf-block--listing {
+            @extend .bf-color-bg-underground;
+
+            .bf-block__toggle {
+                display: none;
+            }
+
+            #bf-block-collapse {
+                // display: block; // Nice to Have: Force visibility on resize above small
+            }
+
+            @include media-breakpoint-down(sm) {
+                border: none;
+                border-radius: 0;
+
+                .bf-block__toggle {
+                    display: block;
+                    appearance: none;
+                    border: 0;
+                    background: none;
+
+                    &:not(.collapsed) .bf-icon.icon-plus {
+                        display: none;
+                    }
+
+                    &.collapsed {
+                        border-bottom: 1px solid var(--bf-color-stroke-secondary);
+
+                        .bf-icon.icon-minus {
+                            display: none;
+                        }
+                    }
+                }
+
+                #bf-block-collapse {
+                    padding-top: 0 !important;
+
+                    header h1 {
+                        visibility: hidden;
+                    }
+                }
+            }
+        }
     }
 
     &__item {
