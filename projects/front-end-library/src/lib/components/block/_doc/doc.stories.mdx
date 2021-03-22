@@ -11,6 +11,9 @@ import { BlockComponent }                       from '../angular/block.component
     decorators={[
         moduleMetadata({ declarations: [BlockComponent, TwigContainerComponent]}),
     ]}
+    argTypes={{
+        blockVariant: { table: { disable: true } },
+    }}
 />
 
 # Block
@@ -24,8 +27,57 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-export const commonProps = {
+export const highlightProps = {
     elementPath         : 'components/block/_doc/template.drupal',
+    blockVariant        : 'highlight',
+    image               : {
+        src: '/images/assets/helix-equipment.png',
+        alt: 'Alt description'
+    },
+    title               : 'All the mobile accessories',
+    paragraph           : 'Find the perfect accessories for your device.',
+    button              : {
+        hierarchy           : 'primary-alt',
+        label               : 'Shop',
+        class               : ''
+    },
+    fullWidth           : false,
+    reversed            : false,
+    class               : ''
+}
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal - Highlight'
+        args={{ 
+            ...highlightProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal - Highlight FullWidth'
+        args={{ 
+            ...highlightProps,
+            fullWidth           : true,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+export const selectionProps = {
+    elementPath         : 'components/block/_doc/template.drupal',
+    blockVariant        : 'selection',
     title               : 'My selection',
     contentLists        : contentListsData,
     totalPrice          : {
@@ -45,7 +97,7 @@ export const commonProps = {
     <Story 
         name='Drupal - Selection'
         args={{ 
-            ...commonProps
+            ...selectionProps
         }}
     >
         {Drupal.bind({})}
@@ -59,7 +111,7 @@ export const commonProps = {
     <Story 
         name='Drupal - Selection Listing'
         args={{ 
-            ...commonProps,
+            ...selectionProps,
             isListingMode       : true,
             topLink             : {
                 href        : 'www.videotron.com',

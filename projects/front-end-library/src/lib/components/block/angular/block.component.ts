@@ -13,16 +13,23 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class BlockComponent implements OnInit {
     constructor() {}
     
+    // Common
     @Input() title              : string;
+    @Input() class              : string;
+
+    // Block Highlight
+    @Input() image               : object;
+    @Input() paragraph           : string;
+    @Input() button              : object;
+    @Input() fullWidth           : boolean;
+
+    // Block Selection
     @Input() topLink            : object;
     @Input() contentTop         : object;
     @Input() contentLists       : object;
-
     @Input() totalPrice         : object;
     @Input() month              : string;
-
     @Input() isListingMode      : boolean;
-    @Input() class              : string;
 
     ngOnInit() {
         console.log('block', this);
