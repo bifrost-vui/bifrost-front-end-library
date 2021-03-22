@@ -36,12 +36,16 @@
 
     &--selection {
 
+        .bf-block__toggle {
+            display: none;
+            padding: 0;
+            border: 0;
+            background: none;
+            appearance: none;
+        }
+
         &.bf-block--listing {
             @extend .bf-color-bg-underground;
-
-            .bf-block__toggle {
-                display: none;
-            }
 
             #bf-block-collapse {
                 // display: block; // Nice to Have: Force visibility on resize above small
@@ -53,9 +57,6 @@
 
                 .bf-block__toggle {
                     display: block;
-                    appearance: none;
-                    border: 0;
-                    background: none;
 
                     &:not(.collapsed) .bf-icon.icon-plus {
                         display: none;
@@ -74,8 +75,12 @@
                     padding-top: 0 !important;
 
                     header h1 {
-                        visibility: hidden;
+                        display: none;
                     }
+                    
+                    // .bf-block__item:first-child {
+                    //     padding-top: 0 !important;
+                    // }
                 }
             }
         }
