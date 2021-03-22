@@ -63,10 +63,11 @@ export const interfaceIcons = [
     {
         category: 'Links and medias',
         list: [
-            'camera',
-            'external-link',
-            'file-pdf',
             'link',
+            'external-link',
+            'camera',
+            'file-pdf',
+            'tutorial',
         ]
     },
     {
@@ -80,14 +81,16 @@ export const interfaceIcons = [
     {
         category: 'Communication',
         list: [
+            'email',
+            'call',
+            'call-incoming',
+            'voice-command',
+            'chat',
+            'mobile-livechat',
             'actualite',
             'communaute',
-            'email',
-            'voice-command',
-            'call-incoming',
-            'call',
-            'mobile-livechat',
-            'chat',
+            'notification',
+            'building',
         ]
     },
     {
