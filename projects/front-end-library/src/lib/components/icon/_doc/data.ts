@@ -91,6 +91,7 @@ export const interfaceIcons = [
             'communaute',
             'notification',
             'building',
+            'printer',
         ]
     },
     {
