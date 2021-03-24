@@ -12,22 +12,17 @@
             link.href = '/css/bifrost.css';
             document.getElementsByTagName('HEAD')[0].appendChild(link);
         </script>
-
+        
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+        
         <script>
-            {# const src = 'http://localhost:8080/js/uikit-marvel.js'; #}
-            const src = '/js/core.js';
-            const fileref = document.createElement('script');
-            fileref.setAttribute('type', 'text/javascript');
-            fileref.setAttribute('src', src);
-            document.getElementsByTagName('head')[0].appendChild(fileref);
-        </script>
-
-        <script>
-            const src2 = '/js/bifrost-components.js';
-            const fileref2 = document.createElement('script');
-            fileref2.setAttribute('type', 'text/javascript');
-            fileref2.setAttribute('src', src2);
-            document.getElementsByTagName('head')[0].appendChild(fileref2);
+            async function load() {
+                const src = '/js/core.js';
+                await import(src);
+                const src2 = '/js/bifrost-components.js';
+                await import(src2);
+            }
+            load();
         </script>
 
         <style>
@@ -67,6 +62,9 @@
             
         </main>
     </body>
+
+    <script>load();</script>
+
 </html>
 
 
