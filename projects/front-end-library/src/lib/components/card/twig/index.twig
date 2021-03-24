@@ -13,7 +13,7 @@
 >
 
     {% if hasVisual %}
-        <div class='bf-card__visual bf-color-bg-underground d-flex justify-content-center align-items-center p-3'>
+        <div class='bf-card__visual bf-color-bg-underground d-flex justify-content-center align-items-center p-4 p-sm-3'>
             {% if hasImage %}
                 <img
                     data-src='{{ image.src|default('') }}'
@@ -79,7 +79,7 @@
 
         {% if contentLists is defined %}
             {% for list in contentLists %}
-                <div class='bf-card__content-list'>
+                <div class='bf-card__content-list pt-2 px-3 px-sm-4'>
 
                     {% if list.title is defined %}
                         <div class='d-flex mb-2'>
@@ -111,7 +111,7 @@
         {% endif %}
 
         {% if detailsColors is defined and detailsColors is not empty or detailsStorage is defined and detailsStorage is not empty %}
-            <div class='d-flex mx-4'>
+            <div class='d-flex mx-3 m-sm-4'>
                 {% if detailsColors is defined %}
                     <ul class='bf-card__details-colors list-unstyled d-flex mb-0 mr-2'>
                         {% for color in detailsColors|default([]) %}
@@ -138,7 +138,7 @@
 
     </div>
 
-    <footer class='bf-card__footer pt-3'>
+    <footer class='bf-card__footer pt-3 m-3 m-sm-4 mt-0'>
 
         {% if price is defined %}
             {% set price = price|merge({
