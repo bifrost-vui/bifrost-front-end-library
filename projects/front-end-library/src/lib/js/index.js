@@ -43,7 +43,4 @@ require("./components/widgets-override/livechat-genesys.js");
 // DEMO
 // require("./demo/etiya/index.js");
 
-// Bifrost
-require("../components/navigation-header/js/index.js");
-
 require("./onload.js");

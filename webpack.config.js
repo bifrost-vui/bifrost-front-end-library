@@ -10,7 +10,8 @@ const devMode               = process.env.NODE_ENV !== 'production';
 module.exports = (env) => {    
     return [{
         entry: {
-            bifrost: './projects/front-end-library/src/lib/js/index.js'
+            'bifrost-components': './projects/front-end-library/src/lib/js/bifrost-components.js',
+            core: './projects/front-end-library/src/lib/js/index.js'
         },
         output: {
             path: path.join(__dirname, 'public/js'),
@@ -27,7 +28,7 @@ module.exports = (env) => {
             new MiniCssExtractPlugin({
                 // Options similar to the same options in webpackOptions.output
                 // both options are optional
-                filename: devMode ? '../css/[name].css' : '../css/[name].[hash].css',
+                filename: devMode ? '../css/bifrost.css' : '../css/bifrost.[hash].css',
                 chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
             })
         ],
