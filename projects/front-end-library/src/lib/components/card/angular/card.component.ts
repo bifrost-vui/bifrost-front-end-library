@@ -33,7 +33,7 @@ export class CardComponent implements OnInit {
     @Input() message                : string;
     
     @Input() class                  : string;
-    @Input() disabled               : boolean;
+    @Input() isDisabled             : boolean;
 
     ngOnInit() {
         console.log('card', this);
