@@ -6,6 +6,7 @@
 
 .bf-card {
     position: relative;
+    width: 100%;
     max-width: 30rem;
     border: 1px solid var(--bf-color-stroke-primary);
     background-color: var(--bf-color-bg-ground);
@@ -23,6 +24,14 @@
     }
 
     &--phone {
+        .bf-card__header {
+            @extend .pb-3;
+        }
+
+        .bf-card__footer {
+            @extend .pt-0;
+        }
+        
         .bf-price {
             @extend .pb-3;
             @extend .bf-border-bottom-secondary;
@@ -30,8 +39,17 @@
     }
 
     &--protection {
-        .bf-card__footer .bf-card__buttons {
-            order: 1;
+
+        .bf-card__header {
+            @extend .pb-1;
+        }
+
+        .bf-card__footer {
+            @extend .pt-0;
+            
+            .bf-card__buttons {
+                order: 1;
+            }
         }
     }
 
@@ -96,14 +114,18 @@
 
     &__header {
         @extend .bf-color-bg-underground;
+
+        p.bf-card__description,
+        .bf-card__description p,
+        {
+            @extend .mb-1;
+        }
     }
 
     &__body {
         .bf-card__content-list {
-            &:last-child { @extend .mb-3 }
-
-            ul {
-                > *:last-child { @extend .mb-0 }
+            ul > *:last-child {
+                @extend .mb-0;
             }
         }
     }
