@@ -2,7 +2,7 @@
     <head>
         
         {#  ---------------------------------------------------------------
-            NOTE: Need to dynamically load styles and scripts
+            NOTE: To avoid cache in Storybook, we need to dynamically load styles and scripts
         #}
 
         <script>
@@ -13,16 +13,12 @@
             document.getElementsByTagName('HEAD')[0].appendChild(link);
         </script>
         
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-        
         <script>
             async function load() {
-                const src = '/js/core.js';
-                await import(src);
-                const src2 = '/js/bifrost-components.js';
-                await import(src2);
+                await import('/js/core.js');
+                await import('/js/vendors~bifrost-components.js');
+                await import('/js/bifrost-components.js');
             }
-            load();
         </script>
 
         <style>

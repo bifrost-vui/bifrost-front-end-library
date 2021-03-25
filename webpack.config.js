@@ -18,6 +18,13 @@ module.exports = (env) => {
             filename: '[name].js',
             publicPath: '/public/'
         },
+        optimization: {
+            splitChunks: {
+                chunks(chunk) {
+                    return chunk.name !== 'core';
+                },
+            },
+        },
         resolve: {
             extensions: ['.js', '.scss'],
             alias: {
