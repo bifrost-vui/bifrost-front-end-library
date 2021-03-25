@@ -15,6 +15,11 @@ export class BadgeComponent implements OnInit {
     
     @Input() label      : string;
     @Input() color      : string;
+    /*
+        Angle lets you display a skew on a corner.
+        'left' | 'right'
+    */
+    @Input() angle      : string;
     @Input() reversed   : boolean;
 
     ngOnInit() {
