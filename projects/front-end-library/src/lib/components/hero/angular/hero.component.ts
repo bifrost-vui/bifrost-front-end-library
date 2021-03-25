@@ -13,15 +13,19 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 export class HeroComponent implements OnInit {
     constructor() {}
 
-    /**
-    * The inner text.
-    *
-    * @required
-    */
-    @Input() label: string;
+    @Input() breadcrumb         : object;
+    @Input() badge              : string;
+    @Input() uppertitle         : string;
+    @Input() title              : string;
+    @Input() subtitle           : string;
+    @Input() description        : string;
+    @Input() button             : object;
 
+    @Input() block_selection    : object;
+    
     /** Class override */
-    @Input() class: string;
+    @Input() class              : string;
+    @Input() reversed           : boolean;
 
     ngOnInit() {
         console.log('Hero', this);

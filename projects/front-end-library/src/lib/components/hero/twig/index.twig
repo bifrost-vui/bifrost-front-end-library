@@ -1,12 +1,51 @@
-{# 
-    Edit this component and don't forget to delete this comment.
-    
-    In your component, the file /common/style.scss is aimed to share styles across Twig and Angular. 
-    Try to use it as much as possible, in order to avoid styles for specific framework.
+<section
 
-    Enjoy :)
-#}
+    class='bf-hero py-4 
+    {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}
+    {{ bgImagePosition|default('right') }} {{ bgImageQueries|default(null) }} {{ class|default('') }}'
+    data-bg='{{ bgImage|default(defaultImgSrc) }}'
+    data-md-bg='{{ bgMediumImage|default(defaultImgSrc) }}'
+    data-lg-bg='{{ bgLargeImage|default(defaultImgSrc) }}'
+>
+    {% block hero_mobile_image %}{% endblock %}
 
-<div class="bf-hero {{ class|default('') }}">
-    {{ label|default('Label') }}
-</div>
+    <div class='container-fluid' data-animate-row=''>
+
+        {% if breadcrumb is defined %}
+            {{ breadcrumb }}
+        {% endif %}
+
+        {% if badge is defined and badge is not empty %}
+            {% include '@bf-components/badge/twig/index.twig' with {
+                label: badge
+            } only %}
+        {% endif %}
+
+        {% if upperTitle is defined and upperTitle is not empty %}
+            <p class='mb-1'>
+                {{ upperTitle }}
+            </p>
+        {% endif %}
+
+        <h1 class='mb-0' data-animate='fade-in'>
+            {{ title|default('') }}
+        </h1>
+
+        {% if subtitle is not defined or subtitle is not empty %}
+            <h2 class='mt-2 mb-0' data-animate='fade-in'>
+                {{ subtitle }}
+            </h2>
+        {% endif  %}
+
+        {% if description is defined and description is not empty %}
+            <p class='mb-1'>
+                {{ description }}
+            </p>
+        {% endif %}
+        
+        {% if button is defined and button is not empty %}
+            {% include '@bf-components/button/twig/index.twig' with button only %}
+        {% endif %}
+
+    </div>
+</section>
