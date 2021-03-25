@@ -1,0 +1,67 @@
+<section
+
+    class='bf-hero py-2 py-sm-4 
+    {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}
+    {{ bgImagePosition|default('right') }} {{ bgImageQueries|default(null) }} {{ class|default('') }}'
+    data-bg='{{ bgImage|default(defaultImgSrc) }}'
+    data-md-bg='{{ bgMediumImage|default(defaultImgSrc) }}'
+    data-lg-bg='{{ bgLargeImage|default(defaultImgSrc) }}'
+>
+    {% block hero_mobile_image %}{% endblock %}
+
+    <div class='container-fluid d-block d-md-flex align-items-center' data-animate-row=''>
+
+        {% if breadcrumb is defined %}
+            {{ breadcrumb }}
+        {% endif %}
+
+        <header class='position-relative py-3 py-sm-5'>
+
+            {% if badge is defined and badge is not empty %}
+                {% include '@bf-components/badge/twig/index.twig' with {
+                    label: badge,
+                    color: 'dark',
+                    class: 'position-absolute top-0'
+                } only %}
+            {% endif %}
+
+            {% if upperTitle is defined and upperTitle is not empty %}
+                <p class='h5 mt-0 mb-2' data-animate='fade-in'>
+                    {{ upperTitle }}
+                </p>
+            {% endif %}
+
+            {% if title is defined and title is not empty %}
+                <h1 class='bf-hero__title mt-2' data-animate='fade-in'>
+                    {{ title }}
+                </h1>
+            {% endif  %}
+
+            {% if subtitle is not defined or subtitle is not empty %}
+                <h2 class='h3 my-2' data-animate='fade-in'>
+                    {{ subtitle }}
+                </h2>
+            {% endif  %}
+
+            {% if description is defined and description is not empty %}
+                <p class='mt-2' data-animate='fade-in'>
+                    {{ description }}
+                </p>
+            {% endif %}
+            
+            {% if button is defined and button is not empty %}
+                <div class='mt-6' data-animate='fade-in'>
+                    {% include '@bf-components/button/twig/index.twig' with button only %}
+                </div>
+            {% endif %}
+        
+        </header>
+
+        {% if blockSelection is defined and blockSelection is not empty %}
+            <div data-animate='fade-in'>
+                {% include '@bf-components/block/twig/selection.twig' with blockSelection only %}
+            </div>
+        {% endif %}
+
+    </div>
+</section>

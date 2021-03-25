@@ -1,0 +1,83 @@
+import { moduleMetadata } from '@storybook/angular';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withDesign } from 'storybook-addon-designs'
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { HeroComponent } from '../angular/hero.component';
+
+<Meta 
+    title='Components/Hero' 
+    component={HeroComponent}
+    decorators={[
+        moduleMetadata({ declarations: [HeroComponent, TwigContainerComponent]}),
+    ]}
+    argTypes={{}}
+/>
+
+# Hero
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal'
+        args={{ 
+            elementPath : 'components/hero/_doc/template.drupal',
+            breadcrumb  : '',
+            badge       : 'NEW',
+            upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
+            subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            description : 'Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.',
+            button      : {
+                label       : 'Button',
+                hierarchy   : 'primary-alt',
+                class       : 'my-class'
+            },
+            blockSelection : {
+                title               : 'My selection',
+                contentLists        : [
+                    {
+                        title           : 'Samsung Galaxy Note 20 Utra 5G',
+                        description     : 'Navy Blue, 128 Go',
+                        price           : '$24.00',
+                        saving          : '$30.00',
+                        fullPrice       : '$150.00',
+                    },
+                    {
+                        title           : 'All-inclusive 12 GB Mobile',
+                        description     : 'Lorem ipsum',
+                        price           : '$55.00',
+                    },
+                ],
+            }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+## Drupal implementation exemple
+
+```php
+{% include '@bf-components/hero/twig/index.twig' with {
+    title: 'Title',
+    subtitle: 'Subtitle'
+} only %}
+```
+
+## Component API
+
+**// TODO**: Add a sentence to clarify if API is consistent between Angular and Drupal.
+
+**✅ Inputs are equivalent for Angular and Drupal.**
+
+<Props of={HeroComponent} />

@@ -5,6 +5,7 @@
 * ***************************************************************************** */
 
 .bf-badge {
+    display: inline-block;
 
     &--dark .bf-badge__container {
         color: var(--bf-color-bg-underground);
@@ -12,8 +13,8 @@
     }
     
     &__container {
+        padding: 0 .5rem;
         min-height: 1.5rem;
-        padding: 0 .75rem 0 .25rem;
         letter-spacing: 1px;
         font-family: $font-family-secondary;
         color: var(--bf-color-neutral-primary);
@@ -24,17 +25,37 @@
         .reversed .bf-badge__container {
             color: var(--bf-color-bg-ground);
         }
+    }
 
-        &:before {
+    &--angle-left,
+    &--angle-right {
+         .bf-badge__container:before {
             content: '';
             position: absolute;
-            left: 0;
             top: 0;
             width: .5rem;
             height: 100%;
             transform: translate(-50%) skew(19deg);
             background-color: inherit;
             z-index: 0;
+        }
+    }
+
+    &--angle-left .bf-badge__container {
+        padding: 0 .25rem 0 .75rem;
+
+        &:before {
+            right: 0;
+            transform: translate(50%) skew(-19deg);
+        }
+    }
+
+    &--angle-right .bf-badge__container {
+        padding: 0 .75rem 0 .25rem;
+
+        &:before {
+            left: 0;
+            transform: translate(-50%) skew(19deg);
         }
     }
 
