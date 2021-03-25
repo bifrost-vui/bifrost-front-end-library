@@ -96,14 +96,18 @@
 
     &__header {
         @extend .bf-color-bg-underground;
+
+        p.bf-card__description,
+        .bf-card__description p,
+        {
+            @extend .mb-1;
+        }
     }
 
     &__body {
         .bf-card__content-list {
-            &:last-child { @extend .mb-3 }
-
-            ul {
-                > *:last-child { @extend .mb-0 }
+            ul > *:last-child {
+                @extend .mb-0;
             }
         }
     }

@@ -52,9 +52,13 @@
         {% endif %}
 
         {% if description is defined and description is not empty %}
-            <p class='mb-1'>
+            <p class='bf-card__description'>
                 {{ description }}
             </p>
+        {% elseif description_html is defined and description_html is not empty %}
+            <div class='bf-card__description'>
+                {{ description_html|raw }}
+            </div>
         {% endif %}
 
         {% if link.href is defined and link.href is not empty %} 
