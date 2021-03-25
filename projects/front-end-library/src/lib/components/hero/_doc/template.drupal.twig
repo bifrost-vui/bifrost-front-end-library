@@ -1,12 +1,14 @@
-{% set button       = button|json_parse %}
-{% set reversed     = reversed|json_parse %}
+{% set button           = button|json_parse %}
+{% set blockSelection   = blockSelection|json_parse %}
+{% set reversed         = reversed|json_parse %}
 
-{# {% if bgImage is defined and bgImage is not empty %}
-    {% set defaultImgSrc = bgImage %}
-{% else %}
-    {% set defaultImgSrc = '/images/hero/hero-block-sample.png' %}
-{% endif %} #}
 
 <div>
     {% include '@bf-components/hero/twig/index.twig' %}
+</div>
+
+<div>
+    {% include '@bf-components/hero/twig/index.twig' with {
+        reversed: true,
+    } %}
 </div>

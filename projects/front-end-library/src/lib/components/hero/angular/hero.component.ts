@@ -15,7 +15,7 @@ export class HeroComponent implements OnInit {
 
     @Input() breadcrumb         : object;
     @Input() badge              : string;
-    @Input() uppertitle         : string;
+    @Input() upperTitle         : string;
     @Input() title              : string;
     @Input() subtitle           : string;
     @Input() description        : string;
