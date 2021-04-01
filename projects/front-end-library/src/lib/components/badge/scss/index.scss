@@ -7,9 +7,11 @@
 .bf-badge {
     display: inline-block;
 
+    --bg-color: var(--bf-color-highlight);
+
     &--dark .bf-badge__container {
         color: var(--bf-color-bg-underground);
-        background-color: var(--bf-color-highlight);
+        background-color: var(--bg-color);
     }
     
     &__container {
@@ -61,5 +63,15 @@
 
     &__label {
         z-index: 1;
+    }
+}
+
+// Apply White color when badge is dark and reversed.
+@at-root 
+.reversed .bf-badge,
+.reversed.bf-badge {
+    
+    &--dark {
+        --bg-color: var(--bf-color-neutral-primary);
     }
 }

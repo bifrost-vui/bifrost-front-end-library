@@ -1,54 +1,58 @@
 {# ----------------------------------------------------------------- #}
 {% set reversed = reversed|json_parse|default(false) %}
 
-<div
-    class="d-flex flex-column align-items-center justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
->
-
-    <div class='p-4'>
-
-        {% include '@bf-components/badge/twig/index.twig' with {
-            color   : NULL,
-            class   : 'm-2'
-        } %}
-
-        {% include '@bf-components/badge/twig/index.twig' with {
-            color   : NULL,
-            class   : 'm-2',
-            label   : 'Angle right',
-            angle   : 'right',
-        } %}
-
-        {% include '@bf-components/badge/twig/index.twig' with {
-            color   : NULL,
-            class   : 'm-2',
-            label   : 'Angle left',
-            angle   : 'left',
-        } %}
-
-    </div>
-
-    <div class='p-4'>
+<div class='d-flex flex-row minh-100'>
+    {% for index in [1,2] %}
         
-        {% include '@bf-components/badge/twig/index.twig' with {
-            color   : color|default(NULL),
-            class   : 'm-2'
-        } %}
+        <div class='d-flex flex-column justify-content-center flex-grow-1 minh-100 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
 
-        {% include '@bf-components/badge/twig/index.twig' with {
-            color   : color|default(NULL),
-            class   : 'm-2',
-            label   : 'Angle right',
-            angle   : 'right',
-        } %}
+            <div class='p-4'>
 
-        {% include '@bf-components/badge/twig/index.twig' with {
-            color   : color|default(NULL),
-            class   : 'm-2',
-            label   : 'Angle left',
-            angle   : 'left',
-        } %}
+                {% include '@bf-components/badge/twig/index.twig' with {
+                    color   : NULL,
+                    class   : 'm-2'
+                } %}
 
-    </div>
+                {% include '@bf-components/badge/twig/index.twig' with {
+                    color   : NULL,
+                    class   : 'm-2',
+                    label   : 'Angle right',
+                    angle   : 'right',
+                } %}
 
+                {% include '@bf-components/badge/twig/index.twig' with {
+                    color   : NULL,
+                    class   : 'm-2',
+                    label   : 'Angle left',
+                    angle   : 'left',
+                } %}
+
+            </div>
+
+            <div class='p-4'>
+                
+                {% include '@bf-components/badge/twig/index.twig' with {
+                    color   : color|default(NULL),
+                    class   : 'm-2'
+                } %}
+
+                {% include '@bf-components/badge/twig/index.twig' with {
+                    color   : color|default(NULL),
+                    class   : 'm-2',
+                    label   : 'Angle right',
+                    angle   : 'right',
+                } %}
+
+                {% include '@bf-components/badge/twig/index.twig' with {
+                    color   : color|default(NULL),
+                    class   : 'm-2',
+                    label   : 'Angle left',
+                    angle   : 'left',
+                } %}
+
+            </div>
+
+        </div>
+
+    {% endfor %}
 </div>
