@@ -1,0 +1,24 @@
+{% set isDisabled   = isDisabled|json_parse %}
+
+<div class='d-flex flex-column minh-100'>
+    {% for index in [1,2] %}
+        
+        <div class='d-flex flex-row align-items-center justify-content-center flex-grow-1 gap-3 minh-100 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
+
+            {% include '@bf-components/tile/twig/index.twig' %}
+
+            {% include '@bf-components/tile/twig/index.twig' with {
+                content     : 'disabled',
+                isDisabled  : true
+            } %}
+
+            {% include '@bf-components/tile/twig/index.twig' with {
+                content: '<h3 class="m-0">Text</h3>'
+            } %}
+
+            {% include '@bf-components/tile/_doc/block.drupal.twig' %}
+
+        </div>
+
+    {% endfor %}
+</div>
