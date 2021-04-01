@@ -1,0 +1,54 @@
+import { moduleMetadata }               from '@storybook/angular';
+import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { CarouselComponent }            from '../angular/carousel.component';
+
+<Meta 
+    title='Components/Carousel' 
+    component={CarouselComponent}
+    decorators={[
+        moduleMetadata({ declarations: [CarouselComponent, TwigContainerComponent]}),
+    ]}
+    argTypes={{}}
+/>
+
+# Carousel
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal'
+        args={{ 
+            elementPath : 'components/carousel/_doc/template.drupal',
+            label       : 'Carousel',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+## Drupal implementation example
+
+```php
+{% include '@bf-components/carousel/twig/index.twig' with {
+    // Add relevant props here
+} only %}
+```
+
+
+## Component API
+
+**✅ Inputs are equivalent for Angular and Drupal.**
+
+<Props of={CarouselComponent} />
