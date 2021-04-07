@@ -13,9 +13,10 @@
 >
 
     {% if hasVisual %}
-        <div class='bf-card__visual bf-color-bg-underground d-flex justify-content-center align-items-center p-4 p-sm-3'>
+        <div class='bf-card__visual bf-color-bg-underground d-flex justify-content-center align-items-center p-3 p-sm-4'>
             {% if hasImage %}
                 <img
+                    src='{{ image.src|default('') }}'
                     data-src='{{ image.src|default('') }}'
                     alt='{{ image.alt|default('') }}'
                 />
@@ -41,20 +42,24 @@
     
         {% if upperTitle is defined and upperTitle is not empty %}
             <p class='mb-1'>
-                {{ upperTitle|default('') }}
+                {{ upperTitle }}
             </p>
         {% endif %}
         
         {% if title is defined and title is not empty %}
-            <h1 class='h3 mb-1'>
+            <h1 class='h2 mt-0 mb-1'>
                 {{ title|default('') }}
             </h1>
         {% endif %}
 
         {% if description is defined and description is not empty %}
-            <p class='mb-1'>
+            <p class='bf-card__description'>
                 {{ description }}
             </p>
+        {% elseif description_html is defined and description_html is not empty %}
+            <div class='bf-card__description'>
+                {{ description_html|raw }}
+            </div>
         {% endif %}
 
         {% if link.href is defined and link.href is not empty %} 
@@ -80,7 +85,7 @@
 
         {% if contentLists is defined %}
             {% for list in contentLists %}
-                <div class='bf-card__content-list pt-2 px-3 px-sm-4'>
+                <div class='bf-card__content-list pt-3 px-3 px-sm-4'>
 
                     {% if list.title is defined %}
                         <div class='d-flex mb-2'>
@@ -112,7 +117,7 @@
         {% endif %}
 
         {% if detailsColors is defined and detailsColors is not empty or detailsStorage is defined and detailsStorage is not empty %}
-            <div class='d-flex mx-3 m-sm-4'>
+            <div class='d-flex mx-3 mx-sm-4'>
                 {% if detailsColors is defined %}
                     <ul class='bf-card__details-colors list-unstyled d-flex mb-0 mr-2'>
                         {% for color in detailsColors|default([]) %}
@@ -139,7 +144,7 @@
 
     </div>
 
-    <footer class='bf-card__footer pt-3 m-3 m-sm-4 mt-0'>
+    <footer class='bf-card__footer pt-3 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>
 
         {% if price is defined %}
             {% set price = price|merge({

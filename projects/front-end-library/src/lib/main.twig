@@ -27,6 +27,10 @@
             {# [data-animate] {
                 opacity: 1!important;
             } #}
+
+            html {
+                background-color: var(--bf-color-bg-ground);
+            }
             
             pre {
                 background-color: transparent;
@@ -45,10 +49,10 @@
                     
                     {% set elementPath = _context.elementPath %}
 
-                    <div class='videotron-ui d-flex h-100'>
-                        <div class='h-100 w-100'>
+                    <div class='videotron-ui'>
+                        {# <div class='h-100 w-100'> #}
                             {% include './' ~ elementPath ~ '.twig' with _context %}
-                        </div>
+                        {# </div> #}
                     </div>
                     
                 {% else %}
