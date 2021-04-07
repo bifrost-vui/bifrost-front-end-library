@@ -34,6 +34,7 @@ export class CardComponent implements OnInit {
     
     @Input() class                  : string;
     @Input() isDisabled             : boolean;
+    @Input() reversed               : boolean;
 
     ngOnInit() {
         console.log('card', this);

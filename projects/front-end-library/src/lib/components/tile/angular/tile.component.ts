@@ -17,7 +17,7 @@ export class TileComponent implements OnInit {
 
     @Input() isLink         : boolean;
     @Input() isDisabled     : boolean;
-    
+    @Input() reversed       : boolean;
     @Input() class          : string;
 
     ngOnInit() {

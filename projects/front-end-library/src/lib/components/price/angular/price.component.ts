@@ -26,6 +26,7 @@ export class PriceComponent implements OnInit {
     @Input() message                : string;
 
     @Input() class                  : string;
+    @Input() reversed               : boolean;
     @Input() size                   : string;
 
     @Input() language               : string;

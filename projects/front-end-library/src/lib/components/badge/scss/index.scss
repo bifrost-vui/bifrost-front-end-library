@@ -7,26 +7,40 @@
 .bf-badge {
     display: inline-block;
 
-    --bg-color: var(--bf-color-highlight);
-
-    &--dark .bf-badge__container {
-        color: var(--bf-color-bg-underground);
-        background-color: var(--bg-color);
+    &--primary .bf-badge__container {
+        --color: var(--bf-color-bg-underground);
+        --bg-color: var(--bf-color-neutral-primary);
     }
+
+    &--secondary .bf-badge__container {
+        --bg-color: var(--bf-color-feedback-neutral);
+
+        @at-root
+        .reversed.bf-badge--secondary,
+        .reversed .bf-badge--secondary {
+            --color: var(--bf-color-bg-ground);
+        }
+    }
+
+    &--tertiary .bf-badge__container {
+        // color: var(--bf-color-bg-underground);
+        --bg-color: var(--bf-color-bg-underground);
+    }
+
+    &--tertiary-ground .bf-badge__container {
+        // color: var(--bf-color-bg-underground);
+        --bg-color: var(--bf-color-bg-ground);
+    }
+
+    
     
     &__container {
         padding: 0 .5rem;
         min-height: 1.5rem;
-        letter-spacing: 1px;
+        letter-spacing: .5px;
         font-family: $font-family-secondary;
-        color: var(--bf-color-neutral-primary);
-        background-color: var(--bf-color-feedback-neutral);
-
-        @at-root
-        .reversed.bf-badge__container,
-        .reversed .bf-badge__container {
-            color: var(--bf-color-bg-ground);
-        }
+        color: var(--color);
+        background-color: var(--bg-color);
     }
 
     &--angle-left,
@@ -43,7 +57,7 @@
         }
     }
 
-    &--angle-left .bf-badge__container {
+    &--angle-right .bf-badge__container {
         padding: 0 .25rem 0 .75rem;
 
         &:before {
@@ -52,7 +66,7 @@
         }
     }
 
-    &--angle-right .bf-badge__container {
+    &--angle-left .bf-badge__container {
         padding: 0 .75rem 0 .25rem;
 
         &:before {
