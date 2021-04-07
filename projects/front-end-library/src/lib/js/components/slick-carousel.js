@@ -2,44 +2,46 @@ import {breakpoints} from '../utils/breakpoints';
 import 'slick-carousel';
 import $ from 'jquery';
 
+// Define global variable
+window.slick = {
+
+    getPrevSlickBtn : () => {
+        const lang = $('html').attr('lang');
+        const token = (lang === 'en') ? 'Previous' : 'Précédent';
+        return `<button class="slick-prev" aria-label="${token}" type="button">${token}</button>`;
+    },
+
+    getNextSlickBtn : () => {
+        const lang = $('html').attr('lang');
+        const token = (lang === 'en') ? 'Next' : 'Suivant';
+        return `<button class="slick-next" aria-label="${token}" type="button">${token}</button>`;
+    },
+
+    assignCarousel : (slickTarget = ".js-slick", slickParams = {}) => {
+        $(slickTarget).each(function (i, elem) {
+            const slickData = $(elem).data('slick') || {};
+            const mergeSlickData = Object.assign(slickParams, slickData);
+            $(elem).slick(mergeSlickData);
+        })
+    },
+};
+
 $(function () {
-  const assignSlickCarousel = (slickTarget = ".js-slick", slickParams = {}) => {
-    $(slickTarget).each(function (i, elem) {
-      const slickData = $(elem).data('slick') || {};
-      const mergeSlickData = Object.assign(slickParams, slickData);
-      $(elem).slick(mergeSlickData);
-    });
-  };
 
   $('.js-slick-next').on('click', function () { $(this).parents('.slick-slider').slick('slickNext'); });
   $('.js-slick-prev').on('click', function () { $(this).parents('.slick-slider').slick('slickPrev'); });
 
-
-
-  const getPrevSlickBtn = () => {
-    const lang = $('html').attr('lang');
-    const token = (lang === 'en') ? 'Previous' : 'Précédent';
-
-    return `<button class="slick-prev" aria-label="${token}" type="button">${token}</button>`;
-  };
-  const getNextSlickBtn = () => {
-    const lang = $('html').attr('lang');
-    const token = (lang === 'en') ? 'Next' : 'Suivant';
-
-    return `<button class="slick-next" aria-label="${token}" type="button">${token}</button>`;
-  };
-
   // -------------------------------------------------------------
   // Definition of each carousel
   // -------------------------------------------------------------
-  assignSlickCarousel('.js-slick-carousel--overflow-visible', {
+  slick.assignCarousel('.js-slick-carousel--overflow-visible', {
     arrows: false,
     infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     mobileFirst: true,
-    prevArrow: getPrevSlickBtn(),
-    nextArrow: getNextSlickBtn(),
+    prevArrow: slick.getPrevSlickBtn(),
+    nextArrow: slick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: (breakpoints.md-1),
@@ -61,13 +63,13 @@ $(function () {
     ]
   });
 
-  assignSlickCarousel('.js-slick-carousel--overview-visible-sm', {
+  slick.assignCarousel('.js-slick-carousel--overview-visible-sm', {
     arrows: false,
     infinite: false,
     slidesToShow: 3,
     slidesToScroll: 3,
-    prevArrow: getPrevSlickBtn(),
-    nextArrow: getNextSlickBtn(),
+    prevArrow: slick.getPrevSlickBtn(),
+    nextArrow: slick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: breakpoints.md,
@@ -80,7 +82,7 @@ $(function () {
   });
 
   // Only on mobile carousel
-  assignSlickCarousel('.js-slick-carousel--only-mobile', {
+  slick.assignCarousel('.js-slick-carousel--only-mobile', {
     arrows: false,
     infinite: true,
     slidesToShow: 1,
@@ -88,8 +90,8 @@ $(function () {
     mobileFirst: true,
     centerMode: true,
     dots: true,
-    prevArrow: getPrevSlickBtn(),
-    nextArrow: getNextSlickBtn(),
+    prevArrow: slick.getPrevSlickBtn(),
+    nextArrow: slick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: breakpoints.md,
@@ -101,7 +103,7 @@ $(function () {
     ]
     });
 
-  assignSlickCarousel('.js-slick-carousel--simulator', {
+  slick.assignCarousel('.js-slick-carousel--simulator', {
     infinite: false,
     arrows: false,
     centerMode: true,
@@ -109,8 +111,8 @@ $(function () {
     centerPadding: '3rem',
     dots: true,
     focusOnSelect: true,
-    prevArrow: getPrevSlickBtn(),
-    nextArrow: getNextSlickBtn(),
+    prevArrow: slick.getPrevSlickBtn(),
+    nextArrow: slick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: breakpoints.md,
@@ -134,34 +136,34 @@ $(function () {
   });
 
   // Image gallery version
-  assignSlickCarousel('.js-slick-carousel--img-gallery', {
+  slick.assignCarousel('.js-slick-carousel--img-gallery', {
     centerMode: true,
     dots: true,
     mobileFirst: true,
     centerPadding: 0,
-    prevArrow: getPrevSlickBtn(),
-    nextArrow: getNextSlickBtn(),
+    prevArrow: slick.getPrevSlickBtn(),
+    nextArrow: slick.getNextSlickBtn(),
   });
 
   // Image equipment version
-  assignSlickCarousel('.js-slick-carousel--img-equipment-selection', {
+  slick.assignCarousel('.js-slick-carousel--img-equipment-selection', {
     fade: true,
     arrows: false,
     infinite: false,
-    prevArrow: getPrevSlickBtn(),
-    nextArrow: getNextSlickBtn(),
+    prevArrow: slick.getPrevSlickBtn(),
+    nextArrow: slick.getNextSlickBtn(),
     slidesToShow: 1,
     slidesToScroll: 1
   });
 
   // Calendar appointment
-  assignSlickCarousel('.js-slick-carousel--appointment', {
+  slick.assignCarousel('.js-slick-carousel--appointment', {
     infinite: false,
     arrows:true,
     slidesToShow: 4,
     slidesToScroll: 4,
-    prevArrow: getPrevSlickBtn(),
-    nextArrow: getNextSlickBtn(),
+    prevArrow: slick.getPrevSlickBtn(),
+    nextArrow: slick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: breakpoints.md,
@@ -181,14 +183,14 @@ $(function () {
   });
 
   // Channel Discover
-  assignSlickCarousel('.js-slick-carousel--channel-discover', {
+  slick.assignCarousel('.js-slick-carousel--channel-discover', {
     arrows:true,
     centerMode: true,
     centerPadding: '7rem',
     slidesToShow: 3,
     slidesToScroll: 1,
-    prevArrow: getPrevSlickBtn(),
-    nextArrow: getNextSlickBtn(),
+    prevArrow: slick.getPrevSlickBtn(),
+    nextArrow: slick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: breakpoints.md,
@@ -209,13 +211,13 @@ $(function () {
   });
 
   // Internet Speed Item
-  assignSlickCarousel('.js-slick-carousel--internet-speed', {
+  slick.assignCarousel('.js-slick-carousel--internet-speed', {
     arrows:true,
     slidesToShow: 4,
     slidesToScroll: 1,
     dots: true,
-    prevArrow: getPrevSlickBtn(),
-    nextArrow: getNextSlickBtn(),
+    prevArrow: slick.getPrevSlickBtn(),
+    nextArrow: slick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: breakpoints.lg,
@@ -237,7 +239,7 @@ $(function () {
 
 
   // Channel Discover
-  assignSlickCarousel('.js-slick-carousel--dots-and-arrows', {
+  slick.assignCarousel('.js-slick-carousel--dots-and-arrows', {
     arrows:true,
     infinite: false,
     dots: true,
@@ -245,8 +247,8 @@ $(function () {
     centerPadding: '2rem',
     slidesToShow: 3,
     slidesToScroll: 3,
-    prevArrow: getPrevSlickBtn(),
-    nextArrow: getNextSlickBtn(),
+    prevArrow: slick.getPrevSlickBtn(),
+    nextArrow: slick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: breakpoints.md,
