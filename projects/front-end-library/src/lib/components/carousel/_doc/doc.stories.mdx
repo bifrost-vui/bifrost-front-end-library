@@ -30,7 +30,6 @@ export const Drupal = (args) => ({
         name='Drupal'
         args={{ 
             elementPath : 'components/carousel/_doc/template.drupal',
-            label       : 'Carousel',
         }}
     >
         {Drupal.bind({})}
@@ -41,14 +40,27 @@ export const Drupal = (args) => ({
 ## Drupal implementation example
 
 ```php
-{% include '@bf-components/carousel/twig/index.twig' with {
-    // Add relevant props here
-} only %}
+    <div class='container py-5'>
+        <div class="js-slick-carousel--demo {{ class|default('') }}">
+            {% include '@bf-components/card/twig/phone.twig' with {...} only %}
+            {% include '@bf-components/card/twig/phone.twig' with {...} only %}
+            {% include '@bf-components/card/twig/phone.twig' with {...} only %}
+            {% include '@bf-components/card/twig/phone.twig' with {...} only %}
+        </div>
+    </div>
+
+    <script>
+        bfSlick.assignCarousel('.js-slick-carousel--demo', {
+            // You are free to define your own Slick configuration.
+            // Doc: https://kenwheeler.github.io/slick/
+            arrows: true,
+            infinite: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            mobileFirst: true,
+            prevArrow: bfSlick.getPrevSlickBtn(),
+            nextArrow: bfSlick.getNextSlickBtn(),
+        }
+    );
+    </script>
 ```
-
-
-## Component API
-
-**✅ Inputs are equivalent for Angular and Drupal.**
-
-<Props of={CarouselComponent} />
