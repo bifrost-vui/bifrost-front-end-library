@@ -14,6 +14,10 @@ export class ButtonComponent implements OnInit {
     constructor() {}
 
     @Input() label          : string;
+    /**
+        A button will become a link if `href` is defined.
+    */
+    @Input() href           : string;
     @Input() hierarchy      : string;
     @Input() isDisabled     : boolean;
     @Input() hasLoading     : boolean;

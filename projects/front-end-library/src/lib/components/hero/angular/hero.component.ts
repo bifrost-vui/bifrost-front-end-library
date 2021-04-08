@@ -20,8 +20,12 @@ export class HeroComponent implements OnInit {
     @Input() subtitle           : string;
     @Input() description        : string;
     @Input() button             : object;
+    @Input() image              : object;
 
-    @Input() block_selection    : object;
+    /**
+        Insert the component BlockSelection. Explore its [Component API](/?path=/story/components-block--drupal-selection).
+    */
+    @Input() blockSelection     : object;
     
     /** Class override */
     @Input() class              : string;

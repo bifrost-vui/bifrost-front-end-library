@@ -1,14 +1,25 @@
 <section
-    class='bf-hero py-2 py-sm-4 
-    {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}
-    {{ bgImagePosition|default('right') }} {{ bgImageQueries|default(null) }} {{ class|default('') }}'
-    data-bg='{{ bgImage|default(defaultImgSrc) }}'
+    class='
+        bf-hero
+        {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}
+        {# {{ bgImagePosition|default('right') }}
+        {{ bgImageQueries|default(null) }} #}
+        {{ class|default('') }}
+        '
+    {% if image is defined and image.default is not empty %}
+        style='background-image: url("{{ image.default }}")'
+    {% endif %}
+    {# data-bg='{{ bgImage|default(defaultImgSrc) }}'
     data-md-bg='{{ bgMediumImage|default(defaultImgSrc) }}'
-    data-lg-bg='{{ bgLargeImage|default(defaultImgSrc) }}'
+    data-lg-bg='{{ bgLargeImage|default(defaultImgSrc) }}' #}
 >
     {% block hero_mobile_image %}{% endblock %}
 
-    <div class='container-fluid d-block d-lg-flex align-items-center justify-content-between' data-animate-row=''>
+    {% if image is defined and image.mobile is not empty %}
+        <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-md-none' />
+    {% endif %}
+
+    <div class='container-fluid d-block d-lg-flex align-items-center justify-content-between py-2 py-sm-4' data-animate-row=''>
 
         {% if breadcrumb is defined %}
             {{ breadcrumb }}
@@ -18,9 +29,9 @@
 
             {% if badge is defined and badge is not empty %}
                 {% include '@bf-components/badge/twig/index.twig' with {
-                    label: badge,
-                    color: 'dark',
-                    class: 'position-absolute top-0'
+                    label       : badge,
+                    hierarchy   : 'primary',
+                    class       : 'position-absolute top-0'
                 } only %}
             {% endif %}
 
