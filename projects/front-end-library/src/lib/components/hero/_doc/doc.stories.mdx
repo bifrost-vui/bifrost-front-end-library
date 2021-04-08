@@ -17,6 +17,20 @@ import { HeroComponent } from '../angular/hero.component';
 
 ## Drupal
 
+export const commonProps = {
+    breadcrumb  : '',
+    badge       : 'NEW',
+    upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
+    subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description : 'Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.',
+    button      : {
+        label       : 'Button',
+        hierarchy   : 'primary-alt',
+        class       : 'my-class'
+    }
+};
+
 export const Drupal = (args) => ({
     component   : TwigContainerComponent,
     props       : args,
@@ -30,18 +44,39 @@ export const Drupal = (args) => ({
         name='Drupal'
         args={{ 
             elementPath : 'components/hero/_doc/template.drupal',
-            breadcrumb  : '',
-            badge       : 'NEW',
-            upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
-            subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            description : 'Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.',
-            button      : {
-                label       : 'Button',
-                hierarchy   : 'primary-alt',
-                class       : 'my-class'
-            },
-            blockSelection : {
+            ...commonProps,
+            image           : {
+                default : '/images/_docs/hero-helix.png',
+                mobile  : '/images/_docs/hero-helix-mobile.png',
+                alt     : 'Helix'
+            }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+## Drupal implementation exemple
+
+```php
+{% include '@bf-components/hero/twig/index.twig' with {
+    title: 'Title',
+    subtitle: 'Subtitle'
+} only %}
+```
+
+## Drupal Example
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal - Hero with Block Selection'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            blockSelection  : {
                 title               : 'My selection',
                 isExpandable        : true,
                 month               : 'month',
@@ -65,16 +100,6 @@ export const Drupal = (args) => ({
         {Drupal.bind({})}
     </Story>
 </Preview>
-
-
-## Drupal implementation exemple
-
-```php
-{% include '@bf-components/hero/twig/index.twig' with {
-    title: 'Title',
-    subtitle: 'Subtitle'
-} only %}
-```
 
 ## Component API
 
