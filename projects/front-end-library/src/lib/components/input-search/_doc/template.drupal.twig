@@ -1,10 +1,32 @@
 {% set reversed     = reversed|json_parse %}
 {% set isDisabled   = isDisabled|json_parse %}
+{% set isInvalid    = isInvalid|json_parse %}
 
 <div
     class="px-7 d-flex align-items-center justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
 >
-    {% include '@bf-components/input-search/twig/index.twig' %}
+    {% include '@bf-components/input-search/twig/index.twig' with {
+        input                   : {
+            id                      : input_id,
+            class                   : input_class,
+            iconPosition            : input_right,
+            type                    : input_text,
+            placeholder             : input_Placeholder,
+            name                    : input_Name,
+            value                   : input_Value,
+            extraAttribute          : input_extraAttribute,
+        },
+        inputSubmit             : {
+            id                      : inputSubmit_id,
+            value                   : inputSubmit_value,
+            extraAttribute          : inputSubmit_extraAttribute,
+        },
+        label                   : {
+            value                   : label_value,
+            class                   : label_class,
+            extraAttribute          : label_extraAttribute,
+        },
+    } %}
 </div>
 
 {% if isInvalid %}
