@@ -1,6 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import { withDesign } from 'storybook-addon-designs'
 
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { InputSearchComponent }     from '../angular/input-search.component';
@@ -10,32 +9,14 @@ import { InputSearchComponent }     from '../angular/input-search.component';
     title='Components/Input Search' 
     component={InputSearchComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputSearchComponent, TwigContainerComponent]}),
-        withDesign
+        moduleMetadata({ declarations: [InputSearchComponent, TwigContainerComponent]})
     ]}
-    parameters={{
-        design: {
-            type: 'figma',
-            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI-Kit-Pattern-lab?node-id=11017%3A708',
-            disable: false
-        },
-    }}
-    argTypes={{
-        isInvalid : {
-            type : 'boolean',
-            defaultValue: false,
-            description: '**JS**: Add `is-invalid` class to `.form-control`.',
-        }
-    }}
 />
 
 
 # Input Search
 
-> Explore **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)** (Zeroheight)
-
 <br/>
-
 
 ## Drupal
 
@@ -51,7 +32,9 @@ export const Drupal = (args) => ({
     <Story 
         name='Drupal'
         args={{ 
-            elementPath : 'components/input-search/_doc/template.drupal',
+            elementPath         : 'components/input-search/_doc/template.drupal',
+            label_value         : 'Label',
+            input_placeholder   : 'What are you looking for?',
         }}
     >
         {Drupal.bind({})}
@@ -59,11 +42,41 @@ export const Drupal = (args) => ({
 </Preview>
 
 
+## Source Code
+
+```php
+{% include '@bf-components/input-search/twig/index.twig' with {
+    class                   : 'class',
+    reversed                : true,
+    buttonClass             : 'buttonClass',
+    iconClass               : 'iconClass',
+    invalidMsg              : 'invalidMsg',
+    isDisabled              : false,
+    input                   : {
+        id                      : 'id',
+        class                   : 'class',
+        iconPosition            : 'right',
+        type                    : 'text',
+        placeholder             : 'Placeholder',
+        name                    : 'Name',
+        value                   : 'Value',
+        extraAttribute          : 'extraAttribute',
+    },
+    inputSubmit             : {
+        id                      : 'id',
+        value                   : 'value',
+        extraAttribute          : 'extraAttribute',
+    },
+    label                   : {
+        value                   : 'value',
+        class                   : 'class',
+        extraAttribute          : 'extraAttribute',
+    },
+    mtValue                 : mtValue,
+} only %}
+```
+
+
 ## Component API
 
 <Props of={InputSearchComponent} />
-
-
-## Design Guidelines
-
-<iframe width='100%' height='450' src='https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI-Kit-Pattern-lab?node-id=11017%3A708' frameBorder='0' allowFullScreen></iframe>
