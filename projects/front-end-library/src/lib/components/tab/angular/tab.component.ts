@@ -15,6 +15,8 @@ export class TabComponent implements OnInit {
 
     @Input() navItems             : object;
     @Input() itemClass            : string;
+    
+    @Input() reversed             : boolean;
 
     ngOnInit() {
         console.log('Tab', this);

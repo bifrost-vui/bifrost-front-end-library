@@ -1,0 +1,27 @@
+{% set isLink = (href is defined and href is not empty) %}
+
+<{{ isLink ? 'a' : 'button' }}
+    {% if isLink is same as (true) %}
+        href='{{ href|default('#') }}'
+    {% else %}
+        type='button'
+    {% endif %}
+    class='
+        bf-tile
+        {% if reversed is same as (true) %}reversed{% endif %}
+        {% if isDisabled is same as (true) %}disabled{% endif %}
+        {{ class|default('') }}'
+    style='{{ style|default('') }}'
+    {% if isDisabled is same as (true) %}disabled='disabled'{% endif %}
+    {% if dataDismiss is defined %}data-dismiss='{{ dataDismiss|default(NULL) }}'{% endif %}
+    {% if dataToggle is defined %}data-toggle='{{ dataToggle|default(NULL) }}'{% endif %}
+    {% if dataTarget is defined %}data-target='{{ dataTarget|default(NULL) }}'{% endif %}
+    {% if ariaControls is defined %}aria-controls='{{ ariaControls|default(NULL) }}'{% endif %}
+    {% if ariaExpanded is defined %}aria-expanded='{{ ariaExpanded|default(NULL) }}'{% endif %}
+    {% if ariaLabel is defined %}aria-expanded='{{ ariaLabel|default(NULL) }}'{% endif %}
+    {{ extraAttribute|default(NULL) }}
+>
+    {% block content %}
+        {{ content|default('') }}
+    {% endblock %}
+</{{ isLink ? 'a' : 'button' }}>

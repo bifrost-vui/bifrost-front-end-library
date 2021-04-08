@@ -1,9 +1,8 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import { withDesign } from 'storybook-addon-designs'
 
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
-import { BadgeComponent }          from '../angular/badge.component';
+import { BadgeComponent }           from '../angular/badge.component';
 
 
 <Meta 
@@ -11,26 +10,30 @@ import { BadgeComponent }          from '../angular/badge.component';
     component={BadgeComponent}
     decorators={[
         moduleMetadata({ declarations: [BadgeComponent, TwigContainerComponent]}),
-        withDesign
     ]}
-    parameters={{
-        design: {
-            type: 'figma',
-            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI-Kit-Pattern-lab?node-id=11017%3A708',
-            disable: false
-        },
-    }}
     argTypes={{
         reversed: {
             defaultValue: false,
         },
+        hierarchy: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['', 'primary', 'secondary', 'tertiary', 'tertiary-ground' ]
+            }
+        },
+        angle: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['', 'right', 'left' ]
+            }
+        }
     }}
 />
 
 
-# Tag
-
-> Explore **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)** (Zeroheight)
+# Badge
 
 <br/>
 
@@ -49,8 +52,7 @@ export const Drupal = (args) => ({
         name='Drupal'
         args={{ 
             elementPath : 'components/badge/_doc/template.drupal',
-            label       : 'FREE',
-            color       : 'dark'
+            class       : 'm-2',
         }}
     >
         {Drupal.bind({})}
@@ -62,7 +64,9 @@ export const Drupal = (args) => ({
 
 ```php
 {% include '@bf-components/badge/twig/index.twig' with {
-    label    : 'FREE',
+    label       : 'Free',
+    class       : 'm-2',
+    hierarchy   : 'primary'
 } only %}
 ```
 

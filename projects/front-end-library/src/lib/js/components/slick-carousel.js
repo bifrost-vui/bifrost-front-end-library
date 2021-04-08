@@ -5,20 +5,31 @@ import $ from 'jquery';
 // Define global variable
 window.bfSlick = {
 
+    getPrevSlickBtn : () => {
+        const lang = $('html').attr('lang');
+        const token = (lang === 'en') ? 'Previous' : 'Précédent';
+        return `<button class="slick-prev" aria-label="${token}" type="button">${token}</button>`;
+    },
 
+    getNextSlickBtn : () => {
+        const lang = $('html').attr('lang');
+        const token = (lang === 'en') ? 'Next' : 'Suivant';
+        return `<button class="slick-next" aria-label="${token}" type="button">${token}</button>`;
+    },
 
-  const getPrevSlickBtn = () => {
-    const lang = $('html').attr('lang');
-    const token = (lang === 'en') ? 'Previous' : 'Précédent';
+    assignCarousel : (slickTarget = ".js-slick", slickParams = {}) => {
+        $(slickTarget).each(function (i, elem) {
+            const slickData = $(elem).data('slick') || {};
+            const mergeSlickData = Object.assign(slickParams, slickData);
+            $(elem).slick(mergeSlickData);
+        })
+    },
+};
 
-    return `<button class="slick-prev" aria-label="${token}" type="button">${token}</button>`;
-  };
-  const getNextSlickBtn = () => {
-    const lang = $('html').attr('lang');
-    const token = (lang === 'en') ? 'Next' : 'Suivant';
+$(function () {
 
-    return `<button class="slick-next" aria-label="${token}" type="button">${token}</button>`;
-  };
+  $('.js-slick-next').on('click', function () { $(this).parents('.slick-slider').slick('slickNext'); });
+  $('.js-slick-prev').on('click', function () { $(this).parents('.slick-slider').slick('slickPrev'); });
 
   // -------------------------------------------------------------
   // Definition of each carousel

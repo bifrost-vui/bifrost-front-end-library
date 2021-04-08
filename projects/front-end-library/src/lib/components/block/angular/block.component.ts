@@ -16,20 +16,20 @@ export class BlockComponent implements OnInit {
     // Common
     @Input() title              : string;
     @Input() class              : string;
+    @Input() reversed           : boolean;
 
     // Block Highlight
-    @Input() image               : object;
-    @Input() paragraph           : string;
-    @Input() button              : object;
-    @Input() fullWidth           : boolean;
+    @Input() image              : object;
+    @Input() paragraph          : string;
+    @Input() button             : object;
+    @Input() fullWidth          : boolean;
 
     // Block Selection
     @Input() topLink            : object;
-    @Input() contentTop         : object;
     @Input() contentLists       : object;
     @Input() totalPrice         : object;
     @Input() month              : string;
-    @Input() isListingMode      : boolean;
+    @Input() isExpandable       : boolean;
 
     ngOnInit() {
         console.log('block', this);

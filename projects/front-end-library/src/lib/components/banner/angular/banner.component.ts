@@ -13,14 +13,15 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class BannerComponent implements OnInit {
     constructor() {}
 
-    @Input() href                : string;
-    @Input() title               : string;
-    @Input() paragraph           : string;
-    @Input() image               : object;
-    @Input() iconName            : string;
-    @Input() badge               : string;
-    @Input() class               : string;
-
+    @Input() reversed           : boolean;
+    @Input() class              : string;
+    
+    @Input() href               : string;
+    @Input() title              : string;
+    @Input() paragraph          : string;
+    @Input() image              : object;
+    @Input() iconName           : string;
+    @Input() badge              : string;
 
     ngOnInit() {
         console.log('banner', this);

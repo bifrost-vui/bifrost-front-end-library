@@ -44,8 +44,7 @@
             appearance: none;
         }
 
-        &.bf-block--listing {
-            @extend .bf-color-bg-underground;
+        &.bf-block--expandable {
 
             #bf-block-collapse {
                 // display: block; // Nice to Have: Force visibility on resize above small
@@ -57,6 +56,7 @@
 
                 .bf-block__toggle {
                     display: block;
+                    color: inherit; // NOTE: Could be applied to all `button` when PL will be disconnected.
 
                     &:not(.collapsed) .bf-icon.icon-plus {
                         display: none;
@@ -89,7 +89,7 @@
     &__item {
         
         &:first-child {
-            border-top: none;
+            border-top: none !important;
         }
     }
 }
