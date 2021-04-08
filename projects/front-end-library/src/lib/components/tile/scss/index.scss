@@ -1,0 +1,40 @@
+/* *****************************************************************************
+*
+*  Tile
+*
+* ***************************************************************************** */
+
+
+.bf-tile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min-content; // In order to avoid default fullwidth on a.bf-tile.
+    height: fit-content;
+    min-height: 2.5rem;
+    padding: 1rem 1.5rem;
+    color: inherit;
+    text-align: center;
+    @extend .bf-border-radius-small;
+    background-color: var(--bf-color-bg-underground);
+    transition: background-color .25s;
+    appearance: none;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &.disabled {
+        cursor: disabled;
+        pointer-events: none;
+        @extend .bf-color-neutral-tertiary;
+        @extend .bf-color-bg-action-disabled;
+
+        img {
+            opacity: .5;
+        }
+    }
+}

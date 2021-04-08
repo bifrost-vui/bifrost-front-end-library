@@ -5,30 +5,49 @@
 * ***************************************************************************** */
 
 .bf-badge {
+    display: inline-block;
 
-    &--dark .bf-badge__container {
-        color: var(--bf-color-bg-underground);
-        background-color: var(--bf-color-highlight);
+    &--primary .bf-badge__container {
+        --color: var(--bf-color-bg-underground);
+        --bg-color: var(--bf-color-neutral-primary);
     }
-    
-    &__container {
-        min-height: 1.5rem;
-        padding: 0 .75rem 0 .25rem;
-        letter-spacing: 1px;
-        font-family: $font-family-secondary;
-        color: var(--bf-color-neutral-primary);
-        background-color: var(--bf-color-feedback-neutral);
+
+    &--secondary .bf-badge__container {
+        --bg-color: var(--bf-color-feedback-neutral);
 
         @at-root
-        .reversed.bf-badge__container,
-        .reversed .bf-badge__container {
-            color: var(--bf-color-bg-ground);
+        .reversed.bf-badge--secondary,
+        .reversed .bf-badge--secondary {
+            --color: var(--bf-color-bg-ground);
         }
+    }
 
-        &:before {
+    &--tertiary .bf-badge__container {
+        // color: var(--bf-color-bg-underground);
+        --bg-color: var(--bf-color-bg-underground);
+    }
+
+    &--tertiary-ground .bf-badge__container {
+        // color: var(--bf-color-bg-underground);
+        --bg-color: var(--bf-color-bg-ground);
+    }
+
+    
+    
+    &__container {
+        padding: 0 .5rem;
+        min-height: 1.5rem;
+        letter-spacing: .5px;
+        font-family: $font-family-secondary;
+        color: var(--color);
+        background-color: var(--bg-color);
+    }
+
+    &--angle-left,
+    &--angle-right {
+         .bf-badge__container:before {
             content: '';
             position: absolute;
-            left: 0;
             top: 0;
             width: .5rem;
             height: 100%;
@@ -38,7 +57,35 @@
         }
     }
 
+    &--angle-right .bf-badge__container {
+        padding: 0 .25rem 0 .75rem;
+
+        &:before {
+            right: 0;
+            transform: translate(50%) skew(-19deg);
+        }
+    }
+
+    &--angle-left .bf-badge__container {
+        padding: 0 .75rem 0 .25rem;
+
+        &:before {
+            left: 0;
+            transform: translate(-50%) skew(19deg);
+        }
+    }
+
     &__label {
         z-index: 1;
+    }
+}
+
+// Apply White color when badge is dark and reversed.
+@at-root 
+.reversed .bf-badge,
+.reversed.bf-badge {
+    
+    &--dark {
+        --bg-color: var(--bf-color-neutral-primary);
     }
 }

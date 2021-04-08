@@ -1,0 +1,52 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { BreadcrumbComponent }                  from '../angular/breadcrumb.component';
+
+
+<Meta 
+    title='Components/Breadcrumb' 
+    component={BreadcrumbComponent}
+    decorators={[
+        moduleMetadata({ declarations: [BreadcrumbComponent, TwigContainerComponent]})
+    ]}
+/>
+
+
+# Breadcrumb
+
+<br/>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal'
+        args={{ 
+            elementPath     : 'components/breadcrumb/_doc/template.drupal',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+## Source Code
+
+```php
+<nav aria-label='breadcrumb'>
+    <ol class='breadcrumb'>
+        <li class='breadcrumb-item'><a href='#'>Home</a></li>
+        <li class='breadcrumb-item active' aria-current='page'>Library</li>
+    </ol>
+</nav>
+```

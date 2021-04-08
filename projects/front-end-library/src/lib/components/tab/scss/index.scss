@@ -1,0 +1,67 @@
+/* *****************************************************************************
+*
+*  Tab
+*
+* ***************************************************************************** */
+
+.bf-tab {
+    overflow: scroll;
+    width: 100%;
+
+    // background-image:
+    //     /* Shadows */ 
+    //     linear-gradient(to right, white, white),
+    //     linear-gradient(to right, white, white),
+    
+    //     /* Shadow covers */ 
+    //     linear-gradient(to right, rgba(0,0,0,.25), rgba(255,255,255,0)),
+    //     linear-gradient(to left, rgba(0,0,0,.25), rgba(255,255,255,0));   
+
+    // background-position:
+    //     left center,
+    //     right center,
+    //     left center,
+    //     right center;
+    // background-repeat: no-repeat;
+    // // background-color: white;
+    // background-size:
+    //     20px 100%,
+    //     20px 100%,
+    //     10px 100%,
+    //     10px 100%;
+    
+    // /* Opera doesn't support this in the shorthand */
+    // background-attachment:
+    //     local,
+    //     local,
+    //     scroll,
+    //     scroll;
+
+    &__slider {
+        display: flex;
+        width: max-content;
+
+        > li {
+            flex: 1 0;
+        }
+    }
+
+    .nav-link {
+        @extend .h3;
+        margin-top: 0 !important;
+        color: var(--bf-color-neutral-secondary);
+        text-transform: none;
+        letter-spacing: 0;
+        white-space: nowrap;
+        text-align: center;
+        padding: 10px;
+        
+        &.active {
+            color: inherit;
+
+            &:before {
+                background-color: var(--bf-color-bg-action-primary);
+            }
+        }
+    }
+}

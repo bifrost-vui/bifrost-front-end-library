@@ -28,7 +28,7 @@
         <p class='small font-weight-bold mb-1'>
             {{ title|default('') }}
         </p>
-        {% if paragraph is defined %}
+        {% if paragraph is defined and paragraph is not empty %}
             <p class='small m-0'>
                 {{ paragraph }}
             </p>
@@ -37,8 +37,8 @@
 
     {% if badge is defined and badge is not empty %}
         {% include '@bf-components/badge/twig/index.twig' with {
-            align       : 'right',
-            label       : badge|default(''),
+            label       : badge,
+            angle       : 'left',
         } only %}
     {% endif %} 
 

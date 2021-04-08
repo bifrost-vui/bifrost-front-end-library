@@ -1,0 +1,34 @@
+/* *****************************************************************************
+*
+*  Hero
+*
+* ***************************************************************************** */
+
+.bf-hero {
+    background-color: var(--bf-color-bg-underground);
+    background-position: center;
+    background-size: cover;
+
+    @at-root
+    .reversed.bf-hero,
+    .reversed .bf-hero {
+        background-color: var(--bf-color-bg-ground);
+    }
+
+    @include media-breakpoint-down(sm) {
+        background-image: none !important;
+
+        .bf-badge {
+            position: relative !important;
+            margin-bottom: 1rem;
+        }
+    }
+
+    .container-fluid {
+        gap: .5rem;
+
+        header {
+            max-width: 40rem;
+        }
+    }
+}

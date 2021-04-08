@@ -1,10 +1,11 @@
 <div class='
     bf-badge
-    {% if color is defined %}bf-badge--{{ color }}{% endif %}
+    bf-badge--{{ hierarchy|default('secondary') }}
+    {% if angle is defined and angle is not empty %}bf-badge--angle-{{ angle }}{% endif %}
     {{ class|default('') }}
     '>
     <div class='bf-badge__container position-relative d-flex align-items-center'>
-        <p class='bf-badge__label small font-weight-bold m-0'>
+        <p class='bf-badge__label small font-weight-bold {% if noUppercase is not defined or noUppercase is not same as (true) %}text-uppercase{% endif %} m-0'>
             {{ label|default('') }}
         </p>
     </div>

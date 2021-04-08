@@ -74,7 +74,8 @@
         {% if badge is defined and badge is not empty %}
             {% include '@bf-components/badge/twig/index.twig' with {
                 label       : badge|default(''),
-                color       : badgeColor|default(NULL)
+                color       : badgeColor|default(NULL),
+                angle       : 'right',
             } only %}
         {% endif %}
 
@@ -148,7 +149,7 @@
         {% if price is defined %}
             {% set price = price|merge({
                 'class'     : 'w-100 ' ~ price.class,
-                'language'  : language
+                'language'  : language|default('en')
             }) %}
             {% include '@bf-components/price/twig/index.twig' with price only %}
         {% endif %}
@@ -159,14 +160,16 @@
             </p>
         {% endif %}
 
-        <div class='bf-card__buttons'>
-            {% block buttons %}
-                {% for button in buttons %}
-                    {% set button = button|merge( { 'class': 'w-100 ' ~ button.class } ) %}
-                    {% include '@bf-components/button/twig/index.twig' with button only %}
-                {% endfor %}
-            {% endblock %}
-        </div>
+        {% if buttons is defined %}
+            <div class='bf-card__buttons'>
+                {% block buttons %}
+                    {% for button in buttons %}
+                        {% set button = button|merge( { 'class': 'w-100 ' ~ button.class } ) %}
+                        {% include '@bf-components/button/twig/index.twig' with button only %}
+                    {% endfor %}
+                {% endblock %}
+            </div>
+        {% endif %}
 
         {% if message is defined and message is not empty %}
             <div class='bf-card__message d-flex'>

@@ -2,7 +2,7 @@
     <head>
         
         {#  ---------------------------------------------------------------
-            NOTE: Need to dynamically load styles and scripts
+            NOTE: To avoid cache in Storybook, we need to dynamically load styles and scripts
         #}
 
         <script>
@@ -12,20 +12,25 @@
             link.href = '/css/bifrost.css';
             document.getElementsByTagName('HEAD')[0].appendChild(link);
         </script>
-
+        
         <script>
-            {# const src = 'http://localhost:8080/js/uikit-marvel.js'; #}
-            const src = '/js/bifrost.js';
-            const fileref = document.createElement('script');
-            fileref.setAttribute('type', 'text/javascript');
-            fileref.setAttribute('src', src);
-            document.getElementsByTagName('head')[0].appendChild(fileref);
+            async function load() {
+                await import('/js/core.js');
+                await import('/js/vendors~bifrost-components.js');
+                await import('/js/bifrost-components.js');
+                await import('/js/bifrost-demo.js');
+            }
+            load();
         </script>
 
         <style>
             {# [data-animate] {
                 opacity: 1!important;
             } #}
+
+            html {
+                background-color: var(--bf-color-bg-ground);
+            }
             
             pre {
                 background-color: transparent;
@@ -44,10 +49,10 @@
                     
                     {% set elementPath = _context.elementPath %}
 
-                    <div class='videotron-ui d-flex h-100'>
-                        <div class='h-100 w-100'>
+                    <div class='videotron-ui'>
+                        {# <div class='h-100 w-100'> #}
                             {% include './' ~ elementPath ~ '.twig' with _context %}
-                        </div>
+                        {# </div> #}
                     </div>
                     
                 {% else %}
@@ -59,6 +64,9 @@
             
         </main>
     </body>
+
+    <script></script>
+
 </html>
 
 

@@ -1,0 +1,30 @@
+{% set navItems = navItems|json_parse %}
+
+<div class='minh-100'>
+
+    <div class='py-5'>
+        <div class='container'>
+            {% include '@bf-components/tab/twig/index.twig' %}
+        </div>
+        {% include '@bf-components/tab/twig/index.twig' %}
+    </div>
+    
+    <div class='reversed bf-color-bg-ground py-5'>
+        <div class='container'>
+            {% include '@bf-components/tab/twig/index.twig' %}
+        </div>
+        {% include '@bf-components/tab/twig/index.twig' %}
+    </div>
+
+</div>
+
+<script>
+    function init() {
+        document.querySelectorAll('.nav-link').forEach(item => {
+            item.addEventListener('click', event => {
+                event.preventDefault();
+            })
+        })
+    }
+    init();
+</script>

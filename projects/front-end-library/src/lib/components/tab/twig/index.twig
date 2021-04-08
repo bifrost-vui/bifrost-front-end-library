@@ -1,0 +1,13 @@
+<nav class='bf-tab nav {{ class|default('') }}'>
+    <ul class='bf-tab__slider list-reset'>
+        {% for item in navItems %}
+            <li>
+                <a
+                    class='nav-link mr-6 mb-0 px-0 {{ itemClass|default('') }} {{ item.class|default('') }}'
+                    href='{{ item.href|default('#') }}'
+                    {{ item.extraAttribute }}
+                >{{ item.label|default('') }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>

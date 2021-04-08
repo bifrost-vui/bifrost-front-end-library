@@ -2,7 +2,6 @@ import $                from 'jquery';
 import { _window }      from '../../../js/utils/window';
 import { isDesktopUp }  from '../../../js/utils/breakpoints';
 
-
 $(function ()
 {
     // Mega-Menu

@@ -82,10 +82,10 @@
             border: none;
             // color: var(--bf-color-neutral-primary);
             font-family: $font-family-secondary;
-            font-size: 1rem;
+            font-size: 1.25rem;
             font-weight: 400;
             line-height: inherit;
-            text-transform: uppercase;
+            // text-transform: uppercase;
             letter-spacing: 1px;
 
             @include media-breakpoint-down(md) {
@@ -96,7 +96,7 @@
 
             @include media-breakpoint-down(sm) {
                 padding: .25rem;
-                font-size: .75rem;
+                font-size: 1rem;
             }
             
             @include media-breakpoint-up(lg) {
@@ -146,22 +146,17 @@
 
         &__panel {
             position: absolute!important;
-            float: none;
-            width: 100vw;
-            @include transitions(opacity $transition-time-base);
             right: 0;
+            float: none;
+            display: block;
+            width: 100vw;
+            margin: 1px 0 0 0;
+            font-size: .75rem;
+            background-color: var(--bf-color-bg-ground);
+            @include transitions(opacity $transition-time-base);
+            transition-delay: 0s;
             opacity: 0;
             pointer-events: none;
-            display: block;
-            transition-delay: 0s;
-            
-            margin: 1px 0 0 0;
-            // color: var(--bf-color-neutral-primary);
-            background-color: var(--bf-color-bg-ground);
-
-            // &:before {
-            //     content: none; // Override PL: Remove box-shadow
-            // }
 
             .btn-close {
                 position: fixed;
@@ -186,6 +181,7 @@
         }
     
         &__tab {
+            position: relative;
             font-family: $font-family-secondary;
             background-color: var(--bf-color-bg-underground);
             
@@ -209,11 +205,15 @@
             }
             
             &:before {
-                background-color: var(--bf-color-bg-action-primary);
-                transform: none; // PL Override
-                width: .2rem;
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 3px;
+                height: 100%;
                 transform: translate(-100%);
                 transition-duration: .2s;
+                background-color: var(--bf-color-bg-action-primary);
             }
 
             span {
