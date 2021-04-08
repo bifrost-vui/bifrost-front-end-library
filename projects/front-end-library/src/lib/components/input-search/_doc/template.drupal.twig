@@ -1,42 +1,13 @@
-{% set reversed = reversed|json_parse|default(false) %}
+{% set reversed     = reversed|json_parse %}
+{% set isDisabled   = isDisabled|json_parse %}
 
 <div
     class="px-7 d-flex align-items-center justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
 >
-    {% include '@bf-components/input-search/twig/index.twig' with {
-        class                   : class|default(''),
-        reversed                : reversed,
-        buttonClass             : buttonClass|default(''),
-        iconClass               : iconClass|default(''),
-        invalidMsg              : invalidMsg|default(''),
-        isDisabled              : isDisabled|json_parse|default(false),
-        isChecked               : isChecked|json_parse|default(false),
-        input                   : {
-            id                      : input_id|default(''),
-            class                   : input_class|default(''),
-            iconPosition            : input_iconPosition|default(''),
-            type                    : input_type|default(''),
-            placeholder             : input_placeholder|default(''),
-            name                    : input_name|default(''),
-            value                   : input_value|default(''),
-            extraAttribute          : input_extraAttribute|default(''),
-        },
-        inputSubmit             : {
-            id                      : inputSubmit_id|default(''),
-            value                   : inputSubmit_value|default(''),
-            extraAttribute          : inputSubmit_extraAttribute|default(NULL),
-        },
-        label                   : {
-            value                   : label_value|default(''),
-            class                   : label_class|default(''),
-            extraAttribute          : label_extraAttribute|default(NULL),
-        },
-        mtValue                 : mtValue|default('0'),
-        
-    } only %}
+    {% include '@bf-components/input-search/twig/index.twig' %}
 </div>
 
-{% if isInvalid|json_parse|default(false) %}
+{% if isInvalid %}
     <script>
         function setInvalid() {
             document.getElementsByClassName('form-group')[0].classList.add('is-invalid');
