@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
     @Input() logo_name               : string;
     @Input() search_placeholder      : string;
 
-    /** Note: Only visible on desktop. */
+    /** Note: TopBar is only visible on desktop. */
     @Input() hasTopBar               : boolean;
     @Input() topBar_items            : any[];
     @Input() topBar_secondaryItems   : any[];

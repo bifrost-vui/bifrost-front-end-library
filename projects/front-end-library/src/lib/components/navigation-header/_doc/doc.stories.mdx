@@ -1,6 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import { withDesign } from 'storybook-addon-designs'
 
 import { topBar_items, topBar_secondaryItems, rigthIconLinks } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
@@ -11,29 +10,21 @@ import { HeaderComponent }          from '../angular/header.component';
     title='Components/Navigation Header' 
     component={HeaderComponent}
     decorators={[
-        moduleMetadata({ declarations: [HeaderComponent, TwigContainerComponent]}),
-        withDesign
+        moduleMetadata({ declarations: [HeaderComponent, TwigContainerComponent]})
     ]}
-    parameters={{
-        design: {
-            type: 'figma',
-            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI-Kit-Pattern-lab?node-id=11017%3A708',
-            disable: false
-        },
-    }}
     argTypes={{
         langcode: {
-            defaultValue: "FR",
+            defaultValue: 'FR',
             control: { 
-                type: "select",
-                options: ["EN", "FR"],
+                type: 'select',
+                options: ['EN', 'FR'],
             }
         },
         logo_name: {
-            defaultValue: "videotron",
+            defaultValue: 'videotron',
             control: {
-                type: "select",
-                options: ["videotron", "business"],
+                type: 'select',
+                options: ['videotron', 'business'],
             }
         },
         hasTopBar: {
@@ -48,9 +39,76 @@ import { HeaderComponent }          from '../angular/header.component';
 
 # Header
 
-> Explore **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)** (Zeroheight)
-
 <br/>
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/navigation-header/twig/index.twig' with {
+    hasTopBar: true,
+    topBar: {
+        items: [
+            { label: 'Personal',    href: '', class: 'active',  },
+            { label: 'Business',    href: '', class: '' },
+        ],
+        secondaryItems: [
+            { label: 'Webmail',     href: '', class: '' },
+            { label: 'illico.tv',   href: '', class: '' },
+            { label: 'Locate',      href: '', class: '' }
+        ],
+    },
+    navItems: [
+        {
+            label: 'Shop', href: '', class: '',
+            subItemsMultiDropdown: [
+                {
+                    label : 'Helix plans', href : '', class : '',
+                    listItems: [
+                        { label : 'The Helix experience',   href : '', class : '' },
+                        { label : 'Helix TV',               href : '', class : '' },
+                        { label : 'Helix Internet',         href : '', class : '' },
+                    ]
+                },
+                {
+                    label : 'Other custom bundles', href : '', class : '',
+                    listItems: []
+                },
+            ],
+            mega: [
+                { imgSrc: 'https://source.unsplash.com/400x250/?nature', imgAlt: 'Thumbnail', href: '#', title: '', text: '' },
+                { imgSrc: 'https://source.unsplash.com/400x250/?nature', imgAlt: 'Thumbnail', href: '#', title: '', text: '' },
+            ]
+        },
+        {
+            label : 'Support', href : '#', class : '',
+            subItemsMultiDropdown: [...],
+            mega: [...],
+        }
+        ...
+    ],
+    logo : {
+        name : 'business',
+    },
+    rigthIconLinks : [
+        { icon : 'email',   href : ' ', class : '' },
+        { icon : 'pin',     href : ' ', class : '' },
+    ],
+    search : {
+        placeholder : 'What are you looking for?'
+    },
+    reversed : true,
+    langcode : 'EN'
+} only %}
+```
+
+
+
+## Component API
+
+<Props of={HeaderComponent} />
+
 
 
 ## Drupal
@@ -76,30 +134,3 @@ export const Drupal = (args) => ({
         {Drupal.bind({})}
     </Story>
 </Preview>
-
-
-## Source Code
-
-```php
-{% include '@bf-components/navigation-header/twig/index.twig' with {
-    hasTopBar               : true,
-    topBar                  : {
-        items                   : [...],
-        secondaryItems          : [...],
-    },
-    logo                    : {
-        name                    : 'business',
-    },
-    navItems                : [...],
-    reversed                : true,
-} only %}
-```
-
-## Component API
-
-<Props of={HeaderComponent} />
-
-
-## Design Guidelines
-
-<iframe width='100%' height='450' src='https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI-Kit-Pattern-lab?node-id=11017%3A708' frameBorder='0' allowFullScreen></iframe>
