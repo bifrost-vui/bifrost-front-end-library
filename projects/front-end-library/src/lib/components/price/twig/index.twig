@@ -1,9 +1,5 @@
+{% set language = language|default('en') %}
 
-{% if language is not defined %}
-    {% set language = 'en' %}
-{% endif %}
-
-{# ------------------------------------------------------------------------------------------------------------------ #}
 <div class='bf-price bf-price--{{ size|default('sm') }} d-flex flex-column {{ class|default('') }}'>
     
     {% if upperTitle is defined and upperTitle is not empty %}
@@ -15,10 +11,10 @@
     <div class='bf-price__infos d-inline-flex'>
 
         {% if language == 'en' %}
-            <span class='bf-price__dollarsign'>$</span>
+            <sup class='bf-price__dollarsign'>$</sup>
         {% endif %}
 
-        <div class='d-flex'>
+        <div class='d-flex' aria-label='$ {{ dollar|default('0')}}.{{ cent|default('00')}} {{ details|default('')|raw }}'>
             
             <span class='bf-price__dollar {{ dollarClass|default('') }}'>
                 {{ dollar|default('00')}}
@@ -34,11 +30,11 @@
                     {% endif %}
 
                     {% if language == 'fr' %}
-                        <span class='bf-price__dollarsign ml-1'>$</span>
+                        <sup class='bf-price__dollarsign ml-1'>$</sup>
                     {% endif %}
 
                     {% if hasAsterisk is defined and hasAsterisk is same as (true) %}
-                        <span class='small'>*</span>
+                        <sup class='small'>*</sup>
                     {% endif %}
 
                     {# 
@@ -53,9 +49,9 @@
                 </div>
                 
                 {% if details is defined %}
-                    <p class='small mb-0 mt-minus-2'>
+                    <span class='bf-price__details'>
                         {{ details|default('')|raw }}
-                    </p>
+                    </span>
                 {% endif %}
                 
             </div>
