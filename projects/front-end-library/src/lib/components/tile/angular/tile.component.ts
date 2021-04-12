@@ -15,7 +15,7 @@ export class TileComponent implements OnInit {
     
     @Input() content        : string;
 
-    @Input() isLink         : boolean;
+    @Input() href           : string;
     @Input() isDisabled     : boolean;
     @Input() reversed       : boolean;
     @Input() class          : string;

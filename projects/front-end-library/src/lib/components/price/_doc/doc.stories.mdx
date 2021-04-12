@@ -20,6 +20,35 @@ import { PriceComponent }                       from '../angular/price.component
 
 <br/>
 
+
+
+## Component API
+
+<Props of={PriceComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/price/twig/index.twig' with {
+    upperTitle      : 'From',
+    dollar          : '30',
+    dollarClass     : '',
+    cent            : '99',
+    hasAsterisk     : false,
+    details         : '/month',
+    dashed          : '$150',
+    saved           : '$10',
+    message         : 'Lorem ipsum dolor sit amet',
+    class           : 'class',
+    size            : 'md',
+    language        : 'en',
+} only %}
+```
+
+
+
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -44,15 +73,9 @@ export const Drupal = (args) => ({
             dashed          : '$150',
             saved           : '$10',
             message         : 'Lorem ipsum dolor sit amet',
-            class           : '',
-            size            : 'sm',
             language        : 'en',
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Preview>
-
-## Component API
-
-<Props of={PriceComponent} />

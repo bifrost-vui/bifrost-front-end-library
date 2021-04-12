@@ -3,14 +3,14 @@ import 'slick-carousel';
 
 // Documentation: https://kenwheeler.github.io/slick/
 
-slick.assignCarousel('.js-slick-carousel--demo', {
+bfSlick.assignCarousel('.js-slick-carousel--demo', {
     arrows: true,
     infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     mobileFirst: true,
-    prevArrow: slick.getPrevSlickBtn(),
-    nextArrow: slick.getNextSlickBtn(),
+    prevArrow: bfSlick.getPrevSlickBtn(),
+    nextArrow: bfSlick.getNextSlickBtn(),
     responsive: [
         {
         breakpoint: (breakpoints.md-1),

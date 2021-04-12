@@ -1,5 +1,5 @@
 import { addParameters, addDecorator } from '@storybook/angular';
-import { prepareForInline } from '@storybook/addon-docs/angular/inline';
+import { prepareForInline } from '@storybook/addon-docs/angular';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 
 // @ts-ignore
@@ -34,7 +34,7 @@ addParameters({
 
     // Controls
     controls: { 
-        expanded: true, 
+        // expanded: true, 
         hideNoControlsWarning: true
     },
     argTypes: {

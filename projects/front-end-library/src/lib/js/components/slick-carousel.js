@@ -3,7 +3,7 @@ import 'slick-carousel';
 import $ from 'jquery';
 
 // Define global variable
-window.slick = {
+window.bfSlick = {
 
     getPrevSlickBtn : () => {
         const lang = $('html').attr('lang');
@@ -34,14 +34,14 @@ $(function () {
   // -------------------------------------------------------------
   // Definition of each carousel
   // -------------------------------------------------------------
-  slick.assignCarousel('.js-slick-carousel--overflow-visible', {
+  bfSlick.assignCarousel('.js-slick-carousel--overflow-visible', {
     arrows: false,
     infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     mobileFirst: true,
-    prevArrow: slick.getPrevSlickBtn(),
-    nextArrow: slick.getNextSlickBtn(),
+    prevArrow: bfSlick.getPrevSlickBtn(),
+    nextArrow: bfSlick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: (breakpoints.md-1),
@@ -63,13 +63,13 @@ $(function () {
     ]
   });
 
-  slick.assignCarousel('.js-slick-carousel--overview-visible-sm', {
+  bfSlick.assignCarousel('.js-slick-carousel--overview-visible-sm', {
     arrows: false,
     infinite: false,
     slidesToShow: 3,
     slidesToScroll: 3,
-    prevArrow: slick.getPrevSlickBtn(),
-    nextArrow: slick.getNextSlickBtn(),
+    prevArrow: bfSlick.getPrevSlickBtn(),
+    nextArrow: bfSlick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: breakpoints.md,
@@ -82,7 +82,7 @@ $(function () {
   });
 
   // Only on mobile carousel
-  slick.assignCarousel('.js-slick-carousel--only-mobile', {
+  bfSlick.assignCarousel('.js-slick-carousel--only-mobile', {
     arrows: false,
     infinite: true,
     slidesToShow: 1,
@@ -90,8 +90,8 @@ $(function () {
     mobileFirst: true,
     centerMode: true,
     dots: true,
-    prevArrow: slick.getPrevSlickBtn(),
-    nextArrow: slick.getNextSlickBtn(),
+    prevArrow: bfSlick.getPrevSlickBtn(),
+    nextArrow: bfSlick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: breakpoints.md,
@@ -103,7 +103,7 @@ $(function () {
     ]
     });
 
-  slick.assignCarousel('.js-slick-carousel--simulator', {
+  bfSlick.assignCarousel('.js-slick-carousel--simulator', {
     infinite: false,
     arrows: false,
     centerMode: true,
@@ -111,8 +111,8 @@ $(function () {
     centerPadding: '3rem',
     dots: true,
     focusOnSelect: true,
-    prevArrow: slick.getPrevSlickBtn(),
-    nextArrow: slick.getNextSlickBtn(),
+    prevArrow: bfSlick.getPrevSlickBtn(),
+    nextArrow: bfSlick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: breakpoints.md,
@@ -136,34 +136,34 @@ $(function () {
   });
 
   // Image gallery version
-  slick.assignCarousel('.js-slick-carousel--img-gallery', {
+  bfSlick.assignCarousel('.js-slick-carousel--img-gallery', {
     centerMode: true,
     dots: true,
     mobileFirst: true,
     centerPadding: 0,
-    prevArrow: slick.getPrevSlickBtn(),
-    nextArrow: slick.getNextSlickBtn(),
+    prevArrow: bfSlick.getPrevSlickBtn(),
+    nextArrow: bfSlick.getNextSlickBtn(),
   });
 
   // Image equipment version
-  slick.assignCarousel('.js-slick-carousel--img-equipment-selection', {
+  bfSlick.assignCarousel('.js-slick-carousel--img-equipment-selection', {
     fade: true,
     arrows: false,
     infinite: false,
-    prevArrow: slick.getPrevSlickBtn(),
-    nextArrow: slick.getNextSlickBtn(),
+    prevArrow: bfSlick.getPrevSlickBtn(),
+    nextArrow: bfSlick.getNextSlickBtn(),
     slidesToShow: 1,
     slidesToScroll: 1
   });
 
   // Calendar appointment
-  slick.assignCarousel('.js-slick-carousel--appointment', {
+  bfSlick.assignCarousel('.js-slick-carousel--appointment', {
     infinite: false,
     arrows:true,
     slidesToShow: 4,
     slidesToScroll: 4,
-    prevArrow: slick.getPrevSlickBtn(),
-    nextArrow: slick.getNextSlickBtn(),
+    prevArrow: bfSlick.getPrevSlickBtn(),
+    nextArrow: bfSlick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: breakpoints.md,
@@ -183,14 +183,14 @@ $(function () {
   });
 
   // Channel Discover
-  slick.assignCarousel('.js-slick-carousel--channel-discover', {
+  bfSlick.assignCarousel('.js-slick-carousel--channel-discover', {
     arrows:true,
     centerMode: true,
     centerPadding: '7rem',
     slidesToShow: 3,
     slidesToScroll: 1,
-    prevArrow: slick.getPrevSlickBtn(),
-    nextArrow: slick.getNextSlickBtn(),
+    prevArrow: bfSlick.getPrevSlickBtn(),
+    nextArrow: bfSlick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: breakpoints.md,
@@ -211,13 +211,13 @@ $(function () {
   });
 
   // Internet Speed Item
-  slick.assignCarousel('.js-slick-carousel--internet-speed', {
+  bfSlick.assignCarousel('.js-slick-carousel--internet-speed', {
     arrows:true,
     slidesToShow: 4,
     slidesToScroll: 1,
     dots: true,
-    prevArrow: slick.getPrevSlickBtn(),
-    nextArrow: slick.getNextSlickBtn(),
+    prevArrow: bfSlick.getPrevSlickBtn(),
+    nextArrow: bfSlick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: breakpoints.lg,
@@ -239,7 +239,7 @@ $(function () {
 
 
   // Channel Discover
-  slick.assignCarousel('.js-slick-carousel--dots-and-arrows', {
+  bfSlick.assignCarousel('.js-slick-carousel--dots-and-arrows', {
     arrows:true,
     infinite: false,
     dots: true,
@@ -247,8 +247,8 @@ $(function () {
     centerPadding: '2rem',
     slidesToShow: 3,
     slidesToScroll: 3,
-    prevArrow: slick.getPrevSlickBtn(),
-    nextArrow: slick.getNextSlickBtn(),
+    prevArrow: bfSlick.getPrevSlickBtn(),
+    nextArrow: bfSlick.getNextSlickBtn(),
     responsive: [
       {
         breakpoint: breakpoints.md,

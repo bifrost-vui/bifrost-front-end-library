@@ -1,6 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 
+import { interfaceIcons }                   from '../../icon/_doc/data.ts';
 import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
 import { ButtonIconComponent }              from '../angular/button-icon.component';
 
@@ -11,14 +12,38 @@ import { ButtonIconComponent }              from '../angular/button-icon.compone
     decorators={[
         moduleMetadata({ declarations: [ButtonIconComponent, TwigContainerComponent]})
     ]}
+    argTypes={{
+        icon: {
+            control: {
+                type: 'select',
+                options: ['', ...interfaceIcons.map(a => a.list).flat().sort()]
+            }
+        },
+    }}
 />
 
 
 # Button Icon
 
-<!-- > Explore **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)** (Zeroheight) -->
-
 <br/>
+
+
+
+## Component API
+
+<Props of={ButtonIconComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/button-icon/twig/index.twig' with {
+    icon        : 'placeholder'
+} only %}
+```
+
+
 
 ## Drupal
 
@@ -29,29 +54,16 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
+    style={{ height: '1000px' }}
 >
     <Story 
         name='Drupal'
         args={{ 
             elementPath : 'components/button-icon/_doc/template.drupal',
+            icon        : 'helix-tv'
         }}
         height='160px'
     >
         {Drupal.bind({})}
     </Story>
 </Preview>
-
-
-## Source Code
-
-```php
-{% include '@bf-components/button-icon/twig/index.twig' with {
-    icon        : 'x'
-} only %}
-```
-
-
-## Component API
-
-<Props of={ButtonIconComponent} />

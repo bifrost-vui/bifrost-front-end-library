@@ -20,6 +20,77 @@ import { BlockComponent }                       from '../angular/block.component
 
 <br/>
 
+
+
+## Component API
+
+<Props of={BlockComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+// Highlight
+{% include '@bf-components/block/twig/highlight.twig' with {
+    image               : {
+        src: '/images/assets/helix-equipment.png',
+        alt: 'Alt description'
+    },
+    title               : 'All the mobile accessories',
+    paragraph           : 'Find the perfect accessories for your device.',
+    button              : {
+        hierarchy           : 'primary-alt',
+        label               : 'Shop',
+        class               : ''
+    },
+    fullWidth           : false,
+    reversed            : false,
+    class               : ''
+} only %}
+
+// Selection
+{% include '@bf-components/block/twig/selection.twig' with {
+    title               : 'My selection',
+    isExpandable        : true,
+    topLink             : {
+        href        : 'www.videotron.com',
+        label       : 'FINALIZE',
+    },
+    contentLists        : [
+        {
+            title       : 'No device',
+            link        : {
+                href        : 'www.videotron.com',
+                label       : 'ADD A PHONE',
+            }
+        },
+        {
+            title           : 'Samsung Galaxy Note 20 Utra 5G',
+            description     : 'Navy Blue, 128 Go',
+            price           : '$24.00',
+            saving          : '$30.00',
+            fullPrice       : '$150.00',
+        },
+        {
+            title           : 'All-inclusive 12 GB Mobile',
+            description     : 'Lorem ipsum',
+            price           : '$55.00',
+        }
+    ],
+    totalPrice          : {
+        label               : 'Total',
+        details             : 'Plus applicable taxes',
+        price               : '$80.00',
+        priceDetails        : '(for 24 month)',
+    },
+    month               : 'month',
+    class               : '',
+} only %}
+```
+
+
+
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -48,7 +119,7 @@ export const highlightProps = {
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
+    style={{ height: '500px' }}
 >
     <Story 
         name='Drupal - Highlight'
@@ -62,7 +133,7 @@ export const highlightProps = {
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
+    style={{ height: '500px' }}
 >
     <Story 
         name='Drupal - Highlight FullWidth'
@@ -97,7 +168,7 @@ export const selectionProps = {
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
+    style={{ height: '600px' }}
 >
     <Story 
         name='Drupal - Selection'
@@ -108,7 +179,3 @@ export const selectionProps = {
         {Drupal.bind({})}
     </Story>
 </Preview>
-
-## Component API
-
-<Props of={BlockComponent} />
