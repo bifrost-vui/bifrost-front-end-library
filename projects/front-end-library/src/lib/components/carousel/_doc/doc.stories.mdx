@@ -15,7 +15,42 @@ import { CarouselComponent }            from '../angular/carousel.component';
 
 # Carousel
 
+
+
+## Drupal implementation example
+
+```js
+    <div class='container py-5'>
+        <div class="js-slick-carousel--demo {{ class|default('') }}">
+            {% include '@bf-components/card/twig/phone.twig' with {...} only %}
+            {% include '@bf-components/card/twig/phone.twig' with {...} only %}
+            {% include '@bf-components/card/twig/phone.twig' with {...} only %}
+            {% include '@bf-components/card/twig/phone.twig' with {...} only %}
+        </div>
+    </div>
+
+    <script>
+        bfSlick.assignCarousel('.js-slick-carousel--demo', {
+            // You are free to define your own Slick configuration.
+            // Doc: https://kenwheeler.github.io/slick/
+            arrows: true,
+            infinite: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            mobileFirst: true,
+            prevArrow: bfSlick.getPrevSlickBtn(),
+            nextArrow: bfSlick.getNextSlickBtn(),
+        }
+    );
+    </script>
+```
+
+
+
 ## Drupal
+
+> There is no Carousel Drupal component in Bifrost.
+> Please use <a class='bf-link' target='_blank' href='https://kenwheeler.github.io/slick/'>Slick carousel</a>.
 
 export const Drupal = (args) => ({
     component   : TwigContainerComponent,
@@ -24,31 +59,14 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
+    style={{ height: '1000px' }}
 >
     <Story 
         name='Drupal'
         args={{ 
             elementPath : 'components/carousel/_doc/template.drupal',
-            label       : 'Carousel',
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Preview>
-
-
-## Drupal implementation example
-
-```php
-{% include '@bf-components/carousel/twig/index.twig' with {
-    // Add relevant props here
-} only %}
-```
-
-
-## Component API
-
-**✅ Inputs are equivalent for Angular and Drupal.**
-
-<Props of={CarouselComponent} />

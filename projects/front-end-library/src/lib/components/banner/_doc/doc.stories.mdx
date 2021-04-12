@@ -24,9 +24,35 @@ import { BannerComponent }                      from '../angular/banner.componen
 />
 
 
-# Promo
+# Banner
 
 <br/>
+
+
+
+## Component API
+
+<Props of={BannerComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/banner/twig/index.twig' with {
+    href        : 'https://videotron.com',
+    title       : 'Galaxy Buds Live',
+    paragraph   : 'Free with any purchase of this phone, valuted at $239.38.',
+    image       : {
+        src: 'https://videotron.com/images/assets/helix-equipment.png',
+        alt: 'Alt description'
+    },
+    badge       : 'FREE',
+    class       : 'mb-4',
+} only %}
+```
+
+
 
 ## Drupal
 
@@ -38,7 +64,7 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
+    style={{ height: '500px' }}
 >
     <Story 
         name='Drupal'
@@ -58,7 +84,3 @@ export const Drupal = (args) => ({
         {Drupal.bind({})}
     </Story>
 </Preview>
-
-## Component API
-
-<Props of={BannerComponent} />
