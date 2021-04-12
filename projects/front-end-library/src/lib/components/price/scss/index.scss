@@ -6,18 +6,58 @@
 
 .bf-price {
 
-    &__dollarsign,
-    &__cent {
-        font-size: 1rem !important;
-        line-height: 1rem;
+    &__dollar {
+        @extend .bf-text-display-small;
     }
     
-    &__dollar {
-        font-size: 2.5rem !important;
-        line-height: 2rem;
+    &__dollarsign,
+    &__cent,
+    &__details {
+        @extend .bf-text-display-sub-small;
+    }
+
+    &__details {
+        @extend .mt-minus-2;
+    }
+
+    &--md {
+        .bf-price__dollar {
+            @extend .bf-text-display-medium;
+        }
+
+        .bf-price__dollarsign,
+        .bf-price__cent {
+            @extend .bf-text-display-sub-medium;
+        }
+
+        .bf-price__details {
+            position: relative;
+            top: -0.25rem;
+        }
+    }
+
+    &--lg { 
+        .bf-price__dollar {
+            @extend .bf-text-display-large;
+        }
+        .bf-price__dollarsign,
+        .bf-price__cent {
+            @extend .bf-text-display-sub-large;
+        }
+
+        .bf-price__details {
+            @extend .bf-text-display-sub-medium;
+            @extend .mt-minus-1;
+        }
     }
 
     &__infos {
         font-family: $font-family-secondary;
+    }
+
+    sub,
+    sup {
+        top: inherit;
+        vertical-align: inherit;
     }
 }
