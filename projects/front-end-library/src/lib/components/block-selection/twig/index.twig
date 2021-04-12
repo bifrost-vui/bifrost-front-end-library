@@ -1,34 +1,50 @@
 <article class='
     bf-block bf-block--selection
     d-flex flex-column
-    {% if isExpandable is defined and isExpandable is same as (true) %}bf-block--expandable{% endif %}
+    {% if isCollapsableOnMobile is defined and isCollapsableOnMobile is same as (true) %}bf-block--collapsable{% endif %}
     {{ class }}'
 >
 
-    <button
-        class='bf-block__toggle'
-        type='button'
-        data-toggle='collapse'
-        data-target='#bf-block-collapse'
-        aria-expanded='true'
-        aria-controls='bf-block-collapse'
-    >
-        <div class='d-flex flex-row justify-content-between align-items-center p-3 p-sm-4'>
-            <h1 class='h3 m-0'>
-                {{ title }}
-            </h1>
-            {% include '@bf-components/icon/twig/index.twig' with {
-                name    : 'plus',
-                class   : 'icon-plus ml-2'
-            } only %}
-            {% include '@bf-components/icon/twig/index.twig' with {
-                name    : 'minus',
-                class   : 'icon-minus ml-2'
-            } only %}
-        </div>
-    </button>
+    {% if isCollapsableOnMobile is defined and isCollapsableOnMobile is same as (true) %}
+        <button
+            class='bf-block__toggle {% if isCollapsedByDefaultOnMobile %}collapsed{% endif %}'
+            type='button'
+            data-toggle='collapse'
+            data-target='#bf-block-collapse'
+            aria-expanded='{% if isCollapsedByDefaultOnMobile %}false{% else %}true{% endif %}'
+            aria-controls='bf-block-collapse'
+        >
+            <div class='d-flex flex-row justify-content-between align-items-center p-3 p-sm-4'>
+                <h1 class='h3 m-0'>
+                    {{ title }}
+                </h1>
+                {% include '@bf-components/icon/twig/index.twig' with {
+                    name    : 'plus',
+                    class   : 'icon-plus ml-2'
+                } only %}
+                {% include '@bf-components/icon/twig/index.twig' with {
+                    name    : 'minus',
+                    class   : 'icon-minus ml-2'
+                } only %}
+            </div>
+        </button>
+    {% endif %}
 
-    <div class='p-3 p-sm-4 collapse show' id='bf-block-collapse'>
+    <div
+        class='
+            p-3 p-sm-4
+            {% if isCollapsableOnMobile is defined and isCollapsableOnMobile is same as (true) %}
+                {% if isCollapsedByDefaultOnMobile %}
+                    collapse
+                {% else %}
+                    show
+                {% endif %}
+            {% endif %}
+        '
+        {% if isCollapsableOnMobile is defined and isCollapsableOnMobile is same as (true) %}
+            id='bf-block-collapse'
+        {% endif %}
+    >
         <header class='d-flex justify-content-between mb-1'>
             <h1 class='h3 mb-0'>
                 {{ title }}
