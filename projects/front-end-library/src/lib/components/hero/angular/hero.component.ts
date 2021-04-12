@@ -21,6 +21,10 @@ export class HeroComponent implements OnInit {
     @Input() description        : string;
     @Input() button             : object;
     @Input() image              : object;
+    /**
+        underground (default) | ground | highlight
+    */
+    @Input() background         : string;
 
     /**
         Insert the component BlockSelection. Explore its [Component API](/?path=/story/components-block--drupal-selection).

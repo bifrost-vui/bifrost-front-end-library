@@ -2,6 +2,7 @@
 {% set blockSelection   = blockSelection|json_parse %}
 {% set image            = image|json_parse %}
 {% set reversed         = reversed|json_parse %}
+
 {% set imageReversed    = (image is defined and image is not empty) ? 
         {
             default     : '/images/_docs/hero-helix-reversed.png',
@@ -11,6 +12,7 @@
         :
         ''
 %}
+
 
 <div class='d-flex flex-column w-100'>
     {% include '@bf-components/hero/twig/index.twig' with {

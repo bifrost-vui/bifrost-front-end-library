@@ -9,10 +9,12 @@
     background-position: center;
     background-size: cover;
 
-    @at-root
-    .reversed.bf-hero,
-    .reversed .bf-hero {
+    &--bg-ground {
         background-color: var(--bf-color-bg-ground);
+    }
+
+    &--bg-highlight {
+        background-color: var(--bf-color-bg-action-primary);
     }
 
     @include media-breakpoint-down(sm) {
@@ -29,6 +31,10 @@
 
         header {
             max-width: 40rem;
+
+            @include media-breakpoint-down(md) {
+                max-width: none;
+            }
         }
     }
 }
