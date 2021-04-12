@@ -1,9 +1,10 @@
 {% set isDisabled   = isDisabled|json_parse %}
+{% set reversed     = reversed|json_parse %}
 
-<div class='d-flex flex-column minh-100'>
+<div class='d-flex flex-column justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
     {% for index in [1,2] %}
-        
-        <div class='d-flex flex-row align-items-center justify-content-center flex-grow-1 gap-3 minh-100 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
+
+        <div class='flex-grow-1 d-flex align-items-center justify-content-center minh-100 py-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
 
             {% include '@bf-components/tile/twig/index.twig' %}
 

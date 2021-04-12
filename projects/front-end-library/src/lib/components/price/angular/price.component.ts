@@ -24,10 +24,10 @@ export class PriceComponent implements OnInit {
     @Input() savedLabel             : string;
     @Input() details                : string;
     @Input() message                : string;
-
+    
+    @Input() size                   : string;
     @Input() class                  : string;
     @Input() reversed               : boolean;
-    @Input() size                   : string;
 
     @Input() language               : string;
 
