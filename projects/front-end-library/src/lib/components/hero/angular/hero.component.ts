@@ -23,7 +23,7 @@ export class HeroComponent implements OnInit {
     @Input() image              : object;
 
     /**
-        Insert the component BlockSelection. Explore its [Component API](/?path=/story/components-block--drupal-selection).
+        Insert the component BlockSelection. Explore its [Component API](/?path=/docs/components-block--drupal-selection).
     */
     @Input() blockSelection     : object;
     

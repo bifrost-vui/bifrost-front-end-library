@@ -15,6 +15,13 @@ export class ButtonIconComponent implements OnInit {
 
     @Input() icon           : string;
     @Input() label          : string;
+    /**
+        A button will become a link if `href` is defined.
+    */
+    @Input() href           : string;
+    @Input() hierarchy      : string;
+    @Input() isDisabled     : boolean;
+
     @Input() dataDismiss    : string;
     @Input() dataToggle     : string;
     @Input() dataTarget     : string;

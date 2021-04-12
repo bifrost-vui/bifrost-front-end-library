@@ -18,34 +18,17 @@ import { InputSearchComponent }     from '../angular/input-search.component';
 
 <br/>
 
-## Drupal
-
-export const Drupal = (args) => ({
-    component: TwigContainerComponent,
-    props: args,
-});
-
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
-        name='Drupal'
-        args={{ 
-            elementPath         : 'components/input-search/_doc/template.drupal',
-            label_value         : 'Label',
-            input_placeholder   : 'What are you looking for?',
-            isInvalid           : false,
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Preview>
 
 
-## Source Code
+## Component API
 
-```php
+<Props of={InputSearchComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
 {% include '@bf-components/input-search/twig/index.twig' with {
     class                   : 'class',
     reversed                : true,
@@ -78,6 +61,27 @@ export const Drupal = (args) => ({
 ```
 
 
-## Component API
 
-<Props of={InputSearchComponent} />
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal'
+        args={{ 
+            elementPath         : 'components/input-search/_doc/template.drupal',
+            label_value         : 'Label',
+            input_placeholder   : 'What are you looking for?',
+            isInvalid           : false,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
