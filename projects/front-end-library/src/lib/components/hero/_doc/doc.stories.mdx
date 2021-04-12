@@ -10,7 +10,14 @@ import { HeroComponent } from '../angular/hero.component';
     decorators={[
         moduleMetadata({ declarations: [HeroComponent, TwigContainerComponent]}),
     ]}
-    argTypes={{}}
+    argTypes={{
+        background: {
+            control : {
+                type: 'select',
+                options: ['', 'ground', 'underground', 'highlight' ]
+            }
+        }
+    }}
 />
 
 # Hero
@@ -43,7 +50,8 @@ import { HeroComponent } from '../angular/hero.component';
         default : '/images/_docs/hero-helix.png',
         mobile  : '/images/_docs/hero-helix-mobile.png',
         alt     : 'Helix'
-    }
+    },
+    background      : 'ground',
 } only %}
 ```
 
@@ -79,6 +87,26 @@ export const Drupal = (args) => ({
         args={{ 
             elementPath : 'components/hero/_doc/template.drupal',
             ...commonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+
+## Drupal Example
+
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal - With image'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
             image           : {
                 default : '/images/_docs/hero-helix.png',
                 mobile  : '/images/_docs/hero-helix-mobile.png',
@@ -91,21 +119,17 @@ export const Drupal = (args) => ({
 </Preview>
 
 
-
-## Drupal Example
-
 <Preview
     withSource='none'
     style={{ height: '300px' }}
 >
     <Story 
-        name='Drupal - Hero with Block Selection'
+        name='Drupal - With Block Selection'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
             blockSelection  : {
                 title               : 'My selection',
-                isExpandable        : true,
                 month               : 'month',
                 contentLists        : [
                     {
