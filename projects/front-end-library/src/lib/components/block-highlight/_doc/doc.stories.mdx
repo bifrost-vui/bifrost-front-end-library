@@ -1,0 +1,105 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { BlockHighlightComponent }              from '../angular/block-highlight.component';
+
+
+<Meta 
+    title='Components/Block Highlight' 
+    component={BlockHighlightComponent}
+    decorators={[
+        moduleMetadata({ declarations: [BlockHighlightComponent, TwigContainerComponent]}),
+    ]}
+    argTypes={{}}
+/>
+
+# Block Highlight
+
+<br/>
+
+
+
+## Component API
+
+<Props of={BlockHighlightComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+// Highlight
+{% include '@bf-components/block-highlight/twig/index.twig' with {
+    image               : {
+        src: '/images/assets/helix-equipment.png',
+        alt: 'Alt description'
+    },
+    title               : 'All the mobile accessories',
+    paragraph           : 'Find the perfect accessories for your device.',
+    button              : {
+        hierarchy           : 'primary-alt',
+        label               : 'Shop',
+        class               : ''
+    },
+    fullWidth           : false,
+    reversed            : false,
+    class               : ''
+} only %}
+```
+
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+export const commonProps = {
+    elementPath         : 'components/block-highlight/_doc/template.drupal',
+    image               : {
+        src                 : '/images/assets/helix-equipment.png',
+        alt                 : 'Alt description'
+    },
+    title               : 'All the mobile accessories',
+    paragraph           : 'Find the perfect accessories for your device.',
+    button              : {
+        hierarchy           : 'primary-alt',
+        label               : 'Shop',
+        class               : ''
+    },
+    fullWidth           : false,
+    reversed            : false,
+    class               : ''
+}
+
+<Preview
+    withSource='none'
+    style={{ height: '500px' }}
+>
+    <Story 
+        name='Drupal'
+        args={{ 
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '500px' }}
+>
+    <Story 
+        name='Drupal - FullWidth'
+        args={{ 
+            ...commonProps,
+            fullWidth : true,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
