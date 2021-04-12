@@ -27,6 +27,92 @@ import { CardComponent }                        from '../angular/card.component'
 
 <br/>
 
+
+
+## Component API
+
+<Props of={CardComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/card/twig/index.twig' with {
+    isDisabled      : false,
+    upperTitle      : 'upperTitle',
+    title           : 'All-Inclusive 12 GB Mobile',
+    description     : 'So you can do what you want, when you want, without worrying about your data.',
+    description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
+    link            : {
+        label           : 'Learn more',
+        href            : 'www.videotron.com',
+    },
+    badge           : 'PROMOTION',
+    contentLists    : [
+        {
+            title       : 'TV',
+            description : '40 channels',
+            content     : [
+                {
+                    label: 'Free and Unlimited Go after 10Go',
+                    icon: 'unlimited',
+                },
+                {
+                    label: '100 GB annual data in Canada',
+                    icon: 'support',
+                },
+                {
+                    label: 'Club illico included',
+                    icon: 'forfait-tv-le-fan-de-films-et-series', 
+                },
+            ],
+        },
+        {
+            title       : 'Internet',
+            description : 'Unlimited',
+            content      : [
+                {
+                    label: 'Utilisation illimité',
+                    icon: 'forfait-tv-le-fan-de-films-et-series', 
+                },
+                {
+                    label: 'Vitesse de téléchargement jusqu\'à 100mbit/s',
+                    icon: 'forfait-tv-le-fan-de-films-et-series', 
+                },
+
+            ],
+        }
+    ],
+    price           : {
+        class           : '',
+        dollar          : '152',
+        cent            : '34',
+        infosSupp       : 'Taxes incl.',
+        boxAlignement   : 'left',
+        dashed          : '$150',
+        saved           : '<strong>$30</strong>',
+    },
+    buttons           : [
+        {
+            label       : 'Add a phone with this plan',
+            hierarchy   : 'primary-alt',
+            reverse     : true,
+            href        : 'www.videotron.com',
+        },
+        {
+            label       : 'BUY only this PLAN',
+            hierarchy   : 'tertiary',
+            href        : 'www.videotron.com',
+        }
+    ],
+    message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
+    language            : 'en',
+} only %}
+```
+
+
+
 ## Drupal
 
 export const commonProps = {
