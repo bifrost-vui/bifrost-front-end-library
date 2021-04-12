@@ -12,19 +12,18 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 })
 export class BadgeComponent implements OnInit {
     constructor() {}
-    
-    @Input() reversed       : boolean;
 
     @Input() label          : string;
     @Input() hierarchy      : string;
     @Input() noUppercase    : boolean;
     /**
         Display an angle on a corner.
-        [ left | right ]
+        left | right
     */
     @Input() angle          : string;
 
     @Input() class          : string;
+    @Input() reversed       : boolean;
 
     ngOnInit() {
         console.log('badge', this);

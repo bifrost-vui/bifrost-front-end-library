@@ -1,22 +1,18 @@
 {% set navItems = navItems|json_parse %}
+{% set reversed = reversed|json_parse %}
 
-<div class='minh-100'>
+<div class='d-flex flex-column justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
+    {% for index in [1,2] %}
 
-    <div class='py-5'>
-        <div class='container'>
+        <div class='flex-grow-1 d-flex align-items-center justify-content-center minh-100 py-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
+
             {% include '@bf-components/tab/twig/index.twig' %}
-        </div>
-        {% include '@bf-components/tab/twig/index.twig' %}
-    </div>
-    
-    <div class='reversed bf-color-bg-ground py-5'>
-        <div class='container'>
-            {% include '@bf-components/tab/twig/index.twig' %}
-        </div>
-        {% include '@bf-components/tab/twig/index.twig' %}
-    </div>
 
+        </div>
+
+    {% endfor %}
 </div>
+
 
 <script>
     function init() {
