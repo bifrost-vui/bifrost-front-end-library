@@ -1,0 +1,131 @@
+# Change Log
+
+<br/><br/>
+
+## v0.0.14
+
+### Base
+- **[DXP]** Roll-back previous `.fs-6`:
+```css
+.fs-6 {
+     font-size: 2.1rem !important; 
+}
+```
+- **[DXP]**: Navigation Header: Apply **font-weight normal** by default for all elements with `.h5` class.
+```css
+.navbar--videotron-unify .dropdown-menu--megamenu .p-dropdown-megamenu {
+      [...]
+      .h5 {
+          font-weight: 400;
+      }
+}
+```
+- Now, Bifrost use Bootstrap utility class for border (e.g. `border-left`).
+- Add some logos to `/public` folder: apple.svg, google.svg, huawei.svg, lg.svg, motorola.sg, samsung.svg.
+- Add classes `.minh-100` and `.minw-100`.
+- Fix font-size for class `bf-text-display-sub-large`.
+
+### Review components
+
+#### Tile
+- Improve documentation.
+
+#### Badges
+- Add new hierarchies: `primary`, `secondary`, `tertiary`, `tertiary-ground`.
+- Uppercase is now by default. Add property `noUppercase: true` to disable this behavior.
+
+#### Block
+- **[BREAKING CHANGES]** `isListingMode` is not relevant anymore. Please use `isExpandable`.
+- Improve documentation.
+
+#### Carousel
+- Add a global `bfSlick` variable.
+- Add [Documentation for implementation in Drupal](/docs/components-carousel--drupal).
+
+#### Breadcrumb
+- Add documentation and examples.
+
+#### Price
+- Add sizes `large` and `medium`.
+
+#### Input-search
+- Improve style on reversed.
+- Improve documentation.
+
+#### Card
+- Add a `max-height: 18rem` to the image.
+
+
+
+<br/><br/>
+
+## v0.0.13
+
+### New style:
+- **Typography:** Add 2 new sets of typography: Display and Interface (See [Figma](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI?node-id=61%3A118)).
+
+### Review components:
+- **Navigation Footer:** Fix titles style on mobile.
+
+### Webpack:
+- Review import order in order to fix CSS specificity issues.
+
+### Fix:
+- **[TPDXP-3796](https://jira.videotron.com/browse/TPDXP-3796) - TV tile block layout:** Button Next and Previous have not the right style.
+- **[TPDXP-3775](https://jira.videotron.com/browse/TPDXP-3775) - Featured KSP layout improvements:** The first box of the block in ACC0 is not showing a background with stripes as expected.
+- CSS added:
+```css
+.fs-2 {
+    font-size: 0.7rem !important;
+}
+
+.fs-3 {
+    font-size: 1.05rem !important;
+}
+
+.mb-minus-12,
+.my-minus-12 {
+    margin-bottom: -7rem!important;
+}
+
+.hero-block {
+    -webkit-background-size: cover;
+    background-size: cover;
+
+    p {
+        font-size: 0.875rem;
+    }
+}
+```
+- Reminder: In order to fix all components, we still need to update static data (like cards).
+
+
+
+<br/><br/>
+
+## v0.0.12
+
+### New component:
+#### Hero
+
+### Review components:
+
+#### Button
+- Document `.bf-button` class only on `input`, `button` and `a` link. See **Button/Drupal - Specials** page on Storybook.
+
+#### Card
+- Add `description_html` property for rich text.
+- Improve spacings on mobile.
+- Remove a useless default filter.
+- Improve documentation about `isDisabled` property.
+
+#### Badge
+- Create variants for angle right and left. Default is now without angle.
+
+### Webpack
+Remove shared dependencies from `assets/js/bifrost-components.js` (mainly Jquery).
+
+
+<br/>
+----
+🤟🏽 Please, contact the Bifrost Team if you need a previous changelog.
