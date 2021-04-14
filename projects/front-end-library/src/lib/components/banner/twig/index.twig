@@ -1,10 +1,13 @@
+{% set isLink       = (href is defined and href is not empty) %}
 {% set hasImage     = image.src is defined and image.src is not empty %}
 {% set hasIcon      = iconName is defined and iconName is not empty %}
 {% set hasVisual    = hasImage or hasIcon %}
 
-<a
+<{{ isLink ? 'a' : 'div' }}
+    {% if isLink %}
+        href='{{ href|default('') }}'
+    {% endif %}
     class='bf-banner d-flex align-items-center {% if hasVisual %}bf-banner--has-visual{% endif %} {{class|default('')}}'
-    href='{{ href|default('') }}'
 >
 
     {% if hasVisual %}
@@ -42,4 +45,4 @@
         } only %}
     {% endif %} 
 
-</a>
+</{{ isLink ? 'a' : 'div' }}>
