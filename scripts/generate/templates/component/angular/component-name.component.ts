@@ -18,10 +18,11 @@ export class %ComponentName%Component implements OnInit {
     *
     * @required
     */
-    @Input() label: string;
+    @Input() label              : string;
 
+    @Input() reversed           : boolean;
     /** Class override */
-    @Input() class: string;
+    @Input() class              : string;
 
     ngOnInit() {
         console.log('%ComponentName%', this);

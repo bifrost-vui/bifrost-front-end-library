@@ -1,9 +1,7 @@
-{% set reversed = reversed|json_parse|default(false) %}
+{% set reversed = reversed|json_parse %}
 
 <div class='pt-4 {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
 
-    {% include '@bf-components/%component-name%/twig/index.twig' with {
-        label   : label|default(''),
-    } only %}
+    {% include '@bf-components/%component-name%/twig/index.twig' %}
 
 </div>
