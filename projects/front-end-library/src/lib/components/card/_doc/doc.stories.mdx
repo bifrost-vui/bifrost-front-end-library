@@ -48,6 +48,13 @@ import { CardComponent }                        from '../angular/card.component'
         label           : 'Learn more',
         href            : 'www.videotron.com',
     },
+    badge           : {
+        label           : 'PROMOTION',
+        hierarchy       : 'primary',
+        noUppercase     : false,
+    },
+    // Or use the shortcut:
+    // Note: To do that in Storybook `Badge` controls, you have to write double quotes around your string.
     badge           : 'PROMOTION',
     contentLists    : [
         {
@@ -125,7 +132,9 @@ export const commonProps = {
         label           : 'Learn more',
         href            : 'www.videotron.com',
     },
-    badge           : 'PROMOTION',
+    badge           : {
+        label           : 'PROMOTION'
+    },
     contentLists    : contentLists,
     price           : {
         class           : '',
@@ -223,9 +232,12 @@ export const Drupal = (args) => ({
     </Story>
 </Preview>
 
+<!-- badge           : 'PROMOTION', -->
+
 export const phoneCommonProps = {
-    badge           : 'PROMOTION',
-    badgeColor      : 'dark',
+    badge           : {
+        label           : 'Promotion'
+    },
     image           : {
         src             : '/images/_docs/iphone-12-pro-max.png',
         alt             : 'iPhone 12 Mini',
@@ -307,6 +319,9 @@ export const phoneCommonProps = {
         args={{
             elementPath     : 'components/card/_doc/template.drupal',
             cardVariant     : 'protection',
+            badge           : {
+                label           : 'Promotion'
+            },
             iconName        : 'apple',
             title           : 'Apple Care+ for iPhone',
             price           : {
