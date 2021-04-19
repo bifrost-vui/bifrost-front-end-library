@@ -21,7 +21,7 @@ export class BannerComponent implements OnInit {
     @Input() paragraph          : string;
     @Input() image              : object;
     @Input() iconName           : string;
-    @Input() badge              : string;
+    @Input() badge              : any;
 
     ngOnInit() {
         console.log('banner', this);

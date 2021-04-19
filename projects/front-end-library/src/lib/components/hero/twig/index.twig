@@ -37,11 +37,18 @@
         <header class='position-relative py-3 py-sm-5'>
 
             {% if badge is defined and badge is not empty %}
-                {% include '@bf-components/badge/twig/index.twig' with {
-                    label       : badge,
-                    hierarchy   : 'primary',
-                    class       : 'position-absolute top-0'
-                } only %}
+
+                {% if badge is iterable %}
+                    {% set badgeLabel = badge.label %}
+                {% else %}
+                    {% set badge = { label: badge } %}
+                {% endif %}
+
+                {% set badge = badge|merge( { 
+                    'hierarchy' : badge.hierarchy|default('primary'),
+                    'class'     : 'position-absolute top-0'
+                } ) %}
+                {% include '@bf-components/badge/twig/index.twig' with badge only %}
             {% endif %}
 
             {% if upperTitle is defined and upperTitle is not empty %}

@@ -38,7 +38,13 @@ import { CardComponent }                        from '../angular/card.component'
 ## Drupal implementation example
 
 ```jsx
-{% include '@bf-components/card/twig/index.twig' with {
+// There are 3 kinds of Cards:
+{% include '@bf-components/card/twig/plan.twig' with {...} %}
+{% include '@bf-components/card/twig/phone.twig' with {...} %}
+{% include '@bf-components/card/twig/protection.twig' with {...} %}
+
+// Card Plan example:
+{% include '@bf-components/card/twig/plan.twig' with {
     isDisabled      : false,
     upperTitle      : 'upperTitle',
     title           : 'All-Inclusive 12 GB Mobile',
@@ -55,7 +61,7 @@ import { CardComponent }                        from '../angular/card.component'
     },
     // Or use the shortcut:
     // Note: To do that in Storybook `Badge` controls, you have to write double quotes around your string.
-    badge           : 'PROMOTION',
+    // badge           : 'PROMOTION',
     contentLists    : [
         {
             title       : 'TV',
@@ -78,7 +84,7 @@ import { CardComponent }                        from '../angular/card.component'
         {
             title       : 'Internet',
             description : 'Unlimited',
-            content      : [
+            content     : [
                 {
                     label: 'Utilisation illimité',
                     icon: 'forfait-tv-le-fan-de-films-et-series', 
@@ -100,7 +106,7 @@ import { CardComponent }                        from '../angular/card.component'
         dashed          : '$150',
         saved           : '<strong>$30</strong>',
     },
-    buttons           : [
+    buttons         : [
         {
             label       : 'Add a phone with this plan',
             hierarchy   : 'primary-alt',
@@ -115,6 +121,29 @@ import { CardComponent }                        from '../angular/card.component'
     ],
     message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
     language            : 'en',
+} only %}
+
+// Card Phone example:
+{% include '@bf-components/card/twig/phone.twig' with {
+    ...
+    image : {
+        script          : '/images/_docs/iphone-12-pro-max.png',
+        alt             : 'iPhone 12 Mini',
+        badgeIconName   : 'security'
+    },
+    title : 'iPhone 12 Mini',
+    detailsColors : [
+        { value :'4B4A46', name : 'Lorem' },
+        { value :'2C4651', name : 'Ipsum' },
+        { value :'D4BBA5', name : 'Dolor' },
+        { value :'C0C0C0', name : 'Amet' },
+    ],
+    detailsStorage : ['128 Go', '256 Go'],
+    messageLink : {
+        url             : '',
+        label           : 'Choose another Plan',
+        class           : ''
+    }
 } only %}
 ```
 
@@ -172,7 +201,7 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
+    style={{ height: '900px' }}
 >
     <Story 
         name='Drupal - Plan'
@@ -188,7 +217,7 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
+    style={{ height: '800px' }}
 >
     <Story 
         name='Drupal - Plan Disabled'
@@ -204,7 +233,7 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
+    style={{ height: '800px' }}
 >
     <Story 
         name='Drupal - Plan Selected'
@@ -273,7 +302,7 @@ export const phoneCommonProps = {
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
+    style={{ height: '800px' }}
 >
     <Story 
         name='Drupal - Phone'
@@ -289,7 +318,7 @@ export const phoneCommonProps = {
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
+    style={{ height: '800px' }}
 >
     <Story 
         name='Drupal - Phone Disabled'
@@ -312,7 +341,7 @@ export const phoneCommonProps = {
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
+    style={{ height: '800px' }}
 >
     <Story 
         name='Drupal - Protection'
