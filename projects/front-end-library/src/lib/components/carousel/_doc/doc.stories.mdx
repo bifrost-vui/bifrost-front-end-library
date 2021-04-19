@@ -21,7 +21,7 @@ import { CarouselComponent }            from '../angular/carousel.component';
 
 ```js
     <div class='container py-5'>
-        <div class="js-slick-carousel--demo {{ class|default('') }}">
+        <div class='bf-carousel js-bf-carousel-demo {{ class|default('') }}'>
             {% include '@bf-components/card/twig/phone.twig' with {...} only %}
             {% include '@bf-components/card/twig/phone.twig' with {...} only %}
             {% include '@bf-components/card/twig/phone.twig' with {...} only %}
@@ -30,7 +30,7 @@ import { CarouselComponent }            from '../angular/carousel.component';
     </div>
 
     <script>
-        bfSlick.assignCarousel('.js-slick-carousel--demo', {
+        bfSlick.assignCarousel('.js-bf-carousel-demo', {
             // You are free to define your own Slick configuration.
             // Doc: https://kenwheeler.github.io/slick/
             arrows: true,
@@ -40,6 +40,25 @@ import { CarouselComponent }            from '../angular/carousel.component';
             mobileFirst: true,
             prevArrow: bfSlick.getPrevSlickBtn(),
             nextArrow: bfSlick.getNextSlickBtn(),
+            responsive: [
+                {
+                    breakpoint: (bfTheme.breakpoints.md-1),
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: bfTheme.breakpoints.lg,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
         }
     );
     </script>
