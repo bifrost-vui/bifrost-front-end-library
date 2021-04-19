@@ -1,4 +1,5 @@
 {% set hasImage     = image.src is defined and image.src is not empty %}
+{% set titleTag     = titleTag|default('h2') %}
 
 <article class='
     bf-block bf-block--highlight
@@ -19,9 +20,9 @@
     
     <div class='p-5'>
         {% if title is defined %}
-            <h2>
+            <{{ titleTag|default('h2') }} {% if titleTag|default('h2') is not same as ('h2') %}class='h2'{% endif %}>
                 {{ title }}
-            </h2>
+            </{{ titleTag|default('h2') }}>
         {% endif %}
         {% if paragraph is defined %}
             <p>
@@ -29,11 +30,8 @@
             </p>
         {% endif %}
         {% if button is defined %}
-            {% include '@bf-components/button/twig/index.twig' with {
-                label       : button.label|default(''),
-                hierarchy   : button.hierarchy|default('secondary'),
-                class       : button.class|default(''),
-            } only %}
+            {% set button = button|merge( { 'hierarchy': button.hierarchy|default('primary-alt') } ) %}
+            {% include '@bf-components/button/twig/index.twig' with button only %}
         {% endif %}
     </div>
 
