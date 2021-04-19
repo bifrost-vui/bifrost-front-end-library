@@ -46,11 +46,11 @@
                 {{ upperTitle }}
             </p>
         {% endif %}
-        
+
         {% if title is defined and title is not empty %}
-            <h1 class='h2 mt-0 mb-1'>
-                {{ title|default('') }}
-            </h1>
+            <{{ titleTag|default('h1') }} class='h2 mt-0 mb-1'>
+                {{ title }}
+            </{{ titleTag|default('h1') }}>
         {% endif %}
 
         {% if description is defined and description is not empty %}
@@ -71,11 +71,19 @@
                 {{ link.label|default('') }}
             </a>
         {% endif %}
-        
+
         {% if badge is defined and badge is not empty %}
+
+            {% if badge is iterable %}
+                {% set badgeLabel = badge.label %}
+            {% else %}
+                {% set badgeLabel = badge %}
+            {% endif %}
+
             {% include '@bf-components/badge/twig/index.twig' with {
-                label       : badge|default(''),
-                color       : badgeColor|default(NULL),
+                label       : badgeLabel|default(''),
+                hierarchy   : badge.hierarchy|default('primary'),
+                noUppercase : badge.noUppercase|default(null),
                 angle       : 'left',
             } only %}
         {% endif %}
@@ -90,9 +98,9 @@
 
                     {% if list.title is defined %}
                         <div class='d-flex mb-2'>
-                            <h2 class='w-60 bf-text font-weight-bold mb-0'>
+                            <p class='w-60 bf-text font-weight-bold mb-0'>
                                 {{list.title}}
-                            </h2>
+                            </p>
                             <p class='w-40 text-right mb-0'>
                                 {{list.description}}
                             </p>

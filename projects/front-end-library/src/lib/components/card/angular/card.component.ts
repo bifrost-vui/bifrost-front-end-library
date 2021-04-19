@@ -18,10 +18,11 @@ export class CardComponent implements OnInit {
 
     @Input() upperTitle             : string;
     @Input() title                  : string;
+    @Input() titleTag               : string;
     @Input() description            : string;
     @Input() description_html       : string;
     @Input() link                   : object;
-    @Input() badge                  : string;
+    @Input() badge                  : any;
 
     @Input() contentLists           : object;
     @Input() detailsColors          : object;
