@@ -242,7 +242,6 @@ $(function () {
 	});
 
 	$(searchBtn).keydown(function (e) {
-        debugger;
 		// This lets us 'shift + tab' to the last visible tab
 		if (e.which == keyTab && e.shiftKey) {
 			let $megamenuTabs = $('.js-bf-tabs__tab.active').parent().find(tabsTab);
