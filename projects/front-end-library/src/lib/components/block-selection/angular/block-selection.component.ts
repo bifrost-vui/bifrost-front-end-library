@@ -21,6 +21,7 @@ export class BlockSelectionComponent implements OnInit {
     @Input() isCollapsedByDefaultOnMobile   : boolean;
 
     @Input() title                  : string;
+    @Input() titleTag               : string;
     @Input() class                  : string;
     @Input() reversed               : boolean;
 

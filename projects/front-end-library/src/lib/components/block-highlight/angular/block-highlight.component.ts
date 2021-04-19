@@ -19,6 +19,7 @@ export class BlockHighlightComponent implements OnInit {
     @Input() fullWidth          : boolean;
 
     @Input() title              : string;
+    @Input() titleTag           : string;
     @Input() class              : string;
     @Input() reversed           : boolean;
 
