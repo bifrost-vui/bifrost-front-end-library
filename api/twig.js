@@ -44,7 +44,11 @@ var Twig = require("twig"),
     // Custom filters
 
     Twig.extendFilter('json_parse', function(value) {
-        return value && JSON.parse(value);
+        try {
+            return JSON.parse(value);
+        } catch (e) {
+            return value;
+        }
     });
 
     // -----------------------------------------------------------------
