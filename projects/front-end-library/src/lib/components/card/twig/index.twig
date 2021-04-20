@@ -77,15 +77,14 @@
             {% if badge is iterable %}
                 {% set badgeLabel = badge.label %}
             {% else %}
-                {% set badgeLabel = badge %}
+                {% set badge = { label: badge } %}
             {% endif %}
 
-            {% include '@bf-components/badge/twig/index.twig' with {
-                label       : badgeLabel|default(''),
-                hierarchy   : badge.hierarchy|default('primary'),
-                noUppercase : badge.noUppercase|default(null),
-                angle       : 'left',
-            } only %}
+            {% set badge = badge|merge( { 
+                'hierarchy' : badge.hierarchy|default('primary'),
+                'angle'     : badge.angle|default('left'),
+            } ) %}
+            {% include '@bf-components/badge/twig/index.twig' with badge only %}
         {% endif %}
 
     </header> 

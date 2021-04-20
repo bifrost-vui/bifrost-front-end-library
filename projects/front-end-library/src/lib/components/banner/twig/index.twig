@@ -39,10 +39,15 @@
     </div>
 
     {% if badge is defined and badge is not empty %}
-        {% include '@bf-components/badge/twig/index.twig' with {
-            label       : badge,
-            angle       : 'left',
-        } only %}
-    {% endif %} 
+
+        {% if badge is iterable %}
+            {% set badgeLabel = badge.label %}
+        {% else %}
+            {% set badge = { label: badge } %}
+        {% endif %}
+
+        {% set badge = badge|merge( { 'angle': badge.angle|default('left') } ) %}
+        {% include '@bf-components/badge/twig/index.twig' with badge only %}
+    {% endif %}
 
 </{{ isLink ? 'a' : 'div' }}>
