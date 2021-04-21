@@ -2,6 +2,84 @@
 
 <br/><br/>
 
+## v0.0.16
+
+
+### New Twig component
+
+#### List
+- This component displays a list of icon and label.
+- [=> Documentation](?path=/docs/components-list--drupal)
+
+
+### Review Twig components
+
+#### Base
+- New global variable `bfTheme` to access breakpoints in javascript. Loading the file `assets/js/bifrost-components.js` is required to use this new variable.
+- Add a new SCSS file: `_carousel-mobility-phones.scss`:
+```css
+.carousel-mobile-devices {
+  //@include media-breakpoint-up(md) {
+    .slick-slide {
+      @include transitions(opacity);
+      opacity: 0;
+
+      &.slick-active { opacity: 1; }
+    }
+  //}
+
+  .slick-slide:focus {
+    //outline: none;
+  }
+}
+```
+- Refactor `json_parse` Twig filter: 
+```jsx
+Twig.extendFilter('json_parse', function(value) {
+    try {
+        return JSON.parse(value);
+    } catch (e) {
+        return value;
+    }
+});
+```
+- Global documentation improvement.
+
+#### Banner, Block, Card and Hero
+- Property `badge` could be pass as a **string** to set a **label** directly:
+```jsx
+{% include '@bf-components/banner/twig/index.twig' with { 
+    badge : 'This is a badge'
+} only %}
+```
+Or it could be pass as an **object** from the Badge Component API:
+```jsx
+{% include '@bf-components/banner/twig/index.twig' with { 
+    badge : {
+        label: 'This is a badge',
+        hierarchy: 'primary'
+    }
+} only %}
+```
+
+#### Block and Card
+- New property `titleTag` to change the default `<h1>` tag:
+```jsx
+{% include '@bf-components/card/twig/plan.twig' with { 
+    titleTag : 'p'
+} only %}
+```
+
+#### Block, Card and Hero
+- Property `button` now accept all properties from Button Component API.
+
+#### Carousel
+- New CSS class `.bf-carousel` could be used in a Slick carousel to automatically add `overflow: hidden` to `.slick-list`.
+- [=> Demo](?path=/docs/components-carousel--drupal)
+
+
+<br/><br/>
+
 ## [v0.0.15](https://bifrost-front-end-library-9zfuorlqm-baptistemac.vercel.app/?path=/docs/changelog--page)
 
 ### Base
