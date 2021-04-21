@@ -16,7 +16,23 @@
 
 #### Base
 - New global variable `bfTheme` to access breakpoints in javascript. Loading the file `assets/js/bifrost-components.js` is required to use this new variable.
-- Global documentation improvement.
+- Add a new SCSS file: `_carousel-mobility-phones.scss`:
+```css
+.carousel-mobile-devices {
+  //@include media-breakpoint-up(md) {
+    .slick-slide {
+      @include transitions(opacity);
+      opacity: 0;
+
+      &.slick-active { opacity: 1; }
+    }
+  //}
+
+  .slick-slide:focus {
+    //outline: none;
+  }
+}
+```
 - Refactor `json_parse` Twig filter: 
 ```jsx
 Twig.extendFilter('json_parse', function(value) {
@@ -27,6 +43,7 @@ Twig.extendFilter('json_parse', function(value) {
     }
 });
 ```
+- Global documentation improvement.
 
 #### Banner, Block, Card and Hero
 - Property `badge` could be pass as a **string** to set a **label** directly:
@@ -45,8 +62,7 @@ Or it could be pass as an **object** from the Badge Component API:
 } only %}
 ```
 
-#### Card and Block
-- Property `button` now accept all properties from Button Component API.
+#### Block and Card
 - New property `titleTag` to change the default `<h1>` tag:
 ```jsx
 {% include '@bf-components/card/twig/plan.twig' with { 
@@ -54,7 +70,7 @@ Or it could be pass as an **object** from the Badge Component API:
 } only %}
 ```
 
-#### Hero
+#### Block, Card and Hero
 - Property `button` now accept all properties from Button Component API.
 
 #### Carousel
