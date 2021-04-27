@@ -24,7 +24,14 @@ export class HeaderComponent implements OnInit {
 
     @Input() navItems                : any[];
     @Input() rigthIconLinks          : any[];
-    // @Input() hasAccountBtn           : boolean;
+    @Input() hasAccountBtn           : boolean;
+    @Input() isConnected             : boolean;
+
+    @Input() hrefLogOut               : string;
+    @Input() labelLogOut              : string;
+    @Input() hrefConnexion            : string;
+    @Input() labelConnexion           : string;
+
     // @Input() hasMiniCartBtn          : boolean;
     @Input() hasNoSearchBtn          : boolean;
 
