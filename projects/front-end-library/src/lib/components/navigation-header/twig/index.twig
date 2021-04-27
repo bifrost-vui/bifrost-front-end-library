@@ -59,12 +59,24 @@
                 {% endfor %}
 
                 <!-- Btn account dropdown -->
-                {# {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
-                    {% include '@bf-components/navigation-header/twig/btn-account.twig' with { class:'' } only %}
+                {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
+                    {% if isConnected is same as (true) %}
+                        {% include '@bf-components/button-icon/twig/index.twig' with {
+                            href        : hrefLogOut|default('#'),
+                            icon        : 'out',
+                            ariaLabel   : labelLogOut|default('Log out'),
+                        } %}
+                    {% else %}
+                        {% include '@bf-components/button-icon/twig/index.twig' with {
+                            href        : hrefConnexion|default('#'),
+                            icon        : 'profile',
+                            ariaLabel   : labelConnexion|default('Log in'),
+                        } %}
+                    {% endif %}
                 {% endif %}
 
                 <!-- Btn mini cart -->
-                {% if hasMiniCartBtn is defined and hasMiniCartBtn is same as (true) %}
+                {# {% if hasMiniCartBtn is defined and hasMiniCartBtn is same as (true) %}
                     {% include '@bf-components/navigation-header/twig/btn-minicart.twig' with { class:'' } only %}
                 {% endif %} #}
 
