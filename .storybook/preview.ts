@@ -33,7 +33,7 @@ addParameters({
     },
 
     // Controls
-    controls: {
+    controls: { 
         expanded: true, 
         hideNoControlsWarning: true
     },
