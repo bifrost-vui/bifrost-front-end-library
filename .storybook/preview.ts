@@ -34,7 +34,7 @@ addParameters({
 
     // Controls
     controls: { 
-        // expanded: true, 
+        expanded: true, 
         hideNoControlsWarning: true
     },
     argTypes: {
