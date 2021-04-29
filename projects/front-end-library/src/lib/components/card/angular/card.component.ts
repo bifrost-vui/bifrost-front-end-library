@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import { IPrice } from '../../price/angular/price.component';
 
 /**
  * API is the same between **Angular** and **Drupal**.
@@ -63,7 +64,10 @@ export class CardComponent implements OnInit {
     /**
         [Price](/?path=/docs/components-price--drupal) component.
     */
-    @Input() price                  : object;
+    @Input() price                  : IPrice;
+    /**
+        Note: Can contains html.
+    */
     @Input() note                   : string;
 
     /**
