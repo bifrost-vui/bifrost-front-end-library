@@ -1,10 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
 
-/**
- * API is the same between **Angular** and **Drupal**.
- *
- */
- 
+
 @Component({
     selector: "bf-badge",
     templateUrl: './badge.component.html',
@@ -14,13 +10,12 @@ export class BadgeComponent implements OnInit {
     constructor() {}
 
     @Input() label          : string;
-    @Input() hierarchy      : string;
+    @Input() hierarchy      : 'primary' | 'secondary' | 'tertiary' | 'tertiary-ground';
     @Input() noUppercase    : boolean;
     /**
         Display an angle on a corner.
-        left | right
     */
-    @Input() angle          : string;
+    @Input() angle          : 'left' | 'right';
 
     @Input() class          : string;
     @Input() reversed       : boolean;
