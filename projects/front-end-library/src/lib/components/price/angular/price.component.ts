@@ -5,6 +5,16 @@ export interface IUpfront {
   dollar    : string;
 }
 
+export interface IPromotion {
+  priceStriked  : string;
+  priceSaved    : string;
+  savedLabel    : string;
+  superscript   : string;
+  direction     : string;
+}
+
+// 'vertical' | 'horizontal';
+
 /**
  * API is the same between **Angular** and **Drupal**.
  *
@@ -26,16 +36,21 @@ export class PriceComponent implements OnInit {
     @Input() dollarClass            : string;
     @Input() cent                   : string;
     @Input() hasAsterisk            : boolean;
-    @Input() dashed                 : string;
+    
+    @Input() promotion              : IPromotion;
 
+    /** **Deprecated** Use `promotion.priceStriked` instead. */
+    @Input() dashed                 : string;
+    /** **Deprecated** Use `promotion.priceSaved` instead. */
     @Input() saved                  : string;
+    /** **Deprecated** Use `promotion.savedLabel` instead. */
     @Input() savedLabel             : string;
 
     @Input() details                : string;
     @Input() message                : string;
 
     @Input() size                   : 'small' | 'medium' | 'large';
-    @Input() direction              : 'vertical' | 'horizontal';
+    // @Input() direction              : 'vertical' | 'horizontal';
     /** This will make width at 100% of the parent. This behavior is useful when you want `direction: horizontal`.  */
     @Input() fullWidth              : boolean;
     @Input() class                  : string;

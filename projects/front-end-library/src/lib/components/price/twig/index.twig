@@ -13,22 +13,21 @@
 
     {% if upfront is defined and upfront is not empty %}
         <p class='mb-0'>
-        
             {% apply spaceless %}
                 {% if language == 'en' %}
-                    <span class='bf-text-display-sub-small pr-1'>$</span>
+                    <span class='bf-text-display-sub-small' style='padding-right: 2px'>$</span>
                 {% endif %}
                 {# TODO: Reduce the line-height of bf-text-interface-large. #}
-                <span class='bf-text-interface-large pr-1'>{{ upfront.dollar|default('0') }}</span>
+                <span class='bf-text-interface-large'>{{ upfront.dollar|default('0') }}</span>
                 {% if language == 'fr' %}
-                    <span class='bf-text-display-sub-small pr-1'>$</span>
+                    <span class='bf-text-display-sub-small' style='padding-left: 2px'>$</span>
                 {% endif %}
-                <span class='bf-text-display-sub-medium'>{{ upfront.label|default('upfront') }}</span>
+                <span class='bf-text-display-sub-medium pl-1'>{{ upfront.label|default('upfront') }}</span>
             {% endapply %}
         </p>
     {% endif %}
 
-    <div class='d-flex gap-2 justify-content-between {% if direction is defined and direction is same as ('horizontal') %}flex-row{% else %}flex-column{% endif %}'>
+    <div class='d-flex gap-2 justify-content-between {% if promotion.direction is defined and promotion.direction == 'horizontal' %}flex-row{% else %}flex-column{% endif %}'>
 
         <div class='bf-price__infos d-inline-flex'>
 
@@ -79,30 +78,40 @@
                 </div>
             </div>
 
-            {# {% if priceSavings is defined and priceSavings is not empty %}
-                <p class='small color--primary mb-0'>
-                    {{ priceSavings|raw }}
-                </p>
-            {% endif %} #}
         </div>
 
-        {% if dashed is defined or saved is defined %}
+        {% if promotion is defined or dashed is defined or saved is defined %}
             <div class='d-inline-flex align-items-center'>
 
-                {% if dashed is defined and dashed is not empty %}
-                    <p class='small text-strike mr-3 mb-0'>
-                        {{ dashed|default('') }}
+                {% if promotion.priceStriked is defined or dashed is defined %}
+                    <p class='small text-strike mr-2 mb-0'>
+                        {% if promotion.priceStriked is defined and promotion.superscript %}
+                            {{ promotion.priceStriked }}
+                        {% elseif dashed is defined and dashed %}
+                            {{ dashed }}
+                        {% endif %}
                     </p>
                 {% endif %}
 
-                {% if saved is defined and saved is not empty %}
-                    <p class='small bf-display-highlight d-inline-flex flex-wrap mb-0'>
+                {% if promotion.priceSaved is defined or saved is defined %}
+                    <p class='small bf-display-highlight d-inline-flex align-items-center flex-wrap mb-0'>
                         <span class='mr-1'>
-                            {{ savedLabel|default('You save :') }}
+                            {% if promotion.savedLabel is defined %}
+                                {{ promotion.savedLabel }}
+                            {% elseif savedLabel is defined %}
+                                {{ savedLabel }}
+                            {% endif %}
                         </span>
                         <span class='font-weight-bold'>
-                            {{ saved|default('')|raw }}
+                            {% if promotion.priceSaved is defined and promotion.priceSaved %}
+                                {{ promotion.priceSaved|raw }}
+                            {% elseif saved is defined and saved %}
+                                {{ saved|raw }}
+                            {% endif %}
                         </span>
+                        {% if promotion.superscript is defined and promotion.superscript %}
+                            <sup class='bf-price__superscript'>{{ promotion.superscript }}</sup>
+                        {% endif %}
                     </p>
                 {% endif %}
 
