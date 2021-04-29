@@ -13,4 +13,5 @@ export const topBar_secondaryItems = [
 export const rigthIconLinks = [
     { icon:"email", href:" ", class:"" },
     { icon:"pin", href:" ", class:"" },
+    { icon:"cart", href:" ", class:"" },
 ];
