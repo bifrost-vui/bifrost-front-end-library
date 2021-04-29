@@ -1,16 +1,36 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
 
-export interface IUpfront {
-  label     : string;
-  dollar    : string;
+interface IUpfront {
+  label         : string;
+  dollar        : string;
 }
 
-export interface IPromotion {
+interface IPromotion {
   priceStriked  : string;
   priceSaved    : string;
   savedLabel    : string;
   superscript   : string;
   direction     : string;
+}
+
+export interface IPrice {
+    upperTitle  : string;
+    upfront     : IUpfront;
+    dollar      : string;
+    dollarClass : string;
+    cent        : string;
+    hasAsterisk : boolean;
+    promotion   : IPromotion;
+    dashed      : string;
+    saved       : string;
+    savedLabel  : string;
+    details     : string;
+    message     : string;
+    size        : 'small' | 'medium' | 'large';
+    fullWidth   : boolean;
+    class       : string;
+    reversed    : boolean;
+    language    : 'en' | 'fr';
 }
 
 // 'vertical' | 'horizontal';
@@ -36,7 +56,8 @@ export class PriceComponent implements OnInit {
     @Input() dollarClass            : string;
     @Input() cent                   : string;
     @Input() hasAsterisk            : boolean;
-    
+
+    /** promotion.direction = "vertical" | "horizontal" */
     @Input() promotion              : IPromotion;
 
     /** **Deprecated** Use `promotion.priceStriked` instead. */
@@ -50,8 +71,7 @@ export class PriceComponent implements OnInit {
     @Input() message                : string;
 
     @Input() size                   : 'small' | 'medium' | 'large';
-    // @Input() direction              : 'vertical' | 'horizontal';
-    /** This will make width at 100% of the parent. This behavior is useful when you want `direction: horizontal`.  */
+    /** This will make width at 100% of the parent. This behavior is useful when you want `promotion.direction: horizontal`.  */
     @Input() fullWidth              : boolean;
     @Input() class                  : string;
     @Input() reversed               : boolean;

@@ -6,13 +6,13 @@
     {{ class|default('') }}'>
     
     {% if upperTitle is defined and upperTitle is not empty %}
-        <p class='small bf-color-neutral-secondary mb-0'>
+        <p class='small bf-color-neutral-secondary mb-1'>
             {{ upperTitle|default('') }}
         </p>
     {% endif %}
 
     {% if upfront is defined and upfront is not empty %}
-        <p class='mb-0'>
+        <p class='bf-price__upfront mb-1'>
             {% apply spaceless %}
                 {% if language == 'en' %}
                     <span class='bf-text-display-sub-small' style='padding-right: 2px'>$</span>
@@ -22,7 +22,7 @@
                 {% if language == 'fr' %}
                     <span class='bf-text-display-sub-small' style='padding-left: 2px'>$</span>
                 {% endif %}
-                <span class='bf-text-display-sub-medium pl-1'>{{ upfront.label|default('upfront') }}</span>
+                <span class='bf-text-display-sub-small pl-1'>{{ upfront.label|default('upfront') }}</span>
             {% endapply %}
         </p>
     {% endif %}
@@ -55,7 +55,7 @@
                         {% endif %}
 
                         {% if hasAsterisk is defined and hasAsterisk is same as (true) %}
-                            <sup class='small'>*</sup>
+                            <sup class='bf-price__asterisk'>*</sup>
                         {% endif %}
 
                         {# 
@@ -80,7 +80,7 @@
 
         </div>
 
-        {% if promotion is defined or dashed is defined or saved is defined %}
+        {% if (promotion is defined and promotion) or (dashed is defined and dashed) or (saved is defined and saved) %}
             <div class='d-inline-flex align-items-center'>
 
                 {% if promotion.priceStriked is defined or dashed is defined %}
