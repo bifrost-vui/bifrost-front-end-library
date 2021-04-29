@@ -1,5 +1,10 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
 
+export interface IUpfront {
+  label     : string;
+  dollar    : string;
+}
+
 /**
  * API is the same between **Angular** and **Drupal**.
  *
@@ -14,18 +19,24 @@ export class PriceComponent implements OnInit {
     constructor() {}
 
     @Input() upperTitle             : string;
+
+    @Input() upfront                : IUpfront;
+
     @Input() dollar                 : string;
     @Input() dollarClass            : string;
     @Input() cent                   : string;
     @Input() hasAsterisk            : boolean;
     @Input() dashed                 : string;
+
     @Input() saved                  : string;
     @Input() savedLabel             : string;
+
     @Input() details                : string;
     @Input() message                : string;
+
     @Input() size                   : 'small' | 'medium' | 'large';
     @Input() direction              : 'vertical' | 'horizontal';
-    /** This will make width at 100% of the parent. This behavior is useful when you want direction: horizontal.  */
+    /** This will make width at 100% of the parent. This behavior is useful when you want `direction: horizontal`.  */
     @Input() fullWidth              : boolean;
     @Input() class                  : string;
     @Input() reversed               : boolean;

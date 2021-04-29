@@ -11,6 +11,23 @@
         </p>
     {% endif %}
 
+    {% if upfront is defined and upfront is not empty %}
+        <p class='mb-0'>
+        
+            {% apply spaceless %}
+                {% if language == 'en' %}
+                    <span class='bf-text-display-sub-small pr-1'>$</span>
+                {% endif %}
+                {# TODO: Reduce the line-height of bf-text-interface-large. #}
+                <span class='bf-text-interface-large pr-1'>{{ upfront.dollar|default('0') }}</span>
+                {% if language == 'fr' %}
+                    <span class='bf-text-display-sub-small pr-1'>$</span>
+                {% endif %}
+                <span class='bf-text-display-sub-medium'>{{ upfront.label|default('upfront') }}</span>
+            {% endapply %}
+        </p>
+    {% endif %}
+
     <div class='d-flex gap-2 justify-content-between {% if direction is defined and direction is same as ('horizontal') %}flex-row{% else %}flex-column{% endif %}'>
 
         <div class='bf-price__infos d-inline-flex'>
