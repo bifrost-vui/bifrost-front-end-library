@@ -12,6 +12,27 @@ import { PriceComponent }                       from '../angular/price.component
         moduleMetadata({ declarations: [PriceComponent, TwigContainerComponent]}),
     ]}
     argTypes={{
+        language: {
+            control: { type: 'select' },
+            table: { defaultValue: { summary: 'en' } },
+        },
+        size: {
+            control: { type: 'select' },
+            table: { defaultValue: { summary: 'small' } },
+        },
+        direction: {
+            control: { type: 'select' },
+            table: { defaultValue: { summary: 'vertical' } },
+        },
+        hasAsterisk: {
+            table: { defaultValue: { summary: false } },
+        },
+        fullWidth: {
+            table: { defaultValue: { summary: false } },
+        },
+        reversed: {
+            table: { defaultValue: { summary: false } },
+        },
     }}
 />
 
@@ -56,25 +77,45 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+export const commonProps = {
+    upperTitle      : 'Upper Title',
+    dollar          : '30',
+    dollarClass     : '',
+    cent            : '99',
+    hasAsterisk     : false,
+    details         : '/month',
+    dashed          : '$150',
+    saved           : '$10',
+    message         : 'This is a message.',
+    class           : 'p-3',
+}
+
+
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
+    style={{ height: '200px' }}
 >
     <Story 
         name='Drupal'
         args={{ 
             elementPath     : 'components/price/_doc/template.drupal',
-            upperTitle      : 'From',
-            dollar          : '30',
-            dollarClass     : '',
-            cent            : '99',
-            hasAsterisk     : false,
-            details         : '/month',
-            dashed          : '$150',
-            saved           : '$10',
-            message         : 'Lorem ipsum dolor sit amet',
-            language        : 'en',
-            class           : 'm-3',
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+<Preview
+    withSource='none'
+    style={{ height: '800px' }}
+>
+    <Story 
+        name='Drupal - All Prices'
+        args={{ 
+            elementPath     : 'components/price/_doc/all-prices.drupal',
+            ...commonProps
         }}
     >
         {Drupal.bind({})}
