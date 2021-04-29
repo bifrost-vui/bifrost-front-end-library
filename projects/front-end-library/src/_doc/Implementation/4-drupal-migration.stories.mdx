@@ -104,8 +104,8 @@ In the **head** of your pages:
 
 
 ## 6. Themes
-- On Storybook, check if the component is available in a specific theme.
-- Wrap the component with a `data-theme='x'`. For example:
+On Storybook, check if the component is available in a specific theme.
+Wrap the component with a `data-theme='x'`.
 ```html
 <div data-theme='business'>
     {% include '@bf-components/button/twig/index.twig' %}
@@ -114,9 +114,27 @@ In the **head** of your pages:
 
 
 ## 7. Reversed style
-- Some compoments are available in a reversed style. Then you should see the **reversed** props.
+
+#### What is reversed?
+In every theme, we have a default background color. For exampe, in Videotron theme, the default is white. But some sections have black background. Theses sections are `reversed`.
+//TODO: Add a link to Zeroheight Documentation.
+
+> **Note:** We didn't call it white-mode/dark-mode in order to be "color agnostic" and then more futur-proof.
+
+#### How to implement?
+- Add a class `.reversed` in any HTML tag.
 ```jsx
-{% include '@bf-components/button/twig/index.twig' with {
+// Note that if you want to display the reversed background, 
+// you need to add it independently.
+<div class='reversed bf-color-bg-ground'>
+    {% include '@bf-components/button/twig/index.twig' %}
+</div>
+```
+
+- Some special components need to know explicitly the reversed state: `Navigation Header` and `Logo`.
+Then you need to pass the `reversed` property to the include:
+```jsx
+{% include '@bf-components/navigation-header/twig/index.twig' with {
     reversed : true
 } only %}
 ```
