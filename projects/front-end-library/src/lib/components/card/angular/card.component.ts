@@ -21,6 +21,10 @@ export class CardComponent implements OnInit {
 
     /** E.g. `h4` */
     @Input() titleTag               : string;
+    /** 
+    Note: Wrap your data with a semantic HTML tag.
+    E.g. `description_html: "<p>this is a description</p>"`
+    */
     @Input() description_html       : string;
 
     /** Expected format:
