@@ -10,6 +10,7 @@ export const contentListsData = [
         title           : 'Samsung Galaxy Note 20 Utra 5G',
         description     : 'Navy Blue, 128 Go',
         price           : '$24.00',
+        priceInfo       : '/ month',
         saving          : '$30.00',
         fullPrice       : '$150.00',
     },
