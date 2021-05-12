@@ -20,7 +20,7 @@
     {% if theme is defined %} data-theme={{theme}} {% endif %}
 >
     <nav class='bf-header__nav w-100 border-bottom bf-border-color-secondary {{ class|default('') }}'>
-        
+
         <!-- Logo -->
         <div class='bf-header__logo' data-animate='fade-in'>
             <a href='{{ logo.href|default('#') }}' class='d-flex'>
@@ -36,7 +36,7 @@
         <div class='bf-header__nav-main js-collapse-full-height' data-animate-row=''>
             <ul class='bf-megamenu d-flex list h-100'>
                 {% block navbar_content %}
-                    {% include '@bf-components/navigation-header/twig/mega-menu.twig' with { 
+                    {% include '@bf-components/navigation-header/twig/mega-menu.twig' with {
                         navItems    : navItems,
                         reversed    : reversed
                     } only %}
@@ -49,7 +49,7 @@
 
             <div class='d-flex d-lg-none align-items-center'>
                 {% for link in rigthIconLinks|default([]) %}
-                    {% if link is not empty %}
+                    {% if link is defined and link.href is not empty and link.icon is not empty %}
                         {% include '@bf-components/button-icon/twig/index.twig' with {
                             href    : link.href,
                             icon    : link.icon,
