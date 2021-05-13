@@ -2,9 +2,26 @@
 
 <br/><br/>
 
+## [v1.0.1](https://bifrost-front-end-library-7sh17fjm1-jonathanlefebvrev.vercel.app/)
+Bugs
+- DS-63 Fix Header icon mandatory
+  - Links icon (`rigthIconLinks`), in mobile, now only display if the attribute `icon` and `href` are filled.
 
+- DS-61 Fix Block selection price attribute
+  - new variable for `contentLists`, `priceInfo` type String(optional), information for the price (example "/ month", "one-time")
+  - remove the variable `month` that was baldy global to the component (replaced by `contentLists[x].priceInfo`)
 
-## v0.0.18
+- DS-60 Fix Block selection item actions
+  - Delete and Modify icons button are now surrounded by Twig block `itemActionBlock` for custom override
+  - The `contentLists` can now have `btnDelete` and `btnModify` to inject `href`
+  - `btnDelete` type Object(optional) contain a `href` attribute - type string(mandatory)
+  - `btnModify` type Object(optional) contain a `href` attribute - type string(mandatory)
+
+Knows bugs
+- Hero integration with breadCrumb doesn't work.
+- Block selection manage links without the full API of the corresponding component.
+
+## v0.0.18 (aka 1.0.0)
 
 ### Navigation Header
 
@@ -51,7 +68,7 @@
   }
 }
 ```
-- Refactor `json_parse` Twig filter: 
+- Refactor `json_parse` Twig filter:
 ```jsx
 Twig.extendFilter('json_parse', function(value) {
     try {
@@ -66,13 +83,13 @@ Twig.extendFilter('json_parse', function(value) {
 #### Banner, Block, Card and Hero
 - Property `badge` could be pass as a **string** to set a **label** directly:
 ```jsx
-{% include '@bf-components/banner/twig/index.twig' with { 
+{% include '@bf-components/banner/twig/index.twig' with {
     badge : 'This is a badge'
 } only %}
 ```
 Or it could be pass as an **object** from the Badge Component API:
 ```jsx
-{% include '@bf-components/banner/twig/index.twig' with { 
+{% include '@bf-components/banner/twig/index.twig' with {
     badge : {
         label: 'This is a badge',
         hierarchy: 'primary'
@@ -83,7 +100,7 @@ Or it could be pass as an **object** from the Badge Component API:
 #### Block and Card
 - New property `titleTag` to change the default `<h1>` tag:
 ```jsx
-{% include '@bf-components/card/twig/plan.twig' with { 
+{% include '@bf-components/card/twig/plan.twig' with {
     titleTag : 'p'
 } only %}
 ```
@@ -123,7 +140,7 @@ Or it could be pass as an **object** from the Badge Component API:
 - **[DXP]** Roll-back previous `.fs-6`:
 ```css
 .fs-6 {
-     font-size: 2.1rem !important; 
+     font-size: 2.1rem !important;
 }
 ```
 - **[DXP]**: Navigation Header: Apply **font-weight normal** by default for all elements with `.h5` class.
