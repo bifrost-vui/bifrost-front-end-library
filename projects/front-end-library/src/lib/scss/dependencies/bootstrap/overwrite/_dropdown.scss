@@ -13,6 +13,27 @@
     overflow: hidden;
   }
 
+  // Legacy
+  &--selectlist {
+    @include hover-focus{
+      // All buttons dropdown except those in a navbar
+      button[data-toggle='dropdown']:not(.navbar-toggler){
+        background: $gray-100;
+      }
+    }
+
+    // All buttons dropdown except those in a navbar
+    button[data-toggle='dropdown']:not(.navbar-toggler){
+      border: $input-border-width solid $input-border-color!important;
+
+      &[aria-expanded=true]{
+        background: $gray-100;
+        //border-color: $dark!important;
+      }
+    }
+  }
+  // End Legacy
+
   &-menu {
     position: absolute !important;
     //box-shadow: $dropdown-box-shadow;
@@ -127,6 +148,26 @@
   &--light {
     * {
       color: $dark;
+    }
+  }
+  &--tab-vertical {
+    .dropdown-menu {
+      width: 25rem;
+    }
+  }
+// Legacy
+  .tab-vertical {
+    .nav-tabs--vertical__item-link {
+      background: $white;
+      border-bottom: none;
+
+      &:before {
+        background: $gray-100;
+      }
+
+      &.active {
+        background: $gray-100;
+      }
     }
   }
 }
