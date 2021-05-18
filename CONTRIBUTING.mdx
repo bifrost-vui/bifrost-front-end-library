@@ -1,40 +1,39 @@
 # Contribute to the Bifrost Front-end Library
 
-> Please, read this guide of contribution carefully before contributing.
+> If you plan to contribute, please read this contribution guidlines carefully.
 
 If you have any question or if something is missing, feel free to notify Bifrost Team.
+
+<br/>
+
+
+## Overview
+The Bifrost Design-system is the combination of 5 spaces:
+- **Global documentation** on [Zeroheight]().
+- **Design documentation** on [Figma]().
+- **Technical documentation** on [Storybook]() (what you are reading right now)
+- **Front-end library** on [NPM]().
+- **Discussions** on Teams Channels.
+
 
 ## Teams Channel
 // TODO indicate Channel name
 
-<br/>
 
 ## Frameworks
 
-The Bifrost library supports 2 frameworks: **Angular** and **Twig**.
-
-**//TBD** This means that for each component creation/modification, we need to add an advancement status
+The Front-end library supports 2 frameworks: **Angular** and **Twig**.
+As of today, we put effort in Twig. That's why you will not find any Angular components in Storybook. However, the library architecture is ready to publish an **Angular Library**.
 
 
 ## Content
 
-The Bifrost library provides 5 kinds of elements:
+The Front-end library provides 5 kinds of elements:
 - **CSS Styles** : Base styles for all Videotron project.
 - **JS Scripts** : Javascript required for Bifrost components.
-- **Components** : All components.
+- **Components** : All Angular and Twig components.
 - **Pipes** : Angular Pipes (Work in progress).
-- **Assets** : E.g. Logo, images, fonts, ...
-
-
-## Workflow in short
-
-1. For each changes, create a new branch with the name of the JIRA ticket.
-2. Test changes in isolation locally with Storybook.
-3. Check if automated tests are valid.
-4. Share PR Preview URL to UI designer or stackholders and ask for review.
-5. After validation, tag the branch as 'ready to merge'.
-6. Each Tuesday morning, we merge 'ready to merge' branches in master (only a member of the Bifrost Team is able to merge in master).
-7. Then, Bifrost Team build and publish a new version of the **NPM package**.
+- **Assets** : E.g. Logo, fonts, icons, illustrations, images, ...
 
 <br/>
 
@@ -56,19 +55,18 @@ npm install npm-run-all -g
 npm run start-dev
 ```
 
-At this point, it should open the Storybook page of the Bifrost library.
+At this point, Storybook should open on **http://localhost:9008** with the Front-end library inside.
 
 <br/>
 
-**Take a time, to explore components.** For each component:
- - **Canvas** tab (on top of the page) displays the component. You could change inputs in the **controls** tab and see how the component behaves.
- - **Docs** tab displays a technical documentation. Basically, an example of integration and the Component API.
+**Take a time, to explore components in Storybook.** For each component:
+ - **Canvas tab** (on top of the page) displays the component. You could change inputs in the **controls** tab and see how components behave.
+ - **Docs tab** displays a technical documentation. Basically, an example of integration and the Component API.
 
 ## Run Drupal Showcase
 
 The only purpose of the Drupal Showcase is to check the implementation in a real Drupal environment.
-
-This check is optionnal, however you could launch Drupal:
+⚠️ This showcase is in work in progress and it's possible that you will not be able to launch Drupal.
 
 ```bash
 npm run showcase-drupal:start
@@ -76,11 +74,13 @@ npm run showcase-drupal:start
 
 ## Run Angular Showcase
 
-This showcase is in work in progress.
+🚧 This showcase is in work in progress.
 
 <br/>
 
+
 # Start-dev
+<br/>
 
 Storybook provides an environment to develop in isolation. Let's open it:
 
@@ -99,20 +99,66 @@ npm run start-dev
 <br/>
 
 
-# What you should know before developement
+# What you should know before contributing
 
 <br/>
+
 
 ### Frameworks
 **Angular and Drupal** share the **same component API** and the **same CSS**.
 
 
+### Workflow (in short)
+
+**1. Jira ticket**
+- Everything starts with a Jira ticket :)
+
+**2. Understand the needs**
+- Design: Check if you have the right Figma link.
+- Design: If necessary, talk to the designer/stackeholder to be sure that context, needs and scope are well defined.
+- Design: If necessary, ask for design specification (responsive, hover states, ...).
+- Scope: Check the impact on both Angular and Drupal.
+- Roadmap: It is a urgent fix or not.
+
+**3. Develop**
+- Git: For each changes, create a new branch with the id of the Jira ticket.
+- Git: Use the commit namming convention (see below).
+- Develop in isolation locally with Storybook.
+- Git: Push in your branch to run automated tests.
+
+**4. Test**
+- On Github, check if automated tests are passed.
+- Review visual tests with Chromatic (🚧 work in progress).
+- Check the complete [merge checklist](?path=/docs/merge-checklist--page).
+
+**5. Review**
+- Share PR Preview URL to UI/UX designer or stackholders and ask for visual review.
+
+**6. Document**
+- Add complete documentation (See [merge checklist](?path=/docs/merge-checklist--page))
+- When ready, tag the branch as `ready to merge`.
+
+**7. Wait for merge**
+- Each Tuesday morning, core maintainers will merge `ready to merge` branches in master. Then build and publish a new version of the **NPM package**.
+- The core maintainers notify everyone in the Bifrost Teams channel with a link to the new changelog.
+
+
+### Git commit message
+In the futur, Bifrost will rely on the [conventional-commit format specification](https://www.conventionalcommits.org/en/v1.0.0-beta.2/#specification).
+By formalizing our commit message format, this allows us to easily generate changelogs and scan through the commit history. 
+It also automates [semantic versioning](https://semver.org/).
+
+
+### Merge checklist
+Each components should pass this [merge checklist](?path=/docs/merge-checklist--page), else log a ticket in JIRA in order to improve the component later.
+
+
 ### Browser compatibility
 Run `npx browserslist` to list all browsers supported.
 
+
 ### Component API
 Please, define your component API carefully. A futur change could generate a **Break change**.
-
 **Property names should be:**
 - **Universal:** Make it agnostic to be used in any context.
 - **Consistent:** It should be consistent with the current API. Try to find a similar properties in other Bifrost components to validate your naming. 
@@ -122,35 +168,26 @@ Please, define your component API carefully. A futur change could generate a **B
 ### CSS: Scope
 In order to keep backward-compatibility, we scope all Bifrost new CSS classes with `bf-` (E.g. `bf-button`, `bf-color-bg-neutral`, ...).
 
+
 ### CSS: BEM
 In most case, we use CSS [BEM architecture](http://getbem.com/introduction/).
 
+
 ### CSS: Decisions Tree
 If you need to add/change a style:
-1. If Bootstrap provides a class for that style, use it in the html or `@extends` the Bootstrap class in your SCSS file.
+1. If Bootstrap provides a class for that style, use it in the html or `@extends` the Bootstrap class in your SCSS file. We tend to respect Bootstrap **utility-first** architecture.
 2. If the class should be global, define if it's the Bifrost responsability or not. 
     - It yes, prefix the class with `bf-` and host it in a SCSS file in **/lib/scss/dependencies/bifrost/**.
     - If not, you should **warn Bifrost Team** that it could generate visual regressions.
 
+
 ### JS variable bfTheme
 In order to pass Breakpoints to Carousel. We created a global variable `bfTheme`. Feel free to type it in the console to explore it.
 
+
 ### Storybook
 Feel free to add any [stories](https://storybook.js.org/docs/angular/writing-stories/introduction) as you wish to showcase different states of your component. For example, we added a story for [Card Plan - Disabled](http://localhost:9008/?path=/story/components-card--drupal-plan-disabled) because it is easier to check than to hit the **Disable switch** in **Controls** panel.
-
 You could add stories in the same `doc.stories.ts`, or create a new file if it's relevant (E.g. `specific-variant.stories.ts`).
-
-### Validation checklist
-- [ ] Validate by designers/stackholders
-- [ ] Component name and Component API are agnostic
-- [ ] Component API is consistent with other components
-- [ ] Accessible (use [Axe]() inside Storybook panel or [Pa11y](https://github.com/pa11y/pa11y)) 
-- [ ] Content resilient
-- [ ] Responsive
-- [ ] Use the right CSS variables
-- [ ] Reversed style
-- [ ] Themable
-- [ ] Unit test (relevant?)
 
 <br/>
 
@@ -175,7 +212,7 @@ For Angular, don't forget to export your new module and/or component in `/lib/pu
 <br/>
 
 
-# Build and Publish Bifrost library
+# Build and Publish Front-end library
 <br/>
 
 Increment the version in `projects/front-end-library/package.json` with the pattern: **MAJOR.MINOR.PATCH**. 
