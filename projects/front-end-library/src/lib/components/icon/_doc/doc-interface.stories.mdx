@@ -6,8 +6,8 @@ import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-
 import { IconComponent }            from '../angular/icon.component';
 
 
-<Meta 
-    title='Components/Icon' 
+<Meta
+    title='Components/Icon'
     component={IconComponent}
     decorators={[
         moduleMetadata({ declarations: [IconComponent, TwigContainerComponent]})
@@ -29,12 +29,13 @@ import { IconComponent }            from '../angular/icon.component';
             }
         },
         size: {
-            defaultValue: '',
-            type: { required: false },
+            defaultValue: 'small',
+            type: { required: true },
+            description: 'xsmall(12px) | small(24px) | medium(48px) | large(72px)',
             table: { defaultValue: { summary: 'small' } },
             control: {
                 type: 'select',
-                options: ['', 'xsmall', 'small'],
+                options: ['xsmall','small', 'medium', 'large'],
             }
         },
         name: {
@@ -48,9 +49,10 @@ import { IconComponent }            from '../angular/icon.component';
             table: { disable: true }
         },
         type: {
-            defaultValue: '',
+            defaultValue: 'interface',
+            type: { required: true },
             control: {
-                readOnly: true
+              readOnly: true
             },
             table: { defaultValue: { summary: 'interface' } },
         },
@@ -88,7 +90,6 @@ import { IconComponent }            from '../angular/icon.component';
 ```
 
 
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -100,9 +101,9 @@ export const Drupal = (args) => ({
     withSource='none'
     style={{ height: '700px' }}
 >
-    <Story 
+    <Story
         name='Drupal - Interface'
-        args={{ 
+        args={{
             elementPath : 'components/icon/_doc/template.drupal',
             icons       : interfaceIcons,
             type        : 'interface',

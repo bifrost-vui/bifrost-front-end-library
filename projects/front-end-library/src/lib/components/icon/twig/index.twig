@@ -1,14 +1,19 @@
+{% set type  = type|default('interface') %}
+{% set size  = size|default('small') %}
+{% set classSize  = classSize|default('sm') %}
+{% set sizeSuffix = (size is same as ('xsmall') or size is same as ('small') ? 'sm' : 'lg' ) %}
+
 {% set classReversed    = (reversed is defined and reversed is same as (true)) ? ' reversed' : '' %}
 {% set classColor       = (color is defined and color is not empty) ? ' color-' ~ color : '' %}
-{% set classSize        = (size is defined and size is not empty) ? ' size-' ~ size : '' %}
 {% set classes          = 'bf-icon' ~ classReversed ~ classColor ~ classSize %}
-{% set type             = type|default('interface') %}
 {% set name             = name|default('placeholder') %}
+
+
 <div
     class='{{ classes }} type-{{ type }} {{ class|default('') }}'
     {% if type is same as ('interface') %}role='decoration'{% endif %}
 >
-    {% include '@bf-components/icon/svg/' ~ type ~ '/' ~ name ~ '.svg' ignore missing %}
+    {% include '@bf-components/icon/svg/' ~ name ~ '-' ~ sizeSuffix ~'.svg' ignore missing %}
 </div>
 
 {# Note: Do not add empty line above the <div>.

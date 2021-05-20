@@ -1,12 +1,3 @@
-export const iconSizeSuffix=[
-  {
-    'xsmall': 'sm',
-    'small': 'sm',
-    'medium': 'lg',
-    'large': 'lg'
-  }
-];
-
 export const interfaceIcons = [
   {
     category: 'Add and remove',
@@ -35,7 +26,17 @@ export const interfaceIcons = [
   },
   {
     category: 'Arrows and chevrons',
-    list: []
+    list: [
+      'chevron-down',
+      'chevron-left',
+      'chevron-right',
+      'chevron-up',
+      'dot',
+      'interpunct',
+      'order-asc',
+      'order-desc',
+      'order-none'
+    ]
   },
   {
     category: 'Common controls',
@@ -85,8 +86,8 @@ export const interfaceIcons = [
 
 export const illustrationIcons = [
   {
-    category: 'abstract'
-    , list: [
+    category: 'abstract',
+    list: [
       'accessibility',
       'agility',
       'handshake',
@@ -162,7 +163,7 @@ export const illustrationIcons = [
       'terminal-top'
     ]
   }, {
-    category: 'media & data',
+    category: 'media and data',
     list: [
       'actuality',
       'data-graph',
@@ -193,7 +194,7 @@ export const illustrationIcons = [
       'wifi'
     ]
   }, {
-    category: 'options & add-ons',
+    category: 'options and add-ons',
     list: [
       'apple',
       'mobile-bundle-packages',
