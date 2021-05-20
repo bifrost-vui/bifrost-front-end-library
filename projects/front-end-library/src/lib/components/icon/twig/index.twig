@@ -1,11 +1,11 @@
 {% set type  = type|default('interface') %}
 {% set size  = size|default('small') %}
-{% set classSize  = classSize|default('sm') %}
+{% set classSize  =  "size-"~ size  %}
 {% set sizeSuffix = (size is same as ('xsmall') or size is same as ('small') ? 'sm' : 'lg' ) %}
 
 {% set classReversed    = (reversed is defined and reversed is same as (true)) ? ' reversed' : '' %}
 {% set classColor       = (color is defined and color is not empty) ? ' color-' ~ color : '' %}
-{% set classes          = 'bf-icon' ~ classReversed ~ classColor ~ classSize %}
+{% set classes          = 'bf-icon ' ~ classReversed ~ ' ' ~ classColor ~ ' ' ~ classSize %}
 {% set name             = name|default('placeholder') %}
 
 
