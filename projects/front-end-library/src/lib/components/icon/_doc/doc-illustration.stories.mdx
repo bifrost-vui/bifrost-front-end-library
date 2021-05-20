@@ -20,12 +20,7 @@ import { IconComponent }            from '../angular/icon.component';
         },
     }}
     argTypes={{
-      class:{
-        defaultValue:'',
-        type: { required: false },
-        description: 'use the *svg-fill* class when using filled icons'
-      },
-      color: {
+        color: {
             defaultValue: '',
             description: 'success | neutral | warning | negative',
             control: {
@@ -33,10 +28,15 @@ import { IconComponent }            from '../angular/icon.component';
                 options: ['', 'success', 'neutral', 'warning', 'negative'],
             }
         },
+        class:{
+            defaultValue:'',
+            type: { required: false },
+            description: 'use the *svg-fill* class when using filled icons with *colors*'
+        },
         size: {
             defaultValue: 'large',
             type: { required: true },
-            description: '*xsmall* 16px | *small* 24px | *medium* 48px | *large* 72px',
+            description: 'preferably use *medium* 48px or *large* 72px',
             table: { defaultValue: { summary: 'large' } },
             control: {
                 type: 'select',
