@@ -10,31 +10,31 @@
     border-color: currentColor;
     vertical-align: middle;
 
-    circle[fill="fill-highlight"]{
+    // Color
+    circle[fill="fill-highlight"] {
         fill: var(--bf-color-bg-action-primary);
     }
-
-    // Color
 
     &.color-success {
         color: var(--bf-color-feedback-success);
 
-        .fill-highlight{
+        .fill-highlight {
             color: var(--bf-color-neutral-primary);
 
-            circle[fill="fill-highlight"]{
-            fill: var(--bf-color-feedback-success);
+            circle[fill="fill-highlight"] {
+                fill: var(--bf-color-feedback-success);
             }
         }
     }
 
     &.color-neutral {
+
         color: var(--bf-color-feedback-neutral);
 
-        .fill-highlight{
+        .fill-highlight {
             color: var(--bf-color-neutral-primary);
 
-            circle[fill="fill-highlight"]{
+            circle[fill="fill-highlight"] {
                 fill: var(--bf-color-bg-action-primary);
             }
         }
@@ -43,10 +43,10 @@
     &.color-warning {
         color: var(--bf-color-feedback-warning);
 
-        .fill-highlight{
+        .fill-highlight {
             color: var(--bf-color-neutral-primary);
 
-            circle[fill="fill-highlight"]{
+            circle[fill="fill-highlight"] {
                 fill: var(--bf-color-feedback-warning);
             }
         }
@@ -55,42 +55,66 @@
     &.color-negative {
         color: var(--bf-color-feedback-negative);
 
-        .fill-highlight{
+        .fill-highlight {
             color: var(--bf-color-neutral-primary);
 
-            circle[fill="fill-highlight"]{
+            circle[fill="fill-highlight"] {
                 fill: var(--bf-color-feedback-negative);
+            }
+        }
+
+        // Sizes
+        &.size {
+            &-large svg {
+                width: 4.5rem;
+                height: 4.5rem;
+            }
+
+            &-medium svg {
+                width: 3rem;
+                height: 3rem;
+                min-width: 3rem;
+            }
+
+            &-small svg {
+                width: 1.5rem;
+                height: 1.5rem;
+                min-width: 1.5rem;
+            }
+
+            &-xsmall svg {
+                width: 1rem;
+                height: 1rem;
+                min-width: 1rem;
             }
         }
     }
 
-    // Sizes
-    .size{
-        &-large svg{
-            width: 4.5rem;
-            height: 4.5rem;
+    &.reversed {
+        &.color-success ,
+        &.color-neutral,
+        &.color-warning,
+        &.color-negative{
+            .fill-highlight {
+                color: var(--bf-color-bg-ground);
+            }
         }
-        &-medium svg{
-            width: 3rem;
-            height: 3rem;
-            min-width: 3rem;
-        }
-        &-small svg{
-            width: 1.5rem;
-            height: 1.5rem;
-            min-width: 1.5rem;
-        }
-        &-xsmall svg{
-            width: 1rem;
-            height: 1rem;
-            min-width: 1rem;
-        }
+
     }
 }
-.reversed .bf-icon.color-neutral {
+
+.reversed .bf-icon{
     .fill-highlight {
-        color: var(--bf-color-bg-ground );
+        color: var(--bf-color-bg-ground);
     }
+    &.color-success ,
+    &.color-neutral,
+    &.color-warning,
+    &.color-negative{
 
-
+        .fill-highlight {
+            color: var(--bf-color-bg-ground);
+        }
+    }
 }
+
