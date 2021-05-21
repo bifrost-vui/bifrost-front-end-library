@@ -1,5 +1,5 @@
 {% set type             = type|default('interface') %}
-{% set size             = size|default('small') %}
+{% set size             = size|default('medium') %}
 {% set classSize        =  "size-"~ size  %}
 {% set sizeSuffix       = (size is same as ('xsmall') or size is same as ('small') ? 'sm' : 'lg' ) %}
 {% set classReversed    = (reversed is defined and reversed is same as (true)) ? ' reversed' : '' %}
@@ -8,7 +8,7 @@
 {% set name             = name|default('placeholder') %}
 
 <div
-    class='{{ classes }} type-{{ type }} {{ class|default('') }} '
+    class='{{ classes }} {{ class|default('') }} '
     {% if type is same as ('interface') %}role='decoration'{% endif %}
 >
     {% include '@bf-components/icon/svg/' ~ name ~ '-' ~ sizeSuffix ~'.svg' ignore missing %}

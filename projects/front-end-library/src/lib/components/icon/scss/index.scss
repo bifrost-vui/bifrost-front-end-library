@@ -28,7 +28,6 @@
     }
 
     &.color-neutral {
-
         color: var(--bf-color-feedback-neutral);
 
         .fill-highlight {
@@ -62,13 +61,12 @@
                 fill: var(--bf-color-feedback-negative);
             }
         }
-
-
     }
     // Sizes
     &.size-large svg {
         width: 4.5rem;
         height: 4.5rem;
+        min-width: 4.5rem;
     }
 
     &.size-medium svg {
@@ -88,7 +86,9 @@
         height: 1rem;
         min-width: 1rem;
     }
+
     &.reversed {
+
         &.color-success ,
         &.color-neutral,
         &.color-warning{
@@ -96,18 +96,35 @@
                 color: var(--bf-color-bg-ground);
             }
         }
+
+        &.color-negative {
+
+            .fill-highlight {
+                color: var(--bf-color-neutral-primary);
+            }
+        }
     }
 }
 
 .reversed .bf-icon{
+
     .fill-highlight {
         color: var(--bf-color-bg-ground);
     }
+
     &.color-success ,
     &.color-neutral,
     &.color-warning{
+
         .fill-highlight {
             color: var(--bf-color-bg-ground);
+        }
+    }
+
+    &.color-negative {
+
+        .fill-highlight {
+            color: var(--bf-color-neutral-primary);
         }
     }
 }

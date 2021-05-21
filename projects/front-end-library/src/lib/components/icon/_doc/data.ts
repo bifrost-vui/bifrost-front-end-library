@@ -83,7 +83,6 @@ export const interfaceIcons = [
     ]
   }
 ]
-
 export const illustrationIcons = [
   {
     category: 'abstract',
@@ -283,3 +282,8 @@ export const illustrationIcons = [
       'user-4'
     ]
   }];
+export const legacyIconsNames= {
+    'checkmark' : 'check',
+    'checkmark-circle' : 'check-outline',
+    'checkmark-circle-filled' : 'check-circle-filled',
+}
