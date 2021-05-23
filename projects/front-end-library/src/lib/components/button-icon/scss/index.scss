@@ -6,20 +6,23 @@
 
 
 .bf-button-icon {
-    display: inline-block;
+    @extend .d-inline-block, .rounded-circle;
     color: inherit;
-    border-radius: 50%;
     transition: background-color .25s;
 
+    &__square {
+        @extend .rounded-0;
+    }
+
     &:hover {
-        background-color: var(--bf-color-bg-action-no-bg-hover);
+        @extend .bf-color-bg-action-no-bg-hover;
     }
 
     &[disabled] {
         pointer-events: none;
 
         .bf-icon {
-            color: var(--bf-color-neutral-tertiary);
+            @extend .bf-color-neutral-tertiary;
         }
     }
 }

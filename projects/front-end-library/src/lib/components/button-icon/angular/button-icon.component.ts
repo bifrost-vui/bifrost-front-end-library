@@ -29,6 +29,11 @@ export class ButtonIconComponent implements OnInit {
     @Input() ariaExpanded   : string;
     @Input() ariaLabel      : string;
     @Input() extraAttribute : string;
+    /**
+        Remove rounded shape.
+    */
+    @Input() square        : boolean;
+    
     @Input() class          : string;
 
     ngOnInit() {

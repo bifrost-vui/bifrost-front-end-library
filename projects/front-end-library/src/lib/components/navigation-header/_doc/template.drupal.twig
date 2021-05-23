@@ -195,7 +195,7 @@
         ]
     },
     {
-        label:"Customer centre", href:"#", class:"",
+        label:"Your services", href:"#", class:"",
         subItems: [
             {
                 label:"Account and invoice", href:"#", class:"",
@@ -238,29 +238,21 @@
             {imgSrc: "https://source.unsplash.com/400x250/?nature", imgAlt: "Thumbnail", href: "#", title: "Connect and subscribe to the Customer Centre", text: "Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit."},
             {imgSrc: "https://source.unsplash.com/400x250/?nature", imgAlt: "Thumbnail", href: "#", title: "My Helix Account", text: "Lorem ipsum dolor sit amet promotion apendiscing consectetur apendiscing elit."},
         ]
-    },
+    }
 ] %}
 
-{% set hasAccountBtn    = hasAccountBtn|json_parse %}
-{% set isConnected      = isConnected|json_parse %}
+{% set hasTopBar         = hasTopBar|json_parse %}
+{% set topBar            = topBar|json_parse %}
+{% set secondaryItems    = topBar_secondaryItems|json_parse %}
+{% set rigthIconLinks    = rigthIconLinks|json_parse %}
+{% set hasAccountBtn     = hasAccountBtn|json_parse %}
+{% set hasMiniCartBtn    = hasMiniCartBtn|json_parse %}
+{% set hasNoSearchBtn    = hasNoSearchBtn|json_parse %}
+{% set reversed          = reversed|json_parse %}
+
 
 {% include '@bf-components/navigation-header/twig/index.twig' with {
-    hasTopBar               : hasTopBar|json_parse|default(true),
-    topBar                  : {
-        items                   : topBar_items|json_parse|default([]),
-        secondaryItems          : topBar_secondaryItems|json_parse|default([]),
-    },
-    rigthIconLinks          : rigthIconLinks|json_parse|default([]),
-    logo                    : {
-        name                    : logo_name|default('')
-    },
-    search                  : {
-        placeholder             : placeholder|default('What are you looking for?')
-    },
-    navItems                : navItems,
-    hasAccountBtn           : hasAccountBtn|json_parse|default(false),
-    hasMiniCartBtn          : hasMiniCartBtn|json_parse|default(false),
-    hasNoSearchBtn          : hasNoSearchBtn|json_parse|default(false),
-    reversed                : reversed|json_parse|default(false),
-    langcode                : langcode|default('EN')
+    search: {
+        placeholder: placeholder|default('')
+    }
 } %}
