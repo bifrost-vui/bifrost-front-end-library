@@ -13,8 +13,8 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 export class HeroComponent implements OnInit {
     constructor() {}
 
-    @Input() breadcrumb         : object;
     @Input() badge              : any;
+    @Input() breadcrumb         : 'TwigBlock';
     @Input() upperTitle         : string;
     @Input() title              : string;
     @Input() subtitle           : string;
