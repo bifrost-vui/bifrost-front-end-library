@@ -29,7 +29,7 @@ export class HeroComponent implements OnInit {
     /**
         Insert the component BlockSelection. Explore its [Component API](/?path=/docs/components-block--drupal-selection).
     */
-    @Input() blockSelection     : object;
+    @Input() blockSelection     : object | 'TwigBlock';
     
     /** Class override */
     @Input() class              : string;

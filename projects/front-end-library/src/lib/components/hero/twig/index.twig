@@ -20,14 +20,12 @@
         <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-md-none' />
     {% endif %}
     
-    {% if block('blockSelection') is defined %}
-        {{ block('blockSelection') }}
-    {% elseif blockSelection is defined and blockSelection is iterable %}
-        <div class='d-block d-md-none' data-animate='fade-in'>
+    <div class='d-block d-md-none' data-animate='fade-in'>
+        {% if block('blockSelection') is defined %}
+            {{ block('blockSelection') }}
+        {% elseif blockSelection is defined and blockSelection is iterable %}
             {% set blockSelectionMobile = blockSelection|merge( { 'isCollapsableOnMobile' : true, 'isCollapsedByDefaultOnMobile': true } ) %}
             {% include '@bf-components/block-selection/twig/index.twig' with blockSelectionMobile only %}
-        </div>
-    {% endif %}
     <div class='container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between py-2 py-sm-4' data-animate-row=''>
         {% if breadcrumb is defined %}
             {{ breadcrumb }}
@@ -72,12 +70,14 @@
                 </div>
             {% endif %}
         </header>
-        {% if block('blockSelection') is defined %}
-            {{ block('blockSelection') }}
-        {% elseif blockSelection is defined and blockSelection is iterable %}
-            <div class='d-none d-md-block' data-animate='fade-in'>
-            {% include '@bf-components/block-selection/twig/index.twig' with blockSelection only %}
             </div>
         {% endif %}
+        <div class='d-none d-md-block' data-animate='fade-in'>
+            {% if block('blockSelection') is defined %}
+                {{ block('blockSelection') }}
+            {% elseif blockSelection is defined and blockSelection is iterable %}
+                {% include '@bf-components/block-selection/twig/index.twig' with blockSelection only %}
+            {% endif %}
+        </div>
     </div>
 </section>
