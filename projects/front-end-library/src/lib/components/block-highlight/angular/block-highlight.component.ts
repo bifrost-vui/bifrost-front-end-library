@@ -1,9 +1,11 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
 
-/**
- * API is the same between **Angular** and **Drupal**.
- *
- */
+interface IImage {
+    src         : string;
+    dataSrc     : string;
+    alt         : string;
+    class       : string;
+}
  
 @Component({
     selector: 'bf-block-highlight',
@@ -13,13 +15,15 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class BlockHighlightComponent implements OnInit {
     constructor() {}
 
-    @Input() image              : object;
+    @Input() image              : IImage;
     @Input() paragraph          : string;
     @Input() button             : object;
     @Input() fullWidth          : boolean;
 
     @Input() title              : string;
+    /** E.g. `p` */
     @Input() titleTag           : string;
+
     @Input() class              : string;
     @Input() reversed           : boolean;
 

@@ -3,22 +3,23 @@
 
 <article class='
     bf-block bf-block--highlight
-    d-flex flex-column flex-sm-row
+    w-100 d-flex flex-column flex-sm-row overflow-hidden bf-border-radius-medium border bf-border-color-secondary
     {% if fullWidth is defined and fullWidth is same as (true) %}bf-block--fullwidth{% endif %}
     {{ class }}'
 >
 
     {% if hasImage %}
-        <div class='bf-block__visual d-flex justify-content-center align-items-center bf-color-bg-brand'>
+        <div class='bf-block__visual d-flex justify-content-center align-items-center bf-color-bg-brand overflow-hidden'>
             <img
                 src='{{ image.src|default('') }}'
                 data-src='{{ image.dataSrc|default('') }}'
                 alt='{{ image.alt|default('') }}'
+                class='w-100 h-100 {{ image.class|default('') }}'
             />
         </div>
     {% endif %}
     
-    <div class='p-5'>
+    <div class='p-4 p-md-5'>
         {% if title is defined %}
             <{{ titleTag|default('h2') }} {% if titleTag|default('h2') is not same as ('h2') %}class='h2'{% endif %}>
                 {{ title }}
