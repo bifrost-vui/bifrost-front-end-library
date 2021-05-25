@@ -1,0 +1,77 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta
+    title='Component migrations/icon migration'
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+/>
+
+# Breaking change
+
+Change list :
+
+To avoid file duplication, the Interface and illustration folders containing the svg files have been deleted.
+To avoid collision, some files had to be renamed Seed details bellow).
+The notion illustration and interface is still important even if the physical separation has been removed :
+- an illustration icon should preferably display in Large or medium size but can be used in all sizes if needed
+- an interface icon should never be used in large format even if it's possible to do so
+
+Every Icon component now comes in 4 sizes : large, medium, small and xsmall. Therefore the zize is now a required argument
+The large and the medium Icon are obtained by resizing a 72px version of the SVG. As for the small and the xsmall they use a 24 pixel version of the SVG file.
+Note that the 2 SVG size (72 and 24) may not be identical in order to keep making sens in each range of dimension
+
+The color behavior of the filled type icons has been modified to react to the color classes
+
+# icon renaming
+
+Most icons keep the same name. For those that don't, refer to the following lists.
+
+### illustration Icons
+
+old name | new name | illustration category
+----------------- | ----------------- | -----------------
+checkmark-circle  | check-circle |  feedback
+checkmark-circle-filled | check-circle-filled |  feedback
+circle-download | download-speed |  media & data
+circle-upload | upload-speed |  media & data
+data | data-graph |  media & data
+differenciation | handshake |  abstract
+forfait-la-decouverte | tv-plan-discovery |  tv plans
+forfait-le-fan-de-films-et-series | tv-plan-showtime |  tv plans
+forfait-le-fan-de-sports | tv-plan-sports |  tv plans
+forfait-le-leger | tv-plan-light |  tv plans
+forfait-le-plein-la-vue | tv-plan-absolute |  tv plans
+fortait-la-total | tv-plan-all-in |  tv plans
+mobile-international | mobile-international-calls |  options & add-ons
+network-coverage-1 | network-coverage-canada |  network
+point-of-sale | pin |  communication
+settings | parameters |  support
+time | clock |  time
+question-circle | question |  feedback
+
+### Interface Icons
+
+old name | new name | interface category
+----------------- | ----------------- | -----------------
+bin | delete |  common
+lock | connection-reliable | common
+checkmark | check |  attention
+checkmark-circle  | check-circle |  attention
+checkmark-circle-filled | check-circle-filled |  attention
+out | logout |  common
+point-of-sale | pin |  time and place
+time | clock |  time and place
+question-circle | question |  attention
+
+
+with the introduction of the xsmall size option of the icon components, the 24px SVG files do not exist anymore.
+
+old svg | new svg | new size
+----------------- | ----------------- | -----------------
+question-circle-small | question | xsmall
+exclamation-circle-filled-small24 | exclamation-circle-filled | xsmall
+information-circle-filled-small24 | information-circle-filled | xsmall
+

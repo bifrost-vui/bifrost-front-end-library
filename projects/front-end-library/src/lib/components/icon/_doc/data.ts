@@ -1,27 +1,29 @@
 export const interfaceIcons = [
   {
-    category: 'Add and remove',
+    category: 'Account',
     list: [
-      'check-filled',
-      'check',
-      'minus-circle-filled',
-      'minus-circle-outline',
-      'minus',
-      'plus-circle-filled',
-      'plus-circle-outline',
-      'plus',
-      'x-circle-filled',
-      'x-circle-outline',
-      'x'
+      'account-balance',
+      'cart',
+      'installation',
+      'my-account',
+      'parameters',
+      'troubleshooting',
+      'user-1',
+      'user-2',
     ]
   },
   {
-    category: 'Attention',
+    category: 'Add and remove',
     list: [
-      'information-circle-filled',
-      'information',
-      'question',
-      'exclamation-circle-filled'
+      'minus',
+      'minus-circle-filled',
+      'minus-circle-outline',
+      'plus',
+      'plus-circle-filled',
+      'plus-circle-outline',
+      'x',
+      'x-circle-filled',
+      'x-circle-outline',
     ]
   },
   {
@@ -35,34 +37,61 @@ export const interfaceIcons = [
       'interpunct',
       'order-asc',
       'order-desc',
-      'order-none'
+      'order-none',
+    ]
+  },
+  {
+    category: 'Attention',
+    list: [
+      'check',
+      'check-circle',
+      'check-circle-filled',
+      'exclamation-circle-filled',
+      'information',
+      'information-circle-filled',
+      'question',
     ]
   },
   {
     category: 'Common controls',
     list: [
-      'delete',
       'cancel',
+      'connection-reliable',
+      'delete',
       'edit',
-      'eye-dash',
       'eye',
+      'eye-dash',
       'hourglass',
+      'logout',
       'menu-burger',
       'menu-option',
-      'notification',
-      'logout',
-      'printer',
       'repeat',
-      'settings'
+      'search',
+      'settings',
+    ]
+  },
+  {
+    category: 'Communications',
+    list: [
+      'community',
+      'contact-phone',
+      'customer-service',
+      'email',
+      'instant-message',
+      'notification',
+      'printer',
     ]
   },
   {
     category: 'Links and medias',
     list: [
+      'bill',
+      'camera',
       'download',
       'external-link',
+      'instructions',
       'link',
-      'upload'
+      'upload',
     ]
   },
   {
@@ -70,7 +99,7 @@ export const interfaceIcons = [
     list: [
       'star-empty',
       'star-full',
-      'star-half'
+      'star-half',
     ]
   },
   {
@@ -79,7 +108,15 @@ export const interfaceIcons = [
       'facebook',
       'instagram',
       'twitter',
-      'youtube'
+      'youtube',
+    ]
+  },
+  {
+    category: 'Time and place',
+    list: [
+        'calendar',
+      'clock',
+      'pin',
     ]
   }
 ]
@@ -129,10 +166,12 @@ export const illustrationIcons = [
   }, {
     category: 'feedback',
     list: [
-      'check-outline',
-      'information-circle-filled',
+      'check-circle',
+      'check-circle-filled',
+      'exclamation-circle-filled',
       'information',
-      'question'
+      'information-circle-filled',
+      'question',
     ]
   }, {
     category: 'hardware',
@@ -159,7 +198,7 @@ export const illustrationIcons = [
       'television',
       'terminal',
       'terminal-remote',
-      'terminal-top'
+      'terminal-top',
     ]
   }, {
     category: 'media and data',
@@ -168,8 +207,8 @@ export const illustrationIcons = [
       'data-graph',
       'download-speed',
       'helix-mic',
-      'hosting-data',
       'hosting',
+      'hosting-data',
       'pause',
       'play',
       'replay',
@@ -181,7 +220,8 @@ export const illustrationIcons = [
       'upload-speed',
       'video-quality-1080p',
       'video-quality-4k',
-      'video-quality-720p'
+      'video-quality-8k',
+      'video-quality-720p',
     ]
   }, {
     category: 'network',
@@ -211,13 +251,20 @@ export const illustrationIcons = [
       'mobile-unlimited',
       'mobile-voicemail-visual',
       'option-all-inclusive',
+      'option-voicemail',
       'option-voicemail-email',
-      'option-voicemail'
     ]
   }, {
     category: 'payment',
     list: [
-      'hierarchy'
+      'account-balance',
+      'bill',
+      'cart',
+      'hierarchy',
+      'invoice-deadline-48h',
+      'pre-authorized-payment',
+      'student-discount',
+      'warranty-30-days',
     ]
   }, {
     category: 'services',
@@ -235,7 +282,7 @@ export const illustrationIcons = [
       'smart-home',
       'travel',
       'united-states',
-      'verify-eligibility'
+      'verify-eligibility',
     ]
   }, {
     category: 'support',
@@ -248,18 +295,18 @@ export const illustrationIcons = [
       'installation',
       'instructions',
       'moving-in',
+      'parameters',
       'recycling',
       'second-hand',
-      'settings-1',
-      'troubleshooting'
+      'troubleshooting',
     ]
   }, {
     category: 'time',
     list: [
-      'calendar-check',
       'calendar',
+      'calendar-check',
       'chrono',
-      'clock'
+      'clock',
     ]
   }, {
     category: 'tv plans',
