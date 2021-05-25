@@ -29,12 +29,15 @@ export class CardComponent implements OnInit {
 
     @Input() image                  : IImage;
     @Input() iconName               : string;
-
+    /** E.g. `#F6F6F6` */
+    @Input() visualBackgroundColor  : string;
+    
     @Input() upperTitle             : string;
     @Input() title                  : string;
     @Input() titleTag               : string;
     @Input() description            : string;
     @Input() description_html       : string;
+
 
     /** Expected format:
     ```
