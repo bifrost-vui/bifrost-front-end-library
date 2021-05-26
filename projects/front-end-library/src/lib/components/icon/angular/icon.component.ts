@@ -13,10 +13,10 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class IconComponent implements OnInit {
     constructor() {}
 
-    @Input() type               : 'interface' | 'illustration';
+    @Input() type               : string;
     @Input() name               : string;
     @Input() size               : 'xsmall' | 'small' | 'medium' | 'large';
-    @Input() color              : string;
+    @Input() color              : ''| 'success' | 'neutral'| 'warning' | 'negative';
     @Input() class              : string;
     @Input() reversed           : boolean;
 

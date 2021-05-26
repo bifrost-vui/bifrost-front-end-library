@@ -119,7 +119,7 @@ export const interfaceIcons = [
       'pin',
     ]
   }
-]
+];
 export const illustrationIcons = [
   {
     category: 'abstract',

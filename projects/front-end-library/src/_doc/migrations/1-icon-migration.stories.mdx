@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta
-    title='Component migrations/icon migration'
+    title='Migrations/Icon'
     parameters={{
         layout: 'padded',
         viewMode: 'docs',
@@ -9,39 +9,8 @@ import { Meta } from '@storybook/addon-docs/blocks';
     }}
 />
 
-## Breaking changes
 
-### Change list overview :
-
-**File structure :**
-
-The *interface* and *illustration* folders containing the svg files have been removed.
-
-Illustration and Interface component type:
-- An illustration type should preferably display in Large or medium size but can be used in all sizes if needed
-- An interface icon should never be used in large format even if it's possible to do so
-
-**SVG files**
-
-All SVG file have been updated and now exist in large and small version ( *filename-lg.svg* & *filename-sm.svg*)
-
-Most of the file renaming is transparent since the appropriate size suffixe is taken care of by the component constructor
-
-Some renaming may still cause an issue  (See details bellow)
-
-**The size is now a required argument**
-
-Every Icon component now comes in 4 sizes : large, medium, small and xsmall.
-* The large and the medium Icon components are obtained by resizing the 72px version of the SVG.
-* The small and the xsmall Icon components use the 24 pixel version of the SVG file.
-
-*Note that the 2 SVG size (72 and 24) may not be identical in order to keep making sens in each range of dimension*
-
-**updated css**
-
-- The color behavior of the filled type icons has been modified to react to the color classes
-- the type class is no longer necessary
-- the size class is now mandatory
+## Icon breaking changes
 
 ### Icon renaming
 
@@ -92,4 +61,9 @@ old svg | new svg | new size
 question-circle-small | question-circle | xsmall
 exclamation-circle-filled-small24 | exclamation-circle-filled | xsmall
 information-circle-filled-small24 | information-circle-filled | xsmall
+
+### Other changes :
+
+All SVG file have been updated and now exist in large and small version ( *filename-lg.svg* & *filename-sm.svg*)
+Every Icon component now comes in 4 sizes : large, medium, small and xsmall.
 

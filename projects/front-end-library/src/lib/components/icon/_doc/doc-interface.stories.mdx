@@ -22,21 +22,14 @@ import { IconComponent }            from '../angular/icon.component';
     argTypes={{
         color: {
             defaultValue: '',
-            description: 'success | neutral | warning | negative',
-            control: {
-                type: 'select',
-                options: ['', 'success', 'neutral', 'warning', 'negative'],
-            }
+            control: {type: 'select'}
         },
         size: {
             defaultValue: 'medium',
             type: { required: true },
             description: 'preferably use  in *medium* (48px), *small* 24px or *xsmall* 16px, avoid *large* (72px) ',
-            table: { defaultValue: { summary: 'small' } },
-            control: {
-                type: 'select',
-                options: ['xsmall','small', 'medium', 'large'],
-            }
+            table: { defaultValue: { summary: 'medium' } },
+            control: {type: 'select'}
         },
         name: {
             defaultValue: '',
@@ -50,10 +43,9 @@ import { IconComponent }            from '../angular/icon.component';
         },
         type: {
             defaultValue: 'interface',
+            description : 'interface | illustration',
             type: { required: false },
-            control: {
-              readOnly: true
-            },
+            control: { readOnly: true },
             table: { defaultValue: { summary: 'interface' } },
         },
     }}
@@ -74,7 +66,8 @@ import { IconComponent }            from '../angular/icon.component';
 
 ## Drupal implementation example
 
-```jsx
+```php
+
 {% include '@bf-components/icon/twig/index.twig' with {
     name    : 'account-balance',
     size    : 'medium',
@@ -87,6 +80,8 @@ import { IconComponent }            from '../angular/icon.component';
     size    : 'medium',
     color   : 'negative'
 } only %}
+
+
 ```
 
 

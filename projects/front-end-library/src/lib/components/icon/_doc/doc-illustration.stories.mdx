@@ -22,21 +22,14 @@ import { IconComponent }            from '../angular/icon.component';
     argTypes={{
         color: {
             defaultValue: '',
-            description: 'success | neutral | warning | negative',
-            control: {
-                type: 'select',
-                options: ['', 'success', 'neutral', 'warning', 'negative'],
-            }
+            control: {type: 'select'}
         },
         size: {
-            defaultValue: 'large',
+            defaultValue: 'medium',
             type: { required: true },
             description: 'preferably use in  *large* (72px), *medium* (48px) or *small* (24px) ',
-            table: { defaultValue: { summary: 'large' } },
-            control: {
-                type: 'select',
-                options: ['xsmall','small', 'medium', 'large']
-            }
+            table: { defaultValue: { summary: 'medium' } },
+            control: {type: 'select'}
         },
         name: {
             defaultValue: '',
@@ -50,6 +43,7 @@ import { IconComponent }            from '../angular/icon.component';
         },
         type: {
             defaultValue: 'illustration',
+            description : 'interface | illustration',
             type: { required: false },
             control: {
                 readOnly: true
