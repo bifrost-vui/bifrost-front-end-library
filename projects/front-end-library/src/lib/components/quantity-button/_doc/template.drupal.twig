@@ -1,0 +1,9 @@
+{% set reversed = reversed|json_parse|default(false) %}
+
+<div class='pt-4 {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
+
+    {% include '@bf-components/quantity-button/twig/index.twig' with {
+        label   : label|default(''),
+    } only %}
+
+</div>
