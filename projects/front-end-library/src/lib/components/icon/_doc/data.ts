@@ -49,7 +49,7 @@ export const interfaceIcons = [
       'exclamation-circle-filled',
       'information',
       'information-circle-filled',
-      'question',
+      'question-circle',
     ]
   },
   {
@@ -171,7 +171,7 @@ export const illustrationIcons = [
       'exclamation-circle-filled',
       'information',
       'information-circle-filled',
-      'question',
+      'question-circle',
     ]
   }, {
     category: 'hardware',
