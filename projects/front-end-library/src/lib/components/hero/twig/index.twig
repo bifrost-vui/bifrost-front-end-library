@@ -21,12 +21,14 @@
         <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-md-none' />
     {% endif %}
 
-    {% if blockSelection is defined and blockSelection is not empty %}
-        <div class='d-block d-md-none' data-animate='fade-in'>
-            {% set blockSelectionMobile = blockSelection|merge( { 'isCollapsableOnMobile' : true, 'isCollapsedByDefaultOnMobile': true } ) %}
-            {% include '@bf-components/block-selection/twig/index.twig' with blockSelectionMobile only %}
-        </div>
-    {% endif %}
+    {% block blockSelectionSection %}
+        {% if blockSelection is defined and blockSelection is not empty %}
+            <div class='d-block d-md-none' data-animate='fade-in'>
+                {% set blockSelectionMobile = blockSelection|merge( { 'isCollapsableOnMobile' : true, 'isCollapsedByDefaultOnMobile': true } ) %}
+                {% include '@bf-components/block-selection/twig/index.twig' with blockSelectionMobile only %}
+            </div>
+        {% endif %}
+    {% endblock %}
 
     <div class='container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between py-2 py-sm-4' data-animate-row=''>
 
@@ -44,7 +46,7 @@
                     {% set badge = { label: badge } %}
                 {% endif %}
 
-                {% set badge = badge|merge( { 
+                {% set badge = badge|merge( {
                     'hierarchy' : badge.hierarchy|default('primary'),
                     'class'     : 'position-absolute top-0'
                 } ) %}
@@ -74,21 +76,23 @@
                     {{ description }}
                 </p>
             {% endif %}
-            
+
             {% if button is defined and button is not empty %}
                 <div class='mt-6' data-animate='fade-in'>
                     {% set button = button|merge( { 'hierarchy': button.hierarchy|default('primary-alt') } ) %}
                     {% include '@bf-components/button/twig/index.twig' with button only %}
                 </div>
             {% endif %}
-        
+
         </header>
 
-        {% if blockSelection is defined and blockSelection is not empty %}
-            <div class='d-none d-md-block' data-animate='fade-in'>
-                {% include '@bf-components/block-selection/twig/index.twig' with blockSelection only %}
-            </div>
-        {% endif %}
+        {% block blockSelectionSection %}
+            {% if blockSelection is defined and blockSelection is not empty %}
+                <div class='d-none d-md-block' data-animate='fade-in'>
+                    {% include '@bf-components/block-selection/twig/index.twig' with blockSelection only %}
+                </div>
+            {% endif %}
+        {% endblock %}
 
     </div>
 </section>
