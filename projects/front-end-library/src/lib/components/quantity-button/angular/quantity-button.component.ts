@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 /**
  * Description of the component QuantityButton
@@ -8,20 +8,15 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'bf-quantity-button',
   templateUrl: './quantity-button.component.html',
-  // styleUrls: ['../scss/index.scss'],
 })
+
 export class QuantityButtonComponent implements OnInit {
     constructor() {}
 
-    /**
-    * The inner text.
-    *
-    * @required
-    */
-    @Input() label: string;
-
     /** Class override */
-    @Input() class: string;
+    @Input() min  : number ;
+    @Input() max  : number ;
+
 
     ngOnInit() {
         console.log('QuantityButton', this);

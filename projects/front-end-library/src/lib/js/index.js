@@ -44,3 +44,4 @@ require("./components/widgets-override/livechat-genesys.js");
 // require("./demo/etiya/index.js");
 
 require("./onload.js");
+require("../components/quantity-button/js/index.js");
