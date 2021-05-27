@@ -18,7 +18,16 @@ import { QuantityButtonComponent }     from '../angular/quantity-button.componen
             disable : false
         },
     }}
-    argTypes={{}}
+    argTypes={{
+        min: {
+            defaultValue: '1',
+            description: 'must be a number',
+        },
+        max: {
+            defaultValue: '3',
+            description: 'must be a number',
+        }
+    }}
 />
 
 # Quantity Button
@@ -50,11 +59,16 @@ export const Drupal = (args) => ({
 </Preview>
 
 
-## Drupal implementation exemple
+## Drupal implementation example
 
-```jsx
+```php
 {% include '@bf-components/quantity-button/twig/index.twig' with {
-    // Add relevant props here
+   button  : {
+      min  : 0,
+      max  : 3,
+   }
+   reversed            : false,
+   class               : ''
 } only %}
 ```
 
@@ -77,7 +91,7 @@ export const Angular = (args) => ({
     </Story>
 </Preview>
 
-## Angular implementation exemple
+## Angular implementation example
 
 Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
 
@@ -96,6 +110,7 @@ Please, read the [Implementation Page](/?path=/docs/implementation-angular--page
 
 ## Design Guidelines
 
-**// TODO**: Add a link to the component in Figma file.
 
-<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>
+<iframe width='100%' height='450' src='https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI?node-id=91%3A0' frameBorder='0' allowFullScreen> </iframe>
+
+[Lien Figma](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI?node-id=91%3A0)

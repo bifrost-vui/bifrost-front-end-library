@@ -1,41 +1,36 @@
-{# 
-    Edit this component and don't forget to delete this comment.
-    
-    In your component, the file /common/style.scss is aimed to share styles across Twig and Angular. 
-    Try to use it as much as possible, in order to avoid styles for specific framework.
 
-    Enjoy :)
-#}
 
-<div class='bf-quantity-button'>
-    <button type="button" class="bf-button-icon vui--style-reset border--dark p-2 m-0">
+
+<div class='bf-quantity-button js-bf-quantity-button'>
+    <button type="button" disabled class="bf-button-icon js-bf-quantity-button__minus bf-quantity-button__minus vui--style-reset p-0 m-0">
 
     {% include '@bf-components/icon/twig/index.twig' with {
-        name        : "minus-circle",
+        name        : "minus-circle-outline",
         class       : "bf-icon",
         size        : "medium",
+        type        : "interface"
     } %}
     </button>
+
     <div class="bf-input">
         <input id="{{ input.id }}"
                type="number"
                name="quantity"
                aria-label="number"
-               class="text-center  bf-quantity-button__input vui--style-reset border-0"
-               value="{{ inputValue|default('1') }}"
+               class="text-center bf-quantity-button__input js-bf-quantity-button__input border-0"
                min="{{ inputMinValue|default('0') }}"
-               max="{{ inputMaxValue|default('10') }}"
-               readonly="true"
+               max="{{ inputMaxValue|default('3') }}"
+               value="{{ inputValue|default('0') }}"
         >
-        {# : récupérer le script : js-input-increment__input  #}
     </div>
-    <button type="button" class="bf-button-icon vui--style-reset border--dark p-2 m-0">
+
+    <button type="button" class="bf-button-icon js-bf-quantity-button__plus bf-quantity-button__plus vui--style-reset p-0 m-0">
     {% include '@bf-components/icon/twig/index.twig' with {
-        name        : "plus-circle",
+        name        : "plus-circle-outline",
         class       : "bf-icon",
         size        : "medium",
+        type        : "interface"
     } %}
     </button>
-
 
 </div>
