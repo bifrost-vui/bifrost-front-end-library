@@ -261,7 +261,7 @@ export const illustrationIcons = [
       'bill',
       'cart',
       'hierarchy',
-      'invoice-deadline-48h',
+      'invoice-48h',
       'pre-authorized-payment',
       'student-discount',
       'warranty-30-days',
