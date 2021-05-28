@@ -17,4 +17,3 @@
 // Components
 export * from './lib/components/icon/angular/icon.component';
 export * from './lib/components/icon/angular/icon.module';
-export * from './lib/components/quantity-button/angular/quantity-button.module';
