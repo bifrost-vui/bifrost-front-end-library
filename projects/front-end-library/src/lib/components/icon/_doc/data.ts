@@ -44,12 +44,14 @@ export const interfaceIcons = [
     category: 'Attention',
     list: [
       'check',
-      'check-circle',
       'check-circle-filled',
+      'check-circle-outline',
       'exclamation-circle-filled',
-      'information',
+      'exclamation-circle-outline',
       'information-circle-filled',
-      'question-circle',
+      'information-circle-outline',
+      'question-circle-filled',
+      'question-circle-outline'
     ]
   },
   {
@@ -149,7 +151,7 @@ export const illustrationIcons = [
       'customer-service',
       'email',
       'instant-message',
-      'notifications',
+      'notifications-helix',
       'pin',
       'store',
       'teamwork'
@@ -166,12 +168,14 @@ export const illustrationIcons = [
   }, {
     category: 'feedback',
     list: [
-      'check-circle',
       'check-circle-filled',
+      'check-circle-outline',
       'exclamation-circle-filled',
-      'information',
+      'exclamation-circle-outline',
       'information-circle-filled',
-      'question-circle',
+      'information-circle-outline',
+      'question-circle-filled',
+      'question-circle-outline'
     ]
   }, {
     category: 'hardware',
@@ -204,6 +208,7 @@ export const illustrationIcons = [
     category: 'media and data',
     list: [
       'actuality',
+      'backward',
       'data-graph',
       'download-speed',
       'helix-mic',
@@ -230,7 +235,8 @@ export const illustrationIcons = [
       'network-coverage',
       'network-performance',
       'trio-wifi',
-      'wifi'
+      'wifi',
+      'network-5g'
     ]
   }, {
     category: 'options and add-ons',
@@ -326,6 +332,7 @@ export const illustrationIcons = [
       'user-1',
       'user-2',
       'user-3',
-      'user-4'
+      'user-4',
+      'home'
     ]
   }];
