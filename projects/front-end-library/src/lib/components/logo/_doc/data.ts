@@ -6,11 +6,11 @@ export const allLogoCategories = [
         list: [
             {
                 size        : 'large',
-                langcode    : 'EN'
+                langcode    : 'en'
             },
             {
                 size        : 'large',
-                langcode    : 'FR'
+                langcode    : 'fr'
             },
         ]
     },
@@ -20,12 +20,12 @@ export const allLogoCategories = [
             {
                 name        : 'business',
                 size        : 'large',
-                langcode    : 'EN'
+                langcode    : 'en'
             },
             {
                 name        : 'business',
                 size        : 'large',
-                langcode    : 'FR'
+                langcode    : 'fr'
             },
         ]
     },
@@ -34,11 +34,11 @@ export const allLogoCategories = [
         list: [
             {
                 size        : 'medium',
-                langcode    : 'EN'
+                langcode    : 'en'
             },
             {
                 size        : 'medium',
-                langcode    : 'FR'
+                langcode    : 'fr'
             },
         ]
     },
@@ -48,12 +48,12 @@ export const allLogoCategories = [
             {
                 name        : 'business',
                 size        : 'medium',
-                langcode    : 'EN'
+                langcode    : 'en'
             },
             {
                 name        : 'business',
                 size        : 'medium',
-                langcode    : 'FR'
+                langcode    : 'fr'
             },
         ]
     },
@@ -62,11 +62,11 @@ export const allLogoCategories = [
         list: [
             {
                 size        : 'small',
-                langcode    : 'EN'
+                langcode    : 'en'
             },
             {
                 size        : 'small',
-                langcode    : 'FR'
+                langcode    : 'fr'
             },
         ]
     },
@@ -76,12 +76,12 @@ export const allLogoCategories = [
             {
                 name        : 'business',
                 size        : 'small',
-                langcode    : 'EN'
+                langcode    : 'en'
             },
             {
                 name        : 'business',
                 size        : 'small',
-                langcode    : 'FR'
+                langcode    : 'fr'
             },
         ]
     },
