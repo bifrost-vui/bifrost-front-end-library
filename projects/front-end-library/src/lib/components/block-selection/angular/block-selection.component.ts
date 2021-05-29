@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  * API is the same between **Angular** and **Drupal**.
  *
  */
- 
+
 @Component({
     selector: 'bf-block-selection',
     templateUrl: './block-selection.component.html',
@@ -16,7 +16,6 @@ export class BlockSelectionComponent implements OnInit {
     @Input() topLink                : object;
     @Input() contentLists           : object;
     @Input() totalPrice             : object;
-    @Input() month                  : string;
     @Input() isCollapsableOnMobile  : boolean;
     @Input() isCollapsedByDefaultOnMobile   : boolean;
 
@@ -27,5 +26,5 @@ export class BlockSelectionComponent implements OnInit {
 
     ngOnInit() {
         console.log('block selection', this);
-    }   
+    }
 }

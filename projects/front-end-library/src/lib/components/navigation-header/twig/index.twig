@@ -20,9 +20,9 @@
     {% if theme is defined %} data-theme={{theme}} {% endif %}
 >
     <nav class='bf-header__nav w-100 border-bottom bf-border-color-secondary {{ class|default('') }}'>
-        
+
         <!-- Logo -->
-        <div class='bf-header__logo' data-animate='fade-in'>
+        <div class='bf-header__logo'>
             <a href='{{ logo.href|default('#') }}' class='d-flex'>
                 {% include '@bf-components/logo/twig/index.twig' with {
                     name        : logo.name,
@@ -33,10 +33,10 @@
         </div>
 
         <!-- Main Nav -->
-        <div class='bf-header__nav-main js-collapse-full-height' data-animate-row=''>
+        <div class='bf-header__nav-main js-collapse-full-height'>
             <ul class='bf-megamenu d-flex list h-100'>
                 {% block navbar_content %}
-                    {% include '@bf-components/navigation-header/twig/mega-menu.twig' with { 
+                    {% include '@bf-components/navigation-header/twig/mega-menu.twig' with {
                         navItems    : navItems,
                         reversed    : reversed
                     } only %}
@@ -45,11 +45,11 @@
         </div>
 
         <!-- Actions -->
-        <div class='bf-header__actions d-flex align-items-center justify-content-end w-100 h-100 pr-3' data-animate='fade-in'>
+        <div class='bf-header__actions d-flex align-items-center justify-content-end w-100 h-100 pr-3'>
 
             <div class='d-flex d-lg-none align-items-center'>
-                {% for link in rigthIconLinks|default([]) %}
-                    {% if link is not empty %}
+                {% for link in rigthIconLinks|default([])|slice(0, 5) %}
+                    {% if link is defined and link.href is not empty and link.icon is not empty %}
                         {% include '@bf-components/button-icon/twig/index.twig' with {
                             href    : link.href,
                             icon    : link.icon,
@@ -93,7 +93,7 @@
 
             <!-- Search -->
             {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
-                <div class='bf-header__search-bar js-bf-header__search-bar d-none d-md-block ml-1' id='navbarSearch' data-animate='fade-in'>
+                <div class='bf-header__search-bar js-bf-header__search-bar d-none d-md-block ml-1' id='navbarSearch'>
                     <div class='d-flex align-items-center justify-content-between w-100'>
                         {% block globalSearch %}
                             {% include '@bf-components/input-search/twig/index.twig' with {
