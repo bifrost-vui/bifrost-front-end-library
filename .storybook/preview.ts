@@ -34,17 +34,13 @@ addParameters({
 
     // Controls
     controls: { 
-        // expanded: true, 
+        expanded: true,
         hideNoControlsWarning: true
     },
     argTypes: {
         elementPath     : { table: { disable: true } },
         iframeUrl       : { table: { disable: true } },
         props           : { table: { disable: true } },
-        ngOnInit        : { table: { disable: true } },
-        ngDoCheck       : { table: { disable: true } },
-        ngOnChanges     : { table: { disable: true } },
-        updateIframeUrl : { table: { disable: true } },
     },
     
     // // Hide addons

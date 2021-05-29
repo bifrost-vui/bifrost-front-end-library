@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  * API is the same between **Angular** and **Drupal**.
  *
  */
- 
+
 @Component({
     selector: 'bf-card',
     templateUrl: './card.component.html',
@@ -21,7 +21,10 @@ export class CardComponent implements OnInit {
 
     /** E.g. `h4` */
     @Input() titleTag               : string;
-    @Input() description            : string;
+    /** 
+    Note: Wrap your data with a semantic HTML tag.
+    E.g. `description_html: "<p>this is a description</p>"`
+    */
     @Input() description_html       : string;
 
     /** Expected format:
@@ -71,7 +74,7 @@ export class CardComponent implements OnInit {
     */
     @Input() buttons                : object;
     @Input() message                : string;
-    
+
     @Input() class                  : string;
     @Input() isDisabled             : boolean;
     @Input() reversed               : boolean;

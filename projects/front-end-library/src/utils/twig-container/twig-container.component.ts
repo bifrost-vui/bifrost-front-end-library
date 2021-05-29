@@ -13,33 +13,16 @@ export class TwigContainerComponent implements OnInit {
       console.log('isDevMode', isDevMode());
   }
 
-  private iframeUrl: SafeResourceUrl;
-
-  private elementPath: string;
-
-  private props: object;
+  private iframeUrl     : SafeResourceUrl;
+  private elementPath   : string;
+  private props         : object;
 
   ngOnInit() {
     console.log('ngOnInit', this);
   }
 
-  ngOnChanges(changes:SimpleChange) {
-    console.log('ngOnChanges', this, changes);
-  }
-
-  ngDoCheck() {
-    console.log('ngDoCheck', this, this.props);
-    
-    const newProps = {...this};
-    delete newProps.props;
-    delete newProps.sanitizer;
-    delete newProps.iframeUrl;
-
-    if (this.elementPath && this.elementPath.length && newProps !== this.props)
-    {
-        this.props = newProps;
-        this.updateIframeUrl(newProps);
-    }
+  ngOnChanges() {
+    console.log('ngOnChanges');
   }
 
   updateIframeUrl(props) {
@@ -57,7 +40,24 @@ export class TwigContainerComponent implements OnInit {
     
     const baseURL = isDevMode() ? 'http://localhost:3001/' : '/'
     const url = baseURL + 'api/twig?' + paramsString;
-    
+    console.log('url', url);
+
     this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  ngDoCheck() {
+    console.log('ngDoCheck', this);
+    
+    const newProps = {...this};
+    delete newProps.props;
+    delete newProps.sanitizer;
+    delete newProps.iframeUrl;
+
+    // if (this.elementPath && this.elementPath.length && newProps !== this.props)
+    if (this.elementPath && this.elementPath.length)
+    {
+    //     this.props = newProps;
+        this.updateIframeUrl(newProps);
+    }
   }
 }
