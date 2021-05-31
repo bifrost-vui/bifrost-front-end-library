@@ -40,7 +40,7 @@ export class CardComponent implements OnInit {
     */
     @Input() badge                  : any;
 
-    /** Array of object. Expected format:
+    /* Array of object. Expected format:
         ```
         [
             {
