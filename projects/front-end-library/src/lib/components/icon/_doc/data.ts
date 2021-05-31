@@ -9,7 +9,7 @@ export const interfaceIcons = [
       'parameters',
       'troubleshooting',
       'user-1',
-      'user-2',
+      'user-2'
     ]
   },
   {
@@ -23,7 +23,7 @@ export const interfaceIcons = [
       'plus-circle-outline',
       'x',
       'x-circle-filled',
-      'x-circle-outline',
+      'x-circle-outline'
     ]
   },
   {
@@ -33,11 +33,9 @@ export const interfaceIcons = [
       'chevron-left',
       'chevron-right',
       'chevron-up',
-      'dot',
-      'interpunct',
       'order-asc',
       'order-desc',
-      'order-none',
+      'order-none'
     ]
   },
   {
@@ -69,7 +67,7 @@ export const interfaceIcons = [
       'menu-option',
       'repeat',
       'search',
-      'settings',
+      'settings'
     ]
   },
   {
@@ -81,7 +79,7 @@ export const interfaceIcons = [
       'email',
       'instant-message',
       'notification',
-      'printer',
+      'printer'
     ]
   },
   {
@@ -93,7 +91,7 @@ export const interfaceIcons = [
       'external-link',
       'instructions',
       'link',
-      'upload',
+      'upload'
     ]
   },
   {
@@ -101,7 +99,7 @@ export const interfaceIcons = [
     list: [
       'star-empty',
       'star-full',
-      'star-half',
+      'star-half'
     ]
   },
   {
@@ -110,7 +108,7 @@ export const interfaceIcons = [
       'facebook',
       'instagram',
       'twitter',
-      'youtube',
+      'youtube'
     ]
   },
   {
@@ -118,7 +116,13 @@ export const interfaceIcons = [
     list: [
         'calendar',
       'clock',
-      'pin',
+      'pin'
+    ]
+  },
+  {
+    category: 'Placeholder',
+    list: [
+      'placeholder'
     ]
   }
 ];
@@ -202,7 +206,7 @@ export const illustrationIcons = [
       'television',
       'terminal',
       'terminal-remote',
-      'terminal-top',
+      'terminal-top'
     ]
   }, {
     category: 'media and data',
@@ -226,7 +230,7 @@ export const illustrationIcons = [
       'video-quality-1080p',
       'video-quality-4k',
       'video-quality-8k',
-      'video-quality-720p',
+      'video-quality-720p'
     ]
   }, {
     category: 'network',
@@ -258,7 +262,7 @@ export const illustrationIcons = [
       'mobile-voicemail-visual',
       'option-all-inclusive',
       'option-voicemail',
-      'option-voicemail-email',
+      'option-voicemail-email'
     ]
   }, {
     category: 'payment',
@@ -270,7 +274,7 @@ export const illustrationIcons = [
       'invoice-48h',
       'pre-authorized-payment',
       'student-discount',
-      'warranty-30-days',
+      'warranty-30-days'
     ]
   }, {
     category: 'services',
@@ -288,7 +292,7 @@ export const illustrationIcons = [
       'smart-home',
       'travel',
       'united-states',
-      'verify-eligibility',
+      'verify-eligibility'
     ]
   }, {
     category: 'support',
@@ -304,7 +308,7 @@ export const illustrationIcons = [
       'parameters',
       'recycling',
       'second-hand',
-      'troubleshooting',
+      'troubleshooting'
     ]
   }, {
     category: 'time',
@@ -312,7 +316,7 @@ export const illustrationIcons = [
       'calendar',
       'calendar-check',
       'chrono',
-      'clock',
+      'clock'
     ]
   }, {
     category: 'tv plans',

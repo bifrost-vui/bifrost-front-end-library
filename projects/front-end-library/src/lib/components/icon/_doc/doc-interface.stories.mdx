@@ -25,10 +25,10 @@ import { IconComponent }            from '../angular/icon.component';
             control: {type: 'select'}
         },
         size: {
-            defaultValue: 'medium',
+            defaultValue: 'small',
             type: { required: true },
-            description: 'preferably use  in *medium* , *small* or *xsmall* , avoid *large*',
-            table: { defaultValue: { summary: 'medium' } },
+            description: 'preferably use  in *small* or *xsmall* ',
+            table: { defaultValue: { summary: 'small' } },
             control: {type: 'select'}
         },
         name: {
@@ -70,14 +70,14 @@ import { IconComponent }            from '../angular/icon.component';
 
 {% include '@bf-components/icon/twig/index.twig' with {
     name    : 'account-balance',
-    size    : 'medium',
+    size    : 'small',
     color   : 'negative'
 } only %}
 
 {% include '@bf-components/icon/twig/index.twig' with {
     name    : 'instructions',
     type    : 'illustration',
-    size    : 'medium',
+    size    : 'small',
     color   : 'negative'
 } only %}
 
@@ -102,6 +102,7 @@ export const Drupal = (args) => ({
             elementPath : 'components/icon/_doc/template.drupal',
             icons       : interfaceIcons,
             type        : 'interface',
+            size        : 'small'
         }}
     >
         {Drupal.bind({})}
