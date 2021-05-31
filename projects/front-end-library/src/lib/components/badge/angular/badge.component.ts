@@ -15,7 +15,7 @@ export class BadgeComponent implements OnInit {
     /**
         Display an angle on a corner.
     */
-    @Input() angle          : 'left' | 'right';
+    @Input() angle          : '' | 'left' | 'right';
 
     @Input() class          : string;
     @Input() reversed       : boolean;
