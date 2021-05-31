@@ -2,12 +2,14 @@
 {% set max          = max|default('3') %}
 {% set inputValue             = inputValue|default(min) %}
 
-<div class='bf-quantity-button d-flex flex-row justify-content-center align-items-center'>
-    <button type="button" disabled class="bf-button-icon js-bf-quantity-button__minus bf-quantity-button__minus vui--style-reset p-0 m-0">
-
+<div class='bf-quantity-button js-bf-quantity-button d-flex flex-row justify-content-center align-items-center'>
+    <button type="button"
+            disabled
+            class="bf-button-icon js-bf-quantity-button__minus bf-quantity-button__minus vui--style-reset p-0 m-0"
+            aria-controls='{{ input.id }}'
+    >
     {% include '@bf-components/icon/twig/index.twig' with {
         name        : "minus-circle-outline",
-        class       : "bf-icon",
         size        : "medium",
         type        : "interface"
     } %}
@@ -26,10 +28,12 @@
         >
     </div>
 
-    <button type="button"  class="bf-button-icon js-bf-quantity-button__plus bf-quantity-button__plus vui--style-reset p-0 m-0 ">
+    <button type="button"
+            class="bf-button-icon js-bf-quantity-button__plus bf-quantity-button__plus vui--style-reset p-0 m-0 "
+            aria-controls='{{ input.id }}'
+    >
     {% include '@bf-components/icon/twig/index.twig' with {
         name        : "plus-circle-outline",
-        class       : "bf-icon",
         size        : "medium",
         type        : "interface"
     } %}

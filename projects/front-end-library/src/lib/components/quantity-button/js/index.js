@@ -1,54 +1,73 @@
-import $ from "jquery";
+/**
+ *  Script for the Bifrost quantity button
+ **/
+import $ from 'jquery';
 
 $(function () {
-  // Quantity Button Items
-  const quantityInput = '.js-bf-quantity-button__input'
-  const plusButton = '.js-bf-quantity-button__plus'
-  const minusButton = '.js-bf-quantity-button__minus'
 
-  const maxValue = $(quantityInput).attr('max')
-  const minValue = $(quantityInput).attr('min')
+  const container = $('.js-bf-quantity-button')
 
-  let currentValue = $(quantityInput).val()
+  container.each(function (i, el) {
+    const $this = $(el),
+          $quantityInput = $this.find('.js-bf-quantity-button__input'),
+          $plusButton = $this.find('.js-bf-quantity-button__plus'),
+          $minusButton = $this.find('.js-bf-quantity-button__minus'),
+          $maxValue = $quantityInput.attr('max'),
+          $minValue = $quantityInput.attr('min');
 
-  if( currentValue < minValue ){
-    $(quantityInput).val(minValue)
-    currentValue = minValue
-  }
+    let currentValue = $quantityInput.val();
 
-  const increment = function(){
-    currentValue ++
-    $(quantityInput).val(currentValue)
-    checkLimitValues(currentValue)
-  }
-
-  const decrement = function(){
-    currentValue --
-    $(quantityInput).val(currentValue)
-    checkLimitValues(currentValue)
-  }
-
-  const checkLimitValues = function(quantity){
-
-    if (quantity >= maxValue){
-      $(plusButton).prop('disabled', true)
-    } else {
-      $(plusButton).prop('disabled', false)
+    if( currentValue < $minValue ){
+      $quantityInput.val($minValue);
+      currentValue = $minValue;
     }
 
-    if (quantity <= minValue){
-      $(minusButton).prop('disabled', true)
-    } else {
-      $(minusButton).prop('disabled', false)
+    const increment = function(){
+      currentValue ++
+      $quantityInput.val(currentValue)
+      checkLimitValues(currentValue)
     }
 
-  }
+    const decrement = function(){
+      currentValue --
+      $quantityInput.val(currentValue)
+      checkLimitValues(currentValue)
+    }
+    const checkLimitValues = function(quantity){
 
-  $(plusButton).click(function(){
-    increment()
-  })
+      if (quantity >= $maxValue){
+        $plusButton.prop('disabled', true)
+      } else {
+        $plusButton.prop('disabled', false)
+      }
 
-  $(minusButton).click(function(){
-    decrement()
+      if (quantity <= $minValue){
+        $minusButton.prop('disabled', true)
+      } else {
+        $minusButton.prop('disabled', false)
+      }
+    }
+
+    $plusButton.click(function(){
+      increment()
+    })
+
+    $minusButton.click(function(){
+      decrement()
+    })
   })
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
