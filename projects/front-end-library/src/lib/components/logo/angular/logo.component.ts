@@ -17,7 +17,7 @@ export class LogoComponent implements OnInit {
     @Input() size       : 'large' | 'medium' | 'small';
     
     @Input() reversed   : boolean;
-    /** In order to ensure retro-compatibility, it accepts 'EN' and 'FR' as well. */
+    /** In order to ensure backward compatibility, it accepts 'EN' and 'FR' as well. */
     @Input() langcode   : 'en' | 'fr';
 
     ngOnInit() {
