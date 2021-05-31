@@ -22,11 +22,18 @@ import { QuantityButtonComponent }     from '../angular/quantity-button.componen
         min: {
             defaultValue: 0,
             description: 'must be a number',
+            type: {
+                required: true
+            },
         },
         max: {
             defaultValue: 3,
             description: 'must be a number',
-        }
+        },
+        inputId: {
+            description: 'must be unique',
+            type: { required: true },
+        },
     }}
 />
 
@@ -60,6 +67,7 @@ export const Drupal = (args) => ({
    button  : {
       min  : 0,
       max  : 3,
+      inputId : {{inputId}}
    }
 } only %}
 ```
@@ -70,4 +78,4 @@ export const Drupal = (args) => ({
 
 ## Design Guidelines
 
-[check the Figma](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI?node-id=91%3A0)
+Check the [Figma](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI?node-id=91%3A0) for more details

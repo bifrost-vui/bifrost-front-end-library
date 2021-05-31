@@ -1,17 +1,18 @@
-{% set reversed = reversed|json_parse|default(false) %}
-
 <div class='px-7 d-flex flex-column align-items-center justify-content-center minh-100'>
     {% for index in [1,2] %}
+        {% set inputId = 'quantity-button-'~ index %}
+        <div class="p-5 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}">
 
-    <div class="p-5 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}">
-    {% include '@bf-components/quantity-button/twig/index.twig' with {
-        button  : {
-            min  : 0,
-            max  : 3,
-        }
-    }
-    %}
-    </div>
+        {% include '@bf-components/quantity-button/twig/index.twig' with {
+                button  : {
+                    min  : 0,
+                    max  : 3,
+                    inpuId :{{ inputId }}
+                }
+            }
+        %}
+
+        </div>
 
     {% endfor %}
 </div>

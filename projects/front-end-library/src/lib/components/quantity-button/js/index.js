@@ -17,7 +17,7 @@ $(function () {
 
     let currentValue = $quantityInput.val();
 
-    if( currentValue < $minValue ){
+    if( currentValue < $minValue  ){
       $quantityInput.val($minValue);
       currentValue = $minValue;
     }

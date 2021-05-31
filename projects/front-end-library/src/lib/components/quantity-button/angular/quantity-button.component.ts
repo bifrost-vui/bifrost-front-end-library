@@ -13,10 +13,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class QuantityButtonComponent implements OnInit {
     constructor() {}
 
-    /** Class override */
-    @Input() min  : number ;
-    @Input() max  : number ;
-
+    @Input() min        : number ;
+    @Input() max        : number ;
+    @Input() inputId    : string ;
 
     ngOnInit() {
         console.log('QuantityButton', this);

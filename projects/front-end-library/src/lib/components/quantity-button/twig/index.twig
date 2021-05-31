@@ -1,12 +1,14 @@
 {% set min          = min|default('0') %}
 {% set max          = max|default('3') %}
-{% set inputValue             = inputValue|default(min) %}
+{% set inputValue   = inputValue|default(min) %}
+{% set inputId      = inputId | default('') %}
 
 <div class='bf-quantity-button js-bf-quantity-button d-flex flex-row justify-content-center align-items-center'>
+
     <button type="button"
-            disabled
-            class="bf-button-icon js-bf-quantity-button__minus bf-quantity-button__minus vui--style-reset p-0 m-0"
-            aria-controls='{{ input.id }}'
+            {{ inputValue == min ? '' : 'disabled'  }}
+            class="bf-button-icon js-bf-quantity-button__minus bf-quantity-button__minus vui--style-reset p-0 m-0 "
+            aria-controls='{{ inputId }}'
     >
     {% include '@bf-components/icon/twig/index.twig' with {
         name        : "minus-circle-outline",
@@ -15,9 +17,9 @@
     } %}
     </button>
 
+
     <div class="bf-input">
-        <input id="{{ input.id }}"
-               readonly
+        <input id="{{ inputId }}"
                type="number"
                name="quantity"
                aria-label="number"
@@ -29,8 +31,8 @@
     </div>
 
     <button type="button"
-            class="bf-button-icon js-bf-quantity-button__plus bf-quantity-button__plus vui--style-reset p-0 m-0 "
-            aria-controls='{{ input.id }}'
+            class="bf-button-icon js-bf-quantity-button__plus bf-quantity-button__plus vui--style-reset p-0 m-0 {{ class }}"
+            aria-controls='{{ inputId }}'
     >
     {% include '@bf-components/icon/twig/index.twig' with {
         name        : "plus-circle-outline",
@@ -38,5 +40,6 @@
         type        : "interface"
     } %}
     </button>
+
 
 </div>
