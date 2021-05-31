@@ -75,6 +75,7 @@ export class CardComponent implements OnInit {
     */
     @Input() buttons                : object;
     @Input() message                : string;
+    @Input() messageLink            : object;
     
     @Input() class                  : string;
     @Input() isDisabled             : boolean;
