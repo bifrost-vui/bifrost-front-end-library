@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  * API is the same between **Angular** and **Drupal**.
  *
  */
- 
+
 @Component({
     selector: 'bf-header',
     templateUrl: './header.component.html',
@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
     @Input() topBar_secondaryItems   : any[];
 
     @Input() navItems                : any[];
+    /** Maximum 5 first element of the list will be display  */
     @Input() rigthIconLinks          : any[];
     @Input() hasAccountBtn           : boolean;
     @Input() isConnected             : boolean;
@@ -38,5 +39,4 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
         console.log('Header', this);
     }
-    
 }
