@@ -1,0 +1,24 @@
+{% embed '@bf-components/hero/twig/index.twig' with {
+    reversed            : false,
+    background          : '',
+    breadcrumb          : breadcrumbBlock,
+    badge               : '',
+    image               : {
+        mobile: bgMobileImage|default(NULL),
+        default: bgImage|default(NULL)
+    },
+    upperTitle          : 'Upper Title',
+    title               : 'Title',
+    subtitle            : 'Subtitle',
+    description         : 'Description',
+    blockSelection      : {
+        title : 'My selection',
+        titleTag : 'p',
+        isCollapsableOnMobile : true,
+        isCollapsedByDefaultOnMobile : false,
+    }
+} %}
+    {% block blockSelection %}
+        blockSelection
+  {% endblock %}
+{% endembed %}

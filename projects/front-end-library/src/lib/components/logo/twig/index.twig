@@ -1,7 +1,7 @@
 {% set name     = (name is defined and name is same as ('business')) ? 'videotron-business' : 'videotron' %}
 {% set size     = size|default('medium') %}
-{% set langcode = langcode|default('EN') %}
+{% set langcode = langcode|default('en') %}
 
-<div class='bf-logo d-inline-flex align-items-center justify-content-center {{class}}'>
-    {% include '@bf-components/logo/svg/logo-' ~ name ~ '-' ~ size ~ '-' ~ langcode ~ '.svg' %}
+<div class='bf-logo d-inline-flex align-items-center justify-content-center {{ class }}'>
+    {% include '@bf-components/logo/svg/logo-' ~ name|lower ~ '-' ~ size|lower ~ '-' ~ langcode|lower ~ '.svg' ignore missing %}
 </div>
