@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 /**
  * Description of the component QuantityButton
@@ -16,6 +16,7 @@ export class QuantityButtonComponent implements OnInit {
     @Input() min        : number ;
     @Input() max        : number ;
     @Input() inputId    : string ;
+    @Input() isReadOnly : boolean;
 
     ngOnInit() {
         console.log('QuantityButton', this);
