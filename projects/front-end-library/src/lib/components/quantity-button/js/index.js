@@ -33,6 +33,7 @@ $(function () {
       $quantityInput.val(currentValue)
       checkLimitValues(currentValue)
     }
+
     const checkLimitValues = function(quantity){
 
       if (quantity >= $maxValue){
@@ -55,7 +56,9 @@ $(function () {
     $minusButton.click(function(){
       decrement()
     })
+
   })
+
 })
 
 
