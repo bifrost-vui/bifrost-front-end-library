@@ -7,11 +7,11 @@
 
 
 
-<div class='bf-quantity-button js-bf-quantity-button d-flex flex-row justify-content-center align-items-center'>
+<div class='bf-input-increment js-bf-input-increment d-flex flex-row justify-content-center align-items-center'>
 
     <button type="button"
             {{ inputValue == min ? 'disabled' : ''  }}
-            class="{{ isVisible }} bf-button-icon js-bf-quantity-button__minus bf-quantity-button__minus vui--style-reset p-0 m-0 "
+            class="{{ isVisible }} bf-button-icon js-bf-input-increment__minus bf-input-increment__minus vui--style-reset p-0 m-0 "
             aria-controls='{{ inputId }}'
     >
 
@@ -27,7 +27,7 @@
                type="number"
                name="quantity"
                aria-label="number"
-               class="text-center bf-quantity-button__input js-bf-quantity-button__input border-0"
+               class="text-center bf-input-increment__input js-bf-input-increment__input border-0"
                min="{{ min }}"
                max="{{ max }}"
                value="{{ inputValue }}"
@@ -37,7 +37,7 @@
 
     <button type="button"
             {{ inputValue == max ? 'disabled' : ''  }}
-            class="{{ isVisible }} bf-button-icon js-bf-quantity-button__plus bf-quantity-button__plus vui--style-reset p-0 m-0 {{ class }}"
+            class="{{ isVisible }} bf-button-icon js-bf-input-increment__plus bf-input-increment__plus vui--style-reset p-0 m-0 {{ class }}"
             aria-controls='{{ inputId }}'
     >
     {% include '@bf-components/icon/twig/index.twig' with {

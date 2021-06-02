@@ -1,16 +1,16 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 /**
- * Description of the component QuantityButton
+ * Description of the component InputIncrement
  *
  */
  
 @Component({
-  selector: 'bf-quantity-button',
-  templateUrl: './quantity-button.component.html',
+  selector: 'bf-input-increment',
+  templateUrl: './input-increment.component.html',
 })
 
-export class QuantityButtonComponent implements OnInit {
+export class InputIncrementComponent implements OnInit {
     constructor() {}
 
     @Input() min        : number ;
@@ -19,6 +19,6 @@ export class QuantityButtonComponent implements OnInit {
     @Input() isReadOnly : boolean;
 
     ngOnInit() {
-        console.log('QuantityButton', this);
+        console.log('InputIncrement', this);
     }
 }

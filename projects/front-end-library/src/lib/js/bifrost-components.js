@@ -12,5 +12,5 @@ window.bfTheme.breakpoints = {
 };
 
 // Bifrost Components
-require("../components/quantity-button/js/index.js");
+require("../components/input-increment/js/index.js");
 require("../components/navigation-header/js/index.js");
