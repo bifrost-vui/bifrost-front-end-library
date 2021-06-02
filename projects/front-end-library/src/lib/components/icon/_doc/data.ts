@@ -173,6 +173,7 @@ export const interfaceIcons = [
             'wifi',
             'world',
             'play-circle',
+            'network-5g'
         ]
     },
     {
