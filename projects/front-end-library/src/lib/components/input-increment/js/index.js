@@ -38,14 +38,19 @@ $(function () {
 
       if (quantity >= $maxValue){
         $plusButton.prop('disabled', true)
+        $plusButton.addClass('disabled')
       } else {
         $plusButton.prop('disabled', false)
+        $plusButton.removeClass('disabled')
       }
 
       if (quantity <= $minValue){
         $minusButton.prop('disabled', true)
+        $minusButton.addClass('disabled')
       } else {
         $minusButton.prop('disabled', false)
+        $minusButton.removeClass('disabled')
+
       }
     }
 
