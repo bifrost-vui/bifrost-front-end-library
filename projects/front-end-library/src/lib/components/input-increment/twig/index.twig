@@ -4,10 +4,10 @@
 {% set inputId      = inputId | default('') %}
 {% set isVisible = (isReadOnly is defined and isReadOnly is same as (true)) ? ' d-none' : '' %}
 {% set isReadOnly = (isReadOnly is defined and isReadOnly is same as (true)) ? ' readonly' : '' %}
+{% set customClass  = customClass|default('justify-content-center') %}
 
 
-
-<div class='bf-input-increment js-bf-input-increment d-flex flex-row justify-content-center align-items-center p-1'>
+<div class='bf-input-increment js-bf-input-increment d-flex flex-row p-1 {{ customClass }}' >
 
     <button type="button"
             {{ inputValue == min ? 'disabled' : ''  }}
@@ -27,7 +27,7 @@
                type="number"
                name="quantity"
                aria-label="number"
-               class="text-center bf-input-increment__input js-bf-input-increment__input border-0"
+               class="text-center bf-text-display-small bf-input-increment__input js-bf-input-increment__input border-0"
                min="{{ min }}"
                max="{{ max }}"
                value="{{ inputValue }}"

@@ -21,23 +21,24 @@ import { InputIncrementComponent }     from '../angular/input-increment.componen
     argTypes={{
         min: {
             defaultValue: 0,
-            description: 'must be a number',
-            type: {
-                required: true
-            },
         },
         max: {
-            defaultValue: 3,
-            description: 'must be a number',
+            defaultValue: 6,
+        },
+        customClass:{
+            defaultValue:'justify-content-center',
         },
         inputId: {
-            description: 'must be unique',
             type: { required: true },
         },
     }}
 />
 
 # Input increment
+
+## Component API
+
+<Props of={InputIncrementComponent} />
 
 ## Drupal
 
@@ -67,14 +68,14 @@ export const Drupal = (args) => ({
    button  : {
       min  : 0,
       max  : 3,
-      inputId : {{inputId}}
+      customClas : ''
+      inputId : 'my-unique-input-id'
+
    }
 } only %}
 ```
 
-## Component API
 
-<Props of={InputIncrementComponent} />
 
 ## Design Guidelines
 

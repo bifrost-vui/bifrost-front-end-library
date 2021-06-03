@@ -16,6 +16,7 @@ export class InputIncrementComponent implements OnInit {
     @Input() min        : number ;
     @Input() max        : number ;
     @Input() inputId    : string ;
+    @Input() customClass: string ;
     @Input() isReadOnly : boolean;
 
     ngOnInit() {
