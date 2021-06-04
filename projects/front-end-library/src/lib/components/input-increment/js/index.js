@@ -37,15 +37,14 @@ $(function () {
 
     const checkLimitValues = function(quantity){
 
-      if (quantity >= $maxValue){
+      if (quantity == $maxValue){
         $plusButton.prop('disabled', true)
         $plusButton.addClass('disabled')
       } else {
         $plusButton.prop('disabled', false)
         $plusButton.removeClass('disabled')
       }
-
-      if (quantity <= $minValue){
+      if (quantity == $minValue){
         $minusButton.prop('disabled', true)
         $minusButton.addClass('disabled')
       } else {
@@ -62,8 +61,15 @@ $(function () {
       decrement()
     })
     $quantityInput.keyup(function(){
+      if( $minValue > $quantityInput.val() ){
+        $quantityInput.val($minValue)
+      }
+      if ( $maxValue < $quantityInput.val() ){
+        $quantityInput.val($maxValue)
+      }
       currentValue = $quantityInput.val()
       checkLimitValues(currentValue)
+
     })
   })
 

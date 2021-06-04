@@ -7,7 +7,7 @@
 {% set inputValue   = inputValue|default(min) %}
 {% set inputId      = inputId | default('') %}
 
-<div class='bf-input-increment js-bf-input-increment d-flex flex-row p-1 align-items-center text-nowrap {{ customClass }}' >
+<div class='bf-input-increment js-bf-input-increment d-flex flex-row align-items-center text-nowrap {{ customClass }}' >
 
     {% include '@bf-components/button/twig/index.twig' with {
         label           : '',
@@ -16,14 +16,15 @@
         isLoading       : false,
         iconName        : "minus",
         iconPosition    : '',
-        class           : isVisible is empty ? ' js-bf-input-increment__minus bf-button bf-button--secondary rounded-circle p-2 ' : 'd-none',
+        class           : isVisible is empty ? ' js-bf-input-increment__minus bf-button bf-button--secondary rounded-circle px-2 ' : 'd-none',
         ariaControls    : inputId,
     } only %}
 
     <div class="bf-input">
         <input id="{{ inputId }}"
                type="number"
-               class="text-center bf-text-display-small bf-input-increment__input js-bf-input-increment__input border-0  m-0 p-2"
+               pattern="[0-9]{2}"
+               class="text-center bf-text-display-small bf-input-increment__input js-bf-input-increment__input border-0  m-0  py-0 px-2"
                min="{{ min }}"
                max="{{ max }}"
                value="{{ inputValue }}"
@@ -38,7 +39,7 @@
         isLoading       : false,
         iconName        : "plus",
         iconPosition    : '',
-        class           :  isVisible is empty ? ' js-bf-input-increment__plus bf-button bf-button--secondary rounded-circle p-2' : 'd-none',
+        class           :  isVisible is empty ? ' js-bf-input-increment__plus bf-button bf-button--secondary rounded-circle px-2' : 'd-none',
         ariaControls    : inputId,
     } only %}
 
