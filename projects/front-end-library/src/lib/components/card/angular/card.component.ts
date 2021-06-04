@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
 
+
 interface IImage {
     script          : string;
     alt             : string;
@@ -19,6 +20,7 @@ interface IButton {
     href            : string;
 }
 
+
 @Component({
     selector: 'bf-card',
     templateUrl: './card.component.html',
@@ -35,7 +37,10 @@ export class CardComponent implements OnInit {
     @Input() upperTitle             : string;
     @Input() title                  : string;
     @Input() titleTag               : string;
-    @Input() description            : string;
+    /** 
+    Note: Wrap your data with a semantic HTML tag.
+    E.g. `description_html: "<p>this is a description</p>"`
+    */
     @Input() description_html       : string;
 
 
@@ -89,7 +94,7 @@ export class CardComponent implements OnInit {
     @Input() buttons                : IButton[];
     @Input() message                : string;
     @Input() messageLink            : ILink;
-    
+
     @Input() class                  : string;
     @Input() isDisabled             : boolean;
     @Input() reversed               : boolean;
