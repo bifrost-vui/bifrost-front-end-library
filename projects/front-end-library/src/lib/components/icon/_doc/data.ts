@@ -236,6 +236,7 @@ export const illustrationIcons = [
             'invoice-deadline-48h',
             'moving-in',
             'my-account',
+            'network-5g',
             'network-coverage-1',
             'network-coverage',
             'network-performance',
