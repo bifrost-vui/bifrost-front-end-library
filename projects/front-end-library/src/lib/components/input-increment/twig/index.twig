@@ -9,24 +9,24 @@
 
 <div class='bf-input-increment js-bf-input-increment d-flex flex-row p-1 align-items-center text-nowrap {{ customClass }}' >
 
-    <button type="button"
-            {{ inputValue == min ? 'disabled' : ''  }}
-            class="{{ isVisible }} bf-button bf-button--secondary js-bf-input-increment__minus bf-input-increment__minus rounded-circle p-2 disabled"
-            aria-controls='{{ inputId }}'
-    >
-    {% include '@bf-components/icon/twig/index.twig' with {
-        name        : "minus",
-        size        : "small",
-        type        : "interface",
-    } %}
-    </button>
+
+    {% include '@bf-components/button/twig/index.twig' with {
+        label           : '',
+        hierarchy       : 'secondary',
+        isDisabled      : true,
+        isLoading       : false,
+        iconName        : "minus",
+        iconPosition    : '',
+        class           : isVisible is empty ? ' js-bf-input-increment__minus bf-button bf-button--secondary rounded-circle p-2 ' : 'd-none',
+        ariaControls    : inputId,
+    } only %}
 
     <div class="bf-input">
         <input id="{{ inputId }}"
                type="number"
                name="quantity"
                aria-label="number"
-               class="text-center bf-text-display-small bf-input-increment__input js-bf-input-increment__input border-0  m-0 p-0"
+               class="text-center bf-text-display-small bf-input-increment__input js-bf-input-increment__input border-0  m-0 p-2"
                min="{{ min }}"
                max="{{ max }}"
                value="{{ inputValue }}"
@@ -34,16 +34,14 @@
         >
     </div>
 
-    <button type="button"
-            {{ inputValue == max ? 'disabled' : ''  }}
-            class="{{ isVisible }} bf-button bf-button--secondary js-bf-input-increment__plus bf-input-increment__plus rounded-circle p-2"
-            aria-controls='{{ inputId }}'
-    >
-    {% include '@bf-components/icon/twig/index.twig' with {
-        name        : "plus",
-        size        : "small",
-        type        : "interface",
-    } %}
-    </button>
-
+    {% include '@bf-components/button/twig/index.twig' with {
+        label           : '',
+        hierarchy       : 'secondary',
+        isDisabled      : false,
+        isLoading       : false,
+        iconName        : "plus",
+        iconPosition    : '',
+        class           :  isVisible is empty ? ' js-bf-input-increment__plus bf-button bf-button--secondary rounded-circle p-2' : 'd-none',
+        ariaControls    : inputId,
+    } only %}
 </div>
