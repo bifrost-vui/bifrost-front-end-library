@@ -1,14 +1,13 @@
+{% set customClass  = customClass|default('justify-content-center') %}
+{% set isVisible = (isReadOnly is defined and isReadOnly is same as (true)) ? ' d-none' : '' %}
+{% set attrReadOnly = (isReadOnly is defined and isReadOnly is same as (true)) ? ' readonly' : '' %}
+
 {% set min          = min|default('0') %}
 {% set max          = max|default('3') %}
 {% set inputValue   = inputValue|default(min) %}
 {% set inputId      = inputId | default('') %}
-{% set isVisible = (isReadOnly is defined and isReadOnly is same as (true)) ? ' d-none' : '' %}
-{% set isReadOnly = (isReadOnly is defined and isReadOnly is same as (true)) ? ' readonly' : '' %}
-{% set customClass  = customClass|default('justify-content-center') %}
-
 
 <div class='bf-input-increment js-bf-input-increment d-flex flex-row p-1 align-items-center text-nowrap {{ customClass }}' >
-
 
     {% include '@bf-components/button/twig/index.twig' with {
         label           : '',
@@ -24,13 +23,11 @@
     <div class="bf-input">
         <input id="{{ inputId }}"
                type="number"
-               name="quantity"
-               aria-label="number"
                class="text-center bf-text-display-small bf-input-increment__input js-bf-input-increment__input border-0  m-0 p-2"
                min="{{ min }}"
                max="{{ max }}"
                value="{{ inputValue }}"
-               {{ isReadOnly }}
+                {{ attrReadOnly }}
         >
     </div>
 
@@ -44,4 +41,5 @@
         class           :  isVisible is empty ? ' js-bf-input-increment__plus bf-button bf-button--secondary rounded-circle p-2' : 'd-none',
         ariaControls    : inputId,
     } only %}
+
 </div>

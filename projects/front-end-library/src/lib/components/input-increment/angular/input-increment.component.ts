@@ -13,11 +13,12 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class InputIncrementComponent implements OnInit {
     constructor() {}
 
-    @Input() min        : number ;
-    @Input() max        : number ;
-    @Input() inputId    : string ;
     @Input() customClass: string ;
     @Input() isReadOnly : boolean;
+    @Input() inputId    : string ;
+    @Input() min        : number ;
+    @Input() max        : number ;
+
 
     ngOnInit() {
         console.log('InputIncrement', this);

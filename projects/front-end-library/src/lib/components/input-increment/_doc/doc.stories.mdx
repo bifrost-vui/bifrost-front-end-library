@@ -54,23 +54,30 @@ export const Drupal = (args) => ({
     <Story 
         name='Drupal'
         args={{ 
-            elementPath : 'components/input-increment/_doc/template.drupal',
+            elementPath     : 'components/input-increment/_doc/template.drupal',
+            customClass     : '',
+            isReadOnly      : false,
+            inputId         : '',
+            min             : '0',
+            max             : '10',
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Preview>
 
+
+
 ## Drupal implementation example
 
 ```php
 {% include '@bf-components/input-increment/twig/index.twig' with {
    button  : {
+      customClas      : '',
+      isReadOnly      : false,
+      inputId : 'my-unique-input-id',
       min  : 0,
-      max  : 3,
-      customClas : ''
-      inputId : 'my-unique-input-id'
-
+      max  : 10,
    }
 } only %}
 ```
