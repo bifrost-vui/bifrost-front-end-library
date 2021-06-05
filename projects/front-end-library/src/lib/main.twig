@@ -13,6 +13,7 @@
         #}
         <link rel='preload' href='/css/bifrost.css' as='style'>
         <link rel='preconnect' href='https://fonts.gstatic.com/' crossorigin>
+        <link rel='preload' href='/fonts/BlenderPro/2.1/BlenderPro-Thin.woff2' as='font' type='font/woff2' crossorigin>
         <link rel='preload' href='/fonts/BlenderPro/2.1/BlenderPro-Medium.woff2' as='font' type='font/woff2' crossorigin>
         <link rel='preload' href='/fonts/BlenderPro/2.1/BlenderPro-Bold.woff2' as='font' type='font/woff2' crossorigin>
         <link rel='preload' href='/fonts/BlenderPro/2.1/BlenderPro-Book.woff2' as='font' type='font/woff2' crossorigin>
@@ -39,17 +40,10 @@
         
         <script>
             async function load() {
-                
                 await import('/js/core.js');
                 await import('/js/bifrost-components.js');
-
-                Promise.all([
-                    import('/js/vendors~bifrost-components.js'),
-                    import('/js/bifrost-demo.js'),
-                ])
-                .then() => {
-                    console.log('All JS files are loaded.');
-                };
+                await import('/js/vendors~bifrost-components.js'),
+                await import('/js/bifrost-demo.js'),
             }
             load();
         </script>
@@ -72,22 +66,20 @@
             {# For DEBUG puropose: #}
             {# {{ dump(_context) }} #}
             
-                {% if _context.elementPath is defined %}
-                    
-                    {% set elementPath = _context.elementPath %}
+            {% if _context.elementPath is defined %}
+                
+                {% set elementPath = _context.elementPath %}
 
-                    <div class='videotron-ui'>
-                        {# <div class='h-100 w-100'> #}
-                            {% include './' ~ elementPath ~ '.twig' with _context %}
-                        {# </div> #}
-                    </div>
-                    
-                {% else %}
+                <div class='videotron-ui'>
+                    {% include './' ~ elementPath ~ '.twig' with _context %}
+                </div>
+                
+            {% else %}
 
-                    <p>Please provide a <b>elementPath</b> properties in URL. </p>
-                    <p>E.g. http://localhost:3001/api/twig?elementPath=components/button/twig/button</p>
-                    <pre>{{ dump(_context) }}</pre>
-                {% endif %}
+                <p>Please provide a <b>elementPath</b> properties in URL. </p>
+                <p>E.g. http://localhost:3001/api/twig?elementPath=components/button/twig/button</p>
+                <pre>{{ dump(_context) }}</pre>
+            {% endif %}
             
         </main>
     </body>
