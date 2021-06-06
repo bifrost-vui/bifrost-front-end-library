@@ -1,11 +1,27 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
 import { IPrice } from '../../price/angular/price.component';
 
-/**
- * API is the same between **Angular** and **Drupal**.
- *
- */
- 
+
+interface IImage {
+    script          : string;
+    alt             : string;
+    badgeIconName   : string;
+}
+
+interface ILink {
+    label           : string;
+    href            : string;
+    class           : string;
+}
+
+interface IButton {
+    label           : string;
+    hierarchy       : string;
+    reverse         : boolean;
+    href            : string;
+}
+
+
 @Component({
     selector: 'bf-card',
     templateUrl: './card.component.html',
@@ -14,16 +30,20 @@ import { IPrice } from '../../price/angular/price.component';
 export class CardComponent implements OnInit {
     constructor() {}
 
-    @Input() image                  : object;
+    @Input() image                  : IImage;
     @Input() iconName               : string;
-
+    /** E.g. `#F6F6F6` */
+    @Input() visualBackgroundColor  : string;
+    
     @Input() upperTitle             : string;
     @Input() title                  : string;
-
-    /** E.g. `h4` */
     @Input() titleTag               : string;
-    @Input() description            : string;
+    /** 
+    Note: Wrap your data with a semantic HTML tag.
+    E.g. `description_html: "<p>this is a description</p>"`
+    */
     @Input() description_html       : string;
+
 
     /** Expected format:
     ```
@@ -33,10 +53,10 @@ export class CardComponent implements OnInit {
         }
     ```
     */
-    @Input() link                   : object;
+    @Input() link                   : ILink;
 
     /**
-        You can pass directly the **label** in string format or an object based on [Badge](/?path=/docs/components-badge--drupal) component API.
+        You can pass directly the **label** as a **string** or an **object** based on [Badge](/?path=/docs/components-badge--drupal) component API.
     */
     @Input() badge                  : any;
 
@@ -72,14 +92,16 @@ export class CardComponent implements OnInit {
 
     /**
         Array of [Button](/?path=/docs/components-button--drupal) component.
+        Or extends with a block: {% block buttons %} ... {% endblock %}.
     */
-    @Input() buttons                : object;
+    @Input() buttons                : IButton[];
     @Input() message                : string;
-    @Input() messageLink            : object;
-    
+    @Input() messageLink            : ILink;
+
     @Input() class                  : string;
     @Input() isDisabled             : boolean;
     @Input() reversed               : boolean;
+    @Input() language               : 'en' | 'fr';
 
     ngOnInit() {
         console.log('card', this);
