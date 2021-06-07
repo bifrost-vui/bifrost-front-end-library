@@ -2,12 +2,12 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 
 interface IUpfront {
   label         : string;
-  dollar        : string;
+  dollar        : number;
 }
 
 interface IPromotion {
-  priceStriked  : string;
-  priceSaved    : string;
+  priceStriked  : number;
+  priceSaved    : number;
   savedLabel    : string;
   superscript   : string;
   direction     : string;
@@ -16,9 +16,9 @@ interface IPromotion {
 export interface IPrice {
     upperTitle  : string;
     upfront     : IUpfront;
-    dollar      : string;
+    dollar      : number;
     dollarClass : string;
-    cent        : string;
+    cent        : number;
     hasAsterisk : boolean;
     promotion   : IPromotion;
     dashed      : string;
@@ -52,9 +52,9 @@ export class PriceComponent implements OnInit {
 
     @Input() upfront                : IUpfront;
 
-    @Input() dollar                 : string;
+    @Input() dollar                 : number;
     @Input() dollarClass            : string;
-    @Input() cent                   : string;
+    @Input() cent                   : number;
     @Input() hasAsterisk            : boolean;
 
     /** promotion.direction = "vertical" | "horizontal" */

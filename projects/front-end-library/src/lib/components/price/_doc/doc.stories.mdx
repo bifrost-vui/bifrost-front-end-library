@@ -51,19 +51,19 @@ import { PriceComponent }                       from '../angular/price.component
 {% include '@bf-components/price/twig/index.twig' with {
     upperTitle      : 'From',
     upfront         : {
-        label: 'upfront',
-        dollar: '0'
+        dollar          : 0
+        label           : 'upfront',
     },
-    dollar          : '30',
-    dollarClass     : '',
-    cent            : '99',
+    dollar          : 30,
+    dollarClass     : 'my-dollar-class',
+    cent            : 99,
     hasAsterisk     : true,
     details         : '/month',
     promotion       : {
-        priceStriked  : '$40.99',
-        priceSaved    : '$10',
+        priceStriked  : 40.99,
+        priceSaved    : 10,
         savedLabel    : 'You saved:',
-        superscript   : '1',
+        superscript   : 1,
         direction     : 'horizontal',
     },
     message         : 'This is a message',
@@ -85,19 +85,19 @@ export const Drupal = (args) => ({
 export const commonProps = {
     upperTitle      : 'Upper Title',
     upfront         : {
-        label: 'upfront',
-        dollar: '0'
+        dollar          : 0,
+        label           : 'upfront'
     },
-    dollar          : '30',
+    dollar          : 30,
     dollarClass     : '',
-    cent            : '99',
+    cent            : 99,
     hasAsterisk     : false,
     details         : '/month',
     promotion       : {
-        priceStriked  : '$40.99',
-        priceSaved    : '$10',
+        priceStriked  : 40.99,
+        priceSaved    : 10,
         savedLabel    : 'You saved:',
-        superscript   : '1',
+        superscript   : 1,
         direction     : 'horizontal',
     },
     message         : 'This is a message.',
@@ -130,6 +130,20 @@ export const commonProps = {
         args={{ 
             elementPath     : 'components/price/_doc/all-prices.drupal',
             ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '800px' }}
+>
+    <Story 
+        name='Drupal - All Prices - Null validator'
+        args={{ 
+            elementPath     : 'components/price/_doc/null.drupal',
         }}
     >
         {Drupal.bind({})}
