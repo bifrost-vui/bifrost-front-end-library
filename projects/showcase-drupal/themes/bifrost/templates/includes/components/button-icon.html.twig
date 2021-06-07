@@ -1,0 +1,26 @@
+<div>
+    {% for index in [1,2] %}
+        
+        <div class='d-flex gap-3 p-5 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
+
+            {% include '@bf-components/button-icon/twig/index.twig' with {
+                icon        : 'placeholder',
+                size        : 'small',
+            } only %}
+
+            {% include '@bf-components/button-icon/twig/index.twig' with {
+                icon        : 'placeholder',
+                size        : 'small',
+                isDisabled  : true,
+            } only %}
+
+            {% include '@bf-components/button-icon/twig/index.twig' with {
+                href        : '#',
+                icon        : 'placeholder',
+                size        : 'small',
+            } only %}
+
+        </div>
+        
+    {% endfor %}
+</div>

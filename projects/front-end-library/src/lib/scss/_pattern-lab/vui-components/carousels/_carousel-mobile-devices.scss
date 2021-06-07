@@ -4,6 +4,21 @@
 *
 * ***************************************************************************** */
 
+.carousel-mobile-devices {
+  //@include media-breakpoint-up(md) {
+  .slick-slide {
+    @include transitions(opacity);
+    opacity: 0;
+
+    &.slick-active { opacity: 1; }
+  }
+  //}
+
+  .slick-slide:focus {
+    //outline: none;
+  }
+}
+
 .carousel-mobile-device {
   display: block;
   @include media-breakpoint-down(xs){
@@ -21,11 +36,11 @@
     }
   }
 
-  .slick-list { 
+  .slick-list {
     margin: auto;
     justify-content: center;
     width: 95%;
-    overflow: hidden; 
+    overflow: hidden;
   }
 
   .slick-track {
@@ -114,7 +129,7 @@
     img {
       max-width: 275px;
     }
-    
+
     .slick-dots {
       position: relative;
       margin: 0;
@@ -125,21 +140,37 @@
     }
   }
 
-  &--showcase.network_5g {
-    .img-lazy-load-container__span {
-      position: relative;
-      
-      &:before {
-        content: "";
-        position: absolute;
-        width: 85px;
-        height: 85px;
-        bottom: -28px;
-        right: -46px;
-        background: url('/images/assets/network-type-5g.png') no-repeat;
-        z-index: 10;
+  &--showcase {
+    $logo5g: url('/images/assets/network-type-5g.png') no-repeat;
+
+    &.network_5g {
+      .img-lazy-load-container__span {
+        position: relative;
+
+        &:before {
+          content: "";
+          position: absolute;
+          width: 85px;
+          height: 85px;
+          bottom: -28px;
+          right: -46px;
+          z-index: 10;
+        }
+      }
+    }
+
+    &.network_5g:not(.network_5g_only_on_first_image) {
+      .img-lazy-load-container__span:before {
+        background: $logo5g;
+      }
+    }
+
+    &.network_5g.network_5g_only_on_first_image {
+      .slick-slide[data-slick-index="0"] {
+        .img-lazy-load-container__span:before {
+          background: $logo5g;
+        }
       }
     }
   }
 }
-
