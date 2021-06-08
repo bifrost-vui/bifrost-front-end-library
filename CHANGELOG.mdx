@@ -4,6 +4,12 @@
 
 ## vX.X.X
 
+### FONT
+Font now swap to help loading performance
+
+### UIKIT CSS SYNC
+include CSS from TPDXP-4065 of PR https://bitbucket.etiya.com/login?next=/projects/MAR/repos/marvel-ui-kit/pull-requests/566
+
 ### Price
 - ⚠️ **[BREAK CHANGE]** ⚠️ `size` property API is now: `small | medium | large` (previously `sm | md | lg`).
 [See documentation](?path=/docs/components-price--drupal)
@@ -16,20 +22,23 @@
 ### Card
 - **[BREAKING CHANGES]** `description` attribute removed, in order to avoid confusion with `description_html`. Please don't forget to wrap `description_html` with a semantic tag.
 E.g. `description_html: '<p>This is a description</p>'`
+- title style change a h2 for a h3.
 
 ### Logo
 - Remove uppercase in SVG filename.
 - `langcode` should be in lowercase (E.g. 'en') in order to be more consistent with `language`. However, in order to ensure backward compatilibilty, uppercase is accepted as well.
 - `ignore missing` added to the svg include.
 
+### Footer
+- Add `only` for all include in order to avoid passing reversed props
 
 ## [v1.0.3](https://bifrost-front-end-library-git-v1-0-3-jonathanlefebvrev.vercel.app)
-Bugs
+Bugs Fix
 - DS-78 (clone of DS-73) Fix Hero block of the Block-selection
   - Fixing the component Hero to manage more efficiently the twig block `blockSelectionSection`
 
 ## [v1.0.2](https://bifrost-front-end-library-git-v102fixes-jonathanlefebvrev.vercel.app/)
-Bugs
+Bugs Fix
 - DS-73 Fix Hero block of the Block-selection
   - Component Hero has a block `blockSelectionSection` to override the compoenent `blockSelection`
 
@@ -42,7 +51,7 @@ Bugs
 
 
 ## [v1.0.1](https://bifrost-front-end-library-7sh17fjm1-jonathanlefebvrev.vercel.app/)
-Bugs
+Bugs Fix
 - DS-63 Fix Header icon mandatory
   - Links icon (`rigthIconLinks`), in mobile, now only display if the attribute `icon` and `href` are filled.
 
