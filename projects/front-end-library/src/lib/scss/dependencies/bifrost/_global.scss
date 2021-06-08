@@ -17,3 +17,47 @@ body,
         color: var(--bf-color-bg-ground); // When reversed, force black text color over highlight background-color.
     }
 }
+
+// scrolling effect
+
+.bf-overflow-scroll-x{
+    overflow-x: auto;
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-button {
+        @include size(2px);
+    }
+    &:before {
+        background-image: var(--bf-color-bg-linear-x);
+        background-repeat: repeat-y;
+        content:"";
+        width: 3rem;
+        height: 100%;
+        position:absolute;
+        z-index: 1;
+        right: 0;
+        top: 0;
+        pointer-events: none;
+    }
+}
+.bf-overflow-scroll-y{
+        overflow-x: auto;
+        white-space: nowrap;
+
+        &::-webkit-scrollbar,
+        &::-webkit-scrollbar-button {
+            @include size(4px);
+            background: var(--bf-color-neutral-tertiary);
+        }
+        &:before {
+            background-image: var(--bf-color-bg-linear-y);
+            background-repeat: repeat-y;
+            content:"";
+            width: 3rem;
+            height: 100%;
+            position:absolute;
+            z-index: 1;
+            right: 0;
+            top: 0;
+            pointer-events: none;
+        }
+    }
