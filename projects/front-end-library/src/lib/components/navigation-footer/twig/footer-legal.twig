@@ -22,15 +22,15 @@
             </div>
 
             <div class='col-12 col-md-9 order-1 order-md-2'>
-                <ul class='list-reset small pl-0 mb-0 d-flex flex-wrap justify-content-start justify-content-md-end' data-animate-row=''>
+                <ul class='list-reset small pl-0 mb-0 d-flex flex-wrap justify-content-start justify-content-md-end gap-3' data-animate-row=''>
                     {% for linkField in linkFields %}
-                        <li class='mb-3 pr-4 mb-md-0' data-animate='fade-in'>
+                        <li class='' data-animate='fade-in'>
                             {% include '@bf-components/link/twig/index.twig' with {
                                 href    : linkField.href,
                                 label   : linkField.label,
                                 class   : 'd-block bf-p-small bf-color-neutral-secondary',
                                 rel     : linkField.rel|default('dofollow')
-                            } %}
+                            } only %}
                         </li>
                     {% endfor %}
 
@@ -42,7 +42,7 @@
                                 href    : '',
                                 label   : (langcode == 'EN') ? 'FR' : 'EN',
                                 class   : 'd-block bf-p-small bf-color-neutral-secondary',
-                            } %}
+                            } only %}
                         </li>
                     {% endif %}
                 </ul>

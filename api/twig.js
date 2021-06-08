@@ -27,6 +27,16 @@ var Twig = require("twig"),
         return value;
     });
 
+    Twig.extendFilter('format_price', function(price, options) {
+        
+        const language = (options && options[0]) || 'en';
+        if (language === 'fr') {
+            return price + ' $';
+        } else {
+            return '$' + price;
+        }
+    });
+
     Twig.extendFilter('render', function(value) {
         return value;
     });

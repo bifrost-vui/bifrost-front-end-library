@@ -1,91 +1,113 @@
-{% set language = language|default('en') %}
+{% set language                 = language|default('en') %}
 
-<div class='bf-price bf-price--{{ size|default('sm') }} d-flex flex-column {{ class|default('') }}'>
+{# Keep backward compatibility #}
+{% if dashed is defined or saved is defined or savedLabel is defined %}
+    {% set promotion    = promotion|default({}) %}
+    {% set promotion    = promotion|merge({
+        'priceStriked'  : promotion.priceStriked|default(dashed),
+        'priceSaved'    : promotion.priceSaved|default(saved),
+        'savedLabel'    : promotion.savedLabel|default(savedLabel)
+    }) %}
+{% endif %}
+
+<div class='
+    bf-price bf-price--{{ size|default('small') }} d-flex flex-column
+    {% if fullWidth is defined and fullWidth %}w-100{% endif %}
+    {{ class|default('') }}'>
     
-    {% if upperTitle is defined and upperTitle is not empty %}
-        <p class='small bf-color-neutral-secondary mb-0'>
-            {{ upperTitle|default('') }}
+    {% if upperTitle is defined and upperTitle %}
+        <p class='small bf-color-neutral-secondary mb-1'>
+            {{ upperTitle }}
         </p>
     {% endif %}
 
-    <div class='bf-price__infos d-inline-flex'>
+    {% if upfront is defined and upfront and upfront.dollar or upfront.label %}
+        <p class='bf-price__upfront mb-1'>
+            {% apply spaceless %}
+                {% if language == 'en' %}
+                    <span class='bf-text-display-sub-small' style='padding-right: 2px'>$</span>
+                {% endif %}
+                {# TODO: Reduce the line-height of bf-text-interface-large. #}
+                <span class='bf-text-interface-large'>{{ upfront.dollar|default('0') }}</span>
+                {% if language == 'fr' %}
+                    <span class='bf-text-display-sub-small' style='padding-left: 2px'>$</span>
+                {% endif %}
+                <span class='bf-text-display-sub-small pl-1'>{{ upfront.label|default('upfront') }}</span>
+            {% endapply %}
+        </p>
+    {% endif %}
 
-        {% if language == 'en' %}
-            <sup class='bf-price__dollarsign'>$</sup>
-        {% endif %}
+    <div class='d-flex gap-2 justify-content-between {% if promotion.direction is defined and promotion.direction == 'horizontal' %}flex-row{% else %}flex-column{% endif %}'>
 
-        <div class='d-flex' aria-label='$ {{ dollar|default('0')}}.{{ cent|default('00')}} {{ details|default('')|raw }}'>
-            
-            <span class='bf-price__dollar {{ dollarClass|default('') }}'>
-                {{ dollar|default('00')}}
-            </span>
-            
-            <div class='d-flex flex-column justify-content-between ml-1'>
-                <div class='d-flex align-items-baseline'>
+        <div class='bf-price__infos d-inline-flex'>
 
-                    {% if cent is defined %}
-                        <span class='bf-price__cent'>
-                            {{ cent|default('00')}}
+            {% if language == 'en' %}
+                <sup class='bf-price__dollarsign'>$</sup>
+            {% endif %}
+
+            <div class='d-flex' aria-label='$ {{ dollar|default('0')}}.{{ cent|default('00')}} {{ details|default('')|raw }}'>
+                
+                <span class='bf-price__dollar {{ dollarClass|default('') }}'>
+                    {{ dollar|default('00')}}
+                </span>
+                
+                <div class='d-flex flex-column justify-content-between'>
+                    <div class='d-flex align-items-baseline'>
+                        {% if cent is defined and cent %}
+                            <span class='bf-price__cent ml-1'>
+                                {{ cent|default('00')}}
+                            </span>
+                        {% endif %}
+                        {% if language == 'fr' %}
+                            <sup class='bf-price__dollarsign ml-1'>$</sup>
+                        {% endif %}
+                        {% if hasAsterisk is defined and hasAsterisk %}
+                            <sup class='bf-price__asterisk'>*</sup>
+                        {% endif %}
+                    </div>
+                    
+                    {% if details is defined and details %}
+                        <span class='bf-price__details ml-1'>
+                            {{ details|raw }}
                         </span>
                     {% endif %}
-
-                    {% if language == 'fr' %}
-                        <sup class='bf-price__dollarsign ml-1'>$</sup>
-                    {% endif %}
-
-                    {% if hasAsterisk is defined and hasAsterisk is same as (true) %}
-                        <sup class='small'>*</sup>
-                    {% endif %}
-
-                    {# 
-                    {%  if itemTitleTooltipInfos is defined and itemTitleTooltipInfos is not empty %}
-                        {% include '@atoms/02-buttons/25-button-tooltip.twig' with {
-                            buttonClass:'pl-1 pr-1 d-inline-flex',
-                            tooltipTxt: itemTitleTooltipInfos,
-                            iconColor: iconTooltipColor|default('svg-fill--dark')
-                        } %}
-                    {% endif %}
-                    #}
+                    
                 </div>
-                
-                {% if details is defined %}
-                    <span class='bf-price__details'>
-                        {{ details|default('')|raw }}
-                    </span>
-                {% endif %}
-                
             </div>
+
         </div>
 
-        {# {% if priceSavings is defined and priceSavings is not empty %}
-            <p class='small color--primary mb-0'>
-                {{ priceSavings|raw }}
-            </p>
-        {% endif %} #}
+        {% if promotion is defined and promotion %}
+            <div class='d-inline-flex align-items-center'>
+
+                {% if promotion.priceStriked is defined and promotion.priceStriked is not empty %}
+                    <p class='small text-strike mr-2 mb-0'>
+                        {{ promotion.priceStriked|format_price(language) }}
+                    </p>
+                {% endif %}
+
+                {% if promotion.savedLabel is defined or promotion.priceSaved is defined or promotion.superscript is defined %}
+                    <p class='small bf-display-highlight d-inline-flex align-items-center flex-wrap mb-0'>
+                        {% if promotion.savedLabel is defined and promotion.savedLabel %}
+                            <span class='mr-1'>
+                                {{ promotion.savedLabel }}
+                            </span>
+                        {% endif %}
+                        {% if promotion.priceSaved is defined and promotion.priceSaved is not empty %}
+                            <span class='font-weight-bold'>
+                                {{ promotion.priceSaved|format_price(language) }}
+                            </span>
+                        {% endif %}
+                        {% if promotion.superscript is defined and promotion.superscript is not empty  %}
+                            <sup class='bf-price__superscript'>{{ promotion.superscript }}</sup>
+                        {% endif %}
+                    </p>
+                {% endif %}
+
+            </div>
+        {% endif %}
+
     </div>
-
-    {% if dashed is defined or saved is defined %}
-        <div class='d-inline-flex align-items-start mt-2'>
-
-            {% if dashed is defined and dashed is not empty %}
-                <p class='small text-strike mr-3 mb-0'>
-                    {{ dashed|default('') }}
-                </p>
-            {% endif %}
-
-            {% if saved is defined and saved is not empty %}
-                <p class='small bf-display-highlight d-inline-flex flex-wrap mb-0'>
-                    <span class='mr-1'>
-                        {{ savedLabel|default('You save :') }}
-                    </span>
-                    <span class='font-weight-bold'>
-                        {{ saved|default('')|raw }}
-                    </span>
-                </p>
-            {% endif %}
-
-        </div>
-    {% endif %}
 
     {% if message is defined and message is not empty %}
         <p class='small bf-color-neutral-secondary mb-0 mt-1'>
