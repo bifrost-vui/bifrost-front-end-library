@@ -22,50 +22,50 @@ body,
 
 .bf-overflow-x{
     overflow-x: auto;
+
     &::-webkit-scrollbar,
     &::-webkit-scrollbar-button {
-        @include size(1px);
-    }
-    @include media-breakpoint-up(lg){
-        &::-webkit-scrollbar,
-        &::-webkit-scrollbar-button {
-            @include size(3px);
-            background-color: var(--bf-color-stroke-primary);
-        }
-        &:before {
-            background-image: var(--bf-color-bg-linear-x);
-            background-repeat: repeat-y;
-            content:"";
-            width: 3rem;
-            height: 100%;
-            position:absolute;
-            z-index: 1;
-            right: 0;
-            top: 0;
-            pointer-events: none;
-        }
-    }
+        @include size(3px);
+        background-color: var(--bf-color-stroke-primary);
 
+        @include media-breakpoint-down(md){
+              background-color: transparent;
+        }
+    }
+    &:before {
+        background-image: var(--bf-color-bg-linear-x);
+        background-repeat: repeat-y;
+        content: "";
+        width: 3rem;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        top: 0;
+        pointer-events: none;
+    }
 }
-.bf-overflow-y{
-        overflow-y: auto;
-        white-space: nowrap;
 
-        &::-webkit-scrollbar,
-        &::-webkit-scrollbar-button {
-            @include size(3px);
-            background-color: var(--bf-color-stroke-primary);
-        }
-        &:before {
-            background-image: var(--bf-color-bg-linear-y);
-            background-repeat: repeat-y;
-            content:"";
-            width: 3rem;
-            height: 100%;
-            position:absolute;
-            z-index: 1;
-            right: 0;
-            top: 0;
-            pointer-events: none;
-        }
+.bf-overflow-y{
+    overflow-y: auto;
+    white-space: nowrap;
+
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-button {
+        @include size(3px);
+        background-color: var(--bf-color-stroke-primary);
     }
+
+    &:before {
+        background-image: var(--bf-color-bg-linear-y);
+        background-repeat: repeat-y;
+        content:"";
+        width: 3rem;
+        height: 100%;
+        position:absolute;
+        z-index: 1;
+        right: 0;
+        top: 0;
+        pointer-events: none;
+    }
+}
