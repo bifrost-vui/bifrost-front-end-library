@@ -1,0 +1,60 @@
+import { moduleMetadata } from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+
+import { FormatPricePipe }          from '../format-price.pipe';
+import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
+
+
+
+<Meta 
+    title='Pipes/Format Price' 
+    component={FormatPricePipe}
+    argTypes={{
+        language: {
+            control: { type: 'select', options: ['en', 'fr'] },
+            table: { defaultValue: { summary: 'en' } },
+        },
+    }}
+/>
+
+
+# Pipe: Format Price
+
+<br/>
+
+## Drupal implementation example
+
+```jsx
+{% set price = '44.99' %}
+
+{{ price|format_price('en') }}
+// Output: $44.99
+
+{{ price|format_price('fr') }}
+// Output: 44.99 $
+```
+
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Preview
+    withSource='none'
+    style={{ height: '500px' }}
+>
+    <Story 
+        name='Drupal'
+        args={{ 
+            elementPath  : 'pipes/format-price/_doc/template.drupal',
+            price        : '44.00',
+            language     : 'en',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
