@@ -14,28 +14,24 @@ import { LogoComponent }                    from '../angular/logo.component';
     ]}
     argTypes={{
         name: {
-            defaultValue: 'videotron',
-            control: { 
-                type: 'select',
-                options: ['videotron', 'business'],
-            }
+            control: { type: 'select' },
+            table: { defaultValue: { summary: 'videotron' } },
         },
         size: {
-            defaultValue: 'medium',
-            control: { 
-                type: 'select',
-                options: ['large', 'medium', 'small'],
-            }
+            control: { type: 'select' },
+            table: { defaultValue: { summary: 'medium' } },
         },
         langcode: {
-            defaultValue: 'FR',
             control: { 
-                type: 'select',
-                options: ['EN', 'FR'],
-            }
+                type: 'select'
+            },
+            table: { defaultValue: { summary: 'en' } },
+        },
+        reversed: {
+            table: { defaultValue: { summary: false } },
         },
         allLogoCategories: {
-            control: { disable: true }
+            table: { disable: true }
         }
     }}
 />
@@ -58,8 +54,9 @@ import { LogoComponent }                    from '../angular/logo.component';
 
 ```jsx
 {% include '@bf-components/logo/twig/index.twig' with {
-    langcode    : 'EN',
-    name        : 'business'
+    name        : 'business',
+    size        : 'large',
+    langcode    : 'en',
 } only %}
 ```
 
@@ -93,7 +90,7 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '600px' }}
+    style={{ height: '800px' }}
 >
     <Story 
         name='Drupal - All logos'

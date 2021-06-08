@@ -4,14 +4,14 @@
     <div class='container-fluid'>
 
         {% for category in allLogoCategories|json_parse %}
-            <div class='row py-4'>
+            <div class='d-flex flex-column flex-md-row border-bottom bf-border-color-secondary py-4'>
 
-                <div class='col'>
+                <div style='flex: 0 25%'>
                     <h4>{{category.categoryName}}</h4>
                 </div>
-
+                
                 {% for logo in category.list %}
-                    <div class='col'>
+                    <div class='flex-grow-1 py-2'>
                         {% include '@bf-components/logo/twig/index.twig' with {
                             name        : logo.name,
                             size        : logo.size,
