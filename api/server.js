@@ -59,6 +59,16 @@ Twig.extendFilter('price_one_line', function(value) {
     return value;
 });
 
+Twig.extendFilter('format_price', function(price, options) {
+    
+    const language = (options && options[0]) || 'en';
+    if (language === 'fr') {
+        return price + '&nbsp;$';
+    } else {
+        return '$' + price;
+    }
+});
+
 Twig.extendFilter('render', function(value) {
     return value;
 });
