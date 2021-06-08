@@ -3,7 +3,7 @@ const path      = require('path');
 // const custom    = require('../webpack.config.js');
 
 module.exports = {
-    stories: ['../projects/front-end-library/**/*.stories.@(ts|mdx)'],
+    stories: ['../projects/front-end-library/**/*.stories.@(ts)'],
     logLevel: 'debug',
     addons: [
         '@storybook/addon-docs',
