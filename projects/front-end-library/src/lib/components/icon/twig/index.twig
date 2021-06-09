@@ -3,14 +3,12 @@
 {% set classSize        =  "size-"~ size  %}
 {% set sizeSuffix       = (size is same as ('xsmall') or size is same as ('small') ? 'sm' : 'lg' ) %}
 {% set classReversed    = (reversed is defined and reversed is same as (true)) ? ' reversed' : '' %}
+{% set classType       = (type is defined and color is not empty) ? ' type-' ~ type : '' %}
 {% set classColor       = (color is defined and color is not empty) ? ' color-' ~ color : '' %}
 {% set classes          = 'bf-icon ' ~ classReversed ~ ' ' ~  classColor ~' ' ~ classSize %}
 {% set name             = name|default('placeholder') %}
 
-<div
-    class='{{ classes }} {{ class|default('') }}'
-    {% if type is same as ('interface') %}role='presentation'{% endif %}
->
+<div class='{{ classes }} {{ class|default('') }}' role='presentation'>
     {% include '@bf-components/icon/svg/' ~ name ~ '-' ~ sizeSuffix ~'.svg' ignore missing %}
 </div>
 

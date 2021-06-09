@@ -10,58 +10,6 @@
     border-color: currentColor;
     vertical-align: middle;
 
-    // Color
-    circle[fill="fill-highlight"] {
-        fill: var(--bf-color-bg-action-primary);
-    }
-
-    &.color-success {
-        color: var(--bf-color-feedback-success);
-
-        .fill-highlight {
-            color: var(--bf-color-neutral-primary);
-
-            circle[fill="fill-highlight"] {
-                fill: var(--bf-color-feedback-success);
-            }
-        }
-    }
-
-    &.color-neutral {
-        color: var(--bf-color-feedback-neutral);
-
-        .fill-highlight {
-            color: var(--bf-color-neutral-primary);
-
-            circle[fill="fill-highlight"] {
-                fill: var(--bf-color-bg-action-primary);
-            }
-        }
-    }
-
-    &.color-warning {
-        color: var(--bf-color-feedback-warning);
-
-        .fill-highlight {
-            color: var(--bf-color-neutral-primary);
-
-            circle[fill="fill-highlight"] {
-                fill: var(--bf-color-feedback-warning);
-            }
-        }
-    }
-
-    &.color-negative {
-        color: var(--bf-color-feedback-negative);
-
-        .fill-highlight {
-            color: var(--bf-color-bg-ground);
-
-            circle[fill="fill-highlight"] {
-                fill: var(--bf-color-feedback-negative);
-            }
-        }
-    }
     // Sizes
     &.size-large svg {
         width: 4.5rem;
@@ -87,45 +35,61 @@
         min-width: 1rem;
     }
 
-    &.reversed {
+    // Color varitions
 
-        &.color-success ,
-        &.color-neutral,
-        &.color-warning{
+    .fill-highlight {
+        color: var(--bf-color-neutral-primary);
+        circle{
+            fill: var(--bf-color-bg-action-primary);
+        }
+    }
+
+    &.color-success {
+        color: var(--bf-color-feedback-success);
+        .fill-highlight  circle {
+                fill: var(--bf-color-feedback-success);
+            }
+        }
+
+    &.color-neutral {
+        color: var(--bf-color-feedback-neutral);
+        .fill-highlight circle {
+            fill: var(--bf-color-feedback-neutral);
+        }
+    }
+
+    &.color-warning {
+        color: var(--bf-color-feedback-warning);
+        .fill-highlight circle {
+            fill: var(--bf-color-feedback-warning);
+        }
+    }
+
+    &.color-negative {
+        color: var(--bf-color-feedback-negative);
+        .fill-highlight {
+            color: var(--bf-color-bg-ground);
+            circle {
+                fill: var(--bf-color-feedback-negative);
+            }
+        }
+    }
+
+    @at-root .reversed {
+        .fill-highlight {
+            color: var(--bf-color-bg-ground);
+        }
+        .color-success ,
+        .color-neutral,
+        .color-warning{
             .fill-highlight {
                 color: var(--bf-color-bg-ground);
             }
         }
-
-        &.color-negative {
-
+        .color-negative {
             .fill-highlight {
                 color: var(--bf-color-neutral-primary);
             }
         }
     }
 }
-
-.reversed .bf-icon{
-
-    .fill-highlight {
-        color: var(--bf-color-bg-ground);
-    }
-
-    &.color-success ,
-    &.color-neutral,
-    &.color-warning{
-
-        .fill-highlight {
-            color: var(--bf-color-bg-ground);
-        }
-    }
-
-    &.color-negative {
-
-        .fill-highlight {
-            color: var(--bf-color-neutral-primary);
-        }
-    }
-}
-
