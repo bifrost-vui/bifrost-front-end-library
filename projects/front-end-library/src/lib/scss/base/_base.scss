@@ -24,16 +24,35 @@ img:not([usemap]) {
 }
 
 // SCROLLBAR
-//::-webkit-scrollbar {
-//  width: .5rem;
-//  background: $white;
-//}
-//::-webkit-scrollbar-thumb {
-//  background: $gray-400;
-//  border-radius: 20px;
-//}
-//::-webkit-scrollbar-track {
-//  background: $white;
-//  border: 1px solid $gray-300;
-//  border-radius: 20px;
-//}
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-button {
+  @include size(2px);
+  background-color: var(--bf-color-stroke-secondary);
+}
+
+// scrolling effect
+
+.bf-overflow-x{
+  overflow-x: auto;
+
+  &:before {
+    background-image: var(--bf-color-bg-linear-ground-x);
+    background-repeat: repeat-y;
+    content: "";
+    width: 5.5rem;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 0;
+    pointer-events: none;
+  }
+
+}
+.bf-color-bg-underground .bf-overflow-x{
+  &:before{
+    background-image: var(--bf-color-bg-linear-underground-x);
+  }
+}
+
