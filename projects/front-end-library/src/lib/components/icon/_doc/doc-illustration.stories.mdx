@@ -24,6 +24,11 @@ import { IconComponent }            from '../angular/icon.component';
             defaultValue: '',
             control: {type: 'select'}
         },
+        type: {
+            defaultValue: 'illustration',
+            table: { defaultValue: { summary: 'illustration' } },
+            control: {type: 'readonly'}
+        },
         size: {
             defaultValue: 'medium',
             type: { required: true },
@@ -74,7 +79,7 @@ export const Drupal = (args) => ({
             elementPath : 'components/icon/_doc/template.drupal',
             icons       : illustrationIcons,
             type        : 'illustration',
-            size        : 'medium'
+            size        : 'medium',
         }}
     >
         {Drupal.bind({})}

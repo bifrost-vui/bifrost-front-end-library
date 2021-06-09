@@ -24,6 +24,11 @@ import { IconComponent }            from '../angular/icon.component';
             defaultValue: '',
             control: {type: 'select'}
         },
+        type: {
+            defaultValue: 'interface',
+            table: { defaultValue: { summary: 'interface' } },
+            control: {type: 'readonly'}
+        },
         size: {
             defaultValue: 'small',
             type: { required: true },
@@ -59,10 +64,11 @@ import { IconComponent }            from '../angular/icon.component';
 
 ## Drupal implementation example
 
-```php
+```twig
 
 {% include '@bf-components/icon/twig/index.twig' with {
     name    : 'account-balance',
+    type    : 'interface',
     size    : 'small',
     color   : 'negative'
 } only %}
@@ -76,7 +82,6 @@ import { IconComponent }            from '../angular/icon.component';
 
 
 ```
-
 
 ## Drupal
 
