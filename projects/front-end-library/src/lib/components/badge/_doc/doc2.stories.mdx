@@ -1,0 +1,94 @@
+import { moduleMetadata } from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+
+import BadgeTwig   from '../twig/index.twig';
+import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
+import { BadgeComponent }           from '../angular/badge.component';
+
+
+<Meta 
+    title='Components/Badge 2' 
+    component={BadgeComponent}
+    decorators={[
+        moduleMetadata({ declarations: [BadgeComponent, TwigContainerComponent]}),
+    ]}
+    argTypes={{
+        hierarchy: {
+            table: { defaultValue: { summary: 'secondary' } },
+            control: { type: 'select' }
+        },
+        angle: {
+            control: { type: 'select' }
+        },
+        noUppercase: {
+            table: { defaultValue: { summary: false } },
+        },
+    }}
+/>
+
+
+# Badge
+
+<br/>
+
+
+
+## Component API
+
+<Props of={BadgeComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/badge/twig/index.twig' with {
+    label       : 'Free',
+    class       : 'm-2',
+    hierarchy   : 'primary'
+} only %}
+```
+
+
+export const Angular = (args) => ({
+    component: BadgeComponent,
+    props: args,
+});
+
+
+<Preview
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story 
+        name='Angular'
+        args={{ 
+            label : 'label',
+            class       : 'm-2',
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Preview>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    template: BadgeTwig(args),
+    props: args,
+});
+
+<Preview
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story 
+        name='Drupal'
+        args={{
+            class       : 'm-2',
+            label       : 'label'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
