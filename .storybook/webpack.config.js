@@ -2,34 +2,25 @@ const path = require('path');
 
 module.exports = ({ config }) => {
 
-  // Twig:
-  config.module.rules.push({
-    test: /\.twig$/,
-    use: [
-      {
-        loader: 'twig-loader',
-        options: {
-            twigOptions: {
-                allow_async: true,
-                allowInlineIncludes: true,
-                rethrow: true,
-                namespaces: {
-                    'atom': '/',
+    // Twig:
+    config.module.rules.push({
+        test: /\.twig$/,
+        use: [
+            {
+                loader: 'twig-loader-x',
+                options: {
+                    namespaces: {
+                        '@bf-components': path.resolve(__dirname, '../', 'projects/front-end-library/src/lib/components'),
+                        '@bf-utils'     : path.resolve(__dirname, '../', 'projects/front-end-library/src/lib/utils')
+                    }
                 }
-            }
-        }
-      },
-    ],
-  });
-
-//   config.resolve.alias = {
-//       '@atom': path.resolve(__dirname, '../', ''),
-//       '@decorators': path.resolve(__dirname, '../', 'utils/storybook/decorators'),
-//     }
+            },
+        ],
+    });
 
     config.node = {
-      fs: "empty" // avoids error messages
-  }
+        fs: "empty" // avoids error messages
+    }
   
   return config;
 };

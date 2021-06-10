@@ -15,9 +15,9 @@
     /* Remove background color
     */
 
-    body {
+    {# body {
         background: none !important;
-    }
+    } #}
 
     /**************************************************************************/
     /* Fix a padding around Docs Tab > iframe > body.sb-show-main
@@ -36,19 +36,18 @@
     */
     #root {
         width: 100%;
-        display: flex;
     }
-    #root storybook-dynamic-app-root {
+    #root > * {
         width: 100%;
     }
-    #root storybook-dynamic-app-root > * {
+    {# #root storybook-dynamic-app-root > * {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
         width: 100vw;
         height: 100%;
-    }
+    } #}
 
     /**************************************************************************/
     /* Typography page: Fix offset in unit label
@@ -62,7 +61,11 @@
     /* Docs Style
     */
 
-    .sbdocs h1 {
+    .os-host pre.prismjs {
+        color: inherit;
+    }
+
+    {# .sbdocs h1 {
         font-size: 3rem;
     }
     
@@ -136,7 +139,7 @@
         background-color: #fff7cd;
         border-color: #ffee93;
         padding: .5rem 1.5rem;
-    }
+    } #}
 
     {# .sbdocs.sbdocs code {
         font-size: 15px !important;
@@ -147,20 +150,20 @@
     /**************************************************************************/
     /* Fix iframe height in Preview block
     */
-    .sbdocs.sbdocs-preview .docs-story,
+    {# .sbdocs.sbdocs-preview .docs-story,
     .sbdocs.sbdocs-preview .docs-story > *:first-child,
     .sbdocs.sbdocs-preview .docs-story > *:first-child > * ,
     .sbdocs.sbdocs-preview .docs-story > *:first-child > * > *,
     .sbdocs.sbdocs-preview .docs-story > *:first-child > * > * > *,
     .sbdocs.sbdocs-preview .docs-story > *:first-child > * > * > * > * {
         height: 100%;
-    }
+    } #}
 
     /**************************************************************************/
     /* Fix padding in Preview block
     */
-    .sbdocs.sbdocs-preview .docs-story > *:first-child {
+    {# .sbdocs.sbdocs-preview .docs-story > *:first-child {
         margin-top: -30px;
-    }
+    } #}
 
 </style>

@@ -15,15 +15,19 @@ Twig.extendFilter('format_price', function(price, options) {
     }
 });
 
+Twig.extendFilter('price_one_line', function(value) {
+    return value;
+});
+
 Twig.twig({
-    debug: true,
-    allow_async: true, // Allow asynchronous compiling
+    debug: false,
+    allow_async: false, // Allow asynchronous compiling
     strict_variables: false,
     allowInlineIncludes: true,
     rethrow: true,
-    namespaces: {
-        'atom': '/',
-    }
+    // namespaces: {
+    //     'bf-components': '../',
+    // }
 });
 
 twigDrupal(Twig);
