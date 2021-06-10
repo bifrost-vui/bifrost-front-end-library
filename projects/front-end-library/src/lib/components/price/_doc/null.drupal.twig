@@ -1,0 +1,37 @@
+{% set upfront          = upfront|json_parse %}
+{% set hasAsterisk      = hasAsterisk|json_parse %}
+{% set promotion        = promotion|json_parse %}
+{% set dollar           = dollar|json_parse %}
+{% set cent             = cent|json_parse %}
+{% set reversed         = reversed|json_parse %}
+{% set fullWidth        = fullWidth|json_parse %}
+
+<div class='d-flex flex-column flex-sm-row justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
+    {% for index in [1,2] %}
+
+        <div class='flex-grow-1 d-flex flex-column align-items-center justify-content-center minh-100 pb-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
+            {% include '@bf-components/price/twig/index.twig' with {
+                upperTitle      : NULL,
+                upfront         : {
+                    label           : NULL,
+                    dollar          : NULL
+                },
+                dollar          : NULL,
+                dollarClass     : NULL,
+                cent            : NULL,
+                hasAsterisk     : NULL,
+                details         : NULL,
+                promotion       : {
+                    priceStriked  : NULL,
+                    priceSaved    : NULL,
+                    savedLabel    : NULL,
+                    superscript   : NULL,
+                    direction     : NULL,
+                },
+                message         : NULL,
+                class           : NULL
+            } only %}
+        </div>
+
+    {% endfor %}
+</div>
