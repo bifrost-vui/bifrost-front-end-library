@@ -27,16 +27,6 @@ var Twig = require("twig"),
         return value;
     });
 
-    Twig.extendFilter('format_price', function(price, options) {
-        
-        const language = (options && options[0]) || 'en';
-        if (language === 'fr') {
-            return price + ' $';
-        } else {
-            return '$' + price;
-        }
-    });
-
     Twig.extendFilter('render', function(value) {
         return value;
     });
@@ -48,7 +38,6 @@ var Twig = require("twig"),
     Twig.extendFilter('t', function(value) {
         return value;
     });
-
 
     // -----------------------------------------------------------------
     // Custom filters
@@ -80,7 +69,7 @@ var Twig = require("twig"),
     app.set('views', path.join(__dirname, '../projects/front-end-library/src/lib'));
     app.set('view engine', 'twig');
 
-    app.render('main.twig', req.query, function(err, html){ 
+    app.render('main.twig', req.query, function(err, html){
         console.log((err) ? err : html);
         res.status(200).send(html);
     });
