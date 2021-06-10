@@ -6,16 +6,15 @@
     '>
     <div class='bf-badge__container position-relative d-flex align-items-center'>
         <p class='bf-badge__label small font-weight-bold {% if noUppercase is not defined or noUppercase is not same as (true) %}text-uppercase{% endif %} m-0'>
-            {# {{ label|format_price }} #}
-            {{ label|default('yolo') }}
+            {{ label|format_price('fr') }}
+            {{ label|placeholder }}
         </p>
     </div>
 </div>
 
-{% include '@components/button/twig/index.twig' with {
-    hierarchy: 'primary'
-} %}
+{# {% include '@atom/yolo.twig' %} #}
 
 {% include '../../button/twig/index.twig' with {
-    hierarchy: 'primary'
-} %}
+    hierarchy: 'primary',
+    label: 'hello button'
+} only %}

@@ -1,12 +1,41 @@
+import Twig from 'twig';
+const path = require('path');
+import twigDrupal from 'twig-drupal-filters';
 import { addParameters, addDecorator } from '@storybook/angular';
 import { prepareForInline } from '@storybook/addon-docs/angular';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
+
+Twig.extendFilter('format_price', function(price, options) {
+    
+    const language = (options && options[0]) || 'en';
+    if (language === 'fr') {
+        return price + ' $';
+    } else {
+        return '$' + price;
+    }
+});
+
+Twig.twig({
+    debug: true,
+    allow_async: true, // Allow asynchronous compiling
+    strict_variables: false,
+    allowInlineIncludes: true,
+    rethrow: true,
+    namespaces: {
+        'atom': '/',
+    }
+});
+
+twigDrupal(Twig);
+
 
 // @ts-ignore
 // eslint-disable-next-line import/extensions, import/no-unresolved
 import docJson from '../documentation.json';
 
 setCompodocJson(docJson);
+
+
 
 addParameters({
     // Docs
