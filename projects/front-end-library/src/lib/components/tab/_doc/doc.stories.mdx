@@ -1,16 +1,14 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { TabComponent }                         from '../angular/tab.component';
+
+import TabTwigTemplate                          from './template.drupal.twig';
 
 
 <Meta 
     title='Components/Tab' 
     component={TabComponent}
-    decorators={[
-        moduleMetadata({ declarations: [TabComponent, TwigContainerComponent]}),
-    ]}
     argTypes={{}}
 />
 
@@ -31,18 +29,16 @@ import { TabComponent }                         from '../angular/tab.component';
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TabTwigTemplate(args),
     props: args,
 });
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '300px' }}
 >
     <Story 
         name='Drupal'
         args={{ 
-            elementPath     : 'components/tab/_doc/template.drupal',
             navItems        : [
                 { label:'Channel selection',                href:'/channelSelection', class:'active' },
                 { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
@@ -53,4 +49,4 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

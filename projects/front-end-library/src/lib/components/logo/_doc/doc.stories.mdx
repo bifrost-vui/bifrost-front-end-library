@@ -2,16 +2,15 @@ import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 
 import { allLogoCategories }                from './data';
-import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
 import { LogoComponent }                    from '../angular/logo.component';
+
+import LogoTemplate                         from './template.drupal.twig';
+import LogoTemplateAll                      from './template-all.drupal.twig';
 
 
 <Meta 
     title='Components/Logo' 
     component={LogoComponent}
-    decorators={[
-        moduleMetadata({ declarations: [LogoComponent, TwigContainerComponent]}),
-    ]}
     argTypes={{
         name: {
             control: { type: 'select' },
@@ -65,41 +64,33 @@ import { LogoComponent }                    from '../angular/logo.component';
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: LogoTemplate(args),
     props: args,
 });
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '300px' }}
 >
     <Story 
         name='Drupal'
-        args={{ 
-            elementPath : 'components/logo/_doc/template.drupal',
-        }}
-        height='160px'
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
 
 ## Drupal All Logos
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '800px' }}
 >
     <Story 
         name='Drupal - All logos'
         args={{ 
-            elementPath : 'components/logo/_doc/template-all.drupal',
             allLogoCategories
         }}
-        height='160px'
     >
         {Drupal.bind()}
     </Story>
-</Preview>
+</Canvas>

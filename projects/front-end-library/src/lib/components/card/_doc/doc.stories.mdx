@@ -2,16 +2,15 @@ import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
 import { contentLists, contentListsNoTitle }    from './data';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { CardComponent }                        from '../angular/card.component';
+
+import CardTwigTemplate                         from './template.drupal.twig';
+import CardTwig                                 from '../twig/index.twig';
 
 
 <Meta
     title='Components/Card'
     component={CardComponent}
-    decorators={[
-        moduleMetadata({ declarations: [CardComponent, TwigContainerComponent]})
-    ]}
     argTypes={{
         cardVariant: {
             table: { disable: true }
@@ -199,16 +198,12 @@ export const commonProps = {
 };
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
-    props: {
-        elementPath : 'components/card/_doc/template.drupal',
-        ...args,
-    }
+    template: CardTwigTemplate(args),
+    props: args,
 });
 
 <Preview
     withSource='none'
-    style={{ height: '900px' }}
 >
     <Story
         name='Drupal - Plan'

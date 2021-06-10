@@ -2,16 +2,17 @@ import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
 import { interfaceIcons }                       from '../../icon/_doc/data.ts';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { ButtonComponent }                      from '../angular/button.component';
+
+import ButtonTwigTemplate                       from './template.drupal.twig';
+import ButtonTwigTemplateSpecials               from './template-specials.drupal.twig';
+import ButtonTwig                               from '../twig/index.twig';
+
 
 
 <Meta 
     title='Components/Button' 
     component={ButtonComponent}
-    decorators={[
-        moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent]})
-    ]}
     argTypes={{
         hierarchy: {
             defaultValue: '',
@@ -68,18 +69,16 @@ import { ButtonComponent }                      from '../angular/button.componen
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: ButtonTwigTemplate(args),
     props: args,
 });
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '700px' }}
 >
     <Story 
         name='Drupal'
         args={{ 
-            elementPath     : 'components/button/_doc/template.drupal',
             class           : 'ml-4 mb-3',
             dataDismiss     : 'dataDismiss',
             dataToggle      : 'dataToggle',
@@ -92,20 +91,23 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-<Preview
+export const DrupalSpecials = (args) => ({
+    template: ButtonTwigTemplateSpecials(args),
+    props: args,
+});
+
+<Canvas
     withSource='none'
-    style={{ height: '700px' }}
 >
     <Story 
         name='Drupal - Specials'
-        args={{ 
-            elementPath : 'components/button/_doc/specials.drupal',
+        args={{
             class       : 'ml-4 mb-3',
         }}
     >
-        {Drupal.bind({})}
+        {DrupalSpecials.bind({})}
     </Story>
-</Preview>
+</Canvas>

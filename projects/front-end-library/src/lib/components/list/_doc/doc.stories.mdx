@@ -1,15 +1,14 @@
 import { moduleMetadata }               from '@storybook/angular';
 import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { ListComponent }     from '../angular/list.component';
+import { ListComponent }                from '../angular/list.component';
+
+import ListTemplate                     from './template.drupal.twig';
+
 
 <Meta 
     title='Components/List' 
     component={ListComponent}
-    decorators={[
-        moduleMetadata({ declarations: [ListComponent, TwigContainerComponent]}),
-    ]}
     argTypes={{}}
 />
 
@@ -52,18 +51,16 @@ import { ListComponent }     from '../angular/list.component';
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    template: ListTemplate(args),
+    props: args,
 });
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '300px' }}
 >
     <Story 
         name='Drupal'
         args={{ 
-            elementPath : 'components/list/_doc/template.drupal',
             title       : 'Title',
             titleTag    : 'h2',
             content     : [
@@ -84,4 +81,4 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

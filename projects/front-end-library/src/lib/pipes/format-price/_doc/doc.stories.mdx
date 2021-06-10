@@ -2,8 +2,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 
 import { FormatPricePipe }          from '../format-price.pipe';
-import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
-
+import FormatPriceTwigTemplate      from './template.drupal.twig';
 
 
 <Meta 
@@ -39,22 +38,20 @@ import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: FormatPriceTwigTemplate(args),
     props: args,
 });
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '500px' }}
 >
     <Story 
         name='Drupal'
-        args={{ 
-            elementPath  : 'pipes/format-price/_doc/template.drupal',
+        args={{
             price        : '44.00',
             language     : 'en',
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

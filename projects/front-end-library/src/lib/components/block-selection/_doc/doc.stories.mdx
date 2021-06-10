@@ -2,16 +2,15 @@ import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
 import { contentListsData }                     from './data';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { BlockSelectionComponent }                       from '../angular/block-selection.component';
+import { BlockSelectionComponent }              from '../angular/block-selection.component';
+
+import BlockSelectionTwigTemplate               from './template.drupal.twig';
+import BlockSelectionTwig                       from '../twig/index.twig';
 
 
 <Meta
     title='Components/Block Selection'
     component={BlockSelectionComponent}
-    decorators={[
-        moduleMetadata({ declarations: [BlockSelectionComponent, TwigContainerComponent]}),
-    ]}
     argTypes={{}}
 />
 
@@ -77,12 +76,11 @@ import { BlockSelectionComponent }                       from '../angular/block-
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
+    template    : BlockSelectionTwigTemplate(args),
     props       : args,
 });
 
 export const commonProps = {
-    elementPath                     : 'components/block-selection/_doc/template.drupal',
     title                           : 'My selection',
     titleTag                        : 'p',
     isCollapsableOnMobile           : true,
@@ -102,9 +100,8 @@ export const commonProps = {
     class               : '',
 }
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '600px' }}
 >
     <Story
         name='Drupal'
@@ -114,4 +111,4 @@ export const commonProps = {
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

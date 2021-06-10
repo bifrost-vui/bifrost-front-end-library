@@ -1,17 +1,15 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
 import { topBar_items, topBar_secondaryItems, rigthIconLinks } from './data';
-import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent }          from '../angular/header.component';
+
+import NavigationHeaderTemplate     from './template.drupal.twig';
 
 
 <Meta 
     title='Components/Navigation Header' 
     component={HeaderComponent}
-    decorators={[
-        moduleMetadata({ declarations: [HeaderComponent, TwigContainerComponent]})
-    ]}
     argTypes={{
         langcode: {
             defaultValue: 'FR',
@@ -123,23 +121,21 @@ import { HeaderComponent }          from '../angular/header.component';
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: NavigationHeaderTemplate(args),
     props: args,
 });
 
-<Preview
+<Canvas
     withSource='none'
 >
     <Story 
         name='Drupal'
         args={{ 
-            elementPath : 'components/navigation-header/_doc/template.drupal',
             topBar_items,
             topBar_secondaryItems,
             rigthIconLinks,
         }}
-        height='500px'
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

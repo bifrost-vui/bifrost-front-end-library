@@ -1,8 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 
-import BadgeTwig   from '../twig/index.twig';
-// import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
+import BadgeTwig                    from '../twig/test.twig';
 import { BadgeComponent }           from '../angular/badge.component.ts';
 
 
@@ -38,39 +37,6 @@ import { BadgeComponent }           from '../angular/badge.component.ts';
 <Props of={BadgeComponent} />
 
 
-
-## Drupal implementation example
-
-```jsx
-{% include '@bf-components/badge/twig/index.twig' with {
-    label       : 'Free',
-    class       : 'm-2',
-    hierarchy   : 'primary'
-} only %}
-```
-
-
-export const Angular = (args) => ({
-    component: BadgeComponent,
-    props: args,
-});
-
-
-<Preview
-    withSource='none'
-    style={{ height: '600px' }}
->
-    <Story 
-        name='Angular'
-        args={{ 
-            label : 'label',
-            class       : 'm-2',
-        }}
-    >
-        {Angular.bind({})}
-    </Story>
-</Preview>
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -78,17 +44,49 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '600px' }}
->
+
+<Canvas withSource='open'>
     <Story 
         name='Drupal'
         args={{
             class       : 'm-2',
-            label       : 'label'
+            label       : 'label',
+            language    : 'fr'
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: (`
+{% include '@bf-components/badge/twig/index.twig' with {
+    label       : 'Free',
+    class       : 'm-2',
+    hierarchy   : 'primary'
+} only %}
+                    `)
+                }
+            }
         }}
     >
         {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Angular
+
+export const Angular = (args) => ({
+    component: BadgeComponent,
+    props: args,
+});
+
+<Preview>
+    <Story 
+        name='Angular'
+        args={{ 
+            label : 'label',
+            class : 'm-2',
+        }}
+    >
+        {Angular.bind({})}
     </Story>
 </Preview>

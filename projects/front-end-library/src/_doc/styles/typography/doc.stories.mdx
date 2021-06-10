@@ -1,16 +1,14 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 
-import { TwigContainerComponent }   from '../../../utils/twig-container/twig-container.component';
+import HeadingsTwigTemplate             from './headings.drupal.twig';
+import ParagraphTwigTemplate            from './paragraphs.drupal.twig';
+import InterfaceDisplayTwigTemplate     from './interface-display.drupal.twig';
 
 
 <Meta 
     title='Styles/Typography'
-    decorators={[
-        moduleMetadata({ declarations: [TwigContainerComponent]}),
-    ]}
-    argTypes={{
-    }}
+    docsOnly={true}
 />
 
 # Typography
@@ -21,56 +19,42 @@ import { TwigContainerComponent }   from '../../../utils/twig-container/twig-con
 
 ## Drupal
 
-export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+export const DrupalHeadings = (args) => ({
+    template: HeadingsTwigTemplate(args),
     props: args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
+<Story 
+    name='Drupal - Headings'
 >
-    <Story 
-        name='Drupal - Headings'
-        args={{ 
-            elementPath : '../_doc/styles/typography/headings.drupal',
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Preview>
-
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
-        name='Drupal - Paragraphs'
-        args={{ 
-            elementPath : '../_doc/styles/typography/paragraphs.drupal',
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Preview>
-
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
-        name='Drupal - Interface & Display'
-        args={{ 
-            elementPath : '../_doc/styles/typography/interface-display.drupal',
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Preview>
-
+    {DrupalHeadings.bind({})}
+</Story>
 
 ## Source Code
 
 ```jsx
     <h1>Titlte 1</h1>
 ```
+
+export const DrupalParagraph = (args) => ({
+    template: ParagraphTwigTemplate(args),
+    props: args,
+});
+
+<Story 
+    name='Drupal - Paragraph'
+>
+    {DrupalParagraph.bind({})}
+</Story>
+
+
+export const DrupalInterfaceDisplay = (args) => ({
+    template: InterfaceDisplayTwigTemplate(args),
+    props: args,
+});
+
+<Story 
+    name='Drupal - Interface and Display'
+>
+    {DrupalInterfaceDisplay.bind({})}
+</Story>

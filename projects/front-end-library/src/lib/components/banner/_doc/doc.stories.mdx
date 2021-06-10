@@ -2,16 +2,14 @@ import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
 import { illustrationIcons }                    from '../../icon/_doc/data';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import BadgeTwigTemplate                        from './template.drupal.twig';
+import BadgeTwig                                from '../twig/index.twig';
 import { BannerComponent }                      from '../angular/banner.component';
 
 
 <Meta 
     title='Components/Banner' 
     component={BannerComponent}
-    decorators={[
-        moduleMetadata({ declarations: [BannerComponent, TwigContainerComponent]})
-    ]}
     argTypes={{
         iconName: {
             defaultValue: 'mobile-multiline',
@@ -66,19 +64,15 @@ import { BannerComponent }                      from '../angular/banner.componen
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: BadgeTwigTemplate(args),
     props: args,
 });
 
 
-<Preview
-    withSource='none'
-    style={{ height: '500px' }}
->
+<Canvas>
     <Story 
         name='Drupal'
         args={{
-            elementPath : 'components/banner/_doc/template.drupal',
             href        : 'https://videotron.com',
             title       : 'Galaxy Buds Live',
             paragraph   : 'Free with any purchase of this phone, valuted at $239.38.',
@@ -92,4 +86,4 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

@@ -4,12 +4,12 @@ import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
 import { CarouselComponent }            from '../angular/carousel.component';
 
+import CarouselTwigTemplate             from './template.drupal.twig';
+
+
 <Meta 
     title='Components/Carousel' 
     component={CarouselComponent}
-    decorators={[
-        moduleMetadata({ declarations: [CarouselComponent, TwigContainerComponent]}),
-    ]}
     argTypes={{}}
 />
 
@@ -72,20 +72,16 @@ import { CarouselComponent }            from '../angular/carousel.component';
 > Please use <a class='bf-link' target='_blank' href='https://kenwheeler.github.io/slick/'>Slick carousel</a>.
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    template: CarouselTwigTemplate(args),
+    props: args,
 });
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '1000px' }}
 >
     <Story 
         name='Drupal'
-        args={{ 
-            elementPath : 'components/carousel/_doc/template.drupal',
-        }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

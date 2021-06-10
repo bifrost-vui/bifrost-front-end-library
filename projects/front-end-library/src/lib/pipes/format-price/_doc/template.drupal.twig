@@ -1,20 +1,26 @@
-<div class='container-fluid my-4'>
+<div class='container my-4'>
 
-    <pre>&#123;&#123; price|format_price(language) &#125;&#125;</pre>
+    {# TODO: wrapp codeblock with brackets #}
+    {# {% set openedBracket = "&#123;" %}
+    {% set closedBracket = "&#125;" %} #}
+    {# {{ "{{" | escape }}  #}
+
+    <code>price|format_price(language)</code>
     <p>{{ price|format_price(language) }}</p>
-
+    
     <hr />
 
-    <pre>&#123;&#123; price|format_price('en') &#125;&#125;</pre>
-    <p>{{ price|format_price('en') }}</p>
-
-    <hr />
-
-    <pre>&#123;&#123; price|format_price('fr') &#125;&#125;</pre>
+    <code>price|format_price('fr')</code>
     <p>{{ price|format_price('fr') }}</p>
 
     <hr />
 
-    <pre>&#123;&#123; price|format_price &#125;&#125;</pre>
+    <code>price|format_price('en')</code>
+    <p>{{ price|format_price('en') }}</p>
+
+    <hr />
+
+    <code>price|format_price</code>
     <p>{{ price|format_price }}</p>
+
 </div>
