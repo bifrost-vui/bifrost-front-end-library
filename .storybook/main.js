@@ -12,6 +12,7 @@ module.exports = {
         '@storybook/addon-backgrounds',
         '@storybook/addon-links',
         'storybook-addon-designs',
+        'storybook-contrast',
     ],
     // webpackFinal: (config) => {
     //     return { ...config, module: { ...config.module, rules: custom.module.rules } };
