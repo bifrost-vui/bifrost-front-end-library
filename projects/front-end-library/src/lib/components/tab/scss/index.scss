@@ -8,19 +8,17 @@
     position: relative;
     width: 100%;
     padding: 0 2.5rem;
+    @include media-breakpoint-down(md) {
+        padding-right: 0;
+    }
 
     &__slider {
-        display: flex;
-        white-space: nowrap;
-        width: max-content;
-        border-bottom: 1px solid var(--bf-color-stroke-secondary);
-        @extend .p-0;
         @extend .bf-overflow-x;
-
-        > li {
-            flex: 1 0;
-            &:last-child .nav-link {margin-right: 0 !important;}
-        }
+        display: flex;
+        width: 100%;
+        white-space: nowrap;
+        padding: 0;
+        border-bottom: 1px solid var(--bf-color-stroke-secondary);
     }
 
     .nav-link {
@@ -38,6 +36,7 @@
             color: inherit !important;
 
             &:before {
+                position: absolute;
                 background-color: var(--bf-color-bg-action-primary);
             }
         }
