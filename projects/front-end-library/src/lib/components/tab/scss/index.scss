@@ -7,15 +7,16 @@
 .bf-tab {
     position: relative;
     width: 100%;
-    padding: 0 2.5rem;
-    @include media-breakpoint-down(md) {
-        padding-right: 0;
-    }
+    padding-left: 2.5rem;
+
 
     &__slider {
         @extend .bf-overflow-x;
         display: flex;
-        width: 100%;
+        width: calc(100% - 2.5rem);
+        @include media-breakpoint-down(md) {
+            width: 100%;
+        }
         white-space: nowrap;
         padding: 0;
         border-bottom: 1px solid var(--bf-color-stroke-secondary);
