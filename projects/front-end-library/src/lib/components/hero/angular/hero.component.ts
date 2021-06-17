@@ -13,7 +13,8 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 export class HeroComponent implements OnInit {
     constructor() {}
 
-    @Input() breadcrumb         : object;
+    @Input() breadcrumb         : 'TwigBlock';
+    /** Twig Block or Object with this [component API](/?path=/docs/components-badge--drupal). */
     @Input() badge              : any;
     @Input() upperTitle         : string;
     @Input() title              : string;
@@ -21,15 +22,12 @@ export class HeroComponent implements OnInit {
     @Input() description        : string;
     @Input() button             : object;
     @Input() image              : object;
-    /**
-        underground (default) | ground | highlight
-    */
-    @Input() background         : string;
+    @Input() background         : 'ground' | 'underground' | 'highlight';
 
     /**
         Insert the component BlockSelection. Explore its [Component API](/?path=/docs/components-block--drupal-selection).
     */
-    @Input() blockSelection     : object;
+    @Input() blockSelection     : object | 'TwigBlock';
     
     /** Class override */
     @Input() class              : string;

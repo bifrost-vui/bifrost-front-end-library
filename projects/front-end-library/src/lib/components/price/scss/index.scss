@@ -5,6 +5,7 @@
 * ***************************************************************************** */
 
 .bf-price {
+    width: fit-content;
 
     &__dollar {
         @extend .bf-text-display-small;
@@ -20,7 +21,7 @@
         @extend .mt-minus-2;
     }
 
-    &--md {
+    &--medium {
         .bf-price__dollar {
             @extend .bf-text-display-medium;
         }
@@ -36,7 +37,7 @@
         }
     }
 
-    &--lg { 
+    &--large { 
         .bf-price__dollar {
             @extend .bf-text-display-large;
         }
@@ -55,9 +56,23 @@
         font-family: $font-family-secondary;
     }
 
+    &__upfront .bf-text-interface-large {
+        line-height: 0;
+    }
+
     sub,
     sup {
         top: inherit;
         vertical-align: inherit;
+    }
+
+    sup.bf-price__asterisk {
+        top: -18%;
+    }
+
+    sup.bf-price__superscript {
+        font-size: .5rem;
+        top: -.25rem;
+        padding-left: 2px;
     }
 }
