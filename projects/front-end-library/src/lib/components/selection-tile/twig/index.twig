@@ -1,12 +1,26 @@
-{#
-    Edit this component and don't forget to delete this comment.
+{% if inputType == "radio" %}
+  {% set radioVariantClass = "" %}
+{% endif %}
 
-    In your component, the file /common/style.scss is aimed to share styles across Twig and Angular.
-    Try to use it as much as possible, in order to avoid styles for specific framework.
+{# ------------------------------------------------------------------------------------------------------------------ #}
 
-    Enjoy :)
-#}
+<div class=" {{ radioVariantClass|default('') }} {{ class|default('') }} ">
+  <input type="{{ inputType|default('checkbox') }}"
+         id="{{ inputId|default('inputCardBtn') }}"
+         name="{{ inputName|default('') }}"
+         value="{{ inputValue|default('') }}"
+         class=" {{ inputClass|default('') }}"
+         {% if isDisabled is defined and isDisabled is same as (true) %}disabled="disabled"{% endif %}
+    {% if isSelected is defined and isSelected is same as (true) %}checked="checked"{% endif %}
+    {{ extraAttribute|default(NULL) }}>
 
-<div class='bf-selection-tile {{ class|default('') }}'>
-    {{ label|default('Label') }}
+  <label for="{{ inputId|default('inputCardBtn') }}"
+         class=" {{ labelClass|default('') }}">
+    {% block label_content %}
+      <!-- The include below is an example, it is not mendatory when using this file as en embed Twig block -->
+      <div class="">
+        <img class="px-1" src="/images/logo/channels/tva-sports.svg" width="68" height="40" alt="">
+      </div>
+    {% endblock %}
+  </label>
 </div>
