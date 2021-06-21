@@ -1,13 +1,14 @@
 {% set customClass  = customClass|default('justify-content-center') %}
 {% set isVisible = (isReadOnly is defined and isReadOnly is same as (true)) ? ' d-none' : '' %}
 {% set attrReadOnly = (isReadOnly is defined and isReadOnly is same as (true)) ? ' readonly' : '' %}
+{% set attrDisabled = (isDisabled is defined and isDisabled is same as (true)) ? ' disabled' : ''  %}
 
-{% set min          = min|default('0') %}
-{% set max          = max|default('3') %}
-{% set inputValue   = inputValue|default(min) %}
+{% set min          = min|default(null) %}
+{% set max          = max|default(null) %}
+{% set inputValue   = inputValue|default(null) %}
 {% set inputId      = inputId | default('') %}
 
-<div class='bf-input-increment js-bf-input-increment d-flex flex-row align-items-center text-nowrap {{ customClass }}' >
+<div class='bf-input-increment js-bf-input-increment d-flex flex-row align-items-center text-nowrap {{ customClass }} {{ attrDisabled }}' >
 
     {% include '@bf-components/button/twig/index.twig' with {
         label           : '',
@@ -18,17 +19,19 @@
         iconPosition    : '',
         class           : isVisible is empty ? ' js-bf-input-increment__minus bf-button bf-button--secondary rounded-circle px-2 ' : 'd-none',
         ariaControls    : inputId,
+        role            : 'button'
     } only %}
 
     <div class="bf-input">
         <input id="{{ inputId }}"
                type="number"
-               pattern="[0-9]{2}"
+               pattern="^(?=.*[1-9].*$)\d*${2}"
                class="text-center bf-text-display-small bf-input-increment__input js-bf-input-increment__input border-0  m-0  py-0 px-2"
                min="{{ min }}"
                max="{{ max }}"
                value="{{ inputValue }}"
-                {{ attrReadOnly }}
+               {{ attrReadOnly }}
+               {{ attrDisabled }}
         >
     </div>
 
@@ -39,8 +42,9 @@
         isLoading       : false,
         iconName        : "plus",
         iconPosition    : '',
-        class           :  isVisible is empty ? ' js-bf-input-increment__plus bf-button bf-button--secondary rounded-circle px-2' : 'd-none',
+        class           :  isVisible is empty ? ' js-bf-input-increment__plus bf-button bf-button--secondary rounded-circle px-2 ' : 'd-none',
         ariaControls    : inputId,
-    } only %}
+        role            : 'button'
+        } only %}
 
 </div>

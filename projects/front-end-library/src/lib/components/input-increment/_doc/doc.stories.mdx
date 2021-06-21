@@ -20,16 +20,20 @@ import { InputIncrementComponent }     from '../angular/input-increment.componen
     }}
     argTypes={{
         min: {
-            defaultValue: 0,
+            defaultValue: null,
         },
         max: {
-            defaultValue: 6,
+            defaultValue: null,
         },
-        customClass:{
-            defaultValue:'justify-content-center',
+        inputValue: {
+            defaultValue: null,
+            type: { required: true },
         },
         inputId: {
             type: { required: true },
+        },
+        customClass:{
+            defaultValue:'justify-content-center',
         },
     }}
 />
@@ -57,9 +61,11 @@ export const Drupal = (args) => ({
             elementPath     : 'components/input-increment/_doc/template.drupal',
             customClass     : '',
             isReadOnly      : false,
+            isDisabled      : false,
             inputId         : '',
-            min             : '0',
-            max             : '10',
+            inputValue      : null,
+            min             : null,
+            max             : null,
         }}
     >
         {Drupal.bind({})}
@@ -72,12 +78,13 @@ export const Drupal = (args) => ({
 
 ```php
 {% include '@bf-components/input-increment/twig/index.twig' with {
-   button  : {
+   {
       customClas      : '',
       isReadOnly      : false,
       inputId : 'my-unique-input-id',
-      min  : 0,
-      max  : 10,
+      inputValue      : '0',
+      min  : '0',
+      max  : '',
    }
 } only %}
 ```

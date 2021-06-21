@@ -15,13 +15,7 @@ $(function () {
           $maxValue = $quantityInput.attr('max'),
           $minValue = $quantityInput.attr('min');
 
-    let currentValue = $quantityInput.val();
-
-    if( currentValue < $minValue  ){
-      $quantityInput.val($minValue);
-      currentValue = $minValue;
-
-    }
+    let currentValue = $quantityInput.val() ;
 
     const increment = function(){
       currentValue ++
@@ -34,6 +28,13 @@ $(function () {
       checkLimitValues(currentValue)
       $quantityInput.val(currentValue)
     }
+
+  if ($this.hasClass('disabled')){
+    $plusButton.prop('disabled', true)
+    $plusButton.addClass('disabled')
+    $minusButton.prop('disabled', true)
+    $minusButton.addClass('disabled')
+  }
 
     const checkLimitValues = function(quantity){
 
@@ -60,13 +61,8 @@ $(function () {
     $minusButton.click(function(){
       decrement()
     })
+
     $quantityInput.keyup(function(){
-      if( $minValue > $quantityInput.val() ){
-        $quantityInput.val($minValue)
-      }
-      if ( $maxValue < $quantityInput.val() ){
-        $quantityInput.val($maxValue)
-      }
       currentValue = $quantityInput.val()
       checkLimitValues(currentValue)
 
@@ -74,17 +70,3 @@ $(function () {
   })
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-

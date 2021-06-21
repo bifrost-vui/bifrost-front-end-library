@@ -51,7 +51,7 @@
         {% endif %}
 
         {% if title is defined and title is not empty %}
-            <{{ titleTag|default('h1') }} class='h2 mt-0 mb-1'>
+            <{{ titleTag|default('h1') }} class='h3 mt-0 mb-1'>
                 {{ title }}
             </{{ titleTag|default('h1') }}>
         {% endif %}
@@ -178,12 +178,9 @@
             </div>
         {% endif %}
 
-        {% if increments  is defined  %}
+        {% if inputIncrement  is defined  %}
             <div class='bf-card__buttons'>
-                {% include '@bf-components/input-increment/twig/index.twig' with {
-                    min         : 0,
-                    max         : 6,
-                } only %}
+                {% include '@bf-components/input-increment/twig/index.twig' with  inputIncrement only %}
             </div>
         {% endif %}
 

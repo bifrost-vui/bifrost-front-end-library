@@ -14,10 +14,15 @@ export class InputIncrementComponent implements OnInit {
     constructor() {}
 
     @Input() customClass: string ;
+
     @Input() isReadOnly : boolean;
+    @Input() isDisabled : boolean;
+
     @Input() inputId    : string ;
+    @Input() inputValue : number ;
     @Input() min        : number ;
     @Input() max        : number ;
+
 
 
     ngOnInit() {

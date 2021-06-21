@@ -37,16 +37,49 @@
             href        : 'www.videotron.com',
         }
     ],
+} %},
+{% set card2 = {
+    badgeColor      : 'dark',
+    image           : {
+        src             : '/images/_docs/abstract-background.png',
+        alt             : 'iPhone 12 Mini',
+        badgeIconName   : 'security'
+    },
+    title           : 'iPhone 12 Mini',
+    detailsColors   : [
+        { value :'4B4A46', name : 'Lorem' },
+        { value :'2C4651', name : 'Ipsum' },
+        { value :'D4BBA5', name : 'Dolor' },
+        { value :'C0C0C0', name : 'Amet' },
+    ],
+    detailsStorage : ['128 Go', '256 Go'],
+    price           : {
+        upperTitle      : 'From',
+        dollar          : '86',
+        cent            : '99',
+        details         : '/month',
+        boxAlignement   : 'left',
+        dashed          : '$150.00',
+        saved           : '$30.00',
+        savedLabel      : 'You save:',
+    },
+    note                : 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
+    inputIncrement      : [
+        {
+            min         : 0,
+            max         : 10,
+            inputValue  : 0,
+        }
+    ]
 } %}
 
 
 <div class='container py-5'>
     <div class='bf-carousel js-bf-carousel-demo {{ class|default('') }}'>
         {% include '@bf-components/card/twig/phone.twig' with card only %}
-        {% include '@bf-components/card/twig/increment.twig' with card only %}
+        {% include '@bf-components/card/twig/phone.twig' with card2 only %}
         {% include '@bf-components/card/twig/phone.twig' with card only %}
-        {% include '@bf-components/card/twig/phone.twig' with card only %}
-        {% include '@bf-components/card/twig/phone.twig' with card only %}
+        {% include '@bf-components/card/twig/phone.twig' with card2 only %}
         {% include '@bf-components/card/twig/phone.twig' with card only %}
         {% include '@bf-components/card/twig/phone.twig' with card only %}
         {% include '@bf-components/card/twig/phone.twig' with card only %}
