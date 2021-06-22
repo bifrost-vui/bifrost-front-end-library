@@ -151,7 +151,7 @@
 
     </div>
 
-    <footer class='bf-card__footer pt-3 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>
+    <footer class='bf-card__footer pt-0 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>
 
         {% if price is defined %}
             {% set price = price|merge({
@@ -184,16 +184,16 @@
             </div>
         {% endif %}
 
-        {% if message is defined and message is not empty %}
+        {% if message is defined and message or messageLink is defined and messageLink %}
             <div class='bf-card__message d-flex'>
                 {% include '@bf-components/icon/twig/index.twig' with {
                     name    : 'information-circle-filled-small24',
                     class   : 'mr-2'
                 } only %}
                 <p class='mb-0'>
-                    {{ message|default('') }}
+                    {{ message }}
                     {% if messageLink is defined and messageLink is not empty %}
-                        <a href='{{ messageLink.href }}' class='bf-link {{ messageLink.class|default('') }}'>{{ messageLink.label }}</a>
+                        <a href='{{ messageLink.href|default('#') }}' class='bf-link {{ messageLink.class|default('') }}'>{{ messageLink.label|default('') }}</a>
                     {% endif %}
                 </p>
             </div>
