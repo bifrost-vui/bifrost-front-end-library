@@ -3,12 +3,7 @@
 {% set attrReadOnly = (isReadOnly is defined and isReadOnly is same as (true)) ? ' readonly' : '' %}
 {% set attrDisabled = (isDisabled is defined and isDisabled is same as (true)) ? ' disabled' : ''  %}
 
-{% set min          = min|default(null) %}
-{% set max          = max|default(null) %}
-{% set inputValue   = inputValue|default(null) %}
-{% set inputId      = inputId | default('') %}
-
-<div class='bf-input-increment js-bf-input-increment d-flex flex-row align-items-center text-nowrap {{ customClass }} {{ attrDisabled }}' >
+<div class='bf-input-increment js-bf-input-increment d-flex flex-row align-items-center {{ customClass }} {{ attrDisabled }}' >
 
     {% include '@bf-components/button/twig/index.twig' with {
         label           : '',
@@ -17,23 +12,22 @@
         isLoading       : false,
         iconName        : "minus",
         iconPosition    : '',
-        class           : isVisible is empty ? ' js-bf-input-increment__minus bf-button bf-button--secondary rounded-circle px-2 ' : 'd-none',
+        class           : isVisible is empty ? ' js-bf-input-increment__minus bf-button bf-button--secondary rounded-circle px-2 ' : 'invisible',
         ariaControls    : inputId,
         role            : 'button'
     } only %}
 
-    <div class="bf-input">
-        <input id="{{ inputId }}"
+
+        <input id="{{ inputId|default('') }}"
                type="number"
-               pattern="^(?=.*[1-9].*$)\d*${2}"
-               class="text-center bf-text-display-small bf-input-increment__input js-bf-input-increment__input border-0  m-0  py-0 px-2"
-               min="{{ min }}"
-               max="{{ max }}"
-               value="{{ inputValue }}"
+               class="text-center bf-text-display-small bf-input-increment__input js-bf-input-increment__input border-0  m-0  py-0 {{ attrDisabled }}"
+               aria-label="{{ arialLabel|default('') }}"
+               value="{{ inputValue|default(0) }}"
+               min="{{ min|default(null) }}"
+               max="{{ max|default(null) }}"
                {{ attrReadOnly }}
                {{ attrDisabled }}
         >
-    </div>
 
     {% include '@bf-components/button/twig/index.twig' with {
         label           : '',
@@ -42,7 +36,7 @@
         isLoading       : false,
         iconName        : "plus",
         iconPosition    : '',
-        class           :  isVisible is empty ? ' js-bf-input-increment__plus bf-button bf-button--secondary rounded-circle px-2 ' : 'd-none',
+        class           :  isVisible is empty ? ' js-bf-input-increment__plus bf-button bf-button--secondary rounded-circle px-2 ' : 'invisible',
         ariaControls    : inputId,
         role            : 'button'
         } only %}

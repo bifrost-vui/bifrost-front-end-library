@@ -20,6 +20,7 @@ interface IButton {
     reverse         : boolean;
     href            : string;
 }
+
 interface IInputIncrement {
     min             : number;
     max             : number;
@@ -102,9 +103,9 @@ export class CardComponent implements OnInit {
     */
     @Input() buttons                : IButton[];
     /**
-     Array of [inputIncrement](/?path=/docs/components-input-increment--drupal) component.
+      [inputIncrement](/?path=/docs/components-input-increment--drupal) component.
      */
-    @Input() inputIncrement         :IInputIncrement[];
+    @Input() inputIncrement         :IInputIncrement;
 
     @Input() message                : string;
     @Input() messageLink            : ILink;
