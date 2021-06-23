@@ -174,6 +174,7 @@ export const illustrationIcons = [
     list: [
       'check-circle-filled',
       'check-circle-outline',
+      'dot',
       'exclamation-circle-filled',
       'exclamation-circle-outline',
       'information-circle-filled',
