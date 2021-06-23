@@ -151,9 +151,9 @@
 
     </div>
 
-    <footer class='bf-card__footer pt-3 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>
+    <footer class='bf-card__footer pt-0 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>
 
-        {% if price is defined and price %}
+        {% if price is defined %}
             {% set price = price|merge({
                 'class'     : 'w-100 ' ~ price.class,
                 'language'  : language|default('en')
@@ -178,6 +178,12 @@
             </div>
         {% endif %}
 
+        {% if inputIncrement  is defined  %}
+            <div class='bf-card__buttons'>
+                {% include '@bf-components/input-increment/twig/index.twig' with  inputIncrement only %}
+            </div>
+        {% endif %}
+
         {% if message is defined and message or messageLink is defined and messageLink %}
             <div class='bf-card__message d-flex'>
                 {% include '@bf-components/icon/twig/index.twig' with {
@@ -194,5 +200,4 @@
         {% endif %}
 
     </footer>
-
 </article>

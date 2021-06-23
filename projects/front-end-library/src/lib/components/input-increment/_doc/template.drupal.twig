@@ -1,0 +1,27 @@
+{% set isReadOnly   = isReadOnly|json_parse|default(false) %}
+{% set isDisabled   = isDisabled|json_parse|default(false) %}
+{% set customClass  = customClass|default('') %}
+{% set min              = min|default(null) %}
+{% set max              = max|default(null) %}
+{% set inputValue       = inputValue|default(0) %}
+
+<div class='py-5 d-flex minh-100  position-relative'>
+
+    {% for index in [1,2] %}
+        {% set inputId = 'my-input-id-'~ index %}
+
+        <div class="flex-grow-1 p-3 m-1 {{ index == 2 ? 'reversed bf-color-bg-ground' : 'bf-color-bg-underground'  }} ">
+
+        {% include '@bf-components/input-increment/twig/index.twig' with {
+                customClass : customClass,
+                inputId     : inputId,
+                inputValue  : inputValue,
+                min         : min,
+                max         : max,
+            }
+        %}
+
+        </div>
+
+    {% endfor %}
+</div>

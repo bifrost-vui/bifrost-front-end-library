@@ -1,0 +1,44 @@
+{% set isVisible        = (isReadOnly is defined and isReadOnly is same as (true)) ? ' d-none' : '' %}
+{% set attrReadOnly     = (isReadOnly is defined and isReadOnly is same as (true)) ? ' readonly' : '' %}
+{% set attrDisabled     = (isDisabled is defined and isDisabled is same as (true)) ? ' disabled' : '' %}
+{% set customClass      = customClass|default('') %}
+
+
+
+<div class="bf-inputIncrement js-bf-inputIncrement align-items-center {{ customClass ~ attrDisabled }}" >
+
+    {% include '@bf-components/button/twig/index.twig' with {
+        label           : '',
+        hierarchy       : 'secondary',
+        isDisabled      : true,
+        isLoading       : false,
+        iconName        : "minus",
+        iconPosition    : '',
+        class           : isVisible is empty ? ' js-bf-inputIncrement__minus bf-button bf-button--secondary rounded-circle px-2 ' : 'd-none',
+        ariaControls    : inputId,
+        role            : 'button'
+    } only %}
+
+        <input id="{{ inputId }}"
+               type="number"
+               class="text-center bf-text-display-small bf-inputIncrement__input js-bf-inputIncrement__input border-0  m-0  py-0 {{ attrDisabled }}"
+               aria-label="{{ arialLabel }}"
+               value="{{ inputValue }}"
+               min="{{ min }}"
+               max="{{ max }}"
+               {{ attrReadOnly }}
+               {{ attrDisabled }}
+        >
+
+    {% include '@bf-components/button/twig/index.twig' with {
+        label           : '',
+        hierarchy       : 'secondary',
+        isDisabled      : false,
+        isLoading       : false,
+        iconName        : "plus",
+        iconPosition    : '',
+        class           : isVisible is empty ? ' js-bf-inputIncrement__plus bf-button bf-button--secondary rounded-circle px-2 ' : 'invisible',
+        ariaControls    : inputId,
+        role            : 'button'
+        } only %}
+</div>

@@ -21,6 +21,13 @@ interface IButton {
     href            : string;
 }
 
+interface IInputIncrement {
+    min             : number;
+    max             : number;
+    inputId         : string;
+    inputValue      : number;
+}
+
 
 @Component({
     selector: 'bf-card',
@@ -95,6 +102,11 @@ export class CardComponent implements OnInit {
         Or extends with a block: {% block buttons %} ... {% endblock %}.
     */
     @Input() buttons                : IButton[];
+    /**
+      [inputIncrement](/?path=/docs/components-input-increment--drupal) component.
+     */
+    @Input() inputIncrement         :IInputIncrement;
+
     @Input() message                : string;
     @Input() messageLink            : ILink;
 

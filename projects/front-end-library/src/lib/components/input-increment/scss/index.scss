@@ -1,0 +1,32 @@
+/* *****************************************************************************
+*
+*  Input increment
+*
+* ***************************************************************************** */
+
+.bf-inputIncrement {
+  @extend .d-flex;
+  @extend .flex-row;
+
+  &__input {
+    color: currentColor;
+    background: none;
+    width: 3rem;
+    height: 2rem;
+
+    &[type='number']::-webkit-inner-spin-button,
+    &[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+
+    &[type='number'] {
+      -webkit-appearance: textfield;
+    }
+
+    &.disabled{color: var(--bf-color-neutral-tertiary)}
+  }
+
+  .disabled svg {
+      color: var(--bf-color-bg-action-disabled-rgb)
+    }
+}
