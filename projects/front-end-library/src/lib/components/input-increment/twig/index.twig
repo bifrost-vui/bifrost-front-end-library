@@ -1,11 +1,11 @@
-{% set isVisible        = (isReadOnly is defined and isReadOnly is same as (true)) ? ' d-none' : '' %}
+{% set classHide        = (isReadOnly is defined and isReadOnly is same as (true)) ? ' d-none' : '' %}
 {% set attrReadOnly     = (isReadOnly is defined and isReadOnly is same as (true)) ? ' readonly' : '' %}
 {% set attrDisabled     = (isDisabled is defined and isDisabled is same as (true)) ? ' disabled' : '' %}
 {% set customClass      = customClass|default('') %}
 
 
 
-<div class="bf-inputIncrement js-bf-inputIncrement align-items-center {{ customClass ~ attrDisabled }}" >
+<div class="bf-inputIncrement js-bf-inputIncrement align-items-center {{ customClass ~ attrDisabled }} flex-wrap" >
 
     {% include '@bf-components/button/twig/index.twig' with {
         label           : '',
@@ -14,7 +14,7 @@
         isLoading       : false,
         iconName        : "minus",
         iconPosition    : '',
-        class           : isVisible is empty ? ' js-bf-inputIncrement__minus bf-button bf-button--secondary rounded-circle px-2 ' : 'd-none',
+        class           : classHide is empty ? ' js-bf-inputIncrement__minus bf-button bf-button--secondary rounded-circle px-2 ' : classHide,
         ariaControls    : inputId,
         role            : 'button'
     } only %}
@@ -37,8 +37,14 @@
         isLoading       : false,
         iconName        : "plus",
         iconPosition    : '',
-        class           : isVisible is empty ? ' js-bf-inputIncrement__plus bf-button bf-button--secondary rounded-circle px-2 ' : 'invisible',
+        class           : classHide is empty ? ' js-bf-inputIncrement__plus bf-button bf-button--secondary rounded-circle px-2 ' : classHide,
         ariaControls    : inputId,
         role            : 'button'
         } only %}
+    <div class="invalid-feedback">
+        {{ invalidMsg|default('This is an invalid error message') }}
+    </div>
 </div>
+
+
+

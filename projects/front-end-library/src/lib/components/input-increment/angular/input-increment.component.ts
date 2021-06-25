@@ -16,6 +16,7 @@ export class InputIncrementComponent implements OnInit {
     @Input() customClass: string ;
     @Input() arialLabel : string ;
     @Input() inputId    : string ;
+    @Input() invalidMsg : string;
 
     @Input() inputValue : number ;
     @Input() min        : number ;
