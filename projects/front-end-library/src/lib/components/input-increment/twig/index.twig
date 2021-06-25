@@ -1,9 +1,11 @@
-{% set customClass  = customClass|default('justify-content-center') %}
-{% set isVisible = (isReadOnly is defined and isReadOnly is same as (true)) ? ' d-none' : '' %}
-{% set attrReadOnly = (isReadOnly is defined and isReadOnly is same as (true)) ? ' readonly' : '' %}
-{% set attrDisabled = (isDisabled is defined and isDisabled is same as (true)) ? ' disabled' : ''  %}
+{% set classHide        = (isReadOnly is defined and isReadOnly is same as (true)) ? ' d-none' : '' %}
+{% set attrReadOnly     = (isReadOnly is defined and isReadOnly is same as (true)) ? ' readonly' : '' %}
+{% set attrDisabled     = (isDisabled is defined and isDisabled is same as (true)) ? ' disabled' : '' %}
+{% set customClass      = customClass|default('') %}
 
-<div class='bf-input-increment js-bf-input-increment d-flex flex-row align-items-center {{ customClass }} {{ attrDisabled }}' >
+
+
+<div class="bf-inputIncrement js-bf-inputIncrement align-items-center {{ customClass ~ attrDisabled }} flex-wrap" >
 
     {% include '@bf-components/button/twig/index.twig' with {
         label           : '',
@@ -12,19 +14,18 @@
         isLoading       : false,
         iconName        : "minus",
         iconPosition    : '',
-        class           : isVisible is empty ? ' js-bf-input-increment__minus bf-button bf-button--secondary rounded-circle px-2 ' : 'invisible',
+        class           : classHide is empty ? ' js-bf-inputIncrement__minus bf-button bf-button--secondary rounded-circle px-2 ' : classHide,
         ariaControls    : inputId,
         role            : 'button'
     } only %}
 
-
-        <input id="{{ inputId|default('') }}"
+        <input id="{{ inputId }}"
                type="number"
-               class="text-center bf-text-display-small bf-input-increment__input js-bf-input-increment__input border-0  m-0  py-0 {{ attrDisabled }}"
-               aria-label="{{ arialLabel|default('') }}"
-               value="{{ inputValue|default(0) }}"
-               min="{{ min|default(null) }}"
-               max="{{ max|default(null) }}"
+               class="text-center bf-text-display-small bf-inputIncrement__input js-bf-inputIncrement__input border-0  m-0  py-0 {{ attrDisabled }}"
+               aria-label="{{ arialLabel }}"
+               value="{{ inputValue }}"
+               min="{{ min }}"
+               max="{{ max }}"
                {{ attrReadOnly }}
                {{ attrDisabled }}
         >
@@ -36,9 +37,14 @@
         isLoading       : false,
         iconName        : "plus",
         iconPosition    : '',
-        class           :  isVisible is empty ? ' js-bf-input-increment__plus bf-button bf-button--secondary rounded-circle px-2 ' : 'invisible',
+        class           : classHide is empty ? ' js-bf-inputIncrement__plus bf-button bf-button--secondary rounded-circle px-2 ' : classHide,
         ariaControls    : inputId,
         role            : 'button'
         } only %}
-
+    <div class="invalid-feedback">
+        <p>{{ invalidMsg|default('This is an invalid error message') }}</p>
+    </div>
 </div>
+
+
+

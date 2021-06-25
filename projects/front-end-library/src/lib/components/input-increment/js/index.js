@@ -1,17 +1,17 @@
 /**
- *  Script for the Bifrost Input increment
+ *  Script for the Bifrost Input increment component
  **/
 import $ from 'jquery';
 
 $(function () {
 
-  const container = $('.js-bf-input-increment')
+  const container = $('.js-bf-inputIncrement')
 
   container.each(function (i, el) {
     const $this = $(el),
-          $quantityInput = $this.find('.js-bf-input-increment__input'),
-          $plusButton = $this.find('.js-bf-input-increment__plus'),
-          $minusButton = $this.find('.js-bf-input-increment__minus'),
+          $quantityInput = $this.find('.js-bf-inputIncrement__input'),
+          $plusButton = $this.find('.js-bf-inputIncrement__plus'),
+          $minusButton = $this.find('.js-bf-inputIncrement__minus'),
           $maxValue = $quantityInput.attr('max'),
           $minValue = $quantityInput.attr('min');
 

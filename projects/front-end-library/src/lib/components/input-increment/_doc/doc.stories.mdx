@@ -33,7 +33,7 @@ import { InputIncrementComponent }     from '../angular/input-increment.componen
             type: { required: true },
         },
         customClass:{
-            defaultValue:'justify-content-center',
+            description:' Ex.: justify-content-end | justify-content-center | justify-content-between',
         },
     }}
 />
@@ -67,6 +67,7 @@ export const Drupal = (args) => ({
             max             : null,
             isReadOnly      : false,
             isDisabled      : false,
+            isInvalid       : false,
         }}
     >
         {Drupal.bind({})}
@@ -77,7 +78,8 @@ export const Drupal = (args) => ({
 
 ## Drupal implementation example
 
-```php
+```twig
+
 {% include '@bf-components/input-increment/twig/index.twig' with {
    {
             customClass     : '',
@@ -90,6 +92,7 @@ export const Drupal = (args) => ({
             isDisabled      : false,
    }
 } only %}
+
 ```
 
 

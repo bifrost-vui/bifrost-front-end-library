@@ -6,7 +6,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  */
  
 @Component({
-  selector: 'bf-input-increment',
+  selector: 'bf-inputIncrement',
   templateUrl: './input-increment.component.html',
 })
 
@@ -16,6 +16,7 @@ export class InputIncrementComponent implements OnInit {
     @Input() customClass: string ;
     @Input() arialLabel : string ;
     @Input() inputId    : string ;
+    @Input() invalidMsg : string;
 
     @Input() inputValue : number ;
     @Input() min        : number ;
@@ -23,7 +24,6 @@ export class InputIncrementComponent implements OnInit {
 
     @Input() isReadOnly : boolean;
     @Input() isDisabled : boolean;
-
 
     ngOnInit() {
         console.log('InputIncrement', this);

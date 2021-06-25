@@ -1,22 +1,31 @@
-{% set isReadOnly = isReadOnly|json_parse|default(false) %}
-{% set isDisabled = isDisabled|json_parse|default(false) %}
+{% set isReadOnly   = isReadOnly|json_parse|default(false) %}
+{% set isDisabled   = isDisabled|json_parse|default(false) %}
+{% set isInvalid    = isInvalid|json_parse %}
 
-<div class='px-7 d-flex flex-column align-items-center justify-content-center minh-100 position-relative'>
-    {% for index in [1,2] %}
+{% set customClass  = customClass|default('') %}
+{% set min              = min|default(null) %}
+{% set max              = max|default(null) %}
+{% set inputValue       = inputValue|default(0) %}
+
+<div class='p-5 d-flex minh-100   flex-column position-relative'>
+
+    {% for index in [1,2,3] %}
         {% set inputId = 'my-input-id-'~ index %}
 
-        <div class="p-5 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}">
+       {% if index == 3 %}
+           {% set bgClass = 'reversed bf-color-bg-ground' %}
+       {% elseif index == 2 %}
+           {% set bgClass = 'bf-color-bg-underground' %}
+       {% endif %}
+
+        <div class=" p-3 m-1  {{ bgClass }} ">
 
         {% include '@bf-components/input-increment/twig/index.twig' with {
-            {
-                customClass : '',
-                isReadOnly  : false,
-                isDisabled  : false,
-                inputId     : {{ inputId }},
-                inputValue  : null,
-                min         : null,
-                max         : null,
-                }
+                customClass : customClass,
+                inputId     : inputId,
+                inputValue  : inputValue,
+                min         : min,
+                max         : max,
             }
         %}
 
@@ -24,3 +33,15 @@
 
     {% endfor %}
 </div>
+
+{% if isInvalid %}
+    <script>
+        function setInvalid() {
+            let bfInputIncrements = document.querySelectorAll('.bf-inputIncrement');
+            bfInputIncrements.forEach(function (bfInputIncrement, index) {
+            document.getElementsByClassName('bf-inputIncrement')[index].classList.add('is-invalid')
+        });}
+
+        setInvalid();
+    </script>
+{% endif %}

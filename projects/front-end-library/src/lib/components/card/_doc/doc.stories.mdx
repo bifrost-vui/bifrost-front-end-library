@@ -16,6 +16,18 @@ import { CardComponent }                        from '../angular/card.component'
         cardVariant: {
             table: { disable: true }
         },
+        titleTag: {
+            table: { defaultValue: { summary: 'h1' } },
+        },
+        isDisabled: {
+            table: { defaultValue: { summary: false } },
+        },
+        reversed: {
+            table: { defaultValue: { summary: false } },
+        },
+        language: {
+            table: { defaultValue: { summary: 'en' } },
+        },
     }}
 />
 
@@ -34,7 +46,7 @@ import { CardComponent }                        from '../angular/card.component'
 
 ## Drupal implementation example
 
-```php
+```twig
 // There are 3 kinds of Cards:
 {% include '@bf-components/card/twig/plan.twig' with {...} %}
 {% include '@bf-components/card/twig/phone.twig' with {...} %}
@@ -185,8 +197,8 @@ export const commonProps = {
     inputIncrement      :{
         min         : 0,
         max         : 10,
-        inputId     : 'my-input-id',
         inputValue  : 0,
+        inputId     : 'my-input-id',
     },
     message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
     language            : 'en',
@@ -376,15 +388,14 @@ export const phoneCommonProps = {
             inputIncrement      :{
                     min         : 0,
                     max         : 10,
-                    inputId     : 'my-input-id',
                     inputValue  : 0,
+                    inputId     : 'my-input-id',
                 }
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Preview>
-
 
 ## Component API
 
