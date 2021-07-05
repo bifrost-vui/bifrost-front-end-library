@@ -33,6 +33,9 @@ export class HeaderComponent implements OnInit {
     @Input() hrefConnexion            : string;
     @Input() labelConnexion           : string;
 
+    @Input() accountHello             : string;
+    @Input() accountName              : string;
+
     // @Input() hasMiniCartBtn          : boolean;
     @Input() hasNoSearchBtn          : boolean;
 
