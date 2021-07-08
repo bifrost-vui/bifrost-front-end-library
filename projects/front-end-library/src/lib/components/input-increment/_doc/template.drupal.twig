@@ -1,11 +1,12 @@
-{% set isReadOnly   = isReadOnly|json_parse|default(false) %}
-{% set isDisabled   = isDisabled|json_parse|default(false) %}
-{% set isInvalid    = isInvalid|json_parse %}
 
 {% set customClass  = customClass|default('') %}
-{% set min              = min|default(null) %}
-{% set max              = max|default(null) %}
-{% set inputValue       = inputValue|default(0) %}
+{% set min          = min|default(null) %}
+{% set max          = max|default(null) %}
+{% set inputValue   = inputValue|default(0) %}
+{% set isReadOnly   = isReadOnly|json_parse|default(false) %}
+{% set isDisabled   = isDisabled|json_parse|default(false) %}
+{% set isInvalid    = isInvalid|json_parse|default(false) %}
+{% set errorMsg     = errorMsg|default('Expected values between ' ~ min ~ ' and ' ~ max ) %}
 
 <div class='p-5 d-flex minh-100   flex-column position-relative'>
 
@@ -21,27 +22,18 @@
         <div class=" p-3 m-1  {{ bgClass }} ">
 
         {% include '@bf-components/input-increment/twig/index.twig' with {
-                customClass : customClass,
-                inputId     : inputId,
-                inputValue  : inputValue,
-                min         : min,
-                max         : max,
-            }
-        %}
+            customClass : customClass,
+            inputId     : inputId,
+            inputValue  : inputValue,
+            min         : min,
+            max         : max,
+            isReadOnly  : isReadOnly,
+            isDisabled  : isDisabled,
+            isInvalid   : isInvalid,
+            errorMsg    : errorMsg,
+        }%}
 
         </div>
 
     {% endfor %}
 </div>
-
-{% if isInvalid %}
-    <script>
-        function setInvalid() {
-            let bfInputIncrements = document.querySelectorAll('.bf-inputIncrement');
-            bfInputIncrements.forEach(function (bfInputIncrement, index) {
-            document.getElementsByClassName('bf-inputIncrement')[index].classList.add('is-invalid')
-        });}
-
-        setInvalid();
-    </script>
-{% endif %}

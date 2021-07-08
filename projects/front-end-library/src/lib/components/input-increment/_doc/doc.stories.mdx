@@ -19,21 +19,19 @@ import { InputIncrementComponent }     from '../angular/input-increment.componen
         },
     }}
     argTypes={{
-        min: {
-            defaultValue: null,
+        inputValue : {
+            defaultValue : 0,
+            type : { required: true },
         },
-        max: {
-            defaultValue: null,
+        inputId : {
+            type : { required: true },
         },
-        inputValue: {
-            defaultValue: 0,
-            type: { required: true },
+        customClass : {
+            description : 'Ex.: justify-content-end | justify-content-center | justify-content-between',
         },
-        inputId: {
-            type: { required: true },
-        },
-        customClass:{
-            description:' Ex.: justify-content-end | justify-content-center | justify-content-between',
+        errorMsg   : {
+            type : { required: false },
+            description : 'Should always be defined if a min or a max value is defined',
         },
     }}
 />
@@ -68,13 +66,12 @@ export const Drupal = (args) => ({
             isReadOnly      : false,
             isDisabled      : false,
             isInvalid       : false,
+            errorMsg        : ''
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Preview>
-
-
 
 ## Drupal implementation example
 
@@ -82,20 +79,21 @@ export const Drupal = (args) => ({
 
 {% include '@bf-components/input-increment/twig/index.twig' with {
    {
-            customClass     : '',
-            arialLabel      : '',
-            inputId         : 'my-unique-input-id',
-            inputValue      : 0,
-            min             : null,
-            max             : null,
-            isReadOnly      : false,
-            isDisabled      : false,
+        arialLabel      : ''
+        customClass     : '',
+        arialLabel      : '',
+        inputId         : 'my-unique-input-id',
+        inputValue      : 0,
+        min             : null,
+        max             : null,
+        isReadOnly      : false,
+        isDisabled      : false,
+        isInvalid       : false,
+        errorMsg        : 'Error message'
    }
-} only %}
+} %}
 
 ```
-
-
 
 ## Design Guidelines
 

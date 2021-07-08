@@ -194,12 +194,6 @@ export const commonProps = {
             href        : 'www.videotron.com',
         }
     ],
-    inputIncrement      :{
-        min         : 0,
-        max         : 10,
-        inputValue  : 0,
-        inputId     : 'my-input-id',
-    },
     message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
     language            : 'en',
 };
@@ -353,6 +347,8 @@ export const phoneCommonProps = {
     </Story>
 </Preview>
 
+
+
 <Preview
     withSource='none'
     style={{ height: '800px' }}
@@ -384,13 +380,48 @@ export const phoneCommonProps = {
                     hierarchy   : 'primary-alt',
                     href        : 'www.videotron.com',
                 }
-            ],
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '800px' }}
+>
+    <Story
+        name='Drupal - Increment'
+        args={{
+            elementPath     : 'components/card/_doc/template.drupal',
+            cardVariant     : 'increment',
+            title           : 'Label Ipsum',
+            description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
+            price           : {
+                upperTitle      : 'From',
+                dollar          : '152',
+                cent            : '34',
+                infosSupp       : 'Taxes incl.',
+                boxAlignement   : 'left',
+                dashed          : '$150',
+                saved           : '<strong>$30</strong>',
+            },
+            message           : 'Lorem ipsum dolor this message.',
             inputIncrement      :{
-                    min         : 0,
-                    max         : 10,
-                    inputValue  : 0,
-                    inputId     : 'my-input-id',
+                min         : 0,
+                max         : 5,
+                inputValue  : 0,
+                inputId     : 'my-input-id',
+                errorMsg    : 'Value should be between 0 and 5',
+            },
+            buttons           : [
+                {
+                    label       : 'Add to plan',
+                    hierarchy   : 'primary-alt',
+                    href        : 'www.videotron.com',
                 }
+            ]
         }}
     >
         {Drupal.bind({})}
@@ -400,3 +431,7 @@ export const phoneCommonProps = {
 ## Component API
 
 <Props of={CardComponent} />
+
+## More info
+
+https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=6113%3A705

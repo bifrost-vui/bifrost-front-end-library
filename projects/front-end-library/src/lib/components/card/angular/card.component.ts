@@ -26,8 +26,8 @@ interface IInputIncrement {
     max             : number;
     inputId         : string;
     inputValue      : number;
+    errorMsg        : string;
 }
-
 
 @Component({
     selector: 'bf-card',

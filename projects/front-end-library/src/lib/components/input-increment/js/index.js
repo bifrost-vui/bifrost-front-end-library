@@ -5,68 +5,78 @@ import $ from 'jquery';
 
 $(function () {
 
-  const container = $('.js-bf-inputIncrement')
+  let container = $('.js-bf-inputIncrement')
 
   container.each(function (i, el) {
     const $this = $(el),
-          $quantityInput = $this.find('.js-bf-inputIncrement__input'),
-          $plusButton = $this.find('.js-bf-inputIncrement__plus'),
-          $minusButton = $this.find('.js-bf-inputIncrement__minus'),
-          $maxValue = $quantityInput.attr('max'),
-          $minValue = $quantityInput.attr('min');
+      $quantityInput = $this.find('.js-bf-inputIncrement__input'),
+      $plusButton = $this.find('.js-bf-inputIncrement__plus'),
+      $minusButton = $this.find('.js-bf-inputIncrement__minus'),
+      $maxValue = $quantityInput.attr('max'),
+      $minValue = $quantityInput.attr('min');
 
-    let currentValue = $quantityInput.val() ;
+    let  currentValue = $quantityInput.val() ;
 
-    const increment = function(){
-      currentValue ++
-      checkLimitValues(currentValue)
-      $quantityInput.val(currentValue)
-    }
+    checkLimitValues(currentValue);
 
-    const decrement = function(){
-      currentValue --
-      checkLimitValues(currentValue)
-      $quantityInput.val(currentValue)
-    }
-
-  if ($this.hasClass('disabled')){
-    $plusButton.prop('disabled', true)
-    $plusButton.addClass('disabled')
-    $minusButton.prop('disabled', true)
-    $minusButton.addClass('disabled')
-  }
-
-    const checkLimitValues = function(quantity){
-
-      if (quantity == $maxValue){
-        $plusButton.prop('disabled', true)
-        $plusButton.addClass('disabled')
-      } else {
-        $plusButton.prop('disabled', false)
-        $plusButton.removeClass('disabled')
-      }
-      if (quantity == $minValue){
-        $minusButton.prop('disabled', true)
-        $minusButton.addClass('disabled')
-      } else {
-        $minusButton.prop('disabled', false)
-        $minusButton.removeClass('disabled')
-      }
+    if ($this.hasClass('disabled')){
+      $plusButton.prop('disabled', true);
+      $plusButton.addClass('disabled');
+      $minusButton.prop('disabled', true);
+      $minusButton.addClass('disabled');
     }
 
     $plusButton.click(function(){
-      increment()
+      increment();
     })
 
     $minusButton.click(function(){
-      decrement()
+      decrement();
     })
 
     $quantityInput.keyup(function(){
       currentValue = $quantityInput.val()
       checkLimitValues(currentValue)
-
     })
+
+    function increment(){
+      currentValue ++;
+      checkLimitValues(currentValue);
+      $quantityInput.val(currentValue);
+    }
+
+    function decrement(){
+      currentValue --;
+      checkLimitValues(currentValue);
+      $quantityInput.val(currentValue);
+    }
+
+    function checkLimitValues(quantity){
+
+      if (quantity >= $maxValue){
+        $plusButton.prop('disabled', true);
+        $plusButton.addClass('disabled');
+      } else {
+        $plusButton.prop('disabled', false);
+        $plusButton.removeClass('disabled');
+      }
+
+      if (quantity <= $minValue){
+        $minusButton.prop('disabled', true);
+        $minusButton.addClass('disabled');
+      } else {
+        $minusButton.prop('disabled', false);
+        $minusButton.removeClass('disabled');
+      }
+
+      if ((!isNaN($minValue) && (quantity < $minValue))  || (!isNaN($maxValue) && (quantity > $maxValue)) ){
+        $this.addClass('is-invalid')
+      } else{
+        $this.removeClass('is-invalid');
+      }
+    }
+
+
   })
 
 })

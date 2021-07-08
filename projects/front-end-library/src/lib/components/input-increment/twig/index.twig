@@ -1,16 +1,16 @@
-{% set classHide        = (isReadOnly is defined and isReadOnly is same as (true)) ? ' d-none' : '' %}
 {% set attrReadOnly     = (isReadOnly is defined and isReadOnly is same as (true)) ? ' readonly' : '' %}
+{% set classHide        = (isReadOnly is defined and isReadOnly is same as (true)) ? ' d-none' : '' %}
 {% set attrDisabled     = (isDisabled is defined and isDisabled is same as (true)) ? ' disabled' : '' %}
-{% set customClass      = customClass|default('') %}
+{% set classDisabled    = (isDisabled is defined and isDisabled is same as (true)) ? ' disabled' : '' %}
+{% set classIsInvalid   = (isInvalid is defined and isInvalid is same as(true)) ? ' is-invalid' : '' %}
 
 
-
-<div class="bf-inputIncrement js-bf-inputIncrement align-items-center {{ customClass ~ attrDisabled }} flex-wrap" >
+<div class="bf-inputIncrement js-bf-inputIncrement align-items-center {{ customClass ~ classDisabled ~ classIsInvalid }} flex-wrap" >
 
     {% include '@bf-components/button/twig/index.twig' with {
         label           : '',
         hierarchy       : 'secondary',
-        isDisabled      : true,
+        isDisabled      : null,
         isLoading       : false,
         iconName        : "minus",
         iconPosition    : '',
@@ -33,7 +33,7 @@
     {% include '@bf-components/button/twig/index.twig' with {
         label           : '',
         hierarchy       : 'secondary',
-        isDisabled      : false,
+        isDisabled      : null,
         isLoading       : false,
         iconName        : "plus",
         iconPosition    : '',
@@ -42,9 +42,6 @@
         role            : 'button'
         } only %}
     <div class="invalid-feedback">
-        <p>{{ invalidMsg|default('This is an invalid error message') }}</p>
+        <p>{{ errorMsg }}</p>
     </div>
 </div>
-
-
-
