@@ -14,6 +14,7 @@ export class TabComponent implements OnInit {
     constructor() {}
 
     @Input() class                : string;
+    @Input() sliderClass          : string;
     @Input() navItems             : object;
     @Input() itemClass            : string;
     

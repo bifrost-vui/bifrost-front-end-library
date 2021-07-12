@@ -5,14 +5,16 @@
 * ***************************************************************************** */
 
 .bf-tab {
-    @extend .bf-overflow-x;
     position: relative;
     width: 100%;
-    padding-left: 2.5rem;
-    @include media-breakpoint-down(md) {
-        padding-left: 1rem;
+    & > div {
+        @extend .bf-overflow-x;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+        @include media-breakpoint-down(md) {
+            padding-left: 1rem;
+        }
     }
-
 
     &__slider {
         display: flex;
