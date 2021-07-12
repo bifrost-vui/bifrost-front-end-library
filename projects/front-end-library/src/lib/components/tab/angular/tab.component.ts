@@ -13,6 +13,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class TabComponent implements OnInit {
     constructor() {}
 
+    @Input() class                : string;
     @Input() navItems             : object;
     @Input() itemClass            : string;
     
