@@ -6,23 +6,19 @@
 
 .bf-block--highlight {
 
-    &.bf-block--fullwidth {
-        @extend .bf-color-bg-underground;
-    }
-
-    .bf-button {
-        @extend .mt-4;
+    &.bf-block--variant-featured .bf-block__visual {
+        min-height: 26rem;
     }
 
     .bf-block__visual {
         flex: 0 0 50%;
+        min-height: 20rem;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
         
-        @include media-breakpoint-up(sm) {
-            min-height: 18rem;
-        }
-
-        img {
-            object-fit: cover;
+        @include media-breakpoint-down(sm) {
+            min-height: 16rem !important;
         }
     }
 }

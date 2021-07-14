@@ -2,9 +2,6 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 
 interface IImage {
     src         : string;
-    dataSrc     : string;
-    alt         : string;
-    class       : string;
 }
  
 @Component({
@@ -15,17 +12,19 @@ interface IImage {
 export class BlockHighlightComponent implements OnInit {
     constructor() {}
 
-    @Input() image              : IImage;
-    @Input() paragraph          : string;
-    @Input() button             : object;
-    @Input() fullWidth          : boolean;
+    @Input() variant                : 'featured' | 'promo';
+    @Input() image                  : IImage;
+    @Input() visualBackgroundColor  : string;
+    @Input() blockBackgroundColor   : 'ground' | 'underground';
+    @Input() paragraph              : string;
+    @Input() button                 : object;
 
-    @Input() title              : string;
+    @Input() title                  : string;
     /** E.g. `p` */
-    @Input() titleTag           : string;
+    @Input() titleTag               : string;
 
-    @Input() class              : string;
-    @Input() reversed           : boolean;
+    @Input() class                  : string;
+    @Input() reversed               : boolean;
 
     ngOnInit() {
         console.log('block highlight', this);

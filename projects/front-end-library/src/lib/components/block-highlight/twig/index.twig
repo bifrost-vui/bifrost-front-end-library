@@ -1,29 +1,31 @@
-{% set hasImage     = image.src is defined and image.src is not empty %}
-{% set titleTag     = titleTag|default('h2') %}
+{% set hasImage         = image.src is defined and image.src is not empty %}
+{% set isPromoVariant   = variant is defined and variant is same as ('promo') %}
+{% set titleTag         = titleTag|default('p') %}
 
 <article class='
-    bf-block bf-block--highlight
+    bf-block bf-block--highlight {{ isPromoVariant ? 'bf-block--variant-promo' : 'bf-block--variant-featured' }}
     w-100 d-flex flex-column flex-sm-row overflow-hidden bf-border-radius-medium border bf-border-color-secondary
-    {% if fullWidth is defined and fullWidth is same as (true) %}bf-block--fullwidth{% endif %}
+    {{ blockBackgroundColor|default('ground') == 'underground' ? 'bf-color-bg-underground' : 'bf-color-bg-ground' }}
+    {{ reversed ? 'reversed' : '' }}
     {{ class }}'
 >
 
     {% if hasImage %}
-        <div class='bf-block__visual d-flex justify-content-center align-items-center bf-color-bg-brand overflow-hidden'>
-            <img
-                src='{{ image.src|default('') }}'
-                data-src='{{ image.dataSrc|default('') }}'
-                alt='{{ image.alt|default('') }}'
-                class='w-100 h-100 {{ image.class|default('') }}'
-            />
+        <div
+            class='bf-block__visual bf-color-bg-brand'
+            style='background-image: url({{ image.src }});
+                {% if visualBackgroundColor is defined and visualBackgroundColor %}background-color: {{ visualBackgroundColor }}; {% endif %}
+            '
+        >
         </div>
     {% endif %}
     
-    <div class='p-4 p-sm-5'>
+    
+    <div class='d-flex flex-column {{ isPromoVariant ? '' : 'justify-content-center' }} p-4 p-sm-5'>
         {% if title is defined %}
-            <{{ titleTag|default('h2') }} {% if titleTag|default('h2') is not same as ('h2') %}class='h2'{% endif %}>
+            <{{ titleTag }} class='text-break {{ isPromoVariant ? 'h3' : 'h2' }}'>
                 {{ title }}
-            </{{ titleTag|default('h2') }}>
+            </{{ titleTag }}>
         {% endif %}
         {% if paragraph is defined %}
             <p>
@@ -31,7 +33,12 @@
             </p>
         {% endif %}
         {% if button is defined %}
-            {% set button = button|merge( { 'hierarchy': button.hierarchy|default('primary-alt') } ) %}
+            {% set button = button|merge(
+                {
+                    'class'     : 'mt-2 ' ~ button.class,
+                    'hierarchy' : button.hierarchy|default(isPromoVariant ? 'secondary' : 'primary-alt')
+                }
+            ) %}
             {% include '@bf-components/button/twig/index.twig' with button only %}
         {% endif %}
     </div>
