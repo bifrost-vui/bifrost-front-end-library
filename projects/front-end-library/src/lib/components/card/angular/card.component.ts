@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import { IPrice } from '../../price/angular/price.component';
 
 
 interface IImage {
@@ -59,8 +60,7 @@ export class CardComponent implements OnInit {
     */
     @Input() badge                  : any;
 
-    /*
-        Array of object. Expected format:
+    /* Array of object. Expected format:
         ```
         [
             {
@@ -84,7 +84,10 @@ export class CardComponent implements OnInit {
     /**
         [Price](/?path=/docs/components-price--drupal) component.
     */
-    @Input() price                  : object;
+    @Input() price                  : IPrice;
+    /**
+        Note: Can contains html.
+    */
     @Input() note                   : string;
 
     /**
