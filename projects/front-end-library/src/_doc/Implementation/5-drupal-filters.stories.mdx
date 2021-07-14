@@ -13,8 +13,42 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 <br/><br/>
 
+We support all filters documented in **[Twig 1.x](https://twig.symfony.com/doc/1.x/)** and all theses **custom filters**:
+- clean_class
+- clean_id
+- json_parse *(documentation only)*
+- placeholder
+- price_one_line
+- render
+- safe_join
+- t
 
-## format_price
+> **Note to contributors:** Before creating a new filter, talk with AppNovation/DXP team to avoid conflict with DXP internal twig filters.
+
+<br/>
+
+## More details on some filters:
+
+<br/>
+
+### json_parse
+Transfrom string passed in URL to Boolean. **Used only for documentation (Storybook)!**
+
+```jsx
+Twig.extendFilter('json_parse', function(value) {
+    try {
+        return JSON.parse(value);
+    } catch (e) {
+        return value;
+    }
+});
+```
+
+<br/>
+
+### format_price
+
+**WARNING! This filter is not available**, since DXP need to be improved to accept new filter.
 
 ```jsx
 Twig.extendFilter('format_price', function(price, options) {
@@ -27,28 +61,3 @@ Twig.extendFilter('format_price', function(price, options) {
     }
 });
 ```
-
-## json_parse
-
-```jsx
-Twig.extendFilter('json_parse', function(value) {
-    try {
-        return JSON.parse(value);
-    } catch (e) {
-        return value;
-    }
-});
-```
-
-## Complete list:
-
-- clean_class
-- clean_id
-- format_date
-- format_price
-- placeholder
-- price_one_line
-- render
-- safe_join
-- t
-- json_parse
