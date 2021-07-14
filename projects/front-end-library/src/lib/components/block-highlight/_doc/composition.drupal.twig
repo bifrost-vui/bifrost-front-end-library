@@ -1,0 +1,20 @@
+{% set button              = button|json_parse|default({}) %}
+{% set image               = image|json_parse|default({}) %}
+{% set reversed            = reversed|json_parse %}
+
+<div class='container container-fluid my-6'>
+
+    {% include '@bf-components/block-highlight/twig/index.twig' with {
+        variant : 'featured',
+        class   : 'mb-4'
+    } %}
+
+    <div class='d-flex flex-column flex-md-row gap-4'>
+        {% include '@bf-components/block-highlight/twig/index.twig' with {
+            variant: 'promo'
+        } %}
+        {% include '@bf-components/block-highlight/twig/index.twig' with {
+            variant: 'promo'
+        } %}
+    </div>
+</div>
