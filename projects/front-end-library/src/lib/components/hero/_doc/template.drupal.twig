@@ -17,11 +17,11 @@
 
 <div class='d-flex flex-column w-100'>
     {% include '@bf-components/hero/twig/index.twig' with {
-        reversed    : false,
+        reversed    : reversed|default(false),
     } %}
 
     {% include '@bf-components/hero/twig/index.twig' with {
         image       : imageReversed,
-        reversed    : true,
+        reversed    : reversed|default(true),
     } %}
 </div>
