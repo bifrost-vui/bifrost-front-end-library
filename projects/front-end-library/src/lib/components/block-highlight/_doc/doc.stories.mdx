@@ -12,11 +12,14 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
         moduleMetadata({ declarations: [BlockHighlightComponent, TwigContainerComponent]}),
     ]}
     argTypes={{
-        variant: {
-            defaultValue: 'featured',
+        titleTag: {
+            table: { defaultValue: { summary: 'p' } },
+        },
+        blockBackgroundColor: {
+            table: { defaultValue: { summary: 'ground' } },
             control: {
                 type: 'select',
-                defaultValue: 'featured'
+                defaultValue: 'ground'
             }
         }
     }}
@@ -36,21 +39,33 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
 
 ## Drupal implementation example
 
+### Promo
+
 ```jsx
-{% include '@bf-components/block-highlight/twig/index.twig' with {
-    image               : {
-        src: '/images/assets/helix-equipment.png',
-        alt: 'Alt description'
+{% include '@bf-components/block-highlight/twig/promo.twig' with {
+    image                   : {
+        src : '/images/assets/helix-equipment.png',
+        alt : 'Alt description'
     },
-    title               : 'All the mobile accessories',
-    titleTag            : 'p',
-    paragraph           : 'Find the perfect accessories for your device.',
-    button              : {
-        label               : 'Shop',
-        class               : ''
+    visualBackgroundColor   : '#ff00ff',
+    blockBackgroundColor    : 'underground',
+    title                   : 'All the mobile accessories',
+    titleTag                : 'h2',
+    paragraph               : 'Find the perfect accessories for your device.',
+    button                  : {
+        label : 'Shop',
+        class : ''
     },
-    reversed            : false,
-    class               : ''
+    reversed                : false,
+    class                   : ''
+} only %}
+```
+
+### Featured
+
+```jsx
+{% include '@bf-components/block-highlight/twig/featured.twig' with {
+    // Component API is exaclty the same for promo and featured.
 } only %}
 ```
 
@@ -85,6 +100,7 @@ export const commonProps = {
         name='Drupal - Featured'
         args={{
             ...commonProps,
+            variant : 'featured',
         }}
     >
         {Drupal.bind({})}

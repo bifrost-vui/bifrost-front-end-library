@@ -12,7 +12,6 @@ interface IImage {
 export class BlockHighlightComponent implements OnInit {
     constructor() {}
 
-    @Input() variant                : 'featured' | 'promo';
     @Input() image                  : IImage;
     @Input() visualBackgroundColor  : string;
     @Input() blockBackgroundColor   : 'ground' | 'underground';
@@ -20,7 +19,7 @@ export class BlockHighlightComponent implements OnInit {
     @Input() button                 : object;
 
     @Input() title                  : string;
-    /** E.g. `p` */
+    /** E.g. `h2` */
     @Input() titleTag               : string;
 
     @Input() class                  : string;
