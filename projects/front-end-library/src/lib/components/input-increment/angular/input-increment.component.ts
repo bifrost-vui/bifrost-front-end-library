@@ -13,17 +13,13 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class InputIncrementComponent implements OnInit {
     constructor() {}
 
-    @Input() customClass: string ;
-    @Input() arialLabel : string ;
+    @Input() class      : string ;
+    @Input() ariaLabel  : string ;
     @Input() inputId    : string ;
-
     @Input() inputValue : number ;
     @Input() min        : number ;
     @Input() max        : number ;
-
-    @Input() isInvalid  : boolean;
-    @Input() invalidMsg : string;
-
+    @Input() errorMessage : string;
     @Input() isReadOnly : boolean;
     @Input() isDisabled : boolean;
 

@@ -26,7 +26,7 @@ interface IInputIncrement {
     max             : number;
     inputId         : string;
     inputValue      : number;
-    errorMsg        : string;
+    errorMessage    : string;
 }
 
 @Component({

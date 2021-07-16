@@ -4,7 +4,7 @@
 *
 * ***************************************************************************** */
 
-.bf-inputIncrement {
+.bf-input-increment {
   @extend .d-flex;
   @extend .flex-row;
 
@@ -13,14 +13,11 @@
     background: none;
     width: 3rem;
     height: 2rem;
+    -webkit-appearance: textfield;
 
-    &[type='number']::-webkit-inner-spin-button,
-    &[type='number']::-webkit-outer-spin-button {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
       -webkit-appearance: none;
-    }
-
-    &[type='number'] {
-      -webkit-appearance: textfield;
     }
 
     &.disabled{color: var(--bf-color-neutral-tertiary)}
@@ -31,20 +28,20 @@
     }
 
   &.is-invalid {
+    color: var(--bf-color-feedback-negative);
     .invalid-feedback{
-      color: var(--bf-color-feedback-negative);
+      @extend .pt-2;
       display: block;
-      padding-top: .5rem;
     }
-    .bf-inputIncrement__input{
-      color: var(--bf-color-feedback-negative) !important;
+    .bf-input-increment__input{
+      color: currentColor  !important;
     }
-    .bf-button--secondary,
-    .bf-button--secondary:hover{
-      border-color: var(--bf-color-feedback-negative) !important;
+    .bf-button,
+    .bf-button:hover{
+      border-color: currentColor !important;
     }
     svg{
-      color: var(--bf-color-feedback-negative)!important;
+      color:  var(--bf-color-feedback-negative);
     }
   }
 

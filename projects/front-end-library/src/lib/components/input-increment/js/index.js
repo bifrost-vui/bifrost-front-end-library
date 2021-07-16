@@ -5,17 +5,17 @@ import $ from 'jquery';
 
 $(function () {
 
-  let container = $('.js-bf-inputIncrement')
+  let container = $('.js-bf-input-increment')
 
   container.each(function (i, el) {
     const $this = $(el),
-      $quantityInput = $this.find('.js-bf-inputIncrement__input'),
-      $plusButton = $this.find('.js-bf-inputIncrement__plus'),
-      $minusButton = $this.find('.js-bf-inputIncrement__minus'),
+      $quantityInput = $this.find('.js-bf-input-increment__input'),
+      $plusButton = $this.find('.js-bf-input-increment__plus'),
+      $minusButton = $this.find('.js-bf-input-increment__minus'),
       $maxValue = $quantityInput.attr('max'),
       $minValue = $quantityInput.attr('min');
 
-    let  currentValue = $quantityInput.val() ;
+    let  currentValue = $quantityInput.val();
 
     checkLimitValues(currentValue);
 
@@ -35,8 +35,8 @@ $(function () {
     })
 
     $quantityInput.keyup(function(){
-      currentValue = $quantityInput.val()
-      checkLimitValues(currentValue)
+      currentValue = $quantityInput.val();
+      checkLimitValues(currentValue);
     })
 
     function increment(){
@@ -69,13 +69,12 @@ $(function () {
         $minusButton.removeClass('disabled');
       }
 
-      if ((!isNaN($minValue) && (quantity < $minValue))  || (!isNaN($maxValue) && (quantity > $maxValue)) ){
-        $this.addClass('is-invalid')
+      if (quantity && ((!isNaN($minValue) && (quantity < $minValue))  || (!isNaN($maxValue) && (quantity > $maxValue))) ){
+        $this.addClass('is-invalid');
       } else{
         $this.removeClass('is-invalid');
       }
     }
-
 
   })
 

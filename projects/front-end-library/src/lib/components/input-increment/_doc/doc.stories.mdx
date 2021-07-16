@@ -2,7 +2,7 @@ import { moduleMetadata }               from '@storybook/angular';
 import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 import { withDesign }                   from 'storybook-addon-designs'
 import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { InputIncrementComponent }     from '../angular/input-increment.component';
+import { InputIncrementComponent }     from '../angular/input-increment.component'; import {number} from "@storybook/addon-knobs";
 
 <Meta
     title='Components/Input Increment'
@@ -21,15 +21,15 @@ import { InputIncrementComponent }     from '../angular/input-increment.componen
     argTypes={{
         inputValue : {
             defaultValue : 0,
-            type : { required: true },
+            type :[number, { required: true },]
         },
         inputId : {
-            type : { required: true },
+            type :{ required: true }
         },
-        customClass : {
+        class : {
             description : 'Ex.: justify-content-end | justify-content-center | justify-content-between',
         },
-        errorMsg   : {
+        errorMessage : {
             type : { required: false },
             description : 'Should always be defined if a min or a max value is defined',
         },
@@ -57,16 +57,15 @@ export const Drupal = (args) => ({
         name='Drupal'
         args={{ 
             elementPath     : 'components/input-increment/_doc/template.drupal',
-            customClass     : '',
-            arialLabel      : '',
+            class     : '',
+            ariaLabel      : '',
             inputId         : '',
             inputValue      : 0,
             min             : null,
             max             : null,
             isReadOnly      : false,
             isDisabled      : false,
-            isInvalid       : false,
-            errorMsg        : ''
+            errorMessage    : ''
         }}
     >
         {Drupal.bind({})}
@@ -79,9 +78,9 @@ export const Drupal = (args) => ({
 
 {% include '@bf-components/input-increment/twig/index.twig' with {
    {
-        arialLabel      : ''
-        customClass     : '',
-        arialLabel      : '',
+        ariaLabel      : ''
+        class           : '',
+        ariaLabel      : '',
         inputId         : 'my-unique-input-id',
         inputValue      : 0,
         min             : null,
@@ -89,7 +88,7 @@ export const Drupal = (args) => ({
         isReadOnly      : false,
         isDisabled      : false,
         isInvalid       : false,
-        errorMsg        : 'Error message'
+        errorMessage    : 'Error message'
    }
 } %}
 
