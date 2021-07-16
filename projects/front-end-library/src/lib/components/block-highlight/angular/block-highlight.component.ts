@@ -15,12 +15,12 @@ export class BlockHighlightComponent implements OnInit {
     @Input() image                  : IImage;
     @Input() visualBackgroundColor  : string;
     @Input() blockBackgroundColor   : 'ground' | 'underground';
-    @Input() paragraph              : string;
-    @Input() button                 : object;
-
+    
     @Input() title                  : string;
     /** E.g. `h2` */
     @Input() titleTag               : string;
+    @Input() paragraph              : string;
+    @Input() button                 : object;
 
     @Input() class                  : string;
     @Input() reversed               : boolean;
