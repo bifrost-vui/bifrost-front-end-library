@@ -5,16 +5,6 @@ import { addParameters, addDecorator } from '@storybook/angular';
 import { prepareForInline } from '@storybook/addon-docs/angular';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 
-Twig.extendFilter('format_price', function(price, options) {
-    
-    const language = (options && options[0]) || 'en';
-    if (language === 'fr') {
-        return price + ' $';
-    } else {
-        return '$' + price;
-    }
-});
-
 Twig.extendFilter('price_one_line', function(value) {
     return value;
 });
