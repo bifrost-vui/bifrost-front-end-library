@@ -21,6 +21,9 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
                 type: 'select',
                 defaultValue: 'ground'
             }
+        },
+        variant: {
+            table: { disable: true }
         }
     }}
 />
@@ -44,8 +47,7 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
 ```jsx
 {% include '@bf-components/block-highlight/twig/promo.twig' with {
     image                   : {
-        src : '/images/assets/helix-equipment.png',
-        alt : 'Alt description'
+        src : '/images/assets/helix-equipment.png'
     },
     visualBackgroundColor   : '#ff00ff',
     blockBackgroundColor    : 'underground',
@@ -78,8 +80,8 @@ export const Drupal = (args) => ({
 export const commonProps = {
     elementPath         : 'components/block-highlight/_doc/template.drupal',
     image               : {
-        // src : '/images/assets/helix-equipment.png',
-        src: 'https://i.stack.imgur.com/y9DpT.jpg'
+        src : window.location.origin + '/images/placeholder/800x600.png',
+        // src: 'https://i.stack.imgur.com/y9DpT.jpg'
     },
     title               : 'All the mobile accessories',
     paragraph           : 'Find the perfect accessories for your device.',
@@ -89,6 +91,7 @@ export const commonProps = {
     },
     class               : ''
 }
+
 
 ## Variant Featured
 
@@ -106,6 +109,7 @@ export const commonProps = {
         {Drupal.bind({})}
     </Story>
 </Preview>
+
 
 ## Variant Promo
 
