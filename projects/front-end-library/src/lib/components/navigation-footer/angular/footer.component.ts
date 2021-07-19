@@ -27,7 +27,7 @@ export class FooterComponent implements OnInit {
 
     @Input() isReduced          : boolean;
 
-    @Input() theme              : string = 'videotron';
+    @Input() theme              : string;
     @Input() reversed           : boolean;
     @Input() languageBlock      : any;
 
