@@ -2,22 +2,39 @@
 <div class='{% if reversed %}reversed bf-color-bg-ground{% endif %}'>
     <div class='container-fluid'>
 
-        {% for category in allLogoCategories %}
+        <div class='d-flex flex-column flex-md-row border-bottom bf-border-color-secondary pt-4'>
+            <div style='flex: 0 25%'></div>
+            
+            <p class='flex-grow-1'>
+                English
+            </p>
+
+            <p class='flex-grow-1'>
+                French
+            </p>
+        </div>
+
+        {% for logo in allLogoCategories %}
             <div class='d-flex flex-column flex-md-row border-bottom bf-border-color-secondary py-4'>
 
                 <div style='flex: 0 25%'>
-                    <h4>{{category.categoryName}}</h4>
+                    <p>{{logo.categoryName}}</p>
                 </div>
                 
-                {% for logo in category.list %}
-                    <div class='flex-grow-1 py-2'>
-                        {% include '@bf-components/logo/twig/index.twig' with {
-                            name        : logo.name,
-                            size        : logo.size,
-                            langcode    : logo.langcode,
-                        } %}
-                    </div>
-                {% endfor %}
+                <div class='flex-grow-1 py-2'>
+                    {% include '@bf-components/logo/twig/index.twig' with {
+                        name        : logo.name,
+                        size        : logo.size,
+                    } %}
+                </div>
+
+                <div class='flex-grow-1 py-2'>
+                    {% include '@bf-components/logo/twig/index.twig' with {
+                        name        : logo.name,
+                        size        : logo.size,
+                        langcode    : 'fr',
+                    } %}
+                </div>
                         
             </div>
         {% endfor %}

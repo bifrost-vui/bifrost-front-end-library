@@ -2,9 +2,8 @@ import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs';
 
 import { allLogoCategories }                from './data';
 import { LogoComponent }                    from '../angular/logo.component';
-
-import LogoTemplateTwigAll                  from './template-all.drupal.twig';
 import LogoTemplateTwig                     from './template.drupal.twig';
+import LogoTemplateAllTwig                  from './template-all.drupal.twig';
 
 
 <Meta 
@@ -81,6 +80,12 @@ export const Drupal = (args) => ({
 
 ## Drupal All Logos
 
+
+export const DrupalAll = (args) => ({
+    template: LogoTemplateAllTwig(args),
+    props: args,
+});
+
 <Canvas
     withSource='none'
 >
@@ -90,6 +95,6 @@ export const Drupal = (args) => ({
             allLogoCategories
         }}
     >
-        {Drupal.bind()}
+        {DrupalAll.bind()}
     </Story>
 </Canvas>
