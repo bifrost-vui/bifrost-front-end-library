@@ -2,8 +2,16 @@
     {% for index in [1,2] %}
 
         <div class='flex-grow-1 d-flex align-items-center justify-content-center minh-100 p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
-            
-            {# {% include '@bf-components/card/twig/' ~ cardVariant|default('index') ~ '.twig' ignore missing %} #}
+
+            {% if cardVariant is same as ('phone') %}
+                {% include '@bf-components/card/twig/phone.twig' ignore missing %}
+            {% elseif cardVariant is same as ('plan') %}
+                {% include '@bf-components/card/twig/plan.twig' ignore missing %}
+            {% elseif cardVariant is same as ('protection') %}
+                {% include '@bf-components/card/twig/protection.twig' ignore missing %}
+            {% else %}
+                {% include '@bf-components/card/twig/index.twig' ignore missing %}
+            {% endif %}
 
         </div>
 
