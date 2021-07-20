@@ -168,16 +168,20 @@
         {% endif %}
 
         {% if inputIncrement  is defined  %}
+            <div class='bf-card__buttons'>
                 {% include '@bf-components/input-increment/twig/index.twig' with  inputIncrement only %}
+            </div>
         {% endif %}
 
         {% if buttons is defined %}
+            <div class='bf-card__buttons'>
                 {% block buttons %}
                     {% for button in buttons %}
                         {% set button = button|merge( { 'class': 'w-100 ' ~ button.class } ) %}
                         {% include '@bf-components/button/twig/index.twig' with button only %}
                     {% endfor %}
                 {% endblock %}
+            </div>
         {% endif %}
 
         {% if message is defined and message or messageLink is defined and messageLink %}

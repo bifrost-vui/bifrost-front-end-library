@@ -2,7 +2,7 @@ import { moduleMetadata }               from '@storybook/angular';
 import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 import { withDesign }                   from 'storybook-addon-designs'
 import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { InputIncrementComponent }     from '../angular/input-increment.component'; import {number} from "@storybook/addon-knobs";
+import { InputIncrementComponent }     from '../angular/input-increment.component';
 
 <Meta
     title='Components/Input Increment'
@@ -20,8 +20,10 @@ import { InputIncrementComponent }     from '../angular/input-increment.componen
     }}
     argTypes={{
         inputValue : {
-            defaultValue : 0,
-            type :[number, { required: true },]
+            type:  {
+                required: true,
+                defaultValue : 0
+            }
         },
         inputId : {
             type :{ required: true }
@@ -57,14 +59,12 @@ export const Drupal = (args) => ({
         name='Drupal'
         args={{ 
             elementPath     : 'components/input-increment/_doc/template.drupal',
-            class     : '',
-            ariaLabel      : '',
+            class           : '',
+            ariaLabel       : '',
             inputId         : '',
             inputValue      : 0,
             min             : null,
             max             : null,
-            isReadOnly      : false,
-            isDisabled      : false,
             errorMessage    : ''
         }}
     >
@@ -74,11 +74,8 @@ export const Drupal = (args) => ({
 
 ## Drupal implementation example
 
-```twig
-
+```jsx
 {% include '@bf-components/input-increment/twig/index.twig' with {
-   {
-        ariaLabel      : ''
         class           : '',
         ariaLabel      : '',
         inputId         : 'my-unique-input-id',

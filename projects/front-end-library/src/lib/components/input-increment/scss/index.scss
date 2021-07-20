@@ -8,6 +8,10 @@
   @extend .d-flex;
   @extend .flex-row;
 
+  &__feedback{
+    display: none;
+  }
+
   &__input {
     color: currentColor;
     background: none;
@@ -19,31 +23,18 @@
     &::-webkit-outer-spin-button {
       -webkit-appearance: none;
     }
-
-    &.disabled{
-      @extend .bf-color-neutral-secondary;
-    }
-      svg {
-        color: var(--bf-color-bg-action-disabled-rgb)
-      }
-    }
-
-  &.is-invalid {
-    color: var(--bf-color-feedback-negative);
-    .invalid-feedback{
-      @extend .pt-2;
-      display: block;
-    }
-    .bf-input-increment__input{
-      color: currentColor  !important;
-    }
-    .bf-button,
-    .bf-button:hover{
-      border-color: currentColor !important;
-    }
-    svg{
-      color:  var(--bf-color-feedback-negative);
-    }
   }
 
+  &.disabled{
+    @extend .bf-color-neutral-secondary;
+  }
+
+  &.is-invalid {
+    .bf-input-increment__feedback{
+      @extend .invalid-feedback;
+      @extend .pt-2;
+      @extend .w-100;
+      display: block;
+    }
+  }
 }

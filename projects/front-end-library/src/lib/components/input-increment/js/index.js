@@ -15,7 +15,8 @@ $(function () {
       $maxValue = $quantityInput.attr('max'),
       $minValue = $quantityInput.attr('min');
 
-    let  currentValue = $quantityInput.val();
+    let currentValue = $quantityInput.val();
+    let initialValue = $quantityInput.val();
 
     checkLimitValues(currentValue);
 
@@ -33,10 +34,14 @@ $(function () {
     $minusButton.click(function(){
       decrement();
     })
-
     $quantityInput.keyup(function(){
       currentValue = $quantityInput.val();
       checkLimitValues(currentValue);
+    })
+    $quantityInput.blur(function(){
+      if( !$quantityInput.val()){
+        $quantityInput.val(initialValue);
+      }
     })
 
     function increment(){
