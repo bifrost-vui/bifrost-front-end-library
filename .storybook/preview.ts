@@ -1,10 +1,22 @@
-import { addParameters, addDecorator, componentWrapperDecorator } from '@storybook/angular';
-import { setCompodocJson, prepareForInline } from '@storybook/addon-docs/angular';
-
+//---------------------------------------------------------------
 import Twig from 'twig';
 import twigDrupal from 'twig-drupal-filters';
 
-const path = require('path');
+//---------------------------------------------------------------
+// @ts-ignore
+// eslint-disable-next-line import/extensions, import/no-unresolved
+import docJson from '../documentation.json';
+
+//---------------------------------------------------------------
+import { addParameters, addDecorator, componentWrapperDecorator } from '@storybook/angular';
+import { setCompodocJson, prepareForInline } from '@storybook/addon-docs/angular';
+
+//---------------------------------------------------------------
+import '../public/js/core.js';
+import '../public/js/vendors~bifrost-components.js';
+import '../public/js/bifrost-components.js';
+import '../public/js/bifrost-demo.js';
+
 
 //---------------------------------------------------------------
 // Twig.js
@@ -25,10 +37,6 @@ twigDrupal(Twig);
 
 //---------------------------------------------------------------
 // CompoDoc
-
-// @ts-ignore
-// eslint-disable-next-line import/extensions, import/no-unresolved
-import docJson from '../documentation.json';
 
 setCompodocJson(docJson);
 
