@@ -21,6 +21,7 @@ export class BlockHighlightComponent implements OnInit {
     @Input() titleTag               : string;
     @Input() paragraph              : string;
     @Input() button                 : object;
+    @Input() isFeatured             : boolean;
 
     @Input() class                  : string;
     @Input() reversed               : boolean;

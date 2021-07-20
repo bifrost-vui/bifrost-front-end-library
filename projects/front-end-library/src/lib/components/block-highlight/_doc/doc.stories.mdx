@@ -21,9 +21,6 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
                 type: 'select',
                 defaultValue: 'ground'
             }
-        },
-        variant: {
-            table: { disable: true }
         }
     }}
 />
@@ -42,10 +39,8 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
 
 ## Drupal implementation example
 
-### Promo
-
 ```jsx
-{% include '@bf-components/block-highlight/twig/promo.twig' with {
+{% include '@bf-components/block-highlight/twig/index.twig' with {
     image                   : {
         src : '/images/assets/helix-equipment.png'
     },
@@ -58,16 +53,9 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
         label : 'Shop',
         class : ''
     },
+    isFeatured              : false,
     reversed                : false,
     class                   : ''
-} only %}
-```
-
-### Featured
-
-```jsx
-{% include '@bf-components/block-highlight/twig/featured.twig' with {
-    // Component API is exaclty the same for promo and featured.
 } only %}
 ```
 
@@ -89,39 +77,18 @@ export const commonProps = {
         label   : 'Shop',
         class   : ''
     },
+    isFeatured          : false,
     class               : ''
 }
 
-
-## Variant Featured
-
 <Preview
     withSource='none'
     style={{ height: '800px' }}
 >
     <Story 
-        name='Drupal - Featured'
+        name='Drupal'
         args={{
-            ...commonProps,
-            variant : 'featured',
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Preview>
-
-
-## Variant Promo
-
-<Preview
-    withSource='none'
-    style={{ height: '800px' }}
->
-    <Story 
-        name='Drupal - Promo'
-        args={{
-            ...commonProps,
-            variant : 'promo',
+            ...commonProps
         }}
     >
         {Drupal.bind({})}
