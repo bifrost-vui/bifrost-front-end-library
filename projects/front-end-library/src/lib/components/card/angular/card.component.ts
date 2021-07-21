@@ -25,7 +25,7 @@ interface IInputIncrement {
     min             : number;
     max             : number;
     inputId         : string;
-    inputValue      : number;
+    value           : number;
     errorMessage    : string;
 }
 
