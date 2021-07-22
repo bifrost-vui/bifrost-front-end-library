@@ -1,26 +1,35 @@
-{% if inputType == "radio" %}
-  {% set radioVariantClass = "" %}
-{% endif %}
-
+ 
 {# ------------------------------------------------------------------------------------------------------------------ #}
 
-<div class=" {{ radioVariantClass|default('') }} {{ class|default('') }} ">
-  <input type="{{ inputType|default('checkbox') }}"
-         id="{{ inputId|default('inputCardBtn') }}"
-         name="{{ inputName|default('') }}"
-         value="{{ inputValue|default('') }}"
-         class=" {{ inputClass|default('') }}"
-         {% if isDisabled is defined and isDisabled is same as (true) %}disabled="disabled"{% endif %}
-    {% if isSelected is defined and isSelected is same as (true) %}checked="checked"{% endif %}
-    {{ extraAttribute|default(NULL) }}>
-
-  <label for="{{ inputId|default('inputCardBtn') }}"
-         class=" {{ labelClass|default('') }}">
-    {% block label_content %}
-      <!-- The include below is an example, it is not mendatory when using this file as en embed Twig block -->
-      <div class="">
-        <img class="px-1" src="/images/logo/channels/tva-sports.svg" width="68" height="40" alt="">
-      </div>
+<div class="bf-selection-tile bf-selection-tile--{{ orientation|default('horizontal') }} bf-selection-tile--{{ size|default('small') }} {{ isSelected ? 'selected' }} {{ isDisabled? 'disabled' }} {{ class|default('') }} ">
+  <div class="bf-selection-tile__control">
+    <label for="{{ inputId|default('my-selection-tile') }}" class="bf-selection-tile__label" title="{{arialLabel}}"></label>
+    <input type="{{ inputType|default('checkbox') }}"
+          class="bf-selection-tile__input"
+          id="{{ inputId|default('my-selection-tile') }}"
+          name="{{ name|default('bf-selection-tile') }}"
+          value="{{ value}}"
+          aria-label = "{{arialLabel}}"
+          {% if isDisabled is defined and isDisabled %} disabled="disabled" {% endif %}
+          {% if isSelected is defined and isSelected  %} checked="checked" {% endif %}
+          {{ extraAttribute|default(NULL) }}>
+  </div>
+    <div class="bf-selection-tile__content">
+      <!-- The include below manages some tile variants,
+       it is not mendatory when using this file as en embed Twig block 
+       but be aware that some items may not be clickable even if you redefine the content of this block -->
+    {% block tile_content %}
+        {% if orientation is same as ('vertical') %}
+          <img class="px-1" src="/images/logo/channels/tva-sports.svg" width="68" height="40" alt="">
+        {% else %}
+        <div class="bf-text small">
+          {% include '@bf-components/icon/twig/index.twig' with {
+              name    : 'application-helix-tv',
+              size    : 'medium',
+              type    : 'illustration'
+          } only %}
+              some text </div>
+        {% endif %}
     {% endblock %}
-  </label>
+    </div>
 </div>

@@ -14,11 +14,29 @@ import { SelectionTileComponent }     from '../angular/selection-tile.component'
     parameters={{
         design: {
             type    : 'figma',
-            url     : 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=14481%3A156160',
             disable : false
         },
     }}
-    argTypes={{}}
+    argTypes={{
+        inputType   :{
+            defaultValue: 'checkbox',
+            type        : { required: true },
+            table       : { defaultValue: { summary: 'checkbox' } },
+            control     : { type: 'select', options : ['checkbox', 'radio'] }
+        },
+        inputId     :{type: { required: true } },
+        ariaLabel   :{type: { required: true } },
+        value       :{type: { required: true } },
+        orientation :{
+            table       : { defaultValue: { summary: 'horizontal' } },
+            control     : { type: 'select', options : ['vertical', 'horizontal'] }
+        },
+        size        :{
+            table       : { defaultValue: { summary: 'small' } },
+            control     : { type: 'select', options : ['small', 'large'] }
+        }
+    }}
 />
 
 # Selection Tile
@@ -42,7 +60,6 @@ export const Drupal = (args) => ({
         name='Drupal'
         args={{ 
             elementPath : 'components/selection-tile/_doc/template.drupal',
-            label       : 'Selection Tile',
         }}
     >
         {Drupal.bind({})}
@@ -71,7 +88,7 @@ export const Angular = (args) => ({
 >
     <Story 
         name='Angular' 
-        args={{ label: 'Selection Tile' }}
+        args={{ }}
     >
         {Angular.bind({})}
     </Story>

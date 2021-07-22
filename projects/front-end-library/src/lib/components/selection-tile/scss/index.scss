@@ -5,5 +5,100 @@
 * ***************************************************************************** */
 
 .bf-selection-tile {
-    background-color: var(--bf-color-bg-action-primary);
+    @extend .position-relative;
+    @extend .p-3;
+    border: 1px solid rgba( var(--bf-color-neutral-primary-rgb), .2);
+    border-radius: .5rem;
+    &:hover{
+        border-color: var(--bf-color-neutral-primary);
+        background-color: var(--bf-color-bg-underground);
+    }
+    &.selected{
+        border-color: var(--bf-color-neutral-primary);
+    }
+    &__content{
+        @extend .w-100;
+        @extend .h-100;
+        pointer-events: none;
+        align-self: center;
+        flex-grow: 1;
+    }
+
+    &__label{
+        @extend .position-absolute;
+        width:100%;
+        height:100%;
+        top: 0;
+        left: 0;
+        display: block;
+    }
+
+    &__input{
+        @extend .border;
+        @extend .mr-3;
+        display: block;
+        appearance: none;
+        border-radius: .125rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        background: none; 
+        position: relative;
+
+        &:checked::before{
+            @extend .position-absolute;
+            @extend .d-block;
+            z-index: 3;
+            top: -1px;
+            left: -1px;
+            width: 1.5rem;
+            height: 1.5rem;   
+            background :var(--bf-color-feedback-neutral) url(/images/icons/bifrost/check-sm.svg) center center no-repeat;
+            border-color:var(--bf-color-feedback-neutral);
+            border-radius: inherit;
+            content: '';
+        }
+    }
+    &__input[type=radio]{
+        border-radius: 50%;
+    }
+
+    /** 
+    ** orientation variants
+    **/
+    &--horizontal{
+        @extend .d-flex;
+        width: max-content;
+        max-width: 22.5rem;
+        .bf-selection-tile__control{
+            align-self : center;
+            @extend .py-2;
+        } 
+        &.bf-selection-tile--large{
+            width: 22.5rem;
+        }
+    }
+    &--vertical{
+        width: 8rem;
+        height: 8rem;
+        border-radius: .5rem;      
+        .bf-selection-tile__input{
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+        }
+        .bf-selection-tile__content{
+            @extend .justify-content-center;
+            @extend .flex-column;
+            @extend .d-flex;
+            @extend .align-items-center
+        }
+        &.bf-selection-tile--large{
+            width: 12rem;
+            height: 16rem;
+            .bf-selection-tile__control{
+                align-self: flex-start;
+            } 
+
+        }
+    }
 }

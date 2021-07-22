@@ -1,9 +1,33 @@
-{% set reversed = reversed|json_parse|default(false) %}
+{% set reversed     = reversed|json_parse|default(false) %}
+{% set isDisabled   = isDisabled|json_parse|default(false) %}
+{% set isSelected   = isSelected|json_parse|default(false) %}
+{% set orientation  = orientation|json_parse %}
+{% set size         = size|json_parse %}
 
-<div class='pt-4 {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
 
+<div class='container d-flex flex-wrap justify-content-between {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
+    
+    <div class="p-1">
+    {% include '@bf-components/selection-tile/twig/index.twig' %}
+    </div>
+    <div class="p-1">
     {% include '@bf-components/selection-tile/twig/index.twig' with {
-        label   : label|default(''),
-    } only %}
+        size        : size ?? 'large',
+        inputId     : 'my-selection-tile2'
+    }  %}
+    </div>
+    <div class="p-1">
+    {% include '@bf-components/selection-tile/twig/index.twig' with {
+        orientation : orientation ?? 'vertical',
+        inputId     : 'my-selection-tile3'
+    }    %}
+    </div>
+    <div class="p-1">
+    {% include '@bf-components/selection-tile/twig/index.twig' with {
+        orientation : orientation ?? 'vertical',
+        size        : size ?? 'large',
+        inputId     : 'my-selection-tile4'
+    } %}
+    </div>
 
-</div>
+</div>    
