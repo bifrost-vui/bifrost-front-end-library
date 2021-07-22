@@ -15,21 +15,47 @@
           {{ extraAttribute|default(NULL) }}>
   </div>
     <div class="bf-selection-tile__content">
-      <!-- The include below manages some tile variants,
+
+    {% block tile_content %}
+
+       <!-- The include below manages some tile variants,
        it is not mendatory when using this file as en embed Twig block 
        but be aware that some items may not be clickable even if you redefine the content of this block -->
-    {% block tile_content %}
-        {% if orientation is same as ('vertical') %}
+
+      {% if orientation is same as ('vertical') %}
+      
           <img class="px-1" src="/images/logo/channels/tva-sports.svg" width="68" height="40" alt="">
-        {% else %}
-        <div class="bf-text small">
-          {% include '@bf-components/icon/twig/index.twig' with {
-              name    : 'application-helix-tv',
-              size    : 'medium',
-              type    : 'illustration'
-          } only %}
-              some text </div>
-        {% endif %}
+      {% else %}
+      
+        <div class="d-flex flex-row align-self-center">
+          
+          {% if size is same as ('large') %}
+              {% include '@bf-components/icon/twig/index.twig' with {
+                  name    : 'application-helix-tv',
+                  size    : 'medium',
+                  type    : 'illustration',
+                  class   : 'mr-2 my-minus-1'
+              } only %}
+          {% endif %}
+          <div class="d-flex justify-content-between flex-grow-1" >
+
+            <div class="d-flex flex-column align-self-center bf-text small ">
+              <p class="p-0 m-0"><strong>some Title</strong></p>
+              <p class="p-0 m-0">some Description</p>
+            </div>
+            
+            {% if size is same as ('large') %}
+            <div class="bf-text small align-self-center "> 
+              <p class="p-0 m-0"><strong>XXX.xx</strong>/Month</p>
+            </div>
+            {% endif %}
+
+          </div>
+        </div>
+
+      {% endif %}
+
     {% endblock %}
+
     </div>
 </div>
