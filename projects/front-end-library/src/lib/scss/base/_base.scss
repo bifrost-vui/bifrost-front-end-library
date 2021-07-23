@@ -23,15 +23,18 @@ img:not([usemap]) {
   background-color: rgba( var(--bf-color-bg-action-primary-rgb), .7);
 }
 
+// scrolling effect
 // SCROLLBAR
 
 ::-webkit-scrollbar,
 ::-webkit-scrollbar-button {
-  @include size(2px);
+  @include size(3px);
   background-color: var(--bf-color-stroke-secondary);
+  @include media-breakpoint-down(md) {
+    @include size(0px);
+  }
 }
 
-// scrolling effect
 
 .bf-overflow-x{
   overflow-x: auto;

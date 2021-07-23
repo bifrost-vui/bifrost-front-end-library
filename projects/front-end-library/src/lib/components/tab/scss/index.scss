@@ -7,24 +7,28 @@
 .bf-tab {
     position: relative;
     width: 100%;
-    padding-left: 2.5rem;
-
+    & > div {
+        @extend .bf-overflow-x;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+        @include media-breakpoint-down(md) {
+            padding-left: 1rem;
+        }
+    }
 
     &__slider {
-        @extend .bf-overflow-x;
         display: flex;
-        width: calc(100% - 2.5rem);
-        @include media-breakpoint-down(md) {
-            width: 100%;
-        }
+        width: max-content;
         white-space: nowrap;
         padding: 0;
+        margin: 0;
         border-bottom: 1px solid var(--bf-color-stroke-secondary);
     }
 
     .nav-link {
         @extend .h3;
-        padding: .5rem 0;
+        padding:0;
+        line-height: 3.5rem;
         color: var(--bf-color-neutral-secondary) !important;
         text-transform: none;
         letter-spacing: 0;
@@ -39,6 +43,7 @@
             &:before {
                 position: absolute;
                 background-color: var(--bf-color-bg-action-primary);
+                bottom: -1px;
             }
         }
     }
