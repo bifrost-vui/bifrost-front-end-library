@@ -3,8 +3,35 @@
 <br/><br/>
 
 ## vX.X.X
-### Bugs
-- **DS-86** Fix Tabs scrolling.
+### Bugs Fix
+- **DS-86** Fix Tabs scrolling style.
+
+## [v1.1.1](https://bifrost-front-end-library-git-v1-1-1-jonathanlefebvrev.vercel.app)
+### Price
+Bugs Fix
+- format_price custom filter has been remove.
+  - `priceStriked` and `priceSaved` have to be language formated outside of the component.
+  - Note: '$' is still managed by the component.
+
+## [v1.1.0](https://bifrost-front-end-library-git-v1-1-0-jonathanlefebvrev.vercel.app)
+
+### FONT
+Font now swap to help loading performance
+
+### Hero
+- Improve `blockSelection` property in order to be used as a **Twig Block** or as an **object**.
+- Fix layout with Breadcrumb.
+
+### UIKIT CSS SYNC
+include CSS from TPDXP-4065 of PR https://bitbucket.etiya.com/login?next=/projects/MAR/repos/marvel-ui-kit/pull-requests/566
+
+### Price
+- ⚠️ **[BREAK CHANGE]** ⚠️ `size` property API is now: `small | medium | large` (previously `sm | md | lg`).
+[See documentation](?path=/docs/components-price--drupal)
+- New properties: `promotion`, `upfront` and `fullWidth`.
+- **[Backward compatible Changes]** Use of `promotion` property is encourage instead of `dashed`, `saved` or `savedLabel`.
+- ⚠️ **[BREAK CHANGE]** ⚠  Properties `dollar`, `cent`, `priceStriked`, `priceSaved` are now numeric value instead of String with `$` to pass
+  - A filter was added to manage the price. `format_price` display price depending of the language pass (en|fr).
 
 ### Badge
 - Documentation improved.
@@ -12,20 +39,23 @@
 ### Card
 - **[BREAKING CHANGES]** `description` attribute removed, in order to avoid confusion with `description_html`. Please don't forget to wrap `description_html` with a semantic tag.
 E.g. `description_html: '<p>This is a description</p>'`
+- title style change a h2 for a h3.
 
 ### Logo
 - Remove uppercase in SVG filename.
 - `langcode` should be in lowercase (E.g. 'en') in order to be more consistent with `language`. However, in order to ensure backward compatilibilty, uppercase is accepted as well.
 - `ignore missing` added to the svg include.
 
+### Footer
+- Add `only` for all include in order to avoid passing reversed props
 
 ## [v1.0.3](https://bifrost-front-end-library-git-v1-0-3-jonathanlefebvrev.vercel.app)
-Bugs
+Bugs Fix
 - DS-78 (clone of DS-73) Fix Hero block of the Block-selection
   - Fixing the component Hero to manage more efficiently the twig block `blockSelectionSection`
 
 ## [v1.0.2](https://bifrost-front-end-library-git-v102fixes-jonathanlefebvrev.vercel.app/)
-Bugs
+Bugs Fix
 - DS-73 Fix Hero block of the Block-selection
   - Component Hero has a block `blockSelectionSection` to override the compoenent `blockSelection`
 
@@ -38,7 +68,7 @@ Bugs
 
 
 ## [v1.0.1](https://bifrost-front-end-library-7sh17fjm1-jonathanlefebvrev.vercel.app/)
-Bugs
+Bugs Fix
 - DS-63 Fix Header icon mandatory
   - Links icon (`rigthIconLinks`), in mobile, now only display if the attribute `icon` and `href` are filled.
 
@@ -67,7 +97,6 @@ Knows bugs
 ## [v0.0.17](https://bifrost-front-end-library-hcluh8tfh-baptistemac.vercel.app)
 
 ### Bug Fix
-
 - Navigation Header: Allow vertical scroll in Mega-Menu.
 
 
