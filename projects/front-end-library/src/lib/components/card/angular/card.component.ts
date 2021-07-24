@@ -22,11 +22,15 @@ interface IButton {
 }
 
 interface IInputIncrement {
-    min             : number;
-    max             : number;
-    inputId         : string;
-    value           : number;
-    errorMessage    : string;
+    class        : string;
+    ariaLabel    : string;
+    inputId      : string;
+    value        : number;
+    min          : number;
+    max          : number;
+    errorMessage : string;
+    isReadOnly   : boolean;
+    isDisabled   : boolean;
 }
 
 @Component({
@@ -41,11 +45,11 @@ export class CardComponent implements OnInit {
     @Input() iconName               : string;
     /** E.g. `#F6F6F6` */
     @Input() visualBackgroundColor  : string;
-    
+
     @Input() upperTitle             : string;
     @Input() title                  : string;
     @Input() titleTag               : string;
-    /** 
+    /**
     Note: Wrap your data with a semantic HTML tag.
     E.g. `description_html: "<p>this is a description</p>"`
     */
@@ -105,7 +109,7 @@ export class CardComponent implements OnInit {
     /**
       [inputIncrement](/?path=/docs/components-input-increment--drupal) component.
      */
-    @Input() inputIncrement         :IInputIncrement;
+    @Input() inputIncrement         : IInputIncrement;
 
     @Input() message                : string;
     @Input() messageLink            : ILink;
