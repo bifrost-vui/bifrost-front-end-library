@@ -5,7 +5,7 @@
 * ***************************************************************************** */
 
 /* ----------------------------------
-*   Min height
+*   Min height & Min width
 *
 *   Use : .minh-1, .minh-sm-3, .minh-lg-5, ...
 *   ---------------------------------- */
@@ -24,7 +24,7 @@
 }
 
 /* ----------------------------------
-*   Max width
+*   Max height & Max width
 *
 *   Use : .maxw-20, .maxw-sm-100, .maxw-lg-40, ...
 *   ---------------------------------- */
@@ -33,7 +33,7 @@
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
     @each $prop, $abbrev in (max-height:maxh, max-width: maxw) {
-      @each $size, $length in $sizes {
+      @each $size, $length in $m-sizes {
         .#{$abbrev}#{$infix}-#{$size} {
           #{$prop}: $length !important;
         }
@@ -41,8 +41,6 @@
     }
   }
 }
-
-
 
 /* ----------------------------------
 *   Line height
@@ -62,7 +60,6 @@
     }
   }
 }
-
 
 /* ----------------------------------
 *   Negative margin/padding
@@ -120,7 +117,6 @@
     }
   }
 }
-
 
 /* ----------------------------------
 *   Font-size
