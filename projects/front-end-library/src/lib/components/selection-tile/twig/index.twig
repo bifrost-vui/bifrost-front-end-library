@@ -1,9 +1,10 @@
  
 {# ------------------------------------------------------------------------------------------------------------------ #}
 
-<div class="bf-selection-tile bf-selection-tile--{{ orientation|default('horizontal') }} bf-selection-tile--{{ size|default('small') }} {{ isSelected ? 'selected' }} {{ isDisabled? 'disabled' }} {{ class|default('') }} ">
+<div class="bf-selection-tile bf-selection-tile--{{ orientation|default('horizontal') }} bf-selection-tile--{{ size|default('small') }} {{ isCSR? 'csr' }} {{ isDisabled? 'disabled' }} {{ class|default('') }} ">
+  
   <div class="bf-selection-tile__control">
-    <label for="{{ inputId|default('my-selection-tile') }}" class="bf-selection-tile__label" title="{{arialLabel}}"></label>
+  
     <input type="{{ inputType|default('checkbox') }}"
           class="bf-selection-tile__input"
           id="{{ inputId|default('my-selection-tile') }}"
@@ -13,49 +14,47 @@
           {% if isDisabled is defined and isDisabled %} disabled="disabled" {% endif %}
           {% if isSelected is defined and isSelected  %} checked="checked" {% endif %}
           {{ extraAttribute|default(NULL) }}>
+  
+    <label for="{{ inputId|default('my-selection-tile') }}" class="bf-selection-tile__label" title="{{arialLabel}}"></label>
+  
   </div>
-    <div class="bf-selection-tile__content">
+
+  <div class="bf-selection-tile__block">
 
     {% block tile_content %}
 
        <!-- The include below manages some tile variants,
        it is not mendatory when using this file as en embed Twig block 
        but be aware that some items may not be clickable even if you redefine the content of this block -->
-
-      {% if orientation is same as ('vertical') %}
-      
-          <img class="px-1" src="/images/logo/channels/tva-sports.svg" width="68" height="40" alt="">
-      {% else %}
-      
-        <div class="d-flex flex-row align-self-center">
-          
-          {% if size is same as ('large') %}
-              {% include '@bf-components/icon/twig/index.twig' with {
-                  name    : 'application-helix-tv',
-                  size    : 'medium',
-                  type    : 'illustration',
-                  class   : 'mr-2 my-minus-1'
-              } only %}
+      <div>
+        <div class="bf-selection-tile__content">
+          {% if image and image.src and image.alt %}
+          <div class="bf-selection-tile__visual">
+              <img class="{{image.class}}" src="{{image.src}}" width="68" height="40" alt="{{image.alt}}">
+          </div>        
           {% endif %}
-          <div class="d-flex justify-content-between flex-grow-1" >
 
-            <div class="d-flex flex-column align-self-center bf-text small ">
-              <p class="p-0 m-0"><strong>some Title</strong></p>
-              <p class="p-0 m-0">some Description</p>
-            </div>
-            
-            {% if size is same as ('large') %}
-            <div class="bf-text small align-self-center "> 
-              <p class="p-0 m-0"><strong>XXX.xx</strong>/Month</p>
-            </div>
-            {% endif %}
-
+          {% if title or description %}
+          <div class="bf-selection-tile__text">
+            <p class="p-0 m-0"><strong>{{ title }}</strong></p>
+            <p class="p-0 m-0">{{ description }}</p>
           </div>
+          {% endif%}
         </div>
-
+        
+      </div>
+      {% if size is same as ('large') and info %}
+      <div class div='bf-selection-tile__footer'>
+        <div class="bf-selection-tile__text"> 
+          <p class="p-0 m-0">{{info}}</p>
+        </div>
+      </div>  
       {% endif %}
+
 
     {% endblock %}
 
-    </div>
+  </div>
 </div>
+
+{# #}

@@ -7,30 +7,21 @@
 .bf-selection-tile {
     @extend .position-relative;
     @extend .p-3;
-    border: 1px solid rgba( var(--bf-color-neutral-primary-rgb), .2);
-    border-radius: .5rem;
-    &:hover{
-        border-color: var(--bf-color-neutral-primary);
-        background-color: var(--bf-color-bg-underground);
-    }
-    &.selected{
-        border-color: var(--bf-color-neutral-primary);
-    }
-    &__content{
-        @extend .w-100;
-        @extend .h-100;
-        pointer-events: none;
-        align-self: center;
-        flex-grow: 1;
-    }
+    width: max-content;
 
     &__label{
         @extend .position-absolute;
-        width:100%;
-        height:100%;
+        display: block;
+        width:calc(100% - 2px);
+        height:calc(100% - 2px);
         top: 0;
         left: 0;
-        display: block;
+        border: 1px solid rgba( var(--bf-color-neutral-primary-rgb), .2);
+        border-radius: .5rem;
+        &:hover{
+            border-color: var(--bf-color-neutral-primary);
+            border-width: 2px
+        }
     }
 
     &__input{
@@ -43,7 +34,10 @@
         height: 1.5rem;
         background: none; 
         position: relative;
-
+        &:checked + label {
+                border-color: var(--bf-color-neutral-primary);
+                border-width: 2px
+        }
         &:checked::before{
             @extend .position-absolute;
             @extend .d-block;
@@ -53,6 +47,7 @@
             width: 1.5rem;
             height: 1.5rem;   
             background :var(--bf-color-feedback-neutral) url(/images/icons/bifrost/check-sm.svg) center center no-repeat;
+            background-size: 80% 80%;
             border-color:var(--bf-color-feedback-neutral);
             border-radius: inherit;
             content: '';
@@ -62,43 +57,95 @@
         border-radius: 50%;
     }
 
+    &__text{
+        @extend .small ;
+    }
+    &:hover{
+        background-color: var(--bf-color-bg-underground);
+    }
+
+
     /** 
     ** orientation variants
     **/
     &--horizontal{
         @extend .d-flex;
+        align-items: center;
+        max-height: 8rem;
         width: max-content;
-        max-width: 22.5rem;
+
+        & .bf-selection-tile__block{
+            display: flex;
+            flex-grow: 1;
+            width: auto;
+            justify-content: space-between;
+            align-items: center
+        }
         .bf-selection-tile__control{
             align-self : center;
-            @extend .py-2;
+            @extend .py-1;
         } 
+        .bf-selection-tile__visual{ 
+            display: none;
+        }
+        &.bf-selection-tile--small{
+            .bf-selection-tile__footer{display: none;}
+        }
         &.bf-selection-tile--large{
-            width: 22.5rem;
+            width: auto;
+            .bf-selection-tile__block{
+                width: max-content;
+                }    
         }
     }
+
+
     &--vertical{
-        width: 8rem;
-        height: 8rem;
-        border-radius: .5rem;      
+        width: max-content;
+        min-height: 8rem;
+        min-width: 8rem;
+        border-radius: .5rem;
+        display: flex;
+        align-items: stretch;
+        padding-top: 2.5rem;      
         .bf-selection-tile__input{
             position: absolute;
             top: .5rem;
             left: .5rem;
+            z-index: 0;
         }
-        .bf-selection-tile__content{
-            @extend .justify-content-center;
-            @extend .flex-column;
-            @extend .d-flex;
-            @extend .align-items-center
+        .bf-selection-tile__block{
+            display: flex;
+            flex-flow: nowrap column;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            & > div {
+                display: flex;
+                text-align: center;
+                flex-grow: 1;
+                height: 50%;
+                align-items: center;     
+            }
+            .bf-selection-tile__content{
+                display: flex;
+                flex-flow: column;
+            } 
         }
         &.bf-selection-tile--large{
-            width: 12rem;
-            height: 16rem;
-            .bf-selection-tile__control{
-                align-self: flex-start;
-            } 
+            width: 100%;
+            min-height: 16rem;
+            
+            & .bf-selection-tile__block > div{
+                @extend .pt-2; 
+                align-items: flex-end ;
+            }
 
+            .bf-selection-tile__visual{
+                
+                width: 100%;
+            } 
+              
         }
     }
 }
