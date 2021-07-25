@@ -151,7 +151,7 @@
     {% endblock card_body %}
     </div>
 
-    <footer class='bf-card__footer pt-3 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>
+    <footer class='bf-card__footer pt-0 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>
 
         {% if price is defined and price %}
             {% set price = price|merge({
@@ -167,8 +167,14 @@
             </p>
         {% endif %}
 
+        {% if inputIncrement  is defined  %}
+            <div class='bf-card__controls'>
+                {% include '@bf-components/input-increment/twig/index.twig' with  inputIncrement only %}
+            </div>
+        {% endif %}
+
         {% if buttons is defined %}
-            <div class='bf-card__buttons'>
+            <div class='bf-card__controls'>
                 {% block buttons %}
                     {% for button in buttons %}
                         {% set button = button|merge( { 'class': 'w-100 ' ~ button.class } ) %}
@@ -194,5 +200,4 @@
         {% endif %}
 
     </footer>
-
 </article>
