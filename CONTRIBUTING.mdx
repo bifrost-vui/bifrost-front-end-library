@@ -247,15 +247,10 @@ Create a branch and the Pull Request named after the version name and replace do
 
 On the branch version, increment the version in `projects/front-end-library/package.json` depending of the context of the version for the pattern: **MAJOR.MINOR.PATCH**.
 
-## Make the NPM package
-From your related version branch
-```bash
-# This command will build and publish a new version of the front-end library.
-npm run publish
-```
-
-Your new package version is now available for everyone.
-You could check availability on the [NPM registry](https://www.npmjs.com/package/@videotron-ui/bifrost-front-end-library) page.
+## CheckList of the PR
+- [ ] package.json version changed
+- [ ] ChangeLog properly written, explicit and understandable with new features and or bugs fix.
+- [ ] New URL version of the storybook working and reference
 
 ## Make the version in Git,
 ```
@@ -266,6 +261,18 @@ You could check availability on the [NPM registry](https://www.npmjs.com/package
 -git tag v[x.y.z]
 -git push --tags
 ```
+
+## Make the NPM package
+From your related version branch
+```bash
+# This command will build and publish a new version of the front-end library.
+npm run publish
+```
+
+Your new package version is now available for everyone.
+You could check availability on the [NPM registry](https://www.npmjs.com/package/@videotron-ui/bifrost-front-end-library) page.
+
+
 Then merge you PR of the version into master
 
 ## Finish the Release the Jira version,
