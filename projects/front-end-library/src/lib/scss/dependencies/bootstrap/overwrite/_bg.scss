@@ -10,8 +10,13 @@
 
     // theme-colors
     @each $color, $value in $theme-colors {
+      .bg#{$infix}-#{$color},
       .bg#{$infix}--#{$color} {
         background: $value;
+        // Legacy
+        &.bg-fade {
+          background: transparentize($value, 0.85);
+        }
       }
     }
 

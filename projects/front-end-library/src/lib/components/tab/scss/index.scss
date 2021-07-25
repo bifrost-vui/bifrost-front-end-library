@@ -5,62 +5,45 @@
 * ***************************************************************************** */
 
 .bf-tab {
-    overflow: scroll;
+    position: relative;
     width: 100%;
-
-    // background-image:
-    //     /* Shadows */ 
-    //     linear-gradient(to right, white, white),
-    //     linear-gradient(to right, white, white),
-    
-    //     /* Shadow covers */ 
-    //     linear-gradient(to right, rgba(0,0,0,.25), rgba(255,255,255,0)),
-    //     linear-gradient(to left, rgba(0,0,0,.25), rgba(255,255,255,0));   
-
-    // background-position:
-    //     left center,
-    //     right center,
-    //     left center,
-    //     right center;
-    // background-repeat: no-repeat;
-    // // background-color: white;
-    // background-size:
-    //     20px 100%,
-    //     20px 100%,
-    //     10px 100%,
-    //     10px 100%;
-    
-    // /* Opera doesn't support this in the shorthand */
-    // background-attachment:
-    //     local,
-    //     local,
-    //     scroll,
-    //     scroll;
+    & > div {
+        @extend .bf-overflow-x;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+        @include media-breakpoint-down(md) {
+            padding-left: 1rem;
+        }
+    }
 
     &__slider {
         display: flex;
         width: max-content;
-
-        > li {
-            flex: 1 0;
-        }
+        white-space: nowrap;
+        padding: 0;
+        margin: 0;
+        border-bottom: 1px solid var(--bf-color-stroke-secondary);
     }
 
     .nav-link {
         @extend .h3;
-        margin-top: 0 !important;
-        color: var(--bf-color-neutral-secondary);
+        padding:0;
+        line-height: 3.5rem;
+        color: var(--bf-color-neutral-secondary) !important;
         text-transform: none;
         letter-spacing: 0;
         white-space: nowrap;
         text-align: center;
-        padding: 10px;
+        transition: color .25s;
         
-        &.active {
-            color: inherit;
+        &.active,
+        &:hover {
+            color: inherit !important;
 
             &:before {
+                position: absolute;
                 background-color: var(--bf-color-bg-action-primary);
+                bottom: -1px;
             }
         }
     }

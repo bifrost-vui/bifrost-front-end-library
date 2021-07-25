@@ -1,0 +1,43 @@
+{% set attrReadOnly     = (isReadOnly is defined and isReadOnly) ? ' readonly' : '' %}
+{% set classHide        = (isReadOnly is defined and isReadOnly) ? ' d-none' : '' %}
+{% set attrDisabled     = (isDisabled is defined and isDisabled) ? ' disabled' : '' %}
+{% set classDisabled    = (isDisabled is defined and isDisabled) ? ' disabled' : '' %}
+{% set classIsInvalid   = (isInvalid is defined and isInvalid) ? ' is-invalid' : '' %}
+{% set attrRequired     = (isRequired is not defined or (isRequired is defined and isRequired)) ? ' required' : '' %}
+
+
+<div class="bf-input-increment js-bf-input-increment align-items-center flex-wrap {{ class ~ classDisabled ~ classIsInvalid }}" >
+
+    {% include '@bf-components/button/twig/index.twig' with {
+        label           : '',
+        hierarchy       : 'secondary',
+        iconName        : "minus",
+        class           : classHide is empty ? ' js-bf-input-increment__minus bf-button rounded-circle px-2 ' : classHide,
+        ariaControls    : inputId,
+    } only %}
+
+        <input id="{{ inputId }}"
+               type="number"
+               class="text-center bf-text-display-small bf-input-increment__input js-bf-input-increment__input border-0  m-0  py-0 {{ attrDisabled }}"
+               aria-label="{{ arialLabel }}"
+               value="{{ value }}"
+               {% if min is defined %}min='{{ min }}'{% endif %}
+               {% if max is defined %}max='{{ max }}'{% endif %}
+               {{ attrReadOnly }}
+               {{ attrDisabled }}
+               {{ attrRequired }}
+               {% if attrRequired is not empty %} aria-required="true" {% endif %}
+        >
+
+    {% include '@bf-components/button/twig/index.twig' with {
+        label           : '',
+        hierarchy       : 'secondary',
+        iconName        : "plus",
+        class           : classHide is empty ? ' js-bf-input-increment__plus bf-button rounded-circle px-2 ' : classHide,
+        ariaControls    : inputId,
+        } only %}
+
+    <div class="bf-input-increment__feedback">
+        <p>{{ errorMessage }}</p>
+    </div>
+</div>

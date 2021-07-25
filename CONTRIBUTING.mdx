@@ -209,6 +209,10 @@ In order to pass Breakpoints to Carousel. We created a global variable `bfTheme`
 Feel free to add any [stories](https://storybook.js.org/docs/angular/writing-stories/introduction) as you wish to showcase different states of your component. For example, we added a story for [Card Plan - Disabled](http://localhost:9008/?path=/story/components-card--drupal-plan-disabled) because it is easier to check than to hit the **Disable switch** in **Controls** panel.
 You could add stories in the same `doc.stories.ts`, or create a new file if it's relevant (E.g. `specific-variant.stories.ts`).
 
+### Twig Filters
+See the [complete list of required twig filters](?path=/docs/implementation-drupal-filters--page).
+Warning! Before choosing a name for a new twig filter, ask AppNovation if they don't have a filter with the same name.
+
 <br/>
 
 
@@ -243,15 +247,10 @@ Create a branch and the Pull Request named after the version name and replace do
 
 On the branch version, increment the version in `projects/front-end-library/package.json` depending of the context of the version for the pattern: **MAJOR.MINOR.PATCH**.
 
-## Make the NPM package
-From your related version branch
-```bash
-# This command will build and publish a new version of the front-end library.
-npm run publish
-```
-
-Your new package version is now available for everyone.
-You could check availability on the [NPM registry](https://www.npmjs.com/package/@videotron-ui/bifrost-front-end-library) page.
+## CheckList of the PR
+- [ ] package.json version changed
+- [ ] ChangeLog properly written, explicit and understandable with new features and or bugs fix.
+- [ ] New URL version of the storybook working and reference
 
 ## Make the version in Git,
 ```
@@ -262,6 +261,18 @@ You could check availability on the [NPM registry](https://www.npmjs.com/package
 -git tag v[x.y.z]
 -git push --tags
 ```
+
+## Make the NPM package
+From your related version branch
+```bash
+# This command will build and publish a new version of the front-end library.
+npm run publish
+```
+
+Your new package version is now available for everyone.
+You could check availability on the [NPM registry](https://www.npmjs.com/package/@videotron-ui/bifrost-front-end-library) page.
+
+
 Then merge you PR of the version into master
 
 ## Finish the Release the Jira version,
