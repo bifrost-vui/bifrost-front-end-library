@@ -3,6 +3,7 @@
 {% set attrDisabled     = (isDisabled is defined and isDisabled) ? ' disabled' : '' %}
 {% set classDisabled    = (isDisabled is defined and isDisabled) ? ' disabled' : '' %}
 {% set classIsInvalid   = (isInvalid is defined and isInvalid) ? ' is-invalid' : '' %}
+{% set attrRequired     = (isRequired is not defined or (isRequired is defined and isRequired)) ? ' required' : '' %}
 
 
 <div class="bf-input-increment js-bf-input-increment align-items-center flex-wrap {{ class ~ classDisabled ~ classIsInvalid }}" >
@@ -24,6 +25,8 @@
                {% if max is defined %}max='{{ max }}'{% endif %}
                {{ attrReadOnly }}
                {{ attrDisabled }}
+               {{ attrRequired }}
+               {% if attrRequired is not empty %} aria-required="true" {% endif %}
         >
 
     {% include '@bf-components/button/twig/index.twig' with {
