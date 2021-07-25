@@ -11,8 +11,8 @@ $(function() {
       $quantityInput = $this.find('.js-bf-input-increment__input'),
       $plusButton = $this.find('.js-bf-input-increment__plus'),
       $minusButton = $this.find('.js-bf-input-increment__minus'),
-      $maxValue = $quantityInput.attr('max'),
-      $minValue = $quantityInput.attr('min');
+      $maxValue = +$quantityInput.attr('max'),
+      $minValue = +$quantityInput.attr('min');
 
     let currentValue = $quantityInput.val();
     let initialValue = $quantityInput.val();
@@ -26,6 +26,14 @@ $(function() {
       $minusButton.addClass('disabled');
     }
 
+    function setCurrentValue(value) {
+      value = value ? value : $quantityInput.val();
+
+      checkLimitValues(value);
+      $quantityInput.val(value);
+      currentValue = value;
+    }
+
     $plusButton.click(function() {
       increment();
     })
@@ -35,8 +43,7 @@ $(function() {
     });
 
     $quantityInput.keyup(function() {
-      currentValue = $quantityInput.val();
-      checkLimitValues(currentValue);
+      setCurrentValue();
     });
 
     $quantityInput.blur(function() {
@@ -47,14 +54,12 @@ $(function() {
 
     function increment() {
       currentValue++;
-      checkLimitValues(currentValue);
-      $quantityInput.val(currentValue);
+      setCurrentValue(currentValue);
     }
 
     function decrement() {
       currentValue--;
-      checkLimitValues(currentValue);
-      $quantityInput.val(currentValue);
+      setCurrentValue(currentValue);
     }
 
     function checkLimitValues(quantity) {
