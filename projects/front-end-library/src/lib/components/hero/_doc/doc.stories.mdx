@@ -62,15 +62,6 @@ export const commonProps = {
     title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
     subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     description : 'Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.',
-    price           : {
-        upperTitle      : 'From',
-        dollar          : '152',
-        cent            : '34',
-        infosSupp       : 'Taxes incl.',
-        boxAlignement   : 'left',
-        dashed          : '$150',
-        saved           : '<strong>$30</strong>',
-    },
     button      : {
         label       : 'Button',
         hierarchy   : 'primary-alt',
@@ -116,6 +107,30 @@ export const Drupal = (args) => ({
                 default : '/images/_docs/hero-helix.png',
                 mobile  : '/images/_docs/hero-helix-mobile.png',
                 alt     : 'Helix'
+            }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal - With price'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            price           : {
+                upperTitle      : 'From',
+                dollar          : '152',
+                cent            : '34',
+                infosSupp       : 'Taxes incl.',
+                boxAlignement   : 'left',
+                dashed          : '$150',
+                saved           : '<strong>$30</strong>',
             }
         }}
     >
