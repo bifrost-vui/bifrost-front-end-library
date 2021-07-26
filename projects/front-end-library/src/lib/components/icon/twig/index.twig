@@ -4,12 +4,12 @@
 {% set classes          = 'bf-icon' ~ classReversed ~ classColor ~ classSize %}
 {% set type             = type|default('interface') %}
 {% set name             = name|default('placeholder') %}
-<div
+<span
     class='{{ classes }} type-{{ type }} {{ class|default('') }}'
     {% if type is same as ('interface') %}role='decoration'{% endif %}
 >
     {% include '@bf-components/icon/svg/' ~ type ~ '/' ~ name ~ '.svg' ignore missing %}
-</div>
+</span>
 
 {# Note: Do not add empty line above the <div>.
 In order to avoid text-decoration continuing in links (for example: Back to top link).#}
