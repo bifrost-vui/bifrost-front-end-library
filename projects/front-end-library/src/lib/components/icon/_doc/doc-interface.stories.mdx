@@ -24,11 +24,6 @@ import { IconComponent }            from '../angular/icon.component';
             defaultValue: '',
             control: {type: 'select'}
         },
-        type: {
-            defaultValue: 'interface',
-            table: { defaultValue: { summary: 'illustration' } },
-            control: {type: 'readonly'}
-        },
         size: {
             defaultValue: 'small',
             type: { required: true },
@@ -68,15 +63,13 @@ import { IconComponent }            from '../angular/icon.component';
 
 {% include '@bf-components/icon/twig/index.twig' with {
     name    : 'account-balance',
-    type    : 'interface',
     size    : 'small',
     color   : 'negative'
 } only %}
 
 {% include '@bf-components/icon/twig/index.twig' with {
     name    : 'instructions',
-    type    : 'illustration',
-    size    : 'small',
+    size    : 'medium',
     color   : 'negative'
 } only %}
 
@@ -99,8 +92,6 @@ export const Drupal = (args) => ({
         args={{
             elementPath : 'components/icon/_doc/template.drupal',
             icons       : interfaceIcons,
-            type        : 'interface',
-            size        : 'small'
         }}
     >
         {Drupal.bind({})}
