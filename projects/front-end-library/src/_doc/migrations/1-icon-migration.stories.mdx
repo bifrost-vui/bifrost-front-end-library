@@ -12,9 +12,14 @@ import { Meta } from '@storybook/addon-docs/blocks';
 # Icon Migration
 > New icons set are available since **Bifrost v1.0.4**.
 
+## New Icon Component
+When you are using Bifrost Icon component.
+- `type` => Not used anymore to get the icon. Now optionnal.
+- `size` => `small` by default when icon is interface type, and `medium` by default for type illustration.
+
 <br/>
 
-## Official lists
+## Get Official icon lists
 You should rely on these paths to get the official and versionned icons lists:
 - <a href='icons/list/illustrations.json' target='_blank'>
     Illustration: /icons/list/illustrations.json
@@ -23,6 +28,21 @@ You should rely on these paths to get the official and versionned icons lists:
 - <a href='icons/list/interfaces.json' target='_blank'>
     Interface: /icons/list/interfaces.json
 </a>
+
+
+If you want the flat list (without categories), you could use this `map`:
+```jsx
+import illustrationIcons from '../icons/list/illustrations.json';
+const illustrationIconsFlatten = illustrationIcons.map(a => a.list).flat();
+
+```
+
+With the `name`, you will able to get the svg file name with this pattern:
+` {{ name ~ '-' ~ 'sm | lg' ~ '.svg' }}`
+
+All SVG files have been updated and now exist in **large** and **small sizes** (naming convention: `filename-lg.svg` & `filename-sm.svg`).
+Every **Icon component** now comes in 4 possible **sizes** : **large**, **medium**, **small** and **xsmall**.
+
 
 
 ## Icon renaming
@@ -99,13 +119,8 @@ exclamation-circle-filled-small24 | exclamation-circle-filled | small
 information-circle-filled-small24 | information-circle-filled | small
 
 
-### Sizes
-All SVG files have been updated and now exist in **large and small sizes** ( naming convention: `filename-lg.svg` & `filename-sm.svg`).
-Every Icon component now comes in 4 possible formats : **large**, **medium**, **small** and **xsmall**.
-
 ### Repositories
-There is no more Interface or Illustration directories.
-
+There is no more **/Interface** or **/Illustration** directories.
 
 
 ### More details
