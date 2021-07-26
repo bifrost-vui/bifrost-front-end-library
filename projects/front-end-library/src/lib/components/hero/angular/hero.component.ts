@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
+import { IPrice } from '../../price/angular/price.component';
 
 /**
  * Description of the component Hero
@@ -20,6 +21,10 @@ export class HeroComponent implements OnInit {
     @Input() title              : string;
     @Input() subtitle           : string;
     @Input() description        : string;
+    /**
+        [Price](/?path=/docs/components-price--drupal) component.
+    */
+    @Input() price              : IPrice;
     @Input() button             : object;
     @Input() image              : object;
     @Input() background         : 'ground' | 'underground' | 'highlight';
