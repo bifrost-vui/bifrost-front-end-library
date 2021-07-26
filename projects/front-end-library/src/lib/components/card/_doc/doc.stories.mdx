@@ -13,12 +13,21 @@ import { CardComponent }                        from '../angular/card.component'
         moduleMetadata({ declarations: [CardComponent, TwigContainerComponent]})
     ]}
     argTypes={{
-        buttons: {
-            description: 'This props could be a block as well.'
-        },
         cardVariant: {
             table: { disable: true }
-        }
+        },
+        titleTag: {
+            table: { defaultValue: { summary: 'h1' } },
+        },
+        isDisabled: {
+            table: { defaultValue: { summary: false } },
+        },
+        reversed: {
+            table: { defaultValue: { summary: false } },
+        },
+        language: {
+            table: { defaultValue: { summary: 'en' } },
+        },
     }}
 />
 
@@ -139,7 +148,7 @@ import { CardComponent }                        from '../angular/card.component'
     ],
     detailsStorage : ['128 Go', '256 Go'],
     messageLink : {
-        url             : '',
+        href            : '',
         label           : 'Choose another Plan',
         class           : ''
     }
@@ -270,6 +279,7 @@ export const phoneCommonProps = {
         alt             : 'iPhone 12 Mini',
         badgeIconName   : 'security'
     },
+    visualBackgroundColor : '',
     title           : 'iPhone 12 Mini',
     detailsColors   : [
         { value :'4B4A46', name : 'Lorem' },
@@ -289,11 +299,11 @@ export const phoneCommonProps = {
         savedLabel      : 'You save:',
     },
     note                : 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
-    buttons           : [
+    buttons             : [
         {
-            label       : 'Configurate',
-            hierarchy   : 'primary-alt',
-            href        : 'www.videotron.com',
+            label           : 'Configurate',
+            hierarchy       : 'primary-alt',
+            href            : 'www.videotron.com',
         }
     ],
 };
@@ -350,6 +360,7 @@ export const phoneCommonProps = {
                 label           : 'Promotion'
             },
             iconName        : 'apple',
+            visualBackgroundColor : '',
             title           : 'Apple Care+ for iPhone',
             price           : {
                 upperTitle      : 'From',
@@ -360,14 +371,55 @@ export const phoneCommonProps = {
                 dashed          : '$150',
                 saved           : '<strong>$30</strong>',
             },
-            message           : 'Lorem ipsum dolor.',
+            message           : 'Lorem ipsum dolor this protection.',
             buttons           : [
                 {
                     label       : 'Add this protection',
                     hierarchy   : 'primary-alt',
                     href        : 'www.videotron.com',
                 }
-            ],
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '800px' }}
+>
+    <Story
+        name='Drupal - Increment'
+        args={{
+            elementPath     : 'components/card/_doc/template.drupal',
+            cardVariant     : 'increment',
+            title           : 'Label Ipsum',
+            description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
+            price           : {
+                upperTitle      : 'From',
+                dollar          : '152',
+                cent            : '34',
+                infosSupp       : 'Taxes incl.',
+                boxAlignement   : 'left',
+                dashed          : '$150',
+                saved           : '<strong>$30</strong>',
+            },
+            message           : 'Lorem ipsum dolor this message.',
+            inputIncrement  :{
+                min             : 0,
+                max             : 5,
+                value      : 0,
+                inputId         : 'my-input-id',
+                errorMessage    : 'Value should be between 0 and 5',
+            },
+            buttons         : [
+                {
+                label           : 'Add to plan',
+                hierarchy       : 'primary-alt',
+                href            : 'www.videotron.com',
+                }
+            ]
         }}
     >
         {Drupal.bind({})}
@@ -377,3 +429,7 @@ export const phoneCommonProps = {
 ## Component API
 
 <Props of={CardComponent} />
+
+## More info
+
+https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=6113%3A705

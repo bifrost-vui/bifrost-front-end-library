@@ -1,0 +1,28 @@
+
+{% set class        = class|default('') %}
+{% set min          = min|default(null) %}
+{% set max          = max|default(null) %}
+{% set value        = value|default(0) %}
+{% set isReadOnly   = isReadOnly|json_parse|default(false) %}
+{% set isDisabled   = isDisabled|json_parse|default(false) %}
+{% set errorMessage = errorMessage|default('Expected values between ' ~ min ~ ' and ' ~ max ) %}
+
+<div class='p-5 d-flex minh-100   flex-column position-relative'>
+
+    {% for index in [1,2,3] %}
+        {% set inputId = 'my-input-id-'~ index %}
+
+       {% if index == 3 %}
+           {% set bgClass = 'reversed bf-color-bg-ground' %}
+       {% elseif index == 2 %}
+           {% set bgClass = 'bf-color-bg-underground' %}
+       {% endif %}
+
+        <div class=" p-3 m-1  {{ bgClass }} ">
+
+        {% include '@bf-components/input-increment/twig/index.twig' %}
+
+        </div>
+
+    {% endfor %}
+</div>

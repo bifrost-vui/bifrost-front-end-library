@@ -71,7 +71,6 @@ Twig.extendFilter('t', function(value) {
     return value;
 });
 
-
 // -----------------------------------------------------------------
 // Custom filters
 

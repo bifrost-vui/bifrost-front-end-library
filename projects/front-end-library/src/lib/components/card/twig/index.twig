@@ -8,12 +8,15 @@
         {% if hasVisual %}bf-card--has-visual{% endif %} d-flex flex-column
         {% if isDisabled is same as (true) %}disabled{% endif %}
         {{ class|default('') }}
-        '
+        h-100'
     {% if isDisabled is defined and isDisabled is same as (true) %}disabled{% endif %}
 >
 
     {% if hasVisual %}
-        <div class='bf-card__visual bf-color-bg-underground d-flex justify-content-center align-items-center p-3 p-sm-4'>
+        <div
+            class='bf-card__visual bf-color-bg-underground d-flex justify-content-center align-items-center p-3 p-sm-4'
+            {% if visualBackgroundColor is defined %}style='background-color: {{ visualBackgroundColor }}'{% endif %}
+        >
             {% if hasImage %}
                 <img
                     src='{{ image.src|default('') }}'
@@ -49,7 +52,7 @@
         {% endif %}
 
         {% if title is defined and title is not empty %}
-            <{{ titleTag|default('h1') }} class='h2 mt-0 mb-1'>
+            <{{ titleTag|default('h1') }} class='h3 mt-0 mb-1'>
                 {{ title }}
             </{{ titleTag|default('h1') }}>
         {% endif %}
@@ -86,8 +89,8 @@
 
     </header>
 
-    <div class='bf-card__body'>
-
+    <div class='bf-card__body flex-grow-1'>
+    {% block card_body %}
         {% if contentLists is defined %}
             {% for list in contentLists %}
                 <div class='bf-card__content-list pt-3 px-3 px-sm-4'>
@@ -148,12 +151,12 @@
                 {% endif %}
             </div>
         {% endif %}
-
+    {% endblock card_body %}
     </div>
 
-    <footer class='bf-card__footer pt-3 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>
+    <footer class='bf-card__footer pt-0 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>
 
-        {% if price is defined %}
+        {% if price is defined and price %}
             {% set price = price|merge({
                 'class'     : 'w-100 ' ~ price.class,
                 'language'  : language|default('en')
@@ -167,8 +170,14 @@
             </p>
         {% endif %}
 
+        {% if inputIncrement  is defined  %}
+            <div class='bf-card__controls'>
+                {% include '@bf-components/input-increment/twig/index.twig' with  inputIncrement only %}
+            </div>
+        {% endif %}
+
         {% if buttons is defined %}
-            <div class='bf-card__buttons'>
+            <div class='bf-card__controls'>
                 {% block buttons %}
                     {% for button in buttons %}
                         {% set button = button|merge( { 'class': 'w-100 ' ~ button.class } ) %}
@@ -178,21 +187,20 @@
             </div>
         {% endif %}
 
-        {% if message is defined and message is not empty %}
+        {% if message is defined and message or messageLink is defined and messageLink %}
             <div class='bf-card__message d-flex'>
                 {% include '@bf-components/icon/twig/index.twig' with {
                     name    : 'information-circle-filled-small24',
                     class   : 'mr-2'
                 } only %}
                 <p class='mb-0'>
-                    {{ message|default('') }}
+                    {{ message }}
                     {% if messageLink is defined and messageLink is not empty %}
-                        <a href='{{ messageLink.href }}' class='bf-link {{ messageLink.class|default('') }}'>{{ messageLink.label }}</a>
+                        <a href='{{ messageLink.href|default('#') }}' class='bf-link {{ messageLink.class|default('') }}'>{{ messageLink.label|default('') }}</a>
                     {% endif %}
                 </p>
             </div>
         {% endif %}
 
     </footer>
-
 </article>

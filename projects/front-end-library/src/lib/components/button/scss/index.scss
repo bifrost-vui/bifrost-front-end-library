@@ -32,7 +32,6 @@
     }
 
     &.disabled {
-        cursor: disabled;
         pointer-events: none;
         @extend .bf-color-neutral-tertiary;
         @extend .bf-color-bg-action-disabled;
@@ -141,15 +140,20 @@
 
 // Apply Dark color on reversed Primary and Primary-alt.
 // TODO: Find a more elegant wy to give access to initial css variables in reversed.
-@at-root 
+
 .reversed .bf-button,
 .reversed.bf-button {
     
     &--primary,
     &--primary-alt {
 
+        &.disabled {
+            color: var(--bf-color-neutral-tertiary) !important;
+            svg {color: var(--bf-color-neutral-tertiary) !important;}
+        }
         &:not(.disabled) {
             color: var(--bf-color-bg-ground) !important;
+            svg {color: var(--bf-color-bg-ground) !important;}
         }
     }
 }

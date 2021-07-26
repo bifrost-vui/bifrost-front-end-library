@@ -1,162 +1,287 @@
-# Contribute
-Create or update an Angular or Twig element in the Design System.
+# Contribute to the Bifrost Front-end Library
+
+> If you plan to contribute, please read this contribution guidlines carefully.
+
+If you have any question or if something is missing, feel free to notify Bifrost Team.
 
 <br/>
 
-We currently support 2 frameworks: **Angular and Twig**.
 
-Basically, there are 5 kinds of elements:
-- **Components** (more complex components)
-- **Templates** (to help build with components)
-- **Pipes**
-- **Styles** (e.g. Sass variables)
-- **Assets** (e.g. Logo, images)
- 
-> All theses elements are build and publish as an **NPM package**.
+## Overview
+
+The Bifrost Design-system is the combination of 5 spaces:
+- **Global documentation** on [Zeroheight](https://zeroheight.com/79f1d3365).
+- **Design documentation** on [Figma]().
+- **Technical documentation** on [Storybook]() (what you are reading right now)
+- **Front-end library** on [NPM]().
+- **Discussions** on Teams Channels.
+
+
+## Frameworks
+
+The Front-end library supports 2 frameworks: **Angular** and **Twig**.
+As of today, we put effort in Twig. That's why you will not find any Angular components in Storybook. However, the library architecture is ready to publish an **Angular Library**.
+
+
+## Content
+
+The Front-end library provides 5 kinds of elements:
+- **CSS Styles** : Base styles for all Videotron project.
+- **JS Scripts** : Javascript required for Bifrost components.
+- **Components** : All Angular and Twig components.
+- **Pipes** : Angular Pipes (Work in progress).
+- **Assets** : E.g. Logo, fonts, icons, illustrations, images, ...
 
 <br/>
 
-## 1. Clone the repository
 
-Ask Design System team for an access to the Bifrost repository.
-Clone repository on your local machine and open a branch from the last version: 
+# Run projects locally
 
-```
-git clone git@github.com:baptistemac/bifrost-front-end-library.git
-git checkout -b components/hero
-```
+## Run Bifrost Library (Storybook)
 
-[Changelogs: List of all versions](https://github.com/baptistemac/bifrost-front-end-library/releases)
-
-## 2. Generate the component's structure
-**Optional: This step is useful only if you want to create a new component.**
-<br/>
-
-We created a command that will help you start a new component: 
-Fust follow the instruction in your terminal. It will ask you the type of element you want to create (component, template, pipes, ...).
+Ask Bifrost Team for an access to the Bifrost repository then start it:
 
 ```bash
-# From the root of the repo, enter:
-npm run generate
+# Clone the repo
+git clone git@github.com:JonathanLefebvreV/bifrost-front-end-library.git
 
-# If you want to see your new component, launch Storybook:
+# Install npm-run-all globally
+npm install npm-run-all -g
+
+# Launch Storybook:
 npm run start-dev
 ```
 
+At this point, Storybook should open on **http://localhost:9008** with the Front-end library inside.
+
 <br/>
 
-Under the hood, this command will:
-- Copy `.templates/component-structure` folder and paste it in `/lib/components`.
-- Then, you will be able to start working with the right structure.
-- Finally, it will expose your new component in `public-api.ts`.
+**Take a time, to explore components in Storybook.** For each component:
+ - **Canvas tab** (on top of the page) displays the component. You could change inputs in the **controls** tab and see how components behave.
+ - **Docs tab** displays a technical documentation. Basically, an example of integration and the Component API.
+
+## Run Drupal Showcase
+
+The only purpose of the Drupal Showcase is to check the implementation in a real Drupal environment.
+⚠️ This showcase is in work in progress and it's possible that you will not be able to launch Drupal.
+
+```bash
+npm run showcase-drupal:start
+```
+
+## Run Angular Showcase
+
+🚧 This showcase is in work in progress.
+
+<br/>
 
 
-## 3. Develop it
+# Start-dev
+<br/>
+
 Storybook provides an environment to develop in isolation. Let's open it:
 
-```js
+```bash
 npm run start-dev
 ```
-
-> TODO: How to know if I should use a Bootstrap class or a bifrost class?
-
-Open **[http://localhost:9008]()** on your browser and find the page of your component on the sidebar.
-**Et voila! Your environment is set up :)**
-
-<br/>
 
 > Under the hood, `npm run start-dev` will:
 > - Launch an express server to serve twig files.
 > - Watch changes on twig files and auto-reload.
 > - Prebuild Storybook (**Compodoc** fetch Angular components props in order to display **Controls Panel** in Storybook).
-> - Finally, launch Storybook at **http://localhost:9008** (Storybook will auto-reload on changes).
+> - Finally, launch Storybook at **http://localhost:9008**.
+
+**Note about Hot Module Reload:** Since **Drupal** components are server side, you need to refresh the browser to see changes during development.
 
 <br/>
 
-<small>
 
-**Note:** Since **Drupal** components are server side, you need to refresh the browser to see changes during development.
-
-</small>
+# What you should know before contributing
 
 <br/>
 
-**Ready to push? Make sure component is:**
 
-- [x] Accessible (use [Axe]() inside Storybook panel or [Pa11y](https://github.com/pa11y/pa11y)) 
-- [x] Agnostic / Universal
-- [x] Content resilient
-- [x] Responsive
-- [x] Using design tokens from _variables.scss
-- [x] API is consistent with other components
-- [x] Unit test?
+### Frameworks
+**Angular and Drupal** share the **same component API** and the **same CSS**.
 
-> **Component API:** As much as possible, try to use the **same component API** and the **same CSS** for Angular and Drupal.
 
-> **Document Component States:** You could add stories to showcase the different states of your component. Just add them in `doc.stories.ts`.
+### Workflow (in short)
 
-## 4. _(Angular only)_ Export component
-Export Module and/or Component files in `/lib/public-api.ts`.
+**1. Jira ticket**
+Everything starts with a Jira ticket :)
+- The goal might come from different source.
+  - Videotron Designer: Set the goal of new components, and change in design required.
+  - Core Team: Improvement of the project or technical requirements. Also Bifrostisation of UIKIT components
+  - AppNovation: They inform us of a bug, an improvent required, and new need from their contact(ex Studio)
 
-## 5. Build library
+**2. Understand the needs**
+- Design: Check if you have the right Figma link.
+- Design: If necessary, talk to the designer/stackeholder to be sure that context, needs and scope are well defined.
+- Design: If necessary, ask for design specification (responsive, hover states, ...).
+- Scope: Check the impact on both Angular and Drupal.
+- Roadmap: It is a urgent fix or not, project scope, etc.
 
-Increment the version in `projects/front-end-library/package.json` with the pattern: **MAJOR.MINOR.PATCH**. 
-> If it's a major or minor change, Design System team should be warn.
 
-Then build and publish:
+**3. Develop**
+- Git: For each changes, create a new branch with the id of the Jira ticket.
+- Git: Use the commit naming convention (see below).
+- Develop in isolation locally with Storybook.
+- Create your Pull Request, when ready to interact with team member.
+- Git: Push in your branch to run automated tests.
+
+
+**4. Document**
+- Add complete documentation (See [merge checklist](?path=/docs/merge-checklist--page))
+
+
+**5. Test**
+- On Github, check if automated tests are passed.
+- Review visual tests with Chromatic (🚧 work in progress).
+- Check the complete [merge checklist](?path=/docs/merge-checklist--page).
+
+
+**6. Review**
+
+When ready to review, move your Jira to "In Review(dev)"
+- Assign Reviewer(s) in GitHub to your pull request
+When ready to review by a designer, move your Jira to "In Review(ui)"
+- Share PR Preview URL to UI/UX designer or stackholders and ask for visual review.
+When everyone has approve your work, move your Jira to "Ready to merge"
+- tag the PR with label `ready to merge`.
+
+
+**7. Wait for merge**
+
+When required (depending on Minor of Patch version), core maintainers will merge `ready to merge` branches into related branch. Then build and publish a new version of the **NPM package**.
+The process of merging depend if the reality of what the Release is about.
+- If it is a Patch: The version must include only change agreed with the end Customer
+  - If no other minor version has been release: Merge the PR on master if he is clean in the history from the last
+  - In any other case: Start a branch from the last version TAG, and merge into the new branch.
+- If it is a Minor: The version can include any kind of change.
+  - Merge PR into Master.
+The core maintainers notify everyone in the Bifrost Teams channel with a link to the new changelog.
+
+
+### Git commit message
+In the futur, Bifrost will rely on the [conventional-commit format specification](https://www.conventionalcommits.org/en/v1.0.0-beta.2/#specification).
+By formalizing our commit message format, this allows us to easily generate changelogs and scan through the commit history.
+It also automates [semantic versioning](https://semver.org/).
+To work well with Jira: Each commit message should start with the Jira id.
+
+
+### Merge checklist
+Each components should pass this [merge checklist](?path=/docs/merge-checklist--page), else log a ticket in JIRA in order to improve the component later.
+
+
+### Browser compatibility
+Run `npx browserslist` to list all browsers supported.
+
+
+### Component API
+Please, define your component API carefully. A futur change could generate a **Break change**.
+**Property names should be:**
+- **Universal:** Make it agnostic to be used in any context.
+- **Consistent:** It should be consistent with the current API. Try to find a similar properties in other Bifrost components to validate your naming.
+- **Clear:** As simple and clear as possible.
+
+
+### CSS: Scope
+In order to keep backward-compatibility, we scope all Bifrost new CSS classes with `bf-` (E.g. `bf-button`, `bf-color-bg-neutral`, ...).
+
+
+### CSS: BEM
+In most case, we use CSS [BEM architecture](http://getbem.com/introduction/).
+
+
+### CSS: Decisions Tree
+If you need to add/change a style:
+1. If Bootstrap provides a class for that style, use it in the html or `@extends` the Bootstrap class in your SCSS file. We tend to respect Bootstrap **utility-first** architecture.
+2. If the class should be global, define if it's the Bifrost responsability or not.
+    - It yes, prefix the class with `bf-` and host it in a SCSS file in **/lib/scss/dependencies/bifrost/**.
+    - If not, you should **warn Bifrost Team** that it could generate visual regressions.
+
+
+### JS variable bfTheme
+In order to pass Breakpoints to Carousel. We created a global variable `bfTheme`. Feel free to type it in the console to explore it.
+
+
+### Storybook
+Feel free to add any [stories](https://storybook.js.org/docs/angular/writing-stories/introduction) as you wish to showcase different states of your component. For example, we added a story for [Card Plan - Disabled](http://localhost:9008/?path=/story/components-card--drupal-plan-disabled) because it is easier to check than to hit the **Disable switch** in **Controls** panel.
+You could add stories in the same `doc.stories.ts`, or create a new file if it's relevant (E.g. `specific-variant.stories.ts`).
+
+### Twig Filters
+See the [complete list of required twig filters](?path=/docs/implementation-drupal-filters--page).
+Warning! Before choosing a name for a new twig filter, ask AppNovation if they don't have a filter with the same name.
+
+<br/>
+
+
+# Create a new component
+
+> **Before creating a new component**, check with the Bifrost Team if its really a creation and not a variant of an existing component.
+
+This command will help you generate the component's structure:
+```bash
+# Run a Bifrost CLI
+npm run bifrost:generate
+```
+
+FYI, this command will:
+- Copy `.templates/component-structure` folder and paste it in `/lib/components`.
+- Import component's style to the main style `index.scss`.
+- Expose your new Angular component in `public-api.ts`.
+
+For Angular, don't forget to export your new module and/or component in `/lib/public-api.ts`.
+
+<br/>
+
+
+# Build and Publish Front-end library
+<br/>
+
+Create a branch and the Pull Request named after the version name and replace dot with hypen (eg: v1-1-1)
+ - the replacement is for Vercel to format the right URL
+ - The new pull request give us a space to work.
+   - For a Minor, work on last changes for the ChangeLog and generate the version URL for it.
+   - For a Patch, merge and fix corresponding Jira problem required. also give us the space to work on change log and version ULR.
+
+On the branch version, increment the version in `projects/front-end-library/package.json` depending of the context of the version for the pattern: **MAJOR.MINOR.PATCH**.
+
+## CheckList of the PR
+- [ ] package.json version changed
+- [ ] ChangeLog properly written, explicit and understandable with new features and or bugs fix.
+- [ ] New URL version of the storybook working and reference
+
+## Make the version in Git,
+```
+-git fetch
+-git pull
+-git commit -m "v[x.y.z] new npm package release"
+-git push
+-git tag v[x.y.z]
+-git push --tags
+```
+
+## Make the NPM package
+From your related version branch
 ```bash
 # This command will build and publish a new version of the front-end library.
 npm run publish
 ```
+
 Your new package version is now available for everyone.
 You could check availability on the [NPM registry](https://www.npmjs.com/package/@videotron-ui/bifrost-front-end-library) page.
 
-## 6. Test Angular implementation
-**Angular showcase Project** is aimed to showcase implementation.
 
-Located here: `projects/angular-showcase`.
+Then merge you PR of the version into master
 
-Serve the project:
+## Finish the Release the Jira version,
+- Previous to all this, all related Jira has been mark with the right version(Jira definition: release)
+- If it was not done, move all corresponding issue(should be in "ready to package") to "Packaged"
+- Find the related release number and "release it"
 
-`ng serve angular-showcase`
-
-Update the library:
-
-```bash
-npm install bifrost-front-end-library@<your-new-version> --save
-# or
-npm install bifrost-front-end-library@latest --save
-```
-
-Import the new component in App Module (`projects/angular-showcase/src/app/app.module.ts`).
-
-Now, you will be able to add your component in a file (e.g. `app.component.html`).
-
-More details in the **Angular implementation page**.
-
-
-## 6. Test Drupal implementation
-**Drupal showcase Project** is aimed to showcase implementation.
-
-- Install Drupal in **/drupal-showcase** folder. (TODO: Details Mac and Window install...)
-- Open Drupal Admin Page and check that **bifrost** theme is active.
-- TODO: Install with local npm package / npm in registry.
-- TODO: Check visual regression with a tool (E.g. [BackStopJS](http://garris.github.io/BackstopJS/)).
-
-```bash
-```
-
-<br/>
-
-## 7. Communicate
-- TODO: Define a Teams Channel?
-
-<br/><br/>
-
-### Browser compatibility
-Launch `npx browserslist` to know our current support of browser.
-
-<br/>
-
-### Need help?
-Contact xxx@xxx.com
+## Make the new GitHub Release
+- Find you tag in the Repository,
+- Click on "create a release"
+- Fill the form with the link of the changelog of Jira, of your Storybook Change log, and the NPM url.
+- Save
