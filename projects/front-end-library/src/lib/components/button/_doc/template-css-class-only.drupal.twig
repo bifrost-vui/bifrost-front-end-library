@@ -1,0 +1,77 @@
+
+{% set hierarchyList = (hierarchy is defined and hierarchy) ? [hierarchy] : ['primary', 'primary-alt', 'secondary', 'tertiary'] %}
+
+<div class='d-flex flex-column'>
+
+    <div>
+        <p class='w-70 p-4'>Apply <strong>.bf-button.bf-button--primary</strong> class on <strong>button</strong>, <strong>input</strong> or <strong>a</strong> will display the button correctly.
+        <br/>
+        But then, if needed, you still have to recreate <strong>loading</strong> and <strong>icon</strong> behavior.</p>
+    </div>
+
+    {% for index in [1,2] %}
+        
+        <div class='d-flex flex-column justify-content-center flex-grow-1 minh-100 p-4 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
+            {% for _hierarchy in hierarchyList %}
+                <div class='row'>
+
+                    <div class='flex-grow-1'>
+                        <button
+                            class='bf-button
+                                bf-button--{{ _hierarchy|default('secondary') }}
+                                {% if reversed is same as (true) %}reversed{% endif %}
+                                {% if fullWidth is same as (true) %}bf-button--fullwidth{% endif %}
+                                {% if isDisabled is same as (true) %}disabled{% endif %}
+                                {{ class|default('') }}'
+                            {% if isDisabled is same as (true) %}disabled='disabled'{% endif %}
+                        >
+                            Button
+                        </button>
+                    </div>
+
+                    <div class='flex-grow-1'>
+                        <input
+                            type='button'
+                            class='bf-button
+                                bf-button--{{ _hierarchy|default('secondary') }}
+                                {% if reversed is same as (true) %}reversed{% endif %}
+                                {% if fullWidth is same as (true) %}bf-button--fullwidth{% endif %}
+                                {% if isDisabled is same as (true) %}disabled{% endif %}
+                                {{ class|default('') }}'
+                            {% if isDisabled is same as (true) %}disabled='disabled'{% endif %}
+                            value='Input'
+                        />
+                    </div>
+                    
+                    <div class='flex-grow-1'>
+                        <a
+                            href='#'
+                            role='button'
+                            class='bf-button
+                                bf-button--{{ _hierarchy|default('secondary') }}
+                                {% if reversed is same as (true) %}reversed{% endif %}
+                                {% if fullWidth is same as (true) %}bf-button--fullwidth{% endif %}
+                                {% if isDisabled is same as (true) %}disabled{% endif %}
+                                {{ class|default('') }}'
+                            {% if isDisabled is same as (true) %}disabled='disabled'{% endif %}
+                        >
+                            Link
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        
+    {% endfor %}
+</div>
+
+
+{% if isLoading|default(false) %}
+    <script>
+        function setLoading() {
+            document.getElementsByClassName('.bf-button')[0].classList.add('loading');
+        }
+        setLoading();
+    </script>
+{% endif %}

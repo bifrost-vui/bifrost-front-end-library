@@ -4,6 +4,10 @@ import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/bloc
 import { interfaceIcons }                       from '../../icon/_doc/data.ts';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { ButtonComponent }                      from '../angular/button.component';
+import ButtonTwigTemplate                       from './template.drupal.twig';
+import ButtonTwigTemplateCSSClassOnly           from './template-css-class-only.drupal.twig';
+import ButtonTwigTemplateAppStore               from './template-app-store.twig';
+
 
 
 <Meta 
@@ -14,21 +18,18 @@ import { ButtonComponent }                      from '../angular/button.componen
     ]}
     argTypes={{
         hierarchy: {
-            defaultValue: '',
             control: {
                 type: 'select',
                 options: ['', 'primary', 'primary-alt', 'secondary', 'tertiary' ]
             }
         },
         iconName: {
-            defaultValue: '',
             control: {
                 type: 'select',
                 options: ['', 'placeholder', ...interfaceIcons.map(a => a.list).flat().sort()]
             }
         },
         iconPosition: {
-            defaultValue: '',
             control: {
                 type: 'select',
                 options: ['', 'left', 'right']
@@ -94,18 +95,43 @@ export const Drupal = (args) => ({
     </Story>
 </Preview>
 
+## Buttons: CSS Class Only
+
+export const DrupalSpecials = (args) => ({
+    template: ButtonTwigTemplateCSSClassOnly(args),
+    props: args,
+});
 
 <Preview
     withSource='none'
     style={{ height: '700px' }}
 >
     <Story 
-        name='Drupal - Specials'
-        args={{ 
-            elementPath : 'components/button/_doc/specials.drupal',
+        name='Drupal - CSS class only'
+        args={{
             class       : 'ml-4 mb-3',
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
+
+
+
+## Buttons: App Store and Google Play
+
+export const DrupalAppStore = (args) => ({
+    template: ButtonTwigTemplateAppStore(args),
+    props: args,
+});
+
+<Canvas
+    withSource='none'
+>
+    <Story 
+        name='Drupal - AppStore and Google Play'
+    >
+        {DrupalAppStore.bind({})}
+    </Story>
+</Canvas>
+</Canvas>

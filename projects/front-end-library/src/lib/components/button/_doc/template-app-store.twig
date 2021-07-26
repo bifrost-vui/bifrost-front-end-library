@@ -1,0 +1,19 @@
+{% set appStoreLists = [ 'AppleStore', 'GooglePlay' ] %}
+
+<div class='d-flex flex-column'>
+
+    {% for appStore in appStoreLists %}
+        
+        <div class='d-flex flex-column justify-content-center flex-grow-1 minh-100 p-4 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
+
+            {% if appStore is same as ('AppleStore') %}
+
+                {% include '@bf-components/button/twig/app-store.twig' with {
+                } %}
+
+            {% endif %}
+
+        </div>
+        
+    {% endfor %}
+</div>
