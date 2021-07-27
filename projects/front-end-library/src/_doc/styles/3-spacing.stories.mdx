@@ -1,51 +1,81 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { moduleMetadata }       from '@storybook/angular';
+import { Canvas, Meta, Preview }                 from '@storybook/addon-docs/blocks';
+import { SpacerRowComponent }   from './spacer-row/spacer-row.component';
 
 <Meta 
-    title="Styles/Spacing"
+    title='Styles/Spacing'
     parameters={{ 
         layout: 'padded', 
         viewMode: 'docs',
         previewTabs: { canvas: { hidden: true } }
     }}
+    decorators={[
+        moduleMetadata({ declarations: [SpacerRowComponent] })
+    ]}
 />
 
 # Spacing
 
 <br/>
 
-<div class="d-flex flex-md-wrap-reverse">
+## Theme Videotron (default)
 
-<div
-    class='bf-color-bg-underground w-10 mr-2'
-    style={{height: 'var(--bf-spacer-xxlarge)'}}
->
-    <h4 class='position-absolute ml-3'>XXLarge</h4>
+    --bf-spacer-xxsmall: .25rem;
+    --bf-spacer-xsmall: .5rem;
+    --bf-spacer-small: 1rem;
+    --bf-spacer-medium: 1.5rem;
+    --bf-spacer-large: 3rem;
+    --bf-spacer-xlarge: 4.5rem;
+    --bf-spacer-xxlarge: 6rem;
+
+<br/>
+
+<Canvas>
+  <Story name="all checkboxes">
+        <SpacerRowComponent />
+  </Story>
+</Canvas>
+
+<div class='d-flex flex-column'>
+
+<div class='d-flex align-items-center gap-4 w-100'>
+    <div
+        class='bf-color-bg-action-primary'
+        style={{
+            height: 'var(--bf-spacer-xsmall)',
+            width: 'var(--bf-spacer-xxlarge)'
+        }}
+    >
+    </div>
+    <h4 class='mb-0'>8</h4>
+    <span>--bf-spacer-xxlarge</span>
+    <span>6rem</span>
 </div>
 
 <div
     class='bf-color-bg-underground w-10 mr-2'
-    style={{height: 'var(--bf-spacer-xlarge)'}}
+    style={{width: 'var(--bf-spacer-xlarge)'}}
 >
     <h4 class='position-absolute ml-3'>XLarge</h4>
 </div>
 
 <div
     class='bf-color-bg-underground w-10 mr-2'
-    style={{height: 'var(--bf-spacer-large)'}}
+    style={{width: 'var(--bf-spacer-large)'}}
 >
     <h4 class='position-absolute ml-3'>Large</h4>
 </div>
 
 <div
     class='bf-color-bg-underground w-10 mr-2'
-    style={{height: 'var(--bf-spacer-medium)'}}
+    style={{width: 'var(--bf-spacer-medium)'}}
 >
     <h4 class='position-absolute ml-3'>Medium</h4>
 </div>
 
 <div
     class='bf-color-bg-underground w-10 mr-2'
-    style={{height: 'var(--bf-spacer-small)'}}
+    style={{width: 'var(--bf-spacer-small)'}}
 >
     <h4 class='position-absolute ml-3'>Small</h4>
 </div>
@@ -53,14 +83,14 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 <div
     class='bf-color-bg-underground w-10 mr-2'
-    style={{height: 'var(--bf-spacer-xsmall)'}}
+    style={{width: 'var(--bf-spacer-xsmall)'}}
 >
     <h4 class='position-absolute ml-3'>XSmall</h4>
 </div>
 
 <div
     class='bf-color-bg-underground w-10 mr-2'
-    style={{height: 'var(--bf-spacer-xxsmall)'}}
+    style={{width: 'var(--bf-spacer-xxsmall)'}}
 >
     <h4 class='position-absolute ml-3'>XXSmall</h4>
 </div>
