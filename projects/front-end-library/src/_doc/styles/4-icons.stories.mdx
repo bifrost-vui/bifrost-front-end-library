@@ -13,4 +13,58 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 <br/>
 
-Icons are documented in Page [Components/Icon](/?path=/docs/components-icon--drupal-interface).
+## Drupal Implementation
+Including Icon component is exaclty like others components. See [Icon Component API](/docs/components-icon--drupal-interface).
+```jsx
+{% include '@bf-components/icons/twig/index.twig' with {
+    name: 'account-balance',
+    size: 'xsmall | small | medium | large'
+} only %}
+```
+
+## Angular Implementation
+Work in progress.
+
+
+## Behind the scenes
+
+All icons exist in 2 SVG:
+- **`filename-sm.svg`** (small): will be displayed if `size` property is `xsmall` or `small`.
+- **`filename-lg.svg`** (large): will be displayed if `size` property is `medium` or `large`.
+
+
+## Get Official icon lists
+Since Bifrost v1.4.0, you could rely on these paths to get the official and versionned icon lists:
+- **Illustration Icons**: <a href='icons/list/illustrations.json' target='_blank'>/icons/list/illustrations.json</a>
+- **Interface Icons**: <a href='icons/list/interfaces.json' target='_blank'>/icons/list/interfaces.json</a>
+
+<br/>
+
+**Note:** If you want the flatten the list (in order to remove `category` level), you could use this `.map()` in javascript:
+```jsx
+import illustrationIcons from '../icons/list/illustrations.json';
+const illustrationIconsFlatten = illustrationIcons.map(a => a.list).flat().sort();
+
+```
+
+
+## Retrieve SVG path
+**Warning: This is recommended to include the Icon component like documented below.**
+However, in some cases, you would like to retrieve the SVG directly from the **/public** folder with this path:
+`/icons/{{ name ~ '-' ~ 'sm | lg' ~ '.svg' }}`
+
+<br/>
+
+Twig example:
+```
+{% set name = 'account-balance' %}
+<img src='/icons/{{ name }}-sm.svg' />
+<img src='/icons/{{ name }}-lg.svg' />
+```
+Output:
+<img src='/icons/account-balance-sm.svg' />
+<img src='/icons/account-balance-lg.svg' />
+
+
+## Ressources:
+- [Icons Component API](/docs/components-icon--drupal-interface).

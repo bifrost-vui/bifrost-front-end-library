@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta
-    title='Migrations/Icon'
+    title='Migrations/Icon v1.4.0'
     parameters={{
         layout: 'padded',
         viewMode: 'docs',
@@ -9,51 +9,25 @@ import { Meta } from '@storybook/addon-docs/blocks';
     }}
 />
 
-# Icon Migration
-> New icons set are available since **Bifrost v1.0.4**.
+# Icon Migration to Bifrost v1.4.0
+Drupal only.
 
-## New Icon Component
-When you are using Bifrost Icon component.
-- `type` => Not used anymore to get the icon. Now optionnal.
-- `size` => `small` by default when icon is interface type, and `medium` by default for type illustration.
+<br/><br/>
 
-<br/>
-
-## Get Official icon lists
-You should rely on these paths to get the official and versionned icons lists:
-- <a href='icons/list/illustrations.json' target='_blank'>
-    Illustration: /icons/list/illustrations.json
-</a>
-<br/>
-- <a href='icons/list/interfaces.json' target='_blank'>
-    Interface: /icons/list/interfaces.json
-</a>
-
-
-If you want the flat list (without categories), you could use this `map`:
-```jsx
-import illustrationIcons from '../icons/list/illustrations.json';
-const illustrationIconsFlatten = illustrationIcons.map(a => a.list).flat().sort();
-
-```
-
-With the `name`, you will able to get the svg file name with this pattern:
-` {{ name ~ '-' ~ 'sm | lg' ~ '.svg' }}`
-
-All SVG files have been updated and now exist in **large** and **small sizes** (naming convention: `filename-lg.svg` & `filename-sm.svg`).
-Every **Icon component** now comes in 4 possible **sizes** : **large**, **medium**, **small** and **xsmall**.
-
-
+## New Icon Component API
+**Twig Icon component** changes in Bifrost v1.4.0:
+- The property **`type`** does not exist anymore.
+- The property **`size`** is `small` by default when icon is interface type, and `medium` by default for type illustration.
 
 ## Icon renaming
 
-Most icons keep the same name so as long as the size is defined the change should be transparent.
+Most icons keep the same name so as long as the size is defined the change should be transparent. For those that do change name, refer to the following lists:
 
-For those that do change name, refer to the following lists.
+<br/>
 
 ### Illustration  new or renamed SVG icons
 
-Remember to check if you need to adjust the component size argument upon migration
+Note: Remember to check if you need to adjust the component `size` property.
 
 
 Illustration change type | new name | old name
@@ -112,9 +86,9 @@ new icon | file-pdf | --
 new icon | question-circle-filled | --
 
 
-** the following names also became invalid 
+### The following names also became invalid
 
-a simple rename may not be enought, you may also need to adjust the icon component `size` argument
+A simple rename may not be enought, you may also need to adjust the icon component `size` argument.
 
 old name | new name | size
 ----------------- | ----------------- | -----------------
@@ -123,12 +97,8 @@ exclamation-circle-filled-small24 | exclamation-circle-filled | small
 information-circle-filled-small24 | information-circle-filled | small
 
 
-### Repositories
-There is no more **/Interface** or **/Illustration** directories.
-
-
-### More details
-
-For more detail on how to use the new icones :
-[Icons on Figma](https://www.figma.com/file/u25bSG8COM4azJ04CztTv8/DS---Medias?node-id=0%3A1)
+### Ressources
+- [Icon component Style documentation](/docs/styles-icons--page)
+- [Icon API Component](/docs/components-icon--drupal-interface)
+- [Icons on Figma](https://www.figma.com/file/u25bSG8COM4azJ04CztTv8/DS---Medias?node-id=0%3A1)
 
