@@ -9,7 +9,7 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
   alt : string,
   class : string
 }
- 
+
 @Component({
   selector: 'bf-selection-tile',
   templateUrl: './selection-tile.component.html',
@@ -19,38 +19,22 @@ export class SelectionTileComponent implements OnInit {
     constructor() {}
 
     /** Class override */
-    @Input() class: string;
-    /** required */
-    @Input() inputType   : 'radio'|'checkbox';
-    /** required */
+    @Input() class        : string;
+    @Input() inputType    : 'checkbox'|'radio';
     @Input() inputId      : string;
-    /** required */
-    @Input() value      : string;
-    /** required */
+    @Input() value        : string;
     @Input() ariaLabel    : string;
     @Input() name         : string;
 
-    @Input() orientation : 'vertical'|'horizontal';
+    @Input() orientation : 'horizontal'|'vertical';
     @Input() size        : 'small'|'large';
-    @Input() reversed    : boolean;
-    @Input() isDisabled  : boolean; 
-    @Input() isSelected  : boolean; 
-
     @Input() title       : string;
     @Input() description : string;
     @Input() info        : string;
-        /** Expected format:
-    ```jsx
-        {
-            src   : "/foldername/foldername/my-image.svg",
-            alt   : "image alternative text",
-            class : "optional-class-name"
-            }
-    ```
-    */
     @Input() image       : IImage;
-
-
+    @Input() reversed    : boolean;
+    @Input() isDisabled  : boolean;
+    @Input() isSelected  : boolean;
 
     ngOnInit() {
         console.log('SelectionTile', this);

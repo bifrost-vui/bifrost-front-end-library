@@ -1,46 +1,49 @@
 {% set reversed     = reversed|json_parse|default(false) %}
 {% set isDisabled   = isDisabled|json_parse|default(false) %}
 {% set isSelected   = isSelected|json_parse|default(false) %}
-{% set orientation  = orientation|json_parse %}
-{% set size         = size|json_parse %}
-{% set info        = info|json_parse|default('$XXX.xx/Month')%}
 
 <div class='container {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
-    
-    <div class="p-1">
+
+   <div class="p-1">
     {% include '@bf-components/selection-tile/twig/index.twig' %}
     </div>
     <div class="p-1">
     {% include '@bf-components/selection-tile/twig/index.twig'  with {
-        inputId     : 'my-selection-tile1',
-        title       : 'Canal plus',
-        description : 'Descriptium ipsum',
-        image         : {
-            src : '/images/logo/channels/canalplus.svg',
-            alt : 'Canal plus',
-        },
-        info :  'XX.xx/Mois'
+      inputId     : 'my-selection-tile1',
+      ariaLabel   : 'my selection tile 1',
+      name        : 'my selection tiles',
+      title       : 'Canal vie',
+      description : 'Descriptium ipsum',
+      image       : {
+          src : '/images/logo/channels/vie.svg',
+          alt : 'Canal vie',
+      },
+      info        :  '$ XX.xx/Month'
     }  %}
     </div>
     <div class="p-1">
     {% include '@bf-components/selection-tile/twig/index.twig' with {
-        size        : size ?? 'large',
-        inputId     : 'my-selection-tile2',
-        title       : 'Canal plus',
-        description : 'Descriptium ipsum',
-        image         : {
-            src : '/images/logo/channels/canalplus.svg',
-            alt : 'Canal plus',
-        },
-        info :  'XX.xx/Mois'
+      size        : 'large',
+      inputId     : 'my-selection-tile2',
+      title       : 'Yoopa',
+      name        : 'my selection tiles',
+      ariaLabel   : 'my selection tile 2',
+      description : 'Descriptium ipsum',
+      image       : {
+          src : '/images/logo/channels/yoopa.svg',
+          alt : 'Yoopa',
+      },
+      info        :  '$ XX.xx/Month'
     }  %}
     </div>
     <div class="p-1">
     {% include '@bf-components/selection-tile/twig/index.twig' with {
-        orientation : orientation ?? 'vertical',
-        inputId     : 'my-selection-tile3',
-        image       : {
-            src : '/images/logo/channels/tva-sports.svg',
+      orientation : 'vertical',
+      inputId     : 'my-selection-tile3',
+      name        : 'my selection tiles',
+      ariaLabel   : 'my selection tile 3',
+      image       : {
+        src : '/images/logo/channels/tva-sports.svg',
             alt : 'TVA Sport',
         tile        : '',
         description : '',
@@ -49,16 +52,20 @@
     </div>
     <div class="p-1">
     {% include '@bf-components/selection-tile/twig/index.twig' with {
-        orientation : orientation ?? 'vertical',
-        size        : size ?? 'large',
-        inputId     : 'my-selection-tile4',
-        title       : 'Movie Chanel',
-        description: 'lorem ipsum descriptum', 
-        image         : {
+      orientation : 'vertical',
+      size        : 'large',
+      inputId     : 'my-selection-tile4',
+      ariaLabel   : 'my selection tile 4',
+      name        : 'my selection tiles',
+      title       : 'Movie Chanel',
+        description : 'lorem ipsum descriptum',
+        image       : {
             src : '/images/logo/channels/tva-sports.svg',
             alt : 'the movie chanel',
-        }
+        },
+      info        :  '$ XX.xx/Month'
+
     } %}
     </div>
 
-</div>    
+</div>

@@ -8,6 +8,13 @@
     @extend .position-relative;
     @extend .p-3;
     width: max-content;
+    border-radius: .5rem;
+    &:hover{
+        background-color: var(--bf-color-bg-underground);
+    }
+    &.bf-color-bg-underground:hover{
+      background-color: var(--bf-color-bg-ground)
+    }
 
     &__label{
         @extend .position-absolute;
@@ -18,6 +25,7 @@
         left: 0;
         border: 1px solid rgba( var(--bf-color-neutral-primary-rgb), .2);
         border-radius: .5rem;
+        cursor: pointer;
         &:hover{
             border-color: var(--bf-color-neutral-primary);
             border-width: 2px
@@ -32,8 +40,11 @@
         border-radius: .125rem;
         width: 1.5rem;
         height: 1.5rem;
-        background: none; 
+        background: none;
         position: relative;
+        &[type=radio]{
+          border-radius: 50%;
+        }
         &:checked + label {
                 border-color: var(--bf-color-neutral-primary);
                 border-width: 2px
@@ -45,29 +56,25 @@
             top: -1px;
             left: -1px;
             width: 1.5rem;
-            height: 1.5rem;   
-            background :var(--bf-color-feedback-neutral) url(/images/icons/bifrost/check-sm.svg) center center no-repeat;
+            height: 1.5rem;
+            background :var(--bf-color-feedback-neutral) url('/images/icons/bifrost/check-sm.svg') center center no-repeat;
             background-size: 80% 80%;
             border-color:var(--bf-color-feedback-neutral);
             border-radius: inherit;
             content: '';
         }
     }
-    &__input[type=radio]{
-        border-radius: 50%;
+    &__block{
+      pointer-events: none;
     }
-
     &__text{
         @extend .small ;
     }
-    &:hover{
-        background-color: var(--bf-color-bg-underground);
-    }
 
 
-    /** 
-    ** orientation variants
-    **/
+    /*-----------------------------------*
+    ** orientations & size variants
+    *------------------------------------*/
     &--horizontal{
         @extend .d-flex;
         align-items: center;
@@ -84,8 +91,8 @@
         .bf-selection-tile__control{
             align-self : center;
             @extend .py-1;
-        } 
-        .bf-selection-tile__visual{ 
+        }
+        .bf-selection-tile__visual{
             display: none;
         }
         &.bf-selection-tile--small{
@@ -95,10 +102,9 @@
             width: auto;
             .bf-selection-tile__block{
                 width: max-content;
-                }    
+                }
         }
     }
-
 
     &--vertical{
         width: max-content;
@@ -107,7 +113,7 @@
         border-radius: .5rem;
         display: flex;
         align-items: stretch;
-        padding-top: 2.5rem;      
+        padding-top: 2.5rem;
         .bf-selection-tile__input{
             position: absolute;
             top: .5rem;
@@ -125,27 +131,27 @@
                 text-align: center;
                 flex-grow: 1;
                 height: 50%;
-                align-items: center;     
+                align-items: center;
             }
-            .bf-selection-tile__content{
+            .bf-selection-tile__body{
                 display: flex;
                 flex-flow: column;
-            } 
+            }
         }
         &.bf-selection-tile--large{
             width: 100%;
             min-height: 16rem;
-            
+
             & .bf-selection-tile__block > div{
-                @extend .pt-2; 
+                @extend .pt-2;
                 align-items: flex-end ;
             }
 
             .bf-selection-tile__visual{
-                
+
                 width: 100%;
-            } 
-              
+            }
+
         }
     }
     &.disabled {
