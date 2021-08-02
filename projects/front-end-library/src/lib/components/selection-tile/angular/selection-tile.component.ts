@@ -19,22 +19,24 @@ export class SelectionTileComponent implements OnInit {
     constructor() {}
 
     /** Class override */
-    @Input() class        : string;
-    @Input() inputType    : 'checkbox'|'radio';
-    @Input() inputId      : string;
-    @Input() value        : string;
-    @Input() ariaLabel    : string;
-    @Input() name         : string;
+    @Input() class          : string;
+    @Input() inputType      : 'checkbox'|'radio';
+    @Input() inputId        : string;
+    @Input() value          : string;
+    @Input() ariaLabel      : string;
+    @Input() name           : string;
+    /** extra attribute for the radio/checkbox input only */
+    @Input() extraAttribute : string
 
-    @Input() orientation : 'horizontal'|'vertical';
-    @Input() size        : 'small'|'large';
-    @Input() title       : string;
-    @Input() description : string;
-    @Input() info        : string;
-    @Input() image       : IImage;
-    @Input() reversed    : boolean;
-    @Input() isDisabled  : boolean;
-    @Input() isSelected  : boolean;
+    @Input() orientation    : 'horizontal'|'vertical';
+    @Input() size           : 'small'|'large';
+    @Input() title          : string;
+    @Input() description    : string;
+    @Input() info           : string;
+    @Input() image          : IImage;
+    @Input() reversed       : boolean;
+    @Input() isDisabled     : boolean;
+    @Input() isSelected     : boolean;
 
     ngOnInit() {
         console.log('SelectionTile', this);
