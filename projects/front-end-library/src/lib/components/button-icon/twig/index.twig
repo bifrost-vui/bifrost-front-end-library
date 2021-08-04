@@ -1,4 +1,10 @@
 {% set isLink = (href is defined and href is not empty) %}
+{% set showBadge = (badge is defined and badge is not empty) %}
+
+
+{% if showBadge %}
+    <div class="bf-button-icon-container {{ (isDisabled) ? 'disabled' }}">
+{% endif %}
 
 <{{ isLink ? 'a' : 'button' }}
     {% if isLink is same as (true) %}
@@ -7,7 +13,7 @@
         type='button'
     {% endif %}
     class='
-        bf-button-icon vui--style-reset p-2 m-0 
+        bf-button-icon 
         {% if reversed is same as (true) %}reversed{% endif %}
         {% if isDisabled is same as (true) %}disabled{% endif %}
         {{ class|default('') }}'
@@ -24,4 +30,19 @@
     {% include '@bf-components/icon/twig/index.twig' with {
         name    : icon|default('placeholder')
     } only %}
-</{{ isLink ? 'a' : 'button' }}>
+
+
+
+</{{ isLink ? 'a' : 'button' }}> 
+
+{% if showBadge %}
+
+    {% include '@bf-components/badge/twig/index.twig' with {
+        label       : badge.label|default('0'),
+        class       : badge.class,
+        hierarchy   : 'primary',
+    }  %}
+
+    </div>
+
+{% endif %}

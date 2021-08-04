@@ -30,6 +30,7 @@ export class ButtonIconComponent implements OnInit {
     @Input() ariaLabel      : string;
     @Input() extraAttribute : string;
     @Input() class          : string;
+    @Input() badge          : object;
 
     ngOnInit() {
         console.log('button-icon', this);
