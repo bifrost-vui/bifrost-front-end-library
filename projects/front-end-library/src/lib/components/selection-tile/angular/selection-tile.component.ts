@@ -1,14 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
-/**
- * Description of the component SelectionTile
- *
- */
- interface IImage {
-  src : string,
-  alt : string,
-  class : string
-}
 
 @Component({
   selector: 'bf-selection-tile',
@@ -33,7 +24,8 @@ export class SelectionTileComponent implements OnInit {
     @Input() title          : string;
     @Input() description    : string;
     @Input() info           : string;
-    @Input() image          : IImage;
+    /**{ src : string, alt : string, class : string } */
+    @Input() image          : object;
     @Input() reversed       : boolean;
     @Input() isDisabled     : boolean;
     @Input() isSelected     : boolean;

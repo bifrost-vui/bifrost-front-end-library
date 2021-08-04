@@ -1,5 +1,19 @@
 <div class="bf-selection-tile bf-selection-tile--{{ orientation|default('horizontal') }} bf-selection-tile--{{ size|default('small') }} {{ isDisabled? 'disabled' }} {{ class|default('') }}">
-  <div class="bf-selection-tile__block order-1">
+  <div class="bf-selection-tile__control">
+
+    <input type="{{ inputType|default('checkbox') }}"
+          class="bf-selection-tile__input"
+          id="{{ inputId|default('my-selection-tile') }}"
+          name="{{ name|default('bf selection tile') }}"
+          value="{{ value|default('') }}"
+          aria-label = "{{ arialLabel|default('') }}"
+          {% if isDisabled is defined and isDisabled %} disabled="disabled" {% endif %}
+          {% if isSelected is defined and isSelected  %} checked="checked" {% endif %}
+          {{ extraAttribute|default(NULL) }}>
+    <label for="{{ inputId|default('my-selection-tile') }}" class="bf-selection-tile__label" title="{{ arialLabel }}"></label>
+
+  </div> 
+  <div class="bf-selection-tile__block">
 
     {% block tile_content %}
 
@@ -16,35 +30,19 @@
               <p class="p-0 m-0"><strong>{{ title }}</strong></p>
               <p class="p-0 m-0">{{ description }}</p>
             </div>
-          {% endif%}
+          {% endif %}
         </div>
-
       </div>
+      
       {% if size is same as ('large') and info is defined and info is not empty %}
-
         <div class='bf-selection-tile__footer'>
           <div class="bf-selection-tile__text">
             <p class="p-0 m-0">{{ info }}</p>
           </div>
         </div>
-
       {% endif %}
 
     {% endblock %}
-
-  </div>
-  <div class="bf-selection-tile__control">
-
-    <input type="{{ inputType|default('checkbox') }}"
-          class="bf-selection-tile__input"
-          id="{{ inputId|default('my-selection-tile') }}"
-          name="{{ name|default('bf selection tile') }}"
-          value="{{ value|default('') }}"
-          aria-label = "{{ arialLabel|default('') }}"
-          {% if isDisabled is defined and isDisabled %} disabled="disabled" {% endif %}
-          {% if isSelected is defined and isSelected  %} checked="checked" {% endif %}
-          {{ extraAttribute|default(NULL) }}>
-    <label for="{{ inputId|default('my-selection-tile') }}" class="bf-selection-tile__label" title="{{ arialLabel }}"></label>
 
   </div>
 </div>

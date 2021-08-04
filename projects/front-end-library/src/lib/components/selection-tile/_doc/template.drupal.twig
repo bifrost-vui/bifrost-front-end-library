@@ -1,14 +1,12 @@
 {% set reversed     = reversed|json_parse|default(false) %}
 {% set isDisabled   = isDisabled|json_parse|default(false) %}
 {% set isSelected   = isSelected|json_parse|default(false) %}
+{% set image        = image|json_parse|default({}) %}
 
-<div class='d-flex flex-row minh-100'>
+<div class='container'>
+  <div class="d-flex">
     {% for index in [1,2] %}
-    <div class="container {{ (index == 2 ) ? 'bf-color-bg-underground' }} {{ (reversed) ? 'reversed  bf-color-bg-ground' }}">
-
-      <div class="p-1">
-        {% include '@bf-components/selection-tile/twig/index.twig' %}
-        </div>
+    <div class=" p-3 {{ (index == 2 ) ? 'bf-color-bg-underground' }} {{ (reversed) ? 'reversed  bf-color-bg-ground' }}">
 
         <div class="p-1">
         {% include '@bf-components/selection-tile/twig/index.twig'  with {
@@ -21,7 +19,7 @@
               src : '/images/logo/channels/vie.svg',
               alt : 'Canal vie',
           },
-          info        :  '$ XX.xx/Month'
+          info        :  '$XX.xx/Month'
         }  %}
 
         </div>
@@ -32,12 +30,12 @@
           title       : 'Yoopa',
           name        : 'my selection tiles',
           ariaLabel   : 'my selection tile 2' ~ loop.index,
-          description : 'Descriptium ipsum',
+          description : 'Suspendisse in maximus nulla. Etiam auctor finibus felis, nec mattis justo egestas et. Morbi ultricies porttitor lorem et suscipit. ',
           image       : {
               src : '/images/logo/channels/yoopa.svg',
               alt : 'Yoopa',
           },
-          info        :  '$ XX.xx/Month'
+          info        :  'XX.xx $ / Mois'
         }  %}
 
         </div>
@@ -69,7 +67,7 @@
                 src : '/images/logo/channels/tva-sports.svg',
                 alt : 'the movie chanel',
             },
-          info        :  '$ XX.xx/Month'
+          info        :  '$XX.xx/Month'
 
         } %}
         
@@ -77,4 +75,5 @@
 
 </div>
 {% endfor %}
+</div>
 </div>

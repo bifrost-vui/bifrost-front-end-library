@@ -83,10 +83,6 @@ export const Drupal = (args) => ({
         inputId     : 'my-selection-tile1',
         title       : 'Canal plus',
         description : 'Descriptium ipsum',
-        image       : {
-            src : '/images/logo/channels/canalplus.svg',
-            alt : 'Canal plus',
-        },
         info        :  'XX.xx/Mois'
     }  %}
 
@@ -102,8 +98,9 @@ export const Drupal = (args) => ({
         orientation : 'vertical',
         inputId     : 'my-selection-tile3',
         image       : {
-            src : '/images/logo/channels/tva-sports.svg',
-            alt : 'TVA Sport',
+            src   : '/images/logo/channels/tva-sports.svg',
+            alt   : 'TVA Sport',
+            class :''
         tile        : '',
         description : '',
         },
@@ -126,13 +123,15 @@ export const Drupal = (args) => ({
 
 
 - The *Selection Tile* comes in **horizontal** and **vertical** orientation, each having a **small** and a **large** version.
+  - size(default -> small) 
+  - orientation(default -> horizontal)
+  - **horizontal** version won't display images
 - The Tile mimics the behavior of the input type :
   - mutual exclusion if it's a **radio button**
   - multi select in case of a **checkbox**
 - The code within the tile_content editable block manages most common tile variants. Although it's not mandatory, it's recommended to use as is.
 - Upon redefinition within an embed Twig block, be aware that items **won't be clickable**.
 - If you need the content to be clickable, then use the **Tile component** instead.
-
 
 
 ## Design Guidelines
