@@ -54,6 +54,15 @@ import { ButtonIconComponent }              from '../angular/button-icon.compone
 
 ## Drupal
 
+export const commonProps = {
+    icon : 'cart',
+    badge : {
+        label       : '3',
+        class       : '',
+        hierarchy   : 'primary',        
+        },
+};
+
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
     props: args,
@@ -67,7 +76,7 @@ export const Drupal = (args) => ({
         name='Drupal'
         args={{ 
             elementPath : 'components/button-icon/_doc/template.drupal',
-            icon        : 'cart'
+            ...commonProps,
         }}
         height='160px'
     >
