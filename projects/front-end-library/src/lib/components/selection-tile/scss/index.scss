@@ -82,6 +82,9 @@
     }
 
     &__feedback{ display: none;}
+
+    &--large{ width: 100%;}
+
     /*-----------------------------------*
     ** orientations & size variants
     *------------------------------------*/
@@ -90,7 +93,6 @@
         display: flex;
         align-items: center;
         max-height: 8rem;
-        width: max-content;
 
         & .bf-selection-tile__block{
             display: flex;
@@ -110,7 +112,6 @@
             .bf-selection-tile__footer{display: none;}
         }
         &.bf-selection-tile--large{
-            width: auto;
             .bf-selection-tile__block{ 
                 width: calc(100% - 3.5rem); } 
             .bf-selection-tile__footer{ 
@@ -152,9 +153,7 @@
             }
         }
         &.bf-selection-tile--large{
-            width: 100%;
             min-height: 16rem;
-
             & .bf-selection-tile__block > div{
                 @extend .pt-2;
                 align-items: flex-end ;
@@ -164,7 +163,7 @@
     }
 
     /*-----------------------------------*
-    ** states
+    ** disabled state
     *------------------------------------*/
 
     &.disabled {
@@ -182,8 +181,16 @@
         }    
         img{opacity: .5;}
     }
+    
+}
+
+/*-----------------------------------*
+** Error context - adding dontainer
+*------------------------------------*/
+
+.bf-selection-tile__container{
+    width: max-content;
     &.color-warning {
-        margin-bottom: 3rem;
         .bf-selection-tile__label{
             border-color: var(--bf-color-feedback-warning);
         }
@@ -194,20 +201,16 @@
             display: block;
             width: max-content;
             color: var(--bf-color-feedback-warning);
-            position: absolute;
-            bottom: -2.5rem;
-            left: 0;
             @extend .small;
-            line-height: 1rem;
-            padding-top:var(--bf-spacer-xsmall);
-            height: 2.5rem;
-
+            padding:var(--bf-spacer-xsmall) 0;
         }
     }
+    &--large{ width: 100%; }
 }
 
+
 /*-----------------------------------*
-** color underground context 
+** outer color contexts   
 *------------------------------------*/
 
 .bf-color-bg-underground {

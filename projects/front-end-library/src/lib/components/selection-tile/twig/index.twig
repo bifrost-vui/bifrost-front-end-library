@@ -1,56 +1,67 @@
-<div class="bf-selection-tile bf-selection-tile--{{ orientation|default('horizontal') }} bf-selection-tile--{{ size|default('small') }} {{ isDisabled? 'disabled' }} {{ (isInvalid) ? 'color-warning ' : '' }} {{ class|default('') }}">
-  
-  <div class="bf-selection-tile__control">
+{% set needsContainer = (isInvalid is defined and isInvalid ) %}
 
-    <input type="{{ inputType|default('checkbox') }}"
-          class="bf-selection-tile__input"
-          id="{{ inputId|default('my-selection-tile') }}"
-          name="{{ name|default('bf selection tile') }}"
-          value="{{ value|default('') }}"
-          aria-label = "{{ arialLabel|default('') }}"
-          {% if isDisabled is defined and isDisabled %} disabled="disabled" {% endif %}
-          {% if isSelected is defined and isSelected  %} checked="checked" {% endif %}
-          {{ extraAttribute|default(NULL) }}>
-    <label for="{{ inputId|default('my-selection-tile') }}" class="bf-selection-tile__label" title="{{ arialLabel }}"></label>
+{% if needsContainer %}
+    <div class="bf-selection-tile__container {{ (isInvalid) ? 'color-warning ' : '' }} bf-selection-tile__container--{{ size|default('small') }} {{ class }}">
+{% endif %}
 
-  </div> 
+      <div class="bf-selection-tile bf-selection-tile--{{ orientation|default('horizontal') }} bf-selection-tile--{{ size|default('small') }} {{ isDisabled? 'disabled' }}  {{ (needsContainer) ? '' : class }}">
+        
+        <div class="bf-selection-tile__control">
 
-  <div class="bf-selection-tile__block">
+          <input type="{{ inputType|default('checkbox') }}"
+                class="bf-selection-tile__input"
+                id="{{ inputId|default('my-selection-tile') }}"
+                name="{{ name|default('bf selection tile') }}"
+                value="{{ value|default('') }}"
+                aria-label = "{{ arialLabel|default('') }}"
+                {% if isDisabled is defined and isDisabled %} disabled="disabled" {% endif %}
+                {% if isSelected is defined and isSelected  %} checked="checked" {% endif %}
+                {{ extraAttribute|default(NULL) }}>
+          <label for="{{ inputId|default('my-selection-tile') }}" class="bf-selection-tile__label" title="{{ arialLabel }}"></label>
 
-    {% block tile_content %}
+        </div> 
 
-      <div>
-        <div class="bf-selection-tile__body">
+        <div class="bf-selection-tile__block">
 
-          {% if image and image.src and image.alt %}
-            <div class="bf-selection-tile__visual">
-              <img class="{{ image.class }}" src="{{ image.src }}" width="68" height="40" alt="{{ image.alt }}">
+          {% block tile_content %}
+
+            <div>
+              <div class="bf-selection-tile__body">
+
+                {% if image and image.src is defined and image.src and image.alt is defined %}
+                  <div class="bf-selection-tile__visual">
+                    <img class="{{ image.class }}" src="{{ image.src }}" width="68" height="40" alt="{{ image.alt }}">
+                  </div>
+                {% endif %}
+
+                {% if ( title is defined and title) or (description is defined and description) %}
+                  <div class="bf-selection-tile__text">
+                    <p class="p-0 m-0"><strong>{{ title }}</strong></p>
+                    <p class="p-0 m-0">{{ description }}</p>
+                  </div>
+                {% endif %}
+              </div>
+
             </div>
-          {% endif %}
+            
+            {% if size is same as ('large') and info is defined and info %}
+              <div class='bf-selection-tile__footer'>
+                <div class="bf-selection-tile__text">
+                  <p class="p-0 m-0">{{ info }}</p>
+                </div>
+              </div>
+            {% endif %}
 
-          {% if title or description %}
-            <div class="bf-selection-tile__text">
-              <p class="p-0 m-0"><strong>{{ title }}</strong></p>
-              <p class="p-0 m-0">{{ description }}</p>
-            </div>
-          {% endif %}
+          {% endblock %}
+
         </div>
+        
 
       </div>
-      
-      {% if size is same as ('large') and info is defined and info is not empty %}
-        <div class='bf-selection-tile__footer'>
-          <div class="bf-selection-tile__text">
-            <p class="p-0 m-0">{{ info }}</p>
-          </div>
+
+{% if needsContainer %}
+        <div class="bf-selection-tile__feedback">
+            {{ errorMessage }}
         </div>
-      {% endif %}
-
-    {% endblock %}
-
-  </div>
-    <div class="bf-selection-tile__feedback">
-        {{ errorMessage }}
     </div>
-
-</div>
+{% endif %}

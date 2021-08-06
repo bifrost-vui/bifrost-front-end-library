@@ -1,84 +1,59 @@
-{% set reversed     = reversed|json_parse|default(false) %}
-{% set isDisabled   = isDisabled|json_parse|default(false) %}
-{% set isSelected   = isSelected|json_parse|default(false) %}
-{% set image        = image|json_parse|default({}) %}
+{% set reversed     = reversed|json_parse %}
+{% set isDisabled   = isDisabled|json_parse %}
+{% set isSelected   = isSelected|json_parse %}
+{% set image        = image|json_parse %}
 {% set isInvalid    = isInvalid|json_parse %}
-{% set errorMessage = errorMessage|json_parse|default('This is an error message') %}
-
 
 
 
 <div class='container'>
-  <div class="d-flex">
     {% for index in [1,2] %}
     <div class=" p-3 {{ (index == 2 ) ? 'bf-color-bg-underground' }} {{ (reversed) ? 'reversed  bf-color-bg-ground' }}">
-
-        <div class="p-1">
+      <div class="d-flex">
         
         {% include '@bf-components/selection-tile/twig/index.twig'  with {
           inputId     : 'my-selection-tile1' ~ loop.index,
           ariaLabel   : 'my selection tile 1' ~ loop.index,
-          name        : 'my selection tiles',
-          title       : 'Canal vie',
-          description : 'Descriptium ipsum',
-          image       : {
-              src : '/images/logo/channels/vie.svg',
-              alt : 'Canal vie',
-          },
-          info        :  '$XX.xx/Month',
+          title       : '',
+          description : '',
+          isSelected  : true,
         }  %}
 
-        </div>
-        <div class="p-1">
-        {% include '@bf-components/selection-tile/twig/index.twig' with {
-          size        : 'large',
-          inputId     : 'my-selection-tile2' ~ loop.index,
-          title       : 'Yoopa',
-          name        : 'my selection tiles',
-          ariaLabel   : 'my selection tile 2' ~ loop.index,
-          description : 'Suspendisse in maximus nulla. Etiam auctor finibus felis, nec mattis justo egestas et.',
-          image       : {
-              src : '/images/logo/channels/yoopa.svg',
-              alt : 'Yoopa',
-          },
-          info        :  'XX.xx $ / Mois',
-        }  %}
-
-        </div>
-        <div class="p-1">
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
-          orientation : 'vertical',
           inputId     : 'my-selection-tile3' ~ loop.index,
-          name        : 'my selection tiles',
           ariaLabel   : 'my selection tile 3' ~ loop.index,
           image       : {
             src : '/images/logo/channels/tva-sports.svg',
-            alt : 'TVA Sport',
-            },
+            alt : 'the movie chanel',
+          },
+        }  %}
+        
+        </div>
+        
+        <div class="d-flex">
+        
+        {% include '@bf-components/selection-tile/twig/index.twig' with {
+          inputId     : 'my-selection-tile2' ~ loop.index,
+          ariaLabel   : 'my selection tile 2' ~ loop.index,
+          size        : 'large',
+          info        :  'XX.xx $ / Mois',
         }  %}
 
-        </div>
-        <div class="p-1">
-
         {% include '@bf-components/selection-tile/twig/index.twig' with {
-          orientation : 'vertical',
           size        : 'large',
           inputId     : 'my-selection-tile4' ~ loop.index,
           ariaLabel   : 'my selection tile 4' ~ loop.index,
-          name        : 'my selection tiles',
-          title       : 'Movie Chanel',
-            description : 'lorem ipsum descriptum',
-            image       : {
-                src : '/images/logo/channels/tva-sports.svg',
-                alt : 'the movie chanel',
-            },
+          image       : {
+            src : '/images/logo/channels/tva-sports.svg',
+            alt : 'the movie chanel',
+          },
           info        :  '$XX.xx/Month',
+          isDisabled  : true,
         } %}
-        
-        </div>
-
+    
       </div>
+    </div>
+
     {% endfor %}
   </div>
-</div>

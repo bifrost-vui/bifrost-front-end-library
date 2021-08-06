@@ -64,14 +64,64 @@ export const Drupal = (args) => ({
     props       : args,
 });
 
+export const verticalCommonProps = {
+    inputId     : '',
+    value       : '',
+    ariaLabel   : '',
+    name        : 'my selection tiles',
+    errorMessage: 'This is an error message',
+    orientation : 'vertical',
+    size        : 'small',   
+    title       : 'Movie Chanel',
+    description : 'lorem ipsum descriptum',
+    info        : '',
+    class       : 'm-2',
+    image       : {
+        src   : '/images/_docs/abstract-background.png',
+        alt   : 'abstract background',
+        class : '',
+    }
+};
+
+export const commonProps = {
+    inputId     : '',
+    value       : '',
+    ariaLabel   : '',
+    name        : 'my selection tiles',
+    errorMessage: 'This is an error message',
+    orientation : 'horizontal',
+    size        : 'small',
+    title       : 'Selection tile ttle',
+    description : 'lorem ipsum descriptum',
+    info        : '',
+    class       : 'm-2',
+};
+
+
 <Preview
     withSource='none'
+    style={{ height: '600px' }}>
+    <Story
+        name='Selection Tile - vertical'
+        args={{
+          elementPath : 'components/selection-tile/_doc/template.drupal',
+          ...verticalCommonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+<Preview
+    withSource='none'    
     style={{ height: '600px' }}
 >
     <Story
-        name='Drupal'
+        name='Selection Tile - horizontal'
         args={{
           elementPath : 'components/selection-tile/_doc/template.drupal',
+          ...commonProps
         }}
     >
         {Drupal.bind({})}
@@ -80,6 +130,7 @@ export const Drupal = (args) => ({
 
 
 ## Drupal's implementation examples
+
     4 combinations of size(default -> small) and orientation(default -> horizontal)
 
 ```jsx
@@ -87,7 +138,7 @@ export const Drupal = (args) => ({
         inputId     : 'my-selection-tile1',
         title       : 'Canal plus',
         description : 'Descriptium ipsum',
-        info        :  'XX.xx/Mois'
+        info        :  '$XX.xx/Month',
     }  %}
 
     {% include '@bf-components/selection-tile/twig/index.twig' with {
@@ -95,7 +146,8 @@ export const Drupal = (args) => ({
         inputId     : 'my-selection-tile2',
         title       : 'Canal plus',
         description : 'Descriptium ipsum',
-        info        :  'XX.xx/Mois'
+        info        : '$XX.xx/Month'
+        isInvalid   : 'true',
     }  %}
 
     {% include '@bf-components/selection-tile/twig/index.twig' with {
@@ -104,10 +156,10 @@ export const Drupal = (args) => ({
         image       : {
             src   : '/images/logo/channels/tva-sports.svg',
             alt   : 'TVA Sport',
-            class :''
-        tile        : '',
-        description : '',
+            class : '',
         },
+        title        : '',
+        description : '',
     }  %}
 
     {% include '@bf-components/selection-tile/twig/index.twig' with {
@@ -120,6 +172,7 @@ export const Drupal = (args) => ({
             src : '/images/logo/channels/tva-sports.svg',
             alt : 'the movie chanel',
         }
+        info        : '$XX.xx/Month'
     } %}
 ```
 
