@@ -1,4 +1,5 @@
-<div class="bf-selection-tile bf-selection-tile--{{ orientation|default('horizontal') }} bf-selection-tile--{{ size|default('small') }} {{ isDisabled? 'disabled' }} {{ class|default('') }}">
+<div class="bf-selection-tile bf-selection-tile--{{ orientation|default('horizontal') }} bf-selection-tile--{{ size|default('small') }} {{ isDisabled? 'disabled' }} {{ (isInvalid) ? 'color-warning ' : '' }} {{ class|default('') }}">
+  
   <div class="bf-selection-tile__control">
 
     <input type="{{ inputType|default('checkbox') }}"
@@ -13,12 +14,14 @@
     <label for="{{ inputId|default('my-selection-tile') }}" class="bf-selection-tile__label" title="{{ arialLabel }}"></label>
 
   </div> 
+
   <div class="bf-selection-tile__block">
 
     {% block tile_content %}
 
       <div>
         <div class="bf-selection-tile__body">
+
           {% if image and image.src and image.alt %}
             <div class="bf-selection-tile__visual">
               <img class="{{ image.class }}" src="{{ image.src }}" width="68" height="40" alt="{{ image.alt }}">
@@ -32,6 +35,7 @@
             </div>
           {% endif %}
         </div>
+
       </div>
       
       {% if size is same as ('large') and info is defined and info is not empty %}
@@ -45,4 +49,8 @@
     {% endblock %}
 
   </div>
+    <div class="bf-selection-tile__feedback">
+        {{ errorMessage }}
+    </div>
+
 </div>

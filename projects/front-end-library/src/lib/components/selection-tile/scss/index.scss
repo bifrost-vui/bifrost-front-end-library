@@ -9,8 +9,8 @@
     position:relative;
     padding: var(--bf-spacer-small);
     width: max-content;
-    background-color: var(--bf-color-bg-ground);
     border-radius: .5rem;
+
     &__label{
         position: absolute;
         display: block;
@@ -24,7 +24,8 @@
         z-index: 0;
         &:hover{
             border-color: var(--bf-color-neutral-primary);
-            border-width: 2px
+            box-shadow: var(--bf-box-shadow-light);
+            background-color: var(--bf-color-bg-underground);
         }
     }
 
@@ -44,8 +45,14 @@
         }
         &:checked + label {
                 border-color: var(--bf-color-neutral-primary);
-                background-color: var(--bf-color-bg-action-selected);
+                background-color: var(--bf-color-bg-underground);
                 border-width: 2px;
+                &:hover{
+                    box-shadow: var(--bf-box-shadow-light);
+                    background-color: transparent;
+                    border: 1px solid var(--bf-color-stroke-primary);
+                    border-width: 1px;
+                }
         }
 
         &:checked::before{
@@ -61,19 +68,24 @@
             background-size: contain;
             border-radius: inherit;
             content: '';
+
         }
     }
+
     &__block{
       pointer-events: none;
       z-index: 10;
     }
+
     &__text{
         @extend .small ;
     }
 
+    &__feedback{ display: none;}
     /*-----------------------------------*
     ** orientations & size variants
     *------------------------------------*/
+
     &--horizontal{
         display: flex;
         align-items: center;
@@ -150,6 +162,7 @@
             .bf-selection-tile__visual{ width: 100%;}
         }
     }
+
     /*-----------------------------------*
     ** states
     *------------------------------------*/
@@ -157,15 +170,38 @@
     &.disabled {
         pointer-events: none;
         @extend .bf-color-neutral-tertiary;
-        .bf-selection-tile__label,
-        .bf-selection-tile__input{ border: 1px solid var(--bf-color-stroke-secondary);}
+        .bf-selection-tile__label{ 
+            border: 1px solid var(--bf-color-stroke-secondary);
+        }
+        .bf-selection-tile__input{ 
+            border: 1px solid var(--bf-color-stroke-secondary);
+            &:checked::before{
+                background-color: var(--bf-color-neutral-tertiary);
+                filter: opacity(0.2); 
+            }
+        }    
         img{opacity: .5;}
     }
-    &.warning{
-        // TODO - en attente du retour de @Riwal
-        color: var(--bf-color-feedback-warning);
+    &.color-warning {
+        margin-bottom: 3rem;
+        .bf-selection-tile__label{
+            border-color: var(--bf-color-feedback-warning);
+        }
         .bf-selection-tile__input:checked::before{
             background-color: var(--bf-color-feedback-warning);
+        }
+        .bf-selection-tile__feedback{
+            display: block;
+            width: max-content;
+            color: var(--bf-color-feedback-warning);
+            position: absolute;
+            bottom: -2.5rem;
+            left: 0;
+            @extend .small;
+            line-height: 1rem;
+            padding-top:var(--bf-spacer-xsmall);
+            height: 2.5rem;
+
         }
     }
 }
@@ -175,6 +211,20 @@
 *------------------------------------*/
 
 .bf-color-bg-underground {
-    &.bf-selection-tile,
-    .bf-selection-tile{ background-color: var(--bf-color-bg-underground);}
+    .bf-selection-tile__label:hover{
+        background-color: var(--bf-color-bg-ground);
+    }
+    .bf-selection-tile__input:checked + label{
+        background-color: var(--bf-color-bg-ground);
+        &:hover{ background-color: transparent;}
+    }
+}
+
+.reversed .disabled, 
+.reversed.disabled {
+    .bf-selection-tile__input{ 
+        &:checked::before{
+            filter: opacity(0.2) grayscale(1) invert(1); 
+        }
+    }
 }
