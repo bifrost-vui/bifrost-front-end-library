@@ -18,6 +18,7 @@ export class BlockSelectionComponent implements OnInit {
     @Input() totalPrice             : object;
     @Input() isCollapsableOnMobile  : boolean;
     @Input() isCollapsedByDefaultOnMobile   : boolean;
+    @Input() savingTextLong         : boolean;
 
     @Input() title                  : string;
     @Input() titleTag               : string;

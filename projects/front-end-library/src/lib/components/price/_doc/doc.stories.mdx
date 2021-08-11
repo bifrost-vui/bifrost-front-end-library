@@ -5,8 +5,8 @@ import { TwigContainerComponent }               from '../../../../utils/twig-con
 import { PriceComponent }                       from '../angular/price.component';
 
 
-<Meta 
-    title='Components/Price' 
+<Meta
+    title='Components/Price'
     component={PriceComponent}
     decorators={[
         moduleMetadata({ declarations: [PriceComponent, TwigContainerComponent]}),
@@ -28,7 +28,7 @@ import { PriceComponent }                       from '../angular/price.component
         },
         reversed: {
             table: { defaultValue: { summary: false } },
-        },
+        }
     }}
 />
 
@@ -63,6 +63,8 @@ import { PriceComponent }                       from '../angular/price.component
         priceStriked  : 40.99,
         priceSaved    : 10,
         savedLabel    : 'You saved:',
+        savedLongLabel: 'Neque porro quisquam est qui dolorem ipsum quia',
+        savedTextLong: false,
         superscript   : 1,
         direction     : 'horizontal',
     },
@@ -97,6 +99,8 @@ export const commonProps = {
         priceStriked  : 40.99,
         priceSaved    : 10,
         savedLabel    : 'You saved:',
+        savedLongLabel: 'Neque porro quisquam est qui dolorem ipsum quia',
+        savedTextLong : false,
         superscript   : 1,
         direction     : 'horizontal',
     },
@@ -109,9 +113,9 @@ export const commonProps = {
     withSource='none'
     style={{ height: '200px' }}
 >
-    <Story 
+    <Story
         name='Drupal'
-        args={{ 
+        args={{
             elementPath     : 'components/price/_doc/template.drupal',
             ...commonProps
         }}
@@ -125,9 +129,9 @@ export const commonProps = {
     withSource='none'
     style={{ height: '800px' }}
 >
-    <Story 
+    <Story
         name='Drupal - All Prices'
-        args={{ 
+        args={{
             elementPath     : 'components/price/_doc/all-prices.drupal',
             ...commonProps
         }}
@@ -140,9 +144,9 @@ export const commonProps = {
     withSource='none'
     style={{ height: '800px' }}
 >
-    <Story 
+    <Story
         name='Drupal - All Prices - Null validator'
-        args={{ 
+        args={{
             elementPath     : 'components/price/_doc/null.drupal',
         }}
     >

@@ -11,6 +11,8 @@ interface IPromotion {
   savedLabel    : string;
   superscript   : string;
   direction     : string;
+  savedLongLabel: string;
+  savedTextLong:boolean;
 }
 
 export interface IPrice {
@@ -39,7 +41,7 @@ export interface IPrice {
  * API is the same between **Angular** and **Drupal**.
  *
  */
- 
+
 @Component({
     selector: 'bf-price',
     templateUrl: './price.component.html',
@@ -66,7 +68,8 @@ export class PriceComponent implements OnInit {
     @Input() saved                  : string;
     /** **Deprecated** Use `promotion.savedLabel` instead. */
     @Input() savedLabel             : string;
-
+    @Input() savedLongLabel         : string;
+    @Input() savedTextLong          : boolean;
     @Input() details                : string;
     @Input() message                : string;
 

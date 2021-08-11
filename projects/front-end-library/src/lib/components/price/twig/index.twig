@@ -1,12 +1,14 @@
 {% set language                 = language|default('en') %}
 
 {# Keep backward compatibility #}
-{% if dashed is defined or saved is defined or savedLabel is defined %}
+{% if dashed is defined or saved is defined or savedLabel is defined or savedLongLabel is defined %}
     {% set promotion    = promotion|default({}) %}
     {% set promotion    = promotion|merge({
         'priceStriked'  : promotion.priceStriked|default(dashed),
         'priceSaved'    : promotion.priceSaved|default(saved),
-        'savedLabel'    : promotion.savedLabel|default(savedLabel)
+        'savedLabel'    : promotion.savedLabel|default(savedLabel),
+        'savedLongLabel'    : promotion.savedLongLabel|default(savedLongLabel),
+        'savedTextLong'    : promotion.savedTextLong|default(savedTextLong)
     }) %}
 {% endif %}
 
@@ -86,13 +88,28 @@
                     </p>
                 {% endif %}
 
-                {% if promotion.savedLabel is defined or promotion.priceSaved is defined or promotion.superscript is defined %}
+                {% if promotion.savedLabel is defined or promotion.priceSaved is defined or promotion.superscript is defined or promotion.savedTextLong is defined and promotion.savedLongLabel is defined %}
                     <p class='small bf-display-highlight d-inline-flex align-items-center flex-wrap mb-0'>
-                        {% if promotion.savedLabel is defined and promotion.savedLabel %}
+{# {% if promotion.savedLabel is defined and promotion.savedLabel %}
                             <span class='mr-1'>
                                 {{ promotion.savedLabel }}
                             </span>
+                        {% elseif promotion.savedLongLabel is defined and promotion.savedLongLabel%}
+                          <span class='mr-1'>
+                                {{ promotion.savedLongLabel }}
+                            </span>
+                        {% endif %}#}
+                      {% if promotion.savedLabel is defined and promotion.savedLabel is not empty or promotion.savedLongLabel is defined and promotion.savedLongLabel is not empty or promotion.savedTextLong is defined  %}
+                        {% if promotion.savedTextLong is same as (true)%}
+                          <span class='mr-1'>
+                                {{ promotion.savedLongLabel }}
+                            </span>
+                        {% else %}
+                          <span class='mr-1'>
+                              {{ promotion.savedLabel }}
+                          </span>
                         {% endif %}
+                      {% endif %}
                         {% if promotion.priceSaved is defined and promotion.priceSaved is not empty %}
                             <span class='font-weight-bold'>
                                 {% if language == 'en' %}${% endif %}{{ promotion.priceSaved}}{% if language == 'fr' %}&nbsp;${% endif %}

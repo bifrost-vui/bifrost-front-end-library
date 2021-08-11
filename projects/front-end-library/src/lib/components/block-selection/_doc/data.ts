@@ -12,6 +12,8 @@ export const contentListsData = [
         price           : '$24.00',
         priceInfo       : '/ month',
         saving          : '$30.00',
+        savingLabel      : 'Neque porro quisquam est qui dolorem ipsum quia ',
+        savingLong      : '$30',
         fullPrice       : '$150.00',
         btnDelete       : {
             href        : 'www.videotron.com',
