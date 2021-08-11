@@ -34,7 +34,7 @@
 
         <!-- Main Nav -->
         <div class='bf-header__nav-main js-collapse-full-height'>
-            <ul class='bf-megamenu d-flex list h-100'>
+            <ul class='bf-megamenu  list'>
                 {% block navbar_content %}
                     {% include '@bf-components/navigation-header/twig/mega-menu.twig' with {
                         navItems    : navItems,
@@ -45,20 +45,22 @@
         </div>
 
         <!-- Actions -->
-        <div class='bf-header__actions d-flex align-items-center justify-content-end w-100 h-100 pr-3'>
+        <div class='bf-header__actions'>
 
-            <div class='d-flex d-lg-none align-items-center'>
-                {% for link in rigthIconLinks|default([])|slice(0, 5) %}
-                    {% if link is defined and link.href is not empty and link.icon is not empty %}
-                        {% include '@bf-components/button-icon/twig/index.twig' with {
-                            href    : link.href,
-                            icon    : link.icon,
-                            class   : link.class
-                        } only %}
-                    {% endif %}
-                {% endfor %}
-
-                <!-- Btn account dropdown -->
+                <div class="bf-header__rigthIconLinks ">
+                    {# <!-- rigth Icon Links - visible on mobile only --> #}
+                    {% for link in rigthIconLinks|default([])|slice(0, 5) %}
+                        {% if link is defined and link.href is not empty and link.icon is not empty %}
+                            {% include '@bf-components/button-icon/twig/index.twig' with {
+                                href    : link.href,
+                                icon    : link.icon,
+                                class   : link.class,
+                                badge   : (link.badge.label) ? { label : link.badge.label } : {} ,
+                            } only %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <!-- Btn account dropdown --> 
                 {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
                     {% if isConnected is same as (true) %}
                         {% include '@bf-components/button-icon/twig/index.twig' with {
@@ -75,12 +77,28 @@
                     {% endif %}
                 {% endif %}
 
-                <!-- Btn mini cart -->
-                {# {% if hasMiniCartBtn is defined and hasMiniCartBtn is same as (true) %}
-                    {% include '@bf-components/navigation-header/twig/btn-minicart.twig' with { class:'' } only %}
-                {% endif %} #}
+                {# <!-- Btn mini cart --> 
+                    empty or not the cart icon will display on mobile or desktop as long as the hasCartBtn is true              
+                    if there is need to hide on desktop (or all) on empty cart add :
+                    class   :   (cartBtn.badge.label is defined and cartBtn.badge.label) ? '':'d-lg-none' 
+                    class   :   (cartBtn.badge.label is defined and cartBtn.badge.label) ? '':'d-none' 
+                #}   
+                 {% if hasCartBtn is defined and hasCartBtn %}
 
-                <!-- Btn search toggle -->
+                    {% if cartBtn.badge.label is defined and cartBtn.badge.label and cartBtn.badge.label is not same as ('0') %}    
+                        {% set badgeLabel =  cartBtn.badge.label  %}
+                    {% endif %}
+
+                    {% include '@bf-components/button-icon/twig/index.twig' with {
+                        icon        : 'cart',
+                        hierarchy   : 'primary',
+                        badge       : (badgeLabel is defined) ? { label : badgeLabel } : {},
+                        href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : '', 
+                        ariaLabel   : cartBtn.ariaLabel|default(''),    
+                    } %}   
+                {% endif %}
+
+                {# <!-- Btn search toggle --> #}
                 {% include '@bf-components/button-icon/twig/index.twig' with {
                     icon            : 'search',
                     dataToggle      : 'collapse',
@@ -89,9 +107,8 @@
                     ariaExpanded    : 'false',
                     class           : 'd-flex d-md-none js-bf-search-toggler'
                 } only %}
-            </div>
 
-            <!-- Search -->
+            {# <!-- Search --> #}
             {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
                 <div class='bf-header__search-bar js-bf-header__search-bar d-none d-md-block ml-1' id='navbarSearch'>
                     <div class='d-flex align-items-center justify-content-between w-100'>
@@ -99,19 +116,19 @@
                             {% include '@bf-components/input-search/twig/index.twig' with {
                                 class       : 'mb-0',
                                 input       : {
-                                    placeholder     : search.placeholder|default('')|t,
+                                    placeholder : search.placeholder|default('')|t,
                                 },
                                 reversed    : reversed,
                             } %}
                         {% endblock %}
-                            {% include '@bf-components/button-icon/twig/index.twig' with {
-                                icon            : 'x',
-                                dataToggle      : 'collapse',
-                                dataTarget      : '#navbarSearch',
-                                ariaControls    : 'navbarSearch',
-                                ariaExpanded    : 'false',
-                                class           : 'd-flex d-md-none m-1 p-1'
-                            } %}
+                        {% include '@bf-components/button-icon/twig/index.twig' with {
+                            icon            : 'x',
+                            dataToggle      : 'collapse',
+                            dataTarget      : '#navbarSearch',
+                            ariaControls    : 'navbarSearch',
+                            ariaExpanded    : 'false',
+                            class           : 'd-flex d-md-none m-1 p-1'
+                        } %}
                     </div>
                 </div>
             {% endif %}
@@ -120,6 +137,7 @@
 
     </nav>
 
+    {# <!-- Alogolia search results-->  #}
     {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
         <div class='align-items-center justify-content-between w-100'>
             <div id='alg-hits' class='ais-Hits bf-color-bg-ground alg-hidden'></div>

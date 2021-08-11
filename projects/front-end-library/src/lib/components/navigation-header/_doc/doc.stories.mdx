@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 
-import { topBar_items, topBar_secondaryItems, rigthIconLinks } from './data';
+import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent }          from '../angular/header.component';
 
@@ -40,6 +40,10 @@ import { HeaderComponent }          from '../angular/header.component';
 # Header
 
 <br/>
+
+## Component API
+
+<Props of={HeaderComponent} />
 
 
 
@@ -96,13 +100,20 @@ import { HeaderComponent }          from '../angular/header.component';
         { icon : 'pin',     href : ' ', class : '' },
     ],
 
+    hasCartBtn : true,
+    cartBtn : {
+        badge       : { label : '3' },
+        href        : 'https://www.videotron.com',
+        ariaLabel   : 'My cart'
+    },
+
     hasAccountBtn : true,
     isConnected : true,
     hrefLogOut : '#',
     labelLogOut : 'Log out',
     hrefConnexion : '#',
     labelConnexion : 'Connexion',
-    
+
     search : {
         placeholder : 'What are you looking for?'
     },
@@ -113,10 +124,6 @@ import { HeaderComponent }          from '../angular/header.component';
 ```
 
 
-
-## Component API
-
-<Props of={HeaderComponent} />
 
 
 
@@ -137,9 +144,13 @@ export const Drupal = (args) => ({
             topBar_items,
             topBar_secondaryItems,
             rigthIconLinks,
+            cartBtn
         }}
-        height='500px'
+        height='400px'
+        with = '1200px'
     >
         {Drupal.bind({})}
     </Story>
 </Preview>
+
+## more info
