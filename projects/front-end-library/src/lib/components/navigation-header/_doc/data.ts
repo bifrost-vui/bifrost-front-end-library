@@ -20,3 +20,8 @@ export const cartBtn = {
     href : 'https://www.videotron.com',
     ariaLabel : 'My cart'
 };
+
+export const funnelNav = {
+    label: 'Back' ,
+    link : ' ',
+};

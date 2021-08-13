@@ -4,6 +4,7 @@
 *
 * ***************************************************************************** */
 
+/* legacy feature */
 @import './top-bar';
 
 .bf-header {
@@ -47,11 +48,18 @@
             max-width: none;
             @include transitions(all .2s ease-out);
             opacity: 0;
+            display: none;
 
             &.show {
-                display: block !important;
-                opacity: 1 !important;
+                display: block ;
+                opacity: 1;
             }
+        & > div{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }    
         }
     }
 
@@ -253,4 +261,18 @@
     button {
         color: inherit; // Override browser default
     }
+
+    /*-----------------------------------*
+    ** funnel variant
+    *------------------------------------*/
+    &--funnel{
+        .bf-header-top-bar,
+        .bf-header__search-bar,
+        .bf-megamenu,
+        .bf-header__search-bar,
+        .bf-header__rigthIconLinks{
+                display: none;
+        }
+    }
 }
+

@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 
-import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn } from './data';
+import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn, funnelNav } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent }          from '../angular/header.component';
 
@@ -138,13 +138,31 @@ export const Drupal = (args) => ({
     withSource='none'
 >
     <Story 
-        name='Drupal'
+        name='Navigation Header - Drupal'
         args={{ 
             elementPath : 'components/navigation-header/_doc/template.drupal',
             topBar_items,
             topBar_secondaryItems,
             rigthIconLinks,
             cartBtn
+        }}
+        height='400px'
+        with = '1200px'
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+>
+    <Story 
+        name='Funnel type Header - Drupal'
+        args={{ 
+            elementPath : 'components/navigation-header/_doc/template.drupal',
+            cartBtn,
+            funnelNav,
+            isFunnel : true
         }}
         height='400px'
         with = '1200px'

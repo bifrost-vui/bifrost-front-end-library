@@ -40,6 +40,10 @@ export class HeaderComponent implements OnInit {
     @Input() cartBtn                 : any[];    
 
     @Input() hasNoSearchBtn          : boolean;
+    
+    /** Funnel has a limited contextual nav but still supports cart button */
+    @Input() isFunnel                : boolean;
+    @Input() funnelNav               : object;   
 
     ngOnInit() {
         console.log('Header', this);
