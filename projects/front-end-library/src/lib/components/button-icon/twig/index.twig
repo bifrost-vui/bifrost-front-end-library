@@ -1,10 +1,4 @@
 {% set isLink = (href is defined and href is not empty) %}
-{% set showBadge = (badge is defined and badge is not empty) %}
-
-
-{% if showBadge %}
-    <div class="bf-button-icon-container {{ (isDisabled) ? 'disabled' }}">
-{% endif %}
 
 <{{ isLink ? 'a' : 'button' }}
     {% if isLink is same as (true) %}
@@ -28,21 +22,16 @@
     {{ extraAttribute|default(NULL) }}
 >
     {% include '@bf-components/icon/twig/index.twig' with {
-        name    : icon|default('placeholder')
+        name        : icon|default('placeholder')
     } only %}
 
-
+    {% if badge is defined and badge %}
+        {% include '@bf-components/badge/twig/index.twig' with {
+            label     : badge|default('0'),
+            class     : 'bf-button-icon__badge',
+            hierarchy : 'primary',
+            isRounded : true
+        } only %}
+    {% endif %}
 
 </{{ isLink ? 'a' : 'button' }}> 
-
-{% if showBadge %}
-
-    {% include '@bf-components/badge/twig/index.twig' with {
-        label       : badge.label|default('0'),
-        class       : badge.class,
-        hierarchy   : 'primary',
-    }  %}
-
-    </div>
-
-{% endif %}
