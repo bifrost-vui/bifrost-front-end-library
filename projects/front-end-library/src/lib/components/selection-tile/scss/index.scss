@@ -24,28 +24,29 @@
         transition-property: border-color, box-shadow, background-color;
         transition-duration: .25s;
         &:hover{
-            border-color: var(--bf-color-neutral-higlight); 
+            @extend .bf-border-highlight;
             box-shadow: var(--bf-box-shadow-light);
             background-color: var(--bf-color-bg-underground);
         }
     }
 
     &__input{
-        border: 1px solid var(--bf-color-stroke-primary);
-        margin-right: var(--bf-spacer-small);
         display: block;
-        appearance: none;
-        border-radius: .125rem;
-        width: 1.5rem;
-        height: 1.5rem;
-        background: none;
         position: relative;
         z-index: 3;
+        width: 1.5rem;
+        height: 1.5rem;
+        appearance: none;
+        border: 1px solid var(--bf-color-stroke-primary);
+        margin-right: var(--bf-spacer-small);
+        border-radius: .125rem;
+        background: none;
+        pointer-events: none;
         &[type=radio]{
           border-radius: 50%;
         }
         &:checked + label {
-            border-color: var(--bf-color-neutral-higlight);
+            @extend .bf-border-highlight;
             background-color: var(--bf-color-bg-underground);
             border-width: 2px;
             &:hover{
@@ -56,8 +57,8 @@
         }
 
         &:checked::before{
-            position: absolute;
             display: block;
+            position: absolute;
             z-index: 3;
             top: -1px;
             left: -1px;
@@ -70,6 +71,11 @@
             content: '';
 
         }
+    }
+    img, 
+    svg{
+        height: 2.5rem;
+        @extend .pr-3;
     }
 
     &__block{
@@ -103,19 +109,27 @@
             align-self : center;
             padding: var(--bf-spacer-xsmall), 0;
         }
+        .bf-selection-tile__body{
+           display: flex;
+           flex-flow: row nowrap;
+           align-content: center;          
+        }
         .bf-selection-tile__visual{
-            display: none;
+            align-self: center;
+            img, svg{
+                @extend .pr-3;
+            }
         }
-        &.bf-selection-tile--small{
-            .bf-selection-tile__footer{display: none;}
+        .bf-selection-tile__text{
+            align-self: center;
         }
+        .bf-selection-tile__footer{ 
+            white-space: nowrap;
+            padding-left: var(--bf-spacer-small);
+        }  
         &.bf-selection-tile--large{
             .bf-selection-tile__block{ 
                 width: calc(100% - 3.5rem); } 
-            .bf-selection-tile__footer{ 
-                white-space: nowrap;
-                padding-left: var(--bf-spacer-small);
-            }  
         }
     }
 

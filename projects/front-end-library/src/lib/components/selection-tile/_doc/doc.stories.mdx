@@ -39,9 +39,12 @@ import { SelectionTileComponent }       from '../angular/selection-tile.componen
             table       : { defaultValue: { summary: 'small' } },
             control     : { type: 'select' }
         },
-        errorMessage : {
+        description : {
             type : { required: false },
-            description : 'supports only the following html tags:  &lt;br&gt;, &lt;em&gt;, &lt;i&gt;, &lt;strong&gt;,&lt;b&gt;, &lt;sup&gt;, &lt;sub&gt;',
+            description : 'supports the following html tags:  &lt;br&gt;, &lt;em&gt;, &lt;i&gt;, &lt;strong&gt;,&lt;b&gt;, &lt;sup&gt;, &lt;sub&gt;',
+        },        errorMessage : {
+            type : { required: false },
+            description : 'supports the following html tags:  &lt;br&gt;, &lt;em&gt;, &lt;i&gt;, &lt;strong&gt;,&lt;b&gt;, &lt;sup&gt;, &lt;sub&gt;',
         },
     }}
 />
@@ -68,13 +71,17 @@ export const commonProps = {
     value       : '',
     ariaLabel   : '',
     name        : 'my selection tiles',
-    errorMessage: 'This is an error message',
+    errorMessage: 'This is an <em>HTML</em> error message',
     orientation : 'horizontal',
     size        : 'small',
     title       : 'Selection tile title',
-    description : 'lorem ipsum descriptum',
-    info        : '',
+    description : 'lorem ipsum html <em>descriptum</em><sup>*</sup>',
     class       : 'm-2',
+    image       : {
+            src   : '/images/_docs/abstract-background.png',
+            alt   : 'abstract background',
+            class : '',
+          },
 };
 
 
@@ -86,11 +93,6 @@ export const commonProps = {
         args={{
           elementPath : 'components/selection-tile/_doc/template.drupal',
           ...commonProps,
-          image       : {
-            src   : '/images/_docs/abstract-background.png',
-            alt   : 'abstract background',
-            class : '',
-          },
           orientation : 'vertical',
         }}
     >
@@ -168,8 +170,6 @@ export const commonProps = {
     - `large` + `horizontal` 
     - `small` + `vertical` (mostly for channel selection tiles)
     - `large` + `vertical`     
-    - `horizontal` variant won't display `image`
-    - `small` variant won't display `info` content
 
 - The Tile mimics the behavior of the input type : **radio button** or **checkbox**
 - The code within the tile_content editable block manages most common tile variants. Although it's not mandatory, it's recommended to use as is.
