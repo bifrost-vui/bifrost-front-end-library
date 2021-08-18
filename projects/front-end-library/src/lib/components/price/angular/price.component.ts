@@ -9,10 +9,10 @@ interface IPromotion {
   priceStriked  : number;
   priceSaved    : number;
   savedLabel    : string;
+  savedLongLabel: string;
+  showLongLabel :boolean;
   superscript   : string;
   direction     : string;
-  savedLongLabel: string;
-  savedTextLong:boolean;
 }
 
 export interface IPrice {
@@ -68,8 +68,6 @@ export class PriceComponent implements OnInit {
     @Input() saved                  : string;
     /** **Deprecated** Use `promotion.savedLabel` instead. */
     @Input() savedLabel             : string;
-    @Input() savedLongLabel         : string;
-    @Input() savedTextLong          : boolean;
     @Input() details                : string;
     @Input() message                : string;
 

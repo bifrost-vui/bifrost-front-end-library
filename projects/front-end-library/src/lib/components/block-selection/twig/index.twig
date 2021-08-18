@@ -119,8 +119,8 @@
                                             {{ item.priceInfo }}
                                         {% endif %}
                                     </span>
-                                    {% if item.saving is defined or item.savingLong is defined %}
-                                        <div class='d-inline-flex align-items-center mt-2 {% if savingTextLong is same as (false)%}savingTextLong{% endif %}'>
+                                    {% if item.saving is defined %}
+                                        <div class='d-inline-flex align-items-center mt-2'>
                                             <p class='small text-strike mb-0'>
                                                 {{ item.fullPrice }}
                                             </p>
@@ -128,17 +128,9 @@
 
                                             <div class='bf-display-highlight d-inline-flex flex-wrap ml-2'>
                                                 <p class='mb-0'>
-                                                  {% if savingTextLong is same as (true) %}
-                                                    {{ savingLongLabel }}
-                                                  {% else %}
                                                     {{ item.savingLabel }}
-                                                  {% endif %}
                                                     <span class='font-weight-bold ml-1'>
-                                                      {% if savingTextLong is same as (true) %}
-                                                        {{ item.savingLong }}
-                                                      {% else %}
                                                         {{ item.saving }}
-                                                      {% endif %}
                                                     </span>
                                                 </p>
                                             </div>
