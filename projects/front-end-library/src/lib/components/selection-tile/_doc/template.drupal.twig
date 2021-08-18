@@ -16,7 +16,7 @@
           ariaLabel   : 'my selection tile 1' ~ loop.index,
           title       : '',
           description : '',
-          isSelected  : true,
+          isSelected  : isSelected|default(true),
         }  %}
 
 
@@ -36,8 +36,8 @@
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           inputId     : 'my-selection-tile2' ~ loop.index,
           ariaLabel   : 'my selection tile 2' ~ loop.index,
-          size        : 'large',
-          info        :  'XX.xx $ / Mois',
+          size        : size|default('large'),
+          info        : info|default('XX.xx $ / Mois'),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
@@ -48,8 +48,8 @@
             src : '/images/logo/channels/tva-sports.svg',
             alt : 'the movie chanel',
           },
-          info        :  '$XX.xx/Month',
-          isDisabled  : true,
+          info        :   info|default('XX.xx $ / Mois'),
+          isDisabled  : isDisabled|default(true),
         } %}
     
       </div>

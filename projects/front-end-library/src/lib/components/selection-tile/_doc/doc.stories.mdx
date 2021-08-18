@@ -41,7 +41,7 @@ import { SelectionTileComponent }       from '../angular/selection-tile.componen
         },
         errorMessage : {
             type : { required: false },
-            description : 'an error message should be defined',
+            description : 'supports only the following html tags:  &lt;br&gt;, &lt;em&gt;, &lt;i&gt;, &lt;strong&gt;,&lt;b&gt;, &lt;sup&gt;, &lt;sub&gt;',
         },
     }}
 />
@@ -63,25 +63,6 @@ export const Drupal = (args) => ({
     props       : args,
 });
 
-export const verticalCommonProps = {
-    inputId     : '',
-    value       : '',
-    ariaLabel   : '',
-    name        : 'my selection tiles',
-    errorMessage: 'This is an error message',
-    orientation : 'vertical',
-    size        : 'small',   
-    title       : 'Movie Chanel',
-    description : 'lorem ipsum descriptum',
-    info        : '',
-    class       : 'm-2',
-    image       : {
-        src   : '/images/_docs/abstract-background.png',
-        alt   : 'abstract background',
-        class : '',
-    }
-};
-
 export const commonProps = {
     inputId     : '',
     value       : '',
@@ -90,7 +71,7 @@ export const commonProps = {
     errorMessage: 'This is an error message',
     orientation : 'horizontal',
     size        : 'small',
-    title       : 'Selection tile ttle',
+    title       : 'Selection tile title',
     description : 'lorem ipsum descriptum',
     info        : '',
     class       : 'm-2',
@@ -104,7 +85,13 @@ export const commonProps = {
         name='Selection Tile - vertical'
         args={{
           elementPath : 'components/selection-tile/_doc/template.drupal',
-          ...verticalCommonProps
+          ...commonProps,
+          image       : {
+            src   : '/images/_docs/abstract-background.png',
+            alt   : 'abstract background',
+            class : '',
+          },
+          orientation : 'vertical',
         }}
     >
         {Drupal.bind({})}
@@ -129,8 +116,6 @@ export const commonProps = {
 
 
 ## Drupal's implementation examples
-
-    4 combinations of size(default -> small) and orientation(default -> horizontal)
 
 ```jsx
     {% include '@bf-components/selection-tile/twig/index.twig'  with {
@@ -178,13 +163,15 @@ export const commonProps = {
 ## More Info
 
 
-- The *Selection Tile* comes in **horizontal** and **vertical** orientation, each having a **small** and a **large** version.
-  - size(default -> small) 
-  - orientation(default -> horizontal)
-  - **horizontal** version won't display images
-- The Tile mimics the behavior of the input type :
-  - mutual exclusion if it's a **radio button**
-  - multi select in case of a **checkbox**
+- The *Selection Tile* comes in 4 layout combinations are : 
+    - `small` + `horizontal` (default value) 
+    - `large` + `horizontal` 
+    - `small` + `vertical` (mostly for channel selection tiles)
+    - `large` + `vertical`     
+    - `horizontal` variant won't display `image`
+    - `small` variant won't display `info` content
+
+- The Tile mimics the behavior of the input type : **radio button** or **checkbox**
 - The code within the tile_content editable block manages most common tile variants. Although it's not mandatory, it's recommended to use as is.
 - Upon redefinition within an embed Twig block, be aware that items **won't be clickable**.
 - If you need the content to be clickable, then use the **Tile component** instead.
