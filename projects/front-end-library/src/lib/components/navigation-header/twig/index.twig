@@ -47,7 +47,7 @@
         <!-- Actions -->
         <div class='bf-header__actions'>
 
-                <div class="bf-header__rigthIconLinks ">
+                <div class="bf-header__rigth-icon-links ">
                     {# <!-- rigth Icon Links - visible on mobile only --> #}
                     {% for link in rigthIconLinks|default([])|slice(0, 5) %}
                         {% if link is defined and link.href is not empty and link.icon is not empty %}
@@ -85,17 +85,17 @@
                 #}   
                  {% if hasCartBtn is defined and hasCartBtn %}
 
-                    {% if cartBtn.badge.label is defined and cartBtn.badge.label and cartBtn.badge.label is not same as ('0') %}    
-                        {% set badgeLabel =  cartBtn.badge.label  %}
+                    {% if cartBtn.badge is defined and cartBtn.badge and cartBtn.badge is not same as ('0') %}    
+                        {% set badgeLabel =  cartBtn.badge %}
                     {% endif %}
 
                     {% include '@bf-components/button-icon/twig/index.twig' with {
                         icon        : 'cart',
                         hierarchy   : 'primary',
-                        badge       : (badgeLabel is defined) ? { label : badgeLabel } : {},
+                        badge       : (badgeLabel is defined) ? badgeLabel : NULL,
                         href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : '', 
                         ariaLabel   : cartBtn.ariaLabel|default(''),    
-                    } %}   
+                    } only %}   
                 {% endif %}
 
                 {# <!-- Btn search toggle --> #}
@@ -128,7 +128,7 @@
                             ariaControls    : 'navbarSearch',
                             ariaExpanded    : 'false',
                             class           : 'd-flex d-md-none m-1 p-1'
-                        } %}
+                        } only %}
                     </div>
                 </div>
             {% endif %}
