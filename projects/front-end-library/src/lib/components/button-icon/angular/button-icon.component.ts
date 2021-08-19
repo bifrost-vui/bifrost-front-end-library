@@ -14,12 +14,14 @@ export class ButtonIconComponent implements OnInit {
     constructor() {}
 
     @Input() icon           : string;
+    /**
+        Display a data-title
+    */
     @Input() label          : string;
     /**
         A button will become a link if `href` is defined.
     */
     @Input() href           : string;
-    @Input() hierarchy      : string;
     @Input() isDisabled     : boolean;
 
     @Input() dataDismiss    : string;
@@ -30,7 +32,7 @@ export class ButtonIconComponent implements OnInit {
     @Input() ariaLabel      : string;
     @Input() extraAttribute : string;
     @Input() class          : string;
-    @Input() badge          : object;
+    @Input() badge          : string;
 
     ngOnInit() {
         console.log('button-icon', this);

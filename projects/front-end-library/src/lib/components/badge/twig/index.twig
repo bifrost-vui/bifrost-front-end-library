@@ -1,11 +1,12 @@
 <div class='
     bf-badge
     bf-badge--{{ hierarchy|default('secondary') }}
+    {% if isRounded is defined and isRounded is same as (true) %}bf-badge--rounded{% endif %}
     {% if angle is defined and angle is not empty %}bf-badge--angle-{{ angle }}{% endif %}
     {{ class|default('') }}
     '>
-    <div class='bf-badge__container '>
-        <p class='bf-badge__label small font-weight-bold {% if noUppercase is not defined or noUppercase is not same as (true) %}text-uppercase{% endif %}'>
+    <div class='bf-badge__container'>
+        <p class='bf-badge__label bf-text-interface-small font-weight-bold {% if noUppercase is not defined or noUppercase is not same as (true) %}text-uppercase{% endif %}'>
             {{ label|default('') }}
         </p>
     </div>
