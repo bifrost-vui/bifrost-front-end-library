@@ -3,7 +3,7 @@
 {% set isSelected   = isSelected|json_parse %}
 {% set image        = image|json_parse %}
 {% set isInvalid    = isInvalid|json_parse %}
-
+{% set visualType    = visualType|json_parse %}
 
 
 <div class='container {{orientation}} '>
@@ -14,9 +14,11 @@
         {% include '@bf-components/selection-tile/twig/index.twig'  with {
           inputId     : 'my-selection-tile1' ~ loop.index,
           ariaLabel   : 'my selection tile 1' ~ loop.index,
-          title        : NULL,
+          title       : NULL,
           description : NULL,
           isSelected  : isSelected|default(true),
+          visualType  : visualType|default('image'),
+          image       : NULL,
         }  %}
 
 
@@ -24,27 +26,22 @@
           inputId     : 'my-selection-tile3' ~ loop.index,
           ariaLabel   : 'my selection tile 3' ~ loop.index,
           description : NULL,
-          image       : {
-            src : '/images/logo/channels/tva-sports.svg',
-            alt : 'the movie chanel',
-          },
+          visualType  : visualType|default('icon'),
         }  %}
                 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           inputId     : 'my-selection-tile2' ~ loop.index,
           ariaLabel   : 'my selection tile 2' ~ loop.index,
           description : NULL,
+          visualType  : visualType|default('image'),
           info        : info|default('XX.xx $ / Mois'),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           inputId     : 'my-selection-tile4' ~ loop.index,
           ariaLabel   : 'my selection tile 4' ~ loop.index,
-          image       : {
-            src : '/images/logo/channels/tva-sports.svg',
-            alt : 'the movie chanel',
-          },
-          info        :   info|default('XX.xx $ / Mois'),
+          visualType  : visualType|default('icon'),
+          info        : info|default('XX.xx $ / Mois'),
           isDisabled  : isDisabled|default(true),
         } %}
     

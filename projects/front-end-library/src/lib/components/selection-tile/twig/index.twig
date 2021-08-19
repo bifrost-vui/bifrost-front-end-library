@@ -27,9 +27,21 @@
             <div>
               <div class="bf-selection-tile__body">
 
-                {% if image and image.src is defined and image.src and image.alt is defined %}
+                {% if visualType is defined  and visualType %}
                   <div class="bf-selection-tile__visual">
-                    <img class="{{ image.class }}" src="{{ image.src }}" alt="{{ image.alt }}">
+
+                    {% if image and image.src is defined and image.src and image.alt is defined and visualType is same as ('image') %}
+                      <img class="{{ image.class }}" src="{{ image.src }}" alt="{{ image.alt }}">
+                    {% endif %}
+                    
+                    {% if icon is defined and icon and visualType is same as ('icon') %}  
+                      {% include '@bf-components/icon/twig/index.twig' with {
+                          name    : icon,
+                          size    : 'medium',
+                          type    : 'illustration'
+                        } only %}
+                    {% endif %}
+                    
                   </div>
                 {% endif %}
 

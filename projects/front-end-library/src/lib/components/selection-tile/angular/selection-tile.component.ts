@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
+import { Url } from 'url';
 
 
 @Component({
@@ -26,6 +27,9 @@ export class SelectionTileComponent implements OnInit {
     @Input() info           : string;
     /**{ src : string, alt : string, class : string } */
     @Input() image          : object;
+    @Input() icon           : string;
+    @Input() visualType     : 'none'|'image'|'icon';
+
     @Input() reversed       : boolean;
     @Input() isDisabled     : boolean;
     @Input() isSelected     : boolean;
