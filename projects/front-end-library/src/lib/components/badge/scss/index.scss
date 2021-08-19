@@ -14,7 +14,6 @@
 
     &--secondary .bf-badge__container {
         --bg-color: var(--bf-color-feedback-neutral);
-
         @at-root
         .reversed.bf-badge--secondary,
         .reversed .bf-badge--secondary {
@@ -78,6 +77,11 @@
     &__label {
         white-space: nowrap;
         z-index: 1;
+        span{ vertical-align: middle;}
+        &__text{ 
+            display:inline-block;
+            line-height: 1.5rem;
+        }
     }
 }
 
@@ -88,5 +92,8 @@
     
     &--dark {
         --bg-color: var(--bf-color-neutral-primary);
+    }
+    .bf-icon svg{
+        color: var(--bf-color-bg-ground) //temporary color - we need a text/content color that says dark on reversed ;
     }
 }

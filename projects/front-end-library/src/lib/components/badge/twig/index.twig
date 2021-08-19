@@ -5,8 +5,19 @@
     {{ class|default('') }}
     '>
     <div class='bf-badge__container position-relative d-flex align-items-center'>
+        
+        
         <p class='bf-badge__label small font-weight-bold {% if noUppercase is not defined or noUppercase is not same as (true) %}text-uppercase{% endif %} m-0'>
-            {{ label|default('') }}
+          {% if icon is defined and icon %}
+						{% include '@bf-components/icon/twig/index.twig' with {
+							name    : icon,
+							class   : 'pr-1',
+							size		: 'small',
+							type    : 'illustration',
+						} only %}
+					{% endif %}
+          <span class='bf-badge__label__text'>{{ label|default('') }}</span>
         </p>
+
     </div>
 </div>
