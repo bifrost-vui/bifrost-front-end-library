@@ -1,6 +1,8 @@
 import { moduleMetadata }               from '@storybook/angular';
 import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-import { withDesign }                   from 'storybook-addon-designs'
+import { withDesign }                   from 'storybook-addon-designs';
+import { illustrationIcons }            from '../../icon/_doc/data.ts';
+
 import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
 import { SelectionTileComponent }       from '../angular/selection-tile.component';
 
@@ -48,10 +50,17 @@ import { SelectionTileComponent }       from '../angular/selection-tile.componen
         description : {
             type : { required: false },
             description : 'supports the following html tags:  &lt;br&gt;, &lt;em&gt;, &lt;i&gt;, &lt;strong&gt;,&lt;b&gt;, &lt;sup&gt;, &lt;sub&gt;',
-        },        
+        },
         errorMessage : {
             type : { required: false },
             description : 'supports the following html tags:  &lt;br&gt;, &lt;em&gt;, &lt;i&gt;, &lt;strong&gt;,&lt;b&gt;, &lt;sup&gt;, &lt;sub&gt;',
+        },
+        iconName: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
+            }
         },
     }}
 />
@@ -89,7 +98,7 @@ export const commonProps = {
             alt   : 'abstract background',
             class : '',
           },
-    icon        : 'videotron-plus',
+    iconName      : 'videotron-plus',
 };
 
 
@@ -110,7 +119,7 @@ export const commonProps = {
 
 
 <Preview
-    withSource='none'    
+    withSource='none'
     style={{ height: '600px' }}
 >
     <Story
@@ -173,11 +182,11 @@ export const commonProps = {
 ## More Info
 
 
-- The *Selection Tile* comes in 4 layout combinations are : 
-    - `small` + `horizontal` (default value) 
-    - `large` + `horizontal` 
+- The *Selection Tile* comes in 4 layout combinations are :
+    - `small` + `horizontal` (default value)
+    - `large` + `horizontal`
     - `small` + `vertical` (mostly for channel selection tiles)
-    - `large` + `vertical`     
+    - `large` + `vertical`
 
 - The Tile mimics the behavior of the input type : **radio button** or **checkbox**
 - The code within the tile_content editable block manages most common tile variants. Although it's not mandatory, it's recommended to use as is.
