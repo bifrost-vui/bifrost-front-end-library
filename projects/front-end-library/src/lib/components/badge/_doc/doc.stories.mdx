@@ -6,22 +6,22 @@ import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-
 import { BadgeComponent }           from '../angular/badge.component';
 
 
-<Meta 
-    title='Components/Badge' 
+<Meta
+    title='Components/Badge'
     component={BadgeComponent}
     decorators={[
         moduleMetadata({ declarations: [BadgeComponent, TwigContainerComponent]}),
     ]}
     argTypes={{
         hierarchy: {
-            table: { defaultValue: { summary: 'secondary' } },
+            table:   { defaultValue: { summary: 'secondary' } },
             control: { type: 'select' }
         },
         angle: {
             control: { type: 'select' }
         },
         noUppercase: {
-            table: { defaultValue: { summary: false } },
+            table:  { defaultValue: { summary: false } },
         },
         iconName: {
             defaultValue: '',
@@ -53,7 +53,7 @@ import { BadgeComponent }           from '../angular/badge.component';
     label       : 'Free',
     class       : 'm-2',
     hierarchy   : 'primary'
-    icon        : 'camera' 
+    iconName    : 'camera'
 } only %}
 ```
 
@@ -70,9 +70,9 @@ export const Drupal = (args) => ({
     withSource='none'
     style={{ height: '600px' }}
 >
-    <Story 
+    <Story
         name='Drupal'
-        args={{ 
+        args={{
             elementPath : 'components/badge/_doc/template.drupal',
             class       : 'm-2',
         }}
