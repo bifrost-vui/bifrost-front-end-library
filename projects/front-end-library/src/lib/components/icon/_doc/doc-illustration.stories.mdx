@@ -2,6 +2,7 @@ import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
 import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
+import interfaceIcons               from '../../../../../../../public/icons/list/interfaces.json';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { IconComponent }            from '../angular/icon.component';
 
@@ -57,6 +58,25 @@ import { IconComponent }            from '../angular/icon.component';
 
 <Props of={IconComponent} />
 
+## Drupal implementation example
+
+``` jsx
+
+{% include '@bf-components/icon/twig/index.twig' with {
+    name    : 'account-balance',
+    type    : 'illustration',
+    size    : 'xsmall | small | medium | large'
+    color   : 'negative'
+} only %}
+
+{% include '@bf-components/icon/twig/index.twig' with {
+    name    : 'my-account',
+    type    : 'interface'
+    size    : 'xsmall | small | medium | large',
+    color   : 'negative',
+} only %}
+
+```
 
 
 ## Drupal
@@ -66,6 +86,7 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+### Illustration Icons
 <Preview
     withSource='none'
     style={{ height: '700px' }}
@@ -74,7 +95,23 @@ export const Drupal = (args) => ({
         name='Drupal - Illustration'
         args={{
             elementPath : 'components/icon/_doc/template.drupal',
-            icons       : illustrationIcons,
+            icons       : illustrationIcons
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+### Interface Icons
+<Preview
+    withSource='none'
+    style={{ height: '700px' }}
+>
+    <Story
+        name='Drupal - Interface'
+        args={{
+            elementPath : 'components/icon/_doc/template.drupal',
+            icons       : interfaceIcons
         }}
     >
         {Drupal.bind({})}
