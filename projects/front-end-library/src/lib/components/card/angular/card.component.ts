@@ -67,7 +67,9 @@ export class CardComponent implements OnInit {
     @Input() link                   : ILink;
 
     /**
-        You can pass directly the **label** as a **string** or an **object** based on [Badge](/?path=/docs/components-badge--drupal) component API.
+        This badge displays in the card Header :
+        You can pass directly the **label** as a **string** or an **object**
+        based on [Badge](/?path=/docs/components-badge--drupal) component API.
     */
     @Input() badge                  : any;
 
@@ -92,6 +94,10 @@ export class CardComponent implements OnInit {
     @Input() detailsColors          : object;
     @Input() detailsStorage         : object;
 
+    /** This badge displays in the phone card, content above the price */
+    @Input() contentBadgeLabel      : string;
+    /** the icon will only display if a label is defined in the content badge */
+    @Input() contentBadgeIcon       :string;
     /**
         [Price](/?path=/docs/components-price--drupal) component.
     */

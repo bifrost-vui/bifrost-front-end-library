@@ -1,6 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
+import { illustrationIcons }                    from '../../icon/_doc/data.ts';
 import { contentLists, contentListsNoTitle }    from './data';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { CardComponent }                        from '../angular/card.component';
@@ -28,6 +29,20 @@ import { CardComponent }                        from '../angular/card.component'
         language: {
             table: { defaultValue: { summary: 'en' } },
         },
+        iconName: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['', 'placeholder', ...illustrationIcons.map(a => a.list).flat().sort()]
+            }
+        },
+        contentBadgeIcon:{
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['', 'placeholder', ...illustrationIcons.map(a => a.list).flat().sort()]
+            }
+        }
     }}
 />
 
@@ -129,6 +144,11 @@ import { CardComponent }                        from '../angular/card.component'
     ],
     message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
     language            : 'en',
+
+    // a label has to be defined for the content badge to show.
+    contentBadgeLabel   : '',
+    contentBadgeIcon    : ''
+
 } only %}
 
 // Card Phone example:
