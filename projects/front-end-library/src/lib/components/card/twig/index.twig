@@ -148,13 +148,15 @@
 
     <footer class='bf-card__footer pt-0 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>
 
-        {% if contentBadgeLabel is defined and contentBadgeLabel %}
-            {% include '@bf-components/badge/twig/index.twig' with {
-                label       : contentBadgeLabel,
-                class       : 'bf-card__content-badge',
-                hierarchy   : 'tertiary',
-                iconName    : contentBadgeIcon
-            } only %}
+        {% if contentBadge is defined and contentBadge %}
+
+            {% set contentBadge = contentBadge|merge( {
+                'hierarchy' : contentBadge.hierarchy|default('tertiary'),
+                'angle'     : contentBadge.angle|default(''),
+                'class'     : 'bf-card__content-badge'
+            } ) %}
+
+            {% include '@bf-components/badge/twig/index.twig' with contentBadge only %}
         {% endif %}
 
         {% if price is defined and price %}

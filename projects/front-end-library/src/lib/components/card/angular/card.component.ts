@@ -68,36 +68,33 @@ export class CardComponent implements OnInit {
 
     /**
         This badge displays in the card Header :
-        You can pass directly the **label** as a **string** or an **object**
-        based on [Badge](/?path=/docs/components-badge--drupal) component API.
+        You can pass directly the `label` as a **string** or an **object**. Based on [Badge](/?path=/docs/components-badge--drupal) component API.
     */
     @Input() badge                  : any;
 
-    /* Array of object. Expected format:
-        ```
-        [
+    /** Array of object. Expected format:
+    <pre style='font-size: .75rem; padding: 0 1rem; marigin:0'>
+    [
+        {
+          title       : 'TV',
+          description : '40 channels',
+          content     : [
             {
-                title       : "TV",
-                description : "40 channels",
-                content     : [
-                    {
-                        label   : "Free and Unlimited Go after 10Go",
-                        icon    : "unlimited",
-                    },
-                    ...
-                ],
-            }
-        ]
-        ```
-    */
+              label   : 'Unlimited Go after 10Go',
+              icon    : 'unlimited',
+            },
+          ],
+        }
+        ...
+    ]
+    </pre>*/
     @Input() contentLists           : object;
     @Input() detailsColors          : object;
     @Input() detailsStorage         : object;
 
-    /** This badge displays in the phone card, content above the price */
-    @Input() contentBadgeLabel      : string;
-    /** the icon will only display if a label is defined in the content badge */
-    @Input() contentBadgeIcon       :string;
+    /** This badge displays in the phone card content above the price. Based on [Badge](/?path=/docs/components-badge--drupal) component API
+    */
+    @Input() contentBadge           : object;
     /**
         [Price](/?path=/docs/components-price--drupal) component.
     */
