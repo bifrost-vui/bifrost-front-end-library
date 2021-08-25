@@ -5,12 +5,10 @@
 {% set isInvalid    = isInvalid|json_parse %}
 {% set visualType    = visualType|json_parse %}
 
-
 <div class='container {{orientation}} '>
     {% for index in [1,2] %}
-    <div class=" p-3 {{ (index == 2 ) ? 'bf-color-bg-underground' }} {{ (reversed) ? 'reversed  bf-color-bg-ground' }}">
-      <div class="d-flex {{orientation}}">
-        
+    <div class=' p-3 {{ (index == 2 ) ? 'bf-color-bg-underground' }} {{ (reversed) ? 'reversed  bf-color-bg-ground' }}'>
+      <div class='d-flex {{orientation}}'>
         {% include '@bf-components/selection-tile/twig/index.twig'  with {
           inputId     : 'my-selection-tile1' ~ loop.index,
           ariaLabel   : 'my selection tile 1' ~ loop.index,
@@ -21,14 +19,13 @@
           image       : NULL,
         }  %}
 
-
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           inputId     : 'my-selection-tile3' ~ loop.index,
           ariaLabel   : 'my selection tile 3' ~ loop.index,
           description : NULL,
           visualType  : visualType|default('icon'),
         }  %}
-                
+
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           inputId     : 'my-selection-tile2' ~ loop.index,
           ariaLabel   : 'my selection tile 2' ~ loop.index,
@@ -44,15 +41,13 @@
           info        : info|default('XX.xx $ / Mois'),
           isDisabled  : isDisabled|default(true),
         } %}
-    
       </div>
     </div>
-
     {% endfor %}
   </div>
 
 <style>
-  /*for demo only*/
+  /*--------for demo only---------*/
   .d-flex.vertical{ flex-flow :row}
   .d-flex.horizontal{ flex-flow :column}
   .container.horizontal{width: 600px}
