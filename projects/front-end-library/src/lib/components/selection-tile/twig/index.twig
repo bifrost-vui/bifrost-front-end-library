@@ -1,10 +1,10 @@
 {% set needsContainer = (isInvalid is defined and isInvalid ) %}
 
 {% if needsContainer %}
-    <div class="bf-selection-tile__container {{ (isInvalid) ? 'color-warning ' : '' }} bf-selection-tile__container--{{ size|default('small') }} {{ class }}">
+    <div class="bf-selection-tile__container {{ (isInvalid) ? 'color-warning ' : '' }} bf-selection-tile__container--{{ size|default('fit-content') }} {{ class }}">
 {% endif %}
 
-      <div class="bf-selection-tile bf-selection-tile--{{ orientation|default('horizontal') }} bf-selection-tile--{{ size|default('small') }} {{ isDisabled? 'disabled' }}  {{ (needsContainer) ? '' : class }}">
+      <div class="bf-selection-tile bf-selection-tile--{{ orientation|default('horizontal') }} bf-selection-tile--{{ size|default('fit-content') }} {{ isDisabled? 'disabled' }}  {{ (needsContainer) ? '' : class }}">
 
         <div class="bf-selection-tile__control">
 
@@ -61,7 +61,7 @@
               </div>
             </div>
 
-            {% if (info is defined and info) or (orientation is same as ('vertical') and size is same as ('large')) %}
+            {% if (info is defined and info) or (orientation is same as ('vertical') and size is same as ('fit-container')) %}
               <div class='bf-selection-tile__footer'>
                 <div class="bf-selection-tile__text">
                   <p class="p-0 m-0">{{ info }}</p>

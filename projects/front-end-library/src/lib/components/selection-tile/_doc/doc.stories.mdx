@@ -43,8 +43,8 @@ import { SelectionTileComponent }       from '../angular/selection-tile.componen
             control     : { type: 'select' }
         },
         size        :{
-            defaultValue: 'small',
-            table       : { defaultValue: { summary: 'small' } },
+            defaultValue: 'fit-content',
+            table       : { defaultValue: { summary: 'fit-content' } },
             control     : { type: 'select' }
         },
         description : {
@@ -89,7 +89,7 @@ export const commonProps = {
     name        : 'my selection tiles',
     errorMessage: 'This is an <em>HTML</em> error message',
     orientation : 'horizontal',
-    size        : 'small',
+    size        : 'fit-content',
     title       : 'Selection tile title',
     description : 'lorem ipsum html <em>descriptum</em><sup>*</sup>',
     class       : 'm-2',
@@ -145,7 +145,7 @@ export const commonProps = {
     }  %}
 
     {% include '@bf-components/selection-tile/twig/index.twig' with {
-        size        : 'large',
+        size        : 'fit-container',
         inputId     : 'my-selection-tile2',
         title       : 'Canal plus',
         description : 'Descriptium ipsum',
@@ -167,7 +167,7 @@ export const commonProps = {
 
     {% include '@bf-components/selection-tile/twig/index.twig' with {
         orientation : 'vertical',
-        size        : 'large',
+        size        : 'fit-container',
         inputId     : 'my-selection-tile4',
         title       : 'Movie Chanel',
         description: 'lorem ipsum descriptum',
@@ -183,10 +183,10 @@ export const commonProps = {
 
 
 - The *Selection Tile* comes in 4 layout combinations are :
-    - `small` + `horizontal` (default value)
-    - `large` + `horizontal`
-    - `small` + `vertical` (mostly for channel selection tiles)
-    - `large` + `vertical`
+    - `fit-content` + `horizontal` (default value)
+    - `fit-container` + `horizontal`
+    - `fit-content` + `vertical` (mostly for channel selection tiles)
+    - `fit-container` + `vertical`
 
 - The Tile mimics the behavior of the input type : **radio button** or **checkbox**
 - The code within the tile_content editable block manages most common tile variants. Although it's not mandatory, it's recommended to use as is.
