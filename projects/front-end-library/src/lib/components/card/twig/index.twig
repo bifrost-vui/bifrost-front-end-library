@@ -143,21 +143,23 @@
                 {% endif %}
             </div>
         {% endif %}
-    {% endblock card_body %}
-    </div>
-
-    <footer class='bf-card__footer pt-0 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>
 
         {% if contentBadge is defined and contentBadge %}
 
             {% set contentBadge = contentBadge|merge( {
                 'hierarchy' : contentBadge.hierarchy|default('tertiary'),
                 'angle'     : contentBadge.angle|default(''),
-                'class'     : 'bf-card__content-badge'
+                'class'     : 'bf-card__content-badge mx-3 mx-sm-4 mt-3'
             } ) %}
 
             {% include '@bf-components/badge/twig/index.twig' with contentBadge only %}
         {% endif %}
+        {% endblock card_body %}
+    </div>
+
+    <footer class='bf-card__footer pt-0 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>
+
+
 
         {% if price is defined and price %}
             {% set price = price|merge({
