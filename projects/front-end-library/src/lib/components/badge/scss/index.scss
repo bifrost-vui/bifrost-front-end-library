@@ -14,11 +14,13 @@
 
     &--secondary .bf-badge__container {
         --bg-color: var(--bf-color-feedback-neutral);
-
         @at-root
         .reversed.bf-badge--secondary,
         .reversed .bf-badge--secondary {
-            --color: var(--bf-color-bg-ground);
+            --color: var(--bf-color-primary-irreversible);
+            .bf-icon svg{
+                color: var(--bf-color-primary-irreversible)
+            }
         }
     }
 
@@ -29,8 +31,6 @@
     &--tertiary-ground .bf-badge__container {
         --bg-color: var(--bf-color-bg-ground);
     }
-
-    
     &__container {
         position: relative;
         display: flex;
@@ -81,15 +81,21 @@
     &__label {
         white-space: nowrap;
         z-index: 1;
-        margin: 0;
+        span{ vertical-align: middle;}
+        &__text{
+            display:inline-block;
+            line-height: 1.5rem;
+        }
     }
 }
 
 // Apply White color when badge is dark and reversed.
-@at-root 
+@at-root
 .reversed .bf-badge,
 .reversed.bf-badge {
-    
+    &--primary svg{
+        color: var(--bf-color-primary-irreversible)
+    }
     &--dark {
         --bg-color: var(--bf-color-neutral-primary);
     }
