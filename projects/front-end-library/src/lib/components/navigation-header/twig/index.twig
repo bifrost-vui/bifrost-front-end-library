@@ -60,7 +60,7 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-                <!-- Btn account dropdown --> 
+                <!-- Btn account dropdown -->
                 {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
                     {% if isConnected is same as (true) %}
                         {% include '@bf-components/button-icon/twig/index.twig' with {
@@ -77,15 +77,15 @@
                     {% endif %}
                 {% endif %}
 
-                {# <!-- Btn mini cart --> 
-                    empty or not the cart icon will display on mobile or desktop as long as the hasCartBtn is true              
+                {# <!-- Btn mini cart -->
+                    empty or not the cart icon will display on mobile or desktop as long as the hasCartBtn is true
                     if there is need to hide on desktop (or all) on empty cart add :
-                    class   :   (cartBtn.badge.label is defined and cartBtn.badge.label) ? '':'d-lg-none' 
-                    class   :   (cartBtn.badge.label is defined and cartBtn.badge.label) ? '':'d-none' 
-                #}   
+                    class   :   (cartBtn.badge.label is defined and cartBtn.badge.label) ? '':'d-lg-none'
+                    class   :   (cartBtn.badge.label is defined and cartBtn.badge.label) ? '':'d-none'
+                #}
                  {% if hasCartBtn is defined and hasCartBtn %}
 
-                    {% if cartBtn.badge is defined and cartBtn.badge and cartBtn.badge is not same as ('0') %}    
+                    {% if cartBtn.badge is defined and cartBtn.badge and cartBtn.badge is not same as ('0') %}
                         {% set badgeLabel =  cartBtn.badge %}
                     {% endif %}
 
@@ -93,9 +93,9 @@
                         icon        : 'cart',
                         hierarchy   : 'primary',
                         badge       : (badgeLabel is defined) ? badgeLabel : NULL,
-                        href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : '', 
-                        ariaLabel   : cartBtn.ariaLabel|default(''),    
-                    } only %}   
+                        href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : '',
+                        ariaLabel   : cartBtn.ariaLabel|default(''),
+                    } only %}
                 {% endif %}
 
                 {# <!-- Btn search toggle --> #}
@@ -137,7 +137,7 @@
 
     </nav>
 
-    {# <!-- Alogolia search results-->  #}
+    {# <!-- Algolia search results-->  #}
     {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
         <div class='align-items-center justify-content-between w-100'>
             <div id='alg-hits' class='ais-Hits bf-color-bg-ground alg-hidden'></div>
