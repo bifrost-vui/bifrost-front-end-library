@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import { Url } from "url";
 /**
  * API is the same between **Angular** and **Drupal**.
  *
@@ -13,7 +14,8 @@ export class HeaderComponent implements OnInit {
     constructor() {}
 
     @Input() reversed                : boolean;
-    @Input() logo_name               : string;
+    @Input() logoName                : string;
+    @Input() logoHref                : string;
     @Input() search_placeholder      : string;
 
     /** Note: TopBar is only visible on desktop. */
@@ -33,17 +35,17 @@ export class HeaderComponent implements OnInit {
     @Input() hrefConnexion            : string;
     /** Shows up in top bar only */
     @Input() labelConnexion           : string;
-    
+
     /**  Will show up on all devices if activated */
     @Input() hasCartBtn              : boolean;
     /** Note : empty, undefined or 0 badge label value hides the cart's badge */
-    @Input() cartBtn                 : any[];    
+    @Input() cartBtn                 : any[];
 
     @Input() hasNoSearchBtn          : boolean;
-    
+
     /** Funnel has a limited contextual nav but still supports cart button */
     @Input() isFunnel                : boolean;
-    @Input() funnelNav               : object;   
+    @Input() funnelNav               : object;
 
     ngOnInit() {
         console.log('Header', this);

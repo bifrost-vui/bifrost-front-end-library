@@ -23,5 +23,5 @@ export const cartBtn = {
 
 export const funnelNav = {
     label: 'Back' ,
-    link : ' ',
+    href : ' ',
 };

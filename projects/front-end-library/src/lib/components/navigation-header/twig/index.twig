@@ -1,7 +1,7 @@
-<header 
-    role='banner' 
+<header
+    role='banner'
     class="bf-header z-index-18 {{(reversed) ? 'reversed': ''}} {{ (isFunnel) ? 'bf-header--funnel' : '' }}" {% if theme is defined %} data-theme={{theme}} {% endif %}>
-	
+
     {% if hasTopBar is defined and hasTopBar is same as (true) and not isFunnel %}
 
 		{% include '@bf-components/navigation-header/twig/top-bar.twig' with {
@@ -19,18 +19,31 @@
 	{% endif %}
 	<nav class='bf-header__nav w-100 border-bottom bf-border-color-secondary {{ class|default(' ') }}'>
 
-		<!-- Logo -->
+
+		{# <!-- Logo --> #}
 		<div class='bf-header__logo'>
-			<a href='{{ logo.href|default('#') }}' class='d-flex'>
-				{% include '@bf-components/logo/twig/index.twig' with {
-                    name        : logo.name,
-                    size        : 'large',
-                    langcode    : langcode|default('EN'),
-                } only %}
-			</a>
+			{% if logoHref is defined and logoHref %}
+				<a href='{{ logoHref }}' class='d-flex'>
+			{% endif %}
+
+				{% set fileNameBase = logoName %}
+
+				{% if logoName is defined and logoName == ('business') %}
+					{% if langcode == 'FR' %}
+						{% set fileNameBase = 'videotron-affaires' %}
+					{% else %}
+						{% set fileNameBase = 'videotron-business' %}
+					{% endif %}
+				{% endif %}
+
+				<div class='bf-logo d-inline-flex align-items-center justify-content-center'>
+					{% include '@bf-components/navigation-header/svg/logo-header-' ~ fileNameBase ~ '-lg.svg' ignore missing %}
+				</div>
+
+			{% if logoHref is defined and logoHref %}</a>{% endif %}
 		</div>
 
-		<!-- Main Nav -->
+		{# <!-- Main Nav --> #}
 		<div class='bf-header__nav-main js-collapse-full-height'>
 
 			{% if not isFunnel %}
@@ -46,11 +59,10 @@
 
 		</div>
 
-		<!-- Actions -->
+		{# <!-- Actions --> #}
 		<div class='bf-header__actions'>
 			{% if not isFunnel  %}
-				<div
-					class="bf-header__rigthIconLinks ">
+				<div class="bf-header__rigthIconLinks ">
 					{# <!-- rigth Icon Links - visible on mobile only --> #}
 					{% for link in rigthIconLinks|default([])|slice(0, 5) %}
 						{% if link is defined and link.href is not empty and link.icon is not empty %}
@@ -63,7 +75,8 @@
 						{% endif %}
 					{% endfor %}
 				</div>
-				<!-- Btn account dropdown -->
+
+				{# <!-- Btn account dropdown --> #}
 				{% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
 					{% if isConnected is same as (true) %}
 						{% include '@bf-components/button-icon/twig/index.twig' with {
@@ -81,9 +94,9 @@
 				{% endif %}
 			{% endif %}
 
-			{% if isFunnel %}
-				<div class="">
-					<a href='{{ funnelNav.Link }}' class='bf-link bf-link--primary my-2'>
+			{% if isFunnel and funnelNav.href is defined and funnelNav.href and funnelNav.label is defined and funnelNav.label %}
+				<div class="bf-header__nav-funnel">
+					<a href='{{ funnelNav.href }}' class='bf-link bf-link--primary my-2'>
 						{{funnelNav.label}}
 					</a>
 				</div>
@@ -100,8 +113,8 @@
                         icon        : 'cart',
                         hierarchy   : 'primary',
                         badge       : (badgeLabel is defined) ? { label : badgeLabel } : {},
-                        href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : '', 
-                        ariaLabel   : cartBtn.ariaLabel|default(''),    
+                        href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : '',
+                        ariaLabel   : cartBtn.ariaLabel|default(''),
                     } %}
 			{% endif %}
 
@@ -141,9 +154,7 @@
 					</div>
 				{% endif %}
 			{% endif %}
-
 		</div>
-
 	</nav>
 
 	{# <!-- Alogolia search results-->  #}
@@ -152,5 +163,4 @@
 			<div id='alg-hits' class='ais-Hits bf-color-bg-ground alg-hidden'></div>
 		</div>
 	{% endif %}
-
 </header>
