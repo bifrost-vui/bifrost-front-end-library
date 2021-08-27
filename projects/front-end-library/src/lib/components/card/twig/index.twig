@@ -10,7 +10,6 @@
         {{ class|default('') }}'
     {% if isDisabled is defined and isDisabled is same as (true) %}disabled{% endif %}
 >
-
     {% if hasVisual %}
         <div
             class='bf-card__visual bf-color-bg-underground d-flex justify-content-center align-items-center p-3 p-sm-4'
@@ -42,7 +41,6 @@
     {% endif %}
 
     <header class='bf-card__header p-3 p-sm-4'>
-
         {% if upperTitle is defined and upperTitle is not empty %}
             <p class='mb-1'>
                 {{ upperTitle }}
@@ -62,16 +60,12 @@
         {% endif %}
 
         {% if link.href is defined and link.href is not empty %}
-            <a
-                href='{{ link.href|default('') }}'
-                class='bf-link'
-            >
+            <a href='{{ link.href|default('') }}' class='bf-link'>
                 {{ link.label|default('') }}
             </a>
         {% endif %}
 
         {% if badge is defined and badge is not empty %}
-
             {% if badge is iterable %}
                 {% set badgeLabel = badge.label %}
             {% else %}
@@ -81,10 +75,10 @@
             {% set badge = badge|merge( {
                 'hierarchy' : badge.hierarchy|default('primary'),
                 'angle'     : badge.angle|default('left'),
+                'class'     : 'bf-card__badge'
             } ) %}
             {% include '@bf-components/badge/twig/index.twig' with badge only %}
         {% endif %}
-
     </header>
 
     <div class='bf-card__body flex-grow-1'>
@@ -147,11 +141,21 @@
                 {% endif %}
             </div>
         {% endif %}
-    {% endblock card_body %}
+
+        {% if contentBadge is defined and contentBadge %}
+
+            {% set contentBadge = contentBadge|merge( {
+                'hierarchy' : contentBadge.hierarchy|default('tertiary'),
+                'angle'     : contentBadge.angle|default(''),
+                'class'     : 'bf-card__content-badge mx-3 mx-sm-4 mt-3'
+            } ) %}
+
+            {% include '@bf-components/badge/twig/index.twig' with contentBadge only %}
+        {% endif %}
+        {% endblock card_body %}
     </div>
 
     <footer class='bf-card__footer pt-0 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>
-
         {% if price is defined and price %}
             {% set price = price|merge({
                 'class'     : 'w-100 ' ~ price.class,
@@ -197,6 +201,5 @@
                 </p>
             </div>
         {% endif %}
-
     </footer>
 </article>
