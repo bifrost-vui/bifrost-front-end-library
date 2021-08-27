@@ -28,9 +28,12 @@ Work in progress.
 
 ## Behind the scenes
 
-All icons exist in 2 SVG:
+All icons exist in 2 SVG sizes so an icon with to much small details can have a less detailed version witch is better for smaller display size.
+The system will automaticaly chose the best file format dependeing the selected  `size` property
 - **`filename-sm.svg`** (small): will be displayed if `size` property is set to `xsmall` or `small`.
 - **`filename-lg.svg`** (large): will be displayed if `size` property is set to `medium` or `large`.
+
+
 
 
 ## Get Official icon lists
@@ -47,6 +50,9 @@ const illustrationIconsFlatten = illustrationIcons.map(a => a.list).flat().sort(
 
 ```
 
+# Design recommendations
+Illustration Icons : `size` property should be set to  *large* - 72x72 , *medium* - 48x48 or *small* - 24x24'
+Interface Icons : `size` property should be set to  *small* - 24x24' or *xsmall* - 16x16'
 
 ## Retrieve SVG path
 **Warning: This is recommended to include the Icon component like documented below.**
