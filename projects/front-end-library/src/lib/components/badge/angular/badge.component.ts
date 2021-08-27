@@ -18,6 +18,7 @@ export class BadgeComponent implements OnInit {
     @Input() angle          : '' | 'left' | 'right';
 
     @Input() class          : string;
+    @Input() iconName       : string;
     @Input() reversed       : boolean;
 
     ngOnInit() {

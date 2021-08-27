@@ -13,18 +13,14 @@ import { HeaderComponent }          from '../angular/header.component';
         moduleMetadata({ declarations: [HeaderComponent, TwigContainerComponent]})
     ]}
     argTypes={{
+        accountHello: {
+            table: { defaultValue: { summary: 'Hello' } },
+        },
         langcode: {
             defaultValue: 'FR',
             control: { 
                 type: 'select',
                 options: ['EN', 'FR'],
-            }
-        },
-        logo_name: {
-            defaultValue: 'videotron',
-            control: {
-                type: 'select',
-                options: ['videotron', 'business'],
             }
         },
         hasTopBar: {
@@ -136,6 +132,10 @@ export const Drupal = (args) => ({
             elementPath : 'components/navigation-header/_doc/template.drupal',
             topBar_items,
             topBar_secondaryItems,
+            logo : {
+                name                : 'business',
+                href                : '/',
+            },
             rigthIconLinks,
         }}
         height='500px'
