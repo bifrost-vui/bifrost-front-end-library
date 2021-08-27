@@ -1,8 +1,9 @@
 {% set isLink   = (href is defined and href is not empty) %}
 {% set hasBadge = (badge is defined and badge is not empty) %}
+{% set hasLabel = (labelIcon is defined and labelIcon is not empty) %}
 
-{% if hasBadge %}
-    <div class='bf-button-icon-container {{ isDisabled ? 'disabled' }}'>
+{% if hasBadge or hasLabel%}
+    <div class='bf-button-icon-container {{ isDisabled ? 'disabled' }} {% if hasLabel is same as (true) %}hasLabel{% endif %}'>
 {% endif %}
 
     <{{ isLink ? 'a' : 'button' }}
@@ -12,7 +13,7 @@
             type='button'
         {% endif %}
         class='
-            bf-button-icon 
+            bf-button-icon {% if hasLabel is same as (true) %}hasLabel{% endif %}
             {% if reversed is same as (true) %}reversed{% endif %}
             {% if isDisabled is same as (true) %}disabled{% endif %}
             {{ class|default('') }}'
@@ -30,9 +31,17 @@
             name        : icon|default('placeholder')
         } only %}
 
-    </{{ isLink ? 'a' : 'button' }}> 
 
-{% if hasBadge %}
+    </{{ isLink ? 'a' : 'button' }}>
+
+    {% if hasLabel %}
+      {% if labelIcon is defined and labelIcon is not empty %}
+        <span class="label-icon"> {{ labelIcon }} </span>
+      {% endif %}
+      </div>
+    {% endif %}
+
+      {% if hasBadge %}
 
         {% if badge is defined and badge %}
             {% include '@bf-components/badge/twig/index.twig' with {

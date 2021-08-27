@@ -10,13 +10,17 @@
     </div>
 
     {% for index in [1,2] %}
-        
+
         <div class='d-flex gap-4 p-5 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
 
             {% include '@bf-components/button-icon/twig/index.twig' %}
 
             {% include '@bf-components/button-icon/twig/index.twig' with {
                 badge: badge|default('3')
+            } %}
+
+            {% include '@bf-components/button-icon/twig/index.twig' with {
+              labelIcon: label|default('Mon compte')
             } %}
 
             {% include '@bf-components/button-icon/twig/index.twig' with {
@@ -28,6 +32,6 @@
             } %}
 
         </div>
-        
+
     {% endfor %}
 </div>

@@ -11,8 +11,8 @@ export const topBar_secondaryItems = [
 ];
 
 export const rigthIconLinks = [
-    { icon:"email", href:" ", class:"" },
-    { icon:"pin", href:" ", class:"" },
+    { icon:"email", href:" ", labelIcon:"", class:"" },
+    { icon:"pin", href:" ",  labelIcon:"", class:"" },
 ];
 
 export const cartBtn = {
@@ -20,3 +20,5 @@ export const cartBtn = {
     href : 'https://www.videotron.com',
     ariaLabel : 'My cart'
 };
+
+export const labelMyAccount = 'Mon compte1'

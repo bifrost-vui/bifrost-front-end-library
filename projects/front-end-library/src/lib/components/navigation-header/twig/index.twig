@@ -15,8 +15,8 @@
 
 <header
     role='banner'
-    class='bf-header z-index-18
-           {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}'
+    class='bf-header z-index-18 navbar navbar-expand-lg navbar-light
+           {% if reversed is defined and reversed is same as (true) %}reversed navbar-dark{% endif %}'
     {% if theme is defined %} data-theme={{theme}} {% endif %}
 >
     <nav class='bf-header__nav w-100 border-bottom bf-border-color-secondary {{ class|default('') }}'>
@@ -32,9 +32,10 @@
             </a>
         </div>
 
+
         <!-- Main Nav -->
-        <div class='bf-header__nav-main js-collapse-full-height'>
-            <ul class='bf-megamenu  list'>
+        <div class='bf-header__nav-main js-collapse-full-height navbar-collapse collapse' id="navbarBifrostMenu">
+            <ul class='bf-megamenu list'>
                 {% block navbar_content %}
                     {% include '@bf-components/navigation-header/twig/mega-menu.twig' with {
                         navItems    : navItems,
@@ -43,96 +44,106 @@
                 {% endblock %}
             </ul>
         </div>
-
+      {# <!-- Search --> #}
+      {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
+        <div class='bf-header__search-bar js-bf-header__search-bar d-none d-md-block ml-1' id='navbarSearch'>
+          <div class='d-flex align-items-center justify-content-between w-100'>
+            {% block globalSearch %}
+              {% include '@bf-components/input-search/twig/index.twig' with {
+                class       : 'mb-0',
+                input       : {
+                  placeholder : search.placeholder|default('')|t,
+                },
+                reversed    : reversed,
+              } %}
+            {% endblock %}
+            {% include '@bf-components/button-icon/twig/index.twig' with {
+              icon            : 'x',
+              dataToggle      : 'collapse',
+              dataTarget      : '#navbarSearch',
+              ariaControls    : 'navbarSearch',
+              ariaExpanded    : 'false',
+              class           : 'd-flex d-md-none m-1 p-1'
+            } only %}
+          </div>
+        </div>
+      {% endif %}
         <!-- Actions -->
         <div class='bf-header__actions'>
+          {# <!-- Btn search toggle --> #}
+            {% include '@bf-components/button-icon/twig/index.twig' with {
+              icon            : 'search',
+              dataToggle      : 'collapse',
+              dataTarget      : '#navbarSearch',
+              ariaControls    : 'navbarSearch',
+              ariaExpanded    : 'false',
+              class           : 'd-flex d-md-none js-bf-search-toggler'
+            } only %}
 
-                <div class="bf-header__rigth-icon-links ">
-                    {# <!-- rigth Icon Links - visible on mobile only --> #}
-                    {% for link in rigthIconLinks|default([])|slice(0, 5) %}
-                        {% if link is defined and link.href is not empty and link.icon is not empty %}
-                            {% include '@bf-components/button-icon/twig/index.twig' with {
-                                href    : link.href,
-                                icon    : link.icon,
-                                class   : link.class,
-                                badge   : (link.badge.label) ? { label : link.badge.label } : {} ,
-                            } only %}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <!-- Btn account dropdown --> 
-                {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
-                    {% if isConnected is same as (true) %}
+            <div class="bf-header__rigth-icon-links ">
+                {# <!-- rigth Icon Links - visible on mobile only --> #}
+                {% for link in rigthIconLinks|default([])|slice(0, 5) %}
+                    {% if link is defined and link.href is not empty and link.icon is not empty %}
                         {% include '@bf-components/button-icon/twig/index.twig' with {
-                            href        : hrefLogOut|default('#'),
-                            icon        : 'out',
-                            ariaLabel   : labelLogOut|default('Log out'),
-                        } %}
-                    {% else %}
-                        {% include '@bf-components/button-icon/twig/index.twig' with {
-                            href        : hrefConnexion|default('#'),
-                            icon        : 'profile',
-                            ariaLabel   : labelConnexion|default('Log in'),
-                        } %}
-                    {% endif %}
-                {% endif %}
-
-                {# <!-- Btn mini cart --> 
-                    empty or not the cart icon will display on mobile or desktop as long as the hasCartBtn is true              
-                    if there is need to hide on desktop (or all) on empty cart add :
-                    class   :   (cartBtn.badge.label is defined and cartBtn.badge.label) ? '':'d-lg-none' 
-                    class   :   (cartBtn.badge.label is defined and cartBtn.badge.label) ? '':'d-none' 
-                #}   
-                 {% if hasCartBtn is defined and hasCartBtn %}
-
-                    {% if cartBtn.badge is defined and cartBtn.badge and cartBtn.badge is not same as ('0') %}    
-                        {% set badgeLabel =  cartBtn.badge %}
-                    {% endif %}
-
-                    {% include '@bf-components/button-icon/twig/index.twig' with {
-                        icon        : 'cart',
-                        hierarchy   : 'primary',
-                        badge       : (badgeLabel is defined) ? badgeLabel : NULL,
-                        href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : '', 
-                        ariaLabel   : cartBtn.ariaLabel|default(''),    
-                    } only %}   
-                {% endif %}
-
-                {# <!-- Btn search toggle --> #}
-                {% include '@bf-components/button-icon/twig/index.twig' with {
-                    icon            : 'search',
-                    dataToggle      : 'collapse',
-                    dataTarget      : '#navbarSearch',
-                    ariaControls    : 'navbarSearch',
-                    ariaExpanded    : 'false',
-                    class           : 'd-flex d-md-none js-bf-search-toggler'
-                } only %}
-
-            {# <!-- Search --> #}
-            {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
-                <div class='bf-header__search-bar js-bf-header__search-bar d-none d-md-block ml-1' id='navbarSearch'>
-                    <div class='d-flex align-items-center justify-content-between w-100'>
-                        {% block globalSearch %}
-                            {% include '@bf-components/input-search/twig/index.twig' with {
-                                class       : 'mb-0',
-                                input       : {
-                                    placeholder : search.placeholder|default('')|t,
-                                },
-                                reversed    : reversed,
-                            } %}
-                        {% endblock %}
-                        {% include '@bf-components/button-icon/twig/index.twig' with {
-                            icon            : 'x',
-                            dataToggle      : 'collapse',
-                            dataTarget      : '#navbarSearch',
-                            ariaControls    : 'navbarSearch',
-                            ariaExpanded    : 'false',
-                            class           : 'd-flex d-md-none m-1 p-1'
+                            href    : link.href,
+                            icon    : link.icon,
+                            class   : link.class,
+                            badge   : (link.badge.label) ? { label : link.badge.label } : {}
                         } only %}
-                    </div>
-                </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
+                {% if isConnected is same as (true) %}
+                    {% include '@bf-components/button-icon/twig/index.twig' with {
+                        href        : hrefLogOut|default('#'),
+                        icon        : 'out',
+                        ariaLabel   : labelLogOut|default('Log out'),
+                        labelIcon   : labelMyAccount
+                    } %}
+                {% else %}
+                    {% include '@bf-components/button-icon/twig/index.twig' with {
+                        href        : hrefConnexion|default('#'),
+                        icon        : 'profile',
+                        ariaLabel   : labelConnexion|default('Log in'),
+                        labelIcon   : labelMyAccount
+                    } %}
+                {% endif %}
             {% endif %}
 
+            {# <!-- Btn mini cart -->
+                empty or not the cart icon will display on mobile or desktop as long as the hasCartBtn is true
+                if there is need to hide on desktop (or all) on empty cart add :
+                class   :   (cartBtn.badge.label is defined and cartBtn.badge.label) ? '':'d-lg-none'
+                class   :   (cartBtn.badge.label is defined and cartBtn.badge.label) ? '':'d-none'
+            #}
+             {% if hasCartBtn is defined and hasCartBtn %}
+
+                {% if cartBtn.badge is defined and cartBtn.badge and cartBtn.badge is not same as ('0') %}
+                    {% set badgeLabel =  cartBtn.badge %}
+                {% endif %}
+
+                {% include '@bf-components/button-icon/twig/index.twig' with {
+                    icon        : 'cart',
+                    hierarchy   : 'primary',
+                    badge       : (badgeLabel is defined) ? badgeLabel : NULL,
+                    href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : '',
+                    ariaLabel   : cartBtn.ariaLabel|default('')
+                } only %}
+            {% endif %}
+
+            {% if langcode is defined and langcode is not empty %}
+              {% include '@bf-components/link/twig/index.twig' with {
+                href    : '',
+                label   : (langcode == 'EN') ? 'EN' : 'FR',
+                class   : 'bf-p-small bf-color-neutral-secondary mr-2 d-none d-md-block',
+              } only %}
+            {% endif %}
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarBifrostMenu" aria-controls="navbarBifrost" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
         </div>
 
     </nav>

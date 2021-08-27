@@ -33,7 +33,9 @@
 
 .bf-button-icon-container {
     position: relative;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
 
     &__badge {
         position: absolute;
@@ -50,6 +52,17 @@
             .bf-badge__label {
                 letter-spacing: 0px;
             }
+
         }
     }
+
+  &.hasLabel {
+    .label-icon {
+      cursor: pointer;
+      margin-left: 1px;
+    }
+    @include media-breakpoint-down(sm){
+      display: none;
+    }
+  }
 }

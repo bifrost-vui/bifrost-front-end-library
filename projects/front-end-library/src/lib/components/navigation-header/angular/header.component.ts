@@ -31,13 +31,14 @@ export class HeaderComponent implements OnInit {
     @Input() hrefLogOut               : string;
     @Input() labelLogOut              : string;
     @Input() hrefConnexion            : string;
+    @Input() labelMyAccount           : string;
     /** Shows up in top bar only */
     @Input() labelConnexion           : string;
-    
+
     /**  Will show up on all devices if activated */
     @Input() hasCartBtn              : boolean;
     /** Note : empty, undefined or 0 badge label value hides the cart's badge */
-    @Input() cartBtn                 : any[];    
+    @Input() cartBtn                 : any[];
 
     @Input() hasNoSearchBtn          : boolean;
 
