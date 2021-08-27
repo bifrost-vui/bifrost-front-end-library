@@ -29,13 +29,6 @@ import { FooterComponent }          from '../angular/footer.component';
                 options: ['videotron', 'business'],
             }
         },
-        logo_name: {
-            defaultValue: 'videotron',
-            control: {
-                type: 'select',
-                options: ['videotron', 'business'],
-            }
-        },
         langcode: {
             defaultValue: 'EN',
             control: { 
@@ -128,6 +121,10 @@ export const Drupal = (args) => ({
         name='Drupal'
         args={{ 
             elementPath         : 'components/navigation-footer/_doc/template.drupal',
+            logo                : {
+                name                : 'business',
+                href                : '/',
+            },
             hasBackToTopLink    : true,
             linkFields,
             links,
@@ -146,6 +143,10 @@ export const Drupal = (args) => ({
         name='Drupal - Reduced'
         args={{ 
             elementPath         : 'components/navigation-footer/_doc/template.drupal',
+            logo                : {
+                name                : 'business',
+                href                : '/',
+            },
             hasBackToTopLink    : true,
             isReduced           : true,
             linkFields,

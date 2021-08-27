@@ -3,11 +3,35 @@
 <br/><br/>
 
 ## vX.X.X
+
 ### Card - phone variants
 - New property `contentBadge` to inject a Badge component into the Card content
 
+### Banner
+- added `isClickable` to make the banner clickable or not - true by default
+- added `linkLabel` to display a link at the end of the pargagraph when the banner is not clickable.
+- both options use the same `href`
+
 ### Badge
 - Added an option to display an illustration type `icon` in the Badge component
+
+#### Block Highlight (DS-26)
+- Image is now 4:3 format on mobile.
+- Image is now used as `background-image` CSS instead of `<img />`. So `image.alt` is not relevant anymore, Block highlight only use `image.src` in order to display image.
+- Replace `h2` default `titleTag` by `p`.
+- Button: Remove default hierarchy `primary-alt`.
+- Remove `fullWidth` property.
+- New properties:
+  - `isFeatured`: Change the visual hierarchy of the block.
+  - `visualBackgroundColor`: Change the default yellow backgound color behind the image (usefull for PNG).
+  - `blockBackgroundColor`: Change the background color of the block: 'ground' (default) or 'underground'.
+
+### Bugs Fix
+- **DS-125** Replaced boostrap classes by CSS attribute in Increment Imput Component to permit class overides
+- **DS-145** Page scrollbbar disapears. The bug was introduced by bug fix **DS-86**.
+- **DS-135**
+  - Make sure `buttons` and `inputIncrement` aren't empty before trying to display them in Card component
+  - `ariaLabel` was misspelled in the `inputIncrement` component
 
 ## [v1.2.0](https://bifrost-front-end-library-git-v1-2-0-jonathanlefebvrev.vercel.app)
 ### New Components
@@ -24,6 +48,7 @@
 - **DS-86** Fix Tabs scrolling style.
 - **DS-70** Fix Card component to have an elastic height body.
 - **DS-95** Little fix from UIKIT carousel-mobile-devices.scss
+
 
 ## [v1.1.1](https://bifrost-front-end-library-git-v1-1-1-jonathanlefebvrev.vercel.app)
 ### Price
@@ -84,6 +109,7 @@ Bugs Fix
 - DS-59 Header component. Display more than 5 rigthIconLinks break the menu
   - Remove animation of fix the broken state displayed
   - Set a maximum managed of the Array `rigthIconLinks` in Header component
+  
 
 
 ## [v1.0.1](https://bifrost-front-end-library-7sh17fjm1-jonathanlefebvrev.vercel.app/)
