@@ -1,4 +1,5 @@
-{% set isLink       = (href is defined and href is not empty) %}
+{% set isLink       = (href is defined and href is not empty and (isClickable is not defined or isClickable is same as (true))) %}
+{% set haslink      = (href is defined and href is not empty and linkLabel is defined and linkLabel is not empty ) %}
 {% set hasImage     = image.src is defined and image.src is not empty %}
 {% set hasIcon      = iconName is defined and iconName is not empty %}
 {% set hasVisual    = hasImage or hasIcon %}
@@ -34,6 +35,10 @@
         {% if paragraph is defined and paragraph is not empty %}
             <p class='small m-0'>
                 {{ paragraph }}
+                <br/>
+                {% if haslink and isClickable is defined and isClickable is same as(false) %}
+                    <a class='bf-link' href='{{ href }}'>{{ linkLabel }}</a>
+                {% endif %}
             </p>
         {% endif %}
     </div>
