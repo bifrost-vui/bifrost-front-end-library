@@ -9,11 +9,11 @@ export const contentLists = [
             },
             {
                 label: '100 GB annual data in Canada',
-                icon: 'support',
+                icon: 'hosting-data',
             },
             {
                 label: 'Club illico included',
-                icon: 'forfait-tv-le-fan-de-films-et-series', 
+                icon: 'tv-plan-showtime',
             },
         ],
     },
@@ -23,11 +23,11 @@ export const contentLists = [
         content      : [
             {
                 label: 'Utilisation illimité',
-                icon: 'forfait-tv-le-fan-de-films-et-series', 
+                icon: 'tv-plan-showtime',
             },
             {
                 label: 'Vitesse de téléchargement jusqu\'à 100mbit/s',
-                icon: 'forfait-tv-le-fan-de-films-et-series', 
+                icon: 'download-speed',
             },
 
         ],
@@ -44,11 +44,11 @@ export const contentListsNoTitle = [
             },
             {
                 label: '100 GB annual data in Canada',
-                icon: 'support',
+                icon: 'hosting-data',
             },
             {
                 label: 'Club illico included',
-                icon: 'forfait-tv-le-fan-de-films-et-series', 
+                icon: 'tv-plan-absolute',
             },
         ],
     }
