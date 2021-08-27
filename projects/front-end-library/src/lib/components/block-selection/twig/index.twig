@@ -53,13 +53,13 @@
     >
         <header class='d-flex justify-content-between mb-1'>
             {% if title is defined %}
-                <{{ titleTag|default('h1') }} class='h3 mb-0'>
+                <{{ titleTag|default('h1') }} class='header__title h3 mb-0'>
                     {{ title }}
                 </{{ titleTag|default('h1') }}>
             {% endif %}
 
             {% if topLink is defined and topLink is not empty %}
-                <a href='{{ topLink.href }}' class='bf-link text-right mb-3'>
+                <a href='{{ topLink.href }}' class='bf-link bf-link--primary text-right mb-3'>
                     {{ topLink.label }}
                 </a>
             {% endif %}
@@ -86,7 +86,7 @@
 
                         {% if item.link is defined and item.link is not empty %}
 
-                            <a href='{{ item.link.href }}' class='bf-link text-right'>
+                            <a href='{{ item.link.href }}' class='bf-link bf-link--primary text-right'>
                                 {{ item.link.label }}
                             </a>
 
