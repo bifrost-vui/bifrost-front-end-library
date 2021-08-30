@@ -1,17 +1,17 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
-import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
-import interfaceIcons               from '../../../../../../../public/icons/list/interfaces.json';
-import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
-import { IconComponent }            from '../angular/icon.component';
+import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
+import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { IconComponent }                        from '../angular/icon.component';
 
 
 <Meta
     title='Components/Icon'
     component={IconComponent}
     decorators={[
-        moduleMetadata({ declarations: [IconComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [IconComponent, TwigContainerComponent]})
     ]}
     parameters={{
         design: {
@@ -26,23 +26,14 @@ import { IconComponent }            from '../angular/icon.component';
             control: {type: 'select'}
         },
         size: {
-            defaultValue: 'medium',
+            defaultValue: 'small',
             type: { required: true },
-            table: { defaultValue: { summary: 'medium' } },
-            control: {type: 'select',
-            options: ['xsmall','small' , 'medium', 'large']
-            }
-        },
-        name: {
-            defaultValue: '',
-            control: {
-                type: 'select',
-                options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
-            }
+            table: { defaultValue: { summary: 'small' } },
+            control: {type: 'select', options: ['xsmall','small' , 'medium', 'large']}
         },
         icons: {
             table: { disable: true }
-        }
+        },
     }}
 />
 
@@ -57,7 +48,11 @@ import { IconComponent }            from '../angular/icon.component';
 
 <Props of={IconComponent} />
 
+
+
 ## Drupal implementation example
+
+> Note: You don't have to specify if the icon is **interface** or **illustration** [more details](?path=/docs/styles-icons--page).
 
 ``` jsx
 
@@ -75,7 +70,6 @@ import { IconComponent }            from '../angular/icon.component';
 
 ```
 
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -83,7 +77,36 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-### Illustration Icons
+
+### Interface Icons
+
+<Preview
+    withSource='none'
+    style={{ height: '700px' }}
+>
+    <Story
+        name='Drupal - Interface'
+        args={{
+            elementPath : 'components/icon/_doc/template.drupal',
+            icons       : interfaceIcons
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...interfaceIcons.map(a => a.list).flat().sort()],
+                }
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+### Illustrations Icons
+
 <Preview
     withSource='none'
     style={{ height: '700px' }}
@@ -94,21 +117,14 @@ export const Drupal = (args) => ({
             elementPath : 'components/icon/_doc/template.drupal',
             icons       : illustrationIcons
         }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Preview>
-
-### Interface Icons
-<Preview
-    withSource='none'
-    style={{ height: '700px' }}
->
-    <Story
-        name='Drupal - Interface'
-        args={{
-            elementPath : 'components/icon/_doc/template.drupal',
-            icons       : interfaceIcons
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
+                }
+            },
         }}
     >
         {Drupal.bind({})}
