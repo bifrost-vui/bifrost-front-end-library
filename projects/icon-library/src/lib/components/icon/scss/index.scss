@@ -1,0 +1,88 @@
+/* *****************************************************************************
+*
+*  Icon
+*
+* ***************************************************************************** */
+
+.bf-icon {
+    display: inline-block;
+    color: var(--bf-color-neutral-primary);
+    border-color: currentColor;
+    vertical-align: middle;
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+    // Sizes
+    &.size-large {
+        width: 4.5rem;
+        height: 4.5rem;
+        min-width: 4.5rem;
+    }
+    &.size-medium {
+        width: 3rem;
+        height: 3rem;
+        min-width: 3rem;
+    }
+    &.size-small{
+        width: 1.5rem;
+        height: 1.5rem;
+        min-width: 1.5rem;
+    }
+    &.size-xsmall{
+        width: 1rem;
+        height: 1rem;
+        min-width: 1rem;
+    }
+    // Color varitions
+    .fill-highlight {
+        color: var(--bf-color-primary-irreversible);
+        circle{
+            fill: var(--bf-color-bg-action-primary);
+        }
+    }
+    @at-root .color-succes,
+    &.color-success {
+        color: var(--bf-color-feedback-success);
+        .fill-highlight  circle {
+                fill: var(--bf-color-feedback-success);
+            }
+        }
+    @at-root .color-neutral,
+    &.color-neutral {
+        color: var(--bf-color-feedback-neutral);
+        .fill-highlight circle {
+            fill: var(--bf-color-feedback-neutral);
+        }
+    }
+    @at-root .color-warning,
+    &.color-warning {
+        color: var(--bf-color-feedback-warning);
+        .fill-highlight circle {
+            fill: var(--bf-color-feedback-warning);
+        }
+    }
+    @at-root .color-negative,
+    &.color-negative {
+        color: var(--bf-color-feedback-negative);
+        .fill-highlight {
+            color: var(--bf-color-bg-ground);
+            circle {
+                fill: var(--bf-color-feedback-negative);
+            }
+        }
+    }
+    @at-root .disabled{
+        .bf-icon {
+             @extend .bf-color-neutral-tertiary;
+        }
+    }
+}
+.reversed {
+    .color-negative {
+        .fill-highlight {
+            color: var(--bf-color-neutral-primary);
+        }
+
+    }
+}
