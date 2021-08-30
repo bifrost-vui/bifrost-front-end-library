@@ -24,21 +24,19 @@ img:not([usemap]) {
 }
 
 // scrolling effect
-// SCROLLBAR
-
-::-webkit-scrollbar,
-::-webkit-scrollbar-button {
-  @include size(3px);
-  background-color: var(--bf-color-stroke-secondary);
-  @include media-breakpoint-down(md) {
-    @include size(0px);
-  }
-}
-
+// on Chrome and other supporting browser : makes the horizontal scrollbar very thin(3px) and blurs the far right of the region
 
 .bf-overflow-x{
   overflow-x: auto;
 
+  ::-webkit-scrollbar,
+  ::-webkit-scrollbar-button {
+    @include size(3px);
+    background-color: var(--bf-color-stroke-secondary);
+    @include media-breakpoint-down(md) {
+      @include size(0px);
+    }
+  }
   &:before {
     background-image: var(--bf-color-bg-linear-ground-x);
     background-repeat: repeat-y;

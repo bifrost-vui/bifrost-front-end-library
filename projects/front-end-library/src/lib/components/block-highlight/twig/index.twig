@@ -1,28 +1,30 @@
-{% set hasImage     = image.src is defined and image.src is not empty %}
-{% set titleTag     = titleTag|default('h2') %}
+{% set hasImage         = image.src is defined and image.src is not empty %}
+{% set titleTag         = titleTag|default('p') %}
 
 <article class='
-    bf-block bf-block--highlight
-    d-flex flex-column flex-sm-row
-    {% if fullWidth is defined and fullWidth is same as (true) %}bf-block--fullwidth{% endif %}
+    bf-block bf-block--highlight {{ isFeatured ? 'bf-block--featured' : '' }}
+    w-100 d-flex flex-column flex-sm-row overflow-hidden bf-border-radius-medium border bf-border-color-secondary
+    {{ blockBackgroundColor|default('ground') == 'underground' ? 'bf-color-bg-underground' : 'bf-color-bg-ground' }}
+    {{ reversed ? 'reversed' : '' }}
     {{ class }}'
 >
 
     {% if hasImage %}
-        <div class='bf-block__visual d-flex justify-content-center align-items-center bf-color-bg-brand'>
-            <img
-                src='{{ image.src|default('') }}'
-                data-src='{{ image.dataSrc|default('') }}'
-                alt='{{ image.alt|default('') }}'
-            />
+        <div
+            class='bf-block__visual bf-color-bg-brand'
+            style='background-image: url({{ image.src }});
+                {% if visualBackgroundColor is defined and visualBackgroundColor %}background-color: {{ visualBackgroundColor }}; {% endif %}
+            '
+        >
         </div>
     {% endif %}
     
-    <div class='p-5'>
+    
+    <div class='d-flex flex-column {{ isFeatured ? 'justify-content-center' : '' }} p-4 p-sm-5'>
         {% if title is defined %}
-            <{{ titleTag|default('h2') }} {% if titleTag|default('h2') is not same as ('h2') %}class='h2'{% endif %}>
+            <{{ titleTag }} class='text-break {{ isFeatured ? 'h2' : 'h3' }}'>
                 {{ title }}
-            </{{ titleTag|default('h2') }}>
+            </{{ titleTag }}>
         {% endif %}
         {% if paragraph is defined %}
             <p>
@@ -30,7 +32,12 @@
             </p>
         {% endif %}
         {% if button is defined %}
-            {% set button = button|merge( { 'hierarchy': button.hierarchy|default('primary-alt') } ) %}
+            {% set button = button|merge(
+                {
+                    'class'     : 'mt-2 ' ~ button.class,
+                    'hierarchy' : button.hierarchy|default(isFeatured ? 'primary-alt' : 'secondary')
+                }
+            ) %}
             {% include '@bf-components/button/twig/index.twig' with button only %}
         {% endif %}
     </div>

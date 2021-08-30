@@ -1,13 +1,14 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
-import { interfaceIcons }           from './data';
+import interfaceIcons               from '../../../../../../../public/icons/list/interfaces.json';
+import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { IconComponent }            from '../angular/icon.component';
 
 
-<Meta 
-    title='Components/Icon' 
+<Meta
+    title='Components/Icon'
     component={IconComponent}
     decorators={[
         moduleMetadata({ declarations: [IconComponent, TwigContainerComponent]})
@@ -22,20 +23,13 @@ import { IconComponent }            from '../angular/icon.component';
     argTypes={{
         color: {
             defaultValue: '',
-            description: 'success | neutral | warning | negative',
-            control: {
-                type: 'select',
-                options: ['', 'success', 'neutral', 'warning', 'negative'],
-            }
+            control: {type: 'select'}
         },
         size: {
-            defaultValue: '',
-            type: { required: false },
+            defaultValue: 'small',
+            type: { required: true },
             table: { defaultValue: { summary: 'small' } },
-            control: {
-                type: 'select',
-                options: ['', 'xsmall', 'small'],
-            }
+            control: {type: 'select', options: ['xsmall','small' , 'medium', 'large']}
         },
         name: {
             defaultValue: '',
@@ -46,13 +40,6 @@ import { IconComponent }            from '../angular/icon.component';
         },
         icons: {
             table: { disable: true }
-        },
-        type: {
-            defaultValue: '',
-            control: {
-                readOnly: true
-            },
-            table: { defaultValue: { summary: 'interface' } },
         },
     }}
 />
@@ -72,22 +59,21 @@ import { IconComponent }            from '../angular/icon.component';
 
 ## Drupal implementation example
 
-```jsx
+``` jsx
+
 {% include '@bf-components/icon/twig/index.twig' with {
     name    : 'account-balance',
-    size    : 'medium',
-    color   : 'negative'
+    size    : 'xsmall | small | medium | large'
+    color   : 'negative',
+    class   : 'mr-2'
 } only %}
 
 {% include '@bf-components/icon/twig/index.twig' with {
-    name    : 'instructions',
-    type    : 'illustration',
-    size    : 'medium',
-    color   : 'negative'
+    name    : 'my-account',
+    size    : 'xsmall | small | medium | large',
 } only %}
+
 ```
-
-
 
 ## Drupal
 
@@ -96,16 +82,32 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+### Interface Icons
 <Preview
     withSource='none'
     style={{ height: '700px' }}
 >
-    <Story 
+    <Story
         name='Drupal - Interface'
-        args={{ 
+        args={{
             elementPath : 'components/icon/_doc/template.drupal',
             icons       : interfaceIcons,
-            type        : 'interface',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+### Illustration Icons
+<Preview
+    withSource='none'
+    style={{ height: '700px' }}
+>
+    <Story
+        name='Drupal - Illustration'
+        args={{
+            elementPath : 'components/icon/_doc/template.drupal',
+            icons       : illustrationIcons
         }}
     >
         {Drupal.bind({})}
