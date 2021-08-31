@@ -61,7 +61,7 @@ var Twig = require("twig"),
         namespaces: {
             'bf-components'     : 'projects/front-end-library/src/lib/components',
             'bf-utils'          : 'projects/front-end-library/src/lib/utils',
-            'bf-icons'          : 'projects/icon-library/src/lib/components/icon',
+            'bf-icons'          : 'projects/icon-library/src/lib/components/icon/twig',
         }
     });
 
