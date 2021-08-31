@@ -1,10 +1,9 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-
-import interfaceIcons               from '../../../../../../../public/icons/list/interfaces.json';
-import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
-import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
-import { IconComponent }            from '../angular/icon.component';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import interfaceIcons                           from '../public/list/interfaces.json';
+import illustrationIcons                        from '../public/list/illustrations.json';
+import { IconComponent }                        from '../angular/icon.component';
 
 
 <Meta
@@ -31,16 +30,9 @@ import { IconComponent }            from '../angular/icon.component';
             table: { defaultValue: { summary: 'small' } },
             control: {type: 'select', options: ['xsmall','small' , 'medium', 'large']}
         },
-        name: {
-            defaultValue: '',
-            control: {
-                type: 'select',
-                options: ['All icons', ...interfaceIcons.map(a => a.list).flat().sort()],
-            }
-        },
         icons: {
             table: { disable: true }
-        },
+        }
     }}
 />
 
@@ -75,6 +67,7 @@ import { IconComponent }            from '../angular/icon.component';
 
 ```
 
+
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -82,7 +75,9 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+
 ### Interface Icons
+
 <Preview
     withSource='none'
     style={{ height: '700px' }}
@@ -90,24 +85,44 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - Interface'
         args={{
-            elementPath : 'components/icon/_doc/template.drupal',
+            elementPath : '../../../icon-library/src/lib/components/icon/_doc/template.drupal',
             icons       : interfaceIcons,
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...interfaceIcons.map(a => a.list).flat().sort()],
+                }
+            }
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Preview>
 
-### Illustration Icons
+
+### Illustrations Icons
+
 <Preview
     withSource='none'
     style={{ height: '700px' }}
 >
     <Story
-        name='Drupal - Illustration'
+        name='Drupal - Illustrations'
         args={{
-            elementPath : 'components/icon/_doc/template.drupal',
-            icons       : illustrationIcons
+            elementPath : '../../../icon-library/src/lib/components/icon/_doc/template.drupal',
+            icons       : illustrationIcons,
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
+                }
+            }
         }}
     >
         {Drupal.bind({})}
