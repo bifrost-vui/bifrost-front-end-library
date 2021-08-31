@@ -9,6 +9,8 @@ interface IPromotion {
   priceStriked  : number;
   priceSaved    : number;
   savedLabel    : string;
+  savedLongLabel: string;
+  showLongLabel :boolean;
   superscript   : string;
   direction     : string;
 }
