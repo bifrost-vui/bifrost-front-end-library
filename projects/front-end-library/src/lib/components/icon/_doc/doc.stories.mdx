@@ -25,12 +25,6 @@ import { IconComponent }                        from '../angular/icon.component'
             defaultValue: '',
             control: {type: 'select'}
         },
-        size: {
-            defaultValue: 'small',
-            type: { required: true },
-            table: { defaultValue: { summary: 'small' } },
-            control: {type: 'select', options: ['xsmall','small' , 'medium', 'large']}
-        },
         icons: {
             table: { disable: true }
         },
@@ -98,6 +92,13 @@ export const Drupal = (args) => ({
                     options: ['All icons', ...interfaceIcons.map(a => a.list).flat().sort()],
                 }
             },
+            size: {
+                defaultValue: 'small',
+                type: { required: true },
+                table: { defaultValue: { summary: 'small' } },
+                description: 'xsmall | small',
+                control: {type: 'select', options: ['xsmall','small' ]}
+            },
         }}
     >
         {Drupal.bind({})}
@@ -123,7 +124,44 @@ export const Drupal = (args) => ({
                 control: {
                     type: 'select',
                     options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
-                }
+                },
+            },
+            size: {
+                defaultValue: 'large',
+                type: { required: true },
+                table: { defaultValue: { summary: 'large' } },
+                description: 'small | medium | large',
+                control: {type: 'select', options: ['small' , 'medium', 'large']}
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+### Huge Illustration Icons
+
+<Preview
+    withSource='none'
+    style={{ height: '700px' }}
+>
+    <Story
+        name='Drupal - Huge Illustration'
+        args={{
+            elementPath : 'components/icon/_doc/template.drupal',
+            icons       : illustrationIcons
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
+                },
+            },
+            size: {
+                defaultValue: 'huge',
+                table: { defaultValue: { summary: 'huge' }, disable: true },
             },
         }}
     >
