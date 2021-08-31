@@ -9,7 +9,6 @@
     position:relative;
     padding: var(--bf-spacer-small);
     border-radius: .5rem;
-
     &__label{
         position: absolute;
         display: block;
@@ -53,7 +52,7 @@
             &:hover{
                 box-shadow: var(--bf-box-shadow-light);
                 background-color: transparent;
-                border: 1px solid var(--bf-color-stroke-primary);
+                border-color: var(--bf-color-stroke-primary);
             }
         }
         &:checked::before{
@@ -86,7 +85,7 @@
     /*-----------------------------------*
     ** orientations & size variants
     *------------------------------------*/
-    
+
     &--horizontal{
         display: flex;
         align-items: center;
@@ -120,6 +119,7 @@
             padding-left: var(--bf-spacer-small);
         }
         &.bf-selection-tile--fit-container{
+            width: auto;
             .bf-selection-tile__block{
                 width: calc(100% - 3.5rem);
             }
@@ -160,6 +160,7 @@
         }
         &.bf-selection-tile--fit-container{
             min-height: 16rem;
+            width: 12rem;
 
             & .bf-selection-tile__block > div{
                 @extend .pt-2;
@@ -168,7 +169,6 @@
             .bf-selection-tile__visual{ width: 100%;}
         }
     }
-    &--fit-container{ width: 100%;}
     &--fit-content { width: max-content }
 
     /*-----------------------------------*
@@ -215,7 +215,12 @@
             padding:var(--bf-spacer-xsmall) 0;
         }
     }
-    &--fit-container{ width: 100%; }
+    &--fit-container{
+        .bf-selection-tile__container--vertical{
+                    width: 12rem;
+        }
+    }
+
 }
 
 

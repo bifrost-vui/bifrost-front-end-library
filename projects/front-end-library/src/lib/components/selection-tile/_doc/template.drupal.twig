@@ -2,41 +2,53 @@
 {% set isDisabled   = isDisabled|json_parse %}
 {% set isSelected   = isSelected|json_parse %}
 {% set image        = image|json_parse %}
+{% set iconName     = iconName|json_parse %}
 {% set isInvalid    = isInvalid|json_parse %}
-{% set visualType    = visualType|json_parse %}
+{% set visualType   = visualType|json_parse %}
 
 <div class='container {{orientation}} '>
-    {% for index in [1,2] %}
-    <div class=' p-3 {{ (index == 2 ) ? 'bf-color-bg-underground' }} {{ (reversed) ? 'reversed  bf-color-bg-ground' }}'>
-      <div class='d-flex {{orientation}}'>
+    {% for index in [1,2,3,4] %}
+    <div class=' p-3 {{ (index == 2 or index == 4) ? 'bf-color-bg-underground' }} {{ (reversed or index == 3 or index == 4) ? 'reversed  bf-color-bg-ground' }}'>
+      <div class=' d-flex c-{{ orientation }} {{ (orientation == 'vertical') ? 'flex-row flex-wrap': 'flex-column'}}'>
         {% include '@bf-components/selection-tile/twig/index.twig'  with {
           inputId     : 'my-selection-tile1' ~ loop.index,
+          name        : 'my-selection-tile' ~ loop.index,
           ariaLabel   : 'my selection tile 1' ~ loop.index,
-          title       : NULL,
-          description : NULL,
+          visualType  : visualType|default('none'),
           isSelected  : isSelected|default(true),
-          visualType  : visualType|default('image'),
-          image       : NULL,
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           inputId     : 'my-selection-tile3' ~ loop.index,
+          name        : 'my-selection-tile' ~ loop.index,
           ariaLabel   : 'my selection tile 3' ~ loop.index,
-          description : NULL,
+          title       : 'Selection tile title',
           visualType  : visualType|default('icon'),
+          iconName    : iconName|default('helix-tv-remote'),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           inputId     : 'my-selection-tile2' ~ loop.index,
+          name        : 'my-selection-tile' ~ loop.index,
           ariaLabel   : 'my selection tile 2' ~ loop.index,
-          description : NULL,
+          title       : 'Selection tile title',
+          description : 'lorem ipsum html <em>descriptum</em><sup>*</sup>',
+          image       : {
+            src   : '/images/_docs/abstract-background.png',
+            alt   : 'abstract background',
+            class : '',
+          },
           visualType  : visualType|default('image'),
           info        : info|default('XX.xx $ / Mois'),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           inputId     : 'my-selection-tile4' ~ loop.index,
+          name        : 'my-selection-tile' ~ loop.index,
           ariaLabel   : 'my selection tile 4' ~ loop.index,
+          title       : 'Selection tile title',
+          description : 'lorem ipsum html <em>descriptum</em><sup>*</sup>',
+          iconName    : iconName|default('helix-tv-remote'),
           visualType  : visualType|default('icon'),
           info        : info|default('XX.xx $ / Mois'),
           isDisabled  : isDisabled|default(true),
@@ -48,7 +60,7 @@
 
 <style>
   /*--------for demo only---------*/
-  .d-flex.vertical{ flex-flow :row}
-  .d-flex.horizontal{ flex-flow :column}
+  .c-vertical,
+  .c-horizontal{ gap: .5rem}
   .container.horizontal{width: 600px}
 </style>

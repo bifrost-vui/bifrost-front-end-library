@@ -1,10 +1,12 @@
 {% set needsContainer = (isInvalid is defined and isInvalid ) %}
-{% set size           = size|default('fit-content') %}
+{% set fit           = fit|default('content') %}
+{% set allowedTags 	  = '<br><em><i><strong><b><sup><sub>' %}
+{% set orientation   = orientation|default(' horizontal') %}
 
 {% if needsContainer %}
-	<div class='bf-selection-tile__container {{ (isInvalid) ? ' color-warning ' : ' ' }} bf-selection-tile__container--{{ size }} {{ class }}'>
+	<div class='bf-selection-tile__container {{ (isInvalid) ? 'color-warning' : ' ' }} bf-selection-tile__container--{{ 'fit-' ~ fit }} bf-selection-tile__container--{{ orientation }}  {{ class }}'>
 {% endif %}
-	<div class='bf-selection-tile bf-selection-tile--{{ orientation|default(' horizontal') }} bf-selection-tile--{{ size }} {{ isdisabled? ' disabled' }}  {{ (needscontainer) ? ' ' : class }}'>
+	<div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--{{ 'fit-' ~ fit }} {{ isDisabled? ' disabled' }}  {{ (needscontainer) ? '' : class }}'>
 		<div class='bf-selection-tile__control'>
 			<input
             type='{{ inputType|default('checkbox') }}'
@@ -31,8 +33,9 @@
 								{% if iconName is defined and iconName and visualType is same as ('icon') %}
 									{% include '@bf-components/icon/twig/index.twig' with {
                                         name    : iconName,
-                                        size    : 'medium',
-                                        type    : 'illustration'
+                                        size    : (orientation == 'vertical' and fit == 'container') ? 'large' : 'medium',
+                                        type    : 'illustration',
+										class	: (orientation == 'horizontal') ? 'mr-3' : '',
                                         } only %}
 								{% endif %}
 							</div>
@@ -54,7 +57,7 @@
 					</div>
 				</div>
 
-				{% if (info is defined and info) or (orientation is same as ('vertical') and size is same as ('fit-container')) %}
+				{% if (info is defined and info) or (orientation is same as ('vertical') and fit is same as ('container')) %}
 					<div class='bf-selection-tile__footer'>
 						<div class='bf-selection-tile__text'>
 							<p class='p-0 m-0'>{{ info }}</p>
@@ -66,7 +69,7 @@
 	</div>
 {% if needsContainer %}
 		<div class='bf-selection-tile__feedback'>
-			{{ errorMessage|striptags('<br><em><i><strong><b><sup><sub>')|raw }}
+			{{ errorMessage|striptags(allowedTags)|raw }}
 		</div>
 	</div>
 {% endif %}

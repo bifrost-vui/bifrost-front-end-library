@@ -33,18 +33,18 @@ import { SelectionTileComponent }       from '../angular/selection-tile.componen
         value       :{type: { required: true } },
         orientation :{
             defaultValue: 'horizontal',
+            description : 'horizontal | vertical',
             table       : { defaultValue: { summary: 'horizontal' } },
             control     : { type: 'select' }
         },
         visualType :{
-            description : 'none | icone | image',
-            defaultValue: 'image',
-            table       : { defaultValue: { summary: 'image' } },
+            description : 'none | icon | image',
             control     : { type: 'select' }
         },
-        size        :{
-            defaultValue: 'fit-content',
-            table       : { defaultValue: { summary: 'fit-content' } },
+        fit        :{
+            defaultValue: 'content',
+            description : 'content (fits the content) | container (fits the container)',
+            table       : { defaultValue: { summary: 'content' } },
             control     : { type: 'select' }
         },
         description : {
@@ -86,19 +86,10 @@ export const commonProps = {
     inputId     : '',
     value       : '',
     ariaLabel   : '',
-    name        : 'my selection tiles',
     errorMessage: 'This is an <em>HTML</em> error message',
     orientation : 'horizontal',
     size        : 'fit-content',
-    title       : 'Selection tile title',
-    description : 'lorem ipsum html <em>descriptum</em><sup>*</sup>',
     class       : 'm-2',
-    image       : {
-            src   : '/images/_docs/abstract-background.png',
-            alt   : 'abstract background',
-            class : '',
-          },
-    iconName      : 'videotron-plus',
 };
 
 
@@ -167,7 +158,7 @@ export const commonProps = {
 
     {% include '@bf-components/selection-tile/twig/index.twig' with {
         orientation : 'vertical',
-        size        : 'fit-container',
+        fit        : 'container',
         inputId     : 'my-selection-tile4',
         title       : 'Movie Chanel',
         description: 'lorem ipsum descriptum',
@@ -183,12 +174,12 @@ export const commonProps = {
 
 
 - The *Selection Tile* comes in 4 layout combinations are :
-    - `fit-content` + `horizontal` (default value)
-    - `fit-container` + `horizontal`
-    - `fit-content` + `vertical` (mostly for channel selection tiles)
-    - `fit-container` + `vertical`
+    - fit : `content` + orientation : `horizontal` (default value)
+    - fit : `container` + orientation :`horizontal`
+    - fit : `content` + orientation : `vertical` (mostly for channel selection tiles)
+    - fit : `container` + orientation : `vertical`
 
-- The Tile mimics the behavior of the input type : **radio button** or **checkbox**
+- The Selection Tile mimics the behavior of the input type : **radio button** or **checkbox**
 - The code within the tile_content editable block manages most common tile variants. Although it's not mandatory, it's recommended to use as is.
 - Upon redefinition within an embed Twig block, be aware that items **won't be clickable**.
 - If you need the content to be clickable, then use the **Tile component** instead.
