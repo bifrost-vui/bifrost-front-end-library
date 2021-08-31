@@ -9,15 +9,18 @@
 	<div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--{{ 'fit-' ~ fit }} {{ isDisabled? ' disabled' }}  {{ (needscontainer) ? '' : class }}'>
 		<div class='bf-selection-tile__control'>
 			<input
-            type='{{ inputType|default('checkbox') }}'
-            class='bf-selection-tile__input' id='{{ inputId|default('my-selection-tile') }}'
-            name='{{ name }}' value='{{ value|default('') }}'
-            {% if ariaLabel is defined and ariaLabel %} aria-label='{{ ariaLabel}}'
-            {% endif %} {% if isDisabled is defined and isDisabled %} disabled='disabled' {% endif %}
-            {% if isSelected is defined and isSelected %} checked='checked' {% endif %}
-            {{ extraAttribute|default(NULL) }}>
+				type='{{ inputType|default('checkbox') }}'
+				class='bf-selection-tile__input'
+				id='{{ inputId|default('') }}'
+				name='{{ name }}'
+				value='{{ value|default('') }}'
+				{% if ariaLabel is defined and ariaLabel %} aria-label='{{ ariaLabel}}'{% endif %}
+				{% if isDisabled is defined and isDisabled %} disabled='disabled' {% endif %}
+				{% if isSelected is defined and isSelected %} checked='checked' {% endif %}
+				{{ extraAttribute|default(NULL) }}
+			/>
 
-			<label for='{{ inputId|default('my-selection-tile') }}' class='bf-selection-tile__label' title='{{ arialLabel }}'></label>
+			<label for='{{ inputId|default('') }}' class='bf-selection-tile__label' title='{{ arialLabel }}'></label>
 		</div>
 
 		<div class='bf-selection-tile__block'>
@@ -27,7 +30,7 @@
 						{% if visualType is defined  and visualType %}
 							<div class='bf-selection-tile__visual'>
 								{% if image and image.src is defined and image.src and image.alt is defined and visualType is same as ('image') %}
-									<img class='{{ image.class }}' src='{{ image.src }}' alt='{{ image.alt }}'>
+									<img class='{{ image.class }}' src='{{ image.src }}' alt='{{ image.alt }}'/>
 								{% endif %}
 
 								{% if iconName is defined and iconName and visualType is same as ('icon') %}
@@ -36,7 +39,7 @@
                                         size    : (orientation == 'vertical' and fit == 'container') ? 'large' : 'medium',
                                         type    : 'illustration',
 										class	: (orientation == 'horizontal') ? 'mr-3' : '',
-                                        } only %}
+                                    } only %}
 								{% endif %}
 							</div>
 						{% endif %}

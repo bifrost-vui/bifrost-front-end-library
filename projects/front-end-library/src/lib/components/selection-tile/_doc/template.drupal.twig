@@ -11,46 +11,46 @@
     <div class=' p-3 {{ (index == 2 or index == 4) ? 'bf-color-bg-underground' }} {{ (reversed or index == 3 or index == 4) ? 'reversed  bf-color-bg-ground' }}'>
       <div class=' d-flex c-{{ orientation }} {{ (orientation == 'vertical') ? 'flex-row flex-wrap': 'flex-column'}}'>
         {% include '@bf-components/selection-tile/twig/index.twig'  with {
-          inputId     : 'my-selection-tile1' ~ loop.index,
-          name        : 'my-selection-tile' ~ loop.index,
-          ariaLabel   : 'my selection tile 1' ~ loop.index,
+          value       : value|default(''),
+          inputId     : (inputId ~ '1' ~  loop.index)|default(inputId ~ '1' ~  loop.index),
+          name        : (name ~  loop.index)|default(name ~  loop.index),
+          ariaLabel   : (ariaLabel ~ '1' ~  loop.index)|default( ariaLabel ~ '1' ~  loop.index ),
           visualType  : visualType|default('none'),
           isSelected  : isSelected|default(true),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
-          inputId     : 'my-selection-tile3' ~ loop.index,
-          name        : 'my-selection-tile' ~ loop.index,
-          ariaLabel   : 'my selection tile 3' ~ loop.index,
-          title       : 'Selection tile title',
+          value       : value|default(''),
+          inputId     : (inputId ~ '2' ~  loop.index)|default(inputId ~ '2' ~  loop.index),
+          name        : (name ~  loop.index)|default(name ~  loop.index),
+          ariaLabel   : (ariaLabel ~ '2' ~  loop.index)|default(ariaLabel ~ '2' ~  loop.index),
+          title       : title|default('Selection tile title'),
           visualType  : visualType|default('icon'),
           iconName    : iconName|default('helix-tv-remote'),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
-          inputId     : 'my-selection-tile2' ~ loop.index,
-          name        : 'my-selection-tile' ~ loop.index,
-          ariaLabel   : 'my selection tile 2' ~ loop.index,
-          title       : 'Selection tile title',
-          description : 'lorem ipsum html <em>descriptum</em><sup>*</sup>',
-          image       : {
-            src   : '/images/_docs/abstract-background.png',
-            alt   : 'abstract background',
-            class : '',
-          },
+          value       : value|default(''),
+          inputId     : (inputId ~ '3' ~  loop.index)|default(inputId ~ '3' ~  loop.index),
+          name        : (name ~  loop.index)|default(name ~  loop.index),
+          ariaLabel   : (ariaLabel ~ '3' ~  loop.index)|default(ariaLabel ~ '3' ~  loop.index),
+          title       : title|default('Selection tile title'),
+          description : description|default('lorem ipsum html <em>descriptum</em><sup>*</sup>'),
+          image       : image|default({src:'/images/_docs/abstract-background.png',alt: 'abstract background',class : '',}),
           visualType  : visualType|default('image'),
-          info        : info|default('XX.xx $ / Mois'),
+          info        : info|default('12.34 $ / Mois'),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
-          inputId     : 'my-selection-tile4' ~ loop.index,
-          name        : 'my-selection-tile' ~ loop.index,
-          ariaLabel   : 'my selection tile 4' ~ loop.index,
-          title       : 'Selection tile title',
-          description : 'lorem ipsum html <em>descriptum</em><sup>*</sup>',
+          value       : value|default(''),
+          inputId     : (inputId ~ '4' ~  loop.index)|default(inputId ~ '4' ~  loop.index),
+          name        : (name ~  loop.index)|default(name ~  loop.index),
+          ariaLabel   : (ariaLabel ~ '4' ~  loop.index)|default(ariaLabel ~ '4' ~  loop.index),
+          title       : title|default('Selection tile title'),
+          description : description|default('lorem ipsum html <em>descriptum</em><sup>&reg;</sup>'),
           iconName    : iconName|default('helix-tv-remote'),
           visualType  : visualType|default('icon'),
-          info        : info|default('XX.xx $ / Mois'),
+          info        : info|default('22.34 $ / Mois'),
           isDisabled  : isDisabled|default(true),
         } %}
       </div>
@@ -61,6 +61,6 @@
 <style>
   /*--------for demo only---------*/
   .c-vertical,
-  .c-horizontal{ gap: .5rem}
-  .container.horizontal{width: 600px}
+  .c-horizontal{ gap: .5rem;}
+  .container.horizontal{ width: 600px;}
 </style>
