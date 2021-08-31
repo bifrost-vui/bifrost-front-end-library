@@ -22,7 +22,7 @@
                         <div class="w-100">
                             <h4>{{category.category}}</h4>
                         </div>
-                        <div class="doc-list ">
+                        <div class="doc-list{{ (size == 'huge') ? '--huge'}}">
                             {% for iconName in category.list %}
                                 <div class='d-flex flex-column align-items-center p-3' title='{{iconName}}'>
                                     {% include '@bf-components/icon/twig/index.twig' with {
@@ -46,6 +46,12 @@
 <style>
     .doc-list {
         --minmax: 120px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax( var(--minmax), 1fr));
+        width: 100%;
+    }
+        .doc-list--huge {
+        --minmax: 300px;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax( var(--minmax), 1fr));
         width: 100%;
