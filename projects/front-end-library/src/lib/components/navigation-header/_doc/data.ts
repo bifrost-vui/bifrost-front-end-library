@@ -16,13 +16,14 @@ export const rigthIconLinks = [
 ];
 
 export const cartBtn = {
-    badge: '3' ,
-    href : 'https://www.videotron.com',
-    ariaLabel : 'My cart'
+    badge: "3" ,
+    href: "https://www.videotron.com",
+    ariaLabel : "My cart"
 };
 
 export const menuItemAccount = [
-  { label : 'Action', href: '#' },
-  { label : 'Another action', href: '#' },
-  { label : 'Something else here', href: '#' },
+  { label: "Action", href: "https://www.videotron.com" },
+  { label: "Another action", href: "https://www.videotron.com" },
+  { label: "Something else here", href: "https://www.videotron.com" },
+  { label: "this menu item shoul not appear", href: "" },
 ];
