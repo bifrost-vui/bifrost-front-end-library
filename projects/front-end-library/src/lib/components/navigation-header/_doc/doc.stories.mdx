@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 
-import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn } from './data';
+import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn, menuItemAccount } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent }          from '../angular/header.component';
 
@@ -106,6 +106,11 @@ import { HeaderComponent }          from '../angular/header.component';
         href        : 'https://www.videotron.com',
         ariaLabel   : 'My cart'
     },
+    menuItemAccount : [
+      { label : 'Action', href: '#' },
+      { label : 'Another action', href: '#' },
+      { label : 'Something else here', href: '#' },
+    ],
     labelIcon: 'Mon compte'
     hasAccountBtn : true,
     isConnected : true,
@@ -144,7 +149,8 @@ export const Drupal = (args) => ({
             topBar_items,
             topBar_secondaryItems,
             rigthIconLinks,
-            cartBtn
+            cartBtn,
+            menuItemAccount
         }}
         height='400px'
         with = '1200px'

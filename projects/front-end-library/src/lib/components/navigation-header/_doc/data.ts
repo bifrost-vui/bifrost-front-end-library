@@ -21,4 +21,8 @@ export const cartBtn = {
     ariaLabel : 'My cart'
 };
 
-export const labelMyAccount = 'Mon compte1'
+export const menuItemAccount = [
+  { label : 'Action', href: '#' },
+  { label : 'Another action', href: '#' },
+  { label : 'Something else here', href: '#' },
+];

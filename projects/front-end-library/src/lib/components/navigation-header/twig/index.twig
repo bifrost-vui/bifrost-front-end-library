@@ -103,12 +103,21 @@
                         labelIcon   : labelMyAccount
                     } %}
                 {% else %}
-                    {% include '@bf-components/button-icon/twig/index.twig' with {
-                        href        : hrefConnexion|default('#'),
-                        icon        : 'profile',
-                        ariaLabel   : labelConnexion|default('Log in'),
-                        labelIcon   : labelMyAccount
-                    } %}
+                  <div class="dropdown">
+                    <a class="btn btn-tertiary dropdown-toggle" href="#" role="button" id="dropdownAccountMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {% include '@bf-components/icon/twig/index.twig' with {
+                        name        : icon|default('profile')
+                      } only %}
+                      My account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownAccountMenu">
+                      {% for item in menuItemAccount %}
+                        {% if item is defined and item.label is not empty and item.href is not empty %}
+                        <a class="dropdown-item" href="{{ item.href }}"> {{ item.label }} </a>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
                 {% endif %}
             {% endif %}
 
