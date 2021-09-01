@@ -113,10 +113,17 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownAccountMenu">
                       {% for item in menuItemAccount %}
                         {% if item.label is defined and item.label and item.href  is defined and item.href %}
-                          <a class="dropdown-item" href="{{ item.href }}">
+                          <a class="dropdown-item d-flex flex-wrap flex-column" href="{{ item.href }}">
                             {# TODO : ajouter un item.iconName pour permettre un composant Icone #}
-                            <span>{{ item.label }}<span>
+                            <div class="flex-row">
+                              {% include '@bf-components/icon/twig/index.twig' with {
+                                name            : item.iconName,
+                                class           : ''
+                              } only %}
+                              <span>{{ item.label }}</span>
+                            </div>
                             {# TODO : ajouter un item.description #}
+                            <span class="description">{{ item.description }}</span>
                           </a>
                           {# TODO en mobile prévoire un lien pour le changement de langue #}
                         {% endif %}
