@@ -28,7 +28,6 @@ export class SelectionTileComponent implements OnInit {
     /**{ src : string, alt : string, class : string } */
     @Input() image          : object;
     @Input() iconName       : string;
-    @Input() visualType     : 'none'|'image'|'icon';
 
     @Input() reversed       : boolean;
     @Input() isDisabled     : boolean;

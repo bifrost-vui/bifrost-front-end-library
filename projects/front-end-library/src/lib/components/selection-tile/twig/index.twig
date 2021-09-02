@@ -1,12 +1,13 @@
 {% set needsContainer = (isInvalid is defined and isInvalid ) %}
-{% set fit           = fit|default('content') %}
-{% set allowedTags 	  = '<br><em><i><strong><b><sup><sub>' %}
-{% set orientation   = orientation|default(' horizontal') %}
+{% set fit          = fit|default('content') %}
+{% set allowedTags 	= '<br><em><i><strong><b><sup><sub>' %}
+{% set orientation  = orientation|default('horizontal') %}
+{% set hasVisual 	= ((iconName is defined and iconName) or (image.src is defined and image.src and image.alt is defined)) %}
 
 {% if needsContainer %}
-	<div class='bf-selection-tile__container {{ (isInvalid) ? 'color-warning' : ' ' }} bf-selection-tile__container--{{ 'fit-' ~ fit }} bf-selection-tile__container--{{ orientation }}  {{ class }}'>
+	<div class='bf-selection-tile__container {{ (isInvalid) ? 'color-warning' : ' ' }} bf-selection-tile__container--{{ 'fit-' ~ fit }} bf-selection-tile__container--{{ orientation }} {{ class }}'>
 {% endif %}
-	<div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--{{ 'fit-' ~ fit }} {{ isDisabled? ' disabled' }}  {{ (needscontainer) ? '' : class }}'>
+	<div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--{{ 'fit-' ~ fit }} {{ (isDisabled) ? 'disabled' }} {{ (needscontainer) ? '': class }}'>
 		<div class='bf-selection-tile__control'>
 			<input
 				type='{{ inputType|default('checkbox') }}'
@@ -20,26 +21,23 @@
 				{{ extraAttribute|default(NULL) }}
 			/>
 
-			<label for='{{ inputId|default('') }}' class='bf-selection-tile__label' title='{{ arialLabel }}'></label>
+			<label for='{{ inputId|default('') }}' class='bf-selection-tile__label' {% if ariaLabel is defined and ariaLabel %} title='{{ ariaLabel}}'{% endif %}></label>
 		</div>
 
 		<div class='bf-selection-tile__block'>
 			{% block selectionTile_content %}
 				<div>
 					<div class='bf-selection-tile__body'>
-						{% if visualType is defined  and visualType %}
+						{% if hasVisual %}
 							<div class='bf-selection-tile__visual'>
-								{% if image and image.src is defined and image.src and image.alt is defined and visualType is same as ('image') %}
-									<img class='{{ image.class }}' src='{{ image.src }}' alt='{{ image.alt }}'/>
-								{% endif %}
-
-								{% if iconName is defined and iconName and visualType is same as ('icon') %}
+								{% if iconName is defined and iconName %}
 									{% include '@bf-components/icon/twig/index.twig' with {
                                         name    : iconName,
                                         size    : (orientation == 'vertical' and fit == 'container') ? 'large' : 'medium',
-                                        type    : 'illustration',
 										class	: (orientation == 'horizontal') ? 'mr-3' : '',
                                     } only %}
+								{% elseif image.src is defined and image.src and image.alt is defined %}
+									<img class='{{ image.class }}' src='{{ image.src }}' alt='{{ image.alt }}' />
 								{% endif %}
 							</div>
 						{% endif %}

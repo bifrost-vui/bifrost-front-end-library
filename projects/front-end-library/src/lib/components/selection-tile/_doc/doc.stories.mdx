@@ -36,10 +36,6 @@ import { SelectionTileComponent }       from '../angular/selection-tile.componen
             table       : { defaultValue: { summary: 'horizontal' } },
             control     : { type: 'select' }
         },
-        visualType :{
-            description : 'none | icon | image',
-            control     : { type: 'select' }
-        },
         fit        :{
             defaultValue: 'content',
             description : 'content (fits the content) | container (fits the container)',
@@ -56,7 +52,7 @@ import { SelectionTileComponent }       from '../angular/selection-tile.componen
             defaultValue: '',
             control: {
                 type: 'select',
-                options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
+                options: [ ...illustrationIcons.map(a => a.list).flat().sort()],
             }
         },
     }}
@@ -85,7 +81,7 @@ export const commonProps = {
     ariaLabel   : '',
     errorMessage: 'This is an <em>HTML</em> error message',
     orientation : 'horizontal',
-    size        : 'fit-content',
+    fit        : 'fit-content',
     class       : 'm-2',
 };
 
@@ -133,7 +129,7 @@ export const commonProps = {
     }  %}
 
     {% include '@bf-components/selection-tile/twig/index.twig' with {
-        size        : 'fit-container',
+        fit        : 'fit-container',
         inputId     : 'my-selection-tile2',
         title       : 'Canal plus',
         description : 'Descriptium ipsum',
