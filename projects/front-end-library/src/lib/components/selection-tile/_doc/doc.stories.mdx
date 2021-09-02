@@ -1,7 +1,7 @@
 import { moduleMetadata }               from '@storybook/angular';
 import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 import { withDesign }                   from 'storybook-addon-designs';
-import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
+import illustrationIcons                from '../../../../../../../public/icons/list/illustrations.json';
 
 import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
 import { SelectionTileComponent }       from '../angular/selection-tile.component';
@@ -81,7 +81,7 @@ export const commonProps = {
     ariaLabel   : '',
     errorMessage: 'This is an <em>HTML</em> error message',
     orientation : 'horizontal',
-    fit        : 'fit-content',
+    fit         : 'fit-content',
     class       : 'm-2',
 };
 
@@ -92,9 +92,9 @@ export const commonProps = {
     <Story
         name='Selection Tile - vertical'
         args={{
-          elementPath : 'components/selection-tile/_doc/template.drupal',
-          ...commonProps,
-          orientation : 'vertical',
+            elementPath : 'components/selection-tile/_doc/template.drupal',
+            ...commonProps,
+            orientation : 'vertical',
         }}
     >
         {Drupal.bind({})}
@@ -109,8 +109,8 @@ export const commonProps = {
     <Story
         name='Selection Tile - horizontal'
         args={{
-          elementPath : 'components/selection-tile/_doc/template.drupal',
-          ...commonProps
+            elementPath : 'components/selection-tile/_doc/template.drupal',
+            ...commonProps
         }}
     >
         {Drupal.bind({})}
@@ -122,50 +122,46 @@ export const commonProps = {
 
 ```jsx
     {% include '@bf-components/selection-tile/twig/index.twig'  with {
-        inputId     : 'my-selection-tile1',
+        inputId     : 'canal-plus',
         title       : 'Canal plus',
-        description : 'Descriptium ipsum',
-        info        :  '$XX.xx/Month',
     }  %}
 
     {% include '@bf-components/selection-tile/twig/index.twig' with {
-        fit        : 'fit-container',
-        inputId     : 'my-selection-tile2',
+        fit         : 'fit-container',
+        inputId     : 'canal-plus',
         title       : 'Canal plus',
         description : 'Descriptium ipsum',
-        info        : '$XX.xx/Month'
-        isInvalid   : 'true',
+        info        : '$12.34/Month'
     }  %}
 
     {% include '@bf-components/selection-tile/twig/index.twig' with {
         orientation : 'vertical',
-        inputId     : 'my-selection-tile3',
+        inputId     : 'tva-sports',
+        inputType   : 'radio',
+        name        : 'radioGroupName',
         image       : {
             src   : '/images/logo/channels/tva-sports.svg',
-            alt   : 'TVA Sport',
-            class : '',
-        },
-        title        : '',
-        description : '',
+            alt   : 'TVA Sport'
+        }
     }  %}
 
     {% include '@bf-components/selection-tile/twig/index.twig' with {
         orientation : 'vertical',
-        fit        : 'container',
-        inputId     : 'my-selection-tile4',
+        fit         : 'container',
+        inputId     : 'movie-channel',
         title       : 'Movie Chanel',
-        description: 'lorem ipsum descriptum',
-        image         : {
+        description : 'lorem ipsum descriptum',
+        image       : {
             src : '/images/logo/channels/tva-sports.svg',
-            alt : 'the movie chanel',
+            alt : 'the movie chanel'
         }
-        info        : '$XX.xx/Month'
+        info        : '$12.34/Month'
     } %}
 ```
 
 ## More Info
 
-
+<!-- TODO mettre à jour si on transforme fit en bolean (genre fitContainer)-->
 - The *Selection Tile* comes in 4 layout combinations are :
     - fit : `content` + orientation : `horizontal` (default value)
     - fit : `container` + orientation :`horizontal`
