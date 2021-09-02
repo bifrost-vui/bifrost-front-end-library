@@ -12,26 +12,26 @@
       <div class=' d-flex gap-2 {{ (orientation == 'vertical') ? 'flex-row flex-wrap': 'flex-column'}}'>
         {% include '@bf-components/selection-tile/twig/index.twig'  with {
           value       : value,
-          inputId     : (inputId ~ '1' ~  loop.index)|default(inputId ~ '1' ~  loop.index),
-          name        : (name ~  loop.index)|default(name ~  loop.index),
-          ariaLabel   : (ariaLabel ~ '1' ~  loop.index)|default( ariaLabel ~ '1' ~  loop.index ),
+          inputId     : (inputId ~ '1' ~ loop.index)|default(inputId ~ '1' ~ loop.index),
+          name        : name|default(name ~ loop.index),
+          ariaLabel   : (ariaLabel ~ '1' ~ loop.index)|default( ariaLabel ~ '1' ~ loop.index ),
           isSelected  : isSelected|default(true),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           value       : value,
-          inputId     : (inputId ~ '2' ~  loop.index)|default(inputId ~ '2' ~  loop.index),
-          name        : (name ~  loop.index)|default(name ~  loop.index),
-          ariaLabel   : (ariaLabel ~ '2' ~  loop.index)|default(ariaLabel ~ '2' ~  loop.index),
+          inputId     : (inputId ~ '2' ~ loop.index)|default(inputId ~ '2' ~ loop.index),
+          name        : name|default(name ~ loop.index),
+          ariaLabel   : (ariaLabel ~ '2' ~ loop.index)|default(ariaLabel ~ '2' ~ loop.index),
           title       : title|default('Selection tile title'),
           iconName    : iconName|default('helix-tv-remote'),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           value       : value,
-          inputId     : (inputId ~ '3' ~  loop.index)|default(inputId ~ '3' ~  loop.index),
-          name        : (name ~  loop.index)|default(name ~  loop.index),
-          ariaLabel   : (ariaLabel ~ '3' ~  loop.index)|default(ariaLabel ~ '3' ~  loop.index),
+          inputId     : (inputId ~ '3' ~ loop.index)|default(inputId ~ '3' ~ loop.index),
+          name        : name|default(name ~ loop.index),
+          ariaLabel   : (ariaLabel ~ '3' ~ loop.index)|default(ariaLabel ~ '3' ~ loop.index),
           title       : title|default('Selection tile title'),
           description : description|default('lorem ipsum html <em>descriptum</em><sup>*</sup>'),
           image       : image|default({src:'/images/_docs/abstract-background.png',alt: 'abstract background',class : '',}),
@@ -40,9 +40,9 @@
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           value       : value,
-          inputId     : (inputId ~ '4' ~  loop.index)|default(inputId ~ '4' ~  loop.index),
-          name        : (name ~  loop.index)|default(name ~  loop.index),
-          ariaLabel   : (ariaLabel ~ '4' ~  loop.index)|default(ariaLabel ~ '4' ~  loop.index),
+          inputId     : (inputId ~ '4' ~ loop.index)|default(inputId ~ '4' ~ loop.index),
+          name        : name|default(name ~ loop.index),
+          ariaLabel   : (ariaLabel ~ '4' ~ loop.index)|default(ariaLabel ~ '4' ~ loop.index),
           title       : title|default('Selection tile title'),
           description : description|default('lorem ipsum html <em>descriptum</em><sup>&reg;</sup>'),
           iconName    : iconName|default('helix-tv-remote'),
@@ -53,7 +53,3 @@
     </div>
     {% endfor %}
   </div>
-
-<style>
-  /*--------for demo only---------*/
-</style>

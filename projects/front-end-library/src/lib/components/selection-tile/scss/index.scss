@@ -25,10 +25,8 @@
         &:hover{
             @extend .bf-border-highlight;
             box-shadow: var(--bf-box-shadow-light);
-            background-color: var(--bf-color-bg-underground);
         }
     }
-
     &__input{
         display: block;
         position: relative;
@@ -36,7 +34,7 @@
         appearance: none;
         width: 1.5rem;
         height: 1.5rem;
-        margin-right: var(--bf-spacer-small);
+        margin-right: var(--bf-spacer-xxsmall);
         border: 1px solid var(--bf-color-stroke-primary);
         border-radius: .125rem;
         background: none;
@@ -45,13 +43,18 @@
         &[type=radio]{
           border-radius: 50%;
         }
+        &:focus-visible{
+            outline: none;
+            + label{
+                box-shadow: var(--bf-box-shadow-highlight);
+            }
+        }
         &:checked + label {
             @extend .bf-border-highlight;
             background-color: var(--bf-color-bg-underground);
             border-width: 2px;
             &:hover{
                 box-shadow: var(--bf-box-shadow-light);
-                background-color: transparent;
                 border-color: var(--bf-color-stroke-primary);
             }
         }
@@ -72,7 +75,6 @@
     }
     img{
         height: 2.5rem;
-        @extend .pr-3;
     }
     &__block{
       pointer-events: none;
@@ -108,8 +110,7 @@
         }
         .bf-selection-tile__visual{
             align-self: center;
-
-            img{ @extend .pr-3; }
+            @extend .pr-2;
         }
         .bf-selection-tile__text{ align-self: center; }
 
@@ -230,14 +231,8 @@
 ** outer color contexts
 *------------------------------------*/
 
-.bf-color-bg-underground {
-    .bf-selection-tile__label:hover{
+.bf-color-bg-underground.bf-selection-tile__input:checked + label{
         background-color: var(--bf-color-bg-ground);
-    }
-    .bf-selection-tile__input:checked + label{
-        background-color: var(--bf-color-bg-ground);
-        &:hover{ background-color: transparent;}
-    }
 }
 
 .reversed .disabled,

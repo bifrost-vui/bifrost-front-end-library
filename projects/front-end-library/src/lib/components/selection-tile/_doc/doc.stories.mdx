@@ -24,23 +24,23 @@ import { SelectionTileComponent }       from '../angular/selection-tile.componen
     argTypes={{
         inputType   :{
             defaultValue: 'checkbox',
-            table       : { defaultValue: { summary: 'checkbox' } },
-            control     : { type: 'select' }
+            table       : { defaultValue : { summary: 'checkbox' } },
+            control     : { type : 'select' }
         },
-        inputId     :{type: { required: true } },
-        ariaLabel   :{type: { required: true } },
-        value       :{type: { required: true } },
-        orientation :{
+        value       : {type : { required: true } },
+        inputId     : {type : { required: true } },
+        ariaLabel   : {type : { required: true } },
+        orientation : {
             defaultValue: 'horizontal',
             description : 'horizontal | vertical',
-            table       : { defaultValue: { summary: 'horizontal' } },
+            table       : { defaultValue : { summary : 'horizontal' } },
             control     : { type: 'select' }
         },
         fit        :{
             defaultValue: 'content',
             description : 'content (fits the content) | container (fits the container)',
-            table       : { defaultValue: { summary: 'content' } },
-            control     : { type: 'select' }
+            table       : { defaultValue : { summary : 'content' } },
+            control     : { type : 'select' }
         },
         description : {
             description : 'supports the following html tags:  &lt;br&gt;, &lt;em&gt;, &lt;i&gt;, &lt;strong&gt;,&lt;b&gt;, &lt;sup&gt;, &lt;sub&gt;',
@@ -50,9 +50,9 @@ import { SelectionTileComponent }       from '../angular/selection-tile.componen
         },
         iconName: {
             defaultValue: '',
-            control: {
-                type: 'select',
-                options: [ ...illustrationIcons.map(a => a.list).flat().sort()],
+            control     : {
+                type    : 'select',
+                options : [ ...illustrationIcons.map(a => a.list).flat().sort()],
             }
         },
     }}
@@ -76,12 +76,12 @@ export const Drupal = (args) => ({
 });
 
 export const commonProps = {
-    inputId     : '',
     value       : '',
+    inputId     : '',
     ariaLabel   : '',
-    errorMessage: 'This is an <em>HTML</em> error message',
     orientation : 'horizontal',
     fit         : 'fit-content',
+    errorMessage: 'This is an <em>HTML</em> error message',
     class       : 'm-2',
 };
 
@@ -123,22 +123,25 @@ export const commonProps = {
 ```jsx
     {% include '@bf-components/selection-tile/twig/index.twig'  with {
         inputId     : 'canal-plus',
+        ariaLabel   : 'Canal plus',
         title       : 'Canal plus',
     }  %}
 
     {% include '@bf-components/selection-tile/twig/index.twig' with {
-        fit         : 'fit-container',
         inputId     : 'canal-plus',
+        ariaLabel   : 'Canal plus',
+        fit         : 'fit-container',
         title       : 'Canal plus',
         description : 'Descriptium ipsum',
         info        : '$12.34/Month'
     }  %}
 
     {% include '@bf-components/selection-tile/twig/index.twig' with {
-        orientation : 'vertical',
         inputId     : 'tva-sports',
+        ariaLabel   : 'TVA Sport',
         inputType   : 'radio',
         name        : 'radioGroupName',
+        orientation : 'vertical',
         image       : {
             src   : '/images/logo/channels/tva-sports.svg',
             alt   : 'TVA Sport'
@@ -146,9 +149,10 @@ export const commonProps = {
     }  %}
 
     {% include '@bf-components/selection-tile/twig/index.twig' with {
-        orientation : 'vertical',
-        fit         : 'container',
         inputId     : 'movie-channel',
+        ariaLabel   : 'Movie Chanel',
+        fit         : 'container',
+        orientation : 'vertical',
         title       : 'Movie Chanel',
         description : 'lorem ipsum descriptum',
         image       : {
