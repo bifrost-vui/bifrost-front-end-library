@@ -12,7 +12,7 @@
             type='button'
         {% endif %}
         class='
-            bf-button-icon 
+            bf-button-icon
             {% if reversed is same as (true) %}reversed{% endif %}
             {% if isDisabled is same as (true) %}disabled{% endif %}
             {{ class|default('') }}'
@@ -30,19 +30,16 @@
             name        : icon|default('placeholder')
         } only %}
 
-    </{{ isLink ? 'a' : 'button' }}> 
+    </{{ isLink ? 'a' : 'button' }}>
 
 {% if hasBadge %}
-
-        {% if badge is defined and badge %}
-            {% include '@bf-components/badge/twig/index.twig' with {
-                label     : badge|default('0'),
-                class     : 'bf-button-icon-container__badge',
-                hierarchy : 'primary',
-                isRounded : true
-            } only %}
-        {% endif %}
-
+    {% if badge is defined and badge %}
+        {% include '@bf-components/badge/twig/index.twig' with {
+            label     : badge|default('0'),
+            class     : 'bf-button-icon-container__badge',
+            hierarchy : 'primary',
+            isRounded : true
+        } only %}
+    {% endif %}
     </div>
-
 {% endif %}
