@@ -16,8 +16,11 @@ export class BadgeComponent implements OnInit {
         Display an angle on a corner.
     */
     @Input() angle          : '' | 'left' | 'right';
-
+    
+    @Input() isRounded      : boolean;
+    
     @Input() class          : string;
+    @Input() iconName       : string;
     @Input() reversed       : boolean;
 
     ngOnInit() {

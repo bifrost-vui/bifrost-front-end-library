@@ -13,6 +13,9 @@ import { HeaderComponent }          from '../angular/header.component';
         moduleMetadata({ declarations: [HeaderComponent, TwigContainerComponent]})
     ]}
     argTypes={{
+        accountHello: {
+            table: { defaultValue: { summary: 'Hello' } },
+        },
         langcode: {
             defaultValue: 'FR',
             control: {
@@ -142,6 +145,10 @@ export const Drupal = (args) => ({
             elementPath : 'components/navigation-header/_doc/template.drupal',
             topBar_items,
             topBar_secondaryItems,
+            logo : {
+                name                : 'business',
+                href                : '/',
+            },
             rigthIconLinks,
             cartBtn
         }}

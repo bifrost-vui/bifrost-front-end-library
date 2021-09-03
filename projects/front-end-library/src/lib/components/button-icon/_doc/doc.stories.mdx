@@ -1,13 +1,13 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 
-import { interfaceIcons }                   from '../../icon/_doc/data.ts';
+import interfaceIcons                       from '../../../../../../../public/icons/list/interfaces.json';
 import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
 import { ButtonIconComponent }              from '../angular/button-icon.component';
 
 
-<Meta 
-    title='Components/Button Icon' 
+<Meta
+    title='Components/Button Icon'
     component={ButtonIconComponent}
     decorators={[
         moduleMetadata({ declarations: [ButtonIconComponent, TwigContainerComponent]})
@@ -35,33 +35,32 @@ import { ButtonIconComponent }              from '../angular/button-icon.compone
 
 
 
-## Drupal implementation exemple
+## Drupal implementation example
 
 ```jsx
 {% include '@bf-components/button-icon/twig/index.twig' with {
-    icon        : 'placeholder'
+    icon : 'placeholder'
 } only %}
 
-
+// With a badge
 {% include '@bf-components/button-icon/twig/index.twig' with {
-    badge : {
-        label : '3',
-        },
+    badge : '3'
+} only %}
+
+// With a link instead of a button
+{% include '@bf-components/button-icon/twig/index.twig' with {
+    href : '#'
+} %}
+
+// Disabled
+{% include '@bf-components/button-icon/twig/index.twig' with {
+    isDisabled : true
 } %}
 ```
 
 
 
 ## Drupal
-
-export const commonProps = {
-    icon : 'cart',
-    badge : {
-        label       : '3',
-        class       : '',
-        hierarchy   : 'primary',        
-        },
-};
 
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
@@ -70,15 +69,14 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '1000px' }}
+    style={{ height: '400px' }}
 >
-    <Story 
+    <Story
         name='Drupal'
-        args={{ 
+        args={{
             elementPath : 'components/button-icon/_doc/template.drupal',
-            ...commonProps,
+            icon        : 'cart'
         }}
-        height='160px'
     >
         {Drupal.bind({})}
     </Story>

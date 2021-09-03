@@ -16,12 +16,12 @@ export const rigthIconLinks = [
 ];
 
 export const cartBtn = {
-    badge: { label : '3'} ,
-    href : 'https://www.videotron.com',
-    ariaLabel : 'My cart'
+    badge: "3" ,
+    href : "https://www.videotron.com",
+    ariaLabel : "My cart"
 };
 
 export const funnelNav = {
-    label: 'Back' ,
-    href : ' ',
+    label: "Back" ,
+    href : " ",
 };

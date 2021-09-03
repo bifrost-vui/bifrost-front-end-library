@@ -1,12 +1,28 @@
 <div class='
     bf-badge
     bf-badge--{{ hierarchy|default('secondary') }}
+    {% if isRounded is defined and isRounded is same as (true) %}bf-badge--rounded{% endif %}
     {% if angle is defined and angle is not empty %}bf-badge--angle-{{ angle }}{% endif %}
     {{ class|default('') }}
     '>
-    <div class='bf-badge__container '>
-        <p class='bf-badge__label small font-weight-bold {% if noUppercase is not defined or noUppercase is not same as (true) %}text-uppercase{% endif %}'>
+    <div class='bf-badge__container position-relative d-flex align-items-center'>
+        <p class='bf-badge__label small {% if noUppercase is not defined or noUppercase is not same as (true) %}text-uppercase{% endif %} m-0'>
+
+            {% if iconName is defined and iconName %}
+                {% include '@bf-components/icon/twig/index.twig' with {
+                    name    : iconName,
+                    class   : 'pr-1',
+                    size	: 'small',
+                } only %}
+
+                <span class='bf-badge__label__text'>
+            {% endif %}
             {{ label|default('') }}
+
+            {% if iconName is defined and iconName %}
+                </span>
+            {% endif %}
+
         </p>
     </div>
 </div>

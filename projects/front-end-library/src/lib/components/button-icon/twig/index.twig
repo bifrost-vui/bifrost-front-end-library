@@ -1,48 +1,45 @@
-{% set isLink = (href is defined and href is not empty) %}
-{% set showBadge = (badge is defined and badge is not empty) %}
+{% set isLink   = (href is defined and href is not empty) %}
+{% set hasBadge = (badge is defined and badge is not empty) %}
 
-
-{% if showBadge %}
-    <div class="bf-button-icon-container {{ (isDisabled) ? 'disabled' }}">
+{% if hasBadge %}
+    <div class='bf-button-icon-container {{ isDisabled ? 'disabled' }}'>
 {% endif %}
 
-<{{ isLink ? 'a' : 'button' }}
-    {% if isLink is same as (true) %}
-        href='{{ href|default('#') }}'
-    {% else %}
-        type='button'
+    <{{ isLink ? 'a' : 'button' }}
+        {% if isLink is same as (true) %}
+            href='{{ href|default('#') }}'
+        {% else %}
+            type='button'
+        {% endif %}
+        class='
+            bf-button-icon
+            {% if reversed is same as (true) %}reversed{% endif %}
+            {% if isDisabled is same as (true) %}disabled{% endif %}
+            {{ class|default('') }}'
+        {% if isDisabled is same as (true) %}disabled='disabled'{% endif %}
+        {% if label is not empty %}data-title='{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}'{% endif %}
+        {% if dataDismiss is defined %}data-dismiss='{{ dataDismiss|default(NULL) }}'{% endif %}
+        {% if dataToggle is defined %}data-toggle='{{ dataToggle|default(NULL) }}'{% endif %}
+        {% if dataTarget is defined %}data-target='{{ dataTarget|default(NULL) }}'{% endif %}
+        {% if ariaControls is defined %}aria-controls='{{ ariaControls|default(NULL) }}'{% endif %}
+        {% if ariaExpanded is defined %}aria-expanded='{{ ariaExpanded|default(NULL) }}'{% endif %}
+        {% if ariaLabel is defined %}aria-expanded='{{ ariaLabel|default(NULL) }}'{% endif %}
+        {{ extraAttribute|default(NULL) }}
+    >
+        {% include '@bf-components/icon/twig/index.twig' with {
+            name        : icon|default('placeholder')
+        } only %}
+
+    </{{ isLink ? 'a' : 'button' }}>
+
+{% if hasBadge %}
+    {% if badge is defined and badge %}
+        {% include '@bf-components/badge/twig/index.twig' with {
+            label     : badge|default('0'),
+            class     : 'bf-button-icon-container__badge',
+            hierarchy : 'primary',
+            isRounded : true
+        } only %}
     {% endif %}
-    class='
-        bf-button-icon 
-        {% if reversed is same as (true) %}reversed{% endif %}
-        {% if isDisabled is same as (true) %}disabled{% endif %}
-        {{ class|default('') }}'
-    {% if isDisabled is same as (true) %}disabled='disabled'{% endif %}
-    {% if label is not empty %}data-title='{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}'{% endif %}
-    {% if dataDismiss is defined %}data-dismiss='{{ dataDismiss|default(NULL) }}'{% endif %}
-    {% if dataToggle is defined %}data-toggle='{{ dataToggle|default(NULL) }}'{% endif %}
-    {% if dataTarget is defined %}data-target='{{ dataTarget|default(NULL) }}'{% endif %}
-    {% if ariaControls is defined %}aria-controls='{{ ariaControls|default(NULL) }}'{% endif %}
-    {% if ariaExpanded is defined %}aria-expanded='{{ ariaExpanded|default(NULL) }}'{% endif %}
-    {% if ariaLabel is defined %}aria-expanded='{{ ariaLabel|default(NULL) }}'{% endif %}
-    {{ extraAttribute|default(NULL) }}
->
-    {% include '@bf-components/icon/twig/index.twig' with {
-        name    : icon|default('placeholder')
-    } only %}
-
-
-
-</{{ isLink ? 'a' : 'button' }}> 
-
-{% if showBadge %}
-
-    {% include '@bf-components/badge/twig/index.twig' with {
-        label       : badge.label|default('0'),
-        class       : badge.class,
-        hierarchy   : 'primary',
-    }  %}
-
     </div>
-
 {% endif %}
