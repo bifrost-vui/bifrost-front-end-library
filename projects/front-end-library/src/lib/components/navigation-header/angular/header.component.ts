@@ -4,6 +4,11 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  *
  */
 
+interface ILogo {
+    href: string;
+    name: string;
+}
+
 @Component({
     selector: 'bf-header',
     templateUrl: './header.component.html',
@@ -13,7 +18,10 @@ export class HeaderComponent implements OnInit {
     constructor() {}
 
     @Input() reversed                : boolean;
-    @Input() logo_name               : string;
+
+    /** See [Logo Component API](/?path=/docs/components-logo--drupal). E.g. `logo = { href: "#", name: "videotron" }` */
+    @Input() logo                    : ILogo;
+
     @Input() search_placeholder      : string;
 
     /** Note: TopBar is only visible on desktop. */
@@ -31,6 +39,7 @@ export class HeaderComponent implements OnInit {
 
     @Input() hrefLogOut               : string;
     @Input() labelLogOut              : string;
+    @Input() labelLogIn               : string;
     @Input() hrefConnexion            : string;
     @Input() labelMyAccount           : string;
     /** Shows up in top bar only */
@@ -40,6 +49,10 @@ export class HeaderComponent implements OnInit {
     @Input() hasCartBtn              : boolean;
     /** Note : empty, undefined or 0 badge label value hides the cart's badge */
     @Input() cartBtn                 : any[];
+    /** String displayed before `accountName` in the Top Bar, when connected. */
+    @Input() accountHello             : string;
+    /** Name of the user, displayed in the Top Bar when connected. */
+    @Input() accountName             : any[];
 
     @Input() hasNoSearchBtn          : boolean;
 

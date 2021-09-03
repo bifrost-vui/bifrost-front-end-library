@@ -6,63 +6,50 @@
 
 
 .bf-button-icon {
-    position: relative;
-    display: inline-block;
-    width: auto;
-    margin: 0;
-    padding: var(--bf-spacer-xsmall);
-    background: none;
-    border: none;
-    color: inherit;
-    border-radius: 50%;
-    transition: background-color .25s;
+  position: relative;
+  display: inline-block;
+  width: auto;
+  margin: 0;
+  padding: var(--bf-spacer-xsmall);
+  background: none;
+  border: none;
+  color: inherit;
+  border-radius: 50%;
+  transition: background-color .25s;
 
-    &:hover {
-        background-color: var(--bf-color-bg-action-no-bg-hover);
+  &:hover {
+    background-color: var(--bf-color-bg-action-no-bg-hover);
+  }
+  @at-root .disabled,
+  &[disabled] {
+    pointer-events: none;
+
+    .bf-icon {
+      color: var(--bf-color-neutral-tertiary);
     }
-
-    &[disabled] {
-        pointer-events: none;
-
-        .bf-icon {
-            color: var(--bf-color-neutral-tertiary);
-        }
-    }
+  }
 }
 
 
 .bf-button-icon-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-right: 5px;
+  position: relative;
+  display: inline-block;
 
-    &__badge {
-        position: absolute;
-        top: 1px;
-        right: 1px;
+  &__badge {
+    position: absolute;
+    top: 1px;
+    right: 1px;
 
-        .bf-badge__container {
-            justify-content: center;
-            height: 1rem;
-            min-height: auto;
-            min-width: 1rem;
-            padding-inline: 4px;
+    .bf-badge__container {
+      justify-content: center;
+      height: 1rem;
+      min-height: auto;
+      min-width: 1rem;
+      padding-inline: 4px;
 
-            .bf-badge__label {
-                letter-spacing: 0px;
-            }
-
-        }
-    }
-
-  &.hasLabel {
-    .label-icon {
-      cursor: pointer;
-      margin-left: 1px;
-    }
-    @include media-breakpoint-down(sm){
-      display: none;
+      .bf-badge__label {
+        letter-spacing: 0px;
+      }
     }
   }
 }

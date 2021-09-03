@@ -22,10 +22,9 @@ export const cartBtn = {
 };
 
 export const menuItemAccount = [
-  { label: "Espace client", href: "https://www.videotron.com" ,iconName: "profile", description: "Add your description here"},
-  { label: "Mon compte Helix", href: "https://www.videotron.com", iconName: "profile", description: "" },
+  { label: "Espace client", href: "https://www.videotron.com" ,iconName: "my-account", description: "Add your description here"},
+  { label: "Mon compte Helix", href: "https://www.videotron.com", iconName: "my-account", description: "" },
   { label: "Ma facture Videotron", href: "https://www.videotron.com", iconName: "bill", description: "Add your description here" },
   { label: "Ma facture Helix", href: "https://www.videotron.com", iconName: "bill", description: "" },
-  { label: "Deconnexion", href: "https://www.videotron.com", iconName: "out", description: "" },
   { label: "this menu item shoul not appear", href: "" },
 ];

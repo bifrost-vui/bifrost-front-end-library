@@ -115,36 +115,43 @@
           border-radius: 50%;
         }
       }
-      .dropdown {
-        .btn, .btn:not(.btn-small) {
-        padding-left: 1rem;
-        padding-right: 1rem;
-        min-width: auto;
+      .login, .logout {
+        position: relative;
         text-transform: none;
         color: var(--bf-color-neutral-primary);
         font-size: 1.25rem;
         font-weight: 400;
         line-height: inherit;
         letter-spacing: 1px;
+      }
+      .dropdown {
+        .dropdown-toggle {
+          &.login:before {
+            content: "";
+            transform-origin: center left;
+            width: 100%;
+            height: 3px;
+            background-color: var(--bf-color-neutral-primary);
+            transition: transform 0.2s ease-out;
+            will-change: transform;
+            position: absolute;
+            bottom: 0;
+            top: auto;
+            left: 0;
+            transform: scaleX(0);
+          }
         }
-          &.show:before {
-          content: "";
-          transform-origin: center left;
-          width: 100%;
-          height: 3px;
-          background-color: var(--bf-color-neutral-primary);
-          transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
-          will-change: transform;
-          position: absolute;
-          bottom: 0;
-          top: auto;
-          left: 0;
+        .dropdown-menu .dropdown-item {
+          font-size: 0.75rem;
+
+          .description {
+            margin-left: 1.8rem;
+            font-size: 0.6rem;
+          }
+        }
+        &.login.show .login:before {
           transform: scaleX(1);
-        }
-        .description {
-          margin-left: 1.7rem;
-          font-size: 0.70rem;
-        }
+      }
      }
     }
 
@@ -199,24 +206,24 @@
             }
 
             @include media-breakpoint-up(lg) {
-                &:before {
-                    content: '';
-                    @include transitions(transform .2s ease-out);
-                    position: absolute;
-                    bottom: 0;
-                    top: auto;
-                    left: 0;
-                    transform: scaleX(0);
-                    transform-origin: center left;
-                    width: 100%;
-                    height: 3px;
-                    background-color: var(--bf-color-neutral-primary);
+              &:before {
+                  content: '';
+                  @include transitions(transform .2s ease-out);
+                  position: absolute;
+                  bottom: 0;
+                  top: auto;
+                  left: 0;
+                  transform: scaleX(0);
+                  transform-origin: center left;
+                  width: 100%;
+                  height: 3px;
+                  background-color: var(--bf-color-neutral-primary);
 
-                    &:hover,
-                    &:focus {
-                        transform: scaleX(1);
-                    }
-                }
+                  &:hover,
+                  &:focus {
+                      transform: scaleX(1);
+                  }
+              }
             }
         }
     }
@@ -336,6 +343,6 @@
     }
 
     button {
-        color: inherit; // Override browser default
+      color: inherit; // Override browser default
     }
 }
