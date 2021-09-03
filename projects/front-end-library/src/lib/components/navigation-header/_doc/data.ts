@@ -11,8 +11,8 @@ export const topBar_secondaryItems = [
 ];
 
 export const rigthIconLinks = [
-    { icon:"email", href:" ", labelIcon:"", class:"" },
-    { icon:"pin", href:" ",  labelIcon:"", class:"" },
+    { icon:"email", href:" ", class:"" },
+    { icon:"pin", href:" ", class:"" },
 ];
 
 export const cartBtn = {
