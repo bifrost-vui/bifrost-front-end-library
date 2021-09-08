@@ -1,8 +1,9 @@
 <div class='
     bf-badge
     bf-badge--{{ hierarchy|default('secondary') }}
-    {% if isRounded is defined and isRounded is same as (true) %}bf-badge--rounded{% endif %}
-    {% if angle is defined and angle is not empty %}bf-badge--angle-{{ angle }}{% endif %}
+    {% if isRounded is defined and isRounded is same as (true) %}bf-badge--rounded
+    {% elseif angle is defined and angle is not empty %}bf-badge--angle-{{ angle }}
+    {% endif %}
     {{ class|default('') }}
     '>
     <div class='bf-badge__container position-relative d-flex align-items-center'>
