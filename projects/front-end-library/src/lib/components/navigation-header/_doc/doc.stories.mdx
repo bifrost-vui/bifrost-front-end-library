@@ -2,6 +2,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 
 import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn, funnelNav } from './data';
+import headerLogos from './headerLogos.json';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent }          from '../angular/header.component';
 
@@ -24,10 +25,10 @@ import { HeaderComponent }          from '../angular/header.component';
             }
         },
         logoName: {
-            defaultValue: 'videotron',
+            defaultValue: 'Videotron',
             control: {
                 type: 'select',
-                options: ['videotron', 'business', 'club-illico'],
+                options: [...headerLogos.map(item => item.name)],
             }
         },
         hasTopBar: {
@@ -35,6 +36,9 @@ import { HeaderComponent }          from '../angular/header.component';
         },
         reversed: {
             defaultValue: false,
+        },
+        headerLogos: {
+            table: { disable: true }
         }
     }}
 />
@@ -145,12 +149,9 @@ export const Drupal = (args) => ({
             elementPath : 'components/navigation-header/_doc/template.drupal',
             topBar_items,
             topBar_secondaryItems,
-            logo : {
-                name                : 'business',
-                href                : '/',
-            },
             rigthIconLinks,
-            cartBtn
+            cartBtn,
+            headerLogos
         }}
         height='400px'
         with = '1200px'
@@ -168,6 +169,7 @@ export const Drupal = (args) => ({
             elementPath : 'components/navigation-header/_doc/template.drupal',
             cartBtn,
             funnelNav,
+            headerLogos,
             isFunnel : true
         }}
         height='400px'

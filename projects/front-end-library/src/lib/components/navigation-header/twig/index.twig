@@ -19,24 +19,41 @@
 	{% endif %}
 	<nav class='bf-header__nav w-100 border-bottom bf-border-color-secondary {{ class|default(' ') }}'>
 		{# <!-- Logo --> #}
-		<div class='bf-header__logo'>
+		<div class='bf-header__logo bf-logo'>
 			{% if logoHref is defined and logoHref %}
 				<a href='{{ logoHref }}' class='d-flex'>
 			{% endif %}
 
-				{% set fileNameBase = logoName %}
+      {% set headerLogos = [
+        { name : "Business", filename:"videotron-affaires", filenameEN:"videotron-business" },
+        { name : "Club Illico", filename:"club-illico" },
+        { name : "Helix", filename:"helix" },
+        { name : "Illico", filename:"illico" },
+        { name : "My Account", filename:"mon-compte", filenameEN:"my-account" },
+        { name : "Videotron", filename:"videotron" },
+      ]
+      %}
 
-				{% if logoName is defined and logoName == ('business') %}
-					{% if langcode == 'FR' %}
-						{% set fileNameBase = 'videotron-affaires' %}
-					{% else %}
-						{% set fileNameBase = 'videotron-business' %}
-					{% endif %}
-				{% endif %}
+      {% for logo in headerLogos %}
+        {% if logo.name == logoName %}
+          {% if (langcode == 'FR') or (langcode == 'EN' and logo.filenameEN is not defined ) %}
+            <div class="d-none d-lg-block">
+              {% include '@bf-components/navigation-header/svg/logo-header-' ~ logo.filename ~ '-lg.svg' ignore missing %}
+            </div>
 
-				<div class='bf-logo d-inline-flex align-items-center justify-content-center'>
-					{% include '@bf-components/navigation-header/svg/logo-header-' ~ fileNameBase ~ '-lg.svg' ignore missing %}
-				</div>
+            <div class="d-lg-none">
+              {% include '@bf-components/navigation-header/svg/logo-header-' ~ logo.filename ~ '-sm.svg' ignore missing %}
+            </div>
+          {% else %}
+            <div class="d-none d-lg-block">
+              {% include '@bf-components/navigation-header/svg/logo-header-' ~ logo.filenameEN ~ '-lg.svg' ignore missing %}
+            </div>
+
+            <div class="d-lg-none">
+              {% include '@bf-components/navigation-header/svg/logo-header-' ~ logo.filenameEN ~ '-sm.svg' ignore missing %}
+            </div>          {% endif %}
+        {% endif %}
+      {% endfor %}
 
 			{% if logoHref is defined and logoHref %}</a>{% endif %}
 		</div>

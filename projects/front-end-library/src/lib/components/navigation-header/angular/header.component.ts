@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit {
     @Input() hasCartBtn              : boolean;
     /** Note : empty, undefined or 0 badge label value hides the cart's badge */
     @Input() cartBtn                 : any[];
+    @Input() langcode                : string;
 
     @Input() hasNoSearchBtn          : boolean;
 
