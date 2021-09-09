@@ -1,8 +1,4 @@
-<header
-    role='banner'
-    class="bf-header z-index-18 {{(reversed) ? 'reversed': ''}} {{ (isFunnel) ? 'bf-header--funnel' : '' }}" {% if theme is defined %} data-theme={{theme}} {% endif %}>
-
-    {% if hasTopBar is defined and hasTopBar is same as (true) and not isFunnel %}
+  {% if hasTopBar is defined and hasTopBar and not isFunnel %}
 
 		{% include '@bf-components/navigation-header/twig/top-bar.twig' with {
         items                   : topBar.items|default([]),
@@ -17,6 +13,12 @@
         reversed                : reversed|default(false),
     } only %}
 	{% endif %}
+
+  <header
+    role='banner'
+    class="bf-header z-index-18 {{(reversed) ? 'reversed': ''}} {{ (isFunnel) ? 'bf-header--funnel' : '' }}" {% if theme is defined %} data-theme={{theme}} {% endif %}>
+
+
 	<nav class='bf-header__nav w-100 border-bottom bf-border-color-secondary {{ class|default(' ') }}'>
 		{# <!-- Logo --> #}
 		<div class='bf-header__logo bf-logo'>
@@ -151,9 +153,7 @@
               {% block globalSearch %}
                 {% include '@bf-components/input-search/twig/index.twig' with {
                   class     : 'mb-0',
-                  input     : {
-                    placeholder : search.placeholder|default('')|t,
-                  },
+                  input     : { placeholder : search.placeholder|default('')|t, },
                   reversed  : reversed,
                 } %}
               {% endblock %}
@@ -175,7 +175,7 @@
   {# <!-- Algolia search results-->  #}
   {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
     <div class='align-items-center justify-content-between w-100'>
-       <div id='alg-hits' class='ais-Hits bf-color-bg-ground alg-hidden'></div>
+      <div id='alg-hits' class='ais-Hits bf-color-bg-ground alg-hidden'></div>
     </div>
   {% endif %}
 </header>
