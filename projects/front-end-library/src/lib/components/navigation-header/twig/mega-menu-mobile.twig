@@ -1,0 +1,253 @@
+{% for navItem in navItems %}
+  {% if navItem.subItemsMultiDropdown %}
+    <li>
+      <ul class="list-sub-items">
+
+        {% for subItem in navItem.subItemsMultiDropdown %}
+          <li  class="nav-item bf-megamenu__nav-item js-bf-megamenu__nav-item position-static {{ navItem.class }}">
+            <a
+              class="nav-link js-bf-megamenu__nav-link d-flex align-items-center h-100"
+              id="v-pills-{{ subItem.catLabel|default('category')|url_encode }}-tab"
+              data-toggle="pill"
+              href="#v-pills-{{ subItem.catLabel|default('category')|url_encode }}"
+              role="tab"
+              aria-controls="v-pills-{{ subItem.catLabel|default('category')|url_encode }}"
+              aria-selected="true"
+              tabindex=-1
+              aria-label="Toggle navigation"
+            >
+              {% include '@bf-components/icon/twig/index.twig' with {
+                name        : subItem.iconName|default,
+                size        : 'medium',
+                class       : 'img-fluid position-relative mr-3 interface',
+                reversed    : reversed|default,
+              } only %}
+              <span class="mb-0">
+                     {{ subItem.catLabel|default('category') }}
+                </span>
+              {% include '@bf-components/icon/twig/index.twig' with {
+                name        : "chevron-right",
+                class       : "",
+              } %}
+            </a>
+           {# {% if navItem.subItemsMultiDropdown %}#}
+
+              <div class="bf-megamenu__panel js-bf-megamenu__panel js-bf-megamenu__full-height" aria-labelledby="menuDropdown{{ loop.index }}">
+                <div class="d-flex h-100">
+
+                  {% include '@bf-components/button-icon/twig/index.twig' with {
+                    icon        : 'chevron-left',
+                    class       : 'btn-back-menu js-bf-megamenu__close',
+                  } only %}
+                  <div class="bf-tabs nav d-flex flex-column js-bf-megamenu__full-height"
+                       id="v-pills-tab"
+                       role="tablist"
+                       aria-orientation="vertical"
+                  >
+                  {#  {% for subItem in navItem.subItemsMultiDropdown %}
+
+
+                      <a class="bf-tabs__tab js-bf-tabs__tab link--no-decoration d-flex align-items-center p-2 p-lg-3"
+                         id="v-pills-{{ subItem.catLabel|default('category')|url_encode }}-tab"
+                         data-toggle="pill"
+                         href="#v-pills-{{ subItem.catLabel|default('category')|url_encode }}"
+                         role="tab"
+                         aria-controls="v-pills-{{ subItem.catLabel|default('category')|url_encode }}"
+                         aria-selected="true"
+                         tabindex=-1>
+                        {% include '@bf-components/icon/twig/index.twig' with {
+                          name        : subItem.iconName|default,
+                          size        : 'medium',
+                          class       : 'img-fluid position-relative',
+                          reversed    : reversed|default,
+                        } only %}
+                        <span class="ml-3">
+                         {{ subItem.catLabel|default('category') }}
+                         </span>
+                      </a>
+                    {% endfor %}#}
+                    <div class="tab-content" id="v-pills-tabContent">
+                      <!-- TAB : pane -->
+                      {% for dropdownSubItem in navItem.subItemsMultiDropdown %}
+
+
+                        <div class="tab-pane js-bf-tab-pane fade h-100 "
+                             id="v-pills-{{ dropdownSubItem.catLabel|default('category')|url_encode }}"
+                             role="tabpanel"
+                             aria-labelledby="v-pills-{{ dropdownSubItem.catLabel|default('category')|url_encode }}-tab"
+                        >
+                          <div class="p-dropdown-megamenu js-bf-dropdown-megamenu h-100 d-flex flex-column justify-content-between p-3 py-md-4 px-md-5">
+                            <div class="row">
+                              {% for subItem in dropdownSubItem.subdropdownItems %}
+                                {% set fullWidth = subItem.isFullWidth ? 'col-lg-12' : 'col-lg-3'  %}
+                                {% set hasBorder = (subItem.isFullWidth and subItem.fullWidthHasBorder) ? subItem.fullWidthHasBorder : ''  %}
+                                <div class="{{ fullWidth }} py-0 {{ hasBorder }} ">
+                                  {% if subItem.label is defined and subItem.label is not empty %}
+                                    <div class="mb-2">
+                                      <a href="{{ subItem.href }}"
+                                         class="js-bf-dropdown-item-link font-weight-bold"
+                                         rel="{{ subItem.rel|default('') }}"
+                                         tabindex=-1
+                                        {{ subItem.extraAttribute|default(NULL) }}
+                                      >{{ subItem.label|default('Link') }}</a>
+                                    </div>
+                                  {% endif %}
+
+                                  {% if subItem.listItems %}
+                                    <ul class="p-0 list-unstyled">
+                                      {% for subItem in subItem.listItems %}
+                                        <li class="mb-2">
+                                          <a href="{{ subItem.href }}"
+                                             class="js-bf-dropdown-item-link d-block d-lg-inline py-1 py-lg-0 {{ subItem.class }}"
+                                             rel="{{ subItem.rel|default('dofollow') }}"
+                                             tabindex=-1
+                                            {{ subItem.extraAttribute|default(NULL) }}
+                                          >{{ subItem.label|default('Link') }}</a>
+                                        </li>
+                                      {% endfor %}
+                                    </ul>
+                                  {% endif %}
+                                </div>
+                              {% endfor %}
+                            </div>
+
+                            {% if dropdownSubItem.mega is not empty %}
+                              <div class="d-none d-lg-block mt-4 mt-lg-0">
+                                <hr class="my-4">
+
+                                <div class="">
+                                  <div class="row">
+                                    {% for item in dropdownSubItem.mega %}
+                                      <div class="col-md-6 mb-3 mb-md-0">
+                                        {% include '@bf-components/navigation-header/twig/mega-menu-block.twig' with {
+                                          imgSrc: item.imgSrc,
+                                          imgAlt: item.imgAlt,
+                                          href: item.href,
+                                          title: item.title,
+                                          text: item.text,
+                                        } %}
+                                      </div>
+                                    {% endfor %}
+                                  </div>
+                                </div>
+                              </div>
+                            {% endif %}
+                          </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+
+           {# {% elseif navItem.subItems %}#}
+
+            {#  <div class="bf-megamenu__panel js-bf-megamenu__panel" aria-labelledby="menuDropdown{{ loop.index }}">
+
+                {% include '@bf-components/button-icon/twig/index.twig' with {
+                  icon        : 'x',
+                  class       : 'btn-close d-block d-lg-none m-2 m-md-4 z-index-10 js-bf-megamenu__close',
+                } only %}
+
+                <div class="p-3 py-md-4 px-md-5">
+                  <div class="row">
+                    {% for subItem in navItem.subItems %}
+                      {% set fullWidth = subItem.isFullWidth ? 'col-lg-12' : 'col-lg-3'  %}
+                      {% set hasBorder = (subItem.isFullWidth and subItem.fullWidthHasBorder) ? subItem.fullWidthHasBorder : ''  %}
+                      {% set itemClass = subItem.class ? subItem.class : ''  %}
+                      <div class="{{ fullWidth }} mb-3 {{ itemClass }} {{ hasBorder }}">
+                        {% if subItem.label is defined and subItem.label is not empty %}
+                          <div class="mb-2">
+                            <a href="{{ subItem.href }}"
+                               class="js-bf-dropdown-item-link font-weight-bold"
+                               rel="{{ subItem.rel|default('') }}"
+                               tabindex=-1
+                              {{ subItem.extraAttribute|default(NULL) }}
+                            >{{ subItem.label|default('Link') }}</a>
+                          </div>
+                        {% endif %}
+
+                        {% if subItem.subItems %}
+                          <ul class="p-0 list-unstyled">
+                            {% for subItem in subItem.subItems %}
+                              <li class="mb-2">
+                                <a href="{{ subItem.href }}"
+                                   class="js-bf-dropdown-item-link d-block d-lg-inline py-1 py-lg-0 {{ subItem.class }}"
+                                   rel="{{ subItem.rel|default('dofollow') }}"
+                                   tabindex=-1
+                                  {{ subItem.extraAttribute|default(NULL) }}
+                                >{{ subItem.label|default('Link') }}</a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                  </div>
+
+                  {% if navItem.mega is not empty %}
+                    <div class="d-none d-lg-block">
+                      <hr class="my-4">
+
+                      <div class="row">
+                        {% for item in navItem.mega %}
+                          <div class="col-md-6 mb-3 mb-md-0">
+                            {% include '@bf-components/navigation-header/twig/mega-menu-block.twig' with {
+                              imgSrc  : item.imgSrc,
+                              imgAlt  : item.imgAlt,
+                              href    : item.href,
+                              title   : item.title,
+                              text    : item.text,
+                            } %}
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+            {% endif %}#}
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+     {% endif %}
+    {% endfor %}
+
+
+      {% for navItem in navItems %}
+       {% if navItem.subItems %}
+        <li  class="nav-item bf-megamenu__nav-item js-bf-megamenu__nav-item position-static {{ navItem.class }}">
+        <button
+          class="nav-link js-bf-megamenu__nav-link d-flex align-items-center h-100"
+          type="button"
+          id="menuDropdown{{ loop.index }}"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          {% include '@bf-components/icon/twig/index.twig' with {
+            name        : navItem.iconName|default,
+            size        : 'medium',
+            class       : 'img-fluid position-relative mr-3 interface',
+            reversed    : reversed|default,
+          } only %}
+                <span class="mb-0">
+                    {{ navItem.label }}
+                </span>
+          {% include '@bf-components/icon/twig/index.twig' with {
+            name        : "chevron-right",
+            class       : "",
+          } %}
+        </button>
+
+
+
+
+
+        {% endif %}
+
+    </li>
+{% endfor %}

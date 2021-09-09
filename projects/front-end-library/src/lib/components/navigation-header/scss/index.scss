@@ -52,26 +52,22 @@
                   flex: 2;
                 }
 
-                .bf-icon {
-                    &.type-interface {
-                    flex: 0 1;
-                    display: block !important;
-                    transform: rotate(-90deg);
-                  }
+                .bf-icon.interface {
+                 //transform: rotate(180deg);
                 }
               }
+              }
+            }
 
-              &.open .nav-link {
-                .bf-icon {
-                    &.type-interface {
-                    transform: rotate(90deg);
-                  }
-                }
+            .list-sub-items {
+              padding-left:0;
+              li {
+                border: 0;
               }
             }
           }
         }
-      }
+
 
     &__search-bar {
       width: 100%;
@@ -254,18 +250,44 @@
         }
 
         &__panel {
-            position: absolute!important;
-            right: 0;
-            float: none;
-            display: block;
-            width: 100vw;
-            margin: 1px 0 0 0;
-            font-size: .75rem;
-            background-color: var(--bf-color-bg-ground);
-            @include transitions(opacity $transition-time-base);
-            transition-delay: 0s;
-            opacity: 0;
-            pointer-events: none;
+          position: absolute !important;
+          right: 0;
+          float: none;
+          display: block;
+          width: 100vw;
+          margin: 1px 0 0 0;
+          font-size: .75rem;
+          background-color: var(--bf-color-bg-ground);
+          @include transitions(opacity $transition-time-base);
+          transition-delay: 0s;
+          opacity: 0;
+          pointer-events: none;
+
+          @include media-breakpoint-down(md) {
+            top: 70px;
+            .btn-back-menu.bf-button-icon {
+              background: var(--bf-color-bg-underground);
+              border-radius: revert;
+            }
+            .bf-tabs {
+              margin-left: 0;
+              //border-left: 48px solid var(--bf-color-bg-underground);
+              background-color: transparent;
+
+                &__tab {
+                background-color: transparent;
+                &:before {
+                background-color: transparent;
+              }
+              &:not(:last-of-type) {
+                border-bottom: none;
+              }
+            }
+          }
+        }
+          @include media-breakpoint-down(sm) {
+            top: 46px;
+          }
 
             .btn-close {
               position: fixed;

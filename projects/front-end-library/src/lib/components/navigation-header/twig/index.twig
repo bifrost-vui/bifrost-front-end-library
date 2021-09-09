@@ -34,13 +34,22 @@
 
     <!-- Main Nav -->
     <div class='bf-header__nav-main js-collapse-full-height navbar-collapse collapse' id="navbarBifrostMenu">
-      <ul class='bf-megamenu list'>
+      {#<ul class='bf-megamenu list d-lg-flex d-none'>
         {% block navbar_content %}
           {% include '@bf-components/navigation-header/twig/mega-menu.twig' with {
             navItems    : navItems,
             reversed    : reversed
           } only %}
         {% endblock %}
+      </ul>#}
+      <ul class='bf-megamenu list d-lg-none d-sm-block'>
+        {% block navbar_content %}
+          {% include '@bf-components/navigation-header/twig/mega-menu-mobile.twig' with {
+            navItems    : navItems,
+            reversed    : reversed
+          } only %}
+        {% endblock %}
+
         {# <!-- In progress:My account Item in mobile device -->  #}
         <li class="nav-item">
           <a class="nav-link d-lg-none d-sm-block" href="#">

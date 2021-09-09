@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
     @Input() topBar_secondaryItems   : any[];
 
     @Input() navItems                : any[];
+    @Input() navMobileItems          : any[];
     /** Maximum 5 first element of the list will be display  */
     @Input() rigthIconLinks          : any[];
     @Input() menuItemAccount         : any[];
