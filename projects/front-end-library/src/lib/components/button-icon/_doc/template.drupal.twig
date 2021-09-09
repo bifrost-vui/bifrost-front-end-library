@@ -1,33 +1,28 @@
 {% set isDisabled = isDisabled|json_parse %}
 
 <div class='px-7 d-flex flex-column align-items-center justify-content-center minh-100'>
+  <div class='d-flex gap-4 pt-4 px-5 small'>
+    <p>Default</p>
+    <p>badge</p>
+    <p>href</p>
+    <p>isDisabled</p>
+  </div>
 
-    <div class='d-flex gap-4 pt-4 px-5 small'>
-        <p>Default</p>
-        <p>badge</p>
-        <p>href</p>
-        <p>isDisabled</p>
+  {% for index in [1,2] %}
+    <div class='d-flex gap-4 p-5 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
+      {% include '@bf-components/button-icon/twig/index.twig' %}
+
+      {% include '@bf-components/button-icon/twig/index.twig' with {
+        badge: badge|default('3')
+      } %}
+
+      {% include '@bf-components/button-icon/twig/index.twig' with {
+        href: href|default('#')
+      } %}
+
+      {% include '@bf-components/button-icon/twig/index.twig' with {
+        isDisabled: isDisabled|default(true)
+      } %}
     </div>
-
-    {% for index in [1,2] %}
-        
-        <div class='d-flex gap-4 p-5 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
-
-            {% include '@bf-components/button-icon/twig/index.twig' %}
-
-            {% include '@bf-components/button-icon/twig/index.twig' with {
-                badge: badge|default('3')
-            } %}
-
-            {% include '@bf-components/button-icon/twig/index.twig' with {
-                href: href|default('#')
-            } %}
-
-            {% include '@bf-components/button-icon/twig/index.twig' with {
-                isDisabled: isDisabled|default(true)
-            } %}
-
-        </div>
-        
-    {% endfor %}
+  {% endfor %}
 </div>
