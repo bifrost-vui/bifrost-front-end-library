@@ -56,6 +56,7 @@ import { HeaderComponent }          from '../angular/header.component';
 
 ## Drupal implementation example
 
+### Main Navigation Header
 ```jsx
 {% include '@bf-components/navigation-header/twig/index.twig' with {
     hasTopBar: true,
@@ -71,7 +72,7 @@ import { HeaderComponent }          from '../angular/header.component';
         ],
     },
     logoName: 'videotron',
-    logoHref: 'https://videotron.com',
+    logoLink: 'https://videotron.com',
     navItems: [
         {
             label: 'Shop', href: '', class: '',
@@ -124,7 +125,26 @@ import { HeaderComponent }          from '../angular/header.component';
     langcode : 'EN'
 } only %}
 ```
+### Funnel type Navigation Header
 
+```jsx
+{% include '@bf-components/navigation-header/twig/index.twig' with {
+    logoName    : 'videotron',
+    logoLink    : 'https://videotron.com',
+    hasCartBtn  : true,
+    cartBtn     : {
+        badge       : { label : '3' },
+        href        : 'https://www.videotron.com',
+        ariaLabel   : 'My cart'
+    },
+    funnelNav   : {
+        label   : "Back" ,
+        href    : " ",
+    },
+    reversed    : true,
+    langcode    : 'EN'
+} only %}
+```
 
 
 
@@ -135,6 +155,9 @@ export const Drupal = (args) => ({
     component: TwigContainerComponent,
     props: args,
 });
+
+
+### Main Navigation Header
 
 <Preview
     withSource='none'
@@ -156,6 +179,8 @@ export const Drupal = (args) => ({
     </Story>
 </Preview>
 
+### Funnel type Navigation Header
+
 <Preview
     withSource='none'
 >
@@ -168,7 +193,7 @@ export const Drupal = (args) => ({
             headerLogos,
             isFunnel : true
         }}
-        height='400px'
+        height='200px'
         with = '1200px'
     >
         {Drupal.bind({})}

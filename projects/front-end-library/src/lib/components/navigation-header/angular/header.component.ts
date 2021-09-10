@@ -16,35 +16,30 @@ export class HeaderComponent implements OnInit {
     @Input() reversed                : boolean;
     @Input() logoName                : string;
     @Input() logoHref                : string;
-    @Input() search_placeholder      : string;
-
     /** Note: TopBar is only visible on desktop. */
     @Input() hasTopBar               : boolean;
     @Input() topBar_items            : any[];
     @Input() topBar_secondaryItems   : any[];
-
-    @Input() navItems                : any[];
-    /** Maximum 5 first element of the list will be display  */
-    @Input() rigthIconLinks          : any[];
-    /**  Will show up on all devices if activated */
-    @Input() hasAccountBtn           : boolean;
-    @Input() isConnected             : boolean;
-
-    @Input() hrefLogOut               : string;
-    @Input() labelLogOut              : string;
-    @Input() hrefConnexion            : string;
     /** Shows up in top bar only */
     @Input() labelConnexion           : string;
 
+    @Input() navItems                : any[];
+    /** Maximum 3 first elements of the list will be displayed  */
+    @Input() rigthIconLinks          : any[];
+    /**  Will show up on all devices if activated except if isFunnel is activated */
+    @Input() hasAccountBtn           : boolean;
+    @Input() isConnected             : boolean;
+    @Input() hrefLogOut               : string;
+    @Input() labelLogOut              : string;
+    @Input() hrefConnexion            : string;
     /**  Will show up on all devices if activated */
     @Input() hasCartBtn              : boolean;
     /** Note : empty, undefined or 0 badge label value hides the cart's badge */
     @Input() cartBtn                 : any[];
     @Input() langcode                : string;
-
+    @Input() search_placeholder      : string;
     @Input() hasNoSearchBtn          : boolean;
-
-    /** Funnel has a limited contextual nav but still supports cart button */
+    /** Funnel has a limited contextual navigation */
     @Input() isFunnel                : boolean;
     @Input() funnelNav               : object;
 
