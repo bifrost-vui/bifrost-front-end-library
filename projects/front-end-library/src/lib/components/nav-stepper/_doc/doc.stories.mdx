@@ -1,0 +1,89 @@
+import { moduleMetadata }               from '@storybook/angular';
+import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { withDesign }                   from 'storybook-addon-designs';
+
+import { navItemSteps }                 from './data';
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { NavStepperComponent }          from '../angular/nav-stepper.component';
+
+<Meta
+    title='Components/Nav Stepper'
+    component={NavStepperComponent}
+    decorators={[
+        moduleMetadata({ declarations: [NavStepperComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type    : 'figma',
+            url     : 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            disable : false
+        },
+    }}
+    argTypes={{}}
+/>
+
+# Nav Stepper
+
+**// TODO** Write a description of your component.
+> **// TODO**: Add a link to component in **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)**
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath : 'components/nav-stepper/_doc/template.drupal',
+            navItemSteps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+## Drupal implementation exemple
+
+```jsx
+{% include '@bf-components/nav-stepper/twig/index.twig' with {
+    activeStep : 1,
+    navItemSteps : [
+        {label:"Craft Bundle", href:"", class:"active"},
+        {label:"Channel Selection", href:""},
+        {label:"Order Review", href:""},
+        {label:"checkout", href:""}
+    ]
+} only %}
+```
+
+
+
+## Angular implementation exemple
+
+Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
+
+
+
+
+## Component API
+
+**✅ Inputs are equivalent for Angular and Drupal.**
+
+<Props of={NavStepperComponent} />
+
+
+## Design Guidelines
+
+**// TODO**: Add a link to the component in Figma file.
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>

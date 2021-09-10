@@ -1,0 +1,11 @@
+{% set reversed = reversed|json_parse|default(false) %}
+{% set navItemSteps = navItemSteps|json_parse %}
+
+<div class='{% if reversed %}reversed bf-color-bg-ground{% endif %}'>
+
+    {% include '@bf-components/nav-stepper/twig/index.twig' with {
+        activeStep      : activeStep|json_parse|default(3),
+        navItemSteps    : navItemSteps|json_parse
+    } only %}
+
+</div>
