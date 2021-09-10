@@ -146,6 +146,34 @@ import { HeaderComponent }          from '../angular/header.component';
 } only %}
 ```
 
+### Navigation with custom logo image
+
+```jsx
+{% enmbed '@bf-components/navigation-header/twig/index.twig' with {
+    logoLink    : 'https://videotron.com',
+    navItems: [...],
+    rigthIconLinks : [
+        { icon : 'email',   href : ' ', class : '' },
+        { icon : 'pin',     href : ' ', class : '' },
+    ],
+    hasCartBtn : false,
+    hasAccountBtn : true,
+    isConnected : true,
+    hrefLogOut : '#',
+    labelLogOut : 'Log out',
+    hrefConnexion : '#',
+    labelConnexion : 'Connexion',
+    search : {
+        placeholder : 'What are you looking for?'
+    },
+    reversed : true,
+    langcode : 'EN'
+} only %}
+    {% block headerLogo %}
+        <img src="/dir/my-logo-img.svg" alt="alternate text" aria-roledescription="logo" role="img" />
+    {% endblock %}
+{% endembed %}
+```
 
 
 
@@ -193,8 +221,22 @@ export const Drupal = (args) => ({
             headerLogos,
             isFunnel : true
         }}
-        height='200px'
-        with = '1200px'
+         argTypes={{
+            rigthIconLinks  : {table: { disable: true }},
+            hasTopBar       : {table: { disable: true }},
+            hasAccountBtn   : {table: { disable: true }},
+            hasNoSearchBtn  : {table: { disable: true }},
+            hrefConnexion   : {table: { disable: true }},
+            hrefLogOut      : {table: { disable: true }},
+            isConnected     : {table: { disable: true }},
+            labelConnexion  : {table: { disable: true }},
+            labelLogOut     : {table: { disable: true }},
+            navItems        : {table: { disable: true }},
+            search_placeholder : {table: { disable: true }},
+            topBar_items    : {table: { disable: true }},
+            topBar_secondaryItems : {table: { disable: true }},
+            accountHello    : {table: { disable: true }}
+         }}
     >
         {Drupal.bind({})}
     </Story>

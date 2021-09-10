@@ -15,11 +15,12 @@ export class HeaderComponent implements OnInit {
 
     @Input() reversed                : boolean;
     @Input() logoName                : string;
-    @Input() logoHref                : string;
+    @Input() logoLink                : string;
     /** Note: TopBar is only visible on desktop. */
     @Input() hasTopBar               : boolean;
     @Input() topBar_items            : any[];
     @Input() topBar_secondaryItems   : any[];
+    @Input() accountHello            : string;
     /** Shows up in top bar only */
     @Input() labelConnexion           : string;
 
