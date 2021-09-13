@@ -2,7 +2,7 @@
   <!-- Navbar content -->
 
     <ul class=  'bf-nav-stepper__nav'>
-
+      {% set nbNavItemSteps = navItemSteps|length %}
       {% for step in navItemSteps %}
         {% set isActive = false %}
         {% set isPrevious = false %}
@@ -17,9 +17,22 @@
         {% endif %}
 
         {% if isPrevious %}
-          <li class='bf-nav-stepper__nav-item bf-nav-stepper__nav-item--prev d-none d-lg-block'><a class='bf-link bf-link--primary' href='{{step.href}}'>{{ loop.index}}. {{step.label}}</a></li>
+          <li class='bf-nav-stepper__nav-item bf-nav-stepper__nav-item--prev d-none d-lg-block'>
+            <a class='bf-link bf-link--primary' href='{{step.href}}'>
+              {% if loop.index > 1 %}
+                    {% include '@bf-components/icon/twig/index.twig' with {
+                        name  : 'chevron-left',
+                        size  : 'small'
+                    } only %}
+              {% endif %}
+              {{ loop.index}}. {{step.label}}
+            </a>
+          </li>
         {% elseif isActive %}
+          {% if  loop.index == 1 %}<li class='bf-nav-stepper__nav-item d-none d-lg-block'> </li>{% endif %}
           <li class=' bf-nav-stepper__nav-item bf-nav-stepper__nav-item--active'>{{ loop.index}}. {{step.label}}</li>
+          {% if  loop.index >= nbNavItemSteps %}<li class='bf-nav-stepper__nav-item d-none d-lg-block'> </li>{% endif %}
+
         {% elseif isNext %}
           <li class='bf-nav-stepper__nav-item bf-nav-stepper__nav-item--next d-none d-lg-block'>{{ loop.index}}. {{step.label}}</li>
         {% endif %}
@@ -30,13 +43,12 @@
     <div class=  ' d-flex w-100 pt-1'>
       {% for stepper in navItemSteps %}
         {% if loop.index <=   activeStep %}
-          {% set bgColorClass =   'bf-color-bg-highlight  ' %}
+          {% set bgColorClass = 'bf-color-bg-highlight  ' %}
         {% else %}
-          {% set bgColorClass =   'bf-color-bg-action-no-bg-hover  ' %}
+          {% set bgColorClass = 'bf-color-bg-action-no-bg-hover  ' %}
         {% endif %}
 
         <div class='bf-nav-stepper__steps {{ bgColorClass }}' ></div>
       {% endfor %}
     </div>
-
 </nav>
