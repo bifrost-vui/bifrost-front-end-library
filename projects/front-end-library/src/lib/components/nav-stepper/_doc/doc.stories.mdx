@@ -2,9 +2,12 @@ import { moduleMetadata }               from '@storybook/angular';
 import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 import { withDesign }                   from 'storybook-addon-designs';
 
-import { navItemSteps }                 from './data';
 import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
 import { NavStepperComponent }          from '../angular/nav-stepper.component';
+
+
+
+
 
 <Meta
     title='Components/Nav Stepper'
@@ -16,7 +19,7 @@ import { NavStepperComponent }          from '../angular/nav-stepper.component';
     parameters={{
         design: {
             type    : 'figma',
-            url     : 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            url     : 'https://www.figma.com/file/qpI1TDuVG9ciRWsoOIQ93x/Navigation?node-id=939%3A1615',
             disable : false
         },
     }}
@@ -25,11 +28,24 @@ import { NavStepperComponent }          from '../angular/nav-stepper.component';
 
 # Nav Stepper
 
-**// TODO** Write a description of your component.
-> **// TODO**: Add a link to component in **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)**
-
+ This component enables the end user to visualise his progression when he's going trough a multi-step process.
+ It's generaly used with a `Funnel` type navigation header.
+ It's navigation capacities is limited to the previous step
 
 ## Drupal
+export const commonProps = {
+    navItemSteps : [
+        {label:"first step",href:"activeStep:1"},
+        {label:"Channel Selection", href:"activeStep:2"},
+        {label:"Order Review", href:"activeStep:3"},
+        {label:"checkout", href:"activeStep:4"},
+        {label:"Step 5", href:"activeStep:5"},
+        {label:"Step 6", href:"activeStep:6"},
+        {label:"Step 7", href:"activeStep:7"},
+        {label:"Step 8", href:"activeStep:8"},
+        {label:"last step", href:"activeStep:9"}
+    ]
+}
 
 export const Drupal = (args) => ({
     component   : TwigContainerComponent,
@@ -44,7 +60,7 @@ export const Drupal = (args) => ({
         name='Drupal'
         args={{
             elementPath : 'components/nav-stepper/_doc/template.drupal',
-            navItemSteps
+            ...commonProps,
         }}
     >
         {Drupal.bind({})}
@@ -58,10 +74,10 @@ export const Drupal = (args) => ({
 {% include '@bf-components/nav-stepper/twig/index.twig' with {
     activeStep : 1,
     navItemSteps : [
-        {label:"Craft Bundle", href:"", class:"active"},
-        {label:"Channel Selection", href:""},
-        {label:"Order Review", href:""},
-        {label:"checkout", href:""}
+        {label:"Craft Bundle", href:"#craftBundle", class:"active"},
+        {label:"Channel Selection", href:"#chanelSelection"},
+        {label:"Order Review", href:"#OrderReview"},
+        {label:"Checkout", href:"#checkout"}
     ]
 } only %}
 ```
@@ -86,4 +102,4 @@ Please, read the [Implementation Page](/?path=/docs/implementation-angular--page
 
 **// TODO**: Add a link to the component in Figma file.
 
-<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>
+<iframe width='100%' height='450' src='https://www.figma.com/file/qpI1TDuVG9ciRWsoOIQ93x/Navigation?node-id=939%3A1615' frameBorder='0' allowFullScreen></iframe>

@@ -24,6 +24,12 @@
         flex-basis: 100% ;
         &--prev{
             @extend .bf-text-display-sub-small;
+            color: var(--bf-color-neutral-primary);
+            text-transform: uppercase;
+            display: flex;
+            @include media-breakpoint-down(md) {
+                position: absolute;
+            }
         }
         &--active{
            @extend .h3;
@@ -43,5 +49,11 @@
     &__steps{
         height: var(--bf-spacer-xxsmall);
         width: 100%;
+        &--done{
+            background-color: var(--bf-color-highlight);
+        }
+        &--todo{
+            background-color: var(--bf-color-stroke-secondary);
+        }
     }
 }
