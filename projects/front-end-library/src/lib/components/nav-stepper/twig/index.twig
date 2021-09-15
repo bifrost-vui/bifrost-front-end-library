@@ -1,9 +1,8 @@
 {% if (activeStep > 0) and (navItemSteps is defined and navItemSteps) %}
-  <nav class='bf-nav-stepper {{ class|default('') }}'>
+  <nav class='bf-stepper {{ class|default('') }}'>
+    {% set nbNavItemSteps = navItemSteps|length %}
     <!-- Navbar content -->
-    <ul class=  'bf-nav-stepper__nav'>
-      {% set nbNavItemSteps = navItemSteps|length %}
-
+    <ul class='bf-stepper__nav'>
       {% for step in navItemSteps %}
         {% set isActive = false %}
         {% set isPrevious = false %}
@@ -18,47 +17,83 @@
         {% endif %}
 
         {% if isPrevious %}
-          <li class='bf-nav-stepper__nav-item bf-nav-stepper__nav-item--prev'>
+          <li class='bf-stepper__nav-item bf-stepper__nav-item--prev'>
           {#
           - remove whitespace between html elements within the <a> tag
           - prevents an underline space to appear between the icon and the label
           #}
           {% apply spaceless %}
             {% if step.href is defined and step.href %}
-              <a class='bf-link bf-link--primary' href='{{step.href}}'>
+              <a class='bf-link bf-link--primary bf-color-neutral-primary' href='{{ step.href }}'>
                 {% include '@bf-components/icon/twig/index.twig' with {
                     name  : 'chevron-left',
                     size  : 'small',
                 } only %}
             {% endif %}
-            <span class='d-none d-lg-inline pr-2'>{{ loop.index}}.&nbsp;{{step.label}}</span>
+
+            {% if previousHasLabel %}
+              <span class='d-none d-lg-inline pr-2'>{{ step.label }}</span>
+            {% endif %}
+
             {% if step.href is defined and step.href %}</a>{% endif %}
           {% endapply %}
           </li>
         {% elseif isActive %}
           {% if  loop.index == 1 %}
-            <li class='bf-nav-stepper__nav-item d-none d-lg-block'>&nbsp;</li>
+            <li class='bf-stepper__nav-item d-none d-lg-block'>&nbsp;</li>
           {% endif %}
-          <li class=' bf-nav-stepper__nav-item bf-nav-stepper__nav-item--active'>{{ loop.index}}. {{step.label}}</li>
+
+          <li class=' bf-stepper__nav-item bf-stepper__nav-item--active'>
+            <span class="h3">{{step.label}}</span>
+
+            {# step Counter #}
+            {% if hasStepCounter %}
+              <span class='bf-stepper__counter text-center bf-text-display-sub-small'>
+                  {{counterLabel}} {{activeStep}}/{{nbNavItemSteps}}
+              </span>
+            {% endif %}
+          </li>
+
           {% if  loop.index >= nbNavItemSteps %}
-            <li class='bf-nav-stepper__nav-item d-none d-lg-block'>&nbsp;</li>
+            <li class='bf-stepper__nav-item d-none d-lg-block'>&nbsp;</li>
           {% endif %}
         {% elseif isNext %}
-          <li class='bf-nav-stepper__nav-item bf-nav-stepper__nav-item--next d-none d-lg-block'>{{ loop.index}}. {{step.label}}</li>
+          <li class='bf-stepper__nav-item bf-stepper__nav-item--next'>
+          {#
+          - remove whitespace between html elements within the <a> tag
+          - prevents an underline space to appear between the icon and the label
+          #}
+          {% apply spaceless %}
+            {% if step.href is defined and step.href and nextIsClickable %}
+              <a class='bf-link bf-link--primary .bf-color-neutral-primary' href='{{ step.href }}'>
+            {% endif %}
+
+            {% if nextHasLabel %}
+              <span class='d-none d-lg-inline py-2'>{{step.label}}</span>
+            {% endif %}
+
+            {% if step.href is defined and step.href and nextIsClickable %}
+              {% include '@bf-components/icon/twig/index.twig' with {
+                  name  : 'chevron-right',
+                  size  : 'small'
+              } only %}
+              </a>
+            {% endif %}
+          {% endapply %}
+          </li>
         {% endif %}
       {% endfor %}
     </ul>
 
     {# step indicator #}
-    <div class=  ' d-flex w-100 pt-1'>
+    <div class='d-flex w-100 bf-stepper__steps'>
       {% for stepper in navItemSteps %}
         {% if loop.index <= activeStep %}
           {% set bgColorClass = '--done' %}
         {% else %}
           {% set bgColorClass = '--todo' %}
         {% endif %}
-
-        <div class='bf-nav-stepper__steps {{ 'bf-nav-stepper__steps' ~ bgColorClass }}'></div>
+        <div class='bf-stepper__step {{ 'bf-stepper__steps' ~ bgColorClass }}'></div>
       {% endfor %}
     </div>
   </nav>

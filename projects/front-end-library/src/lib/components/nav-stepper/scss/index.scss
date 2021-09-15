@@ -1,20 +1,22 @@
 /* *****************************************************************************
 *
-*  Nav Stepper
+*  Stepper
 *
 * ***************************************************************************** */
 
-.bf-nav-stepper {
+.bf-stepper {
     &__nav{
         display: flex;
         flex-flow: row wrap;
+        align-content: stretch;
         justify-content: space-between;
-        align-items: baseline;
-        list-style: none;
+        height: 68px;
         margin: 0;
-        padding: 1rem 0;
+        padding-inline: 0;
+        list-style: none;
+
         @include media-breakpoint-up(lg){
-            padding: 1rem 8rem;
+            padding: 0 8rem 0;
         }
     }
     &__nav-item{
@@ -22,38 +24,53 @@
         padding: 0;
         text-align: center;
         flex-basis: 100% ;
-        &--prev{
-            @extend .bf-text-display-sub-small;
-            color: var(--bf-color-neutral-primary);
-            text-transform: uppercase;
-            display: flex;
-            @include media-breakpoint-down(md) {
-                position: absolute;
-            }
-        }
-        &--active{
-           @extend .h3;
-        }
+        align-self: center;
+
+        &--prev,
         &--next{
             @extend .bf-text-display-sub-small;
             @extend .bf-color-neutral-tertiary;
             text-transform: uppercase;
+            a {
+                @extend .bf-color-neutral-primary
+            }
+        }
+        &--prev{
+            text-align: left;
+            @include media-breakpoint-down(md) {
+                position: absolute;
+                left:0;
+            }
+        }
+        &--next{
+            text-align: right;
+            @include media-breakpoint-down(md) {
+                position: absolute;
+                right:0;
+            }
+        }
+        &--active{
+           text-align: center;
         }
         @include media-breakpoint-up(lg){
-            flex-basis: calc(33%);
-            &:first-child {text-align: left;}
-            &:last-child {text-align: right;}
-            &:nth-child(2){text-align: center;}
-          }
+            flex-basis: 33%;
+        }
     }
     &__steps{
-        height: var(--bf-spacer-xxsmall);
-        width: 100%;
+        .bf-stepper__step{
+            height: var(--bf-spacer-xxsmall);
+            width: 100%;
+        }
         &--done{
             background-color: var(--bf-color-highlight);
         }
         &--todo{
             background-color: var(--bf-color-stroke-secondary);
         }
+    }
+    &__counter{
+        display: block;
+        margin: var(--bf-spacer-xxsmall) 0 0;
+        width: 100%;
     }
 }
