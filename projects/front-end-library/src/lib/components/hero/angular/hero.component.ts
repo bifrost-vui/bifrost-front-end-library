@@ -40,6 +40,8 @@ export class HeroComponent implements OnInit {
     @Input() class              : string;
     @Input() reversed           : boolean;
 
+    @Input() language           : 'en' | 'fr';
+
     ngOnInit() {
         console.log('Hero', this);
     }
