@@ -1,6 +1,18 @@
 {% set size             = size|default('small') %}
 {% set classSize        = 'size-' ~ size %}
-{% set sizeSuffix       = (size is same as ('xsmall') or size is same as ('small') ? 'sm' : 'lg' ) %}
+
+{# TMP - conditional setting. May be re-simplified if there is no need fr huge SVG :
+{% set sizeSuffix   = (size is same as ('xsmall') or size is same as ('small') ? 'sm' : 'lg' ) %}
+ #}
+{% if size is same as ('huge') %}
+    {# TODO : change the value if we nee to have svg in huge format #}
+    {% set sizeSuffix = 'lg' %}
+{% elseif size is same as ('large') or size is same as ('medium') %}
+    {% set sizeSuffix = 'lg' %}
+{% else %}
+    {% set sizeSuffix = 'sm' %}
+{% endif %}
+
 {% set classReversed    = (reversed is defined and reversed is same as (true)) ? ' reversed' : '' %}
 {% set classColor       = (color is defined and color is not empty) ? ' color-' ~ color : '' %}
 {% set classes          = 'bf-icon ' ~ classReversed ~ ' ' ~  classColor ~ ' ' ~ classSize %}
