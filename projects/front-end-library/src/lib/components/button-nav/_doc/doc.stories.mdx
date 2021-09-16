@@ -1,0 +1,77 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+
+import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { ButtonNavComponent }                   from '../angular/button-nav.component';
+
+
+<Meta 
+    title='Components/Button Nav' 
+    component={ButtonNavComponent}
+    decorators={[
+        moduleMetadata({ declarations: [ButtonNavComponent, TwigContainerComponent]})
+    ]}
+/>
+
+
+# Button Nav
+
+<br/>
+
+
+
+## Component API
+
+<Props of={ButtonNavComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/button-nav/twig/index.twig' with {
+    label           : 'Button Nav label',
+    iconName        : 'placeholder',
+    class           : 'mt-3',
+} only %}
+```
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+
+<Preview
+    withSource='none'
+    style={{ height: '700px' }}
+>
+    <Story 
+        name='Drupal'
+        args={{
+            elementPath : 'components/button-nav/_doc/template.drupal',
+            iconName    : 'placeholder',
+            label       : 'Label'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+<Preview
+    withSource='none'
+    style={{ height: '700px' }}
+>
+    <Story 
+        name='Drupal - Usage Example'
+        args={{
+            elementPath : 'components/button-nav/_doc/usage-example.drupal'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>

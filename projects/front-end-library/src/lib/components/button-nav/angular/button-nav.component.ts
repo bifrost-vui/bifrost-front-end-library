@@ -4,13 +4,15 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  * API is the same between **Angular** and **Drupal**.
  *
  */
+
+ // TODO: import Button API or extend Button
  
 @Component({
-    selector: "bf-button",
-    templateUrl: './button.component.html',
+    selector: "bf-button-nav",
+    templateUrl: './button-nav.component.html',
     // styleUrls: ['../common/style.scss'],
 })
-export class ButtonComponent implements OnInit {
+export class ButtonNavComponent implements OnInit {
     constructor() {}
 
     @Input() label          : string;
@@ -18,16 +20,9 @@ export class ButtonComponent implements OnInit {
         A button will become a link if `href` is defined.
     */
     @Input() href           : string;
-    @Input() hierarchy      : string;
     @Input() isDisabled     : boolean;
-    @Input() hasLoading     : boolean;
-    @Input() isLoading      : boolean;
-    @Input() fullWidth      : boolean;
 
     @Input() iconName       : string;
-    /** This is not recommended to change the size of the icon. */
-    @Input() iconSize       : string;
-    @Input() iconPosition   : string;
 
     @Input() dataDismiss    : string;
     @Input() dataToggle     : string;
@@ -39,7 +34,7 @@ export class ButtonComponent implements OnInit {
     @Input() class          : string;
 
     ngOnInit() {
-        console.log('button', this);
+        console.log('button nav', this);
     }
     
 }
