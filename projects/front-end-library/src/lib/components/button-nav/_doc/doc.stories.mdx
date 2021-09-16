@@ -1,7 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
-import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
+import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { ButtonNavComponent }                   from '../angular/button-nav.component';
 
@@ -12,6 +12,15 @@ import { ButtonNavComponent }                   from '../angular/button-nav.comp
     decorators={[
         moduleMetadata({ declarations: [ButtonNavComponent, TwigContainerComponent]})
     ]}
+    argTypes={{
+        iconName: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['', 'placeholder', ...illustrationIcons.map(a => a.list).flat().sort()]
+            }
+        }
+    }}
 />
 
 
