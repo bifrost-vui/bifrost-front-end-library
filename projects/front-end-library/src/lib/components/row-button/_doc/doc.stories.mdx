@@ -1,0 +1,101 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+
+import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { RowButtonComponent }                   from '../angular/row-button.component';
+
+
+<Meta
+    title='Components/Row Button'
+    component={RowButtonComponent}
+    decorators={[
+        moduleMetadata({ declarations: [RowButtonComponent, TwigContainerComponent]})
+    ]}
+    argTypes={{
+        iconName    : {
+            defaultValue: 'credit-return',
+            control: {
+                type: 'select',
+                options: ['', ...illustrationIcons.map(a => a.list).flat().sort()]
+            }
+        }
+    }}
+/>
+
+
+# Row Button
+
+<br/>
+
+
+
+## Component API
+
+<Props of={RowButtonComponent} />
+
+
+
+## Drupal implementation example
+
+#### Row Button
+```jsx
+{% include '@bf-components/row-button/twig/index.twig' with {
+    href        : 'https://videotron.com',
+    title       : 'Galaxy Buds Live',
+    paragraph   : 'Free with any purchase of this phone, valuted at $239.38.',
+    class       : 'mb-4',
+} only %}
+```
+
+#### Row Button with icon
+```jsx
+{% include '@bf-components/row-button/twig/index.twig' with {
+    // ...
+    iconName    : 'mobile-multiline',
+} only %}
+```
+
+#### Row Button with image
+```jsx
+{% include '@bf-components/row-button/twig/index.twig' with {
+    // ...
+    image       : {
+        src: 'https://videotron.com/images/assets/helix-equipment.png',
+        alt: 'Alt description'
+    },
+} only %}
+```
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+export const commonProps= {
+    href        : 'https://videotron.com',
+    title       : 'Galaxy Buds Live',
+    paragraph   : 'Free with any purchase of this phone, valuted at $239.38.',
+    image       : {
+        src: 'https://videotron.com/images/assets/helix-equipment.png',
+        alt: 'Alt description'
+    },
+    class       : '',
+}
+
+<Preview
+    withSource='none'
+    style={{ height: '500px' }}
+>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath : 'components/row-button/_doc/template.drupal',
+            ... commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
