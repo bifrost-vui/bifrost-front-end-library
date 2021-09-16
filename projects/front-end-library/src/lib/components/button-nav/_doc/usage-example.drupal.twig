@@ -1,0 +1,40 @@
+{% set buttons      = [
+    { label: 'Mobility',        icon: 'placeholder' },
+    { label: 'Internet',        icon: 'placeholder' },
+    { label: 'Television',      icon: 'placeholder' },
+    { label: 'Bundle',          icon: 'placeholder' },
+    { label: 'Entertainment',   icon: 'placeholder' },
+    { label: 'Automation',      icon: 'placeholder' },
+] %}
+
+{% set containerClasses = [
+    '',
+    'reversed bf-color-bg-ground',
+    'bf-color-bg-action-primary'
+] %}
+
+<div class='d-flex flex-column minh-100'>
+    {% for containerClass in containerClasses %}
+        
+        <div class='d-flex flex-column align-items-center py-6 px-4 {{ containerClass }}'>
+
+            <h2 class='text-center' style='max-width: 40rem'>
+                Discover our services
+                Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.
+            </h2>
+
+            <ul class='list d-flex flex-wrap justify-content-center gap-4 mt-4'>
+                {% for button in buttons %}
+                    <li>
+                        {% include '@bf-components/button-nav/twig/index.twig' with {
+                            iconName    : iconName|default(button.icon),
+                            label       : label|default(button.label)
+                        } %}
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        
+    {% endfor %}
+</div>
