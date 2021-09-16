@@ -6,8 +6,22 @@
 
 
 .bf-button-nav {
+    text-transform: none;
+    letter-spacing: 0;
 
     .bf-button__label {
         @extend .flex-column;
+        gap: var(--bf-spacer-small);
+
+        @include media-breakpoint-down(sm) {
+            gap: var(--bf-spacer-xsmall);
+            font-size: 0.875rem; // font-size exception: 14px
+
+            .bf-icon {
+                width: 3rem;
+                height: 3rem;
+                min-width: 3rem;
+            }
+        }
     }
 }
