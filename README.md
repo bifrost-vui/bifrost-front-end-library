@@ -24,8 +24,7 @@ The Front-End library contains:
 
 
 ## The Front-End library is published to NPM registry
-...
-
+https://www.npmjs.com/package/@videotron-ui/bifrost-front-end-library
 
 ## Storybook
 ...
