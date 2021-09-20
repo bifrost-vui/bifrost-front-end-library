@@ -12,7 +12,6 @@ $(function ()
     const navFullHeight = '.js-bf-megamenu__full-height';
 
     let isDropdownMegamenuOpen = false;
-
     // Tabs
     const tabsTab       = '.js-bf-tabs__tab';
 
@@ -28,10 +27,10 @@ $(function ()
 
 	$(navLink, navMain).on('click', function(e){
 		e.preventDefault();
-		
+
 		if($(this).parents(navItem).hasClass('open')) {
 			closeMegamenu();
-			
+
 		} else {
 			if(!isDropdownMegamenuOpen) {
 				_window.freeze();
@@ -100,7 +99,7 @@ $(function ()
 
 		if($this.hasClass('open')) {
 			$tabs.attr('tabindex', 0);
-			$links.attr('tabindex', 0);   
+			$links.attr('tabindex', 0);
 			e.preventDefault();
 		}
 	});
@@ -122,7 +121,7 @@ const keyTab = 9;
 
 $(function () {
 	'use strict';
-    
+
     const navMain       = '.bf-header';
     const navItem       = '.js-bf-megamenu__nav-item';
     const navLink       = '.js-bf-megamenu__nav-link';
@@ -138,7 +137,7 @@ $(function () {
 		if (e.which == keyTab) {
 			const $parent = $(this).parent();
 			if(e.shiftKey === true) {
-				// To return to the last tab, we have to get the list of visible tabs and select the last one. 
+				// To return to the last tab, we have to get the list of visible tabs and select the last one.
 				// We're gonna take advantage of the ''.active' and ''.open' classes to get the correct ones
 				// then we navigate to the parents of those elements to get the complete list.
 				let $megamenuTabs = $(tabsTab + '.active').parent().find(tabsTab);
@@ -219,7 +218,7 @@ $(function () {
 					e.preventDefault();
 				}
 			}
-			
+
 			// Controls the behavior of the very last element on the last tab on a tabbable menu
 			if($megamenuTabsLinks.last().is(':focus')
 			|| $megamenuItemLinks.last().is(':focus')) {
@@ -262,7 +261,22 @@ $(function () {
             $('.js-input-search').focus();
         }, 1000);
     }
-
     $(searchBtn, navMain).on('click', displaySearchBar);
+
+   //Navigation mobile
+
+  $(".btn-back-menu").click((e)=>{
+    e.preventDefault()
+    $('.tab-pane').removeClass('active show');
+    $('.mobile-menu').removeClass("active show");
+  });
+
+  $('.navbar-toggler').click((e)=> {
+    e.preventDefault()
+    if( $('.navbar-toggler').attr('aria-expanded')) {
+      $('.tab-pane').removeClass('active show');
+    }
+  })
+
 });
 

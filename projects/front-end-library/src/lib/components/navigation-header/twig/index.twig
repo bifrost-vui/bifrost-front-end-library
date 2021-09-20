@@ -19,9 +19,10 @@
   {% if reversed is defined and reversed is same as (true) %}reversed navbar-dark{% endif %}'
   {% if theme is defined %} data-theme={{theme}} {% endif %}
 >
-  <nav class='bf-header__nav w-100 border-bottom bf-border-color-secondary {{ class|default('') }}'>
-
+  <nav class='bf-header__nav w-100 {{ class|default('') }}'>
+    <hr class="nav-border">
     <!-- Logo -->
+
     <div class='bf-header__logo'>
       <a href='{{ logo.href|default('#') }}' class='d-flex'>
         {% include '@bf-components/logo/twig/index.twig' with {
@@ -34,14 +35,14 @@
 
     <!-- Main Nav -->
     <div class='bf-header__nav-main js-collapse-full-height navbar-collapse collapse' id="navbarBifrostMenu">
-      {#<ul class='bf-megamenu list d-lg-flex d-none'>
+      <ul class='bf-megamenu list d-none d-lg-flex'>
         {% block navbar_content %}
           {% include '@bf-components/navigation-header/twig/mega-menu.twig' with {
             navItems    : navItems,
             reversed    : reversed
           } only %}
         {% endblock %}
-      </ul>#}
+      </ul>
       <ul class='bf-megamenu list d-lg-none d-sm-block'>
         {% block navbar_content %}
           {% include '@bf-components/navigation-header/twig/mega-menu-mobile.twig' with {
@@ -52,12 +53,29 @@
 
         {# <!-- In progress:My account Item in mobile device -->  #}
         <li class="nav-item">
-          <a class="nav-link d-lg-none d-sm-block" href="#">
+          <a class="nav-link d-lg-none d-md-block" href="#">
             {% include '@bf-components/icon/twig/index.twig' with {
-              name    : icon|default('my-account')
+              name    : icon|default('my-account'),
+              size    : 'small',
             } only %}
-            {{ (isConnected) ? labelLogIn : labelLogOut }}
+            <span class="ml-3 bf-text-display-sub-medium">{{ (isConnected) ? labelLogIn : labelLogOut }}</span>
           </a>
+        </li>
+        {# <!-- Btn language --> #}
+        <li class="nav-item d-flex">
+          {% if langcode is defined and langcode is not empty %}
+            <a
+              href="{{ href|default('#') }}"
+              {% if langcode is not empty %}data-title="{{ langcode|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}"{% endif %}
+              class="lang-box"
+              rel="{{ rel|default('') }}"
+              {{ extraAttribute|default(NULL) }}
+            >
+              {{ (langcode == 'EN') ? 'English' : 'Français' }}
+            </a>
+
+
+          {% endif %}
         </li>
       </ul>
     </div>
@@ -116,7 +134,7 @@
       </div>
 
       {# <!-- My Account Menu -->  #}
-      {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
+      {% if hasAccountBtn is defined and hasAccountBtn  %}
         <div class="dropdown d-none d-lg-block {{ (isConnected) ? 'login' : 'logout' }}">
           <a class="btn btn-tertiary dropdown-toggle {{ (isConnected) ? 'login' : 'logout' }}" href="#" role="button" id="dropdownAccountMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {% include '@bf-components/icon/twig/index.twig' with {
@@ -174,12 +192,12 @@
         {% include '@bf-components/link/twig/index.twig' with {
           href    : '',
           label   : (langcode == 'EN') ? 'EN' : 'FR',
-          class   : 'bf-p-small bf-color-neutral-secondary mr-2 d-none d-md-block'
+          class   : 'nav-langcode d-none d-lg-block'
         } only %}
       {% endif %}
 
       {# <!-- Btn burger --> #}
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarBifrostMenu" aria-controls="navbarBifrost" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarBifrostMenu" data-parent="#navbarBifrostMenu" aria-controls="navbarBifrost" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     </div>
