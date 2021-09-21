@@ -1,43 +1,7 @@
-<div class='bf-slideshow {{ class|default('') }}'>
-
-
-{#  {% if slideType =='hero' %}
-
- {% else %}
- {% endif %} #}
-<div class='bf-slider'>
-{% for slide in slides %}
-    <div class="bf-slide {{loop.index == 1 ? 'active'}}">
-    {% include '@bf-components/hero/twig/index.twig' with slide  %}
+<div class='bf-slideshow js-slick-carousel--hero-slideshow {{ class|default('') }}'>
+    {% for slide in slides %}
+    <div>
+        {% include '@bf-components/hero/twig/index.twig' with slide  %}
     </div>
-{% endfor %}
-
+    {% endfor %}
 </div>
-<div class='bf-slider__counter'>
-{% for nbitem in slides %}
-  <span class="dot">{{nbitem.index}}</span>
-{% endfor %}
-</div>
-</div>
-
-<script>
-var slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("bf-slide");
-  var dots = document.getElementsByClassName("dot");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].classList.remove('active');
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  for (i = 0; i < dots.length; i++) {
-    dots[i].classList.remove('active');
-  }
-  slides[slideIndex-1].classList.add('active');
-  dots[slideIndex-1].classList.add('active');
-  setTimeout(showSlides, 4000); // Change image every 2 seconds
-}
-</script>

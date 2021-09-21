@@ -53,5 +53,24 @@ export const slides=[
             alt     : "Helix"
         },
         background      : "highlight",
-    }
+    },
+    {
+        class       : "reversed",
+        badge       : 'another badge',
+        upperTitle  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        title       : "Découvrez nos meilleurs forfaits Helix Internet et Télé",
+        subtitle    : "Lorem ipsum dolor sit amet.",
+        description : "Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.",
+        button      : {
+            label       : "Button",
+            hierarchy   : "primary-alt",
+            class       : ""
+        },
+        image           : {
+            default : "/images/_docs/hero-helix-reversed.png",
+            mobile  : "/images/_docs/hero-helix-reversed-mobile.png",
+            alt     : "Helix"
+        },
+        background      : "reversed",
+    },
 ];

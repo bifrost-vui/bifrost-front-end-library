@@ -19,8 +19,8 @@
     {% if image is defined and image.mobile is not empty %}
         <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-md-none' />
     {% endif %}
-    
-    <div class='d-block d-md-none' data-animate='fade-in'>
+
+    <div class='d-block d-md-none' >
         {% if block('blockSelection') is defined %}
             {{ block('blockSelection') }}
         {% elseif blockSelection is defined and blockSelection is iterable %}
@@ -28,7 +28,7 @@
             {% include '@bf-components/block-selection/twig/index.twig' with blockSelectionMobile only %}
         {% endif %}
     </div>
-    <div class='container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between pb-2 pb-sm-4' data-animate-row=''>
+    <div class='bf-hero-header container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between pb-2 pb-sm-4' data-animate-row=''>
         <header>
             {% if breadcrumb is defined %}
                 {{ breadcrumb }}
@@ -47,34 +47,37 @@
                     {% include '@bf-components/badge/twig/index.twig' with badge only %}
                 {% endif %}
                 {% if upperTitle is defined and upperTitle is not empty %}
-                    <p class='h5 mt-0 mb-2' data-animate='fade-in'>
+                    <p class='h5 mt-0 mb-2'>
                         {{ upperTitle }}
                     </p>
                 {% endif %}
                 {% if title is defined and title is not empty %}
-                    <h1 class='mt-0' data-animate='fade-in'>
+                    <h1 class='mt-0' >
                         {{ title }}
                     </h1>
                 {% endif  %}
                 {% if subtitle is not defined or subtitle is not empty %}
-                    <h2 class='h3 my-2' data-animate='fade-in'>
+                    <h2 class='h3 my-2' >
                         {{ subtitle }}
                     </h2>
                 {% endif  %}
                 {% if description is defined and description is not empty %}
-                    <p class='mt-2' data-animate='fade-in'>
+                    <p class='mt-2' >
                         {{ description }}
                     </p>
                 {% endif %}
                 {% if button is defined and button is not empty %}
-                    <div class='mt-6' data-animate='fade-in'>
+                    <div class='mt-6' >
                         {% set button = button|merge( { 'hierarchy': button.hierarchy|default('primary-alt') } ) %}
                         {% include '@bf-components/button/twig/index.twig' with button only %}
                     </div>
                 {% endif %}
             </div>
+            <div class='bfslick-controls'><div class='bfslick-controls-dots'>
+            </div>
+            </div>
         </header>
-        <div class='d-none d-md-block' data-animate='fade-in'>
+        <div class='d-none d-md-block' >
             {% if block('blockSelection') is defined %}
                 {{ block('blockSelection') }}
             {% elseif blockSelection is defined and blockSelection is iterable %}
