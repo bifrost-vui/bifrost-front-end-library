@@ -32,7 +32,9 @@
     </div>
     <div class='container-fluid d-flex flex-column flex-md-row flex-grow-1 pb-2 pb-sm-4' data-animate-row=''>
         <header class='d-flex flex-column flex-grow-1'>
-            {% if breadcrumb is defined %}
+            {% if block('breadcrumb') is defined %}
+                {{ block('breadcrumb') }}
+            {% elseif breadcrumb is defined and breadcrumb %}
                 {{ breadcrumb }}
             {% endif %}
             <div class='bf-hero__content d-flex flex-column h-100'>
