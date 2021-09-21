@@ -22,7 +22,8 @@ export class BannerComponent implements OnInit {
     /**
         You can pass directly the **label** in string format or an object based on [Badge](/?path=/docs/components-badge--drupal) component API.
     */
-    @Input() badge              : any;
+    @Input() badge              : object;
+    @Input() contentBadge       : object;
     @Input() class              : string;
     @Input() reversed           : boolean;
     @Input() isClickable        : boolean;

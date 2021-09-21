@@ -19,7 +19,7 @@
     {% if image is defined and image.mobile is not empty %}
         <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-md-none' />
     {% endif %}
-    
+
     <div class='d-block d-md-none' data-animate='fade-in'>
         {% if block('blockSelection') is defined %}
             {{ block('blockSelection') }}
@@ -38,7 +38,12 @@
                     {% if badge is iterable %}
                         {% set badgeLabel = badge.label %}
                     {% else %}
-                        {% set badge = { label: badge } %}
+                        {% set badge = {
+                          label       : badge.label,
+                          hierarchy   : badge.hierarchy|default('primary'),
+                          angle       : badge.angle|default('left'),
+                          iconName    : label.iconName|default(''),
+                        } %}
                     {% endif %}
                     {% set badge = badge|merge( {
                         'hierarchy' : badge.hierarchy|default('primary'),
