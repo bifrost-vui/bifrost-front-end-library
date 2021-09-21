@@ -66,6 +66,11 @@
                         {{ description }}
                     </p>
                 {% endif %}
+                {% if block('content') is defined %}
+                    {{ block('content') }}
+                {% elseif content is defined and content %}
+                    {{ content }}
+                {% endif %}
                 {% if button is defined and button is not empty %}
                     <div class='mt-6' data-animate='fade-in'>
                         {% set button = button|merge( { 'hierarchy': button.hierarchy|default('primary-alt') } ) %}

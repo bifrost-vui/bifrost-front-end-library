@@ -147,3 +147,35 @@ export const Drupal = (args) => ({
         {Drupal.bind({})}
     </Story>
 </Preview>
+
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal - With content'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            content: '<p>The property <b>content</b> could be a string or a TwigBlock.</p>'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal - With TwigBlock content'
+        args={{
+            elementPath     : 'components/hero/_doc/twig-block.drupal',
+            ...commonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
