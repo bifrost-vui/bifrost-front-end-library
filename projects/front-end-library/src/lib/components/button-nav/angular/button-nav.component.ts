@@ -33,6 +33,10 @@ export class ButtonNavComponent implements OnInit {
     @Input() extraAttribute : string;
     @Input() class          : string;
 
+    @Input() reversed       : boolean;
+    @Input() highlight      : boolean;
+    
+
     ngOnInit() {
         console.log('button nav', this);
     }

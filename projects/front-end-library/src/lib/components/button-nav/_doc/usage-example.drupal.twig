@@ -1,3 +1,35 @@
+{# ----------------------------------------------------------------- #}
+{% set reversed    = reversed|json_parse %}
+{% set highlight   = highlight|json_parse %}
+
+{# ----------------------------------------------------------------- #}
+{# Force label and background if highlight or reversed are set. #}
+{% if highlight is defined and highlight is same as (true) %}
+    {% set backgroundClass  = 'bf-color-bg-highlight' %}
+{% elseif reversed is defined and reversed is same as (true) %}
+    {% set backgroundClass  = 'reversed bf-color-bg-ground' %}
+    {% set highlightDefault = false %}
+{% endif %}
+
+{# ----------------------------------------------------------------- #}
+{# Define variants #}
+{% set variants = [
+    {
+        backgroundClass: backgroundClass|default(''),
+        props: { }
+    },
+    {
+        backgroundClass: backgroundClass|default('reversed bf-color-bg-ground'),
+        props: { reversed: reversed|default(true) }
+    },
+    {
+        backgroundClass: backgroundClass|default('bf-color-bg-highlight'),
+        props: { highlight: highlight|default(highlightDefault)|default(true) }
+    }
+] %}
+
+{# ----------------------------------------------------------------- #}
+{# Define Buttons #}
 {% set buttons      = [
     { label: 'Mobility',        icon: 'mobility' },
     { label: 'Internet',        icon: 'internet-residential' },
@@ -7,29 +39,25 @@
     { label: 'Automation',      icon: 'smart-home' },
 ] %}
 
-{% set containerClasses = [
-    '',
-    'reversed bf-color-bg-ground',
-    'bf-color-bg-action-primary'
-] %}
-
+{# ----------------------------------------------------------------- #}
 <div class='d-flex flex-column minh-100'>
-    {% for containerClass in containerClasses %}
+    {% for variant in variants %}
         
-        <div class='d-flex flex-column align-items-center py-6 px-4 {{ containerClass }}'>
+        <div class='d-flex flex-column align-items-center py-6 px-4 {{ variant.backgroundClass }}'>
 
             <h2 class='text-center' style='max-width: 40rem'>
-                Discover our services
-                Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.
+                Discover our services Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.
             </h2>
 
             <ul class='list d-flex flex-wrap justify-content-center gap-4 mt-4'>
+                
                 {% for button in buttons %}
+                    {% set variantProps = variant.props|merge({
+                        'iconName'    : iconName|default(button.icon),
+                        'label'       : label|default(button.label)
+                    }) %}
                     <li>
-                        {% include '@bf-components/button-nav/twig/index.twig' with {
-                            iconName    : iconName|default(button.icon),
-                            label       : label|default(button.label)
-                        } %}
+                        {% include '@bf-components/button-nav/twig/index.twig' with variantProps %}
                     </li>
                 {% endfor %}
             </ul>
