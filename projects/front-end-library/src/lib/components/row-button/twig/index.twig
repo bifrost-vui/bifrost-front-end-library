@@ -7,24 +7,24 @@
     {% if isLink %}
         href='{{ href|default('') }}'
     {% endif %}
-    class='bf-row-button d-flex align-items-center w-100 px-3 py-4 {{class|default('')}}'
+    class='bf-row-button d-flex align-items-center w-100 px-3 py-4 {{ class|default('') }}'
 >
 
     {% if hasVisual %}
         <div class='bf-row-button__visual mr-3'>
-            {% if hasImage %}
+            {% if hasIcon %}
+                {% include '@bf-components/icon/twig/index.twig' with {
+                    name    : iconName,
+                    size    : 'large',
+                    class   : 'w-100 h-100'
+                } only %}
+            {% elseif hasImage %}
                 <img
                     src='{{ image.src|default('') }}'
                     data-src='{{ image.dataSrc|default('') }}'
                     alt='{{ image.alt|default('') }}'
                     class='w-100 h-100'
                 />
-            {% elseif hasIcon %}
-                {% include '@bf-components/icon/twig/index.twig' with {
-                    name    : iconName,
-                    size    : 'large',
-                    class   : 'w-100 h-100'
-                } only %}
             {% endif %}
         </div>
     {% endif %}
@@ -37,7 +37,7 @@
         {% endif %}
         {% if paragraph is defined and paragraph %}
             <p class='small m-0'>
-                {{ paragraph }}
+                {{ paragraph|raw }}
             </p>
         {% endif %}
     </div>
