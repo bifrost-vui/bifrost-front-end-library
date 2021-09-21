@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
  * Description of the component Hero
  *
  */
- 
+
 @Component({
   selector: 'bf-hero',
   templateUrl: './hero.component.html',
@@ -14,8 +14,8 @@ export class HeroComponent implements OnInit {
     constructor() {}
 
     @Input() breadcrumb         : 'TwigBlock';
-    /** Twig Block or Object with this [component API](/?path=/docs/components-badge--drupal). */
-    @Input() badge              : any;
+    /**  Based on [Badge](/?path=/docs/components-badge--drupal) component API. */
+    @Input() badge              : object;
     @Input() upperTitle         : string;
     @Input() title              : string;
     @Input() subtitle           : string;
@@ -28,7 +28,7 @@ export class HeroComponent implements OnInit {
         Insert the component BlockSelection. Explore its [Component API](/?path=/docs/components-block--drupal-selection).
     */
     @Input() blockSelection     : object | 'TwigBlock';
-    
+
     /** Class override */
     @Input() class              : string;
     @Input() reversed           : boolean;

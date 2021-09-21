@@ -4,8 +4,8 @@ import { withDesign } from 'storybook-addon-designs'
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { HeroComponent } from '../angular/hero.component';
 
-<Meta 
-    title='Components/Hero' 
+<Meta
+    title='Components/Hero'
     component={HeroComponent}
     decorators={[
         moduleMetadata({ declarations: [HeroComponent, TwigContainerComponent]}),
@@ -30,7 +30,12 @@ import { HeroComponent } from '../angular/hero.component';
 
 ```jsx
 {% include '@bf-components/hero/twig/index.twig' with {
-    badge       : 'NEW',
+    badge       : {
+        label       : 'NEW',
+        hierarchy   : 'primary',
+        angle       : '',
+        iconName    : ''
+    },
     breadcrumb  : `<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>`,
     upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
@@ -55,8 +60,12 @@ import { HeroComponent } from '../angular/hero.component';
 ## Drupal
 
 export const commonProps = {
-    breadcrumb  : '',
-    badge       : 'NEW',
+    badge       : {
+      label       : 'NEW',
+      hierarchy   : 'primary',
+      angle       : '',
+      iconName    : ''
+    },
     breadcrumb  : `<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>`,
     upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
@@ -78,9 +87,9 @@ export const Drupal = (args) => ({
     withSource='none'
     style={{ height: '300px' }}
 >
-    <Story 
+    <Story
         name='Drupal'
-        args={{ 
+        args={{
             elementPath : 'components/hero/_doc/template.drupal',
             ...commonProps,
         }}
@@ -98,7 +107,7 @@ export const Drupal = (args) => ({
     withSource='none'
     style={{ height: '300px' }}
 >
-    <Story 
+    <Story
         name='Drupal - With image'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
@@ -119,7 +128,7 @@ export const Drupal = (args) => ({
     withSource='none'
     style={{ height: '300px' }}
 >
-    <Story 
+    <Story
         name='Drupal - With Block Selection'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
