@@ -40,9 +40,11 @@ import { ButtonNavComponent }                   from '../angular/button-nav.comp
 
 ```jsx
 {% include '@bf-components/button-nav/twig/index.twig' with {
-    label           : 'Button Nav label',
+    label           : 'Default',
     iconName        : 'placeholder',
     class           : 'mt-3',
+    reversed        : false,
+    highlight       : false,
 } only %}
 ```
 
@@ -56,14 +58,13 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '700px' }}
+    style={{ height: '300px' }}
 >
     <Story 
         name='Drupal'
         args={{
             elementPath : 'components/button-nav/_doc/template.drupal',
-            iconName    : 'placeholder',
-            label       : 'Label'
+            iconName    : 'placeholder'
         }}
     >
         {Drupal.bind({})}
@@ -73,13 +74,14 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '700px' }}
+    style={{ height: '900px' }}
 >
     <Story 
         name='Drupal - Usage Example'
         args={{
             elementPath : 'components/button-nav/_doc/usage-example.drupal'
         }}
+        argTypes={{}}
     >
         {Drupal.bind({})}
     </Story>
