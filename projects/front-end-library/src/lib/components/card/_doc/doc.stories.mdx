@@ -1,5 +1,6 @@
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 
+import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
 import { contentLists, contentListsNoTitle }    from './data';
 import { CardComponent }                        from '../angular/card.component';
 import CardTwigTemplate                         from './template.drupal.twig';
@@ -23,6 +24,13 @@ import CardTwigTemplate                         from './template.drupal.twig';
         },
         language: {
             table: { defaultValue: { summary: 'en' } },
+        },
+        iconName: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['', 'placeholder', ...illustrationIcons.map(a => a.list).flat().sort()]
+            }
         },
     }}
 />
@@ -124,7 +132,7 @@ import CardTwigTemplate                         from './template.drupal.twig';
         }
     ],
     message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
-    language            : 'en',
+    language            : 'en'
 } only %}
 
 // Card Phone example:
@@ -147,6 +155,13 @@ import CardTwigTemplate                         from './template.drupal.twig';
         href            : '',
         label           : 'Choose another Plan',
         class           : ''
+    }
+    contentBadge : {
+            label       : 'Lorem Ipsum',
+            hierarchy   : 'tertiary',
+            angle       : '',
+            iconName    : '',
+            class       : '',
     }
 } only %}
 ```
@@ -205,6 +220,7 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - Plan'
         args={{
+            elementPath : 'components/card/_doc/template.drupal',
             ...commonProps,
             cardVariant : 'plan',
             isDisabled  : false,
@@ -291,13 +307,19 @@ export const phoneCommonProps = {
         savedLabel      : 'You save:',
     },
     note                : 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
-    buttons           : [
+    buttons             : [
         {
-            label       : 'Configurate',
-            hierarchy   : 'primary-alt',
-            href        : 'www.videotron.com',
+            label           : 'Configurate',
+            hierarchy       : 'primary-alt',
+            href            : 'www.videotron.com',
         }
     ],
+    contentBadge : {
+            label       : 'Lorem Ipsum',
+            hierarchy   : 'tertiary',
+            angle       : '',
+            iconName    : 'credit-return',
+    }
 };
 
 <Preview
@@ -360,14 +382,56 @@ export const phoneCommonProps = {
                 dashed          : '$150',
                 saved           : '<strong>$30</strong>',
             },
-            message           : 'Lorem ipsum dolor.',
+            message           : 'Lorem ipsum dolor this protection.',
             buttons           : [
                 {
                     label       : 'Add this protection',
                     hierarchy   : 'primary-alt',
                     href        : 'www.videotron.com',
                 }
-            ],
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '800px' }}
+>
+    <Story
+        name='Drupal - Increment'
+        args={{
+            elementPath     : 'components/card/_doc/template.drupal',
+            cardVariant     : 'increment',
+            title           : 'Label Ipsum',
+            description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
+            price           : {
+                upperTitle      : 'From',
+                dollar          : '152',
+                cent            : '34',
+                infosSupp       : 'Taxes incl.',
+                boxAlignement   : 'left',
+                dashed          : '$150',
+                saved           : '<strong>$30</strong>',
+            },
+            message           : 'Lorem ipsum dolor this message.',
+            inputIncrement  :{
+                min             : 0,
+                max             : 5,
+                value           : 0,
+                inputId         : 'my-input-id',
+                ariaLabel       : 'my aria-label',
+                errorMessage    : 'Value should be between 0 and 5',
+            },
+            buttons         : [
+                {
+                label           : 'Add to plan',
+                hierarchy       : 'primary-alt',
+                href            : 'www.videotron.com',
+                }
+            ]
         }}
     >
         {Drupal.bind({})}
@@ -377,3 +441,7 @@ export const phoneCommonProps = {
 ## Component API
 
 <Props of={CardComponent} />
+
+## More info
+
+https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=6113%3A705

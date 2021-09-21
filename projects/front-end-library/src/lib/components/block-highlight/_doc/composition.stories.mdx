@@ -1,0 +1,47 @@
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { BlockHighlightComponent }              from '../angular/block-highlight.component';
+import { commonProps }                          from './doc.stories.mdx';
+import CompositionTwigTemplate                  from './composition.drupal.twig';
+
+
+<Meta 
+    title='Components/Block Highlight/Composition'
+    component={BlockHighlightComponent}
+    argTypes={{
+        titleTag: {
+            table: { defaultValue: { summary: 'p' } },
+        },
+        blockBackgroundColor: {
+            table: { defaultValue: { summary: 'ground' } },
+            control: {
+                type: 'select',
+                defaultValue: 'ground'
+            }
+        }
+    }}
+/>
+
+# Block Highlight Composition
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: CompositionTwigTemplate(args),
+    props: args,
+});
+
+
+<Preview
+    withSource='none'
+    style={{ height: '800px' }}
+>
+    <Story 
+        name='Drupal - Composition'
+        args={{
+            ...commonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>

@@ -1,11 +1,12 @@
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 
-import { illustrationIcons }        from './data';
+import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
+import interfaceIcons               from '../../../../../../../public/icons/list/interfaces.json';
 import { IconComponent }            from '../angular/icon.component';
 import IconTwigTemplate             from './template.drupal.twig';
 
 
-<Meta 
+<Meta
     title='Components/Icon'
     component={IconComponent}
     parameters={{
@@ -17,18 +18,15 @@ import IconTwigTemplate             from './template.drupal.twig';
     }}
     argTypes={{
         color: {
-            description: 'success | neutral | warning | negative',
-            control: {
-                type: 'select',
-                options: ['', 'success', 'neutral', 'warning', 'negative'],
-            }
+            defaultValue: '',
+            control: {type: 'select'}
         },
         size: {
-            type: { required: false },
-            table: { defaultValue: { summary: 'large' } },
-            control: {
-                type: 'select',
-                options: ['', 'medium', 'large'],
+            defaultValue: 'medium',
+            type: { required: true },
+            table: { defaultValue: { summary: 'medium' } },
+            control: {type: 'select',
+            options: ['xsmall','small' , 'medium', 'large']
             }
         },
         name: {
@@ -39,13 +37,7 @@ import IconTwigTemplate             from './template.drupal.twig';
         },
         icons: {
             table: { disable: true }
-        },
-        type: {
-            control: {
-                readOnly: true
-            },
-            table: { defaultValue: { summary: 'interface' } },
-        },
+        }
     }}
 />
 
@@ -60,6 +52,23 @@ import IconTwigTemplate             from './template.drupal.twig';
 
 <Props of={IconComponent} />
 
+## Drupal implementation example
+
+``` jsx
+
+{% include '@bf-components/icon/twig/index.twig' with {
+    name    : 'account-balance',
+    size    : 'xsmall | small | medium | large'
+    color   : 'negative',
+    class   : 'mr-2'
+} only %}
+
+{% include '@bf-components/icon/twig/index.twig' with {
+    name    : 'my-account',
+    size    : 'xsmall | small | medium | large',
+} only %}
+
+```
 
 
 ## Drupal
@@ -69,15 +78,32 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+### Illustration Icons
 <Preview
     withSource='none'
     style={{ height: '700px' }}
 >
-    <Story 
+    <Story
         name='Drupal - Illustration'
         args={{
-            icons       : illustrationIcons,
-            type        : 'illustration',
+            elementPath : 'components/icon/_doc/template.drupal',
+            icons       : illustrationIcons
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+### Interface Icons
+<Preview
+    withSource='none'
+    style={{ height: '700px' }}
+>
+    <Story
+        name='Drupal - Interface'
+        args={{
+            elementPath : 'components/icon/_doc/template.drupal',
+            icons       : interfaceIcons
         }}
     >
         {Drupal.bind({})}

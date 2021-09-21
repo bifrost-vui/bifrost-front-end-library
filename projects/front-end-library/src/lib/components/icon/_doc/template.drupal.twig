@@ -7,7 +7,6 @@
                 color   : color,
                 size    : size,
                 class   : class,
-                type    : type,
             } only %}
             <p class="small bf-color-neutral-secondary pt-1">{{name}}</p>
         </div>
@@ -20,7 +19,7 @@
                         <div class="w-100">
                             <h4>{{category.category}}</h4>
                         </div>
-                        <div class="doc-list {% if type is same as ('illustration') %}doc-list--illustration{% endif %}">
+                        <div class="doc-list ">
                             {% for iconName in category.list %}
                                 <div class='d-flex flex-column align-items-center p-3' title='{{iconName}}'>
                                     {% include '@bf-components/icon/twig/index.twig' with {
@@ -28,7 +27,6 @@
                                         color   : color,
                                         size    : size,
                                         class   : class,
-                                        type    : type,
                                     } only %}
                                     <p class="small bf-color-neutral-secondary text-center pt-1">{{iconName}}</p>
                                 </div>
@@ -44,13 +42,9 @@
 
 <style>
     .doc-list {
-        --minmax: 80px;
+        --minmax: 120px;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax( var(--minmax), 1fr));
         width: 100%;
-    }
-
-    .doc-list--illustration {
-        --minmax: 120px;
     }
 </style>

@@ -1,0 +1,40 @@
+/* *****************************************************************************
+*
+*  Input increment
+*
+* ***************************************************************************** */
+
+.bf-input-increment {
+  display: flex;
+  flex-flow: row;
+
+  &__feedback{
+    display: none;
+  }
+
+  &__input {
+    color: currentColor;
+    background: none;
+    width: 3rem;
+    height: 2rem;
+    appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      appearance: none;
+    }
+  }
+
+  &.disabled{
+    @extend .bf-color-neutral-secondary;
+  }
+
+  &.is-invalid {
+    .bf-input-increment__feedback{
+      @extend .invalid-feedback;
+      @extend .pt-2;
+      @extend .w-100;
+      display: block;
+    }
+  }
+}

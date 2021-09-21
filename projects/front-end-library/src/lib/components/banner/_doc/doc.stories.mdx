@@ -1,21 +1,25 @@
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 
-import { illustrationIcons }                    from '../../icon/_doc/data';
+import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
 import { BannerComponent }                      from '../angular/banner.component';
 import BannerTwigTemplate                       from './template.drupal.twig';
 
 
-<Meta 
-    title='Components/Banner' 
+<Meta
+    title='Components/Banner'
     component={BannerComponent}
     argTypes={{
-        iconName: {
+        iconName    : {
+            defaultValue: 'credit-return',
             control: {
                 type: 'select',
                 options: ['', ...illustrationIcons.map(a => a.list).flat().sort()],
                 value: 'mobile-multiline',
             }
         },
+        isClickable : {
+            defaultValue : true
+        }
     }}
 />
 
@@ -34,7 +38,7 @@ import BannerTwigTemplate                       from './template.drupal.twig';
 
 ## Drupal implementation example
 
-#### With icon
+#### Clickable banner with icon
 ```jsx
 {% include '@bf-components/banner/twig/index.twig' with {
     href        : 'https://videotron.com',
@@ -42,11 +46,21 @@ import BannerTwigTemplate                       from './template.drupal.twig';
     paragraph   : 'Free with any purchase of this phone, valuted at $239.38.',
     iconName    : 'mobile-multiline',
     badge       : 'FREE',
+    isClickable : 'true'
     class       : 'mb-4',
 } only %}
 ```
 
-#### With image
+#### Banner with icon and link
+```jsx
+{% include '@bf-components/banner/twig/index.twig' with {
+    //...
+    linkLabel   : 'Some conditions may apply',
+    isClickable : 'false',
+} only %}
+```
+
+#### Banner with image
 ```jsx
 {% include '@bf-components/banner/twig/index.twig' with {
     // ...
@@ -57,8 +71,6 @@ import BannerTwigTemplate                       from './template.drupal.twig';
 } only %}
 ```
 
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -66,23 +78,30 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+export const commonProps= {
+    href        : 'https://videotron.com',
+    title       : 'Galaxy Buds Live',
+    paragraph   : 'Free with any purchase of this phone, valuted at $239.38.',
+    iconName    : 'mobile-multiline',
+    image       : {
+        src: 'https://videotron.com/images/assets/helix-equipment.png',
+        alt: 'Alt description'
+    },
+    badge       : 'FREE',
+    class       : 'mb-4',
+}
 
-<Canvas>
-    <Story 
+<Preview
+    withSource='none'
+    style={{ height: '500px' }}
+>
+    <Story
         name='Drupal'
         args={{
-            href        : 'https://videotron.com',
-            title       : 'Galaxy Buds Live',
-            paragraph   : 'Free with any purchase of this phone, valuted at $239.38.',
-            iconName    : 'mobile-multiline',
-            image       : {
-                src: 'https://videotron.com/images/assets/helix-equipment.png',
-                alt: 'Alt description'
-            },
-            badge       : 'FREE',
-            class       : 'mb-4',
+            elementPath : 'components/banner/_doc/template.drupal',
+            ... commonProps
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Canvas>
+</Preview>

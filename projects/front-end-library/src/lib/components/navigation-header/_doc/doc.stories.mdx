@@ -12,6 +12,9 @@ import NavigationHeaderTemplate     from './template.drupal.twig';
         layout: 'padded',
     }}
     argTypes={{
+        accountHello: {
+            table: { defaultValue: { summary: 'Hello' } },
+        },
         langcode: {
             table: { defaultValue: { summary: 'en' } },
             control: { 
@@ -134,6 +137,10 @@ export const Drupal = (args) => ({
         args={{ 
             topBar_items,
             topBar_secondaryItems,
+            logo : {
+                name                : 'business',
+                href                : '/',
+            },
             rigthIconLinks,
         }}
     >

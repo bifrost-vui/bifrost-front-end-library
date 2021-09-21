@@ -7,14 +7,25 @@ import BlockHighlightTwigTemplate               from './template.drupal.twig';
 <Meta 
     title='Components/Block Highlight' 
     component={BlockHighlightComponent}
-    argTypes={{}}
+    argTypes={{
+        titleTag: {
+            table: { defaultValue: { summary: 'p' } },
+        },
+        blockBackgroundColor: {
+            table: { defaultValue: { summary: 'ground' } },
+            control: {
+                type: 'select',
+                defaultValue: 'ground'
+            }
+        }
+    }}
 />
 
 # Block Highlight
 
+> 👉 &nbsp; Please, read [Full Documentation about Block-Highlight](https://zeroheight.com/79f1d3365/p/688590-block-highlight).
+
 <br/>
-
-
 
 ## Component API
 
@@ -26,27 +37,24 @@ import BlockHighlightTwigTemplate               from './template.drupal.twig';
 
 ```jsx
 {% include '@bf-components/block-highlight/twig/index.twig' with {
-    image               : {
-        src: '/images/assets/helix-equipment.png',
-        alt: 'Alt description'
+    image                   : {
+        src : '/images/assets/helix-equipment.png'
     },
-    title               : 'All the mobile accessories',
-    titleTag            : 'p',
-    paragraph           : 'Find the perfect accessories for your device.',
-    button              : {
-        hierarchy           : 'primary-alt',
-        label               : 'Shop',
-        class               : ''
+    visualBackgroundColor   : '#ff00ff',
+    blockBackgroundColor    : 'underground',
+    title                   : 'All the mobile accessories',
+    titleTag                : 'h2',
+    paragraph               : 'Find the perfect accessories for your device.',
+    button                  : {
+        label : 'Shop',
+        class : ''
     },
-    fullWidth           : false,
-    reversed            : false,
-    class               : ''
+    isFeatured              : false,
+    reversed                : false,
+    class                   : ''
 } only %}
 ```
 
-
-
-## Drupal
 
 export const Drupal = (args) => ({
     template: BlockHighlightTwigTemplate(args),
@@ -55,17 +63,16 @@ export const Drupal = (args) => ({
 
 export const commonProps = {
     image               : {
-        src                 : '/images/assets/helix-equipment.png',
-        alt                 : 'Alt description'
+        src : window.location.origin + '/images/placeholder/800x600.png',
+        // src: 'https://i.stack.imgur.com/y9DpT.jpg'
     },
     title               : 'All the mobile accessories',
     paragraph           : 'Find the perfect accessories for your device.',
     button              : {
-        hierarchy           : 'primary-alt',
-        label               : 'Shop',
-        class               : ''
+        label   : 'Shop',
+        class   : ''
     },
-    fullWidth           : false,
+    isFeatured          : false,
     class               : ''
 }
 
@@ -74,24 +81,10 @@ export const commonProps = {
 >
     <Story 
         name='Drupal'
-        args={{ 
+        args={{
             ...commonProps
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Canvas>
-
-<Canvas
-    withSource='none'
->
-    <Story 
-        name='Drupal - FullWidth'
-        args={{ 
-            ...commonProps,
-            fullWidth : true,
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
+</Preview>

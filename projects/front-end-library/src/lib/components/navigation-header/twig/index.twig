@@ -4,7 +4,7 @@
         secondaryItems          : topBar.secondaryItems|default([]),
         isConnected             : isConnected|default(false),
         accountHello            : accountHello|default('Hello'),
-        accountName             : accountName|default('Benjamin Desjardins'),
+        accountName             : accountName|default(''),
         hrefLogOut              : hrefLogOut|default('#'),
         labelLogOut             : labelLogOut|default('Logout'),
         hrefConnexion           : hrefConnexion|default('#'),
@@ -63,13 +63,13 @@
                     {% if isConnected is same as (true) %}
                         {% include '@bf-components/button-icon/twig/index.twig' with {
                             href        : hrefLogOut|default('#'),
-                            icon        : 'out',
+                            icon        : 'logout',
                             ariaLabel   : labelLogOut|default('Log out'),
                         } %}
                     {% else %}
                         {% include '@bf-components/button-icon/twig/index.twig' with {
                             href        : hrefConnexion|default('#'),
-                            icon        : 'profile',
+                            icon        : 'my-account',
                             ariaLabel   : labelConnexion|default('Log in'),
                         } %}
                     {% endif %}
