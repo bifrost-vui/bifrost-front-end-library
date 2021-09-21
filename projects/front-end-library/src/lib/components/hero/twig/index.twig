@@ -8,9 +8,14 @@
         {{ bgImageQueries|default(null) }} #}
         {{ class|default('') }}
         '
+    style='
     {% if image is defined and image.default is not empty %}
-        style='background-image: url("{{ image.default }}")'
+        background-image: url("{{ image.default }}");
     {% endif %}
+    {% if minHeight is defined and minHeight %}
+        min-height: {{ minHeight }};
+    {% endif %}
+    '
     {# data-bg='{{ bgImage|default(defaultImgSrc) }}'
     data-md-bg='{{ bgMediumImage|default(defaultImgSrc) }}'
     data-lg-bg='{{ bgLargeImage|default(defaultImgSrc) }}' #}
