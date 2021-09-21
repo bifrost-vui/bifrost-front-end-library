@@ -8,36 +8,54 @@
     width: 100%;
     position: relative;
     overflow:hidden ;
-    .bfslick-controls-dots{
+
+    .bfslick-controls-counter{
         display: inline-block;
         position: relative;
 
 
         .slick-dots {
             position: relative;
-            margin: 1rem 0;
+            margin: 0;
             display: block;
             bottom: unset;
+
+            li {
+                line-height:1rem ;
+                &.slick-active button:before {
+                    background-color: var(--bf-color-neutral-primary-alt)!important;
+                }
+            }
         }
     }
 
     .slick-track{
         gap:0
     }
+    .bfslick-controls .slick-next{
+        right: 0;
+        padding: 0;
+        &:before{left:0;}
+    }
+    .bfslick-controls .slick-prev{
+        left: 0;
+    }
     .bfslick-controls .slick-next,
     .bfslick-controls .slick-prev{
         position: relative;
-        width: 0.5rem;
-        height:0.5rem;
+        width: 1.5rem;
+        height:1rem;
         background: transparent;
         border-radius: 0;
         border:0;
         z-index: 20;
+        line-height: 1.125rem;
 
-
-        &:after,
         &:before{
             border-color: var(--bf-color-neutral-primary) !important;
-        }
+            width: 0.5rem;
+            height:0.5rem;
+
+            }
     }
 }

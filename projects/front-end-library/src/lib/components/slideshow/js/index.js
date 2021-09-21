@@ -27,7 +27,7 @@ window.bfSlick = {
    // heroSlideShow
    bfSlick.assignCarousel('.js-slick-carousel--hero-slideshow', {
     dots: true,
-    appendDots: '.bfslick-controls-dots',
+    appendDots: '.bfslick-controls-counter',
     infinite: true,
     speed: 600,
     slidesToShow: 1,
@@ -44,3 +44,5 @@ window.bfSlick = {
 
 $('.slick-next').on('click', function () { $(this).parents('.bf-slideshow').slick('slickNext'); });
 $('.slick-prev').on('click', function () { $(this).parents('.bf-slideshow').slick('slickPrev'); });
+
+/** dots slick-active not working : https://github.com/kenwheeler/slick/issues/1614 */
