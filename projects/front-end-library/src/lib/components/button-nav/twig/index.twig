@@ -1,5 +1,7 @@
+{% set buttonHierarchy = (highlight is defined and highlight) ? 'primary' : 'tertiary' %}
+
 {% include '@bf-components/button/twig/index.twig' with {
-    hierarchy   : 'tertiary',
+    hierarchy   : buttonHierarchy,
     iconSize    : 'large',
     class       : 'bf-button-nav px-1 py-1 ' ~ class|default(''),
 } %}
