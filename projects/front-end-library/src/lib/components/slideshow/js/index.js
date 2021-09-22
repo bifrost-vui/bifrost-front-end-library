@@ -20,6 +20,8 @@ window.bfSlick = {
             const slickData = $(elem).data('slick') || {};
             const mergeSlickData = Object.assign(slickParams, slickData);
             $(elem).slick(mergeSlickData);
+            $('.slick-current').find('.slick-dots li:nth-child(1)').addClass('slick-active')
+
         })
     },
 };
@@ -38,11 +40,15 @@ window.bfSlick = {
     slidesToScroll: 1,
     centerPadding: 0,
     mobileFirst: true,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 4000,
 });
 
 $('.slick-next').on('click', function () { $(this).parents('.bf-slideshow').slick('slickNext'); });
 $('.slick-prev').on('click', function () { $(this).parents('.bf-slideshow').slick('slickPrev'); });
 
-/** dots slick-active not working : https://github.com/kenwheeler/slick/issues/1614 */
+/** dots slick-active not working : got workaround https://github.com/kenwheeler/slick/issues/1614 */
+$('.bf-slideshow').on('afterChange', function(event, slick, currentSlide, nextSlide){
+    var currentDot = currentSlide+1
+    $('.slick-current').find('.slick-dots li:nth-child('+ currentDot +')').addClass('slick-active')
+});
