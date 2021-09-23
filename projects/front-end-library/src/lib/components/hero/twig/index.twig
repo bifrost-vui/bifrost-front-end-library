@@ -19,7 +19,7 @@
     {% if image is defined and image.mobile is not empty %}
         <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-md-none' />
     {% endif %}
-    
+
     <div class='d-block d-md-none' data-animate='fade-in'>
         {% if block('blockSelection') is defined %}
             {{ block('blockSelection') }}
@@ -66,12 +66,22 @@
                         {{ description }}
                     </p>
                 {% endif %}
-                {% if button is defined and button is not empty %}
-                    <div class='mt-6' data-animate='fade-in'>
-                        {% set button = button|merge( { 'hierarchy': button.hierarchy|default('primary-alt') } ) %}
-                        {% include '@bf-components/button/twig/index.twig' with button only %}
-                    </div>
-                {% endif %}
+
+              {% if buttons is defined and buttons is not empty %}
+                <div class="d-inline-flex w-100 mt-3" aria-label="button" data-animate='fade-in'>
+                {% set btnLength = buttons.length %}
+                 {% for btn in buttons|slice(0, 2) %}
+                   {% if btnLength > 1 %}
+                     {% set btnClass = ' mr-3' %}
+                   {% endif %}
+                    {% include '@bf-components/button/twig/index.twig' with {
+                      label       : btn.label,
+                      hierarchy   : (loop.index == 1) ? 'primary-alt' : 'secondary',
+                      class       : btn.class ~ btnClass,
+                    } only %}
+                  {% endfor %}
+                </div>
+              {% endif %}
             </div>
         </header>
         <div class='d-none d-md-block' data-animate='fade-in'>
