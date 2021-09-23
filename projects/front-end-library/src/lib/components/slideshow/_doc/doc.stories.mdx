@@ -26,8 +26,11 @@ import { SlideshowComponent }     from '../angular/slideshow.component';
 
 # Slideshow
 
-**// TODO** Write a description of your component.
-> **// TODO**: Add a link to component in **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)**
+- supports `Hero` slides only
+- supports variable slide heights
+- autoplay is set to change slides every 5 seconds
+- dots and arrows are displayed in the current slides
+- automatic sliding pauses on mouseover and will restart 5 second after mouseout
 
 
 ## Drupal
@@ -39,7 +42,7 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
+    style={{ height: '600px' }}
 >
     <Story
         name='Drupal'
@@ -56,16 +59,8 @@ export const Drupal = (args) => ({
 ## Drupal implementation exemple
 
 ```jsx
-{% include '@bf-components/slideshow/twig/index.twig' with {
-    // Add relevant props here
-} only %}
+{% include '@bf-components/slideshow/twig/index.twig' with slides %}
 ```
-
-
-
-
-
-**// TODO**: Add Stories (variants of your component) as much as you want.
 
 
 ## Component API

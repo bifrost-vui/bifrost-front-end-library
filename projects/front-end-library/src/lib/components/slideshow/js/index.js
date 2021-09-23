@@ -41,7 +41,7 @@ window.bfSlick = {
     centerPadding: 0,
     mobileFirst: true,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 5000,
 });
 
 $('.slick-next').on('click', function () { $(this).parents('.bf-slideshow').slick('slickNext'); });

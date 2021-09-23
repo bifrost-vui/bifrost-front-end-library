@@ -9,52 +9,57 @@
     position: relative;
     overflow:hidden ;
 
-    .bfslick-controls-counter{
-        display: inline-block;
-        position: relative;
-
-        .slick-dots {
+   .slick-track{ gap:0 }
+    .bfslick-controls{
+        @include media-breakpoint-down(sm) {
+            width: fit-content;
+            margin: 0 auto;
+        }
+        .bfslick-controls-counter{
+            display: inline-block;
             position: relative;
-            margin: 0;
-            display: block;
-            bottom: unset;
 
-            li {
-                line-height:1rem ;
-                &.slick-active {
-                    background-color: var(--bf-color-bg-action-secondary)!important;
+            .slick-dots {
+                position: relative;
+                margin: 0;
+                display: block;
+                bottom: unset;
+
+                li {
+                    line-height:1rem ;
+                    &.slick-active {
+                        background-color: var(--bf-color-bg-action-secondary)!important;
+                    }
                 }
+            }
+        }
+        .slick-next{
+            right: 0;
+            padding: 0;
+            &:before{
+                left: 0.25rem;
+            }
+        }
+        .slick-prev{
+            left: 0;
+        }
+        .slick-next,
+        .slick-prev{
+            position: relative;
+            width: 1.5rem;
+            height:1rem;
+            background: transparent;
+            border-radius: 0;
+            border:0;
+            z-index: 20;
+            line-height: 1.125rem;
+
+            &:before{
+                border-color: var(--bf-color-neutral-primary) !important;
+                width: 0.5rem;
+                height:0.5rem;
             }
         }
     }
 
-    .slick-track{
-        gap:0
-    }
-    .bfslick-controls .slick-next{
-        right: 0;
-        padding: 0;
-        &:before{left:0;}
-    }
-    .bfslick-controls .slick-prev{
-        left: 0;
-    }
-    .bfslick-controls .slick-next,
-    .bfslick-controls .slick-prev{
-        position: relative;
-        width: 1.5rem;
-        height:1rem;
-        background: transparent;
-        border-radius: 0;
-        border:0;
-        z-index: 20;
-        line-height: 1.125rem;
-
-        &:before{
-            border-color: var(--bf-color-neutral-primary) !important;
-            width: 0.5rem;
-            height:0.5rem;
-
-            }
-    }
 }
