@@ -2,7 +2,9 @@
 {% set icons    = icons|json_parse %}
 
 <div class='pt-4 bf-color-bg-ground {% if reversed %}reversed{% endif %}' style="height: fit-content; min-height: 100%;">
-
+{% if size is same as ('huge') %}
+   <div class='container-fluid'> <h3>This icon format should only display in Hero components. Do not use in other context.<h3></div>
+{% endif %}
     {% if name is defined and name is not same as ('undefined') and name is not same as ('All icons') %}
         <div class='d-flex flex-wrap flex-column align-items-center justify-content-center h-100'>
             {% include '@bf-components/icon/twig/index.twig' with {
@@ -22,7 +24,7 @@
                         <div class="w-100">
                             <h4>{{category.category}}</h4>
                         </div>
-                        <div class="doc-list{{ (size == 'huge') ? '--huge'}}">
+                        <div class="doc-list{{ (size == 'huge') ? '-huge'}}">
                             {% for iconName in category.list %}
                                 <div class='d-flex flex-column align-items-center p-3' title='{{iconName}}'>
                                     {% include '@bf-components/icon/twig/index.twig' with {
@@ -44,13 +46,14 @@
 </div>
 
 <style>
+    /** FOR DEMO ONLY */
     .doc-list {
         --minmax: 120px;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax( var(--minmax), 1fr));
         width: 100%;
     }
-        .doc-list--huge {
+    .doc-list-huge {
         --minmax: 300px;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax( var(--minmax), 1fr));
