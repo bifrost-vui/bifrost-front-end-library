@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
  * Description of the component Hero
  *
  */
- 
+
 @Component({
   selector: 'bf-hero',
   templateUrl: './hero.component.html',
@@ -20,7 +20,10 @@ export class HeroComponent implements OnInit {
     @Input() title              : string;
     @Input() subtitle           : string;
     @Input() description        : string;
-    @Input() button             : object;
+  /**
+   Insert button with a limited array of objects of 1 or 2 items.
+   */
+    @Input() buttons            : Array<object>[];
     @Input() image              : object;
     @Input() background         : 'ground' | 'underground' | 'highlight';
 
@@ -28,7 +31,7 @@ export class HeroComponent implements OnInit {
         Insert the component BlockSelection. Explore its [Component API](/?path=/docs/components-block--drupal-selection).
     */
     @Input() blockSelection     : object | 'TwigBlock';
-    
+
     /** Class override */
     @Input() class              : string;
     @Input() reversed           : boolean;
