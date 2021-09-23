@@ -36,14 +36,14 @@
             <div class='position-relative py-5 mt-2'>
                 {% if badge is defined and badge is not empty %}
                     {% if badge is iterable %}
-                        {% set badgeLabel = badge.label %}
+                        {% set badge = {
+                            label       : badge.label,
+                            hierarchy   : badge.hierarchy|default('primary'),
+                            angle       : badge.angle|default(''),
+                            iconName    : badge.iconName|default(''),
+                        } %}
                     {% else %}
-                      {% set badge = {
-                        label       : badge.label,
-                        hierarchy   : badge.hierarchy|default('primary'),
-                        angle       : badge.angle|default('left'),
-                        iconName    : label.iconName|default(''),
-                      } %}
+                        {% set badge = { label: badge } %}
                     {% endif %}
                     {% set badge = badge|merge( {
                         'hierarchy' : badge.hierarchy|default('primary'),
