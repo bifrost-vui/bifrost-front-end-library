@@ -1,14 +1,14 @@
 {% if hasTopBar is defined and hasTopBar is same as (true) %}
   {% include '@bf-components/navigation-header/twig/top-bar.twig' with {
     items           : topBar.items|default([]),
-    secondaryItems      : topBar.secondaryItems|default([]),
-    isConnected       : isConnected|default(false),
-    accountHello      : accountHello|default('Hello'),
-    accountName       : accountName|default(''),
-    hrefLogOut        : hrefLogOut|default('#'),
-    labelLogOut       : labelLogOut|default('Logout'),
-    hrefConnexion       : hrefConnexion|default('#'),
-    labelConnexion      : labelConnexion|default('My Customer Centre'),
+    secondaryItems  : topBar.secondaryItems|default([]),
+    isConnected     : isConnected|default(false),
+    accountHello    : accountHello|default('Hello'),
+    accountName     : accountName|default(''),
+    hrefLogOut      : hrefLogOut|default('#'),
+    labelLogOut     : labelLogOut|default('Logout'),
+    hrefConnexion   : hrefConnexion|default('#'),
+    labelConnexion  : labelConnexion|default('My Customer Centre'),
     reversed        : reversed|default(false),
   } only %}
 {% endif %}
@@ -24,8 +24,8 @@
     <div class='bf-header__logo'>
       <a href='{{ logo.href|default('#') }}' class='d-flex'>
         {% include '@bf-components/logo/twig/index.twig' with {
-          name    : logo.name,
-          size    : 'large',
+          name      : logo.name,
+          size      : 'large',
           langcode  : langcode|default('EN'),
         } only %}
       </a>
@@ -50,8 +50,8 @@
           {% for link in rigthIconLinks|default([])|slice(0, 3) %}
             {% if link is defined and link.href is not empty and link.icon is not empty %}
               {% include '@bf-components/button-icon/twig/index.twig' with {
-                href  : link.href,
-                icon  : link.icon,
+                href    : link.href,
+                icon    : link.icon,
                 class   : link.class,
                 badge   : (link.badge.label) ? { label : link.badge.label } : {} ,
               } only %}
@@ -63,42 +63,42 @@
         {% if hasAccountBtn is defined and hasAccountBtn %}
           {% if isConnected is same as (true) %}
             {% include '@bf-components/button-icon/twig/index.twig' with {
-              href    : hrefLogOut|default('#'),
-              icon    : 'log-out',
-              ariaLabel   : labelLogOut|default('Log out'),
+              href      : hrefLogOut|default('#'),
+              icon      : 'log-out',
+              ariaLabel : labelLogOut|default('Log out'),
             } %}
           {% else %}
             {% include '@bf-components/button-icon/twig/index.twig' with {
-              href    : hrefConnexion|default('#'),
-              icon    : 'my-account',
-              ariaLabel   : labelConnexion|default('Log in'),
+              href      : hrefConnexion|default('#'),
+              icon      : 'my-account',
+              ariaLabel : labelConnexion|default('Log in'),
             } %}
           {% endif %}
         {% endif %}
 
         {# <!-- Btn mini cart --> #}
-         {% if hasCartBtn is defined and hasCartBtn %}
+         {% if cartBtn is defined and cartBtn is not empty %}
           {% if cartBtn.badge is defined and cartBtn.badge and cartBtn.badge != '0' %}
             {% set badgeLabel =  cartBtn.badge %}
           {% endif %}
 
           {% include '@bf-components/button-icon/twig/index.twig' with {
-            icon    : 'cart',
+            icon        : 'cart',
             hierarchy   : 'primary',
-            badge     : (badgeLabel is defined) ? badgeLabel : NULL,
-            href    : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : '',
+            badge       : (badgeLabel is defined) ? badgeLabel : NULL,
+            href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : '',
             ariaLabel   : cartBtn.ariaLabel|default(''),
           } only %}
         {% endif %}
 
         {# <!-- Btn search toggle --> #}
         {% include '@bf-components/button-icon/twig/index.twig' with {
-          icon      : 'search',
+          icon          : 'search',
           dataToggle    : 'collapse',
           dataTarget    : '#navbarSearch',
           ariaControls  : 'navbarSearch',
           ariaExpanded  : 'false',
-          class       : 'd-flex d-md-none js-bf-search-toggler'
+          class         : 'd-flex d-md-none js-bf-search-toggler'
         } only %}
 
       {# <!-- Search --> #}
@@ -108,19 +108,17 @@
             {% block globalSearch %}
               {% include '@bf-components/input-search/twig/index.twig' with {
                 class     : 'mb-0',
-                input     : {
-                  placeholder : search.placeholder|default('')|t,
-                },
+                input     : { placeholder : search.placeholder|default('')|t, },
                 reversed  : reversed,
               } %}
             {% endblock %}
             {% include '@bf-components/button-icon/twig/index.twig' with {
-              icon      : 'x',
+              icon          : 'x',
               dataToggle    : 'collapse',
               dataTarget    : '#navbarSearch',
               ariaControls  : 'navbarSearch',
               ariaExpanded  : 'false',
-              class       : 'd-flex d-md-none m-1 p-1'
+              class         : 'd-flex d-md-none m-1 p-1'
             } only %}
           </div>
         </div>
