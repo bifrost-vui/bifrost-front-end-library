@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
+import { IPrice } from '../../price/angular/price.component';
 
 /**
  * Description of the component Hero
@@ -14,12 +15,18 @@ export class HeroComponent implements OnInit {
     constructor() {}
 
     @Input() breadcrumb         : 'TwigBlock';
-    /**  Based on [Badge](/?path=/docs/components-badge--drupal) component API. */
-    @Input() badge              : object;
+    /**
+        You can pass directly the **label** as a **string** or an **object** based on [Badge](/?path=/docs/components-badge--drupal) component API.
+    */
+    @Input() badge              : any;
     @Input() upperTitle         : string;
     @Input() title              : string;
     @Input() subtitle           : string;
     @Input() description        : string;
+    /**
+        [Price](/?path=/docs/components-price--drupal) component.
+    */
+    @Input() price              : IPrice;
     @Input() button             : object;
     @Input() image              : object;
     @Input() background         : 'ground' | 'underground' | 'highlight';
@@ -32,6 +39,8 @@ export class HeroComponent implements OnInit {
     /** Class override */
     @Input() class              : string;
     @Input() reversed           : boolean;
+
+    @Input() language           : 'en' | 'fr';
 
     ngOnInit() {
         console.log('Hero', this);
