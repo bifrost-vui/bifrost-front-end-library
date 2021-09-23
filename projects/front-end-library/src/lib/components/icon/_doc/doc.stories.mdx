@@ -48,18 +48,36 @@ import { IconComponent }                        from '../angular/icon.component'
 
 > Note: You don't have to specify if the icon is **interface** or **illustration** [more details](?path=/docs/styles-icons--page).
 
-``` jsx
+### Interface Icons
+> NOTE : the icon size should be `small` or `xsmall`
 
+``` jsx
 {% include '@bf-components/icon/twig/index.twig' with {
-    name    : 'account-balance',
-    size    : 'xsmall | small | medium | large'
+    name    : 'edit',
+    size    : 'small'
     color   : 'negative',
     class   : 'mr-2'
 } only %}
 
+```
+### Illsutration Icons
+> NOTE : the icon size can be `small`, `medium` or `large`
+
+``` jsx
 {% include '@bf-components/icon/twig/index.twig' with {
     name    : 'my-account',
-    size    : 'xsmall | small | medium | large',
+    size    : 'large',
+} only %}
+
+```
+
+### Huge Illsutration Icons
+> NOTE : the icon size `huge` should only be used for hero components
+
+``` jsx
+{% include '@bf-components/icon/twig/index.twig' with {
+    name    : 'my-account',
+    size    : 'huge',
 } only %}
 
 ```
@@ -161,7 +179,9 @@ export const Drupal = (args) => ({
             },
             size: {
                 defaultValue: 'huge',
-                table: { defaultValue: { summary: 'huge' }, disable: true },
+                description: 'huge',
+                control: {type: 'select', options: ['huge']},
+                table: { defaultValue: { summary: 'huge' }},
             },
         }}
     >
