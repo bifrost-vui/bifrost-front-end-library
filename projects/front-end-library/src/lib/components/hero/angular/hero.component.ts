@@ -5,7 +5,7 @@ import { IPrice } from '../../price/angular/price.component';
  * Description of the component Hero
  *
  */
- 
+
 @Component({
   selector: 'bf-hero',
   templateUrl: './hero.component.html',
@@ -35,7 +35,7 @@ export class HeroComponent implements OnInit {
         Insert the component BlockSelection. Explore its [Component API](/?path=/docs/components-block--drupal-selection).
     */
     @Input() blockSelection     : object | 'TwigBlock';
-    
+
     /** Class override */
     @Input() class              : string;
     @Input() reversed           : boolean;
