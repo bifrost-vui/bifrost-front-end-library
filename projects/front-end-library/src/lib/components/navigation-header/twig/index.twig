@@ -51,14 +51,29 @@
           } only %}
         {% endblock %}
 
-        {# <!-- In progress:My account Item in mobile device -->  #}
+        {# <!-- My account Item in mobile device -->  #}
         <li class="nav-item">
-          <a class="nav-link d-lg-none d-md-block" href="#">
+          <a class="nav-link d-flex align-items-center" href="#">
             {% include '@bf-components/icon/twig/index.twig' with {
               name    : icon|default('my-account'),
               size    : 'small',
             } only %}
-            <span class="ml-3 bf-text-display-sub-medium">{{ (isConnected) ? labelLogIn : labelLogOut }}</span>
+            <span class="d-inline-block flex-grow-1 ml-3">
+              {% if isConnected is defined and isConnected %}
+                {% if loginMenuItems is defined and loginMenuItems is not empty %}
+                  <span>{{ loginMenuItems.name }}
+                    <small class="d-table">{{ loginMenuItems.description }}</small>
+                  </span>
+                {% endif %}
+              {% else  %}
+             {{ labelLogOut }}
+            {% endif %}
+              </span>
+            {% include '@bf-components/icon/twig/index.twig' with {
+              name        : "chevron-right",
+              size        : 'small',
+              class       : "",
+            } %}
           </a>
         </li>
         {# <!-- Btn language --> #}
@@ -73,8 +88,6 @@
             >
               {{ (langcode == 'EN') ? 'English' : 'Français' }}
             </a>
-
-
           {% endif %}
         </li>
       </ul>

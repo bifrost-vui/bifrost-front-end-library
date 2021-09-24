@@ -263,9 +263,10 @@ $(function () {
     }
     $(searchBtn, navMain).on('click', displaySearchBar);
 
+
    //Navigation mobile
 
-  $(".btn-back-menu").click((e)=>{
+  $('.btn-back-menu').click((e)=>{
     e.preventDefault()
     $('.tab-pane').removeClass('active show');
     $('.mobile-menu').removeClass("active show");
@@ -274,9 +275,9 @@ $(function () {
   $('.navbar-toggler').click((e)=> {
     e.preventDefault()
     if( $('.navbar-toggler').attr('aria-expanded')) {
-      $('.tab-pane').removeClass('active show');
+      $('.active.show').removeClass('active show');
+      $(this).addClass('active show');
     }
   })
-
 });
 

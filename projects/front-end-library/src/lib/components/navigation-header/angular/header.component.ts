@@ -41,6 +41,7 @@ export class HeaderComponent implements OnInit {
     @Input() hrefLogOut               : string;
     @Input() labelLogOut              : string;
     @Input() labelLogIn               : string;
+    @Input() loginItems               : object;
     @Input() hrefConnexion            : string;
     @Input() labelMyAccount           : string;
     /** Shows up in top bar only */

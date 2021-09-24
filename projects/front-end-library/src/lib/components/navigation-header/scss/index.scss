@@ -26,6 +26,9 @@
         border-bottom: 1px solid var(--bf-color-stroke-secondary);
         overflow: hidden;
         margin: 0;
+        @include media-breakpoint-down(sm) {
+          top: 46px;
+        }
       }
 
     }
@@ -87,9 +90,9 @@
                   position: absolute;
                   background-color: white;
                   z-index: 1;
-                  top: 4.4rem;
+                  top: 4.5rem;
                   height: calc(100vh - 3.5rem);
-                  border-top: 1px solid var(--bf-color-stroke-secondary);
+
 
                   .btn-back-menu {
                     width: 4.5rem;
@@ -111,6 +114,9 @@
                     margin-left: 3.5rem;
                     justify-content: space-between;
                     font-size: 1rem;
+                    @include media-breakpoint-down(sm) {
+                      margin-left: 3rem;
+                    }
                     &__parent {
                       align-items: center;
                       padding: 1.5rem 2.5rem 0 2.5rem;
@@ -132,7 +138,7 @@
             .list-sub-items {
               margin-top: 1rem;
               padding-left:0;
-              li {
+              li.nav-item {
                 border: 0;
 
                 .nav-link {
@@ -142,6 +148,14 @@
                   .interface {
                     background-color: transparent;
                     transform: rotate(180deg);
+                  }
+                }
+                &.open {
+
+                  .nav-link {
+                    .bf-icon {
+                      transform:none;
+                    }
                   }
                 }
               }
@@ -195,7 +209,10 @@
         justify-content: flex-end;
         width: 100%;
         height: 100%;
-        padding-right: var(--bf-spacer-small);
+        padding-right: var(--bf-spacer-medium);
+        @include media-breakpoint-down(md) {
+          padding-right: var(--bf-spacer-small);
+        }
 
       .navbar-toggler {
         .navbar-toggler-icon {
@@ -288,16 +305,13 @@
 
         .nav-link {
             position: relative;
-            padding: 1rem 0;
             background: none;
             width: auto;
             border: none;
-            // color: var(--bf-color-neutral-primary);
             font-family: $font-family-secondary;
             font-size: 1.25rem;
             font-weight: 400;
             line-height: inherit;
-            // text-transform: uppercase;
             letter-spacing: 1px;
 
             @include media-breakpoint-down(md) {

@@ -20,7 +20,7 @@
                 } only %}
                 <span class="tab-label">
                    {{ dropdownSubItem.catLabel|default('category') }}
-                   </span>
+                 </span>
                 {% include '@bf-components/icon/twig/index.twig' with {
                   name        : "chevron-right",
                   size        : 'small',
@@ -70,9 +70,8 @@
                       </div>
 
                       {% for subItem in dropdownSubItem.subdropdownItems %}
-                        {% set fullWidth = subItem.isFullWidth ? 'col-lg-12' : 'col-lg-3'  %}
-                        {% set hasBorder = (subItem.isFullWidth and subItem.fullWidthHasBorder) ? subItem.fullWidthHasBorder : ''  %}
-                        <div class="{{ fullWidth }} {{ hasBorder }} submenu-container-mobile__contain">
+
+                        <div class="col-lg-12 submenu-container-mobile__contain">
                           {% if subItem.listItems %}
                             <ul class="p-0 list-unstyled">
                               {% for subItem in subItem.listItems %}
@@ -120,9 +119,12 @@
               class       : 'icon-tab',
               reversed    : reversed,
             } only %}
-                  <span class="tab-label">
-                      {{ navItem.label }}
-                  </span>
+            <span class="tab-label">
+               <span class="d-inline-block">
+                 {{ navItem.label }}
+                 <small class="d-table">{{ navItem.subLabel }}</small>
+            </span>
+            </span>
             {% include '@bf-components/icon/twig/index.twig' with {
               name        : "chevron-right",
               size        : 'small',
@@ -172,10 +174,8 @@
                 </div>
               </div>
               {% for subItem in navItem.subItems %}
-                {% set fullWidth = subItem.isFullWidth ? 'col-lg-12' : 'col-lg-3'  %}
-                {% set hasBorder = (subItem.isFullWidth and subItem.fullWidthHasBorder) ? subItem.fullWidthHasBorder : ''  %}
                 {% set itemClass = subItem.class ? subItem.class : ''  %}
-                <div class="{{ fullWidth }} mb-3 {{ itemClass }} {{ hasBorder }}submenu-container-mobile__contain">
+                <div class="col-lg-12 mb-3 {{ itemClass }} {{ hasBorder }}submenu-container-mobile__contain">
                   {% if subItem.label is defined and subItem.label is not empty %}
                     <div class="mb-2">
                       <a href="{{ subItem.href }}"

@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 
-import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn, menuItemAccount } from './data';
+import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn, menuItemAccount, loginMenuItems } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent }          from '../angular/header.component';
 
@@ -136,15 +136,19 @@ import { HeaderComponent }          from '../angular/header.component';
         { label : 'Another action', href: '#' },
         { label : 'Something else here', href: '#' },
     ],
-    hasAccountBtn : true,
-    isConnected : true,
-    hrefLogOut : '#',
-    labelLogOut : 'Log out',
-    labelLogIn  : 'Log In',
-    hrefConnexion : '#',
-    labelConnexion : 'Connexion',
+    hasAccountBtn   : true,
+    isConnected     : true,
+    hrefLogOut      : '#',
+    labelLogOut     : 'Log out',
+    labelLogIn      : 'Log In',
+    loginMenuItems  : {
+        name        :'John Doe',
+        description :'Bill and customer center'
+    },
+    hrefConnexion   : '#',
+    labelConnexion  : 'Connexion',
 
-    search : {
+    search          : {
         placeholder : 'What are you looking for?'
     },
 
@@ -180,6 +184,7 @@ export const Drupal = (args) => ({
             rigthIconLinks,
             menuItemAccount,
             cartBtn,
+            loginMenuItems
         }}
         height='400px'
         with = '1200px'

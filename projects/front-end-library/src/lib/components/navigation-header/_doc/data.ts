@@ -28,3 +28,7 @@ export const menuItemAccount = [
   { label: "Ma facture Helix", href: "https://www.videotron.com", iconName: "bill", description: "" },
   { label: "this menu item shoul not appear", href: "" },
 ];
+export const  loginMenuItems = {
+    name:  "John Doe",
+    description : "Bill and customer center"
+};
