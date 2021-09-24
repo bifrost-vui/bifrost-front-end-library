@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import 'slick-carousel';
 
-window.bfSlick = {
+ window.bfSlick = {
 
     getPrevSlickBtn : () => {
         const lang = $('html').attr('lang');
@@ -20,7 +20,7 @@ window.bfSlick = {
             const slickData = $(elem).data('slick') || {};
             const mergeSlickData = Object.assign(slickParams, slickData);
             $(elem).slick(mergeSlickData);
-            $('.slick-current').find('.slick-dots li:nth-child(1)').addClass('slick-active')
+            //$('.slick-current').find('.slick-dots li:nth-child(1)').addClass('slick-active')
 
         })
     },
@@ -29,14 +29,14 @@ window.bfSlick = {
    // heroSlideShow
    bfSlick.assignCarousel('.js-slick-carousel--hero-slideshow', {
     dots: true,
-    appendDots: '.bfslick-controls-counter',
+    appendDots: '.bfslick__controls__counter',
     infinite: true,
     speed: 600,
     slidesToShow: 1,
     adaptiveHeight: true,
     prevArrow: bfSlick.getPrevSlickBtn(),
     nextArrow: bfSlick.getNextSlickBtn(),
-    appendArrows:'.bfslick-controls',
+    appendArrows:'.bfslick__controls',
     slidesToScroll: 1,
     centerPadding: 0,
     mobileFirst: true,
@@ -47,8 +47,11 @@ window.bfSlick = {
 $('.slick-next').on('click', function () { $(this).parents('.bf-slideshow').slick('slickNext'); });
 $('.slick-prev').on('click', function () { $(this).parents('.bf-slideshow').slick('slickPrev'); });
 
-/** dots slick-active not working : got workaround https://github.com/kenwheeler/slick/issues/1614 */
+
 $('.bf-slideshow').on('afterChange', function(event, slick, currentSlide, nextSlide){
-    var currentDot = currentSlide+1
-    $('.slick-current').find('.slick-dots li:nth-child('+ currentDot +')').addClass('slick-active')
+    $('.bf-slideshow__container').removeClass('reversed')
+    if ($('.slick-current .bf-hero').hasClass('reversed')){
+        $('.bf-slideshow__container').addClass('reversed')
+    }
 });
+/** dots slick-active not working : got workaround https://github.com/kenwheeler/slick/issues/1614 */

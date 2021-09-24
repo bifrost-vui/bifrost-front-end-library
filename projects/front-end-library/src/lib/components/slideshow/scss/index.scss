@@ -3,22 +3,23 @@
 *  Slideshow
 *
 * ***************************************************************************** */
-
-.bf-slideshow {
-    width: 100%;
+.bf-slideshow__container {
     position: relative;
-    overflow:hidden ;
+    & > .slick-slider {
+        margin-bottom: 0;
+    }
+    .bf-slideshow {
+        width: 100%;
+        position: relative;
+        overflow:hidden ;
 
-   .slick-track{ gap:0 }
-    .bfslick-controls{
-        @include media-breakpoint-down(sm) {
-            width: fit-content;
-            margin: 0 auto;
-        }
-        .bfslick-controls-counter{
-            display: inline-block;
-            position: relative;
-
+        .slick-track{ gap:0 }
+    }
+    .bfslick__controls {
+        position: relative;
+        display: flex;
+        align-items: baseline;
+        &__counter{
             .slick-dots {
                 position: relative;
                 margin: 0;
