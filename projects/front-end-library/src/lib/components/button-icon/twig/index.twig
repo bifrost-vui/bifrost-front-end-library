@@ -2,21 +2,17 @@
 {% set hasBadge = (badge is defined and badge is not empty) %}
 
 {% if hasBadge %}
-<div class='bf-button-icon-container {{ isDisabled ? 'disabled' }}'>
-  {% endif %}
+  <div class='bf-button-icon-container {{ isDisabled ? 'disabled' }}'>
+{% endif %}
 
-  <{{ isLink ? 'a' : 'button' }}
+<{{ isLink ? 'a' : 'button' }}
   {% if isLink is same as (true) %}
     href='{{ href|default('#') }}'
   {% else %}
     type='button'
   {% endif %}
-  class='
-  bf-button-icon
-  {% if reversed is same as (true) %}reversed{% endif %}
-  {% if isDisabled is same as (true) %}disabled{% endif %}
-  {{ class|default('') }}'
-  {% if isDisabled is same as (true) %}disabled='disabled'{% endif %}
+  class='bf-button-icon {% if reversed %}reversed{% endif %} {% if isDisabled %}disabled{% endif %} {{ class|default('') }}'
+  {% if isDisabled %}disabled='disabled'{% endif %}
   {% if label is not empty %}data-title='{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}'{% endif %}
   {% if dataDismiss is defined %}data-dismiss='{{ dataDismiss|default(NULL) }}'{% endif %}
   {% if dataToggle is defined %}data-toggle='{{ dataToggle|default(NULL) }}'{% endif %}
@@ -25,18 +21,17 @@
   {% if ariaExpanded is defined %}aria-expanded='{{ ariaExpanded|default(NULL) }}'{% endif %}
   {% if ariaLabel is defined %}aria-expanded='{{ ariaLabel|default(NULL) }}'{% endif %}
   {{ extraAttribute|default(NULL) }}
-  >
+>
   {% include '@bf-components/icon/twig/index.twig' with {
-    name        : icon|default('placeholder')
+    name    : icon|default('placeholder')
   } only %}
-
 </{{ isLink ? 'a' : 'button' }}>
 
 {% if hasBadge %}
   {% if badge is defined and badge %}
     {% include '@bf-components/badge/twig/index.twig' with {
-      label     : badge|default('0'),
-      class     : 'bf-button-icon-container__badge',
+      label   : badge|default('0'),
+      class   : 'bf-button-icon-container__badge',
       hierarchy : 'primary',
       isRounded : true
     } only %}
