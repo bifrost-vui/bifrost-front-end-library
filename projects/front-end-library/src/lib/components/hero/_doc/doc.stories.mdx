@@ -1,6 +1,4 @@
 import { Meta, Story, Preview, Props }          from '@storybook/addon-docs';
-import { withDesign }                           from 'storybook-addon-designs'
-
 import { HeroComponent }                        from '../angular/hero.component';
 import CardTwigTemplate                         from './template.drupal.twig';
 
@@ -27,12 +25,30 @@ import CardTwigTemplate                         from './template.drupal.twig';
 
 ```jsx
 {% include '@bf-components/hero/twig/index.twig' with {
-    badge       : 'NEW',
+    badge       : {
+        label       : 'NEW',
+        hierarchy   : 'primary',
+        angle       : '',
+        iconName    : ''
+    },
     breadcrumb  : `<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>`,
     upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
     subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     description : 'Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.',
+    price           : {
+        upperTitle      : 'From',
+        dollar          : 86,
+        cent            : 99,
+        details         : '/month',
+        promotion       : {
+            priceStriked    : 40.99,
+            priceSaved      : 10,
+            savedLabel      : 'You saved :',
+            superscript     : 1,
+            direction       : 'horizontal',
+        }
+    },
     button      : {
         label       : 'Button',
         hierarchy   : 'primary-alt',
@@ -52,8 +68,12 @@ import CardTwigTemplate                         from './template.drupal.twig';
 ## Drupal
 
 export const commonProps = {
-    breadcrumb  : '',
-    badge       : 'NEW',
+    badge       : {
+      label       : 'NEW',
+      hierarchy   : 'primary',
+      angle       : '',
+      iconName    : ''
+    },
     breadcrumb  : `<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>`,
     upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
@@ -74,9 +94,9 @@ export const Drupal = (args) => ({
 <Canvas
     withSource='none'
 >
-    <Story 
+    <Story
         name='Drupal'
-        args={{ 
+        args={{
             ...commonProps,
         }}
     >
@@ -92,7 +112,7 @@ export const Drupal = (args) => ({
 <Preview
     withSource='none'
 >
-    <Story 
+    <Story
         name='Drupal - With image'
         args={{
             ...commonProps,
@@ -107,11 +127,39 @@ export const Drupal = (args) => ({
     </Story>
 </Preview>
 
-
 <Preview
     withSource='none'
 >
     <Story 
+        name='Drupal - With price'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            price           : {
+                upperTitle      : 'From',
+                dollar          : 86,
+                cent            : 99,
+                details         : '/month',
+                promotion       : {
+                    priceStriked    : 40.99,
+                    priceSaved      : 10,
+                    savedLabel      : 'You saved :',
+                    superscript     : 1,
+                    direction       : 'vertical',
+                }
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story
         name='Drupal - With Block Selection'
         args={{
             ...commonProps,
