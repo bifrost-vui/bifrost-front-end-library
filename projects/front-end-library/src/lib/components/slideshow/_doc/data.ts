@@ -1,6 +1,7 @@
 export const slides=[
     {
-        badge       : "old",
+        class       : "",
+        badge       : {label: "old", iconName: "camera"},
         upperTitle  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         title       : "Découvrez nos meilleurs forfaits Helix Internet et Télé",
         subtitle    : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -60,7 +61,7 @@ export const slides=[
                 },
             ],
         },
-        background      : "reversed",
+        background      : "",
     },
     {
         class       : "reversed",

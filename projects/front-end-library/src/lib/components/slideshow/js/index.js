@@ -20,8 +20,6 @@ import 'slick-carousel';
             const slickData = $(elem).data('slick') || {};
             const mergeSlickData = Object.assign(slickParams, slickData);
             $(elem).slick(mergeSlickData);
-            //$('.slick-current').find('.slick-dots li:nth-child(1)').addClass('slick-active')
-
         })
     },
 };
@@ -44,14 +42,9 @@ import 'slick-carousel';
     autoplaySpeed: 5000,
 });
 
-$('.slick-next').on('click', function () { $(this).parents('.bf-slideshow').slick('slickNext'); });
-$('.slick-prev').on('click', function () { $(this).parents('.bf-slideshow').slick('slickPrev'); });
-
-
 $('.bf-slideshow').on('afterChange', function(event, slick, currentSlide, nextSlide){
-    $('.bf-slideshow__container').removeClass('reversed')
+    $('.bf-slideshow__container .bfslick__controls').removeClass('reversed')
     if ($('.slick-current .bf-hero').hasClass('reversed')){
-        $('.bf-slideshow__container').addClass('reversed')
+        $('.bf-slideshow__container .bfslick__controls').addClass('reversed')
     }
 });
-/** dots slick-active not working : got workaround https://github.com/kenwheeler/slick/issues/1614 */
