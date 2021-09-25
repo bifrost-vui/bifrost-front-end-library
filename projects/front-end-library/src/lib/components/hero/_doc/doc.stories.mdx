@@ -114,6 +114,26 @@ export const Drupal = (args) => ({
     </Story>
 </Preview>
 
+<Preview
+    withSource='none'
+    style={{ height: '800px' }}
+>
+    <Story 
+        name='Drupal - Height large'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            image           : {
+                default : '/images/_docs/hero-helix.png',
+                mobile  : '/images/_docs/hero-helix-mobile.png',
+                alt     : 'Helix'
+            },
+            height          : 'large'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
 
 <Preview
     withSource='none'
@@ -142,23 +162,6 @@ export const Drupal = (args) => ({
                     },
                 ],
             }
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Preview>
-
-
-<Preview
-    withSource='none'
-    style={{ height: '800px' }}
->
-    <Story 
-        name='Drupal - Min height 60vh'
-        args={{
-            elementPath     : 'components/hero/_doc/template.drupal',
-            ...commonProps,
-            minHeight       : '60vh'
         }}
     >
         {Drupal.bind({})}

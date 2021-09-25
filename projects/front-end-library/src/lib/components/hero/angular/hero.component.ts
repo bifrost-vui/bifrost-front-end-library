@@ -31,8 +31,8 @@ export class HeroComponent implements OnInit {
     
     /** Class override */
     @Input() class              : string;
-    /** E.g. **60vh**, **320px**, **20rem**, ... */
-    @Input() minHeight          : string;
+    /** Note: height large will add a min-height of 60vh. */
+    @Input() height             : '' | 'large';
     @Input() reversed           : boolean;
 
     ngOnInit() {

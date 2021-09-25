@@ -4,25 +4,21 @@
         {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}
         {% if background is defined and background is same as ('ground') %}bf-hero--bg-ground{% endif %}
         {% if background is defined and background is same as ('highlight') %}bf-hero--bg-highlight{% endif %}
+        {% if height is defined and height is same as ('large') %}bf-hero--height-large{% endif %}
         {# {{ bgImagePosition|default('right') }}
         {{ bgImageQueries|default(null) }} #}
         {{ class|default('') }}
         '
-    style='
     {% if image is defined and image.default is not empty %}
-        background-image: url("{{ image.default }}");
+        style='background-image: url("{{ image.default }}")'
     {% endif %}
-    {% if minHeight is defined and minHeight %}
-        min-height: {{ minHeight }};
-    {% endif %}
-    '
     {# data-bg='{{ bgImage|default(defaultImgSrc) }}'
     data-md-bg='{{ bgMediumImage|default(defaultImgSrc) }}'
     data-lg-bg='{{ bgLargeImage|default(defaultImgSrc) }}' #}
 >
     {% block hero_mobile_image %}{% endblock %}
     {% if image is defined and image.mobile is not empty %}
-        <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-md-none' />
+        <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-sm-none' />
     {% endif %}
     
     <div class='d-block d-md-none' data-animate='fade-in'>
