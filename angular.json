@@ -42,6 +42,46 @@
           }
         }
       }
+    },
+    "icon-library": {
+      "projectType": "library",
+      "root": "projects/icon-library",
+      "sourceRoot": "projects/icon-library/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/icon-library/tsconfig.lib.json",
+            "project": "projects/icon-library/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/icon-library/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/icon-library/src/test.ts",
+            "tsConfig": "projects/icon-library/tsconfig.spec.json",
+            "karmaConfig": "projects/icon-library/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/icon-library/tsconfig.lib.json",
+              "projects/icon-library/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "front-end-library"

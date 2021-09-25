@@ -23,6 +23,7 @@ app.set("twig options", {
     namespaces: {
         'bf-components' : path.resolve(__dirname, '../projects/front-end-library/src/lib/components'),
         'bf-utils'      : path.resolve(__dirname, '../projects/front-end-library/src/lib/utils'),
+        'bf-icons'      : path.resolve(__dirname, '../projects/icon-library/src/lib/components/icon/twig'),
     }
 });
 

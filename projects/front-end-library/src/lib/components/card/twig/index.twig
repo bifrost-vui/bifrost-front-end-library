@@ -24,14 +24,14 @@
                 />
                 {% if image.badgeIconName is defined %}
                     <div class='bf-badge-icon z-index-1'>
-                        {% include '@bf-components/icon/twig/index.twig' with {
+                        {% include '@bf-icons/index.twig' with {
                             name    : image.badgeIconName,
                             size    : 'medium'
                         } only %}
                     </div>
                 {% endif %}
             {% elseif hasIcon %}
-                {% include '@bf-components/icon/twig/index.twig' with {
+                {% include '@bf-icons/index.twig' with {
                     name    : iconName,
                     size    : 'large'
                 } only %}
@@ -100,7 +100,7 @@
                     <ul class='p-0 m-0'>
                         {% for content in list.content %}
                             <li class='d-flex flex-row mb-2'>
-                                {% include '@bf-components/icon/twig/index.twig' with {
+                                {% include '@bf-icons/index.twig' with {
                                     name    : content.icon,
                                     size    : small,
                                     class   : 'mr-2'
@@ -189,7 +189,7 @@
 
         {% if message is defined and message or messageLink is defined and messageLink %}
             <div class='bf-card__message d-flex'>
-                {% include '@bf-components/icon/twig/index.twig' with {
+                {% include '@bf-icons/index.twig' with {
                     name    : 'information-circle-filled',
                     size    : 'small',
                     class   : 'mr-2'

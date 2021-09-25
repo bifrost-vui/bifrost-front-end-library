@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { IconModule } from './lib/components/icon/angular/icon.module';
+import { BadgeModule } from './lib/components/badge/angular/badge.module';
 
 @NgModule({
-  declarations: [IconModule],
+  declarations: [BadgeModule],
   imports: [
   ],
-  exports: [IconModule],
+  exports: [BadgeModule],
 })
 export class LibModule { }
