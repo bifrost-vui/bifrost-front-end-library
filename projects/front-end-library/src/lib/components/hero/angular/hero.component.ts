@@ -21,7 +21,7 @@ export class HeroComponent implements OnInit {
     @Input() subtitle           : string;
     @Input() description        : string;
     @Input() button             : object;
-    /** HTML string or TwigBlock. The HTML will be displayed between the description and the buttons. */
+    /** HTML string or TwigBlock. Will be displayed between the description and the buttons. */
     @Input() content            : string | 'TwigBlock';
     @Input() image              : object;
     @Input() background         : 'ground' | 'underground' | 'highlight';
