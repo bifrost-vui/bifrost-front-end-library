@@ -1,17 +1,16 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import { withDesign } from 'storybook-addon-designs'
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
-import { HeroComponent } from '../angular/hero.component';
+import { moduleMetadata }               from '@storybook/angular';
+import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { withDesign }                   from 'storybook-addon-designs'
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { HeroComponent }                from '../angular/hero.component';
 
-<Meta 
-    title='Components/Hero' 
+<Meta
+    title='Components/Hero'
     component={HeroComponent}
     decorators={[
         moduleMetadata({ declarations: [HeroComponent, TwigContainerComponent]}),
     ]}
-    argTypes={{
-    }}
+    argTypes={{}}
 />
 
 # Hero
@@ -30,12 +29,30 @@ import { HeroComponent } from '../angular/hero.component';
 
 ```jsx
 {% include '@bf-components/hero/twig/index.twig' with {
-    badge       : 'NEW',
+    badge       : {
+        label       : 'NEW',
+        hierarchy   : 'primary',
+        angle       : '',
+        iconName    : ''
+    },
     breadcrumb  : `<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>`,
     upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
     subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     description : 'Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.',
+    price           : {
+        upperTitle      : 'From',
+        dollar          : 86,
+        cent            : 99,
+        details         : '/month',
+        promotion       : {
+            priceStriked    : 40.99,
+            priceSaved      : 10,
+            savedLabel      : 'You saved :',
+            superscript     : 1,
+            direction       : 'horizontal',
+        }
+    },
     button      : {
         label       : 'Button',
         hierarchy   : 'primary-alt',
@@ -55,8 +72,12 @@ import { HeroComponent } from '../angular/hero.component';
 ## Drupal
 
 export const commonProps = {
-    breadcrumb  : '',
-    badge       : 'NEW',
+    badge       : {
+      label       : 'NEW',
+      hierarchy   : 'primary',
+      angle       : '',
+      iconName    : ''
+    },
     breadcrumb  : `<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>`,
     upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
@@ -78,9 +99,9 @@ export const Drupal = (args) => ({
     withSource='none'
     style={{ height: '300px' }}
 >
-    <Story 
+    <Story
         name='Drupal'
-        args={{ 
+        args={{
             elementPath : 'components/hero/_doc/template.drupal',
             ...commonProps,
         }}
@@ -98,7 +119,7 @@ export const Drupal = (args) => ({
     withSource='none'
     style={{ height: '300px' }}
 >
-    <Story 
+    <Story
         name='Drupal - With image'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
@@ -119,7 +140,7 @@ export const Drupal = (args) => ({
     style={{ height: '800px' }}
 >
     <Story 
-        name='Drupal - Height large'
+        name='Drupal - With height large'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
@@ -140,6 +161,35 @@ export const Drupal = (args) => ({
     style={{ height: '300px' }}
 >
     <Story 
+        name='Drupal - With price'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            price           : {
+                upperTitle      : 'From',
+                dollar          : 86,
+                cent            : 99,
+                details         : '/month',
+                promotion       : {
+                    priceStriked    : 40.99,
+                    priceSaved      : 10,
+                    savedLabel      : 'You saved :',
+                    superscript     : 1,
+                    direction       : 'vertical',
+                }
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story
         name='Drupal - With Block Selection'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
