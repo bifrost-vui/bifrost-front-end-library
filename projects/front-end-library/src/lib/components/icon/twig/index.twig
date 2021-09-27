@@ -5,8 +5,522 @@
 {% set classColor       = (color is defined and color is not empty) ? ' color-' ~ color : '' %}
 {% set classes          = 'bf-icon ' ~ classReversed ~ ' ' ~  classColor ~ ' ' ~ classSize %}
 {% set name             = name|default('placeholder') %}
-<span class='{{ classes }} {{ class|default('') }}' role='presentation'>
-    {% include '@bf-components/icon/twig/svg-twig/' ~ name ~ '-' ~ sizeSuffix ~'.svg.twig' ignore missing %}
-</span>
-{# Note: Do not add empty line above the <span>.
+<div
+    class='{{ classes }} type-{{ type }} {{ class|default('') }}'
+    {% if type is same as ('interface') %}role='decoration'{% endif %}
+>
+    {% if type is same as ('interface') %}
+        {% if name is same as ('account-balance') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/account-balance.svg.twig' ignore missing %}
+        {% elseif name is same as ('actualite') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/actualite.svg.twig' ignore missing %}
+        {% elseif name is same as ('appli-helix') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/appli-helix.svg.twig' ignore missing %}
+        {% elseif name is same as ('bin') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/bin.svg.twig' ignore missing %}
+        {% elseif name is same as ('building') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/building.svg.twig' ignore missing %}
+        {% elseif name is same as ('calendar') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/calendar.svg.twig' ignore missing %}
+        {% elseif name is same as ('call-incoming') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/call-incoming.svg.twig' ignore missing %}
+        {% elseif name is same as ('call') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/call.svg.twig' ignore missing %}
+        {% elseif name is same as ('camera') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/camera.svg.twig' ignore missing %}
+        {% elseif name is same as ('cancel') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/cancel.svg.twig' ignore missing %}
+        {% elseif name is same as ('cart') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/cart.svg.twig' ignore missing %}
+        {% elseif name is same as ('casting') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/casting.svg.twig' ignore missing %}
+        {% elseif name is same as ('chat') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/chat.svg.twig' ignore missing %}
+        {% elseif name is same as ('checkmark-circle-filled') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/checkmark-circle-filled.svg.twig' ignore missing %}
+        {% elseif name is same as ('checkmark-circle') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/checkmark-circle.svg.twig' ignore missing %}
+        {% elseif name is same as ('checkmark') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/checkmark.svg.twig' ignore missing %}
+        {% elseif name is same as ('chevron-down') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/chevron-down.svg.twig' ignore missing %}
+        {% elseif name is same as ('chevron-left') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/chevron-left.svg.twig' ignore missing %}
+        {% elseif name is same as ('chevron-right') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/chevron-right.svg.twig' ignore missing %}
+        {% elseif name is same as ('chevron-up') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/chevron-up.svg.twig' ignore missing %}
+        {% elseif name is same as ('circle-download') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/circle-download.svg.twig' ignore missing %}
+        {% elseif name is same as ('circle-upload') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/circle-upload.svg.twig' ignore missing %}
+        {% elseif name is same as ('clock') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/clock.svg.twig' ignore missing %}
+        {% elseif name is same as ('cloud-dvr') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/cloud-dvr.svg.twig' ignore missing %}
+        {% elseif name is same as ('communaute') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/communaute.svg.twig' ignore missing %}
+        {% elseif name is same as ('dot') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/dot.svg.twig' ignore missing %}
+        {% elseif name is same as ('download') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/download.svg.twig' ignore missing %}
+        {% elseif name is same as ('edit') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/edit.svg.twig' ignore missing %}
+        {% elseif name is same as ('email') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/email.svg.twig' ignore missing %}
+        {% elseif name is same as ('exclamation-circle-filled-small24') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/exclamation-circle-filled-small24.svg.twig' ignore missing %}
+        {% elseif name is same as ('exclamation-circle-filled') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/exclamation-circle-filled.svg.twig' ignore missing %}
+        {% elseif name is same as ('exclamation-circle') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/exclamation-circle.svg.twig' ignore missing %}
+        {% elseif name is same as ('external-link') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/external-link.svg.twig' ignore missing %}
+        {% elseif name is same as ('eye-dash') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/eye-dash.svg.twig' ignore missing %}
+        {% elseif name is same as ('eye') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/eye.svg.twig' ignore missing %}
+        {% elseif name is same as ('facebook') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/facebook.svg.twig' ignore missing %}
+        {% elseif name is same as ('file-pdf') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/file-pdf.svg.twig' ignore missing %}
+        {% elseif name is same as ('forfait-tv-fan-sports') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/forfait-tv-fan-sports.svg.twig' ignore missing %}
+        {% elseif name is same as ('forfait-tv-la-decouverte') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/forfait-tv-la-decouverte.svg.twig' ignore missing %}
+        {% elseif name is same as ('forfait-tv-la-totale') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/forfait-tv-la-totale.svg.twig' ignore missing %}
+        {% elseif name is same as ('forfait-tv-le-fan-de-films-et-series') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/forfait-tv-le-fan-de-films-et-series.svg.twig' ignore missing %}
+        {% elseif name is same as ('forfait-tv-le-plein-la-vue') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/forfait-tv-le-plein-la-vue.svg.twig' ignore missing %}
+        {% elseif name is same as ('forfait-tv-streaming') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/forfait-tv-streaming.svg.twig' ignore missing %}
+        {% elseif name is same as ('helix-app') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/helix-app.svg.twig' ignore missing %}
+        {% elseif name is same as ('helix-tv') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/helix-tv.svg.twig' ignore missing %}
+        {% elseif name is same as ('helixinternet-jeuxvideos') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/helixinternet-jeuxvideos.svg.twig' ignore missing %}
+        {% elseif name is same as ('helixinternet-maison-connecte') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/helixinternet-maison-connecte.svg.twig' ignore missing %}
+        {% elseif name is same as ('helixinternet-musique') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/helixinternet-musique.svg.twig' ignore missing %}
+        {% elseif name is same as ('helixinternet-streaming') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/helixinternet-streaming.svg.twig' ignore missing %}
+        {% elseif name is same as ('helixinternet-wifi_ultime') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/helixinternet-wifi_ultime.svg.twig' ignore missing %}
+        {% elseif name is same as ('hierarchy') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/hierarchy.svg.twig' ignore missing %}
+        {% elseif name is same as ('hourglass') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/hourglass.svg.twig' ignore missing %}
+        {% elseif name is same as ('information-circle-filled-small24') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/information-circle-filled-small24.svg.twig' ignore missing %}
+        {% elseif name is same as ('information-circle-filled') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/information-circle-filled.svg.twig' ignore missing %}
+        {% elseif name is same as ('information-circle') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/information-circle.svg.twig' ignore missing %}
+        {% elseif name is same as ('instagram') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/instagram.svg.twig' ignore missing %}
+        {% elseif name is same as ('installation') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/installation.svg.twig' ignore missing %}
+        {% elseif name is same as ('interpunct') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/interpunct.svg.twig' ignore missing %}
+        {% elseif name is same as ('link') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/link.svg.twig' ignore missing %}
+        {% elseif name is same as ('lock') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/lock.svg.twig' ignore missing %}
+        {% elseif name is same as ('menu-burger') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/menu-burger.svg.twig' ignore missing %}
+        {% elseif name is same as ('menu-option') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/menu-option.svg.twig' ignore missing %}
+        {% elseif name is same as ('minus-circle-filled') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/minus-circle-filled.svg.twig' ignore missing %}
+        {% elseif name is same as ('minus') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/minus.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile-livechat') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/mobile-livechat.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/mobile.svg.twig' ignore missing %}
+        {% elseif name is same as ('notification') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/notification.svg.twig' ignore missing %}
+        {% elseif name is same as ('order-asc') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/order-asc.svg.twig' ignore missing %}
+        {% elseif name is same as ('order-desc') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/order-desc.svg.twig' ignore missing %}
+        {% elseif name is same as ('order-none') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/order-none.svg.twig' ignore missing %}
+        {% elseif name is same as ('out') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/out.svg.twig' ignore missing %}
+        {% elseif name is same as ('parental-control') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/parental-control.svg.twig' ignore missing %}
+        {% elseif name is same as ('pin') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/pin.svg.twig' ignore missing %}
+        {% elseif name is same as ('placeholder') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/placeholder.svg.twig' ignore missing %}
+        {% elseif name is same as ('play-circle') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/play-circle.svg.twig' ignore missing %}
+        {% elseif name is same as ('plus-circle-filled') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/plus-circle-filled.svg.twig' ignore missing %}
+        {% elseif name is same as ('plus') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/plus.svg.twig' ignore missing %}
+        {% elseif name is same as ('printer') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/printer.svg.twig' ignore missing %}
+        {% elseif name is same as ('profile') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/profile.svg.twig' ignore missing %}
+        {% elseif name is same as ('question-circle-small') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/question-circle-small.svg.twig' ignore missing %}
+        {% elseif name is same as ('question-circle') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/question-circle.svg.twig' ignore missing %}
+        {% elseif name is same as ('relais-wifi') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/relais-wifi.svg.twig' ignore missing %}
+        {% elseif name is same as ('repeat') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/repeat.svg.twig' ignore missing %}
+        {% elseif name is same as ('search') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/search.svg.twig' ignore missing %}
+        {% elseif name is same as ('settings') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/settings.svg.twig' ignore missing %}
+        {% elseif name is same as ('star-empty') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/star-empty.svg.twig' ignore missing %}
+        {% elseif name is same as ('star-full') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/star-full.svg.twig' ignore missing %}
+        {% elseif name is same as ('star-half') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/star-half.svg.twig' ignore missing %}
+        {% elseif name is same as ('support') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/support.svg.twig' ignore missing %}
+        {% elseif name is same as ('television') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/television.svg.twig' ignore missing %}
+        {% elseif name is same as ('tutorial') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/tutorial.svg.twig' ignore missing %}
+        {% elseif name is same as ('tv-4k') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/tv-4k.svg.twig' ignore missing %}
+        {% elseif name is same as ('tv-forward') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/tv-forward.svg.twig' ignore missing %}
+        {% elseif name is same as ('tv-record') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/tv-record.svg.twig' ignore missing %}
+        {% elseif name is same as ('twitter') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/twitter.svg.twig' ignore missing %}
+        {% elseif name is same as ('unlimited') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/unlimited.svg.twig' ignore missing %}
+        {% elseif name is same as ('upload') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/upload.svg.twig' ignore missing %}
+        {% elseif name is same as ('user-family') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/user-family.svg.twig' ignore missing %}
+        {% elseif name is same as ('user') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/user.svg.twig' ignore missing %}
+        {% elseif name is same as ('voice-command') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/voice-command.svg.twig' ignore missing %}
+        {% elseif name is same as ('wifi') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/wifi.svg.twig' ignore missing %}
+        {% elseif name is same as ('world') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/world.svg.twig' ignore missing %}
+        {% elseif name is same as ('x-circle-filled') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/x-circle-filled.svg.twig' ignore missing %}
+        {% elseif name is same as ('x') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/x.svg.twig' ignore missing %}
+        {% elseif name is same as ('youtube') %}
+            {% include '@bf-components/icon/twig/svg-twig/interface/youtube.svg.twig' ignore missing %}
+        {% endif %}
+    {% elseif type is same as ('illustration') %}
+        {% if name is same as ('accessibility') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/accessibility.svg.twig' ignore missing %}
+        {% elseif name is same as ('actuality') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/actuality.svg.twig' ignore missing %}
+        {% elseif name is same as ('agility') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/agility.svg.twig' ignore missing %}
+        {% elseif name is same as ('apple') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/apple.svg.twig' ignore missing %}
+        {% elseif name is same as ('application-client-area') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/application-client-area.svg.twig' ignore missing %}
+        {% elseif name is same as ('application-helix-tv') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/application-helix-tv.svg.twig' ignore missing %}
+        {% elseif name is same as ('applications') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/applications.svg.twig' ignore missing %}
+        {% elseif name is same as ('arrow-bottom') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/arrow-bottom.svg.twig' ignore missing %}
+        {% elseif name is same as ('arrow-close') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/arrow-close.svg.twig' ignore missing %}
+        {% elseif name is same as ('arrow-left') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/arrow-left.svg.twig' ignore missing %}
+        {% elseif name is same as ('arrow-plus') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/arrow-plus.svg.twig' ignore missing %}
+        {% elseif name is same as ('arrow-right') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/arrow-right.svg.twig' ignore missing %}
+        {% elseif name is same as ('arrow-top') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/arrow-top.svg.twig' ignore missing %}
+        {% elseif name is same as ('availability-of-service') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/availability-of-service.svg.twig' ignore missing %}
+        {% elseif name is same as ('battery') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/battery.svg.twig' ignore missing %}
+        {% elseif name is same as ('bill') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/bill.svg.twig' ignore missing %}
+        {% elseif name is same as ('bundle-1') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/bundle-1.svg.twig' ignore missing %}
+        {% elseif name is same as ('bundle-2') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/bundle-2.svg.twig' ignore missing %}
+        {% elseif name is same as ('bundle-3') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/bundle-3.svg.twig' ignore missing %}
+        {% elseif name is same as ('business') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/business.svg.twig' ignore missing %}
+        {% elseif name is same as ('calendar') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/calendar.svg.twig' ignore missing %}
+        {% elseif name is same as ('call-me-back') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/call-me-back.svg.twig' ignore missing %}
+        {% elseif name is same as ('call-me-now') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/call-me-now.svg.twig' ignore missing %}
+        {% elseif name is same as ('camera') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/camera.svg.twig' ignore missing %}
+        {% elseif name is same as ('canada') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/canada.svg.twig' ignore missing %}
+        {% elseif name is same as ('card-memory') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/card-memory.svg.twig' ignore missing %}
+        {% elseif name is same as ('card-sim') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/card-sim.svg.twig' ignore missing %}
+        {% elseif name is same as ('cart') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/cart.svg.twig' ignore missing %}
+        {% elseif name is same as ('casting') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/casting.svg.twig' ignore missing %}
+        {% elseif name is same as ('check') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/check.svg.twig' ignore missing %}
+        {% elseif name is same as ('checklist') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/checklist.svg.twig' ignore missing %}
+        {% elseif name is same as ('checkmark') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/checkmark.svg.twig' ignore missing %}
+        {% elseif name is same as ('chrono') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/chrono.svg.twig' ignore missing %}
+        {% elseif name is same as ('cloud-dvr') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/cloud-dvr.svg.twig' ignore missing %}
+        {% elseif name is same as ('community') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/community.svg.twig' ignore missing %}
+        {% elseif name is same as ('connection-reliable') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/connection-reliable.svg.twig' ignore missing %}
+        {% elseif name is same as ('contact-phone') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/contact-phone.svg.twig' ignore missing %}
+        {% elseif name is same as ('customer-service') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/customer-service.svg.twig' ignore missing %}
+        {% elseif name is same as ('data') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/data.svg.twig' ignore missing %}
+        {% elseif name is same as ('delivery') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/delivery.svg.twig' ignore missing %}
+        {% elseif name is same as ('desinstallation') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/desinstallation.svg.twig' ignore missing %}
+        {% elseif name is same as ('differenciation') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/differenciation.svg.twig' ignore missing %}
+        {% elseif name is same as ('download-speed') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/download-speed.svg.twig' ignore missing %}
+        {% elseif name is same as ('email') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/email.svg.twig' ignore missing %}
+        {% elseif name is same as ('forfait-la-decouverte') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/forfait-la-decouverte.svg.twig' ignore missing %}
+        {% elseif name is same as ('forfait-la-totale') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/forfait-la-totale.svg.twig' ignore missing %}
+        {% elseif name is same as ('forfait-le -plein-la-vue') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/forfait-le -plein-la-vue.svg.twig' ignore missing %}
+        {% elseif name is same as ('forfait-le-fan-de-films-et-series') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/forfait-le-fan-de-films-et-series.svg.twig' ignore missing %}
+        {% elseif name is same as ('forfait-le-fan-de-sports') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/forfait-le-fan-de-sports.svg.twig' ignore missing %}
+        {% elseif name is same as ('forfait-le-leger') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/forfait-le-leger.svg.twig' ignore missing %}
+        {% elseif name is same as ('gateway-helix-1') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/gateway-helix-1.svg.twig' ignore missing %}
+        {% elseif name is same as ('gateway-helix-2') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/gateway-helix-2.svg.twig' ignore missing %}
+        {% elseif name is same as ('helix-mic') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/helix-mic.svg.twig' ignore missing %}
+        {% elseif name is same as ('helix-tv-remote') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/helix-tv-remote.svg.twig' ignore missing %}
+        {% elseif name is same as ('helix-tv') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/helix-tv.svg.twig' ignore missing %}
+        {% elseif name is same as ('hosting-data') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/hosting-data.svg.twig' ignore missing %}
+        {% elseif name is same as ('hosting') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/hosting.svg.twig' ignore missing %}
+        {% elseif name is same as ('information') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/information.svg.twig' ignore missing %}
+        {% elseif name is same as ('innovation') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/innovation.svg.twig' ignore missing %}
+        {% elseif name is same as ('installation') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/installation.svg.twig' ignore missing %}
+        {% elseif name is same as ('instant-message') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/instant-message.svg.twig' ignore missing %}
+        {% elseif name is same as ('instructions') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/instructions.svg.twig' ignore missing %}
+        {% elseif name is same as ('international') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/international.svg.twig' ignore missing %}
+        {% elseif name is same as ('internet-residential') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/internet-residential.svg.twig' ignore missing %}
+        {% elseif name is same as ('invoice-deadline-48h') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/invoice-deadline-48h.svg.twig' ignore missing %}
+        {% elseif name is same as ('laptop-mobile') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/laptop-mobile.svg.twig' ignore missing %}
+        {% elseif name is same as ('memory') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/memory.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile-bundle-packages') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/mobile-bundle-packages.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile-call-forwarding') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/mobile-call-forwarding.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile-call-planning') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/mobile-call-planning.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile-call-waiting') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/mobile-call-waiting.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile-conf-call') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/mobile-conf-call.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile-display') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/mobile-display.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile-flex-cell') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/mobile-flex-cell.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile-international-calls') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/mobile-international-calls.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile-large-format') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/mobile-large-format.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile-money-saving') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/mobile-money-saving.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile-multiline') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/mobile-multiline.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile-protection') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/mobile-protection.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile-unlimited') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/mobile-unlimited.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobile-voicemail-visual') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/mobile-voicemail-visual.svg.twig' ignore missing %}
+        {% elseif name is same as ('mobility') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/mobility.svg.twig' ignore missing %}
+        {% elseif name is same as ('moving-in') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/moving-in.svg.twig' ignore missing %}
+        {% elseif name is same as ('multi-product') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/multi-product.svg.twig' ignore missing %}
+        {% elseif name is same as ('my-account') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/my-account.svg.twig' ignore missing %}
+        {% elseif name is same as ('network-coverage-1') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/network-coverage-1.svg.twig' ignore missing %}
+        {% elseif name is same as ('network-coverage') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/network-coverage.svg.twig' ignore missing %}
+        {% elseif name is same as ('network-performance') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/network-performance.svg.twig' ignore missing %}
+        {% elseif name is same as ('new-client') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/new-client.svg.twig' ignore missing %}
+        {% elseif name is same as ('notifications') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/notifications.svg.twig' ignore missing %}
+        {% elseif name is same as ('option-all-inclusive') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/option-all-inclusive.svg.twig' ignore missing %}
+        {% elseif name is same as ('option-voicemail-email') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/option-voicemail-email.svg.twig' ignore missing %}
+        {% elseif name is same as ('option-voicemail') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/option-voicemail.svg.twig' ignore missing %}
+        {% elseif name is same as ('other-services') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/other-services.svg.twig' ignore missing %}
+        {% elseif name is same as ('pause') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/pause.svg.twig' ignore missing %}
+        {% elseif name is same as ('performance') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/performance.svg.twig' ignore missing %}
+        {% elseif name is same as ('play') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/play.svg.twig' ignore missing %}
+        {% elseif name is same as ('pod-relais-view-1') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/pod-relais-view-1.svg.twig' ignore missing %}
+        {% elseif name is same as ('pod-relais-view-2') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/pod-relais-view-2.svg.twig' ignore missing %}
+        {% elseif name is same as ('pod-relais-view-3') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/pod-relais-view-3.svg.twig' ignore missing %}
+        {% elseif name is same as ('point-of-sale') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/point-of-sale.svg.twig' ignore missing %}
+        {% elseif name is same as ('pre-authorized-payment') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/pre-authorized-payment.svg.twig' ignore missing %}
+        {% elseif name is same as ('quebec') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/quebec.svg.twig' ignore missing %}
+        {% elseif name is same as ('question') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/question.svg.twig' ignore missing %}
+        {% elseif name is same as ('recycling') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/recycling.svg.twig' ignore missing %}
+        {% elseif name is same as ('remote') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/remote.svg.twig' ignore missing %}
+        {% elseif name is same as ('replay') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/replay.svg.twig' ignore missing %}
+        {% elseif name is same as ('screen-size') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/screen-size.svg.twig' ignore missing %}
+        {% elseif name is same as ('search') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/search.svg.twig' ignore missing %}
+        {% elseif name is same as ('second-hand') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/second-hand.svg.twig' ignore missing %}
+        {% elseif name is same as ('security') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/security.svg.twig' ignore missing %}
+        {% elseif name is same as ('settings') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/settings.svg.twig' ignore missing %}
+        {% elseif name is same as ('simultaneous-recordings') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/simultaneous-recordings.svg.twig' ignore missing %}
+        {% elseif name is same as ('size-enlarge') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/size-enlarge.svg.twig' ignore missing %}
+        {% elseif name is same as ('size-reduce') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/size-reduce.svg.twig' ignore missing %}
+        {% elseif name is same as ('smart-home') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/smart-home.svg.twig' ignore missing %}
+        {% elseif name is same as ('sound-off') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/sound-off.svg.twig' ignore missing %}
+        {% elseif name is same as ('sound-on') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/sound-on.svg.twig' ignore missing %}
+        {% elseif name is same as ('store') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/store.svg.twig' ignore missing %}
+        {% elseif name is same as ('student-discount') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/student-discount.svg.twig' ignore missing %}
+        {% elseif name is same as ('subtitles') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/subtitles.svg.twig' ignore missing %}
+        {% elseif name is same as ('tablet-mobile-helix') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/tablet-mobile-helix.svg.twig' ignore missing %}
+        {% elseif name is same as ('teamwork') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/teamwork.svg.twig' ignore missing %}
+        {% elseif name is same as ('telephony-residential') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/telephony-residential.svg.twig' ignore missing %}
+        {% elseif name is same as ('television') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/television.svg.twig' ignore missing %}
+        {% elseif name is same as ('terminal-remote') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/terminal-remote.svg.twig' ignore missing %}
+        {% elseif name is same as ('terminal-top') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/terminal-top.svg.twig' ignore missing %}
+        {% elseif name is same as ('terminal') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/terminal.svg.twig' ignore missing %}
+        {% elseif name is same as ('time') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/time.svg.twig' ignore missing %}
+        {% elseif name is same as ('travel') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/travel.svg.twig' ignore missing %}
+        {% elseif name is same as ('trio-wifi') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/trio-wifi.svg.twig' ignore missing %}
+        {% elseif name is same as ('troubleshooting') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/troubleshooting.svg.twig' ignore missing %}
+        {% elseif name is same as ('united-states') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/united-states.svg.twig' ignore missing %}
+        {% elseif name is same as ('unlimited') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/unlimited.svg.twig' ignore missing %}
+        {% elseif name is same as ('update') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/update.svg.twig' ignore missing %}
+        {% elseif name is same as ('upload-speed') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/upload-speed.svg.twig' ignore missing %}
+        {% elseif name is same as ('user-1') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/user-1.svg.twig' ignore missing %}
+        {% elseif name is same as ('user-2') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/user-2.svg.twig' ignore missing %}
+        {% elseif name is same as ('user-3') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/user-3.svg.twig' ignore missing %}
+        {% elseif name is same as ('user-4') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/user-4.svg.twig' ignore missing %}
+        {% elseif name is same as ('verify-eligibility') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/verify-eligibility.svg.twig' ignore missing %}
+        {% elseif name is same as ('video-quality-4K') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/video-quality-4K.svg.twig' ignore missing %}
+        {% elseif name is same as ('video-quality-720p') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/video-quality-720p.svg.twig' ignore missing %}
+        {% elseif name is same as ('video-quality-1080p') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/video-quality-1080p.svg.twig' ignore missing %}
+        {% elseif name is same as ('videotron-plus') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/videotron-plus.svg.twig' ignore missing %}
+        {% elseif name is same as ('warranty-30-days') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/warranty-30-days.svg.twig' ignore missing %}
+        {% elseif name is same as ('water-resistance') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/water-resistance.svg.twig' ignore missing %}
+        {% elseif name is same as ('wifi') %}
+            {% include '@bf-components/icon/twig/svg-twig/illustration/wifi.svg.twig' ignore missing %}
+        {% endif %}
+    {% endif %}
+</div>
+
+{# Note: Do not add empty line above the <div>.
 In order to avoid text-decoration continuing in links (for example: Back to top link).#}

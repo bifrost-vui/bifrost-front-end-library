@@ -1,0 +1,27 @@
+<div class='
+    bf-badge
+    bf-badge--{{ hierarchy|default('secondary') }}
+    {% if angle is defined and angle is not empty %}bf-badge--angle-{{ angle }}{% endif %}
+    {{ class|default('') }}
+    '>
+    <div class='bf-badge__container position-relative d-flex align-items-center'>
+        <p class='bf-badge__label small font-weight-bold {% if noUppercase is not defined or noUppercase is not same as (true) %}text-uppercase{% endif %} m-0'>
+            {{ label|placeholder }}
+        </p>
+    </div>
+</div>
+
+{% include '../../button/twig/index.twig' with {
+    hierarchy: 'primary',
+    label: 'hello button'
+} only %}
+
+{# {% set type = 'interface' %}
+{% set name = 'placeholder' %}
+{% set url = '../../button/twig/index.twig' %}
+{{ url }}
+{% include '../../icon/svg/interface/placeholder.svg' %} #}
+
+{# {% include '@bf-components/icon/twig/index.twig' with {
+    name: 'placeholder'
+} only %} #}

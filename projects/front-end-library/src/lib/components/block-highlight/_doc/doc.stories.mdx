@@ -1,16 +1,12 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { BlockHighlightComponent }              from '../angular/block-highlight.component';
+import BlockHighlightTwigTemplate               from './template.drupal.twig';
 
 
 <Meta 
     title='Components/Block Highlight' 
     component={BlockHighlightComponent}
-    decorators={[
-        moduleMetadata({ declarations: [BlockHighlightComponent, TwigContainerComponent]}),
-    ]}
     argTypes={{
         titleTag: {
             table: { defaultValue: { summary: 'p' } },
@@ -61,12 +57,11 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
 
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: BlockHighlightTwigTemplate(args),
     props: args,
 });
 
 export const commonProps = {
-    elementPath         : 'components/block-highlight/_doc/template.drupal',
     image               : {
         src : window.location.origin + '/images/placeholder/800x600.png',
         // src: 'https://i.stack.imgur.com/y9DpT.jpg'
@@ -81,9 +76,8 @@ export const commonProps = {
     class               : ''
 }
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '800px' }}
 >
     <Story 
         name='Drupal'
@@ -93,4 +87,4 @@ export const commonProps = {
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

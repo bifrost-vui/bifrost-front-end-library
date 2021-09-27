@@ -241,25 +241,15 @@
     },
 ] %}
 
-{% set hasAccountBtn    = hasAccountBtn|json_parse %}
-{% set logo             = logo|json_parse %}
-{% set isConnected      = isConnected|json_parse %}
-
 {% include '@bf-components/navigation-header/twig/index.twig' with {
-    hasTopBar               : hasTopBar|json_parse|default(true),
     topBar                  : {
-        items                   : topBar_items|json_parse|default([]),
-        secondaryItems          : topBar_secondaryItems|json_parse|default([]),
+        items                   : topBar_items,
+        secondaryItems          : topBar_secondaryItems
     },
-    rigthIconLinks          : rigthIconLinks|json_parse|default([]),
-    logo                    : logo,
+    logo                    : {
+        name                    : logo_name
+    },
     search                  : {
-        placeholder             : placeholder|default('What are you looking for?')
-    },
-    navItems                : navItems,
-    hasAccountBtn           : hasAccountBtn|json_parse|default(false),
-    hasMiniCartBtn          : hasMiniCartBtn|json_parse|default(false),
-    hasNoSearchBtn          : hasNoSearchBtn|json_parse|default(false),
-    reversed                : reversed|json_parse|default(false),
-    langcode                : langcode|default('EN')
+        placeholder             : placeholder
+    }
 } %}

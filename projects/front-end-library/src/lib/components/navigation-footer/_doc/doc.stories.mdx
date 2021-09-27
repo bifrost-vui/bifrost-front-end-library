@@ -1,20 +1,16 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import { withDesign } from 'storybook-addon-designs'
+import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs';
+import { withDesign }               from 'storybook-addon-designs'
 
-import { linkFields, links } from './data';
-import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
+import { linkFields, links }        from './data';
 import { FooterComponent }          from '../angular/footer.component';
+import NavigationFooterTemplate     from './template.drupal.twig';
 
 
 <Meta 
     title='Components/Navigation Footer' 
     component={FooterComponent}
-    decorators={[
-        moduleMetadata({ declarations: [FooterComponent, TwigContainerComponent]}),
-        withDesign
-    ]}
     parameters={{
+        layout: 'padded',
         design: {
             type: 'figma',
             url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI-Kit-Pattern-lab?node-id=11017%3A708',
@@ -23,22 +19,35 @@ import { FooterComponent }          from '../angular/footer.component';
     }}
     argTypes={{
         theme: {
-            defaultValue: 'videotron',
+            table: { defaultValue: { summary: 'videotron' } },
+            control: {
+                type: 'select',
+                options: ['videotron', 'business'],
+            }
+        },
+        logo_name: {
+            table: { defaultValue: { summary: 'videotron' } },
             control: {
                 type: 'select',
                 options: ['videotron', 'business'],
             }
         },
         langcode: {
-            defaultValue: 'EN',
+            table: { defaultValue: { summary: 'en' } },
             control: { 
                 type: 'select',
-                options: ['EN', 'FR'],
+                options: ['en', 'fr'],
             }
         },
+        hasBackToTopLink: {
+            table: { defaultValue: { summary: true } },
+        },
+        isReduced: {
+            table: { defaultValue: { summary: false } },
+        },
         reversed: {
-            defaultValue: false,
-        }
+            table: { defaultValue: { summary: false } },
+        },
     }}
 />
 
@@ -110,17 +119,16 @@ import { FooterComponent }          from '../angular/footer.component';
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: NavigationFooterTemplate(args),
     props: args,
 });
 
-<Preview
+<Canvas
     withSource='none'
 >
     <Story 
         name='Drupal'
-        args={{ 
-            elementPath         : 'components/navigation-footer/_doc/template.drupal',
+        args={{
             logo                : {
                 name                : 'business',
                 href                : '/',
@@ -129,20 +137,18 @@ export const Drupal = (args) => ({
             linkFields,
             links,
         }}
-        height='500px'
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-<Preview
+<Canvas
     withSource='none'
 >
     <Story 
         name='Drupal - Reduced'
-        args={{ 
-            elementPath         : 'components/navigation-footer/_doc/template.drupal',
+        args={{
             logo                : {
                 name                : 'business',
                 href                : '/',
@@ -152,8 +158,7 @@ export const Drupal = (args) => ({
             linkFields,
             links,
         }}
-        height='500px'
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

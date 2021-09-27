@@ -1,16 +1,12 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 import { TileComponent }                        from '../angular/tile.component';
+import TileTwigTemplate                         from './template.drupal.twig';
+import TileListTwigTemplate                     from './template-list.drupal.twig';
 
 
 <Meta 
     title='Components/Tile' 
     component={TileComponent}
-    decorators={[
-        moduleMetadata({ declarations: [TileComponent, TwigContainerComponent]})
-    ]}
     argTypes={{}}
 />
 
@@ -40,18 +36,16 @@ import { TileComponent }                        from '../angular/tile.component'
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TileTwigTemplate(args),
     props: args,
 });
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '600px' }}
 >
     <Story 
         name='Drupal'
-        args={{ 
-            elementPath     : 'components/tile/_doc/template.drupal',
+        args={{
             class           : '',
             content         : `<div class='d-flex flex-column'>
     <img src='/logo/google.svg' />
@@ -60,19 +54,20 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-<Preview
+export const DrupalList = (args) => ({
+    template: TileListTwigTemplate(args),
+    props: args,
+});
+
+<Canvas
     withSource='none'
-    style={{ height: '600px' }}
 >
     <Story 
         name='Drupal - List example'
-        args={{ 
-            elementPath     : 'components/tile/_doc/list.drupal',
-        }}
     >
-        {Drupal.bind({})}
+        {DrupalList.bind({})}
     </Story>
-</Preview>
+</Canvas>

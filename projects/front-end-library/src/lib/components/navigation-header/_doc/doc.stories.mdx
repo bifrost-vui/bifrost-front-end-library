@@ -1,33 +1,39 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 
 import { topBar_items, topBar_secondaryItems, rigthIconLinks } from './data';
-import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent }          from '../angular/header.component';
+import NavigationHeaderTemplate     from './template.drupal.twig';
 
 
 <Meta 
     title='Components/Navigation Header' 
     component={HeaderComponent}
-    decorators={[
-        moduleMetadata({ declarations: [HeaderComponent, TwigContainerComponent]})
-    ]}
+    parameters={{
+        layout: 'padded',
+    }}
     argTypes={{
         accountHello: {
             table: { defaultValue: { summary: 'Hello' } },
         },
         langcode: {
-            defaultValue: 'FR',
+            table: { defaultValue: { summary: 'en' } },
             control: { 
                 type: 'select',
-                options: ['EN', 'FR'],
+                options: ['en', 'fr'],
+            }
+        },
+        logo_name: {
+            table: { defaultValue: { summary: 'videotron' } },
+            control: {
+                type: 'select',
+                options: ['videotron', 'business'],
             }
         },
         hasTopBar: {
-            defaultValue: true,
+            table: { defaultValue: { summary: true } },
         },
         reversed: {
-            defaultValue: false,
+            table: { defaultValue: { summary: false } },
         }
     }}
 />
@@ -119,17 +125,16 @@ import { HeaderComponent }          from '../angular/header.component';
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: NavigationHeaderTemplate(args),
     props: args,
 });
 
-<Preview
+<Canvas
     withSource='none'
 >
     <Story 
         name='Drupal'
         args={{ 
-            elementPath : 'components/navigation-header/_doc/template.drupal',
             topBar_items,
             topBar_secondaryItems,
             logo : {
@@ -138,8 +143,7 @@ export const Drupal = (args) => ({
             },
             rigthIconLinks,
         }}
-        height='500px'
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

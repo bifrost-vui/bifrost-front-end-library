@@ -1,15 +1,12 @@
-import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
 import { CarouselComponent }            from '../angular/carousel.component';
+import CarouselTwigTemplate             from './template.drupal.twig';
+
 
 <Meta 
     title='Components/Carousel' 
     component={CarouselComponent}
-    decorators={[
-        moduleMetadata({ declarations: [CarouselComponent, TwigContainerComponent]}),
-    ]}
     argTypes={{}}
 />
 
@@ -40,7 +37,7 @@ import { CarouselComponent }            from '../angular/carousel.component';
             mobileFirst: true,
             prevArrow: bfSlick.getPrevSlickBtn(),
             nextArrow: bfSlick.getNextSlickBtn(),
-            responsive: [
+            {/* responsive: [
                 {
                     breakpoint: (bfTheme.breakpoints.md-1),
                     settings: {
@@ -58,7 +55,7 @@ import { CarouselComponent }            from '../angular/carousel.component';
                 // You can unslick at a given breakpoint now by adding:
                 // settings: "unslick"
                 // instead of a settings object
-            ]
+            ] */}
         }
     );
     </script>
@@ -72,20 +69,16 @@ import { CarouselComponent }            from '../angular/carousel.component';
 > Please use <a class='bf-link' target='_blank' href='https://kenwheeler.github.io/slick/'>Slick carousel</a>.
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    template: CarouselTwigTemplate(args),
+    props: args,
 });
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '1000px' }}
 >
     <Story 
         name='Drupal'
-        args={{ 
-            elementPath : 'components/carousel/_doc/template.drupal',
-        }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

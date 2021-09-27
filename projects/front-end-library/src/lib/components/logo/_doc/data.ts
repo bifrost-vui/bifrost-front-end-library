@@ -3,86 +3,28 @@
 export const allLogoCategories = [
     {
         categoryName: 'Large',
-        list: [
-            {
-                size        : 'large',
-                langcode    : 'en'
-            },
-            {
-                size        : 'large',
-                langcode    : 'fr'
-            },
-        ]
+        size        : 'large',
     },
     {
         categoryName: 'Business Large',
-        list: [
-            {
-                name        : 'business',
-                size        : 'large',
-                langcode    : 'en'
-            },
-            {
-                name        : 'business',
-                size        : 'large',
-                langcode    : 'fr'
-            },
-        ]
+        size        : 'large',
+        name        : 'business',
     },
     {
         categoryName: 'Medium',
-        list: [
-            {
-                size        : 'medium',
-                langcode    : 'en'
-            },
-            {
-                size        : 'medium',
-                langcode    : 'fr'
-            },
-        ]
+        size        : 'medium',
     },
     {
         categoryName: 'Business Medium',
-        list: [
-            {
-                name        : 'business',
-                size        : 'medium',
-                langcode    : 'en'
-            },
-            {
-                name        : 'business',
-                size        : 'medium',
-                langcode    : 'fr'
-            },
-        ]
+        name        : 'business',
     },
     {
         categoryName: 'Small',
-        list: [
-            {
-                size        : 'small',
-                langcode    : 'en'
-            },
-            {
-                size        : 'small',
-                langcode    : 'fr'
-            },
-        ]
+        size        : 'small',
     },
     {
         categoryName: 'Business Small',
-        list: [
-            {
-                name        : 'business',
-                size        : 'small',
-                langcode    : 'en'
-            },
-            {
-                name        : 'business',
-                size        : 'small',
-                langcode    : 'fr'
-            },
-        ]
+        name        : 'business',
+        size        : 'small',
     },
 ];

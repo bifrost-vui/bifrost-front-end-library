@@ -1,18 +1,14 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 
 import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
 import interfaceIcons               from '../../../../../../../public/icons/list/interfaces.json';
-import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { IconComponent }            from '../angular/icon.component';
+import IconTwigTemplate             from './template.drupal.twig';
 
 
 <Meta
     title='Components/Icon'
     component={IconComponent}
-    decorators={[
-        moduleMetadata({ declarations: [IconComponent, TwigContainerComponent]}),
-    ]}
     parameters={{
         design: {
             type: 'figma',
@@ -34,7 +30,6 @@ import { IconComponent }            from '../angular/icon.component';
             }
         },
         name: {
-            defaultValue: '',
             control: {
                 type: 'select',
                 options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
@@ -79,7 +74,7 @@ import { IconComponent }            from '../angular/icon.component';
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: IconTwigTemplate(args),
     props: args,
 });
 
@@ -91,7 +86,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - Illustration'
         args={{
-            elementPath : 'components/icon/_doc/template.drupal',
             icons       : illustrationIcons
         }}
     >
@@ -107,7 +101,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - Interface'
         args={{
-            elementPath : 'components/icon/_doc/template.drupal',
             icons       : interfaceIcons
         }}
     >
