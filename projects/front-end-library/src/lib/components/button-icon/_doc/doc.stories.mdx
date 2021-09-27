@@ -7,19 +7,19 @@ import { ButtonIconComponent }              from '../angular/button-icon.compone
 
 
 <Meta
-  title='Components/Button Icon'
-  component={ButtonIconComponent}
-  decorators={[
-    moduleMetadata({ declarations: [ButtonIconComponent, TwigContainerComponent]})
-  ]}
-  argTypes={{
-    icon: {
-      control: {
-        type: 'select',
-        options: ['', ...interfaceIcons.map(a => a.list).flat().sort()]
-      }
-    },
-  }}
+    title='Components/Button Icon'
+    component={ButtonIconComponent}
+    decorators={[
+        moduleMetadata({ declarations: [ButtonIconComponent, TwigContainerComponent]})
+    ]}
+    argTypes={{
+        icon: {
+            control: {
+                type: 'select',
+                options: ['', ...interfaceIcons.map(a => a.list).flat().sort()]
+            }
+        },
+    }}
 />
 
 
@@ -45,7 +45,7 @@ import { ButtonIconComponent }              from '../angular/button-icon.compone
 // With a badge
 {% include '@bf-components/button-icon/twig/index.twig' with {
     badge : '3'
-} %}
+} only %}
 
 // With a link instead of a button
 {% include '@bf-components/button-icon/twig/index.twig' with {
@@ -63,21 +63,21 @@ import { ButtonIconComponent }              from '../angular/button-icon.compone
 ## Drupal
 
 export const Drupal = (args) => ({
-  component: TwigContainerComponent,
-  props: args,
+    component: TwigContainerComponent,
+    props: args,
 });
 
 <Preview
-  withSource='none'
-  style={{ height: '400px' }}
+    withSource='none'
+    style={{ height: '400px' }}
 >
-  <Story
-    name='Drupal'
-    args={{
-      elementPath : 'components/button-icon/_doc/template.drupal',
-      icon        : 'cart'
-    }}
-  >
-    {Drupal.bind({})}
-  </Story>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath : 'components/button-icon/_doc/template.drupal',
+            icon        : 'cart'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
 </Preview>

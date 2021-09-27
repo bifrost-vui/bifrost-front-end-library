@@ -1,7 +1,6 @@
 {% set isDisabled = isDisabled|json_parse %}
 
 <div class='px-7 d-flex flex-column align-items-center justify-content-center minh-100'>
-
   <div class='d-flex gap-4 pt-4 px-5 small'>
     <p>Default</p>
     <p>badge</p>
@@ -10,9 +9,7 @@
   </div>
 
   {% for index in [1,2] %}
-
     <div class='d-flex gap-4 p-5 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
-
       {% include '@bf-components/button-icon/twig/index.twig' %}
 
       {% include '@bf-components/button-icon/twig/index.twig' with {
@@ -26,8 +23,6 @@
       {% include '@bf-components/button-icon/twig/index.twig' with {
         isDisabled: isDisabled|default(true)
       } %}
-
     </div>
-
   {% endfor %}
 </div>

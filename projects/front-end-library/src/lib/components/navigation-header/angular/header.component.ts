@@ -46,10 +46,7 @@ export class HeaderComponent implements OnInit {
     @Input() labelMyAccount           : string;
     /** Shows up in top bar only */
     @Input() labelConnexion           : string;
-
-    /**  Will show up on all devices if activated */
-    @Input() hasCartBtn              : boolean;
-    /** Note : empty, undefined or 0 badge label value hides the cart's badge */
+    /** Badge label value set to `0` will hide the badge on the cart*/
     @Input() cartBtn                 : any[];
     /** String displayed before `accountName` in the Top Bar, when connected. */
     @Input() accountHello             : string;

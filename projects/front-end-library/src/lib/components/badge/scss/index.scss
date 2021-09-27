@@ -7,7 +7,7 @@
 .bf-badge {
     display: inline-block;
 
-    &--primary .bf-badge__container {
+    &--primary .bf-badge__content {
         --color: var(--bf-color-bg-ground);
         --bg-color: var(--bf-color-neutral-primary);
         .bf-icon svg{
@@ -15,7 +15,7 @@
         }
     }
 
-    &--secondary .bf-badge__container {
+    &--secondary .bf-badge__content {
         --bg-color: var(--bf-color-feedback-neutral);
         @at-root
         .reversed.bf-badge--secondary,
@@ -27,31 +27,31 @@
         }
     }
 
-    &--tertiary .bf-badge__container {
+    &--tertiary .bf-badge__content {
         --bg-color: var(--bf-color-bg-underground);
     }
 
-    &--tertiary-ground .bf-badge__container {
+    &--tertiary-ground .bf-badge__content {
         --bg-color: var(--bf-color-bg-ground);
     }
-    &__container {
+
+    &__content {
         position: relative;
         display: flex;
         align-items: center;
         padding: 0 .5rem;
         min-height: 1.5rem;
-        letter-spacing: .5px;
         color: var(--color);
         background-color: var(--bg-color);
     }
 
-    &--rounded .bf-badge__container {
+    &--rounded .bf-badge__content {
         border-radius: 1rem;
     }
 
     &--angle-left,
     &--angle-right {
-         .bf-badge__container:before {
+         .bf-badge__content:before {
             content: '';
             position: absolute;
             top: 0;
@@ -63,7 +63,7 @@
         }
     }
 
-    &--angle-right .bf-badge__container {
+    &--angle-right .bf-badge__content {
         padding: 0 .25rem 0 .75rem;
 
         &:before {
@@ -72,7 +72,7 @@
         }
     }
 
-    &--angle-left .bf-badge__container {
+    &--angle-left .bf-badge__content {
         padding: 0 .75rem 0 .25rem;
 
         &:before {
@@ -85,19 +85,22 @@
         white-space: nowrap;
         z-index: 1;
         margin: 0;
-        span{ vertical-align: middle;}
-        &__text{
-            display:inline-block;
+
+        span {
+            vertical-align: middle;
+        }
+
+        &__text {
+            display: inline-block;
             line-height: 1.5rem;
         }
     }
 }
 
 // Apply White color when badge is dark and reversed.
-@at-root
 .reversed .bf-badge,
 .reversed.bf-badge {
-    &--primary svg{
+    &--primary svg {
         color: var(--bf-color-primary-irreversible)
     }
     &--dark {
@@ -107,7 +110,7 @@
 
 
 .disabled{
-    .bf-badge .bf-badge__container {
+    .bf-badge .bf-badge__content {
         --color: var(--bf-color-neutral-tertiary);
         --bg-color: var(--bf-color-bg-action-no-bg-hover);
     }
