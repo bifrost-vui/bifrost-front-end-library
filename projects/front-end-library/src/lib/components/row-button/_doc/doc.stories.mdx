@@ -38,7 +38,26 @@ import { RowButtonComponent }                   from '../angular/row-button.comp
 
 ## Drupal implementation example
 
-#### Row Button
+<br/>
+
+#### List of Row Buttons
+
+Wrap your <b>Row Buttons</b> with CSS classes `.bf-list .bf-list--divider` in order to display dividers between them.
+
+```jsx
+<ul class='bf-list bf-list--divider'>
+    <li>
+        {% include '@bf-components/row-button/twig/index.twig' with {
+            href        : 'https://videotron.com',
+            title       : 'Galaxy Buds Live',
+            paragraph   : 'Free with any purchase of this phone, valuted at $239.38.',
+            class       : 'mb-4',
+        } only %}
+    </li>
+</ul>
+```
+
+#### Row Button only
 ```jsx
 {% include '@bf-components/row-button/twig/index.twig' with {
     href        : 'https://videotron.com',
