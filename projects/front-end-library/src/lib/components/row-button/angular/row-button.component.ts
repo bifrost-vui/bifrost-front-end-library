@@ -18,6 +18,14 @@ export class RowButtonComponent implements OnInit {
     @Input() paragraph          : string;
     @Input() image              : object;
     @Input() iconName           : string;
+
+    @Input() dataDismiss        : string;
+    @Input() dataToggle         : string;
+    @Input() dataTarget         : string;
+    @Input() ariaControls       : string;
+    @Input() ariaLabel          : string;
+    @Input() extraAttribute     : string;
+
     @Input() class              : string;
     @Input() reversed           : boolean;
 
