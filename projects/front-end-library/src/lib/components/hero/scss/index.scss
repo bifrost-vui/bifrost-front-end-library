@@ -6,9 +6,33 @@
 
 .bf-hero {
     background-color: var(--bf-color-bg-underground);
-    background-position: center;
-    background-size: cover;
+    display: flex;
 
+    &--full-background{
+        background-position: center;
+        background-size: cover;
+        .bf-hero__content{
+        @extend .container-fluid;
+        }
+}
+    &--50-background{
+        display: flex;
+        flex-flow: row;
+        align-items: stretch;
+        .bf-hero__content{
+          padding: $spacer-6;
+        }
+        .bf-hero__content,
+        .bf-hero__50precent{
+            flex-basis: 50%;
+        }
+
+        @include media-breakpoint-down(sm) {
+           order: 1;
+           background-image: none !important;
+           flex-flow: column-reverse;
+        }
+    }
     &--bg-ground {
         background-color: var(--bf-color-bg-ground);
     }
@@ -17,11 +41,16 @@
         background-color: var(--bf-color-bg-action-primary);
     }
 
+    &__50precent{
+        background-position: center;
+        background-size: cover;
+    }
+
     @include media-breakpoint-down(sm) {
         background-image: none !important;
     }
 
-    .container-fluid {
+    .bf-hero__content {
         gap: .5rem;
 
         header {

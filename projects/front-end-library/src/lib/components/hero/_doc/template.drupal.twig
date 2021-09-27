@@ -3,13 +3,15 @@
 {% set badge            = badge|json_parse %}
 {% set image            = image|json_parse %}
 {% set price            = price|json_parse %}
+{% set breadcrumb       = breadcrumb|json_parse %}
 {% set reversed         = reversed|json_parse %}
 
-{% set imageReversed    = (image is defined and image is not empty) ? 
+{% set imageReversed    = (image is defined and image is not empty) ?
         {
             default     : '/images/_docs/hero-helix-reversed.png',
             mobile      : '/images/_docs/hero-helix-reversed-mobile.png',
-            alt         : 'Helix'
+            alt         : 'Helix',
+            isBgFull    : (image.isBgFull) ? true : false
         }
         :
         ''

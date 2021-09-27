@@ -78,7 +78,7 @@ export const commonProps = {
       angle       : '',
       iconName    : ''
     },
-    breadcrumb  : `<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>`,
+    breadcrumb  : "<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>",
     upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
     subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -120,14 +120,15 @@ export const Drupal = (args) => ({
     style={{ height: '300px' }}
 >
     <Story
-        name='Drupal - With image'
+        name='Drupal - With full background image'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
             image           : {
                 default : '/images/_docs/hero-helix.png',
                 mobile  : '/images/_docs/hero-helix-mobile.png',
-                alt     : 'Helix'
+                alt     : 'Helix',
+                isBgFull: true
             }
         }}
     >
@@ -139,7 +140,27 @@ export const Drupal = (args) => ({
     withSource='none'
     style={{ height: '300px' }}
 >
-    <Story 
+    <Story
+        name='Drupal - With 50/50 image'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            image           : {
+                default : '/images/_docs/hero-helix.png',
+                mobile  : '/images/_docs/hero-helix-mobile.png',
+                alt     : 'Helix',
+            }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story
         name='Drupal - With price'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
