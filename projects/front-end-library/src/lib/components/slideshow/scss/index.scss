@@ -3,12 +3,12 @@
 *  Slideshow
 *
 * ***************************************************************************** */
-.bf-slideshow__container {
+.bf-slideshow {
     position: relative;
     & > .slick-slider {
         margin-bottom: 0;
     }
-    .bf-slideshow {
+    .bf-slideshow__inner {
         width: 100%;
         position: relative;
         overflow:hidden ;
@@ -19,6 +19,7 @@
         position: relative;
         display: flex;
         align-items: baseline;
+        pointer-events: none;
         &__counter{
             .slick-dots {
                 position: relative;
@@ -30,6 +31,7 @@
                     line-height:1rem ;
                     &.slick-active {
                         background-color: var(--bf-color-bg-action-secondary)!important;
+                        pointer-events: all;
                     }
                 }
             }

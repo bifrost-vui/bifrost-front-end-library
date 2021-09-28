@@ -25,7 +25,7 @@ import 'slick-carousel';
 };
 
    // heroSlideShow
-   bfSlick.assignCarousel('.js-slick-carousel--hero-slideshow', {
+   bfSlick.assignCarousel('.js-bf-slideshow--hero-slideshow', {
     dots: true,
     appendDots: '.bfslick__controls__counter',
     infinite: true,
@@ -39,12 +39,13 @@ import 'slick-carousel';
     centerPadding: 0,
     mobileFirst: true,
     autoplay: true,
-    autoplaySpeed: 5000,
+    pauseOnDotsHover: true ,
+    autoplaySpeed: 500,
 });
 
-$('.bf-slideshow').on('afterChange', function(event, slick, currentSlide, nextSlide){
-    $('.bf-slideshow__container .bfslick__controls').removeClass('reversed')
+$('.bf-slideshow__inner').on('afterChange', function(event, slick, currentSlide, nextSlide){
+    $('.bf-slideshow .bfslick__controls').removeClass('reversed')
     if ($('.slick-current .bf-hero').hasClass('reversed')){
-        $('.bf-slideshow__container .bfslick__controls').addClass('reversed')
+        $('.bf-slideshow .bfslick__controls').addClass('reversed')
     }
 });
