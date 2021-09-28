@@ -10,7 +10,20 @@ import { HeroComponent }                from '../angular/hero.component';
     decorators={[
         moduleMetadata({ declarations: [HeroComponent, TwigContainerComponent]}),
     ]}
-    argTypes={{}}
+    argTypes={{
+        background: {
+            defaultValue: '',
+            type: { required: true },
+            table: { defaultValue: { summary: '' } },
+            control: {type: 'select', options: ['ground' , 'underground', 'highlight' ]}
+        },
+        language :  {
+            defaultValue: '',
+            type: { required: true },
+            table: { defaultValue: { summary: '' } },
+            control: {type: 'select', options: ['fr' , 'en']}
+        },
+    }}
 />
 
 # Hero

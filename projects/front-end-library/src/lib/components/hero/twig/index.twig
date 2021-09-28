@@ -8,10 +8,10 @@
     class='
         bf-hero
         {{ (isBgImageFull) ? 'bf-hero--full-background' : '' }}
-        {{ (is50Percent) ? 'bf-hero--50-background':''}}
+        {{ (is50Percent) ? 'bf-hero--50-50':''}}
         {% if background is defined and background is same as ('ground') %}bf-hero--bg-ground{% endif %}
         {% if background is defined and background is same as ('highlight') %}bf-hero--bg-highlight{% endif %}
-        {{ (reversed ) ? 'reversed' : '' }}
+        {{ (reversed and background is not same as ('highlight')  ) ? 'reversed' : '' }}
         {{ class|default('') }}
         '
         {% if isBgImageFull %}

@@ -5,6 +5,8 @@
 {% set price            = price|json_parse %}
 {% set breadcrumb       = breadcrumb|json_parse %}
 {% set reversed         = reversed|json_parse %}
+{% set background = background|json_parse %}
+
 
 {% set imageReversed    = (image is defined and image is not empty) ?
         {
@@ -18,13 +20,13 @@
 %}
 
 
-<div class='d-flex flex-column w-100'>
+<div class='d-flex flex-column w-100 gap-3'>
     {% include '@bf-components/hero/twig/index.twig' with {
         reversed    : reversed|default(false),
     } %}
 
     {% include '@bf-components/hero/twig/index.twig' with {
-        image       : imageReversed,
+        image       :  imageReversed,
         reversed    : reversed|default(true),
     } %}
 </div>

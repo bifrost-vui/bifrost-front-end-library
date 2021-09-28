@@ -28,6 +28,7 @@ export class HeroComponent implements OnInit {
     */
     @Input() price              : IPrice;
     @Input() button             : object;
+    /** `image{default,mobile,isBgFull}` */
     @Input() image              : object;
     @Input() background         : 'ground' | 'underground' | 'highlight';
 
