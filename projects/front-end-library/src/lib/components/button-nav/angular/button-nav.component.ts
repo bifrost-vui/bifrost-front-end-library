@@ -1,16 +1,8 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
 
-/**
- * API is the same between **Angular** and **Drupal**.
- *
- */
-
- // TODO: import Button API or extend Button
- 
 @Component({
     selector: "bf-button-nav",
     templateUrl: './button-nav.component.html',
-    // styleUrls: ['../common/style.scss'],
 })
 export class ButtonNavComponent implements OnInit {
     constructor() {}
