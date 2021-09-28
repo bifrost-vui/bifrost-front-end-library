@@ -11,6 +11,13 @@ import { HeroComponent } from '../angular/hero.component';
         moduleMetadata({ declarations: [HeroComponent, TwigContainerComponent]}),
     ]}
     argTypes={{
+        buttonType: {
+            defaultValue: 'button',
+            table: { defaultValue: { summary: 'button' } },
+            control: {
+              type: 'select'
+            }
+        }
     }}
 />
 
@@ -36,6 +43,11 @@ import { HeroComponent } from '../angular/hero.component';
     title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
     subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     description : 'Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.',
+    button      : {
+        label       : 'Button',
+        hierarchy   : 'primary-alt',
+        class       : 'my-class'
+    },
     buttons: [
         {
             label       : 'Button1',
@@ -48,6 +60,13 @@ import { HeroComponent } from '../angular/hero.component';
             class       : ''
         }
     ],
+  buttonType: {
+        defaultValue: 'button',
+        table: { defaultValue: { summary: 'button' } },
+        control: {
+          type: 'select'
+        }
+    },
     image           : {
         default : '/images/_docs/hero-helix.png',
         mobile  : '/images/_docs/hero-helix-mobile.png',
@@ -68,15 +87,20 @@ export const commonProps = {
     title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
     subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     description : 'Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.',
+    button      : {
+        label       : 'Button',
+        hierarchy   : 'primary-alt',
+        class       : 'my-class'
+    },
     buttons: [
       {
         label       : 'Button1',
-        hierarchy   : '',
+        hierarchy   : 'primary-alt',
         class       : ''
       },
-      {
-        label       : 'Button2',
-        hierarchy   : '',
+          {
+            label       : 'Button2',
+            hierarchy   : 'secondary',
         class       : ''
       }
     ],

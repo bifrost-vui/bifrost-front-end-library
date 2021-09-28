@@ -20,8 +20,10 @@ export class HeroComponent implements OnInit {
     @Input() title              : string;
     @Input() subtitle           : string;
     @Input() description        : string;
+    @Input() buttonType         : 'button' | 'doubleButton';
+    @Input() button             : object;
   /**
-   Insert button with a limited array of objects of 1 or 2 items.
+   Insert buttons (max of 2 items). Explore its [Component API](/?path=/docs/components-button--drupal).
    */
     @Input() buttons            : Array<object>[];
     @Input() image              : object;
