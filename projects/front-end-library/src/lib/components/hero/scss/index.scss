@@ -7,30 +7,57 @@
 .bf-hero {
     background-color: var(--bf-color-bg-underground);
     display: flex;
+    flex-shrink: 0;
+    @extend .w-100;
 
+    @include media-breakpoint-down(sm) {
+        background-image: none !important;
+    }
+    &--no-right-content .bf-hero__content{
+        @extend .container-fluid;
+    }
     &--full-background{
         background-position: center;
         background-size: cover;
-        .bf-hero__content{
-        @extend .container-fluid;
+        @include media-breakpoint-down(sm) {
+           background-image: none !important;
+           order: 1;
+           flex-flow: column-reverse;
         }
-}
+    }
+    &--block-selection,
     &--50-50{
         display: flex;
         flex-flow: row;
-        align-items: stretch;
+        //align-items: stretch;
         .bf-hero__content{
-          padding: $spacer-6;
+            padding: $spacer-6;
         }
-        .bf-hero__content,
-        .bf-hero__50precent{
-            flex-basis: 50%;
-        }
-
         @include media-breakpoint-down(sm) {
-           order: 1;
-           background-image: none !important;
-           flex-flow: column-reverse;
+            padding: $spacer-3;
+            background-image: none !important;
+            flex-flow: column-reverse;
+        }
+    }
+    &--block-selection{
+        .bf-hero__content{
+            flex-basis: 60%;
+        }
+        .bf-hero__right{
+            padding: $spacer-6;
+            align-self: center;
+            flex-basis:40% ;
+            flex-shrink: 1;
+            @include media-breakpoint-down(sm) {
+                padding: $spacer-2;
+            }
+        }
+    }
+    &--50-50{
+        .bf-hero__right{
+            background-position: center;
+            background-size: cover;
+            flex-basis: 50%;
         }
     }
     &--bg-ground {
@@ -44,14 +71,8 @@
         }
     }
 
-    &__50precent{
-        background-position: center;
-        background-size: cover;
-    }
 
-    @include media-breakpoint-down(sm) {
-        background-image: none !important;
-    }
+
 
     .bf-hero__content {
         gap: .5rem;
@@ -63,7 +84,7 @@
                 max-width: none;
             }
         }
-       /* TODO : 
+       /* TODO :
         redéfinir pour Highlight - problème de contraste
             .breadcrumb-item.active {
         }*/

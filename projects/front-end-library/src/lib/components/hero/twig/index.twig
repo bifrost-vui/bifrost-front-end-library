@@ -1,23 +1,34 @@
 
-{# local variables #}
 {% set hasDesktopImage = (image.default is defined and image.default) ? true : false %}
 {% set isBgImageFull = (image.isBgFull and hasDesktopImage) ? true : false  %}
 {% set is50Percent = (isBgImageFull is same as (false) and hasDesktopImage ) ? true : false  %}
+{% set hasBlocSelection =((blockSelection is defined and blockSelection is iterable) or (block('blockSelection') is defined)) ? true : false %}
+{% set hasRightContent =  (is50Percent or hasBlocSelection) ? true : false %}
+
+{% if hasRightContent and background is defined and background is same as ('highlight') and reversed %}
+    {% set reversed = '' %}
+{% elseif background is defined and background is same as ('highlight') and reversed  and isBgImageFull is same as (false) %}
+    {% set reversed = '' %}
+{% else %}
+    {% set reversed = (reversed) ? 'reversed' : '' %}
+{% endif %}
 
 <section
     class='
         bf-hero
         {{ (isBgImageFull) ? 'bf-hero--full-background' : '' }}
+        {{ (hasRightContent ) ?  '' : 'bf-hero--no-right-content' }}
         {{ (is50Percent) ? 'bf-hero--50-50':''}}
+        {{ (hasBlocSelection) ? 'bf-hero--block-selection':'' }}
+        {{ reversed }}
         {% if background is defined and background is same as ('ground') %}bf-hero--bg-ground{% endif %}
         {% if background is defined and background is same as ('highlight') %}bf-hero--bg-highlight{% endif %}
-        {{ (reversed and background is not same as ('highlight')  ) ? 'reversed' : '' }}
-        {{ class|default('') }}
-        '
+        {{ (reversed) ? 'reversed' : '' }}
+        {{ class|default('') }}'
         {% if isBgImageFull %}
             style='background-image: url("{{ image.default }}")'
         {% endif %}
->
+    >
     <div class='bf-hero__content d-flex flex-column flex-md-row align-items-center justify-content-between pb-2 pb-sm-4' data-animate-row=''>
         <header>
             {# Where "block('breadcrumb')" is a twigBlock and "breadcrumb" is an html string #}
@@ -80,22 +91,30 @@
                 {% endif %}
             </div>
         </header>
-
     </div>
-    {% if is50Percent %}
-    <div style='background-image : url({{ image.default }})'  class='bf-hero__50precent'  ></div>
-    {% endif %}
 
-        {% block hero_mobile_image %}{% endblock %}
-        {% if image is defined and image.mobile is not empty %}
+    {% if hasRightContent %}
+    <div  data-animate='fade-in' class='bf-hero__right'
+        {% if is50Percent %}
+             style='background-image : url({{ image.default }})'
+        {% endif %}
+    >
+        {% if image is defined and image.mobile is defined and image.mobile is not empty %}
             <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-md-none' />
         {% endif %}
-        <div class='' data-animate='fade-in'>
-            {% if block('blockSelection') is defined %}
-                {{ block('blockSelection') }}
-            {% elseif blockSelection is defined and blockSelection is iterable %}
-                {% include '@bf-components/block-selection/twig/index.twig' with blockSelection only %}
-            {% endif %}
-        </div>
+
+        {% if block('blockSelection') is defined %}
+
+            {{ block('blockSelection') }}
+
+        {% elseif blockSelection is defined and blockSelection is iterable %}
+            {% include '@bf-components/block-selection/twig/index.twig' with blockSelection only %}
+        {% endif %}
+    </div>
+
+    {% endif %}
+
+
+
 
 </section>
