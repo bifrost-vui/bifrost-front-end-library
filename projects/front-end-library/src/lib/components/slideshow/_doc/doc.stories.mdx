@@ -16,7 +16,7 @@ import { SlideshowComponent }           from '../angular/slideshow.component';
     parameters={{
         design: {
             type    : 'figma',
-            url     : 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            url     : 'https://www.figma.com/file/yFsS1z98l853oMi59vwbKI/D%C3%A9co-OC11---Design-UI?node-id=1379%3A186299',
             disable : false
         },
     }}
@@ -59,7 +59,75 @@ export const Drupal = (args) => ({
 ## Drupal implementation exemple
 
 ```jsx
-{% include '@bf-components/slideshow/twig/index.twig' with slides %}
+
+
+{% include '@bf-components/slideshow/twig/index.twig' with {
+    slides : [
+        {
+            badge       : {label: "Badge label 1", iconName: "placeholder"},
+            upperTitle  : "upper Title 1",
+            title       : "Title 1",
+            subtitle    : "Subtitle 1",
+            description : "Description 1.",
+            button      : {
+                label       : "Button",
+                hierarchy   : "primary-alt",
+                class       : "my-class"
+            },
+            background      : "highlight",
+        },
+        {
+            class       : "reversed",
+            badge       : "badge label 2",
+            upperTitle  : "upper Title 2",
+            title       : "Title 2",
+            subtitle    : "Subtitle 2",
+            description : "Description 2",
+            button      : {
+                label       : "Button",
+                hierarchy   : "primary-alt",
+                class       : ""
+            },
+            blockSelection  : {
+                title               : 'Selection Title',
+                month               : 'month',
+                contentLists        : [
+                    {
+                        title           : 'Samsung Galaxy Note 20 Utra 5G',
+                        description     : 'Navy Blue, 128 Go',
+                        price           : '$24.00',
+                        saving          : '$30.00',
+                        fullPrice       : '$150.00',
+                    },
+                    {
+                        title           : 'All-inclusive 12 GB Mobile',
+                        description     : 'Lorem ipsum',
+                        price           : '$55.00',
+                    },
+                ],
+            },
+        },
+        {
+            class       : "reversed",
+            upperTitle  : "Lorem ipsum dolor sit amet.",
+            title       : "consectetur adipiscing elit , ",
+            subtitle    : "sed do eiusmod tempor.",
+            button      : {
+                label       : "Button",
+                hierarchy   : "primary-alt",
+                class       : ""
+            },
+            image           : {
+                default : "/images/_docs/hero-helix-reversed.png",
+                mobile  : "/images/_docs/hero-helix-reversed-mobile.png",
+                alt     : "Helix"
+            },
+            background      : "reversed",
+        },
+        {...}
+    ]
+} %}
+
 ```
 
 
@@ -73,6 +141,4 @@ export const Drupal = (args) => ({
 
 ## Design Guidelines
 
-**// TODO**: Add a link to the component in Figma file.
-
-<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>
+[Figma design guidelines](https://www.figma.com/file/yFsS1z98l853oMi59vwbKI/D%C3%A9co-OC11---Design-UI?node-id=1379%3A186299)

@@ -1,11 +1,11 @@
 export const slides=[
     {
         class       : "",
-        badge       : {label: "old", iconName: "camera"},
-        upperTitle  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        title       : "Découvrez nos meilleurs forfaits Helix Internet et Télé",
-        subtitle    : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        description : "Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.",
+        badge       : {label: "badge label with icon", iconName: "camera"},
+        upperTitle  : "Upper Title",
+        title       : "Slide Title",
+        subtitle    : "Upper Title",
+        description : "Lorem ipsum descriptum est",
         button      : {
             label       : "Button",
             hierarchy   : "primary-alt",
@@ -14,11 +14,10 @@ export const slides=[
         background      : "highlight",
     },
     {
-        badge       : "NEW",
         upperTitle  : "Lorem ipsum dolor sit amet",
-        title       : "Découvrez nos meilleurs forfaits Helix Internet et Télé",
-        subtitle    : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        description : "Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.",
+        title       : "Slide Title",
+        subtitle    : "Upper Title",
+        description : "Lorem ipsum descriptum est",
         button      : {
             label       : "Button",
             hierarchy   : "primary-alt",
@@ -33,11 +32,11 @@ export const slides=[
     },
     {
         class       : "reversed",
-        badge       : "NEW",
-        upperTitle  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        title       : "Découvrez nos meilleurs forfaits Helix Internet et Télé",
+        badge       : "Lorem ipsum",
+        upperTitle  : "Upper Title",
+        title       : "Slide Title",
         subtitle    : "Lorem ipsum dolor sit amet.",
-        description : "Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.",
+        description : "Lorem ipsum descriptum est",
         button      : {
             label       : "Button",
             hierarchy   : "primary-alt",
@@ -65,11 +64,11 @@ export const slides=[
     },
     {
         class       : "reversed",
-        badge       : 'another badge',
-        upperTitle  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        title       : "Découvrez nos meilleurs forfaits Helix Internet et Télé",
+        badge       : 'badge label',
+        upperTitle  : "Upper Title",
+        title       : "Slide Title",
         subtitle    : "Lorem ipsum dolor sit amet.",
-        description : "Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.",
+        description : "Lorem ipsum descriptum est",
         button      : {
             label       : "Button",
             hierarchy   : "primary-alt",
