@@ -13,7 +13,7 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 export class HeroComponent implements OnInit {
     constructor() {}
 
-    @Input() breadcrumb         : 'TwigBlock';
+    @Input() breadcrumb         : string;
     /** Twig Block or Object with this [component API](/?path=/docs/components-badge--drupal). */
     @Input() badge              : any;
     @Input() upperTitle         : string;
