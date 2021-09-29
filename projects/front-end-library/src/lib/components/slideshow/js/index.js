@@ -39,8 +39,8 @@ import 'slick-carousel';
     centerPadding: 0,
     mobileFirst: true,
     autoplay: true,
+    autoplaySpeed: 5000,
     pauseOnDotsHover: true ,
-    autoplaySpeed: 500,
 });
 
 $('.bf-slideshow__inner').on('afterChange', function(event, slick, currentSlide, nextSlide){
