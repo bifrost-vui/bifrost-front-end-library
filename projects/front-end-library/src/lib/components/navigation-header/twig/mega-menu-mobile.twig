@@ -158,44 +158,41 @@
                 } only %}
                 <div class="title-parent">
                 <span>{{ navItem.label }}</span>
-                  <span class="first-item-label">
-
-                    {% set firstItem = navItem.subItems|first %}
-                    {% if firstItem.label %}
-                      <a href="{{ firstItem.href }}"
-                         class="js-bf-dropdown-item-link font-weight-bold"
-                         rel="{{ firstItem.rel|default('') }}"
-                         tabindex=-1
-                        {{ firstItem.extraAttribute|default(NULL) }}
-                      >{{ firstItem.label|default('Link') }}</a>
-                      {% endif %}
-                  </span>
+                <span class="first-item-label">
+                  {% set firstItem = navItem.subItems|first %}
+                  {% if firstItem.label %}
+                    <a href="{{ firstItem.href }}"
+                       class="js-bf-dropdown-item-link font-weight-bold"
+                       rel="{{ firstItem.rel|default('') }}"
+                       tabindex=-1
+                      {{ firstItem.extraAttribute|default(NULL) }}
+                    >{{ firstItem.label|default('Link') }}</a>
+                    {% endif %}
+                </span>
                 </div>
                 </div>
               </div>
               {% for subItem in navItem.subItems %}
                 {% set itemClass = subItem.class ? subItem.class : ''  %}
-                <div class="col-lg-12 mb-3 {{ itemClass }} {{ hasBorder }}submenu-container-mobile__contain">
-                  {% if subItem.label is defined and subItem.label is not empty %}
-                    <div class="mb-2">
-                      <a href="{{ subItem.href }}"
-                         class="js-bf-dropdown-item-link font-weight-bold"
-                         rel="{{ subItem.rel|default('') }}"
-                         tabindex=-1
-                        {{ subItem.extraAttribute|default(NULL) }}
-                      >{{ subItem.label|default('Link') }}</a>
-                    </div>
-                  {% endif %}
+                <div class="col-lg-12 {{ itemClass }} submenu-container-mobile__contain">
                   {% if subItem.subItems %}
                     <ul class="p-0 list-unstyled">
                       {% for subItem in subItem.subItems %}
                         <li class="mb-2">
                           <a href="{{ subItem.href }}"
-                             class="js-bf-dropdown-item-link d-block d-lg-inline py-1 py-lg-0 {{ subItem.class }}"
+                             class="js-bf-dropdown-item-link d-block d-lg-inline py-2 py-lg-0 {{ subItem.class }}"
                              rel="{{ subItem.rel|default('dofollow') }}"
                              tabindex=-1
                             {{ subItem.extraAttribute|default(NULL) }}
-                          >{{ subItem.label|default('Link') }}</a>
+                          >
+                            {% include '@bf-components/icon/twig/index.twig' with {
+                              name        : subItem.iconName,
+                              size        : 'small',
+                              class       : 'img-fluid position-relative',
+                              reversed    : reversed,
+                            } only %}
+                            <span class="ml-1">{{ subItem.label|default('Link') }}</span>
+                          </a>
                         </li>
                       {% endfor %}
                     </ul>

@@ -264,14 +264,13 @@ $(function () {
     $(searchBtn, navMain).on('click', displaySearchBar);
 
 
-   //Navigation mobile
-
+   //Navigation mobile back to parent
   $('.btn-back-menu').click((e)=>{
     e.preventDefault()
     $('.tab-pane').removeClass('active show');
     $('.mobile-menu').removeClass("active show");
   });
-
+// reset the menu
   $('.navbar-toggler').click((e)=> {
     e.preventDefault()
     if( $('.navbar-toggler').attr('aria-expanded')) {
