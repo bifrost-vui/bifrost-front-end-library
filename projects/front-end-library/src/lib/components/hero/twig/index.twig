@@ -1,37 +1,33 @@
 
 {% set hasDesktopImage = (image.default is defined and image.default) ? true : false %}
-{% set isBgImageFull = (image.isBgFull and hasDesktopImage) ? true : false  %}
-{% set is50Percent = (isBgImageFull is same as (false) and hasDesktopImage ) ? true : false  %}
+{% set hasMobileImage = (image.mobile is defined and image.mobile) ? true : false %}
+
+{% set is50Percent = ( not isFullWidth and hasDesktopImage and hasMobileImage ) ? true : false  %}
 {% set hasBlocSelection =((blockSelection is defined and blockSelection is iterable) or (block('blockSelection') is defined)) ? true : false %}
 {% set hasRightContent =  (is50Percent or hasBlocSelection) ? true : false %}
 
-{% if hasRightContent and background is defined and background is same as ('highlight') and reversed %}
-    {% set reversed = '' %}
-{% elseif background is defined and background is same as ('highlight') and reversed  and isBgImageFull is same as (false) %}
-    {% set reversed = '' %}
-{% else %}
-    {% set reversed = (reversed) ? 'reversed' : '' %}
+{% set layoutClass =  (hasRightContent) ? 'bf-hero--50-50' : 'bf-hero--full'  %}
+{% set backgroundClass =  '' %}
+{% if background is defined and background is same as ('ground') %}
+    {% set backgroundClass =  'bf-hero--bg-ground' %}
+{% elseif background is defined and background is same as ('highlight') %}
+    {% set backgroundClass =  'bf-hero--bg-highlight' %}
 {% endif %}
 
+
 <section
-    class='
-        bf-hero
-        {{ (isBgImageFull) ? 'bf-hero--full-background' : '' }}
-        {{ (hasRightContent ) ?  '' : 'bf-hero--no-right-content' }}
-        {{ (is50Percent) ? 'bf-hero--50-50':''}}
-        {{ (hasBlocSelection) ? 'bf-hero--block-selection':'' }}
-        {{ reversed }}
-        {% if background is defined and background is same as ('ground') %}bf-hero--bg-ground{% endif %}
-        {% if background is defined and background is same as ('highlight') %}bf-hero--bg-highlight{% endif %}
-        {{ (reversed) ? 'reversed' : '' }}
-        {{ class|default('') }}'
-        {% if isBgImageFull %}
+    class='bf-hero {{ (reversed) ? 'reversed' }} {{ layoutClass ~ ' ' ~ backgroundClass ~ ' ' ~ class|default('') }}'
+        {% if hasDesktopImage and not hasRightContent %}
             style='background-image: url("{{ image.default }}")'
         {% endif %}
     >
-    <div class='bf-hero__content d-flex flex-column flex-md-row align-items-center justify-content-between pb-2 pb-sm-4' data-animate-row=''>
+    {% if hasDesktopImage and  hasRightContent %}
+            <div class='bf-hero--50-50__image'  style='background-image: url("{{ image.default }}")'></div>
+    {% endif %}
+    <div class='bf-hero__content' data-animate-row=''>
         <header>
-            {# Where "block('breadcrumb')" is a twigBlock and "breadcrumb" is an html string #}
+            {# Where "block('breadcrumb')" is a twigBlock and "breadcrumb" is an html string?
+            needs to be coherent with blockselection  - if yes TODO : reflect in hero.component.ts & remove comment #}
             {% if block('breadcrumb') is defined %}
                 {{ block('breadcrumb')|raw }}
             {% elseif breadcrumb is defined %}
@@ -91,30 +87,17 @@
                 {% endif %}
             </div>
         </header>
-    </div>
-
-    {% if hasRightContent %}
-    <div  data-animate='fade-in' class='bf-hero__right'
-        {% if is50Percent %}
-             style='background-image : url({{ image.default }})'
-        {% endif %}
-    >
-        {% if image is defined and image.mobile is defined and image.mobile is not empty %}
+        {% if hasRightContent %}
+        <div class='bf-hero__right' data-animate='fade-in'>
+            {% if block('blockSelection') is defined %}
+                {{ block('blockSelection') }}
+            {% elseif blockSelection is defined and blockSelection is iterable %}
+                {% include '@bf-components/block-selection/twig/index.twig' with blockSelection only %}
+            {% endif %}
+        </div>
+        {% elseif hasMobileImage %}
             <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-md-none' />
         {% endif %}
-
-        {% if block('blockSelection') is defined %}
-
-            {{ block('blockSelection') }}
-
-        {% elseif blockSelection is defined and blockSelection is iterable %}
-            {% include '@bf-components/block-selection/twig/index.twig' with blockSelection only %}
-        {% endif %}
     </div>
-
-    {% endif %}
-
-
-
 
 </section>

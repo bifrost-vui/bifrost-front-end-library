@@ -13,8 +13,8 @@ import { IPrice } from '../../price/angular/price.component';
 })
 export class HeroComponent implements OnInit {
     constructor() {}
-
-    @Input() breadcrumb         : 'TwigBlock';
+    /** this format is not available when you have content right side  */
+    @Input() isFullWidth        : boolean;
     /**
         You can pass directly the **label** as a **string** or an **object** based on [Badge](/?path=/docs/components-badge--drupal) component API.
     */
@@ -28,20 +28,20 @@ export class HeroComponent implements OnInit {
     */
     @Input() price              : IPrice;
     @Input() button             : object;
-    /** `image{default,mobile,isBgFull}` */
     @Input() image              : object;
     @Input() background         : 'ground' | 'underground' | 'highlight';
-
-    /**
-        Insert the component BlockSelection. Explore its [Component API](/?path=/docs/components-block--drupal-selection).
-    */
-    @Input() blockSelection     : object | 'TwigBlock';
-
     /** Class override */
     @Input() class              : string;
     @Input() reversed           : boolean;
 
     @Input() language           : 'en' | 'fr';
+
+    /**
+        Insert the component BlockSelection. Explore its [Component API](/?path=/docs/components-block--drupal-selection).
+    */
+    @Input() blockSelection     : object | 'TwigBlock';
+    @Input() breadcrumb         : 'TwigBlock';
+
 
     ngOnInit() {
         console.log('Hero', this);

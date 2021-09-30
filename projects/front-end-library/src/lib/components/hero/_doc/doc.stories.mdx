@@ -12,17 +12,15 @@ import { HeroComponent }                from '../angular/hero.component';
     ]}
     argTypes={{
         background: {
-            defaultValue: '',
-            type: { required: true },
             table: { defaultValue: { summary: '' } },
-            control: {type: 'select', options: ['ground' , 'underground', 'highlight' ]}
+            control: {type: 'select', options: ['ground' , 'underground', 'highlight' ] },
+            type: { required: true }
         },
         language :  {
-            defaultValue: '',
-            type: { required: true },
             table: { defaultValue: { summary: '' } },
-            control: {type: 'select', options: ['fr' , 'en']}
-        },
+            control: { type: 'select', options: ['fr' , 'en'] },
+            type: { required: true }
+        }
     }}
 />
 
@@ -77,6 +75,7 @@ import { HeroComponent }                from '../angular/hero.component';
         alt     : 'Helix'
     },
     background      : 'ground',
+    isFullWidth     : true
 } only %}
 ```
 
@@ -100,7 +99,8 @@ export const commonProps = {
         label       : 'Button',
         hierarchy   : 'primary-alt',
         class       : 'my-class'
-    }
+    },
+    isFullWidth : true,
 };
 
 export const Drupal = (args) => ({
@@ -133,28 +133,7 @@ export const Drupal = (args) => ({
     style={{ height: '300px' }}
 >
     <Story
-        name='Drupal - With full background image'
-        args={{
-            elementPath     : 'components/hero/_doc/template.drupal',
-            ...commonProps,
-            image           : {
-                default : '/images/_docs/hero-helix.png',
-                mobile  : '/images/_docs/hero-helix-mobile.png',
-                alt     : 'Helix',
-                isBgFull: true
-            }
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Preview>
-
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story
-        name='Drupal - With 50/50 image'
+        name='Drupal - With image'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,

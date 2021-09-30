@@ -5,7 +5,9 @@
 {% set price            = price|json_parse %}
 {% set breadcrumb       = breadcrumb|json_parse %}
 {% set reversed         = reversed|json_parse %}
-{% set background = background|json_parse %}
+{% set language         = background|json_parse|default('en') %}
+{% set background       = background|json_parse|default('underground') %}
+{% set isFullWidth      = isFullWidth|json_parse %}
 
 
 {% set imageReversed    = (image is defined and image is not empty) ?
@@ -13,7 +15,6 @@
             default     : '/images/_docs/hero-helix-reversed.png',
             mobile      : '/images/_docs/hero-helix-reversed-mobile.png',
             alt         : 'Helix',
-            isBgFull    : (image.isBgFull) ? true : false
         }
         :
         ''
@@ -24,7 +25,6 @@
     {% include '@bf-components/hero/twig/index.twig' with {
         reversed    : reversed|default(false),
     } %}
-
     {% include '@bf-components/hero/twig/index.twig' with {
         image       :  imageReversed,
         reversed    : reversed|default(true),
