@@ -4,9 +4,10 @@
 
 {% set is50Percent = ( not isFullWidth and hasDesktopImage and hasMobileImage ) ? true : false  %}
 {% set hasBlocSelection =((blockSelection is defined and blockSelection is iterable) or (block('blockSelection') is defined)) ? true : false %}
-{% set hasRightContent =  (is50Percent or hasBlocSelection) ? true : false %}
+{% set hasRightContent =  (hasBlocSelection) ? true : false %} {# prépare la condition pour tester si on a un icône aussi #}
 
-{% set layoutClass =  (hasRightContent) ? 'bf-hero--50-50' : 'bf-hero--full'  %}
+{% set layoutClass =  (hasRightContent) ? 'bf-hero--2col' : 'bf-hero--full'  %}
+
 {% set backgroundClass =  '' %}
 {% if background is defined and background is same as ('ground') %}
     {% set backgroundClass =  'bf-hero--bg-ground' %}
@@ -16,15 +17,13 @@
 
 
 <section
-    class='bf-hero {{ (reversed) ? 'reversed' }} {{ layoutClass ~ ' ' ~ backgroundClass ~ ' ' ~ class|default('') }}'
-        {% if hasDesktopImage and not hasRightContent %}
-            style='background-image: url("{{ image.default }}")'
-        {% endif %}
-    >
-    {% if hasDesktopImage and  hasRightContent %}
-            <div class='bf-hero--50-50__image'  style='background-image: url("{{ image.default }}")'></div>
+    class='bf-hero {{ (reversed) ? 'reversed' }} {{ layoutClass ~ ' ' ~ backgroundClass ~ ' ' ~ class|default('') }}' >
+    {% if hasDesktopImage or hasMobileImage %}
+        <div class='bf-hero__image {{ (isFullWidth) ? 'bf-hero__image--full':'' }}' style='background-image: url("{{ image.default }}")'></div>
+        <img class='d-block w-100 d-md-none' src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' />
     {% endif %}
-    <div class='bf-hero__content' data-animate-row=''>
+
+    <div class='bf-hero__content'>
         <header>
             {# Where "block('breadcrumb')" is a twigBlock and "breadcrumb" is an html string?
             needs to be coherent with blockselection  - if yes TODO : reflect in hero.component.ts & remove comment #}
@@ -88,15 +87,14 @@
             </div>
         </header>
         {% if hasRightContent %}
-        <div class='bf-hero__right' data-animate='fade-in'>
+        <div class='bf-hero__right'>
             {% if block('blockSelection') is defined %}
                 {{ block('blockSelection') }}
             {% elseif blockSelection is defined and blockSelection is iterable %}
                 {% include '@bf-components/block-selection/twig/index.twig' with blockSelection only %}
+            {# TODO :  insert another condition and add huge icones here #}
             {% endif %}
         </div>
-        {% elseif hasMobileImage %}
-            <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-md-none' />
         {% endif %}
     </div>
 

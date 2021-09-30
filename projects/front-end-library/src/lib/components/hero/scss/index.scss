@@ -6,60 +6,52 @@
 
 .bf-hero {
     position: relative;
-    display: flex;
     @extend .w-100;
     background-color: var(--bf-color-bg-underground);
-    background-repeat: no-repeat;
 
-    @include media-breakpoint-down(sm) {
-        background-image: none !important;
+    &__image{
+        position: absolute;
+        top : 0;
+        right: 0;
+        width: 50%;
+        height: 100%;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        content: '';
+        z-index: 0;
+        &--full{
+            width: 100%
+        }
+        @include media-breakpoint-down(sm) {
+            background-image: none !important;
+            display: none !important;
+        }
+
     }
     &__content{
         @extend .container-fluid;
         display : flex ;
         align-items : center;
         justify-content: space-between;
-        @extend .flex-column;
         @extend .flex-md-row;
+        @extend .flex-column;
         @extend .pb-2;
         @extend .pb-sm-4;
+        z-index: 1;
     }
-    &--full{
-        background-position: center;
-        background-size: cover;
+    &__right {
+        display: block;
+        position: relative;
+    }
+    header {
+        max-width: 40rem;
         @include media-breakpoint-down(sm) {
-           background-image: none !important;
-           order: 1;
-           flex-flow: column-reverse;
+            max-width: none;
         }
-        header {
-            max-width: 40rem;
-            @include media-breakpoint-down(sm) {
-                max-width: none;
-            }
-        }
-
     }
-    &--50-50{
+    &--2col{
         gap: $spacer-4;
-
-        &__image{
-            position: absolute;
-            top : 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background-position: center center;
-            background-size: cover;
-            content: '';
-            z-index: 0;
-        }
-
-        header,
-        .bf-hero__right{
-            flex-basis: 50%;
-            z-index:1;
-        }
     }
 
     &--bg-ground {
@@ -72,10 +64,6 @@
             color: var(--bf-color-neutral-primary-irreversible);
         }
     }
-
-
-
-
     &__content {
         gap: .5rem;
     }
