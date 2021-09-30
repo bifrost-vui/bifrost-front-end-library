@@ -20,8 +20,6 @@ export class HeroComponent implements OnInit {
     @Input() title              : string;
     @Input() subtitle           : string;
     @Input() description        : string;
-    @Input() buttonType         : 'button' | 'doubleButton';
-    @Input() button             : object;
   /**
    Insert buttons (max of 2 items). Explore its [Component API](/?path=/docs/components-button--drupal).
    */
