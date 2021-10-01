@@ -4,7 +4,7 @@
 
 {% set is50Percent = ( not isFullWidth and hasDesktopImage and hasMobileImage ) ? true : false  %}
 {% set hasBlocSelection =((blockSelection is defined and blockSelection is iterable) or (block('blockSelection') is defined)) ? true : false %}
-{% set hasRightContent =  (hasBlocSelection) ? true : false %} {# prépare la condition pour tester si on a un icône aussi #}
+{% set hasRightContent =  (hasBlocSelection) ? true : false %} {# TODO :  DS-149 dans hasRightContent ajouter la condition hasIcon  #}
 
 {% set layoutClass =  (hasRightContent) ? 'bf-hero--2col' : 'bf-hero--full'  %}
 
@@ -15,25 +15,29 @@
     {% set backgroundClass =  'bf-hero--bg-highlight' %}
 {% endif %}
 
-
 <section
-    class='bf-hero {{ (reversed) ? 'reversed' }} {{ layoutClass ~ ' ' ~ backgroundClass ~ ' ' ~ class|default('') }}' >
-    {% if hasDesktopImage or hasMobileImage %}
+    class='bf-hero
+    {{ (reversed) ? 'reversed' }}
+    {{ layoutClass ~ ' ' ~ backgroundClass ~ ' ' ~ class|default('') }}'
+    >
+
+    {% if hasDesktopImage or hasMobileImage  %}
         <div class='bf-hero__image {{ (isFullWidth) ? 'bf-hero__image--full':'' }}' style='background-image: url("{{ image.default }}")'></div>
+
+        {% if hasMobileImage and not hasRightContent %}
         <img class='d-block w-100 d-md-none' src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' />
+        {% endif %}
     {% endif %}
 
-    <div class='bf-hero__content'>
+    <div class='bf-hero__content' >
         <header>
-            {# Where "block('breadcrumb')" is a twigBlock and "breadcrumb" is an html string?
-            needs to be coherent with blockselection  - if yes TODO : reflect in hero.component.ts & remove comment #}
             {% if block('breadcrumb') is defined %}
-                {{ block('breadcrumb')|raw }}
+                {{ block('breadcrumb') }}
             {% elseif breadcrumb is defined %}
                 {{ breadcrumb|raw }}
             {% endif %}
 
-            <div class='position-relative py-5 mt-2'>
+            <div class='position-relative py-5 mt-2' data-animate-row=''>
                 {% if badge is defined and badge is not empty %}
                     {% if badge is iterable %}
                         {% set badge = {
@@ -45,12 +49,14 @@
                     {% else %}
                         {% set badge = { label: badge } %}
                     {% endif %}
+
                     {% set badge = badge|merge( {
                         'hierarchy' : badge.hierarchy|default('primary'),
                         'class'     : 'position-absolute top-0'
                     } ) %}
                     {% include '@bf-components/badge/twig/index.twig' with badge only %}
                 {% endif %}
+
                 {% if upperTitle is defined and upperTitle is not empty %}
                     <p class='h5 mt-0 mb-2' data-animate='fade-in'>
                         {{ upperTitle }}
@@ -87,15 +93,14 @@
             </div>
         </header>
         {% if hasRightContent %}
-        <div class='bf-hero__right'>
-            {% if block('blockSelection') is defined %}
-                {{ block('blockSelection') }}
-            {% elseif blockSelection is defined and blockSelection is iterable %}
-                {% include '@bf-components/block-selection/twig/index.twig' with blockSelection only %}
-            {# TODO :  insert another condition and add huge icones here #}
-            {% endif %}
-        </div>
+            <div class='bf-hero__right' data-animate='fade-in'>
+                {% if block('blockSelection') is defined %}
+                    {{ block('blockSelection') }}
+                {% elseif blockSelection is defined and blockSelection is iterable %}
+                    {% include '@bf-components/block-selection/twig/index.twig' with blockSelection only %}
+                {# TODO : DS-149  insert another condition and add huge icones here #}
+                {% endif %}
+            </div>
         {% endif %}
     </div>
-
 </section>

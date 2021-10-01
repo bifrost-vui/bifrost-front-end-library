@@ -15,40 +15,27 @@ export class HeroComponent implements OnInit {
     constructor() {}
     /** this format is not available when you have content right side  */
     @Input() breadcrumb         : string | 'TwigBlock';
-    /**
-        You can pass directly the **label** as a **string** or an **object** based on [Badge](/?path=/docs/components-badge--drupal) component API.
-    */
+    /** You can pass directly the **label** as a **string** or an **object** based on [Badge](/?path=/docs/components-badge--drupal) component API. */
     @Input() badge              : any;
     @Input() upperTitle         : string;
     @Input() title              : string;
     @Input() subtitle           : string;
     @Input() description        : string;
-    /**
-        [Price](/?path=/docs/components-price--drupal) component.
-    */
+    /**  [Price](/?path=/docs/components-price--drupal) component. */
     @Input() price              : IPrice;
     @Input() button             : object;
-    /** `image{default,mobile,isBgFull}` */
+    /** it's not recommended to define an image when there is content on the right side (Ex. a selection Block ) */
     @Input() image              : object;
     @Input() background         : 'ground' | 'underground' | 'highlight';
-
-    /**
-        Insert the component BlockSelection. Explore its [Component API](/?path=/docs/components-block--drupal-selection).
-    */
+    /** Applys to the image background. When set to false the image background will take only 50% of the space. */
+    @Input() isFullWidth        : boolean;
+    /** Insert the component BlockSelection. Explore its [Component API](/?path=/docs/components-block--drupal-selection). */
     @Input() blockSelection     : object | 'TwigBlock';
-
     /** Class override */
     @Input() class              : string;
     @Input() reversed           : boolean;
-
     @Input() language           : 'en' | 'fr';
-    @Input() isFullWidth        : boolean;
-
-    /**
-        Insert the component BlockSelection. Explore its [Component API](/?path=/docs/components-block--drupal-selection).
-    */
-
-
+    
     ngOnInit() {
         console.log('Hero', this);
     }
