@@ -19,6 +19,7 @@
     {% if image is defined and image.mobile is not empty %}
         <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-md-none' />
     {% endif %}
+
     <div class='d-block d-md-none' data-animate='fade-in'>
         {% if block('blockSelection') is defined %}
             {{ block('blockSelection') }}
@@ -35,7 +36,12 @@
             <div class='position-relative py-5 mt-2'>
                 {% if badge is defined and badge is not empty %}
                     {% if badge is iterable %}
-                        {% set badgeLabel = badge.label %}
+                        {% set badge = {
+                            label       : badge.label,
+                            hierarchy   : badge.hierarchy|default('primary'),
+                            angle       : badge.angle|default(''),
+                            iconName    : badge.iconName|default(''),
+                        } %}
                     {% else %}
                         {% set badge = { label: badge } %}
                     {% endif %}
@@ -55,7 +61,7 @@
                         {{ title }}
                     </h1>
                 {% endif  %}
-                {% if subtitle is not defined or subtitle is not empty %}
+                {% if subtitle is defined and subtitle is not empty %}
                     <h2 class='h3 my-2' data-animate='fade-in'>
                         {{ subtitle }}
                     </h2>
@@ -64,6 +70,13 @@
                     <p class='mt-2' data-animate='fade-in'>
                         {{ description }}
                     </p>
+                {% endif %}
+                {% if price is defined and price %}
+                    {% set price = price|merge({
+                        'class'     : 'w-100 mt-4 ' ~ price.class,
+                        'language'  : price.language|default(language)
+                    }) %}
+                    {% include '@bf-components/price/twig/index.twig' with price only %}
                 {% endif %}
                 {% if buttons is defined and buttons %}
                     <div class='d-inline-flex mt-6' data-animate='fade-in'>
