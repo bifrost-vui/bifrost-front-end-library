@@ -22,11 +22,11 @@
     >
 
     {% if hasDesktopImage or hasMobileImage  %}
-        <div class='bf-hero__image {{ (isFullWidth) ? 'bf-hero__image--full':'' }}' style='background-image: url("{{ image.default }}")'></div>
-
         {% if hasMobileImage and not hasRightContent %}
-        <img class='d-block w-100 d-md-none' src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' />
+            <img class='d-block w-100 d-md-none' src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' />
         {% endif %}
+
+        <div class='bf-hero__image {{ (isFullWidth) ? 'bf-hero__image--full':'' }}' style='background-image: url("{{ image.default }}")'></div>
     {% endif %}
 
     <div class='bf-hero__content' >

@@ -20,13 +20,14 @@
         background-repeat: no-repeat;
         content: '';
         z-index: 0;
+
+        &--full{
+            width: 100%
+        }
         @include media-breakpoint-down(sm) {
             background-image: none !important;
             display: none !important;
         }
-    }
-    &--full{
-        width: 100%
     }
     &__content{
         position: relative;
@@ -67,8 +68,11 @@
     }
     &--bg-highlight {
         background-color: var(--bf-color-bg-action-primary);
-        &.bf-hero--2col{
-            color: var(--bf-color-neutral-primary-irreversible);
+        &.bf-hero--2col {
+            color: var(--bf-color-primary-irreversible);
+        }
+        .bf-hero__image:not(bf-hero__image--full) + .bf-hero__content {
+            color: var(--bf-color-primary-irreversible);
         }
     }
 }
