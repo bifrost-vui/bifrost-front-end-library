@@ -1,5 +1,6 @@
 {% set reversed = reversed|json_parse|default(false) %}
 {% set icons    = icons|json_parse %}
+{% set size     = size|json_parse %}
 
 <div class='pt-4 bf-color-bg-ground {% if reversed %}reversed{% endif %}' style="height: fit-content; min-height: 100%;">
 {% if size is same as ('huge') %}
@@ -24,7 +25,7 @@
                         <div class="w-100">
                             <h4>{{category.category}}</h4>
                         </div>
-                        <div class="doc-list{{ (size == 'huge') ? '-huge'}}">
+                        <div class="doc-list {{ (size == 'huge') ? 'doc-list--huge'}}">
                             {% for iconName in category.list %}
                                 <div class='d-flex flex-column align-items-center p-3' title='{{iconName}}'>
                                     {% include '@bf-components/icon/twig/index.twig' with {
@@ -53,10 +54,8 @@
         grid-template-columns: repeat(auto-fill, minmax( var(--minmax), 1fr));
         width: 100%;
     }
-    .doc-list-huge {
+    .doc-list--huge {
         --minmax: 300px;
-        display: grid;
         grid-template-columns: repeat(auto-fill, minmax( var(--minmax), 1fr));
-        width: 100%;
     }
 </style>

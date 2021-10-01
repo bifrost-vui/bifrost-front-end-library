@@ -28,6 +28,10 @@ import { IconComponent }                        from '../angular/icon.component'
         icons: {
             table: { disable: true }
         },
+        size: {
+                type: { required: true },
+                control: {type: 'select', options: ['xsmall', 'small' , 'medium', 'large', 'huge']},
+        }
     }}
 />
 
@@ -112,10 +116,7 @@ export const Drupal = (args) => ({
             },
             size: {
                 defaultValue: 'small',
-                type: { required: true },
-                table: { defaultValue: { summary: 'small' } },
-                description: 'xsmall | small',
-                control: {type: 'select', options: ['xsmall','small' ]}
+                description: 'recommended : xsmall | small',
             },
         }}
     >
@@ -146,10 +147,7 @@ export const Drupal = (args) => ({
             },
             size: {
                 defaultValue: 'large',
-                type: { required: true },
-                table: { defaultValue: { summary: 'large' } },
-                description: 'small | medium | large',
-                control: {type: 'select', options: ['small' , 'medium', 'large']}
+                description: 'recommended : small | medium | large',
             },
         }}
     >
@@ -179,9 +177,7 @@ export const Drupal = (args) => ({
             },
             size: {
                 defaultValue: 'huge',
-                description: 'huge',
-                control: {type: 'select', options: ['huge']},
-                table: { defaultValue: { summary: 'huge' }},
+                description: 'recommended : huge',
             },
         }}
     >
