@@ -1,7 +1,8 @@
 import $ from 'jquery';
 import '../../../js/components/slick-carousel.js'
 
-/* ------ hero SlideShow initialisation ------------*/
+/* ------ Hero SlideShow initialisation ------------*/
+
 bfSlick.assignCarousel('.js-bf-slideshow--hero-slideshow', {
     dots: true,
     appendDots: '.bfslick__controls__counter',
@@ -20,7 +21,8 @@ bfSlick.assignCarousel('.js-bf-slideshow--hero-slideshow', {
     pauseOnDotsHover: true ,
 });
 
-/*-------- apply reversed on navigation controls -------------*/
+/*-------- Apply reversed on navigation controls -------------*/
+
 $('.bf-slideshow__inner').on('afterChange', function(event, slick, currentSlide, nextSlide){
     $('.bf-slideshow .bfslick__controls').removeClass('reversed')
     if ($('.slick-current .bf-hero').hasClass('reversed')){

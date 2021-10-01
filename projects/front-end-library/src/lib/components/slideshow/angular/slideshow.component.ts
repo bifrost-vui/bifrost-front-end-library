@@ -13,6 +13,7 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 export class SlideshowComponent implements OnInit {
     constructor() {}
     @Input() slides: Array<object>[];
+    
     ngOnInit() {
         console.log('Slideshow', this);
     }
