@@ -121,8 +121,8 @@
             } only %}
             <span class="tab-label">
                <span class="d-inline-block">
-                 {{ navItem.label }}
-                 <small class="d-table">{{ navItem.subLabel }}</small>
+                 <span>{{ navItem.label }}</span>
+                 <span class="d-table small">{{ navItem.subLabel }}</span>
             </span>
             </span>
             {% include '@bf-components/icon/twig/index.twig' with {
@@ -199,17 +199,17 @@
                   {% endif %}
                 </div>
               {% endfor %}
-              {% if navItem.mega|first is not empty %}
-                <div class="mega-unplash-img row">
-                    <div class="col-md-6">
+              {% if navItem.mega is not empty %}
+                <div class="d-flex m-5">
+                    {% for mega in navItem.mega|slice(0,1) %}
                       {% include '@bf-components/navigation-header/twig/mega-menu-block.twig' with {
-                        imgSrc  : item.imgSrc,
-                        imgAlt  : item.imgAlt,
-                        href    : item.href,
-                        title   : item.title,
-                        text    : item.text,
+                        imgSrc    : mega.imgSrc,
+                        imgAlt    : mega.imgAlt,
+                        href      : mega.href,
+                        title     : mega.title,
+                        paragraph : mega.text,
                       } %}
-                    </div>
+                    {% endfor %}
                 </div>
               {% endif %}
             </div>
