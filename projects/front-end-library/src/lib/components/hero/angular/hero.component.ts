@@ -24,7 +24,7 @@ export class HeroComponent implements OnInit {
     @Input() subtitle           : string;
     @Input() description        : string;
   /**
-   Insert buttons (max of 2 items). Explore its [Component API](/?path=/docs/components-button--drupal).
+   Insert buttons (max of 2 buttons). Explore its [Component API](/?path=/docs/components-button--drupal).
    */
     @Input() buttons            : Array<object>[];
     /**
