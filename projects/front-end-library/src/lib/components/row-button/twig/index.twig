@@ -49,9 +49,11 @@
         {% endif %}
     </div>
 
-    {% include '@bf-components/icon/twig/index.twig' with {
-        name    : 'chevron-right',
-        size    : 'small',
-        class   : 'ml-3'
-    } only %}
+    {% if hasChevron|default(true) %}
+        {% include '@bf-components/icon/twig/index.twig' with {
+            name    : 'chevron-right',
+            size    : 'small',
+            class   : 'ml-3'
+        } only %}
+    {% endif %}
 </{{ isLink ? 'a' : 'div' }}>
