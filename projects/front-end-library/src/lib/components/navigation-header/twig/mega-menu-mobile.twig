@@ -71,7 +71,7 @@
 
                       {% for subItem in dropdownSubItem.subdropdownItems %}
 
-                        <div class="col-lg-12 submenu-container-mobile__contain">
+                        <div class="col-sm-12 submenu-container-mobile__contain">
                           {% if subItem.listItems %}
                             <ul class="p-0 list-unstyled">
                               {% for subItem in subItem.listItems %}
@@ -174,19 +174,19 @@
               </div>
               {% for subItem in navItem.subItems %}
                 {% set itemClass = subItem.class ? subItem.class : ''  %}
-                <div class="col-lg-12 {{ itemClass }} submenu-container-mobile__contain">
+                <div class="col-sm-12 {{ itemClass }} submenu-container-mobile__contain">
                   {% if subItem.subItems %}
                     <ul class="p-0 list-unstyled">
                       {% for subItem in subItem.subItems %}
                         <li class="mb-2">
                           <a href="{{ subItem.href }}"
-                             class="js-bf-dropdown-item-link d-block d-lg-inline py-2 py-lg-0 {{ subItem.class }}"
+                             class="js-bf-dropdown-item-link d-block d-lg-inline py-2 py-sm-0 {{ subItem.class }}"
                              rel="{{ subItem.rel|default('dofollow') }}"
                              tabindex=-1
                             {{ subItem.extraAttribute|default(NULL) }}
                           >
                             {% include '@bf-components/icon/twig/index.twig' with {
-                              name        : subItem.iconName,
+                              name        : subItem.iconName|default(' '),
                               size        : 'small',
                               class       : 'img-fluid position-relative',
                               reversed    : reversed,
@@ -207,7 +207,7 @@
                         imgAlt    : mega.imgAlt,
                         href      : mega.href,
                         title     : mega.title,
-                        paragraph : mega.text,
+                        paragraph : mega.paragraph,
                       } %}
                     {% endfor %}
                 </div>
