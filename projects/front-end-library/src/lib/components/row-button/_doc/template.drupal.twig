@@ -1,4 +1,5 @@
 {% set image        = image|json_parse %}
+{% set hasChevron   = hasChevron|json_parse %}
 {% set reversed     = reversed|json_parse %}
 
 <div class='bf-color-bg-underground p-4'>
@@ -15,6 +16,7 @@
         >
             <li class='w-100'>
                 {% include '@bf-components/row-button/twig/index.twig' with {
+                    title       : title|default('Default'),
                     image       : NULL,
                     iconName    : NULL,
                 } %}
@@ -22,15 +24,27 @@
 
             <li class='w-100'>
                 {% include '@bf-components/row-button/twig/index.twig' with {
+                    title       : title|default('With chevron'),
+                    image       : NULL,
+                    iconName    : NULL,
+                    hasChevron  : hasChevron|default(false),
+                } %}
+            </li>
+
+            <li class='w-100'>
+                {% include '@bf-components/row-button/twig/index.twig' with {
+                    title       : title|default('With icon'),
                     image       : NULL,
                 } %}
             </li>
 
             <li class='w-100'>
                 {% include '@bf-components/row-button/twig/index.twig' with {
+                    title       : title|default('With image'),
                     iconName    : NULL,
                 } %}
             </li>
+
         </ul>
     {% endfor %}
 </div>

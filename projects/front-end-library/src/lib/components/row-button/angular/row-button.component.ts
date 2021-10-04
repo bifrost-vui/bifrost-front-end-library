@@ -18,6 +18,7 @@ export class RowButtonComponent implements OnInit {
     @Input() paragraph          : string;
     @Input() image              : object;
     @Input() iconName           : string;
+    @Input() hasChevron         : boolean;
 
     @Input() dataDismiss        : string;
     @Input() dataToggle         : string;
