@@ -2,12 +2,12 @@
 {% set hasImage     = image.src is defined and image.src is not empty %}
 {% set hasIcon      = iconName is defined and iconName is not empty %}
 {% set hasVisual    = hasImage or hasIcon %}
-{% set titleTag     = titleTag|default('p') %}
+{% set titleTag     = titleTag|default('span') %}
 {% set size         = size|default('large') %}
 
-<{{ isLink ? 'a' : 'div' }}
+<{{ isLink ? 'a' : 'button' }}
     {% if isLink %}
-        href='{{ href|default('') }}'
+        href='{{ href }}'
     {% endif %}
     class='
         bf-row-button bf-row-button--{{ size }}
@@ -24,7 +24,7 @@
 >
 
     {% if hasVisual %}
-        <div class='bf-row-button__visual mr-3'>
+        <span class='bf-row-button__visual d-block mr-3'>
             {% if hasIcon %}
                 {% include '@bf-components/icon/twig/index.twig' with {
                     name    : iconName,
@@ -37,26 +37,26 @@
                     alt='{{ image.alt|default('') }}'
                 />
             {% endif %}
-        </div>
+        </span>
     {% endif %}
 
-    <div class='bf-row-button__content flex-grow-1'>
+    <span class='bf-row-button__content d-block flex-grow-1'>
         {% if title is defined and title %}
-            <{{ titleTag }} class='{{ size == 'large' ? 'h3 mb-1' : 'h4 mb-0' }}'>
+            <{{ titleTag }} class='d-block {{ size == 'large' ? 'h3 mb-1' : 'h4 mb-0' }}'>
                 {{ title }}
             </{{ titleTag }}>
         {% endif %}
         {% if paragraph is defined and paragraph %}
-            <p class='small m-0'>
+            <span class='d-block small'>
                 {{ paragraph }}
-            </p>
+            </span>
         {% endif %}
-    </div>
         {% if linkLabel is defined and linkLabel %}
             <span class='d-block bf-text-interface-medium text-underline {{ size != 'small' ? 'mt-1' : '' }}'>
                 {{ linkLabel }}
             </span>
         {% endif %}
+    </span>
 
     {% if hasChevron|default(true) %}
         {% include '@bf-components/icon/twig/index.twig' with {
@@ -65,4 +65,4 @@
             class   : 'ml-3'
         } only %}
     {% endif %}
-</{{ isLink ? 'a' : 'div' }}>
+</{{ isLink ? 'a' : 'button' }}>
