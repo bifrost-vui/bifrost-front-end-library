@@ -13,12 +13,15 @@ import { RowButtonComponent }                   from '../angular/row-button.comp
         moduleMetadata({ declarations: [RowButtonComponent, TwigContainerComponent]})
     ]}
     argTypes={{
-        iconName    : {
+        iconName: {
             defaultValue: 'credit-return',
             control: {
                 type: 'select',
                 options: ['', ...illustrationIcons.map(a => a.list).flat().sort()]
             }
+        },
+        size: {
+            table: { defaultValue: { summary: 'large' } }
         }
     }}
 />
@@ -50,11 +53,11 @@ Wrap your <b>Row Buttons</b> with CSS classes `.bf-list .bf-list--divider` in or
         {% include '@bf-components/row-button/twig/index.twig' with {
             href        : '/private-viewing',
             title       : 'Private viewing',
-            paragraph   : 'Contribute to the ambiance of your spaces and the satisfaction of your employees with the most popular music, sports and entertainment channels.',
+            paragraph   : 'Contribute to the ambiance of your spaces.',
             class       : 'mb-4',
         } only %}
     </li>
-</ul>
+</ul>.
 ```
 
 #### Row Button only
@@ -62,7 +65,7 @@ Wrap your <b>Row Buttons</b> with CSS classes `.bf-list .bf-list--divider` in or
 {% include '@bf-components/row-button/twig/index.twig' with {
     href        : '/private-viewing',
     title       : 'Private viewing',
-    paragraph   : 'Contribute to the ambiance of your spaces and the satisfaction of your employees with the most popular music, sports and entertainment channels.',
+    paragraph   : 'Contribute to the ambiance of your spaces.',
     class       : 'mb-4',
 } only %}
 ```
@@ -96,7 +99,7 @@ export const Drupal = (args) => ({
 export const commonProps= {
     href        : 'https://example.com',
     title       : '',
-    paragraph   : 'Contribute to the ambiance of your spaces and the satisfaction of your employees with the most popular music, sports and entertainment channels.',
+    paragraph   : 'Contribute to the ambiance of your spaces.',
     image       : {
         src: 'https://videotron.com/images/assets/helix-equipment.png',
         alt: 'Alt description'

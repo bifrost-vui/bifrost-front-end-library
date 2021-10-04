@@ -20,6 +20,7 @@ export class RowButtonComponent implements OnInit {
     @Input() image              : object;
     @Input() iconName           : string;
     @Input() hasChevron         : boolean;
+    @Input() size               : 'small' | 'medium' | 'large';
 
     @Input() dataDismiss        : string;
     @Input() dataToggle         : string;

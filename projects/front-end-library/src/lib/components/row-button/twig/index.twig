@@ -3,12 +3,17 @@
 {% set hasIcon      = iconName is defined and iconName is not empty %}
 {% set hasVisual    = hasImage or hasIcon %}
 {% set titleTag     = titleTag|default('p') %}
+{% set size         = size|default('large') %}
 
 <{{ isLink ? 'a' : 'div' }}
     {% if isLink %}
         href='{{ href|default('') }}'
     {% endif %}
-    class='bf-row-button d-flex align-items-center w-100 px-3 py-4 {{ class|default('') }}'
+    class='
+        bf-row-button bf-row-button--{{ size }}
+        d-flex align-items-center w-100 px-3 {{ size == 'large' ? 'py-4' : 'py-3' }}
+        {{ class|default('') }}
+    '
     {% if dataDismiss is defined %}data-dismiss='{{ dataDismiss|default(NULL) }}'{% endif %}
     {% if dataToggle is defined %}data-toggle='{{ dataToggle|default(NULL) }}'{% endif %}
     {% if dataTarget is defined %}data-target='{{ dataTarget|default(NULL) }}'{% endif %}
@@ -23,15 +28,13 @@
             {% if hasIcon %}
                 {% include '@bf-components/icon/twig/index.twig' with {
                     name    : iconName,
-                    size    : 'large',
-                    class   : 'w-100 h-100'
+                    size    : size
                 } only %}
             {% elseif hasImage %}
                 <img
                     src='{{ image.src|default('') }}'
                     data-src='{{ image.dataSrc|default('') }}'
                     alt='{{ image.alt|default('') }}'
-                    class='w-100 h-100'
                 />
             {% endif %}
         </div>
@@ -39,7 +42,7 @@
 
     <div class='bf-row-button__content flex-grow-1'>
         {% if title is defined and title %}
-            <{{ titleTag }} class='mb-1'>
+            <{{ titleTag }} class='{{ size == 'large' ? 'h3 mb-1' : 'h4 mb-0' }}'>
                 {{ title }}
             </{{ titleTag }}>
         {% endif %}
