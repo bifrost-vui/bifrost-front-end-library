@@ -14,7 +14,7 @@ import { IPrice } from '../../price/angular/price.component';
 export class HeroComponent implements OnInit {
     constructor() {}
 
-    @Input() breadcrumb         : 'TwigBlock';
+    @Input() breadcrumb         : string;
     /**
         You can pass directly the **label** as a **string** or an **object** based on [Badge](/?path=/docs/components-badge--drupal) component API.
     */

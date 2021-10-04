@@ -30,7 +30,9 @@
     </div>
     <div class='container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between pb-2 pb-sm-4' data-animate-row=''>
         <header>
-            {% if breadcrumb is defined %}
+            {% if block('breadcrumb') is defined %}
+                {{ block('breadcrumb') }}
+            {% elseif breadcrumb is defined and breadcrumb %}
                 {{ breadcrumb }}
             {% endif %}
             <div class='position-relative py-5 mt-2'>
