@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  * API is the same between **Angular** and **Drupal**.
  *
  */
- 
+
 @Component({
     selector: 'bf-icon',
     templateUrl: './icon.component.html',
@@ -14,8 +14,8 @@ export class IconComponent implements OnInit {
     constructor() {}
 
     @Input() name               : string;
-    @Input() size               : 'xsmall' | 'small' | 'medium' | 'large';
-    @Input() color              : ''| 'success' | 'neutral'| 'warning' | 'negative';
+    @Input() size               : 'xsmall' | 'small' | 'medium' | 'large' | 'huge';
+    @Input() color              : '' | 'success' | 'neutral'| 'warning' | 'negative';
     @Input() class              : string;
     @Input() reversed           : boolean;
 
