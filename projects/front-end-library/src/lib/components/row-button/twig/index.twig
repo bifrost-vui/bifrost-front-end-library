@@ -2,6 +2,7 @@
 {% set hasImage     = image.src is defined and image.src is not empty %}
 {% set hasIcon      = iconName is defined and iconName is not empty %}
 {% set hasVisual    = hasImage or hasIcon %}
+{% set titleTag     = titleTag|default('p') %}
 
 <{{ isLink ? 'a' : 'div' }}
     {% if isLink %}
@@ -38,9 +39,9 @@
 
     <div class='bf-row-button__content flex-grow-1'>
         {% if title is defined and title %}
-            <h3 class='mb-1'>
+            <{{ titleTag }} class='mb-1'>
                 {{ title }}
-            </h3>
+            </{{ titleTag }}>
         {% endif %}
         {% if paragraph is defined and paragraph %}
             <p class='small m-0'>

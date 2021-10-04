@@ -15,6 +15,7 @@ export class RowButtonComponent implements OnInit {
 
     @Input() href               : string;
     @Input() title              : string;
+    @Input() titleTag           : string;
     @Input() paragraph          : string;
     @Input() image              : object;
     @Input() iconName           : string;
