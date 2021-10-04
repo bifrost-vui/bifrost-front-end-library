@@ -52,6 +52,11 @@
             </p>
         {% endif %}
     </div>
+        {% if linkLabel is defined and linkLabel %}
+            <span class='d-block bf-text-interface-medium text-underline {{ size != 'small' ? 'mt-1' : '' }}'>
+                {{ linkLabel }}
+            </span>
+        {% endif %}
 
     {% if hasChevron|default(true) %}
         {% include '@bf-components/icon/twig/index.twig' with {
