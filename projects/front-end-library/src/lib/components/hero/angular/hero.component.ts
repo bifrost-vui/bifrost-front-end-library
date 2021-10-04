@@ -31,7 +31,6 @@ export class HeroComponent implements OnInit {
         [Price](/?path=/docs/components-price--drupal) component.
     */
     @Input() price              : IPrice;
-    @Input() button             : object;
     @Input() image              : object;
     @Input() background         : 'ground' | 'underground' | 'highlight';
 
