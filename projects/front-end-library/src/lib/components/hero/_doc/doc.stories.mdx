@@ -11,6 +11,9 @@ import { HeroComponent }                from '../angular/hero.component';
         moduleMetadata({ declarations: [HeroComponent, TwigContainerComponent]}),
     ]}
     argTypes={{
+        _imageReversed: {
+            description: '**[ ! ]** This control is only used for testing a different image in the Hero reversed.'
+        },
         breadcrumb: {
             table: {
                 type: { summary: 'TwigBlock' }
@@ -138,6 +141,11 @@ export const Drupal = (args) => ({
                 default : '/images/_docs/hero-helix.png',
                 mobile  : '/images/_docs/hero-helix-mobile.png',
                 alt     : 'Helix'
+            },
+            _imageReversed  : {
+                default         : '/images/_docs/hero-helix-reversed.png',
+                mobile          : '/images/_docs/hero-helix-reversed-mobile.png',
+                alt             : 'Helix'
             }
         }}
     >
@@ -159,6 +167,11 @@ export const Drupal = (args) => ({
                 mobile  : '/images/_docs/hero-helix-mobile.png',
                 alt     : 'Helix'
             },
+            _imageReversed  : {
+                default         : '/images/_docs/hero-helix-reversed.png',
+                mobile          : '/images/_docs/hero-helix-reversed-mobile.png',
+                alt             : 'Helix'
+            },
             height          : 'large'
         }}
     >
@@ -176,8 +189,14 @@ export const Drupal = (args) => ({
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
             image           : {
-                default         : window.location.origin + '/images/placeholder/800x600.png',
+                default         : '/images/_docs/hero-helix.png',
                 mobile          : '/images/_docs/hero-helix-mobile.png',
+                alt             : 'Helix',
+                isSplitted      : true
+            },
+            _imageReversed  : {
+                default         : '/images/_docs/hero-helix-reversed.png',
+                mobile          : '/images/_docs/hero-helix-reversed-mobile.png',
                 alt             : 'Helix',
                 isSplitted      : true
             }
