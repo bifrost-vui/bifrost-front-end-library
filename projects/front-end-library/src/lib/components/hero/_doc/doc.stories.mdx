@@ -166,6 +166,27 @@ export const Drupal = (args) => ({
     </Story>
 </Preview>
 
+<Preview
+    withSource='none'
+    style={{ height: '800px' }}
+>
+    <Story 
+        name='Drupal - With image splitted'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            image           : {
+                default         : window.location.origin + '/images/placeholder/800x600.png',
+                mobile          : '/images/_docs/hero-helix-mobile.png',
+                alt             : 'Helix',
+                isSplitted      : true
+            }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
 
 <Preview
     withSource='none'

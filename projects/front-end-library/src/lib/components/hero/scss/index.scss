@@ -28,7 +28,27 @@
         }
     }
 
-    @include media-breakpoint-down(xs) {
+    &--image-splitted {
+        .bf-hero__header {
+            flex: 0 50%;
+        }
+
+        .bf-hero__image-splitted {
+            flex: 1 1 50%;
+            background-position: center;
+            background-size: cover;
+
+            // Reproduce .container-fluid behavior on the right of the image
+            @include media-breakpoint-down(md) {
+                margin-right: calc(-3.5vw - 8px);
+            }
+            @include media-breakpoint-down(lg) {
+                margin-right: calc(-11vw - 8px);
+            }
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
         background-image: none !important;
     }
 

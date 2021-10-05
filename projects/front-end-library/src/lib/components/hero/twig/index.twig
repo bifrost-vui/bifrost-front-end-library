@@ -1,15 +1,16 @@
 <section
     class='
         bf-hero d-flex flex-column
-        {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}
+        {{ reversed ? 'reversed' }}
         {% if background is defined and background is same as ('ground') %}bf-hero--bg-ground{% endif %}
         {% if background is defined and background is same as ('highlight') %}bf-hero--bg-highlight{% endif %}
         {% if height is defined and height is same as ('large') %}bf-hero--height-large{% endif %}
+        {% if image is defined and image.isSplitted is same as (true) %}bf-hero--image-splitted{% endif %}
         {# {{ bgImagePosition|default('right') }}
         {{ bgImageQueries|default(null) }} #}
         {{ class|default('') }}
         '
-    {% if image is defined and image.default is not empty %}
+    {% if image is defined and image.default is not empty and image.isSplitted is not same as (true) %}
         style='background-image: url("{{ image.default }}")'
     {% endif %}
     {# data-bg='{{ bgImage|default(defaultImgSrc) }}'
@@ -18,7 +19,7 @@
 >
     {% block hero_mobile_image %}{% endblock %}
     {% if image is defined and image.mobile is not empty %}
-        <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-sm-none' />
+        <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-md-none' />
     {% endif %}
 
     {% if block('blockSelection') is defined or blockSelection is defined %}
@@ -32,8 +33,8 @@
         </div>
     {% endif %}
 
-    <div class='container-fluid d-flex flex-column flex-md-row flex-grow-1 pb-2 pb-sm-4' data-animate-row=''>
-        <header class='d-flex flex-column flex-grow-1'>
+    <div class='container-fluid d-flex flex-column flex-md-row flex-grow-1' data-animate-row=''>
+        <header class='bf-hero__header d-flex flex-column flex-grow-1 pb-2 pb-sm-4'>
             {% if breadcrumb is defined %}
                 {{ breadcrumb }}
             {% endif %}
@@ -85,6 +86,11 @@
                 </div>
             </div>
         </header>
+        
+        {% if image is defined and image.default is not empty and image.isSplitted is same as (true) %}
+            <div class='bf-hero__image-splitted d-none d-md-block' style='background-image: url("{{ image.default }}")'>
+            </div>
+        {% endif %}
 
         {% if icon is defined and icon is not empty %}
             {% if icon is not iterable %}
