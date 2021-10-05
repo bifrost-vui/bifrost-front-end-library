@@ -1,6 +1,5 @@
 <section
     class='
-        bf-hero
         bf-hero d-flex flex-column
         {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}
         {% if background is defined and background is same as ('ground') %}bf-hero--bg-ground{% endif %}
@@ -22,14 +21,17 @@
         <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-sm-none' />
     {% endif %}
 
-    <div class='d-block d-md-none' data-animate='fade-in'>
-        {% if block('blockSelection') is defined %}
-            {{ block('blockSelection') }}
-        {% elseif blockSelection is defined and blockSelection is iterable %}
-            {% set blockSelectionMobile = blockSelection|merge( { 'isCollapsableOnMobile' : true, 'isCollapsedByDefaultOnMobile': true } ) %}
-            {% include '@bf-components/block-selection/twig/index.twig' with blockSelectionMobile only %}
-        {% endif %}
-    </div>
+    {% if block('blockSelection') is defined or blockSelection is defined %}
+        <div class='d-block d-md-none' data-animate='fade-in'>
+            {% if block('blockSelection') is defined %}
+                {{ block('blockSelection') }}
+            {% elseif blockSelection is defined and blockSelection is iterable %}
+                {% set blockSelectionMobile = blockSelection|merge( { 'isCollapsableOnMobile' : true, 'isCollapsedByDefaultOnMobile': true } ) %}
+                {% include '@bf-components/block-selection/twig/index.twig' with blockSelectionMobile only %}
+            {% endif %}
+        </div>
+    {% endif %}
+
     <div class='container-fluid d-flex flex-column flex-md-row flex-grow-1 pb-2 pb-sm-4' data-animate-row=''>
         <header class='d-flex flex-column flex-grow-1'>
             {% if breadcrumb is defined %}
@@ -83,12 +85,25 @@
                 </div>
             </div>
         </header>
-        <div class='d-none d-md-flex align-items-center' data-animate='fade-in'>
-            {% if block('blockSelection') is defined %}
-                {{ block('blockSelection') }}
-            {% elseif blockSelection is defined and blockSelection is iterable %}
-                {% include '@bf-components/block-selection/twig/index.twig' with blockSelection only %}
+
+        {% if icon is defined and icon is not empty %}
+            {% if icon is not iterable %}
+                {% set icon = { name: icon } %}
             {% endif %}
-        </div>
+            {% set icon = icon|merge( { 'size' : 'huge' } ) %}
+            <div class='flex-grow-1 d-flex justify-content-center align-items-center mt-2 mt-md-0 order-first order-md-1'>
+                {% include '@bf-components/icon/twig/index.twig' with icon only %}
+            </div>
+        {% endif %}
+
+        {% if block('blockSelection') is defined or blockSelection is defined %}
+            <div class='d-none d-md-flex align-items-center' data-animate='fade-in'>
+                {% if block('blockSelection') is defined %}
+                    {{ block('blockSelection') }}
+                {% elseif blockSelection is defined and blockSelection is iterable %}
+                    {% include '@bf-components/block-selection/twig/index.twig' with blockSelection only %}
+                {% endif %}
+            </div>
+        {% endif %}
     </div>
 </section>
