@@ -1,15 +1,15 @@
 {% if hasTopBar is defined and hasTopBar is same as (true) %}
   {% include '@bf-components/navigation-header/twig/top-bar.twig' with {
-    items                   : topBar.items|default([]),
-    secondaryItems          : topBar.secondaryItems|default([]),
-    isConnected             : isConnected|default(false),
-    accountHello            : accountHello|default('Hello'),
-    accountName             : accountName|default('Benjamin Desjardins'),
-    hrefLogOut              : hrefLogOut|default('#'),
-    labelLogOut             : labelLogOut|default('Logout'),
-    hrefConnexion           : hrefConnexion|default('#'),
-    labelConnexion          : labelConnexion|default('My Customer Centre'),
-    reversed                : reversed|default(false),
+    items           : topBar.items|default([]),
+    secondaryItems  : topBar.secondaryItems|default([]),
+    isConnected     : isConnected|default(false),
+    accountHello    : accountHello|default('Hello'),
+    accountName     : accountName|default(''),
+    hrefLogOut      : hrefLogOut|default('#'),
+    labelLogOut     : labelLogOut|default('Logout'),
+    hrefConnexion   : hrefConnexion|default('#'),
+    labelConnexion  : labelConnexion|default('My Customer Centre'),
+    reversed        : reversed|default(false),
   } only %}
 {% endif %}
 
@@ -146,19 +146,21 @@
         </div>
       {% endif %}
 
-      {# <!-- Btn mini cart --> #}
-      {% if hasCartBtn is defined and hasCartBtn %}
-        {% if cartBtn.badge is defined and cartBtn.badge and cartBtn.badge is not same as ('0') %}
-          {% set badgeLabel =  cartBtn.badge %}
+        {# <!-- Btn mini cart --> #}
+         {% if cartBtn is defined and cartBtn is not empty %}
+          {% if cartBtn.badge is defined and cartBtn.badge and cartBtn.badge != '0' %}
+            {% set badgeLabel =  cartBtn.badge %}
+          {% endif %}
+
+          {% include '@bf-components/button-icon/twig/index.twig' with {
+            icon        : 'cart',
+            hierarchy   : 'primary',
+            badge       : (badgeLabel is defined) ? badgeLabel : NULL,
+            href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : NULL,
+            ariaLabel   : cartBtn.ariaLabel|default(''),
+            class       : cartBtn.class|default('')
+          } only %}
         {% endif %}
-        {% include '@bf-components/button-icon/twig/index.twig' with {
-          icon        : 'cart',
-          hierarchy   : 'primary',
-          badge       : (badgeLabel is defined) ? badgeLabel : NULL,
-          href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : '',
-          ariaLabel   : cartBtn.ariaLabel|default('')
-        } only %}
-      {% endif %}
 
       {# <!-- Btn language --> #}
       {% if langcode is defined and langcode is not empty %}
@@ -176,7 +178,7 @@
     </div>
   </nav>
 
-  {# <!-- Alogolia search results-->  #}
+  {# <!-- Algolia search results-->  #}
   {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
     <div class='align-items-center justify-content-between w-100'>
       <div id='alg-hits' class='ais-Hits bf-color-bg-ground alg-hidden'></div>
