@@ -1,0 +1,185 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+
+import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
+import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { IconComponent }                        from '../angular/icon.component';
+
+
+<Meta
+    title='Components/Icon'
+    component={IconComponent}
+    decorators={[
+        moduleMetadata({ declarations: [IconComponent, TwigContainerComponent]})
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/u25bSG8COM4azJ04CztTv8/DS-Medias?node-id=0%3A1',
+            disable: false
+        },
+    }}
+    argTypes={{
+        color: {
+            defaultValue: '',
+            control: {type: 'select'}
+        },
+        icons: {
+            table: { disable: true }
+        },
+        size: {
+                type: { required: true },
+                control: {type: 'select', options: ['xsmall', 'small' , 'medium', 'large', 'huge']},
+        }
+    }}
+/>
+
+
+# Icons
+
+<br/>
+
+
+
+## Component API
+
+<Props of={IconComponent} />
+
+
+
+## Drupal implementation example
+
+> Note: You don't have to specify if the icon is **interface** or **illustration** [more details](?path=/docs/styles-icons--page).
+
+### Interface Icons
+> NOTE : the icon size should be `small` or `xsmall`
+
+``` jsx
+{% include '@bf-components/icon/twig/index.twig' with {
+    name    : 'edit',
+    size    : 'small'
+    color   : 'negative',
+    class   : 'mr-2'
+} only %}
+
+```
+### Illsutration Icons
+> NOTE : the icon size should be `small`, `medium` or `large`
+
+``` jsx
+{% include '@bf-components/icon/twig/index.twig' with {
+    name    : 'my-account',
+    size    : 'large',
+} only %}
+
+```
+
+### Huge Illsutration Icons
+> NOTE : the icon size `huge` should only be used for hero components
+
+``` jsx
+{% include '@bf-components/icon/twig/index.twig' with {
+    name    : 'my-account',
+    size    : 'huge',
+} only %}
+
+```
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+
+### Interface Icons
+
+<Preview
+    withSource='none'
+    style={{ height: '700px' }}
+>
+    <Story
+        name='Drupal - Interface'
+        args={{
+            elementPath : 'components/icon/_doc/template.drupal',
+            icons       : interfaceIcons
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...interfaceIcons.map(a => a.list).flat().sort()],
+                }
+            },
+            size: {
+                defaultValue: 'small',
+                description: 'recommended : xsmall | small',
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+### Illustrations Icons
+
+<Preview
+    withSource='none'
+    style={{ height: '700px' }}
+>
+    <Story
+        name='Drupal - Illustration'
+        args={{
+            elementPath : 'components/icon/_doc/template.drupal',
+            icons       : illustrationIcons
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
+                },
+            },
+            size: {
+                defaultValue: 'large',
+                description: 'recommended : small | medium | large',
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+### Huge Illustration Icons
+
+<Preview
+    withSource='none'
+    style={{ height: '700px' }}
+>
+    <Story
+        name='Drupal - Huge Illustration'
+        args={{
+            elementPath : 'components/icon/_doc/template.drupal',
+            icons       : illustrationIcons
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
+                },
+            },
+            size: {
+                defaultValue: 'huge',
+                description: 'recommended : huge',
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
