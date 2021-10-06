@@ -28,6 +28,10 @@ export class HeroComponent implements OnInit {
     */
     @Input() price              : IPrice;
     @Input() button             : object;
+    /**
+        You can pass directly the **name** of the icon as a **string** or an **object** based on [Icon component API](/?path=/docs/components-icon--drupal).
+    */
+    @Input() icon               : any;
     @Input() image              : object;
     @Input() background         : 'ground' | 'underground' | 'highlight';
 
