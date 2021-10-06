@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
     @Input() topBar_items            : any[];
     @Input() topBar_secondaryItems   : any[];
 
-    @Input() navItems                : any[];
+    @Input() navItems                : Array<object>[];
     @Input() navMobileItems          : any[];
     /** Maximum 5 first element of the list will be display  */
     @Input() rigthIconLinks          : any[];

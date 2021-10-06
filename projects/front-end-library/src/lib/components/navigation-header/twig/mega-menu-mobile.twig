@@ -1,51 +1,31 @@
+
 {% for navItem in navItems %}
   {% if navItem.subItemsMultiDropdown %}
     <li>
       <ul class="list-sub-items">
         {% for dropdownSubItem in navItem.subItemsMultiDropdown %}
-          <li class="nav-item bf-megamenu__nav-item js-bf-megamenu__nav-item position-static {{ navItem.class }}">
+          <li class="nav-item bf-megamenu__nav-item js-bf-megamenu__nav-item  {{ navItem.class }}">
             <div class="js-bf-megamenu__panel js-bf-megamenu__full-height" aria-labelledby="menuDropdown{{ loop.index }}">
-             <div class="nav flex-column js-bf-megamenu__full-height" id="v-pills-tab-mobile" role="tablist" aria-orientation="vertical">
-          {#    <a class="nav-link js-bf-megamenu__nav-link mobile-menu d-flex align-items-center h-100"
-                 id="v-pills-mobile{{ dropdownSubItem.catLabel|default('category')|url_encode }}-tab"
-                 data-toggle="pill"
-                 href="#v-pills-mobile{{ dropdownSubItem.catLabel|default('category')|url_encode }}"
-                 role="tab"
-                 aria-controls="v-pills-mobile{{ dropdownSubItem.catLabel|default('category')|url_encode }}">
-                {% include '@bf-components/icon/twig/index.twig' with {
-                  name        : dropdownSubItem.iconName|default,
-                  size        : 'small',
-                  class       : 'icon-tab',
-                  reversed    : reversed|default,
-                } only %}
-                <span class="tab-label">
-                   {{ dropdownSubItem.catLabel|default('category') }}
-                 </span>
-                {% include '@bf-components/icon/twig/index.twig' with {
-                  name        : "chevron-right",
-                  size        : 'small',
-                  class       : "",
-                } %}
-              </a>#}
-
+             <div class="nav js-bf-megamenu__full-height" id="v-pills-tab-mobile" role="tablist" aria-orientation="vertical">
                {% include '@bf-components/row-button/twig/index.twig' with {
                  iconName       : dropdownSubItem.iconName|default,
                  size           : size|default('small'),
-                 id             : '#v-pills-mobile' ~ dropdownSubItem.catLabel,
-                 class          : "nav-link js-bf-megamenu__nav-link mobile-menu"
+                 id             : 'v-pills-mobile-' ~ dropdownSubItem.catLabel|default('category')|url_encode() ~ '-tab',
+                 class          : "nav-link js-bf-megamenu__nav-link mobile-menu",
                  title          : dropdownSubItem.catLabel|default('category'),
-                 href           : '#v-pills-mobile' ~ dropdownSubItem.catLabel,
-                 data-toggle    : 'pill',
-                 aria-controls  : '#v-pills-mobile' ~ dropdownSubItem.catLabel
+                 paragraph      : '',
+                 href           : '#v-pills-mobile-' ~ dropdownSubItem.catLabel|default('category')|url_encode(),
+                 dataToggle    : 'pill',
+                 ariaControls  : 'v-pills-mobile-' ~ dropdownSubItem.catLabel|default('category')|url_encode
                } %}
             </div>
           </div>
             <section class="tab-content" id="v-pills-tabContent-mobile">
               <!-- TAB : pane -->
                 <div class="tab-pane js-bf-tab-pane fade bf-text-display-sub-medium"
-                     id="v-pills-mobile{{ dropdownSubItem.catLabel|default('category')|url_encode }}"
+                     id="v-pills-mobile-{{ dropdownSubItem.catLabel|default('category')|url_encode }}"
                      role="tabpanel"
-                     aria-labelledby="v-pills-mobile{{ dropdownSubItem.catLabel|default('category')|url_encode }}-tab"
+                     aria-labelledby="v-pills-mobile-{{ dropdownSubItem.catLabel|default('category')|url_encode }}-tab"
                 >
                   {% include '@bf-components/button-icon/twig/index.twig' with {
                     icon        : 'chevron-left',
@@ -56,43 +36,35 @@
                     <div class="d-flex flex-column">
                       {# parent label and icon  #}
                       <div class="submenu-container-mobile__parent">
-                          <div class="d-flex align-items-center">
-                          {% include '@bf-components/icon/twig/index.twig' with {
-                            name        : dropdownSubItem.iconName,
-                            size        : 'small',
-                            class       : 'img-fluid position-relative',
-                            reversed    : reversed,
-                          } only %}
-                          <div class="title-parent">
-                            <span>{{ dropdownSubItem.catLabel }}</span>
-                          {% set firstItem = dropdownSubItem.subdropdownItems|first %}
-                          {% if firstItem.label %}
-                            <span class="first-item-label">
-                              <a href="{{ firstItem.href }}"
-                                 class="js-bf-dropdown-item-link font-weight-bold"
-                                 rel="{{ firstItem.rel|default('') }}"
-                                 tabindex=-1
-                                {{ firstItem.extraAttribute|default(NULL) }}
-                              >{{ firstItem.label|default('Link') }}</a>
-                            </span>
-                          {% endif %}
-                          </div>
-                        </div>
+                      {% set firstItem = dropdownSubItem.subdropdownItems|first %}
+                      {% if firstItem.label %}
+                        {% include '@bf-components/row-button/twig/index.twig' with {
+                          iconName    : dropdownSubItem.iconName,
+                          size        : 'medium',
+                          title       : dropdownSubItem.catLabel,
+                          paragraph   : firstItem.label|default('Link'),
+                          href        : firstItem.href,
+                          class       : '',
+                          hasChevron  : hasChevron|default(false)
+                        } only %}
+                      {% endif %}
                       </div>
-
                       {% for subItem in dropdownSubItem.subdropdownItems %}
-
-                        <div class="col-sm-12 submenu-container-mobile__contain">
+                        <div class="submenu-container-mobile__contain">
                           {% if subItem.listItems %}
-                            <ul class="p-0 list-unstyled">
+                            <ul>
                               {% for subItem in subItem.listItems %}
-                                <li class="mb-2">
-                                  <a href="{{ subItem.href }}"
-                                     class="js-bf-dropdown-item-link d-block d-lg-inline py-1 py-lg-0 {{ subItem.class }}"
-                                     rel="{{ subItem.rel|default('dofollow') }}"
-                                     tabindex=-1
-                                    {{ subItem.extraAttribute|default(NULL) }}
-                                  >{{ subItem.label|default('Link') }}</a>
+                                <li>
+                                  {% include '@bf-components/row-button/twig/index.twig' with {
+                                    iconName    : subItem.subIconName,
+                                    size        : 'small',
+                                    title       : subItem.label,
+                                    paragraph   : '',
+                                    href        : subItem.href,
+                                    class       : '',
+                                    hasChevron  : false
+                                  } only %}
+
                                 </li>
                               {% endfor %}
                             </ul>
@@ -115,33 +87,18 @@
       <li class="nav-item bf-megamenu__nav-item js-bf-megamenu__nav-item position-static {{ navItem.class }}">
         <div class="js-bf-megamenu__panel js-bf-megamenu__full-height" aria-labelledby="menuDropdown{{ loop.index }}">
           <div class="nav flex-column js-bf-megamenu__full-height" id="v-nav-item-tab-mobile" role="tablist" aria-orientation="vertical">
-            <a
-              class="nav-link js-bf-megamenu__nav-link mobile-menu d-flex align-items-center h-100"
-              data-toggle="pill"
-              aria-label="Toggle navigation"
-              id="v-nav-item-mobile-{{ navItem.label|default('category')|url_encode }}-tab"
-              href="#v-nav-item-mobile-{{ navItem.label|default('category')|url_encode }}"
-              role="tab"
-              aria-controls="v-nav-tem-mobile-{{ navItem.label|default('category')|url_encode }}"
-            >
-            {% include '@bf-components/icon/twig/index.twig' with {
-              name        : navItem.iconName,
-              size        : 'small',
-              class       : 'icon-tab',
-              reversed    : reversed,
-            } only %}
-            <span class="tab-label">
-               <span class="d-inline-block">
-                 <span>{{ navItem.label }}</span>
-                 <span class="d-table small">{{ navItem.subLabel }}</span>
-            </span>
-            </span>
-            {% include '@bf-components/icon/twig/index.twig' with {
-              name        : "chevron-right",
-              size        : 'small',
-              class       : "",
+            {% include '@bf-components/row-button/twig/index.twig' with {
+              iconName       : navItem.iconName,
+              size           : size|default('small'),
+              id             : 'v-nav-item-mobile-' ~ navItem.label|default('category')|url_encode() ~ '-tab',
+              class          : "nav-link js-bf-megamenu__nav-link mobile-menu",
+              title          : navItem.label|default('category'),
+              paragraph      : navItem.subLabel,
+              href           : '#v-nav-item-mobile-' ~ navItem.label|default('category')|url_encode(),
+              dataToggle     : 'pill',
+              ariaControls   : 'v-nav-item-mobile-' ~ navItem.label|default('category')|url_encode,
+              ariaLabel      : 'Toggle navigation'
             } %}
-          </a>
         </div>
       </div>
       <section class="tab-content" id="v-nav-item-tabContent-mobile">
@@ -160,50 +117,34 @@
             <div class="d-flex flex-column">
               {# parent label and icon  #}
               <div class="submenu-container-mobile__parent">
-                <div class="d-flex align-items-center">
-                {% include '@bf-components/icon/twig/index.twig' with {
-                  name        : navItem.iconName,
-                  size        : 'small',
-                  class       : 'img-fluid position-relative',
-                  reversed    : reversed,
-                } only %}
-                <div class="title-parent">
-                <span>{{ navItem.label }}</span>
-                <span class="first-item-label">
                   {% set firstItem = navItem.subItems|first %}
                   {% if firstItem.label %}
-                    <a href="{{ firstItem.href }}"
-                       class="js-bf-dropdown-item-link font-weight-bold"
-                       rel="{{ firstItem.rel|default('') }}"
-                       tabindex=-1
-                      {{ firstItem.extraAttribute|default(NULL) }}
-                    >{{ firstItem.label|default('Link') }}</a>
-                    {% endif %}
-                </span>
-                </div>
-                </div>
+                    {% include '@bf-components/row-button/twig/index.twig' with {
+                      iconName    : navItem.iconName,
+                      size        : 'medium',
+                      title       : navItem.label,
+                      paragraph   : firstItem.label|default('Link'),
+                      href        : firstItem.href,
+                      class       : '',
+                      hasChevron  : false
+                    } only %}
+                  {% endif %}
               </div>
               {% for subItem in navItem.subItems %}
-                {% set itemClass = subItem.class ? subItem.class : ''  %}
-                <div class="col-sm-12 {{ itemClass }} submenu-container-mobile__contain">
+                <div class="submenu-container-mobile__contain">
                   {% if subItem.subItems %}
-                    <ul class="p-0 list-unstyled">
+                    <ul>
                       {% for subItem in subItem.subItems %}
-                        <li class="mb-2">
-                          <a href="{{ subItem.href }}"
-                             class="js-bf-dropdown-item-link d-block d-lg-inline py-2 py-sm-0 {{ subItem.class }}"
-                             rel="{{ subItem.rel|default('dofollow') }}"
-                             tabindex=-1
-                            {{ subItem.extraAttribute|default(NULL) }}
-                          >
-                            {% include '@bf-components/icon/twig/index.twig' with {
-                              name        : subItem.iconName|default(' '),
-                              size        : 'small',
-                              class       : 'img-fluid position-relative',
-                              reversed    : reversed,
-                            } only %}
-                            <span class="ml-1">{{ subItem.label|default('Link') }}</span>
-                          </a>
+                        <li>
+                          {% include '@bf-components/row-button/twig/index.twig' with {
+                            iconName    : subItem.subIconName,
+                            size        : 'small',
+                            title       : subItem.label,
+                            paragraph   : '',
+                            href        : subItem.href,
+                            class       : '',
+                            hasChevron  : false
+                          } only %}
                         </li>
                       {% endfor %}
                     </ul>
