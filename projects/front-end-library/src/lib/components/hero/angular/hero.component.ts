@@ -14,7 +14,7 @@ import { IPrice } from '../../price/angular/price.component';
 export class HeroComponent implements OnInit {
     constructor() {}
 
-    @Input() breadcrumb         : 'TwigBlock';
+    @Input() breadcrumb         : string;
     /**
         You can pass directly the **label** as a **string** or an **object** based on [Badge](/?path=/docs/components-badge--drupal) component API.
     */
@@ -40,6 +40,8 @@ export class HeroComponent implements OnInit {
 
     /** Class override */
     @Input() class              : string;
+    /** Note: height large will add a min-height of 60vh. */
+    @Input() height             : '' | 'large';
     @Input() reversed           : boolean;
 
     @Input() language           : 'en' | 'fr';
