@@ -5,9 +5,9 @@
       <ul class="list-sub-items">
         {% for dropdownSubItem in navItem.subItemsMultiDropdown %}
           <li class="nav-item bf-megamenu__nav-item js-bf-megamenu__nav-item  {{ navItem.class }}">
-            <div class="js-bf-megamenu__panel js-bf-megamenu__full-height" aria-labelledby="menuDropdown{{ loop.index }}">
-             <div class="nav js-bf-megamenu__full-height" id="v-pills-tab-mobile" role="tablist" aria-orientation="vertical">
-               {% include '@bf-components/row-button/twig/index.twig' with {
+            <div class="js-bf-megamenu__panel">
+              <div class="nav" id="v-pills-tab-mobile" role="tablist" aria-orientation="vertical">
+                {% include '@bf-components/row-button/twig/index.twig' with {
                  iconName       : dropdownSubItem.iconName|default,
                  size           : size|default('small'),
                  id             : 'v-pills-mobile-' ~ dropdownSubItem.catLabel|default('category')|url_encode() ~ '-tab',
@@ -17,12 +17,12 @@
                  href           : '#v-pills-mobile-' ~ dropdownSubItem.catLabel|default('category')|url_encode(),
                  dataToggle    : 'pill',
                  ariaControls  : 'v-pills-mobile-' ~ dropdownSubItem.catLabel|default('category')|url_encode
-               } %}
-            </div>
+                } %}
+              </div>
           </div>
-            <section class="tab-content" id="v-pills-tabContent-mobile">
+            <section class="tab-content" id="v-pills-tab-content-mobile">
               <!-- TAB : pane -->
-                <div class="tab-pane js-bf-tab-pane fade bf-text-display-sub-medium"
+                <div class="tab-pane js-bf-tab-pane fade"
                      id="v-pills-mobile-{{ dropdownSubItem.catLabel|default('category')|url_encode }}"
                      role="tabpanel"
                      aria-labelledby="v-pills-mobile-{{ dropdownSubItem.catLabel|default('category')|url_encode }}-tab"
@@ -32,8 +32,7 @@
                     size        : 'medium',
                     class       : 'btn-back-menu',
                   } only %}
-                  <div class="p-dropdown-megamenu js-bf-dropdown-megamenu submenu-container-mobile">
-                    <div class="d-flex flex-column">
+                  <div class="submenu-container-mobile">
                       {# parent label and icon  #}
                       <div class="submenu-container-mobile__parent">
                       {% set firstItem = dropdownSubItem.subdropdownItems|first %}
@@ -64,14 +63,12 @@
                                     class       : '',
                                     hasChevron  : false
                                   } only %}
-
                                 </li>
                               {% endfor %}
                             </ul>
                           {% endif %}
                         </div>
                       {% endfor %}
-                    </div>
                   </div>
                 </div>
             </section>
@@ -84,9 +81,9 @@
 
   {% for navItem in navItems %}
     {% if navItem.subItems %}
-      <li class="nav-item bf-megamenu__nav-item js-bf-megamenu__nav-item position-static {{ navItem.class }}">
-        <div class="js-bf-megamenu__panel js-bf-megamenu__full-height" aria-labelledby="menuDropdown{{ loop.index }}">
-          <div class="nav flex-column js-bf-megamenu__full-height" id="v-nav-item-tab-mobile" role="tablist" aria-orientation="vertical">
+      <li class="nav-item bf-megamenu__nav-item js-bf-megamenu__nav-item {{ navItem.class }}">
+        <div class="js-bf-megamenu__panel" >
+          <div class="nav" id="v-nav-item-tab-mobile" role="tablist" aria-orientation="vertical">
             {% include '@bf-components/row-button/twig/index.twig' with {
               iconName       : navItem.iconName,
               size           : size|default('small'),
@@ -113,8 +110,7 @@
             size        : 'medium',
             class       : 'btn-back-menu',
           } only %}
-          <div class="p-dropdown-megamenu js-bf-dropdown-megamenu submenu-container-mobile">
-            <div class="d-flex flex-column">
+          <div class="submenu-container-mobile">
               {# parent label and icon  #}
               <div class="submenu-container-mobile__parent">
                   {% set firstItem = navItem.subItems|first %}
@@ -164,7 +160,6 @@
                     {% endfor %}
                 </div>
               {% endif %}
-            </div>
           </div>
         </div>
       </section>
