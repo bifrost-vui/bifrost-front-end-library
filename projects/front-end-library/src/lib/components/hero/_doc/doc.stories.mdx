@@ -15,6 +15,9 @@ import { HeroComponent }                from '../angular/hero.component';
             table: {
                 type: { summary: 'TwigBlock' }
             }
+        },
+        height: {
+            control: { type: 'select' }
         }
     }}
 />
@@ -69,6 +72,7 @@ import { HeroComponent }                from '../angular/hero.component';
         mobile  : '/images/_docs/hero-helix-mobile.png',
         alt     : 'Helix'
     },
+    height          : 'large',
     background      : 'ground',
 } only %}
 ```
@@ -135,6 +139,27 @@ export const Drupal = (args) => ({
                 mobile  : '/images/_docs/hero-helix-mobile.png',
                 alt     : 'Helix'
             }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '800px' }}
+>
+    <Story 
+        name='Drupal - With height large'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            image           : {
+                default : '/images/_docs/hero-helix.png',
+                mobile  : '/images/_docs/hero-helix-mobile.png',
+                alt     : 'Helix'
+            },
+            height          : 'large'
         }}
     >
         {Drupal.bind({})}
