@@ -24,9 +24,9 @@
           #}
           {% apply spaceless %}
             {% if step.href is defined and step.href %}
-              <a class='bf-link bf-link--primary bf-color-neutral-primary' href='{{ step.href }}' title='{{ step.label }}'
+              <a class='bf-link bf-link--primary bf-color-neutral-primary' href='{{ step.href }}'
                 {% if not previousHasLabel %}
-                 data-toggle="tooltip" data-placement="top"
+                 data-toggle='tooltip' data-placement='top' title='{{ step.label }}'
                 {% endif %}
               >
                 {% include '@bf-components/icon/twig/index.twig' with {
@@ -65,9 +65,9 @@
           <li class='bf-stepper__nav-item bf-stepper__nav-item--next'>
           {% apply spaceless %}
             {% if step.href is defined and step.href and nextIsClickable %}
-              <a class='bf-link bf-link--primary .bf-color-neutral-primary' href='{{ step.href }}' title='{{ step.label }}'
+              <a class='bf-link bf-link--primary .bf-color-neutral-primary' href='{{ step.href }}'
                 {% if not NextHasLabel %}
-                  data-toggle="tooltip" data-placement="top"
+                  data-toggle='tooltip' data-placement='top' title='{{ step.label }}'
                 {% endif %}
               >
             {% endif %}
