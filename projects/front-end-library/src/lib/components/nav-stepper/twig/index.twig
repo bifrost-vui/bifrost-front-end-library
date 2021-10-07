@@ -1,8 +1,8 @@
-{% if (activeStep > 0) and (navItemSteps is defined and navItemSteps) %}
+{% if (activeStep > 0) and (navItemSteps is defined and navItemSteps is not empty) %}
   <nav class='bf-stepper {{ class|default('') }}'>
     {% set nbNavItemSteps = navItemSteps|length %}
     <!-- Navbar content -->
-    <ul class='bf-stepper__nav'>
+    <ul class='bf-stepper__nav container-fluid m-auto '>
       {% for step in navItemSteps %}
         {% set isActive = false %}
         {% set isPrevious = false %}
@@ -18,20 +18,24 @@
 
         {% if isPrevious %}
           <li class='bf-stepper__nav-item bf-stepper__nav-item--prev'>
-          {#
+          {# spaceless :
           - remove whitespace between html elements within the <a> tag
           - prevents an underline space to appear between the icon and the label
           #}
           {% apply spaceless %}
             {% if step.href is defined and step.href %}
-              <a class='bf-link bf-link--primary bf-color-neutral-primary' href='{{ step.href }}'>
+              <a class='bf-link bf-link--primary bf-color-neutral-primary' href='{{ step.href }}' title='{{ step.label }}'
+                {% if not previousHasLabel %}
+                 data-toggle="tooltip" data-placement="top"
+                {% endif %}
+              >
                 {% include '@bf-components/icon/twig/index.twig' with {
                     name  : 'chevron-left',
                     size  : 'small',
                 } only %}
             {% endif %}
 
-            {% if previousHasLabel %}
+            {% if previousHasLabel|default(true) %}
               <span class='d-none d-lg-inline pr-2'>{{ step.label }}</span>
             {% endif %}
 
@@ -44,12 +48,12 @@
           {% endif %}
 
           <li class=' bf-stepper__nav-item bf-stepper__nav-item--active'>
-            <span class="h3">{{step.label}}</span>
+            <span class='h3'>{{step.label}}</span>
 
             {# step Counter #}
             {% if hasStepCounter %}
               <span class='bf-stepper__counter text-center bf-text-display-sub-small'>
-                  {{counterLabel}} {{activeStep}}/{{nbNavItemSteps}}
+                  {{ (counterLabel is defined and counterLabel) ? counterLabel: ''}} {{activeStep}}/{{nbNavItemSteps}}
               </span>
             {% endif %}
           </li>
@@ -59,16 +63,16 @@
           {% endif %}
         {% elseif isNext %}
           <li class='bf-stepper__nav-item bf-stepper__nav-item--next'>
-          {#
-          - remove whitespace between html elements within the <a> tag
-          - prevents an underline space to appear between the icon and the label
-          #}
           {% apply spaceless %}
             {% if step.href is defined and step.href and nextIsClickable %}
-              <a class='bf-link bf-link--primary .bf-color-neutral-primary' href='{{ step.href }}'>
+              <a class='bf-link bf-link--primary .bf-color-neutral-primary' href='{{ step.href }}' title='{{ step.label }}'
+                {% if not NextHasLabel %}
+                  data-toggle="tooltip" data-placement="top"
+                {% endif %}
+              >
             {% endif %}
 
-            {% if nextHasLabel %}
+            {% if nextHasLabel|default(true) %}
               <span class='d-none d-lg-inline px-2'>{{step.label}}</span>
             {% endif %}
 

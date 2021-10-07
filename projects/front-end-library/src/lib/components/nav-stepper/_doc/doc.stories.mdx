@@ -17,6 +17,9 @@ import { NavStepperComponent }          from '../angular/nav-stepper.component';
         withDesign
     ]}
     parameters={{
+        controls: {
+            sort: 'alpha',
+        },
         design: {
             type    : 'figma',
             url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=14042%3A3427',
@@ -30,10 +33,12 @@ import { NavStepperComponent }          from '../angular/nav-stepper.component';
             }
         },
         previousHasLabel: {
-            defaultValue : true
+            defaultValue : true,
+            type : {defaultValue : true}
         },
         nextHasLabel: {
-            defaultValue : true
+            defaultValue : true,
+            type : {defaultValue : true}
         }
     }}
 />
@@ -41,21 +46,21 @@ import { NavStepperComponent }          from '../angular/nav-stepper.component';
 # Stepper
 
  This component enables the end user to visualise his progression when he's going trough a multi-step process.
- It's used with a `Funnel` type navigation header.
- It's navigation capacities are limited to the previous step and next step within the current step by step process
+ It's generaly used in combinaition with a `Funnel` type navigation header.
+ It's navigation capacities are limited to the previous step and next step within the current process
 
 ## Drupal
 export const commonProps = {
     navItemSteps : [
-        {label:"first step",href:"activeStep:1"},
-        {label:"Channel Selection", href:"activeStep:2"},
-        {label:"Order Review", href:"activeStep:3"},
-        {label:"checkout", href:"activeStep:4"},
-        {label:"Step 5", href:"activeStep:5"},
-        {label:"Step 6", href:"activeStep:6"},
-        {label:"Step 7", href:"activeStep:7"},
-        {label:"Step 8", href:"activeStep:8"},
-        {label:"last step", href:"activeStep:9"}
+        {label:"first step",href:"http://activeStep:1"},
+        {label:"step 2 with long text", href:"http://activeStep:2"},
+        {label:"step 3 with even longer text", href:"http://activeStep:3"},
+        {label:"sept 4 with text", href:"http://activeStep:4"},
+        {label:"Step 5", href:"http://activeStep:5"},
+        {label:"Step 6", href:"http://activeStep:6"},
+        {label:"Step 7", href:"http://activeStep:7"},
+        {label:"Step 8", href:"http://activeStep:8"},
+        {label:"last step", href:"http://activeStep:9"}
     ]
 }
 

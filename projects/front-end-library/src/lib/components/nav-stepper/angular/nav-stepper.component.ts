@@ -21,11 +21,15 @@ export class NavStepperComponent implements OnInit {
     @Input() class            : string;
     /** hasStepCounter must be set to true in order for the label to display*/
     @Input() counterLabel     : string;
+    /** will display `activeStep`/`total step count` */
+    @Input() hasStepCounter   : boolean;
+    /** will display previous label (desktop only) */
     @Input() previousHasLabel : boolean;
+    /** will display next label (desktop only) */
     @Input() nextHasLabel     : boolean;
     @Input() nextIsClickable  : boolean;
-    @Input() hasStepCounter   : boolean;
     @Input() reversed         : boolean;
+
 
     ngOnInit() {
         console.log('NavStepper', this);
