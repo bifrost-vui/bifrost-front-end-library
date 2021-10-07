@@ -8,20 +8,20 @@
         {% if background is defined and background is same as ('highlight') %}bf-hero--bg-highlight{% endif %}
         {% if height is defined and height is same as ('large') %}bf-hero--height-large{% endif %}
         {% if isImageSplitted %}bf-hero--image-splitted{% endif %}
-        {# {{ bgImagePosition|default('right') }}
-        {{ bgImageQueries|default(null) }} #}
         {{ class|default('') }}
         '
-    {% if image is defined and image.default is not empty and image.isSplitted is not same as (true) %}
-        style='background-image: url("{{ image.default }}")'
+    {% if image is defined and image.lg is not empty and image.isSplitted is not same as (true) %}
+        style='background-image: url("{{ image.lg }}")'
     {% endif %}
-    {# data-bg='{{ bgImage|default(defaultImgSrc) }}'
-    data-md-bg='{{ bgMediumImage|default(defaultImgSrc) }}'
-    data-lg-bg='{{ bgLargeImage|default(defaultImgSrc) }}' #}
 >
     {% block hero_mobile_image %}{% endblock %}
-    {% if image is defined and image.mobile is not empty %}
-        <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='bf-hero__image-mobile w-100 d-block d-md-none' />
+    {% if image is defined and image.sm is not empty %}
+        <picture>
+            {% if image.md is defined %}
+                <source srcset='{{ image.md }}' media='(max-width: 992px) and (min-width: 576px)'>
+            {% endif %}
+            <img src='{{ image.sm }}' alt='{{ image.alt|default('') }}' class='bf-hero__image-sm w-100 d-block d-md-none' />
+        </picture>
     {% endif %}
 
     {% if block('blockSelection') is defined or blockSelection is defined %}
@@ -91,8 +91,8 @@
             </div>
         </header>
         
-        {% if isImageSplitted and image.default is not empty %}
-            <span class='bf-hero__image-splitted d-none d-md-block' style='background-image: url("{{ image.default }}")' role='img' aria-label={{ image.alt|default('') }}>
+        {% if isImageSplitted and image.lg is not empty %}
+            <span class='bf-hero__image-splitted d-none d-md-block' style='background-image: url("{{ image.lg }}")' role='img' aria-label={{ image.alt|default('') }}>
             </span>
         {% endif %}
 
