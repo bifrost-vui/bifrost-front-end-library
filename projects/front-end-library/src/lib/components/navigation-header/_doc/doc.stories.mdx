@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 
-import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn, menuItemAccount, loginMenuItems } from './data';
+import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn, menuItemAccount, loginMenuItems, menuItemAccountNotConnected } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent }          from '../angular/header.component';
 
@@ -144,8 +144,14 @@ import { HeaderComponent }          from '../angular/header.component';
     labelLogIn      : 'Log In',
     loginMenuItems  : {
         name        :'John Doe',
-        description :'Bill and customer center'
+        description :'Bill and customer center',
+        href: "https://www.videotron.com"
     },
+    menuItemAccountNotConnected : [
+        { label:"Webmail", href:"#", subIconName:"email" },
+        { label:"Helix", href:"#", subIconName:"helix-tv" },
+        { label:"illico", href:"#", subIconName:"tv-plan-light" },
+    ];
     hrefConnexion   : '#',
     labelConnexion  : 'Connexion',
 
@@ -185,7 +191,8 @@ export const Drupal = (args) => ({
             rigthIconLinks,
             menuItemAccount,
             cartBtn,
-            loginMenuItems
+            loginMenuItems,
+            menuItemAccountNotConnected
         }}
         height='400px'
         with = '1200px'

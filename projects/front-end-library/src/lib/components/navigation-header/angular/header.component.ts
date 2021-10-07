@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
     /** Maximum 5 first element of the list will be display  */
     @Input() rigthIconLinks          : any[];
     @Input() menuItemAccount         : any[];
+    @Input() menuItemAccountNotConnected                  : Array<object>[];
     /**  Will show up on all devices if activated */
     @Input() hasAccountBtn           : boolean;
     @Input() isConnected             : boolean;

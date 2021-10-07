@@ -53,33 +53,21 @@
 
         {# <!-- My account Item in mobile device -->  #}
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" href="#">
-            {% include '@bf-components/icon/twig/index.twig' with {
-              name    : icon|default('my-account'),
-              size    : 'small',
+            {% if loginMenuItems is defined and loginMenuItems is not empty %}
+            {% include '@bf-components/row-button/twig/index.twig' with {
+                iconName    : 'my-account',
+                size        : 'small',
+                title       : (isConnected) ? loginMenuItems.name : labelLogOut  ,
+                paragraph   : (isConnected) ? loginMenuItems.description : '',
+                href        : (isConnected) ? loginMenuItems.href : '#',
+                class       : ''
             } only %}
-            <span class="d-inline-block flex-grow-1 ml-3">
-              {% if isConnected is defined and isConnected %}
-                {% if loginMenuItems is defined and loginMenuItems is not empty %}
-                  <span>{{ loginMenuItems.name }}
-                    <small class="d-table">{{ loginMenuItems.description }}</small>
-                  </span>
-                {% endif %}
-              {% else  %}
-             {{ labelLogOut }}
             {% endif %}
-              </span>
-            {% include '@bf-components/icon/twig/index.twig' with {
-              name        : "chevron-right",
-              size        : 'small',
-              class       : "",
-            } %}
-          </a>
         </li>
         {# <!-- Btn language --> #}
         <li class="nav-item d-flex">
           {% if langcode is defined and langcode is not empty %}
-            <a
+            {#<a
               href="{{ href|default('#') }}"
               {% if langcode is not empty %}data-title="{{ langcode|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}"{% endif %}
               class="lang-box"
@@ -87,7 +75,15 @@
               {{ extraAttribute|default(NULL) }}
             >
               {{ (langcode == 'EN') ? 'English' : 'Français' }}
-            </a>
+            </a>#}
+              {% include '@bf-components/row-button/twig/index.twig' with {
+                  size        : 'small',
+                  title       : (langcode == 'EN') ? 'English' : 'Français',
+                  paragraph   : '',
+                  href        : subItem.href,
+                  class       : 'lang-box',
+                  hasChevron  : false
+              } only %}
           {% endif %}
         </li>
       </ul>
@@ -153,35 +149,51 @@
             {% include '@bf-components/icon/twig/index.twig' with {
               name    : icon|default('my-account')
             } only %}
-            {{ (isConnected) ? labelLogIn : labelLogOut }}
+            {{ (isConnected) ? loginMenuItems.name : labelLogOut }}
           </a>
         {% if isConnected is same as (true) %}
           <div class="dropdown-menu" aria-labelledby="dropdownAccountMenu">
-            {% for item in menuItemAccount %}
-              {% if item.label is defined and item.label and item.href  is defined and item.href %}
-                <a class="dropdown-item d-flex flex-wrap flex-column" href="{{ item.href }}">
-                  {% if item.iconName is defined and item.label %}
-                    <div class="d-flex align-items-center">
-                      {% include '@bf-components/icon/twig/index.twig' with {
-                        name     : item.iconName,
-                        class    : ''
-                      } only %}
-                      <span class="d-lg-inline-block ml-1">{{ item.label }}</span>
-                    </div>
-                  {% endif %}
-                  {% if item.description is defined and item.description %}
-                    <span class="description">{{ item.description }}</span>
-                  {% endif %}
-                </a>
+            {% for accountIn in menuItemAccount %}
+              {% if accountIn.label is defined and accountIn.label or accountIn.iconName is defined and accountIn.iconName or accountIn.description is defined and accountIn.description or accountIn.href is defined and accountIn.href %}
+                  {% include '@bf-components/row-button/twig/index.twig' with {
+                      iconName    : accountIn.iconName,
+                      size        : 'small',
+                      title       : accountIn.label,
+                      paragraph   : accountIn.description,
+                      href        : accountIn.href,
+                      class       : ''
+                  } only %}
               {% endif %}
             {% endfor %}
-            <a class="dropdown-item" href="#">
-              {% include '@bf-components/icon/twig/index.twig' with {
-                name    : icon|default('my-account')
-              } only %}
-              {{ labelLogOut }}
-            </a>
+            {% include '@bf-components/button/twig/index.twig' with {
+                label           : labelLogOut,
+                hierarchy       : 'secondary',
+                class           : 'btn-logout',
+                iconName        : 'logout',
+                ariaControls    : '',
+            } only %}
           </div>
+            {% else %}
+                <div class="dropdown-menu" aria-labelledby="dropdownAccountMenu">
+                    {% include '@bf-components/button/twig/index.twig' with {
+                        label           : labelLogIn,
+                        hierarchy       : 'primary',
+                        class           : 'btn-logout',
+                        ariaControls    : '',
+                    } only %}
+                    {% for accountOut in menuItemAccountNotConnected %}
+                        {% if accountOut.label is defined and accountOut.label or accountOut.iconName is defined and accountOut.iconName  %}
+                            {% include '@bf-components/row-button/twig/index.twig' with {
+                                iconName    : accountOut.iconName,
+                                size        : 'small',
+                                title       : accountOut.label,
+                                href        : accountOut.href,
+                                hasChevron  : false,
+                                class       : ''
+                            } only %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
         {% endif %}
         </div>
       {% endif %}

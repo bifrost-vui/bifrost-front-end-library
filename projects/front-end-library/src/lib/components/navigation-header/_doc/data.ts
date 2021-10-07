@@ -22,13 +22,18 @@ export const cartBtn = {
 };
 
 export const menuItemAccount = [
-  { label: "Espace client", href: "https://www.videotron.com" ,iconName: "my-account", description: "Add your description here"},
-  { label: "Mon compte Helix", href: "https://www.videotron.com", iconName: "my-account", description: "" },
-  { label: "Ma facture Videotron", href: "https://www.videotron.com", iconName: "bill", description: "Add your description here" },
-  { label: "Ma facture Helix", href: "https://www.videotron.com", iconName: "bill", description: "" },
-  { label: "this menu item shoul not appear", href: "" },
+    { label: "Espace client", href: "https://www.videotron.com" ,iconName: "my-account", description: "Add your description here"},
+    { label: "Mon compte Helix", href: "https://www.videotron.com", iconName: "my-account", description: "" },
+    { label: "Ma facture Videotron", href: "https://www.videotron.com", iconName: "bill", description: "Add your description here" },
+    { label: "Ma facture Helix", href: "https://www.videotron.com", iconName: "bill", description: "" },
 ];
 export const  loginMenuItems = {
     name:  "John Doe",
-    description : "Bill and customer center"
+    description : "Bill and customer center",
+    href: "https://www.videotron.com"
 };
+export const  menuItemAccountNotConnected = [
+    { label:"Webmail", href:"https://www.videotron.com", iconName:"email"},
+    { label:"Helix Tele", href:"https://www.videotron.com", iconName:"helix-tv" },
+    { label:"illico Tv", href:"https://www.videotron.com", iconName:"tv-plan-light"},
+];
