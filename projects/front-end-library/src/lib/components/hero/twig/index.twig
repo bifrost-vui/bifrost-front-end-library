@@ -1,3 +1,5 @@
+{% set isImageSplitted = (image is defined and image.isSplitted is same as (true)) %}
+
 <section
     class='
         bf-hero d-flex flex-column
@@ -5,7 +7,7 @@
         {% if background is defined and background is same as ('ground') %}bf-hero--bg-ground{% endif %}
         {% if background is defined and background is same as ('highlight') %}bf-hero--bg-highlight{% endif %}
         {% if height is defined and height is same as ('large') %}bf-hero--height-large{% endif %}
-        {% if image is defined and image.isSplitted is same as (true) %}bf-hero--image-splitted{% endif %}
+        {% if isImageSplitted %}bf-hero--image-splitted{% endif %}
         {# {{ bgImagePosition|default('right') }}
         {{ bgImageQueries|default(null) }} #}
         {{ class|default('') }}
@@ -19,7 +21,7 @@
 >
     {% block hero_mobile_image %}{% endblock %}
     {% if image is defined and image.mobile is not empty %}
-        <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='w-100 d-block d-md-none' />
+        <img src='{{ image.mobile }}' alt='{{ image.alt|default('') }}' class='bf-hero__image-mobile w-100 d-block d-md-none' />
     {% endif %}
 
     {% if block('blockSelection') is defined or blockSelection is defined %}
@@ -35,18 +37,20 @@
 
     <div class='container-fluid d-flex flex-column flex-md-row flex-grow-1' data-animate-row=''>
         <header class='bf-hero__header d-flex flex-column flex-grow-1 pb-2 pb-sm-4'>
-            {% if breadcrumb is defined %}
+            {% if block('breadcrumb') is defined %}
+                {{ block('breadcrumb') }}
+            {% elseif breadcrumb is defined and breadcrumb %}
                 {{ breadcrumb }}
             {% endif %}
-            <div class='bf-hero__content d-flex flex-column h-100'>
-                <div class='position-relative py-5 mt-2'>
+            <div class='d-flex flex-column justify-content-center h-100'>
+                <div class='bf-hero__content position-relative pb-5 pt-2 pt-md-5 mt-2'>
                     {% if badge is defined and badge is not empty %}
                         {% if badge is not iterable %}
                             {% set badge = { label: badge } %}
                         {% endif %}
                         {% set badge = badge|merge( {
                             'hierarchy' : badge.hierarchy|default('primary'),
-                            'class'     : 'position-absolute top-0 ' ~ badge.class|default('')
+                            'class'     : 'position-relative position-md-absolute top-0 mb-3' ~ badge.class|default('')
                         } ) %}
                         {% include '@bf-components/badge/twig/index.twig' with badge only %}
                     {% endif %}
@@ -87,9 +91,9 @@
             </div>
         </header>
         
-        {% if image is defined and image.default is not empty and image.isSplitted is same as (true) %}
-            <div class='bf-hero__image-splitted d-none d-md-block' style='background-image: url("{{ image.default }}")'>
-            </div>
+        {% if isImageSplitted and image.default is not empty %}
+            <span class='bf-hero__image-splitted d-none d-md-block' style='background-image: url("{{ image.default }}")' role='img' aria-label={{ image.alt|default('') }}>
+            </span>
         {% endif %}
 
         {% if icon is defined and icon is not empty %}
