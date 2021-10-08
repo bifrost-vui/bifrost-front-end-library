@@ -35,7 +35,8 @@
 
     <!-- Main Nav -->
     <div class='bf-header__nav-main js-collapse-full-height navbar-collapse collapse' id="navbarBifrostMenu">
-      <ul class='bf-megamenu list d-none d-lg-flex'>
+      <!-- Main Nav Desktop -->
+      <ul class='bf-megamenu list h-100 d-none d-lg-flex'>
         {% block navbar_content %}
           {% include '@bf-components/navigation-header/twig/mega-menu.twig' with {
             navItems    : navItems,
@@ -43,6 +44,7 @@
           } only %}
         {% endblock %}
       </ul>
+      <!-- Main Nav Mobile -->
       <ul class='bf-megamenu list bf-list--divider d-lg-none d-sm-block'>
         {% block navbar_content %}
           {% include '@bf-components/navigation-header/twig/mega-menu-mobile.twig' with {
@@ -53,37 +55,28 @@
 
         {# <!-- My account Item in mobile device -->  #}
         <li class="nav-item">
-            {% if loginMenuItems is defined and loginMenuItems is not empty %}
-            {% include '@bf-components/row-button/twig/index.twig' with {
-                iconName    : 'my-account',
-                size        : 'small',
-                title       : (isConnected) ? loginMenuItems.name : labelLogOut  ,
-                paragraph   : (isConnected) ? loginMenuItems.description : '',
-                href        : (isConnected) ? loginMenuItems.href : '#',
-                class       : ''
-            } only %}
-            {% endif %}
+          {% if loginMenuItems is defined and loginMenuItems is not empty %}
+          {% include '@bf-components/row-button/twig/index.twig' with {
+            iconName    : 'my-account',
+            size        : 'small',
+            title       : (isConnected) ? loginMenuItems.name : labelMyAccount  ,
+            paragraph   : (isConnected) ? loginMenuItems.description : '',
+            href        : (isConnected) ? loginMenuItems.href : '#',
+            class       : ''
+          } only %}
+        {% endif %}
         </li>
         {# <!-- Btn language --> #}
         <li class="nav-item d-flex">
           {% if langcode is defined and langcode is not empty %}
-            {#<a
-              href="{{ href|default('#') }}"
-              {% if langcode is not empty %}data-title="{{ langcode|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}"{% endif %}
-              class="lang-box"
-              rel="{{ rel|default('') }}"
-              {{ extraAttribute|default(NULL) }}
-            >
-              {{ (langcode == 'EN') ? 'English' : 'Français' }}
-            </a>#}
-              {% include '@bf-components/row-button/twig/index.twig' with {
-                  size        : 'small',
-                  title       : (langcode == 'EN') ? 'English' : 'Français',
-                  paragraph   : '',
-                  href        : subItem.href,
-                  class       : 'lang-box',
-                  hasChevron  : false
-              } only %}
+            {% include '@bf-components/row-button/twig/index.twig' with {
+              size        : 'small',
+              title       : (langcode == 'EN') ? 'English' : 'Français',
+              paragraph   : '',
+              href        : subItem.href,
+              class       : 'lang-box',
+              hasChevron  : false
+            } only %}
           {% endif %}
         </li>
       </ul>
@@ -116,7 +109,7 @@
 
     <!-- Actions -->
     <div class='bf-header__actions'>
-      {# <!-- Btn search toggle --> #}
+      <!-- Btn search toggle -->
       {% include '@bf-components/button-icon/twig/index.twig' with {
         icon            : 'search',
         dataToggle      : 'collapse',
@@ -127,7 +120,7 @@
         class           : 'd-flex d-md-none js-bf-search-toggler'
       } only %}
 
-      {# <!-- Right icons --> #}
+      <!-- Right icons -->
       <div class="bf-header__rigth-icon-links ">
         {# <!-- rigth Icon Links - visible on mobile only --> #}
         {% for link in rigthIconLinks|default([])|slice(0, 2) %}
@@ -142,66 +135,66 @@
         {% endfor %}
       </div>
 
-      {# <!-- My Account Menu -->  #}
+      <!-- My Account Menu -->
       {% if hasAccountBtn is defined and hasAccountBtn  %}
         <div class="dropdown d-none d-lg-block {{ (isConnected) ? 'login' : 'logout' }}">
           <a class="btn btn-tertiary dropdown-toggle {{ (isConnected) ? 'login' : 'logout' }}" href="#" role="button" id="dropdownAccountMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {% include '@bf-components/icon/twig/index.twig' with {
               name    : icon|default('my-account')
             } only %}
-            {{ (isConnected) ? loginMenuItems.name : labelLogOut }}
+            {{ (isConnected) ? loginMenuItems.name : labelMyAccount }}
           </a>
         {% if isConnected is same as (true) %}
           <div class="dropdown-menu" aria-labelledby="dropdownAccountMenu">
             {% for accountIn in menuItemAccount %}
               {% if accountIn.label is defined and accountIn.label or accountIn.iconName is defined and accountIn.iconName or accountIn.description is defined and accountIn.description or accountIn.href is defined and accountIn.href %}
-                  {% include '@bf-components/row-button/twig/index.twig' with {
-                      iconName    : accountIn.iconName,
-                      size        : 'small',
-                      title       : accountIn.label,
-                      paragraph   : accountIn.description,
-                      href        : accountIn.href,
-                      class       : ''
-                  } only %}
+                {% include '@bf-components/row-button/twig/index.twig' with {
+                  iconName    : accountIn.iconName,
+                  size        : 'small',
+                  title       : accountIn.label,
+                  paragraph   : accountIn.description,
+                  href        : accountIn.href,
+                  class       : ''
+                } only %}
               {% endif %}
             {% endfor %}
             {% include '@bf-components/button/twig/index.twig' with {
-                label           : labelLogOut,
-                hierarchy       : 'secondary',
-                class           : 'btn-logout',
-                iconName        : 'logout',
-                ariaControls    : '',
+              label           : labelLogOut,
+              hierarchy       : 'secondary',
+              class           : 'btn-logout',
+              iconName        : 'logout',
+              ariaControls    : '',
             } only %}
           </div>
             {% else %}
-                <div class="dropdown-menu" aria-labelledby="dropdownAccountMenu">
-                    {% include '@bf-components/button/twig/index.twig' with {
-                        label           : labelLogIn,
-                        hierarchy       : 'primary',
-                        class           : 'btn-logout',
-                        ariaControls    : '',
+              <div class="dropdown-menu" aria-labelledby="dropdownAccountMenu">
+                {% include '@bf-components/button/twig/index.twig' with {
+                  label           : labelLogIn,
+                  hierarchy       : 'primary',
+                  class           : 'btn-logout',
+                   ariaControls    : '',
+                } only %}
+                {% for accountOut in menuItemAccountNotConnected %}
+                  {% if accountOut.label is defined and accountOut.label or accountOut.iconName is defined and accountOut.iconName  %}
+                    {% include '@bf-components/row-button/twig/index.twig' with {
+                      iconName    : accountOut.iconName,
+                      size        : 'small',
+                      title       : accountOut.label,
+                      href        : accountOut.href,
+                      hasChevron  : false,
+                      class       : ''
                     } only %}
-                    {% for accountOut in menuItemAccountNotConnected %}
-                        {% if accountOut.label is defined and accountOut.label or accountOut.iconName is defined and accountOut.iconName  %}
-                            {% include '@bf-components/row-button/twig/index.twig' with {
-                                iconName    : accountOut.iconName,
-                                size        : 'small',
-                                title       : accountOut.label,
-                                href        : accountOut.href,
-                                hasChevron  : false,
-                                class       : ''
-                            } only %}
-                        {% endif %}
-                    {% endfor %}
-                </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
         {% endif %}
         </div>
       {% endif %}
 
-        {# <!-- Btn mini cart --> #}
-         {% if cartBtn is defined and cartBtn is not empty %}
-          {% if cartBtn.badge is defined and cartBtn.badge and cartBtn.badge != '0' %}
-            {% set badgeLabel =  cartBtn.badge %}
+       <!-- Btn mini cart -->
+      {% if cartBtn is defined and cartBtn is not empty %}
+        {% if cartBtn.badge is defined and cartBtn.badge and cartBtn.badge != '0' %}
+          {% set badgeLabel =  cartBtn.badge %}
           {% endif %}
 
           {% include '@bf-components/button-icon/twig/index.twig' with {

@@ -266,17 +266,17 @@ $(function () {
 
    //Navigation mobile back to parent
   $('.btn-back-menu').click((e)=>{
-    e.preventDefault()
-    $('.tab-pane').removeClass('active show');
-    $('.mobile-menu').removeClass("active show");
+      e.preventDefault()
+      $('.tab-pane').removeClass('active show');
+      $('.mobile-menu').removeClass("active show");
   });
 // reset the menu
   $('.navbar-toggler').click((e)=> {
-    e.preventDefault()
-    if( $('.navbar-toggler').attr('aria-expanded')) {
-      $('.active.show').removeClass('active show');
-      $(this).addClass('active show');
-    }
+      e.preventDefault()
+      if( $('.navbar-toggler').attr('aria-expanded')) {
+          $('.active.show').removeClass('active show');
+          $(this).addClass('active show');
+      }
   })
 });
 
