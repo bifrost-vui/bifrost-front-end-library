@@ -14,7 +14,7 @@ import { IPrice } from '../../price/angular/price.component';
 export class HeroComponent implements OnInit {
     constructor() {}
 
-    @Input() breadcrumb         : 'TwigBlock';
+    @Input() breadcrumb         : string;
     /**
         You can pass directly the **label** as a **string** or an **object** based on [Badge](/?path=/docs/components-badge--drupal) component API.
     */
@@ -23,11 +23,14 @@ export class HeroComponent implements OnInit {
     @Input() title              : string;
     @Input() subtitle           : string;
     @Input() description        : string;
+  /**
+   Insert buttons (max of 2 buttons). Explore its [Component API](/?path=/docs/components-button--drupal).
+   */
+    @Input() buttons            : Array<object>[];
     /**
         [Price](/?path=/docs/components-price--drupal) component.
     */
     @Input() price              : IPrice;
-    @Input() button             : object;
     @Input() image              : object;
     @Input() background         : 'ground' | 'underground' | 'highlight';
 
@@ -38,6 +41,8 @@ export class HeroComponent implements OnInit {
 
     /** Class override */
     @Input() class              : string;
+    /** Note: height large will add a min-height of 60vh. */
+    @Input() height             : '' | 'large';
     @Input() reversed           : boolean;
 
     @Input() language           : 'en' | 'fr';

@@ -10,7 +10,16 @@ import { HeroComponent }                from '../angular/hero.component';
     decorators={[
         moduleMetadata({ declarations: [HeroComponent, TwigContainerComponent]}),
     ]}
-    argTypes={{}}
+    argTypes={{
+        breadcrumb: {
+            table: {
+                type: { summary: 'TwigBlock' }
+            }
+        },
+        height: {
+            control: { type: 'select' }
+        }
+    }}
 />
 
 # Hero
@@ -40,6 +49,18 @@ import { HeroComponent }                from '../angular/hero.component';
     title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
     subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     description : 'Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.',
+    buttons: [
+        {
+            label       : 'Main action',
+            hierarchy   : '',
+            class       : ''
+        },
+        {
+            label       : 'Secondary action',
+            hierarchy   : '',
+            class       : ''
+        }
+    ],
     price           : {
         upperTitle      : 'From',
         dollar          : 86,
@@ -63,6 +84,7 @@ import { HeroComponent }                from '../angular/hero.component';
         mobile  : '/images/_docs/hero-helix-mobile.png',
         alt     : 'Helix'
     },
+    height          : 'large',
     background      : 'ground',
 } only %}
 ```
@@ -83,11 +105,18 @@ export const commonProps = {
     title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
     subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     description : 'Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.',
-    button      : {
-        label       : 'Button',
-        hierarchy   : 'primary-alt',
-        class       : 'my-class'
-    }
+    buttons: [
+        {
+            label       : 'Main action',
+            hierarchy   : '',
+            class       : ''
+        },
+        {
+            label       : 'Secondary action',
+            hierarchy   : '',
+            class       : ''
+        }
+    ],
 };
 
 export const Drupal = (args) => ({
@@ -137,9 +166,30 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
+    style={{ height: '800px' }}
 >
     <Story 
+        name='Drupal - With height large'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            image           : {
+                default : '/images/_docs/hero-helix.png',
+                mobile  : '/images/_docs/hero-helix-mobile.png',
+                alt     : 'Helix'
+            },
+            height          : 'large'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story
         name='Drupal - With price'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',

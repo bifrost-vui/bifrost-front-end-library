@@ -9,11 +9,13 @@ export const slides=[
         title       : "Slide Title",
         subtitle    : "Subtitle",
         description : "Description description description description description description description description description",
-        button      : {
-            label       : "Button",
-            hierarchy   : "primary-alt",
-            class       : "my-class"
-        },
+        buttons     : [
+            {
+                label       : "Button",
+                hierarchy   : "primary-alt",
+                class       : "my-class"
+            }
+        ],
         background      : "highlight",
     },
     {
@@ -21,11 +23,13 @@ export const slides=[
         title       : "Slide Title",
         subtitle    : "subtitle",
         description : "Description text",
-        buttons     : {
-            label       : "Button",
-            hierarchy   : "primary-alt",
-            class       : "my-class"
-        },
+        buttons     : [
+            {
+                label       : "Button",
+                hierarchy   : "primary-alt",
+                class       : "my-class"
+            }
+        ],
         image       : {
             default     : "/images/_docs/hero-helix.png",
             mobile      : "/images/_docs/hero-helix-mobile.png",
@@ -34,35 +38,44 @@ export const slides=[
         background  : "ground",
     },
     {
-        class       : "reversed",
         badge       : "Badge label",
         upperTitle  : "Upper Title",
         title       : "Slide title slide title slide title slide title slide title ",
         subtitle    : "Suptitle suptitle suptitle suptitle suptitle suptitle",
         description : "Lorem ipsum descriptum est",
-        buttons      : {
-            label       : "Button",
-            hierarchy   : "primary-alt",
-            class       : ""
-        },
-        background      : "",
+        buttons     : [
+            {
+                label       : "Button",
+                hierarchy   : "primary-alt",
+                class       : "my-class"
+            }
+        ],
+        background  : "ground",
+        reversed    : true
     },
     {
-        class       : "reversed",
-        badge       : 'badge label',
+        badge       : "badge label",
         upperTitle  : "Upper Title",
         title       : "Slide Title",
         subtitle    : "Subtitle subtitle subtitle subtitle ",
-        buttons      : {
-            label       : "Button",
-            hierarchy   : "primary-alt",
-            class       : ""
-        },
+        buttons     : [
+            {
+                label       : "Button 1",
+                hierarchy   : "primary-alt",
+                class       : "my-class"
+            },
+            {
+                label       : "Button 2",
+                hierarchy   : "secondary",
+                class       : "my-class"
+            }
+        ],
         image       : {
             default     : "/images/_docs/hero-helix-reversed.png",
             mobile      : "/images/_docs/hero-helix-reversed-mobile.png",
             alt         : "Helix"
         },
-        background      : "reversed",
-    },
+        reversed    : true,
+        background  : "ground",
+    }
 ];
