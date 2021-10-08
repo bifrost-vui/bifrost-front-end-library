@@ -21,7 +21,7 @@ export const slides=[
         title       : "Slide Title",
         subtitle    : "subtitle",
         description : "Description text",
-        button      : {
+        buttons     : {
             label       : "Button",
             hierarchy   : "primary-alt",
             class       : "my-class"
@@ -40,7 +40,7 @@ export const slides=[
         title       : "Slide title slide title slide title slide title slide title ",
         subtitle    : "Suptitle suptitle suptitle suptitle suptitle suptitle",
         description : "Lorem ipsum descriptum est",
-        button      : {
+        buttons      : {
             label       : "Button",
             hierarchy   : "primary-alt",
             class       : ""
@@ -53,7 +53,7 @@ export const slides=[
         upperTitle  : "Upper Title",
         title       : "Slide Title",
         subtitle    : "Subtitle subtitle subtitle subtitle ",
-        button      : {
+        buttons      : {
             label       : "Button",
             hierarchy   : "primary-alt",
             class       : ""
