@@ -33,6 +33,13 @@ import { SlideshowComponent }           from '../angular/slideshow.component';
 - automatic sliding pauses on mouseover and will restart 5 second after mouseout
 
 
+## Component API
+
+
+**✅ Inputs are equivalent for Angular and Drupal.**
+
+<Props of={SlideshowComponent} />
+
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -42,7 +49,7 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '600px' }}
+    style={{ height: '500px' }}
 >
     <Story
         name='Drupal'
@@ -56,11 +63,9 @@ export const Drupal = (args) => ({
 </Preview>
 
 
-## Drupal implementation exemple
+## Drupal implementation example
 
 ```jsx
-
-
 {% include '@bf-components/slideshow/twig/index.twig' with {
     slides : [
         {
@@ -69,56 +74,53 @@ export const Drupal = (args) => ({
             title       : "Title 1",
             subtitle    : "Subtitle 1",
             description : "Description 1.",
-            buttons      : [{
-                label       : "Button",
-                hierarchy   : "primary-alt",
-                class       : "my-class"
-            }],
-            background      : "highlight",
+            buttons     : [
+                {
+                    label     : "Button",
+                    hierarchy : "primary-alt",
+                    class     : "my-class"
+                }
+            ],
+            background   : "highlight",
         },
         {
-            class       : "reversed",
             badge       : "badge label 2",
             upperTitle  : "upper Title 2",
             title       : "Title 2",
             subtitle    : "Subtitle 2",
             description : "Description 2",
-            buttons      :[ {
-                label       : "Button",
-                hierarchy   : "primary-alt",
-                class       : ""
-            }],
+            buttons     :[
+                {
+                    label       : "Button",
+                    hierarchy   : "primary-alt",
+                },
+                {
+                    label       : "Button",
+                    hierarchy   : "secondary",
+                }
+            ],
+            reversed   : true
         },
         {
-            class       : "reversed",
-            upperTitle  : "upper Title 3",
-            title       : "Title 3 ",
-            subtitle    : "subtitle 3",
-            buttons      : [{
+            upperTitle : "upper Title 3",
+            title      : "Title 3 ",
+            subtitle   : "subtitle 3",
+            buttons    : [{
                 label       : "Button",
                 hierarchy   : "primary-alt",
-                class       : ""
             }],
-            image           : {
+            image      : {
                 default : "/images/_docs/hero-helix-reversed.png",
                 mobile  : "/images/_docs/hero-helix-reversed-mobile.png",
                 alt     : "Helix"
             },
-            background      : "reversed",
+            reversed   : true
         },
         {...}
     ]
 } %}
 
 ```
-
-
-## Component API
-
-
-**✅ Inputs are equivalent for Angular and Drupal.**
-
-<Props of={SlideshowComponent} />
 
 
 ## Design Guidelines
