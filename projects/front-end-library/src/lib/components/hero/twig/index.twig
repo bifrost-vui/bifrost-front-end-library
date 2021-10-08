@@ -74,12 +74,16 @@
                         }) %}
                         {% include '@bf-components/price/twig/index.twig' with price only %}
                     {% endif %}
-                    {% if button is defined and button is not empty %}
-                        <div class='mt-5' data-animate='fade-in'>
-                            {% set button = button|merge( { 'hierarchy': button.hierarchy|default('primary-alt') } ) %}
-                            {% include '@bf-components/button/twig/index.twig' with button only %}
-                        </div>
-                    {% endif %}
+                  {% if buttons is defined and buttons %}
+                    <div class='d-inline-flex gap-3 mt-4' data-animate='fade-in'>
+                      {% for button in buttons|slice(0, 2) %}
+                        {% set defaultHierarchy = (loop.index == 1) ? 'primary-alt' : 'secondary' %}
+                        {% set button = button|merge( {'hierarchy': button.hierarchy|default(defaultHierarchy),
+                          'class':  button.class} ) %}
+                        {% include '@bf-components/button/twig/index.twig' with button only %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
                 </div>
             </div>
         </header>
