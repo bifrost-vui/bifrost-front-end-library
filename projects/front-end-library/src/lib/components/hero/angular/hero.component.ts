@@ -23,11 +23,14 @@ export class HeroComponent implements OnInit {
     @Input() title              : string;
     @Input() subtitle           : string;
     @Input() description        : string;
+  /**
+   Insert buttons (max of 2 buttons). Explore its [Component API](/?path=/docs/components-button--drupal).
+   */
+    @Input() buttons            : Array<object>[];
     /**
         [Price](/?path=/docs/components-price--drupal) component.
     */
     @Input() price              : IPrice;
-    @Input() button             : object;
     /** HTML string or TwigBlock. Will be displayed between the description and the buttons. */
     @Input() content            : string | 'TwigBlock';
     @Input() image              : object;

@@ -12,6 +12,10 @@
     svg {
         width: 100%;
         height: 100%;
+        path, circle, line, rect {
+            stroke-width: 1;
+            vector-effect: non-scaling-stroke;
+        }
     }
     // Sizes
     &.size-large {
@@ -37,10 +41,6 @@
     &.size-huge{
         width: 18rem;
         height: 18rem;
-        path, circle, line, rect {
-            stroke-width: 1;
-            vector-effect: non-scaling-stroke;
-        }
         @include media-breakpoint-down(md){
             width: 10rem;
             height: 10rem;
@@ -53,19 +53,28 @@
         circle{
             fill: var(--bf-color-bg-action-primary);
         }
+        circle.fill-highlight-on-reversed {
+            fill: var(--bf-color-primary-irreversible);
+        }
     }
     @at-root .color-succes,
     &.color-success {
         color: var(--bf-color-feedback-success);
         .fill-highlight  circle {
                 fill: var(--bf-color-feedback-success);
-            }
         }
+        circle.fill-highlight-on-reversed {
+            fill: var(--bf-color-primary-irreversible);
+        }
+    }
     @at-root .color-neutral,
     &.color-neutral {
         color: var(--bf-color-feedback-neutral);
         .fill-highlight circle {
             fill: var(--bf-color-feedback-neutral);
+        }
+        circle.fill-highlight-on-reversed {
+            fill: var(--bf-color-primary-irreversible);
         }
     }
     @at-root .color-warning,
@@ -73,6 +82,9 @@
         color: var(--bf-color-feedback-warning);
         .fill-highlight circle {
             fill: var(--bf-color-feedback-warning);
+        }
+        circle.fill-highlight-on-reversed {
+            fill: var(--bf-color-primary-irreversible);
         }
     }
     @at-root .color-negative,
@@ -82,6 +94,9 @@
             color: var(--bf-color-bg-ground);
             circle {
                 fill: var(--bf-color-feedback-negative);
+            }
+            circle.fill-highlight-on-reversed {
+                fill:  var(--bf-color-bg-ground);
             }
         }
     }
