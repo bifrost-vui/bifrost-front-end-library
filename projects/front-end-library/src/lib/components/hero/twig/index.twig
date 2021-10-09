@@ -47,6 +47,7 @@
                         } ) %}
                         {% include '@bf-components/badge/twig/index.twig' with badge only %}
                     {% endif %}
+
                     {% if upperTitle is defined and upperTitle is not empty %}
                         <p class='h5 mt-0 mb-2' data-animate='fade-in'>
                             {{ upperTitle }}
@@ -66,6 +67,12 @@
                         <p class='mt-2' data-animate='fade-in'>
                             {{ description }}
                         </p>
+                    {% endif %}
+
+                    {% if block('content') is defined %}
+                        {{ block('content') }}
+                    {% elseif content is defined and content %}
+                        {{ content }}
                     {% endif %}
                     {% if price is defined and price %}
                         {% set price = price|merge({

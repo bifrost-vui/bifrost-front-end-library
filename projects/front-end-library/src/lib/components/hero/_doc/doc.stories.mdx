@@ -168,7 +168,7 @@ export const Drupal = (args) => ({
     withSource='none'
     style={{ height: '800px' }}
 >
-    <Story 
+    <Story
         name='Drupal - With height large'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
@@ -246,3 +246,26 @@ export const Drupal = (args) => ({
         {Drupal.bind({})}
     </Story>
 </Preview>
+
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story
+        name='Drupal - With content'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            content: '<p>The property <b>content</b> could be a string or a TwigBlock.</p>'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+<!--
+TODO DS-185: Add a story with real twig block from twig-block.drupal.twig.
+Currrently, `embed` are not working with twig module in express server.
+ -->

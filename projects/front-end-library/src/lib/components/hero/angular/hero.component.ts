@@ -31,6 +31,8 @@ export class HeroComponent implements OnInit {
         [Price](/?path=/docs/components-price--drupal) component.
     */
     @Input() price              : IPrice;
+    /** HTML string or TwigBlock. Will be displayed between the description and the buttons. */
+    @Input() content            : string | 'TwigBlock';
     @Input() image              : object;
     @Input() background         : 'ground' | 'underground' | 'highlight';
 
