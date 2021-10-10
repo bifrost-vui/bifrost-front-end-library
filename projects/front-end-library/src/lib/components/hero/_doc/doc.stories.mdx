@@ -11,6 +11,9 @@ import { HeroComponent }                from '../angular/hero.component';
         moduleMetadata({ declarations: [HeroComponent, TwigContainerComponent]}),
     ]}
     argTypes={{
+        _imageReversed: {
+            description: '**[ ! ]** This control is only used for testing a different image in the Hero reversed.'
+        },
         breadcrumb: {
             table: {
                 type: { summary: 'TwigBlock' }
@@ -80,8 +83,9 @@ import { HeroComponent }                from '../angular/hero.component';
         class       : 'my-class'
     },
     image           : {
-        default : '/images/_docs/hero-helix.png',
-        mobile  : '/images/_docs/hero-helix-mobile.png',
+        lg      : '/images/_docs/hero-helix.png',
+        md      : '/images/_docs/hero-helix-tablet.png', // Only used if isSplitted: true
+        sm      : '/images/_docs/hero-helix-mobile.png',
         alt     : 'Helix'
     },
     height          : 'large',
@@ -154,9 +158,14 @@ export const Drupal = (args) => ({
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
             image           : {
-                default : '/images/_docs/hero-helix.png',
-                mobile  : '/images/_docs/hero-helix-mobile.png',
+                lg      : '/images/_docs/hero-helix.png',
+                sm      : '/images/_docs/hero-helix-mobile.png',
                 alt     : 'Helix'
+            },
+            _imageReversed  : {
+                lg  : '/images/_docs/hero-helix-reversed.png',
+                sm  : '/images/_docs/hero-helix-reversed-mobile.png',
+                alt : 'Helix'
             }
         }}
     >
@@ -174,9 +183,14 @@ export const Drupal = (args) => ({
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
             image           : {
-                default : '/images/_docs/hero-helix.png',
-                mobile  : '/images/_docs/hero-helix-mobile.png',
-                alt     : 'Helix'
+                lg  : '/images/_docs/hero-helix.png',
+                sm  : '/images/_docs/hero-helix-mobile.png',
+                alt : 'Helix'
+            },
+            _imageReversed  : {
+                lg  : '/images/_docs/hero-helix-reversed.png',
+                sm  : '/images/_docs/hero-helix-reversed-mobile.png',
+                alt : 'Helix'
             },
             height          : 'large'
         }}
@@ -184,6 +198,54 @@ export const Drupal = (args) => ({
         {Drupal.bind({})}
     </Story>
 </Preview>
+
+
+<Preview
+    withSource='none'
+    style={{ height: '800px' }}
+>
+    <Story 
+        name='Drupal - With image splitted'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            image           : {
+                lg              : '/images/_docs/hero-helix.png',
+                md              : '/images/placeholder/800x600.png',
+                sm              : '/images/_docs/hero-helix-mobile.png',
+                alt             : 'Helix',
+                isSplitted      : true
+            },
+            _imageReversed  : {
+                lg              : '/images/_docs/hero-helix-reversed.png',
+                md              : '/images/placeholder/800x600.png',
+                sm              : '/images/_docs/hero-helix-reversed-mobile.png',
+                alt             : 'Helix',
+                isSplitted      : true
+            }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal - With icon'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            icon: { name: 'innovation' }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
 
 <Preview
     withSource='none'
