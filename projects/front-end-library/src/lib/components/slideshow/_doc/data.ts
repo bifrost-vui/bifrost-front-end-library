@@ -16,6 +16,7 @@ export const slides=[
             }
         ],
         background      : "highlight",
+        height          : 'large'
     },
     {
         upperTitle  : "Upper Title",
@@ -30,11 +31,12 @@ export const slides=[
             }
         ],
         image       : {
-            default     : "/images/_docs/hero-helix.png",
-            mobile      : "/images/_docs/hero-helix-mobile.png",
-            alt         : "Helix"
+            lg  : "/images/_docs/hero-helix.png",
+            sm  : "/images/_docs/hero-helix-mobile.png",
+            alt : "Helix"
         },
         background  : "ground",
+        height      : 'large'
     },
     {
         badge       : "Badge label",
@@ -67,7 +69,8 @@ export const slides=[
             ],
         },
         background  : "ground",
-        reversed    : true
+        reversed    : true,
+        height          : 'large'
     },
     {
         badge       : "badge label",
@@ -87,10 +90,13 @@ export const slides=[
             }
         ],
         image       : {
-            default     : "/images/_docs/hero-helix-reversed.png",
-            mobile      : "/images/_docs/hero-helix-reversed-mobile.png",
-            alt         : "Helix"
+            lg         : "/images/_docs/hero-helix-reversed.png",
+            md         : "/images/_docs/hero-helix-reversed-mobile.png",
+            sm         : "/images/_docs/hero-helix-reversed-mobile.png",
+            alt        : "Helix",
+            isSplitted : true
         },
         reversed    : true,
+        height      : 'large'
     }
 ];
