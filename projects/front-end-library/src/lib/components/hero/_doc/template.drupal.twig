@@ -2,20 +2,10 @@
 {% set blockSelection   = blockSelection|json_parse %}
 {% set badge            = badge|json_parse %}
 {% set image            = image|json_parse %}
+{% set _imageReversed   = _imageReversed|json_parse %}
 {% set price            = price|json_parse %}
 {% set icon             = icon|json_parse %}
 {% set reversed         = reversed|json_parse %}
-
-{% set imageReversed    = (image is defined and image is not empty) ?
-        {
-            default     : '/images/_docs/hero-helix-reversed.png',
-            mobile      : '/images/_docs/hero-helix-reversed-mobile.png',
-            alt         : 'Helix'
-        }
-        :
-        ''
-%}
-
 
 <div class='d-flex flex-column w-100'>
     {% include '@bf-components/hero/twig/index.twig' with {
@@ -23,7 +13,7 @@
     } %}
 
     {% include '@bf-components/hero/twig/index.twig' with {
-        image       : imageReversed,
+        image       : _imageReversed,
         reversed    : reversed|default(true),
     } %}
 </div>
