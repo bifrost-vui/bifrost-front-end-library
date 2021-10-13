@@ -17,7 +17,7 @@ export class SelectionTileComponent implements OnInit {
     @Input() value          : string;
     @Input() ariaLabel      : string;
     @Input() name           : string;
-    /** extra attribute for the radio/checkbox input only */
+    /** extra attribute for the radio/checkbox input */
     @Input() extraAttribute : string
 
     @Input() orientation    : 'horizontal'|'vertical';

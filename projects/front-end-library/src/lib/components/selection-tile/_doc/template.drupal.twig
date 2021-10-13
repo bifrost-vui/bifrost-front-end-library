@@ -1,16 +1,17 @@
-{% set reversed     = reversed|json_parse %}
-{% set isDisabled   = isDisabled|json_parse %}
-{% set isSelected   = isSelected|json_parse %}
-{% set image        = image|json_parse %}
-{% set iconName     = iconName|json_parse %}
-{% set isInvalid    = isInvalid|json_parse %}
-{% set visualType   = visualType|json_parse %}
+{% set reversed         = reversed|json_parse %}
+{% set isDisabled       = isDisabled|json_parse %}
+{% set isSelected       = isSelected|json_parse %}
+{% set image            = image|json_parse %}
+{% set iconName         = iconName|json_parse %}
+{% set isInvalid        = isInvalid|json_parse %}
+{% set visualType       = visualType|json_parse %}
+{% set  extraAttribute  = extraAttribute|json_parse %}
 
 <div class='container' {{ (orientation == 'horizontal') ? 'style="max-width :600px"':''}}>
   {% for index in [1,2,3,4] %}
-    <div class=' p-3 {{ (index == 2 or index == 4) ? 'bf-color-bg-underground' }} {{ (reversed or index == 3 or index == 4) ? 'reversed  bf-color-bg-ground' }}' >
-      <div class=' d-flex gap-2 {{ (orientation == 'vertical') ? 'flex-row flex-wrap': 'flex-column'}}'>
-        {% include '@bf-components/selection-tile/twig/index.twig'  with {
+    <div class='p-3 {{ (index == 2 or index == 4) ? 'bf-color-bg-underground' }} {{ (reversed or index == 3 or index == 4) ? 'reversed  bf-color-bg-ground' : '' }}' >
+      <div class='d-flex gap-2 {{ (orientation == 'vertical') ? 'flex-row flex-wrap' : 'flex-column' }}'>
+        {% include '@bf-components/selection-tile/twig/index.twig' with {
           value       : value,
           inputId     : (inputId ~ '1' ~ loop.index)|default(inputId ~ '1' ~ loop.index),
           name        : name|default(name ~ loop.index),
@@ -34,8 +35,8 @@
           ariaLabel   : (ariaLabel ~ '3' ~ loop.index)|default(ariaLabel ~ '3' ~ loop.index),
           title       : title|default('Selection tile title'),
           description : description|default('lorem ipsum html <em>descriptum</em><sup>*</sup>'),
-          image       : image|default({src:'/images/_docs/abstract-background.png',alt: 'abstract background',class : '',}),
-          info        : info|default('12.34 $ / Mois'),
+          image       : image|default({src:'/images/_docs/abstract-background.png',alt:'abstract background',class:'',}),
+          info        : info|default('12.34 $/Mois'),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
@@ -46,7 +47,7 @@
           title       : title|default('Selection tile title'),
           description : description|default('lorem ipsum html <em>descriptum</em><sup>&reg;</sup>'),
           iconName    : iconName|default('helix-tv-remote'),
-          info        : info|default('22.34 $ / Mois'),
+          info        : info|default('22.34 $/Mois'),
           isDisabled  : isDisabled|default(true),
         } %}
       </div>
