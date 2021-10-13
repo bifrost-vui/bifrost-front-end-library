@@ -1,0 +1,68 @@
+{% set isLink       = href is defined and href is not empty %}
+{% set hasImage     = image.src is defined and image.src is not empty %}
+{% set hasIcon      = iconName is defined and iconName is not empty %}
+{% set hasVisual    = hasImage or hasIcon %}
+{% set titleTag     = titleTag|default('span') %}
+{% set size         = size|default('large') %}
+
+<{{ isLink ? 'a' : 'button' }}
+    {% if isLink %}
+        href='{{ href }}'
+    {% endif %}
+    class='
+        bf-row-button bf-row-button--{{ size }}
+        d-flex align-items-center w-100 px-3 {{ size == 'large' ? 'py-4' : 'py-3' }}
+        {{ class|default('') }}
+    '
+    {% if dataDismiss is defined %}data-dismiss='{{ dataDismiss|default(NULL) }}'{% endif %}
+    {% if dataToggle is defined %}data-toggle='{{ dataToggle|default(NULL) }}'{% endif %}
+    {% if dataTarget is defined %}data-target='{{ dataTarget|default(NULL) }}'{% endif %}
+    {% if ariaControls is defined %}aria-controls='{{ ariaControls|default(NULL) }}'{% endif %}
+    {% if ariaExpanded is defined %}aria-expanded='{{ ariaExpanded|default(NULL) }}'{% endif %}
+    {% if ariaLabel is defined %}aria-expanded='{{ ariaLabel|default(NULL) }}'{% endif %}
+    {{ extraAttribute|default(NULL) }}
+>
+
+    {% if hasVisual %}
+        <span class='bf-row-button__visual d-block mr-3'>
+            {% if hasIcon %}
+                {% include '@bf-components/icon/twig/index.twig' with {
+                    name    : iconName,
+                    size    : size
+                } only %}
+            {% elseif hasImage %}
+                <img
+                    src='{{ image.src|default('') }}'
+                    data-src='{{ image.dataSrc|default('') }}'
+                    alt='{{ image.alt|default('') }}'
+                />
+            {% endif %}
+        </span>
+    {% endif %}
+
+    <span class='bf-row-button__content d-block flex-grow-1'>
+        {% if title is defined and title %}
+            <{{ titleTag }} class='d-block {{ size == 'large' ? 'h3 mb-1' : 'h4 mb-0' }}'>
+                {{ title }}
+            </{{ titleTag }}>
+        {% endif %}
+        {% if paragraph is defined and paragraph %}
+            <span class='d-block small'>
+                {{ paragraph }}
+            </span>
+        {% endif %}
+        {% if linkLabel is defined and linkLabel %}
+            <span class='d-block bf-text-interface-medium text-underline {{ size != 'small' ? 'mt-1' : '' }}'>
+                {{ linkLabel }}
+            </span>
+        {% endif %}
+    </span>
+
+    {% if hasChevron|default(true) %}
+        {% include '@bf-components/icon/twig/index.twig' with {
+            name    : 'chevron-right',
+            size    : 'small',
+            class   : 'ml-3'
+        } only %}
+    {% endif %}
+</{{ isLink ? 'a' : 'button' }}>
