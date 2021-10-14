@@ -1,34 +1,29 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 
 import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { ButtonComponent }                      from '../angular/button.component';
+import ButtonTwigTemplate                       from './template.drupal.twig';
+import ButtonTwigTemplateSpecials               from './template-specials.drupal.twig';
+
 
 
 <Meta 
     title='Components/Button' 
     component={ButtonComponent}
-    decorators={[
-        moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent]})
-    ]}
     argTypes={{
         hierarchy: {
-            defaultValue: '',
             control: {
                 type: 'select',
                 options: ['', 'primary', 'primary-alt', 'secondary', 'tertiary' ]
             }
         },
         iconName: {
-            defaultValue: '',
             control: {
                 type: 'select',
                 options: ['', 'placeholder', ...interfaceIcons.map(a => a.list).flat().sort()]
             }
         },
         iconPosition: {
-            defaultValue: '',
             control: {
                 type: 'select',
                 options: ['', 'left', 'right']
@@ -68,18 +63,16 @@ import { ButtonComponent }                      from '../angular/button.componen
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: ButtonTwigTemplate(args),
     props: args,
 });
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '700px' }}
 >
     <Story 
         name='Drupal'
         args={{ 
-            elementPath     : 'components/button/_doc/template.drupal',
             class           : 'ml-4 mb-3',
             dataDismiss     : 'dataDismiss',
             dataToggle      : 'dataToggle',
@@ -92,20 +85,23 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-<Preview
+export const DrupalSpecials = (args) => ({
+    template: ButtonTwigTemplateSpecials(args),
+    props: args,
+});
+
+<Canvas
     withSource='none'
-    style={{ height: '700px' }}
 >
     <Story 
         name='Drupal - Specials'
-        args={{ 
-            elementPath : 'components/button/_doc/specials.drupal',
+        args={{
             class       : 'ml-4 mb-3',
         }}
     >
-        {Drupal.bind({})}
+        {DrupalSpecials.bind({})}
     </Story>
-</Preview>
+</Canvas>

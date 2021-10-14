@@ -1,16 +1,12 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 
-import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
-import { InputSearchComponent }     from '../angular/input-search.component';
+import { InputSearchComponent }                 from '../angular/input-search.component';
+import InputSearchTwigTemplate                  from './template.drupal.twig';
 
 
 <Meta 
     title='Components/Input Search' 
     component={InputSearchComponent}
-    decorators={[
-        moduleMetadata({ declarations: [InputSearchComponent, TwigContainerComponent]})
-    ]}
 />
 
 
@@ -65,18 +61,16 @@ import { InputSearchComponent }     from '../angular/input-search.component';
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: InputSearchTwigTemplate(args),
     props: args,
 });
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
 >
     <Story 
         name='Drupal'
         args={{ 
-            elementPath         : 'components/input-search/_doc/template.drupal',
             label_value         : 'Label',
             input_placeholder   : 'What are you looking for?',
             isInvalid           : false,

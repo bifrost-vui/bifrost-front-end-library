@@ -1,15 +1,11 @@
-import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-import { withDesign }                   from 'storybook-addon-designs'
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { HeroComponent }                from '../angular/hero.component';
+import { Meta, Story, Preview, Props }          from '@storybook/addon-docs';
+import { HeroComponent }                        from '../angular/hero.component';
+import HeroTwigTemplate                         from './template.drupal.twig';
+
 
 <Meta
     title='Components/Hero'
     component={HeroComponent}
-    decorators={[
-        moduleMetadata({ declarations: [HeroComponent, TwigContainerComponent]}),
-    ]}
     argTypes={{
         _imageReversed: {
             description: '**[ ! ]** This control is only used for testing a different image in the Hero reversed.'
@@ -124,7 +120,7 @@ export const commonProps = {
 };
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
+    template    : HeroTwigTemplate(args),
     props       : args,
 });
 
@@ -134,10 +130,7 @@ export const Drupal = (args) => ({
 >
     <Story
         name='Drupal'
-        args={{
-            elementPath : 'components/hero/_doc/template.drupal',
-            ...commonProps,
-        }}
+        args={commonProps}
     >
         {Drupal.bind({})}
     </Story>
@@ -155,7 +148,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - With image'
         args={{
-            elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
             image           : {
                 lg      : '/images/_docs/hero-helix.png',
@@ -180,7 +172,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - With height large'
         args={{
-            elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
             image           : {
                 lg  : '/images/_docs/hero-helix.png',
@@ -207,7 +198,6 @@ export const Drupal = (args) => ({
     <Story 
         name='Drupal - With image splitted'
         args={{
-            elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
             image           : {
                 lg              : '/images/_docs/hero-helix.png',
@@ -237,7 +227,6 @@ export const Drupal = (args) => ({
     <Story 
         name='Drupal - With icon'
         args={{
-            elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
             icon: { name: 'innovation' }
         }}
@@ -254,7 +243,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - With price'
         args={{
-            elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
             price           : {
                 upperTitle      : 'From',

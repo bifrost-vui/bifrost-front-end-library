@@ -1,17 +1,12 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
 import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { ButtonNavComponent }                   from '../angular/button-nav.component';
+import ButtonNavTwigTemplate                    from './template.drupal.twig';
 
 
 <Meta 
     title='Components/Button Nav' 
     component={ButtonNavComponent}
-    decorators={[
-        moduleMetadata({ declarations: [ButtonNavComponent, TwigContainerComponent]})
-    ]}
     argTypes={{
         iconName: {
             defaultValue: '',
@@ -51,7 +46,7 @@ import { ButtonNavComponent }                   from '../angular/button-nav.comp
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: ButtonNavTwigTemplate(args),
     props: args,
 });
 
@@ -63,7 +58,6 @@ export const Drupal = (args) => ({
     <Story 
         name='Drupal'
         args={{
-            elementPath : 'components/button-nav/_doc/template.drupal',
             iconName    : 'placeholder'
         }}
     >
@@ -78,10 +72,6 @@ export const Drupal = (args) => ({
 >
     <Story 
         name='Drupal - Usage Example'
-        args={{
-            elementPath : 'components/button-nav/_doc/usage-example.drupal'
-        }}
-        argTypes={{}}
     >
         {Drupal.bind({})}
     </Story>

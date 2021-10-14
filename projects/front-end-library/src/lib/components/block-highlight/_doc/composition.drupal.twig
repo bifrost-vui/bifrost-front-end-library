@@ -1,13 +1,8 @@
-{% set button              = button|json_parse|default({}) %}
-{% set image               = image|json_parse|default({}) %}
-{% set isFeatured          = isFeatured|json_parse %}
-{% set reversed            = reversed|json_parse %}
-
 <div class='container container-fluid my-6'>
 
     {% include '@bf-components/block-highlight/twig/index.twig' with {
-        isFeatured  : true,
-        class       : 'mb-4'
+        isFeatured  : isFeatured|default(true),
+        class       : class|default('mb-4)'
     } %}
 
     <div class='d-flex flex-column flex-md-row gap-4'>

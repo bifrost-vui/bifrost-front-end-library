@@ -1,16 +1,15 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { PriceComponent }                       from '../angular/price.component';
+
+import PriceTemplate                            from './template.drupal.twig';
+import PriceTemplateNull                        from './template-null.drupal.twig';
+import PriceTemplateAll                         from './template-all.drupal.twig';
 
 
 <Meta 
-    title='Components/Price' 
+    title='Components/Price'
     component={PriceComponent}
-    decorators={[
-        moduleMetadata({ declarations: [PriceComponent, TwigContainerComponent]}),
-    ]}
     argTypes={{
         language: {
             control: { type: 'select' },
@@ -77,11 +76,6 @@ import { PriceComponent }                       from '../angular/price.component
 
 ## Drupal
 
-export const Drupal = (args) => ({
-    component: TwigContainerComponent,
-    props: args,
-});
-
 export const commonProps = {
     upperTitle      : 'Upper Title',
     upfront         : {
@@ -105,47 +99,54 @@ export const commonProps = {
 }
 
 
-<Preview
+export const Drupal = (args) => ({
+    template: PriceTemplate(args),
+    props: args,
+});
+
+<Canvas
     withSource='none'
-    style={{ height: '200px' }}
 >
     <Story 
         name='Drupal'
-        args={{ 
-            elementPath     : 'components/price/_doc/template.drupal',
+        args={{
             ...commonProps
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
+export const DrupalAll = (args) => ({
+    template: PriceTemplateAll(args),
+    props: args,
+});
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '800px' }}
 >
     <Story 
         name='Drupal - All Prices'
-        args={{ 
-            elementPath     : 'components/price/_doc/all-prices.drupal',
+        args={{
             ...commonProps
         }}
     >
-        {Drupal.bind({})}
+        {DrupalAll.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-<Preview
+
+export const DrupalNull = (args) => ({
+    template: PriceTemplateAll(args),
+    props: args,
+});
+
+<Canvas
     withSource='none'
-    style={{ height: '800px' }}
 >
     <Story 
-        name='Drupal - All Prices - Null validator'
-        args={{ 
-            elementPath     : 'components/price/_doc/null.drupal',
-        }}
+        name='Drupal - Null validator'
     >
-        {Drupal.bind({})}
+        {DrupalNull.bind({})}
     </Story>
-</Preview>
+</Canvas>

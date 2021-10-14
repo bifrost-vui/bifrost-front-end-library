@@ -1,14 +1,10 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import LinkTwigTemplate                         from './template.drupal.twig';
 
 
 <Meta 
     title='Components/Link'
-    decorators={[
-        moduleMetadata({ declarations: [TwigContainerComponent]})
-    ]}
     argTypes={{}}
 />
 
@@ -24,21 +20,17 @@ import { TwigContainerComponent }               from '../../../../utils/twig-con
 > Just, use Bifrost classes <b>.bf-link</b>.
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: LinkTwigTemplate(args),
     props: args,
 });
 
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '600px' }}
 >
     <Story 
         name='Drupal'
-        args={{
-            elementPath : 'components/link/_doc/template.drupal',
-        }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

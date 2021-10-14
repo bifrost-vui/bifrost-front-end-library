@@ -1,17 +1,13 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 
+import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs';
 import interfaceIcons                       from '../../../../../../../public/icons/list/interfaces.json';
-import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
 import { ButtonIconComponent }              from '../angular/button-icon.component';
+import ButtonIconTwigTemplate               from './template.drupal.twig';
 
 
 <Meta 
     title='Components/Button Icon' 
     component={ButtonIconComponent}
-    decorators={[
-        moduleMetadata({ declarations: [ButtonIconComponent, TwigContainerComponent]})
-    ]}
     argTypes={{
         icon: {
             control: {
@@ -48,18 +44,16 @@ import { ButtonIconComponent }              from '../angular/button-icon.compone
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: ButtonIconTwigTemplate(args),
     props: args,
 });
 
 <Preview
     withSource='none'
-    style={{ height: '1000px' }}
 >
     <Story 
         name='Drupal'
-        args={{ 
-            elementPath : 'components/button-icon/_doc/template.drupal',
+        args={{
             icon        : 'helix-tv'
         }}
         height='160px'

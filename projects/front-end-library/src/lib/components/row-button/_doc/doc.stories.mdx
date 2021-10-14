@@ -1,17 +1,12 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { RowButtonComponent }                   from '../angular/row-button.component';
+import RowButtonTwigTemplate                    from './template.drupal.twig';
 
 
 <Meta
     title='Components/Row Button'
     component={RowButtonComponent}
-    decorators={[
-        moduleMetadata({ declarations: [RowButtonComponent, TwigContainerComponent]})
-    ]}
     argTypes={{
         iconName: {
             defaultValue: 'credit-return',
@@ -92,7 +87,7 @@ Wrap your <b>Row Buttons</b> with CSS classes `.bf-list .bf-list--divider` in or
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: RowButtonTwigTemplate(args),
     props: args,
 });
 
@@ -113,10 +108,7 @@ export const commonProps= {
 >
     <Story
         name='Drupal'
-        args={{
-            elementPath : 'components/row-button/_doc/template.drupal',
-            ... commonProps
-        }}
+        args={commonProps}
     >
         {Drupal.bind({})}
     </Story>
