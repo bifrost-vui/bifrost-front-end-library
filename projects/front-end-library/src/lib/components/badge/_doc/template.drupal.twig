@@ -1,57 +1,117 @@
-{% set reversed     = reversed|json_parse %}
+{% set reversed   = reversed|json_parse %}
 {% set noUppercase  = noUppercase|json_parse %}
-{% set isRounded    = isRounded|json_parse %}
+{% set isRounded  = isRounded|json_parse %}
 
-<div class='d-flex flex-column flex-sm-row justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
-	{% for index in [1,2] %}
-		<div class='flex-grow-1 d-flex flex-column align-items-center justify-content-center minh-100 p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
-			<div class='px-4 py-2'>
-				{% include '@bf-components/badge/twig/index.twig' with {
-          label       : label|default('primary'),
-          hierarchy   : hierarchy|default('primary')
+<div class='d-flex flex-column justify-content-center {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
+  {% for index in [1,2] %}
+    <div class='d-flex flex-column flex-sm-row justify-content-center gap-4 p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
+      <div class='d-flex flex-column align-items-start py-2'>
+        <p class='small'>hierarchy</p>
+
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('primary'),
+          hierarchy : hierarchy|default('primary')
         } %}
 
-				{% include '@bf-components/badge/twig/index.twig' with {
-          label       : label|default('secondary'),
-          hierarchy   : hierarchy|default('secondary')
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('secondary'),
+          hierarchy : hierarchy|default('secondary')
         } %}
 
-				{% include '@bf-components/badge/twig/index.twig' with {
-          label       : label|default('tertiary'),
-          hierarchy   : hierarchy|default('tertiary'),
-          iconName    : iconName|default('camera')
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('tertiary'),
+          hierarchy : hierarchy|default('tertiary'),
         } %}
 
-				{% include '@bf-components/badge/twig/index.twig' with {
-          label       : label|default('tertiary-ground'),
-          hierarchy   : hierarchy|default('tertiary-ground')
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('tertiary-ground'),
+          hierarchy : hierarchy|default('tertiary-ground')
         } %}
-			</div>
+      </div>
 
-			<div class='px-4 py-2'>
-				{% include '@bf-components/badge/twig/index.twig' with {
-          label       : label|default('Angle left'),
-          angle       : angle|default('left')
+      <div class='d-flex flex-column align-items-start py-2'>
+        <p class='small'>iconName</p>
+
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('primary'),
+          hierarchy : hierarchy|default('primary'),
+          iconName  : iconName|default('camera')
         } %}
 
-				{% include '@bf-components/badge/twig/index.twig' with {
-          label       : label|default('Angle right'),
-          angle       : angle|default('right')
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('secondary'),
+          hierarchy : hierarchy|default('secondary'),
+          iconName  : iconName|default('camera')
         } %}
-			</div>
 
-			<div class='px-4 py-2'>
-				{% include '@bf-components/badge/twig/index.twig' with {
-          label       : label|default('noUppercase'),
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('tertiary'),
+          hierarchy : hierarchy|default('tertiary'),
+          iconName  : iconName|default('camera')
+        } %}
+
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('tertiary-ground'),
+          hierarchy : hierarchy|default('tertiary-ground'),
+          iconName  : iconName|default('camera')
+        } %}
+      </div>
+
+      <div class='d-flex flex-column align-items-start py-2'>
+
+        <p class='small'>angle</p>
+
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('Angle left'),
+          angle     : angle|default('left'),
+        } %}
+
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('Angle right'),
+          angle     : angle|default('right')
+        } %}
+
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('Angle left'),
+          angle     : angle|default('left'),
+          iconName  : iconName|default('camera')
+        } %}
+
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('Angle right'),
+          angle     : angle|default('right'),
+          iconName  : iconName|default('camera')
+        } %}
+      </div>
+
+      <div class='d-flex flex-column align-items-start py-2'>
+
+        <p class='small'>noUppercase & isRounded</p>
+
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('noUppercase'),
           noUppercase : true
         } %}
 
-				{% include '@bf-components/badge/twig/index.twig' with {
-          label       : label|default('isRounded'),
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('isRounded'),
+          noUppercase : true,
+          isRounded   : true
+         } %}
+
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('noUppercase'),
+          iconName  : iconName|default('camera'),
+          noUppercase : true,
+        } %}
+
+        {% include '@bf-components/badge/twig/index.twig' with {
+          label     : label|default('isRounded'),
+          iconName  : iconName|default('camera'),
           noUppercase : true,
           isRounded   : true
         } %}
-			</div>
-		</div>
-	{% endfor %}
+      </div>
+    </div>
+  {% endfor %}
 </div>

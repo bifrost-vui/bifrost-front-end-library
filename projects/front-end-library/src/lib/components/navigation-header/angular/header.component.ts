@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
     @Input() labelConnexion           : string;
 
     @Input() navItems                : any[];
-    /** Maximum 3 first elements of the list will be displayed  */
+    /** Only the first 3 elements of the list will be displayed */
     @Input() rigthIconLinks          : any[];
     /**  Will show up on all devices if activated except if isFunnel is activated */
     @Input() hasAccountBtn           : boolean;
@@ -36,6 +36,7 @@ export class HeaderComponent implements OnInit {
     /**  Will show up on all devices if activated */
     @Input() hasCartBtn              : boolean;
     /** Note : empty, undefined or 0 badge label value hides the cart's badge */
+    /** Badge label value set to `0` will hide the badge on the cart*/
     @Input() cartBtn                 : any[];
     @Input() langcode                : string;
     @Input() search_placeholder      : string;

@@ -1,5 +1,4 @@
   {% if hasTopBar is defined and hasTopBar and not isFunnel %}
-
 		{% include '@bf-components/navigation-header/twig/top-bar.twig' with {
         items                   : topBar.items|default([]),
         secondaryItems          : topBar.secondaryItems|default([]),
@@ -61,17 +60,17 @@
           {% endfor %}
         {% endblock %}
 
-        {% if logoLink is defined and logoLink %}</a>{% endif %}
-      </div>
-
-      {# <!-- Main Nav --> #}
-      <div class='bf-header__nav-main js-collapse-full-height'>
-        {% if not isFunnel %}
-          <ul class='bf-megamenu  list'>
-            {% block navbar_content %}
-              {% include '@bf-components/navigation-header/twig/mega-menu.twig' with {
-              navItems    : navItems,
-              reversed    : reversed
+    <!-- Actions -->
+    <div class='bf-header__actions'>
+        <div class="bf-header__rigth-icon-links ">
+          {# <!-- rigth Icon Links - visible on mobile only --> #}
+          {% for link in rigthIconLinks|default([])|slice(0, 3) %}
+            {% if link is defined and link.href is not empty and link.icon is not empty %}
+              {% include '@bf-components/button-icon/twig/index.twig' with {
+                href    : link.href,
+                icon    : link.icon,
+                class   : link.class,
+                badge   : (link.badge.label) ? { label : link.badge.label } : {} ,
               } only %}
             {% endblock %}
           </ul>
@@ -110,6 +109,23 @@
                 ariaLabel   : labelConnexion|default('Log in'),
               } %}
             {% endif %}
+          {% endfor %}
+        </div>
+
+        <!-- Btn account dropdown -->
+        {% if hasAccountBtn is defined and hasAccountBtn %}
+          {% if isConnected is same as (true) %}
+            {% include '@bf-components/button-icon/twig/index.twig' with {
+              href      : hrefLogOut|default('#'),
+              icon      : 'log-out',
+              ariaLabel : labelLogOut|default('Log out'),
+            } %}
+          {% else %}
+            {% include '@bf-components/button-icon/twig/index.twig' with {
+              href      : hrefConnexion|default('#'),
+              icon      : 'my-account',
+              ariaLabel : labelConnexion|default('Log in'),
+            } %}
           {% endif %}
         {% endif %}
 
@@ -123,9 +139,8 @@
         {% endif %}
 
         {# <!-- Btn mini cart --> #}
-        {% if hasCartBtn is defined and hasCartBtn %}
-
-          {% if cartBtn.badge is defined and cartBtn.badge and cartBtn.badge is not same as ('0') %}
+         {% if cartBtn is defined and cartBtn is not empty %}
+          {% if cartBtn.badge is defined and cartBtn.badge and cartBtn.badge != '0' %}
             {% set badgeLabel =  cartBtn.badge %}
           {% endif %}
 
@@ -133,8 +148,9 @@
             icon        : 'cart',
             hierarchy   : 'primary',
             badge       : (badgeLabel is defined) ? badgeLabel : NULL,
-            href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : '',
+            href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : NULL,
             ariaLabel   : cartBtn.ariaLabel|default(''),
+            class       : cartBtn.class|default('')
           } only %}
         {% endif %}
 

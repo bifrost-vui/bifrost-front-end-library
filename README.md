@@ -1,4 +1,4 @@
-# Bifrost
+# Bifröst
 Front-end Vidéotron Visual language
 
 ## What's inside?
@@ -23,9 +23,8 @@ The Front-End library contains:
 - **Styles** (e.g. Sass variables)
 
 
-## The Front-End library is published to a registry
-...
-
+## The Front-End library is published to NPM registry
+https://www.npmjs.com/package/@videotron-ui/bifrost-front-end-library
 
 ## Storybook
 ...
