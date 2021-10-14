@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
-import { IPrice } from '../../price/angular/price.component';
+import { IPrice } from '../../price/angular/api.model';
 
 /**
  * Description of the component Hero
