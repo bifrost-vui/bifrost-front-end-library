@@ -1,6 +1,7 @@
 import { Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 import {slides}                         from './data';
 import { SlideshowComponent }           from '../angular/slideshow.component';
+import SlideShowTwigTemplate            from './template.drupal.twig';
 
 <Meta
     title='Components/Slideshow'
@@ -33,7 +34,7 @@ import { SlideshowComponent }           from '../angular/slideshow.component';
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
+    template    : SlideShowTwigTemplate(args),
     props       : args,
 });
 
@@ -44,7 +45,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath : 'components/slideshow/_doc/template.drupal',
             slides
         }}
     >
