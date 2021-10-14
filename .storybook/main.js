@@ -1,5 +1,5 @@
 module.exports = {
-    stories: ['../projects/front-end-library/src/lib/components/badge/**/*.stories.@(ts|mdx)'],
+    stories: ['../projects/front-end-library/**/*.stories.@(ts|mdx)'],
     logLevel: 'debug',
     addons: [
         '@storybook/addon-essentials',
