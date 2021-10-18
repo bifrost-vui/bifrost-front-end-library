@@ -1,0 +1,186 @@
+/* *****************************************************************************
+*
+*  Input Range
+*
+* ***************************************************************************** */
+
+.bf-input-range {
+    margin: 1rem auto;
+    max-width: 1200px;
+    width: 100%;
+    padding: 1rem;
+
+    /*----------------------------------------------*/
+    /* component's custom elements
+    /*----------------------------------------------*/
+    &_legend{
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: stretch;
+        align-content: space-between;
+
+        &_min,
+        &_max {
+            display: block;
+            width: 100%;
+            span {
+                display: block;
+            }
+        }
+        &_max {
+            text-align: right;
+        }
+    }
+    /*----------------------------------------------*/
+    /* Overlay of the input range double slider
+    /*----------------------------------------------*/
+    &_content {
+        position: relative;
+        height:  1px;
+        text-align: left;
+        margin: 2.5rem 0 .5rem;
+        width: 100%;
+    }
+    &_overlay {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height:  1px;
+        margin: 0 .5rem;
+    }
+    &_exclude {
+        position: absolute;
+        height:  1px;
+        background-color: #ddd;
+
+        &--left {
+            left: 0;
+        }
+        &--right {
+            right: 0;
+        }
+    }
+    &_value {
+        position: absolute;
+        left: 0;
+        top: -.125rem;
+        height:  .25rem;
+        margin-inline-start: .25rem;
+        background-color: #050504;
+        z-index: 1;
+    }
+    &_handle {
+        position: absolute;
+        width: 0;
+        height: 0;
+        background-color: var(--bf-color-brand);
+        top: -2rem;
+        text-align: center;
+        z-index: 25;
+    }
+    &_label {
+        position: absolute;
+        display: block;
+        width: 4rem;
+        left: -2rem;
+        z-index:3;
+        color: #050504;
+    }
+    /*----------------------------------------------*/
+    /* HTML5 input[type=range]
+    /* TODO IN CURRENT - choses if/witch propriatary code need to be kept
+    /*----------------------------------------------*/
+    input[type=range] {
+        position: absolute;
+        pointer-events: none;
+        -webkit-appearance: none;
+        z-index: 3;
+        height:  1px;
+        top: -2px;
+        width: 100%;
+        opacity: 1;
+        background: transparent;
+    }
+    input[type=range]:focus {
+        outline: none;
+    }
+
+    /*------ TRACK ------*/
+    input[type=range]::-ms-track {
+       -webkit-appearance: none;
+        background: transparent;
+        color: transparent;
+    }
+    input[type=range]::-moz-range-track {
+       -moz-appearance: none;
+        background: transparent;
+        color: transparent;
+    }
+
+    input[type=range]:focus::-webkit-slider-runnable-track {
+        background: transparent;
+        border: transparent;
+    }
+
+    /*------ THUMB ------*/
+    input[type=range]::-ms-thumb {
+        pointer-events: all;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        border: 0 none;
+        -webkit-appearance: none;
+        background: #050504;
+    }
+    input[type=range]::-moz-range-thumb {
+        pointer-events: all;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        border: 0 none;
+        -webkit-appearance: none;
+        background: #050504;
+    }
+    input[type=range]::-webkit-slider-thumb {
+        pointer-events: all;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        border: 0 none;
+        background: #050504;
+        -webkit-appearance: none;
+    }
+
+    /*------ MS-fill ------*/
+    input[type=range]::-ms-fill-lower {
+        background: transparent;
+        border: 0 none;
+    }
+
+    input[type=range]::-ms-fill-upper {
+        background: transparent;
+        border: 0 none;
+    }
+
+    input[type=range]::-ms-tooltip {
+        display: none;
+    }
+
+    /*------ variants ------*/
+    &--min .bf-input-range_input_max,
+    &--max .bf-input-range_input_min{
+
+        &::-ms-thumb {
+            pointer-events: none;
+            display: none;
+        }
+        &::-moz-range-thumb {
+            pointer-events: none;
+            display: none;
+        }
+        &::-webkit-slider-thumb {
+            pointer-events: none;
+            display: none;
+        }
+    }
+}

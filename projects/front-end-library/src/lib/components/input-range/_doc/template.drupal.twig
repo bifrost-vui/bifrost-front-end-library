@@ -1,0 +1,126 @@
+{# For demo only#}
+{% set rangeData = [
+    {
+        minInputId     : 'minRange1',
+        maxInputId     : 'maxRange1',
+        minInputValue  : 20,
+        maxInputValue  : 150,
+        minStartValue  : null,
+        maxStartValue  : null,
+        rangeHandles   : null,
+        labelUnit      : '$',
+        step           : 1,
+        lang           : 'en',
+        rangeTitle     : 'Price range',
+        rangeDesc      : 'Default start values, two handles',
+        minLegend      : 'Minimum',
+        maxLegend      : 'Maximum',
+        minLegendDesc  : '$20/month',
+        maxLegendDesc  : '$150/month',
+        class          : ''
+    },
+    {
+        minInputId     : 'minRange2',
+        maxInputId     : 'maxRange2',
+        minInputValue  : 20,
+        maxInputValue  : 150,
+        minStartValue  : 30,
+        maxStartValue  : 100,
+        labelUnit      : '$',
+        step           : 1,
+        lang           : 'fr',
+        rangeHandles   : null,
+        rangeTitle     : 'Price range',
+        rangeDesc      : 'Custom start values, two handles & french',
+        minLegend      : 'Minimum',
+        maxLegend      : 'Maximum',
+        minLegendDesc  : '20$ / mois',
+        maxLegendDesc  : '150$ / mois',
+        class          : ''
+    },
+    {
+        minInputId     : 'minRange3',
+        maxInputId     : 'maxRange3',
+        minInputValue  : 0,
+        maxInputValue  : 20,
+        minStartValue  : 10,
+        maxStartValue  : null,
+        labelUnit      : 'GO',
+        step           : 1,
+        lang           : 'fr',
+        rangeHandles   : 'min handle',
+        rangeTitle     : 'Data range',
+        rangeDesc      : 'custom min start value, min handle only',
+        minLegend      : 'Min',
+        maxLegend      : 'Max',
+        minLegendDesc  : '$20/month',
+        maxLegendDesc  : '$150/month',
+        class          : ''
+    },
+    {
+        minInputId     : 'minRange4',
+        maxInputId     : 'maxRange4',
+        minInputValue  : 0,
+        maxInputValue  : 20,
+        minStartValue  : 0,
+        maxStartValue  : 6,
+        labelUnit      : 'Go',
+        step           : 1,
+        lang           : 'en',
+        rangeHandles   : 'max handle',
+        rangeTitle     : 'Data range',
+        rangeDesc      : 'custom max start value, max handle only',
+        minLegend      : 'Min',
+        maxLegend      : 'Max',
+        minLegendDesc  : '$20/month',
+        maxLegendDesc  : '$150/month',
+        class          : ''
+    },
+    {
+        minInputId     : 'minRange5',
+        maxInputId     : 'maxRange5',
+        minInputValue  : 20,
+        maxInputValue  : 800,
+        minStartValue  : 40,
+        maxStartValue  : 160,
+        rangeHandles   : '',
+        labelUnit      : '$',
+        step           : 1,
+        lang           : 'en',
+        rangeTitle     : 'Range Input Title',
+        rangeDesc      : 'Range Input description, efault start values',
+        minLegend      : 'Min $20',
+        maxLegend      : 'Max $160',
+        minLegendDesc  : null,
+        maxLegendDesc  : null,
+        class          : null
+    }
+] %}
+
+
+
+<div class='pt-4' >
+{% for data in rangeData %}
+    {% include '@bf-components/input-range/twig/index.twig' with {
+        minInputId     : minInputId|json_parse|default(data.minInputId) ,
+        maxInputId     : maxInputId|json_parse|default(data.maxInputId) ,
+        minInputValue  : minInputValue|json_parse|default(data.minInputValue) ,
+        maxInputValue  : maxInputValue|json_parse|default(data.maxInputValue) ,
+        minStartValue  : minStartValue|json_parse|default(data.minStartValue) ,
+        maxStartValue  : maxStartValue|json_parse|default(data.maxStartValue) ,
+        labelUnit      : labelUnit|json_parse|default(data.labelUnit) ,
+        step           : step|json_parse|default(data.step) ,
+        lang           : lang|json_parse|default(data.lang) ,
+        rangeHandles   : rangeHandles|json_parse|default(data.rangeHandles),
+        rangeTitle     : rangeTitle|json_parse|default(data.rangeTitle) ,
+        rangeDesc      : rangeDesc|json_parse|default(data.rangeDesc) ,
+        minLegend      : minLegend|json_parse|default(data.minLegend) ,
+        maxLegend      : maxLegend|json_parse|default(data.maxLegend) ,
+        minLegendDesc  : minLegendDesc|json_parse|default(data.minLegendDesc),
+        maxLegendDesc  : maxLegendDesc|json_parse|default(data.maxLegendDesc),
+        class          : class|json_parse|default(data.class)
+    } %}
+
+{% endfor %}
+
+</div>

@@ -1,0 +1,56 @@
+{% if rangeHandles == 'min handle' %}
+{% set inputRangeVariant = '--min' %}
+{% elseif rangeHandles == 'max handle'%}
+{% set inputRangeVariant = '--max' %}
+{% endif %}
+
+
+<div class='bf-input-range {{(inputRangeVariant is defined) ? 'bf-input-range' ~ inputRangeVariant : '' }} js-bf-input-range {{ class }} ' lang={{lang|default('en')}}>
+  <div class='bf-input-range_title'>
+    <h1>{{rangeTitle}}</h1>
+    <p>{{rangeDesc}}</p>
+  </div>
+
+  <div class='bf-input-range_content'>
+    {# Overlay of the input range double slider #}
+    <div class='bf-input-range_overlay'>
+      <div class='bf-input-range_exclude bf-input-range_exclude--left'></div>
+
+      <div class='bf-input-range_exclude bf-input-range_exclude--right'></div>
+
+      <div class='bf-input-range_value'></div>
+
+      <span class='bf-input-range_handle bf-input-range_handle--left'>
+        <label for='{{ minInputId }}' class='bf-input-range_label'></label>
+      </span>
+
+      <span class='bf-input-range_handle bf-input-range_handle--right'>
+        <label for='{{ maxInputId }}'class='bf-input-range_label'></label>
+      </span>
+    </div>
+
+    <input class='bf-input-range_input_min' type='range'
+      max={{ maxInputValue }}
+      min={{ minInputValue }}
+      step={{ step }}
+      id='{{ minInputId }}'
+      value={{ ( minStartValue is defined and minStartValue ) ? minStartValue : minInputValue }}
+      data-unit='{{ labelUnit|default('$') }}'
+      />
+    <input class='bf-input-range_input_max' type='range'
+      max={{ maxInputValue }}
+      min={{ minInputValue }}
+      step={{step }}
+      id='{{ maxInputId }}'
+      value={{ ( maxStartValue is defined and maxStartValue ) ? maxStartValue : maxInputValue }} />
+  </div>
+
+  <div class='bf-input-range_legend'>
+    <span class='bf-input-range_legend_min'>{{ minLegend }}
+      <span>{{ minLegendDesc }}</span>
+    </span>
+    <span class='bf-input-range_legend_max'>{{ maxLegend }}
+      <span>{{ maxLegendDesc }}</span>
+    </span>
+  </div>
+</div>

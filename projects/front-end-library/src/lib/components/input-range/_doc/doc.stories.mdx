@@ -1,0 +1,92 @@
+import { moduleMetadata }               from '@storybook/angular';
+import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { withDesign }                   from 'storybook-addon-designs'
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { InputRangeComponent }          from '../angular/input-range.component';
+
+<Meta
+    title='Components/Input Range'
+    component={InputRangeComponent}
+    decorators={[
+        moduleMetadata({ declarations: [InputRangeComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type    : 'figma',
+            url     : 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            disable : false
+        },
+    }}
+    argTypes={{
+        minInputId      : { type :{ required: true }},
+        maxInputId      : { type :{ required: true }},
+        minInputValue   : { type :{ required: true }},
+        maxInputValue   : { type :{ required: true }},
+        step            : { type :{ required: true }}
+    }}
+/>
+
+# Input Range
+
+**// TODO** Write a description of your component.
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath : 'components/input-range/_doc/template.drupal',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+## Drupal implementation exemple
+
+```jsx
+{% include '@bf-components/input-range/twig/index.twig' with {
+    minInputId     : 'minRangeId',
+    maxInputId     : 'maxRangeID',
+    minInputValue  : 20,
+    maxInputValue  : 800,
+    minStartValue  : 40,
+    maxStartValue  : 160,
+    labelUnit      : '$',
+    step           : 1,
+    lang           : 'en',
+    rangeTitle     : 'Range Input Title',
+    rangeDesc      : 'Range Input descriptionDefault start values',
+    minLegend      : 'Min $20',
+    maxLegend      : 'Max $160',
+    minLegendDesc  : '',
+    maxLegendDesc  : '',
+    class          : ''
+} only %}
+```
+
+
+## Component API
+
+**✅ Inputs are equivalent for Angular and Drupal.**
+
+<Props of={InputRangeComponent} />
+
+
+## Design Guidelines
+
+**// TODO**: Add a link to the component in Figma file.
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>
