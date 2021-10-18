@@ -19,17 +19,44 @@ import { InputRangeComponent }          from '../angular/input-range.component';
         },
     }}
     argTypes={{
-        minInputId      : { type :{ required: true }},
-        maxInputId      : { type :{ required: true }},
-        minInputValue   : { type :{ required: true }},
-        maxInputValue   : { type :{ required: true }},
-        step            : { type :{ required: true }}
+        minInputId : { type : { required: true }},
+        maxInputId : { type : { required: true }},
+        minInputValue : {
+            type : {
+                control : { type : 'number' },
+                required : true
+            }
+        },
+        maxInputValue : {
+            type : {
+                control : { type : 'number' },
+                required : true
+            }
+        },
+        step : {
+            type : {
+                control : { type : 'number' },
+                required : true
+            }
+        },
+        lang : {
+            type : { defaultValue: 'en' },
+            control : {
+                type : 'select',
+                options : ['en', 'fr']
+            }
+        },
+        rangeHandles : {
+            control : {
+                type : 'select',
+                options : ['','min handle', 'max handle']
+            }
+        }
     }}
 />
 
 # Input Range
 
-**// TODO** Write a description of your component.
 
 
 ## Drupal

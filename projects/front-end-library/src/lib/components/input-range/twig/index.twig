@@ -7,8 +7,8 @@
 
 <div class='bf-input-range {{(inputRangeVariant is defined) ? 'bf-input-range' ~ inputRangeVariant : '' }} js-bf-input-range {{ class }} ' lang={{lang|default('en')}}>
   <div class='bf-input-range_title'>
-    <h1>{{rangeTitle}}</h1>
-    <p>{{rangeDesc}}</p>
+    <h1 class='h2'>{{rangeTitle}}</h1>
+    <p class='small'>{{rangeDesc}}</p>
   </div>
 
   <div class='bf-input-range_content'>
@@ -20,19 +20,19 @@
 
       <div class='bf-input-range_value'></div>
 
-      <span class='bf-input-range_handle bf-input-range_handle--left'>
+      <p class='bf-input-range_handle bf-input-range_handle--left'>
         <label for='{{ minInputId }}' class='bf-input-range_label'></label>
-      </span>
+      </p>
 
-      <span class='bf-input-range_handle bf-input-range_handle--right'>
+      <p class='bf-input-range_handle bf-input-range_handle--right'>
         <label for='{{ maxInputId }}'class='bf-input-range_label'></label>
-      </span>
+      </p>
     </div>
 
     <input class='bf-input-range_input_min' type='range'
       max={{ maxInputValue }}
       min={{ minInputValue }}
-      step={{ step }}
+      step={{ step|default(1) }}
       id='{{ minInputId }}'
       value={{ ( minStartValue is defined and minStartValue ) ? minStartValue : minInputValue }}
       data-unit='{{ labelUnit|default('$') }}'
@@ -40,7 +40,7 @@
     <input class='bf-input-range_input_max' type='range'
       max={{ maxInputValue }}
       min={{ minInputValue }}
-      step={{step }}
+      step={{ step|default(1) }}
       id='{{ maxInputId }}'
       value={{ ( maxStartValue is defined and maxStartValue ) ? maxStartValue : maxInputValue }} />
   </div>

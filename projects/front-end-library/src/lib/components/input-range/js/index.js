@@ -27,11 +27,10 @@ $(function() {
         $minLabel = $this.find('.bf-input-range_handle--left .bf-input-range_label'),
         $maxLabel = $this.find('.bf-input-range_handle--right .bf-input-range_label');
 
-
         let suffix = '';
         let prefix = '';
 
-        if (($unit == '$' && container.attr('lang')== 'en') ){
+        if ($unit == '$' && $this.attr('lang') == 'en'){
             prefix = $unit
         } else {
             suffix = $unit
@@ -72,6 +71,5 @@ $(function() {
             console.log($maxRangeInput.val())
             displayCurrentValue();
         })
-
     });
 });
