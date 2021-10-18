@@ -13,6 +13,9 @@ module.exports = {
         '@storybook/addon-links',
         'storybook-addon-designs',
     ],
+  core: {
+    builder: 'webpack5',
+  },
     // webpackFinal: (config) => {
     //     return { ...config, module: { ...config.module, rules: custom.module.rules } };
     // },

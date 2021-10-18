@@ -5,6 +5,7 @@
 * ***************************************************************************** */
 
 $path-images: "/images/";
+@use "sass:math";
 
 
 // Variables should follow the `$component-state-property-size` formula for
@@ -301,7 +302,7 @@ $container-max-widths: (
 
 $grid-columns:                12 !default;
 $grid-gutter-width:           16px !default;
-$grid-gutter-width-simple:    ($grid-gutter-width / 2) !default;
+$grid-gutter-width-simple:    math.div($grid-gutter-width, 2) !default;
 
 $responsive-padding:          calc(3.5vw + #{$grid-gutter-width-simple}) !default;
 
@@ -373,7 +374,7 @@ $h4-font-size:                $font-size-base * 1.25 !default; // 18px
 $h5-font-size:                $font-size-base !default; // 16px
 $h6-font-size:                $font-size-base * 0.875 !default; // 14px
 
-$headings-margin-bottom:      ($spacer / 2) !default;
+$headings-margin-bottom:      math.div($spacer, 2) !default;
 $headings-font-family:        $font-family-base !default;
 $headings-font-weight:        $font-weight-normal !default;
 $headings-line-height:        1.25rem !default;
