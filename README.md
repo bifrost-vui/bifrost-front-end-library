@@ -1,6 +1,10 @@
 # Bifröst
 Front-end Vidéotron Visual language
 
+## Legal Disclaimer
+By contributing to this project to accept to transfert all you intellectual right to Videotron, without any more compensation, moneytary or other. 
+blablabla more legal display...
+
 ## What's inside?
 
 This repository contains 3 projects:
@@ -33,3 +37,5 @@ https://www.npmjs.com/package/@videotron-ui/bifrost-front-end-library
 ## Contributing
 
 If you'd like to contribute, please follow our [contributing guidelines](CONTRIBUTING.mdx).
+
+© Videotron 2020-2021
