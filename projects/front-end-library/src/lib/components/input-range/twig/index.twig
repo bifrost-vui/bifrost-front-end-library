@@ -17,19 +17,7 @@
 
 
 <div class='bf-input-range {{(inputRangeVariant is defined) ? 'bf-input-range' ~ inputRangeVariant : '' }} js-bf-input-range {{ class }} ' lang={{lang|default('en')}}>
-
-  {% if (rangeTitle is defined and rangeTitle) or (rangeDesc is defined and rangeDesc) %}
-    <div class='bf-input-range_title'>
-      {% if rangeTitle is defined and rangeTitle %}
-        <h1 class='h2'>{{rangeTitle}}</h1>
-      {% endif %}
-      {# TODO : valider avec JF si on souhaite conserver l'espace quand il n'y a pas de titre ou description #}
-      {% if rangeDesc is defined and rangeDesc %}
-        <p class='small'>{{rangeDesc}}</p>
-      {% endif %}
-    </div>
-  {% endif %}
-  <div class='bf-input-range_content'>
+  <div class='bf-input-range_panel'>
     {# Overlay of the input range double slider #}
     <div class='bf-input-range_overlay'>
       <div class='bf-input-range_exclude bf-input-range_exclude--left'></div>
@@ -65,18 +53,18 @@
   </div>
   {% if haslegend or haslegendDesc %}
   <div class='bf-input-range_legend'>
-    <span class='bf-input-range_legend_min'>
+    <p class='bf-input-range_legend_min'>
     {{ (minLegend is defined and minLegend) ? minLegend : '' }}
     {% if minLegendDesc is defined and minLegendDesc %}
-      <span>{{ minLegendDesc }}</span>
+      <strong>{{ minLegendDesc }}</strong>
     {% endif %}
-    </span>
-    <span class='bf-input-range_legend_max'>
+    </p>
+    <p class='bf-input-range_legend_max'>
       {{ (maxLegend is defined and maxLegend) ? maxLegend : '' }}
       {% if maxLegendDesc is defined and maxLegendDesc %}
-        <span>{{ maxLegendDesc }}</span>
+        <strong>{{ maxLegendDesc }}</strong>
       {% endif %}
-    </span>
+    </p>
   </div>
   {% endif %}
 </div>

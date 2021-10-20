@@ -7,41 +7,16 @@
 .bf-input-range {
     max-width: 1200px;
     width: 100%;
-    padding: 1rem;
+    padding: 0 .5rem;
 
-    /*----------------------------------------------*/
-    /* component's custom elements
-    /*----------------------------------------------*/
-    &_title{
-        margin-left: .5rem;
-    }
-    &_legend{
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: stretch;
-        align-content: space-between;
-        color: var(--bf-color-neutral-primary);
-
-        &_min,
-        &_max {
-            display: block;
-            width: 100%;
-            span {
-                display: block;
-            }
-        }
-        &_max {
-            text-align: right;
-        }
-    }
     /*----------------------------------------------*/
     /* Overlay of the input range double slider
     /*----------------------------------------------*/
-    &_content {
+    &_panel {
         position: relative;
         height:  1px;
         text-align: left;
-        margin: 2.5rem 0 0;
+        margin: 2rem 0 0;
         width: 100%;
     }
     &_overlay {
@@ -55,13 +30,29 @@
         position: absolute;
         height:  1px;
         top: -1px;
-        background-color: rgba(var(--bf-color-neutral-primary-rgb), .25) ;
+        background-color: rgba(var(--bf-color-neutral-primary-rgb), .35) ;
 
         &--left {
             left: 0;
+            &:before {
+                position: absolute;
+                left: -.5rem;
+                width: .5rem;
+                height: 1px;
+                background-color: inherit;
+                content: ' ';
+            }
         }
         &--right {
             right: 0;
+            &:after {
+                position: absolute;
+                right: -.5rem;
+                width: .5rem;
+                height: 1px;
+                background-color: inherit;
+                content: ' ';
+            }
         }
     }
     &_value {
@@ -72,12 +63,23 @@
         margin-inline-start: 0;
         background-color: var(--bf-color-neutral-primary);
         z-index: 1;
+        &:before {
+            position: absolute;
+            left: -.5rem;
+            width: .5rem;
+            height: 3px;
+            background-color: inherit;
+            content: ' ';
+        }
+        &:after {
+            position: absolute;
+            right: -.5rem;
+            width: .5rem;
+            height: 3px;
+            background-color: inherit;
+            content: ' ';
+        }
 
-    }
-    &_legend {
-        @extend .h6;
-        margin: 0.5rem;
-        color: rgba(var(--bf-color-neutral-primary-rgb), .25) ;
     }
     &_handle {
         position: absolute;
@@ -97,9 +99,34 @@
         color: var(--bf-color-neutral-primary);
     }
     /*----------------------------------------------*/
+    /* component's custom elements
+    /*----------------------------------------------*/
+    &_legend{
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: stretch;
+        align-content: space-between;
+        margin: .5rem 0 0;
+        @extend .small;
+        color: rgba(var(--bf-color-neutral-primary-rgb), .45) ;
+
+        &_min,
+        &_max {
+            display: block;
+            width: 100%;
+            margin-bottom: 0;
+            strong {
+                display: block;
+            }
+        }
+        &_max {
+            text-align: right;
+        }
+    }
+    /*----------------------------------------------*/
     /* HTML5 input[type=range]
     /* TODO IN CURRENT - choses if/witch propriatary code need to be kept
-    /* TODO in current : hover/focus state (waiting for UI)
+    /* TODO in current : hover/focus state (waiting for UI ?)
     /*----------------------------------------------*/
     input[type=range] {
         position: absolute;
@@ -150,7 +177,7 @@
         border-radius: 50%;
         border: 0 none;
         -webkit-appearance: none;
-        background: #050504;
+        background: var(--bf-color-neutral-primary);
     }
     input[type=range]::-webkit-slider-thumb {
         pointer-events: all;
@@ -187,6 +214,7 @@
         }
         &::-moz-range-thumb {
             pointer-events: none;
+            background: transparent !important;
             display: none;
         }
         &::-webkit-slider-thumb {
