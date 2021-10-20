@@ -1,16 +1,34 @@
 {% if rangeHandles == 'min handle' %}
-{% set inputRangeVariant = '--min' %}
+  {% set inputRangeVariant = '--min' %}
 {% elseif rangeHandles == 'max handle'%}
-{% set inputRangeVariant = '--max' %}
+  {% set inputRangeVariant = '--max' %}
+{% endif %}
+
+{% if  minLegend is defined and minLegend and maxLegend is defined and maxLegend  %}
+ {% set haslegend = true %}
+{% else %}
+  {% set haslegend = false %}
+{% endif %}
+{% if  minLegendDesc is defined and minLegendDesc and maxLegendDesc is defined and maxLegendDesc  %}
+ {% set haslegendDesc = true %}
+{% else %}
+  {% set haslegendDesc = false %}
 {% endif %}
 
 
 <div class='bf-input-range {{(inputRangeVariant is defined) ? 'bf-input-range' ~ inputRangeVariant : '' }} js-bf-input-range {{ class }} ' lang={{lang|default('en')}}>
-  <div class='bf-input-range_title'>
-    <h1 class='h2'>{{rangeTitle}}</h1>
-    <p class='small'>{{rangeDesc}}</p>
-  </div>
 
+  {% if (rangeTitle is defined and rangeTitle) or (rangeDesc is defined and rangeDesc) %}
+    <div class='bf-input-range_title'>
+      {% if rangeTitle is defined and rangeTitle %}
+        <h1 class='h2'>{{rangeTitle}}</h1>
+      {% endif %}
+      {# TODO : valider avec JF si on souhaite conserver l'espace quand il n'y a pas de titre ou description #}
+      {% if rangeDesc is defined and rangeDesc %}
+        <p class='small'>{{rangeDesc}}</p>
+      {% endif %}
+    </div>
+  {% endif %}
   <div class='bf-input-range_content'>
     {# Overlay of the input range double slider #}
     <div class='bf-input-range_overlay'>
@@ -36,21 +54,29 @@
       id='{{ minInputId }}'
       value={{ ( minStartValue is defined and minStartValue ) ? minStartValue : minInputValue }}
       data-unit='{{ labelUnit|default('$') }}'
-      />
+    />
     <input class='bf-input-range_input_max' type='range'
       max={{ maxInputValue }}
       min={{ minInputValue }}
       step={{ step|default(1) }}
       id='{{ maxInputId }}'
-      value={{ ( maxStartValue is defined and maxStartValue ) ? maxStartValue : maxInputValue }} />
+      value={{ ( maxStartValue is defined and maxStartValue ) ? maxStartValue : maxInputValue }}
+    />
   </div>
-
+  {% if haslegend or haslegendDesc %}
   <div class='bf-input-range_legend'>
-    <span class='bf-input-range_legend_min'>{{ minLegend }}
+    <span class='bf-input-range_legend_min'>
+    {{ (minLegend is defined and minLegend) ? minLegend : '' }}
+    {% if minLegendDesc is defined and minLegendDesc %}
       <span>{{ minLegendDesc }}</span>
+    {% endif %}
     </span>
-    <span class='bf-input-range_legend_max'>{{ maxLegend }}
-      <span>{{ maxLegendDesc }}</span>
+    <span class='bf-input-range_legend_max'>
+      {{ (maxLegend is defined and maxLegend) ? maxLegend : '' }}
+      {% if maxLegendDesc is defined and maxLegendDesc %}
+        <span>{{ maxLegendDesc }}</span>
+      {% endif %}
     </span>
   </div>
+  {% endif %}
 </div>

@@ -12,6 +12,9 @@
     /*----------------------------------------------*/
     /* component's custom elements
     /*----------------------------------------------*/
+    &_title{
+        margin-left: .5rem;
+    }
     &_legend{
         display: flex;
         flex-flow: row nowrap;
@@ -51,6 +54,7 @@
     &_exclude {
         position: absolute;
         height:  1px;
+        top: -1px;
         background-color: rgba(var(--bf-color-neutral-primary-rgb), .25) ;
 
         &--left {
@@ -63,11 +67,12 @@
     &_value {
         position: absolute;
         left: 0;
-        top: -.125rem;
-        height:  .25rem;
+        top: -2px;
+        height: 3px;
         margin-inline-start: 0;
         background-color: var(--bf-color-neutral-primary);
         z-index: 1;
+
     }
     &_legend {
         @extend .h6;
@@ -86,14 +91,15 @@
     &_label {
         position: absolute;
         display: block;
-        width: 4rem;
-        left: -2rem;
+        width: 3rem;
+        left: -1.5rem;
         z-index:3;
         color: var(--bf-color-neutral-primary);
     }
     /*----------------------------------------------*/
     /* HTML5 input[type=range]
     /* TODO IN CURRENT - choses if/witch propriatary code need to be kept
+    /* TODO in current : hover/focus state (waiting for UI)
     /*----------------------------------------------*/
     input[type=range] {
         position: absolute;
