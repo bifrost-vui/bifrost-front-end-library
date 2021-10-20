@@ -7,7 +7,7 @@ const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
 const devMode               = process.env.NODE_ENV !== 'production';
 
 
-module.exports = (env) => {    
+module.exports = (env) => {
     return [{
         entry: {
             'bifrost-components': './projects/front-end-library/src/lib/js/bifrost-components.js',
@@ -48,7 +48,14 @@ module.exports = (env) => {
                 },
                 {
                     test: /\.(png|woff|jpg|woff2|eot|ttf|svg)$/,
-                    loader: 'url-loader?limit=100000'
+                  use: [
+                    {
+                      loader: 'url-loader',
+                      options: {
+                        limit: 1000
+                      }
+                    }
+                  ]
                 },
                 {
                     test: /\.(scss|css)$/,

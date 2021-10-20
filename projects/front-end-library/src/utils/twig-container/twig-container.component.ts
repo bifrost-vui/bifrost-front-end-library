@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter, SecurityContext, SimpleChange} from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { isDevMode } from '@angular/core';
+import {parse, stringify, toJSON, fromJSON} from 'flatted';
 
 @Component({
   selector: 'twig-container',
@@ -19,6 +20,7 @@ export class TwigContainerComponent implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit', this);
+    console.log('montreal')
   }
 
   ngOnChanges() {
@@ -30,14 +32,14 @@ export class TwigContainerComponent implements OnInit {
         console.log('updateIframeUrl', key);
         if ( !['iframeUrl', 'sanitizer'].includes(key) && props[key] !== undefined )
         {
-            const value = (['object'].includes(typeof props[key])) ? JSON.stringify(props[key]) : props[key];
+            const value = (['object'].includes(typeof props[key])) ? stringify(props[key]) : props[key];
             if (value !== '')
             {
                 return key + '=' + value;
             }
         }
     }).join('&');
-    
+
     const baseURL = isDevMode() ? 'http://localhost:3001/' : '/'
     const url = baseURL + 'api/twig?' + paramsString;
     console.log('url', url);
@@ -47,7 +49,6 @@ export class TwigContainerComponent implements OnInit {
 
   ngDoCheck() {
     console.log('ngDoCheck', this);
-    
     const newProps = {...this};
     delete newProps.props;
     delete newProps.sanitizer;
@@ -59,5 +60,9 @@ export class TwigContainerComponent implements OnInit {
     //     this.props = newProps;
         this.updateIframeUrl(newProps);
     }
+  }
+
+  ngAfterViewInit() {
+    console.log('fatou')
   }
 }
