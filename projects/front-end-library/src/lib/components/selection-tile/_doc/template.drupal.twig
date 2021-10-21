@@ -34,6 +34,15 @@
           name        : name|default(name ~ loop.index),
           ariaLabel   : (ariaLabel ~ '3' ~ loop.index)|default(ariaLabel ~ '3' ~ loop.index),
           title       : title|default('Selection tile title'),
+          description : description|default('lorem ipsum html descriptum<sup>*</sup>'),
+          info        : info|default('12.34 $/Mois'),
+        }  %}
+        {% include '@bf-components/selection-tile/twig/index.twig' with {
+          value       : value,
+          inputId     : (inputId ~ '3' ~ loop.index)|default(inputId ~ '3' ~ loop.index),
+          name        : name|default(name ~ loop.index),
+          ariaLabel   : (ariaLabel ~ '3' ~ loop.index)|default(ariaLabel ~ '3' ~ loop.index),
+          title       : title|default('Selection tile title'),
           description : description|default('lorem ipsum html <em>descriptum</em><sup>*</sup>'),
           image       : image|default({src:'/images/_docs/abstract-background.png',alt:'abstract background',class:'',}),
           info        : info|default('12.34 $/Mois'),
