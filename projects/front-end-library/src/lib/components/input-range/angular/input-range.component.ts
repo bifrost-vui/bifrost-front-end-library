@@ -18,8 +18,8 @@ export class InputRangeComponent implements OnInit {
     @Input() labelUnit      : string;
     @Input() step           : number;
     @Input() lang           : 'en'|'fr';
-    /** By default this component displays 2 handles. By selecting `min handle` or `max handle` the component will display only one */
-    @Input() rangeHandles   :''|'min handle' |'max handle';
+    /** By default this component displays 2 handles. By selecting `min` or `max` the component will display only one */
+    @Input() rangeHandles   :''|'min' |'max';
     @Input() minLegend      : string;
     @Input() maxLegend      : string;
     @Input() minLegendDesc  : string;
