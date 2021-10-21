@@ -1,76 +1,76 @@
 {% set needsContainer = (isInvalid is defined and isInvalid ) %}
-{% set fit          = fit|default('content') %}
+{% set fit      = fit|default('content') %}
 {% set allowedTags 	= '<br><em><i><strong><b><sup><sub>' %}
 {% set orientation  = orientation|default('horizontal') %}
 {% set hasVisual 	= ((iconName is defined and iconName) or (image.src is defined and image.src and image.alt is defined)) %}
 
 {% if needsContainer %}
-	<div class='bf-selection-tile__container {{ (isInvalid) ? 'color-warning' : ' ' }} bf-selection-tile__container--{{ 'fit-' ~ fit }} bf-selection-tile__container--{{ orientation }} {{ class }}'>
+  <div class='bf-selection-tile__container {{ (isInvalid) ? 'color-warning' : ' ' }} bf-selection-tile__container--{{ 'fit-' ~ fit }} bf-selection-tile__container--{{ orientation }} {{ class }}'>
 {% endif %}
-	<div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--{{ 'fit-' ~ fit }} {{ (isDisabled) ? 'disabled' }} {{ (needscontainer) ? '': class }}'>
-		<div class='bf-selection-tile__control'>
-			<input
-				type='{{ inputType|default('checkbox') }}'
-				class='bf-selection-tile__input'
-				id='{{ inputId|default('') }}'
-				name='{{ name }}'
-				value='{{ value|default('') }}'
-				{% if ariaLabel is defined and ariaLabel %} aria-label='{{ ariaLabel}}'{% endif %}
-				{{ (isDisabled) ? 'disabled' : '' }}
-				{{ (isSelected) ? 'checked' : '' }}
-				{{ (required) ? 'required' : '' }}
-				{{ extraAttribute|default(NULL) }}
-			/>
+  <div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--{{ 'fit-' ~ fit }} {{ (isDisabled) ? 'disabled' }} {{ (needscontainer) ? '': class }}'>
+    <div class='bf-selection-tile__control'>
+      <input
+        type='{{ inputType|default('checkbox') }}'
+        class='bf-selection-tile__input'
+        id='{{ inputId|default('') }}'
+        name='{{ name }}'
+        value='{{ value|default('') }}'
+        {% if ariaLabel is defined and ariaLabel %} aria-label='{{ ariaLabel}}'{% endif %}
+        {{ (isDisabled) ? 'disabled' : '' }}
+        {{ (isSelected) ? 'checked' : '' }}
+        {{ (required) ? 'required' : '' }}
+        {{ extraAttribute|default(NULL) }}
+      />
 
-			<label for='{{ inputId|default('') }}' class='bf-selection-tile__label' {% if ariaLabel is defined and ariaLabel %} title='{{ ariaLabel}}'{% endif %}></label>
-		</div>
+      <label for='{{ inputId|default('') }}' class='bf-selection-tile__label' {% if ariaLabel is defined and ariaLabel %} title='{{ ariaLabel}}'{% endif %}></label>
+    </div>
 
-		<div class='bf-selection-tile__block'>
-			{% block selectionTile_content %}
-				<div>
-					<div class='bf-selection-tile__body'>
-						{% if hasVisual %}
-							<div class='bf-selection-tile__visual'>
-								{% if iconName is defined and iconName %}
-									{% include '@bf-components/icon/twig/index.twig' with {
-                                        name    : iconName,
-                                        size    : (orientation == 'vertical' and fit == 'container') ? 'large' : 'medium',
-                                    } only %}
-								{% elseif image.src is defined and image.src and image.alt is defined %}
-									<img class='{{ image.class }}' src='{{ image.src }}' alt='{{ image.alt }}' />
-								{% endif %}
-							</div>
-						{% endif %}
+    <div class='bf-selection-tile__block'>
+      {% block selectionTile_content %}
+        <div>
+          <div class='bf-selection-tile__body'>
+            {% if hasVisual %}
+              <div class='bf-selection-tile__visual'>
+                {% if iconName is defined and iconName %}
+                  {% include '@bf-components/icon/twig/index.twig' with {
+                    name  : iconName,
+                    size  : (orientation == 'vertical' and fit == 'container') ? 'large' : 'medium',
+                  } only %}
+                {% elseif image.src is defined and image.src and image.alt is defined %}
+                  <img class='{{ image.class }}' src='{{ image.src }}' alt='{{ image.alt }}' />
+                {% endif %}
+              </div>
+            {% endif %}
 
-						{% if ( title is defined and title) or (description is defined and description) %}
-							<div class='bf-selection-tile__text'>
-								{% if title is defined and title %}
-									<p class='p-0 m-0'>
-										<strong>{{ title }}</strong>
-									</p>
-								{% endif %}
+            {% if ( title is defined and title) or (description is defined and description) %}
+              <div class='bf-selection-tile__text'>
+                {% if title is defined and title %}
+                  <p class='p-0 m-0'>
+                    <strong>{{ title }}</strong>
+                  </p>
+                {% endif %}
 
-								{% if description is defined and description %}
-									<p class='p-0 m-0'>{{ description|striptags('<br><em><i><strong><b><sup><sub>')|raw }}</p>
-								{% endif %}
-							</div>
-						{% endif %}
-					</div>
-				</div>
+                {% if description is defined and description %}
+                  <p class='p-0 m-0'>{{ description }}</p>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
 
-				{% if (info is defined and info) or (orientation is same as ('vertical') and fit is same as ('container')) %}
-					<div class='bf-selection-tile__footer'>
-						<div class='bf-selection-tile__text'>
-							<p class='p-0 m-0'>{{ info }}</p>
-						</div>
-					</div>
-				{% endif %}
-			{% endblock %}
-		</div>
-	</div>
+        {% if (info is defined and info) or (orientation is same as ('vertical') and fit is same as ('container')) %}
+          <div class='bf-selection-tile__footer'>
+            <div class='bf-selection-tile__text'>
+              <p class='p-0 m-0'>{{ info }}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endblock %}
+    </div>
+  </div>
 {% if needsContainer %}
-		<div class='bf-selection-tile__feedback'>
-			{{ errorMessage|striptags(allowedTags)|raw }}
-		</div>
-	</div>
+    <div class='bf-selection-tile__feedback'>
+      {{ errorMessage|striptags(allowedTags)|raw }}
+    </div>
+  </div>
 {% endif %}
