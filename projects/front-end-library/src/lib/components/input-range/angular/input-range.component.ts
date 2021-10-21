@@ -11,9 +11,10 @@ export class InputRangeComponent implements OnInit {
     @Input() maxInputId     : string;
     @Input() minInputValue  : number;
     @Input() maxInputValue  : number;
-    /** if no `minStartValue` is defined, `minInputValue` will be used instead  */
+
+    /** if no `minStartValue` is defined, `minInputValue` will be the min start value */
     @Input() minStartValue  : number;
-    /** if no `maxStartValue` is defined, `maxInputValue` will be used instead  */
+    /** if no `maxStartValue` is defined, `maxInputValue` will be the max start value */
     @Input() maxStartValue  : number;
     @Input() labelUnit      : string;
     @Input() step           : number;
@@ -22,8 +23,8 @@ export class InputRangeComponent implements OnInit {
     @Input() rangeHandles   :''|'min' |'max';
     @Input() minLegend      : string;
     @Input() maxLegend      : string;
-    @Input() minLegendDesc  : string;
-    @Input() maxLegendDesc  : string;
+    @Input() minLegendDescription  : string;
+    @Input() maxLegendDescription  : string;
     @Input() class          : string;
 
     ngOnInit() {

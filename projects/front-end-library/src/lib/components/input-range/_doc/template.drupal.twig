@@ -10,8 +10,8 @@
         lang           : 'en',
         minLegend      : 'Minimum',
         maxLegend      : 'Maximum',
-        minLegendDesc  : '$20/month',
-        maxLegendDesc  : '$150/month',
+        minLegendDescription  : '$20/month',
+        maxLegendDescription  : '$150/month',
         class          : 'bf-color-bg-ground'
     },
     {
@@ -26,8 +26,8 @@
         lang           : 'fr',
         minLegend      : 'Minimum',
         maxLegend      : 'Maximum',
-        minLegendDesc  : '20$ / mois',
-        maxLegendDesc  : '150$ / mois',
+        minLegendDescription  : '20$ / mois',
+        maxLegendDescription  : '150$ / mois',
         class          : 'bf-color-bg-underground'
     },
     {
@@ -71,8 +71,8 @@
         rangeHandles   : 'max',
         minLegend      : 'Min',
         maxLegend      : 'Max',
-        minLegendDesc  : '$20/month',
-        maxLegendDesc  : '$150/month',
+        minLegendDescription  : '$20/month',
+        maxLegendDescription  : '$150/month',
         class          : 'reversed bf-color-bg-underground'
     },
     {
@@ -87,38 +87,34 @@
         lang           : 'en',
         minLegend      : 'Min legend',
         maxLegend      : 'Max legend',
-        minLegendDesc  : 'Min legend description',
-        maxLegendDesc  : 'Max legend description',
+        minLegendDescription  : 'Min legend description',
+        maxLegendDescription  : 'Max legend description',
         class          : 'bf-color-bg-action-primary'
     },
 ] %}
 
-
-
-<div class='demogrid' >
-{% for data in rangeData %}
-    {% include '@bf-components/input-range/twig/index.twig' with {
-        minInputId     : minInputId|json_parse|default(data.minInputId),
-        maxInputId     : maxInputId|json_parse|default(data.maxInputId),
-        minInputValue  : minInputValue|json_parse|default(data.minInputValue),
-        maxInputValue  : maxInputValue|json_parse|default(data.maxInputValue),
-        minStartValue  : minStartValue|json_parse|default(data.minStartValue),
-        maxStartValue  : maxStartValue|json_parse|default(data.maxStartValue),
-        labelUnit      : labelUnit|json_parse|default(data.labelUnit),
-        step           : step|json_parse|default(data.step),
-        lang           : lang|json_parse|default(data.lang),
-        rangeHandles   : rangeHandles|json_parse|default(data.rangeHandles),
-        rangeTitle     : rangeTitle|json_parse|default(data.rangeTitle),
-        rangeDesc      : rangeDesc|json_parse|default(data.rangeDesc),
-        minLegend      : minLegend|json_parse|default(data.minLegend),
-        maxLegend      : maxLegend|json_parse|default(data.maxLegend),
-        minLegendDesc  : minLegendDesc|json_parse|default(data.minLegendDesc),
-        maxLegendDesc  : maxLegendDesc|json_parse|default(data.maxLegendDesc),
-        class          : class|json_parse|default(data.class)
-    } %}
-
-{% endfor %}
-
+<div class='demogrid'>
+    {% for data in rangeData %}
+        {% include '@bf-components/input-range/twig/index.twig' with {
+            minInputId              : minInputId|json_parse|default(data.minInputId),
+            maxInputId              : maxInputId|json_parse|default(data.maxInputId),
+            minInputValue           : minInputValue|json_parse|default(data.minInputValue),
+            maxInputValue           : maxInputValue|json_parse|default(data.maxInputValue),
+            minStartValue           : minStartValue|json_parse|default(data.minStartValue),
+            maxStartValue           : maxStartValue|json_parse|default(data.maxStartValue),
+            labelUnit               : labelUnit|json_parse|default(data.labelUnit),
+            step                    : step|json_parse|default(data.step),
+            lang                    : lang|json_parse|default(data.lang),
+            rangeHandles            : rangeHandles|json_parse|default(data.rangeHandles),
+            rangeTitle              : rangeTitle|json_parse|default(data.rangeTitle),
+            rangeDesc               : rangeDesc|json_parse|default(data.rangeDesc),
+            minLegend               : minLegend|json_parse|default(data.minLegend),
+            maxLegend               : maxLegend|json_parse|default(data.maxLegend),
+            minLegendDescription    : minLegendDescription|json_parse|default(data.minLegendDescription),
+            maxLegendDescription    : maxLegendDescription|json_parse|default(data.maxLegendDescription),
+            class                   : class|json_parse|default(data.class)
+        } %}
+    {% endfor %}
 </div>
 <style>
 .demogrid {
