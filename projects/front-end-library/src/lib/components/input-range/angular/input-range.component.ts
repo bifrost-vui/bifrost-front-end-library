@@ -18,7 +18,7 @@ export class InputRangeComponent implements OnInit {
     @Input() maxStartValue  : number;
     @Input() labelUnit      : string;
     @Input() step           : number;
-    @Input() lang           : 'en'|'fr';
+    @Input() language       : 'en'|'fr';
     /** By default this component displays 2 handles. By selecting `min` or `max` the component will display only one */
     @Input() rangeHandles   :''|'min' |'max';
     @Input() minLegend      : string;

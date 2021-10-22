@@ -1,12 +1,7 @@
-/**
- *  Script for the Bifrost Input range component
- **/
 import $ from 'jquery';
 
 $(function() {
-    console.log('Input range component js loaded again')
-
-    let container = $('.js-bf-input-range');
+    const container = $('.js-bf-input-range');
 
     container.each(function (i, el) {
         const $this = $(el),
@@ -40,15 +35,15 @@ $(function() {
         displayCurrentValue();
 
         function setInitialRangeValues() {
-            let min = $minRangeInput.val();
-            let max = $maxRangeInput.val();
+            const min = $minRangeInput.val();
+            const max = $maxRangeInput.val();
             $minLabel.html(prefix + min + suffix);
             $maxLabel.html(prefix + max + suffix);
         }
 
         function displayCurrentValue() {
-            let min = doTheMath($minRangeInput.val());
-            let max = doTheMath($maxRangeInput.val());
+            const min = doTheMath($minRangeInput.val());
+            const max = doTheMath($maxRangeInput.val());
             $minLabel.html(prefix + $minRangeInput.val() + suffix);
             $maxLabel.html(prefix + $maxRangeInput.val() + suffix);
             $excludeLeft.css('width', min + '%');
@@ -63,12 +58,10 @@ $(function() {
         }
 
         $this.on('input', '.bf-input-range_input_min', function() {
-            console.log($minRangeInput.val())
             displayCurrentValue();
         });
 
         $this.on('input', '.bf-input-range_input_max', function(){
-            console.log($maxRangeInput.val())
             displayCurrentValue();
         })
     });

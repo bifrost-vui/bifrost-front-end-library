@@ -5,9 +5,8 @@
 * ***************************************************************************** */
 
 .bf-input-range {
-    max-width: 1200px;
     width: 100%;
-    padding: 0$spacer-2;
+    padding: 0 var(--bf-spacer-2);
 
     /*----------------------------------------------*/
     /* Overlay of the input range double slider
@@ -24,20 +23,20 @@
         left: 0;
         right: 0;
         height:  1px;
-        margin: 0$spacer-2;
+        margin: 0 var(--bf-spacer-2);
     }
     &_exclude {
         position: absolute;
         height:  1px;
         top: -1px;
-        background-color: rgba(var(--bf-color-neutral-primary-rgb), .35) ;
+        background-color: rgba(var(--bf-color-neutral-primary-rgb), .675) ;
 
         &--left {
             left: 0;
             &:before {
                 position: absolute;
-                left: -$spacer-2;
-                width:$spacer-2;
+                left: calc(var(--bf-spacer-2) * -1);
+                width: var(--bf-spacer-2);
                 height: 1px;
                 background-color: inherit;
                 content: ' ';
@@ -47,8 +46,8 @@
             right: 0;
             &:after {
                 position: absolute;
-                right: -$spacer-2;
-                width:$spacer-2;
+                right: calc(var(--bf-spacer-2) * -1);
+                width: var(--bf-spacer-2);
                 height: 1px;
                 background-color: inherit;
                 content: ' ';
@@ -65,16 +64,16 @@
         z-index: 1;
         &:before {
             position: absolute;
-            left: -$spacer-2;
-            width:$spacer-2;
+            left: calc(var(--bf-spacer-2) * -1);
+            width: var(--bf-spacer-2);
             height: 3px;
             background-color: inherit;
             content: ' ';
         }
         &:after {
             position: absolute;
-            right: -$spacer-2;
-            width:$spacer-2;
+            right: calc(var(--bf-spacer-2) * -1);
+            width: var(--bf-spacer-2);
             height: 3px;
             background-color: inherit;
             content: ' ';
@@ -95,20 +94,20 @@
         display: block;
         width: 3rem;
         left: -1.5rem;
-        z-index:3;
+        z-index: 3;
         color: var(--bf-color-neutral-primary);
     }
     /*----------------------------------------------*/
     /* component's custom elements
     /*----------------------------------------------*/
-    &_legend{
+    &_legend {
         display: flex;
         flex-flow: row nowrap;
         align-items: stretch;
         align-content: space-between;
-        margin: $spacer-2 0 0;
+        margin: var(--bf-spacer-2) 0 0;
         @extend .small;
-        color: rgba(var(--bf-color-neutral-primary-rgb), .45) ;
+        color: var(--bf-color-neutral-primary);
 
         &_min,
         &_max {
@@ -131,7 +130,7 @@
         pointer-events: none;
         -webkit-appearance: none;
         z-index: 3;
-        height:  1px;
+        height: 1px;
         top: -2px;
         width: 100%;
         opacity: 1;
@@ -221,8 +220,7 @@
         }
     }
     &--min .bf-input-range_handle--right,
-    &--max .bf-input-range_handle--left{
+    &--max .bf-input-range_handle--left {
         display: none;
     }
-
 }
