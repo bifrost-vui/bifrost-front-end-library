@@ -19,20 +19,6 @@ import { InputRangeComponent }          from '../angular/input-range.component';
         },
     }}
     argTypes={{
-        minInputId : { type : { required: true }},
-        maxInputId : { type : { required: true }},
-        minInputValue : {
-            type : {
-                control : { type : 'number' },
-                required : true
-            }
-        },
-        maxInputValue : {
-            type : {
-                control : { type : 'number' },
-                required : true
-            }
-        },
         language : {
             type : { defaultValue: 'en' },
             control : {
@@ -53,6 +39,28 @@ import { InputRangeComponent }          from '../angular/input-range.component';
 
 ## Drupal
 
+export const commonProps = {
+    min                 : {
+            inputId             : 'minRange',
+            inputValue          : 20,
+            startValue          : 40,
+            legend              : 'Minimum',
+            legendDescription   : '$20/month'
+        },
+    max                 : {
+            inputId             : 'maxRange',
+            inputValue          :  150,
+            startValue          :  80,
+            legend              : 'Maximum',
+            legendDescription   : '$150/month'
+        },
+        labelUnit      : '$',
+        step           : null,
+        rangeHandles   : '',
+        language       : '',
+        class          : ''
+}
+
 export const Drupal = (args) => ({
     component   : TwigContainerComponent,
     props       : args,
@@ -66,6 +74,7 @@ export const Drupal = (args) => ({
         name='Drupal'
         args={{
             elementPath : 'components/input-range/_doc/template.drupal',
+            ...commonProps
         }}
     >
         {Drupal.bind({})}
@@ -79,61 +88,73 @@ export const Drupal = (args) => ({
 
 ```jsx
 {% include '@bf-components/input-range/twig/index.twig' with {
-    minInputId     : 'minRangeId',
-    maxInputId     : 'maxRangeId',
-    minInputValue  : 20,
-    maxInputValue  : 800,
-    minStartValue  : 40,
-    maxStartValue  : 160,
-    labelUnit      : '$',
-    step           : 1,
-    language       : 'en',
-    minLegend      : 'Min legend line 1',
-    maxLegend      : 'Max legend line 1',
-    minLegendDescription  : 'Min legend line 2',
-    maxLegendDescription  : 'Max legend line 2',
-    class          : ''
-} only %}
+    min            : {
+        inputId             : 'minRange',
+        inputValue          : 20,
+        startValue          : 40,
+        legend              : 'Minimum',
+        legendDescription   : '$20/month'
+    },
+    max           : {
+        inputId             : 'maxRange',
+        inputValue          :  150,
+        startValue          :  80,
+        legend              : 'Maximum',
+        legendDescription   : '$150/month'
+    },
+    labelUnit   : '$',
+    language    : '',
+    class       : ''
+
+}} only %}
 ```
 ### Input range component with min handle only
 
 ```jsx
 {% include '@bf-components/input-range/twig/index.twig' with {
-    minInputId     : 'minRangeId',
-    maxInputId     : 'maxRangeID',
-    minInputValue  : 20,
-    maxInputValue  : 800,
-    minStartValue  : 40,
+    min              : {
+        inputId             : 'minRange',
+        inputValue          : 20,
+        legend              : 'Minimum',
+        legendDescription   : '$20/month'
+    },
+    max              : {
+        inputId             : 'maxRange',
+        inputValue          :  150,
+        startValue          :  80,
+        legend              : 'Maximum',
+        legendDescription   : '$150/month'
+    },
     labelUnit      : '$',
-    step           : 1,
-    language       : 'en',
-    rangeHandles   : 'min'
-    minLegend      : 'Min legend line 1',
-    maxLegend      : 'Max legend line 1',
-    minLegendDescription  : 'Min legend line 2',
-    maxLegendDescription  : 'Max legend line 2',
+    step           : 5,
+    rangeHandles   : 'min',
+    language       : '',
     class          : ''
-} only %}
+}} %}
 ```
 ### Input range component with max handle only
 
 ```jsx
 {% include '@bf-components/input-range/twig/index.twig' with {
-    minInputId     : 'minRangeId',
-    maxInputId     : 'maxRangeID',
-    minInputValue  : 20,
-    maxInputValue  : 800,
-    maxStartValue  : 160,
+    min             : {
+        inputId             : 'minRange',
+        inputValue          : 20,
+        legend              : 'Minimum',
+        legendDescription   : '$20/month'
+    },
+    max             : {
+        inputId             : 'maxRange',
+        inputValue          :  150,
+        startValue          :  80,
+        legend              : 'Maximum',
+        legendDescription   : '$150/month'
+    },
     labelUnit      : '$',
-    step           : 1,
-    language       : 'en',
-    rangeHandles   : 'max'
-    minLegend      : 'Min legend line 1',
-    maxLegend      : 'Max legend line 1',
-    minLegendDescription  : 'Min legend line 2',
-    maxLegendDescription  : 'Max legend line 2',
+    step           : 10,
+    rangeHandles   : 'max',
+    language       : '',
     class          : ''
-} only %}
+}} %}
 ```
 
 

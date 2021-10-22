@@ -1,116 +1,48 @@
-{# For demo only#}
-{% set rangeData = [
-    {
-        minInputId     : 'minRange1',
-        maxInputId     : 'maxRange1',
-        minInputValue  : 20,
-        maxInputValue  : 150,
-        labelUnit      : '$',
-        step           : 1,
-        language       : 'en',
-        minLegend      : 'Minimum',
-        maxLegend      : 'Maximum',
-        minLegendDescription  : '$20/month',
-        maxLegendDescription  : '$150/month',
-        class          : 'bf-color-bg-ground'
-    },
-    {
-        minInputId     : 'minRange2',
-        maxInputId     : 'maxRange2',
-        minInputValue  : 20,
-        maxInputValue  : 150,
-        minStartValue  : 30,
-        maxStartValue  : 100,
-        labelUnit      : '$',
-        step           : 1,
-        language       : 'fr',
-        minLegend      : 'Minimum',
-        maxLegend      : 'Maximum',
-        minLegendDescription  : '20$ / mois',
-        maxLegendDescription  : '150$ / mois',
-        class          : 'bf-color-bg-underground'
-    },
-    {
-        minInputId     : 'minRange5',
-        maxInputId     : 'maxRange5',
-        minInputValue  : 20,
-        maxInputValue  : 200,
-        minStartValue  : 80,
-        maxStartValue  : 160,
-        labelUnit      : '$',
-        step           : 1,
-        language       : 'en',
-        class          : 'bf-color-bg-brand'
-    },
-    {
-        minInputId     : 'minRange3',
-        maxInputId     : 'maxRange3',
-        minInputValue  : 2,
-        maxInputValue  : 20,
-        minStartValue  : 10,
-        labelUnit      : 'Go',
-        step           : 1,
-        language       : 'fr',
-        rangeHandles   : 'min',
-        minLegend      : 'Min 2Go',
-        maxLegend      : 'Max 20Go',
-        class          : 'reversed bf-color-bg-ground'
-    },
-    {
-        minInputId     : 'minRange4',
-        maxInputId     : 'maxRange4',
-        minInputValue  : 0,
-        maxInputValue  : 20,
-        minStartValue  : 0,
-        maxStartValue  : 6,
-        labelUnit      : 'Go',
-        step           : 1,
-        language       : 'en',
-        rangeHandles   : 'max',
-        minLegend      : 'Min',
-        maxLegend      : 'Max',
-        minLegendDescription  : '$20/month',
-        maxLegendDescription  : '$150/month',
-        class          : 'reversed bf-color-bg-underground'
-    },
-    {
-        minInputId     : 'minRange5',
-        maxInputId     : 'maxRange5',
-        minInputValue  : 20,
-        maxInputValue  : 200,
-        minStartValue  : 80,
-        maxStartValue  : 160,
-        labelUnit      : 'unit',
-        step           : 1,
-        language       : 'en',
-        minLegend      : 'Min legend',
-        maxLegend      : 'Max legend',
-        minLegendDescription  : 'Min legend description',
-        maxLegendDescription  : 'Max legend description',
-        class          : 'bf-color-bg-action-primary'
-    },
-] %}
 
+{% set min = min|json_parse %}
+{% set max = max|json_parse %}
+{% set step = step|json_parse %}
+{% set language = language|json_parse %}
+{% set class = class|json_parse %}
+{% set rangeHandles = rangeHandles|json_parse %}
+
+{% set bgClass  = '' %}
+{% set reversedClass  = '' %}
 <div class='demogrid'>
-    {% for data in rangeData %}
+    {% for index in [1,2,3,4,5]%}
+
+        {% if index is same as (1) or index == 4 %}
+            {% set bgClass = (class is defined and class) ? class : ' bf-color-bg-ground' %}
+        {% elseif index == 2 or index == 5 %}
+            {% set bgClass = (class is defined and class) ? class : ' bf-color-bg-underground' %}
+        {% else %}
+            {% set bgClass = (class is defined and class) ? class : ' bf-color-bg-action-primary' %}
+        {% endif %}
+
+        {% if index == 4 or index == 5 %}
+            {% set reversedClass = (class is defined and class) ? '' : ' reversed' %}
+        {% endif %}
+
         {% include '@bf-components/input-range/twig/index.twig' with {
-            minInputId              : minInputId|json_parse|default(data.minInputId),
-            maxInputId              : maxInputId|json_parse|default(data.maxInputId),
-            minInputValue           : minInputValue|json_parse|default(data.minInputValue),
-            maxInputValue           : maxInputValue|json_parse|default(data.maxInputValue),
-            minStartValue           : minStartValue|json_parse|default(data.minStartValue),
-            maxStartValue           : maxStartValue|json_parse|default(data.maxStartValue),
-            labelUnit               : labelUnit|json_parse|default(data.labelUnit),
-            step                    : step|json_parse|default(data.step),
-            language                : language|json_parse|default(data.language),
-            rangeHandles            : rangeHandles|json_parse|default(data.rangeHandles),
-            rangeTitle              : rangeTitle|json_parse|default(data.rangeTitle),
-            rangeDesc               : rangeDesc|json_parse|default(data.rangeDesc),
-            minLegend               : minLegend|json_parse|default(data.minLegend),
-            maxLegend               : maxLegend|json_parse|default(data.maxLegend),
-            minLegendDescription    : minLegendDescription|json_parse|default(data.minLegendDescription),
-            maxLegendDescription    : maxLegendDescription|json_parse|default(data.maxLegendDescription),
-            class                   : class|json_parse|default(data.class)
+            min : {
+                inputId             : min.inputId ~ index,
+                inputValue          : min.inputValue,
+                startValue          : (rangeHandles == 'min') ? min.startValue : min.inputValue,
+                legend              : min.legend,
+                legendDescription   : min.legendDescription
+            },
+            max : {
+                inputId             : max.inputId ~ index,
+                inputValue          : max.inputValue,
+                startValue          : (rangeHandles == 'max') ? max.startValue : max.inputValue,
+                legend              : max.legend,
+                legendDescription   : max.legendDescription
+            },
+            labelUnit      : labelUnit,
+            step           : step,
+            rangeHandles   : rangeHandles,
+            language       : language,
+            class          : bgClass ~ reversedClass
         } %}
     {% endfor %}
 </div>

@@ -4,12 +4,12 @@
   {% set inputRangeVariant = '--max' %}
 {% endif %}
 
-{% if  minLegend is defined and minLegend and maxLegend is defined and maxLegend  %}
+{% if  min.legend is defined and min.legend and max.legend is defined and max.legend  %}
  {% set haslegend = true %}
 {% else %}
   {% set haslegend = false %}
 {% endif %}
-{% if  minLegendDescription is defined and minLegendDescription and maxLegendDescription is defined and maxLegendDescription  %}
+{% if  min.legendDescription is defined and min.legendDescription and max.legendDescription is defined and max.legendDescription  %}
  {% set haslegendDescription = true %}
 {% else %}
   {% set haslegendDescription = false %}
@@ -26,44 +26,44 @@
       <div class='bf-input-range_value'></div>
 
       <p class='bf-input-range_handle bf-input-range_handle--left'>
-        <label for='{{ minInputId }}' class='bf-input-range_label'></label>
+        <label for='{{ min.inputId }}' class='bf-input-range_label'></label>
       </p>
 
       <p class='bf-input-range_handle bf-input-range_handle--right'>
-        <label for='{{ maxInputId }}' class='bf-input-range_label'></label>
+        <label for='{{ max.inputId }}' class='bf-input-range_label'></label>
       </p>
     </div>
 
     <input class='bf-input-range_input_min' type='range'
-      max={{ maxInputValue }}
-      min={{ minInputValue }}
+      max={{ max.inputValue }}
+      min={{ min.inputValue }}
       step={{ step|default(1) }}
-      id='{{ minInputId }}'
-      value={{ ( minStartValue is defined and minStartValue ) ? minStartValue : minInputValue }}
+      id='{{ min.inputId }}'
+      value={{ ( min.startValue is defined and min.startValue ) ? min.startValue : min.inputValue }}
       data-unit='{{ labelUnit }}'
     />
     <input class='bf-input-range_input_max' type='range'
-      max={{ maxInputValue }}
-      min={{ minInputValue }}
+      max={{ max.inputValue }}
+      min={{ min.inputValue }}
       step={{ step|default(1) }}
-      id='{{ maxInputId }}'
-      value={{ ( maxStartValue is defined and maxStartValue ) ? maxStartValue : maxInputValue }}
+      id='{{ max.inputId }}'
+      value={{ ( max.startValue is defined and max.startValue ) ? max.startValue : max.inputValue }}
     />
   </div>
 
   {% if haslegend or haslegendDescription %}
     <div class='bf-input-range_legend'>
       <p class='bf-input-range_legend_min'>
-      {{ (minLegend is defined and minLegend) ? minLegend : '' }}
-      {% if minLegendDescription is defined and minLegendDescription %}
-        <strong>{{ minLegendDescription }}</strong>
+      {{ (min.legend is defined and min.legend) ? min.legend : '' }}
+      {% if min.legendDescription is defined and min.legendDescription %}
+        <strong>{{ min.legendDescription }}</strong>
       {% endif %}
       </p>
 
       <p class='bf-input-range_legend_max'>
-        {{ (maxLegend is defined and maxLegend) ? maxLegend : '' }}
-        {% if maxLegendDescription is defined and maxLegendDescription %}
-          <strong>{{ maxLegendDescription }}</strong>
+        {{ (max.legend is defined and max.legend) ? max.legend : '' }}
+        {% if max.legendDescription is defined and max.legendDescription %}
+          <strong>{{ max.legendDescription }}</strong>
         {% endif %}
       </p>
     </div>

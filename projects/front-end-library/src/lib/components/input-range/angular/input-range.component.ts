@@ -1,30 +1,23 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'bf-input-range',
-  templateUrl: './input-range.component.html',
-  // styleUrls: ['../scss/index.scss'],
+    selector: 'bf-input-range',
+    templateUrl: './input-range.component.html',
+    // styleUrls: ['../scss/index.scss'],
 })
 export class InputRangeComponent implements OnInit {
     constructor() {}
-    @Input() minInputId     : string;
-    @Input() maxInputId     : string;
-    @Input() minInputValue  : number;
-    @Input() maxInputValue  : number;
-
-    /** if no `minStartValue` is defined, `minInputValue` will be the min start value */
-    @Input() minStartValue  : number;
-    /** if no `maxStartValue` is defined, `maxInputValue` will be the max start value */
-    @Input() maxStartValue  : number;
-    @Input() labelUnit      : string;
+    /** inputId is required and if no `startValue` is defined, `InputValue` will be the min start value */
+    @Input() min            : object;
+    /** inputId is required and if no `startValue` is defined, `InputValue` will be the max start value */
+    @Input() max            : object;
+     /** The positionning of the `labelUnit` is  */
+     @Input() labelUnit      : string;
     @Input() step           : number;
+    /** determines the positionning `labelUnit` when `labelUnit` is a $ */
     @Input() language       : 'en'|'fr';
     /** By default this component displays 2 handles. By selecting `min` or `max` the component will display only one */
-    @Input() rangeHandles   :''|'min' |'max';
-    @Input() minLegend      : string;
-    @Input() maxLegend      : string;
-    @Input() minLegendDescription  : string;
-    @Input() maxLegendDescription  : string;
+    @Input() rangeHandles   : ''|'min' |'max';
     @Input() class          : string;
 
     ngOnInit() {

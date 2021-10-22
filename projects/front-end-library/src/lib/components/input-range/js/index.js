@@ -25,6 +25,8 @@ $(function() {
         let suffix = '';
         let prefix = '';
 
+
+
         if ($unit == '$' && $this.attr('lang') == 'en'){
             prefix = $unit
         } else {
@@ -35,15 +37,37 @@ $(function() {
         displayCurrentValue();
 
         function setInitialRangeValues() {
-            const min = $minRangeInput.val();
-            const max = $maxRangeInput.val();
+            let min, max;
+            if ($this.hasClass('.bf-input-range--min')){
+                min = doTheMath($minRangeInput.val());
+                max = $maxInputValue;
+
+            } else if ($this.hasClass('.bf-input-range--max')){
+                min = $minInputValue;
+                max = doTheMath($maxRangeInput.val());
+            } else {
+                min = doTheMath($minRangeInput.val());
+                max = doTheMath($maxRangeInput.val());
+            }
+
             $minLabel.html(prefix + min + suffix);
             $maxLabel.html(prefix + max + suffix);
         }
 
         function displayCurrentValue() {
-            const min = doTheMath($minRangeInput.val());
-            const max = doTheMath($maxRangeInput.val());
+            let min, max;
+            if ($this.hasClass('.bf-input-range--min')){
+                min = doTheMath($minRangeInput.val());
+                max = $maxInputValue;
+
+            } else if ($this.hasClass('.bf-input-range--max')){
+                min = $minInputValue;
+                max = doTheMath($maxRangeInput.val());
+            } else {
+                min = doTheMath($minRangeInput.val());
+                max = doTheMath($maxRangeInput.val());
+            }
+
             $minLabel.html(prefix + $minRangeInput.val() + suffix);
             $maxLabel.html(prefix + $maxRangeInput.val() + suffix);
             $excludeLeft.css('width', min + '%');
@@ -51,7 +75,9 @@ $(function() {
             $rangeValue.css('left', min + '%').css('right', (100 - max) + '%');
             $handleLeft.css('left', min + '%');
             $handleRight.css('right', (100 - max) + '%');
-        }
+            }
+
+
 
         function doTheMath(rangeInput){
             return (100/(parseInt($maxInputValue) - parseInt($minInputValue))) * parseInt(rangeInput) - (100/(parseInt($maxInputValue) - parseInt($minInputValue))) * parseInt($minInputValue)
@@ -64,5 +90,6 @@ $(function() {
         $this.on('input', '.bf-input-range_input_max', function(){
             displayCurrentValue();
         })
+
     });
 });
