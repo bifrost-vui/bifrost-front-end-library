@@ -12,15 +12,15 @@
     {% for index in [1,2,3,4,5]%}
 
         {% if index is same as (1) or index == 4 %}
-            {% set bgClass = (class is defined and class) ? class : ' bf-color-bg-ground' %}
+            {% set bgClass = class|default('bf-color-bg-ground') %}
         {% elseif index == 2 or index == 5 %}
-            {% set bgClass = (class is defined and class) ? class : ' bf-color-bg-underground' %}
+            {% set bgClass = class|default('bf-color-bg-underground') %}
         {% else %}
-            {% set bgClass = (class is defined and class) ? class : ' bf-color-bg-action-primary' %}
+            {% set bgClass = class|default('bf-color-bg-action-primary') %}
         {% endif %}
 
         {% if index == 4 or index == 5 %}
-            {% set reversedClass = (class is defined and class) ? '' : ' reversed' %}
+            {% set reversedClass = class|default(' reversed') %}
         {% endif %}
 
         {% include '@bf-components/input-range/twig/index.twig' with {

@@ -53,7 +53,7 @@ $(function() {
             $handleRight.css('right', (100 - max) + '%');
             }
 
-            function doTheMath(rangeInput){
+        function doTheMath(rangeInput){
             return (100/(parseInt($maxInputValue) - parseInt($minInputValue))) * parseInt(rangeInput) - (100/(parseInt($maxInputValue) - parseInt($minInputValue))) * parseInt($minInputValue)
         }
 

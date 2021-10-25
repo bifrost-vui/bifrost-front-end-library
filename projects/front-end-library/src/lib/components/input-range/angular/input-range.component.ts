@@ -7,17 +7,17 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 })
 export class InputRangeComponent implements OnInit {
     constructor() {}
-    /** inputId is required and if no `startValue` is defined, `InputValue` will be the min start value */
+    /** inputId is required and if no `startValue` is defined, `InputValue` will be the min start*/
     @Input() min            : object;
-    /** inputId is required and if no `startValue` is defined, `InputValue` will be the max start value */
+    /** inputId is required and if no `startValue` is defined, `InputValue` will be the max start*/
     @Input() max            : object;
-     /** The positionning of the `labelUnit` is  */
-     @Input() labelUnit      : string;
+     /** The positionning of the `labelUnit` will change with the langauge only if  the `labelUnit` is a `$` */
+    @Input() labelUnit      : string;
     @Input() step           : number;
-    /** determines the positionning `labelUnit` when `labelUnit` is a $ */
+    /** determines the positionning `labelUnit` when `labelUnit` is a `$` */
     @Input() language       : 'en'|'fr';
     /** By default this component displays 2 handles. By selecting `min` or `max` the component will display only one */
-    @Input() rangeHandles   : ''|'min' |'max';
+    @Input() rangeHandles   : 'both'|'min' |'max';
     @Input() class          : string;
 
     ngOnInit() {

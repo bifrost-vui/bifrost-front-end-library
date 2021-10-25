@@ -19,17 +19,18 @@ import { InputRangeComponent }          from '../angular/input-range.component';
         },
     }}
     argTypes={{
+        step     : {
+            type : { defaultValue: 1 },
+        },
         language : {
             type : { defaultValue: 'en' },
             control : {
                 type : 'select',
-                options : ['en', 'fr']
             }
         },
         rangeHandles : {
             control : {
                 type : 'select',
-                options : ['','min', 'max']
             }
         }
     }}
@@ -40,69 +41,59 @@ import { InputRangeComponent }          from '../angular/input-range.component';
 ## Drupal
 
 export const defaultProps = {
-    min                 : {
-            inputId             : 'minRange',
-            inputValue          : 20,
-            startValue          : 40,
-            legend              : 'Minimum',
-            legendDescription   : '$20/month'
-        },
-    max                 : {
-            inputId             : 'maxRange',
-            inputValue          :  150,
-            startValue          :  80,
-            legend              : 'Maximum',
-            legendDescription   : '$150/month'
-        },
-        labelUnit      : '$',
-        step           : null,
-        rangeHandles   : '',
-        language       : '',
-        class          : ''
+    min            : {
+        inputId             : 'minRange',
+        inputValue          : 20,
+        startValue          : 40,
+        legend              : 'Minimum',
+        legendDescription   : '$20/month'
+    },
+    max            : {
+        inputId             : 'maxRange',
+        inputValue          :  150,
+        startValue          :  80,
+        legend              : 'Maximum',
+        legendDescription   : '$150/month'
+    },
+    labelUnit      : '$',
 }
 
 export const minProps = {
-    min                 : {
-            inputId             : 'minRange',
-            inputValue          : 20,
-            startValue          : 100,
-            legend              : 'Minimum',
-            legendDescription   : '$20/month'
-        },
-    max                 : {
-            inputId             : 'maxRange',
-            inputValue          :  150,
-            startValue          :  150,
-            legend              : 'Maximum',
-            legendDescription   : '$150/month'
-        },
-        labelUnit      : '$',
-        step           : null,
-        rangeHandles   : 'min',
-        language       : '',
-        class          : ''
+    min            : {
+        inputId             : 'minRange',
+        inputValue          : 20,
+        startValue          : 100,
+        legend              : 'Minimum',
+        legendDescription   : '$20/month'
+    },
+    max            : {
+        inputId             : 'maxRange',
+        inputValue          :  150,
+        startValue          :  150,
+        legend              : 'Maximum',
+        legendDescription   : '$150/month'
+    },
+    labelUnit      : '$',
+    rangeHandles   : 'min',
 }
 
 export const maxProps = {
-    min                 : {
-            inputId             : 'minRange',
-            inputValue          : 20,
-            startValue          : 20,
-            legend              : 'Minimum',
-            legendDescription   : '$20/month'
-        },
-    max                 : {
-            inputId             : 'maxRange',
-            inputValue          :  150,
-            startValue          :  90,
-            legend              : 'Maximum',
-            legendDescription   : '$150/month'
-        },
-        labelUnit      : '$',
-        step           : null,
-        rangeHandles   : 'max',
-        language       : '',
-        class          : ''
+    min            : {
+        inputId             : 'minRange',
+        inputValue          : 20,
+        startValue          : 20,
+        legend              : 'Minimum',
+        legendDescription   : '$20/month'
+    },
+    max            : {
+        inputId             : 'maxRange',
+        inputValue          :  150,
+        startValue          :  90,
+        legend              : 'Maximum',
+        legendDescription   : '$150/month'
+    },
+    labelUnit      : '$',
+    rangeHandles   : 'max',
 }
 
 
@@ -181,7 +172,7 @@ export const Drupal = (args) => ({
     language    : '',
     class       : ''
 
-}} only %}
+} only %}
 ```
 ### Input range component with min handle only
 
@@ -205,7 +196,7 @@ export const Drupal = (args) => ({
     rangeHandles   : 'min',
     language       : '',
     class          : ''
-}} %}
+} %}
 ```
 ### Input range component with max handle only
 
@@ -229,7 +220,7 @@ export const Drupal = (args) => ({
     rangeHandles   : 'max',
     language       : '',
     class          : ''
-}} %}
+} %}
 ```
 
 
