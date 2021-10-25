@@ -1,6 +1,3 @@
-const path      = require('path');
-// const custom    = require('../webpack.config.js');
-
 module.exports = {
     stories: ['../projects/front-end-library/**/*.stories.@(ts|mdx)'],
     logLevel: 'debug',
@@ -13,7 +10,4 @@ module.exports = {
   core: {
     builder: 'webpack5',
   },
-    // webpackFinal: (config) => {
-    //     return { ...config, module: { ...config.module, rules: custom.module.rules } };
-    // },
 };
