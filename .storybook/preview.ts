@@ -17,7 +17,7 @@ addParameters({
         //     const Story = toReact(storyFn());
         //     return <Story {...args} />;
         // },
-        // iframeHeight: '100px',
+         iframeHeight: 600,
     },
     layout: 'centered',
 
@@ -33,8 +33,8 @@ addParameters({
     },
 
     // Controls
-    controls: { 
-        expanded: true, 
+    controls: {
+        expanded: true,
         hideNoControlsWarning: true
     },
     argTypes: {
@@ -42,7 +42,7 @@ addParameters({
         iframeUrl       : { table: { disable: true } },
         props           : { table: { disable: true } },
     },
-    
+
     // // Hide addons
     // storySource: { disable: true },
     // knobs: { disable: true },

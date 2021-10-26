@@ -6,8 +6,8 @@ import { TwigContainerComponent }           from '../../../../utils/twig-contain
 import { LogoComponent }                    from '../angular/logo.component';
 
 
-<Meta 
-    title='Components/Logo' 
+<Meta
+    title='Components/Logo'
     component={LogoComponent}
     decorators={[
         moduleMetadata({ declarations: [LogoComponent, TwigContainerComponent]}),
@@ -22,7 +22,7 @@ import { LogoComponent }                    from '../angular/logo.component';
             table: { defaultValue: { summary: 'medium' } },
         },
         langcode: {
-            control: { 
+            control: {
                 type: 'select'
             },
             table: { defaultValue: { summary: 'en' } },
@@ -71,11 +71,11 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '300px' }}
 >
-    <Story 
+    <Story
         name='Drupal'
-        args={{ 
+        height='300px'
+        args={{
             elementPath : 'components/logo/_doc/template.drupal',
         }}
         height='160px'
@@ -90,15 +90,14 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '800px' }}
 >
-    <Story 
+    <Story
         name='Drupal - All logos'
-        args={{ 
+        height='800px'
+        args={{
             elementPath : 'components/logo/_doc/template-all.drupal',
             allLogoCategories
         }}
-        height='160px'
     >
         {Drupal.bind()}
     </Story>

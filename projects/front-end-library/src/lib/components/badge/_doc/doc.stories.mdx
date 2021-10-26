@@ -1,5 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs';
+import { ArgsTable,Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { BadgeComponent }           from '../angular/badge.component';
@@ -40,8 +40,8 @@ import { BadgeComponent }           from '../angular/badge.component';
 
 
 ## Component API
+<ArgsTable of={BadgeComponent} />
 
-<Props of={BadgeComponent} />
 
 
 
@@ -67,10 +67,10 @@ export const Drupal = (args) => ({
 
 <Preview
     withSource='none'
-    style={{ height: '600px' }}
 >
     <Story
         name='Drupal'
+        height='500px'
         args={{
             elementPath : 'components/badge/_doc/template.drupal',
             class       : 'my-2',
