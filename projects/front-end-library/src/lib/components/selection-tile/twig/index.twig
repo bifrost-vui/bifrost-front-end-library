@@ -1,13 +1,17 @@
-{% set needsContainer = (isInvalid is defined and isInvalid ) %}
 {% set fit      = fit|default('content') %}
 {% set allowedTags 	= '<br><em><i><strong><b><sup><sub>' %}
 {% set orientation  = orientation|default('horizontal') %}
 {% set hasVisual 	= ((iconName is defined and iconName) or (image.src is defined and image.src and image.alt is defined)) %}
 
-{% if needsContainer %}
-  <div class='bf-selection-tile__container {{ (isInvalid) ? 'color-warning' : ' ' }} bf-selection-tile__container--{{ 'fit-' ~ fit }} bf-selection-tile__container--{{ orientation }} {{ class }}'>
-{% endif %}
-  <div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--{{ 'fit-' ~ fit }} {{ (isDisabled) ? 'disabled' }} {{ (needscontainer) ? '': class }}'>
+<div class='bf-selection-tile
+    bf-selection-tile--{{ orientation }}
+    bf-selection-tile--{{ 'fit-' ~ fit }}
+    {{ (isInvalid) ? 'color-warning' : ' ' }}
+    {{ (isDisabled) ? 'disabled' }}
+    {{ (isSelected) ? 'checked' : '' }}
+    {{ class }}'
+  >
+  <div class='bf-selection-tile__inner'>
     <div class='bf-selection-tile__control'>
       <input
         type='{{ inputType|default('checkbox') }}'
@@ -68,9 +72,9 @@
       {% endblock %}
     </div>
   </div>
-{% if needsContainer %}
+  {% if isInvalid is defined and isInvalid and errorMessage is defined and errorMessage %}
     <div class='bf-selection-tile__feedback'>
       {{ errorMessage|striptags(allowedTags)|raw }}
     </div>
-  </div>
-{% endif %}
+  {% endif %}
+</div>
