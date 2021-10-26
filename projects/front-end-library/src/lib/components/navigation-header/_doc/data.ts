@@ -16,7 +16,7 @@ export const rigthIconLinks = [
 ];
 
 export const cartBtn = {
-    badge: '3' ,
+    badgeLabel: '3' ,
     href : 'https://www.videotron.com',
     ariaLabel : 'My cart'
 };
