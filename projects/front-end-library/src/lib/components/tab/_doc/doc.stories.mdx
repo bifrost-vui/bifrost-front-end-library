@@ -1,5 +1,5 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { TabComponent }                         from '../angular/tab.component';
@@ -35,9 +35,7 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
-    withSource='none'
->
+<Canvas  withSource='none'>
     <Story
         name='Drupal'
         height='300px'
@@ -53,11 +51,9 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-<Preview
-    withSource='none'
->
+<Canvas  withSource='none'>
     <Story
         name='Drupal - Single Tab'
         height='300px'
@@ -70,4 +66,4 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

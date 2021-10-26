@@ -1,13 +1,13 @@
 import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs';
 
 import { topBar_items, topBar_secondaryItems, rigthIconLinks } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent }          from '../angular/header.component';
 
 
-<Meta 
-    title='Components/Navigation Header' 
+<Meta
+    title='Components/Navigation Header'
     component={HeaderComponent}
     decorators={[
         moduleMetadata({ declarations: [HeaderComponent, TwigContainerComponent]})
@@ -18,7 +18,7 @@ import { HeaderComponent }          from '../angular/header.component';
         },
         langcode: {
             defaultValue: 'FR',
-            control: { 
+            control: {
                 type: 'select',
                 options: ['EN', 'FR'],
             }
@@ -98,7 +98,7 @@ import { HeaderComponent }          from '../angular/header.component';
     labelLogOut : 'Log out',
     hrefConnexion : '#',
     labelConnexion : 'Connexion',
-    
+
     search : {
         placeholder : 'What are you looking for?'
     },
@@ -123,12 +123,10 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
-    withSource='none'
->
-    <Story 
+<Canvas  withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
+        args={{
             elementPath : 'components/navigation-header/_doc/template.drupal',
             topBar_items,
             topBar_secondaryItems,
@@ -142,4 +140,4 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
