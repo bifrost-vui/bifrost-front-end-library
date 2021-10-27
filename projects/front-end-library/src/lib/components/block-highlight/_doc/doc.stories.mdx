@@ -1,5 +1,5 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
 
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { BlockHighlightComponent }              from '../angular/block-highlight.component';
@@ -81,9 +81,7 @@ export const commonProps = {
     class               : ''
 }
 
-<Preview
-    withSource='none'
->
+<Canvas withSource='none'>
     <Story
         name='Drupal'
         height='800px'
@@ -93,12 +91,10 @@ export const commonProps = {
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-<Preview
-    withSource='none'
->
+<Canvas withSource='none'>
     <Story
         name='Drupal - Usage example'
         height='800px'
@@ -109,4 +105,4 @@ export const commonProps = {
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

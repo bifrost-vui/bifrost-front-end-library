@@ -1,5 +1,5 @@
 import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props }  from '@storybook/addon-docs';
 import { withDesign }                   from 'storybook-addon-designs';
 
 import {slides}                         from './data';
@@ -47,9 +47,7 @@ export const Drupal = (args) => ({
     props       : args,
 });
 
-<Preview
-    withSource='none'
->
+<Canvas withSource='none'>
     <Story
         name='Drupal'
         height='500px'
@@ -60,7 +58,7 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
 ## Drupal implementation example
