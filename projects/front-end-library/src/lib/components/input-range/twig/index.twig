@@ -8,7 +8,6 @@
 
 {% set inputValues = { min.value, max.value } %}
 
-
 {% if initialValue is not defined or initialValue is empty %}
   {% set inputValues = [ min.value, max.value ] %}
 {% elseif initialValue is iterable %}
@@ -36,8 +35,6 @@
   {% set hasdescription = false %}
 {% endif %}
 
-
-
 <div class='bf-input-range {{ inputRangeVariant is defined ? 'bf-input-range' ~ inputRangeVariant : '' }} js-bf-input-range {{ class }} ' lang={{language|default('en')}}>
   <div class='bf-input-range__panel'>
     {# Overlay of the input range double slider #}
@@ -45,12 +42,14 @@
       <div class='bf-input-range__exclude bf-input-range__exclude--left'></div>
       <div class='bf-input-range__exclude bf-input-range__exclude--right'></div>
       <div class='bf-input-range__value'></div>
-      <p class='bf-input-range__handle bf-input-range__handle--left'>
-        <label for='{{ min.inputId }}' class='bf-input-range__label'></label>
-      </p>
-      <p class='bf-input-range__handle bf-input-range__handle--right'>
-        <label for='{{ max.inputId }}' class='bf-input-range__label'></label>
-      </p>
+      {% for val in inputValues %}
+        <p class='bf-input-range__handle bf-input-range__handle--{{ (loop.index == 1) ? 'left' : 'right' }}'>
+          <label for='{{ (loop.index == 1) ? min.inputId : max.inputId }}' class='bf-input-range__label'>
+              {# keep unit and value on the same line to avoid whitespace #}
+              {% if unitPosition is same as ('before') %}{{labelUnit}}{% endif %}<span class='bf-input-range__label__value'></span>{% if unitPosition is not same as ('before') %}{{labelUnit}}{% endif %}
+          </label>
+        </p>
+      {% endfor %}
     </div>
 
     {% for val in inputValues %}

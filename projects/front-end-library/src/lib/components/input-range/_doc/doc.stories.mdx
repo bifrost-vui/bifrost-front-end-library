@@ -20,10 +20,12 @@ import { InputRangeComponent }          from '../angular/input-range.component';
     }}
     argTypes={{
         step     : {
-            type : { defaultValue: 1 },
+            defaultValue: 1,
+            table: {defaultValue: { summary: '1' }},
         },
-        language : {
-            type : { defaultValue: 'en' },
+        unitPosition : {
+            defaultValue: 'after',
+            table: {defaultValue: { summary: 'after' }},
             control : {
                 type : 'select',
             }
@@ -33,7 +35,21 @@ import { InputRangeComponent }          from '../angular/input-range.component';
 
 # Input Range
 
-## Drupal
+## Component API
+
+**✅ Inputs are equivalent for Angular and Drupal.**
+
+<Props of={InputRangeComponent} />
+
+### Notes
+- if `initialValue` is empty or undefined : creates a 2 handles slider positioned at each end of the input track
+- if `initialValue` contains 2 values : creates a 2 handles slider positioned at the corresponding coordonates
+- if `initialValue` contains 1 value : creates a 1 handle slider positioned  at the corresponding coordonate
+- if `isInverted` is set true and `initialValue` contains 1 value : reverts the direction of the 1 handle slider but has no effect if `initialValue` contains 2 values
+
+
+## Drupal implementation exemple
+
 
 export const defaultProps = {
     min             : {
@@ -49,7 +65,6 @@ export const defaultProps = {
         description   : '$150/month'
     },
     labelUnit       : '$',
-    language        : '',
 }
 export const startProps = {
     initialValue    : [40,80],
@@ -66,7 +81,7 @@ export const startProps = {
         description   : '$150/month'
     },
     labelUnit       : '$',
-    language        : '',
+    unitPosition    : 'before'
 }
 
 export const minProps = {
@@ -84,7 +99,6 @@ export const minProps = {
         description   : '$150/month'
     },
     labelUnit       : '$',
-    language        : '',
 }
 
 export const maxProps = {
@@ -103,7 +117,6 @@ export const maxProps = {
     },
     labelUnit       : '$',
     isInverted      : true,
-    language        : '',
 }
 
 
@@ -113,6 +126,8 @@ export const Drupal = (args) => ({
     props       : args,
 });
 
+
+### Default Input range component with 2 handles with range
 <Preview
     withSource='none'
     style={{ height: '400px' }}
@@ -128,6 +143,27 @@ export const Drupal = (args) => ({
     </Story>
 </Preview>
 
+```jsx
+{% include '@bf-components/input-range/twig/index.twig' with {
+    min            : {
+        inputId       : 'minRange',
+        value         : 20,
+        legend        : 'Minimum',
+        description   : '$20/month'
+    },
+    max            : {
+        inputId       : 'maxRange',
+        value         : 150,
+        legend        : 'Maximum',
+        description   : '$150/month'
+    },
+    labelUnit      : '$',
+    language       : '',
+    class          : ''
+
+} only %}
+```
+### Default Input range component with 2 handles with range with initial values
 <Preview
     withSource='none'
     style={{ height: '400px' }}
@@ -142,6 +178,29 @@ export const Drupal = (args) => ({
         {Drupal.bind({})}
     </Story>
 </Preview>
+
+
+```jsx
+{% include '@bf-components/input-range/twig/index.twig' with {
+    initialValue   : [40,80]
+    min            : {
+        inputId       : 'minRange',
+        value         : 20,
+        legend        : 'Minimum',
+        description   : '$20/month'
+    },
+    max            : {
+        inputId       : 'maxRange',
+        value         : 150,
+        legend        : 'Maximum',
+        description   : '$150/month'
+    },
+    labelUnit      : '$',
+    unitPosition   : 'before',
+
+} only %}
+```
+### Input range component with min handle only
 
 <Preview
     withSource='none'
@@ -158,6 +217,27 @@ export const Drupal = (args) => ({
     </Story>
 </Preview>
 
+```jsx
+{% include '@bf-components/input-range/twig/index.twig' with {
+    initialValue    : 40,
+    min             : {
+        inputId       : 'minRange',
+        value         : 20,
+        legend        : 'Minimum',
+        description   : '$20/month'
+    },
+    max             : {
+        inputId       : 'maxRange',
+        value         : 150,
+        legend        : 'Maximum',
+        description   : '$150/month'
+    },
+    labelUnit       : '$',
+    isInverted      : true,
+} %}
+```
+### Input range component with max handle only
+
 <Preview
     withSource='none'
     style={{ height: '400px' }}
@@ -173,100 +253,26 @@ export const Drupal = (args) => ({
     </Story>
 </Preview>
 
-
-## Drupal implementation exemple
-
-
-### Default Input range component with 2 handles with range
-
 ```jsx
 {% include '@bf-components/input-range/twig/index.twig' with {
-    initialValue   : [40,80]|40|null
-    min            : {
+    initialValue    : 40,
+    min             : {
         inputId       : 'minRange',
         value         : 20,
         legend        : 'Minimum',
         description   : '$20/month'
     },
-    max            : {
+    max             : {
         inputId       : 'maxRange',
         value         : 150,
         legend        : 'Maximum',
         description   : '$150/month'
     },
-    labelUnit      : '$',
-    inverted    : true|false
-    language    : '',
-    class       : ''
-
-} only %}
-```
-### Input range component with min handle only
-
-```jsx
-{% include '@bf-components/input-range/twig/index.twig' with {
-    min            : {
-        inputId       : 'minRange',
-        value         : 20,
-        legend        : 'Minimum',
-        description   : '$20/month'
-    },
-    max            : {
-        inputId       : 'maxRange',
-        value         : 150,
-        start         : 80,
-        legend        : 'Maximum',
-        description   : '$150/month'
-    },
-    labelUnit      : '$',
-    step           : 5,
-    rangeHandles   : 'min',
-    language       : '',
-    class          : ''
+    labelUnit       : '$',
+    isInverted      : true,
+    class           : ''
 } %}
 ```
-### Input range component with max handle only
-
-```jsx
-{% include '@bf-components/input-range/twig/index.twig' with {
-    min            : {
-        inputId       : 'minRange',
-        value         : 20,
-        start         : 40,
-        legend        : 'Minimum',
-        description   : '$20/month'
-    },
-    max            : {
-        inputId       : 'maxRange',
-        value         : 150,
-        legend        : 'Maximum',
-        description   : '$150/month'
-    },
-    labelUnit      : '$',
-    step           : 10,
-    rangeHandles   : 'max',
-    language       : '',
-    class          : ''
-} %}
-```
-
-
-## Component API
-
-**✅ Inputs are equivalent for Angular and Drupal.**
-
-<Props of={InputRangeComponent} />
-
-### More
-```
-range        : [40,80]| 40 | null
-isInverted   : true|false
-```
-- if initialValue is empty or undefined : creates a 2 handles slider positioned at each end of the input track
-- if initialValue contains 2 values : creates a 2 handles slider positioned at the corresponding coordonates
-- if initialValue contains 1 value : creates a 1 handle slider positioned  at the corresponding coordonate
-- if isInverted is set true and range contains 1 value : reverts the direction of the 1 handle slider but has no effect if initialValue contains 2 values
-
 
 ## Design Guidelines
 

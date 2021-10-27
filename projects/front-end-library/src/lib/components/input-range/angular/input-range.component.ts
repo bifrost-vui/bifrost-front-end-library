@@ -13,11 +13,11 @@ export class InputRangeComponent implements OnInit {
     @Input() min            : object;
     /** inputId is required and if no `startValue` is defined, `InputValue` will be the max start*/
     @Input() max            : object;
-     /** The positionning of the `labelUnit` will change with the langauge only if  the `labelUnit` is a `$` */
     @Input() labelUnit      : string;
+    /** Position the unit `before`or `after` the label  */
+    @Input() unitPosition   : 'before'|'after';
     @Input() step           : number;
-    /** determines the positionning `labelUnit` when `labelUnit` is a `$` */
-    @Input() language       : 'en'|'fr';
+    /** changes the direction of a 1 handle slider */
     @Input() isInverted     : boolean;
     @Input() class          : string;
 

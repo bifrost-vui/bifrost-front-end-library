@@ -19,33 +19,17 @@ $(function() {
         $handleLeft = $this.find('.bf-input-range__handle--left'),
         $handleRight = $this.find('.bf-input-range__handle--right'),
         //labels
-        $minLabel = $this.find('.bf-input-range__handle--left .bf-input-range__label'),
-        $maxLabel = $this.find('.bf-input-range__handle--right .bf-input-range__label');
+        $minLabel = $this.find('.bf-input-range__handle--left .bf-input-range__label__value'),
+        $maxLabel = $this.find('.bf-input-range__handle--right .bf-input-range__label__value');
 
-        let suffix = '';
-        let prefix = '';
 
-        if ($unit == '$' && $this.attr('lang') == 'en'){
-            prefix = $unit
-        } else {
-            suffix = $unit
-        }
-
-        setInitialRangeValues ();
         displayCurrentValue();
-
-        function setInitialRangeValues() {
-            const min = doTheMath($minRangeInput.val());
-            const max = doTheMath($maxRangeInput.val());
-            $minLabel.html(prefix + min + suffix);
-            $maxLabel.html(prefix + max + suffix);
-        }
 
         function displayCurrentValue() {
             const min = doTheMath($minRangeInput.val());
             const max = doTheMath($maxRangeInput.val());
-            $minLabel.html(prefix + $minRangeInput.val() + suffix);
-            $maxLabel.html(prefix + $maxRangeInput.val() + suffix);
+            $minLabel.html($minRangeInput.val());
+            $maxLabel.html($maxRangeInput.val());
             $excludeLeft.css('width', min + '%');
             $excludeRight.css('width', (100 - max) + '%');
             $rangeValue.css('left', min + '%').css('right', (100 - max) + '%');
