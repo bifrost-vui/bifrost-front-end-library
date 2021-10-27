@@ -24,7 +24,9 @@
             {% set reversedClass = class|default(' reversed') %}
         {% endif %}
 
-        {% include '@bf-components/input-range/twig/index.twig' %}
+        {% include '@bf-components/input-range/twig/index.twig' with {
+            class : bgClass ~ reversedClass
+        }%}
     {% endfor %}
 </div>
 <style>
