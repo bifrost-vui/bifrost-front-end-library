@@ -51,9 +51,10 @@ $(function() {
             $rangeValue.css('left', min + '%').css('right', (100 - max) + '%');
             $handleLeft.css('left', min + '%');
             $handleRight.css('right', (100 - max) + '%');
-            }
+        }
 
         function doTheMath(rangeInput){
+            console.log (rangeInput)
             return (100/(parseInt($maxInputValue) - parseInt($minInputValue))) * parseInt(rangeInput) - (100/(parseInt($maxInputValue) - parseInt($minInputValue))) * parseInt($minInputValue)
         }
 
@@ -64,6 +65,5 @@ $(function() {
         $this.on('input', '.bf-input-range_input_max', function(){
             displayCurrentValue();
         })
-
     });
 });
