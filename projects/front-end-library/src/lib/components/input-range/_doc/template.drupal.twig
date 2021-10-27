@@ -4,7 +4,8 @@
 {% set step = step|json_parse %}
 {% set language = language|json_parse %}
 {% set class = class|json_parse %}
-{% set rangeHandles = rangeHandles|json_parse %}
+{% set initialValue = initialValue|json_parse %}
+{% set inverted = inverted|json_parse %}
 
 {% set bgClass  = '' %}
 {% set reversedClass  = '' %}
@@ -23,27 +24,7 @@
             {% set reversedClass = class|default(' reversed') %}
         {% endif %}
 
-        {% include '@bf-components/input-range/twig/index.twig' with {
-            min : {
-                inputId             : min.inputId ~ index,
-                inputValue          : min.inputValue,
-                start               : min.start,
-                legend              : min.legend,
-                legendDescription   : min.legendDescription
-            },
-            max : {
-                inputId             : max.inputId ~ index,
-                inputValue          : max.inputValue,
-                start               : max.start,
-                legend              : max.legend,
-                legendDescription   : max.legendDescription
-            },
-            labelUnit      : labelUnit,
-            step           : step,
-            rangeHandles   : rangeHandles,
-            language       : language,
-            class          : bgClass ~ reversedClass
-        } %}
+        {% include '@bf-components/input-range/twig/index.twig' %}
     {% endfor %}
 </div>
 <style>

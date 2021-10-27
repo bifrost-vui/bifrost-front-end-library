@@ -28,11 +28,6 @@ import { InputRangeComponent }          from '../angular/input-range.component';
                 type : 'select',
             }
         },
-        rangeHandles : {
-            control : {
-                type : 'select',
-            }
-        }
     }}
 />
 
@@ -41,60 +36,80 @@ import { InputRangeComponent }          from '../angular/input-range.component';
 ## Drupal
 
 export const defaultProps = {
-    min            : {
-        inputId             : 'minRange',
-        inputValue          : 20,
-        start               : 40,
-        legend              : 'Minimum',
-        legendDescription   : '$20/month'
+    min             : {
+        inputId       : 'minRange',
+        value         : 20,
+        legend        : 'Minimum',
+        description   : '$20/month'
     },
-    max            : {
-        inputId             : 'maxRange',
-        inputValue          :  150,
-        start               :  80,
-        legend              : 'Maximum',
-        legendDescription   : '$150/month'
+    max             : {
+        inputId       : 'maxRange',
+        value         : 150,
+        legend        : 'Maximum',
+        description   : '$150/month'
     },
-    labelUnit      : '$',
+    labelUnit       : '$',
+    language        : '',
+    class           : ''
+}
+export const startProps = {
+    initialValue    : [40,80],
+    min             : {
+        inputId       : 'minRange',
+        value         : 20,
+        legend        : 'Minimum',
+        description   : '$20/month'
+    },
+    max             : {
+        inputId       : 'maxRange',
+        value         : 150,
+        legend        : 'Maximum',
+        description   : '$150/month'
+    },
+    labelUnit       : '$',
+    language        : '',
+    class           : ''
 }
 
 export const minProps = {
-    min            : {
-        inputId             : 'minRange',
-        inputValue          : 20,
-        start               : 100,
-        legend              : 'Minimum',
-        legendDescription   : '$20/month'
+    initialValue    : 80,
+    min             : {
+        inputId       : 'minRange',
+        value         : 20,
+        legend        : 'Minimum',
+        description   : '$20/month'
     },
-    max            : {
-        inputId             : 'maxRange',
-        inputValue          :  150,
-        start               :  150,
-        legend              : 'Maximum',
-        legendDescription   : '$150/month'
+    max             : {
+        inputId       : 'maxRange',
+        value         : 150,
+        legend        : 'Maximum',
+        description   : '$150/month'
     },
-    labelUnit      : '$',
-    rangeHandles   : 'min',
+    labelUnit       : '$',
+    language        : '',
+    class           : ''
 }
 
 export const maxProps = {
-    min            : {
-        inputId             : 'minRange',
-        inputValue          : 20,
-        start               : 20,
-        legend              : 'Minimum',
-        legendDescription   : '$20/month'
+    initialValue    : 40,
+    min             : {
+        inputId       : 'minRange',
+        value         : 20,
+        legend        : 'Minimum',
+        description   : '$20/month'
     },
-    max            : {
-        inputId             : 'maxRange',
-        inputValue          :  150,
-        start               :  90,
-        legend              : 'Maximum',
-        legendDescription   : '$150/month'
+    max             : {
+        inputId       : 'maxRange',
+        value         : 150,
+        legend        : 'Maximum',
+        description   : '$150/month'
     },
-    labelUnit      : '$',
-    rangeHandles   : 'max',
+    labelUnit       : '$',
+    isInverted      : true,
+    language        : '',
+    class           : ''
 }
+
 
 
 export const Drupal = (args) => ({
@@ -107,7 +122,7 @@ export const Drupal = (args) => ({
     style={{ height: '400px' }}
 >
     <Story
-        name='Drupal - default'
+        name='Drupal - 2 handles'
         args={{
             elementPath : 'components/input-range/_doc/template.drupal',
             ...defaultProps
@@ -122,7 +137,22 @@ export const Drupal = (args) => ({
     style={{ height: '400px' }}
 >
     <Story
-        name='Drupal - min only'
+        name='Drupal - 2 handles with initial values'
+        args={{
+            elementPath : 'components/input-range/_doc/template.drupal',
+            ...startProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+<Preview
+    withSource='none'
+    style={{ height: '400px' }}
+>
+    <Story
+        name='Drupal - 1 handle'
         args={{
             elementPath : 'components/input-range/_doc/template.drupal',
             ...minProps
@@ -137,7 +167,7 @@ export const Drupal = (args) => ({
     style={{ height: '400px' }}
 >
     <Story
-        name='Drupal - max only'
+        name='Drupal - 1 handle inverted direction'
         args={{
             elementPath : 'components/input-range/_doc/template.drupal',
             ...maxProps
@@ -150,25 +180,26 @@ export const Drupal = (args) => ({
 
 ## Drupal implementation exemple
 
-### Default Input range component with 2 handles
+
+### Default Input range component with 2 handles with range
 
 ```jsx
 {% include '@bf-components/input-range/twig/index.twig' with {
+    initialValue   : [40,80]|40|null
     min            : {
-        inputId             : 'minRange',
-        inputValue          : 20,
-        startValue          : 40,
-        legend              : 'Minimum',
-        legendDescription   : '$20/month'
+        inputId       : 'minRange',
+        value         : 20,
+        legend        : 'Minimum',
+        description   : '$20/month'
     },
-    max           : {
-        inputId             : 'maxRange',
-        inputValue          :  150,
-        startValue          :  80,
-        legend              : 'Maximum',
-        legendDescription   : '$150/month'
+    max            : {
+        inputId       : 'maxRange',
+        value         : 150,
+        legend        : 'Maximum',
+        description   : '$150/month'
     },
-    labelUnit   : '$',
+    labelUnit      : '$',
+    inverted    : true|false
     language    : '',
     class       : ''
 
@@ -178,18 +209,18 @@ export const Drupal = (args) => ({
 
 ```jsx
 {% include '@bf-components/input-range/twig/index.twig' with {
-    min              : {
-        inputId             : 'minRange',
-        inputValue          : 20,
-        legend              : 'Minimum',
-        legendDescription   : '$20/month'
+    min            : {
+        inputId       : 'minRange',
+        value         : 20,
+        legend        : 'Minimum',
+        description   : '$20/month'
     },
-    max              : {
-        inputId             : 'maxRange',
-        inputValue          :  150,
-        startValue          :  80,
-        legend              : 'Maximum',
-        legendDescription   : '$150/month'
+    max            : {
+        inputId       : 'maxRange',
+        value         : 150,
+        start         : 80,
+        legend        : 'Maximum',
+        description   : '$150/month'
     },
     labelUnit      : '$',
     step           : 5,
@@ -202,18 +233,18 @@ export const Drupal = (args) => ({
 
 ```jsx
 {% include '@bf-components/input-range/twig/index.twig' with {
-    min             : {
-        inputId             : 'minRange',
-        inputValue          : 20,
-        legend              : 'Minimum',
-        legendDescription   : '$20/month'
+    min            : {
+        inputId       : 'minRange',
+        value         : 20,
+        start         : 40,
+        legend        : 'Minimum',
+        description   : '$20/month'
     },
-    max             : {
-        inputId             : 'maxRange',
-        inputValue          :  150,
-        startValue          :  80,
-        legend              : 'Maximum',
-        legendDescription   : '$150/month'
+    max            : {
+        inputId       : 'maxRange',
+        value         : 150,
+        legend        : 'Maximum',
+        description   : '$150/month'
     },
     labelUnit      : '$',
     step           : 10,
@@ -229,6 +260,16 @@ export const Drupal = (args) => ({
 **✅ Inputs are equivalent for Angular and Drupal.**
 
 <Props of={InputRangeComponent} />
+
+### More
+```
+range        : [40,80]| 40 | null
+isInverted   : true|false
+```
+- if initialValue is empty or undefined : creates a 2 handles slider positioned at each end of the input track
+- if initialValue contains 2 values : creates a 2 handles slider positioned at the corresponding coordonates
+- if initialValue contains 1 value : creates a 1 handle slider positioned  at the corresponding coordonate
+- if isInverted is set true and range contains 1 value : reverts the direction of the 1 handle slider but has no effect if initialValue contains 2 values
 
 
 ## Design Guidelines

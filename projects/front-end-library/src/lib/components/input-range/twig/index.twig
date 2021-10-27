@@ -1,71 +1,87 @@
-{% if rangeHandles == 'min' %}
-  {% set inputRangeVariant = '--min' %}
-{% elseif rangeHandles == 'max'%}
-  {% set inputRangeVariant = '--max' %}
+
+{#
+- if initialValue is empty or undefined : creates a 2 handles slider positioned at each end of the input track
+- if initialValue contains 2 values : creates a 2 handles slider positioned at the corresponding coordonates
+- if initialValue contains 1 value : creates a 1 handle slider positioned  at the corresponding coordonate
+- if isInverted is set true and range contains 1 value : reverts the direction of the 1 handle slider but has no effect if initialValue contains 2 values
+ #}
+
+{% set inputValues = { min.value, max.value } %}
+
+
+{% if initialValue is not defined or initialValue is empty %}
+{{'initialValue is not defined or initialValue is empty'}}
+  {% set inputValues = [ min.value, max.value ] %}
+{% elseif initialValue is iterable %}
+  {% set inputValues = initialValue %}
+{% else %}
+  {% if isInverted  %}
+    {% set inputRangeVariant = '--min' %}
+    {% set inputValues = [ initialValue, max.value ] %}
+  {% else %}
+    {% set inputRangeVariant = '--max' %}
+    {% set inputValues = [ min.value, initialValue ] %}
+  {% endif %}
 {% endif %}
+
 
 {% if  min.legend is defined and min.legend and max.legend is defined and max.legend  %}
  {% set haslegend = true %}
 {% else %}
   {% set haslegend = false %}
 {% endif %}
-{% if  min.legendDescription is defined and min.legendDescription and max.legendDescription is defined and max.legendDescription  %}
- {% set haslegendDescription = true %}
+
+{% if  min.description is defined and min.description and max.description is defined and max.description  %}
+ {% set hasdescription = true %}
 {% else %}
-  {% set haslegendDescription = false %}
+  {% set hasdescription = false %}
 {% endif %}
+
+
 
 <div class='bf-input-range {{ inputRangeVariant is defined ? 'bf-input-range' ~ inputRangeVariant : '' }} js-bf-input-range {{ class }} ' lang={{language|default('en')}}>
   <div class='bf-input-range__panel'>
     {# Overlay of the input range double slider #}
     <div class='bf-input-range__overlay'>
       <div class='bf-input-range__exclude bf-input-range__exclude--left'></div>
-
       <div class='bf-input-range__exclude bf-input-range__exclude--right'></div>
-
       <div class='bf-input-range__value'></div>
-
       <p class='bf-input-range__handle bf-input-range__handle--left'>
         <label for='{{ min.inputId }}' class='bf-input-range__label'></label>
       </p>
-
       <p class='bf-input-range__handle bf-input-range__handle--right'>
         <label for='{{ max.inputId }}' class='bf-input-range__label'></label>
       </p>
     </div>
 
-    <input class='bf-input-range__input__min' type='range'
-      max={{ max.inputValue }}
-      min={{ min.inputValue }}
-      step={{ step|default(1) }}
-      id='{{ min.inputId }}'
-      value={{ ( min.start is defined and min.start ) ? min.start : min.inputValue }}
-      data-unit='{{ labelUnit }}'
-    />
-    <input class='bf-input-range__input__max' type='range'
-      max={{ max.inputValue }}
-      min={{ min.inputValue }}
-      step={{ step|default(1) }}
-      id='{{ max.inputId }}'
-      value={{ ( max.start is defined and max.start ) ? max.start : max.inputValue }}
-    />
-  </div>
+    {% for val in inputValues %}
+      <input class='bf-input-range__input__{{ (loop.index == 1) ? 'min' : 'max' }}' type='range'
+        max={{ max.value }}
+        min={{ min.value }}
+        step={{ step|default(1) }}
+        id='{{ min.inputId }}'
+        value={{ val }}
+        data-unit='{{ labelUnit }}'
+      />
+    {% endfor %}
+    </div>
 
-  {% if haslegend or haslegendDescription %}
+  {% if haslegend or hasdescription %}
     <div class='bf-input-range__legend'>
       <p class='bf-input-range__legend__min'>
       {{ (min.legend is defined and min.legend) ? min.legend : '' }}
-      {% if min.legendDescription is defined and min.legendDescription %}
-        <strong>{{ min.legendDescription }}</strong>
+      {% if min.description is defined and min.description %}
+        <strong>{{ min.description }}</strong>
       {% endif %}
       </p>
 
       <p class='bf-input-range__legend__max'>
         {{ (max.legend is defined and max.legend) ? max.legend : '' }}
-        {% if max.legendDescription is defined and max.legendDescription %}
-          <strong>{{ max.legendDescription }}</strong>
+        {% if max.description is defined and max.description %}
+          <strong>{{ max.description }}</strong>
         {% endif %}
       </p>
     </div>
+    {{inputValues}}
   {% endif %}
 </div>
