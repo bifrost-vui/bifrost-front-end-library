@@ -16,25 +16,25 @@
 {% endif %}
 
 <div class='bf-input-range {{ inputRangeVariant is defined ? 'bf-input-range' ~ inputRangeVariant : '' }} js-bf-input-range {{ class }} ' lang={{language|default('en')}}>
-  <div class='bf-input-range_panel'>
+  <div class='bf-input-range__panel'>
     {# Overlay of the input range double slider #}
-    <div class='bf-input-range_overlay'>
-      <div class='bf-input-range_exclude bf-input-range_exclude--left'></div>
+    <div class='bf-input-range__overlay'>
+      <div class='bf-input-range__exclude bf-input-range__exclude--left'></div>
 
-      <div class='bf-input-range_exclude bf-input-range_exclude--right'></div>
+      <div class='bf-input-range__exclude bf-input-range__exclude--right'></div>
 
-      <div class='bf-input-range_value'></div>
+      <div class='bf-input-range__value'></div>
 
-      <p class='bf-input-range_handle bf-input-range_handle--left'>
-        <label for='{{ min.inputId }}' class='bf-input-range_label'></label>
+      <p class='bf-input-range__handle bf-input-range__handle--left'>
+        <label for='{{ min.inputId }}' class='bf-input-range__label'></label>
       </p>
 
-      <p class='bf-input-range_handle bf-input-range_handle--right'>
-        <label for='{{ max.inputId }}' class='bf-input-range_label'></label>
+      <p class='bf-input-range__handle bf-input-range__handle--right'>
+        <label for='{{ max.inputId }}' class='bf-input-range__label'></label>
       </p>
     </div>
 
-    <input class='bf-input-range_input_min' type='range'
+    <input class='bf-input-range__input__min' type='range'
       max={{ max.inputValue }}
       min={{ min.inputValue }}
       step={{ step|default(1) }}
@@ -42,7 +42,7 @@
       value={{ ( min.start is defined and min.start ) ? min.start : min.inputValue }}
       data-unit='{{ labelUnit }}'
     />
-    <input class='bf-input-range_input_max' type='range'
+    <input class='bf-input-range__input__max' type='range'
       max={{ max.inputValue }}
       min={{ min.inputValue }}
       step={{ step|default(1) }}
@@ -52,15 +52,15 @@
   </div>
 
   {% if haslegend or haslegendDescription %}
-    <div class='bf-input-range_legend'>
-      <p class='bf-input-range_legend_min'>
+    <div class='bf-input-range__legend'>
+      <p class='bf-input-range__legend__min'>
       {{ (min.legend is defined and min.legend) ? min.legend : '' }}
       {% if min.legendDescription is defined and min.legendDescription %}
         <strong>{{ min.legendDescription }}</strong>
       {% endif %}
       </p>
 
-      <p class='bf-input-range_legend_max'>
+      <p class='bf-input-range__legend__max'>
         {{ (max.legend is defined and max.legend) ? max.legend : '' }}
         {% if max.legendDescription is defined and max.legendDescription %}
           <strong>{{ max.legendDescription }}</strong>
@@ -69,4 +69,3 @@
     </div>
   {% endif %}
 </div>
-{{'max: ' ~ max.start ~ '|'~ max.inputValue ~ ' min: ' ~ min.start ~ '|'~ min.inputValue}}
