@@ -57,14 +57,14 @@
   {% if haslegend or hasdescription %}
     <div class='bf-input-range__legend'>
       <p class='bf-input-range__legend__min'>
-      {{ (min.legend is defined and min.legend) ? min.legend : '' }}
+      {{ min.legend|default('') }}
       {% if min.description is defined and min.description %}
         <strong>{{ min.description }}</strong>
       {% endif %}
       </p>
 
       <p class='bf-input-range__legend__max'>
-        {{ (max.legend is defined and max.legend) ? max.legend : '' }}
+        {{ max.legend|default('') }}
         {% if max.description is defined and max.description %}
           <strong>{{ max.description }}</strong>
         {% endif %}
