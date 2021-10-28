@@ -35,13 +35,19 @@ addParameters({
     // Controls
     controls: {
         expanded: true,
-        hideNoControlsWarning: true
+        hideNoControlsWarning: true,
+        matchers: {
+            color: /(background|color)$/i,
+            date: /Date$/,
+        },
     },
     argTypes: {
         elementPath     : { table: { disable: true } },
         iframeUrl       : { table: { disable: true } },
         props           : { table: { disable: true } },
     },
+
+    actions: { argTypesRegex: "^on[A-Z].*" }
 
     // // Hide addons
     // storySource: { disable: true },
