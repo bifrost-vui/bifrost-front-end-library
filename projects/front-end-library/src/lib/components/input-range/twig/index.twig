@@ -22,18 +22,8 @@
   {% endif %}
 {% endif %}
 
-
-{% if  min.legend is defined and min.legend and max.legend is defined and max.legend  %}
- {% set haslegend = true %}
-{% else %}
-  {% set haslegend = false %}
-{% endif %}
-
-{% if  min.description is defined and min.description and max.description is defined and max.description  %}
- {% set hasdescription = true %}
-{% else %}
-  {% set hasdescription = false %}
-{% endif %}
+ {% set haslegend = min.legend is defined and min.legend and max.legend is defined and max.legend %}
+ {% set hasdescription = min.description is defined and min.description and max.description is defined and max.description %}
 
 <div class='bf-input-range {{ inputRangeVariant is defined ? 'bf-input-range' ~ inputRangeVariant : '' }} js-bf-input-range {{ class }} ' lang={{language|default('en')}}>
   <div class='bf-input-range__panel'>
