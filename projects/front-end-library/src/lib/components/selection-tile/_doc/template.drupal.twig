@@ -8,8 +8,8 @@
 {% set extraAttribute   = extraAttribute|json_parse %}
 
 <div class='container' {{ (orientation == 'horizontal') ? 'style="max-width :600px"':'style="max-width :1200px"'}}>
-  {% for index in [1,2,3,4] %}
-    <div class='p-3 {{ (index == 2 or index == 4) ? 'bf-color-bg-underground' }} {{ (reversed or index == 3 or index == 4) ? 'reversed  bf-color-bg-ground' : '' }}' >
+  {% for index in 1..5 %}
+    <div class='p-3 {{ (index == 2 or index == 4) ? 'bf-color-bg-underground' }} {{ (reversed or index == 3 or index == 4) ? 'reversed  bf-color-bg-ground' : '' }} {{ index == 5 ? 'bf-color-bg-highlight' : '' }}' >
       <div class='d-flex gap-2 {{ (orientation == 'vertical') ? 'flex-row flex-wrap' : 'flex-column' }}'>
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           value       : value,
@@ -39,9 +39,9 @@
         }  %}
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           value       : value,
-          inputId     : (inputId ~ '3' ~ loop.index)|default(inputId ~ '3' ~ loop.index),
+          inputId     : (inputId ~ '4' ~ loop.index)|default(inputId ~ '4' ~ loop.index),
           name        : name|default(name ~ loop.index),
-          ariaLabel   : (ariaLabel ~ '3' ~ loop.index)|default(ariaLabel ~ '3' ~ loop.index),
+          ariaLabel   : (ariaLabel ~ '4' ~ loop.index)|default(ariaLabel ~ '4' ~ loop.index),
           title       : title|default('Selection tile title'),
           description : description|default('lorem ipsum html <em>descriptum</em><sup>*</sup>'),
           image       : image|default({src:'/images/_docs/abstract-background.png',alt:'abstract background',class:'',}),
@@ -50,9 +50,9 @@
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           value       : value,
-          inputId     : (inputId ~ '4' ~ loop.index)|default(inputId ~ '4' ~ loop.index),
+          inputId     : (inputId ~ '5' ~ loop.index)|default(inputId ~ '5' ~ loop.index),
           name        : name|default(name ~ loop.index),
-          ariaLabel   : (ariaLabel ~ '4' ~ loop.index)|default(ariaLabel ~ '4' ~ loop.index),
+          ariaLabel   : (ariaLabel ~ '5' ~ loop.index)|default(ariaLabel ~ '5' ~ loop.index),
           title       : title|default('Selection tile title'),
           description : description|default('lorem ipsum html <em>descriptum</em><sup>&reg;</sup>'),
           iconName    : iconName|default('helix-tv-remote'),
