@@ -30,15 +30,18 @@ module.exports = (env) => {
             extensions: ['.js', '.scss'],
             alias: {
                 'pickerdate': 'pickadate/lib/picker.date'
-            }
+            },
         },
         plugins: [
+            require('autoprefixer'),
+            require('postcss-color-rebeccapurple'),
+
             new MiniCssExtractPlugin({
                 // Options similar to the same options in webpackOptions.output
                 // both options are optional
                 filename: devMode ? '../css/bifrost.css' : '../css/bifrost.[hash].css',
                 chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
-            })
+            }),
         ],
         module: {
             rules: [
@@ -48,14 +51,14 @@ module.exports = (env) => {
                 },
                 {
                     test: /\.(png|woff|jpg|woff2|eot|ttf|svg)$/,
-                  use: [
-                    {
-                      loader: 'url-loader',
-                      options: {
-                        limit: 1000
-                      }
-                    }
-                  ]
+                    use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                              limit: 1000
+                            }
+                        }
+                    ]
                 },
                 {
                     test: /\.(scss|css)$/,
@@ -68,17 +71,6 @@ module.exports = (env) => {
                                 // modules: true,
                                 importLoaders: 1
                             },
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                sourceMap: true,
-                                plugins: (loader) => [
-                                    require('autoprefixer')(),
-                                    require('postcss-flexbugs-fixes'),
-                                    // require('cssnano')()
-                                ]
-                            }
                         },
                         {
                             loader: 'sass-loader',
