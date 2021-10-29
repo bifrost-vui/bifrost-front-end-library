@@ -21,6 +21,7 @@ export class SelectionTileComponent implements OnInit {
     @Input() extraAttribute : string
 
     @Input() orientation    : 'horizontal'|'vertical';
+    /**`content` : fits the content , `container` : fits the container */
     @Input() fit            : 'content'|'container';
     @Input() title          : string;
     @Input() description    : string;
