@@ -27,8 +27,9 @@
         z-index: 0;
         transition-property: border-color, box-shadow, background-color;
         transition-duration: .25s;
+
         &:hover {
-            @extend .bf-border-highlight;
+            @extend .bf-border-color-highlight;
             box-shadow: var(--bf-box-shadow-light);
         }
     }
@@ -56,11 +57,11 @@
             }
         }
         &:checked + label {
-            @extend .bf-border-highlight;
+            @extend .bf-border-color-highlight;
             background-color: var(--bf-color-bg-underground);
             border-width: 2px;
 
-            &:hover{
+            &:hover {
                 box-shadow: var(--bf-box-shadow-light);
                 border-color: var(--bf-color-stroke-primary);
             }
@@ -73,20 +74,24 @@
             left: -1px;
             width: 1.5rem;
             height: 1.5rem;
-            background :var(--bf-color-feedback-neutral) url('/images/icons/bifrost/check-bg.svg') center center no-repeat;
+            background: var(--bf-color-feedback-neutral) url('/images/icons/bifrost/check-bg.svg') center center no-repeat;
             border-color:var(--bf-color-feedback-neutral);
             background-size: contain;
             border-radius: inherit;
             content: '';
         }
     }
-    img { height: 2.5rem; }
+    img {
+        height: 2.5rem;
+    }
 
     &__block {
         pointer-events: none;
         z-index: 10;
     }
-    &__text { @extend .small; }
+    &__text {
+        @extend .small;
+    }
 
 
     /*-----------------------------------*
@@ -118,14 +123,20 @@
             align-self: center;
             @extend .pr-2;
         }
-        .bf-selection-tile__text { align-self: center; }
+        .bf-selection-tile__text {
+            align-self: center;
+        }
 
-        .bf-selection-tile__footer { padding-left: var(--bf-spacer-3); }
+        .bf-selection-tile__footer {
+            padding-left: var(--bf-spacer-3);
+        }
 
         &.bf-selection-tile--fit-container {
             width: auto;
 
-            .bf-selection-tile__block { width: calc(100% - 3.5rem); }
+            .bf-selection-tile__block {
+                width: calc(100% - 3.5rem);
+            }
         }
         &.bf-selection-tile--fit-content {
             width: max-content;
@@ -160,7 +171,7 @@
                 flex-grow: 1;
                 align-items: center;
             }
-            .bf-selection-tile__body{
+            .bf-selection-tile__body {
                 display: flex;
                 flex-flow: column;
             }
@@ -173,18 +184,22 @@
             & .bf-selection-tile__block {
                & > div {
                     @extend .pt-2;
-                    align-items: center
+                    align-items: center;
                 }
                 .bf-selection-tile__no-visual { align-items: flex-start; }
 
                 .bf-selection-tile__footer {
                     @extend .pt-2;
-                    align-items: flex-end
+                    align-items: flex-end;
                 }
             }
-            .bf-selection-tile__visual { width: 100%;}
+            .bf-selection-tile__visual {
+                width: 100%;
+            }
         }
-        &.bf-selection-tile--fit-content .bf-selection-tile__inner { max-width: 12rem }
+        &.bf-selection-tile--fit-content .bf-selection-tile__inner {
+            max-width: 12rem;
+        }
     }
 
     /*-----------------------------------*
@@ -207,7 +222,7 @@
                 filter: opacity(0.5) grayscale(100) brightness(5);
             }
         }
-        img{ opacity: .5; }
+        img { opacity: .5; }
     }
     /*-----------------------------------*
     ** error state
@@ -222,9 +237,9 @@
         .bf-selection-tile__feedback {
             display: block;
             width: max-content;
+            padding: var(--bf-spacer-2) 0;
             color: var(--bf-color-feedback-warning);
             @extend .small;
-            padding: var(--bf-spacer-2) 0;
         }
     }
 }
@@ -233,14 +248,14 @@
 ** outer color contexts
 *------------------------------------*/
 
-.bf-color-bg-underground.bf-selection-tile__input:checked + label{
+.bf-color-bg-underground .bf-selection-tile__input:checked + label {
     background-color: var(--bf-color-bg-ground);
 }
 
 .reversed .disabled,
 .reversed.disabled {
-    .bf-selection-tile__input{
-        &:checked::before{
+    .bf-selection-tile__input {
+        &:checked::before {
             filter: opacity(0.2) grayscale(1) invert(1);
         }
     }

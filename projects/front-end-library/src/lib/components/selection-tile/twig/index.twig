@@ -1,14 +1,14 @@
-{% set fit      = fit|default('content') %}
+{% set fit          = fit|default('content') %}
 {% set allowedTags 	= '<br><em><i><strong><b><sup><sub>' %}
 {% set orientation  = orientation|default('horizontal') %}
-{% set hasVisual 	= ((iconName is defined and iconName) or (image.src is defined and image.src and image.alt is defined)) %}
+{% set hasVisual 	  = ((iconName is defined and iconName) or (image.src is defined and image.src and image.alt is defined)) %}
 
 <div class='bf-selection-tile
     bf-selection-tile--{{ orientation }}
     bf-selection-tile--{{ 'fit-' ~ fit }}
-    {{ (isInvalid) ? 'color-warning' : ' ' }}
-    {{ (isDisabled) ? 'disabled' }}
-    {{ (isSelected) ? 'checked' : '' }}
+    {{ isInvalid ? 'color-warning' : '' }}
+    {{ isDisabled ? 'disabled' }}
+    {{ isSelected ? 'checked' : '' }}
     {{ class }}'
   >
   <div class='bf-selection-tile__inner'>
@@ -20,18 +20,18 @@
         name='{{ name }}'
         value='{{ value|default('') }}'
         {% if ariaLabel is defined and ariaLabel %} aria-label='{{ ariaLabel}}'{% endif %}
-        {{ (isDisabled) ? 'disabled' : '' }}
-        {{ (isSelected) ? 'checked' : '' }}
-        {{ (required) ? 'required' : '' }}
+        {{ isDisabled ? 'disabled' : '' }}
+        {{ isSelected ? 'checked' : '' }}
+        {{ required ? 'required' : '' }}
         {{ extraAttribute|default(NULL) }}
       />
 
-      <label for='{{ inputId|default('') }}' class='bf-selection-tile__label' {% if ariaLabel is defined and ariaLabel %} title='{{ ariaLabel}}'{% endif %}></label>
+      <label for='{{ inputId|default('') }}' class='bf-selection-tile__label' {% if ariaLabel is defined and ariaLabel %} title='{{ ariaLabel }}'{% endif %}></label>
     </div>
 
     <div class='bf-selection-tile__block'>
       {% block selectionTile_content %}
-        <div class='{{ (hasVisual) ? '' : 'bf-selection-tile__no-visual' }}' >
+        <div class='{{ hasVisual ? '' : 'bf-selection-tile__no-visual' }}' >
           <div class='bf-selection-tile__body'>
             {% if hasVisual %}
               <div class='bf-selection-tile__visual'>
