@@ -7,15 +7,13 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 })
 export class InputRangeComponent implements OnInit {
     constructor() {}
-
     @Input() initialValue   : number | Array<number> ;
-    /** inputId is required and if no `startValue` is defined, `InputValue` will be the min start*/
+    /** min {**InputId**, **value**, legend, description} **InputId** and **value** are required  */
     @Input() min            : object;
-    /** inputId is required and if no `startValue` is defined, `InputValue` will be the max start*/
+    /** max {**InputId**, **value**, legend, description} **InputId** and **value** are required */
     @Input() max            : object;
     @Input() labelUnit      : string;
-    /** Position the unit `before`or `after` the label  */
-    @Input() unitPosition   : 'before'|'after';
+    @Input() unitPosition   : 'start'|'end';
     @Input() step           : number;
     /** changes the direction of a 1 handle slider */
     @Input() isInverted     : boolean;

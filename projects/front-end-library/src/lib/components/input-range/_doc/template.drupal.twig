@@ -7,12 +7,12 @@
 {% set initialValue = initialValue|json_parse %}
 {% set isInverted = isInverted|json_parse %}
 
-{% set bgClass  = '' %}
-{% set reversedClass  = '' %}
+{% set bgClass = '' %}
+{% set reversedClass = '' %}
 <div class='demogrid'>
     {% for index in [1,2,3,4,5]%}
 
-        {% if index is same as (1) or index == 4 %}
+        {% if index == 1 or index == 4 %}
             {% set bgClass = class|default('bf-color-bg-ground') %}
         {% elseif index == 2 or index == 5 %}
             {% set bgClass = class|default('bf-color-bg-underground') %}
@@ -26,7 +26,7 @@
 
         {% include '@bf-components/input-range/twig/index.twig' with {
             class : bgClass ~ reversedClass
-        }%}
+        } %}
     {% endfor %}
 </div>
 <style>
@@ -35,7 +35,7 @@
     width: 100%;
     display: grid;
     grid-gap: .5rem;
-    grid-template-columns:repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     margin: 9vh auto;
 }
 </style>
