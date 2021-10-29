@@ -3,17 +3,50 @@
 *  Tab
 *
 * ***************************************************************************** */
+/**
+// scrolling effect
+// on Chrome and other supporting browser : makes the horizontal scrollbar very thin(3px) and blurs the far right of the region
+
+.bf-overflow-x{
+
+
+*/
+
+
 
 .bf-tab {
     position: relative;
     width: 100%;
+
     & > div {
-        @extend .bf-overflow-x;
-        padding-left: 2.5rem;
-        padding-right: 2.5rem;
-        @include media-breakpoint-down(md) {
-            padding-left: 1rem;
+        overflow-x: auto;
+        position: static;
+        ::-webkit-scrollbar,
+        ::-webkit-scrollbar-button {
+            @include size(5px);
+                background-color: var(--bf-color-stroke-secondary);
+            @include media-breakpoint-down(md) {
+                @include size(3px);
+            }
         }
+        padding:0 2.5rem var(--bf-spacer-2);
+        @include media-breakpoint-down(md) {
+            padding-left: 0.25rem;
+        }
+        &:before {
+            background-image: var(--bf-color-bg-linear-ground-x);
+            background-repeat: repeat-y;
+            content: "";
+            width: 5.5rem;
+            height: 100%;
+            position: absolute;
+            z-index: 1;
+            right: 0;
+            top: 0;
+            pointer-events: none;
+
+        }
+
     }
 
     &__slider {
@@ -35,7 +68,7 @@
         white-space: nowrap;
         text-align: center;
         transition: color .25s;
-        
+
         &.active,
         &:hover {
             color: inherit !important;
@@ -47,4 +80,7 @@
             }
         }
     }
+}
+.bf-color-bg-underground .bf-tab > div:before {
+    background-image: var(--bf-color-bg-linear-underground-x);
 }
