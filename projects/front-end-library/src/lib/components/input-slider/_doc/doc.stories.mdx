@@ -2,13 +2,13 @@ import { moduleMetadata }               from '@storybook/angular';
 import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 import { withDesign }                   from 'storybook-addon-designs'
 import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { InputRangeComponent }          from '../angular/input-range.component';
+import { inputSliderComponent }          from '../angular/input-slider.component';
 
 <Meta
-    title='Components/Input Range'
-    component={InputRangeComponent}
+    title='Components/Input Slider'
+    component={inputSliderComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputRangeComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [InputSliderComponent, TwigContainerComponent]}),
         withDesign
     ]}
     parameters={{
@@ -33,13 +33,13 @@ import { InputRangeComponent }          from '../angular/input-range.component';
     }}
 />
 
-# Input Range
+# Input Slider
 
 ## Component API
 
 **✅ Inputs are equivalent for Angular and Drupal.**
 
-<Props of={InputRangeComponent} />
+<Props of={inputSliderComponent} />
 
 ### Notes
 - if `initialValue` is empty or undefined : creates a 2 handles slider positioned at each end of the input track
@@ -126,7 +126,7 @@ export const Drupal = (args) => ({
 });
 
 
-### Default Input range component with 2 handles with range
+### Default Input slider component with 2 handles
 <Preview
     withSource='none'
     style={{ height: '400px' }}
@@ -134,7 +134,7 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - 2 handles'
         args={{
-            elementPath : 'components/input-range/_doc/template.drupal',
+            elementPath : 'components/input-slider/_doc/template.drupal',
             ...defaultProps
         }}
     >
@@ -143,7 +143,7 @@ export const Drupal = (args) => ({
 </Preview>
 
 ```jsx
-{% include '@bf-components/input-range/twig/index.twig' with {
+{% include '@bf-components/input-slider/twig/index.twig' with {
     min            : {
         inputId       : 'minRange',
         value         : 20,
@@ -162,7 +162,7 @@ export const Drupal = (args) => ({
 
 } only %}
 ```
-### Default Input range component with 2 handles with range with initial values
+### Default Input slider component with 2 handles with initial values
 <Preview
     withSource='none'
     style={{ height: '400px' }}
@@ -170,7 +170,7 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - 2 handles with initial values'
         args={{
-            elementPath : 'components/input-range/_doc/template.drupal',
+            elementPath : 'components/input-slider/_doc/template.drupal',
             ...startProps
         }}
     >
@@ -180,7 +180,7 @@ export const Drupal = (args) => ({
 
 
 ```jsx
-{% include '@bf-components/input-range/twig/index.twig' with {
+{% include '@bf-components/input-slider/twig/index.twig' with {
     initialValue   : [40,80]
     min            : {
         inputId       : 'minRange',
@@ -199,7 +199,7 @@ export const Drupal = (args) => ({
 
 } only %}
 ```
-### Input range component with min handle only
+### Input slider component with min handle only
 
 <Preview
     withSource='none'
@@ -208,7 +208,7 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - 1 handle'
         args={{
-            elementPath : 'components/input-range/_doc/template.drupal',
+            elementPath : 'components/input-slider/_doc/template.drupal',
             ...minProps
         }}
     >
@@ -217,7 +217,7 @@ export const Drupal = (args) => ({
 </Preview>
 
 ```jsx
-{% include '@bf-components/input-range/twig/index.twig' with {
+{% include '@bf-components/input-slider/twig/index.twig' with {
     initialValue    : 40,
     min             : {
         inputId       : 'minRange',
@@ -235,7 +235,7 @@ export const Drupal = (args) => ({
     isInverted      : true,
 } %}
 ```
-### Input range component with max handle only
+### Input slider component with max handle only
 
 <Preview
     withSource='none'
@@ -244,7 +244,7 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - 1 handle inverted direction'
         args={{
-            elementPath : 'components/input-range/_doc/template.drupal',
+            elementPath : 'components/input-slider/_doc/template.drupal',
             ...maxProps
         }}
     >
@@ -253,7 +253,7 @@ export const Drupal = (args) => ({
 </Preview>
 
 ```jsx
-{% include '@bf-components/input-range/twig/index.twig' with {
+{% include '@bf-components/input-slider/twig/index.twig' with {
     initialValue    : 40,
     min             : {
         inputId       : 'minRange',

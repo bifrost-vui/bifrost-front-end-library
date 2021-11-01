@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
 @Component({
-    selector: 'bf-input-range',
-    templateUrl: './input-range.component.html',
+    selector: 'bf-input-slider',
+    templateUrl: './input-slider.component.html',
     // styleUrls: ['../scss/index.scss'],
 })
-export class InputRangeComponent implements OnInit {
+export class InputSliderComponent implements OnInit {
     constructor() {}
     @Input() initialValue   : number | Array<number> ;
     /** min {**InputId**, **value**, legend, description} **InputId** and **value** are required  */
@@ -20,6 +20,6 @@ export class InputRangeComponent implements OnInit {
     @Input() class          : string;
 
     ngOnInit() {
-        console.log('InputRange', this);
+        console.log('InputSlider', this);
     }
 }
