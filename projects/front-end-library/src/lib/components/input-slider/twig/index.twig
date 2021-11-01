@@ -1,20 +1,20 @@
 {% set inputValues = [ min.value, max.value ] %}
 
-{% if initialValue is not defined or initialValue is empty %}
+{% if value is not defined or value is empty %}
   {% set inputValues = [ min.value, max.value ] %}
-{% elseif initialValue is iterable and initialValue[0] and initialValue[1] %}
-    {% if initialValue[0] < initialValue[1] %}
-      {% set inputValues = initialValue %}
+{% elseif value is iterable and value[0] and value[1] %}
+    {% if value[0] < value[1] %}
+      {% set inputValues = value %}
     {% else %}
-      {% set inputValues = [ initialValue[1], initialValue[0] ] %}
+      {% set inputValues = [ value[1], value[0] ] %}
     {% endif %}
 {% else %}
   {% if isInverted  %}
     {% set inputSliderVariant = '--min' %}
-    {% set inputValues = [ initialValue, max.value ] %}
+    {% set inputValues = [ value, max.value ] %}
   {% else %}
     {% set inputSliderVariant = '--max' %}
-    {% set inputValues = [ min.value, initialValue ] %}
+    {% set inputValues = [ min.value, value ] %}
   {% endif %}
 {% endif %}
 

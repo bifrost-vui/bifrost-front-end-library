@@ -42,10 +42,10 @@ import { InputSliderComponent }          from '../angular/input-slider.component
 <Props of={InputSliderComponent} />
 
 ### Notes
-- if `initialValue` is empty or undefined : creates a 2 handles slider positioned at each end of the input track
-- if `initialValue` contains 2 values : creates a 2 handles slider positioned at the corresponding coordonates
-- if `initialValue` contains 1 value : creates a 1 handle slider positioned  at the corresponding coordonate
-- if `isInverted` is set true and `initialValue` contains 1 value : reverts the direction of the 1 handle slider but has no effect if `initialValue` contains 2 values
+- if `value` is empty or undefined : creates a 2 handles slider positioned at each end of the input track
+- if `value` contains 2 values : creates a 2 handles slider positioned at the corresponding coordonates
+- if `value` contains 1 value : creates a 1 handle slider positioned  at the corresponding coordonate
+- if `isInverted` is set true and `value` contains 1 value : reverts the direction of the 1 handle slider but has no effect if `value` contains 2 values
 
 
 ## Drupal implementation exemple
@@ -67,7 +67,7 @@ export const defaultProps = {
     labelUnit       : '$',
 }
 export const startProps = {
-    initialValue    : [40,80],
+    value    : [40,80],
     min             : {
         inputId       : 'minRange',
         value         : 20,
@@ -84,7 +84,7 @@ export const startProps = {
 }
 
 export const minProps = {
-    initialValue    : 80,
+    value    : 80,
     min             : {
         inputId       : 'minRange',
         value         : 20,
@@ -101,7 +101,7 @@ export const minProps = {
 }
 
 export const maxProps = {
-    initialValue    : 40,
+    value    : 40,
     min             : {
         inputId       : 'minRange',
         value         : 20,
@@ -181,7 +181,7 @@ export const Drupal = (args) => ({
 
 ```jsx
 {% include '@bf-components/input-slider/twig/index.twig' with {
-    initialValue   : [40,80]
+    value   : [40,80]
     min            : {
         inputId       : 'minRange',
         value         : 20,
@@ -218,7 +218,7 @@ export const Drupal = (args) => ({
 
 ```jsx
 {% include '@bf-components/input-slider/twig/index.twig' with {
-    initialValue    : 40,
+    value    : 40,
     min             : {
         inputId       : 'minRange',
         value         : 20,
@@ -254,7 +254,7 @@ export const Drupal = (args) => ({
 
 ```jsx
 {% include '@bf-components/input-slider/twig/index.twig' with {
-    initialValue    : 40,
+    value    : 40,
     min             : {
         inputId       : 'minRange',
         value         : 20,
