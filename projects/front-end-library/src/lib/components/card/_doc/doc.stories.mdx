@@ -1,6 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
 
+import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
 import { contentLists, contentListsNoTitle }    from './data';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { CardComponent }                        from '../angular/card.component';
@@ -27,6 +28,13 @@ import { CardComponent }                        from '../angular/card.component'
         },
         language: {
             table: { defaultValue: { summary: 'en' } },
+        },
+        iconName: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['', 'placeholder', ...illustrationIcons.map(a => a.list).flat().sort()]
+            }
         },
     }}
 />
@@ -106,13 +114,17 @@ import { CardComponent }                        from '../angular/card.component'
         }
     ],
     price           : {
-        class           : '',
-        dollar          : '152',
-        cent            : '34',
-        infosSupp       : 'Taxes incl.',
-        boxAlignement   : 'left',
-        dashed          : '$150',
-        saved           : '<strong>$30</strong>',
+        upperTitle      : 'From',
+        dollar          : 86,
+        cent            : 99,
+        details         : '/month',
+        promotion       : {
+            priceStriked    : 40.99,
+            priceSaved      : 10,
+            savedLabel      : 'You saved :',
+            superscript     : 1,
+            direction       : 'horizontal',
+        }
     },
     buttons         : [
         {
@@ -128,7 +140,7 @@ import { CardComponent }                        from '../angular/card.component'
         }
     ],
     message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
-    language            : 'en',
+    language            : 'en'
 } only %}
 
 // Card Phone example:
@@ -152,6 +164,13 @@ import { CardComponent }                        from '../angular/card.component'
         label           : 'Choose another Plan',
         class           : ''
     }
+    contentBadge : {
+            label       : 'Lorem Ipsum',
+            hierarchy   : 'tertiary',
+            angle       : '',
+            iconName    : '',
+            class       : '',
+    }
 } only %}
 ```
 
@@ -173,13 +192,17 @@ export const commonProps = {
     },
     contentLists    : contentLists,
     price           : {
-        class           : '',
-        dollar          : '152',
-        cent            : '34',
-        infosSupp       : 'Taxes incl.',
-        boxAlignement   : 'left',
-        dashed          : '$150',
-        saved           : '<strong>$30</strong>',
+        upperTitle      : 'From',
+        dollar          : 86,
+        cent            : 99,
+        details         : '/month',
+        promotion       : {
+            priceStriked    : 40.99,
+            priceSaved      : 10,
+            savedLabel      : 'You saved :',
+            superscript     : 1,
+            direction       : 'horizontal',
+        }
     },
     buttons           : [
         {
@@ -213,6 +236,7 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - Plan'
         args={{
+            elementPath : 'components/card/_doc/template.drupal',
             ...commonProps,
             cardVariant : 'plan',
             isDisabled  : false,
@@ -249,11 +273,6 @@ export const Drupal = (args) => ({
             cardVariant     : 'plan',
             upperTitle      : undefined,
             contentLists    : contentListsNoTitle,
-            price           : {
-                class           : '',
-                dollar          : '20',
-                boxAlignement   : 'left',
-            },
             buttons           : [
                 {
                     label       : 'Choose this plan',
@@ -290,13 +309,16 @@ export const phoneCommonProps = {
     detailsStorage : ['128 Go', '256 Go'],
     price           : {
         upperTitle      : 'From',
-        dollar          : '86',
-        cent            : '99',
+        dollar          : 86,
+        cent            : 99,
         details         : '/month',
-        boxAlignement   : 'left',
-        dashed          : '$150.00',
-        saved           : '$30.00',
-        savedLabel      : 'You save:',
+        promotion       : {
+            priceStriked    : 40.99,
+            priceSaved      : 10,
+            savedLabel      : 'You saved :',
+            superscript     : 1,
+            direction       : 'horizontal',
+        }
     },
     note                : 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
     buttons             : [
@@ -306,6 +328,12 @@ export const phoneCommonProps = {
             href            : 'www.videotron.com',
         }
     ],
+    contentBadge : {
+            label       : 'Lorem Ipsum',
+            hierarchy   : 'tertiary',
+            angle       : '',
+            iconName    : 'credit-return',
+    }
 };
 
 <Preview
@@ -364,12 +392,16 @@ export const phoneCommonProps = {
             title           : 'Apple Care+ for iPhone',
             price           : {
                 upperTitle      : 'From',
-                dollar          : '152',
-                cent            : '34',
-                infosSupp       : 'Taxes incl.',
-                boxAlignement   : 'left',
-                dashed          : '$150',
-                saved           : '<strong>$30</strong>',
+                dollar          : 86,
+                cent            : 99,
+                details         : '/month',
+                promotion       : {
+                    priceStriked    : 40.99,
+                    priceSaved      : 10,
+                    savedLabel      : 'You saved :',
+                    superscript     : 1,
+                    direction       : 'horizontal',
+                }
             },
             message           : 'Lorem ipsum dolor this protection.',
             buttons           : [
@@ -398,26 +430,31 @@ export const phoneCommonProps = {
             description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
             price           : {
                 upperTitle      : 'From',
-                dollar          : '152',
-                cent            : '34',
-                infosSupp       : 'Taxes incl.',
-                boxAlignement   : 'left',
-                dashed          : '$150',
-                saved           : '<strong>$30</strong>',
+                dollar          : 86,
+                cent            : 99,
+                details         : '/month',
+                promotion       : {
+                    priceStriked    : 40.99,
+                    priceSaved      : 10,
+                    savedLabel      : 'You saved :',
+                    superscript     : 1,
+                    direction       : 'horizontal',
+                }
             },
-            message           : 'Lorem ipsum dolor this message.',
-            inputIncrement  :{
+            message         : 'Lorem ipsum dolor this message.',
+            inputIncrement  : {
                 min             : 0,
                 max             : 5,
-                value      : 0,
+                value           : 0,
                 inputId         : 'my-input-id',
+                ariaLabel       : 'my aria-label',
                 errorMessage    : 'Value should be between 0 and 5',
             },
             buttons         : [
                 {
-                label           : 'Add to plan',
-                hierarchy       : 'primary-alt',
-                href            : 'www.videotron.com',
+                    label           : 'Add to plan',
+                    hierarchy       : 'primary-alt',
+                    href            : 'www.videotron.com',
                 }
             ]
         }}

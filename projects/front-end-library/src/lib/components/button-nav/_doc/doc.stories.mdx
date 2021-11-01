@@ -1,0 +1,88 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+
+import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { ButtonNavComponent }                   from '../angular/button-nav.component';
+
+
+<Meta 
+    title='Components/Button Nav' 
+    component={ButtonNavComponent}
+    decorators={[
+        moduleMetadata({ declarations: [ButtonNavComponent, TwigContainerComponent]})
+    ]}
+    argTypes={{
+        iconName: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['', 'placeholder', ...illustrationIcons.map(a => a.list).flat().sort()]
+            }
+        }
+    }}
+/>
+
+
+# Button Nav
+
+<br/>
+
+
+
+## Component API
+
+<Props of={ButtonNavComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/button-nav/twig/index.twig' with {
+    label           : 'Default',
+    iconName        : 'placeholder',
+    class           : 'mt-3',
+    reversed        : false,
+    highlight       : false,
+} only %}
+```
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+
+<Preview
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story 
+        name='Drupal'
+        args={{
+            elementPath : 'components/button-nav/_doc/template.drupal',
+            iconName    : 'placeholder'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+<Preview
+    withSource='none'
+    style={{ height: '900px' }}
+>
+    <Story 
+        name='Drupal - Usage Example'
+        args={{
+            elementPath : 'components/button-nav/_doc/usage-example.drupal'
+        }}
+        argTypes={{}}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>

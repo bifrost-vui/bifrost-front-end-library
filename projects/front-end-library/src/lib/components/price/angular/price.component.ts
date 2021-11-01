@@ -23,9 +23,6 @@ export interface IPrice {
     cent        : number;
     hasAsterisk : boolean;
     promotion   : IPromotion;
-    dashed      : string;
-    saved       : string;
-    savedLabel  : string;
     details     : string;
     message     : string;
     size        : 'small' | 'medium' | 'large';
