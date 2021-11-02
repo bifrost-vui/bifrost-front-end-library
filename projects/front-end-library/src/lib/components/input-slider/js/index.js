@@ -8,10 +8,9 @@ $(function () {
             //inputs
             $minRangeInput = $this.find('.bf-input-slider__input__min'),
             $maxRangeInput = $this.find('.bf-input-slider__input__max'),
-            //inputs attributes
-            $minInputValue = $minRangeInput.attr('min'),
-            $maxInputValue = $minRangeInput.attr('max'),
-            $unit = $minRangeInput.attr('data-unit'),
+            //inputs attributes -- recover data with the first available input
+            $minInputValue = $this.find('input').attr('min'),
+            $maxInputValue = $this.find('input').attr('max'),
             //overlay divs
             $rangeValue = $this.find('.bf-input-slider__value'),
             $handleLeft = $this.find('.bf-input-slider__handle--left'),
@@ -20,16 +19,31 @@ $(function () {
             $minLabel = $this.find('.bf-input-slider__handle--left .bf-input-slider__label__value'),
             $maxLabel = $this.find('.bf-input-slider__handle--right .bf-input-slider__label__value');
 
+
         displayCurrentValue();
+        console.log($maxRangeInput.val() + ' -' + $minRangeInput.val())
 
         function displayCurrentValue() {
-            const min = doTheMath($minRangeInput.val());
-            const max = doTheMath($maxRangeInput.val());
-            $minLabel.html($minRangeInput.val());
-            $maxLabel.html($maxRangeInput.val());
-            $rangeValue.css('left', min + '%').css('right', (100 - max) + '%');
+            let min, max;
+            if ($maxRangeInput.val() == undefined){
+                min = doTheMath($minRangeInput.val());
+                max = doTheMath($maxInputValue);
+                $minLabel.html($minRangeInput.val());
+            }
+            else if ($minRangeInput.val() == undefined){
+                max = doTheMath($maxRangeInput.val());
+                min = doTheMath($minInputValue);
+                $maxLabel.html($maxRangeInput.val());
+            }
+            else {
+                min = doTheMath($minRangeInput.val());
+                max = doTheMath($maxRangeInput.val());
+                $minLabel.html($minRangeInput.val());
+                $maxLabel.html($maxRangeInput.val());
+            }
             $handleLeft.css('left', min + '%');
             $handleRight.css('right', (100 - max) + '%');
+            $rangeValue.css('left', min + '%').css('right', (100 - max) + '%');
         }
 
         function doTheMath(rangeInput) {
