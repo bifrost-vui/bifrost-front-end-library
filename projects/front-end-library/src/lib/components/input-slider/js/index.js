@@ -13,8 +13,6 @@ $(function () {
             $maxInputValue = $minRangeInput.attr('max'),
             $unit = $minRangeInput.attr('data-unit'),
             //overlay divs
-            $excludeLeft = $this.find('.bf-input-slider__exclude--left'),
-            $excludeRight = $this.find('.bf-input-slider__exclude--right'),
             $rangeValue = $this.find('.bf-input-slider__value'),
             $handleLeft = $this.find('.bf-input-slider__handle--left'),
             $handleRight = $this.find('.bf-input-slider__handle--right'),
@@ -29,8 +27,6 @@ $(function () {
             const max = doTheMath($maxRangeInput.val());
             $minLabel.html($minRangeInput.val());
             $maxLabel.html($maxRangeInput.val());
-            $excludeLeft.css('width', min + '%');
-            $excludeRight.css('width', (100 - max) + '%');
             $rangeValue.css('left', min + '%').css('right', (100 - max) + '%');
             $handleLeft.css('left', min + '%');
             $handleRight.css('right', (100 - max) + '%');
