@@ -1,5 +1,5 @@
 import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story,  Props }  from '@storybook/addon-docs';
+import { Canvas, Meta, Story,  Props }  from '@storybook/addon-docs';
 
 import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
 import { CarouselComponent }            from '../angular/carousel.component';
@@ -42,14 +42,14 @@ import { CarouselComponent }            from '../angular/carousel.component';
             nextArrow: bfSlick.getNextSlickBtn(),
             responsive: [
                 {
-                    breakpoint: (bfTheme.breakpoints.md-1),
+                    breakpoint: (breakpoints.md-1),
                     settings: {
                         slidesToShow: 2,
                         slidesToScroll: 1
                     }
                 },
                 {
-                    breakpoint: bfTheme.breakpoints.lg,
+                    breakpoint: breakpoints.lg,
                     settings: {
                         slidesToShow: 3,
                         slidesToScroll: 3
@@ -79,7 +79,7 @@ export const Drupal = (args) => ({
 <Canvas withSource='none'>
     <Story
         name='Drupal'
-        height='1000px'
+        height='800px'
         args={{
             elementPath : 'components/carousel/_doc/template.drupal',
         }}
