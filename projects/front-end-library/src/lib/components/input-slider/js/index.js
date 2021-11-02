@@ -21,7 +21,6 @@ $(function () {
 
 
         displayCurrentValue();
-        console.log($maxRangeInput.val() + ' -' + $minRangeInput.val())
 
         function displayCurrentValue() {
             let min, max;
