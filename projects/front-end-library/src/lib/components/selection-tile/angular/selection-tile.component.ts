@@ -19,9 +19,9 @@ export class SelectionTileComponent implements OnInit {
     @Input() name           : string;
     /** extra attribute for the radio/checkbox input */
     @Input() extraAttribute : string
-
     @Input() orientation    : 'horizontal'|'vertical';
-    /**`content` : fits the content , `container` : fits the container */
+
+    /**  Tile  fits the content | Tile fits the container  */
     @Input() fit            : 'content'|'container';
     @Input() title          : string;
     @Input() description    : string;

@@ -56,41 +56,51 @@
                 box-shadow: var(--bf-box-shadow-highlight);
             }
         }
-        &:checked{
-            border: 1px solid transparent;
+        &:disabled {
+            border: 1px solid var(--bf-color-stroke-secondary);
         }
-        &:checked + label {
-            @extend .bf-border-color-highlight;
-            background-color: var(--bf-color-bg-underground);
-            border-width: 2px;
+        &:checked {
+            border-color: rgba(var(--bf-color-stroke-secondary-rgb), .43);
+            background-color:var(--bf-color-feedback-neutral);
 
-            &:hover {
-                box-shadow: var(--bf-box-shadow-light);
-                border-color: var(--bf-color-stroke-primary);
+            &::before {
+                display: block;
+                position: absolute;
+                z-index: 3;
+                top: -1px;
+                left: -1px;
+                width: 1.5rem;
+                height: 1.5rem;
+                background: url('/images/icons/bifrost/check-bg.svg') center center no-repeat;
+                background-size: contain;
+                border-radius: inherit;
+                content: '';
             }
-        }
-        &:checked{
-            background-color:var(--bf-color-feedback-neutral)
-        }
-        &:checked::before {
-            display: block;
-            position: absolute;
-            z-index: 3;
-            top: -1px;
-            left: -1px;
-            width: 1.5rem;
-            height: 1.5rem;
-            background: url('/images/icons/bifrost/check-bg.svg') center center no-repeat;
-            border-color: var(--bf-color-feedback-neutral);
-            background-size: contain;
-            border-radius: inherit;
-            content: '';
+            + label {
+                @extend .bf-border-color-highlight;
+                background-color: var(--bf-color-bg-underground);
+                border-width: 2px;
+
+                &:hover {
+                    border-color: var(--bf-color-stroke-primary);
+                }
+            }
+            &:disabled {
+                border-color: rgba(var(--bf-color-stroke-secondary-rgb), .43);
+                background-color: rgba(var(--bf-color-bg-action-disabled-rgb), .35);
+
+                &::before {
+                    filter: opacity(0.5) grayscale(100) brightness(5);
+                }
+                + label{
+                    background: transparent;
+                }
+            }
         }
     }
     img {
         height: 2.5rem;
     }
-
     &__block {
         pointer-events: none;
         z-index: 10;
@@ -218,15 +228,6 @@
             border: 1px solid var(--bf-color-stroke-primary);
             background: transparent;
         }
-        .bf-selection-tile__input {
-            border: 1px solid var(--bf-color-stroke-secondary);
-            &:checked{
-                background-color: rgba(var(--bf-color-bg-action-disabled-rgb),.5);
-            }
-            &:checked::before {
-                filter: opacity(0.5) grayscale(100) brightness(5);
-            }
-        }
         img {
             opacity: .5;
         }
@@ -234,7 +235,6 @@
     /*-----------------------------------*
     ** error state
     *------------------------------------*/
-
     &.color-warning {
         .bf-selection-tile__label {
             border-color: var(--bf-color-feedback-warning);
@@ -255,22 +255,25 @@
 /*-----------------------------------*
 ** outer color contexts
 *------------------------------------*/
-.bf-color-bg-underground{
-    .bf-selection-tile__input:checked + label {
-        background-color: var(--bf-color-bg-ground);
+.bf-color-bg-underground {
+    .bf-selection-tile__input:checked {
+        + label {
+            background-color: var(--bf-color-bg-ground);
+        }
+        &:disabled + label {
+            background-color: transparent;
+        }
+
     }
 }
 .reversed .disabled,
 .reversed.disabled {
-    .bf-selection-tile__input {
-        &:checked{
-            background-color: rgba(var(--bf-color-bg-action-disabled-rgb),.67);
-            + label{
-                background-color: transparent;
-            }
-        }
-        &:checked::before {
+    .bf-selection-tile__input:checked {
+        background-color: rgba(var(--bf-color-bg-action-disabled-rgb),.67);
+
+        &::before {
             filter: opacity(0.5) grayscale(100) invert(1);
         }
+
     }
 }

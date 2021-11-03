@@ -3,29 +3,23 @@
 {% set orientation  = orientation|default('horizontal') %}
 {% set hasVisual 	  = ((iconName is defined and iconName) or (image.src is defined and image.src and image.alt is defined)) %}
 
-<div class='bf-selection-tile
-    bf-selection-tile--{{ orientation }}
-    bf-selection-tile--{{ 'fit-' ~ fit }}
-    {{ isInvalid ? 'color-warning' : '' }}
-    {{ isDisabled ? 'disabled' }}
-    {{ isSelected ? 'checked' : '' }}
-    {{ class }}'
-  >
+<div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--{{ 'fit-' ~ fit }} {{ isInvalid ? 'color-warning' : '' }} {{ isDisabled ? 'disabled' }} {{ isSelected ? 'checked' : '' }} {{ class }}'>
   <div class='bf-selection-tile__inner'>
     <div class='bf-selection-tile__control'>
-      <input
-        type='{{ inputType|default('checkbox') }}'
-        class='bf-selection-tile__input'
-        id='{{ inputId|default('') }}'
-        name='{{ name }}'
-        value='{{ value|default('') }}'
-        {% if ariaLabel is defined and ariaLabel %} aria-label='{{ ariaLabel}}'{% endif %}
-        {{ isDisabled ? 'disabled' : '' }}
-        {{ isSelected ? 'checked' : '' }}
-        {{ required ? 'required' : '' }}
-        {{ extraAttribute|default(NULL) }}
-      />
-
+      {% apply spaceless %}
+        <input
+          type='{{ inputType|default('checkbox') }}'
+          class='bf-selection-tile__input'
+          id='{{ inputId|default('') }}'
+          name='{{ name }}'
+          value='{{ value|default('') }}'
+          {% if ariaLabel is defined and ariaLabel %} aria-label='{{ ariaLabel}}'{% endif %}
+          {{ isDisabled ? 'disabled' : '' }}
+          {{ isSelected ? 'checked' : '' }}
+          {{ required ? 'required' : '' }}
+          {{ extraAttribute|default(NULL) }}
+        />
+      {% endapply %}
       <label for='{{ inputId|default('') }}' class='bf-selection-tile__label' {% if ariaLabel is defined and ariaLabel %} title='{{ ariaLabel }}'{% endif %}></label>
     </div>
 
