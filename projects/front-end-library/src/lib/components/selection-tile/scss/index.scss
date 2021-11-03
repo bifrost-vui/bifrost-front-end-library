@@ -43,7 +43,7 @@
         margin-right: var(--bf-spacer-1);
         border: 1px solid var(--bf-color-stroke-primary);
         border-radius: .125rem;
-        background: none;
+        background-color: transparent;
         pointer-events: none;
 
         &[type=radio] {
@@ -56,6 +56,9 @@
                 box-shadow: var(--bf-box-shadow-highlight);
             }
         }
+        &:checked{
+            border: 1px solid transparent;
+        }
         &:checked + label {
             @extend .bf-border-color-highlight;
             background-color: var(--bf-color-bg-underground);
@@ -66,6 +69,9 @@
                 border-color: var(--bf-color-stroke-primary);
             }
         }
+        &:checked{
+            background-color:var(--bf-color-feedback-neutral)
+        }
         &:checked::before {
             display: block;
             position: absolute;
@@ -74,7 +80,7 @@
             left: -1px;
             width: 1.5rem;
             height: 1.5rem;
-            background: var(--bf-color-feedback-neutral) url('/images/icons/bifrost/check-bg.svg') center center no-repeat;
+            background: url('/images/icons/bifrost/check-bg.svg') center center no-repeat;
             border-color: var(--bf-color-feedback-neutral);
             background-size: contain;
             border-radius: inherit;
@@ -200,21 +206,24 @@
         }
     }
     /*-----------------------------------*
-    ** disabled state
+    ** disabled state (colors)
     *------------------------------------*/
     &.disabled {
         pointer-events: none;
-        @extend .bf-color-neutral-tertiary;
-
+        color: rgba(var(--bf-color-neutral-primary-rgb), 0.32);
+        .bf-icon{
+            color: rgba(var(--bf-color-neutral-primary-rgb), 0.32);
+        }
         .bf-selection-tile__label {
-            border: 1px solid var(--bf-color-stroke-secondary);
+            border: 1px solid var(--bf-color-stroke-primary);
             background: transparent;
         }
         .bf-selection-tile__input {
             border: 1px solid var(--bf-color-stroke-secondary);
-
-            &:checked::before {
+            &:checked{
                 background-color: rgba(var(--bf-color-bg-action-disabled-rgb),.5);
+            }
+            &:checked::before {
                 filter: opacity(0.5) grayscale(100) brightness(5);
             }
         }
@@ -246,14 +255,22 @@
 /*-----------------------------------*
 ** outer color contexts
 *------------------------------------*/
-.bf-color-bg-underground .bf-selection-tile__input:checked + label {
-    background-color: var(--bf-color-bg-ground);
+.bf-color-bg-underground{
+    .bf-selection-tile__input:checked + label {
+        background-color: var(--bf-color-bg-ground);
+    }
 }
 .reversed .disabled,
 .reversed.disabled {
     .bf-selection-tile__input {
+        &:checked{
+            background-color: rgba(var(--bf-color-bg-action-disabled-rgb),.67);
+            + label{
+                background-color: transparent;
+            }
+        }
         &:checked::before {
-            filter: opacity(0.2) grayscale(1) invert(1);
+            filter: opacity(0.5) grayscale(100) invert(1);
         }
     }
 }

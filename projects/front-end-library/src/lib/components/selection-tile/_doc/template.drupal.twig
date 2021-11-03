@@ -7,6 +7,14 @@
 {% set required         = required|json_parse %}
 {% set extraAttribute   = extraAttribute|json_parse %}
 
+{# {% set value            = value|json_parse %}
+{% set title            = title|json_parse %}
+{% set description      = description|json_parse %}
+{% set info             = info|json_parse %}
+{% set class            = class|json_parse %}
+{% set errorMessage     = errorMessage|json_parse %}
+ #}
+
 <div class='container' {{ (orientation == 'horizontal') ? 'style="max-width :600px"':'style="max-width :1200px"'}}>
   {% for index in 1..5 %}
     <div class='p-3 {{ (index == 2 or index == 4) ? 'bf-color-bg-underground' }} {{ (reversed or index == 3 or index == 4) ? 'reversed  bf-color-bg-ground' : '' }} {{ index == 5 ? 'bf-color-bg-highlight' : '' }}' >
@@ -26,6 +34,8 @@
           ariaLabel   : (ariaLabel ~ '2' ~ loop.index)|default(ariaLabel ~ '2' ~ loop.index),
           title       : title|default('Selection tile title'),
           iconName    : iconName|default('helix-tv-remote'),
+          isSelected  : isSelected|default(true),
+          isDisabled  : isDisabled|default(true),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
