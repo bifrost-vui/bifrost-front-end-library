@@ -7,7 +7,7 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 })
 export class InputSliderComponent implements OnInit {
     constructor() {}
-    @Input() value   : number | Array<number> ;
+    @Input() value          : number|Array<number> ;
     /** min {**InputId**, **value**, legend, description} **InputId** and **value** are required  */
     @Input() min            : object;
     /** max {**InputId**, **value**, legend, description} **InputId** and **value** are required */

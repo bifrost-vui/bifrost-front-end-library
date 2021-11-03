@@ -24,12 +24,12 @@ $(function () {
 
         function displayCurrentValue() {
             let min, max;
-            if ($maxRangeInput.val() == undefined){
+            if ($maxRangeInput.val() == undefined) {
                 min = doTheMath($minRangeInput.val());
                 max = doTheMath($maxInputValue);
                 $minLabel.html($minRangeInput.val());
             }
-            else if ($minRangeInput.val() == undefined){
+            else if ($minRangeInput.val() == undefined) {
                 max = doTheMath($maxRangeInput.val());
                 min = doTheMath($minInputValue);
                 $maxLabel.html($maxRangeInput.val());
