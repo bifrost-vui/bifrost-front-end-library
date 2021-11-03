@@ -6,30 +6,30 @@ import { PriceComponent }                       from '../angular/price.component
 
 
 <Meta
-    title='Components/Price'
-    component={PriceComponent}
-    decorators={[
-        moduleMetadata({ declarations: [PriceComponent, TwigContainerComponent]}),
-    ]}
-    argTypes={{
-        language: {
-            control: { type: 'select' },
-            table: { defaultValue: { summary: 'en' } },
-        },
-        size: {
-            control: { type: 'select' },
-            table: { defaultValue: { summary: 'small' } },
-        },
-        hasAsterisk: {
-            table: { defaultValue: { summary: false } },
-        },
-        fullWidth: {
-            table: { defaultValue: { summary: false } },
-        },
-        reversed: {
-            table: { defaultValue: { summary: false } },
-        }
-    }}
+  title='Components/Price'
+  component={PriceComponent}
+  decorators={[
+    moduleMetadata({ declarations: [PriceComponent, TwigContainerComponent]}),
+  ]}
+  argTypes={{
+    language: {
+      control: { type: 'select' },
+      table: { defaultValue: { summary: 'en' } },
+    },
+    size: {
+      control: { type: 'select' },
+      table: { defaultValue: { summary: 'small' } },
+    },
+    hasAsterisk: {
+      table: { defaultValue: { summary: false } },
+    },
+    fullWidth: {
+      table: { defaultValue: { summary: false } },
+    },
+    reversed: {
+      table: { defaultValue: { summary: false } },
+    },
+  }}
 />
 
 
@@ -63,8 +63,6 @@ import { PriceComponent }                       from '../angular/price.component
         priceStriked  : 40.99,
         priceSaved    : 10,
         savedLabel    : 'You saved:',
-        savedLongLabel: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
-        showLongLabel : false,
         superscript   : 1,
         direction     : 'horizontal',
     },
@@ -80,76 +78,74 @@ import { PriceComponent }                       from '../angular/price.component
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
-    props: args,
+  component: TwigContainerComponent,
+  props: args,
 });
 
 export const commonProps = {
-    upperTitle      : 'Upper Title',
-    upfront         : {
-        dollar          : 0,
-        label           : 'upfront'
-    },
-    dollar          : 30,
-    dollarClass     : '',
-    cent            : 99,
-    hasAsterisk     : false,
-    details         : '/month',
-    promotion       : {
-        priceStriked  : 40.99,
-        priceSaved    : 10,
-        savedLabel    : 'You saved:',
-        savedLongLabel: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
-        showLongLabel : false,
-        superscript   : 1,
-        direction     : 'horizontal',
-    },
-    message         : 'This is a message.',
-    class           : 'p-3',
+  upperTitle      : 'Upper Title',
+  upfront         : {
+    dollar          : 0,
+    label           : 'upfront'
+  },
+  dollar          : 30,
+  dollarClass     : '',
+  cent            : 99,
+  hasAsterisk     : false,
+  details         : '/month',
+  promotion       : {
+    priceStriked  : 40.99,
+    priceSaved    : 10,
+    savedLabel    : 'You saved:',
+    superscript   : 1,
+    direction     : 'horizontal',
+  },
+  message         : 'This is a message.',
+  class           : 'p-3',
 }
 
 
 <Preview
-    withSource='none'
-    style={{ height: '200px' }}
+  withSource='none'
+  style={{ height: '200px' }}
 >
-    <Story
-        name='Drupal'
-        args={{
-            elementPath     : 'components/price/_doc/template.drupal',
-            ...commonProps
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
+  <Story
+    name='Drupal'
+    args={{
+      elementPath     : 'components/price/_doc/template.drupal',
+      ...commonProps
+    }}
+  >
+    {Drupal.bind({})}
+  </Story>
 </Preview>
 
 
 <Preview
-    withSource='none'
-    style={{ height: '800px' }}
+  withSource='none'
+  style={{ height: '800px' }}
 >
-    <Story
-        name='Drupal - All Prices'
-        args={{
-            elementPath     : 'components/price/_doc/all-prices.drupal',
-            ...commonProps
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
+  <Story
+    name='Drupal - All Prices'
+    args={{
+      elementPath     : 'components/price/_doc/all-prices.drupal',
+      ...commonProps
+    }}
+  >
+    {Drupal.bind({})}
+  </Story>
 </Preview>
 
 <Preview
-    withSource='none'
-    style={{ height: '800px' }}
+  withSource='none'
+  style={{ height: '800px' }}
 >
-    <Story
-        name='Drupal - All Prices - Null validator'
-        args={{
-            elementPath     : 'components/price/_doc/null.drupal',
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
+  <Story
+    name='Drupal - All Prices - Null validator'
+    args={{
+      elementPath     : 'components/price/_doc/null.drupal',
+    }}
+  >
+    {Drupal.bind({})}
+  </Story>
 </Preview>
