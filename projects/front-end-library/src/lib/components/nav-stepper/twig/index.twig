@@ -7,11 +7,23 @@
         {% set isActive = false %}
         {% set isPrevious = false %}
         {% set isNext = false %}
+        {% set hasPreviousItem = true %}
+        {% set hasNextItem = true %}
 
         {% if loop.index == activeStep - 1 %}
           {% set isPrevious = true %}
-        {% elseif loop.index ==   activeStep %}
+
+        {% elseif loop.index ==  activeStep %}
           {% set isActive = true %}
+
+          {% if  loop.index == 1 %}
+            {% set hasPreviousItem = false %}
+          {% endif %}
+
+          {% if loop.index >= nbNavItemSteps %}
+            {% set hasNextItem = false %}
+          {% endif %}
+
         {% elseif loop.index ==   activeStep + 1 %}
           {% set isNext = true %}
         {% endif %}
@@ -43,11 +55,7 @@
           {% endapply %}
           </li>
         {% elseif isActive %}
-          {% if  loop.index == 1 %}
-            <li class='bf-stepper__nav-item d-none d-lg-block'>&nbsp;</li>
-          {% endif %}
-
-          <li class=' bf-stepper__nav-item bf-stepper__nav-item--active'>
+          <li class='bf-stepper__nav-item bf-stepper__nav-item--active {{ hasPreviousItem ? '' : 'bf-stepper__nav-item--no-previous' }} {{ hasNextItem ? '' : 'bf-stepper__nav-item--no-next' }}'>
             <span class='h3'>{{step.label}}</span>
 
             {# step Counter #}
@@ -57,10 +65,6 @@
               </span>
             {% endif %}
           </li>
-
-          {% if  loop.index >= nbNavItemSteps %}
-            <li class='bf-stepper__nav-item d-none d-lg-block'>&nbsp;</li>
-          {% endif %}
         {% elseif isNext %}
           <li class='bf-stepper__nav-item bf-stepper__nav-item--next'>
           {% apply spaceless %}

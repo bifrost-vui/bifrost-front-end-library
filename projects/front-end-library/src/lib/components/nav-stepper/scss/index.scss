@@ -50,6 +50,19 @@
         }
         @include media-breakpoint-up(lg) {
             flex-basis: 33%;
+            
+            &--no-previous,
+            &--no-next {
+                flex-basis: 66%;
+            }
+
+            &--no-previous:before,
+            &--no-next:after {
+                position: relative;
+                display: inline-block;
+                width: 50%;
+                content: '';
+            }
         }
     }
     &__steps {
