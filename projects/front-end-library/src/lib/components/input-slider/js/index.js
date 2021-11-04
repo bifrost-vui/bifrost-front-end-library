@@ -26,10 +26,12 @@ $(function () {
             const $progressBar  = $this.find('.bf-input-slider__progress-track');
 
             // Handles
+            const $handles      = $this.find('.bf-input-slider__handles');
             const $handleMin    = $this.find('.bf-input-slider__handle--min');
             const $handleMax    = $this.find('.bf-input-slider__handle--max');
             const $maxLabel     = $handleMax.find('.bf-input-slider__label__value');
             const $minLabel     = $handleMin.find('.bf-input-slider__label__value');
+            let isLabelMerged   = false;
             
             updateMinSlider();
             $this.on('input', '.bf-input-slider__input__min', updateMinSlider);
@@ -49,6 +51,8 @@ $(function () {
 
                 // Update Progress Bar
                 $progressBar.css('left', startHandlePosition + '%');
+
+                mergeLabelsIfclose(startHandlePosition);
             }
 
             function updateMaxSlider() {
@@ -63,6 +67,22 @@ $(function () {
 
                 // Update Progress Bar
                 $progressBar.css('right', (100 - endHandlePosition) + '%');
+                
+                mergeLabelsIfclose(endHandlePosition);
+            }
+
+            function mergeLabelsIfclose(position) {
+                const progressBarWidth = $progressBar.width();
+                if(progressBarWidth < 50) {
+                    isLabelMerged = true;
+                    const progressBarLeft = $progressBar.position().left;
+                    $handles.addClass('bf-input-slider__handles--merged');
+                    $handles.css('left', progressBarLeft + progressBarWidth/2 + 'px');
+                } else if(isLabelMerged) {
+                    isLabelMerged = false;
+                    $handles.removeClass('bf-input-slider__handles--merged');
+                    $handles.css('left', 'auto');
+                }
             }
             
         } else {

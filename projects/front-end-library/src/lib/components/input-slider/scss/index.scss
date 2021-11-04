@@ -38,6 +38,39 @@
         border-radius: 3px;
         z-index: 1;
     }
+    &__handles {
+        position: relative;
+
+        &__merged-separator {
+            display: none;
+            position: relative;
+            top: -2.25rem;
+            margin: 0 0.25rem;
+        }
+
+        &--merged {
+            position: absolute;
+            display: flex;
+            transform: translateX(-50%);
+
+            .bf-input-slider__handles__merged-separator {
+                display: block;
+            }
+
+            .bf-input-slider__handle {
+                position: relative;
+                left: auto !important;
+                width: auto;
+                height: auto;
+
+                .bf-input-slider__label {
+                    position: relative;
+                    left: auto;
+                    transform: none;
+                }
+            }
+        } 
+    }
     &__handle {
         position: absolute;
         width: 0;
@@ -55,6 +88,7 @@
         transform: translateX(-50%);
         z-index: 3;
     }
+
     /*----------------------------------------------*/
     /* component's custom elements
     /*----------------------------------------------*/
