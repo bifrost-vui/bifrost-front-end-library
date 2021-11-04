@@ -15,11 +15,16 @@ export class InputSliderComponent implements OnInit {
     @Input() max            : object;
     @Input() unitLabel      : string;
     @Input() unitPosition   : 'start'|'end';
+    /** Set `isUnitPrice` will handle the position of the `unitLabel` depending of `language`. */
+    @Input() isUnitDollar   : boolean;
     @Input() step           : number;
     /** Change the position of the progression track. Has no effect on a slider with 2 handles. */
     @Input() isInverted     : boolean;
+
     @Input() class          : string;
     @Input() reversed       : boolean;
+
+    @Input() language       : 'en' | 'fr';
 
     ngOnInit() {
         console.log('InputSlider', this);
