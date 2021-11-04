@@ -17,9 +17,6 @@ import { NavStepperComponent }          from '../angular/nav-stepper.component';
         withDesign
     ]}
     parameters={{
-        controls: {
-            sort: 'alpha',
-        },
         design: {
             type    : 'figma',
             url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=14042%3A3427',
@@ -28,15 +25,17 @@ import { NavStepperComponent }          from '../angular/nav-stepper.component';
     }}
     argTypes={{
         activeStep: {
-            defaultValue : 1,
-            type:  { control : { type: 'number' },
-            }
+            defaultValue    : 1,
+            type            : { control : { type: 'number' } },
+            table           : { defaultValue: { summary: 1 } }
         },
         previousHasLabel: {
-            defaultValue : true,
+            defaultValue    : true,
+            table           : { defaultValue: { summary: true } }
         },
-        nextHasLabel: {
-            defaultValue : true,
+        nextHasLabel    : {
+            defaultValue    : true,
+            table           : { defaultValue: { summary: true } }
         }
     }}
 />
@@ -50,16 +49,44 @@ import { NavStepperComponent }          from '../angular/nav-stepper.component';
 
 ## Drupal
 export const commonProps = {
-    navItemSteps : [
-        {label:"first step",href:"http://activeStep:1"},
-        {label:"step 2 with long text", href:"http://activeStep:2"},
-        {label:"step 3 with even longer text", href:"http://activeStep:3"},
-        {label:"step 4 with text", href:"http://activeStep:4"},
-        {label:"Step 5", href:"http://activeStep:5"},
-        {label:"Step 6", href:"http://activeStep:6"},
-        {label:"Step 7", href:"http://activeStep:7"},
-        {label:"Step 8", href:"http://activeStep:8"},
-        {label:"last step", href:"http://activeStep:9"}
+    activeStep : 1,
+    navItemSteps: [
+        {
+            label   : "first step",
+            href    : "http://activeStep1"
+        },
+        {
+            label   : "step 2 with long text",
+            href    : "http://activeStep2"
+        },
+        {
+            label   : "step 3 with even longer text",
+            href    : "http://activeStep3"
+        },
+        {
+            label   : "step 4 with text",
+            href    : "http://activeStep4"
+        },
+        {
+            label   : "Step 5",
+            href    : "http://activeStep5"
+        },
+        {
+            label   : "Step 6",
+            href    : "http://activeStep6"
+        },
+        {
+            label   : "Step 7",
+            href    : "http://activeStep7"
+        },
+        {
+            label   : "Step 8",
+            href    : "http://activeStep8"
+        },
+        {
+            label   : "last step",
+            href    : "http://activeStep9"
+        }
     ]
 }
 
@@ -90,10 +117,22 @@ export const Drupal = (args) => ({
 {% include '@bf-components/nav-stepper/twig/index.twig' with {
     activeStep : 1,
     navItemSteps : [
-        {label:"Craft Bundle", href:"#craftBundle", class:"active"},
-        {label:"Channel Selection", href:"#chanelSelection"},
-        {label:"Order Review", href:"#OrderReview"},
-        {label:"Checkout", href:"#checkout"}
+        {
+            label   :"Craft Bundle",
+            href    :"#craftBundle",
+        },
+        {
+            label   :"Channel Selection",
+            href    :"#chanelSelection"
+        },
+        {
+            label   :"Order Review",
+            href    :"#OrderReview"
+        },
+        {
+            label   :"Checkout",
+            href    :"#checkout"
+        }
     ]
 } only %}
 ```

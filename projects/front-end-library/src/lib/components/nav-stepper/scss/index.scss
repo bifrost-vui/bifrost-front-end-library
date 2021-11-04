@@ -5,7 +5,7 @@
 * ***************************************************************************** */
 
 .bf-stepper {
-    &__nav{
+    &__nav {
         display: flex;
         flex-flow: row wrap;
         align-content: stretch;
@@ -15,7 +15,7 @@
         padding-inline: 0;
         list-style: none;
     }
-    &__nav-item{
+    &__nav-item {
         margin: 0;
         padding: 0;
         text-align: center;
@@ -23,7 +23,7 @@
         align-self: center;
 
         &--prev,
-        &--next{
+        &--next {
             @extend .bf-text-display-sub-small;
             @extend .bf-color-neutral-tertiary;
             text-transform: uppercase;
@@ -31,46 +31,46 @@
                 @extend .bf-color-neutral-primary
             }
         }
-        &--prev{
+        &--prev {
             text-align: left;
             @include media-breakpoint-down(md) {
                 position: absolute;
-                left:0;
+                left: 0;
             }
         }
-        &--next{
+        &--next {
             text-align: right;
             @include media-breakpoint-down(md) {
                 position: absolute;
-                right:0;
+                right: 0;
             }
         }
-        &--active{
+        &--active {
            text-align: center;
         }
-        @include media-breakpoint-up(lg){
+        @include media-breakpoint-up(lg) {
             flex-basis: 33%;
         }
     }
-    &__steps{
-        .bf-stepper__step{
+    &__steps {
+        .bf-stepper__step {
             height: $spacer-1;
             width: 100%;
         }
-        &--done{
+        &--done {
             background-color: var(--bf-color-highlight);
         }
-        &--todo{
+        &--todo {
             background-color: var(--bf-color-stroke-secondary);
         }
     }
-    &__counter{
+    &__counter {
         display: block;
         margin: $spacer-1 0 0;
         width: 100%;
     }
 }
 //TODO : check with @Baptiste where we should put the tooltip css. not here obviously
-.tooltip{
+.tooltip {
     @extend .bf-text-display-sub-small;
 }
