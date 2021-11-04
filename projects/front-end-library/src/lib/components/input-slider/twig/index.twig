@@ -37,7 +37,7 @@
       {% else %}
         <div class='position-relative mx-2'>
           <div class='bf-input-slider__handle'>
-            <label for='{{ max.inputId }}' class='bf-input-slider__label'>
+            <label for='{{ min.inputId|default(max.inputId) }}' class='bf-input-slider__label'>
               {% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label__value'></span>{% if unitLabel and unitPosition is not same as ('start') %}{{ unitLabel }}{% endif %}
           	</label>
           </div>
