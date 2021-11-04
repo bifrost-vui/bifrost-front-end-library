@@ -19,6 +19,7 @@ export class InputSliderComponent implements OnInit {
     /** Change the position of the progression track. Has no effect on a slider with 2 handles. */
     @Input() isInverted     : boolean;
     @Input() class          : string;
+    @Input() reversed       : boolean;
 
     ngOnInit() {
         console.log('InputSlider', this);

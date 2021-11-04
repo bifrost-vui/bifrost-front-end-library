@@ -5,12 +5,11 @@
 {% set class      = class|json_parse %}
 {% set value      = value|json_parse %}
 {% set isInverted = isInverted|json_parse %}
-
-{# Demo variables #}
-{% set bgClass        = '' %}
-{% set reversedClass  = '' %}
+{% set reversed   = reversed|json_parse %}
 
 <div class='demogrid'>
+  {% set bgClass = '' %}
+
   {% for i in 1..5 %}
     {% if i == 1 or i == 4 %}
       {% set bgClass = ' bf-color-bg-ground' %}
@@ -20,12 +19,9 @@
       {% set bgClass = ' bf-color-bg-action-primary' %}
     {% endif %}
 
-    {% if i == 4 or i == 5 %}
-      {% set reversedClass = ' reversed' %}
-    {% endif %}
-
     {% include '@bf-components/input-slider/twig/index.twig' with {
-      class : class ~ bgClass ~ reversedClass
+      class     : class ~ bgClass,
+      reversed  : reversed|default(i == 4 or i == 5)
     } %}
   {% endfor %}
 </div>
