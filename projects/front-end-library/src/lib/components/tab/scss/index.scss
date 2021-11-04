@@ -9,32 +9,35 @@
     width: 100%;
 
     & > div {
-        overflow-x: auto;
         position: static;
+        overflow-x: auto;
+        padding:0 2.5rem var(--bf-spacer-2);
+
+        @include media-breakpoint-down(md) {
+            padding-left: var(--bf-spacer-1);
+        }
+
         ::-webkit-scrollbar,
         ::-webkit-scrollbar-button {
             @include size(5px);
-                background-color: var(--bf-color-stroke-secondary);
+            background-color: var(--bf-color-stroke-secondary);
+
             @include media-breakpoint-down(md) {
                 @include size(3px);
             }
         }
-        padding:0 2.5rem var(--bf-spacer-2);
-        @include media-breakpoint-down(md) {
-            padding-left: 0.25rem;
-        }
-        
+
         &:before {
-            background-image: var(--bf-color-bg-linear-ground-x);
-            background-repeat: repeat-y;
-            content: "";
-            width: 5.5rem;
-            height: 100%;
             position: absolute;
-            z-index: 1;
             right: 0;
             top: 0;
+            width: 5.5rem;
+            height: 100%;
+            z-index: 1;
             pointer-events: none;
+            background-image: var(--bf-color-bg-linear-ground-x);
+            background-repeat: repeat-y;
+            content: '';
         }
     }
 
@@ -51,7 +54,7 @@
         @extend .h3;
         padding:0;
         line-height: 3.5rem;
-        color: var(--bf-color-neutral-secondary) !important;
+        color: var(--bf-color-neutral-secondary) ;
         text-transform: none;
         letter-spacing: 0;
         white-space: nowrap;
@@ -60,7 +63,7 @@
 
         &.active,
         &:hover {
-            color: inherit !important;
+            color: inherit;
 
             &:before {
                 position: absolute;
@@ -70,6 +73,7 @@
         }
     }
 }
+
 .bf-color-bg-underground .bf-tab > div:before {
     background-image: var(--bf-color-bg-linear-underground-x);
 }
