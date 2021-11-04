@@ -2,7 +2,6 @@
 {% set min        = min|json_parse %}
 {% set max        = max|json_parse %}
 {% set step       = step|json_parse %}
-{% set language   = language|json_parse %}
 {% set class      = class|json_parse %}
 {% set value      = value|json_parse %}
 {% set isInverted = isInverted|json_parse %}
@@ -14,29 +13,27 @@
 <div class='demogrid'>
   {% for i in 1..5 %}
     {% if i == 1 or i == 4 %}
-      {% set bgClass = class|default('bf-color-bg-ground') %}
+      {% set bgClass = ' bf-color-bg-ground' %}
     {% elseif i == 2 or i == 5 %}
-      {% set bgClass = class|default('bf-color-bg-underground') %}
+      {% set bgClass = ' bf-color-bg-underground' %}
     {% else %}
-      {% set bgClass = class|default('bf-color-bg-action-primary') %}
+      {% set bgClass = ' bf-color-bg-action-primary' %}
     {% endif %}
 
     {% if i == 4 or i == 5 %}
-      {% set reversedClass = class|default(' reversed') %}
+      {% set reversedClass = ' reversed' %}
     {% endif %}
 
     {% include '@bf-components/input-slider/twig/index.twig' with {
-      class : bgClass ~ reversedClass
+      class : class ~ bgClass ~ reversedClass
     } %}
   {% endfor %}
 </div>
 <style>
-.demogrid {
-  max-width: 1400px;
-  width: 100%;
-  display: grid;
-  grid-gap: .5rem;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  margin: 9vh auto;
-}
+    .demogrid {
+        max-width: 1400px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
 </style>

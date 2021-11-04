@@ -4,57 +4,110 @@ $(function () {
     const container = $('.js-bf-input-slider');
 
     container.each(function (i, el) {
-        const $this = $(el),
-            //inputs
-            $minRangeInput = $this.find('.bf-input-slider__input__min'),
-            $maxRangeInput = $this.find('.bf-input-slider__input__max'),
-            //inputs attributes -- recover data with the first available input
-            $minInputValue = $this.find('input').attr('min'),
-            $maxInputValue = $this.find('input').attr('max'),
-            //overlay divs
-            $rangeValue = $this.find('.bf-input-slider__value'),
-            $handleLeft = $this.find('.bf-input-slider__handle--left'),
-            $handleRight = $this.find('.bf-input-slider__handle--right'),
-            //labels
-            $minLabel = $this.find('.bf-input-slider__handle--left .bf-input-slider__label__value'),
-            $maxLabel = $this.find('.bf-input-slider__handle--right .bf-input-slider__label__value');
 
+        const $this     = $(el);
+        const isRange   = $this.data('range');
 
-        displayCurrentValue();
+        let maxValue, minValue;
 
-        function displayCurrentValue() {
-            let min, max;
-            if ($maxRangeInput.val() == undefined) {
-                min = doTheMath($minRangeInput.val());
-                max = doTheMath($maxInputValue);
-                $minLabel.html($minRangeInput.val());
+        if(isRange)
+        {
+            // Inputs
+            const $maxInput     = $this.find('.bf-input-slider__input__max');
+            const $minInput     = $this.find('.bf-input-slider__input__min');
+            maxValue            = $minInput.attr('max');
+            minValue            = $minInput.attr('min');
+
+            // Values
+            let endValue        = parseInt($maxInput.val());
+            let startValue      = parseInt($minInput.val());
+            
+            // Overlay
+            const $progressBar  = $this.find('.bf-input-slider__progress-track');
+            const $handleMin    = $this.find('.bf-input-slider__handle--min');
+            const $handleMax    = $this.find('.bf-input-slider__handle--max');
+            const $maxLabel     = $handleMax.find('.bf-input-slider__label__value');
+            const $minLabel     = $handleMin.find('.bf-input-slider__label__value');
+            
+            updateMinSlider();
+            $this.on('input', '.bf-input-slider__input__min', updateMinSlider);
+
+            updateMaxSlider();
+            $this.on('input', '.bf-input-slider__input__max', updateMaxSlider);
+
+            function updateMinSlider() {
+                // Set value
+                startValue = Math.min($minInput.val(), endValue);
+                $minInput.val(startValue);
+
+                // Set label
+                $minLabel.html(startValue);
+                const startHandlePosition = calculPosition(startValue);
+                $handleMin.css('left', startHandlePosition + '%');
+
+                // Set styles
+                $progressBar.css('left', startHandlePosition + '%');
             }
-            else if ($minRangeInput.val() == undefined) {
-                max = doTheMath($maxRangeInput.val());
-                min = doTheMath($minInputValue);
-                $maxLabel.html($maxRangeInput.val());
+
+            function updateMaxSlider() {
+                // Set value
+                endValue = Math.max($maxInput.val(), startValue);
+                $maxInput.val(endValue);
+
+                // Set label
+                $maxLabel.html(endValue);
+                const endHandlePosition = calculPosition(endValue);
+                $handleMax.css('left', endHandlePosition + '%');
+
+                // Set styles
+                $progressBar.css('right', (100 - endHandlePosition) + '%');
             }
-            else {
-                min = doTheMath($minRangeInput.val());
-                max = doTheMath($maxRangeInput.val());
-                $minLabel.html($minRangeInput.val());
-                $maxLabel.html($maxRangeInput.val());
+            
+        } else {
+            
+            const isInverted   = $this.data('inverted');
+
+            // Inputs
+            const $input        = $this.find('.bf-input-slider__input');
+            maxValue            = $input.attr('max');
+            minValue            = $input.attr('min');
+
+            // Overlay
+            const $handle       = $this.find('.bf-input-slider__handle');
+            const $progressBar  = $this.find('.bf-input-slider__progress-track');
+            const $label        = $handle.find('.bf-input-slider__label__value');
+
+            if(isInverted) {
+                $progressBar.css('right', '0%');
             }
-            $handleLeft.css('left', min + '%');
-            $handleRight.css('right', (100 - max) + '%');
-            $rangeValue.css('left', min + '%').css('right', (100 - max) + '%');
+
+            updateSlider();
+            $this.on('input', '.bf-input-slider__input', function() { updateSlider() });
+
+            function updateSlider() {
+                // Set value
+                const startValue = $input.val();
+                $input.val(startValue);
+
+                // Set label
+                $label.html(startValue);
+                const startHandlePosition = calculPosition(startValue);
+                $handle.css('left', startHandlePosition + '%');
+
+                // Set styles
+                if(isInverted)
+                {
+                    $progressBar.css('left', startHandlePosition + '%');
+                } else {
+                    $progressBar.css('width', startHandlePosition + '%');    
+                }
+                
+            }
         }
 
-        function doTheMath(rangeInput) {
-            return (100 / (parseInt($maxInputValue) - parseInt($minInputValue))) * parseInt(rangeInput) - (100 / (parseInt($maxInputValue) - parseInt($minInputValue))) * parseInt($minInputValue)
+        function calculPosition(value) {
+            return (value - minValue) * 100 / (maxValue - minValue);
         }
 
-        $this.on('input', '.bf-input-slider__input__min', function () {
-            displayCurrentValue();
-        });
-
-        $this.on('input', '.bf-input-slider__input__max', function () {
-            displayCurrentValue();
-        })
     });
 });

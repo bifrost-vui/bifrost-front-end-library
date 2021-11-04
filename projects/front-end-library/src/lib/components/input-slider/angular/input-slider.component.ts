@@ -7,15 +7,16 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 })
 export class InputSliderComponent implements OnInit {
     constructor() {}
-    @Input() value          : number|Array<number> ;
-    /** min {**InputId**, **value**, legend, description} **InputId** and **value** are required  */
+
+    @Input() value          : number | number[];
+    /** `min { **InputId**, **value**, legend, description }`: **InputId** and **value** are required. */
     @Input() min            : object;
-    /** max {**InputId**, **value**, legend, description} **InputId** and **value** are required */
+    /** `max { **InputId**, **value**, legend, description }`:  **InputId** and **value** are required. */
     @Input() max            : object;
-    @Input() labelUnit      : string;
+    @Input() unitLabel      : string;
     @Input() unitPosition   : 'start'|'end';
     @Input() step           : number;
-    /** changes the direction of a 1 handle slider */
+    /** Change the position of the progression track. Has no effect on a slider with 2 handles. */
     @Input() isInverted     : boolean;
     @Input() class          : string;
 

@@ -5,8 +5,6 @@
 * ***************************************************************************** */
 
 .bf-input-slider {
-    width: 100%;
-    padding: 0 var(--bf-spacer-3);
     /*----------------------------------------------*/
     /* Overlay of the input double slider
     /*----------------------------------------------*/
@@ -14,7 +12,7 @@
         position: relative;
         height: 1px;
         text-align: left;
-        margin: 2rem 0 0;
+        margin-top: 2rem;
         width: 100%;
     }
     &__overlay {
@@ -22,47 +20,30 @@
         left: 0;
         right: 0;
         height: 1px;
-        margin: 0 var(--bf-spacer-2);
     }
     &__track{
         position: absolute;
-        width: calc(100% + 2 * (var(--bf-spacer-2)));
+        width: 100%;
         height: 1px;
         top: -1px;
-        margin: 0 calc(var(--bf-spacer-2) * -1) ;
         background-color: rgba(var(--bf-color-neutral-primary-rgb), .675);
     }
-    &__value {
+    &__progress-track {
         position: absolute;
         left: 0;
         top: -2px;
         height: 3px;
         margin-inline-start: 0;
         background-color: var(--bf-color-neutral-primary);
+        border-radius: 3px;
         z-index: 1;
-        &:before {
-            position: absolute;
-            left: calc(var(--bf-spacer-2) * -1);
-            width: var(--bf-spacer-2);
-            height: 3px;
-            background-color: inherit;
-            content: '';
-        }
-        &:after {
-            position: absolute;
-            right: calc(var(--bf-spacer-2) * -1);
-            width: var(--bf-spacer-2);
-            height: 3px;
-            background-color: inherit;
-            content: '';
-        }
     }
     &__handle {
         position: absolute;
         width: 0;
         height: 0;
         background-color: transparent;
-        top: -2rem;
+        top: -2.25rem;
         text-align: center;
         z-index: 25;
     }
@@ -70,10 +51,9 @@
         position: absolute;
         display: block;
         white-space: nowrap;
-        width: 3rem;
-        left: -1.5rem;
+        left: 0;
+        transform: translateX(-50%);
         z-index: 3;
-        color: var(--bf-color-neutral-primary);
     }
     /*----------------------------------------------*/
     /* component's custom elements
@@ -85,7 +65,6 @@
         align-content: space-between;
         margin: var(--bf-spacer-2) 0 0;
         @extend .small;
-        color: var(--bf-color-neutral-primary);
 
         &__min,
         &__max {
