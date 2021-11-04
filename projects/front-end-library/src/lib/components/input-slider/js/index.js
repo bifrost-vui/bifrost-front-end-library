@@ -22,8 +22,10 @@ $(function () {
             let endValue        = parseInt($maxInput.val());
             let startValue      = parseInt($minInput.val());
             
-            // Overlay
+            // Progress Bar
             const $progressBar  = $this.find('.bf-input-slider__progress-track');
+
+            // Handles
             const $handleMin    = $this.find('.bf-input-slider__handle--min');
             const $handleMax    = $this.find('.bf-input-slider__handle--max');
             const $maxLabel     = $handleMax.find('.bf-input-slider__label__value');
@@ -45,7 +47,7 @@ $(function () {
                 const startHandlePosition = calculPosition(startValue);
                 $handleMin.css('left', startHandlePosition + '%');
 
-                // Set styles
+                // Update Progress Bar
                 $progressBar.css('left', startHandlePosition + '%');
             }
 
@@ -59,7 +61,7 @@ $(function () {
                 const endHandlePosition = calculPosition(endValue);
                 $handleMax.css('left', endHandlePosition + '%');
 
-                // Set styles
+                // Update Progress Bar
                 $progressBar.css('right', (100 - endHandlePosition) + '%');
             }
             
