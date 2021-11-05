@@ -7,7 +7,7 @@
         <meta name='description' content='Main Twig'>
 
         {# Preconnect and preload #}
-        {# 
+        {#
             And BTW, bifrost.css is builded in dev mode, so without mignification.
             The minify version is here: /dist/front-end-library/assets/css/bifrost.css
         #}
@@ -37,8 +37,8 @@
             link.href = '/css/bifrost.css';
             document.getElementsByTagName('HEAD')[0].appendChild(link);
         </script> #}
-        
-        <script>
+
+        <script type="text/javascript">
             async function load() {
                 await import('/js/core.js');
                 await import('/js/vendors~bifrost-components.js');
@@ -52,7 +52,7 @@
             html {
                 background-color: var(--bf-color-bg-ground);
             }
-            
+
             pre {
                 background-color: transparent;
             }
@@ -65,22 +65,22 @@
 
             {# For DEBUG puropose: #}
             {# {{ dump(_context) }} #}
-            
+
             {% if _context.elementPath is defined %}
-                
+
                 {% set elementPath = _context.elementPath %}
 
                 <div class='videotron-ui'>
                     {% include './' ~ elementPath ~ '.twig' with _context %}
                 </div>
-                
+
             {% else %}
 
                 <p>Please provide a <b>elementPath</b> properties in URL. </p>
                 <p>E.g. http://localhost:3001/api/twig?elementPath=components/button/twig/button</p>
                 <pre>{{ dump(_context) }}</pre>
             {% endif %}
-            
+
         </main>
     </body>
 
