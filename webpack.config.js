@@ -48,7 +48,7 @@ module.exports = (env) => {
             rules: [
                 {
                     test: /\.js$/,
-                    use: [{loader:'babel-loader'}]
+                    loader:'babel-loader'
                 },
                 {
                     test: /\.(png|woff|jpg|woff2|eot|ttf|svg)$/,
