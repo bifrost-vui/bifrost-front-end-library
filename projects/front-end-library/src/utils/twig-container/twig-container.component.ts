@@ -26,7 +26,10 @@ export class TwigContainerComponent implements OnInit {
   }
 
   updateIframeUrl(props) {
-    const paramsString = Object.keys(props).map(function(key) {
+      
+    const params:string[] = Object.keys(props).filter(key => !['__ngContext__', 'iframeUrl', 'sanitizer'].includes(key));
+
+    const paramsString:string = params.map(function(key) {
         console.log('updateIframeUrl', key);
         if ( !['iframeUrl', 'sanitizer'].includes(key) && props[key] !== undefined )
         {

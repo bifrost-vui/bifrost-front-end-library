@@ -2,7 +2,6 @@
 {% set hasBadge = (badgeLabel is defined and badgeLabel and badgeLabel is not empty ) %}
 
 <div class='bf-button-icon {{ isDisabled ? 'disabled' }}'>
-
   <{{ isLink ? 'a' : 'button' }}
     {% if isLink is same as (true) %}
       href='{{ href|default('#') }}'
@@ -28,11 +27,10 @@
 
 {% if hasBadge %}
     {% include '@bf-components/badge/twig/index.twig' with {
-      label   : badgeLabel|default('0'),
-      class   : 'bf-button-icon__badge',
+      label     : badgeLabel|default('0'),
+      class     : 'bf-button-icon__badge',
       hierarchy : 'primary',
       isRounded : true
     } only %}
 {% endif %}
-
 </div>
