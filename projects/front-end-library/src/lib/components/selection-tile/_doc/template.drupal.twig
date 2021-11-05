@@ -14,13 +14,13 @@
       <div class='d-flex gap-2 {{ (orientation == 'vertical') ? 'flex-row flex-wrap' : 'flex-column' }}'>
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           inputId     : (inputId ~ '1' ~ loop.index)|default(inputId ~ '1' ~ loop.index),
-          name        : name|default(name ~ loop.index),
+          name        : (name ~ loop.index)|default(name ~ loop.index),
           ariaLabel   : (ariaLabel ~ '1' ~ loop.index)|default(ariaLabel ~ '1' ~ loop.index),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           inputId     : (inputId ~ '2' ~ loop.index)|default(inputId ~ '2' ~ loop.index),
-          name        : name|default(name ~ loop.index),
+          name        : (name ~ loop.index)|default(name ~ loop.index),
           ariaLabel   : (ariaLabel ~ '2' ~ loop.index)|default(ariaLabel ~ '2' ~ loop.index),
           title       : title|default('Selection tile title'),
           iconName    : iconName|default('bundle-1'),
@@ -28,17 +28,17 @@
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           inputId     : (inputId ~ '3' ~ loop.index)|default(inputId ~ '3' ~ loop.index),
-          name        : name|default(name ~ loop.index),
+          name        : (name ~ loop.index)|default(name ~ loop.index),
           ariaLabel   : (ariaLabel ~ '3' ~ loop.index)|default(ariaLabel ~ '3' ~ loop.index),
           title       : title|default('Selection tile title'),
           description : description|default('lorem ipsum descriptum'),
           info        : info|default('12.34 $/Mois'),
           isSelected  : isSelected|default(true),
         }  %}
-        
+
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           inputId     : (inputId ~ '4' ~ loop.index)|default(inputId ~ '4' ~ loop.index),
-          name        : name|default(name ~ loop.index),
+          name        : (name ~ loop.index)|default(name ~ loop.index),
           ariaLabel   : (ariaLabel ~ '4' ~ loop.index)|default(ariaLabel ~ '4' ~ loop.index),
           title       : title|default('Selection tile title'),
           description : description|default('lorem ipsum descriptum'),
@@ -48,9 +48,8 @@
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
-          value       : value,
           inputId     : (inputId ~ '5' ~ loop.index)|default(inputId ~ '5' ~ loop.index),
-          name        : name|default(name ~ loop.index),
+          name        : (name ~ loop.index)|default(name ~ loop.index),
           ariaLabel   : (ariaLabel ~ '5' ~ loop.index)|default(ariaLabel ~ '5' ~ loop.index),
           title       : title|default('Selection tile title'),
           description : description|default('lorem ipsum descriptum'),
