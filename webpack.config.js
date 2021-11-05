@@ -19,13 +19,7 @@ module.exports = (env) => {
             filename: '[name].js',
             publicPath: '/public/'
         },
-        optimization: {
-            splitChunks: {
-                chunks(chunk) {
-                    return chunk.name === 'bifrost-components';
-                },
-            },
-        },
+
         resolve: {
             extensions: ['.js', '.scss'],
             alias: {

@@ -14,18 +14,18 @@ bfSlick.assignCarousel('.js-bf-carousel-demo', {
     nextArrow: bfSlick.getNextSlickBtn(),
     responsive: [
         {
-          breakpoint: (breakpoints.md-1),
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1
-            }
+            breakpoint: (breakpoints.md-1),
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                }
         },
         {
-        breakpoint: breakpoints.lg,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3
-            }
+            breakpoint: breakpoints.lg,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3
+                }
         },
         // You can unslick at a given breakpoint now by adding:
         // settings: "unslick"
