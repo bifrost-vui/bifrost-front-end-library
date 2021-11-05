@@ -35,6 +35,7 @@ export class HeroComponent implements OnInit {
     @Input() content            : string | 'TwigBlock';
     /**
      You can pass directly the **name** of the icon as a **string** or an **object** based on [Icon component API](/?path=/docs/components-icon--drupal).
+      The **size** is always override with **huge**
      */
     @Input() icon               : any;
     /** Add `isSplitted: true` to display the image on the right side only. */
