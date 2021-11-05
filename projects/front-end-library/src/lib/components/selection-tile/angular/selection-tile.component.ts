@@ -20,7 +20,6 @@ export class SelectionTileComponent implements OnInit {
     /** extra attribute for the radio/checkbox input */
     @Input() extraAttribute : string
     @Input() orientation    : 'horizontal'|'vertical';
-
     /**  Tile  fits the content | Tile fits the container  */
     @Input() fit            : 'content'|'container';
     @Input() title          : string;
@@ -29,7 +28,6 @@ export class SelectionTileComponent implements OnInit {
     /**{ src : string, alt : string, class : string } */
     @Input() image          : object;
     @Input() iconName       : string;
-
     @Input() reversed       : boolean;
     @Input() isDisabled     : boolean;
     @Input() isSelected     : boolean;
