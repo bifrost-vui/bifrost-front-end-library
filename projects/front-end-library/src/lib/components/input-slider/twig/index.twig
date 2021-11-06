@@ -1,14 +1,14 @@
 {% set isRange = value is iterable and value[0] is defined and value[1] is defined %}
 {% if isRange %}
-    {# Reorder value array in case of mistake: Smallest number should be at position 0. #}
-    {% if value[0] > value[1] %}
-      {% set value = [ value[1], value[0] ] %}
-    {% endif %}
-    {# Values should be between min and max. #}
-    {% set value = [ min(max(value[0], min.value), max.value), min(max(value[1], min.value), max.value) ] %}
+	{# Reorder value array in case of mistake: Smallest number should be at position 0. #}
+	{% if value[0] > value[1] %}
+		{% set value = [ value[1], value[0] ] %}
+	{% endif %}
+	{# Values should be between min and max. #}
+	{% set value = [ min(max(value[0], min.value), max.value), min(max(value[1], min.value), max.value) ] %}
 {% else %}
-    {# Value should be between min and max. #}
-    {% set value = min(max(value, min.value), max.value) %}
+	{# Value should be between min and max. #}
+	{% set value = min(max(value, min.value), max.value) %}
 {% endif %}
 
 {% if unitLabel is defined and unitLabel %}
@@ -93,19 +93,19 @@
       
       {% if min.legend is defined and min.legend or min.description is defined and min.description %}
         <p class='bf-input-slider__legend__min'>
-                {{ min.legend|default('') }}
-            {% if min.description is defined and min.description %}
-                <strong>{{ min.description }}</strong>
-            {% endif %}
+					{{ min.legend|default('') }}
+					{% if min.description is defined and min.description %}
+						<strong>{{ min.description }}</strong>
+					{% endif %}
         </p>
       {% endif %}
       
       {% if min.legend is defined and min.legend or max.description is defined and max.description %}
         <p class='bf-input-slider__legend__max'>
-            {{ max.legend|default('') }}
-            {% if max.description is defined and max.description %}
-                <strong>{{ max.description }}</strong>
-            {% endif %}
+					{{ max.legend|default('') }}
+					{% if max.description is defined and max.description %}
+						<strong>{{ max.description }}</strong>
+					{% endif %}
         </p>
       {% endif %}
 
