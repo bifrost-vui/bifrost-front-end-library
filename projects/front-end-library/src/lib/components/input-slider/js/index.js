@@ -127,6 +127,5 @@ $(function() {
         function calculPosition(value) {
             return (value - minValue) * 100 / (maxValue - minValue);
         }
-
     });
 });
