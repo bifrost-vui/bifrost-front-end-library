@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 import { Url } from 'url';
 
-
 @Component({
   selector: 'bf-selection-tile',
   templateUrl: './selection-tile.component.html',
