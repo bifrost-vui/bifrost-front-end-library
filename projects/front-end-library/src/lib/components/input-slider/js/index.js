@@ -4,7 +4,6 @@ $(function() {
     const container = $('.js-bf-input-slider');
 
     container.each(function(i, el) {
-
         const $this     = $(el);
         const isRange   = $this.data('range');
 
