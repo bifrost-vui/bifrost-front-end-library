@@ -10,8 +10,7 @@ $(function() {
 
         let maxValue, minValue;
 
-        if(isRange)
-        {
+        if (isRange) {
             // Inputs
             const $maxInput     = $this.find('.bf-input-slider__input__max');
             const $minInput     = $this.find('.bf-input-slider__input__min');
