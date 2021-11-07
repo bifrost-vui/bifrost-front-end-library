@@ -83,7 +83,6 @@ $(function() {
                     $handles.css('left', 'auto');
                 }
             }
-            
         } else {
             
             const isInverted   = $this.data('inverted');
