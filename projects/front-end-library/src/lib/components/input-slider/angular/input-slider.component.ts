@@ -9,9 +9,9 @@ export class InputSliderComponent implements OnInit {
     constructor() {}
 
     @Input() value          : number | number[];
-    /** `min { **InputId**, **value**, legend, description }`: **InputId** and **value** are required. */
+    /** `min { **inputId**, **value**, legend, description }`: **inputId** and **value** are required. */
     @Input() min            : object;
-    /** `max { **InputId**, **value**, legend, description }`:  **InputId** and **value** are required. */
+    /** `max { **inputId**, **value**, legend, description }`:  **inputId** and **value** are required. */
     @Input() max            : object;
     @Input() step           : number;
     /** Change the position of the progression track. Has no effect on a slider with 2 handles. */
