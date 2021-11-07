@@ -96,7 +96,7 @@ $(function() {
             const $progressBar  = $this.find('.bf-input-slider__progress-track');
             const $label        = $handle.find('.bf-input-slider__label__value');
 
-            if(isInverted) {
+            if (isInverted) {
                 $progressBar.css('right', '0%');
             }
 
