@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-$(function () {
+$(function() {
     const container = $('.js-bf-input-slider');
 
     container.each(function (i, el) {
