@@ -119,7 +119,6 @@ $(function() {
                 } else {
                     $progressBar.css('width', startHandlePosition + '%');    
                 }
-                
             }
         }
 
