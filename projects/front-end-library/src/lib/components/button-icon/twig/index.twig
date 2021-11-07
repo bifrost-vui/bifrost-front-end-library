@@ -26,8 +26,9 @@
   </{{ isLink ? 'a' : 'button' }}>
 
 {% if hasBadge %}
+    {% set badgeLabel = badgeLabel > 99 ? "+99" : badgeLabel %}
     {% include '@bf-components/badge/twig/index.twig' with {
-      label     : badgeLabel|default('0'),
+      label     : badgeLabel,
       class     : 'bf-button-icon__badge',
       hierarchy : 'primary',
       isRounded : true
