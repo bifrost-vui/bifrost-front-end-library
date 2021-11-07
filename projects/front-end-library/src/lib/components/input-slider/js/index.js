@@ -77,7 +77,7 @@ $(function() {
                     const progressBarLeft = $progressBar.position().left;
                     $handles.addClass('bf-input-slider__handles--merged');
                     $handles.css('left', progressBarLeft + progressBarWidth/2 + 'px');
-                } else if(isLabelMerged) {
+                } else if (isLabelMerged) {
                     isLabelMerged = false;
                     $handles.removeClass('bf-input-slider__handles--merged');
                     $handles.css('left', 'auto');
