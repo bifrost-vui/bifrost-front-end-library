@@ -31,5 +31,4 @@ export class ButtonIconComponent implements OnInit {
     ngOnInit() {
         console.log('button-icon', this);
     }
-
 }
