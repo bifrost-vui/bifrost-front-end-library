@@ -114,8 +114,7 @@ $(function() {
                 $handle.css('left', startHandlePosition + '%');
 
                 // Set styles
-                if (isInverted)
-                {
+                if (isInverted) {
                     $progressBar.css('left', startHandlePosition + '%');
                 } else {
                     $progressBar.css('width', startHandlePosition + '%');    
