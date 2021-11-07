@@ -84,7 +84,6 @@ $(function() {
                 }
             }
         } else {
-            
             const isInverted   = $this.data('inverted');
 
             // Inputs
