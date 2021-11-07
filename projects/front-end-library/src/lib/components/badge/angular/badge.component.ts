@@ -14,7 +14,7 @@ export class BadgeComponent implements OnInit {
     @Input() noUppercase    : boolean;
     /** Displays an angle on a corner. */
     @Input() angle          : '' | 'left' | 'right';
-    /** `isRounded` property has precedence on `angle`  */
+    /** `isRounded` property has precedence over `angle`  */
     @Input() isRounded      : boolean;
     @Input() class          : string;
     @Input() iconName       : string;
