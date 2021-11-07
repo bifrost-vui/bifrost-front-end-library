@@ -72,7 +72,7 @@ $(function() {
 
             function mergeLabelsIfclose(position) {
                 const progressBarWidth = $progressBar.width();
-                if(progressBarWidth < 50) {
+                if (progressBarWidth < 50) {
                     isLabelMerged = true;
                     const progressBarLeft = $progressBar.position().left;
                     $handles.addClass('bf-input-slider__handles--merged');
