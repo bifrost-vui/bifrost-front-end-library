@@ -23,5 +23,4 @@ export class BadgeComponent implements OnInit {
     ngOnInit() {
         console.log('badge', this);
     }
-
 }
