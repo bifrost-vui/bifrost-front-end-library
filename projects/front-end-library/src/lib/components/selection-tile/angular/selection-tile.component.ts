@@ -32,7 +32,7 @@ export class SelectionTileComponent implements OnInit {
     @Input() isSelected     : boolean;
     @Input() isInvalid      : boolean;
     @Input() errorMessage   : string;
-    @Input() required       : boolean;
+    @Input() isRequired       : boolean;
 
     ngOnInit() {
         console.log('SelectionTile', this);
