@@ -147,7 +147,7 @@ import { CardComponent }                        from '../angular/card.component'
 {% include '@bf-components/card/twig/phone.twig' with {
     ...
     image : {
-        script          : '/images/_docs/iphone-12-pro-max.png',
+        src             : '/images/_docs/iphone-12-pro-max.png',
         alt             : 'iPhone 12 Mini',
         badgeIconName   : 'security'
     },
@@ -457,6 +457,63 @@ export const phoneCommonProps = {
                     href            : 'www.videotron.com',
                 }
             ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+
+export const comboCommonProps = {
+    badge           : {
+        label           : 'Promotion'
+    },
+    image           : {
+        src             : 'https://videotron.com/sites/default/files/styles/original/public/tab_tmo/telephones/motorola/motogstylus/motorola-moto-g-stylus-indigo-mystique-1200.webp?itok=IzbjmMox',
+        alt             : 'iPhone 12 Mini',
+        comboLabel      : '250 Go',
+    },
+    visualBackgroundColor : '',
+    title           : 'iPhone 12 Mini',
+    price           : {
+        upperTitle      : 'From',
+        dollar          : 86,
+        cent            : 99,
+        details         : '/month',
+        promotion       : {
+            priceStriked    : 40.99,
+            priceSaved      : 10,
+            savedLabel      : 'You saved :',
+            superscript     : 1,
+            direction       : 'horizontal',
+        }
+    },
+    note                : 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
+    buttons             : [
+        {
+            label           : 'Configurate',
+            hierarchy       : 'primary-alt',
+            href            : 'www.videotron.com',
+        }
+    ],
+    contentBadge : {
+            label       : 'Lorem Ipsum',
+            hierarchy   : 'tertiary',
+            angle       : '',
+            iconName    : 'credit-return',
+    }
+};
+
+<Preview
+    withSource='none'
+    style={{ height: '800px' }}
+>
+    <Story
+        name='Drupal - Combo'
+        args={{
+            elementPath     : 'components/card/_doc/template.drupal',
+            cardVariant     : 'combo',
+            ...comboCommonProps
         }}
     >
         {Drupal.bind({})}
