@@ -10,6 +10,7 @@ const devMode               = process.env.NODE_ENV !== 'production';
 module.exports = (env) => {
     return [{
         entry: {
+            vendor: './projects/front-end-library/src/lib/js/vendors~bifrost-components.js',
             'bifrost-components': './projects/front-end-library/src/lib/js/bifrost-components.js',
             'bifrost-demo'      : './projects/front-end-library/src/lib/js/demo/bifrost/carousel.js',
             core                : './projects/front-end-library/src/lib/js/index.js'
