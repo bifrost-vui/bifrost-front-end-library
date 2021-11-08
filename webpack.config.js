@@ -21,10 +21,10 @@ module.exports = (env) => {
         },
         optimization: {
             splitChunks: {
-                /*chunks(chunk) {
+                chunks(chunk) {
                     return chunk.name !== 'bifrost-components';
-                },*/
-              chunks: 'async'
+                },
+              //chunks: 'async'
             },
         },
         resolve: {
