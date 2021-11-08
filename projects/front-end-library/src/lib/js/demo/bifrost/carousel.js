@@ -1,5 +1,5 @@
 import 'slick-carousel';
-import {breakpoints} from '../../utils/breakpoints';
+//import {breakpoints} from '../../utils/breakpoints';
 
 // Documentation: https://kenwheeler.github.io/slick/
 
@@ -14,14 +14,14 @@ bfSlick.assignCarousel('.js-bf-carousel-demo', {
     nextArrow: bfSlick.getNextSlickBtn(),
     responsive: [
         {
-            breakpoint: (breakpoints.md-1),
+            breakpoint: (bfTheme.breakpoints.md-1),
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1
                 }
         },
         {
-            breakpoint: breakpoints.lg,
+            breakpoint: bfTheme.breakpoints.lg,
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 3

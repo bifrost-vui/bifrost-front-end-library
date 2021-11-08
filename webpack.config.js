@@ -61,7 +61,7 @@ module.exports = (env) => {
                         }
                     ]
                 },
-                {
+                /*{
                     test: /\.(scss|css)$/,
                     use: [
                         MiniCssExtractPlugin.loader,
@@ -82,7 +82,7 @@ module.exports = (env) => {
                             }
                         }
                     ],
-                },
+                },*/
             ]
         }
     }]
