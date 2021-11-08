@@ -7,14 +7,14 @@ module.exports = {
         '@storybook/addon-links',
         'storybook-addon-designs',
         '@storybook/addon-postcss',
-      {
-          name: '@storybook/addon-postcss',
-            options: {
-             postcssLoaderOptions: {
-                    implementation: require('postcss'),
-           },
+        {
+            name: '@storybook/addon-postcss',
+              options: {
+               postcssLoaderOptions: {
+                  implementation: require('postcss'),
+             },
+          },
         },
-      },
     ],
   core: {
     builder: 'webpack5',

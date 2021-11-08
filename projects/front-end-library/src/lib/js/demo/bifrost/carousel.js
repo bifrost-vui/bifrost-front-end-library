@@ -1,5 +1,4 @@
 import 'slick-carousel';
-//import {breakpoints} from '../../utils/breakpoints';
 
 // Documentation: https://kenwheeler.github.io/slick/
 

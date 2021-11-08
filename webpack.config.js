@@ -4,7 +4,7 @@ const globImporter          = require('node-sass-glob-importer');
 const ExtractTextPlugin     = require('extract-text-webpack-plugin')
 const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
 
-const devMode               = process.env.NODE_ENV === 'production';
+const devMode               = process.env.NODE_ENV !== 'production';
 
 
 module.exports = (env) => {
@@ -16,15 +16,15 @@ module.exports = (env) => {
         },
         output: {
             path: path.join(__dirname, 'public/js'),
-            filename: '[name].bundle.js',
+            filename: '[name].js',
             publicPath: '/public/'
         },
         optimization: {
             splitChunks: {
-                chunks(chunk) {
-                    return chunk.name !== 'bifrost-components';
-                },
-              //chunks: 'async'
+               /* chunks(chunk) {
+                    return chunk.name === 'bifrost-components';
+                },*/
+              chunks: 'async'
             },
         },
         resolve: {
@@ -34,9 +34,6 @@ module.exports = (env) => {
             },
         },
         plugins: [
-            require('autoprefixer'),
-            require('postcss-color-rebeccapurple'),
-
             new MiniCssExtractPlugin({
                 // Options similar to the same options in webpackOptions.output
                 // both options are optional
@@ -61,7 +58,7 @@ module.exports = (env) => {
                         }
                     ]
                 },
-                /*{
+                {
                     test: /\.(scss|css)$/,
                     use: [
                         MiniCssExtractPlugin.loader,
@@ -82,7 +79,7 @@ module.exports = (env) => {
                             }
                         }
                     ],
-                },*/
+                },
             ]
         }
     }]
