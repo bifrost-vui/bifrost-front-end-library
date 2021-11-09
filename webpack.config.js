@@ -21,10 +21,18 @@ module.exports = (env) => {
         },
         optimization: {
             splitChunks: {
-               /* chunks(chunk) {
+              /*  chunks(chunk) {
                     return chunk.name === 'bifrost-components';
                 },*/
-              chunks: 'async'
+             //chunks: 'all'
+
+              cacheGroups: {
+                commons: {
+                  test: /[\\/]node_modules[\\/]/,
+                  name: 'vendors~bifrost-components',
+                  chunks: 'all',
+                },
+              }
             },
         },
         resolve: {
