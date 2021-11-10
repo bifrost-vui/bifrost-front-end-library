@@ -4,7 +4,6 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  * API is the same between **Angular** and **Drupal**.
  *
  */
-
 @Component({
     selector: "bf-button-icon",
     templateUrl: './button-icon.component.html',
@@ -32,5 +31,4 @@ export class ButtonIconComponent implements OnInit {
     ngOnInit() {
         console.log('button-icon', this);
     }
-
 }
