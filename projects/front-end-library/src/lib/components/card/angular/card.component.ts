@@ -47,6 +47,7 @@ export class CardComponent implements OnInit {
     @Input() visualBackgroundColor  : string;
 
     @Input() upperTitle             : string;
+    @Input() subTitle             : string;
     @Input() title                  : string;
     @Input() titleTag               : string;
     /**
