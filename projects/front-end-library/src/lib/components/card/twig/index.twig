@@ -13,7 +13,7 @@
     {% if hasVisual %}
         <div
             class='bf-card__visual bf-color-bg-underground d-flex justify-content-center align-items-center p-3 p-sm-4'
-            {% if visualBackgroundColor is defined %}style='background-color: {{ visualBackgroundColor }}'{% endif %}
+            {% if visualBackgroundColor is defined and visualBackgroundColor %}style='background-color: {{ visualBackgroundColor }}'{% endif %}
         >
             {% if hasImage %}
                 <img
@@ -78,6 +78,54 @@
             } ) %}
             {% include '@bf-components/badge/twig/index.twig' with badge only %}
         {% endif %}
+
+        {% if detailsColors is defined and detailsColors is not empty or detailsStorage is defined and detailsStorage is not empty %}
+            <div class='d-flex'>
+                {% if detailsColors is defined %}
+                    <ul class='bf-card__details-colors list-unstyled d-flex mb-0 mr-2'>
+                        {% for color in detailsColors|default([]) %}
+                            <li
+                                style='background-color: #{{ color.value }}'
+                                title='Color {{ color.name }}'
+                            ></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                {% if detailsStorage is defined and detailsStorage is not empty %}
+                    <p class='small mb-0'>
+                        {% for stockage in detailsStorage|default([]) %}
+                            <span class='font-weight-bold'>
+                                {{ stockage }}
+                            </span>
+                            {% if loop.last is same as (false) %}/{% endif %}
+                        {% endfor %}
+                    </p>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if contentBadge is defined and contentBadge %}
+            {% set contentBadge = contentBadge|merge( {
+                'hierarchy' : contentBadge.hierarchy|default('tertiary'),
+                'angle'     : contentBadge.angle|default(''),
+                'class'     : 'bf-card__content-badge mt-3'
+            } ) %}
+
+            {% include '@bf-components/badge/twig/index.twig' with contentBadge only %}
+        {% endif %}
+
+        {% if promotionBadges is defined and promotionBadges is not empty %}
+            <div class='bf-card__content-badge bf-card__content-badge--promotion mt-3'>
+                {% for promotionBadge in promotionBadges %}
+                    {% include '@bf-components/badge/twig/index.twig' with {
+                        label: promotionBadge,
+                        hierarchy: 'terciary-ground',
+                        isRounded: true,
+                    } only %}
+                {% endfor %}
+            </div>
+        {% endif %}
     </header>
 
     <div class='bf-card__body flex-grow-1'>
@@ -116,43 +164,7 @@
             {% endfor %}
         {% endif %}
 
-        {% if detailsColors is defined and detailsColors is not empty or detailsStorage is defined and detailsStorage is not empty %}
-            <div class='d-flex mx-3 mx-sm-4'>
-                {% if detailsColors is defined %}
-                    <ul class='bf-card__details-colors list-unstyled d-flex mb-0 mr-2'>
-                        {% for color in detailsColors|default([]) %}
-                            <li
-                                style='background-color: #{{ color.value }}'
-                                title='Color {{ color.name }}'
-                            ></li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-
-                {% if detailsStorage is defined and detailsStorage is not empty %}
-                    <p class='small mb-0'>
-                        {% for stockage in detailsStorage|default([]) %}
-                            <span class='font-weight-bold'>
-                                {{ stockage }}
-                            </span>
-                            {% if loop.last is same as (false) %}/{% endif %}
-                        {% endfor %}
-                    </p>
-                {% endif %}
-            </div>
-        {% endif %}
-
-        {% if contentBadge is defined and contentBadge %}
-
-            {% set contentBadge = contentBadge|merge( {
-                'hierarchy' : contentBadge.hierarchy|default('tertiary'),
-                'angle'     : contentBadge.angle|default(''),
-                'class'     : 'bf-card__content-badge mx-3 mx-sm-4 mt-3'
-            } ) %}
-
-            {% include '@bf-components/badge/twig/index.twig' with contentBadge only %}
-        {% endif %}
-        {% endblock card_body %}
+    {% endblock card_body %}
     </div>
 
     <footer class='bf-card__footer pt-0 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>

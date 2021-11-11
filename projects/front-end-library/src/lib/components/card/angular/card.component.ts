@@ -9,16 +9,16 @@ interface IImage {
 }
 
 interface ILink {
-    label           : string;
-    href            : string;
-    class           : string;
+    label   : string;
+    href    : string;
+    class   : string;
 }
 
 interface IButton {
-    label           : string;
-    hierarchy       : string;
-    reverse         : boolean;
-    href            : string;
+    label       : string;
+    hierarchy   : string;
+    reverse     : boolean;
+    href        : string;
 }
 
 interface IInputIncrement {
@@ -92,13 +92,19 @@ export class CardComponent implements OnInit {
     @Input() detailsColors          : object;
     @Input() detailsStorage         : object;
 
-    /** This badge displays in the phone card content above the price. Based on [Badge](/?path=/docs/components-badge--drupal) component API
+    /**
+        This badge displays in the phone card content above the price and the promotion badges. Based on [Badge](/?path=/docs/components-badge--drupal) component API
     */
     @Input() contentBadge           : object;
     /**
         [Price](/?path=/docs/components-price--drupal) component.
     */
     @Input() price                  : IPrice;
+   /**
+       Theses Bages display in the phone card content above the price. It's an array of [Badges](/?path=/docs/components-badge--drupal) component.
+    */
+
+    @Input() promotionBadges        : string[];
     /**
         Note: Can contains html.
     */
