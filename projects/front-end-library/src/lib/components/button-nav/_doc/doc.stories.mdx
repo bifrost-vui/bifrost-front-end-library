@@ -1,13 +1,13 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story,  Props }  from '@storybook/addon-docs';
 
 import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { ButtonNavComponent }                   from '../angular/button-nav.component';
 
 
-<Meta 
-    title='Components/Button Nav' 
+<Meta
+    title='Components/Button Nav'
     component={ButtonNavComponent}
     decorators={[
         moduleMetadata({ declarations: [ButtonNavComponent, TwigContainerComponent]})
@@ -56,12 +56,10 @@ export const Drupal = (args) => ({
 });
 
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
+        height='300px'
         args={{
             elementPath : 'components/button-nav/_doc/template.drupal',
             iconName    : 'placeholder'
@@ -69,15 +67,13 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-<Preview
-    withSource='none'
-    style={{ height: '900px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal - Usage Example'
+        height='900px'
         args={{
             elementPath : 'components/button-nav/_doc/usage-example.drupal'
         }}
@@ -85,4 +81,4 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
