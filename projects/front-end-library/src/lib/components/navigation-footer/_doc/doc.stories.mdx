@@ -1,5 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
 import { withDesign } from 'storybook-addon-designs'
 
 import { linkFields, links } from './data';
@@ -7,8 +7,8 @@ import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-
 import { FooterComponent }          from '../angular/footer.component';
 
 
-<Meta 
-    title='Components/Navigation Footer' 
+<Meta
+    title='Components/Navigation Footer'
     component={FooterComponent}
     decorators={[
         moduleMetadata({ declarations: [FooterComponent, TwigContainerComponent]}),
@@ -31,7 +31,7 @@ import { FooterComponent }          from '../angular/footer.component';
         },
         langcode: {
             defaultValue: 'EN',
-            control: { 
+            control: {
                 type: 'select',
                 options: ['EN', 'FR'],
             }
@@ -76,7 +76,7 @@ import { FooterComponent }          from '../angular/footer.component';
                 { href : '', label : 'Bundle Deals' },
                 { href : '', label : 'Internet Offers' },
                 { href : '', label : 'Equipments' },
-            ] 
+            ]
         },
         {
             sectionTitle    :'My Helix',
@@ -87,7 +87,7 @@ import { FooterComponent }          from '../angular/footer.component';
                 { href : '', label : 'Profile Settings' },
                 { href : '', label : 'Pay my Bill' },
                 { href : '', label : 'Manage my Account' },
-            ] 
+            ]
         }
     ],
     linkFields          : [
@@ -114,12 +114,10 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
-    withSource='none'
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
+        args={{
             elementPath         : 'components/navigation-footer/_doc/template.drupal',
             logo                : {
                 name                : 'business',
@@ -133,15 +131,13 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-<Preview
-    withSource='none'
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal - Reduced'
-        args={{ 
+        args={{
             elementPath         : 'components/navigation-footer/_doc/template.drupal',
             logo                : {
                 name                : 'business',
@@ -156,4 +152,4 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
