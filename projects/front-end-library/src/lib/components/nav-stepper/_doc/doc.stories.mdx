@@ -1,5 +1,5 @@
 import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, Props }   from '@storybook/addon-docs';
 import { withDesign }                   from 'storybook-addon-designs';
 
 import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
@@ -46,6 +46,14 @@ import { NavStepperComponent }          from '../angular/nav-stepper.component';
  - It's generaly used in combinaition with a `Funnel` type navigation header.
  - It's navigation capacities are limited to the previous step and next step within the current process
  - If `previousHasLabel` and/or `nextHasLabel` are set to false, a tooltip wil display the step label bellow the arrow icon link
+
+
+## Component API
+
+**✅ Inputs are equivalent for Angular and Drupal.**
+
+<Props of={NavStepperComponent} />
+
 
 ## Drupal
 export const commonProps = {
@@ -95,7 +103,7 @@ export const Drupal = (args) => ({
     props       : args,
 });
 
-<Preview
+<Canvas
     withSource='none'
     style={{ height: '300px' }}
 >
@@ -108,7 +116,7 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
 ## Drupal implementation exemple
@@ -142,14 +150,6 @@ export const Drupal = (args) => ({
 ## Angular implementation exemple
 
 Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
-
-
-
-## Component API
-
-**✅ Inputs are equivalent for Angular and Drupal.**
-
-<Props of={NavStepperComponent} />
 
 
 ## Design Guidelines
