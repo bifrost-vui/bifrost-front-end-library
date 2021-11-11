@@ -52,6 +52,12 @@
             </{{ titleTag|default('h1') }}>
         {% endif %}
 
+        {% if subTitle is defined and subTitle is not empty %}
+            <{{ subTitleTag|default('h5') }} class='h5 mt-0 mb-1'>
+                  {{ subTitle }}
+            </{{ subTitleTag|default('h5') }}>
+        {% endif %}
+
         {% if description_html is defined and description_html is not empty %}
             <div class='bf-card__description'>
                 {{ description_html|raw }}
