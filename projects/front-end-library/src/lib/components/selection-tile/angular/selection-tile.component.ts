@@ -11,7 +11,7 @@ export class SelectionTileComponent implements OnInit {
 
     /** Class override */
     @Input() class          : string;
-    @Input() inputType      : 'checkbox'|'radio';
+    @Input() type           : 'checkbox'|'radio';
     @Input() inputId        : string;
     @Input() value          : string;
     @Input() ariaLabel      : string;
