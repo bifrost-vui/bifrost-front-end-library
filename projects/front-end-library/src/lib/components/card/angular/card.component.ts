@@ -101,9 +101,9 @@ export class CardComponent implements OnInit {
     */
     @Input() price                  : IPrice;
    /**
-       Theses Bages display in the phone card content above the price. It's an array of [Badges](/?path=/docs/components-badge--drupal) component.
+       Theses Badges display in the phone card content above the price.
+       Only the badges labels are needed
     */
-
     @Input() promotionBadges        : string[];
     /**
         Note: Can contains html.
