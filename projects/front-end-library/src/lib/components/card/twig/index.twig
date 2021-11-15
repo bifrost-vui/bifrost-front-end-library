@@ -1,6 +1,7 @@
-{% set hasImage     = image.src is defined and image.src is not empty %}
-{% set hasIcon      = iconName is defined and iconName is not empty %}
-{% set hasVisual    = hasImage or hasIcon %}
+{% set hasImage         = image.src is defined and image.src is not empty %}
+{% set hasIcon          = iconName is defined and iconName is not empty %}
+{% set hasVisual        = hasImage or hasIcon %}
+{% set hasVisualCombo   = hasVisual and comboLabel is defined and comboLabel is not empty %}
 
 <article
     class='
@@ -12,7 +13,7 @@
 >
     {% if hasVisual %}
         <div
-            class='bf-card__visual bf-color-bg-underground d-flex justify-content-center align-items-center p-3 p-sm-4'
+            class='bf-card__visual {{ hasVisualCombo ? 'bf-card__visual--combo' : '' }} bf-color-bg-underground d-flex justify-content-center align-items-center p-3 p-sm-4'
             {% if visualBackgroundColor is defined and visualBackgroundColor %}style='background-color: {{ visualBackgroundColor }}'{% endif %}
         >
             {% if hasImage %}
@@ -20,7 +21,7 @@
                     src='{{ image.src|default('') }}'
                     data-src='{{ image.src|default('') }}'
                     alt='{{ image.alt|default('') }}'
-                    class='mw-100'
+                    class= {{ hasVisualCombo ? '' : 'mw-100' }}
                 />
                 {% if image.badgeIconName is defined %}
                     <div class='bf-badge-icon z-index-1'>
@@ -33,8 +34,26 @@
             {% elseif hasIcon %}
                 {% include '@bf-components/icon/twig/index.twig' with {
                     name    : iconName,
-                    size    : 'large'
+                    size    : 'large',
+                    class   : hasVisualCombo ? 'combo' : ''
                 } only %}
+            {% endif %}
+
+            {% if hasVisualCombo %}
+                {% include '@bf-components/icon/twig/index.twig' with {
+                        name    : 'plus',
+                        size    : 'small'
+                } only %}
+
+                <div class='text-center align-self-end d-flex flex-column pl-1 text-center pt-2'>
+                    {% include '@bf-components/icon/twig/index.twig' with {
+                        name    : 'card-sim',
+                        size    : 'large',
+                        class   : 'align-self-center'
+                    } only %}
+
+                    <span class='bf-card__visual__label mt-0'>{{ comboLabel }}</span>
+                </div>
             {% endif %}
         </div>
     {% endif %}
