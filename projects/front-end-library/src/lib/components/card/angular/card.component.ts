@@ -45,7 +45,7 @@ export class CardComponent implements OnInit {
     @Input() iconName               : string;
     /** E.g. `#F6F6F6` */
     @Input() visualBackgroundColor  : string;
-
+    @Input() comboLabel             : string;
     @Input() upperTitle             : string;
     @Input() subTitle             : string;
     @Input() title                  : string;
@@ -55,8 +55,6 @@ export class CardComponent implements OnInit {
     E.g. `description_html: "<p>this is a description</p>"`
     */
     @Input() description_html       : string;
-
-
     /** Expected format:
     ```
         {
@@ -104,7 +102,6 @@ export class CardComponent implements OnInit {
         Note: Can contains html.
     */
     @Input() note                   : string;
-
     /**
         Array of [Button](/?path=/docs/components-button--drupal) component.
         Or extends with a block: {% block buttons %} ... {% endblock %}.
@@ -114,10 +111,8 @@ export class CardComponent implements OnInit {
       [inputIncrement](/?path=/docs/components-input-increment--drupal) component.
      */
     @Input() inputIncrement         : IInputIncrement;
-
     @Input() message                : string;
     @Input() messageLink            : ILink;
-
     @Input() class                  : string;
     @Input() isDisabled             : boolean;
     @Input() reversed               : boolean;
