@@ -1,5 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
 
 import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
@@ -127,9 +127,7 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
-    withSource='none'
->
+<Canvas withSource='none'>
     <Story
         name='Drupal'
         args={{
@@ -148,6 +146,4 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
-
-## more info
+</Canvas>

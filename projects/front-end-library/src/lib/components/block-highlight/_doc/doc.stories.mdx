@@ -1,12 +1,12 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
 
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { BlockHighlightComponent }              from '../angular/block-highlight.component';
 
 
-<Meta 
-    title='Components/Block Highlight' 
+<Meta
+    title='Components/Block Highlight'
     component={BlockHighlightComponent}
     decorators={[
         moduleMetadata({ declarations: [BlockHighlightComponent, TwigContainerComponent]}),
@@ -81,27 +81,23 @@ export const commonProps = {
     class               : ''
 }
 
-<Preview
-    withSource='none'
-    style={{ height: '800px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
+        height='800px'
         args={{
             ...commonProps
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-<Preview
-    withSource='none'
-    style={{ height: '800px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal - Usage example'
+        height='800px'
         args={{
             ...commonProps,
             elementPath : 'components/block-highlight/_doc/usage-example.drupal',
@@ -109,4 +105,4 @@ export const commonProps = {
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
