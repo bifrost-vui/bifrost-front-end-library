@@ -1,13 +1,13 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
 
 import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { ButtonComponent }                      from '../angular/button.component';
 
 
-<Meta 
-    title='Components/Button' 
+<Meta
+    title='Components/Button'
     component={ButtonComponent}
     decorators={[
         moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent]})
@@ -72,13 +72,11 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '700px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
+        height='700px'
+        args={{
             elementPath     : 'components/button/_doc/template.drupal',
             class           : 'ml-4 mb-3',
             dataDismiss     : 'dataDismiss',
@@ -92,20 +90,18 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-<Preview
-    withSource='none'
-    style={{ height: '700px' }}
->
-    <Story 
-        name='Drupal - Specials'
-        args={{ 
-            elementPath : 'components/button/_doc/specials.drupal',
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - CSS only'
+        height='700px'
+        args={{
+            elementPath : 'components/button/_doc/css-only.drupal',
             class       : 'ml-4 mb-3',
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

@@ -148,17 +148,18 @@
 
         {# <!-- Btn mini cart --> #}
          {% if cartBtn is defined and cartBtn is not empty %}
-          {% if cartBtn.badge is defined and cartBtn.badge and cartBtn.badge != '0' %}
-            {% set badgeLabel =  cartBtn.badge %}
+          {% if cartBtn.badgeLabel is defined and cartBtn.badgeLabel and cartBtn.badgeLabel != '0' %}
+            {% set badgeLabel =  cartBtn.badgeLabel %}
           {% endif %}
 
           {% include '@bf-components/button-icon/twig/index.twig' with {
             icon        : 'cart',
             hierarchy   : 'primary',
-            badge       : (badgeLabel is defined) ? badgeLabel : NULL,
+            badgeLabel  : (badgeLabel is defined) ? badgeLabel : NULL,
             href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : NULL,
             ariaLabel   : cartBtn.ariaLabel|default(''),
-            class       : cartBtn.class|default('')
+            class       : cartBtn.class|default(''),
+            isDisabled  : cartBtn.isDisabled|default(false)
           } only %}
         {% endif %}
 
