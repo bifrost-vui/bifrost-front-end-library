@@ -1,16 +1,16 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
 /**
- * Description of the component NavStepper
+ * Description of the component Stepper
  *
  */
 
 @Component({
   selector: 'bf-stepper',
-  templateUrl: './nav-stepper.component.html',
+  templateUrl: './stepper.component.html',
   // styleUrls: ['../scss/index.scss'],
 })
-export class NavStepperComponent implements OnInit {
+export class StepperComponent implements OnInit {
     constructor() {}
 
     /** Expected :
@@ -32,6 +32,6 @@ export class NavStepperComponent implements OnInit {
 
 
     ngOnInit() {
-        console.log('NavStepper', this);
+        console.log('Stepper', this);
     }
 }

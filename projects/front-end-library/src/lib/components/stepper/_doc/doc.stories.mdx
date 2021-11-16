@@ -3,17 +3,17 @@ import { Meta, Story, Canvas, Props }   from '@storybook/addon-docs';
 import { withDesign }                   from 'storybook-addon-designs';
 
 import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { NavStepperComponent }          from '../angular/nav-stepper.component';
+import { StepperComponent }          from '../angular/stepper.component';
 
 
 
 
 
 <Meta
-    title='Components/Navigation Stepper'
-    component={NavStepperComponent}
+    title='Components/Stepper'
+    component={StepperComponent}
     decorators={[
-        moduleMetadata({ declarations: [NavStepperComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [StepperComponent, TwigContainerComponent]}),
         withDesign
     ]}
     parameters={{
@@ -52,7 +52,7 @@ import { NavStepperComponent }          from '../angular/nav-stepper.component';
 
 **✅ Inputs are equivalent for Angular and Drupal.**
 
-<Props of={NavStepperComponent} />
+<Props of={StepperComponent} />
 
 
 ## Drupal
@@ -110,7 +110,7 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath : 'components/nav-stepper/_doc/template.drupal',
+            elementPath : 'components/stepper/_doc/template.drupal',
             ...commonProps,
         }}
     >
@@ -122,7 +122,7 @@ export const Drupal = (args) => ({
 ## Drupal implementation exemple
 
 ```jsx
-{% include '@bf-components/nav-stepper/twig/index.twig' with {
+{% include '@bf-components/stepper/twig/index.twig' with {
     activeStep : 1,
     navItemSteps : [
         {
