@@ -1,5 +1,5 @@
-{% if hasTopBar is defined and hasTopBar is same as (true) %}
-    {% include '@bf-components/navigation-header/twig/top-bar.twig' with {
+  {% if hasTopBar is defined and hasTopBar and not isFunnel %}
+		{% include '@bf-components/navigation-header/twig/top-bar.twig' with {
         items                   : topBar.items|default([]),
         secondaryItems          : topBar.secondaryItems|default([]),
         isConnected             : isConnected|default(false),
@@ -11,119 +11,174 @@
         labelConnexion          : labelConnexion|default('My Customer Centre'),
         reversed                : reversed|default(false),
     } only %}
-{% endif %}
+	{% endif %}
 
-<header
+  <header
     role='banner'
-    class='bf-header z-index-18
-           {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}'
+    class="bf-header z-index-18 {{(reversed) ? 'reversed': ''}} {{ (isFunnel) ? 'bf-header--funnel' : '' }}"
     {% if theme is defined %} data-theme={{theme}} {% endif %}
->
-    <nav class='bf-header__nav w-100 border-bottom bf-border-color-secondary {{ class|default('') }}'>
+  >
+    <nav class='bf-header__nav w-100 border-bottom bf-border-color-secondary {{ class|default(' ') }}'>
+      {# <!-- Logo --> #}
+      <div class='bf-header__logo bf-logo'>
+        {% if logoLink is defined and logoLink %}
+          <a href='{{ logoLink }}' class='d-flex'>
+        {% endif %}
 
-        <!-- Logo -->
-        <div class='bf-header__logo'>
-            <a href='{{ logo.href|default('#') }}' class='d-flex'>
-                {% include '@bf-components/logo/twig/index.twig' with {
-                    name        : logo.name,
-                    size        : 'large',
-                    langcode    : langcode|default('EN'),
-                } only %}
-            </a>
-        </div>
+        {% block headerLogo %}
+          {# if the logo is not available in the list an image can be inserted here #}
+          {% set headerLogos = [
+            { name : "Business", filename:"videotron-affaires", filenameEN:"videotron-business" },
+            { name : "Club Illico", filename:"club-illico" },
+            { name : "Helix", filename:"helix" },
+            { name : "Illico", filename:"illico" },
+            { name : "My Account", filename:"mon-compte", filenameEN:"my-account" },
+            { name : "Videotron", filename:"videotron" },
+          ]
+          %}
 
-        <!-- Main Nav -->
-        <div class='bf-header__nav-main js-collapse-full-height'>
-            <ul class='bf-megamenu d-flex list h-100'>
-                {% block navbar_content %}
-                    {% include '@bf-components/navigation-header/twig/mega-menu.twig' with {
-                        navItems    : navItems,
-                        reversed    : reversed
-                    } only %}
-                {% endblock %}
-            </ul>
-        </div>
-
-        <!-- Actions -->
-        <div class='bf-header__actions d-flex align-items-center justify-content-end w-100 h-100 pr-3'>
-
-            <div class='d-flex d-lg-none align-items-center'>
-                {% for link in rigthIconLinks|default([])|slice(0, 5) %}
-                    {% if link is defined and link.href is not empty and link.icon is not empty %}
-                        {% include '@bf-components/button-icon/twig/index.twig' with {
-                            href    : link.href,
-                            icon    : link.icon,
-                            class   : link.class
-                        } only %}
-                    {% endif %}
-                {% endfor %}
-
-                <!-- Btn account dropdown -->
-                {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
-                    {% if isConnected is same as (true) %}
-                        {% include '@bf-components/button-icon/twig/index.twig' with {
-                            href        : hrefLogOut|default('#'),
-                            icon        : 'logout',
-                            ariaLabel   : labelLogOut|default('Log out'),
-                        } %}
-                    {% else %}
-                        {% include '@bf-components/button-icon/twig/index.twig' with {
-                            href        : hrefConnexion|default('#'),
-                            icon        : 'my-account',
-                            ariaLabel   : labelConnexion|default('Log in'),
-                        } %}
-                    {% endif %}
-                {% endif %}
-
-                <!-- Btn mini cart -->
-                {# {% if hasMiniCartBtn is defined and hasMiniCartBtn is same as (true) %}
-                    {% include '@bf-components/navigation-header/twig/btn-minicart.twig' with { class:'' } only %}
-                {% endif %} #}
-
-                <!-- Btn search toggle -->
-                {% include '@bf-components/button-icon/twig/index.twig' with {
-                    icon            : 'search',
-                    dataToggle      : 'collapse',
-                    dataTarget      : '#navbarSearch',
-                    ariaControls    : 'navbarSearch',
-                    ariaExpanded    : 'false',
-                    class           : 'd-flex d-md-none js-bf-search-toggler'
-                } only %}
-            </div>
-
-            <!-- Search -->
-            {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
-                <div class='bf-header__search-bar js-bf-header__search-bar d-none d-md-block ml-1' id='navbarSearch'>
-                    <div class='d-flex align-items-center justify-content-between w-100'>
-                        {% block globalSearch %}
-                            {% include '@bf-components/input-search/twig/index.twig' with {
-                                class       : 'mb-0',
-                                input       : {
-                                    placeholder     : search.placeholder|default('')|t,
-                                },
-                                reversed    : reversed,
-                            } %}
-                        {% endblock %}
-                            {% include '@bf-components/button-icon/twig/index.twig' with {
-                                icon            : 'x',
-                                dataToggle      : 'collapse',
-                                dataTarget      : '#navbarSearch',
-                                ariaControls    : 'navbarSearch',
-                                ariaExpanded    : 'false',
-                                class           : 'd-flex d-md-none m-1 p-1'
-                            } %}
-                    </div>
+          {% for logoItem in headerLogos %}
+            {% if logoItem.name == logoName %}
+              {% if (langcode == 'FR') or (langcode == 'EN' and logoItem.filenameEN is not defined ) %}
+                <div class="d-none d-lg-block">
+                  {% include '@bf-components/navigation-header/svg/logo-header-' ~ logoItem.filename ~ '-lg.svg' ignore missing %}
                 </div>
+
+                <div class="d-lg-none">
+                  {% include '@bf-components/navigation-header/svg/logo-header-' ~ logoItem.filename ~ '-sm.svg' ignore missing %}
+                </div>
+              {% else %}
+                <div class="d-none d-lg-block">
+                  {% include '@bf-components/navigation-header/svg/logo-header-' ~ logoItem.filenameEN ~ '-lg.svg' ignore missing %}
+                </div>
+
+                <div class="d-lg-none">
+                  {% include '@bf-components/navigation-header/svg/logo-header-' ~ logoItem.filenameEN ~ '-sm.svg' ignore missing %}
+                </div>
+              {% endif %}
             {% endif %}
+          {% endfor %}
+        {% endblock %}
 
-        </div>
+        {% if logoLink is defined and logoLink %}</a>{% endif %}
+      </div>
 
+      {# <!-- Main Nav --> #}
+      <div class='bf-header__nav-main js-collapse-full-height'>
+        {% if not isFunnel %}
+          <ul class='bf-megamenu  list'>
+            {% block navbar_content %}
+              {% include '@bf-components/navigation-header/twig/mega-menu.twig' with {
+              navItems    : navItems,
+              reversed    : reversed
+              } only %}
+            {% endblock %}
+          </ul>
+        {% endif %}
+      </div>
+
+      {# <!-- Actions --> #}
+      <div class='bf-header__actions'>
+        {% if not isFunnel %}
+          <div class="bf-header__rigth-icon-links ">
+            {# <!-- rigth Icon Links - visible on mobile only --> #}
+            {% for link in rigthIconLinks|default([])|slice(0, 2) %}
+              {% if link is defined and link.href is not empty and link.icon is not empty %}
+                {% include '@bf-components/button-icon/twig/index.twig' with {
+                  href    : link.href,
+                  icon    : link.icon,
+                  class   : link.class,
+                  badge   : (link.badge.label) ? { label : link.badge.label } : {} ,
+                } only %}
+              {% endif %}
+            {% endfor %}
+          </div>
+
+
+        <!-- Btn account dropdown -->
+        {% if hasAccountBtn is defined and hasAccountBtn %}
+          {% if isConnected is same as (true) %}
+            {% include '@bf-components/button-icon/twig/index.twig' with {
+              href      : hrefLogOut|default('#'),
+              icon      : 'log-out',
+              ariaLabel : labelLogOut|default('Log out'),
+            } %}
+          {% else %}
+            {% include '@bf-components/button-icon/twig/index.twig' with {
+              href      : hrefConnexion|default('#'),
+              icon      : 'my-account',
+              ariaLabel : labelConnexion|default('Log in'),
+            } %}
+          {% endif %}
+        {% endif %}
+       {% endif %}
+        {# <!-- Funnel Navigation link --> #}
+        {% if isFunnel and funnelNav.href is defined and funnelNav.href and funnelNav.label is defined and funnelNav.label %}
+          <div class="bf-header__nav-funnel">
+            <a href='{{ funnelNav.href }}' class='bf-link bf-link--primary my-2'>
+              {{funnelNav.label}}
+            </a>
+          </div>
+        {% endif %}
+
+        {# <!-- Btn mini cart --> #}
+         {% if cartBtn is defined and cartBtn is not empty %}
+          {% if cartBtn.badgeLabel is defined and cartBtn.badgeLabel and cartBtn.badgeLabel != '0' %}
+            {% set badgeLabel =  cartBtn.badgeLabel %}
+          {% endif %}
+
+          {% include '@bf-components/button-icon/twig/index.twig' with {
+            icon        : 'cart',
+            hierarchy   : 'primary',
+            badgeLabel  : (badgeLabel is defined) ? badgeLabel : NULL,
+            href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : NULL,
+            ariaLabel   : cartBtn.ariaLabel|default(''),
+            class       : cartBtn.class|default(''),
+            isDisabled  : cartBtn.isDisabled|default(false)
+          } only %}
+        {% endif %}
+
+        {# <!-- Btn search toggle for mobile --> #}
+        {% if not isFunnel %}
+          {% include '@bf-components/button-icon/twig/index.twig' with {
+            icon            : 'search',
+            dataToggle      : 'collapse',
+            dataTarget      : '#navbarSearch',
+            ariaControls    : 'navbarSearch',
+            ariaExpanded    : 'false',
+            class           : 'd-flex d-md-none js-bf-search-toggler'
+          } only %}
+
+          {# <!-- Search field --> #}
+          {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
+            <div class='bf-header__search-bar js-bf-header__search-bar d-none d-md-block ml-3' id='navbarSearch'>
+              <div class='d-flex align-items-center justify-content-between w-100'>
+                {% block globalSearch %}
+                  {% include '@bf-components/input-search/twig/index.twig' with {
+                    class     : 'mb-0',
+                    input     : { placeholder : search.placeholder|default('')|t, },
+                    reversed  : reversed,
+                  } %}
+                {% endblock %}
+                {% include '@bf-components/button-icon/twig/index.twig' with {
+                  icon            : 'x',
+                  dataToggle      : 'collapse',
+                  dataTarget      : '#navbarSearch',
+                  ariaControls    : 'navbarSearch',
+                  ariaExpanded    : 'false',
+                  class           : 'd-flex d-md-none m-1 p-1'
+                } only %}
+              </div>
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
     </nav>
 
-    {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
-        <div class='align-items-center justify-content-between w-100'>
-            <div id='alg-hits' class='ais-Hits bf-color-bg-ground alg-hidden'></div>
-        </div>
-    {% endif %}
-
+  {# <!-- Algolia search results-->  #}
+  {% if not (hasNoSearchBtn or isFunnel) %}
+    <div class='align-items-center justify-content-between w-100'>
+      <div id='alg-hits' class='ais-Hits bf-color-bg-ground alg-hidden'></div>
+    </div>
+  {% endif %}
 </header>

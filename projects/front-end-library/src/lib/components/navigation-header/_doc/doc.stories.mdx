@@ -1,7 +1,8 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
 
-import { topBar_items, topBar_secondaryItems, rigthIconLinks } from './data';
+import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn, funnelNav } from './data';
+import headerLogos from './headerLogos.json';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent }          from '../angular/header.component';
 
@@ -23,11 +24,21 @@ import { HeaderComponent }          from '../angular/header.component';
                 options: ['EN', 'FR'],
             }
         },
+        logoName: {
+            defaultValue: 'Videotron',
+            control: {
+                type: 'select',
+                options: [...headerLogos.map(item => item.name)],
+            }
+        },
         hasTopBar: {
             defaultValue: true,
         },
         reversed: {
             defaultValue: false,
+        },
+        headerLogos: {
+            table: { disable: true }
         }
     }}
 />
@@ -37,10 +48,14 @@ import { HeaderComponent }          from '../angular/header.component';
 
 <br/>
 
+## Component API
+
+<Props of={HeaderComponent} />
 
 
 ## Drupal implementation example
 
+### Main Navigation Header
 ```jsx
 {% include '@bf-components/navigation-header/twig/index.twig' with {
     hasTopBar: true,
@@ -55,9 +70,8 @@ import { HeaderComponent }          from '../angular/header.component';
             { label: 'Locate',      href: '', class: '' }
         ],
     },
-    logo : {
-        name : 'business',
-    },
+    logoName: 'videotron',
+    logoLink: 'https://videotron.com',
     navItems: [
         {
             label: 'Shop', href: '', class: '',
@@ -91,30 +105,75 @@ import { HeaderComponent }          from '../angular/header.component';
         { icon : 'email',   href : ' ', class : '' },
         { icon : 'pin',     href : ' ', class : '' },
     ],
-
+    hasCartBtn : true,
+    cartBtn : {
+        badgeLabel       : '3',
+        href        : 'https://www.videotron.com',
+        ariaLabel   : 'My cart',
+        class       : ''
+    },
     hasAccountBtn : true,
     isConnected : true,
     hrefLogOut : '#',
     labelLogOut : 'Log out',
     hrefConnexion : '#',
     labelConnexion : 'Connexion',
-
     search : {
         placeholder : 'What are you looking for?'
     },
-
     reversed : true,
     langcode : 'EN'
 } only %}
 ```
+### Funnel type Navigation Header
 
+```jsx
+{% include '@bf-components/navigation-header/twig/index.twig' with {
+    logoName    : 'videotron',
+    logoLink    : 'https://videotron.com',
+    hasCartBtn  : true,
+    cartBtn     : {
+        badge       : { label : '3' },
+        href        : 'https://www.videotron.com',
+        ariaLabel   : 'My cart'
+    },
+    funnelNav   : {
+        label   : "Back" ,
+        href    : " ",
+    },
+    reversed    : true,
+    langcode    : 'EN'
+} only %}
+```
 
+### Navigation with custom logo image
 
-## Component API
-
-<Props of={HeaderComponent} />
-
-
+```jsx
+{% enmbed '@bf-components/navigation-header/twig/index.twig' with {
+    logoLink    : 'https://videotron.com',
+    navItems: [...],
+    rigthIconLinks : [
+        { icon : 'email',   href : ' ', class : '' },
+        { icon : 'pin',     href : ' ', class : '' },
+    ],
+    hasCartBtn : false,
+    hasAccountBtn : true,
+    isConnected : true,
+    hrefLogOut : '#',
+    labelLogOut : 'Log out',
+    hrefConnexion : '#',
+    labelConnexion : 'Connexion',
+    search : {
+        placeholder : 'What are you looking for?'
+    },
+    reversed : true,
+    langcode : 'EN'
+} only %}
+    {% block headerLogo %}
+        <img src="/dir/my-logo-img.svg" alt="alternate text" aria-roledescription="logo" role="img" />
+    {% endblock %}
+{% endembed %}
+```
 
 ## Drupal
 
@@ -123,21 +182,61 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+
+### Main Navigation Header
+
 <Canvas withSource='none'>
     <Story
-        name='Drupal'
+        name='Navigation Header - Drupal'
         args={{
             elementPath : 'components/navigation-header/_doc/template.drupal',
             topBar_items,
             topBar_secondaryItems,
-            logo : {
-                name                : 'business',
-                href                : '/',
-            },
             rigthIconLinks,
+            cartBtn,
+            headerLogos
         }}
-        height='500px'
+        height='400px'
+        with = '1200px'
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
+
+
+### Funnel type Navigation Header
+
+<Preview
+    withSource='none'
+>
+    <Story
+        name='Funnel type Header - Drupal'
+        args={{
+            elementPath : 'components/navigation-header/_doc/template.drupal',
+            cartBtn,
+            funnelNav,
+            headerLogos,
+            isFunnel : true
+        }}
+         argTypes={{
+            rigthIconLinks  : {table: { disable: true }},
+            hasTopBar       : {table: { disable: true }},
+            hasAccountBtn   : {table: { disable: true }},
+            hasNoSearchBtn  : {table: { disable: true }},
+            hrefConnexion   : {table: { disable: true }},
+            hrefLogOut      : {table: { disable: true }},
+            isConnected     : {table: { disable: true }},
+            labelConnexion  : {table: { disable: true }},
+            labelLogOut     : {table: { disable: true }},
+            navItems        : {table: { disable: true }},
+            search_placeholder : {table: { disable: true }},
+            topBar_items    : {table: { disable: true }},
+            topBar_secondaryItems : {table: { disable: true }},
+            accountHello    : {table: { disable: true }}
+         }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
+
+## more info

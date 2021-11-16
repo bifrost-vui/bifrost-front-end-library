@@ -1,14 +1,9 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
-
+import { Url } from "url";
 /**
  * API is the same between **Angular** and **Drupal**.
  *
  */
-
-interface ILogo {
-    href: string;
-    name: string;
-}
 
 @Component({
     selector: 'bf-header',
@@ -19,35 +14,36 @@ export class HeaderComponent implements OnInit {
     constructor() {}
 
     @Input() reversed                : boolean;
-
-    /** See [Logo Component API](/?path=/docs/components-logo--drupal). E.g. `logo = { href: "#", name: "videotron" }` */
-    @Input() logo                    : ILogo;
-
-    @Input() search_placeholder      : string;
-
+    @Input() logoName                : string;
+    @Input() logoLink                : string;
     /** Note: TopBar is only visible on desktop. */
     @Input() hasTopBar               : boolean;
     @Input() topBar_items            : any[];
     @Input() topBar_secondaryItems   : any[];
+    @Input() accountHello            : string;
+    /** Shows up in top bar only */
+    @Input() labelConnexion           : string;
 
     @Input() navItems                : any[];
-    /** Maximum 5 first element of the list will be display  */
+    /** Only the first 3 elements of the list will be displayed */
     @Input() rigthIconLinks          : any[];
+    /**  Will show up on all devices if activated except if isFunnel is activated */
     @Input() hasAccountBtn           : boolean;
     @Input() isConnected             : boolean;
-
     @Input() hrefLogOut               : string;
     @Input() labelLogOut              : string;
     @Input() hrefConnexion            : string;
-    @Input() labelConnexion           : string;
-    
-    /** String displayed before `accountName` in the Top Bar, when connected. */
-    @Input() accountHello             : string;
-    /** Name of the user, displayed in the Top Bar when connected. */
-    @Input() accountName              : string;
-
-    // @Input() hasMiniCartBtn          : boolean;
+    /**  Will show up on all devices if activated */
+    @Input() hasCartBtn              : boolean;
+    /** Note : empty, undefined or 0 badge label value hides the cart's badge */
+    /** Badge label value set to `0` will hide the badge on the cart*/
+    @Input() cartBtn                 : any[];
+    @Input() langcode                : string;
+    @Input() search_placeholder      : string;
     @Input() hasNoSearchBtn          : boolean;
+    /** Funnel has a limited contextual navigation */
+    @Input() isFunnel                : boolean;
+    @Input() funnelNav               : object;
 
     ngOnInit() {
         console.log('Header', this);

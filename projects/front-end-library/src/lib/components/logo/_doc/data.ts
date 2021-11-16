@@ -30,6 +30,21 @@ export const allLogoCategories = [
         ]
     },
     {
+        categoryName: 'Club Illico Large',
+        list: [
+            {
+                name        : 'clubillico',
+                size        : 'large',
+                langcode    : 'fr'
+            },
+            {
+                name        : 'clubillico',
+                size        : 'large',
+                langcode    : 'fr'
+            },
+        ]
+    },
+    {
         categoryName: 'Medium',
         list: [
             {
@@ -52,6 +67,21 @@ export const allLogoCategories = [
             },
             {
                 name        : 'business',
+                size        : 'medium',
+                langcode    : 'fr'
+            },
+        ]
+    },
+    {
+        categoryName: 'Club Illico Medium',
+        list: [
+            {
+                name        : 'clubillico',
+                size        : 'medium',
+                langcode    : 'fr'
+            },
+            {
+                name        : 'clubillico',
                 size        : 'medium',
                 langcode    : 'fr'
             },

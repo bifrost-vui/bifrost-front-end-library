@@ -14,3 +14,14 @@ export const rigthIconLinks = [
     { icon:"email", href:" ", class:"" },
     { icon:"pin", href:" ", class:"" },
 ];
+
+export const cartBtn = {
+    badgeLabel  : "3" ,
+    href        : "https://www.videotron.com",
+    ariaLabel   : "My cart"
+};
+
+export const funnelNav = {
+    label: "Back" ,
+    href : " ",
+};
