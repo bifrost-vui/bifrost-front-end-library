@@ -1,5 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
 
 import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn, funnelNav } from './data';
 import headerLogos from './headerLogos.json';
@@ -51,7 +51,6 @@ import { HeaderComponent }          from '../angular/header.component';
 ## Component API
 
 <Props of={HeaderComponent} />
-
 
 
 ## Drupal implementation example
@@ -108,7 +107,7 @@ import { HeaderComponent }          from '../angular/header.component';
     ],
     hasCartBtn : true,
     cartBtn : {
-        badge       : { label : '3' },
+        badgeLabel       : '3',
         href        : 'https://www.videotron.com',
         ariaLabel   : 'My cart',
         class       : ''
@@ -176,8 +175,6 @@ import { HeaderComponent }          from '../angular/header.component';
 {% endembed %}
 ```
 
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -188,9 +185,7 @@ export const Drupal = (args) => ({
 
 ### Main Navigation Header
 
-<Preview
-    withSource='none'
->
+<Canvas withSource='none'>
     <Story
         name='Navigation Header - Drupal'
         args={{
@@ -206,7 +201,8 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
+
 
 ### Funnel type Navigation Header
 

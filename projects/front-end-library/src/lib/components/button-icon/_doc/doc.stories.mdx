@@ -1,9 +1,8 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-
-import interfaceIcons                       from '../../../../../../../public/icons/list/interfaces.json';
-import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
-import { ButtonIconComponent }              from '../angular/button-icon.component';
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Props }           from '@storybook/addon-docs';
+import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { ButtonIconComponent }                  from '../angular/button-icon.component';
 
 
 <Meta
@@ -44,7 +43,7 @@ import { ButtonIconComponent }              from '../angular/button-icon.compone
 
 // With a badge
 {% include '@bf-components/button-icon/twig/index.twig' with {
-    badge : '3'
+    badgeLabel : '3'
 } only %}
 
 // With a link instead of a button
@@ -67,12 +66,10 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '400px' }}
->
+<Canvas withSource='none'>
     <Story
         name='Drupal'
+        height='300px'
         args={{
             elementPath : 'components/button-icon/_doc/template.drupal',
             icon        : 'cart'
@@ -80,4 +77,4 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

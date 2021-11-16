@@ -1,6 +1,6 @@
-{% set reversed   = reversed|json_parse %}
+{% set reversed     = reversed|json_parse %}
 {% set noUppercase  = noUppercase|json_parse %}
-{% set isRounded  = isRounded|json_parse %}
+{% set isRounded    = isRounded|json_parse %}
 
 <div class='d-flex flex-column justify-content-center {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
   {% for index in [1,2] %}
@@ -89,25 +89,25 @@
         <p class='small'>noUppercase & isRounded</p>
 
         {% include '@bf-components/badge/twig/index.twig' with {
-          label     : label|default('noUppercase'),
+          label       : label|default('noUppercase'),
           noUppercase : true
         } %}
 
         {% include '@bf-components/badge/twig/index.twig' with {
-          label     : label|default('isRounded'),
+          label       : label|default('isRounded'),
           noUppercase : true,
           isRounded   : true
          } %}
 
         {% include '@bf-components/badge/twig/index.twig' with {
-          label     : label|default('noUppercase'),
-          iconName  : iconName|default('camera'),
+          label       : label|default('noUppercase'),
+          iconName    : iconName|default('camera'),
           noUppercase : true,
         } %}
 
         {% include '@bf-components/badge/twig/index.twig' with {
-          label     : label|default('isRounded'),
-          iconName  : iconName|default('camera'),
+          label       : label|default('isRounded'),
+          iconName    : iconName|default('camera'),
           noUppercase : true,
           isRounded   : true
         } %}
