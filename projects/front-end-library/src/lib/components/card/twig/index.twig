@@ -97,18 +97,6 @@
             } ) %}
             {% include '@bf-components/badge/twig/index.twig' with badge only %}
         {% endif %}
-
-        {% if promotionBadges is defined and promotionBadges is not empty and not hasVisual %}
-            <div class='bf-card__content-badge bf-card__content-badge--promotion mt-3'>
-                {% for promotionBadge in promotionBadges %}
-                    {% include '@bf-components/badge/twig/index.twig' with {
-                        label       : promotionBadge,
-                        hierarchy   : 'terciary-ground',
-                        isRounded   : true,
-                    } only %}
-                {% endfor %}
-            </div>
-        {% endif %}
     </header>
 
     <div class='bf-card__body flex-grow-1'>
@@ -181,7 +169,7 @@
             {% include '@bf-components/badge/twig/index.twig' with contentBadge only %}
         {% endif %}
 
-        {% if promotionBadges is defined and promotionBadges is not empty and hasVisual %}
+        {% if promotionBadges is defined and promotionBadges is not empty %}
             <div class='bf-card__content-badge bf-card__content-badge--promotion mt-3  mx-3 mx-sm-4'>
                 {% for promotionBadge in promotionBadges %}
                     {% include '@bf-components/badge/twig/index.twig' with {
