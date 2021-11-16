@@ -36,22 +36,19 @@
           #}
           {% apply spaceless %}
             {% if step.href is defined and step.href %}
-              <a class='bf-link bf-link--primary bf-color-neutral-primary' href='{{ step.href }}'
-                {% if not previousHasLabel %}
-                 data-toggle='tooltip' data-placement='top' title='{{ step.label }}'
-                {% endif %}
-              >
+              <a class='bf-link bf-link--primary bf-color-neutral-primary' href='{{ step.href }}'>
                 {% include '@bf-components/icon/twig/index.twig' with {
                     name  : 'chevron-left',
                     size  : 'small',
                 } only %}
-            {% endif %}
 
-            {% if previousHasLabel|default(true) %}
+                {% if step.label is defined and step.label %}
+                  <span class='d-none d-lg-inline pr-2'>{{ step.label }}</span>
+                {% endif %}
+              </a>
+            {% elseif step.label is defined and step.label %}
               <span class='d-none d-lg-inline pr-2'>{{ step.label }}</span>
             {% endif %}
-
-            {% if step.href is defined and step.href %}</a>{% endif %}
           {% endapply %}
           </li>
         {% elseif isActive %}
@@ -70,22 +67,18 @@
           {% apply spaceless %}
             {% if step.href is defined and step.href and nextIsClickable %}
               <a class='bf-link bf-link--primary bf-color-neutral-primary' href='{{ step.href }}'
-                {% if not NextHasLabel %}
-                  data-toggle='tooltip' data-placement='top' title='{{ step.label }}'
-                {% endif %}
               >
-            {% endif %}
+                {% if step.label is defined and step.label %}
+                  <span class='d-none d-lg-inline px-2'>{{step.label}}</span>
+                {% endif %}
 
-            {% if nextHasLabel|default(true) %}
-              <span class='d-none d-lg-inline px-2'>{{step.label}}</span>
-            {% endif %}
-
-            {% if step.href is defined and step.href and nextIsClickable %}
-              {% include '@bf-components/icon/twig/index.twig' with {
-                  name  : 'chevron-right',
-                  size  : 'small'
-              } only %}
+                {% include '@bf-components/icon/twig/index.twig' with {
+                    name  : 'chevron-right',
+                    size  : 'small'
+                } only %}
               </a>
+            {% elseif step.label is defined and step.label %}
+              <span class='d-none d-lg-inline px-2'>{{step.label}}</span>
             {% endif %}
           {% endapply %}
           </li>

@@ -23,10 +23,6 @@ export class StepperComponent implements OnInit {
     @Input() counterLabel     : string;
     /** will display `activeStep`/`total step count` */
     @Input() hasStepCounter   : boolean;
-    /** will display previous label (desktop only) */
-    @Input() previousHasLabel : boolean;
-    /** will display next label (desktop only) */
-    @Input() nextHasLabel     : boolean;
     @Input() nextIsClickable  : boolean;
     @Input() reversed         : boolean;
 
