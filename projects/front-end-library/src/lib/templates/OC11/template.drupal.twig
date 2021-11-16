@@ -1,0 +1,147 @@
+<div class='d-flex flex-column minh-100'>
+    
+    <p class='bf-color-bg-underground m-0 p-2 bf-text small'>
+        <b>This template if for example only.</b> Please refer to the Figma file for the source of truth.
+    </p>
+
+    {% include '@bf-components/navigation-header/twig/index.twig' with {
+    } only %}
+
+    {% include '@bf-components/hero/twig/index.twig' with {
+        title: 'Une solution mobile à votre image',
+        description: 'Dites-nous votre budget et trouvez le meilleur scénario possible',
+        background: 'highlight'
+    } only %}
+
+    <div class='bf-color-bg-highlight'>
+        <div class='container-fluid d-flex flex-column flex-md-row align-items-center gap-3 gap-md-6 pb-6'>
+            <div class='flex-grow-1 w-100'>
+                <h3>Prix du «bundle» lorem ipsum</h3>
+                {% include '@bf-components/input-slider/twig/index.twig' with {
+                    value: [0, 150],
+                    minimumGap: 5,
+                    min: {
+                        inputId       : 'inputIdMin',
+                        value         : 0,
+                        legend        : 'Minimum',
+                        description   : '$0/month'
+                    },
+                    max: {
+                        inputId       : 'inputIdMax',
+                        value         : 150,
+                        legend        : 'Maximum',
+                        description   : '$150/month'
+                    },
+                    unitLabel: '$',
+                    isUnitDollar: true,
+                    class:'mt-3'
+                } only %}
+                {# TODO: Fix bug with class #}
+            </div>
+            <div class='flex-grow-1 w-100'>
+                <h3>Lorem ipsum Go par mois</h3>
+                {% include '@bf-components/input-slider/twig/index.twig' with {
+                    value: [0, 150],
+                    min: {
+                        inputId       : 'inputIdMin',
+                        value         : 0,
+                        legend        : 'Minimum',
+                        description   : '0 Go'
+                    },
+                    max: {
+                        inputId       : 'inputIdMax',
+                        value         : 25,
+                        legend        : 'Maximum',
+                        description   : '25 Go'
+                    },
+                    unitLabel: ' Go',
+                } only %}
+            </div>
+            <div class='align-self-start align-self-md-center'>
+                {% include '@bf-components/button/twig/index.twig' with {
+                    label: 'Voir les recommandations',
+                    hierarchy: 'primary-alt'
+                } only %}
+            </div>
+        </div>
+    </div>
+
+    <div class='container-fluid py-5'>
+        {% include '@bf-components/tab/twig/index.twig' with {
+            navItems: [
+                {
+                    href: '',
+                    label: 'All brands',
+                    class: 'active'
+                },
+                {
+                    href: '',
+                    label: 'Apple',
+                },
+                {
+                    href: '',
+                    label: 'Samsung',
+                },
+                {
+                    href: '',
+                    label: 'Google',
+                },
+                {
+                    href: '',
+                    label: 'Huawai',
+                },
+                {
+                    href: '',
+                    label: 'Motorola',
+                },
+                {
+                    href: '',
+                    label: 'LG',
+                },
+                {
+                    href: '',
+                    label: 'CoolPad',
+                }
+            ],
+            class: 'mb-5'
+        } only %}
+
+        <ul class='list-unstyled gap-3' style='
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        '>
+            {% for index in 1..5 %}
+                <li>
+                    {% include '@bf-components/card/twig/phone.twig' with {
+                        badge: {
+                            label: 'Promotion'
+                        },
+                        image           : {
+                            src             : '/images/_docs/iphone-12-pro-max.png',
+                            alt             : 'iPhone 12 Mini'
+                        },
+                        title: 'iPhone 12 Mini',
+                        subtitle: 'Avec Forfait Tout inclus Canada - 25 Go',
+                        price           : {
+                            upperTitle      : 'From',
+                            dollar          : 86,
+                            cent            : 99,
+                            details         : '/month',
+                            promotion       : {
+                                priceStriked    : 40.99,
+                                priceSaved      : 10,
+                                savedLabel      : 'You saved :',
+                                superscript     : 1,
+                                direction       : 'horizontal',
+                            }
+                        },
+                        buttons: [{
+                            label: 'Primary Action',
+                            hierarchy: 'primary-alt'
+                        }]
+                    } only %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
