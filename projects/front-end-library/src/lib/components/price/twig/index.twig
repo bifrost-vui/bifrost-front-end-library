@@ -37,9 +37,9 @@
     </p>
   {% endif %}
 
-  <div class='d-flex gap-2 justify-content-between {% if promotion.direction is defined and promotion.direction == 'horizontal' %}flex-row{% else %}flex-column{% endif %}'>
+  <div class='promotion-container {% if promotion.direction is defined and promotion.direction == 'horizontal' %}flex-row{% else %}flex-column align-items-start {% endif %}'>
 
-    <div class='bf-price__infos d-inline-flex'>
+    <div class='bf-price__infos'>
 
       {% if language == 'en' %}
         <sup class='bf-price__dollarsign'>$</sup>
@@ -78,6 +78,12 @@
     </div>
 
     {% if promotion is defined and promotion %}
+      <div class="d-flex flex-column">
+      {% if promotion.title is defined and promotion.title is not empty %}
+        <p class="small mb-1">
+          {{ promotion.title }}
+        </p>
+      {% endif %}
       <div class='d-inline-flex align-items-center'>
 
         {% if promotion.priceStriked is defined and promotion.priceStriked is not empty %}
@@ -106,6 +112,7 @@
           </p>
         {% endif %}
 
+      </div>
       </div>
     {% endif %}
 

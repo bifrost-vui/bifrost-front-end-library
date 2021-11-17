@@ -51,9 +51,27 @@
             @extend .mt-minus-1;
         }
     }
-
-    &__infos {
-        font-family: $font-family-secondary;
+    .promotion-container {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        .bf-price__infos {
+            display: inline-flex;
+            font-family: $font-family-secondary;
+        }
+        .small.bf-display-highlight {
+            .price-superscript {
+                white-space: nowrap;
+                sup.bf-price__superscript {
+                    font-size: .5rem;
+                    top: -.25rem;
+                    margin-left: -2px;
+                }
+            }
+            sup.bf-price__asterisk {
+                top: -18%;
+            }
+        }
     }
 
     &__upfront .bf-text-interface-large {
@@ -64,19 +82,5 @@
     sup {
         top: inherit;
         vertical-align: inherit;
-    }
-
-    sup.bf-price__asterisk {
-        top: -18%;
-    }
-    .small.bf-display-highlight {
-        .price-superscript {
-            white-space: nowrap;
-            sup.bf-price__superscript {
-                font-size: .5rem;
-                top: -.25rem;
-                margin-left: -2px;
-            }
-        }
     }
 }

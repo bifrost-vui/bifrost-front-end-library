@@ -6,11 +6,12 @@ interface IUpfront {
 }
 
 interface IPromotion {
-  priceStriked  : number;
-  priceSaved    : number;
-  savedLabel    : string;
-  superscript   : string;
-  direction     : string;
+  title  : string,
+  priceStriked    : number;
+  priceSaved      : number;
+  savedLabel      : string;
+  superscript     : string;
+  direction       : string;
 }
 
 export interface IPrice {
