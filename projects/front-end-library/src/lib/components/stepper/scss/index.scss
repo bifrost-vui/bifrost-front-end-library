@@ -10,14 +10,10 @@
         flex-flow: row wrap;
         align-content: stretch;
         justify-content: space-between;
-        height: 68px;
-        margin: 0;
-        padding-inline: 0;
+        height: 4.25rem;
         list-style: none;
     }
     &__nav-item {
-        margin: 0;
-        padding: 0;
         text-align: center;
         flex-basis: 100% ;
         align-self: center;
@@ -45,7 +41,7 @@
                 right: 0;
             }
         }
-        &--active {
+        &--current {
            text-align: center;
         }
         @include media-breakpoint-up(lg) {
@@ -54,27 +50,26 @@
             &--no-previous,
             &--no-next {
                 flex-basis: 66%;
+                display: inline-flex;
+                & > span {
+                    flex-basis: 50%;
+                }
             }
-
             &--no-previous:before,
             &--no-next:after {
                 position: relative;
-                display: inline-block;
-                width: 50%;
+                display: inline-flex;
+                flex-basis: 50%;
                 content: '';
             }
         }
     }
-    &__steps {
-        .bf-stepper__step {
+    &__progress {
+        height: var(--bf-spacer-1);
+        background-color: var(--bf-color-stroke-secondary);
+        span {
             height: var(--bf-spacer-1);
-            width: 100%;
-        }
-        &--done {
             background-color: var(--bf-color-highlight);
-        }
-        &--todo {
-            background-color: var(--bf-color-stroke-secondary);
         }
     }
     &__counter {

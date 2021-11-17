@@ -1,12 +1,8 @@
 import { moduleMetadata }               from '@storybook/angular';
 import { Meta, Story, Canvas, Props }   from '@storybook/addon-docs';
 import { withDesign }                   from 'storybook-addon-designs';
-
 import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
 import { StepperComponent }             from '../angular/stepper.component';
-
-
-
 
 
 <Meta
@@ -24,7 +20,7 @@ import { StepperComponent }             from '../angular/stepper.component';
         },
     }}
     argTypes={{
-        activeStep: {
+        currentStep: {
             defaultValue    : 1,
             type            : { control : { type: 'number' } },
             table           : { defaultValue: { summary: 1 } }
@@ -48,43 +44,43 @@ import { StepperComponent }             from '../angular/stepper.component';
 
 ## Drupal
 export const commonProps = {
-    activeStep : 1,
-    navItemSteps: [
+    currentStep : 1,
+    steps: [
         {
             label   : "first step",
-            href    : "http://activeStep1"
+            href    : "http://example.com/currentStep1"
         },
         {
             label   : "step 2 with long text",
-            href    : "http://activeStep2"
+            href    : "http://example.com/currentStep2"
         },
         {
             label   : "step 3 with even longer text",
-            href    : "http://activeStep3"
+            href    : "http://example.com/currentStep3"
         },
         {
             label   : "step 4 with text",
-            href    : "http://activeStep4"
+            href    : "http://example.com/currentStep4"
         },
         {
             label   : "Step 5",
-            href    : "http://activeStep5"
+            href    : "http://example.com/currentStep5"
         },
         {
             label   : "Step 6",
-            href    : "http://activeStep6"
+            href    : "http://example.com/currentStep6"
         },
         {
             label   : "Step 7",
-            href    : "http://activeStep7"
+            href    : "http://example.com/currentStep7"
         },
         {
             label   : "Step 8",
-            href    : "http://activeStep8"
+            href    : "http://example.com/currentStep8"
         },
         {
             label   : "last step",
-            href    : "http://activeStep9"
+            href    : "http://example.com/currentStep9"
         }
     ]
 }
@@ -114,8 +110,8 @@ export const Drupal = (args) => ({
 
 ```jsx
 {% include '@bf-components/stepper/twig/index.twig' with {
-    activeStep : 1,
-    navItemSteps : [
+    currentStep : 1,
+    steps : [
         {
             label   :"Craft Bundle",
             href    :"#craftBundle",

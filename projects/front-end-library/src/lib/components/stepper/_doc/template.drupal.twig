@@ -1,12 +1,25 @@
-{% set reversed = reversed|json_parse|default(false) %}
-{% set activeStep = activeStep|json_parse %}
-{% set navItemSteps = navItemSteps|json_parse %}
-{% set hasStepCounter = hasStepCounter|json_parse|default(false) %}
+{% set reversed = reversed|json_parse  %}
+{% set currentStep = currentStep|json_parse %}
+{% set steps = steps|json_parse %}
+{% set hasCounter = hasCounter|json_parse %}
 {% set counterLabel = counterLabel|json_parse %}
-{% set previousHasLabel = previousHasLabel|json_parse|default(true) %}
-{% set nextHasLabel = nextHasLabel|json_parse|default(true) %}
-{% set nextIsClickable = nextIsClickable|json_parse|default(false) %}
+{% set isNextClickable = isNextClickable|json_parse %}
 
-<div class='{% if reversed %}reversed bf-color-bg-ground{% endif %}'>
-    {% include '@bf-components/stepper/twig/index.twig' %}
+
+<div class='w-100'>
+  {% for index in 1..4 %}
+    {% if index == 3 or index == 4 %}
+      {% set reversedClass = ' reversed' %}
+    {% endif %}
+
+    {% if index == 2 or index == 4 %}
+      {% set bgClass = 'bf-color-bg-underground' %}
+    {% else %}
+      {% set bgClass = 'bf-color-bg-ground' %}
+    {% endif %}
+
+    <div class=" p-3 m-1  {{ bgClass ~ reversedClass }} ">
+      {% include '@bf-components/stepper/twig/index.twig' %}
+    </div>
+  {% endfor %}
 </div>
