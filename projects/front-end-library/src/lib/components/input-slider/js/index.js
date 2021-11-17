@@ -4,8 +4,9 @@ $(function() {
     const container = $('.js-bf-input-slider');
 
     container.each(function(i, el) {
-        const $this     = $(el);
-        const isRange   = $this.data('range');
+        const $this         = $(el);
+        const isRange       = $this.data('range');
+        const minimumGap    = $this.data('minimum-gap') || 1;
 
         let maxValue, minValue;
 
@@ -39,7 +40,7 @@ $(function() {
 
             function updateMinSlider() {
                 // Set value
-                startValue = Math.min($minInput.val(), endValue);
+                startValue = Math.min($minInput.val(), endValue - minimumGap);
                 $minInput.val(startValue);
 
                 // Set label
@@ -55,7 +56,7 @@ $(function() {
 
             function updateMaxSlider() {
                 // Set value
-                endValue = Math.max($maxInput.val(), startValue);
+                endValue = Math.max($maxInput.val(), startValue + minimumGap);
                 $maxInput.val(endValue);
 
                 // Set label

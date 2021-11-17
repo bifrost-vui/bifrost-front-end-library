@@ -22,6 +22,7 @@
 <div
   class='bf-input-slider js-bf-input-slider {{ class|default('') }} {{ reversed ? 'reversed' : '' }}'
   data-range='{{ isRange }}'
+  {% if minimumGap is defined and minimumGap %}data-minimum-gap='{{ minimumGap }}'{% endif %}
   {% if isRange is same as (false) %}data-inverted='{{ isInverted }}'{% endif %}
 >
   <div class='bf-input-slider__panel'>
