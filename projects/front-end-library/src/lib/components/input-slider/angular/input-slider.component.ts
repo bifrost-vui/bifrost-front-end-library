@@ -14,6 +14,8 @@ export class InputSliderComponent implements OnInit {
     /** `max { **inputId**, **value**, legend, description }`:  **inputId** and **value** are required. */
     @Input() max            : object;
     @Input() step           : number;
+    /** Minimal gap between 2 values of a range. Has no effect on a slider with 1 handle. */
+    @Input() minimumGap     : number;
     /** Change the position of the progression track. Has no effect on a slider with 2 handles. */
     @Input() isInverted     : boolean;
 
