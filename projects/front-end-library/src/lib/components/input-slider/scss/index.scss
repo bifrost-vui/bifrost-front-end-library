@@ -17,6 +17,7 @@
     }
     &__overlay {
         position: absolute;
+        top: -1px;
         left: 0;
         right: 0;
         height: 1px;
@@ -28,6 +29,10 @@
         top: -1px;
         background-color: rgba(var(--bf-color-neutral-primary-rgb), .675);
     }
+    &[data-range='true'] .bf-input-slider__progress-track-container {
+        position: relative;
+        margin-inline: 8px; // 8px = Half of the handle width. Used in order to center the progress-track.
+    }
     &__progress-track {
         position: absolute;
         left: 0;
@@ -38,6 +43,7 @@
         border-radius: 3px;
         z-index: 1;
     }
+
     &__handles {
         position: relative;
 

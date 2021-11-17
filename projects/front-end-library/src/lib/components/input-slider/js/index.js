@@ -51,7 +51,7 @@ $(function() {
                 // Update Progress Bar
                 $progressBar.css('left', startHandlePosition + '%');
 
-                mergeLabelsIfclose(startHandlePosition);
+                mergeLabelsIfclose();
             }
 
             function updateMaxSlider() {
@@ -67,16 +67,16 @@ $(function() {
                 // Update Progress Bar
                 $progressBar.css('right', (100 - endHandlePosition) + '%');
                 
-                mergeLabelsIfclose(endHandlePosition);
+                mergeLabelsIfclose();
             }
 
-            function mergeLabelsIfclose(position) {
+            function mergeLabelsIfclose() {
                 const progressBarWidth = $progressBar.width();
                 if (progressBarWidth < 50) {
                     isLabelMerged = true;
-                    const progressBarLeft = $progressBar.position().left;
+                    const progressBarLeft = ((startValue - minValue) + ((endValue - startValue) / 2)) / (maxValue - minValue) * 100;
                     $handles.addClass('bf-input-slider__handles--merged');
-                    $handles.css('left', progressBarLeft + progressBarWidth/2 + 'px');
+                    $handles.css('left', progressBarLeft + '%');
                 } else if (isLabelMerged) {
                     isLabelMerged = false;
                     $handles.removeClass('bf-input-slider__handles--merged');
