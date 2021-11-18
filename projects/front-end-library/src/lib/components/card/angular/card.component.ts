@@ -56,12 +56,12 @@ export class CardComponent implements OnInit {
     */
     @Input() description_html       : string;
     /** Expected format:
-    ```
+     <pre style='font-size: .75rem; padding: 0 1rem; marigin:0'>
         {
-            label           : "Learn more",
-            href            : "www.videotron.com",
+            label : "Learn more",
+            href  : "www.videotron.com",
         }
-    ```
+    </pre>
     */
     @Input() link                   : ILink;
 
@@ -70,7 +70,6 @@ export class CardComponent implements OnInit {
         You can pass directly the `label` as a **string** or an **object**. Based on [Badge](/?path=/docs/components-badge--drupal) component API.
     */
     @Input() badge                  : any;
-
     /** Array of object. Expected format:
     <pre style='font-size: .75rem; padding: 0 1rem; marigin:0'>
     [
@@ -90,24 +89,23 @@ export class CardComponent implements OnInit {
     @Input() contentLists           : object;
     @Input() detailsColors          : object;
     @Input() detailsStorage         : object;
-
-    /**
-        This badge displays in the phone card content above the price and the promotion badges. Based on [Badge](/?path=/docs/components-badge--drupal) component API
-    */
-    @Input() contentBadge           : object;
     /**
         [Price](/?path=/docs/components-price--drupal) component.
     */
     @Input() price                  : IPrice;
-   /**
-       Theses Badges display in the phone card content above the price.
-       Only the badges labels are needed
-    */
-    @Input() promotionBadges        : string[];
+    /**
+     This badge displays in the phone card content above the price and the promotion badges. Based on [Badge](/?path=/docs/components-badge--drupal) component API
+     */
+    @Input() contentBadge           : object;
     /**
         Note: Can contains html.
     */
     @Input() note                   : string;
+    /**
+     Theses Badges display in the phone card content above the price.
+     Only the badges labels are needed
+     */
+    @Input() promotionBadges        : string[];
     /**
         Array of [Button](/?path=/docs/components-button--drupal) component.
         Or extends with a block: {% block buttons %} ... {% endblock %}.
