@@ -6,32 +6,34 @@
 {% set isInverted = isInverted|json_parse %}
 {% set reversed   = reversed|json_parse %}
 
-<div class='demogrid'>
-  {% set bgClass = '' %}
+<div class='input-slider-wrapper'>
 
   {% for i in 1..5 %}
+    {# Set backgroundClass #}
     {% if i == 1 or i == 4 %}
-      {% set bgClass = ' bf-color-bg-ground' %}
+      {% set backgroundClass = 'bf-color-bg-ground' %}
     {% elseif i == 2 or i == 5 %}
-      {% set bgClass = ' bf-color-bg-underground' %}
+      {% set backgroundClass = 'bf-color-bg-underground' %}
     {% else %}
-      {% set bgClass = ' bf-color-bg-action-primary' %}
+      {% set backgroundClass = 'bf-color-bg-highlight' %}
     {% endif %}
 
     {% include '@bf-components/input-slider/twig/index.twig' with {
-      class     : class ~ bgClass,
-      reversed  : reversed|default(i == 4 or i == 5)
+      class    : class ~ ' ' ~ backgroundClass,
+      reversed : reversed|default(i == 4 or i == 5)
     } %}
   {% endfor %}
+
 </div>
+
 <style>
-    .demogrid {
-        width: 100%;
-        max-width: 1400px;
-        height: 100vh;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        align-content: center;
-        margin: 0 auto;
-    }
+  .input-slider-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    align-content: center;
+    margin: 0 auto;
+  }
 </style>
