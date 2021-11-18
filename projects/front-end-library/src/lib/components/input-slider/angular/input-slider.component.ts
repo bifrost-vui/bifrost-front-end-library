@@ -21,7 +21,7 @@ export class InputSliderComponent implements OnInit {
 
     @Input() unitLabel      : string;
     @Input() unitPosition   : 'start'|'end';
-    /** Set `isUnitPrice` will handle `unitPosition` depending of `language`. */
+    /** Set `isUnitDollar` will handle `unitPosition` depending of `language` E.g. `3$` or `$3`. */
     @Input() isUnitDollar   : boolean;
 
     @Input() class          : string;

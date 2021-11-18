@@ -12,7 +12,7 @@
 {% endif %}
 
 {% if unitLabel is defined and unitLabel %}
-	{% if unitPosition is not defined and isUnitDollar %}
+	{% if isUnitDollar is defined and isUnitDollar %}
 		{% set unitPosition = language == 'en' ? 'start' : 'end' %}
 	{% else %}
 		{% set unitPosition = unitPosition|default('end') %}
@@ -36,13 +36,13 @@
         <div class='bf-input-slider__handles'>
           <div class='bf-input-slider__handle bf-input-slider__handle--min'>
             <label for='{{ max.inputId }}' class='bf-input-slider__label'>
-              {% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label__value'></span>{% if unitLabel and unitPosition is not same as ('start') %}{{ unitLabel }}{% endif %}
+              {% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label__value'></span>{% if unitLabel and unitPosition is same as ('end') %}{{ unitLabel }}{% endif %}
             </label>
           </div>
 		  <span class='bf-input-slider__handles__merged-separator'>-</span>
           <div class='bf-input-slider__handle bf-input-slider__handle--max'>
             <label for='{{ min.inputId }}' class='bf-input-slider__label'>
-                {% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label__value'></span>{% if unitLabel and unitPosition is not same as ('start') %}{{ unitLabel }}{% endif %}
+              {% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label__value'></span>{% if unitLabel and unitPosition is same as ('end') %}{{ unitLabel }}{% endif %}
             </label>
           </div>
         </div>
@@ -50,7 +50,7 @@
         <div class='position-relative mx-2'>
           <div class='bf-input-slider__handle'>
             <label for='{{ min.inputId|default(max.inputId) }}' class='bf-input-slider__label'>
-              {% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label__value'></span>{% if unitLabel and unitPosition is not same as ('start') %}{{ unitLabel }}{% endif %}
+              {% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label__value'></span>{% if unitLabel and unitPosition is same as ('end') %}{{ unitLabel }}{% endif %}
           	</label>
           </div>
         </div>
