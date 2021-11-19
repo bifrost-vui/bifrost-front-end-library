@@ -16,7 +16,7 @@ export const slides=[
             }
         ],
         background      : "highlight",
-        height          : 'large'
+        isFixedHeight   : true
     },
     {
         upperTitle  : "Upper Title",
@@ -35,8 +35,8 @@ export const slides=[
             sm  : "/images/_docs/hero-helix-mobile.png",
             alt : "Helix"
         },
-        background  : "ground",
-        height      : 'large'
+        background    : "ground",
+        isFixedHeight : true
     },
     {
         badge       : "Badge label",
@@ -68,9 +68,9 @@ export const slides=[
                 },
             ],
         },
-        background  : "ground",
-        reversed    : true,
-        height          : 'large'
+        background    : "ground",
+        reversed      : true,
+        isFixedHeight : true
     },
     {
         badge       : "badge label",
@@ -96,7 +96,7 @@ export const slides=[
             alt        : "Helix",
             isSplitted : true
         },
-        reversed    : true,
-        height      : 'large'
+        reversed      : true,
+        isFixedHeight : true
     }
 ];

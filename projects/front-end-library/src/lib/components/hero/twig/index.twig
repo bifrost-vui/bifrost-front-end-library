@@ -6,7 +6,7 @@
         {{ reversed ? 'reversed' }}
         {% if background is defined and background is same as ('ground') %}bf-hero--bg-ground{% endif %}
         {% if background is defined and background is same as ('highlight') %}bf-hero--bg-highlight{% endif %}
-        {% if height is defined and height is same as ('large') %}bf-hero--height-large{% endif %}
+        {% if isFixedHeight %}bf-hero--fixed-height {% endif %}
         {% if isImageSplitted %}bf-hero--image-splitted{% endif %}
         {{ class|default('') }}
         '
@@ -35,14 +35,14 @@
         </div>
     {% endif %}
 
-    <div class='container-fluid d-flex flex-column flex-md-row flex-grow-1' data-animate-row=''>
+    <div class='container-fluid d-flex flex-column flex-md-row flex-grow-1 align-items-center' data-animate-row=''>
         <header class='bf-hero__header d-flex flex-column flex-grow-1 pb-2 pb-sm-4'>
             {% if block('breadcrumb') is defined %}
                 {{ block('breadcrumb') }}
             {% elseif breadcrumb is defined and breadcrumb %}
                 {{ breadcrumb }}
             {% endif %}
-            <div class='d-flex flex-column justify-content-center h-100'>
+            <div class='d-flex flex-column justify-content-center'>
                 <div class='bf-hero__content position-relative pb-5 pt-2 pt-md-5 mt-2'>
                     {% if badge is defined and badge is not empty %}
                         {% if badge is not iterable %}
@@ -101,7 +101,7 @@
                 </div>
             </div>
         </header>
-        
+
         {% if isImageSplitted and image.lg is not empty %}
             <span class='bf-hero__image-splitted d-none d-md-block' style='background-image: url("{{ image.lg }}")' role='img' aria-label={{ image.alt|default('') }}>
             </span>

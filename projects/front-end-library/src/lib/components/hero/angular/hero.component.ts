@@ -49,8 +49,8 @@ export class HeroComponent implements OnInit {
 
     /** Class override */
     @Input() class              : string;
-    /** Note: height large will add a min-height of 60vh. */
-    @Input() height             : '' | 'large';
+    /** Note: Fixed-height is 65vh on desktop and 90vh on mobile */
+    @Input() isFixedHeight      : boolean;
     @Input() reversed           : boolean;
 
     @Input() language           : 'en' | 'fr';
