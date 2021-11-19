@@ -9,7 +9,7 @@ bfSlick.assignCarousel('.js-bf-slideshow--hero-slideshow', {
     infinite: true,
     speed: 600,
     slidesToShow: 1,
-    adaptiveHeight: true,
+    adaptiveHeight: false,
     prevArrow: bfSlick.getPrevSlickBtn(),
     nextArrow: bfSlick.getNextSlickBtn(),
     appendArrows:'.bfslick__controls',
