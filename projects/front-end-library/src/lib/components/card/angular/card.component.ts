@@ -33,6 +33,11 @@ interface IInputIncrement {
     isDisabled   : boolean;
 }
 
+interface IBadge {
+    label       : string;
+    iconName    : string;
+}
+
 @Component({
     selector: 'bf-card',
     templateUrl: './card.component.html',
@@ -105,7 +110,7 @@ export class CardComponent implements OnInit {
      Theses Badges display in the phone card content above the price.
      Only the badges labels are needed
      */
-    @Input() promotionBadges        : string[];
+    @Input() promotionBadges        : IBadge[];
     /**
         Array of [Button](/?path=/docs/components-button--drupal) component.
         Or extends with a block: {% block buttons %} ... {% endblock %}.
