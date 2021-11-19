@@ -9,12 +9,11 @@
         {% if hasVisual %}bf-card--has-visual{% endif %} d-flex flex-column
         {% if isDisabled is same as (true) %}disabled{% endif %}
         {{ class|default('') }}'
-    {% if isDisabled is defined and isDisabled is same as (true) %}disabled{% endif %}
 >
     {% if hasVisual %}
         <div
             class='bf-card__visual {{ hasVisualCombo ? 'bf-card__visual--combo' : '' }} bf-color-bg-underground d-flex justify-content-center align-items-center p-3 p-sm-4'
-            {% if visualBackgroundColor is defined %}style='background-color: {{ visualBackgroundColor }}'{% endif %}
+            {% if visualBackgroundColor is defined and visualBackgroundColor %}style='background-color: {{ visualBackgroundColor }}'{% endif %}
         >
             {% if hasImage %}
                 <img
