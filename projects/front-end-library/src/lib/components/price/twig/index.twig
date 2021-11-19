@@ -45,9 +45,9 @@
         <sup class='bf-price__dollarsign'>$</sup>
       {% endif %}
 
-      <div class='d-flex' role="contentinfo" aria-label='$ {{ dollar|default('0')}}.{{ cent|default('00')}} {{ details|default('')|raw }}'>
+      <div class='d-flex' aria-label='$ {{ dollar|default('0')}}.{{ cent|default('00')}} {{ details|default('')|raw }}' role='contentinfo'>
 
-        <span class='bf-price__dollar role="contentinfo" {{ dollarClass|default('') }}'>
+        <span class='bf-price__dollar {{ dollarClass|default('') }}' role='contentinfo'>
             {{ dollar|default('00')}}
         </span>
 
@@ -78,13 +78,13 @@
     </div>
 
     {% if promotion is defined and promotion %}
-      <div class="d-flex flex-column">
+      <div class='d-flex flex-column'>
       {% if promotion.title is defined and promotion.title %}
-        <p class="small mb-1">
+        <p class='small mb-1'>
           {{ promotion.title }}
         </p>
       {% endif %}
-      <div class='d-inline-flex align-items-center'>
+      <div class='d-inline-flex'>
 
         {% if promotion.priceStriked is defined and promotion.priceStriked is not empty %}
           <p class='small text-strike mr-2 mb-0'>
@@ -99,7 +99,7 @@
                 {{ promotion.savedLabel }}
               </span>
             {% endif %}
-            <span class="price-superscript">
+            <span class='price-superscript'>
               {% if promotion.priceSaved is defined and promotion.priceSaved is not empty %}
                 <span class='font-weight-bold'>
                   {% if language == 'en' %}${% endif %}{{ promotion.priceSaved}}{% if language == 'fr' %}&nbsp;${% endif %}

@@ -6,7 +6,7 @@ interface IUpfront {
 }
 
 interface IPromotion {
-  title  : string,
+  title           : string,
   priceStriked    : number;
   priceSaved      : number;
   savedLabel      : string;
