@@ -3,8 +3,8 @@
 {% set isRounded    = isRounded|json_parse %}
 
 <div class='d-flex flex-column justify-content-center {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
-  {% for index in [1,2] %}
-    <div class='d-flex flex-column flex-sm-row justify-content-center gap-4 p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
+  {% for index in 1..4 %}
+    <div class='d-flex flex-column flex-sm-row justify-content-center gap-4 p-4 {% if index is even and reversed is not defined %}reversed bf-color-bg-ground{% endif %} {{ index > 2 ? 'disabled' : '' }}'>
       <div class='d-flex flex-column align-items-start py-2'>
         <p class='small'>hierarchy</p>
 

@@ -109,8 +109,44 @@
 }
 
 .disabled {
-    .bf-badge .bf-badge__inner {
-        --color: var(--bf-color-neutral-tertiary);
-        --bg-color: var(--bf-color-bg-action-no-bg-hover);
+    .bf-badge {
+        .bf-badge__inner {
+            @extend .bf-color-neutral-tertiary;
+            @extend .bf-color-bg-action-disabled;
+            svg { color: var(--bf-color-neutral-tertiary)}
+        }
+        @at-root reversed,
+        &--primary .bf-badge__inner svg {
+                color: var(--bf-color-neutral-tertiary) !important;
+            }
+        &--secondary {
+            .bf-badge__inner {
+                border: 1px solid var(--bf-color-stroke-secondary);
+                background-color: transparent;
+            }
+            &.bf-badge--angle-left .bf-badge__inner {
+                border-left: 0;
+                &:before{
+                    border-left: 1px solid var(--bf-color-stroke-secondary);
+                    border-top: 1px solid  var(--bf-color-stroke-secondary);
+                    box-sizing: border-box;
+                    height: calc(100% + 1px);
+                    top: -1px;
+                }
+            }
+            &.bf-badge--angle-right .bf-badge__inner {
+                border-right: 0 ;
+                &:before{
+                    border-right: 1px solid var(--bf-color-stroke-secondary);
+                    border-top: 1px solid  var(--bf-color-stroke-secondary);
+                    box-sizing: border-box;
+                    height: calc(100% + 1px);
+                    top: -1px;
+                }
+            }
+        }
+        &--tertiary .bf-badge__inner {
+            background-color: transparent;
+        }
     }
 }
