@@ -42,9 +42,13 @@ addParameters({
         },
     },
     argTypes: {
-        elementPath     : { table: { disable: true } },
-        iframeUrl       : { table: { disable: true } },
-        props           : { table: { disable: true } },
+        elementPath         : { table: { disable: true } },
+        iframeUrl           : { table: { disable: true } },
+        props               : { table: { disable: true } },
+        ngClasses           : { table: { disable: true } },
+        computetNgClasses   : { table: { disable: true } },
+        ngOnInit            : { table: { disable: true } },
+        ngOnChanges         : { table: { disable: true } },
     },
 
     actions: { argTypesRegex: "^on[A-Z].*" }
