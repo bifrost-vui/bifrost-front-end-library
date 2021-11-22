@@ -9,21 +9,21 @@ export class BadgeComponent implements OnInit, OnChanges {
     constructor() {}
 
     @Input() label          : string;
-    @Input() hierarchy      : 'primary' | 'secondary' | 'tertiary' | 'tertiary-ground' = 'secondary';
+    @Input() hierarchy      : 'primary' | 'secondary' | 'tertiary' | 'tertiary-ground';
     @Input() noUppercase    : boolean;
-    /** Displays an angle on a corner. Won't have any effect if `isRounded` is true*/
+    /** Displays an angle on a corner. Won't have any effect if `isRounded` is true */
     @Input() angle          : '' | 'left' | 'right';
-    /** `isRounded` property has precedence over `angle`  */
+    /** `isRounded` property has precedence over `angle` */
     @Input() isRounded      : boolean;
-    @Input() class          : string;
+    @Input() classes        : string;
     @Input() iconName       : string;
     @Input() reversed       : boolean;
 
-    public ngClasses = null;
+    public ngClasses : string[] = [];
 
     computetNgClasses() {
         this.ngClasses = [
-            String(this.class),
+            this.classes                    ? String(this.classes) : '',
             this.hierarchy                  ? 'bf-badge--' + this.hierarchy : 'bf-badge--secondary',
             this.angle && !this.isRounded   ? 'bf-badge--angle-' + this.angle : '',
             this.isRounded                  ? 'bf-badge--rounded' : ''
