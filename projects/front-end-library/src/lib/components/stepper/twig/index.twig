@@ -1,8 +1,8 @@
-{% if (currentStep > 0) and (steps is defined and steps is not empty) %}
-  <nav class='bf-stepper {{ class }}'>
+{% if (currentStep > 0) and (steps is defined and steps) %}
+  <nav class='bf-stepper {{ (reversed is defined and reversed) ? 'reversed bf-color-bg-ground' : '' }} {{ class }}'>
     {% set nbSteps = steps|length %}
     {# Navbar content #}
-    <ul class='bf-stepper__nav container-fluid m-auto '>
+    <ul class='bf-stepper__nav container-fluid m-auto'>
       {% for step in steps %}
         {% set isCurrent = false %}
         {% set isPrevious = false %}
@@ -13,7 +13,7 @@
         {% if loop.index == currentStep - 1 %}
           {% set isPrevious = true %}
 
-        {% elseif loop.index ==  currentStep %}
+        {% elseif loop.index == currentStep %}
           {% set isCurrent = true %}
 
           {% if  loop.index == 1 %}
@@ -24,12 +24,12 @@
             {% set hasNextItem = false %}
           {% endif %}
 
-        {% elseif loop.index ==   currentStep + 1 %}
+        {% elseif loop.index == currentStep + 1 %}
           {% set isNext = true %}
         {% endif %}
 
         {% if isPrevious %}
-          <li class='bf-stepper__nav-item bf-stepper__nav-item--prev'>
+          <li class='bf-stepper__step bf-stepper__step--prev'>
           {# spaceless :
           - remove whitespace between html elements within the <a> tag
           - prevents an underline space to appear between the icon and the label
@@ -52,7 +52,7 @@
           {% endapply %}
           </li>
         {% elseif isCurrent %}
-          <li class='bf-stepper__nav-item bf-stepper__nav-item--current {{ hasPreviousItem ? '' : 'bf-stepper__nav-item--no-previous' }} {{ hasNextItem ? '' : 'bf-stepper__nav-item--no-next' }}'>
+          <li class='bf-stepper__step bf-stepper__step--current {{ hasPreviousItem ? '' : 'bf-stepper__nav-item--no-previous' }} {{ hasNextItem ? '' : 'bf-stepper__nav-item--no-next' }}'>
             <span class='h3'>{{step.label}}
               {# step Counter #}
               {% if hasCounter %}
@@ -64,7 +64,7 @@
             </span>
           </li>
         {% elseif isNext %}
-          <li class='bf-stepper__nav-item bf-stepper__nav-item--next'>
+          <li class='bf-stepper__step bf-stepper__step--next'>
           {% apply spaceless %}
             {% if step.href is defined and step.href and isNextClickable %}
               <a class='bf-link bf-link--primary bf-color-neutral-primary' href='{{ step.href }}'

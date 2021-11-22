@@ -7,19 +7,11 @@
 
 
 <div class='w-100'>
-  {% for index in 1..4 %}
-    {% if index == 3 or index == 4 %}
-      {% set reversedClass = ' reversed' %}
-    {% endif %}
-
-    {% if index == 2 or index == 4 %}
-      {% set bgClass = 'bf-color-bg-underground' %}
-    {% else %}
-      {% set bgClass = 'bf-color-bg-ground' %}
-    {% endif %}
-
-    <div class=" p-3 m-1  {{ bgClass ~ reversedClass }} ">
-      {% include '@bf-components/stepper/twig/index.twig' %}
+  {% for index in [1,2] %}
+    <div class='p-3 m-1'>
+      {% include '@bf-components/stepper/twig/index.twig' with {
+        reversed : (reversed or index == 2) ? 'reversed' : ''
+      } %}
     </div>
   {% endfor %}
 </div>

@@ -16,12 +16,12 @@ export class StepperComponent implements OnInit {
     /** Expected :
      *  [ { label:"stepName", href:"/path-to-file" }, {...} ]
      */
-    @Input() steps            : object;
+    @Input() steps            : array<object>;
     @Input() currentStep      : number;
     @Input() class            : string;
-    /** hasStepCounter must be set to true in order for the label to display*/
+    /** Display a counter's label if `hasCounter` is true. */
     @Input() counterLabel     : string;
-    /** will display `currentStep`/`total step count` */
+    /** Will display a counter under the current step label. */
     @Input() hasCounter       : boolean;
     @Input() isNextClickable  : boolean;
     @Input() reversed         : boolean;
