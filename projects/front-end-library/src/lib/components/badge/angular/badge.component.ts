@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Input } from "@angular/core";
+import { Component, ElementRef, OnInit, OnChanges, Input } from "@angular/core";
 
 
 @Component({
@@ -19,7 +19,7 @@ export class BadgeComponent implements OnInit, OnChanges {
     @Input() iconName       : string;
     @Input() reversed       : boolean;
 
-    public this.ngClasses = '';
+    public ngClasses = null;
 
     computetNgClasses() {
         this.ngClasses = [
