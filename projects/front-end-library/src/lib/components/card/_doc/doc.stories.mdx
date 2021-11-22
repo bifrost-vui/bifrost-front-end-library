@@ -64,7 +64,7 @@ import { CardComponent }                        from '../angular/card.component'
 {% include '@bf-components/card/twig/plan.twig' with {
     isDisabled      : false,
     upperTitle      : 'upperTitle',
-    subtitle        : 'subtitle',
+    subtitle        : 'Lorem ipsum subtitle',
     title           : 'All-Inclusive 12 GB Mobile',
     description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
     link            : {
@@ -112,6 +112,16 @@ import { CardComponent }                        from '../angular/card.component'
                 },
 
             ],
+        }
+    ],
+    promotionBadges : [
+        {
+            label    :'Free Galaxy Buds Live',
+            iconName : '',
+        },
+        {
+            label    : '0$ Welcome credit',
+            iconName : 'credit-welcome',
         }
     ],
     price           : {
@@ -172,6 +182,7 @@ import { CardComponent }                        from '../angular/card.component'
             iconName    : '',
             class       : '',
     }
+    ...
 } only %}
 
 // Card Combo example:
@@ -183,7 +194,7 @@ import { CardComponent }                        from '../angular/card.component'
     },
     comboLabel      : '250 Go',
     title           : 'iPhone 12 Mini',
-    subtitle        : 'subtitle',
+    subtitle        : 'Lorem ipsum subtitle',
     ...
     }
 } only %}
@@ -191,10 +202,12 @@ import { CardComponent }                        from '../angular/card.component'
 
 ## Drupal
 
+### Plan card
+
 export const commonProps = {
     isDisabled      : false,
     upperTitle      : 'upperTitle',
-    subtitle        : 'subtitle',
+    subtitle        : 'Lorem ipsum subtitle',
     title           : 'All-Inclusive 12 GB Mobile',
     description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
     link            : {
@@ -205,6 +218,16 @@ export const commonProps = {
         label           : 'PROMOTION'
     },
     contentLists    : contentLists,
+    promotionBadges : [
+        {
+            label    :'Free Galaxy Buds Live',
+            iconName : '',
+        },
+        {
+            label    : '0$ Welcome credit',
+            iconName : 'credit-welcome',
+        }
+    ],
     price           : {
         upperTitle      : 'From',
         dollar          : 86,
@@ -231,16 +254,6 @@ export const commonProps = {
             href        : 'www.videotron.com',
         }
     ],
-    promotionBadges : [
-        {
-            label    :'promotion badge',
-            iconName : '',
-        },
-        {
-            label    : 'promotion badge with icon',
-            iconName : 'mobile-protection',
-        }
-    ],
     message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
     language            : 'en',
 };
@@ -253,10 +266,12 @@ export const Drupal = (args) => ({
     }
 });
 
-<Canvas withSource='none'>
+<Canvas
+    withSource='none'
+    style={{ height: '900px' }}
+>
     <Story
         name='Drupal - Plan'
-        height='800px'
         args={{
             elementPath : 'components/card/_doc/template.drupal',
             ...commonProps,
@@ -268,10 +283,12 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas
+    withSource='none'
+    style={{ height: '900px' }}
+>
     <Story
         name='Drupal - Plan Disabled'
-        height='800px'
         args={{
             ...commonProps,
             cardVariant : 'plan',
@@ -282,10 +299,12 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas
+    withSource='none'
+    style={{ height: '900px' }}
+>
     <Story
         name='Drupal - Plan Selected'
-        height='800px'
         args={{
             ...commonProps,
             cardVariant     : 'plan',
@@ -305,7 +324,7 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-<!-- badge           : 'PROMOTION', -->
+### Phone card
 
 export const phoneCommonProps = {
     badge           : {
@@ -318,7 +337,7 @@ export const phoneCommonProps = {
     },
     visualBackgroundColor : '',
     title           : 'iPhone 12 Mini',
-    subtitle        : 'subtitle',
+    subtitle        : 'Discover the power of the phone',
     detailsColors   : [
         { value :'4B4A46', name : 'Lorem' },
         { value :'2C4651', name : 'Ipsum' },
@@ -326,6 +345,22 @@ export const phoneCommonProps = {
         { value :'C0C0C0', name : 'Amet' },
     ],
     detailsStorage : ['128 Go', '256 Go'],
+    contentBadge : {
+        label       : 'credit return',
+        hierarchy   : 'tertiary',
+        angle       : '',
+        iconName    : 'credit-return',
+    },
+    promotionBadges : [
+        {
+            label    :'Free Galaxy Buds Live',
+            iconName : '',
+        },
+        {
+            label    : '0$ Welcome credit',
+            iconName : 'credit-welcome',
+        }
+    ],
     price           : {
         upperTitle      : 'From',
         dollar          : 86,
@@ -347,28 +382,14 @@ export const phoneCommonProps = {
             href            : 'www.videotron.com',
         }
     ],
-    contentBadge : {
-        label       : 'Lorem Ipsum',
-        hierarchy   : 'tertiary',
-        angle       : '',
-        iconName    : 'credit-return',
-    },
-    promotionBadges : [
-        {
-            label    :'promotion badge',
-            iconName : '',
-        },
-        {
-            label    : 'promotion badge with icon',
-            iconName : 'mobile-protection',
-        }
-    ]
 };
 
-<Canvas withSource='none'>
+<Canvas
+    withSource='none'
+    style={{ height: '900px' }}
+>
     <Story
         name='Drupal - Phone'
-        height='800px'
         args={{
             elementPath     : 'components/card/_doc/template.drupal',
             cardVariant     : 'phone',
@@ -379,10 +400,12 @@ export const phoneCommonProps = {
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas
+    withSource='none'
+    style={{ height: '900px' }}
+>
     <Story
         name='Drupal - Phone Disabled'
-        height='800px'
         args={{
             elementPath     : 'components/card/_doc/template.drupal',
             cardVariant     : 'phone',
@@ -400,10 +423,14 @@ export const phoneCommonProps = {
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+### Protection card
+
+<Canvas
+    withSource='none'
+    style={{ height: '900px' }}
+>
     <Story
         name='Drupal - Protection'
-        height='800px'
         args={{
             elementPath     : 'components/card/_doc/template.drupal',
             cardVariant     : 'protection',
@@ -413,7 +440,17 @@ export const phoneCommonProps = {
             iconName        : 'apple',
             visualBackgroundColor : '',
             title           : 'Apple Care+ for iPhone',
-            subtitle        : 'subtitle',
+            subtitle        : 'Lorem ipsum subtitle',
+            promotionBadges : [
+                {
+                    label    :'Free Galaxy Buds Live',
+                    iconName : '',
+                },
+                {
+                    label    : '0$ Welcome credit',
+                    iconName : 'credit-welcome',
+                }
+            ],
             price           : {
                 upperTitle      : 'From',
                 dollar          : 86,
@@ -441,16 +478,30 @@ export const phoneCommonProps = {
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+### Increment card
+
+<Canvas
+    withSource='none'
+    style={{ height: '900px' }}
+>
     <Story
         name='Drupal - Increment'
-        height='800px'
         args={{
             elementPath     : 'components/card/_doc/template.drupal',
             cardVariant     : 'increment',
             title           : 'Label Ipsum',
-            subtitle        : 'subtitle',
+            subtitle        : 'Lorem ipsum subtitle',
             description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
+            promotionBadges : [
+                {
+                    label    :'Free Galaxy Buds Live',
+                    iconName : '',
+                },
+                {
+                    label    : '0$ Welcome credit',
+                    iconName : 'credit-welcome',
+                }
+            ],
             price           : {
                 upperTitle      : 'From',
                 dollar          : 86,
@@ -486,6 +537,7 @@ export const phoneCommonProps = {
     </Story>
 </Canvas>
 
+### Combo card
 
 export const comboCommonProps = {
     badge           : {
@@ -498,7 +550,23 @@ export const comboCommonProps = {
     comboLabel      : '250 Go',
     visualBackgroundColor : '',
     title           : 'iPhone 12 Mini',
-    subtitle        : 'subtitle',
+    subtitle        : 'Discover the power of the phone',
+    contentBadge : {
+            label       : 'credit return',
+            hierarchy   : 'tertiary',
+            angle       : '',
+            iconName    : 'credit-return',
+    },
+    promotionBadges : [
+        {
+            label    :'Free Galaxy Buds Live',
+            iconName : '',
+        },
+        {
+            label    : '0$ Welcome credit',
+            iconName : 'credit-welcome',
+        }
+    ],
     price           : {
         upperTitle      : 'From',
         dollar          : 86,
@@ -520,27 +588,11 @@ export const comboCommonProps = {
             href            : 'www.videotron.com',
         }
     ],
-    contentBadge : {
-            label       : 'Lorem Ipsum',
-            hierarchy   : 'tertiary',
-            angle       : '',
-            iconName    : 'credit-return',
-    },
-    promotionBadges : [
-        {
-            label    :'promotion badge',
-            iconName : '',
-        },
-        {
-            label    : 'promotion badge with icon',
-            iconName : 'mobile-protection',
-        }
-    ]
 };
 
 <Canvas
     withSource='none'
-    style={{ height: '800px' }}
+    style={{ height: '900px' }}
 >
     <Story
         name='Drupal - Combo'
@@ -553,10 +605,6 @@ export const comboCommonProps = {
         {Drupal.bind({})}
     </Story>
 </Canvas>
-
-## Component API
-
-<Props of={CardComponent} />
 
 ## More info
 

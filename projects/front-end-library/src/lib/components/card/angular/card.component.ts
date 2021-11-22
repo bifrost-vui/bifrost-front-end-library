@@ -61,7 +61,7 @@ export class CardComponent implements OnInit {
     */
     @Input() description_html       : string;
     /** Expected format:
-     <pre style='font-size: .75rem; padding: 0 1rem; marigin:0'>
+     <pre style='font-size: .75rem; padding: 0 1rem; marigin:0; background-color: #f2f2f0'>
         {
             label : "Learn more",
             href  : "www.videotron.com",
@@ -69,14 +69,13 @@ export class CardComponent implements OnInit {
     </pre>
     */
     @Input() link                   : ILink;
-
     /**
         This badge displays in the card Header :
         You can pass directly the `label` as a **string** or an **object**. Based on [Badge](/?path=/docs/components-badge--drupal) component API.
     */
     @Input() badge                  : any;
     /** Array of object. Expected format:
-    <pre style='font-size: .75rem; padding: 0 1rem; marigin:0'>
+    <pre style='font-size: .75rem; padding: 0 1rem; marigin:0; background-color: #f2f2f0'>
     [
         {
           title       : 'TV',
@@ -95,31 +94,32 @@ export class CardComponent implements OnInit {
     @Input() detailsColors          : object;
     @Input() detailsStorage         : object;
     /**
-        [Price](/?path=/docs/components-price--drupal) component.
-    */
-    @Input() price                  : IPrice;
-    /**
-     This badge displays in the phone card content above the price and the promotion badges. Based on [Badge](/?path=/docs/components-badge--drupal) component API
+     This badge displays in the phone card content above the price and the promotion badges.
+     Based on [Badge](/?path=/docs/components-badge--drupal) component API
      */
     @Input() contentBadge           : object;
-    /**
-        Note: Can contains html.
-    */
-    @Input() note                   : string;
     /**
      Theses Badges display in the phone card content above the price.
      Only the badges labels are needed
      */
     @Input() promotionBadges        : IBadge[];
     /**
-        Array of [Button](/?path=/docs/components-button--drupal) component.
-        Or extends with a block: {% block buttons %} ... {% endblock %}.
-    */
+     [Price](/?path=/docs/components-price--drupal) component.
+     */
+    @Input() price                  : IPrice;
+    /**
+     Array of [Button](/?path=/docs/components-button--drupal) component.
+     Or extends with a block: {% block buttons %} ... {% endblock %}.
+     */
     @Input() buttons                : IButton[];
     /**
       [inputIncrement](/?path=/docs/components-input-increment--drupal) component.
      */
     @Input() inputIncrement         : IInputIncrement;
+    /**
+     Note: Can contains html.
+     */
+    @Input() note                   : string;
     @Input() message                : string;
     @Input() messageLink            : ILink;
     @Input() class                  : string;
