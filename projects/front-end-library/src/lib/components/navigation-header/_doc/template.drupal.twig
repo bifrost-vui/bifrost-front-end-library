@@ -251,31 +251,31 @@
 ] %}
 
 {% set hasAccountBtn  = hasAccountBtn|json_parse %}
-{% set logo       = logo|json_parse %}
+{% set logo           = logo|json_parse %}
 {% set isConnected    = isConnected|json_parse %}
 
 {% include '@bf-components/navigation-header/twig/index.twig' with {
-    hasTopBar               : hasTopBar|json_parse|default(true),
-    topBar                  : {
+    hasTopBar                   : hasTopBar|json_parse|default(true),
+    topBar                      : {
         items                   : topBar_items|json_parse|default([]),
         secondaryItems          : topBar_secondaryItems|json_parse|default([]),
     },
-    rigthIconLinks          : rigthIconLinks|json_parse|default([]),
-    logo                    : logo,
-    search                  : {
+    rigthIconLinks              : rigthIconLinks|json_parse|default([]),
+    logo                        : logo,
+    search                      : {
         placeholder             : placeholder|default('What are you looking for?')
     },
-    navItems                : navItems,
-    hasAccountBtn           : hasAccountBtn|json_parse|default(true),
-    hasCartBtn              : hasCartBtn|json_parse|default(true),
-    cartBtn                 : cartBtn|json_parse,
-    menuItemAccount         : menuItemAccount|json_parse,
-    hasNoSearchBtn          : hasNoSearchBtn|json_parse|default(false),
-    reversed                : reversed|json_parse|default(false),
-    langcode                : langcode|json_parse|default('EN'),
-    labelMyAccount          : labelMyAccount|json_parse|default('Mon compte'),
-    labelLogOut             : labelLogOut|json_parse|default('Log out'),
-    labelLogIn              : labelLogIn|json_parse|default('Log In'),
-    loginMenuItems          : loginMenuItems|json_parse,
-    menuItemAccountNotConnected         :menuItemAccountNotConnected|json_parse,
+    navItems                    : navItems,
+    hasAccountBtn               : hasAccountBtn|json_parse|default(true),
+    hasCartBtn                  : hasCartBtn|json_parse|default(true),
+    cartBtn                     : cartBtn|json_parse,
+    menuItemAccount             : menuItemAccount|json_parse,
+    hasNoSearchBtn              : hasNoSearchBtn|json_parse|default(false),
+    reversed                    : reversed|json_parse|default(false),
+    langcode                    : langcode|json_parse|default('EN'),
+    labelMyAccount              : labelMyAccount|json_parse|default('Mon compte'),
+    labelLogOut                 : labelLogOut|json_parse|default('Log out'),
+    labelLogIn                  : labelLogIn|json_parse|default('Log In'),
+    loginMenuItems              : loginMenuItems|json_parse,
+    menuItemAccountNotConnected :  menuItemAccountNotConnected|json_parse,
 } %}

@@ -145,19 +145,41 @@
             {{ (isConnected) ? loginMenuItems.name : labelMyAccount }}
           </a>
         {% if isConnected is same as (true) %}
-          <div class="dropdown-menu" aria-labelledby="dropdownAccountMenu">
+          <ul class="dropdown-menu bf-list--divider" aria-labelledby="dropdownAccountMenu">
             {% for accountIn in menuItemAccount %}
-              {% if accountIn.label is defined and accountIn.label or accountIn.iconName is defined and accountIn.iconName or accountIn.description is defined and accountIn.description or accountIn.href is defined and accountIn.href %}
-                {% include '@bf-components/row-button/twig/index.twig' with {
-                  iconName    : accountIn.iconName,
-                  size        : 'small',
-                  title       : accountIn.label,
-                  paragraph   : accountIn.description,
-                  href        : accountIn.href,
-                  class       : ''
-                } only %}
+              <li>
+                {% if accountIn.label is defined and accountIn.label or accountIn.iconName is defined and accountIn.iconName or accountIn.description is defined and accountIn.description or accountIn.href is defined and accountIn.href %}
+                  {% include '@bf-components/row-button/twig/index.twig' with {
+                    iconName    : accountIn.iconName,
+                    size        : 'small',
+                    title       : accountIn.label,
+                    paragraph   : accountIn.description,
+                    href        : accountIn.href,
+                    class       : '',
+                    hasChevron  : false
+                  } only %}
               {% endif %}
-            {% endfor %}
+                  <ul class='bf-list'>
+                      {% for accountList in  accountIn.listItems %}
+                        <li>
+                            {% if accountList.label is defined and accountList.label or accountList.subIconName is defined and accountList.sbIconName or accountList.description is defined and accountList.description or accountIn.href is defined and accountList.href %}
+                                {% include '@bf-components/row-button/twig/index.twig' with {
+                                    iconName    : accountList.subIconName,
+                                    size        : 'small',
+                                    title       : accountList.label,
+                                    paragraph   : accountList.description,
+                                    href        : accountList.href,
+                                    class       : '',
+                                    hasChevron  : false
+                                } only %}
+                            {% endif %}
+                        </li>
+                      {% endfor %}
+                  </ul>
+
+                  {% endfor %}
+              </li>
+              <li>
             {% include '@bf-components/button/twig/index.twig' with {
               label           : labelLogOut,
               hierarchy       : 'secondary',
@@ -165,7 +187,8 @@
               iconName        : 'logout',
               ariaControls    : '',
             } only %}
-          </div>
+              </li>
+          </ul>
             {% else %}
               <div class="dropdown-menu" aria-labelledby="dropdownAccountMenu">
                 {% include '@bf-components/button/twig/index.twig' with {
