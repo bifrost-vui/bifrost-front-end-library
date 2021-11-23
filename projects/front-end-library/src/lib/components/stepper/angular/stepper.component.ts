@@ -16,7 +16,7 @@ export class StepperComponent implements OnInit {
     /** Expected :
      *  [ { label:"stepName", href:"/path-to-file" }, {...} ]
      */
-    @Input() steps            : array<object>;
+    @Input() steps            : object[];
     @Input() currentStep      : number;
     @Input() class            : string;
     /** Display a counter's label if `hasCounter` is true. */
