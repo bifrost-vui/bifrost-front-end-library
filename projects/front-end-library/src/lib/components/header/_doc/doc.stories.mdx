@@ -1,0 +1,127 @@
+import { moduleMetadata }               from '@storybook/angular';
+import { Canvas, Meta, Story, Props }   from '@storybook/addon-docs';
+import { rightIconLinks }               from './data';
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { HeaderComponent }              from '../angular/header.component';
+
+
+<Meta
+    title='Components/Header'
+    component={HeaderComponent}
+    decorators={[
+        moduleMetadata({ declarations: [HeaderComponent, TwigContainerComponent]})
+    ]}
+    argTypes={{
+        accountHello: {
+            table: { defaultValue: { summary: 'Hello' } },
+        },
+        langcode: {
+            defaultValue: 'FR',
+            control: {
+                type: 'select',
+                options: ['EN', 'FR'],
+            }
+        },
+        hasTopBar: {
+            defaultValue: true,
+        },
+        reversed: {
+            defaultValue: false,
+        }
+    }}
+/>
+
+
+# Header
+
+<br/>
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/header/twig/index.twig' with {
+    logo : {
+        name : 'business',
+    },
+    navItems: [
+        {
+            label: 'Shop', href: '', class: '',
+            subItemsMultiDropdown: [
+                {
+                    label : 'Helix plans', href : '', class : '',
+                    listItems: [
+                        { label : 'The Helix experience',   href : '', class : '' },
+                        { label : 'Helix TV',               href : '', class : '' },
+                        { label : 'Helix Internet',         href : '', class : '' },
+                    ]
+                },
+                {
+                    label : 'Other custom bundles', href : '', class : '',
+                    listItems: []
+                },
+            ],
+            mega: [
+                { imgSrc: 'https://source.unsplash.com/400x250/?nature', imgAlt: 'Thumbnail', href: '#', title: '', text: '' },
+                { imgSrc: 'https://source.unsplash.com/400x250/?nature', imgAlt: 'Thumbnail', href: '#', title: '', text: '' },
+            ]
+        },
+        {
+            label : 'Support', href : '#', class : '',
+            subItemsMultiDropdown: [...],
+            mega: [...],
+        }
+        ...
+    ],
+    rightIconLinks : [
+        { icon : 'email',   href : ' ', class : '' },
+        { icon : 'pin',     href : ' ', class : '' },
+    ],
+    hasAccountBtn   : true,
+    isConnected     : true,
+    hrefLogOut      : '#',
+    labelLogOut     : 'Log out',
+    hrefConnexion   : '#',
+    labelConnexion  : 'Connexion',
+    search          : {
+        placeholder : 'What are you looking for?'
+    },
+    reversed : true,
+    langcode : 'EN'
+} only %}
+```
+
+
+
+## Component API
+
+<Props of={HeaderComponent} />
+
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Canvas
+    withSource='none'
+    style= {{ height: '600px' }}
+>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath : 'components/header/_doc/template.drupal',
+            logo : {
+                name                : 'business',
+                href                : '/',
+            },
+            rightIconLinks,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
