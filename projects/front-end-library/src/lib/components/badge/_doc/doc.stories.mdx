@@ -29,6 +29,9 @@ import { BadgeComponent }               from '../angular/badge.component';
                 options: ['', 'placeholder', ...illustrationIcons.map(a => a.list).flat().sort()]
             }
         },
+        _disabled : {
+            table:{ disable: true }
+        }
     }}
 />
 
@@ -63,10 +66,12 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas withSource='none'>
+<Canvas
+    withSource='none'
+    style = {{ height: '600px'}}
+>
     <Story
         name='Drupal'
-        height='500px'
         args={{
             elementPath : 'components/badge/_doc/template.drupal',
             class       : 'my-2',
@@ -76,10 +81,12 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas
+    withSource='none'
+    style = {{ height: '600px'}}
+>
     <Story
-        name='Drupal - disabled usage example'
-        height='500px'
+        name='Drupal - disabled'
         args={{
             elementPath : 'components/badge/_doc/template.drupal',
             class       : 'my-2',
