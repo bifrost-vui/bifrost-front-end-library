@@ -1,230 +1,241 @@
-{% set hasImage         = image.src is defined and image.src is not empty %}
-{% set hasIcon          = iconName is defined and iconName is not empty %}
+{% set hasImage         = image.src is defined and image.src %}
+{% set hasIcon          = iconName is defined and iconName %}
 {% set hasVisual        = hasImage or hasIcon %}
-{% set hasVisualCombo   = hasVisual and comboLabel is defined and comboLabel is not empty %}
+{% set hasVisualCombo   = hasVisual and comboLabel is defined and comboLabel %}
 
 <article
-    class='
-        bf-card
-        {% if hasVisual %}bf-card--has-visual{% endif %} d-flex flex-column
-        {% if isDisabled is same as (true) %}disabled{% endif %}
-        {{ class|default('') }}'
+  class='
+    bf-card
+    {% if hasVisual %}bf-card--has-visual{% endif %} d-flex flex-column
+    {% if isDisabled is same as (true) %}disabled{% endif %}
+    {{ class|default('') }}'
 >
-    {% if hasVisual %}
-        <div
-            class='bf-card__visual {{ hasVisualCombo ? 'bf-card__visual--combo' : '' }} bf-color-bg-underground d-flex justify-content-center align-items-center p-3 p-sm-4'
-            {% if visualBackgroundColor is defined and visualBackgroundColor %}style='background-color: {{ visualBackgroundColor }}'{% endif %}
-        >
-            {% if hasImage %}
-                <img
-                    src='{{ image.src|default('') }}'
-                    data-src='{{ image.src|default('') }}'
-                    alt='{{ image.alt|default('') }}'
-                    class= {{ hasVisualCombo ? '' : 'mw-100' }}
-                />
-                {% if image.badgeIconName is defined %}
-                    <div class='bf-badge-icon z-index-1'>
-                        {% include '@bf-components/icon/twig/index.twig' with {
-                            name    : image.badgeIconName,
-                            size    : 'medium'
-                        } only %}
-                    </div>
-                {% endif %}
-            {% elseif hasIcon %}
-                {% include '@bf-components/icon/twig/index.twig' with {
-                    name    : iconName,
-                    size    : 'large',
-                    class   : hasVisualCombo ? 'combo' : ''
-                } only %}
-            {% endif %}
+  {% if hasVisual %}
+    <div
+      class='bf-card__visual {{ hasVisualCombo ? 'bf-card__visual--combo' : '' }} bf-color-bg-underground d-flex justify-content-center align-items-center p-3 p-sm-4'
+      {% if visualBackgroundColor is defined and visualBackgroundColor %}style='background-color: {{ visualBackgroundColor }}'{% endif %}
+    >
+      {% if hasImage %}
+        <img
+          src='{{ image.src|default('') }}'
+          data-src='{{ image.src|default('') }}'
+          alt='{{ image.alt|default('') }}'
+          class= {{ hasVisualCombo ? '' : 'mw-100' }}
+        />
+        {% if image.badgeIconName is defined %}
+          <div class='bf-badge-icon z-index-1'>
+            {% include '@bf-components/icon/twig/index.twig' with {
+              name    : image.badgeIconName,
+              size    : 'medium'
+            } only %}
+          </div>
+        {% endif %}
+      {% elseif hasIcon %}
+        {% include '@bf-components/icon/twig/index.twig' with {
+          name    : iconName,
+          size    : 'large',
+          class   : hasVisualCombo ? 'combo' : ''
+        } only %}
+      {% endif %}
 
-            {% if hasVisualCombo %}
-                {% include '@bf-components/icon/twig/index.twig' with {
-                        name    : 'plus',
-                        size    : 'small'
-                } only %}
+      {% if hasVisualCombo %}
+        {% include '@bf-components/icon/twig/index.twig' with {
+          name    : 'plus',
+          size    : 'small'
+        } only %}
 
-                <div class='text-center align-self-end d-flex flex-column pl-1 text-center pt-2'>
-                    {% include '@bf-components/icon/twig/index.twig' with {
-                        name    : 'card-sim',
-                        size    : 'large',
-                        class   : 'align-self-center'
-                    } only %}
+        <div class='text-center align-self-end d-flex flex-column pl-1 text-center pt-2'>
+          {% include '@bf-components/icon/twig/index.twig' with {
+            name    : 'card-sim',
+            size    : 'large',
+            class   : 'align-self-center'
+          } only %}
 
-                    <span class='bf-card__visual__label mt-0'>{{ comboLabel }}</span>
-                </div>
-            {% endif %}
+          <span class='bf-card__visual__label mt-0'>{{ comboLabel }}</span>
         </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <header class='bf-card__header p-3 p-sm-4'>
+    {% if upperTitle is defined and upperTitle %}
+      <p class='mb-1'>
+        {{ upperTitle }}
+      </p>
     {% endif %}
 
-    <header class='bf-card__header p-3 p-sm-4'>
-        {% if upperTitle is defined and upperTitle is not empty %}
-            <p class='mb-1'>
-                {{ upperTitle }}
-            </p>
-        {% endif %}
+    {% if title is defined and title %}
+      <{{ titleTag|default('h1') }} class='h3 mt-0 mb-1'>
+        {{ title }}
+      </{{ titleTag|default('h1') }}>
+    {% endif %}
 
-        {% if title is defined and title is not empty %}
-            <{{ titleTag|default('h1') }} class='h3 mt-0 mb-1'>
-                {{ title }}
-            </{{ titleTag|default('h1') }}>
-        {% endif %}
+    {% if subtitle is defined and subtitle %}
+      <p class='h5 my-1'>
+        {{ subtitle }}
+      </p>
+    {% endif %}
 
-        {% if subtitle is defined and subtitle is not empty %}
-            <p class='h5 my-1'>
-              {{ subtitle }}
-            </p>
-        {% endif %}
+    {% if description_html is defined and description_html %}
+      <div class='bf-card__description'>
+        {{ description_html|raw }}
+      </div>
+    {% endif %}
 
-        {% if description_html is defined and description_html is not empty %}
-            <div class='bf-card__description'>
-                {{ description_html|raw }}
-            </div>
-        {% endif %}
+    {% if link.href is defined and link.href %}
+      <a href='{{ link.href|default('') }}' class='bf-link'>
+        {{ link.label|default('') }}
+      </a>
+    {% endif %}
 
-        {% if link.href is defined and link.href is not empty %}
-            <a href='{{ link.href|default('') }}' class='bf-link'>
-                {{ link.label|default('') }}
-            </a>
-        {% endif %}
+    {% if badge is defined and badge %}
+      {% if badge is iterable %}
+        {% set badgeLabel = badge.label %}
+      {% else %}
+        {% set badge = { label: badge } %}
+      {% endif %}
 
-        {% if badge is defined and badge is not empty %}
-            {% if badge is iterable %}
-                {% set badgeLabel = badge.label %}
-            {% else %}
-                {% set badge = { label: badge } %}
+      {% set badge = badge|merge( {
+        'hierarchy' : badge.hierarchy|default('primary'),
+        'angle'     : badge.angle|default('left'),
+        'class'     : 'bf-card__badge'
+      } ) %}
+      {% include '@bf-components/badge/twig/index.twig' with badge only %}
+    {% endif %}
+  </header>
+
+  <div class='bf-card__body flex-grow-1'>
+    {% block card_body %}
+      {% if contentLists is defined and contentLists %}
+        {% for list in contentLists %}
+          <div class='bf-card__content-list pt-3 px-3 px-sm-4'>
+            {% if list.title is defined %}
+              <div class='d-flex mb-2'>
+                <p class='w-60 bf-text font-weight-bold mb-0'>
+                  {{ list.title }}
+                </p>
+                <p class='w-40 text-right mb-0'>
+                  {{ list.description }}
+                </p>
+              </div>
             {% endif %}
 
-            {% set badge = badge|merge( {
-                'hierarchy' : badge.hierarchy|default('primary'),
-                'angle'     : badge.angle|default('left'),
-                'class'     : 'bf-card__badge'
-            } ) %}
-            {% include '@bf-components/badge/twig/index.twig' with badge only %}
-        {% endif %}
-    </header>
+            <ul class='p-0 m-0'>
+              {% for content in list.content %}
+                <li class='d-flex flex-row mb-2'>
+                  {% include '@bf-components/icon/twig/index.twig' with {
+                    name    : content.icon,
+                    size    : small,
+                    class   : 'mr-2'
+                  } only %}
+                  <p class='mb-0'>
+                    {{ content.label }}
+                  </p>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+      {% endif %}
 
-    <div class='bf-card__body flex-grow-1'>
-    {% block card_body %}
-        {% if contentLists is defined %}
-            {% for list in contentLists %}
-                <div class='bf-card__content-list pt-3 px-3 px-sm-4'>
+      {% if (detailsColors is defined and detailsColors) or (detailsStorage is defined and detailsStorage) %}
+        <div class='d-flex mx-3 mx-sm-4'>
+          {% if detailsColors is defined %}
+            <ul class='bf-card__details-colors list-unstyled d-flex mb-0 mr-2'>
+              {% for color in detailsColors|default([]) %}
+                <li
+                  style='background-color: {{ '#' ~ color.value }}'
+                  title='Color {{ color.name }}'
+                ></li>
+              {% endfor %}
+            </ul>
+          {% endif %}
 
-                    {% if list.title is defined %}
-                        <div class='d-flex mb-2'>
-                            <p class='w-60 bf-text font-weight-bold mb-0'>
-                                {{list.title}}
-                            </p>
-                            <p class='w-40 text-right mb-0'>
-                                {{list.description}}
-                            </p>
-                        </div>
-                    {% endif %}
-
-                    <ul class='p-0 m-0'>
-                        {% for content in list.content %}
-                            <li class='d-flex flex-row mb-2'>
-                                {% include '@bf-components/icon/twig/index.twig' with {
-                                    name    : content.icon,
-                                    size    : small,
-                                    class   : 'mr-2'
-                                } only %}
-                                <p class='mb-0'>
-                                    {{content.label}}
-                                </p>
-                            </li>
-                        {% endfor %}
-                    </ul>
-
-                </div>
-            {% endfor %}
-        {% endif %}
-
-        {% if detailsColors is defined and detailsColors is not empty or detailsStorage is defined and detailsStorage is not empty %}
-            <div class='d-flex mx-3 mx-sm-4'>
-                {% if detailsColors is defined %}
-                    <ul class='bf-card__details-colors list-unstyled d-flex mb-0 mr-2'>
-                        {% for color in detailsColors|default([]) %}
-                            <li
-                                style='background-color: #{{ color.value }}'
-                                title='Color {{ color.name }}'
-                            ></li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-
-                {% if detailsStorage is defined and detailsStorage is not empty %}
-                    <p class='small mb-0'>
-                        {% for stockage in detailsStorage|default([]) %}
-                            <span class='font-weight-bold'>
+          {% if detailsStorage is defined and detailsStorage %}
+            <p class='small mb-0'>
+              {% for stockage in detailsStorage|default([]) %}
+                <span class='font-weight-bold'>
                                 {{ stockage }}
                             </span>
-                            {% if loop.last is same as (false) %}/{% endif %}
-                        {% endfor %}
-                    </p>
-                {% endif %}
-            </div>
-        {% endif %}
-
-        {% if contentBadge is defined and contentBadge %}
-
-            {% set contentBadge = contentBadge|merge( {
-                'hierarchy' : contentBadge.hierarchy|default('tertiary'),
-                'angle'     : contentBadge.angle|default(''),
-                'class'     : 'bf-card__content-badge mx-3 mx-sm-4 mt-3'
-            } ) %}
-
-            {% include '@bf-components/badge/twig/index.twig' with contentBadge only %}
-        {% endif %}
-        {% endblock card_body %}
-    </div>
-
-    <footer class='bf-card__footer pt-0 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>
-        {% if price is defined and price %}
-            {% set price = price|merge({
-                'class'     : 'w-100 ' ~ price.class,
-                'language'  : language|default('en')
-            }) %}
-            {% include '@bf-components/price/twig/index.twig' with price only %}
-        {% endif %}
-
-        {% if note is defined and note is not empty %}
-            <p class='small bf-color-neutral-secondary mb-0'>
-                {{ note }}
+                {% if loop.last is same as (false) %}/{% endif %}
+              {% endfor %}
             </p>
-        {% endif %}
+          {% endif %}
+        </div>
+      {% endif %}
 
-        {% if inputIncrement is defined and inputIncrement %}
-            <div class='bf-card__controls'>
-                {% include '@bf-components/input-increment/twig/index.twig' with  inputIncrement only %}
-            </div>
-        {% endif %}
+      {% if contentBadge is defined and contentBadge %}
+        {% set contentBadge = contentBadge|merge( {
+          'hierarchy' : contentBadge.hierarchy|default('tertiary'),
+          'angle'     : contentBadge.angle|default(''),
+          'class'     : 'bf-card__content-badge mt-3 mx-3 mx-sm-4'
+        } ) %}
 
-        {% if buttons is defined and buttons %}
-            <div class='bf-card__controls'>
-                {% block buttons %}
-                    {% for button in buttons %}
-                        {% set button = button|merge( { 'class': 'w-100 ' ~ button.class } ) %}
-                        {% include '@bf-components/button/twig/index.twig' with button only %}
-                    {% endfor %}
-                {% endblock %}
-            </div>
-        {% endif %}
+        {% include '@bf-components/badge/twig/index.twig' with contentBadge only %}
+      {% endif %}
 
-        {% if message is defined and message or messageLink is defined and messageLink %}
-            <div class='bf-card__message d-flex'>
-                {% include '@bf-components/icon/twig/index.twig' with {
-                    name    : 'information-circle-filled',
-                    size    : 'small',
-                    class   : 'mr-2'
-                } only %}
-                <p class='mb-0'>
-                    {{ message }}
-                    {% if messageLink is defined and messageLink is not empty %}
-                        <a href='{{ messageLink.href|default('#') }}' class='bf-link {{ messageLink.class|default('') }}'>{{ messageLink.label|default('') }}</a>
-                    {% endif %}
-                </p>
-            </div>
-        {% endif %}
-    </footer>
+      {% if promotionBadges is defined and promotionBadges %}
+        <div class='bf-card__content-badge bf-card__content-badge--promotion mt-3  mx-3 mx-sm-4'>
+          {% for promotionBadge in promotionBadges %}
+            {% include '@bf-components/badge/twig/index.twig' with {
+              label       : promotionBadge.label,
+              iconName    : promotionBadge.iconName,
+              hierarchy   : 'tertiary-ground',
+              isRounded   : true,
+            } only %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endblock card_body %}
+  </div>
+
+  <footer class='bf-card__footer pt-0 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3'>
+    {% if price is defined and price %}
+      {% set price = price|merge({
+        'class'     : 'w-100 ' ~ price.class,
+        'language'  : language|default('en')
+      }) %}
+      {% include '@bf-components/price/twig/index.twig' with price only %}
+    {% endif %}
+
+    {% if note is defined and note %}
+      <p class='small bf-color-neutral-secondary mb-0'>
+        {{ note }}
+      </p>
+    {% endif %}
+
+    {% if inputIncrement is defined and inputIncrement %}
+      <div class='bf-card__controls'>
+        {% include '@bf-components/input-increment/twig/index.twig' with  inputIncrement only %}
+      </div>
+    {% endif %}
+
+    {% if buttons is defined and buttons %}
+      <div class='bf-card__controls'>
+        {% block buttons %}
+          {% for button in buttons %}
+            {% set button = button|merge( { 'class': 'w-100 ' ~ button.class } ) %}
+            {% include '@bf-components/button/twig/index.twig' with button only %}
+          {% endfor %}
+        {% endblock %}
+      </div>
+    {% endif %}
+
+    {% if (message is defined and message) or (messageLink is defined and messageLink) %}
+      <div class='bf-card__message d-flex'>
+        {% include '@bf-components/icon/twig/index.twig' with {
+          name    : 'information-circle-filled',
+          size    : 'small',
+          class   : 'mr-2'
+        } only %}
+        <p class='mb-0'>
+          {{ message }}
+          {% if messageLink is defined and messageLink %}
+            <a href='{{ messageLink.href|default('#') }}'
+               class='bf-link {{ messageLink.class|default('') }}'>{{ messageLink.label|default('') }}</a>
+          {% endif %}
+        </p>
+      </div>
+    {% endif %}
+  </footer>
 </article>
