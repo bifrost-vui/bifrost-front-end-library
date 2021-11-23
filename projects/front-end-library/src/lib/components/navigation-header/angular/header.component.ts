@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import {cartButton} from "../_doc/data";
 /**
  * API is the same between **Angular** and **Drupal**.
  *
@@ -42,7 +43,7 @@ export class HeaderComponent implements OnInit {
     /** Shows up in top bar only */
     @Input() labelConnexion           : string;
     /** Badge label value set to `0` will hide the badge on the cart*/
-    @Input() cartBtn                 : any[];
+    @Input() cartButton               : any[];
     /** String displayed before `accountName` in the Top Bar, when connected. */
     @Input() accountHello             : string;
     /** Name of the user, displayed in the Top Bar when connected. */

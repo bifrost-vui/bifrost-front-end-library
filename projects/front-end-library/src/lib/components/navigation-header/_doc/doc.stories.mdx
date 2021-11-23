@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
 
-import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn } from './data';
+import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartButton } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent }          from '../angular/header.component';
 
@@ -94,9 +94,8 @@ import { HeaderComponent }          from '../angular/header.component';
         { icon : 'email',   href : ' ', class : '' },
         { icon : 'pin',     href : ' ', class : '' },
     ],
-    hasCartBtn : true,
-    cartBtn : {
-        badgeLabel       : '3',
+    cartButton : {
+        badgeLabel  : '3',
         href        : 'https://www.videotron.com',
         ariaLabel   : 'My cart',
         class       : ''
@@ -121,7 +120,10 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas withSource='none'>
+<Canvas
+    withSource='none'
+    style={{ height: '400px'}}
+>
     <Story
         name='Drupal'
         args={{
@@ -129,14 +131,12 @@ export const Drupal = (args) => ({
             topBar_items,
             topBar_secondaryItems,
             logo : {
-                name                : 'business',
-                href                : '/',
+                name    : 'business',
+                href    : '/',
             },
             rigthIconLinks,
-            cartBtn
+            cartButton
         }}
-        height='400px'
-        with = '1200px'
     >
         {Drupal.bind({})}
     </Story>

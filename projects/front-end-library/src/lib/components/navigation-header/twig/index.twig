@@ -33,7 +33,7 @@
 
     <!-- Main Nav -->
     <div class='bf-header__nav-main js-collapse-full-height'>
-      <ul class='bf-megamenu  list'>
+      <ul class='bf-megamenu list'>
         {% block navbar_content %}
           {% include '@bf-components/navigation-header/twig/mega-menu.twig' with {
             navItems  : navItems,
@@ -45,10 +45,10 @@
 
     <!-- Actions -->
     <div class='bf-header__actions'>
-        <div class="bf-header__rigth-icon-links ">
+        <div class='bf-header__rigth-icon-links'>
           {# <!-- rigth Icon Links - visible on mobile only --> #}
           {% for link in rigthIconLinks|default([])|slice(0, 3) %}
-            {% if link is defined and link.href is not empty and link.icon is not empty %}
+            {% if link is defined and link.href and link.icon %}
               {% include '@bf-components/button-icon/twig/index.twig' with {
                 href    : link.href,
                 icon    : link.icon,
@@ -77,19 +77,19 @@
         {% endif %}
 
         {# <!-- Btn mini cart --> #}
-         {% if cartBtn is defined and cartBtn is not empty %}
-          {% if cartBtn.badgeLabel is defined and cartBtn.badgeLabel and cartBtn.badgeLabel != '0' %}
-            {% set badgeLabel =  cartBtn.badgeLabel %}
+         {% if cartButton is defined and cartButton %}
+          {% if cartButton.badgeLabel is defined and cartButton.badgeLabel and cartButton.badgeLabel != '0' %}
+            {% set badgeLabel =  cartButton.badgeLabel %}
           {% endif %}
 
           {% include '@bf-components/button-icon/twig/index.twig' with {
             icon        : 'cart',
             hierarchy   : 'primary',
             badgeLabel  : (badgeLabel is defined) ? badgeLabel : NULL,
-            href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : NULL,
-            ariaLabel   : cartBtn.ariaLabel|default(''),
-            class       : cartBtn.class|default(''),
-            isDisabled  : cartBtn.isDisabled|default(false)
+            href        : (cartButton.href is defined and cartButton.href) ? cartButton.href : NULL,
+            ariaLabel   : cartButton.ariaLabel|default(''),
+            class       : cartButton.class|default(''),
+            isDisabled  : cartButton.isDisabled|default(false)
           } only %}
         {% endif %}
 
