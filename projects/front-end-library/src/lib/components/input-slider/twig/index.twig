@@ -1,4 +1,6 @@
-{% set isRange = value is iterable and value[0] is defined and value[1] is defined %}
+{% set isRange      = value is iterable and value[0] is defined and value[1] is defined %}
+{% set unitPosition = unitPosition|default('end') %}
+
 {% if isRange %}
   {# Reorder value array in case of mistake: Smallest number should be at position 0. #}
   {% if value[0] > value[1] %}
@@ -17,37 +19,31 @@
   {% if minimumGap is defined and minimumGap %}data-minimum-gap='{{ minimumGap }}'{% endif %}
   {% if isRange is same as (false) %}data-inverted='{{ isInverted }}'{% endif %}
 >
+	{% if isRange %}
+		<div class='d-flex justify-content-between mb-1 mx-2'>
+			<label for='{{ min.inputId }}'>
+				{% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label-min-value'></span>{% if unitLabel and unitPosition is same as ('end') %}{{ unitLabel }}{% endif %}
+			</label>
+			<label for='{{ max.inputId }}'>
+				{% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label-max-value'></span>{% if unitLabel and unitPosition is same as ('end') %}{{ unitLabel }}{% endif %}
+			</label>
+		</div>
+	{% else %}
+		<div class='bf-input-slider__handle-container position-relative mx-3'>
+			<div class='bf-input-slider__handle'>
+				<label for='{{ min.inputId|default(max.inputId) }}' class='bf-input-slider__label'>
+					{% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label__value'></span>{% if unitLabel and unitPosition is same as ('end') %}{{ unitLabel }}{% endif %}
+				</label>
+			</div>
+		</div>
+	{% endif %}
+
   <div class='bf-input-slider__panel'>
     <div class='bf-input-slider__overlay mx-2'>
       <div class='bf-input-slider__track'></div>
       <div class='bf-input-slider__progress-track-container'>
         <div class='bf-input-slider__progress-track'></div>
       </div>
-
-      {% if isRange %}
-        <div class='bf-input-slider__handles'>
-          <div class='bf-input-slider__handle bf-input-slider__handle--min'>
-            <label for='{{ max.inputId }}' class='bf-input-slider__label'>
-              {% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label__value'></span>{% if unitLabel and unitPosition is same as ('end') %}{{ unitLabel }}{% endif %}
-            </label>
-          </div>
-      <span class='bf-input-slider__handles__merged-separator'>-</span>
-          <div class='bf-input-slider__handle bf-input-slider__handle--max'>
-            <label for='{{ min.inputId }}' class='bf-input-slider__label'>
-              {% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label__value'></span>{% if unitLabel and unitPosition is same as ('end') %}{{ unitLabel }}{% endif %}
-            </label>
-          </div>
-        </div>
-      {% else %}
-        <div class='position-relative mx-2'>
-          <div class='bf-input-slider__handle'>
-            <label for='{{ min.inputId|default(max.inputId) }}' class='bf-input-slider__label'>
-              {% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label__value'></span>{% if unitLabel and unitPosition is same as ('end') %}{{ unitLabel }}{% endif %}
-            </label>
-          </div>
-        </div>
-      {% endif %}
-
     </div>
 
     {% if isRange %}
@@ -84,7 +80,7 @@
   {% set hasDescription = min.description is defined and min.description or max.description is defined and max.description %}
 
   {% if hasLegend or hasDescription %}
-    <div class='bf-input-slider__legend'>
+    <div class='bf-input-slider__legend mx-2 mt-2'>
 
     {% if min.legend is defined and min.legend or min.description is defined and min.description %}
       <p class='bf-input-slider__legend__min'>

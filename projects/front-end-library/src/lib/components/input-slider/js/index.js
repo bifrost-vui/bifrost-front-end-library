@@ -24,13 +24,9 @@ $(function() {
             // Progress Bar
             const $progressBar  = $this.find('.bf-input-slider__progress-track');
 
-            // Handles
-            const $handles      = $this.find('.bf-input-slider__handles');
-            const $handleMin    = $this.find('.bf-input-slider__handle--min');
-            const $handleMax    = $this.find('.bf-input-slider__handle--max');
-            const $maxLabel     = $handleMax.find('.bf-input-slider__label__value');
-            const $minLabel     = $handleMin.find('.bf-input-slider__label__value');
-            let isLabelMerged   = false;
+            // Labels
+            const $maxLabel     = $this.find('.bf-input-slider__label-max-value');
+            const $minLabel     = $this.find('.bf-input-slider__label-min-value');
             
             updateMinSlider();
             $this.on('input', '.bf-input-slider__input__min', updateMinSlider);
@@ -45,13 +41,10 @@ $(function() {
 
                 // Set label
                 $minLabel.html(startValue);
-                const startHandlePosition = calculPosition(startValue);
-                $handleMin.css('left', startHandlePosition + '%');
-
+                
                 // Update Progress Bar
+                const startHandlePosition = calculPosition(startValue);
                 $progressBar.css('left', startHandlePosition + '%');
-
-                mergeLabelsIfclose();
             }
 
             function updateMaxSlider() {
@@ -61,27 +54,10 @@ $(function() {
 
                 // Set label
                 $maxLabel.html(endValue);
-                const endHandlePosition = calculPosition(endValue);
-                $handleMax.css('left', endHandlePosition + '%');
 
                 // Update Progress Bar
+                const endHandlePosition = calculPosition(endValue);
                 $progressBar.css('right', (100 - endHandlePosition) + '%');
-                
-                mergeLabelsIfclose();
-            }
-
-            function mergeLabelsIfclose() {
-                const progressBarWidth = $progressBar.width();
-                if (progressBarWidth < 50) {
-                    isLabelMerged = true;
-                    const progressBarLeft = ((startValue - minValue) + ((endValue - startValue) / 2)) / (maxValue - minValue) * 100;
-                    $handles.addClass('bf-input-slider__handles--merged');
-                    $handles.css('left', progressBarLeft + '%');
-                } else if (isLabelMerged) {
-                    isLabelMerged = false;
-                    $handles.removeClass('bf-input-slider__handles--merged');
-                    $handles.css('left', 'auto');
-                }
             }
         } else {
             const isInverted   = $this.data('inverted');
