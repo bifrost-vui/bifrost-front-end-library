@@ -21,12 +21,9 @@ export class InputSliderComponent implements OnInit {
 
     @Input() unitLabel      : string;
     @Input() unitPosition   : 'start'|'end';
-    /** Set `isUnitDollar` will handle `unitPosition` depending of `language` E.g. `3$` or `$3`. */
-    @Input() isUnitDollar   : boolean;
 
     @Input() class          : string;
     @Input() reversed       : boolean;
-    @Input() language       : 'en' | 'fr';
 
     ngOnInit() {
         console.log('InputSlider', this);

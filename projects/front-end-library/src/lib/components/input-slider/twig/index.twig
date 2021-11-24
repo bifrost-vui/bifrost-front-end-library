@@ -11,14 +11,6 @@
   {% set value = min(max(value, min.value), max.value) %}
 {% endif %}
 
-{% if unitLabel is defined and unitLabel %}
-  {% if isUnitDollar is defined and isUnitDollar %}
-    {% set unitPosition = language == 'en' ? 'start' : 'end' %}
-  {% else %}
-    {% set unitPosition = unitPosition|default('end') %}
-  {% endif %}
-{% endif %}
-
 <div
   class='bf-input-slider js-bf-input-slider {{ class|default('') }} {{ reversed ? 'reversed' : '' }}'
   data-range='{{ isRange }}'
