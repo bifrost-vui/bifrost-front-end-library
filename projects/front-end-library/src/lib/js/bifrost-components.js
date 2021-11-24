@@ -1,6 +1,3 @@
-import $ from 'jquery';
-import { initBreakpoints } from './utils/breakpoints.js';
-
 // Bifrost Theme
 window.bfTheme  = window.bfTheme || {};
 
@@ -10,7 +7,6 @@ window.bfTheme.breakpoints = {
     lg: 1200,
     xl: 1920
 };
-
 // Bifrost Components
 require("../components/input-increment/js/index.js");
 require("../components/input-slider/js/index.js");
