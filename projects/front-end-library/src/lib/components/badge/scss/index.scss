@@ -5,7 +5,8 @@
 * ***************************************************************************** */
 
 .bf-badge {
-    display: flex;
+    display: block;
+    width: fit-content;
 
     &--primary .bf-badge__inner {
         --color: var(--bf-color-bg-ground);
@@ -37,7 +38,7 @@
 
     &__inner {
         position: relative;
-        display: flex;
+        display: block;
         align-items: center;
         padding: 0 .5rem;
         min-height: 1.5rem;
@@ -52,6 +53,7 @@
     &--angle-left,
     &--angle-right {
         .bf-badge__inner:before {
+            box-sizing: content-box;
             content: '';
             position: absolute;
             top: 0;
@@ -64,35 +66,54 @@
     }
 
     &--angle-right .bf-badge__inner {
-        padding: 0 .25rem 0 .75rem;
+        padding: 1px .25rem 0 .75rem;
 
         &:before {
             right: 0;
-            transform: translate(50%) skew(-19deg);
+            transform: translate(50%) skew(-18deg);
         }
     }
 
     &--angle-left .bf-badge__inner {
-        padding: 0 .75rem 0 .25rem;
+        padding: 1px .75rem 0 .25rem;
 
         &:before {
             left: 0;
-            transform: translate(-50%) skew(19deg);
+            transform: translate(-50%) skew(18deg);
         }
     }
 
     &__label {
+        display: flex ;
+        flex-flow: row;
+        align-items: center;
         white-space: nowrap;
         z-index: 1;
         margin: 0;
-
-        span {
-            vertical-align: middle;
-        }
+        min-height: 1.5rem;
 
         &__text {
-            display: inline-block;
+            display: block;
             line-height: 1.5rem;
+        }
+    }
+    &--promotion .bf-badge__inner {
+        border: 1px solid;
+        @extend .bf-border-color-secondary;
+
+        .bf-badge__label {
+            line-height: initial;
+
+            &__text {
+                padding: .25rem 0;
+                line-height: 1rem;
+                white-space: initial;
+            }
+            .bf-icon + span {
+                padding-left: .25rem;
+            }
+
+
         }
     }
 }
