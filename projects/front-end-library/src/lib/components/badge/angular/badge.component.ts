@@ -8,7 +8,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 })
 export class BadgeComponent implements OnInit {
     constructor() {}
-
+    /** The `promotion` variant will ignore `hierarchy`, `angle` and `isRounded` properties*/
     @Input() variant        : '' | 'promotion';
     @Input() label          : string;
     @Input() hierarchy      : 'primary' | 'secondary' | 'tertiary' | 'tertiary-ground';
