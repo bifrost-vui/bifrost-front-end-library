@@ -37,22 +37,22 @@
     </p>
   {% endif %}
 
-  <div class='d-flex gap-2 justify-content-between {% if promotion.direction is defined and promotion.direction == 'horizontal' %}flex-row{% else %}flex-column{% endif %}'>
+  <div class='promotion-container {% if promotion.direction is defined and promotion.direction == 'horizontal' %}flex-row justify-content-between{% else %}flex-column {% endif %}'>
 
-    <div class='bf-price__infos d-inline-flex'>
+    <div class='bf-price__infos'>
 
       {% if language == 'en' %}
-        <sup class='bf-price__dollarsign'>$</sup>
+        <sup class='bf-price__dollarsign mt-n1'>$</sup>
       {% endif %}
 
-      <div class='d-flex' role="contentinfo" aria-label='$ {{ dollar|default('0')}}.{{ cent|default('00')}} {{ details|default('')|raw }}'>
+      <div class='d-flex' aria-label='$ {{ dollar|default('0')}}.{{ cent|default('00')}} {{ details|default('')|raw }}' role='contentinfo'>
 
-        <span class='bf-price__dollar role="contentinfo" {{ dollarClass|default('') }}'>
+        <span class='bf-price__dollar {{ dollarClass|default('') }}' role='contentinfo'>
             {{ dollar|default('00')}}
         </span>
 
-        <div class='d-flex flex-column justify-content-between'>
-          <div class='d-flex align-items-baseline'>
+        <div class='d-block flex-column justify-content-between'>
+          <div class='d-flex align-items-start'>
             {% if cent is defined and cent %}
               <span class='bf-price__cent ml-1'>
                   {{ cent|default('00')}}
@@ -78,7 +78,13 @@
     </div>
 
     {% if promotion is defined and promotion %}
-      <div class='d-inline-flex align-items-center'>
+      <div class='d-flex flex-column'>
+      {% if promotion.title is defined and promotion.title %}
+        <p class='small mb-1'>
+          {{ promotion.title }}
+        </p>
+      {% endif %}
+      <div class='d-inline-flex'>
 
         {% if promotion.priceStriked is defined and promotion.priceStriked is not empty %}
           <p class='small text-strike mr-2 mb-0'>
@@ -93,7 +99,7 @@
                 {{ promotion.savedLabel }}
               </span>
             {% endif %}
-            <span class="price-superscript">
+            <span class='price-superscript'>
               {% if promotion.priceSaved is defined and promotion.priceSaved is not empty %}
                 <span class='font-weight-bold'>
                   {% if language == 'en' %}${% endif %}{{ promotion.priceSaved}}{% if language == 'fr' %}&nbsp;${% endif %}
@@ -106,6 +112,7 @@
           </p>
         {% endif %}
 
+      </div>
       </div>
     {% endif %}
 
