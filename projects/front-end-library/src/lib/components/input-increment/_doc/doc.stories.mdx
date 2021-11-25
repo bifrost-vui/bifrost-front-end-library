@@ -1,5 +1,5 @@
 import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props }  from '@storybook/addon-docs';
 import { withDesign }                   from 'storybook-addon-designs'
 import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
 import { InputIncrementComponent }     from '../angular/input-increment.component';
@@ -52,13 +52,11 @@ export const Drupal = (args) => ({
     props       : args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '400px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
+        height='400px'
+        args={{
             elementPath     : 'components/input-increment/_doc/template.drupal',
             class           : '',
             ariaLabel       : '',
@@ -71,7 +69,7 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 ## Drupal implementation example
 

@@ -5,6 +5,7 @@ export interface IUpfront {
 }
 
 export interface IPromotion {
+  title         : string;
   priceStriked  : number;
   priceSaved    : number;
   savedLabel    : string;
