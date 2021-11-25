@@ -9,5 +9,6 @@ window.bfTheme.breakpoints = {
 };
 // Bifrost Components
 require("../components/input-increment/js/index.js");
+require("../components/input-slider/js/index.js");
 require("../components/navigation-header/js/index.js");
 require("../components/slideshow/js/index.js")
