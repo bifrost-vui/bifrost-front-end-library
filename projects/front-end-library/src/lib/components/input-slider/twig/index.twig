@@ -19,24 +19,24 @@
   {% if minimumGap is defined and minimumGap %}data-minimum-gap='{{ minimumGap }}'{% endif %}
   {% if isRange is same as (false) %}data-inverted='{{ isInverted }}'{% endif %}
 >
-	{% if isRange %}
-		<div class='d-flex justify-content-between mb-1 mx-2'>
-			<label for='{{ min.inputId }}'>
-				{% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label-min-value'></span>{% if unitLabel and unitPosition is same as ('end') %}{{ unitLabel }}{% endif %}
-			</label>
-			<label for='{{ max.inputId }}'>
-				{% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label-max-value'></span>{% if unitLabel and unitPosition is same as ('end') %}{{ unitLabel }}{% endif %}
-			</label>
-		</div>
-	{% else %}
-		<div class='bf-input-slider__handle-container position-relative mx-3'>
-			<div class='bf-input-slider__handle'>
-				<label for='{{ min.inputId|default(max.inputId) }}' class='bf-input-slider__label'>
-					{% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label__value'></span>{% if unitLabel and unitPosition is same as ('end') %}{{ unitLabel }}{% endif %}
-				</label>
-			</div>
-		</div>
-	{% endif %}
+  {% if isRange %}
+    <div class='d-flex justify-content-between mb-1 mx-2'>
+      <label for='{{ min.inputId }}'>
+        {% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label-min-value'></span>{% if unitLabel and unitPosition is same as ('end') %}{{ unitLabel }}{% endif %}
+      </label>
+      <label for='{{ max.inputId }}'>
+        {% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label-max-value'></span>{% if unitLabel and unitPosition is same as ('end') %}{{ unitLabel }}{% endif %}
+      </label>
+    </div>
+  {% else %}
+    <div class='bf-input-slider__handle-container position-relative mx-3'>
+      <div class='bf-input-slider__handle'>
+        <label for='{{ min.inputId|default(max.inputId) }}' class='bf-input-slider__label'>
+          {% if unitLabel and unitPosition is same as ('start') %}{{ unitLabel }}{% endif %}<span class='bf-input-slider__label__value'></span>{% if unitLabel and unitPosition is same as ('end') %}{{ unitLabel }}{% endif %}
+        </label>
+      </div>
+    </div>
+  {% endif %}
 
   <div class='bf-input-slider__panel'>
     <div class='bf-input-slider__overlay mx-2'>
