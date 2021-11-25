@@ -1,8 +1,8 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
-import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
-import { BadgeComponent }           from '../angular/badge.component';
+import { moduleMetadata }               from '@storybook/angular';
+import { Canvas, Meta, Story, Props }   from '@storybook/addon-docs';
+import illustrationIcons                from '../../../../../../../public/icons/list/illustrations.json';
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { BadgeComponent }               from '../angular/badge.component';
 
 
 <Meta
@@ -28,6 +28,9 @@ import { BadgeComponent }           from '../angular/badge.component';
                 type: 'select',
                 options: ['', 'placeholder', ...illustrationIcons.map(a => a.list).flat().sort()]
             }
+        },
+        _disabled : {
+            table:{ disable: true }
         }
     }}
 />
@@ -40,8 +43,8 @@ import { BadgeComponent }           from '../angular/badge.component';
 
 
 ## Component API
-
 <Props of={BadgeComponent} />
+
 
 
 
@@ -56,8 +59,6 @@ import { BadgeComponent }           from '../angular/badge.component';
 } only %}
 ```
 
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -65,9 +66,9 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '600px' }}
+    style = {{ height: '600px' }}
 >
     <Story
         name='Drupal'
@@ -78,4 +79,20 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
+
+<Canvas
+    withSource='none'
+    style = {{ height: '600px'}}
+>
+    <Story
+        name='Drupal - Disabled'
+        args={{
+            elementPath : 'components/badge/_doc/template.drupal',
+            class       : 'my-2',
+            _disabled   : true
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>

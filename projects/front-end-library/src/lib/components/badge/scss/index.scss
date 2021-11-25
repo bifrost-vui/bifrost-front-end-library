@@ -5,9 +5,9 @@
 * ***************************************************************************** */
 
 .bf-badge {
-    display: inline-block;
+    display: flex;
 
-    &--primary .bf-badge__content {
+    &--primary .bf-badge__inner {
         --color: var(--bf-color-bg-ground);
         --bg-color: var(--bf-color-neutral-primary);
         .bf-icon svg{
@@ -15,7 +15,7 @@
         }
     }
 
-    &--secondary .bf-badge__content {
+    &--secondary .bf-badge__inner {
         --bg-color: var(--bf-color-feedback-neutral);
         @at-root
         .reversed.bf-badge--secondary,
@@ -27,15 +27,15 @@
         }
     }
 
-    &--tertiary .bf-badge__content {
+    &--tertiary .bf-badge__inner {
         --bg-color: var(--bf-color-bg-underground);
     }
 
-    &--tertiary-ground .bf-badge__content {
+    &--tertiary-ground .bf-badge__inner {
         --bg-color: var(--bf-color-bg-ground);
     }
 
-    &__content {
+    &__inner {
         position: relative;
         display: flex;
         align-items: center;
@@ -45,13 +45,13 @@
         background-color: var(--bg-color);
     }
 
-    &--rounded .bf-badge__content {
+    &--rounded .bf-badge__inner {
         border-radius: 1rem;
     }
 
     &--angle-left,
     &--angle-right {
-         .bf-badge__content:before {
+        .bf-badge__inner:before {
             content: '';
             position: absolute;
             top: 0;
@@ -63,7 +63,7 @@
         }
     }
 
-    &--angle-right .bf-badge__content {
+    &--angle-right .bf-badge__inner {
         padding: 0 .25rem 0 .75rem;
 
         &:before {
@@ -72,7 +72,7 @@
         }
     }
 
-    &--angle-left .bf-badge__content {
+    &--angle-left .bf-badge__inner {
         padding: 0 .75rem 0 .25rem;
 
         &:before {
@@ -108,10 +108,20 @@
     }
 }
 
+.disabled {
+    .bf-badge {
+        .bf-badge__inner {
+            @extend .bf-color-neutral-tertiary;
+            @extend .bf-color-bg-action-disabled;
 
-.disabled{
-    .bf-badge .bf-badge__content {
-        --color: var(--bf-color-neutral-tertiary);
-        --bg-color: var(--bf-color-bg-action-no-bg-hover);
+            svg {
+                color: var(--bf-color-neutral-tertiary)
+            }
+        }
+
+        @at-root reversed,
+        &--primary .bf-badge__inner svg {
+            color: var(--bf-color-neutral-tertiary) !important;
+        }
     }
 }

@@ -3,34 +3,56 @@
 <br/><br/>
 
 ## vX.X.X
-### Navigation Header (DS-83)
-- The Navigation Header can display a badge on the `cart` icon as well as in any icons in the `rightIconLinks` (Ex.: the `email` icon )
-- The `cart` icon can be displayed on any device (in the previous version it was mobile only)
+
+###  Selection Tile
+- New Selection Tile component (see [Component API](?path=/docs/components-selection-tile--selection-tile-vertical)).
+
+### Cards
+
+- New `combo` [card variant](?path=/docs/components-card--drupal-combo) and introducing the `comboLabel` property.
+- New `subtitle` property in cards (available in all variants)
+- New promotion badges in `Card` using `promotionBadges` (available in all variants)
 
 ### Button-icon
-- Added the option to display a `Badge` on the `Button-icon` component.
-- Only the label is permited
+- Added the option to display a `Badge` on the `Button-icon` component using `badgeLabel` property.
 
 ### Badge
-- added the `rounded` option in `Badge` component
-- the `angle` option won't have any effect if the `rounded` is activated
+- added the `isRounded` option in `Badge` component
+
+
+### Bug fix
+- **DS-193** [Tab](?path=/docs/components-tab--drupal) component : position of the scroll bar on mobile (vertical & horizontal)
+
+
+## [v1.4.0](https://bifrost-front-end-library-git-v1-4-0-bifrost-vui.vercel.app/)
+### Slideshow
+- New `slideshow` component for heros (see [Component API](?path=/docs/components-slideshow--drupal))
 
 ### Row Button
-- **DS-163** New Row Button component (see [Component API](?path=/docs/components-row-button--drupal)).
+- New Row Button component (see [Component API](?path=/docs/components-row-button--drupal)).
 
 ### Icons
 - The size property has a new value:  `huge`
-- **Breaking Change**, the size property is now required. The default is removed
-
-### New Icons
-- **DS-112** Added the `mobile-multiline-2` and `mobile-multiline-3` icons to the Bifröst icon library
 
 ### Button Nav
 - New component Button Nav (see [Component API](?path=/docs/components-button-nav--drupal) and [usage example](?path=/story/components-button-nav--drupal-usage-example)).
 
 ### Hero
-- **DS-162** Added property `height: large`.
-- Display `Price Component` between `description` and `buttons`.
+- **BREAKING CHANGES**, the image property API used to be `image: { default: 'image.png', mobile: 'image-mobile.png' }` and is now `image: { lg: 'image.png', sm: 'image-mobile.png' }`.
+- Added property `image.isSplitted` to make a 50/50 hero
+- Added property `height: large` to have a min heigh.
+- Display a `Price Component` between `description` and `buttons`.
+- **BREAKING CHANGES** Modified property `button` to `buttons` in order to display an array of max 2 buttons
+- Add TwigBlock `content` above buttons (The Pandora box).
+- Added property `icon` to set a huge size icon.
+
+### New Icons
+- Added the `mobile-multiline-2` and `mobile-multiline-3`, `data-on-demande`,`data-permanent`, `data-speed`,`credit-welcome` and `new-phone` icons
+
+### Bugs Fix
+#### Hero
+- The Breadcrumb property now accept a TwigBlock. Still work with injecting string html.
+- The Badge property now accept a Badge component. All property can ben set. Still work with only a string setting the label.
 
 
 ## [v1.3.1](https://bifrost-front-end-library-git-v1-3-1-jonathanlefebvrev.vercel.app)

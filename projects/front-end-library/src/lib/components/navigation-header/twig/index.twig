@@ -45,7 +45,7 @@
         {% endblock %}
       </ul>
       <!-- Main Nav Mobile -->
-      <ul class='bf-megamenu list bf-list--divider d-lg-none d-sm-block'>
+      <ul class='bf-megamenu list bf-list--divider d-block d-lg-none'>
         {% block navbar_content %}
           {% include '@bf-components/navigation-header/twig/mega-menu-mobile.twig' with {
             navItems    : navItems,
@@ -109,7 +109,7 @@
 
     <!-- Actions -->
     <div class='bf-header__actions'>
-      <!-- Btn search toggle -->
+      {# <!-- Btn search toggle --> #}
       {% include '@bf-components/button-icon/twig/index.twig' with {
         icon            : 'search',
         dataToggle      : 'collapse',
@@ -120,7 +120,7 @@
         class           : 'd-flex d-md-none js-bf-search-toggler'
       } only %}
 
-      <!-- Right icons -->
+      {# <!-- Right icons --> #}
       <div class="bf-header__rigth-icon-links ">
         {# <!-- rigth Icon Links - visible on mobile only --> #}
         {% for link in rigthIconLinks|default([])|slice(0, 2) %}
@@ -135,8 +135,8 @@
         {% endfor %}
       </div>
 
-      <!-- My Account Menu -->
-      {% if hasAccountBtn is defined and hasAccountBtn  %}
+      {# <!-- My Account Menu -->  #}
+      {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
         <div class="dropdown d-none d-lg-block {{ (isConnected) ? 'login' : 'logout' }}">
           <a class="btn btn-tertiary dropdown-toggle {{ (isConnected) ? 'login' : 'logout' }}" href="#" role="button" id="dropdownAccountMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {% include '@bf-components/icon/twig/index.twig' with {
@@ -223,10 +223,11 @@
           {% include '@bf-components/button-icon/twig/index.twig' with {
             icon        : 'cart',
             hierarchy   : 'primary',
-            badge       : (badgeLabel is defined) ? badgeLabel : NULL,
+            badgeLabel  : (badgeLabel is defined) ? badgeLabel : NULL,
             href        : (cartBtn.href is defined and cartBtn.href) ? cartBtn.href : NULL,
             ariaLabel   : cartBtn.ariaLabel|default(''),
-            class       : cartBtn.class|default('')
+            class       : cartBtn.class|default(''),
+            isDisabled  : cartBtn.isDisabled|default(false)
           } only %}
         {% endif %}
 

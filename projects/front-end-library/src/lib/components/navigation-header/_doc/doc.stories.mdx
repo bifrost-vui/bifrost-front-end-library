@@ -1,5 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
 
 import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn, menuItemAccount, loginMenuItems, menuItemAccountNotConnected } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
@@ -40,7 +40,6 @@ import { HeaderComponent }          from '../angular/header.component';
 ## Component API
 
 <Props of={HeaderComponent} />
-
 
 
 ## Drupal implementation example
@@ -127,7 +126,7 @@ import { HeaderComponent }          from '../angular/header.component';
 
     hasCartBtn : true,
     cartBtn : {
-        badge       : { label : '3' },
+        badgeLabel       : '3',
         href        : 'https://www.videotron.com',
         ariaLabel   : 'My cart',
         class       : ''
@@ -163,11 +162,6 @@ import { HeaderComponent }          from '../angular/header.component';
     langcode : 'EN'
 } only %}
 ```
-
-
-
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -175,9 +169,7 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
-    withSource='none'
->
+<Canvas withSource='none'>
     <Story
         name='Drupal'
         args={{
@@ -199,6 +191,6 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 ## more info

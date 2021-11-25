@@ -23,49 +23,4 @@ img:not([usemap]) {
   background-color: rgba( var(--bf-color-bg-action-primary-rgb), .7);
 }
 
-// scrolling effect
-// on Chrome and other supporting browser : makes the horizontal scrollbar very thin(3px) and blurs the far right of the region
-
-.bf-overflow-x{
-  overflow-x: auto;
-
-  ::-webkit-scrollbar,
-  ::-webkit-scrollbar-button {
-    @include size(3px);
-    background-color: var(--bf-color-stroke-secondary);
-    @include media-breakpoint-down(md) {
-      @include size(0px);
-    }
-  }
-  &:before {
-    background-image: var(--bf-color-bg-linear-ground-x);
-    background-repeat: repeat-y;
-    content: "";
-    width: 5.5rem;
-    height: 100%;
-    position: absolute;
-    z-index: 1;
-    right: 0;
-    top: 0;
-    pointer-events: none;
-  }
-
-}
-.bf-overflow-y{
-  overflow-y: auto;
-
-  ::-webkit-scrollbar,
-  ::-webkit-scrollbar-button {
-    @include size(6px);
-    background-color: var(--bf-color-stroke-secondary);
-    @include media-breakpoint-down(md) {
-      @include size(4px);
-    }
-  }
-}
-.bf-color-bg-underground .bf-overflow-x{
-  &:before{
-    background-image: var(--bf-color-bg-linear-underground-x);
-  }
-}
 
