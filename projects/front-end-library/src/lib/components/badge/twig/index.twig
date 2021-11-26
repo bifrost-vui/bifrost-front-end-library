@@ -1,10 +1,10 @@
-{% if variant is same as ('promotion') %}
+{% if variant is defined and is same as ('promotion') %}
   {% set variantClass = 'bf-badge--promotion' %}
   {% set hierarchy    = 'tertiary-ground' %}
   {% set isRounded    = true %}
 {% endif %}
 
-<div class='bf-badge {{ variantClass|default('') }} bf-badge--{{ hierarchy|default('secondary') }} {% if isRounded %} bf-badge--rounded {% elseif angle is defined and angle %} bf-badge--angle-{{ angle }} {% endif %} {{ class|default('') }}'>
+<div class='bf-badge {{ variantClass|default('') }} bf-badge--{{ hierarchy|default('secondary') }} {% if isRounded|default(false) %} bf-badge--rounded {% elseif angle is defined and angle %} bf-badge--angle-{{ angle }} {% endif %} {{ class|default('') }}'>
   <div class='bf-badge__inner position-relative'>
     <p class='bf-text-interface-small bf-badge__label {% if noUppercase is defined and noUppercase %}text-transform-initial{% endif %}'>
       {% if iconName is defined and iconName %}
@@ -20,4 +20,5 @@
       </span>
     </p>
   </div>
+
 </div>

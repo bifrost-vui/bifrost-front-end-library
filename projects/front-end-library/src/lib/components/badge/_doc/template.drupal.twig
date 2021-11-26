@@ -31,7 +31,7 @@
       </div>
 
       <div class='py-2'>
-        <p class='small'>IconName</p>
+        <p class='small'>iconName</p>
 
         {% include '@bf-components/badge/twig/index.twig' with {
           label     : label|default('primary'),
@@ -99,12 +99,16 @@
          } %}
 
         {% include '@bf-components/badge/twig/index.twig' with {
+          variant     : variant|default(NULL),
+          angle       : angle|default(NULL),
           label       : label|default('noUppercase'),
           iconName    : iconName|default('camera'),
           noUppercase : true,
         } %}
 
         {% include '@bf-components/badge/twig/index.twig' with {
+          variant     : variant|default(''),
+          angle       : angle|default(''),
           label       : label|default('isRounded'),
           iconName    : iconName|default('camera'),
           noUppercase : true,
@@ -116,23 +120,23 @@
         <p class='small'>promotion variant</p>
 
         {% include '@bf-components/badge/twig/index.twig' with {
-          variant   : 'promotion',
+          variant   : variant|default('promotion'),
           label     : label|default('promotion'),
         } %}
 
         {% include '@bf-components/badge/twig/index.twig' with {
-          variant   : 'promotion',
+          variant   : variant|default('promotion'),
           label     : label|default('promotion'),
           iconName  : iconName|default('camera'),
         } %}
 
         {% include '@bf-components/badge/twig/index.twig' with {
-          variant   : 'promotion',
+          variant   : variant|default('promotion'),
           label     : label|default('Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
         } %}
 
         {% include '@bf-components/badge/twig/index.twig' with {
-          variant   : 'promotion',
+          variant   : variant|default('promotion'),
           label     : label|default('Lorem ipsum dolor sit amet, consectetur adipiscing.'),
           iconName  : iconName|default('camera'),
         } %}
