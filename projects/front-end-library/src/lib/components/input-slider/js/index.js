@@ -40,28 +40,21 @@ $(function() {
             $this.on('input', '.bf-input-slider__input__max', updateMaxSlider);
 
             $track.click(function (e){
-                const clickX =  parseInt(minValue) +((parseInt(e.clientX) - trackStart) * (maxValue - minValue) / trackWidth);
-                const distMin = Math.abs(startValue - parseInt(clickX));
-                const distMax = Math.abs(endValue - parseInt(clickX)) ;
-
-                console.log('minValue : '+  minValue + ' clickX : '+ clickX );
-                console.log('startValue : '+  startValue + ' endValue : '+ endValue );
-                console.log('distMin : '+  distMin + ' distMax : '+ distMax );
-
+                const clickX =  parseInt(minValue) + ((parseInt(e.clientX) - trackStart) * (maxValue - minValue) / trackWidth);
+                const distMin = Math.abs(startValue - clickX);
+                const distMax = Math.abs(endValue - clickX) ;
 
                 if (!e.inputs)
                 {
                     if (distMin < distMax)
                     {
-                        console.log('min' + clickX);
-                        $minInput.val(parseInt(clickX));
+                        $minInput.val(clickX);
                         updateMinSlider();
                         updateMaxSlider();
                     }
                     else
                     {
-                        console.log('max' + clickX);
-                        $maxInput.val(parseInt(clickX));
+                        $maxInput.val(clickX);
                         updateMinSlider();
                         updateMaxSlider();
                     }
