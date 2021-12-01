@@ -12,6 +12,8 @@ export class LinkComponent implements OnInit {
     @Input() hierarchy      : 'native' | 'primary';
     @Input() iconName       : string;
     @Input() iconPosition   : 'left' | 'right';
+    
+    @Input() isUnderline    : boolean;
     @Input() isDisabled     : boolean;
 
     @Input() extraAttribute : string;
