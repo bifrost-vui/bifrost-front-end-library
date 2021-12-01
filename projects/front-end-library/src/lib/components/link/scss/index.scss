@@ -9,13 +9,16 @@
     text-decoration: underline;
     border-radius: var(--bf-border-radius-small);
     transition: background-color .25s;
+    vertical-align: bottom;
 
     &:hover {
         background-color: var(--bf-color-bg-action-no-bg-hover);
     }
 
     &.disabled {
-        color: var(--bf-color-neutral-tertiary);
+        pointer-events: none;
+        @extend .bf-color-neutral-tertiary;
+        @extend .bf-color-bg-action-disabled;
     }
 
     &--primary {
@@ -23,5 +26,15 @@
         @extend .font-weight-bold;
         letter-spacing: 1px;
         text-transform: uppercase;
+    }
+
+    &--native {
+        .bf-icon {
+            margin-top: 3px; // 3px because align-items-start in the parent will not perfeclty align the icon and his label.
+        }
+    }
+
+    &__icon--right {
+        order: 2;
     }
 }
