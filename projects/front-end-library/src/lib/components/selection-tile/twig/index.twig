@@ -44,13 +44,22 @@
               </div>
             {% endif %}
 
-            {% if ( title is defined and title) or (description is defined and description) %}
-              <div class='bf-selection-tile__text'>
-                {% if title is defined and title %}
-                  <p class='p-0 m-0 text-break'>
-                    <strong>{{ title }}</strong>
-                  </p>
-                {% endif %}
+        {% else %}
+          <div class='bf-selection-tile__block'>
+          <div class='{{ hasVisual ? '' : 'bf-selection-tile__no-visual' }}' >
+            <div class='bf-selection-tile__body'>
+              {% if hasVisual %}
+                <div class='bf-selection-tile__visual'>
+                  {% if iconName is defined and iconName %}
+                    {% include '@bf-components/icon/twig/index.twig' with {
+                      name  : iconName,
+                      size  : (orientation == 'vertical' and fit == 'container') ? 'large' : 'medium',
+                    } only %}
+                  {% elseif image.src is defined and image.src and image.alt is defined %}
+                    <img class='{{ image.class }}' src='{{ image.src }}' alt='{{ image.alt }}' />
+                  {% endif %}
+                </div>
+              {% endif %}
 
                 {% if description is defined and description %}
                   <p class='p-0 m-0 text-break'>{{ description }}</p>
@@ -61,12 +70,22 @@
           </div>
         </div>
 
-        {% if (info is defined and info) or (orientation is same as ('vertical') and fit is same as ('container')) %}
-          <div class='bf-selection-tile__footer'>
-            <div class='bf-selection-tile__text'>
-              <p class='p-0 m-0 text-break'>{{ info }}</p>
+                  {% if description is defined and description %}
+                    <p class='p-0 m-0 text-break'>{{ description }}</p>
+                  {% endif %}
+                </div>
+              {% endif %}
             </div>
           </div>
+
+          {% if (info is defined and info) or (orientation is same as ('vertical') and fit is same as ('container')) %}
+            <div class='bf-selection-tile__footer'>
+              <div class='bf-selection-tile__text'>
+                <p class='p-0 m-0 text-break'>{{ info }}</p>
+              </div>
+            </div>
+          {% endif %}
+        </div>
         {% endif %}
       {% endif %}
     </div>
