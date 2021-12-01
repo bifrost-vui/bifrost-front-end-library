@@ -20,19 +20,53 @@ $(function() {
             // Values
             let endValue        = parseInt($maxInput.val());
             let startValue      = parseInt($minInput.val());
-            
-            // Progress Bar
+
+            // Progress Bar & track
             const $progressBar  = $this.find('.bf-input-slider__progress-track');
+            const $track        = $this.find('.bf-input-slider__panel');
 
             // Labels
             const $maxLabel     = $this.find('.bf-input-slider__label-max-value');
             const $minLabel     = $this.find('.bf-input-slider__label-min-value');
-            
+
+            const offsetTrack = $track.offset();
+            const trackStart  = parseInt(offsetTrack.left) ;
+            const trackWidth  = parseInt($track.css('width')) ;
+
             updateMinSlider();
             $this.on('input', '.bf-input-slider__input__min', updateMinSlider);
 
             updateMaxSlider();
             $this.on('input', '.bf-input-slider__input__max', updateMaxSlider);
+
+            $track.click(function (e){
+                const clickX =  parseInt(minValue) +((parseInt(e.clientX) - trackStart) * (maxValue - minValue) / trackWidth);
+                const distMin = Math.abs(startValue - parseInt(clickX));
+                const distMax = Math.abs(endValue - parseInt(clickX)) ;
+
+                console.log('minValue : '+  minValue + ' clickX : '+ clickX );
+                console.log('startValue : '+  startValue + ' endValue : '+ endValue );
+                console.log('distMin : '+  distMin + ' distMax : '+ distMax );
+
+
+                if (!e.inputs)
+                {
+                    if (distMin < distMax)
+                    {
+                        console.log('min' + clickX);
+                        $minInput.val(parseInt(clickX));
+                        updateMinSlider();
+                        updateMaxSlider();
+                    }
+                    else
+                    {
+                        console.log('max' + clickX);
+                        $maxInput.val(parseInt(clickX));
+                        updateMinSlider();
+                        updateMaxSlider();
+                    }
+                }
+            })
 
             function updateMinSlider() {
                 // Set value
@@ -41,13 +75,13 @@ $(function() {
 
                 // Set label
                 $minLabel.html(startValue);
-                
+
                 // Update Progress Bar
                 const startHandlePosition = calculPosition(startValue);
                 $progressBar.css('left', startHandlePosition + '%');
             }
 
-            function updateMaxSlider() {
+            function updateMaxSlider(clickX) {
                 // Set value
                 endValue = Math.max($maxInput.val(), startValue + minimumGap);
                 $maxInput.val(endValue);
@@ -93,7 +127,7 @@ $(function() {
                 if (isInverted) {
                     $progressBar.css('left', startHandlePosition + '%');
                 } else {
-                    $progressBar.css('width', startHandlePosition + '%');    
+                    $progressBar.css('width', startHandlePosition + '%');
                 }
             }
         }
