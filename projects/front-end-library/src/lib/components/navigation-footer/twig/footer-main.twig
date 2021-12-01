@@ -28,10 +28,11 @@
                             {% for link in footerLink.links %}
                                 <li class='p-0 mb-2'>
                                     {% include '@bf-components/link/twig/index.twig' with {
-                                        href    : link.href,
-                                        label   : link.label,
-                                        class   : 'd-block d-lg-inline py-2 py-lg-0',
-                                        rel     : link.rel|default('dofollow')
+                                        href        : link.href,
+                                        label       : link.label,
+                                        class       : 'd-block d-lg-inline py-2 py-lg-0',
+                                        rel         : link.rel|default('dofollow'),
+                                        isUnderline : false
                                     } only %}
                                 </li>
                             {% endfor %}
@@ -42,9 +43,11 @@
             
             {% if hasBackToTopLink is not same as (false) %}
                 <div class='col-lg-2 order-1 order-lg-2 py-3 py-lg-0 text-center' data-animate='fade-in'>
-                    {% include '@bf-components/link/twig/back-to-top.twig' with {
-                        label   : backToTopLabel|default('Back to top'),
-                        class   : ''
+                    {% include '@bf-components/link/twig/index.twig' with {
+                        label       : backToTopLabel|default('Back to top'),
+                        iconName    : 'chevron-up',
+                        iconPosition: 'right',
+                        isUnderline : false
                     } only %}
                 </div>
             {% endif %}
