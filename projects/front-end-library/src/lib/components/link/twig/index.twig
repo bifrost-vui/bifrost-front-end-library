@@ -1,9 +1,23 @@
 <a
-    href="{{ href|default('') }}"
-    {% if label is not empty %}data-title="{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}"{% endif %}
-    class="link-default-optimized {{ class }}"
-    rel="{{ rel|default('') }}"
+    class='
+        bf-link
+        {{ hierarchy == 'primary' ? 'bf-link--primary' : 'bf-link--native' }}
+        {% if reversed is same as (true) %}reversed{% endif %}
+        {{ isDisabled ? 'disabled' : ''}}
+        {{ class }}'
+    href='{{ href|default('') }}'
+    {% if label is not empty %}data-title='{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}'{% endif %}
+    rel='{{ rel|default('') }}'
     {{ extraAttribute|default(NULL) }}
 >
-    {{ label|default('') }}
+    <span class='d-flex gap-1'>
+        {% if iconName is defined and iconName %}
+            {% include '@bf-components/icon/twig/index.twig' with {
+                name    : iconName,
+                size    : hierarchy == 'primary' ? 'small' : 'xsmall',
+                class   : iconPosition is same as ('right') ? 'bf-link__icon--right' : ''
+            } only %}
+        {% endif %}
+        {{ label|default('') }}
+    </span>
 </a>
