@@ -24,16 +24,22 @@
                 } %}
 
                 {% include '@bf-components/link/twig/index.twig' with {
-                    label       : label|default('Link native'),
+                    label       : label|default('Disabled'),
                     iconName    : iconName|default('external-link'),
                     isDisabled  : isDisabled|default(true)
+                } %}
+
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default('No underline'),
+                    iconName    : iconName|default('external-link'),
+                    isUnderline : isUnderline|default(false)
                 } %}
 
                 <a href='#' class='bf-link {{ hierarchy == 'primary' ? 'bf-link--primary' : 'bf-link--native' }} {{ isDisabled ? 'disabled' : '' }} {{ class }}'>
                     {{ label|default('CSS only') }}
                 </a>
                 <a href='#' class='bf-link {{ hierarchy == 'primary' ? 'bf-link--primary' : 'bf-link--native' }} {{ isDisabled|default(true) ? 'disabled' : '' }} {{ class }}'>
-                    {{ label|default('CSS only') }}
+                    {{ label|default('CSS only disabled') }}
                 </a>
             </div>
 
@@ -60,17 +66,24 @@
                 } %}
 
                 {% include '@bf-components/link/twig/index.twig' with {
-                    label       : label|default('Link primary'),
+                    label       : label|default('Disabled'),
                     hierarchy   : hierarchy|default('primary'),
                     iconName    : iconName|default('external-link'),
                     isDisabled  : isDisabled|default(true)
+                } %}
+
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default('No underline'),
+                    hierarchy   : hierarchy|default('primary'),
+                    iconName    : iconName|default('external-link'),
+                    isUnderline : isUnderline|default(false)
                 } %}
 
                 <a href='#' class='bf-link {{ hierarchy|default('primary') == 'primary' ? 'bf-link--primary' : 'bf-link--native' }} {{ isDisabled ? 'disabled' : '' }} {{ class }}'>
                     {{ label|default('CSS only') }}
                 </a>
                 <a href='#' class='bf-link {{ hierarchy|default('primary') == 'primary' ? 'bf-link--primary' : 'bf-link--native' }} {{ isDisabled|default(true) ? 'disabled' : '' }} {{ class }}'>
-                    {{ label|default('CSS only') }}
+                    {{ label|default('CSS only disabled') }}
                 </a>
             </div>
 

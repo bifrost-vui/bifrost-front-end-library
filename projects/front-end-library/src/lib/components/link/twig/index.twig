@@ -2,8 +2,9 @@
     class='
         bf-link
         {{ hierarchy == 'primary' ? 'bf-link--primary' : 'bf-link--native' }}
-        {% if reversed is same as (true) %}reversed{% endif %}
+        {{ isUnderline|default(true) ? '' : 'bf-link--no-underline' }}
         {{ isDisabled ? 'disabled' : ''}}
+        {{ reversed ? 'reversed' : '' }}
         {{ class }}'
     href='{{ href|default('') }}'
     {% if label is not empty %}data-title='{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}'{% endif %}
