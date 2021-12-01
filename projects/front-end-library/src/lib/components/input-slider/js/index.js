@@ -21,14 +21,15 @@ $(function() {
             let endValue        = parseInt($maxInput.val());
             let startValue      = parseInt($minInput.val());
 
-            // Progress Bar & track
+            // Progress Bar
             const $progressBar  = $this.find('.bf-input-slider__progress-track');
-            const $track        = $this.find('.bf-input-slider__panel');
 
             // Labels
             const $maxLabel     = $this.find('.bf-input-slider__label-max-value');
             const $minLabel     = $this.find('.bf-input-slider__label-min-value');
 
+            // clickable track
+            const $track        = $this.find('.bf-input-slider__panel');
             const offsetTrack = $track.offset();
             const trackStart  = parseInt(offsetTrack.left) ;
             const trackWidth  = parseInt($track.css('width')) ;
