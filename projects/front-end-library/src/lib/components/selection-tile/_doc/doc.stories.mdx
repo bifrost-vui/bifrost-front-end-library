@@ -115,6 +115,21 @@ export const commonProps = {
     </Story>
 </Canvas>
 
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story
+        name='Drupal - Color Picker - Example'
+        args={{
+            elementPath : 'components/selection-tile/_doc/example.drupal',
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
 
 ## Drupal's implementation examples
 
@@ -158,6 +173,15 @@ export const commonProps = {
             alt : 'the movie chanel'
         }
         info        : '$12.34/Month'
+    } only %}
+
+     {% include '@bf-components/selection-tile/twig/index.twig'  with {
+      inputId     : 'phone-color',
+      type        : 'radio',
+      content     : '<div class="bf-selection-tile__color"  style="background-color:#000000"></div>',
+      ariaLabel   : 'phone-color',
+      name        : 'color',
+      orientation : 'vertical'
     } only %}
 ```
 
