@@ -30,9 +30,10 @@ $(function() {
 
             // clickable track
             const $track        = $this.find('.bf-input-slider__panel');
-            const offsetTrack = $track.offset();
-            const trackStart  = parseInt(offsetTrack.left) ;
-            const trackWidth  = parseInt($track.css('width')) ;
+            const offsetTrack   = $track.offset();
+            const trackStart    = parseInt(offsetTrack.left) ;
+            const trackWidth    = parseInt($track.css('width')) ;
+
 
             updateMinSlider();
             $this.on('input', '.bf-input-slider__input__min', updateMinSlider);
