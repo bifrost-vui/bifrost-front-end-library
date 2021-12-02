@@ -13,8 +13,6 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class BreadcrumbComponent implements OnInit {
     constructor() {}
 
-    @Input() class          : string;
-
     ngOnInit() {
         console.log('breadcrumb', this);
     }

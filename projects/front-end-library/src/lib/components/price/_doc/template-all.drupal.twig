@@ -1,8 +1,11 @@
 {% set upfront          = upfront|json_parse %}
 {% set hasAsterisk      = hasAsterisk|json_parse %}
 {% set promotion        = promotion|json_parse %}
+{% set dollar           = dollar|json_parse %}
+{% set cent             = cent|json_parse %}
 {% set reversed         = reversed|json_parse %}
 {% set fullWidth        = fullWidth|json_parse %}
+
 
 <div class='d-flex flex-column flex-sm-row justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
     {% for index in [1,2] %}
@@ -14,7 +17,7 @@
 
                     <h3 class='mt-5 ml-3'>Size '{{ size }}'</h3>
 
-                    <div class='d-flex flex-column flex-lg-row'>
+                    <div class='d-flex flex-column flex-lg-row border-bottom bf-border-color-tertiary'>
 
                         {% include '@bf-components/price/twig/index.twig' %}
 
@@ -28,7 +31,7 @@
 
                     <h3 class='mt-5 ml-3'>Size 'small' (default)</h3>
 
-                    <div class='d-flex flex-column flex-lg-row'>
+                    <div class='d-flex flex-column flex-lg-row border-bottom bf-border-color-tertiary'>
 
                         {% include '@bf-components/price/twig/index.twig' %}
 
@@ -40,7 +43,7 @@
 
                     <h3 class='mt-5 ml-3'>Size 'medium'</h3>
 
-                    <div class='d-flex flex-column flex-lg-row'>
+                    <div class='d-flex flex-column flex-lg-row border-bottom bf-border-color-tertiary'>
 
                         {% include '@bf-components/price/twig/index.twig' with {
                             size        : size|default('medium')
@@ -55,8 +58,8 @@
 
                     <h3 class='mt-5 ml-3'>Size 'large'</h3>
 
-                    <div class='d-flex flex-column flex-lg-row'>
-
+                    <div class='d-flex flex-column'>
+                        
                         {% include '@bf-components/price/twig/index.twig' with {
                             size        : size|default('large')
                         } %}
