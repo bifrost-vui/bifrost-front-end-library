@@ -35,6 +35,11 @@
                     isUnderline : isUnderline|default(false)
                 } %}
 
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default(''),
+                    iconName    : iconName|default('external-link')
+                } %}
+
                 <a href='#' class='bf-link {{ hierarchy == 'primary' ? 'bf-link--primary' : 'bf-link--native' }} {{ isDisabled ? 'disabled' : '' }} {{ class }}'>
                     {{ label|default('CSS only') }}
                 </a>
@@ -77,6 +82,12 @@
                     hierarchy   : hierarchy|default('primary'),
                     iconName    : iconName|default('external-link'),
                     isUnderline : isUnderline|default(false)
+                } %}
+
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default(''),
+                    hierarchy   : hierarchy|default('primary'),
+                    iconName    : iconName|default('external-link')
                 } %}
 
                 <a href='#' class='bf-link {{ hierarchy|default('primary') == 'primary' ? 'bf-link--primary' : 'bf-link--native' }} {{ isDisabled ? 'disabled' : '' }} {{ class }}'>
