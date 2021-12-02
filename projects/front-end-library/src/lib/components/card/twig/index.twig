@@ -143,10 +143,7 @@
           {% if detailsColors is defined %}
             <ul class='bf-card__details-colors list-unstyled d-flex mb-0 mr-2'>
               {% for color in detailsColors|default([]) %}
-                <li
-                  style='background-color: {{ '#' ~ color.value }}'
-                  title='Color {{ color.name }}'
-                ></li>
+                <li style='background-color: {{ '#' ~ color.value }}' title='Color {{ color.name }}'></li>
               {% endfor %}
             </ul>
           {% endif %}
@@ -155,8 +152,9 @@
             <p class='small mb-0'>
               {% for stockage in detailsStorage|default([]) %}
                 <span class='font-weight-bold'>
-                                {{ stockage }}
-                            </span>
+                  {{ stockage }}
+                </span>
+
                 {% if loop.last is same as (false) %}/{% endif %}
               {% endfor %}
             </p>
@@ -178,10 +176,9 @@
         <div class='bf-card__content-badge bf-card__content-badge--promotion mt-3  mx-3 mx-sm-4'>
           {% for promotionBadge in promotionBadges %}
             {% include '@bf-components/badge/twig/index.twig' with {
+              variant     : 'promotion',
               label       : promotionBadge.label,
-              iconName    : promotionBadge.iconName,
-              hierarchy   : 'tertiary-ground',
-              isRounded   : true,
+              iconName    : promotionBadge.iconName
             } only %}
           {% endfor %}
         </div>

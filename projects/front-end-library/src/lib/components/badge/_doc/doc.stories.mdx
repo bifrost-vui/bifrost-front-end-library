@@ -12,12 +12,15 @@ import { BadgeComponent }               from '../angular/badge.component';
         moduleMetadata({ declarations: [BadgeComponent, TwigContainerComponent]}),
     ]}
     argTypes={{
+        variant: {
+            control: { type: 'select' }
+        },
         hierarchy: {
             table:   { defaultValue: { summary: 'secondary' } },
             control: { type: 'select' }
         },
         angle: {
-            control: { type: 'select' }
+           control: { type: 'select' }
         },
         noUppercase: {
             table:  { defaultValue: { summary: false } },
@@ -29,7 +32,7 @@ import { BadgeComponent }               from '../angular/badge.component';
                 options: ['', 'placeholder', ...illustrationIcons.map(a => a.list).flat().sort()]
             }
         },
-        _disabled : {
+        _disabled: {
             table:{ disable: true }
         }
     }}
@@ -40,12 +43,8 @@ import { BadgeComponent }               from '../angular/badge.component';
 
 <br/>
 
-
-
 ## Component API
 <Props of={BadgeComponent} />
-
-
 
 
 ## Drupal implementation example
@@ -53,9 +52,16 @@ import { BadgeComponent }               from '../angular/badge.component';
 ```jsx
 {% include '@bf-components/badge/twig/index.twig' with {
     label       : 'Free',
-    class       : 'my-2',
     hierarchy   : 'primary'
     iconName    : 'camera'
+    class       : 'my-2',
+} only %}
+
+{% include '@bf-components/badge/twig/index.twig' with {
+    variant  : 'promotion'
+    label    : '0$ Welcome credit',
+    iconName : 'credit-welcome',
+    class    : 'my-2',
 } only %}
 ```
 

@@ -1,11 +1,12 @@
 {% set reversed     = reversed|json_parse %}
 {% set noUppercase  = noUppercase|json_parse %}
 {% set isRounded    = isRounded|json_parse %}
+{% set label        = label|json_parse %}
 
-<div class='d-flex flex-column justify-content-center {% if reversed %}reversed bf-color-bg-ground{% endif %} {{ _disabled ? 'disabled' : '' }}'>
+<div class='container-fluid {% if reversed %}reversed bf-color-bg-ground{% endif %} {{ _disabled ? 'disabled' : '' }}'>
   {% for index in [1,2] %}
-    <div class='d-flex flex-column flex-sm-row justify-content-center gap-4 p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
-      <div class='d-flex flex-column align-items-start py-2'>
+    <div class='d-flex flex-column flex-md-row justify-content-center gap-4 p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
+      <div class='py-2'>
         <p class='small'>hierarchy</p>
 
         {% include '@bf-components/badge/twig/index.twig' with {
@@ -29,7 +30,7 @@
         } %}
       </div>
 
-      <div class='d-flex flex-column align-items-start py-2'>
+      <div class='py-2'>
         <p class='small'>iconName</p>
 
         {% include '@bf-components/badge/twig/index.twig' with {
@@ -57,8 +58,7 @@
         } %}
       </div>
 
-      <div class='d-flex flex-column align-items-start py-2'>
-
+      <div class='py-2'>
         <p class='small'>angle</p>
 
         {% include '@bf-components/badge/twig/index.twig' with {
@@ -84,8 +84,7 @@
         } %}
       </div>
 
-      <div class='d-flex flex-column align-items-start py-2'>
-
+      <div class='py-2'>
         <p class='small'>noUppercase & isRounded</p>
 
         {% include '@bf-components/badge/twig/index.twig' with {
@@ -100,18 +99,49 @@
          } %}
 
         {% include '@bf-components/badge/twig/index.twig' with {
+          variant     : variant|default(NULL),
+          angle       : angle|default(NULL),
           label       : label|default('noUppercase'),
           iconName    : iconName|default('camera'),
           noUppercase : true,
         } %}
 
         {% include '@bf-components/badge/twig/index.twig' with {
+          variant     : variant|default(''),
+          angle       : angle|default(''),
           label       : label|default('isRounded'),
           iconName    : iconName|default('camera'),
           noUppercase : true,
           isRounded   : true
         } %}
       </div>
+
+      <div class='py-2'>
+        <p class='small'>promotion variant</p>
+
+        {% include '@bf-components/badge/twig/index.twig' with {
+          variant   : variant|default('promotion'),
+          label     : label|default('promotion'),
+        } %}
+
+        {% include '@bf-components/badge/twig/index.twig' with {
+          variant   : variant|default('promotion'),
+          label     : label|default('promotion'),
+          iconName  : iconName|default('camera'),
+        } %}
+
+        {% include '@bf-components/badge/twig/index.twig' with {
+          variant   : variant|default('promotion'),
+          label     : label|default('Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+        } %}
+
+        {% include '@bf-components/badge/twig/index.twig' with {
+          variant   : variant|default('promotion'),
+          label     : label|default('Lorem ipsum dolor sit amet, consectetur adipiscing.'),
+          iconName  : iconName|default('camera'),
+        } %}
+      </div>
+
     </div>
   {% endfor %}
 </div>
