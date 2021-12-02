@@ -11,11 +11,13 @@
     transition: background-color .25s;
     vertical-align: bottom;
 
-    &:hover {
+    &:hover,
+    &:focus {
         background-color: var(--bf-color-bg-action-no-bg-hover);
     }
 
-    &.disabled {
+    &.disabled,
+    &.disabled:not([href]) {
         pointer-events: none;
         @extend .bf-color-neutral-tertiary;
         @extend .bf-color-bg-action-disabled;
