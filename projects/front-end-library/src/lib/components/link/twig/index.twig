@@ -3,13 +3,22 @@
         bf-link
         {{ hierarchy == 'primary' ? 'bf-link--primary' : 'bf-link--native' }}
         {{ isUnderline|default(true) ? '' : 'bf-link--no-underline' }}
-        {{ isDisabled ? 'disabled' : ''}}
-        {{ reversed ? 'reversed' : '' }}
         {{ label is empty ? 'bf-link--icon-only' }}
+        {{ isDisabled ? 'disabled' }}
+        {{ reversed ? 'reversed' }}
         {{ class }}'
-    href='{{ href|default('') }}'
-    {% if label is not empty %}data-title='{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}'{% endif %}
-    rel='{{ rel|default('') }}'
+    {% if isDisabled %}
+        aria-disabled='true'
+        role='link'
+    {% else %}
+        href='{{ href|default('') }}'
+    {% endif %}
+    {% if label %}
+        data-title='{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}'
+    {% endif %}
+    {% if rel %}
+        rel='{{ rel|default('') }}'
+    {% endif %}
     {{ extraAttribute|default(NULL) }}
 >
     <span class='d-flex align-items-center gap-1'>
