@@ -46,22 +46,19 @@ $(function() {
                 const distMin = Math.abs(startValue - clickX);
                 const distMax = Math.abs(endValue - clickX) ;
 
-                if (!e.inputs)
-                {
-                    if (distMin < distMax)
-                    {
+                if (!e.inputs) {
+                    if (distMin < distMax) {
                         $minInput.val(clickX);
                         updateMinSlider();
                         updateMaxSlider();
                     }
-                    else
-                    {
+                    else {
                         $maxInput.val(clickX);
                         updateMinSlider();
                         updateMaxSlider();
                     }
                 }
-            })
+            });
 
             function updateMinSlider() {
                 // Set value
