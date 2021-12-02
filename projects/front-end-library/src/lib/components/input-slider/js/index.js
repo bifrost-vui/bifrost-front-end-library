@@ -42,7 +42,8 @@ $(function() {
             $this.on('input', '.bf-input-slider__input__max', updateMaxSlider);
 
             $track.click(function(e) {
-                const clickX =  parseInt(minValue) + ((parseInt(e.clientX) - trackStart) * (maxValue - minValue) / trackWidth);
+                const clickX = parseInt(minValue) + ((parseInt(e.clientX) - trackStart) * (maxValue - minValue) / trackWidth);
+
                 const distMin = Math.abs(startValue - clickX);
                 const distMax = Math.abs(endValue - clickX) ;
 
