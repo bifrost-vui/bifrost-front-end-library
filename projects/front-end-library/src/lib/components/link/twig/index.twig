@@ -5,18 +5,19 @@
         {{ isUnderline|default(true) ? '' : 'bf-link--no-underline' }}
         {{ isDisabled ? 'disabled' : ''}}
         {{ reversed ? 'reversed' : '' }}
+        {{ label is empty ? 'bf-link--icon-only' }}
         {{ class }}'
     href='{{ href|default('') }}'
     {% if label is not empty %}data-title='{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}'{% endif %}
     rel='{{ rel|default('') }}'
     {{ extraAttribute|default(NULL) }}
 >
-    <span class='d-flex gap-1'>
+    <span class='d-flex align-items-center gap-1'>
         {% if iconName is defined and iconName %}
             {% include '@bf-components/icon/twig/index.twig' with {
                 name    : iconName,
                 size    : hierarchy == 'primary' ? 'small' : 'xsmall',
-                class   : iconPosition is same as ('right') ? 'bf-link__icon--right' : ''
+                class   : (iconPosition is same as ('right') ? 'order-2')
             } only %}
         {% endif %}
         {{ label|default('') }}
