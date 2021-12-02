@@ -13,8 +13,11 @@
     {% else %}
         href='{{ href|default('') }}'
     {% endif %}
-    {% if label %}
-        data-title='{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}'
+    {% if title is defined and title %}
+        title='{{ title }}'
+    {% endif %}
+    {% if ariaLabel is defined and ariaLabel %}
+        aria-label='{{ ariaLabel}}'
     {% endif %}
     {% if rel %}
         rel='{{ rel|default('') }}'
