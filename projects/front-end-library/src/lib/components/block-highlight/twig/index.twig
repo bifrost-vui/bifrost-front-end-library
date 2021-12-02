@@ -1,17 +1,17 @@
-{% set hasImage         = image.src is defined and image.src is not empty %}
+{% set hasImage         = image.src is defined and image.src %}
 {% set titleTag         = titleTag|default('p') %}
 
 <article class='
-    bf-block bf-block--highlight {{ isFeatured ? 'bf-block--featured' : '' }}
+    bf-block bf-block--highlight {{ isFeatured ? 'bf-block--featured' }}
     w-100 d-flex flex-column flex-sm-row overflow-hidden bf-border-radius-medium border bf-border-color-secondary
     {{ blockBackgroundColor|default('ground') == 'underground' ? 'bf-color-bg-underground' : 'bf-color-bg-ground' }}
-    {{ reversed ? 'reversed' : '' }}
+    {{ reversed ? 'reversed' }}
     {{ class }}'
 >
 
     {% if hasImage %}
         <div
-            class='bf-block__visual bf-color-bg-brand'
+            class='bf-block__visual bf-color-bg-brand {{ visualBackgroundFit|default(null) == 'cover' ? 'bf-block__visual--cover' }}'
             style='background-image: url({{ image.src }});
                 {% if visualBackgroundColor is defined and visualBackgroundColor %}background-color: {{ visualBackgroundColor }}; {% endif %}
             '
@@ -19,8 +19,7 @@
         </div>
     {% endif %}
     
-    
-    <div class='d-flex flex-column {{ isFeatured ? 'justify-content-center' : '' }} p-4 p-sm-5'>
+    <div class='d-flex flex-column {{ isFeatured ? 'justify-content-center' }} p-4 p-sm-5'>
         {% if title is defined %}
             <{{ titleTag }} class='text-break {{ isFeatured ? 'h2' : 'h3' }}'>
                 {{ title }}
