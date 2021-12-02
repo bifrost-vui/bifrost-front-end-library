@@ -7,17 +7,16 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 export class LinkComponent implements OnInit {
     constructor() {}
 
-    @Input() value          : string;
+    @Input() label          : string;
     @Input() href           : string;
     @Input() hierarchy      : 'native' | 'primary';
     @Input() iconName       : string;
     @Input() iconPosition   : 'left' | 'right';
-    
     @Input() isUnderline    : boolean;
     @Input() isDisabled     : boolean;
-
     @Input() extraAttribute : string;
     @Input() rel            : string;
+
     @Input() class          : string;
     @Input() reversed       : boolean;
 
