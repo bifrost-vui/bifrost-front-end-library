@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
 
-import { topBar_items, topBar_secondaryItems, rigthIconLinks } from './data';
+import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn, menuItemAccount } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent }          from '../angular/header.component';
 
@@ -37,6 +37,9 @@ import { HeaderComponent }          from '../angular/header.component';
 
 <br/>
 
+## Component API
+
+<Props of={HeaderComponent} />
 
 
 ## Drupal implementation example
@@ -91,31 +94,32 @@ import { HeaderComponent }          from '../angular/header.component';
         { icon : 'email',   href : ' ', class : '' },
         { icon : 'pin',     href : ' ', class : '' },
     ],
-
+    hasCartBtn : true,
+    cartBtn : {
+        badgeLabel       : '3',
+        href        : 'https://www.videotron.com',
+        ariaLabel   : 'My cart',
+        class       : ''
+    },
+    menuItemAccount : [
+        { label : 'Action', href: '#' },
+        { label : 'Another action', href: '#' },
+        { label : 'Something else here', href: '#' },
+    ],
     hasAccountBtn : true,
     isConnected : true,
     hrefLogOut : '#',
     labelLogOut : 'Log out',
+    labelLogIn  : 'Log In',
     hrefConnexion : '#',
     labelConnexion : 'Connexion',
-
     search : {
         placeholder : 'What are you looking for?'
     },
-
     reversed : true,
     langcode : 'EN'
 } only %}
 ```
-
-
-
-## Component API
-
-<Props of={HeaderComponent} />
-
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -135,9 +139,14 @@ export const Drupal = (args) => ({
                 href                : '/',
             },
             rigthIconLinks,
+            menuItemAccount,
+            cartBtn,
         }}
-        height='500px'
+        height='400px'
+        with = '1200px'
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
+
+## more info
