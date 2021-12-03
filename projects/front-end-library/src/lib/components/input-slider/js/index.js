@@ -20,19 +20,46 @@ $(function() {
             // Values
             let endValue        = parseInt($maxInput.val());
             let startValue      = parseInt($minInput.val());
-            
+
             // Progress Bar
             const $progressBar  = $this.find('.bf-input-slider__progress-track');
 
             // Labels
             const $maxLabel     = $this.find('.bf-input-slider__label-max-value');
             const $minLabel     = $this.find('.bf-input-slider__label-min-value');
-            
+
+            // clickable track
+            const $track        = $this.find('.bf-input-slider__panel');
+            const offsetTrack   = $track.offset();
+            const trackStart    = parseInt(offsetTrack.left) ;
+            const trackWidth    = parseInt($track.css('width')) ;
+
+
             updateMinSlider();
             $this.on('input', '.bf-input-slider__input__min', updateMinSlider);
 
             updateMaxSlider();
             $this.on('input', '.bf-input-slider__input__max', updateMaxSlider);
+
+            $track.click(function(e) {
+                const clickX = parseInt(minValue) + ((parseInt(e.clientX) - trackStart) * (maxValue - minValue) / trackWidth);
+
+                const distMin = Math.abs(startValue - clickX);
+                const distMax = Math.abs(endValue - clickX) ;
+
+                if (!e.inputs) {
+                    if (distMin < distMax) {
+                        $minInput.val(clickX);
+                        updateMinSlider();
+                        updateMaxSlider();
+                    }
+                    else {
+                        $maxInput.val(clickX);
+                        updateMinSlider();
+                        updateMaxSlider();
+                    }
+                }
+            });
 
             function updateMinSlider() {
                 // Set value
@@ -41,13 +68,13 @@ $(function() {
 
                 // Set label
                 $minLabel.html(startValue);
-                
+
                 // Update Progress Bar
                 const startHandlePosition = calculPosition(startValue);
                 $progressBar.css('left', startHandlePosition + '%');
             }
 
-            function updateMaxSlider() {
+            function updateMaxSlider(clickX) {
                 // Set value
                 endValue = Math.max($maxInput.val(), startValue + minimumGap);
                 $maxInput.val(endValue);
@@ -93,7 +120,7 @@ $(function() {
                 if (isInverted) {
                     $progressBar.css('left', startHandlePosition + '%');
                 } else {
-                    $progressBar.css('width', startHandlePosition + '%');    
+                    $progressBar.css('width', startHandlePosition + '%');
                 }
             }
         }

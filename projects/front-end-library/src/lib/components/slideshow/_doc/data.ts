@@ -1,4 +1,4 @@
-export const slides=[
+export const slides = [
     {
         badge       : {
             label       : "badge label with icon",
@@ -16,7 +16,6 @@ export const slides=[
             }
         ],
         background      : "highlight",
-        height          : 'large'
     },
     {
         upperTitle  : "Upper Title",
@@ -36,7 +35,6 @@ export const slides=[
             alt : "Helix"
         },
         background  : "ground",
-        height      : 'large'
     },
     {
         badge       : "Badge label",
@@ -70,7 +68,6 @@ export const slides=[
         },
         background  : "ground",
         reversed    : true,
-        height          : 'large'
     },
     {
         badge       : "badge label",
@@ -97,6 +94,5 @@ export const slides=[
             isSplitted : true
         },
         reversed    : true,
-        height      : 'large'
     }
 ];
