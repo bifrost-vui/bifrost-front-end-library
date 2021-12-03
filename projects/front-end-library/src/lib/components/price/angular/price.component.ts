@@ -1,42 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
-
-interface IUpfront {
-  label         : string;
-  dollar        : number;
-}
-
-interface IPromotion {
-  priceStriked  : number;
-  priceSaved    : number;
-  savedLabel    : string;
-  superscript   : string;
-  direction     : string;
-}
-
-export interface IPrice {
-    upperTitle  : string;
-    upfront     : IUpfront;
-    dollar      : number;
-    dollarClass : string;
-    cent        : number;
-    hasAsterisk : boolean;
-    promotion   : IPromotion;
-    details     : string;
-    message     : string;
-    size        : 'small' | 'medium' | 'large';
-    fullWidth   : boolean;
-    class       : string;
-    reversed    : boolean;
-    language    : 'en' | 'fr';
-}
-
-// 'vertical' | 'horizontal';
-
-/**
- * API is the same between **Angular** and **Drupal**.
- *
- */
-
+import { IUpfront, IPromotion } from './api.model';
+ 
 @Component({
     selector: 'bf-price',
     templateUrl: './price.component.html',

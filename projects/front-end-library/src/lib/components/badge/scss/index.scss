@@ -109,8 +109,19 @@
 }
 
 .disabled {
-    .bf-badge .bf-badge__inner {
-        --color: var(--bf-color-neutral-tertiary);
-        --bg-color: var(--bf-color-bg-action-no-bg-hover);
+    .bf-badge {
+        .bf-badge__inner {
+            @extend .bf-color-neutral-tertiary;
+            @extend .bf-color-bg-action-disabled;
+
+            svg {
+                color: var(--bf-color-neutral-tertiary)
+            }
+        }
+
+        @at-root reversed,
+        &--primary .bf-badge__inner svg {
+            color: var(--bf-color-neutral-tertiary) !important;
+        }
     }
 }
