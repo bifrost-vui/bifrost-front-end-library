@@ -1,0 +1,110 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Props }           from '@storybook/addon-docs';
+
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { SectionTilesKSPComponent }                     from '../angular/section-tiles-ksp.component';
+
+
+<Meta
+    title='Sections/Tiles-KSP'
+    component={SectionTilesKSPComponent}
+    decorators={[
+        moduleMetadata({ declarations: [SectionTilesKSPComponent, TwigContainerComponent]})
+    ]}
+    argTypes={{
+    }}
+/>
+
+
+# Section Tiles KSP
+
+<br/>
+
+
+
+## Component API
+
+<Props of={SectionTilesKSPComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-sections/tiles-ksp/twig/index.twig' with {
+} only %}
+```
+
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        height='600px'
+        args={{
+            elementPath     : 'sections/tiles-ksp/_doc/template.drupal',
+            title           : 'Shop your cell phone plan and mobile phone your way',
+            tiles           : [
+                {
+                    href            : 'https://example.com',
+                    title           : 'Shop accessories',
+                    paragraph       : 'Add accessories to your cell phone to get the most out of it.',
+                    linkLabel       : 'Shop',
+                    icon            : {
+                        name  : 'television',
+                    },
+                    isClickable     : true,
+                    class           : '',
+                },
+                {
+                    href            : 'https://example.com',
+                    title           : 'Trade-in your phone',
+                    paragraph       : 'Trade-in your old phone and get a credit for a new phone.',
+                    linkLabel       : 'Trade-in program',
+                    icon            : {
+                        name  : 'helix-mic',
+                        color : 'neutral'
+                    },
+                    backgroundImage : {
+                        src : '/images/_docs/hero-helix-reversed.png'
+                    },
+                    isClickable     : true,
+                    reversed        : true,
+                    class           : '',
+                },
+                {
+                    href            : 'https://example.com',
+                    title           : 'Shop in-store',
+                    paragraph       : 'Search by address, city or postal code to find our store nearest to you.',
+                    linkLabel       : 'Find a store',
+                    icon            : {
+                        name  : 'wifi',
+                    },
+                    backgroundColor : 'highlight',
+                    isClickable     : true,
+                    class           : '',
+                },
+                {
+                    href            : 'https://example.com',
+                    title           : 'Shop in-store',
+                    paragraph       : 'Search by address, city or postal code to find our store nearest to you.',
+                    linkLabel       : 'Find a store',
+                    icon            : {
+                        name  : 'trio-wifi',
+                    },
+                    isClickable     : true,
+                    class           : '',
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
