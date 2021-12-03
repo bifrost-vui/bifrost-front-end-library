@@ -1,0 +1,25 @@
+{% set isClickable      = isClickable|json_parse %}
+{% set icon             = icon|json_parse %}
+{% set backgroundImage  = backgroundImage|json_parse %}
+{% set isDisabled       = isDisabled|json_parse %}
+{% set reversed         = reversed|json_parse %}
+
+<div class='template-container'>
+    {% for index in [1,2] %}
+
+        <div class='flex-grow-1 d-flex align-items-center justify-content-center minh-100 py-4 {{ reversed|default(index == 2) ? 'reversed bf-color-bg-ground' }}'>
+
+            {% include '@bf-components/tile-ksp/twig/index.twig' %}
+
+        </div>
+
+    {% endfor %}
+</div>
+
+<style>
+    .template-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: 100vh;
+    }
+</style>

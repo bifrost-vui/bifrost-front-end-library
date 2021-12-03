@@ -1,0 +1,45 @@
+{% set isLink = href is defined and href and isClickable is defined and isClickable %}
+{% set titleTag = titleTag|default('p') %}
+
+<{{ isLink ? 'a' : 'div' }}
+	{% if isLink %}
+		href='{{ href|default('') }}'
+	{% endif %}
+	class='
+		bf-tile-ksp d-flex flex-column align-items-start gap-2 p-4 p-sm-6 
+		{% if backgroundColor is defined and backgroundColor is same as ('ground') %}
+			bf-color-bg-ground
+    {% elseif backgroundColor is defined and backgroundColor is same as ('highlight') %}
+			bf-color-bg-highlight
+		{% else %}
+			bf-color-bg-underground
+		{% endif %}
+		{{ reversed ? 'reversed' }}
+		{{ class|default('') }}
+		'
+	{% if backgroundImage is defined and backgroundImage %}
+		style='background-image: url("{{ backgroundImage.src }}")'
+	{% endif %}
+>
+	{% if icon is defined and icon %}
+		{% if icon is not iterable %}
+			{% set icon = { name: icon } %}
+		{% endif %}
+		{% set icon = icon|merge({ size: 'large' }) %}
+		{% include '@bf-components/icon/twig/index.twig' with icon only %}
+	{% endif %}
+
+	<{{ titleTag }} class='bf-text-interface-large m-0'>
+		{{ title|default('') }}
+	</{{ titleTag }}>
+
+	{% if description is defined and description %}
+		<p class='small m-0'>{{ description }}</p>
+		{% if isLink %}
+			<p class='bf-link bf-link--primary mb-0'>{{ linkLabel }}</p>
+		{% else %}
+			<a class='bf-link bf-link--primary' href='{{ href }}'>{{ linkLabel }}</a>
+		{% endif %}
+	{% endif %}
+		
+</{{ isLink ? 'a' : 'div' }}>
