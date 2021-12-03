@@ -1,12 +1,12 @@
 <a
     class='
         bf-link
-        {{ hierarchy == 'primary' ? 'bf-link--primary' : 'bf-link--native' }}
+        {{ hierarchy is defined and hierarchy == 'primary' ? 'bf-link--primary' : 'bf-link--native' }}
         {{ isUnderline|default(true) ? '' : 'bf-link--no-underline' }}
-        {{ label is empty ? 'bf-link--icon-only' }}
-        {{ isDisabled ? 'disabled' }}
-        {{ reversed ? 'reversed' }}
-        {{ class }}'
+        {{ label is defined and label is empty ? 'bf-link--icon-only' }}
+        {{ isDisabled is defined and isDisabled ? 'disabled' }}
+        {{ reversed is defined and reversed ? 'reversed' }}
+        {{ class|default('') }}'
     {% if isDisabled %}
         aria-disabled='true'
         role='link'
@@ -19,7 +19,7 @@
     {% if ariaLabel is defined and ariaLabel %}
         aria-label='{{ ariaLabel}}'
     {% endif %}
-    {% if rel %}
+    {% if rel is defined and rel %}
         rel='{{ rel|default('') }}'
     {% endif %}
     {{ extraAttribute|default(NULL) }}
@@ -28,8 +28,8 @@
         {% if iconName is defined and iconName %}
             {% include '@bf-components/icon/twig/index.twig' with {
                 name    : iconName,
-                size    : hierarchy == 'primary' ? 'small' : 'xsmall',
-                class   : (iconPosition is same as ('right') ? 'order-2')
+                size    : hierarchy is defined and hierarchy == 'primary' ? 'small' : 'xsmall',
+                class   : iconPosition is defined and iconPosition is same as ('right') ? 'order-2'
             } only %}
         {% endif %}
         {{ label|default('') }}
