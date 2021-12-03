@@ -32,6 +32,10 @@
                 class   : iconPosition is defined and iconPosition is same as ('right') ? 'order-2'
             } only %}
         {% endif %}
-        {{ label|default('') }}
+        {% if label %}
+            <span class='{{ labelClass|default('') }}'>
+                {{ label|default('') }}
+            </span>
+        {% endif %}
     </span>
 </a>

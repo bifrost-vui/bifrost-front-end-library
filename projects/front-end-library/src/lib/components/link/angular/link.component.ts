@@ -8,6 +8,7 @@ export class LinkComponent implements OnInit {
     constructor() {}
 
     @Input() label          : string;
+    @Input() labelClass     : string;
     @Input() href           : string;
     @Input() hierarchy      : 'native' | 'primary';
     @Input() iconName       : string;
