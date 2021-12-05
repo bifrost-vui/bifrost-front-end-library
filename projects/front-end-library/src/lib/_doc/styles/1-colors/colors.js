@@ -41,41 +41,41 @@ const colors = [
                 hasUtilityClass  : false,
             },
             {
-                label            : 'bg-action-primary',
+                label            : 'Action primary',
                 name             : 'bg-action-primary'
             },
             {
-                label            : 'bg-action-primary-hover',
+                label            : 'Action primary hover',
                 name             : 'bg-action-primary-hover'
             },
             {
-                label            : 'bg-action-secondary',
+                label            : 'Action secondary',
                 name             : 'bg-action-secondary'
             },
             {
-                label            : 'bg-action-secondary-hover',
+                label            : 'Action secondary hover',
                 name             : 'bg-action-secondary-hover'
             },
             {
-                label            : 'bg-action-no-bg-hover',
+                label            : 'Action no bg hover',
                 name             : 'bg-action-no-bg-hover'
             },
             {
-                label            : 'bg-action-disabled',
+                label            : 'Action disabled',
                 name             : 'bg-action-disabled'
             },
             {
-                label            : 'bg-action-selected',
+                label            : 'Action selected',
                 name             : 'bg-action-selected',
                 hasUtilityClass  : false,
             },
             {
-                label            : 'bg-overlay-black-20prct',
+                label            : 'Overlay black 20%',
                 name             : 'bg-overlay-black-20prct',
                 hasUtilityClass  : false,
             },
             {
-                label            : 'bg-overlay-black-50prct',
+                label            : 'Overlay black 50%',
                 name             : 'bg-overlay-black-50prct',
                 hasUtilityClass  : false,
             },
