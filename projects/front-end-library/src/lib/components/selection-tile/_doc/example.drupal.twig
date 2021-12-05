@@ -5,20 +5,19 @@
     { value :'#FADDD7', name : 'Pink' },
 ] %}
 {% set reversed         = reversed|json_parse %}
+{% set isInvalid        = isInvalid|json_parse %}
 {% set isDisabled       = isDisabled|json_parse %}
 
-<div class="d-flex justify-content-center p-3">
+<div class="d-flex flex-wrap justify-content-center p-3">
   {% for color in colors %}
     {% include '@bf-components/selection-tile/twig/index.twig' with {
       inputId     : (inputId ~ loop.index)|default(color.name),
-      type        : 'radio',
       content     : '<div class="color-container">
                       <div class="bf-selection-tile__color"  style="background-color:' ~ color.value  ~ '"></div>
                       <p class="m-0 mt-3 text-break"><strong>' ~ color.name ~'</strong></p>
                      </div>',
       ariaLabel   : color.name,
       name        : 'color',
-      orientation : 'vertical'
     } %}
   {% endfor %}
 </div>
