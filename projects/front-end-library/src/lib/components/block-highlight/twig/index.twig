@@ -1,12 +1,13 @@
-{% set hasImage         = image.src is defined and image.src %}
+{% set hasImage         = image is defined and image.src %}
 {% set titleTag         = titleTag|default('p') %}
+{% set isFeatured       = isFeatured|default(false) %}
 
 <article class='
     bf-block bf-block--highlight {{ isFeatured ? 'bf-block--featured' }}
     w-100 d-flex flex-column flex-sm-row overflow-hidden bf-border-radius-medium border bf-border-color-secondary
     {{ blockBackgroundColor|default('ground') == 'underground' ? 'bf-color-bg-underground' : 'bf-color-bg-ground' }}
-    {{ reversed ? 'reversed' }}
-    {{ class }}'
+    {{ reversed is defined and reversed ? 'reversed' }}
+    {{ class|default('') }}'
 >
 
     {% if hasImage %}
