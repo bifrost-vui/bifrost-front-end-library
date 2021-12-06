@@ -1,0 +1,44 @@
+{% set isUnderline  = isUnderline|json_parse %}
+{% set isDisabled   = isDisabled|json_parse %}
+{% set reversed     = reversed|json_parse %}
+
+<div class='template-container w-100vw h-100vh'>
+    {% for index in [1,2] %}
+        
+        <div class='d-flex justify-content-center align-items-start gap-5 p-5 {{ reversed|default(index == 2) ? 'reversed bf-color-bg-ground' }}'>
+            
+            <div class='d-flex flex-column align-items-start'>
+                <p class='small flex-grow-1'>Native</p>
+
+                <a href='#' class='bf-link {{ hierarchy == 'primary' ? 'bf-link--primary' : 'bf-link--native' }} {{ isDisabled ? 'disabled' : '' }} {{ class }}'>
+                    {{ label|default('CSS only') }}
+                </a>
+                <a href='#' class='bf-link {{ hierarchy == 'primary' ? 'bf-link--primary' : 'bf-link--native' }} {{ isDisabled|default(true) ? 'disabled' : '' }} {{ class }}'>
+                    {{ label|default('CSS only disabled') }}
+                </a>
+            </div>
+
+            <div class='d-flex flex-column align-items-start'>
+            
+                <p class='small flex-grow-1'>Primary</p>
+
+                <a href='#' class='bf-link {{ hierarchy|default('primary') == 'primary' ? 'bf-link--primary' : 'bf-link--native' }} {{ isDisabled ? 'disabled' : '' }} {{ class }}'>
+                    {{ label|default('CSS only') }}
+                </a>
+                <a href='#' class='bf-link {{ hierarchy|default('primary') == 'primary' ? 'bf-link--primary' : 'bf-link--native' }} {{ isDisabled|default(true) ? 'disabled' : '' }} {{ class }}'>
+                    {{ label|default('CSS only disabled') }}
+                </a>
+            </div>
+
+        </div>
+        
+    {% endfor %}
+</div>
+
+<style>
+    .template-container {
+        display: grid;
+        grid-template-rows: min-content;
+        height: 100vh;
+    }
+</style>
