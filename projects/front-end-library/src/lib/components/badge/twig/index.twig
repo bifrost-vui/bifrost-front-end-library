@@ -2,9 +2,9 @@
   class=
   'bf-badge
   bf-badge--{{ hierarchy|default('secondary') }}
-  {% if isRounded is defined and isRounded is same as (true) %}
+  {% if isRounded |default(false) %}
     bf-badge--rounded
-  {% elseif angle is defined and angle is not empty %}
+  {% elseif angle|default(null) %}
     bf-badge--angle-{{ angle }}
   {% endif %}
   {{ class|default('') }}'
