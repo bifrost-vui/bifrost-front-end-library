@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
-
 /**
  * API is the same between **Angular** and **Drupal**.
  *
@@ -30,23 +29,31 @@ export class HeaderComponent implements OnInit {
     @Input() topBar_items            : any[];
     @Input() topBar_secondaryItems   : any[];
 
-    @Input() navItems                : any[];
+    @Input() navItems                : Array<object>[];
+    @Input() navMobileItems          : any[];
     /** Maximum 5 first element of the list will be display  */
     @Input() rigthIconLinks          : any[];
+    @Input() menuItemAccount         : any[];
+    @Input() menuItemAccountNotConnected                  : Array<object>[];
+    /**  Will show up on all devices if activated */
     @Input() hasAccountBtn           : boolean;
     @Input() isConnected             : boolean;
 
     @Input() hrefLogOut               : string;
     @Input() labelLogOut              : string;
+    @Input() labelLogIn               : string;
+    @Input() loginItems               : object;
     @Input() hrefConnexion            : string;
+    @Input() labelMyAccount           : string;
+    /** Shows up in top bar only */
     @Input() labelConnexion           : string;
-    
+    /** Badge label value set to `0` will hide the badge on the cart*/
+    @Input() cartBtn                 : any[];
     /** String displayed before `accountName` in the Top Bar, when connected. */
     @Input() accountHello             : string;
     /** Name of the user, displayed in the Top Bar when connected. */
-    @Input() accountName              : string;
+    @Input() accountName             : any[];
 
-    // @Input() hasMiniCartBtn          : boolean;
     @Input() hasNoSearchBtn          : boolean;
 
     ngOnInit() {

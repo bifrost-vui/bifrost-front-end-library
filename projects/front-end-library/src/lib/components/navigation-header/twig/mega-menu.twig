@@ -90,18 +90,16 @@
                                      aria-labelledby="v-pills-{{ dropdownSubItem.catLabel|default('category')|url_encode }}-tab"
                                 >
                                     <div class="p-dropdown-megamenu js-bf-dropdown-megamenu h-100 d-flex flex-column justify-content-between p-3 py-md-4 px-md-5">
-                                        <div class="row">
+                                        <div class="tab-pane-content">
                                             {% for subItem in dropdownSubItem.subdropdownItems %}
-                                                {% set fullWidth = subItem.isFullWidth ? 'col-lg-12' : 'col-lg-3'  %}
-                                                {% set hasBorder = (subItem.isFullWidth and subItem.fullWidthHasBorder) ? subItem.fullWidthHasBorder : ''  %}
-                                                <div class="{{ fullWidth }} py-0 {{ hasBorder }} ">
+                                                <div class="item">
                                                     {% if subItem.label is defined and subItem.label is not empty %}
                                                         <div class="mb-2">
                                                             <a href="{{ subItem.href }}"
                                                                class="js-bf-dropdown-item-link font-weight-bold"
                                                                rel="{{ subItem.rel|default('') }}"
                                                                tabindex=-1
-                                                                    {{ subItem.extraAttribute|default(NULL) }}
+                                                              {{ subItem.extraAttribute|default(NULL) }}
                                                             >{{ subItem.label|default('Link') }}</a>
                                                         </div>
                                                     {% endif %}
@@ -111,15 +109,26 @@
                                                             {% for subItem in subItem.listItems %}
                                                                 <li class="mb-2">
                                                                     <a href="{{ subItem.href }}"
-                                                                        class="js-bf-dropdown-item-link d-block d-lg-inline py-1 py-lg-0 {{ subItem.class }}"
-                                                                        rel="{{ subItem.rel|default('dofollow') }}"
-                                                                        tabindex=-1
-                                                                            {{ subItem.extraAttribute|default(NULL) }}
+                                                                       class="js-bf-dropdown-item-link d-block d-lg-inline py-1 py-lg-0 {{ subItem.class }}"
+                                                                       rel="{{ subItem.rel|default('dofollow') }}"
+                                                                       tabindex=-1
+                                                                      {{ subItem.extraAttribute|default(NULL) }}
                                                                     >{{ subItem.label|default('Link') }}</a>
                                                                 </li>
                                                             {% endfor %}
                                                         </ul>
                                                     {% endif %}
+                                                  {% if subItem.bannerPromo %}
+                                                    {% for  item in subItem.bannerPromo %}
+                                                      {% include '@bf-components/navigation-header/twig/mega-menu-block.twig' with {
+                                                        imgSrc    : item.imgSrc,
+                                                        imgAlt    : item.imgAlt,
+                                                        href      : item.href,
+                                                        title     : item.title,
+                                                        paragraph : item.paragraph,
+                                                      } %}
+                                                    {% endfor %}
+                                                  {% endif %}
                                                 </div>
                                             {% endfor %}
                                         </div>
@@ -133,11 +142,11 @@
                                                         {% for item in dropdownSubItem.mega %}
                                                             <div class="col-md-6 mb-3 mb-md-0">
                                                                 {% include '@bf-components/navigation-header/twig/mega-menu-block.twig' with {
-                                                                    imgSrc: item.imgSrc,
-                                                                    imgAlt: item.imgAlt,
-                                                                    href: item.href,
-                                                                    title: item.title,
-                                                                    text: item.text,
+                                                                    imgSrc    : item.imgSrc,
+                                                                    imgAlt    : item.imgAlt,
+                                                                    href      : item.href,
+                                                                    title     : item.title,
+                                                                    paragraph : item.paragraph,
                                                                 } %}
                                                             </div>
                                                         {% endfor %}
@@ -222,16 +231,15 @@
                         {% if navItem.mega is not empty %}
                             <div class="d-none d-lg-block">
                                 <hr class="my-4">
-
                                 <div class="row">
                                     {% for item in navItem.mega %}
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             {% include '@bf-components/navigation-header/twig/mega-menu-block.twig' with {
-                                                imgSrc  : item.imgSrc,
-                                                imgAlt  : item.imgAlt,
-                                                href    : item.href,
-                                                title   : item.title,
-                                                text    : item.text,
+                                                imgSrc    : item.imgSrc,
+                                                imgAlt    : item.imgAlt,
+                                                href      : item.href,
+                                                title     : item.title,
+                                                paragraph : item.paragraph,
                                             } %}
                                         </div>
                                     {% endfor %}

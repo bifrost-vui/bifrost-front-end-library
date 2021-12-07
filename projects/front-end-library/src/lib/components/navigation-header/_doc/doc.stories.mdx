@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
 
-import { topBar_items, topBar_secondaryItems, rigthIconLinks } from './data';
+import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartBtn, menuItemAccount, loginMenuItems, menuItemAccountNotConnected } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent }          from '../angular/header.component';
 
@@ -37,6 +37,9 @@ import { HeaderComponent }          from '../angular/header.component';
 
 <br/>
 
+## Component API
+
+<Props of={HeaderComponent} />
 
 
 ## Drupal implementation example
@@ -87,19 +90,71 @@ import { HeaderComponent }          from '../angular/header.component';
         }
         ...
     ],
+ navMobileItems: [
+        {
+            label: 'Shop', href: '', class: '',
+            subItemsMultiDropdown: [
+                {
+                    label : 'Helix plans', href : '', class : '',
+                    listItems: [
+                        { label : 'The Helix experience',   href : '', class : '' },
+                        { label : 'Helix TV',               href : '', class : '' },
+                        { label : 'Helix Internet',         href : '', class : '' },
+                    ]
+                },
+                {
+                    label : 'Other custom bundles', href : '', class : '',
+                    listItems: []
+                },
+            ],
+            mega: [
+                { imgSrc: 'https://source.unsplash.com/400x250/?nature', imgAlt: 'Thumbnail', href: '#', title: '', text: '' },
+                { imgSrc: 'https://source.unsplash.com/400x250/?nature', imgAlt: 'Thumbnail', href: '#', title: '', text: '' },
+            ]
+        },
+        {
+            label : 'Support', href : '#', class : '',
+            subItemsMultiDropdown: [...],
+            mega: [...],
+        }
+        ...
+    ],
     rigthIconLinks : [
         { icon : 'email',   href : ' ', class : '' },
         { icon : 'pin',     href : ' ', class : '' },
     ],
 
-    hasAccountBtn : true,
-    isConnected : true,
-    hrefLogOut : '#',
-    labelLogOut : 'Log out',
-    hrefConnexion : '#',
-    labelConnexion : 'Connexion',
+    hasCartBtn : true,
+    cartBtn : {
+        badgeLabel       : '3',
+        href        : 'https://www.videotron.com',
+        ariaLabel   : 'My cart',
+        class       : ''
+    },
+    menuItemAccount : [
+        { label : 'Action', href: '#' },
+        { label : 'Another action', href: '#' },
+        { label : 'Something else here', href: '#' },
+    ],
+    hasAccountBtn   : true,
+    isConnected     : true,
+    hrefLogOut      : '#',
+    labelLogOut     : 'Log out',
+    labelLogIn      : 'Log In',
+    loginMenuItems  : {
+        name        :'John Doe',
+        description :'Bill and customer center',
+        href: "https://www.videotron.com"
+    },
+    menuItemAccountNotConnected : [
+        { label:"Webmail", href:"#", subIconName:"email" },
+        { label:"Helix", href:"#", subIconName:"helix-tv" },
+        { label:"illico", href:"#", subIconName:"tv-plan-light" },
+    ];
+    hrefConnexion   : '#',
+    labelConnexion  : 'Connexion',
 
-    search : {
+    search          : {
         placeholder : 'What are you looking for?'
     },
 
@@ -107,15 +162,6 @@ import { HeaderComponent }          from '../angular/header.component';
     langcode : 'EN'
 } only %}
 ```
-
-
-
-## Component API
-
-<Props of={HeaderComponent} />
-
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -135,9 +181,16 @@ export const Drupal = (args) => ({
                 href                : '/',
             },
             rigthIconLinks,
+            menuItemAccount,
+            cartBtn,
+            loginMenuItems,
+            menuItemAccountNotConnected
         }}
-        height='500px'
+        height='400px'
+        with = '1200px'
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
+
+## more info
