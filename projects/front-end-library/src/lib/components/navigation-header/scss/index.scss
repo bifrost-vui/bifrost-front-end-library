@@ -16,6 +16,7 @@
         grid-template-columns: min-content max-content auto auto;
         background-color: var(--bf-color-bg-ground);
         align-items: center;
+        max-height: 72px;
 
         hr.nav-border {
             width: 100vw;
@@ -216,6 +217,7 @@
     }
 
     &__actions {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -242,7 +244,6 @@
 
         .login,
         .logout {
-            position: relative;
             text-transform: none;
             color: var(--bf-color-neutral-primary);
             font-size: 1.25rem;
@@ -251,9 +252,17 @@
             letter-spacing: 1px;
        }
         .dropdown {
+            position: revert;
             .dropdown-toggle {
+                &.btn:not(.btn-small):not(.w-100):not(.bf-button--fullwidth):not(.link-underline):not(.btn-link-underline):not(.btn-link-underline) {
+                    @include media-breakpoint-up(md) {
+                        min-width: 6rem;
+                        padding-left: 1rem;
+                        padding-right: 1rem;
+                    }
+                }
                 &.login:before {
-                    content: "";
+                   /* content: "";
                     transform-origin: 50% 0;
                     width: 100%;
                     height: 3px;
@@ -264,7 +273,7 @@
                     bottom: 0;
                     top: auto;
                     left: 0;
-                    transform: scaleX(0);
+                    transform: scaleX(0);*/
                 }
 
                 &.logout {
@@ -275,11 +284,14 @@
             }
 
             .dropdown-menu {
+                left: unset;
+                right: 0;
+                margin: 0;
                 &:not(.dropdown-menu--arrow) {
-                    min-width: 11rem;
+                    min-width: 12rem;
                 }
                 .bf-row-button--small.px-3.py-3 {
-                    padding: 0 .30rem 1rem !important;
+                    padding: 1rem !important;
                 }
                 .bf-row-button__content {
                     .h4 {
@@ -296,7 +308,7 @@
             }
         }
             &.login.show .login:before {
-              transform: scaleX(1);
+              //transform: scaleX(1);
             }
         }
     }
