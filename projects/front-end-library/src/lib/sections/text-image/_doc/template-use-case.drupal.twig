@@ -1,0 +1,25 @@
+{% set buttons              = buttons|json_parse %}
+{% set rowButtons           = rowButtons|json_parse %}
+{% set links                = links|json_parse %}
+{% set image                = image|json_parse %}
+{% set reversed             = reversed|json_parse %}
+
+<section class='d-flex flex-column justify-content-center gap-6 gap-md-0 {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
+
+    {% include '@bf-sections/text-image/twig/index.twig' with {
+        layout: 'text-image'
+    } %}
+
+    {% include '@bf-sections/text-image/twig/index.twig' with {
+        layout: 'image-text'
+    } %}
+
+    {% include '@bf-sections/text-image/twig/index.twig' with {
+        layout: 'text-image'
+    } %}
+
+    {% include '@bf-sections/text-image/twig/index.twig' with {
+        layout: 'image-text'
+    } %}
+
+</section>

@@ -1,0 +1,77 @@
+{% set titleTag         = titleTag|default('p') %}
+
+<article class='
+    bf-section bf-section--text-image d-block d-md-flex
+    {{ reversed ? 'reversed' : '' }}
+    {{ class }}'
+>
+    <div class='container-fluid d-flex flex-column justify-content-between flex-md-row gap-4'>
+
+        {% if image is defined and image.src %}
+            <div
+                class='bf-section__visual {{ layout == 'image-text' ? 'order-0 order-md-1' }}'
+                style='background-image: url({{ image.src }})'
+            >
+            </div>
+        {% endif %}
+
+        <div class='d-flex flex-column justify-content-center gap-4 py-0 py-md-5' style='max-width: 26rem'>
+            <div>
+                {% if upperTitle is defined and upperTitle %}
+                    <p class='bf-text-interface-small mb-0'>
+                        {{ upperTitle }}
+                    </p>
+                {% endif %}
+
+                {% if title is defined and title %}
+                    <{{ titleTag|default('h1') }} class='h2 mt-2 mb-0'>
+                        {{ title }}
+                    </{{ titleTag|default('h1') }}>
+                {% endif %}
+
+                {% if subtitle is defined and subtitle %}
+                    <p class='h4 mt-2 mb-0'>
+                        {{ subtitle }}
+                    </p>
+                {% endif %}
+            </div>
+
+            {% if description is defined and description %}
+                <p class='mb-0'>
+                    {{ description }}
+                </p>
+            {% endif %}
+
+            {% if rowButtons is defined and rowButtons %}
+                <div class='bf-list bf-list--divider border-top border-bottom bf-border-color-secondary' data-animate='fade-in'>
+                    {% for rowButton in rowButtons %}
+                        {% include '@bf-components/row-button/twig/index.twig' with rowButton only %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if links is defined and links %}
+                <div class='d-flex flex-wrap gap-3' data-animate='fade-in'>
+                    {% for link in links %}
+                        <a href='{{ link.href }}' class='bf-link bf-link--primary'>
+                            {{ link.label|default('') }}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if buttons is defined and buttons %}
+                <div class='d-flex gap-3' data-animate='fade-in'>
+                    {% for button in buttons %}
+                        {% set defaultHierarchy = (loop.index == 1) ? 'primary-alt' : 'secondary' %}
+                        {% set button = button|merge({
+                            'hierarchy': button.hierarchy|default(defaultHierarchy),
+                            'class':  button.class
+                        }) %}
+                        {% include '@bf-components/button/twig/index.twig' with button only %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</article>

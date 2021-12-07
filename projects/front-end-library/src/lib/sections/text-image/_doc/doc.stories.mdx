@@ -1,0 +1,117 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { TextImageComponent }                   from '../angular/text-image.component';
+
+
+<Meta
+    title='Sections/Text Image'
+    component={TextImageComponent}
+    decorators={[
+        moduleMetadata({ declarations: [TextImageComponent, TwigContainerComponent]}),
+    ]}
+    argTypes={{
+        titleTag: {
+            table: { defaultValue: { summary: 'h1' } },
+        },
+    }}
+/>
+
+# Section: Text Image
+
+<br/>
+
+## Component API
+
+<ArgsTable of={TextImageComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-sections/text-image/twig/index.twig' with {
+    image                   : {
+        src : '/images/assets/helix-equipment.png'
+    },
+    reversed                : false,
+    class                   : ''
+} only %}
+```
+
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+export const commonProps = {
+    image               : {
+        // src : window.location.origin + '/images/placeholder/800x600.png',
+        src: 'https://i.stack.imgur.com/y9DpT.jpg'
+    },
+    upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    title       : 'Discover our best Helix Internet and TV packages',
+    subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description : 'After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you. After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you.',
+    buttons: [
+        {
+            label       : 'Main action',
+            hierarchy   : '',
+            class       : ''
+        },
+        {
+            label       : 'Secondary action',
+            hierarchy   : '',
+            class       : ''
+        }
+    ],
+    links: [
+        { href:'', label:'HELIX Experience' },
+        { href:'', label:'Internet' },
+        { href:'', label:'TV' },
+        { href:'', label:'TOC / Voice'},
+        { href:'', label:'Domotic'},
+    ],
+    rowButtons: [
+        {
+            href        : 'https://example.com',
+            title       : 'Forfaits internet et télé',
+            paragraph   : 'Contribute to the ambiance of your spaces.',
+            iconName    : 'placeholder',
+        },
+        {
+            href        : 'https://example.com',
+            title       : 'Forfaits internet et télé',
+            paragraph   : 'Contribute to the ambiance of your spaces.',
+            iconName    : 'placeholder',
+        }
+    ],
+    class               : ''
+}
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        height='800px'
+        args={{
+            elementPath: 'sections/text-image/_doc/template.drupal',
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Use case'
+        height='800px'
+        args={{
+            elementPath: 'sections/text-image/_doc/template-use-case.drupal',
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>

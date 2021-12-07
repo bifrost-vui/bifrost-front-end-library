@@ -61,6 +61,7 @@ var Twig = require("twig"),
         namespaces: {
             // 'bf-lib'        :'projects/front-end-library/src/lib',
             'bf-components' :'projects/front-end-library/src/lib/components',
+            'bf-sections'   : 'projects/front-end-library/src/lib/sections',
             'bf-utils'      :'projects/front-end-library/src/lib/utils',
             // 'bf-pipes'      :'projects/front-end-library/src/lib/pipes'
         }
