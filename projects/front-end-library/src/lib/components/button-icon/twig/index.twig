@@ -1,14 +1,14 @@
 {% set isLink   = (href is defined and href is not empty) %}
 {% set hasBadge = (badgeLabel is defined and badgeLabel and badgeLabel is not empty ) %}
 
-<div class='bf-button-icon {{ isDisabled ? 'disabled' }}'>
+<div class='bf-button-icon {{ isDisabled ? 'disabled' }} {{ class|default('') }}'>
   <{{ isLink ? 'a' : 'button' }}
     {% if isLink is same as (true) %}
       href='{{ href|default('#') }}'
     {% else %}
       type='button'
     {% endif %}
-    class='bf-button-icon__inner {% if reversed %}reversed{% endif %} {% if isDisabled %}disabled{% endif %} {{ class|default('') }}'
+    class='bf-button-icon__inner {% if reversed %}reversed{% endif %} {% if isDisabled %}disabled{% endif %} {{ buttonClass|default('') }}'
     {% if isDisabled %}disabled='disabled'{% endif %}
     {% if label is not empty %}data-title='{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}'{% endif %}
     {% if dataDismiss is defined %}data-dismiss='{{ dataDismiss|default(NULL) }}'{% endif %}
