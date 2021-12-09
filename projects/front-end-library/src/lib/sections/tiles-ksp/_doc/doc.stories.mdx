@@ -11,6 +11,11 @@ import { SectionTilesKSPComponent }             from '../angular/section-tiles-k
     decorators={[
         moduleMetadata({ declarations: [SectionTilesKSPComponent, TwigContainerComponent]})
     ]}
+    argTypes={{
+        hasFeaturedLayout: {
+            table: { defaultValue: { summary: false } }
+        }
+    }}
 />
 
 
@@ -42,6 +47,16 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+export const tileKSP = {
+    isClickable     : true,
+    href            : 'https://example.com',
+    title           : 'Trade-in your phone',
+    description     : 'Trade-in your old phone and get a credit for a new phone.',
+    linkLabel       : 'Trade-in program',
+    reversed        : false,
+    class           : '',
+}
+
 <Canvas withSource='none'>
     <Story
         name='Drupal'
@@ -51,54 +66,34 @@ export const Drupal = (args) => ({
             title           : 'Shop your cell phone plan and mobile phone your way',
             tiles           : [
                 {
-                    href            : 'https://example.com',
-                    title           : 'Shop accessories',
-                    description     : 'Add accessories to your cell phone to get the most out of it.',
-                    linkLabel       : 'Shop',
-                    icon            : {
-                        name  : 'television',
+                    ...tileKSP,
+                    icon: {
+                        name: 'helix-mic',
+                        color: 'neutral'
                     },
-                    isClickable     : true,
-                    class           : '',
+                    backgroundImage: {
+                        src: '/images/_docs/hero-helix-reversed.png'
+                    },
+                    reversed: true,
                 },
                 {
-                    href            : 'https://example.com',
-                    title           : 'Trade-in your phone',
-                    description     : 'Trade-in your old phone and get a credit for a new phone.',
-                    linkLabel       : 'Trade-in program',
-                    icon            : {
-                        name  : 'helix-mic',
-                        color : 'neutral'
-                    },
-                    backgroundImage : {
-                        src : '/images/_docs/hero-helix-reversed.png'
-                    },
-                    isClickable     : true,
-                    reversed        : true,
-                    class           : '',
+                    ...tileKSP,
+                    icon: {
+                        name: 'television'
+                    }
                 },
                 {
-                    href            : 'https://example.com',
-                    title           : 'Shop in-store',
-                    description     : 'Search by address, city or postal code to find our store nearest to you.',
-                    linkLabel       : 'Find a store',
-                    icon            : {
-                        name  : 'wifi',
-                    },
-                    backgroundColor : 'highlight',
-                    isClickable     : true,
-                    class           : '',
+                    ...tileKSP,
+                    backgroundColor: 'highlight',
+                    icon: {
+                        name: 'wifi'
+                    }
                 },
                 {
-                    href            : 'https://example.com',
-                    title           : 'Shop in-store',
-                    description     : 'Search by address, city or postal code to find our store nearest to you.',
-                    linkLabel       : 'Find a store',
-                    icon            : {
-                        name  : 'trio-wifi',
-                    },
-                    isClickable     : true,
-                    class           : '',
+                    ...tileKSP,
+                    icon: {
+                        name: 'trio-wifi'
+                    }
                 }
             ]
         }}

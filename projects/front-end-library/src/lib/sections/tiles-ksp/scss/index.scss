@@ -5,4 +5,27 @@
 * ***************************************************************************** */
 
 .bf-section-tiles-ksp {
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+
+        .bf-tile-ksp {
+            height: 100%;
+        }
+    }
+
+    .bf-section-tiles-ksp__item {
+        @include media-breakpoint-down(md) {
+            grid-column: 1 / 10 !important;
+        }
+    }
+
+    &--featured-layout .bf-section-tiles-ksp__item {
+        grid-column: 2 / 3;
+
+        &:first-child {
+            grid-row: 1 / 10;
+            grid-column: 1 / 1;
+        }
+    }
 }

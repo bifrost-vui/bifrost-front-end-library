@@ -10,6 +10,7 @@ export class SectionTilesKSPComponent implements OnInit {
 
     @Input() title              : string;
     @Input() tiles              : object[];
+    @Input() hasFeaturedLayout  : boolean;
 
     @Input() class              : string;
     @Input() reversed           : boolean;
