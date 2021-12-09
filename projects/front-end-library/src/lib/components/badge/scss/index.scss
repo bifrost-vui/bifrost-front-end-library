@@ -44,7 +44,24 @@
         color: var(--color);
         background-color: var(--bg-color);
     }
+    &__label {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        z-index: 1;
+        margin: 0;
+        min-height: 1.5rem;
+        span {
+            vertical-align: middle;
+        }
 
+        &__text {
+            padding:  var(--bf-spacer-1) 0;
+        }
+        .bf-icon + span {
+            padding-left: .25rem;
+        }
+    }
     &--rounded .bf-badge__inner {
         border-radius: 1rem;
     }
@@ -57,9 +74,15 @@
             top: 0;
             width: .5rem;
             height: 100%;
-            transform: translate(-50%) skew(19deg);
             background-color: inherit;
             z-index: 0;
+        }
+
+        .bf-badge__label__text {
+            white-space: nowrap;
+            max-width: 15rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 
@@ -68,7 +91,7 @@
 
         &:before {
             right: 0;
-            transform: translate(50%) skew(-19deg);
+            transform: translate(50%) skew(-18deg);
         }
     }
 
@@ -77,22 +100,7 @@
 
         &:before {
             left: 0;
-            transform: translate(-50%) skew(19deg);
-        }
-    }
-
-    &__label {
-        white-space: nowrap;
-        z-index: 1;
-        margin: 0;
-
-        span {
-            vertical-align: middle;
-        }
-
-        &__text {
-            display: inline-block;
-            line-height: 1.5rem;
+            transform: translate(-50%) skew(18deg);
         }
     }
 }
