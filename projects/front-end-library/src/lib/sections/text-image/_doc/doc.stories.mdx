@@ -52,6 +52,11 @@ export const commonProps = {
     image       : {
         src : window.location.origin + '/images/_docs/hero-helix-reversed.png',
         // src: 'https://i.stack.imgur.com/y9DpT.jpg'
+        icon: {
+            name: 'trio-wifi',
+            position: 'bottom-left'
+        },
+        fit: 'fill'
     },
     upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title       : 'Discover our best Helix Internet and TV packages',
@@ -120,30 +125,149 @@ export const rowButtonsProps = {
 
 <Canvas withSource='none'>
     <Story
-        name='Drupal - Use case'
+        name='Drupal - With layout'
         height='800px'
         args={{
-            elementPath: 'sections/text-image/_doc/template-use-case.drupal',
+            elementPath: 'sections/text-image/_doc/template-multiple.drupal',
+            items: [
+                {
+                    upperTitle: 'layout',
+                    title: 'text-image',
+                    image: {
+                        src: window.location.origin + '/images/_docs/hero-helix-reversed.png',
+                    },
+                    layout: 'text-image'
+                },
+                {
+                    upperTitle: 'layout',
+                    title: 'image-text',
+                    image: {
+                        src: window.location.origin + '/images/_docs/hero-helix-reversed.png',
+                    },
+                    layout: 'image-text'
+                },
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With image fit'
+        height='800px'
+        args={{
+            elementPath: 'sections/text-image/_doc/template-multiple.drupal',
+            items: [
+                {
+                    upperTitle: 'Image fit',
+                    title: 'Fill (default)',
+                    image       : {
+                        src : window.location.origin + '/images/_docs/hero-helix-reversed.png',
+                    }
+                },
+                {
+                    upperTitle: 'Image fit',
+                    title: 'Fit',
+                    image       : {
+                        src : window.location.origin + '/images/_docs/hero-helix-reversed.png',
+                        fit: 'fit'
+                    }
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With image icon position'
+        height='800px'
+        args={{
+            elementPath: 'sections/text-image/_doc/template-multiple.drupal',
+            items: [
+                {
+                    upperTitle: 'Image icon position',
+                    title: 'Bottom Left (default)',
+                    image       : {
+                        src : window.location.origin + '/images/_docs/hero-helix-reversed.png',
+                        icon: {
+                            name: 'trio-wifi'
+                        },
+                    },
+                },
+                {
+                    upperTitle: 'Image icon position',
+                    title: 'Bottom Right',
+                    image       : {
+                        src : window.location.origin + '/images/_docs/hero-helix-reversed.png',
+                        icon: {
+                            name: 'trio-wifi',
+                            position: 'bottom-right'
+                        },
+                    },
+                },
+                {
+                    upperTitle: 'Image icon position',
+                    title: 'Top Left',
+                    image       : {
+                        src : window.location.origin + '/images/_docs/hero-helix-reversed.png',
+                        icon: {
+                            name: 'trio-wifi',
+                            position: 'top-left'
+                        },
+                    },
+                },
+                {
+                    upperTitle: 'Image icon position',
+                    title: 'Top Right',
+                    image       : {
+                        src : window.location.origin + '/images/_docs/hero-helix-reversed.png',
+                        icon: {
+                            name: 'trio-wifi',
+                            position: 'top-right'
+                        },
+                    },
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With buttons, links and rowButtons'
+        height='800px'
+        args={{
+            elementPath: 'sections/text-image/_doc/template-multiple.drupal',
             items: [
                 {
                     ...commonProps,
-                    ...buttonsProps,
-                    layout: 'text-image'
+                    subtitle: null,
+                    title: 'With Buttons',
+                    upperTitle: null,
+                    ...buttonsProps
                 },
                 {
                     ...commonProps,
-                    ...linksProps,
-                    layout: 'image-text'
+                    subtitle: null,
+                    title: 'With Links',
+                    upperTitle: null,
+                    ...linksProps
                 },
                 {
                     ...commonProps,
-                    ...rowButtonsProps,
-                    layout: 'text-image'
+                    subtitle: null,
+                    title: 'With Row Buttons',
+                    upperTitle: null,
+                    ...rowButtonsProps
                 },
-                {
-                    ...commonProps,
-                    layout: 'image-text'
-                }
             ]
         }}
     >

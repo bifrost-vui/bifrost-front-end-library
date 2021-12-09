@@ -2,6 +2,8 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 
 interface IImage {
     src         : string;
+    icon        : object | string;
+    fit         : 'fit' | 'fill';
 }
  
 @Component({

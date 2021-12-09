@@ -1,8 +1,9 @@
-{% set titleTag         = titleTag|default('p') %}
-{% set layout           = layout|default('text-image') %}
+{% set titleTag       	= titleTag|default('p') %}
+{% set layout         	= layout|default('text-image') %}
+{% set iconPosition 		= image is defined and image.icon ? image.icon.position %}
 
 <article class='
-	bf-section bf-section--text-image d-block d-md-flex
+	bf-section-text-image d-block d-md-flex
 	{{ reversed ? 'reversed' }}
 	{{ class }}'
 >
@@ -10,13 +11,22 @@
 
 		{% if image is defined and image.src %}
 			<div
-				class='bf-section__visual {{ layout == 'image-text' ? 'order-0 order-md-1' }}'
+				class='
+					bf-section-text-image__visual
+					{{ layout == 'image-text' ? 'order-0 order-md-1' }}
+					{{ iconPosition ? 'bf-section-text-image__visual--icon-' ~ iconPosition }}
+					{{ image.fit == 'fit' ? 'bf-section-text-image__visual--fit' }}
+				'
 				style='background-image: url({{ image.src }})'
 			>
+				{% if image.icon %}
+					{% set icon = image.icon|merge({ size: 'large', reversed: true, class: 'm-4' }) %}
+					{% include '@bf-components/icon/twig/index.twig' with icon only %}
+				{% endif %}
 			</div>
 		{% endif %}
 
-		<div class='d-flex flex-column justify-content-center gap-4 py-0 py-md-5' style='max-width: 26rem'>
+		<div class='bf-section-text-image__inner d-flex flex-column justify-content-center gap-4 py-0 py-md-5'>
 			<div>
 				{% if upperTitle is defined and upperTitle %}
 					<p class='bf-text-interface-small mb-0'>
