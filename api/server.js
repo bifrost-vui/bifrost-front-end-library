@@ -22,7 +22,7 @@ app.set("twig options", {
     rethrow: true,
     namespaces: {
         'bf-components' : path.resolve(__dirname, '../projects/front-end-library/src/lib/components'),
-        'bf-sections' : path.resolve(__dirname, '../projects/front-end-library/src/lib/sections'),
+        'bf-sections'   : path.resolve(__dirname, '../projects/front-end-library/src/lib/sections'),
         'bf-utils'      : path.resolve(__dirname, '../projects/front-end-library/src/lib/utils'),
     }
 });

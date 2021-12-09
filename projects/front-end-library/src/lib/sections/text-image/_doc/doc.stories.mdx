@@ -14,6 +14,9 @@ import { TextImageComponent }                   from '../angular/text-image.comp
         titleTag: {
             table: { defaultValue: { summary: 'h1' } },
         },
+        layout: {
+            table: { defaultValue: { summary: 'text-image' } },
+        },
     }}
 />
 
@@ -46,14 +49,18 @@ export const Drupal = (args) => ({
 });
 
 export const commonProps = {
-    image               : {
-        // src : window.location.origin + '/images/placeholder/800x600.png',
-        src: 'https://i.stack.imgur.com/y9DpT.jpg'
+    image       : {
+        src : window.location.origin + '/images/_docs/hero-helix-reversed.png',
+        // src: 'https://i.stack.imgur.com/y9DpT.jpg'
     },
     upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title       : 'Discover our best Helix Internet and TV packages',
     subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     description : 'After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you. After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you.',
+    class       : ''
+}
+
+export const buttonsProps = {
     buttons: [
         {
             label       : 'Main action',
@@ -65,14 +72,20 @@ export const commonProps = {
             hierarchy   : '',
             class       : ''
         }
-    ],
+    ]
+}
+
+export const linksProps = {
     links: [
         { href:'', label:'HELIX Experience' },
         { href:'', label:'Internet' },
         { href:'', label:'TV' },
         { href:'', label:'TOC / Voice'},
         { href:'', label:'Domotic'},
-    ],
+    ]
+}
+
+export const rowButtonsProps = {
     rowButtons: [
         {
             href        : 'https://example.com',
@@ -86,8 +99,7 @@ export const commonProps = {
             paragraph   : 'Contribute to the ambiance of your spaces.',
             iconName    : 'placeholder',
         }
-    ],
-    class               : ''
+    ]
 }
 
 <Canvas withSource='none'>
@@ -96,7 +108,10 @@ export const commonProps = {
         height='800px'
         args={{
             elementPath: 'sections/text-image/_doc/template.drupal',
-            ...commonProps
+            ...commonProps,
+            ...buttonsProps,
+            ...linksProps,
+            ...rowButtonsProps
         }}
     >
         {Drupal.bind({})}
@@ -109,7 +124,27 @@ export const commonProps = {
         height='800px'
         args={{
             elementPath: 'sections/text-image/_doc/template-use-case.drupal',
-            ...commonProps
+            items: [
+                {
+                    ...commonProps,
+                    ...buttonsProps,
+                    layout: 'text-image'
+                },
+                {
+                    ...commonProps,
+                    ...linksProps,
+                    layout: 'image-text'
+                },
+                {
+                    ...commonProps,
+                    ...rowButtonsProps,
+                    layout: 'text-image'
+                },
+                {
+                    ...commonProps,
+                    layout: 'image-text'
+                }
+            ]
         }}
     >
         {Drupal.bind({})}
