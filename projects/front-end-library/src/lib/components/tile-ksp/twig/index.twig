@@ -1,4 +1,4 @@
-{% set isLink = href is defined and href and isClickable is defined and isClickable %}
+{% set isLink 	= href is defined and href and isClickable is defined and isClickable %}
 {% set titleTag = titleTag|default('p') %}
 
 <{{ isLink ? 'a' : 'div' }}
@@ -38,9 +38,9 @@
 		{% if description is defined and description %}
 			<p class='m-0'>{{ description }}</p>
 			{% if isLink %}
-				<p class='bf-link bf-link--primary mb-0'>{{ linkLabel }}</p>
+				<p class='bf-link bf-link--primary mb-0'>{{ linkLabel|default('') }}</p>
 			{% else %}
-				<a class='bf-link bf-link--primary' href='{{ href }}'>{{ linkLabel }}</a>
+				<a class='bf-link bf-link--primary' href='{{ href|default('') }}'>{{ linkLabel|default('') }}</a>
 			{% endif %}
 		{% endif %}
 	</div>
