@@ -5,14 +5,34 @@
 * ***************************************************************************** */
 
 .bf-tile-ksp {
-    text-decoration: none;
-    background-position: center;
-    background-size: cover;
+    position: relative;
+    transition: background-color .25s;
 
-    &:hover {
+    &--is-link:hover {
+        background-color: var(--bf-color-bg-action-no-bg-hover);
         text-decoration: none;
-
         // Specify color is required otherwise legacy CSS on `a, a:hover` takes precedence when tile is clickable.
         color: var(--bf-color-neutral-primary);
+
+        &.bf-tile-ksp--highlight {
+            background-color: var(--bf-color-bg-action-primary-hover);
+        }
+
+        .bf-tile-ksp__visual {
+            opacity: .8;
+        }
+    }
+
+    &__visual {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        background-image: var(--bf-background-image-src);
+        background-position: center;
+        background-size: cover;
+        transition: opacity .25s;
     }
 }
