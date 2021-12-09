@@ -16,6 +16,7 @@ interface IIcon {
 export class TileKSPComponent implements OnInit {
     constructor() {}
 
+    @Input() isClickable        : boolean;
     @Input() href               : string;
     @Input() title              : string;
     @Input() titleTag           : string;
@@ -26,7 +27,6 @@ export class TileKSPComponent implements OnInit {
     /** Expected format: `{ src: 'my-image.png' }` */
     @Input() backgroundImage    : IImage;
     @Input() backgroundColor    : 'ground' | 'underground' | 'highlight';
-    @Input() isClickable        : boolean;
 
     @Input() class              : string;
     @Input() reversed           : boolean;
