@@ -7,6 +7,10 @@
 .bf-section-text-image {
     min-height: 36rem;
 
+    @include media-breakpoint-down(sm) {
+        min-height: auto;
+    }
+
     &__visual {
         min-height: 20rem;
         flex: 0 0 calc(50% - 1rem);
@@ -16,6 +20,10 @@
 
         &--fit {
             background-size: contain;
+
+            @include media-breakpoint-down(sm) {
+                background-size: cover;
+            }
         }
 
         display: flex;
@@ -41,5 +49,9 @@
     &__inner {
         min-width: 20rem;
         max-width: 26rem;
+
+        @include media-breakpoint-down(sm) {
+            max-width: none;
+        }
     }
 }
