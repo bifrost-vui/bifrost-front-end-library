@@ -1,8 +1,8 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
+import { Canvas, Meta, Story, Props }           from '@storybook/addon-docs';
 
-import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
-import { contentLists, contentListsNoTitle }    from './data';
+import { contentLists, contentListsNoTitle, contentCheckLists }    from './data';
+import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { CardComponent }                        from '../angular/card.component';
 
@@ -174,14 +174,12 @@ import { CardComponent }                        from '../angular/card.component'
     messageLink : {
         href            : '',
         label           : 'Choose another Plan',
-        class           : ''
     }
     contentBadge : {
             label       : 'Lorem Ipsum',
             hierarchy   : 'tertiary',
             angle       : '',
             iconName    : '',
-            class       : '',
     }
     ...
 } only %}
@@ -320,6 +318,86 @@ export const Drupal = (args) => ({
                 }
             ],
             message             : undefined,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+### Product card
+
+export const productCommonProps = {
+    badge           : {
+        label           : 'Promotion'
+    },
+    image           : {
+        src             : '/images/_docs/iphone-12-pro-max.png',
+        alt             : 'iPhone 12 Mini',
+        size            : 'small',
+        badgeIconName   : 'security'
+    },
+    visualBackgroundColor : '',
+    comboLabel      : '250 Go',
+    title           : 'iPhone 12 Mini',
+    subtitle        : 'Discover the power of the phone',
+    detailsColors   : [
+        { value :'4B4A46', name : 'Lorem' },
+        { value :'2C4651', name : 'Ipsum' },
+        { value :'D4BBA5', name : 'Dolor' },
+        { value :'C0C0C0', name : 'Amet' },
+    ],
+    detailsStorage : ['128 Go', '256 Go'],
+    contentLists    : contentCheckLists,
+    contentBadge    : {
+        label       : 'credit return',
+        hierarchy   : 'tertiary',
+        angle       : '',
+        iconName    : 'credit-return',
+    },
+    promotionBadges : [
+        {
+            label    :'Free Galaxy Buds Live',
+            iconName : '',
+        },
+        {
+            label    : '0$ Welcome credit',
+            iconName : 'credit-welcome',
+        }
+    ],
+    price           : {
+        upperTitle      : 'From',
+        dollar          : 86,
+        cent            : 99,
+        details         : '/month',
+        promotion       : {
+            title       : '<strong>Promotion</strong> test',
+            priceStriked: 40.99,
+            priceSaved  : 10,
+            savedLabel  : 'You saved :',
+            superscript : 1,
+            direction   : 'horizontal',
+        }
+    },
+    note                : 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
+    buttons             : [
+        {
+            label           : 'Configurate',
+            hierarchy       : 'primary-alt',
+            href            : 'www.videotron.com',
+        }
+    ],
+};
+
+<Canvas
+    withSource='none'
+    style={{ height: '900px' }}
+>
+    <Story
+        name='Drupal - product'
+        args={{
+            elementPath     : 'components/card/_doc/template.drupal',
+            cardVariant     : 'product',
+            ...productCommonProps
         }}
     >
         {Drupal.bind({})}
