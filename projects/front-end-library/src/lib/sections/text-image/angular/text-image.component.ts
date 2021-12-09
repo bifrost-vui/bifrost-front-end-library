@@ -12,7 +12,7 @@ interface IImage {
 })
 export class TextImageComponent implements OnInit {
     constructor() {}
-
+    /** image: { src: '', fit: 'fill', icon: { name: 'placeholder', position: 'bottom-left' } }  */
     @Input() image                  : IImage;
     @Input() upperTitle             : string;
     @Input() title                  : string;

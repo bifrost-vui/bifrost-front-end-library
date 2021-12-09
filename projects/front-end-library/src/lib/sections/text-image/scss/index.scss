@@ -12,8 +12,14 @@
     }
 
     &__visual {
+        position: relative;
         min-height: 20rem;
         flex: 0 0 calc(50% - 1rem);
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-end;
+
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -26,9 +32,17 @@
             }
         }
 
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-end;
+        &--icon {
+            &:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--bf-color-bg-overlay-black-20prct);
+            }
+        }
 
         &--icon-top-left {
             justify-content: flex-start;
@@ -43,6 +57,11 @@
         &--icon-bottom-right {
             justify-content: flex-end;
             align-items: flex-end;
+        }
+
+        &--icon-center {
+            justify-content: center;
+            align-items: center;
         }
     }
 

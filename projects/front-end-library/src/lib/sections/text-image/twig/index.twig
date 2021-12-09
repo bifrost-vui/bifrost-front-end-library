@@ -1,6 +1,7 @@
 {% set titleTag					= titleTag|default('p') %}
 {% set layout						= layout|default('text-image') %}
-{% set iconPosition			= image is defined and image.icon ? image.icon.position %}
+{% set hasIcon					= image is defined and image.icon %}
+{% set iconPosition			= hasIcon ? image.icon.position %}
 
 <article class='
 	bf-section-text-image d-block d-md-flex
@@ -14,13 +15,14 @@
 				class='
 					bf-section-text-image__visual
 					{{ layout == 'image-text' ? 'order-0 order-md-1' }}
+					{{ hasIcon ? 'bf-section-text-image__visual--icon' }}
 					{{ iconPosition ? 'bf-section-text-image__visual--icon-' ~ iconPosition }}
 					{{ image.fit == 'fit' ? 'bf-section-text-image__visual--fit' }}
 				'
 				style='background-image: url({{ image.src }})'
 			>
 				{% if image.icon %}
-					{% set icon = image.icon|merge({ size: 'large', reversed: true, class: 'm-4' }) %}
+					{% set icon = image.icon|merge({ size: 'large', reversed: true, class: 'position-relative m-4' }) %}
 					{% include '@bf-components/icon/twig/index.twig' with icon only %}
 				{% endif %}
 			</div>
