@@ -1,7 +1,7 @@
 {% set items                = items|json_parse %}
 {% set reversed             = reversed|json_parse %}
 
-<section class='d-flex flex-column justify-content-center gap-6 gap-md-0 {{ reversed|default(false) ? 'reversed bf-color-bg-ground' }}'>
+<section class='d-flex flex-column justify-content-center {{ reversed|default(false) ? 'reversed bf-color-bg-ground' }}'>
 
     {% for item in items %}
         {% include '@bf-sections/text-image/twig/index.twig' with item only %}
