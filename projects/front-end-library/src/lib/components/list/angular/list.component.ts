@@ -4,7 +4,12 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
  * Description of the component List
  *
  */
- 
+interface ILink {
+    label   : string;
+    href    : string;
+    iconName: string;
+}
+
 @Component({
   selector: 'bf-list',
   templateUrl: './list.component.html',
@@ -15,16 +20,28 @@ export class ListComponent implements OnInit {
 
     @Input() title              : string;
     @Input() titleTag           : string;
-    /** Expected format: 
+    @Input() titleClass         : string;
+    /** Displays on the right size of the title */
+    @Input() Link               : ILink;
+    /** Displays on the right size of the title if no link is defined */
+    @Input() description        : string;
+    /** displays bellow the title and may contain HTML tags */
+    @Input() details            : string;
+
+    /** Expected format:
     ```
     [{
-        label   : "Label",
+        label*   : "Label",
         iconName: "placeholder"
-    }]
+    },
+    {...}]
     ```
     */
     @Input() content            : object;
 
+    /** When `true` creates a bullet list with a default `check` icon - you can still specify another iconName in `content[]` */
+    @Input() isFeatured         : boolean;
+    @Input() hasBorder          : boolean;
     @Input() reversed           : boolean;
     @Input() class              : string;
 

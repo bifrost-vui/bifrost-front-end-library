@@ -1,8 +1,8 @@
-import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Props }  from '@storybook/addon-docs';
+import { moduleMetadata }           from '@storybook/angular';
+import { Meta, Story, Props }       from '@storybook/addon-docs';
 
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { ListComponent }     from '../angular/list.component';
+import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
+import { ListComponent }            from '../angular/list.component';
 
 <Meta
     title='Components/List'
@@ -29,21 +29,30 @@ import { ListComponent }     from '../angular/list.component';
 ```jsx
 {% include '@bf-components/list/twig/index.twig' with {
     title       : 'Title',
-    titleTag    : 'h2',
+    titleTag    : 'p',
+    titleClass  : 'bf-text font-weight-bold',
+    link        : {
+        href    : 'https://www.eample.com',
+        label   : 'link label'
+    },
+    isFeatured  : true,
+    description : 'Description',
+    details : 'Details : magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo',
     content     : [
         {
-            iconName: 'unlimited',
-            label   : 'Lorem ipsum'
+            label   : 'Lorem ipsum',
+            iconName: 'unlimited'
         },
         {
-            iconName: 'desinstallation',
-            label   : 'Lorem ipsum'
+            label   : 'Lorem ipsum',
+            iconName: 'desinstallation'
         },
         {
-            iconName: 'placeholder',
-            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.'
+            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
+            iconName: 'placeholder'
         }
-    ]
+    ],
+    class       : 'bf-text-display-sub-medium'
 } only %}
 ```
 
@@ -59,25 +68,31 @@ export const Drupal = (args) => ({
 <Canvas withSource='none'>
     <Story
         name='Drupal'
-        height='300px'
+        height='800px'
         args={{
             elementPath : 'components/list/_doc/template.drupal',
             title       : 'Title',
-            titleTag    : 'h2',
+            link        : {
+                href    : 'https://www.eample.com',
+                label   : 'link label'
+            },
+            description : 'Description',
+            details      : 'Details magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo',
             content     : [
                 {
-                    iconName    : 'unlimited',
-                    label       : 'Lorem ipsum'
+                    label   : 'Lorem ipsum',
+                    iconName: 'unlimited'
                 },
                 {
-                    iconName    : 'desinstallation',
-                    label       : 'Lorem ipsum'
+                    label   : 'Lorem ipsum',
+                    iconName: 'desinstallation'
                 },
                 {
-                    iconName    : 'placeholder',
-                    label       : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.'
+                    label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+                    iconName: 'placeholder'
                 }
-            ]
+            ],
+            isFeatured  : false,
         }}
     >
         {Drupal.bind({})}
