@@ -13,7 +13,7 @@ export class BadgeComponent implements OnInit {
     @Input() hierarchy      : 'primary' | 'secondary' | 'tertiary' | 'tertiary-ground';
     @Input() noUppercase    : boolean;
     /** Displays an angle on a corner. Won't have any effect if `isRounded` is true*/
-    @Input() angle          : '' | 'left' | 'right';
+    @Input() angle          : null | 'left' | 'right';
     /** `isRounded` property has precedence over `angle`  */
     @Input() isRounded      : boolean;
     @Input() class          : string;

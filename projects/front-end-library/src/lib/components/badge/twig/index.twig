@@ -2,9 +2,9 @@
   class=
   'bf-badge
   bf-badge--{{ hierarchy|default('secondary') }}
-  {% if isRounded is defined and isRounded is same as (true) %}
+  {% if isRounded|default(false) %}
     bf-badge--rounded
-  {% elseif angle is defined and angle is not empty %}
+  {% elseif angle|default(null) %}
     bf-badge--angle-{{ angle }}
   {% endif %}
   {{ class|default('') }}'
@@ -17,13 +17,11 @@
           class : 'pr-1',
           size  : 'small',
         } only %}
+      {% endif %}
 
         <span class='bf-badge__label__text'>
           {{ label|default('') }}
         </span>
-      {% else %}
-          {{ label|default('') }}
-      {% endif %}
     </p>
   </div>
 </div>
