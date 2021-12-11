@@ -1,0 +1,93 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Props }           from '@storybook/addon-docs';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { TilePostComponent }                    from '../angular/tile-post.component';
+
+
+<Meta
+    title='Components/Tile Post'
+    component={TilePostComponent}
+    decorators={[
+        moduleMetadata({ declarations: [TilePostComponent, TwigContainerComponent]})
+    ]}
+    argTypes={{
+        titleTag: {
+            table: { defaultValue: { summary: 'p' } }
+        },
+        isFeatured: {
+            table: { defaultValue: { summary: false } }
+        }
+    }}
+/>
+
+
+# Tile Post
+
+<br/>
+
+
+
+## Component API
+
+<Props of={TilePostComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/tile-post/twig/index.twig' with {
+    title           : 'Visit the Community',
+    description     : 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
+    link            : {
+        label: 'Ask a question',
+        href: 'https://example.com'
+    },
+    image           : {
+        src: '/images/_docs/hero-helix-reversed.png',
+        alt: 'Image of an iPhone 13',
+        fit: 'fill',
+        backgroundColor: 'red'
+    },
+    class           : 'm-6'
+} only %}
+```
+
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+export const commonProps = {
+    title           : 'Visit the Community',
+    titleTag        : 'h1',
+    description     : 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
+    link            : {
+        label: 'Ask a question',
+        href: 'https://example.com'
+    },
+    image           : {
+        src: '/images/_docs/hero-helix-reversed.png',
+        alt: 'Image of an iPhone 13',
+        fit: 'fill',
+        backgroundColor: 'red'
+    },
+    class           : 'm-6'
+}
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        height='600px'
+        args={{
+            elementPath: 'components/tile-post/_doc/template.drupal',
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>

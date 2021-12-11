@@ -1,0 +1,132 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { SectionTilesPostComponent }            from '../angular/section-tiles-post.component';
+import { commonProps as tilePostProps }         from '../../../components/tile-post/_doc/doc.stories.mdx';
+
+
+<Meta
+    title='Sections/Tiles Post'
+    component={SectionTilesPostComponent}
+    decorators={[
+        moduleMetadata({ declarations: [SectionTilesPostComponent, TwigContainerComponent]})
+    ]}
+    argTypes={{
+        titleTag: {
+            table: { defaultValue: { summary: 'h1' } }
+        },
+        isFeatured: {
+            table: { defaultValue: { summary: false } }
+        },
+        reversed: {
+            table: { defaultValue: { summary: false } }
+        }
+    }}
+/>
+
+
+# Section Tiles Post
+
+<br/>
+
+
+
+## Component API
+
+<ArgsTable of={SectionTilesPostComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-sections/tiles-post/twig/index.twig' with {
+    title           : 'We are here to help you',
+    titleTag        : 'h1',
+    tiles           : [
+        {
+            title: 'Visit the Community',
+            description: 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
+            link: {
+                label: 'Ask a question',
+                href: 'https://example.com'
+            },
+            image: {
+                src: '/images/_docs/hero-helix-reversed.png',
+                alt: 'Image of an iPhone 13',
+                fit: 'fill',
+                backgroundColor: 'red'
+            },
+            class: ''
+        },
+    ],
+    class           : ''
+} only %}
+```
+
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+export const commonProps = {
+    title           : 'We are here to help you',
+    titleTag        : 'h1',
+    tiles           : [
+        {
+            ...tilePostProps,
+            class: ''
+        },
+        {
+            ...tilePostProps,
+            description: 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem. A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
+            class: ''
+        },
+        {
+            ...tilePostProps,
+            class: ''
+        }
+    ],
+    class           : ''
+}
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        height='600px'
+        args={{
+            elementPath: 'sections/tiles-post/_doc/template.drupal',
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With 2 tiles only'
+        height='600px'
+        args={{
+            elementPath: 'sections/tiles-post/_doc/template.drupal',
+            ...commonProps,
+            tiles: [
+                {
+                    ...tilePostProps,
+                    class: ''
+                },
+                {
+                    ...tilePostProps,
+                    description: 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem. A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
+                    class: ''
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
