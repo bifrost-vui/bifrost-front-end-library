@@ -13,8 +13,8 @@ export class ButtonNavComponent implements OnInit {
     */
     @Input() href           : string;
     @Input() isDisabled     : boolean;
-
     @Input() iconName       : string;
+    @Input() isFeatured     : boolean;
 
     @Input() dataDismiss    : string;
     @Input() dataToggle     : string;
@@ -23,8 +23,8 @@ export class ButtonNavComponent implements OnInit {
     @Input() ariaExpanded   : string;
     @Input() ariaLabel      : string;
     @Input() extraAttribute : string;
-    @Input() class          : string;
 
+    @Input() class          : string;
     @Input() reversed       : boolean;
     @Input() highlight      : boolean;
     

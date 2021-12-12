@@ -41,6 +41,7 @@ import { ButtonNavComponent }                   from '../angular/button-nav.comp
 ```jsx
 {% include '@bf-components/button-nav/twig/index.twig' with {
     label           : 'Default',
+    description     : 'Description',
     iconName        : 'placeholder',
     class           : 'mt-3',
     reversed        : false,
@@ -62,7 +63,36 @@ export const Drupal = (args) => ({
         height='300px'
         args={{
             elementPath : 'components/button-nav/_doc/template.drupal',
-            iconName    : 'placeholder'
+            iconName    : 'placeholder',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With description'
+        height='300px'
+        args={{
+            elementPath : 'components/button-nav/_doc/template.drupal',
+            iconName    : 'placeholder',
+            description : 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros.'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With isFeatured'
+        height='300px'
+        args={{
+            elementPath : 'components/button-nav/_doc/template.drupal',
+            iconName    : 'placeholder',
+            description : 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros.',
+            isFeatured  : true,
         }}
     >
         {Drupal.bind({})}

@@ -24,7 +24,7 @@
     {% if ariaLabel is defined %}aria-expanded='{{ ariaLabel|default(NULL) }}'{% endif %}
     {{ extraAttribute|default(NULL) }}
 >
-    <span class='bf-button__label'>
+    <span class='bf-button__inner'>
         {% if iconName is defined and iconName is not empty %}
             {% include '@bf-components/icon/twig/index.twig' with {
                 name    : iconName,
@@ -32,7 +32,10 @@
                 class   : iconPosition is same as ('right') ? 'bf-button__icon--right' : ''
             } only %}
         {% endif %}
-        {{ label|default('') }}
+        <span class='bf-button__label'>
+            {{ label|default('') }}
+        </span>
+        {{ content|default('') }}
     </span>
     {% if isLoading is same as (true) or hasLoading is same as (true) %}
         <div class='bf-button__loading' role='decoration'>

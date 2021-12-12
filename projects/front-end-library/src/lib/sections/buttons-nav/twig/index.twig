@@ -7,22 +7,31 @@
 {% endif %}
 
 
-<section class='bf-section-buttons-nav d-flex flex-column align-items-center py-6 px-4 {{ class|default('') }} {{ backgroundClass|default('') }}'>
+<section class='bf-section-buttons-nav {{ isFeatured|default(false) ? 'bf-section-buttons-nav--featured' }} py-6 {{ class|default('') }} {{ backgroundClass|default('') }}'>
+    <div class='container-fluid d-flex flex-column align-items-center'>
+        {% if title is defined and title %}
+            <{{ titleTag }} class='h2 mb-4 text-center' style='max-width: 40rem'>
+                {{ title }}
+            </{{ titleTag }}>
+        {% endif %}
 
-    {% if title is defined and title %}
-        <{{ titleTag }} class='h2 mb-4 text-center' style='max-width: 40rem'>
-            {{ title }}
-        </{{ titleTag }}>
-    {% endif %}
+        {% if buttons is defined and buttons %}
 
-    {% if buttons is defined and buttons %}
-        <ul class='list d-flex flex-wrap justify-content-center gap-4'>
-            {% for button in buttons %}
-                <li>
-                    {% include '@bf-components/button-nav/twig/index.twig' with button %}
-                </li>
+            {% set hasDescription = false %}
+            {% for button in buttons if not hasDescription %}
+                {% if button.description is defined and button.description %}
+                    {% set hasDescription = true %}
+                {% endif %}
             {% endfor %}
-        </ul>
-    {% endif %}
 
+            <ul class='bf-section-buttons-nav__list {{ hasDescription ? 'bf-section-buttons-nav__list--has-description' }} list gap-4'>
+                {% for button in buttons %}
+                    <li class='bf-section-buttons-nav__item'>
+                        {% set button = button|merge({ class: 'h-100 align-items-start ' ~ button.class }) %}
+                        {% include '@bf-components/button-nav/twig/index.twig' with button %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
 </section>

@@ -51,6 +51,21 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+export const commonProps = {
+    title: 'Discover our services Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.',
+    titleTag: 'h2',
+    buttons: [
+        { label: 'Mobility',        iconName: 'mobility' },
+        { label: 'Internet',        iconName: 'internet-residential' },
+        { label: 'Television',      iconName: 'television' },
+        { label: 'Bundle',          iconName: 'multi-product' },
+        { label: 'Entertainment',   iconName: 'play' },
+        { label: 'Automation',      iconName: 'smart-home' }
+    ],
+    isFeatured: false,
+    class: ''
+}
+
 
 <Canvas withSource='none'>
     <Story
@@ -58,17 +73,88 @@ export const Drupal = (args) => ({
         height='300px'
         args={{
             elementPath: 'sections/buttons-nav/_doc/template.drupal',
-            title: 'Discover our services Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.',
-            titleTag: 'h2',
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With description'
+        height='300px'
+        args={{
+            elementPath: 'sections/buttons-nav/_doc/template.drupal',
+            ...commonProps,
             buttons: [
-                { label: 'Mobility',        iconName: 'mobility' },
-                { label: 'Internet',        iconName: 'internet-residential' },
-                { label: 'Television',      iconName: 'television' },
-                { label: 'Bundle',          iconName: 'multi-product' },
-                { label: 'Entertainment',   iconName: 'play' },
-                { label: 'Automation',      iconName: 'smart-home' },
+                { label: 'Mobility',        iconName: 'mobility',               description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis. Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.' },
+                { label: 'Internet',        iconName: 'internet-residential',   description: 'Maecenas faucibus mollis.' },
+                { label: 'Television',      iconName: 'television',             description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.' },
+                { label: 'Bundle',          iconName: 'multi-product',          description: 'Maecenas faucibus.' },
+                { label: 'Entertainment',   iconName: 'play'                    },
+                { label: 'Automation',      iconName: 'smart-home',             description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.' },
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With isFeatured'
+        height='300px'
+        args={{
+            elementPath: 'sections/buttons-nav/_doc/template.drupal',
+            ...commonProps,
+            buttons: [
+                { label: 'Mobility',        iconName: 'mobility',               description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis. Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.' },
+                { label: 'Internet',        iconName: 'internet-residential',   description: 'Maecenas faucibus mollis.' },
+                { label: 'Television',      iconName: 'television',             description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.' },
+                { label: 'Bundle',          iconName: 'multi-product',          description: 'Maecenas faucibus.' },
+                { label: 'Entertainment',   iconName: 'play'                    },
+                { label: 'Automation',      iconName: 'smart-home',             description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.' },
             ],
-            class: ''
+            isFeatured: true
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With isFeatured and 4 buttons'
+        height='300px'
+        args={{
+            elementPath: 'sections/buttons-nav/_doc/template.drupal',
+            ...commonProps,
+            buttons: [
+                { label: 'Mobility',        iconName: 'mobility',               description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis. Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.' },
+                { label: 'Internet',        iconName: 'internet-residential',   description: 'Maecenas faucibus mollis.' },
+                { label: 'Television',      iconName: 'television',             description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.' },
+                { label: 'Bundle',          iconName: 'multi-product',          description: 'Maecenas faucibus.' },
+            ],
+            isFeatured: true
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With isFeatured and 2 buttons'
+        height='300px'
+        args={{
+            elementPath: 'sections/buttons-nav/_doc/template.drupal',
+            ...commonProps,
+            buttons: [
+                { label: 'Mobility',        iconName: 'mobility',               description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis. Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.' },
+                { label: 'Internet',        iconName: 'internet-residential',   description: 'Maecenas faucibus mollis.' },
+            ],
+            isFeatured: true
         }}
     >
         {Drupal.bind({})}
