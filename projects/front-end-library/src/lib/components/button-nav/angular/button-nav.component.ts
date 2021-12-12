@@ -7,14 +7,15 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class ButtonNavComponent implements OnInit {
     constructor() {}
 
-    @Input() label          : string;
     /**
         A button will become a link if `href` is defined.
     */
     @Input() href           : string;
-    @Input() isDisabled     : boolean;
+    @Input() label          : string;
+    @Input() description    : string;
     @Input() iconName       : string;
     @Input() isFeatured     : boolean;
+    @Input() isDisabled     : boolean;
 
     @Input() dataDismiss    : string;
     @Input() dataToggle     : string;
