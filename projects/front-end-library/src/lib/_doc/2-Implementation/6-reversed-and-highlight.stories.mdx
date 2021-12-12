@@ -1,0 +1,101 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta
+    title='Implementation/Reversed & Highlight'
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+/>
+
+# Reversed and Highlight
+
+Bifrost offers differents styles contexts out of the box.
+- They are usefull to create semantic contrast.
+- They are meant to be used in a meaningfull way, be sure to rationalize their purpose in your theme.
+
+<br/>
+
+For example, in a [**Videotron Theme**](?path=/docs/implementation-theme--page) (default), the render is:
+
+<div class='d-flex border bf-border-color-tertiary'>
+    <div class='bf-color-bg-ground px-4 py-2' style={{ flex: 1 }}>
+        Default
+    </div>
+    <div class='bf-color-bg-ground reversed px-4 py-2' style={{ flex: 1 }}>
+        Reversed
+    </div>
+    <div class='bf-color-bg-highlight px-4 py-2' style={{ flex: 1 }}>
+        Highlight
+    </div>
+</div>
+
+[More details on Colors Documentation.](?path=/docs/styles-colors--page)
+
+<br /><br />
+
+## How to implement?
+They are 2 options to implement those contexts.
+
+> About **Reversed**, feel free to use one or another options.
+>
+> However about **Highlight**, Bifrost team plan to make sure that the result is the same, so the **By Props Option** is recommended.
+
+<br/>
+
+### Option 1: By Props
+
+**Reversed:**
+Most **Components** have a props `reversed`, but feel free to check that in the Component API.
+```html
+<div>
+    {% include '@bf-components/button-nav/twig/index.twig' with {
+        label: 'My button',
+        reversed: true
+    } only %}
+</div>
+```
+
+**Highlight:**
+Some **Components** have a props `highlight`.
+```html
+<div>
+    {% include '@bf-components/button-nav/twig/index.twig' with {
+        label: 'My button',
+        highlight: true
+    } only %}
+</div>
+```
+
+### Option 2: With parent classes
+
+**Reversed:**
+```html
+<!-- All children of .reversed have reversed style. -->
+<div class='reversed'>
+
+    {% include '@bf-components/button/twig/index.twig' with {
+        label: 'My button'
+    } only %}
+
+    <div class='bf-color-bg-ground'>
+        <!-- Background color is reversed. -->
+    </div>
+</div>
+
+<!-- Or feel free to merge classes. -->
+<div class='reversed bf-color-bg-ground'>
+    <!-- Background color is reversed. -->
+</div>
+```
+
+**Highlight:**
+**There is no ~~`.highlight`~~ class** like `.reversed`, since most of the time, it's only a change of background-color.
+```html
+<div class='bf-color-bg-highlight'>
+    {% include '@bf-components/button/twig/index.twig' with {
+        label: 'My button'
+    } only %}
+</div>
+```
