@@ -1,41 +1,41 @@
 <a
-    class='
-        bf-link
-        {{ hierarchy is defined and hierarchy == 'primary' ? 'bf-link--primary' : 'bf-link--native' }}
-        {{ isUnderline|default(true) ? '' : 'bf-link--no-underline' }}
-        {{ label is defined and label is empty ? 'bf-link--icon-only' }}
-        {{ isDisabled is defined and isDisabled ? 'disabled' }}
-        {{ reversed is defined and reversed ? 'reversed' }}
-        {{ class|default('') }}'
-    {% if isDisabled %}
-        aria-disabled='true'
-        role='link'
-    {% else %}
-        href='{{ href|default('') }}'
-    {% endif %}
-    {% if title is defined and title %}
-        title='{{ title }}'
-    {% endif %}
-    {% if ariaLabel is defined and ariaLabel %}
-        aria-label='{{ ariaLabel}}'
-    {% endif %}
-    {% if rel is defined and rel %}
-        rel='{{ rel }}'
-    {% endif %}
-    {{ extraAttribute|default(NULL) }}
+	class='
+		bf-link
+		{{ hierarchy is defined and hierarchy == 'primary' ? 'bf-link--primary' : 'bf-link--native' }}
+		{{ isUnderline|default(true) ? '' : 'bf-link--no-underline' }}
+		{{ label is defined and label is empty ? 'bf-link--icon-only' }}
+		{{ isDisabled is defined and isDisabled ? 'disabled' }}
+		{{ reversed is defined and reversed ? 'reversed' }}
+		{{ class|default('') }}'
+	{% if isDisabled %}
+		aria-disabled='true'
+		role='link'
+	{% else %}
+		href='{{ href|default('') }}'
+	{% endif %}
+	{% if title is defined and title %}
+		title='{{ title }}'
+	{% endif %}
+	{% if ariaLabel is defined and ariaLabel %}
+		aria-label='{{ ariaLabel}}'
+	{% endif %}
+	{% if rel is defined and rel %}
+		rel='{{ rel }}'
+	{% endif %}
+	{{ extraAttribute|default(NULL) }}
 >
-    <span class='d-flex align-items-center gap-1'>
-        {% if iconName is defined and iconName %}
-            {% include '@bf-components/icon/twig/index.twig' with {
-                name    : iconName,
-                size    : hierarchy is defined and hierarchy == 'primary' ? 'small' : 'xsmall',
-                class   : (iconPosition is defined and iconPosition is same as ('right') ? 'order-2')
-            } only %}
-        {% endif %}
-        {% if label %}
-            <span class='{{ labelClass|default('') }}'>
-                {{ label|default('') }}
-            </span>
-        {% endif %}
-    </span>
+	<span class='d-flex align-items-center gap-1'>
+		{% if iconName is defined and iconName %}
+			{% include '@bf-components/icon/twig/index.twig' with {
+				name    : iconName,
+				size    : hierarchy is defined and hierarchy == 'primary' ? 'small' : 'xsmall',
+				class   : (iconPosition is defined and iconPosition is same as ('right') ? 'order-2')
+			} only %}
+		{% endif %}
+		{% if label %}
+			<span class='{{ labelClass|default('') }}'>
+				{{ label|default('') }}
+			</span>
+		{% endif %}
+	</span>
 </a>
