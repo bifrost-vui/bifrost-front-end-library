@@ -1,0 +1,105 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { SectionKeysComponent }                 from '../angular/section-keys.component';
+
+
+<Meta
+    title='Sections/Keys'
+    component={SectionKeysComponent}
+    decorators={[
+        moduleMetadata({ declarations: [SectionKeysComponent, TwigContainerComponent]})
+    ]}
+    argTypes={{
+        titleTag: {
+            table: { defaultValue: { summary: 'h1' } },
+        },
+        reversed: {
+            table: { defaultValue: { summary: false } },
+        },
+        highlight: {
+            table: { defaultValue: { summary: false } },
+        }
+    }}
+/>
+
+
+# Section Keys
+
+<br/>
+
+
+
+## Component API
+
+<ArgsTable of={SectionKeysComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-sections/keys/twig/index.twig' with {
+    title: 'Maecenas faucibus mollis interdum integer posuere erat.',
+    titleTag: 'h2',
+    description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis. Maecenas faucibus mollis interdum integer posuere.',
+    keys: [
+        {
+            title       : 'Duis mollis, est non commodo luctus nisi', 
+            description : 'Donec sed odio dui. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vestibulum id ligula porta felis euismod semper. Donec ullamcorper nulla non metus auctor fringilla.',
+            iconName    : 'placeholder',
+            link        : {
+                href: '/',
+                label: 'Link'
+            }
+        }
+    ],
+    buttons: [
+        { href: '',        label: 'Button',     hierarchy: 'primary-alt' },
+        { href: '',        label: 'Button' },
+    ],
+    class: ''
+} only %}
+```
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+export const keyProps = {
+    title       : 'Duis mollis, est non commodo luctus nisi', 
+    description : 'Donec sed odio dui. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vestibulum id ligula porta felis euismod semper. Donec ullamcorper nulla non metus auctor fringilla.',
+    iconName    : 'placeholder',
+    link        : {
+        href: '/',
+        label: 'Link'
+    }
+}
+
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        height='300px'
+        args={{
+            elementPath: 'sections/keys/_doc/template.drupal',
+            title: 'Maecenas faucibus mollis interdum integer posuere erat.',
+            titleTag: 'h2',
+            description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis. Maecenas faucibus mollis interdum integer posuere.',
+            keys: [
+                keyProps, keyProps, keyProps, keyProps
+            ],
+            buttons: [
+                { href: '',        label: 'Button',     hierarchy: 'primary-alt' },
+                { href: '',        label: 'Button' },
+            ],
+            class: ''
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
