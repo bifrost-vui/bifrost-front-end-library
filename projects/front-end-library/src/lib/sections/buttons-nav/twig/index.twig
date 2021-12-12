@@ -1,0 +1,28 @@
+{% set titleTag = titleTag|default('h1') %}
+
+{% if highlight is defined and highlight is same as (true) %}
+    {% set backgroundClass  = 'bf-color-bg-highlight' %}
+{% elseif reversed is defined and reversed is same as (true) %}
+    {% set backgroundClass  = 'reversed bf-color-bg-ground' %}
+{% endif %}
+
+
+<section class='bf-section-buttons-nav d-flex flex-column align-items-center py-6 px-4 {{ class|default('') }} {{ backgroundClass|default('') }}'>
+
+    {% if title is defined and title %}
+        <{{ titleTag }} class='h2 mb-4 text-center' style='max-width: 40rem'>
+            {{ title }}
+        </{{ titleTag }}>
+    {% endif %}
+
+    {% if buttons is defined and buttons %}
+        <ul class='list d-flex flex-wrap justify-content-center gap-4'>
+            {% for button in buttons %}
+                <li>
+                    {% include '@bf-components/button-nav/twig/index.twig' with button %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+</section>
