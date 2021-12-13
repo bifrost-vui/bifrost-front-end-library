@@ -60,10 +60,38 @@ import { ListComponent }            from '../angular/list.component';
 
 ## Drupal
 
+
+export const commonProps = {
+    title       : 'Title',
+    link        : {
+        href    : 'https://www.eample.com',
+        label   : 'link label'
+    },
+    description : 'Description',
+    details      : 'Details magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo',
+    content     : [
+        {
+            label   : 'Lorem ipsum',
+            iconName: 'unlimited'
+        },
+        {
+            label   : 'Lorem ipsum',
+            iconName: 'desinstallation'
+        },
+        {
+            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+            iconName: 'placeholder'
+        }
+    ],
+    isFeatured  : false
+};
+
 export const Drupal = (args) => ({
     component   : TwigContainerComponent,
     props       : args,
 });
+
+
 
 <Canvas withSource='none'>
     <Story
@@ -71,28 +99,7 @@ export const Drupal = (args) => ({
         height='800px'
         args={{
             elementPath : 'components/list/_doc/template.drupal',
-            title       : 'Title',
-            link        : {
-                href    : 'https://www.eample.com',
-                label   : 'link label'
-            },
-            description : 'Description',
-            details      : 'Details magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo',
-            content     : [
-                {
-                    label   : 'Lorem ipsum',
-                    iconName: 'unlimited'
-                },
-                {
-                    label   : 'Lorem ipsum',
-                    iconName: 'desinstallation'
-                },
-                {
-                    label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-                    iconName: 'placeholder'
-                }
-            ],
-            isFeatured  : false,
+            ...commonProps
         }}
     >
         {Drupal.bind({})}

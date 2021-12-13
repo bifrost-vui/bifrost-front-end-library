@@ -4,14 +4,16 @@
 {% set content      = content|json_parse %}
 {% set reversed     = reversed|json_parse %}
 {% set isFeatured   = isFeatured|json_parse %}
+{% set hasDivider   = hasDivider|json_parse %}
+{% set hasBorder    = hasBorder|json_parse %}
 
 
 <div
-  class='d-flex justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
+  class='d-flex justify-content-center {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
   {% for index in [1,2] %}
     <div>
     <div class='p-4'>
-      <p>List with labels only</p>
+      <p class='bf-text-interface-large'>List with labels only</p>
       <div class='p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
         {% include '@bf-components/list/twig/index.twig' with {
           content     : [
@@ -32,7 +34,7 @@
 
     </div>
     <div class='p-4'>
-      <p>List with labels and icons</p>
+      <p class='bf-text-interface-large'>List with labels and icons</p>
       <div class='p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
         {% include '@bf-components/list/twig/index.twig' %}
       </div>

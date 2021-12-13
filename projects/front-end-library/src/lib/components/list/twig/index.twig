@@ -1,58 +1,60 @@
-
 {% set titleBlock = (title is defined and title) or (link is defined and link) or (description is defined and description) or (details is defined and details) %}
 
-{% if titleBlock %}
-  <div class='d-flex justify-content-between'>
+<div class='bf-list {{ hasBorder|default(false) ? 'bf-list--bordered' }} {{ class|default('') }}'>
+  {% if titleBlock %}
+    <div class='d-flex justify-content-between'>
       {% if title is defined and title %}
         <{{ titleTag|default('h3') }} class={{ titleClass|default('h3') }}>
           {{ title }}
-        </{{ titleTag|default('h3') }}>
+         </{{ titleTag|default('h3') }}>
       {% endif %}
 
-    {% if (link is defined and link) or (description is defined and description) %}
-      <p class='text-right mb-0'>
-        {%  if link is defined and link %}
-          <a class='bf-link'
-            {% if link.href is defined and link.href %}
-              href={{ link.href }}
-            {% else %}
-              role='link'
-              aria-disabled='true'
-            {% endif %}
-          >
+      {% if (link is defined and link) or (description is defined and description) %}
+        <p class='text-right mb-0'>
+          {% if link is defined and link %}
+            <a class='bf-link'
+              {% if link.href is defined and link.href %}
+                href={{ link.href }}
+              {% else %}
+                role='link'
+                aria-disabled='true'
+              {% endif %}
+            >
               {{ link.label }}
-          </a>
-        {% else %}
-          {{ description|default('') }}
-        {% endif %}
-      </p>
+            </a>
+
+          {% else %}
+            {{ description|default('') }}
+          {% endif %}
+        </p>
+      {% endif %}
+    </div>
+
+    {% if details is defined and details %}
+      <p> {{ details|raw() }} </p>
     {% endif %}
-  </div>
-
-  {%  if details is defined and details %}
-    <p> {{ details|raw() }} </p>
   {% endif %}
-{% endif %}
 
-{% if content is defined and content %}
-<ul class='bf-list {{ class|default('') }}'>
-    {% for item in content %}
+  {% if content is defined and content %}
+    <ul class='bf-list__inner {{ hasDivider|default('') ? 'bf-list__inner--divider' }}'>
+      {% for item in content %}
         <li class='d-flex flex-row mb-2'>
-            {% if item.iconName is defined and  item.iconName %}
-                {% include '@bf-components/icon/twig/index.twig' with {
-                    name    :  item.iconName,
-                    class   : 'mr-2'
-                } only %}
-            {% elseif isFeatured %}
-             {% include '@bf-components/icon/twig/index.twig' with {
-                name    : 'check',
-                class   : 'mr-2'
-              } only %}
-            {% endif %}
-            <p class='m-0'>
-                {{ item.label }}
-            </p>
+          {% if item.iconName is defined and  item.iconName %}
+            {% include '@bf-components/icon/twig/index.twig' with {
+              name    :  item.iconName,
+              class   : 'mr-2'
+            } only %}
+          {% elseif isFeatured %}
+            {% include '@bf-components/icon/twig/index.twig' with {
+              name    : 'check',
+              class   : 'mr-2'
+            } only %}
+          {% endif %}
+          <p class='m-0'>
+            {{ item.label }}
+          </p>
         </li>
-    {% endfor %}
-</ul>
-{% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>

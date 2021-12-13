@@ -22,10 +22,10 @@ export class ListComponent implements OnInit {
     @Input() titleTag           : string;
     @Input() titleClass         : string;
     /** Displays on the right size of the title */
-    @Input() Link               : ILink;
+    @Input() link               : ILink;
     /** Displays on the right size of the title if no link is defined */
     @Input() description        : string;
-    /** displays bellow the title and may contain HTML tags */
+    /** Displays bellow the title and may contain HTML tags */
     @Input() details            : string;
 
     /** Expected format:
@@ -41,6 +41,9 @@ export class ListComponent implements OnInit {
 
     /** When `true` creates a bullet list with a default `check` icon - you can still specify another iconName in `content[]` */
     @Input() isFeatured         : boolean;
+    /** Adds a bottom border between list elements */
+    @Input() hasDivider         : boolean;
+    /** Adds a top border to the list */
     @Input() hasBorder          : boolean;
     @Input() reversed           : boolean;
     @Input() class              : string;

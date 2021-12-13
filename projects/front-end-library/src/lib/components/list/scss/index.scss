@@ -1,18 +1,25 @@
 /* *****************************************************************************
 *
-*  List
+*  bf-list
 *
 * ***************************************************************************** */
 
 .bf-list {
-    @extend .list;
+    &--bordered {
+        border-top: 1px solid var(--bf-color-stroke-secondary);
+        padding-top: var(--bf-spacer-3);
+        margin-top : var(--bf-spacer-3);
+    }
+    &__inner {
+        @extend .list;
 
-    &--divider {
-        & > * {
-            border-bottom: 1px solid var(--bf-color-stroke-secondary);
+        &--divider {
+            li {
+                border-bottom: 1px solid var(--bf-color-stroke-secondary);
 
-            &:last-child {
-                border-bottom: none;
+                &:last-child {
+                    border-bottom: none;
+                }
             }
         }
     }
