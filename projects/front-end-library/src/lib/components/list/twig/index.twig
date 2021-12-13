@@ -1,6 +1,6 @@
 {% set titleBlock = (title is defined and title) or (link is defined and link) or (description is defined and description) or (details is defined and details) %}
 
-<div class='bf-list {{ hasBorder|default(false) ? 'bf-list--bordered' }} {{ class|default('') }}'>
+<div class='bf-list {{ class|default('') }}'>
   {% if titleBlock %}
     <header class='d-flex justify-content-between'>
       {% if title is defined and title %}
@@ -44,7 +44,7 @@
               name    :  item.iconName,
               class   : 'mr-2'
             } only %}
-          {% elseif isFeatured %}
+          {% elseif hasCheckBulletIcon %}
             {% include '@bf-components/icon/twig/index.twig' with {
               name    : 'check',
               class   : 'mr-2'
