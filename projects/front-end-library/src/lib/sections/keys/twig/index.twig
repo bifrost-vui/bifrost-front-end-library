@@ -1,73 +1,73 @@
 {% set titleTag = titleTag|default('h1') %}
 
 {% if highlight is defined and highlight is same as (true) %}
-    {% set backgroundClass = 'bf-color-bg-highlight' %}
+	{% set backgroundClass = 'bf-color-bg-highlight' %}
 {% elseif reversed is defined and reversed is same as (true) %}
-    {% set backgroundClass = 'reversed bf-color-bg-ground' %}
+	{% set backgroundClass = 'reversed bf-color-bg-ground' %}
 {% endif %}
 
 
 <section class='bf-section-keys py-6 px-4 {{ class|default('') }} {{ backgroundClass|default('') }}'>
-    <div class='container-fluid d-flex flex-column gap-4'>
+	<div class='container-fluid d-flex flex-column gap-4'>
 
-        {% if title is defined and title or description is defined and description %}
-            <header style='max-width: 40rem'>
-                {% if title is defined and title %}
-                    <{{ titleTag }} class='h2 mb-0'>
-                        {{ title }}
-                    </{{ titleTag }}>
-                {% endif %}
+		{% if title is defined and title or description is defined and description %}
+			<header style='max-width: 40rem'>
+				{% if title is defined and title %}
+					<{{ titleTag }} class='h2 mb-0'>
+						{{ title }}
+					</{{ titleTag }}>
+				{% endif %}
 
-                {% if description is defined and description %}
-                    <p class='mb-0 mt-2'>
-                        {{ description }}
-                    </p>
-                {% endif %}
-            </header>
-        {% endif %}
+				{% if description is defined and description %}
+					<p class='mb-0 mt-2'>
+						{{ description }}
+					</p>
+				{% endif %}
+			</header>
+		{% endif %}
 
-        <ul class='list d-flex flex-column flex-md-row flex-wrap gap-4'>
-            {% for key in keys %}
-                <li class='bf-section-keys__item d-flex flex-row flex-md-column align-items-start gap-4 p-0'>
-                    {% if key.iconName is defined and key.iconName %}
-                        {% include '@bf-components/icon/twig/index.twig' with {
-                            name: key.iconName,
-                            size: 'large'
-                        } only %}
-                    {% endif %}
+		<ul class='list d-flex flex-column flex-md-row flex-wrap gap-4'>
+			{% for key in keys %}
+				<li class='bf-section-keys__item d-flex flex-row flex-md-column align-items-start gap-4 p-0'>
+					{% if key.iconName is defined and key.iconName %}
+						{% include '@bf-components/icon/twig/index.twig' with {
+							name: key.iconName,
+							size: 'large'
+						} only %}
+					{% endif %}
 
-                    <div>
-                        {% if key.title is defined and key.title %}
-                            <{{ key.titleTag|default('h2') }} class='h3 mb-0'>
-                                {{ key.title }}
-                            </{{ key.titleTag|default('h2') }}>
-                        {% endif %}
+					<div>
+						{% if key.title is defined and key.title %}
+							<{{ key.titleTag|default('h2') }} class='h3 mb-0'>
+								{{ key.title }}
+							</{{ key.titleTag|default('h2') }}>
+						{% endif %}
 
-                        {% if key.description is defined and key.description %}
-                            <p class='small mb-0 mt-2'>
-                                {{ key.description }}
-                            </p>
-                        {% endif %}
+						{% if key.description is defined and key.description %}
+							<p class='small mb-0 mt-2'>
+								{{ key.description }}
+							</p>
+						{% endif %}
 
-                        {% if key.link is defined and key.link %}
-                            {% set keyLink = key.link|merge({
-                                hierarchy: 'primary',
-                                class: 'mt-1'
-                            }) %}
-                            {% include '@bf-components/link/twig/index.twig' with keyLink only %}
-                    {% endif %}
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
+						{% if key.link is defined and key.link %}
+							{% set keyLink = key.link|merge({
+								hierarchy: 'primary',
+								class: 'mt-1'
+							}) %}
+							{% include '@bf-components/link/twig/index.twig' with keyLink only %}
+					{% endif %}
+					</div>
+				</li>
+			{% endfor %}
+		</ul>
 
-        {% if buttons is defined and buttons %}
-            <div class='d-flex flex-wrap gap-2'>
-                {% for button in buttons %}
-                    {% include '@bf-components/button/twig/index.twig' with button only %}
-                {% endfor %}
-            </div>
-        {% endif %}
+		{% if buttons is defined and buttons %}
+			<div class='d-flex flex-wrap gap-2'>
+				{% for button in buttons %}
+					{% include '@bf-components/button/twig/index.twig' with button only %}
+				{% endfor %}
+			</div>
+		{% endif %}
 
-    </div>
+	</div>
 </section>
