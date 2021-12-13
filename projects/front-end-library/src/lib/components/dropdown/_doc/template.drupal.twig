@@ -1,0 +1,20 @@
+{% set reversed      = reversed|json_parse %}
+{% set isDisabled    = isDisabled|json_parse %}
+{% set dropdownItems = dropdownItems|json_parse %}
+
+<div class='d-flex flex-column flex-sm-row justify-content-center {% if reversed %}reversed bf-color-bg-ground{% endif %}' style="min-height:400px;">
+  {% for index in [1,2] %}
+
+    <div class='h-100 p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
+
+      {% include '@bf-components/dropdown/twig/index.twig' %}
+
+    </div>
+
+  {% endfor %}
+</div>
+
+{# ************************
+ Need to add inline style in order to force iframe height in storybook
+ Can be remove after server express
+ #}

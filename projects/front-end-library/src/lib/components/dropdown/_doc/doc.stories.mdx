@@ -1,0 +1,79 @@
+import { moduleMetadata }               from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
+import { withDesign }                   from 'storybook-addon-designs'
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { DropdownComponent }     from '../angular/dropdown.component';
+
+<Meta
+    title='Components/Dropdown'
+    component={DropdownComponent}
+    decorators={[
+        moduleMetadata({ declarations: [DropdownComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type    : 'figma',
+            url     : 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            disable : false
+        },
+    }}
+    argTypes={{}}
+/>
+
+# Dropdown
+
+**// TODO** Write a description of your component.
+> **// TODO**: Add a link to component in **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)**
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Dropdown'
+        height = '400px'
+        args={{
+            elementPath     : 'components/dropdown/_doc/template.drupal',
+            dropdownLabel   : 'Sauter directement à la section',
+            dropdownItems   : [
+                                {label:'Connexion', iconName: 'unlimited', href:'www.videotron.com', class:''},
+                                {label:'Modifier ses informations', iconName: '', href:'www.videotron.com', class:''},
+                                {label:'Modifier son mot de passe', iconName: '', href:'www.videotron.com', class:''},
+                                {label:'Modifier le NIP', iconName: 'camera', href:'www.videotron.com', class:""},
+                                {label:'Modifier ses coordonnées', iconName: 'unlimited', href:'www.videotron.com', class:''},
+                             ],
+            isDisabled      : false,
+            class           : 'mt-3',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal implementation exemple
+
+```jsx
+{% include '@bf-components/dropdown/twig/index.twig' with {
+    dropdownLabel   : 'Sauter directement à la section',
+    dropdownItems   : [
+                        {label:'Connexion', iconName: 'unlimited', href:'www.videotron.com', class:''},
+                        {label:'Modifier ses informations', iconName: '', href:'www.videotron.com', class:''},
+                        {label:'Modifier son mot de passe',iconName: '',  href:'www.videotron.com', class:''},
+                        {label:'Modifier le NIP', iconName: 'camera', href:'www.videotron.com', class:""},
+                        {label:'Modifier ses coordonnées', iconName: 'unlimited', href:'www.videotron.com', class:''},
+                     ],
+    isDisabled      : false,
+    class           : 'mt-3',
+} only %}
+```
+
+
+
+<Props of={DropdownComponent} />

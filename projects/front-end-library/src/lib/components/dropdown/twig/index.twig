@@ -1,38 +1,36 @@
-{# For Demo purposes only #}
-{% if dropdownItems is not defined or dropdownItems is empty %}
-    {% set dropdownItems = [
-        {id:"#", href:"", label:"Item 1", class:""},
-        {id:"#", href:"", label:"Item 2", class:""},
-        {id:"#", href:"", label:"Item 3", class:""},
-    ] %}
-{% endif %}
-
-{# ------------------------------------------------------------------------------------------------------------------ #}
-<div class="dropdown dropdown--{{ dropdownTheme|default('light') }} {{ class|default('') }} ">
-    <button class="p-2 d-inline-flex align-items-center justify-content-between {{ buttonClass|default() }} vui--style-reset"
-            type="button"
-            id="{{ dropdownId|default('dropdownMenuButtonScrollSpy') }}"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
+<div class='bf-dropdown p-4  {{ isDisabled ? 'disabled' }}'>
+  <div class='dropdown'>
+    <button class='bf-button bf-button--tertiary dropdown-toggle'
+       href='#'
+       type='button'
+       data-toggle='dropdown'
+       aria-haspopup='true'
+       aria-expanded='false'
     >
+      {{ dropdownLabel }}
         {% include '@bf-components/icon/twig/index.twig' with {
-            name: iconName|default('helix'),
-            size: iconSize|default(2),
-            color: iconColor|default(""),
-            class: iconClass|default("")
+          name  : 'chevron-down',
+          size  : 'small',
+          class : 'chevron ml-5'
         } only %}
     </button>
 
-    <div class="dropdown-menu dropdown-menu--arrow border-0"
-         x-placement="{{ dropdownXPlacement|default('bottom-center') }}"
-         aria-labelledby="{{ dropdownId|default('btnOutlineDropdownMenu') }}">
-        {% block dropdown_content %}
-            <div class="list-group py-2">
-                {% for item in dropdownItems %}
-                    <button class="list-group-item list-group-item-action">{{ item.label|default('Item') }}</button>
-                {% endfor %}
-            </div>
-        {% endblock %}
+    {% if dropdownItems is defined and dropdownItems is not empty %}
+    <div class='dropdown-menu' aria-labelledby='{{ dropdownId }}'>
+      {% for item in dropdownItems %}
+        {% if item.iconName is defined or item.label is defined and item.label %}
+        <a class='dropdown-item' href='{{ item.link }}'>
+          {% if item.iconName is defined and item.iconName %}
+            {% include '@bf-components/icon/twig/index.twig' with {
+              name    : item.iconName,
+              class   : 'mr-2'
+            } only %}
+          {% endif %}
+          {{ item.label }}
+        </a>
+        {% endif %}
+      {% endfor %}
     </div>
+    {% endif %}
+  </div>
 </div>
