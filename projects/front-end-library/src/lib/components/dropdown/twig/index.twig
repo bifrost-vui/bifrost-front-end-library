@@ -1,4 +1,4 @@
-<div class='bf-dropdown p-4  {{ isDisabled ? 'disabled' }}'>
+<div class='bf-dropdown {{ isDisabled ? 'disabled' }}'>
   <div class='dropdown'>
     <button class='bf-button bf-button--tertiary dropdown-toggle'
        href='#'
@@ -18,8 +18,8 @@
     {% if dropdownItems is defined and dropdownItems is not empty %}
     <div class='dropdown-menu' aria-labelledby='{{ dropdownId }}'>
       {% for item in dropdownItems %}
-        {% if item.iconName is defined or item.label is defined and item.label %}
-        <a class='dropdown-item' href='{{ item.link }}'>
+        {% if item.label is defined and item.label %}
+        <a class='dropdown-item' href='{{ item.href }}'>
           {% if item.iconName is defined and item.iconName %}
             {% include '@bf-components/icon/twig/index.twig' with {
               name    : item.iconName,
