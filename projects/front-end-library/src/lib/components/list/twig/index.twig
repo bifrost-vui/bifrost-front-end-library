@@ -2,7 +2,7 @@
 
 <div class='bf-list {{ hasBorder|default(false) ? 'bf-list--bordered' }} {{ class|default('') }}'>
   {% if titleBlock %}
-    <div class='d-flex justify-content-between'>
+    <header class='d-flex justify-content-between'>
       {% if title is defined and title %}
         <{{ titleTag|default('h3') }} class={{ titleClass|default('h3') }}>
           {{ title }}
@@ -28,7 +28,7 @@
           {% endif %}
         </p>
       {% endif %}
-    </div>
+    </header>
 
     {% if details is defined and details %}
       <p> {{ details|raw() }} </p>
