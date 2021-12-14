@@ -14,29 +14,20 @@
 
     {% if dropdownItems is defined and dropdownItems is not empty %}
       <ul class="dropdown-menu list-unstyled">
-      {% for item in dropdownItems %}
-        {% if item.label is defined and item.label %}
-      {#  <a class='dropdown-item' href='{{ item.href }}'>
-          {% if item.iconName is defined and item.iconName %}
-            {% include '@bf-components/icon/twig/index.twig' with {
-              name    : item.iconName,
-              class   : 'mr-2'
-            } only %}
+        {% for item in dropdownItems %}
+          {% if item.label is defined and item.label %}
+            <li>
+              {% include '@bf-components/link/twig/index.twig' with {
+                label   : item.label,
+                class   : 'dropdown-item',
+                href    : item.href,
+                iconName    : item.iconName,
+                iconPosition: 'left',
+                isUnderline : false
+              } only %}
+            </li>
           {% endif %}
-          {{ item.label }}
-        </a>#}
-
-
-          <li>
-            {% include '@bf-components/link/twig/index.twig' with {
-              label   : item.label,
-              class   : 'dropdown-item',
-              href    : item.href
-            } only %}
-          </li>
-        {% endif %}
-      {% endfor %}
-
+        {% endfor %}
       </ul>
     {% endif %}
   </div>
