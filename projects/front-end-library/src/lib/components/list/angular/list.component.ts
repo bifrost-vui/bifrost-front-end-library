@@ -5,9 +5,10 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
  *
  */
 interface ILink {
-    label   : string;
-    href    : string;
-    iconName: string;
+    label           : string;
+    href            : string;
+    iconName        : string;
+    iconePosition   : string;
 }
 
 @Component({

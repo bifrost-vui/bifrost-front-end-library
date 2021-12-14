@@ -12,20 +12,16 @@
       {% if (link is defined and link) or (description is defined and description) %}
         <p class='text-right mb-0'>
           {% if link is defined and link %}
-            <a class='bf-link'
-              {% if link.href is defined and link.href %}
-                href={{ link.href }}
-              {% else %}
-                role='link'
-                aria-disabled='true'
-              {% endif %}
-            >
-              {{ link.label }}
-            </a>
-
+            {% include '@bf-components/link/twig/index.twig' with {
+              label       : link.label|default(''),
+              href        : link.href|default(''),
+              iconName    : link.iconName|default(''),
+              iconPosition: link.iconPosition|default('right'),
+              hierarchy     : 'primary'
+            } %}
           {% else %}
             {{ description|default('') }}
-          {% endif %}
+            {% endif %}
         </p>
       {% endif %}
     </header>

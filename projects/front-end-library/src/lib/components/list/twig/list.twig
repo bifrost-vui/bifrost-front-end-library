@@ -1,6 +1,7 @@
 <ul class='list {{ hasDivider|default('') ? 'list--divider' }}'>
   {% for item in content %}
-    <li class='d-flex flex-row mb-2'>
+    <li class='d-flex flex-row mb-2 justify-content-between'>
+      <p class='d-flex m-0'>
       {% if item.iconName is defined and  item.iconName %}
         {% include '@bf-components/icon/twig/index.twig' with {
           name    :  item.iconName,
@@ -12,9 +13,16 @@
           class   : 'mr-2'
         } only %}
       {% endif %}
-      <p class='m-0'>
-        {{ item.label }}
+        <span>{{ item.label }}</span>
       </p>
+      {% if item.link is defined and item.link %}
+        <p class='text-right mb-0'>
+          {% include '@bf-components/link/twig/index.twig' with {
+              label       : link.label|default(''),
+              href        : link.href|default(''),
+          } %}
+        </p>
+      {% endif %}
     </li>
   {% endfor %}
 </ul>
