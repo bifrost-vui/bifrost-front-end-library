@@ -18,10 +18,10 @@ export class DropdownComponent implements OnInit {
     *
     * @required
     */
-    @Input() dropdownLabel  : string;
+    @Input() label  : string;
     @Input() isDisabled     : boolean;
     @Input() reversed       : boolean;
-    @Input() dropdownItems  : object;
+    @Input() dropdownItems  : Array<object>[];
 
     /** Class override */
     @Input() class: string;

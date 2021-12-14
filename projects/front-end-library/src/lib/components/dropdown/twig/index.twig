@@ -1,25 +1,22 @@
 <div class='bf-dropdown {{ isDisabled ? 'disabled' }}'>
   <div class='dropdown'>
-    <button class='bf-button bf-button--tertiary dropdown-toggle'
-       href='#'
-       type='button'
-       data-toggle='dropdown'
-       aria-haspopup='true'
-       aria-expanded='false'
-    >
-      {{ dropdownLabel }}
-        {% include '@bf-components/icon/twig/index.twig' with {
-          name  : 'chevron-down',
-          size  : 'small',
-          class : 'chevron ml-5'
-        } only %}
-    </button>
+    {% include '@bf-components/button/twig/index.twig' with {
+      label           : label ,
+      hierarchy       : secondary,
+      isDisabled      : false,
+      iconName        : 'chevron-down',
+      dataToggle      : 'dropdown',
+      ariaExpanded    : false,
+      ariaHaspopup    : true,
+      iconPosition    : 'right',
+      class           : 'dropdown-toggle mt-3',
+    } only %}
 
     {% if dropdownItems is defined and dropdownItems is not empty %}
-    <div class='dropdown-menu' aria-labelledby='{{ dropdownId }}'>
+      <ul class="dropdown-menu list-unstyled">
       {% for item in dropdownItems %}
         {% if item.label is defined and item.label %}
-        <a class='dropdown-item' href='{{ item.href }}'>
+      {#  <a class='dropdown-item' href='{{ item.href }}'>
           {% if item.iconName is defined and item.iconName %}
             {% include '@bf-components/icon/twig/index.twig' with {
               name    : item.iconName,
@@ -27,10 +24,20 @@
             } only %}
           {% endif %}
           {{ item.label }}
-        </a>
+        </a>#}
+
+
+          <li>
+            {% include '@bf-components/link/twig/index.twig' with {
+              label   : item.label,
+              class   : 'dropdown-item',
+              href    : item.href
+            } only %}
+          </li>
         {% endif %}
       {% endfor %}
-    </div>
+
+      </ul>
     {% endif %}
   </div>
 </div>
