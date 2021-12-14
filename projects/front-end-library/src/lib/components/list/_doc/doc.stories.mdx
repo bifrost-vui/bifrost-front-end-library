@@ -22,11 +22,12 @@ import { ListComponent }            from '../angular/list.component';
 
 <Props of={ListComponent} />
 
-
-
 ## Drupal implementation example
 
+### List with header
+
 ```jsx
+
 {% include '@bf-components/list/twig/index.twig' with {
     title       : 'Title',
     titleTag    : 'p',
@@ -56,7 +57,45 @@ import { ListComponent }            from '../angular/list.component';
 } only %}
 ```
 
+### simple list with icons
 
+```jsx
+{% include '@bf-components/list/twig/index.twig' with {
+    content     : [
+        {
+            label   : 'Lorem ipsum',
+            iconName: 'unlimited'
+        },
+        {
+            label   : 'Lorem ipsum',
+            iconName: 'desinstallation'
+        },
+        {
+            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
+            iconName: 'placeholder'
+        }
+    ],
+    class       : 'bf-text-display-sub-medium border-top'
+} only %}
+```
+### CSS only list
+
+```jsx
+<ul class='list'>
+  <li>Lorem ipsum</li>
+  <li>Lorem ipsum</li>
+  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.</li>
+</ul>
+
+<ul class='list list--divider'>
+  <li>Lorem ipsum</li>
+  <li>Lorem ipsum</li>
+  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus
+    eget urna mollis ornare vel eu leo.
+  </li>
+</ul>
+
+```
 
 ## Drupal
 
@@ -90,8 +129,6 @@ export const Drupal = (args) => ({
     component   : TwigContainerComponent,
     props       : args,
 });
-
-
 
 <Canvas withSource='none'>
     <Story

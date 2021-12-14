@@ -1,0 +1,20 @@
+<ul class='list {{ hasDivider|default('') ? 'list--divider' }}'>
+  {% for item in content %}
+    <li class='d-flex flex-row mb-2'>
+      {% if item.iconName is defined and  item.iconName %}
+        {% include '@bf-components/icon/twig/index.twig' with {
+          name    :  item.iconName,
+          class   : 'mr-2'
+        } only %}
+      {% elseif hasCheckBulletIcon %}
+        {% include '@bf-components/icon/twig/index.twig' with {
+          name    : 'check',
+          class   : 'mr-2'
+        } only %}
+      {% endif %}
+      <p class='m-0'>
+        {{ item.label }}
+      </p>
+    </li>
+  {% endfor %}
+</ul>

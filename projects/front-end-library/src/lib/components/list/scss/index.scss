@@ -5,21 +5,32 @@
 * ***************************************************************************** */
 
 .bf-list {
-    & .border-top {
+    &--divider {
         border-top: 1px solid var(--bf-color-stroke-secondary);
         padding-top: var(--bf-spacer-3);
         margin-top : var(--bf-spacer-3);
+        &:last-of-type {
+            border: 0;
+        }
     }
-    &__inner {
-        @extend .list;
+}
 
-        &--divider {
-            li {
-                border-bottom: 1px solid var(--bf-color-stroke-secondary);
+/* *****************************************************************************
+*
+*  list : Utilitary class
+*
+* ***************************************************************************** */
+.list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 0;
 
-                &:last-child {
-                    border-bottom: none;
-                }
+    &--divider {
+        li {
+            border-bottom: 1px solid var(--bf-color-stroke-secondary);
+
+            &:last-child {
+                border-bottom: none;
             }
         }
     }
