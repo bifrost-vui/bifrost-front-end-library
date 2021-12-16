@@ -27,7 +27,7 @@ export class ListComponent implements OnInit {
     },
     {...}]</pre>
     */
-    @Input() listItems          : IListItems[];
+    @Input() content          : IListItems[];
 
     /** When `true` creates a bullet list with a default `check` icon */
     @Input() hasCheckBulletIcon : boolean;

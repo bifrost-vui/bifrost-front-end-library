@@ -26,7 +26,7 @@ export class ListGroupComponent implements OnInit {
     /** Displays bellow the title and may contain HTML tags */
     @Input() details            : string;
     /** [list](/?path=/docs/components-list--drupal) component.*/
-    @Input() content            : object;
+    @Input() contentList          : object;
     /** When `true` creates a bullet list with a default `check` icon - you can still specify another iconName in `content[]` */
     /** Adds a top border */
     @Input() hasDivider         : boolean;

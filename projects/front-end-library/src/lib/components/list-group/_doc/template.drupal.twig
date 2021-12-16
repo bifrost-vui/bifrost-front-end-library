@@ -1,5 +1,5 @@
 {% set link = link|json_parse %}
-{% set content = content|json_parse %}
+{% set contentList = contentList|json_parse %}
 
 {% set hasDivider = hasDivider|json_parse %}
 {% set reversed = reversed|json_parse %}
@@ -14,25 +14,25 @@
         {% include '@bf-components/list-group/twig/index.twig' with {
           titleTag    : titleTag|default('p'),
           titleClass  : titleClass|default('bf-text font-weight-bold'),
-          link               : {
+          link        : {
             label          : 'link',
             href           : 'https://example.com',
           },
-          content     : {
-            listItems : [
+          contentList   : {
+            content : [
               {
-                label : content.listItems.label|default('Lorem ipsum'),
+                label : contentList.content.label|default('Lorem ipsum'),
               },
               {
-                label : content.listItems.label|default('Lorem ipsum'),
+                label : contentList.content.label|default('Lorem ipsum'),
               },
               {
-                label : content.listItems.label|default('Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'),
+                label : contentList.content.label|default('Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'),
                 link  : content.link
               }
             ],
-            class       : content.class|default('bf-text-display-sub-medium'),
-            hasCheckBulletIcon : content.hasCheckBulletIcon|default(true),
+            class       : contentList.class|default('bf-text-display-sub-medium'),
+            hasCheckBulletIcon : contentList.hasCheckBulletIcon|default(true),
           },
         } %}
       </div>
@@ -42,20 +42,20 @@
           titleClass  : titleClass|default('h4'),
           class       : class|default('bf-text-display-sub-medium'),
           link        : null,
-          content     : {
-            listItems : [
+          contentList   : {
+            content : [
               {
-                label : content.listItems.label|default('Lorem ipsum'),
+                label : contentList.content.label|default('Lorem ipsum'),
               },
               {
-                label : content.listItems.label|default('Lorem ipsum'),
+                label : contentList.content.label|default('Lorem ipsum'),
               },
               {
-                label : content.listItems.label|default('Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'),
+                label : contentList.content.label|default('Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'),
                 link  : content.link
               }
             ],
-            hasDivider  : content.hasDivider|default(true),
+            hasDivider  : contentList.hasDivider|default(true),
           }
         } %}
       </div>
