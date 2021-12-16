@@ -1,27 +1,24 @@
-{% set link         = link|json_parse %}
-{% set description  = description|json_parse %}
-{% set details      = details|json_parse %}
-{% set content      = content|json_parse %}
-{% set reversed     = reversed|json_parse %}
-{% set hasCheckBulletIcon   = hasCheckBulletIcon|json_parse %}
-{% set hasDivider   = hasDivider|json_parse %}
+{% set listItems          = listItems|json_parse %}
+{% set reversed           = reversed|json_parse %}
+{% set hasCheckBulletIcon = hasCheckBulletIcon|json_parse %}
+{% set hasDivider         = hasDivider|json_parse %}
 
 <div  class='container-fluid d-flex flex-column d-sm-flex flex-sm-row justify-content-center {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
   {% for index in [1,2] %}
     <div>
       <div class='p-4'>
-        <p class='bf-text-interface-large'>List with labels only</p>
+        <p class='bf-text-interface-large'>List with links</p>
 
         <div class='p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
           {% include '@bf-components/list/twig/index.twig' with {
-            content     : [
+            listItems     : [
               {
                 label   : label|default('Lorem ipsum'),
                 iconName: iconName|default(null),
                 link    : {
-                  href    : link.href|default('https://www.example.com'),
-                  label   : link.label|default('link'),
-                }
+                href    : link.href|default('https://www.example.com'),
+                label   : link.label|default('link'),
+              }
               },
               {
                 label   : label|default('Lorem ipsum'),
@@ -30,9 +27,9 @@
               {
                 label   : label|default('Lorem ipsum Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'),
                 link    : {
-                  href    : link.href|default('https://www.example.com'),
-                  label   : link.label|default('link'),
-                }
+                href    : link.href|default('https://www.example.com'),
+                label   : link.label|default('link'),
+              }
               },
             ],
           } %}
@@ -40,7 +37,7 @@
       </div>
 
       <div class='p-4'>
-        <p class='bf-text-interface-large'>List with labels and icons</p>
+        <p class='bf-text-interface-large'>List with icons</p>
 
         <div class='p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
           {% include '@bf-components/list/twig/index.twig' %}
@@ -53,8 +50,7 @@
 <div class='bf-color-bg-underground p-4 my-4'>
   <p class='bf-text small mb-0'>
     <strong>Note: </strong> <br/>
-    Use the <strong>list</strong> and <strong>list--divider</strong> CSS class for simple unordered lists <br/>
-    Use the List component in Bifrost for more complex lists layout.
+    Use the <strong>bf-list</strong> and <strong>bf-list--divider</strong> CSS class for simple unordered lists <br/>
   </p>
 </div>
 
@@ -66,7 +62,7 @@
       <p class='bf-text-interface-large'>List css only</p>
 
       <div class='p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
-        <ul class='list'>
+        <ul class='bf-list'>
           <li>Lorem ipsum</li>
           <li>Lorem ipsum</li>
           <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus
@@ -79,7 +75,7 @@
       <p class='bf-text-interface-large'>List with divider css only</p>
 
       <div class='p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
-        <ul class='list list--divider'>
+        <ul class='bf-list bf-list--divider'>
           <li>Lorem ipsum</li>
           <li>Lorem ipsum</li>
           <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus

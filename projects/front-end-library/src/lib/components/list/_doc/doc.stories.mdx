@@ -24,33 +24,21 @@ import { ListComponent }            from '../angular/list.component';
 
 ## Drupal implementation example
 
-### List with header
+### List with default Check icon
 
 ```jsx
 
 {% include '@bf-components/list/twig/index.twig' with {
-    title       : 'Title',
-    titleTag    : 'p',
-    titleClass  : 'bf-text font-weight-bold',
-    link        : {
-        href    : 'https://www.eample.com',
-        label   : 'link'
-    },
     hasCheckBulletIcon : true,
-    description : 'Description',
-    details     : 'Details : magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo',
     content     : [
         {
             label   : 'Lorem ipsum',
-            iconName: 'unlimited'
         },
         {
             label   : 'Lorem ipsum',
-            iconName: 'desinstallation'
         },
         {
             label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
-            iconName: 'placeholder'
         }
     ],
     class       : 'bf-text-display-sub-medium border-top'
@@ -74,6 +62,29 @@ import { ListComponent }            from '../angular/list.component';
             label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
             iconName: 'placeholder'
         }
+    ],
+} only %}
+```
+### simple list with right-side links
+```jsx
+
+{% include '@bf-components/list/twig/index.twig' with {
+    hasCheckBulletIcon : true,
+    content     : [
+        {
+            label   : 'Lorem ipsum',
+            link        : {
+                href    : 'https://www.example.com',
+                label   : 'link',
+            }
+        },
+        {
+            label   : 'Lorem ipsum',
+            link        : {
+                href    : 'https://www.example.com',
+                label   : 'link',
+            }
+        },
     ],
     class       : 'bf-text-display-sub-medium border-top'
 } only %}
@@ -101,23 +112,11 @@ import { ListComponent }            from '../angular/list.component';
 
 
 export const commonProps = {
-    title       : 'Title',
-    link        : {
-        href    : 'https://www.example.com',
-        label   : 'link',
-        iconName: 'external-link'
-    },
-    description : 'Description',
-    details      : 'Details magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo',
-    content     : [
+    listItems           : [
         {
             label   : 'Lorem ipsum',
             iconName: 'unlimited',
-            link        : {
-                href    : 'https://www.example.com',
-                label   : 'link',
-            }
-    },
+        },
         {
             label   : 'Lorem ipsum',
             iconName: 'desinstallation'
@@ -125,13 +124,11 @@ export const commonProps = {
         {
             label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
             iconName: 'placeholder',
-            link        : {
-                href    : 'https://www.example.com',
-                label   : 'link',
-            }
         }
     ],
-    hasCheckBulletIcon  : false
+    hasCheckBulletIcon  : false,
+    hasDivider          : false,
+    class               : ''
 };
 
 export const Drupal = (args) => ({

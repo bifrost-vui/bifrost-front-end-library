@@ -1,37 +1,30 @@
-{% set titleBlock = (title is defined and title) or (link is defined and link) or (description is defined and description) or (details is defined and details) %}
 
-<div class='bf-list {{ class|default('') }}'>
-  {% if titleBlock %}
-    <header class='d-flex justify-content-between'>
-      {% if title is defined and title %}
-        <{{ titleTag|default('h3') }} class={{ titleClass|default('h3') }}>
-          {{ title }}
-         </{{ titleTag|default('h3') }}>
-      {% endif %}
-
-      {% if (link is defined and link) or (description is defined and description) %}
-        <p class='text-right mb-0'>
-          {% if link is defined and link %}
-            {% include '@bf-components/link/twig/index.twig' with {
-              label       : link.label|default(''),
-              href        : link.href|default(''),
-              iconName    : link.iconName|default(''),
-              iconPosition: link.iconPosition|default('right'),
-              hierarchy     : 'primary'
-            } %}
-          {% else %}
-            {{ description|default('') }}
-            {% endif %}
+<ul class='bf-list {{ hasDivider|default('') ? 'bf-list--divider' }} {{ class|default('') }}'>
+    {% for item in listItems %}
+      <li class='d-flex flex-row mb-2 justify-content-between'>
+        <p class='d-flex m-0'>
+          {% if item.iconName is defined and  item.iconName %}
+            {% include '@bf-components/icon/twig/index.twig' with {
+              name    :  item.iconName,
+              class   : 'mr-2'
+            } only %}
+          {% elseif hasCheckBulletIcon %}
+            {% include '@bf-components/icon/twig/index.twig' with {
+              name    : 'check',
+              class   : 'mr-2'
+            } only %}
+          {% endif %}
+          <span>{{ item.label }}</span>
         </p>
-      {% endif %}
-    </header>
-
-    {% if details is defined and details %}
-      <p> {{ details|raw() }} </p>
-    {% endif %}
-  {% endif %}
-
-  {% if content is defined and content %}
-    {% include '@bf-components/list/twig/list.twig' with content %}
-  {% endif %}
-</div>
+        {% if item.link is defined and item.link %}
+          <p class='text-right mb-0 ml-2'>
+            {% include '@bf-components/link/twig/index.twig' with {
+              label       : item.link.label|default(''),
+              href        : item.link.href|default(''),
+              class       : 'bf-link',
+            } %}
+          </p>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>

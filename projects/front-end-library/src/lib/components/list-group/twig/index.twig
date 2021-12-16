@@ -1,0 +1,38 @@
+{% set titleBlock = (title is defined and title) or (link is defined and link) or (description is defined and description) or (details is defined and details) %}
+
+<div class='bf-list-group  {{ hasDivider|default('') ? 'bf-list-group--divider' }} {{ class|default('') }}'>
+  {% if titleBlock %}
+    <header class='d-flex justify-content-between'>
+    {% if title is defined and title %}
+      <{{ titleTag|default('h3') }} class='{{ titleClass|default('h3') }}'>
+      {{ title }}
+      </{{ titleTag|default('h3') }}>
+    {% endif %}
+
+    {% if (link is defined and link) or (description is defined and description) %}
+      <p class='text-right mb-0'>
+        {% if link is defined and link %}
+          {% include '@bf-components/link/twig/index.twig' with {
+            label       : link.label|default(''),
+            href        : link.href|default(''),
+            iconName    : link.iconName|default(''),
+            iconPosition: link.iconPosition|default('right'),
+            hierarchy     : 'primary'
+          } %}
+        {% else %}
+          {{ description|default('') }}
+        {% endif %}
+      </p>
+    {% endif %}
+    </header>
+
+    {% if details is defined and details %}
+      <p> {{ details|raw() }} </p>
+    {% endif %}
+  {% endif %}
+
+  {% if content is defined and content  %}
+    {% include '@bf-components/list/twig/index.twig' with content %}
+
+  {% endif %}
+</div>
