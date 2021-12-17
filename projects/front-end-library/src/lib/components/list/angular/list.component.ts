@@ -30,18 +30,20 @@ export class ListComponent implements OnInit {
     @Input() details            : string;
 
     /** Expected format:
-    ```
-    [{
+    <pre> [{
         label*   : "Label",
-        iconName: "placeholder"
+        iconName : "placeholder"
+        link : {
+            label: 'link',
+            href: 'https://www.example.com'
+        }
     },
-    {...}]
-    ```
+    {...}] </pre>
     */
     @Input() content            : object;
 
     /** When `true` creates a bullet list with a default `check` icon - you can still specify another iconName in `content[]` */
-    @Input() hasCheckBulletIcon         : boolean;
+    @Input() hasCheckBulletIcon : boolean;
     /** Adds a bottom border between list elements */
     @Input() hasDivider         : boolean;
     @Input() reversed           : boolean;

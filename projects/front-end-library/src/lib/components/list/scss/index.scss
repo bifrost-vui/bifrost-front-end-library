@@ -1,6 +1,6 @@
 /* *****************************************************************************
 *
-*  bf-list
+*  bf-list : Component class
 *
 * ***************************************************************************** */
 
@@ -17,16 +17,17 @@
 
 /* *****************************************************************************
 *
-*  list : Utilitary class
+*  bf-list : Utilitary class
 *
 * ***************************************************************************** */
-.list {
-    list-style-type: none;
-    padding: 0;
-    margin-bottom: 0;
+
+ul.bf-list {
+    @extend .list;
 
     &--divider {
-        li {
+        border-top: 0;
+
+        & > * {
             border-bottom: 1px solid var(--bf-color-stroke-secondary);
 
             &:last-child {
