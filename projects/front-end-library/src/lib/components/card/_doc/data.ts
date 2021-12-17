@@ -5,15 +5,15 @@ export const contentLists = [
         content     : [
             {
                 label: 'Free and Unlimited Go after 10Go',
-                icon: 'unlimited',
+                iconName: 'unlimited',
             },
             {
                 label: '100 GB annual data in Canada',
-                icon: 'hosting-data',
+                iconName: 'hosting-data',
             },
             {
                 label: 'Club illico included',
-                icon: 'tv-plan-showtime',
+                iconName: 'tv-plan-showtime',
             },
         ],
     },
@@ -23,48 +23,11 @@ export const contentLists = [
         content      : [
             {
                 label: 'Utilisation illimité',
-                icon: 'tv-plan-showtime',
+                iconName: 'tv-plan-showtime',
             },
             {
                 label: 'Vitesse de téléchargement jusqu\'à 100mbit/s',
-                icon: 'download-speed',
-            },
-
-        ],
-    }
-];
-
-export const equipmentList = [
-    {
-        title       : 'TV',
-        link        : {
-            label : 'More Info',
-            href  : 'https://www.videotron.com',
-        },
-        content     : [
-            {
-                label: 'Free and Unlimited Go after 10Go'
-            },
-            {
-                label: '100 GB annual data in Canada'
-            },
-            {
-                label: 'Club illico included'
-            },
-        ],
-    },
-    {
-        title       : 'Internet',
-        link        : {
-            label : 'More Info',
-            href  : 'https://www.videotron.com'
-        },
-        content      : [
-            {
-                label: 'Utilisation illimité'
-            },
-            {
-                label: 'Vitesse de téléchargement jusqu\'à 100mbit/s'
+                iconName: 'download-speed',
             },
 
         ],
@@ -73,22 +36,21 @@ export const equipmentList = [
 
 export const contentCheckLists = [
     {
-        description : 'Description Lorem ipsum dolor sit <em>amet html</em>, consectetur adipiscing elit aliqua.',
+        details : 'Description Lorem ipsum dolor sit <em>amet html</em>, consectetur adipiscing elit aliqua.',
         content     : [
             {
                 label: ' 320 hours of HD storage capacity ',
-                icon: 'check',
             },
             {
                 label: '115 hours of UHD storage capacity',
-                icon: 'check',
             },
             {
                 label: '3-year basic warranty',
-                icon: 'check',
             },
         ],
-    },
+        itemsClass   : 'bf-text small font-weight-bold',
+        hasCheckBulletIcon: true,
+        },
 ];
 
 export const contentListsNoTitle = [
@@ -96,15 +58,15 @@ export const contentListsNoTitle = [
         content: [
             {
                 label: 'Free and Unlimited Go after 10Go',
-                icon: 'unlimited',
+                iconName: 'unlimited',
             },
             {
                 label: '100 GB annual data in Canada',
-                icon: 'hosting-data',
+                iconName: 'hosting-data',
             },
             {
                 label: 'Club illico included',
-                icon: 'tv-plan-absolute',
+                iconName: 'tv-plan-absolute',
             },
         ],
     }

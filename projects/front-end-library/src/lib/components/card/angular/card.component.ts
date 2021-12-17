@@ -79,53 +79,17 @@ export class CardComponent implements OnInit {
     */
     @Input() link                   : ILink;
     /**
-        This badge displays in the card Header :
-        You can pass directly the `label` as a **string** or an **object**. Based on [Badge](/?path=/docs/components-badge--drupal) component API.
+        This badge displays in the card Header :<br/>
+        You can pass directly the `label` as a **string** or an **object**. <br/>
+        Based on [Badge](/?path=/docs/components-badge--drupal) component API.
     */
     @Input() badge                  : any;
     @Input() detailsColors          : object;
     @Input() detailsStorage         : object;
-    /** Array of object. Expected format:
-     <pre style='font-size: .75rem; padding: 0 1rem; marigin:0; background-color: #f2f2f0'>
-     [
-       {
-          title       : 'TV',
-          description : '40 channels',
-          content     : [
-            {
-              label   : 'Unlimited Go after 10Go',
-              icon    : 'unlimited',
-            },
-          ],
-        }
-     ...
-     ]
-     </pre>*/
-    @Input() contentLists           : object;
-    /** Array of object. Expected format:
-     <pre style='font-size: .75rem; padding: 0 1rem; marigin:0; background-color: #f2f2f0'>
-     [
-       {
-          title     : 'TV',
-          link      : {
-              label : 'More Info',
-              href  : 'https://www.videotron.com',
-          },
-          content   : [
-            {
-              label : 'Unlimited Go after 10Go',
-              icon  : ''
-            },
-            {
-              label : 'Unlimited Go after 10Go',
-              icon  : ''
-            }
-          ],
-        },
-     {...}
-     ]
-     </pre>*/
-    @Input() equipmentList           : object;
+    /**
+     Array of  [List](/?path=/docs/components-list--drupal) component
+    */
+    @Input() contentLists           : object[];
 
     /**
      This badge displays in the phone card content above the price and the promotion badges.
