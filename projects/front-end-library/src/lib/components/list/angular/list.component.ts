@@ -46,6 +46,8 @@ export class ListComponent implements OnInit {
     /** Adds a bottom border between list elements */
     @Input() hasDivider         : boolean;
     @Input() reversed           : boolean;
+
+    @Input() itemsClass         : string;
     @Input() class              : string;
 
     ngOnInit() {
