@@ -22,83 +22,7 @@ import { ListComponent }            from '../angular/list.component';
 
 <Props of={ListComponent} />
 
-## Drupal implementation example
-
-### List with header
-
-```jsx
-
-{% include '@bf-components/list/twig/index.twig' with {
-    title       : 'Title',
-    titleTag    : 'p',
-    titleClass  : 'bf-text font-weight-bold',
-    link        : {
-        href    : 'https://www.eample.com',
-        label   : 'link'
-    },
-    hasCheckBulletIcon : true,
-    description : 'Description',
-    details     : 'Details : magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo',
-    content     : [
-        {
-            label   : 'Lorem ipsum',
-            iconName: 'unlimited'
-        },
-        {
-            label   : 'Lorem ipsum',
-            iconName: 'desinstallation'
-        },
-        {
-            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
-            iconName: 'placeholder'
-        }
-    ],
-    class       : 'bf-text-display-sub-medium border-top'
-} only %}
-```
-
-### simple list with icons
-
-```jsx
-{% include '@bf-components/list/twig/index.twig' with {
-    content     : [
-        {
-            label   : 'Lorem ipsum',
-            iconName: 'unlimited'
-        },
-        {
-            label   : 'Lorem ipsum',
-            iconName: 'desinstallation'
-        },
-        {
-            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
-            iconName: 'placeholder'
-        }
-    ],
-    class       : 'bf-text-display-sub-medium border-top'
-} only %}
-```
-### CSS only list
-
-```jsx
-<ul class='list'>
-  <li>Lorem ipsum</li>
-  <li>Lorem ipsum</li>
-  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.</li>
-</ul>
-
-<ul class='list list--divider'>
-  <li>Lorem ipsum</li>
-  <li>Lorem ipsum</li>
-  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus
-    eget urna mollis ornare vel eu leo.
-  </li>
-</ul>
-
-```
-
 ## Drupal
-
 
 export const commonProps = {
     title       : 'Title',
@@ -151,3 +75,95 @@ export const Drupal = (args) => ({
         {Drupal.bind({})}
     </Story>
 </Canvas>
+
+## Drupal implementation example
+
+### List with header
+
+```jsx
+
+{% include '@bf-components/list/twig/index.twig' with {
+    title       : 'Title',
+    titleTag    : 'p',
+    titleClass  : 'bf-text font-weight-bold',
+    link        : {
+        href    : 'https://www.eample.com',
+        label   : 'link'
+    },
+    description : 'Description',
+    details     : 'Details : magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo',
+    content     : [
+        {
+            label   : 'Lorem ipsum',
+            iconName: 'unlimited'
+        },
+        {
+            label   : 'Lorem ipsum',
+            iconName: 'desinstallation'
+        },
+        {
+            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
+            iconName: 'placeholder'
+        }
+    ],
+} only %}
+```
+
+### Simple list with icons
+
+```jsx
+{% include '@bf-components/list/twig/index.twig' with {
+    content : [
+        {
+            label   : 'Lorem ipsum',
+            iconName: 'unlimited'
+        },
+        {
+            label   : 'Lorem ipsum',
+            iconName: 'desinstallation'
+        },
+        {
+            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
+            iconName: 'placeholder',
+            link    : {
+                href    : 'https://www.example.com',
+                label   : 'link',
+            }
+        }
+    ],
+    class  : 'bf-text-display-sub-medium border-top'
+} only %}
+```
+### CSS only list
+
+```jsx
+<ul class='list'>
+  <li>Lorem ipsum</li>
+  <li>Lorem ipsum</li>
+  <li>
+    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis
+    risus eget urna mollis ornare vel eu leo.
+  </li>
+</ul>
+
+<ul class='list list--divider'>
+  <li>Lorem ipsum</li>
+  <li>Lorem ipsum</li>
+  <li>
+    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis
+    risus eget urna mollis ornare vel eu leo.
+  </li>
+</ul>
+
+```
+
+## Design Guidelines
+
+list component in [figma](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=10057%3A2076)
+
+Card component using lists in figma :
+
+ - [Base card product](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=19609%3A268175)
+ - [Base card plan](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=12609%3A177232)
+ - [Card plan - TabTMO](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=12528%3A1022)
+ - [Card Plan TV + Internet](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=12609%3A164406)

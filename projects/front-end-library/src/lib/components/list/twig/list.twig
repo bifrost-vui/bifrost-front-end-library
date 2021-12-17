@@ -2,24 +2,27 @@
   {% for item in content %}
     <li class='d-flex flex-row mb-2 justify-content-between'>
       <p class='d-flex m-0'>
-      {% if item.iconName is defined and  item.iconName %}
-        {% include '@bf-components/icon/twig/index.twig' with {
-          name    :  item.iconName,
-          class   : 'mr-2'
-        } only %}
-      {% elseif hasCheckBulletIcon %}
-        {% include '@bf-components/icon/twig/index.twig' with {
-          name    : 'check',
-          class   : 'mr-2'
-        } only %}
-      {% endif %}
+        {% if item.iconName is defined and  item.iconName %}
+          {% include '@bf-components/icon/twig/index.twig' with {
+            name    :  item.iconName,
+            class   : 'mr-2'
+          } only %}
+        {% elseif hasCheckBulletIcon %}
+          {% include '@bf-components/icon/twig/index.twig' with {
+            name    : 'check',
+            class   : 'mr-2'
+          } only %}
+        {% endif %}
+
         <span>{{ item.label }}</span>
       </p>
+
       {% if item.link is defined and item.link %}
-        <p class='text-right mb-0'>
+        <p class='text-right mb-0 ml-3'>
           {% include '@bf-components/link/twig/index.twig' with {
               label       : link.label|default(''),
               href        : link.href|default(''),
+              class       : link.class|default('bf-link')
           } %}
         </p>
       {% endif %}

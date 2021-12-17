@@ -41,7 +41,6 @@ export class ListComponent implements OnInit {
     {...}] </pre>
     */
     @Input() content            : object;
-
     /** When `true` creates a bullet list with a default `check` icon - you can still specify another iconName in `content[]` */
     @Input() hasCheckBulletIcon : boolean;
     /** Adds a bottom border between list elements */

@@ -17,17 +17,24 @@
               href        : link.href|default(''),
               iconName    : link.iconName|default(''),
               iconPosition: link.iconPosition|default('right'),
-              hierarchy     : 'primary'
+              class       : link.class|default(''),
+              hierarchy   : 'primary'
             } %}
           {% else %}
+            {# short title descripton - used in bf-card--plan #}
             {{ description|default('') }}
-            {% endif %}
+          {% endif %}
         </p>
       {% endif %}
     </header>
 
+    {# Details :
+      - Should support inline HTML - validate with design & DS team before adding |raw() filter
+      - namming issue : could not use `description` without creating a breaking change in cards
+    #}
+
     {% if details is defined and details %}
-      <p> {{ details|raw() }} </p>
+      <p> {{ details }} </p>
     {% endif %}
   {% endif %}
 
