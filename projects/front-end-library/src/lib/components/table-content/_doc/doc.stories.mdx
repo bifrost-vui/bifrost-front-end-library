@@ -1,0 +1,68 @@
+import { moduleMetadata }               from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
+import { withDesign }                   from 'storybook-addon-designs'
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { TableContentComponent }     from '../angular/table-content.component';
+
+<Meta
+    title='Components/Table Content'
+    component={TableContentComponent}
+    decorators={[
+        moduleMetadata({ declarations: [TableContentComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    argTypes={{}}
+/>
+
+# Table Content
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Table of Content'
+        height = '300px'
+        args={{
+            elementPath : 'components/table-content/_doc/template.drupal',
+            label       : 'This content too long for the container',
+            navItems    : [
+                { label:'Channel selection',                href:'/channelSelection', class:'active' },
+                { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
+                { label:'Remote control',                   href:'/remoteControl', class:'' },
+                { label:'Home network',                     href:'/homeNetwork', class:'' },
+                { label:'Channel selection',                href:'/channelSelection', class:'' },
+                { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
+                { label:'Remote control',                   href:'/remoteControl', class:'' },
+                { label:'Home network',                     href:'/homeNetwork', class:'' }
+            ],
+            isDisabled      : false,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal implementation exemple
+
+```jsx
+{% include '@bf-components/table-content/twig/index.twig' with {
+    label       : 'This content too long for the container',
+    navItems    : [
+            { label:'Channel selection',                href:'/channelSelection', class:'active' },
+            { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
+            { label:'Remote control',                   href:'/remoteControl', class:'' },
+            { label:'Home network',                     href:'/homeNetwork', class:'' }
+        ],
+    isDisabled  : false,
+} only %}
+```
+
+
+<Props of={TableContentComponent} />
+

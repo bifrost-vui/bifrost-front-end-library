@@ -1,0 +1,20 @@
+{% set reversed = reversed|json_parse %}
+{% set isDisabled    = isDisabled|json_parse %}
+{% set navItems = navItems|json_parse %}
+
+<div class='d-flex flex-column'>
+  {% for index in [1,2] %}
+
+    <div class='flex-grow-1 d-flex align-items-center justify-content-center py-4  bf-color-bg-ground {% if index == 2 %} reversed {% endif %}'>
+
+     {% include '@bf-components/table-content/twig/index.twig'%}
+
+    </div>
+    <div class='flex-grow-1 d-flex align-items-center justify-content-center py-4 bf-color-bg-underground {% if index == 2  %} reversed {% endif %}'>
+
+      {% include '@bf-components/table-content/twig/index.twig'%}
+
+    </div>
+
+  {% endfor %}
+</div>
