@@ -6,23 +6,23 @@
 		href='{{ href|default('') }}'
 	{% endif %}
 	class='
-		bf-tile-ksp
-		{{ isLink ? 'bf-tile-ksp--is-link' }}
+		bf-tile-key
+		{{ isLink ? 'bf-tile-key--is-link' }}
 		{% if backgroundColor is defined and backgroundColor == 'ground' %}
 			bf-color-bg-ground
 		{% elseif backgroundColor is defined and backgroundColor == 'highlight' %}
-			bf-color-bg-highlight bf-tile-ksp--highlight
+			bf-color-bg-highlight bf-tile-key--highlight
 		{% else %}
 			bf-color-bg-underground
 		{% endif %}
-		{{ reversed ? 'reversed' }}
+		{{ reversed|default(false) ? 'reversed' }}
 		{{ class|default('') }}
 		'
 >
 	{% if backgroundImage is defined and backgroundImage %}
-		<div class='bf-tile-ksp__visual' style='background-image: url({{ backgroundImage.src }})'></div>
+		<div class='bf-tile-key__visual' style='background-image: url({{ backgroundImage.src }})'></div>
 	{% endif %}
-	<div class='bf-tile-ksp__inner gap-2 p-4 p-sm-6'>
+	<div class='bf-tile-key__inner gap-2 p-4 p-sm-6'>
 		{% if icon is defined and icon %}
 			{% if icon is not iterable %}
 				{% set icon = { name: icon } %}

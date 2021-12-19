@@ -1,14 +1,14 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Props }           from '@storybook/addon-docs';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { TileKSPComponent }                     from '../angular/tile-ksp.component';
+import { TileKeyComponent }                     from '../angular/tile-key.component';
 
 
 <Meta
-    title='Components/Tile KSP'
-    component={TileKSPComponent}
+    title='Components/Tile Key'
+    component={TileKeyComponent}
     decorators={[
-        moduleMetadata({ declarations: [TileKSPComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [TileKeyComponent, TwigContainerComponent]})
     ]}
     argTypes={{
         isClickable: {
@@ -24,7 +24,7 @@ import { TileKSPComponent }                     from '../angular/tile-ksp.compon
 />
 
 
-# Tile KSP
+# Tile Key
 
 <br/>
 
@@ -32,14 +32,14 @@ import { TileKSPComponent }                     from '../angular/tile-ksp.compon
 
 ## Component API
 
-<Props of={TileKSPComponent} />
+<Props of={TileKeyComponent} />
 
 
 
 ## Drupal implementation example
 
 ```jsx
-{% include '@bf-components/tile-ksp/twig/index.twig' with {
+{% include '@bf-components/tile-key/twig/index.twig' with {
     href            : 'https://example.com',
     title           : 'Television',
     description     : 'Find all your entertainment in one place.',
@@ -78,9 +78,8 @@ export const commonProps = {
 <Canvas withSource='none'>
     <Story
         name='Drupal'
-        height='600px'
         args={{
-            elementPath: 'components/tile-ksp/_doc/template.drupal',
+            elementPath: 'components/tile-key/_doc/template.drupal',
             ...commonProps
         }}
     >
@@ -91,9 +90,8 @@ export const commonProps = {
 <Canvas withSource='none'>
     <Story
         name='Drupal - With backgroundImage'
-        height='600px'
         args={{
-            elementPath: 'components/tile-ksp/_doc/template.drupal',
+            elementPath: 'components/tile-key/_doc/template.drupal',
             ...commonProps,
             icon            : {
                 name    : 'television',

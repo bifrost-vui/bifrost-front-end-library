@@ -5,15 +5,16 @@ interface IImage {
 }
 
 interface IIcon {
+    name        : string;
     src         : string;
     color       : null | 'success' | 'neutral' | 'warning' | 'negative';
 }
 
 @Component({
-    selector: 'bf-tile-ksp',
-    templateUrl: './tile-ksp.component.html',
+    selector: 'bf-tile-key',
+    templateUrl: './tile-key.component.html',
 })
-export class TileKSPComponent implements OnInit {
+export class TileKeyComponent implements OnInit {
     constructor() {}
 
     @Input() isClickable        : boolean;
@@ -24,7 +25,7 @@ export class TileKSPComponent implements OnInit {
     @Input() linkLabel          : string;
     /** Expected format: See [Icon API](?path=/docs/components-icon--drupal-interface). */
     @Input() icon               : IIcon;
-    /** Expected format: `{ src: 'my-image.png' }` */
+    /** Expected format: `{ src: "my-image.png" }` */
     @Input() backgroundImage    : IImage;
     @Input() backgroundColor    : 'ground' | 'underground' | 'highlight';
 
@@ -32,7 +33,7 @@ export class TileKSPComponent implements OnInit {
     @Input() reversed           : boolean;
 
     ngOnInit() {
-        console.log('Tile KSP', this);
+        console.log('Tile Key', this);
     }
 
 }
