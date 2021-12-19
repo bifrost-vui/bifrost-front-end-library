@@ -1,13 +1,15 @@
 <section class='
 	bf-section-tiles-key bf-color-bg-ground
 	{{ hasFeaturedLayout|default(false) ? 'bf-section-tiles-key--featured-layout' }}
-	{{ reversed ? 'reversed' }}
+	{{ reversed|default(false) ? 'reversed' }}
 	{{ class|default('') }}'
 >
 	<div class='container-fluid py-6'>
-		<h1 class='h2 mb-4 mb-md-5'>
-			{{ title }}
-		</h1>
+		{% if title is defined and title %}
+			<h1 class='h2 mb-4 mb-md-5'>
+				{{ title }}
+			</h1>
+		{% endif %}
 		<ul class='bf-section-tiles-key__list list-unstyled'>
 			{% for tile in tiles %}
 				<li class='bf-section-tiles-key__item'>
