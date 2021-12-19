@@ -2,10 +2,10 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 
 
 @Component({
-    selector: 'bf-section-tiles-ksp',
-    templateUrl: './section-tiles-ksp.component.html',
+    selector: 'bf-section-tiles-key',
+    templateUrl: './section-tiles-key.component.html',
 })
-export class SectionTilesKSPComponent implements OnInit {
+export class SectionTilesKeyComponent implements OnInit {
     constructor() {}
 
     @Input() title              : string;
@@ -16,7 +16,7 @@ export class SectionTilesKSPComponent implements OnInit {
     @Input() reversed           : boolean;
 
     ngOnInit() {
-        console.log('Section Tiles KSP', this);
+        console.log('Section Tiles Key', this);
     }
 
 }

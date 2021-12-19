@@ -2,14 +2,14 @@ import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { SectionTilesKSPComponent }             from '../angular/section-tiles-ksp.component';
+import { SectionTilesKeyComponent }             from '../angular/section-tiles-key.component';
 
 
 <Meta
-    title='Sections/Tiles-KSP'
-    component={SectionTilesKSPComponent}
+    title='Sections/Tiles-Key'
+    component={SectionTilesKeyComponent}
     decorators={[
-        moduleMetadata({ declarations: [SectionTilesKSPComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [SectionTilesKeyComponent, TwigContainerComponent]})
     ]}
     argTypes={{
         hasFeaturedLayout: {
@@ -19,7 +19,7 @@ import { SectionTilesKSPComponent }             from '../angular/section-tiles-k
 />
 
 
-# Section Tiles KSP
+# Section Tiles Key
 
 <br/>
 
@@ -27,14 +27,14 @@ import { SectionTilesKSPComponent }             from '../angular/section-tiles-k
 
 ## Component API
 
-<ArgsTable of={SectionTilesKSPComponent} />
+<ArgsTable of={SectionTilesKeyComponent} />
 
 
 
 ## Drupal implementation example
 
 ```jsx
-{% include '@bf-sections/tiles-ksp/twig/index.twig' with {
+{% include '@bf-sections/tiles-key/twig/index.twig' with {
 } only %}
 ```
 
@@ -47,7 +47,7 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-export const tileKSP = {
+export const tileKey = {
     isClickable     : true,
     href            : 'https://example.com',
     title           : 'Trade-in your phone',
@@ -62,11 +62,11 @@ export const tileKSP = {
         name='Drupal'
         height='600px'
         args={{
-            elementPath     : 'sections/tiles-ksp/_doc/template.drupal',
+            elementPath     : 'sections/tiles-key/_doc/template.drupal',
             title           : 'Shop your cell phone plan and mobile phone your way',
             tiles           : [
                 {
-                    ...tileKSP,
+                    ...tileKey,
                     icon: {
                         name: 'helix-mic',
                         color: 'neutral'
@@ -77,20 +77,20 @@ export const tileKSP = {
                     reversed: true,
                 },
                 {
-                    ...tileKSP,
+                    ...tileKey,
                     icon: {
                         name: 'television'
                     }
                 },
                 {
-                    ...tileKSP,
+                    ...tileKey,
                     backgroundColor: 'highlight',
                     icon: {
                         name: 'wifi'
                     }
                 },
                 {
-                    ...tileKSP,
+                    ...tileKey,
                     icon: {
                         name: 'trio-wifi'
                     }
