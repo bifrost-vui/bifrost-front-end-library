@@ -11,7 +11,13 @@ import { TabComponent }                         from '../angular/tab.component';
     decorators={[
         moduleMetadata({ declarations: [TabComponent, TwigContainerComponent]}),
     ]}
-    argTypes={{}}
+    argTypes={{
+        orientation : {
+            defaultValue: 'horizontal',
+            table       : { defaultValue : { summary : 'horizontal' } },
+            control     : { type: 'select' }
+        },
+    }}
 />
 
 
@@ -25,8 +31,14 @@ import { TabComponent }                         from '../angular/tab.component';
 
 <Props of={TabComponent} />
 
-
-
+export const commonProps = {
+    navItems        : [
+        { label:'Channel selection',                href:'/channelSelection', class:'active' },
+        { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
+        { label:'Remote control',                   href:'/remoteControl', class:'' },
+        { label:'Home network',                     href:'/homeNetwork', class:'' }
+    ]
+}
 
 ## Drupal
 
@@ -37,16 +49,27 @@ export const Drupal = (args) => ({
 
 <Canvas withSource='none'>
     <Story
-        name='Drupal'
+        name='Drupal - Horizontal'
         height='300px'
         args={{
             elementPath     : 'components/tab/_doc/template.drupal',
-            navItems        : [
-                { label:'Channel selection',                href:'/channelSelection', class:'active' },
-                { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
-                { label:'Remote control',                   href:'/remoteControl', class:'' },
-                { label:'Home network',                     href:'/homeNetwork', class:'' }
-            ]
+            ...commonProps,
+            orientation     : 'horizontal'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Vertical'
+        height='300px'
+        args={{
+            elementPath     : 'components/tab/_doc/template.drupal',
+            ...commonProps,
+            orientation     : 'vertical'
         }}
     >
         {Drupal.bind({})}

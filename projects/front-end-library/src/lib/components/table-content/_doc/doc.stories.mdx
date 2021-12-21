@@ -11,7 +11,7 @@ import { TableContentComponent }     from '../angular/table-content.component';
         moduleMetadata({ declarations: [TableContentComponent, TwigContainerComponent]}),
         withDesign
     ]}
-    argTypes={{}}
+    argTypes={{ }}
 />
 
 # Table Content
@@ -22,25 +22,43 @@ export const Drupal = (args) => ({
     component   : TwigContainerComponent,
     props       : args,
 });
+export const commonProps = {
+    label       : 'This content too long for the container',
+    navItems    : [
+    { label:'Channel selection',                href:'/channelSelection', class:'active' },
+    { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
+    { label:'Remote control',                   href:'/remoteControl', class:'' },
+    { label:'Home network',                     href:'/homeNetwork', class:'' },
+    { label:'Channel selection',                href:'/channelSelection', class:'' },
+    { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
+    { label:'Remote control',                   href:'/remoteControl', class:'' },
+    { label:'Home network',                     href:'/homeNetwork', class:'' }
+    ],
+    isDisabled  : false,
+}
 
 <Canvas withSource='none'>
     <Story
-        name='Drupal - Table of Content'
+        name='Drupal - Table of Content - Horizontal '
         height = '300px'
         args={{
             elementPath : 'components/table-content/_doc/template.drupal',
-            label       : 'This content too long for the container',
-            navItems    : [
-                { label:'Channel selection',                href:'/channelSelection', class:'active' },
-                { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
-                { label:'Remote control',                   href:'/remoteControl', class:'' },
-                { label:'Home network',                     href:'/homeNetwork', class:'' },
-                { label:'Channel selection',                href:'/channelSelection', class:'' },
-                { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
-                { label:'Remote control',                   href:'/remoteControl', class:'' },
-                { label:'Home network',                     href:'/homeNetwork', class:'' }
-            ],
-            isDisabled      : false,
+            ...commonProps,
+            orientation : 'horizontal',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Table of Content - vertical'
+        height = '300px'
+        args={{
+            elementPath : 'components/table-content/_doc/template.drupal',
+            ...commonProps,
+            orientation : 'vertical',
         }}
     >
         {Drupal.bind({})}
@@ -60,6 +78,7 @@ export const Drupal = (args) => ({
             { label:'Home network',                     href:'/homeNetwork', class:'' }
         ],
     isDisabled  : false,
+    orientation : 'horizontal',
 } only %}
 ```
 

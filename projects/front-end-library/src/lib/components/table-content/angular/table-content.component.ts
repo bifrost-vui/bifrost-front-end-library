@@ -24,6 +24,7 @@ export class TableContentComponent implements OnInit {
     @Input() reversed     : boolean;
     @Input() class        : string;
     @Input() isDisabled   : boolean;
+    @Input() orientation  : 'horizontal'|'vertical';
 
     ngOnInit() {
         console.log('TableContent', this);

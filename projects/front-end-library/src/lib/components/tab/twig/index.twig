@@ -1,10 +1,10 @@
-<nav class='bf-tab nav {{ class|default('') }}'>
+<nav class='bf-tab nav {{ (orientation == 'horizontal') ? 'horizontal':'vertical'}} {{ class|default('') }}'>
     <div class='bf-tab__control'>
     <ul class='bf-tab__slider ml-6 list-reset {{ sliderClass|default('') }}'>
         {% for item in navItems %}
             <li>
                 <a
-                    class='nav-link mr-lg-6 mr-4 my-0 {{ itemClass|default('') }} {{ item.class|default('') }}'
+                    class='nav-link mr-lg-6 mr-4 my-0 {{ (orientation == 'vertical') ? 'mr-0 mr-lg-0 mb-1'}} {{ itemClass|default('') }} {{ item.class|default('') }}'
                     href='{{ item.href|default('#') }}'
                     {{ item.extraAttribute }}
                 >{{ item.label|default('') }}</a>
