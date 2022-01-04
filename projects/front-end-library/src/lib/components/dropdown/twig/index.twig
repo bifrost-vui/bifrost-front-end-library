@@ -2,7 +2,8 @@
   <div class='dropdown'>
     {% include '@bf-components/button/twig/index.twig' with {
       label           : label ,
-      hierarchy       : secondary,
+      id              : id,
+      hierarchy       : 'secondary',
       isDisabled      : false,
       iconName        : 'chevron-down',
       dataToggle      : 'dropdown',
@@ -13,7 +14,7 @@
     } only %}
 
     {% if dropdownItems is defined and dropdownItems is not empty %}
-      <ul class="dropdown-menu list-unstyled">
+      <ul class='dropdown-menu list-unstyled' aria-labelledby='{{ id }}'>
         {% for item in dropdownItems %}
           {% if item.label is defined and item.label %}
             <li>
