@@ -1,5 +1,7 @@
 {% set reversed      = reversed|json_parse %}
 {% set isDisabled    = isDisabled|json_parse %}
+{% set ariaExpanded  = ariaExpanded|json_parse %}
+{% set dataToggle    = dataToggle|json_parse %}
 {% set dropdownItems = dropdownItems|json_parse %}
 
 <div class='d-flex flex-column flex-sm-row justify-content-center {% if reversed %}reversed bf-color-bg-ground{% endif %}' style="min-height:400px;">
@@ -7,7 +9,9 @@
 
     <div class='h-100 p-4 {{ reversed|default(index == 2) ? 'reversed bf-color-bg-ground' }}'>
 
-      {% include '@bf-components/dropdown/twig/index.twig' %}
+      {% include '@bf-components/dropdown/twig/index.twig' with {
+        id: (id ~ loop.index)
+      } %}
 
     </div>
 

@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  * API is the same between **Angular** and **Drupal**.
  *
  */
- 
+
 @Component({
     selector: "bf-button",
     templateUrl: './button.component.html',
@@ -13,6 +13,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class ButtonComponent implements OnInit {
     constructor() {}
 
+    @Input() id             : string;
     @Input() label          : string;
     /**
         A button will become a link if `href` is defined.
@@ -38,8 +39,9 @@ export class ButtonComponent implements OnInit {
     @Input() extraAttribute : string;
     @Input() class          : string;
 
+
     ngOnInit() {
         console.log('button', this);
     }
-    
+
 }

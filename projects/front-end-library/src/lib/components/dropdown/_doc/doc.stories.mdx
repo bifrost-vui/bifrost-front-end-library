@@ -10,14 +10,7 @@ import { DropdownComponent }            from '../angular/dropdown.component';
     decorators={[
         moduleMetadata({ declarations: [DropdownComponent, TwigContainerComponent]}),
         withDesign
-    ]}
-    parameters={{
-        design: {
-            type    : 'figma',
-            url     : 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
-            disable : false
-        },
-    }}
+    ]}    parameters={{}}
     argTypes={{}}
 />
 
@@ -34,6 +27,7 @@ export const Drupal = (args) => ({
         height = '400px'
         args={{
             elementPath     : 'components/dropdown/_doc/template.drupal',
+            id              : 'dropdown-id',
             label           : 'Sauter directement à la section',
             dropdownItems   : [
                                 {label:'Connexion', iconName: 'unlimited', href:'www.videotron.com', class:''},
@@ -55,6 +49,7 @@ export const Drupal = (args) => ({
 
 ```jsx
 {% include '@bf-components/dropdown/twig/index.twig' with {
+    id              : 'dropdown-id',
     label           : 'Sauter directement à la section',
     dropdownItems   : [
                         {label:'Connexion', iconName: 'unlimited', href:'www.videotron.com', class:''},
