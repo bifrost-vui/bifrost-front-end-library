@@ -28,26 +28,25 @@ export class ListComponent implements OnInit {
     @Input() description        : string;
     /** Displays bellow the title and may contain HTML tags */
     @Input() details            : string;
-
     /** Expected format:
-    <pre> [{
-        label*   : "Label",
-        iconName : "placeholder"
-        link : {
-            label: 'link',
-            href: 'https://www.example.com'
-        }
+     <pre style='font-size: .75rem; padding: 0 1rem; marigin:0; background-color: #F8F8F8'>[{
+        label: "Label",
+        iconName: "placeholder"
+        link: {
+          label: "link",
+          href: "https://www.example.com/"
+          }
     },
-    {...}] </pre>
-    */
+    {...}]</pre>*/
+
     @Input() content            : object;
     /** When `true` creates a bullet list with a default `check` icon - you can still specify another iconName in `content[]` */
-    @Input() hasCheckBulletIcon : boolean;
+    @Input() defaultBullet  : 'check' | 'dot' | null;
     /** Adds a bottom border between list elements */
     @Input() hasDivider         : boolean;
     @Input() reversed           : boolean;
 
-    @Input() itemsClass         : string;
+    @Input() contentClass       : string;
     @Input() class              : string;
 
     ngOnInit() {

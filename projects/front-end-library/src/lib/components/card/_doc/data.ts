@@ -1,8 +1,8 @@
 export const contentLists = [
     {
-        title       : 'TV',
-        description : '40 channels',
-        content     : [
+        title: 'TV',
+        description: '40 channels',
+        content: [
             {
                 label: 'Free and Unlimited Go after 10Go',
                 iconName: 'unlimited',
@@ -18,9 +18,9 @@ export const contentLists = [
         ],
     },
     {
-        title       : 'Internet',
-        description : 'Unlimited',
-        content      : [
+        title: 'Internet',
+        description: 'Unlimited',
+        content: [
             {
                 label: 'Utilisation illimité',
                 iconName: 'tv-plan-showtime',
@@ -36,8 +36,8 @@ export const contentLists = [
 
 export const contentCheckLists = [
     {
-        details : 'Description Lorem ipsum dolor sit <em>amet html</em>, consectetur adipiscing elit aliqua.',
-        content     : [
+        details: 'Description Lorem ipsum dolor sit <em>amet html</em>, consectetur adipiscing elit aliqua.',
+        content: [
             {
                 label: ' 320 hours of HD storage capacity ',
             },
@@ -48,8 +48,8 @@ export const contentCheckLists = [
                 label: '3-year basic warranty',
             },
         ],
-        itemsClass   : 'bf-text small font-weight-bold',
-        hasCheckBulletIcon: true,
+        contentClass: 'bf-text small font-weight-bold',
+        defaultBullet: 'check',
         },
 ];
 
