@@ -23,17 +23,18 @@ export const Drupal = (args) => ({
     props       : args,
 });
 export const commonProps = {
-    label       : 'This content too long for the container',
+    id          : 'table-content-id',
+    label       : 'Sauter directement à la section',
     navItems    : [
-    { label:'Channel selection',                href:'/channelSelection', class:'active' },
-    { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
-    { label:'Remote control',                   href:'/remoteControl', class:'' },
-    { label:'Home network',                     href:'/homeNetwork', class:'' },
-    { label:'Channel selection',                href:'/channelSelection', class:'' },
-    { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
-    { label:'Remote control',                   href:'/remoteControl', class:'' },
-    { label:'Home network',                     href:'/homeNetwork', class:'' }
-    ],
+                    { label:'Channel selection',                href:'/channelSelection', class:'active' },
+                    { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
+                    { label:'Remote control',                   href:'/remoteControl', class:'' },
+                    { label:'Home network',                     href:'/homeNetwork', class:'' },
+                    { label:'Channel selection',                href:'/channelSelection', class:'' },
+                    { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
+                    { label:'Remote control',                   href:'/remoteControl', class:'' },
+                    { label:'Home network',                     href:'/homeNetwork', class:'' }
+                ],
     isDisabled  : false,
 }
 
@@ -70,13 +71,14 @@ export const commonProps = {
 
 ```jsx
 {% include '@bf-components/table-content/twig/index.twig' with {
-    label       : 'This content too long for the container',
+    id          : 'table-content-id',
+    label       : 'Sauter directement à la section',
     navItems    : [
-            { label:'Channel selection',                href:'/channelSelection', class:'active' },
-            { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
-            { label:'Remote control',                   href:'/remoteControl', class:'' },
-            { label:'Home network',                     href:'/homeNetwork', class:'' }
-        ],
+                    { label:'Channel selection',                href:'/channelSelection', class:'active' },
+                    { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
+                    { label:'Remote control',                   href:'/remoteControl', class:'' },
+                    { label:'Home network',                     href:'/homeNetwork', class:'' }
+                ],
     isDisabled  : false,
     orientation : 'horizontal',
 } only %}

@@ -7,14 +7,15 @@
   {% for index in [1,2] %}
 
     <div class='flex-grow-1 d-flex align-items-center justify-content-center py-4  bf-color-bg-ground {{ reversed|default(index == 2) ? 'reversed' }}'>
-
-     {% include '@bf-components/table-content/twig/index.twig'%}
-
+     {% include '@bf-components/table-content/twig/index.twig' with {
+       id  : (id ~ '-1' ~ loop.index)
+     }%}
     </div>
+
     <div class='flex-grow-1 d-flex align-items-center justify-content-center py-4 bf-color-bg-underground {{ reversed|default(index == 2) ? 'reversed' }}'>
-
-      {% include '@bf-components/table-content/twig/index.twig'%}
-
+      {% include '@bf-components/table-content/twig/index.twig' with {
+        id  : (id ~ '-2' ~ loop.index)
+      }%}
     </div>
 
   {% endfor %}
