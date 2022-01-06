@@ -62,14 +62,6 @@ export const commonProps = {
 };
 
 export const bulletListProps = {
-    title       : 'Title',
-    link        : {
-        href    : 'https://www.example.com',
-        label   : 'link',
-        iconName: 'external-link'
-    },
-    description : 'Description',
-    details      : 'Details magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo',
     content     : [
         {
             label   : 'Lorem ipsum',
@@ -103,6 +95,7 @@ export const Drupal = (args) => ({
 <Canvas withSource='none'>
     <Story
         name='Drupal - list with icons'
+        height= '660px'
         args={{
             elementPath : 'components/list/_doc/template.drupal',
             ...commonProps
@@ -117,6 +110,7 @@ export const Drupal = (args) => ({
         name='Drupal - default bullet list'
         args={{
             elementPath : 'components/list/_doc/template.drupal',
+            ...commonProps,
             ...bulletListProps
         }}
     >
@@ -143,17 +137,15 @@ export const Drupal = (args) => ({
     content     : [
         {
             label   : 'Lorem ipsum',
-            iconName: 'unlimited'
         },
         {
             label   : 'Lorem ipsum',
-            iconName: 'desinstallation'
         },
         {
             label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
-            iconName: 'placeholder'
         }
     ],
+    defaultBullet  : 'check'
 } only %}
 ```
 
@@ -179,53 +171,15 @@ export const Drupal = (args) => ({
             }
         }
     ],
-    class  : 'bf-text-display-sub-medium border-top'
+    class  : 'bf-text-display-sub-medium'
 } only %}
-```
-
-
-
-<Canvas withSource='none' >
-    <Story
-        name='CSS Only Example'
-        args={{
-            elementPath : 'components/list/_doc/css-only-template',
-            ...commonProps
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
-
-## HTML implementation
-### CSS only list
-
-```jsx
-<ul class='list'>
-  <li>Lorem ipsum</li>
-  <li>Lorem ipsum</li>
-  <li>
-    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis
-    risus eget urna mollis ornare vel eu leo.
-  </li>
-</ul>
-
-<ul class='list list--divider'>
-  <li>Lorem ipsum</li>
-  <li>Lorem ipsum</li>
-  <li>
-    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis
-    risus eget urna mollis ornare vel eu leo.
-  </li>
-</ul>
-
 ```
 
 ## Design Guidelines
 
-list component in [figma](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=10057%3A2076)
+List component in [figma](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=10057%3A2076)
 
-Card component using lists in figma :
+Cards using List component in figma :
 
  - [Base card product](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=19609%3A268175)
  - [Base card plan](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=12609%3A177232)
