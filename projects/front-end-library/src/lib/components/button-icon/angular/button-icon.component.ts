@@ -4,7 +4,6 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  * API is the same between **Angular** and **Drupal**.
  *
  */
- 
 @Component({
     selector: "bf-button-icon",
     templateUrl: './button-icon.component.html',
@@ -14,14 +13,11 @@ export class ButtonIconComponent implements OnInit {
     constructor() {}
 
     @Input() icon           : string;
+    /**  Display a data-title  */
     @Input() label          : string;
-    /**
-        A button will become a link if `href` is defined.
-    */
+    /**  A button will become a link if `href` is defined. */
     @Input() href           : string;
-    @Input() hierarchy      : string;
     @Input() isDisabled     : boolean;
-
     @Input() dataDismiss    : string;
     @Input() dataToggle     : string;
     @Input() dataTarget     : string;
@@ -29,10 +25,13 @@ export class ButtonIconComponent implements OnInit {
     @Input() ariaExpanded   : string;
     @Input() ariaLabel      : string;
     @Input() extraAttribute : string;
+    @Input() badgeLabel     : string;
+
     @Input() class          : string;
+    /** Classes for <button> tag. */
+    @Input() buttonClass    : string;
 
     ngOnInit() {
         console.log('button-icon', this);
     }
-    
 }

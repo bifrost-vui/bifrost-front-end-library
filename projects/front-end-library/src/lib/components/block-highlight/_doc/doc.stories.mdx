@@ -1,24 +1,35 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
 
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { BlockHighlightComponent }              from '../angular/block-highlight.component';
 
 
-<Meta 
-    title='Components/Block Highlight' 
+<Meta
+    title='Components/Block Highlight'
     component={BlockHighlightComponent}
     decorators={[
         moduleMetadata({ declarations: [BlockHighlightComponent, TwigContainerComponent]}),
     ]}
-    argTypes={{}}
+    argTypes={{
+        titleTag: {
+            table: { defaultValue: { summary: 'p' } },
+        },
+        blockBackgroundColor: {
+            table: { defaultValue: { summary: 'ground' } },
+            control: {
+                type: 'select',
+                defaultValue: 'ground'
+            }
+        }
+    }}
 />
 
 # Block Highlight
 
+> 👉 &nbsp; Please, read [Full Documentation about Block-Highlight](https://zeroheight.com/79f1d3365/p/688590-block-highlight).
+
 <br/>
-
-
 
 ## Component API
 
@@ -30,27 +41,24 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
 
 ```jsx
 {% include '@bf-components/block-highlight/twig/index.twig' with {
-    image               : {
-        src: '/images/assets/helix-equipment.png',
-        alt: 'Alt description'
+    image                   : {
+        src : '/images/assets/helix-equipment.png'
     },
-    title               : 'All the mobile accessories',
-    titleTag            : 'p',
-    paragraph           : 'Find the perfect accessories for your device.',
-    button              : {
-        hierarchy           : 'primary-alt',
-        label               : 'Shop',
-        class               : ''
+    visualBackgroundColor   : '#ff00ff',
+    blockBackgroundColor    : 'underground',
+    title                   : 'All the mobile accessories',
+    titleTag                : 'h2',
+    paragraph               : 'Find the perfect accessories for your device.',
+    button                  : {
+        label : 'Shop',
+        class : ''
     },
-    fullWidth           : false,
-    reversed            : false,
-    class               : ''
+    isFeatured              : false,
+    reversed                : false,
+    class                   : ''
 } only %}
 ```
 
-
-
-## Drupal
 
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
@@ -60,45 +68,41 @@ export const Drupal = (args) => ({
 export const commonProps = {
     elementPath         : 'components/block-highlight/_doc/template.drupal',
     image               : {
-        src                 : '/images/assets/helix-equipment.png',
-        alt                 : 'Alt description'
+        src : window.location.origin + '/images/placeholder/800x600.png',
+        // src: 'https://i.stack.imgur.com/y9DpT.jpg'
     },
     title               : 'All the mobile accessories',
     paragraph           : 'Find the perfect accessories for your device.',
     button              : {
-        hierarchy           : 'primary-alt',
-        label               : 'Shop',
-        class               : ''
+        label   : 'Shop',
+        class   : ''
     },
-    fullWidth           : false,
+    isFeatured          : false,
     class               : ''
 }
 
-<Preview
-    withSource='none'
-    style={{ height: '800px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
+        height='800px'
+        args={{
             ...commonProps
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-<Preview
-    withSource='none'
-    style={{ height: '800px' }}
->
-    <Story 
-        name='Drupal - FullWidth'
-        args={{ 
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Usage example'
+        height='800px'
+        args={{
             ...commonProps,
-            fullWidth : true,
+            elementPath : 'components/block-highlight/_doc/usage-example.drupal',
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

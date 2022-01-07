@@ -1,27 +1,70 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-
+import { Canvas, Meta, Story, Props }           from '@storybook/addon-docs';
+import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { LinkComponent }                        from '../angular/link.component';
 
 
-<Meta 
+<Meta
     title='Components/Link'
+    component={LinkComponent}
     decorators={[
-        moduleMetadata({ declarations: [TwigContainerComponent]})
+        moduleMetadata({ declarations: [LinkComponent, TwigContainerComponent]})
     ]}
-    argTypes={{}}
+    argTypes={{
+        hierarchy: {
+            control: { type: 'select' },
+            table: { defaultValue: { summary: 'native' } },
+        },
+        iconName: {
+            control: {
+                type: 'select',
+                options: ['', 'placeholder', ...interfaceIcons.map(a => a.list).flat().sort()]
+            }
+        },
+        iconPosition: {
+            table: { defaultValue: { summary: 'left' } },
+        },
+        isUnderline: {
+            table: { defaultValue: { summary: true } },
+        },
+        isDisabled: {
+            table: { defaultValue: { summary: false } },
+        },
+    }}
 />
 
 
 # Link
 
-<br/>
+
+## Component API
+
+<Props of={LinkComponent} />
+
+
+## Drupal implementation example
+
+```jsx
+// Link native (default)
+{% include '@bf-components/link/twig/index.twig' with {
+    label       : 'Link native',
+} only %}
+
+// Link primary
+{% include '@bf-components/link/twig/index.twig' with {
+    label       : 'Link primary',
+    hierarchy   : 'primary'
+} only %}
+
+// Or use .bf-link class
+<a href='/' class='bf-link'>Link native</a>
+<a href='/' class='bf-link bf-link--primary'>Link primary</a>
+<a href='/' class='bf-link disabled' aria-disabled='true' role='link'>Link disabled</a>
+```
 
 
 ## Drupal
-
-> There is no Link Drupal component in Bifrost.
-> Just, use Bifrost classes <b>.bf-link</b>.
 
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
@@ -29,16 +72,39 @@ export const Drupal = (args) => ({
 });
 
 
-<Preview
-    withSource='none'
-    style={{ height: '600px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
+        height='600px'
         args={{
             elementPath : 'components/link/_doc/template.drupal',
+            class       : 'mb-3',
+            href        : 'https://example.com'
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Examples'
+        height='600px'
+        args={{
+            elementPath : 'components/link/_doc/template-examples.drupal'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - CSS Only'
+        args={{
+            elementPath : 'components/link/_doc/template-css-only.drupal'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>

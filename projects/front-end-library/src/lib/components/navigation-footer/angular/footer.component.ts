@@ -4,6 +4,11 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  * API is the same between **Angular** and **Drupal**.
  *
  */
+
+interface ILogo {
+    href: string;
+    name: string;
+}
  
 @Component({
     selector: 'bf-footer',
@@ -19,15 +24,15 @@ export class FooterComponent implements OnInit {
     /** Sets Footer Links. */
     @Input() links              : any[];
 
-    @Input() logo_href          : string;
-    @Input() logo_name          : string;
+    /** See [Logo Component API](/?path=/docs/components-logo--drupal). E.g. `logo = { href: "#", name: "videotron" }` */
+    @Input() logo               : ILogo;
 
     @Input() hasBackToTopLink   : boolean;
     @Input() backToTopLabel     : string;
 
     @Input() isReduced          : boolean;
 
-    @Input() theme              : string = 'videotron';
+    @Input() theme              : string;
     @Input() reversed           : boolean;
     @Input() languageBlock      : any;
 

@@ -17,7 +17,7 @@ addParameters({
         //     const Story = toReact(storyFn());
         //     return <Story {...args} />;
         // },
-        // iframeHeight: '100px',
+         iframeHeight: 600,
     },
     layout: 'centered',
 
@@ -33,16 +33,23 @@ addParameters({
     },
 
     // Controls
-    controls: { 
-        expanded: true, 
-        hideNoControlsWarning: true
+    controls: {
+        expanded: true,
+        hideNoControlsWarning: true,
+        sort: 'alpha',
+        matchers: {
+            color: /(background|color)$/i,
+            date: /Date$/,
+        },
     },
     argTypes: {
         elementPath     : { table: { disable: true } },
         iframeUrl       : { table: { disable: true } },
         props           : { table: { disable: true } },
     },
-    
+
+    actions: { argTypesRegex: "^on[A-Z].*" }
+
     // // Hide addons
     // storySource: { disable: true },
     // knobs: { disable: true },

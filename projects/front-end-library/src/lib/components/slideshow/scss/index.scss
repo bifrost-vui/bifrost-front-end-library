@@ -1,0 +1,84 @@
+/* *****************************************************************************
+*
+*  Slideshow
+*
+* ***************************************************************************** */
+.bf-slideshow {
+    position: relative;
+    & > .slick-slider {
+        margin-bottom: 0;
+    }
+    [data-animate] {
+        opacity: 1;
+        animation: none;
+    }
+    .bf-slideshow__inner {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+
+        .slick-track {
+            gap: 0;
+
+            .slick-slide {
+                height: auto;
+
+                & > div {
+                    height: 100%;
+                }
+            }
+
+            .bf-hero {
+                height: 100%;
+            }
+        }
+    }
+    .bfslick__controls {
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+
+        &__counter {
+            .slick-dots {
+                position: relative;
+                margin: 0;
+                display: block;
+                bottom: -8px;
+
+                li {
+                    line-height: 1rem;
+                    cursor: pointer;
+                    &.slick-active {
+                        background-color: var(--bf-color-bg-action-secondary) !important;
+                    }
+                }
+            }
+        }
+        .slick-next {
+            right: 0;
+            padding: 0;
+            &:before {
+                left: 0.25rem;
+            }
+        }
+        .slick-prev {
+            left: 0;
+        }
+        .slick-next,
+        .slick-prev {
+            position: relative;
+            width: 1.5rem;
+            height: 1rem;
+            background: transparent;
+            border-radius: 0;
+            border: 0;
+            overflow: hidden;
+
+            &:before {
+                border-color: var(--bf-color-neutral-primary) !important;
+                width: 0.5rem;
+                height: 0.5rem;
+            }
+        }
+    }
+}

@@ -1,21 +1,16 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
+import { TwigContainerComponent }               from '../../../utils/twig-container/twig-container.component';
 
-import { TwigContainerComponent }   from '../../../utils/twig-container/twig-container.component';
 
-
-<Meta 
-    title='Styles/Typography'
+<Meta
+    title='Styles/Typography - Stories'
     decorators={[
         moduleMetadata({ declarations: [TwigContainerComponent]}),
     ]}
-    argTypes={{
-    }}
 />
 
-# Typography
-
-> We use **Open Sans** for paragraph and **Blender Pro** for Headings.
+# Typography Stories
 
 <br/>
 
@@ -26,51 +21,35 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal - Headings'
-        args={{ 
+        args={{
             elementPath : '../_doc/styles/typography/headings.drupal',
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal - Paragraphs'
-        args={{ 
+        args={{
             elementPath : '../_doc/styles/typography/paragraphs.drupal',
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal - Interface & Display'
-        args={{ 
+        args={{
             elementPath : '../_doc/styles/typography/interface-display.drupal',
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
-
-
-## Source Code
-
-```jsx
-    <h1>Titlte 1</h1>
-```
+</Canvas>

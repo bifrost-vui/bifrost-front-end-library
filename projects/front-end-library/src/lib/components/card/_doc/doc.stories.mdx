@@ -1,6 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
 
+import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
 import { contentLists, contentListsNoTitle }    from './data';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { CardComponent }                        from '../angular/card.component';
@@ -27,6 +28,13 @@ import { CardComponent }                        from '../angular/card.component'
         },
         language: {
             table: { defaultValue: { summary: 'en' } },
+        },
+        iconName: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['', 'placeholder', ...illustrationIcons.map(a => a.list).flat().sort()]
+            }
         },
     }}
 />
@@ -56,6 +64,7 @@ import { CardComponent }                        from '../angular/card.component'
 {% include '@bf-components/card/twig/plan.twig' with {
     isDisabled      : false,
     upperTitle      : 'upperTitle',
+    subtitle        : 'Lorem ipsum subtitle',
     title           : 'All-Inclusive 12 GB Mobile',
     description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
     link            : {
@@ -105,14 +114,29 @@ import { CardComponent }                        from '../angular/card.component'
             ],
         }
     ],
+    promotionBadges : [
+        {
+            label    :'Free Galaxy Buds Live',
+            iconName : '',
+        },
+        {
+            label    : '0$ Welcome credit',
+            iconName : 'credit-welcome',
+        }
+    ],
     price           : {
-        class           : '',
-        dollar          : '152',
-        cent            : '34',
-        infosSupp       : 'Taxes incl.',
-        boxAlignement   : 'left',
-        dashed          : '$150',
-        saved           : '<strong>$30</strong>',
+        upperTitle      : 'From',
+        dollar          : 86,
+        cent            : 99,
+        details         : '/month',
+        promotion       : {
+            title       : '<b>Promotion</b> test',
+            priceStriked: 40.99,
+            priceSaved  : 10,
+            savedLabel  : 'You saved :',
+            superscript : 1,
+            direction   : 'horizontal',
+        }
     },
     buttons         : [
         {
@@ -128,14 +152,14 @@ import { CardComponent }                        from '../angular/card.component'
         }
     ],
     message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
-    language            : 'en',
+    language            : 'en'
 } only %}
 
 // Card Phone example:
 {% include '@bf-components/card/twig/phone.twig' with {
     ...
     image : {
-        script          : '/images/_docs/iphone-12-pro-max.png',
+        src             : '/images/_docs/iphone-12-pro-max.png',
         alt             : 'iPhone 12 Mini',
         badgeIconName   : 'security'
     },
@@ -152,16 +176,39 @@ import { CardComponent }                        from '../angular/card.component'
         label           : 'Choose another Plan',
         class           : ''
     }
+    contentBadge : {
+            label       : 'Lorem Ipsum',
+            hierarchy   : 'tertiary',
+            angle       : '',
+            iconName    : '',
+            class       : '',
+    }
+    ...
+} only %}
+
+// Card Combo example:
+{% include '@bf-components/card/twig/combo.twig' with {
+    ...
+    image : {
+        src : '/images/_docs/iphone-12-pro-max.png',
+        alt : 'iPhone 12 Mini',
+    },
+    comboLabel      : '250 Go',
+    title           : 'iPhone 12 Mini',
+    subtitle        : 'Lorem ipsum subtitle',
+    ...
+    }
 } only %}
 ```
 
-
-
 ## Drupal
+
+### Plan card
 
 export const commonProps = {
     isDisabled      : false,
     upperTitle      : 'upperTitle',
+    subtitle        : 'Lorem ipsum subtitle',
     title           : 'All-Inclusive 12 GB Mobile',
     description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
     link            : {
@@ -172,14 +219,29 @@ export const commonProps = {
         label           : 'PROMOTION'
     },
     contentLists    : contentLists,
+    promotionBadges : [
+        {
+            label    :'Free Galaxy Buds Live',
+            iconName : '',
+        },
+        {
+            label    : '0$ Welcome credit',
+            iconName : 'credit-welcome',
+        }
+    ],
     price           : {
-        class           : '',
-        dollar          : '152',
-        cent            : '34',
-        infosSupp       : 'Taxes incl.',
-        boxAlignement   : 'left',
-        dashed          : '$150',
-        saved           : '<strong>$30</strong>',
+        upperTitle      : 'From',
+        dollar          : 86,
+        cent            : 99,
+        details         : '/month',
+        promotion       : {
+            title       : '<b>Promotion</b> test',
+            priceStriked: 40.99,
+            priceSaved  : 10,
+            savedLabel  : 'You saved :',
+            superscript : 1,
+            direction   : 'horizontal',
+        }
     },
     buttons           : [
         {
@@ -206,13 +268,14 @@ export const Drupal = (args) => ({
     }
 });
 
-<Preview
+<Canvas
     withSource='none'
     style={{ height: '900px' }}
 >
     <Story
         name='Drupal - Plan'
         args={{
+            elementPath : 'components/card/_doc/template.drupal',
             ...commonProps,
             cardVariant : 'plan',
             isDisabled  : false,
@@ -220,11 +283,11 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '800px' }}
+    style={{ height: '900px' }}
 >
     <Story
         name='Drupal - Plan Disabled'
@@ -236,11 +299,11 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '800px' }}
+    style={{ height: '900px' }}
 >
     <Story
         name='Drupal - Plan Selected'
@@ -249,11 +312,6 @@ export const Drupal = (args) => ({
             cardVariant     : 'plan',
             upperTitle      : undefined,
             contentLists    : contentListsNoTitle,
-            price           : {
-                class           : '',
-                dollar          : '20',
-                boxAlignement   : 'left',
-            },
             buttons           : [
                 {
                     label       : 'Choose this plan',
@@ -266,9 +324,9 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-<!-- badge           : 'PROMOTION', -->
+### Phone card
 
 export const phoneCommonProps = {
     badge           : {
@@ -281,6 +339,7 @@ export const phoneCommonProps = {
     },
     visualBackgroundColor : '',
     title           : 'iPhone 12 Mini',
+    subtitle        : 'Discover the power of the phone',
     detailsColors   : [
         { value :'4B4A46', name : 'Lorem' },
         { value :'2C4651', name : 'Ipsum' },
@@ -288,15 +347,35 @@ export const phoneCommonProps = {
         { value :'C0C0C0', name : 'Amet' },
     ],
     detailsStorage : ['128 Go', '256 Go'],
+    contentBadge : {
+        label       : 'credit return',
+        hierarchy   : 'tertiary',
+        angle       : '',
+        iconName    : 'credit-return',
+    },
+    promotionBadges : [
+        {
+            label    :'Free Galaxy Buds Live',
+            iconName : '',
+        },
+        {
+            label    : '0$ Welcome credit',
+            iconName : 'credit-welcome',
+        }
+    ],
     price           : {
         upperTitle      : 'From',
-        dollar          : '86',
-        cent            : '99',
+        dollar          : 86,
+        cent            : 99,
         details         : '/month',
-        boxAlignement   : 'left',
-        dashed          : '$150.00',
-        saved           : '$30.00',
-        savedLabel      : 'You save:',
+        promotion       : {
+            title       : '<b>Promotion</b> test',
+            priceStriked: 40.99,
+            priceSaved  : 10,
+            savedLabel  : 'You saved :',
+            superscript : 1,
+            direction   : 'horizontal',
+        }
     },
     note                : 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
     buttons             : [
@@ -308,9 +387,9 @@ export const phoneCommonProps = {
     ],
 };
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '800px' }}
+    style={{ height: '900px' }}
 >
     <Story
         name='Drupal - Phone'
@@ -322,11 +401,11 @@ export const phoneCommonProps = {
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '800px' }}
+    style={{ height: '900px' }}
 >
     <Story
         name='Drupal - Phone Disabled'
@@ -345,11 +424,13 @@ export const phoneCommonProps = {
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-<Preview
+### Protection card
+
+<Canvas
     withSource='none'
-    style={{ height: '800px' }}
+    style={{ height: '900px' }}
 >
     <Story
         name='Drupal - Protection'
@@ -362,14 +443,30 @@ export const phoneCommonProps = {
             iconName        : 'apple',
             visualBackgroundColor : '',
             title           : 'Apple Care+ for iPhone',
+            subtitle        : 'Lorem ipsum subtitle',
+            promotionBadges : [
+                {
+                    label    :'Free Galaxy Buds Live',
+                    iconName : '',
+                },
+                {
+                    label    : '0$ Welcome credit',
+                    iconName : 'credit-welcome',
+                }
+            ],
             price           : {
                 upperTitle      : 'From',
-                dollar          : '152',
-                cent            : '34',
-                infosSupp       : 'Taxes incl.',
-                boxAlignement   : 'left',
-                dashed          : '$150',
-                saved           : '<strong>$30</strong>',
+                dollar          : 86,
+                cent            : 99,
+                details         : '/month',
+                promotion       : {
+                    title       : '<b>Promotion</b> test',
+                    priceStriked: 40.99,
+                    priceSaved  : 10,
+                    savedLabel  : 'You saved :',
+                    superscript : 1,
+                    direction   : 'horizontal',
+                }
             },
             message           : 'Lorem ipsum dolor this protection.',
             buttons           : [
@@ -383,11 +480,13 @@ export const phoneCommonProps = {
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-<Preview
+### Increment card
+
+<Canvas
     withSource='none'
-    style={{ height: '800px' }}
+    style={{ height: '900px' }}
 >
     <Story
         name='Drupal - Increment'
@@ -395,40 +494,123 @@ export const phoneCommonProps = {
             elementPath     : 'components/card/_doc/template.drupal',
             cardVariant     : 'increment',
             title           : 'Label Ipsum',
+            subtitle        : 'Lorem ipsum subtitle',
             description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
+            promotionBadges : [
+                {
+                    label    :'Free Galaxy Buds Live',
+                    iconName : '',
+                },
+                {
+                    label    : '0$ Welcome credit',
+                    iconName : 'credit-welcome',
+                }
+            ],
             price           : {
                 upperTitle      : 'From',
-                dollar          : '152',
-                cent            : '34',
-                infosSupp       : 'Taxes incl.',
-                boxAlignement   : 'left',
-                dashed          : '$150',
-                saved           : '<strong>$30</strong>',
+                dollar          : 86,
+                cent            : 99,
+                details         : '/month',
+                promotion       : {
+                    title       : '<b>Promotion</b> test',
+                    priceStriked: 40.99,
+                    priceSaved  : 10,
+                    savedLabel  : 'You saved :',
+                    superscript : 1,
+                    direction   : 'horizontal',
+                }
             },
-            message           : 'Lorem ipsum dolor this message.',
-            inputIncrement  :{
+            message         : 'Lorem ipsum dolor this message.',
+            inputIncrement  : {
                 min             : 0,
                 max             : 5,
-                value      : 0,
+                value           : 0,
                 inputId         : 'my-input-id',
+                ariaLabel       : 'my aria-label',
                 errorMessage    : 'Value should be between 0 and 5',
             },
             buttons         : [
                 {
-                label           : 'Add to plan',
-                hierarchy       : 'primary-alt',
-                href            : 'www.videotron.com',
+                    label           : 'Add to plan',
+                    hierarchy       : 'primary-alt',
+                    href            : 'www.videotron.com',
                 }
             ]
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-## Component API
+### Combo card
 
-<Props of={CardComponent} />
+export const comboCommonProps = {
+    badge           : {
+        label           : 'Promotion'
+    },
+    image           : {
+        src             : '/images/_docs/iphone-12-pro-max.png',
+        alt             : 'iPhone 12 Mini',
+    },
+    comboLabel      : '250 Go',
+    visualBackgroundColor : '',
+    title           : 'iPhone 12 Mini',
+    subtitle        : 'Discover the power of the phone',
+    contentBadge : {
+            label       : 'credit return',
+            hierarchy   : 'tertiary',
+            angle       : '',
+            iconName    : 'credit-return',
+    },
+    promotionBadges : [
+        {
+            label    :'Free Galaxy Buds Live',
+            iconName : '',
+        },
+        {
+            label    : '0$ Welcome credit',
+            iconName : 'credit-welcome',
+        }
+    ],
+    price           : {
+        upperTitle      : 'From',
+        dollar          : 86,
+        cent            : 99,
+        details         : '/month',
+        promotion       : {
+            title       : '<b>Promotion</b> test',
+            priceStriked: 40.99,
+            priceSaved  : 10,
+            savedLabel  : 'You saved :',
+            superscript : 1,
+            direction   : 'horizontal',
+        }
+    },
+    note                : 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
+    buttons             : [
+        {
+            label           : 'Configurate',
+            hierarchy       : 'primary-alt',
+            href            : 'www.videotron.com',
+        }
+    ],
+};
+
+<Canvas
+    withSource='none'
+    style={{ height: '900px' }}
+>
+    <Story
+        name='Drupal - Combo'
+        args={{
+            elementPath     : 'components/card/_doc/template.drupal',
+            cardVariant     : 'combo',
+            ...comboCommonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
 
 ## More info
 

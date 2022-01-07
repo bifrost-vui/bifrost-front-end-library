@@ -5,6 +5,7 @@
 * ***************************************************************************** */
 
 $path-images: "/images/";
+@use "sass:math";
 
 
 // Variables should follow the `$component-state-property-size` formula for
@@ -171,8 +172,9 @@ $enable-print-styles:       true !default;
 // You can add more entries to the $spacers map, should you need more variation.
 
 // stylelint-disable
+// WARNING: `$spacer-x` sould not be used anymore. We keep it for legacy code only.
+// Please, use theme CSS variables instead: E.g. `var(--bf-spacer-1)`.
 $spacer: 1rem !default;
-
 $spacer-1: ($spacer * .25);     // 4px
 $spacer-2: ($spacer * .5);      // 8px
 $spacer-3: $spacer;             // 16px
@@ -300,7 +302,7 @@ $container-max-widths: (
 
 $grid-columns:                12 !default;
 $grid-gutter-width:           16px !default;
-$grid-gutter-width-simple:    ($grid-gutter-width / 2) !default;
+$grid-gutter-width-simple:    math.div($grid-gutter-width, 2) !default;
 
 $responsive-padding:          calc(3.5vw + #{$grid-gutter-width-simple}) !default;
 
@@ -372,7 +374,7 @@ $h4-font-size:                $font-size-base * 1.25 !default; // 18px
 $h5-font-size:                $font-size-base !default; // 16px
 $h6-font-size:                $font-size-base * 0.875 !default; // 14px
 
-$headings-margin-bottom:      ($spacer / 2) !default;
+$headings-margin-bottom:      math.div($spacer, 2) !default;
 $headings-font-family:        $font-family-base !default;
 $headings-font-weight:        $font-weight-normal !default;
 $headings-line-height:        1.25rem !default;
@@ -720,7 +722,7 @@ $nav-pills-link-active-bg:          $component-active-bg !default;
 
 // Navbar
 
-$navbar-padding-y:                  ($spacer / 2) !default;
+$navbar-padding-y:                  math.div($spacer, 2) !default;
 $navbar-padding-x:                  $spacer !default;
 
 $navbar-nav-link-padding-x:         .5rem !default;
@@ -729,7 +731,7 @@ $navbar-brand-font-size:            $font-size-lg !default;
 // Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
 $nav-link-height:                   ($font-size-base * $line-height-base + $nav-link-padding-y * 2) !default;
 $navbar-brand-height:               $navbar-brand-font-size * $line-height-base !default;
-$navbar-brand-padding-y:            ($nav-link-height - $navbar-brand-height) / 2 !default;
+$navbar-brand-padding-y:            math.div($nav-link-height - $navbar-brand-height, 2) !default;
 
 $navbar-toggler-padding-y:          .25rem !default;
 $navbar-toggler-padding-x:          .75rem !default;
@@ -805,7 +807,7 @@ $card-bg:                           $white !default;
 
 $card-img-overlay-padding:          1.25rem !default;
 
-$card-group-margin:                 ($grid-gutter-width / 2) !default;
+$card-group-margin:                 math.div($grid-gutter-width, 2) !default;
 $card-deck-margin:                  $card-group-margin !default;
 
 $card-columns-count:                3 !default;

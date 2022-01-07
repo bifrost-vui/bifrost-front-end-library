@@ -3,6 +3,132 @@
 <br/><br/>
 
 ## vX.X.X
+### Input-increment
+Improve management `isRequired` attribute (see [Component API]((?path=/docs/components-input-increment--drupal)).
+### Link
+- Improve `Link` component (see [Component API](?path=/docs/components-link--drupal)).
+
+## [v1.5.1](https://bifrost-front-end-library-git-v1-5-1-bifrost-vui.vercel.app/)
+### Cards
+- Badges are now visible on [disabled cards](?path=/docs/components-card--drupal-phone-disabled)
+
+### Badge
+- Enabled `badge` component to expand on multiple lines. Badges with `angle` will still display on one line but will display an ellipsis if the text is larger than 15rem.
+
+### Input Slider
+ - Improved UX of `Input Slider` by making it clickable. If the component displays 2 handles, the click will affect the closest handle.
+
+## [v1.5.0](https://bifrost-front-end-library-git-v1-5-0-bifrost-vui.vercel.app/)
+### Input Slider
+ - New Input Slider component (see [Component API](?path=/docs/input-slider--drupal))
+
+###  Selection Tile
+- New Selection Tile component (see [Component API](?path=/docs/components-selection-tile--selection-tile-vertical)).
+
+### Cards
+
+- New `combo` [card variant](?path=/docs/components-card--drupal-combo) and introducing the `comboLabel` property.
+- New `subtitle` property in cards (available in all variants)
+- New promotion badges in `Card` using `promotionBadges` (available in all variants)
+
+### Button-icon
+- Added the option to display a `Badge` on the `Button-icon` component using `badgeLabel` property.
+
+### Badge
+- added the `isRounded` option in `Badge` component
+- unified the disabled state of all badges display
+
+### Bug fix
+- [Tab](?path=/docs/components-tab--drupal) component : position of the scroll bar on mobile (vertical & horizontal)
+- [Slideshow](?path=/docs/components-slideshow--drupal) visual fix for Safari browser about bullet badly align
+
+
+## [v1.4.0](https://bifrost-front-end-library-git-v1-4-0-bifrost-vui.vercel.app/)
+### Slideshow
+- New `slideshow` component for heros (see [Component API](?path=/docs/components-slideshow--drupal))
+
+### Row Button
+- New Row Button component (see [Component API](?path=/docs/components-row-button--drupal)).
+
+### Icons
+- The size property has a new value:  `huge`
+
+### Button Nav
+- New component Button Nav (see [Component API](?path=/docs/components-button-nav--drupal) and [usage example](?path=/story/components-button-nav--drupal-usage-example)).
+
+### Hero
+- **BREAKING CHANGES**, the image property API used to be `image: { default: 'image.png', mobile: 'image-mobile.png' }` and is now `image: { lg: 'image.png', sm: 'image-mobile.png' }`.
+- Added property `image.isSplitted` to make a 50/50 hero
+- Added property `height: large` to have a min heigh.
+- Display a `Price Component` between `description` and `buttons`.
+- **BREAKING CHANGES** Modified property `button` to `buttons` in order to display an array of max 2 buttons
+- Add TwigBlock `content` above buttons (The Pandora box).
+- Added property `icon` to set a huge size icon.
+
+### New Icons
+- Added the `mobile-multiline-2` and `mobile-multiline-3`, `data-on-demande`,`data-permanent`, `data-speed`,`credit-welcome` and `new-phone` icons
+
+### Bugs Fix
+#### Hero
+- The Breadcrumb property now accept a TwigBlock. Still work with injecting string html.
+- The Badge property now accept a Badge component. All property can ben set. Still work with only a string setting the label.
+
+
+## [v1.3.1](https://bifrost-front-end-library-git-v1-3-1-jonathanlefebvrev.vercel.app)
+### Bugs Fix
+#### Header
+- Fix bad refactor of icon button : my-account and logout
+
+#### Block-selection
+- Fix bad refactor of icon button : delete
+
+#### Icon migration documentation
+- write the missing rename of "profile" to "my-account"
+
+
+## [v1.3.0](https://bifrost-front-end-library-git-v1-3-0-jonathanlefebvrev.vercel.app)
+### Card - phone variants
+- New property `contentBadge` to inject a Badge component into the Card content
+
+### Banner
+- added `isClickable` to make the banner clickable or not - true by default
+- added `linkLabel` to display a link at the end of the pargagraph when the banner is not clickable.
+- both options use the same `href`
+
+### Badge
+- Added an option to display an illustration type `icon` in the Badge component
+
+
+### Icon
+- **[BREAKING CHANGES]** see [migration documentation](/docs/migrations-icon--page)
+- **[BREAKING CHANGES]** folder `/public/images/icons/bifrost/interface` removed. It contained 6 icons:
+    - `actualite-24.svg`
+    - `cart-24.svg`
+    - `communaute-24.svg`
+    - `information-circle-24.svg`
+    - `mobile-24.svg`
+    - `support-24.svg`
+
+#### Block Highlight (DS-26)
+- Image is now 4:3 format on mobile.
+- Image is now used as `background-image` CSS instead of `<img />`. So `image.alt` is not relevant anymore, Block highlight only use `image.src` in order to display image.
+- Replace `h2` default `titleTag` by `p`.
+- Button: Remove default hierarchy `primary-alt`.
+- Remove `fullWidth` property.
+- New properties:
+  - `isFeatured`: Change the visual hierarchy of the block.
+  - `visualBackgroundColor`: Change the default yellow backgound color behind the image (usefull for PNG).
+  - `blockBackgroundColor`: Change the background color of the block: 'ground' (default) or 'underground'.
+
+### New Icons
+- **DS-142** Added the `credit-return` icon to the Bifröst icon library
+
+### Bugs Fix
+- **DS-125** Replaced boostrap classes by CSS attribute in Increment Imput Component to permit class overides
+- **DS-145** Page scrollbbar disapears. The bug was introduced by bug fix **DS-86**.
+- **DS-135**
+  - Make sure `buttons` and `inputIncrement` aren't empty before trying to display them in Card component
+  - `ariaLabel` was misspelled in the `inputIncrement` component
 
 ## [v1.2.0](https://bifrost-front-end-library-git-v1-2-0-jonathanlefebvrev.vercel.app)
 ### New Components
@@ -19,6 +145,7 @@
 - **DS-86** Fix Tabs scrolling style.
 - **DS-70** Fix Card component to have an elastic height body.
 - **DS-95** Little fix from UIKIT carousel-mobile-devices.scss
+
 
 ## [v1.1.1](https://bifrost-front-end-library-git-v1-1-1-jonathanlefebvrev.vercel.app)
 ### Price
@@ -79,6 +206,7 @@ Bugs Fix
 - DS-59 Header component. Display more than 5 rigthIconLinks break the menu
   - Remove animation of fix the broken state displayed
   - Set a maximum managed of the Array `rigthIconLinks` in Header component
+
 
 
 ## [v1.0.1](https://bifrost-front-end-library-7sh17fjm1-jonathanlefebvrev.vercel.app/)

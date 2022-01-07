@@ -12,16 +12,15 @@ export class BadgeComponent implements OnInit {
     @Input() label          : string;
     @Input() hierarchy      : 'primary' | 'secondary' | 'tertiary' | 'tertiary-ground';
     @Input() noUppercase    : boolean;
-    /**
-        Display an angle on a corner.
-    */
-    @Input() angle          : '' | 'left' | 'right';
-
+    /** Displays an angle on a corner. Won't have any effect if `isRounded` is true*/
+    @Input() angle          : null | 'left' | 'right';
+    /** `isRounded` property has precedence over `angle`  */
+    @Input() isRounded      : boolean;
     @Input() class          : string;
+    @Input() iconName       : string;
     @Input() reversed       : boolean;
 
     ngOnInit() {
         console.log('badge', this);
     }
-    
 }

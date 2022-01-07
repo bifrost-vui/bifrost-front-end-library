@@ -1,9 +1,9 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta } from '@storybook/addon-docs';
 
 <Meta
     title="Styles/Icons"
-    parameters={{ 
-        layout: 'padded', 
+    parameters={{
+        layout: 'padded',
         viewMode: 'docs',
         previewTabs: { canvas: { hidden: true } }
     }}
@@ -13,4 +13,64 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 <br/>
 
-Icons are documented in Page [Components/Icon](/?path=/docs/components-icon--drupal-interface).
+## Drupal Implementation
+Including Icon component is exaclty like others components. See [Icon Component API](/story/components-icon--drupal-interface).
+```jsx
+{% include '@bf-components/icons/twig/index.twig' with {
+    name: 'account-balance',
+    size: 'xsmall | small | medium | large'
+} only %}
+```
+
+## Angular Implementation
+Work in progress.
+
+
+## Behind the scenes
+
+All icons exist in 2 SVG sizes. This is because some details of the large icons weren't displaying properly when rendered in 24x24 or 16x16.
+This is also why, for some icons, the small SVG may not be identical their larger conterpart.
+
+The system will automaticaly chose the best SVG file format dependeing the selected `size` property
+- **`filename-sm.svg`** (small): will be displayed if `size` property is set to `xsmall` or `small`.
+- **`filename-lg.svg`** (large): will be displayed if `size` property is set to `medium` or `large`.
+
+
+## Get Official icon lists
+Since Bifrost v1.3.0, you could rely on these paths to get the official and versionned icon lists:
+- **Illustration Icons**: <a href='icons/list/illustrations.json' target='_blank'>/icons/list/illustrations.json</a>
+- **Interface Icons**: <a href='icons/list/interfaces.json' target='_blank'>/icons/list/interfaces.json</a>
+
+<br/>
+
+**Note:** If you want the flatten the list (in order to remove `category` level), you could use this `.map()` in javascript:
+```jsx
+import illustrationIcons from '../icons/list/illustrations.json';
+const illustrationIconsFlatten = illustrationIcons.map(a => a.list).flat().sort();
+
+```
+
+# Design recommendations
+Illustration Icons : `size` property should be set to  *large* - 72x72 , *medium* - 48x48 or *small* - 24x24'
+Interface Icons : `size` property should be set to  *small* - 24x24' or *xsmall* - 16x16'
+
+## Retrieve SVG path
+**Warning: This is recommended to include the Icon component like documented below.**
+However, in some cases, you would like to retrieve the SVG directly from the **/public** folder with this path:
+`/icons/{{ name ~ '-' ~ 'sm | lg' ~ '.svg' }}`
+
+<br/>
+
+Twig example:
+```
+{% set name = 'account-balance' %}
+<img src='/icons/{{ name }}-sm.svg' />
+<img src='/icons/{{ name }}-lg.svg' />
+```
+Output:
+<img src='/icons/account-balance-sm.svg' />
+<img src='/icons/account-balance-lg.svg' />
+
+
+## Ressources:
+Icons are documented in Page [Components/Icon](/story/components-icon--drupal-illustration).

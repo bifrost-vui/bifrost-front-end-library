@@ -1,17 +1,15 @@
-{% set isLink = (href is defined and href is not empty) %}
+{% set isLink   = (href is defined and href is not empty) %}
+{% set hasBadge = (badgeLabel is defined and badgeLabel and badgeLabel is not empty ) %}
 
-<{{ isLink ? 'a' : 'button' }}
+<div class='bf-button-icon {{ isDisabled ? 'disabled' }} {{ class|default('') }}'>
+  <{{ isLink ? 'a' : 'button' }}
     {% if isLink is same as (true) %}
-        href='{{ href|default('#') }}'
+      href='{{ href|default('#') }}'
     {% else %}
-        type='button'
+      type='button'
     {% endif %}
-    class='
-        bf-button-icon vui--style-reset p-2 m-0 
-        {% if reversed is same as (true) %}reversed{% endif %}
-        {% if isDisabled is same as (true) %}disabled{% endif %}
-        {{ class|default('') }}'
-    {% if isDisabled is same as (true) %}disabled='disabled'{% endif %}
+    class='bf-button-icon__inner {% if reversed %}reversed{% endif %} {% if isDisabled %}disabled{% endif %} {{ buttonClass|default('') }}'
+    {% if isDisabled %}disabled='disabled'{% endif %}
     {% if label is not empty %}data-title='{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}'{% endif %}
     {% if dataDismiss is defined %}data-dismiss='{{ dataDismiss|default(NULL) }}'{% endif %}
     {% if dataToggle is defined %}data-toggle='{{ dataToggle|default(NULL) }}'{% endif %}
@@ -20,8 +18,20 @@
     {% if ariaExpanded is defined %}aria-expanded='{{ ariaExpanded|default(NULL) }}'{% endif %}
     {% if ariaLabel is defined %}aria-expanded='{{ ariaLabel|default(NULL) }}'{% endif %}
     {{ extraAttribute|default(NULL) }}
->
+  >
     {% include '@bf-components/icon/twig/index.twig' with {
-        name    : icon|default('placeholder')
+      name  : icon|default('placeholder'),
+      size  : 'small'
     } only %}
-</{{ isLink ? 'a' : 'button' }}>
+  </{{ isLink ? 'a' : 'button' }}>
+
+{% if hasBadge %}
+    {% set badgeLabel = badgeLabel > 99 ? "+99" : badgeLabel %}
+    {% include '@bf-components/badge/twig/index.twig' with {
+      label     : badgeLabel,
+      class     : 'bf-button-icon__badge',
+      hierarchy : 'primary',
+      isRounded : true
+    } only %}
+{% endif %}
+</div>

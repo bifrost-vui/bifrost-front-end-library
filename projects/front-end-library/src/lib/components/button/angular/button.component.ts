@@ -25,6 +25,8 @@ export class ButtonComponent implements OnInit {
     @Input() fullWidth      : boolean;
 
     @Input() iconName       : string;
+    /** This is not recommended to change the size of the icon. */
+    @Input() iconSize       : string;
     @Input() iconPosition   : string;
 
     @Input() dataDismiss    : string;

@@ -26,18 +26,18 @@ export class TwigContainerComponent implements OnInit {
   }
 
   updateIframeUrl(props) {
-    const paramsString = Object.keys(props).map(function(key) {
-        console.log('updateIframeUrl', key);
-        if ( !['iframeUrl', 'sanitizer'].includes(key) && props[key] !== undefined )
+    const params:string[] = Object.keys(props).filter(key => !['__ngContext__', 'iframeUrl', 'sanitizer'].includes(key));
+    const paramsString:string = params.map(function(key) {
+      console.log('updateIframeUrl', key);
+      if ( !['iframeUrl', 'sanitizer'].includes(key) && props[key] !== undefined )
+      {
+        const value = (['object'].includes(typeof props[key])) ? JSON.stringify(props[key]) : props[key];
+        if (value !== '')
         {
-            const value = (['object'].includes(typeof props[key])) ? JSON.stringify(props[key]) : props[key];
-            if (value !== '')
-            {
-                return key + '=' + value;
-            }
+          return key + '=' + value;
         }
+      }
     }).join('&');
-    
     const baseURL = isDevMode() ? 'http://localhost:3001/' : '/'
     const url = baseURL + 'api/twig?' + paramsString;
     console.log('url', url);
@@ -47,7 +47,7 @@ export class TwigContainerComponent implements OnInit {
 
   ngDoCheck() {
     console.log('ngDoCheck', this);
-    
+
     const newProps = {...this};
     delete newProps.props;
     delete newProps.sanitizer;

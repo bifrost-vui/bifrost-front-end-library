@@ -1,27 +1,37 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { moduleMetadata }               from '@storybook/angular';
+import { Canvas, Meta, Story, Props }   from '@storybook/addon-docs';
+import illustrationIcons                from '../../../../../../../public/icons/list/illustrations.json';
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { BadgeComponent }               from '../angular/badge.component';
 
-import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
-import { BadgeComponent }           from '../angular/badge.component';
 
-
-<Meta 
-    title='Components/Badge' 
+<Meta
+    title='Components/Badge'
     component={BadgeComponent}
     decorators={[
         moduleMetadata({ declarations: [BadgeComponent, TwigContainerComponent]}),
     ]}
     argTypes={{
         hierarchy: {
-            table: { defaultValue: { summary: 'secondary' } },
+            table:   { defaultValue: { summary: 'secondary' } },
             control: { type: 'select' }
         },
         angle: {
             control: { type: 'select' }
         },
         noUppercase: {
-            table: { defaultValue: { summary: false } },
+            table:  { defaultValue: { summary: false } },
         },
+        iconName: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: ['', 'placeholder', ...illustrationIcons.map(a => a.list).flat().sort()]
+            }
+        },
+        _disabled : {
+            table:{ disable: true }
+        }
     }}
 />
 
@@ -33,8 +43,8 @@ import { BadgeComponent }           from '../angular/badge.component';
 
 
 ## Component API
-
 <Props of={BadgeComponent} />
+
 
 
 
@@ -43,12 +53,11 @@ import { BadgeComponent }           from '../angular/badge.component';
 ```jsx
 {% include '@bf-components/badge/twig/index.twig' with {
     label       : 'Free',
-    class       : 'm-2',
+    class       : 'my-2',
     hierarchy   : 'primary'
+    iconName    : 'camera'
 } only %}
 ```
-
-
 
 ## Drupal
 
@@ -57,17 +66,49 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
+<Canvas
     withSource='none'
-    style={{ height: '600px' }}
+    style = {{ height: '600px' }}
 >
-    <Story 
+    <Story
         name='Drupal'
-        args={{ 
+        args={{
             elementPath : 'components/badge/_doc/template.drupal',
-            class       : 'm-2',
+            class       : 'my-2',
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
+
+<Canvas
+    withSource='none'
+    style = {{ height: '600px'}}
+>
+    <Story
+        name='Drupal - Multiline'
+        args={{
+            elementPath : 'components/badge/_doc/template.drupal',
+            class       : 'my-2',
+            label       : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas
+    withSource='none'
+    style = {{ height: '600px'}}
+>
+    <Story
+        name='Drupal - Disabled'
+        args={{
+            elementPath : 'components/badge/_doc/template.drupal',
+            class       : 'my-2',
+            _disabled   : true
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>

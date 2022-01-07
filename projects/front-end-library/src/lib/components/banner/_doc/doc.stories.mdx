@@ -1,25 +1,28 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
 
-import { illustrationIcons }                    from '../../icon/_doc/data';
+import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { BannerComponent }                      from '../angular/banner.component';
 
 
-<Meta 
-    title='Components/Banner' 
+<Meta
+    title='Components/Banner'
     component={BannerComponent}
     decorators={[
         moduleMetadata({ declarations: [BannerComponent, TwigContainerComponent]})
     ]}
     argTypes={{
-        iconName: {
-            defaultValue: 'mobile-multiline',
+        iconName    : {
+            defaultValue: 'credit-return',
             control: {
                 type: 'select',
                 options: ['', ...illustrationIcons.map(a => a.list).flat().sort()]
             }
         },
+        isClickable : {
+            defaultValue : true
+        }
     }}
 />
 
@@ -38,7 +41,7 @@ import { BannerComponent }                      from '../angular/banner.componen
 
 ## Drupal implementation example
 
-#### With icon
+#### Clickable banner with icon
 ```jsx
 {% include '@bf-components/banner/twig/index.twig' with {
     href        : 'https://videotron.com',
@@ -46,11 +49,21 @@ import { BannerComponent }                      from '../angular/banner.componen
     paragraph   : 'Free with any purchase of this phone, valuted at $239.38.',
     iconName    : 'mobile-multiline',
     badge       : 'FREE',
+    isClickable : 'true'
     class       : 'mb-4',
 } only %}
 ```
 
-#### With image
+#### Banner with icon and link
+```jsx
+{% include '@bf-components/banner/twig/index.twig' with {
+    //...
+    linkLabel   : 'Some conditions may apply',
+    isClickable : 'false',
+} only %}
+```
+
+#### Banner with image
 ```jsx
 {% include '@bf-components/banner/twig/index.twig' with {
     // ...
@@ -61,8 +74,6 @@ import { BannerComponent }                      from '../angular/banner.componen
 } only %}
 ```
 
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -70,15 +81,7 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-
-<Preview
-    withSource='none'
-    style={{ height: '500px' }}
->
-    <Story 
-        name='Drupal'
-        args={{
-            elementPath : 'components/banner/_doc/template.drupal',
+export const commonProps= {
             href        : 'https://videotron.com',
             title       : 'Galaxy Buds Live',
             paragraph   : 'Free with any purchase of this phone, valuted at $239.38.',
@@ -88,8 +91,17 @@ export const Drupal = (args) => ({
             },
             badge       : 'FREE',
             class       : 'mb-4',
+}
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        height='400px'
+        args={{
+            elementPath : 'components/banner/_doc/template.drupal',
+            ... commonProps
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
