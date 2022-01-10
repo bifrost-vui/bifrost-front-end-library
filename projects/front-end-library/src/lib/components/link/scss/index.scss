@@ -9,13 +9,18 @@
     text-decoration: underline;
     border-radius: var(--bf-border-radius-small);
     transition: background-color .25s;
+    vertical-align: bottom;
 
-    &:hover {
+    &:hover,
+    &:focus {
         background-color: var(--bf-color-bg-action-no-bg-hover);
     }
 
-    &.disabled {
-        color: var(--bf-color-neutral-tertiary);
+    &.disabled,
+    &.disabled:not([href]) {
+        pointer-events: none;
+        @extend .bf-color-neutral-tertiary;
+        @extend .bf-color-bg-action-disabled;
     }
 
     &--primary {
@@ -23,5 +28,13 @@
         @extend .font-weight-bold;
         letter-spacing: 1px;
         text-transform: uppercase;
+    }
+
+    .bf-icon svg {
+        display: block;
+    }
+
+    &--no-underline {
+        text-decoration: none;
     }
 }
