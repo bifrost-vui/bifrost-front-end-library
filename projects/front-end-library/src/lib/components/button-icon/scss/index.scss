@@ -22,17 +22,38 @@
         transition: background-color .25s;
 
         &:hover {
-            background-color: var(--bf-color-bg-action-no-bg-hover);
+            background-color: rgba(var(--bf-color-bg-action-secondary-rgb), .1);
+            // background-color: var(--bf-color-bg-action-no-bg-hover);
         }
         &.disabled,
         &[disabled] {
             pointer-events: none;
 
             .bf-icon {
-                color: var(--bf-color-neutral-tertiary);
+                color: rgba(var(--bf-color-neutral-primary-rgb), .35);
+            }
+            .bf-button-icon__badge .bf-badge__inner {
+                color: rgba(var(--bf-color-neutral-primary-rgb), .35);
+                background-color: rgba(var(--bf-color-bg-action-secondary-rgb), .03) !important;
+
+                svg {
+                    color: rgba(var(--bf-color-neutral-primary-rgb), .35);
+                }
             }
         }
     }
+    &.disabled {
+        .bf-button-icon__badge .bf-badge__inner {
+            color: rgba(var(--bf-color-neutral-primary-rgb), .35);
+            background-color: rgba(var(--bf-color-bg-action-secondary-rgb), .03) !important;
+
+            svg {
+                color: rgba(var(--bf-color-neutral-primary-rgb), .35);
+            }
+        }
+    }
+
+
     &__badge {
         position: absolute;
         top: 1px;

@@ -33,12 +33,17 @@
 
     &.disabled {
         pointer-events: none;
-        @extend .bf-color-neutral-tertiary;
-        @extend .bf-color-bg-action-disabled;
+        color: rgba(var(--bf-color-neutral-primary-rgb), .35);
+        background-color: rgba(var(--bf-color-bg-action-secondary-rgb), .03);
     }
 
     &--primary {
         @extend .bf-color-bg-action-primary;
+        color : var(--bf-color-primary-irreversible);
+
+        svg {
+            color : var(--bf-color-primary-irreversible);
+        }
 
         &:hover {
             @extend .bf-color-bg-action-primary-hover;
@@ -50,7 +55,7 @@
 
         &:not(.disabled) {
             color: var(--bf-color-bg-ground);
-            .bf-icon { 
+            .bf-icon {
                 color: var(--bf-color-bg-ground);
             }
         }
@@ -62,13 +67,13 @@
 
     &--secondary {
         background-color: transparent;
-        border: 1px solid var(--bf-color-stroke-secondary);
+        border: 1px solid rgba(var(--bf-color-stroke-highlight-rgb), .2);
         transition: border-color .25s;
 
         &:hover {
             border-color: var(--bf-color-neutral-primary);
         }
-        
+
         &.disabled {
             background-color: transparent;
         }
@@ -76,11 +81,11 @@
 
     &--tertiary {
         background-color: transparent;
-        
+
         &:hover {
             @extend .bf-color-bg-action-no-bg-hover;
         }
-        
+
         &.disabled {
             background-color: transparent;
         }
@@ -92,7 +97,7 @@
 
     &.loading {
         pointer-events: none;
-        
+
         .bf-button__label {
             visibility: hidden;
         }
@@ -115,7 +120,7 @@
                 transform: scale(.8);
                 opacity: .5;
                 animation: loading-dot .9s alternate infinite ease-in-out;
-                
+
                 &:nth-child(2) { animation-delay: .3s }
                 &:nth-child(3) { animation-delay: .6s }
             }
@@ -141,19 +146,14 @@
 }
 
 
-// Apply Dark color on reversed Primary and Primary-alt.
+// Apply Dark color on reversed Primary-alt.
 // TODO: Find a more elegant wy to give access to initial css variables in reversed.
 
 .reversed .bf-button,
 .reversed.bf-button {
-    
-    &--primary,
+
     &--primary-alt {
 
-        &.disabled {
-            color: var(--bf-color-neutral-tertiary) !important;
-            svg {color: var(--bf-color-neutral-tertiary) !important;}
-        }
         &:not(.disabled) {
             color: var(--bf-color-bg-ground) !important;
             svg {color: var(--bf-color-bg-ground) !important;}
