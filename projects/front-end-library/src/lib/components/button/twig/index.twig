@@ -32,7 +32,11 @@
                 class   : iconPosition is same as ('right') ? 'bf-button__icon--right' : ''
             } only %}
         {% endif %}
-        <span class='bf-button__label__text'>{{ label|default('') }}</span>
+        {% if label is defined and label %}
+          <span class='bf-button__label__text'>
+            {{ label|default('') }}
+          </span>
+        {% endif %}
     </span>
     {% if isLoading is same as (true) or hasLoading is same as (true) %}
         <div class='bf-button__loading' role='decoration'>
