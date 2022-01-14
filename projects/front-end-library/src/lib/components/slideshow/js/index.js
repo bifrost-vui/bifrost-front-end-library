@@ -3,17 +3,18 @@ import '../../../js/components/slick-carousel.js'
 
 /*-------- Apply reversed on navigation controls -------------*/
 
-$('.bf-slideshow__inner').on('init', function(slick){
-    if ($('.slick-current .bf-hero').hasClass('reversed')){
-        $('.bf-slideshow .bfslick__controls').addClass('reversed')
+$('.bf-slideshow__inner').on('init', function(slick) {
+    if ($('.slick-current .bf-hero').hasClass('reversed')) {
+        $('.bf-slideshow .bfslick__controls').addClass('reversed');
     }
 });
-$('.bf-slideshow__inner').on('afterChange', function(event, slick, currentSlide, nextSlide){
-    $('.bf-slideshow .bfslick__controls').removeClass('reversed')
-    if ($('.slick-current .bf-hero').hasClass('reversed')){
-        $('.bf-slideshow .bfslick__controls').addClass('reversed')
+$('.bf-slideshow__inner').on('afterChange', function(event, slick, currentSlide, nextSlide) {
+    $('.bf-slideshow .bfslick__controls').removeClass('reversed');
+    if ($('.slick-current .bf-hero').hasClass('reversed')) {
+        $('.bf-slideshow .bfslick__controls').addClass('reversed');
     }
 });
+
 
 /* ------ Hero SlideShow initialisation ------------*/
 
