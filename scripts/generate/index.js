@@ -1,11 +1,11 @@
-const q = require('q');
-const inquirer = require('inquirer');
-const shell = require('shelljs');
-const fs = require('fs');
-const replace = require('replace-in-file');
-const open = require('open');
-const chalk = require('chalk');
-const textError = chalk.red;
+const q             = require('q');
+const inquirer      = require('inquirer');
+const shell         = require('shelljs');
+const fs            = require('fs');
+const replace       = require('replace-in-file');
+const open          = require('open');
+const chalk         = require('chalk');
+const textError     = chalk.red;
 
 const { 
     renameFiles, 
@@ -138,7 +138,6 @@ function appendPublicAPI ({ name, NameReadable, type, typePlural, finalPath }) {
         // Import component style into index.scss.
         const strinImportStyle = `@import '../${typePlural}/${name}/scss/index';`;
         shell.exec( 'echo "' + strinImportStyle + '" >> projects/front-end-library/src/lib/scss/index.scss' );
-        
     }
 
     return { name, NameReadable, type, typePlural, finalPath };
@@ -157,8 +156,12 @@ function success ({ name, NameReadable, type, typePlural, finalPath }) {
     shell.echo( `\r` );
     
     // Open Storybook in the default browser.
-    shell.echo( `${chalk.bold('We open Storybook right away')}. If you didn't started it yet, enter ${chalk.bold('npm run start-dev')}:` );
+    shell.echo( chalk.green('------------------------------------------------------------------------------------') );
+    shell.echo( `\r` );
+    shell.echo( `${chalk.bold('We open Storybook right away')}.`);
     shell.echo( `${chalk.blue(`http://localhost:9008/?path=/story/${typePlural}-${name}--drupal`)}` );
+    shell.echo( `\r` );
+    shell.echo( `📝 If Storybook is not running yet, enter ${chalk.green.bold('npm run start-dev')}`);
     shell.echo( `\r` );
     (async () => {    
         await open(`http://localhost:9008/?path=/story/${typePlural}-${name}--drupal`);
@@ -167,7 +170,8 @@ function success ({ name, NameReadable, type, typePlural, finalPath }) {
     // Launch Compodoc to generate component API documentation in Storybook
     shell.echo( chalk.green('------------------------------------------------------------------------------------') );
     shell.echo( `\nIn the same time, Compodoc parses all Angular files to generate API documentation of your new ${type}.` );
-    shell.echo( `It could take 1 or 2 minutes and it will refresh yoiur browser with the documentation.` );
+    shell.echo( `It could take 1 or 2 minutes and it will refresh your browser with the documentation.` );
+    shell.echo( `\r` );
     shell.exec( `compodoc -p .storybook/tsconfig.json -e json -d . -t` );
     // shell.exec( `compodoc -p ./tsconfig.json -e json -d . -t`, code => {
     //     if (code !== 0) return textError('Error occurred with Compodoc.');
@@ -177,5 +181,5 @@ function success ({ name, NameReadable, type, typePlural, finalPath }) {
 // Start
 requestInfo()
     .then(generateFromTemplate)
-    .then(appendPublicAPI)
+    // .then(appendPublicAPI) // Note: Uncomment this line in order to add component in Angular API entry point.
     .then(success)
