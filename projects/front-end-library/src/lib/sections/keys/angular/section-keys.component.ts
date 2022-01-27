@@ -1,7 +1,7 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
-    selector: "bf-section-keys",
+    selector: 'bf-section-keys',
     templateUrl: './section-keys.component.html',
 })
 export class SectionKeysComponent implements OnInit {
@@ -9,6 +9,7 @@ export class SectionKeysComponent implements OnInit {
 
     @Input() title          : string;
     @Input() titleTag       : string;
+    @Input() description    : string;
     @Input() keys           : object[];
     @Input() buttons        : object[];
 
