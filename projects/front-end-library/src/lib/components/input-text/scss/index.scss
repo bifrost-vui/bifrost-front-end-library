@@ -8,8 +8,17 @@
     display: flex;
     flex-flow: column;
     input {
+        background-color: transparent;
+        border-color: rgba(var( --bf-color-neutral-primary-rgb),.3) ;
+        color: var(--bf-color-neutral-primary);
         @include placeholder {
-            color: var(--bf-color-neutral-tertiary);
+            color: rgba(var( --bf-color-neutral-primary-rgb),.3);
+        }
+        &:focus-visible {
+            box-shadow: 0 0 0 3px rgba(129,194,255, .5)
+        }
+        &:focus:not(:focus-visible) {
+            box-shadow: none !important;
         }
     }
 
@@ -29,8 +38,8 @@
         .form-group__input-icon-container {
             height: auto;
         }
-        .bf-icon {
-            color: var(--bf-color-primary-irreversible);
+        input:focus + button .bf-icon {
+           color: var(--bf-color-primary-irreversible);
         }
     }
     &--isInvalidform-group{
