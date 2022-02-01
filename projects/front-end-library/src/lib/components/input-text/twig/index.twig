@@ -1,0 +1,59 @@
+<div class='bf-input-text  {{ type == 'password' ? 'bf-input-text--password'  }} form-group {{ class|default('') }}'>
+
+{% if (description is defined and description) or  (label.text is defined and label.text) %}
+  <div class=bf-input-text__head>
+    <label
+      for='{{ id }}'
+      class='{{ label.class|default('') }}'>
+      {{ label.text|default('') }}
+    </label>
+    <button type='button' class="form-group__input-icon-container" data-toggle='tooltip' data-html='true' data-trigger='hover' data-placement='{{tooltip.position}}' title='{{tooltip.text|raw}}'>
+      {% include '@bf-components/icon/twig/index.twig' with {
+        size  : 'xsmall',
+        class : 'ml-0 mb-1',
+        name  : 'question-circle-outline'
+      } %}
+
+    </button>
+    {% if description is defined and description %}
+      <p>{{ description | default('')}} </p>
+    {% endif %}
+  </div>
+{% endif %}
+
+  <div>
+    <input
+      id='{{ id|default('') }}'
+      type='{{ type }}'
+      {% if placeholder is defined and placeholder %}
+        placeholder='{{ placeholder }}'
+      {% endif %}
+      {% if label.text is defined and label.text %}
+        aria-label='{{ label.text }}'
+      {% else %}
+        aria-label='{{ ariaLabel|default('') }}'
+      {% endif %}
+
+      {{ isDisabled ? 'disabled aria-disabled="true"'}}
+      {{ isRequired ? 'required' }}
+      {{ isReadonly ? 'readonly' }}
+      value='{{ inputValue|default('') }}'
+      {{ extraAttribute|default(NULL) }}
+      class='form-control'
+    >
+
+    {% if errorMessage is defined and errorMessage and isInvalid %}
+      <p class='invalid-feedback'>
+        {{ errorMessage|default('') }}
+      </p>
+    {% endif %}
+
+    {% if info is defined and info is not empty %}
+     <p class='bf-input-text__info'>
+       {% if info.url is defined and info.url %}<a href='{{ info.url }}'>{% endif %}
+        {{ info.text }}
+       {% if info.url is defined and info.url %}</a>{% endif %}
+     </p>
+    {% endif %}
+  </div>
+</div>
