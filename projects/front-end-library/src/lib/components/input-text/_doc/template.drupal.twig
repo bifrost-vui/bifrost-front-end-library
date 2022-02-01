@@ -6,8 +6,6 @@
 {% set isInvalid = isInvalid|json_parse %}
 {% set isRequired = isRequired|json_parse %}
 {% set info = info|json_parse %}
-{% set type = type|json_parse %}
-
 
 
 {% set backgrounds = ['bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground'] %}
@@ -20,7 +18,7 @@
         <h6 class='bf-text-display-sub-medium text-center'>{{ defaultType }}</h6>
 
         {% include '@bf-components/input-text/twig/index.twig' with {
-           type : type|json_parse|default(defaultType)
+           type : defaultType
         } %}
       </div>
     {% endfor %}

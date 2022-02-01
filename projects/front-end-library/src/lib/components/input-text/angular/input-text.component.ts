@@ -20,12 +20,13 @@ export class InputTextComponent implements OnInit {
 
     @Input() id: string;
     @Input() placeholder: string;
-    /** email|text(default)|password|phone|search */
-    @Input() type: 'text'|'email'|'password'|'tel'|'search';
+    /** email|text(default)|password|phone|search <br>
+      phone and e-mail types have native behaviors on mobile */
+    @Input() type: 'text'|'password'|'search'|'tel'|'email';
     /** Will be used if no label.text is defined */
     @Input() ariaLabel: string;
 
-    /**  { text: string, position: 'top'|'bottom'|'left'|'right'  }*/
+    /**  { text: string, position: top|bottom|left|right  }*/
     @Input() tooltip : { text: string, position: 'top'|'bottom'|'left'|'right'  };
 
     @Input() isDisabled: boolean;

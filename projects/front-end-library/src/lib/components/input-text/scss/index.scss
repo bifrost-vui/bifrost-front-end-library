@@ -7,31 +7,67 @@
 .bf-input-text {
     display: flex;
     flex-flow: column;
+    input {
+        @include placeholder {
+            color: var(--bf-color-neutral-tertiary);
+        }
+    }
 
-    .form-group__input-icon-container {
+    label.required:after {
+        content: '*'
+    }
+    &__head .form-group__input-icon-container {
         padding: 0;
         position: relative;
         height: auto;
         display: inline-block;
 
     }
-    .invalid-feedback {
-        display: block;
+    &__input{
+        position: relative;
+        margin-bottom: var(--bf-spacer-1);
+        .form-group__input-icon-container {
+            height: auto;
+        }
+        .bf-icon {
+            color: var(--bf-color-primary-irreversible);
+        }
+    }
+    &--isInvalidform-group{
+        input.form-control {
+            border-color: var(--bf-color-feedback-negative);
+        }
+        .invalid-feedback {
+            display: block;
+            margin-bottom: var(--bf-spacer-1);
+            color: var(--bf-color-feedback-negative);
+        }
+        .bf-input-text__input .bf-icon {
+            color: var(--bf-color-feedback-negative);
+        }
     }
     &__info {
         @extend .small;
-        margin-top: var(--bf-spacer-2);
         color : var(--bf-color-neutral-secondary);
 
         a {
             text-decoration: underline;
         }
     }
-    input {
-        @include placeholder {
-            color: var(--bf-color-neutral-tertiary);
+    .icon__see {
+        display: none;
+    }
+    .icon__hide {
+        display: block;
+    }
+    .state-show-password {
+        .icon__see {
+            display: block;
         }
+        .icon__hide {
+            display: none;
+        }
+
     }
-    &--password {
-    }
+
 }

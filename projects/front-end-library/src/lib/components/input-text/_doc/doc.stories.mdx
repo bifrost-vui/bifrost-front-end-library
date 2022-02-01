@@ -21,6 +21,7 @@ import { InputTextComponent }     from '../angular/input-text.component';
     argTypes={{
         type: {
             defaultValue: 'text',
+            required : true,
             control: {type: 'select'}
         }
     }}
@@ -47,6 +48,7 @@ export const Drupal = (args) => ({
             placeholder: 'Input placeholder',
             ariaLabel: 'no label is defined',
             tooltip : { text: `<em>HTML</em> tooltip <strong>text</strong>`, position: 'top' },
+            passwordTooltip : `<em>HTML</em> password tooltip <strong>text</strong>`,
             errorMessage : 'a short error message',
             info : {text: 'additional information', url: 'http://www.example.com'}
         }}
@@ -60,6 +62,7 @@ export const Drupal = (args) => ({
 
 ```jsx
 {% include '@bf-components/input-text/twig/index.twig' with {
+    type : 'text' // required,
     label: { text: 'Llabel'},
     description: 'a short description',
     id: 'myId',

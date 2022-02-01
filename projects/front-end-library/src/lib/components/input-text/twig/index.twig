@@ -1,10 +1,10 @@
-<div class='bf-input-text  {{ type == 'password' ? 'bf-input-text--password'  }} form-group {{ class|default('') }}'>
+<div class='bf-input-text  {{ type == 'password' ? 'bf-input-text--password'  }} {{ isInvalid ? 'bf-input-text--isInvalid' }}form-group {{ class|default('') }}'>
 
 {% if (description is defined and description) or  (label.text is defined and label.text) %}
   <div class=bf-input-text__head>
     <label
       for='{{ id }}'
-      class='{{ label.class|default('') }}'>
+      class='{{ isRequired ? 'required' }}{{ label.class|default('') }}'>
       {{ label.text|default('') }}
     </label>
     <button type='button' class="form-group__input-icon-container" data-toggle='tooltip' data-html='true' data-trigger='hover' data-placement='{{tooltip.position}}' title='{{tooltip.text|raw}}'>
@@ -13,7 +13,6 @@
         class : 'ml-0 mb-1',
         name  : 'question-circle-outline'
       } %}
-
     </button>
     {% if description is defined and description %}
       <p>{{ description | default('')}} </p>
@@ -21,10 +20,10 @@
   </div>
 {% endif %}
 
-  <div>
+  <div class="bf-input-text__input {{ type == 'password' ? 'js-form-password' }}">
     <input
       id='{{ id|default('') }}'
-      type='{{ type }}'
+      type='{{ type|default('text') }}'
       {% if placeholder is defined and placeholder %}
         placeholder='{{ placeholder }}'
       {% endif %}
@@ -39,21 +38,38 @@
       {{ isReadonly ? 'readonly' }}
       value='{{ inputValue|default('') }}'
       {{ extraAttribute|default(NULL) }}
-      class='form-control'
+      class='form-control {{ type == 'password' ? 'js-form-password__input' }}'
     >
-
-    {% if errorMessage is defined and errorMessage and isInvalid %}
-      <p class='invalid-feedback'>
-        {{ errorMessage|default('') }}
-      </p>
-    {% endif %}
-
-    {% if info is defined and info is not empty %}
-     <p class='bf-input-text__info'>
-       {% if info.url is defined and info.url %}<a href='{{ info.url }}'>{% endif %}
-        {{ info.text }}
-       {% if info.url is defined and info.url %}</a>{% endif %}
-     </p>
+    {% if type is defined and type is same as ('password') %}
+    <button type='button' class="form-group__input-icon-container {{ type == 'password' ? 'js-form-password__btn' }}" >
+      {% include '@bf-components/icon/twig/index.twig' with {
+        size  : 'small',
+        class : 'm-0 icon__hide',
+        name  : 'eye-dash'
+      } %}
+      {% include '@bf-components/icon/twig/index.twig' with {
+        size  : 'small',
+        class : 'm-0 icon__see',
+        name  : 'eye'
+      } %}
+    </button>
     {% endif %}
   </div>
+
+  {% if (errorMessage is defined and errorMessage and isInvalid) or  (info is defined and info is not empty) %}
+    <div class="bf-input-text__footer">
+      {% if errorMessage is defined and errorMessage and isInvalid %}
+        <p class='invalid-feedback'>
+          {{ errorMessage|default('') }}
+        </p>
+      {% endif %}
+      {% if info is defined and info is not empty %}
+       <p class='bf-input-text__info'>
+         {% if info.url is defined and info.url %}<a href='{{ info.url }}'>{% endif %}
+          {{ info.text }}
+         {% if info.url is defined and info.url %}</a>{% endif %}
+       </p>
+      {% endif %}
+    </div>
+  {% endif %}
 </div>
