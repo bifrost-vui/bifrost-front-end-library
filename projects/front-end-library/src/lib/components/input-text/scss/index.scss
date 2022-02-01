@@ -11,15 +11,23 @@
         background-color: transparent;
         border-color: rgba(var( --bf-color-neutral-primary-rgb),.3) ;
         color: var(--bf-color-neutral-primary);
+
         @include placeholder {
             color: rgba(var( --bf-color-neutral-primary-rgb),.3);
+        }
+        &:focus{
+            box-shadow: 0 0 0 0 rgba(129,194,255, .5);
+            outline: none;
+
+            @include placeholder {
+                color: rgba(var( --bf-color-primary-irreversible-rgb),.3);
+            }
+
         }
         &:focus-visible {
             box-shadow: 0 0 0 3px rgba(129,194,255, .5)
         }
-        &:focus:not(:focus-visible) {
-            box-shadow: none !important;
-        }
+
     }
 
     label.required:after {
