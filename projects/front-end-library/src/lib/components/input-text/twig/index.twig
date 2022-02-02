@@ -1,4 +1,12 @@
-<div class='bf-input-text  {{ type == 'password' ? 'bf-input-text--password'  }} {{ isInvalid ? 'bf-input-text--isInvalid' }}form-group {{ class|default('') }}'>
+
+{% if type is same as ('search') %}
+  {% set inputType = 'text'%}
+{% else %}
+  {% set inputType = type %}
+{% endif %}
+
+
+<div class='form-group bf-input-text  {{ type == 'password' ? 'bf-input-text--password'  }} {{ isInvalid ? 'bf-input-text--isInvalid' }} {{ isDisabled ? 'bf-input-text--disabled'}}{{ class|default('') }}'>
 
 {% if (description is defined and description) or  (label.text is defined and label.text) %}
   <div class=bf-input-text__head>
@@ -20,10 +28,11 @@
   </div>
 {% endif %}
 
-  <div class="bf-input-text__input {{ type == 'password' ? 'js-form-password' }}">
+
+  <div class="bf-input-text__input {{ type == 'password' ? 'js-form-password' }} {{ type == 'search' ? 'form-group__input--search' }}">
     <input
       id='{{ id|default('') }}'
-      type='{{ type|default('text') }}'
+      type='{{ inputType|default('text') }}'
       {% if placeholder is defined and placeholder %}
         placeholder='{{ placeholder }}'
       {% endif %}
@@ -32,16 +41,30 @@
       {% else %}
         aria-label='{{ ariaLabel|default('') }}'
       {% endif %}
-
+      {% if description is defined and description %}
+        aria-aria-describedby='{{ description }}'
+      {% endif %}
       {{ isDisabled ? 'disabled aria-disabled="true"'}}
       {{ isRequired ? 'required' }}
       {{ isReadonly ? 'readonly' }}
-      value='{{ inputValue|default('') }}'
+      value='{{ value|default('') }}'
       {{ extraAttribute|default(NULL) }}
       class='form-control {{ type == 'password' ? 'js-form-password__input' }}'
     >
+    {% if  type is  same as ('search') %}
+      <button class="form-group__input-icon-container {{ type == 'search' ? 'form-group__input--search__btn' }}  {{ isReadonly ? 'd-none' }}" {{ isDisabled ? 'disabled aria-disabled="true"'}} type='submit'
+      >
+        {% include '@bf-components/icon/twig/index.twig' with {
+          size  : 'small',
+          class : 'm-0 icon__hide',
+          name  : 'search'
+        } %}
+      </button>
+    {% endif %}
     {% if type is defined and type is same as ('password') %}
-    <button type='button' class="form-group__input-icon-container {{ type == 'password' ? 'js-form-password__btn' }}" >
+    <button
+      type='button'
+      class="form-group__input-icon-container {{ type == 'password' ? 'js-form-password__btn' }} {{ isReadonly ? 'd-none' }}" {{ isDisabled ? 'disabled aria-disabled="true"'}}>
       {% include '@bf-components/icon/twig/index.twig' with {
         size  : 'small',
         class : 'm-0 icon__hide',

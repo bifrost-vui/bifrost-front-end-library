@@ -50,16 +50,31 @@
            color: var(--bf-color-primary-irreversible);
         }
     }
-    &--isInvalidform-group{
+    &--disabled{
+        input.form-control {
+            background-color: transparent;
+            border-color: rgba(var( --bf-color-neutral-primary-rgb),.1);
+            color: rgba(var( --bf-color-neutral-primary-rgb),.25) ;
+        }
+        .bf-input-text__input {
+            .bf-icon {
+                color: rgba(var( --bf-color-neutral-primary-rgb),.1);
+                cursor: none;
+            }
+            .form-group__input-icon-container {
+                background-color: transparent;
+                cursor: not-allowed;
+            }
+        }
+
+    }
+    &--isInvalid{
         input.form-control {
             border-color: var(--bf-color-feedback-negative);
         }
         .invalid-feedback {
             display: block;
             margin-bottom: var(--bf-spacer-1);
-            color: var(--bf-color-feedback-negative);
-        }
-        .bf-input-text__input .bf-icon {
             color: var(--bf-color-feedback-negative);
         }
     }

@@ -14,15 +14,16 @@ export class InputTextComponent implements OnInit {
     constructor() {}
 
     @Input() class: string;
-
     @Input() label: { text: string, class: string };
     @Input() description: string;
-
     @Input() id: string;
     @Input() placeholder: string;
+    @Input() value: string;
+
     /** email|text(default)|password|phone|search <br>
       phone and e-mail types have native behaviors on mobile */
     @Input() type: 'text'|'password'|'search'|'tel'|'email';
+
     /** Will be used if no label.text is defined */
     @Input() ariaLabel: string;
 
@@ -36,6 +37,7 @@ export class InputTextComponent implements OnInit {
 
     /** isInvalid must be set to true for the message to display*/
     @Input() errorMessage : string;
+
     /**  may contain a link : {text: string, url: string}*/
     @Input() info : {text: string, url: string} ;
 
