@@ -2,7 +2,7 @@
 import $ from 'jquery';
 
 /**
- *  Input type password Behavior :
+ *  Input type password Behavior
  **/
 $(function () {
     const container = $('.js-form-password');

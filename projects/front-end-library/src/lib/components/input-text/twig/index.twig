@@ -1,38 +1,41 @@
 
-{% if type is same as ('search') %}
-  {% set inputType = 'text'%}
+{% if inputType is same as ('search') %}
+  {% set type = 'text'%}
 {% else %}
-  {% set inputType = type %}
+  {% set type = inputType %}
 {% endif %}
 
 
-<div class='form-group bf-input-text  {{ type == 'password' ? 'bf-input-text--password'  }} {{ isInvalid ? 'bf-input-text--isInvalid' }} {{ isDisabled ? 'bf-input-text--disabled'}}{{ class|default('') }}'>
+<div class='form-group bf-input-text  {{ inputType == 'password' ? 'bf-input-text--password'  }} {{ isInvalid ? 'bf-input-text--isInvalid' }} {{ isDisabled ? 'bf-input-text--disabled'}}{{ class|default('') }}'>
 
-{% if (description is defined and description) or  (label.text is defined and label.text) %}
-  <div class=bf-input-text__head>
-    <label
-      for='{{ id }}'
-      class='{{ isRequired ? 'required' }}{{ label.class|default('') }}'>
-      {{ label.text|default('') }}
-    </label>
-    <button type='button' class="form-group__input-icon-container" data-toggle='tooltip' data-html='true' data-trigger='hover' data-placement='{{tooltip.position}}' title='{{tooltip.text|raw}}'>
-      {% include '@bf-components/icon/twig/index.twig' with {
-        size  : 'xsmall',
-        class : 'ml-0 mb-1',
-        name  : 'question-circle-outline'
-      } %}
-    </button>
-    {% if description is defined and description %}
-      <p>{{ description | default('')}} </p>
-    {% endif %}
-  </div>
-{% endif %}
+  {% if (description is defined and description) or  (label.text is defined and label.text) %}
+    <div class=bf-input-text__head>
+      <label
+        for='{{ id }}'
+        class='{{ isRequired ? 'required' }}{{ label.class|default('') }}'>
+        {{ label.text|default('') }}
+      </label>
 
+      {% if tooltip.text is defined and tooltip.text %}
+      <button type='button' class="form-group__input-icon-container" data-toggle='tooltip' data-html='true' data-trigger='hover' data-placement='{{tooltip.position|default('top')}}' title='{{tooltip.text|raw}}'>
+        {% include '@bf-components/icon/twig/index.twig' with {
+          size  : 'xsmall',
+          class : 'ml-0 mb-1',
+          name  : 'question-circle-outline'
+        } %}
+      </button>
+      {% endif %}
 
-  <div class="bf-input-text__input {{ type == 'password' ? 'js-form-password' }} {{ type == 'search' ? 'form-group__input--search' }}">
+      {% if description is defined and description %}
+        <p>{{ description | default('')}} </p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="bf-input-text__input {{ inputType == 'password' ? 'js-form-password form-password' }} {{ inputType == 'search' ? 'form-group__input--search' }}">
     <input
       id='{{ id|default('') }}'
-      type='{{ inputType|default('text') }}'
+      type='{{ type }}'
       {% if placeholder is defined and placeholder %}
         placeholder='{{ placeholder }}'
       {% endif %}
@@ -51,8 +54,9 @@
       {{ extraAttribute|default(NULL) }}
       class='form-control {{ type == 'password' ? 'js-form-password__input' }}'
     >
-    {% if  type is  same as ('search') %}
-      <button class="form-group__input-icon-container {{ type == 'search' ? 'form-group__input--search__btn' }}  {{ isReadonly ? 'd-none' }}" {{ isDisabled ? 'disabled aria-disabled="true"'}} type='submit'
+    {# Search Button #}
+    {% if inputType is  same as ('search') %}
+      <button class="form-group__input-icon-container {{ inputType == 'search' ? 'form-group__input--search__btn' }}  {{ isReadonly ? 'd-none' }}" {{ isDisabled ? 'disabled aria-disabled="true"'}} type='submit'
       >
         {% include '@bf-components/icon/twig/index.twig' with {
           size  : 'small',
@@ -61,21 +65,41 @@
         } %}
       </button>
     {% endif %}
+
+    {# Password show/hide button & validation list #}
     {% if type is defined and type is same as ('password') %}
-    <button
-      type='button'
-      class="form-group__input-icon-container {{ type == 'password' ? 'js-form-password__btn' }} {{ isReadonly ? 'd-none' }}" {{ isDisabled ? 'disabled aria-disabled="true"'}}>
-      {% include '@bf-components/icon/twig/index.twig' with {
-        size  : 'small',
-        class : 'm-0 icon__hide',
-        name  : 'eye-dash'
-      } %}
-      {% include '@bf-components/icon/twig/index.twig' with {
-        size  : 'small',
-        class : 'm-0 icon__see',
-        name  : 'eye'
-      } %}
-    </button>
+      <button
+        type='button'
+        class="form-group__input-icon-container {{ inputType == 'password' ? 'js-form-password__btn' }} {{ isReadonly ? 'd-none' }}" {{ isDisabled ? 'disabled aria-disabled="true"'}}
+      >
+        {% include '@bf-components/icon/twig/index.twig' with {
+          size  : 'small',
+          class : 'm-0 icon__hide',
+          name  : 'eye-dash'
+        } %}
+
+        {% include '@bf-components/icon/twig/index.twig' with {
+          size  : 'small',
+          class : 'm-0 icon__see',
+          name  : 'eye'
+        } %}
+      </button>
+
+      {% if (validationList is defined and validationList is not empty) or (validationTitle is defined and validationTitle) %}
+        <div class="form-password__infos">
+          {% if validationTitle is defined and validationTitle %}
+            <p class="font-weight-medium mb-1">{{ validationTitle }}</p>
+          {% endif %}
+
+          {% if validationList is defined and validationList %}
+            <ul class="list-validation">
+              {% for item in validationList %}
+                <li class="{{ item.class|default('') }}">{{ item.label|default('') }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      {% endif %}
     {% endif %}
   </div>
 
@@ -86,10 +110,13 @@
           {{ errorMessage|default('') }}
         </p>
       {% endif %}
+
       {% if info is defined and info is not empty %}
        <p class='bf-input-text__info'>
          {% if info.url is defined and info.url %}<a href='{{ info.url }}'>{% endif %}
-          {{ info.text }}
+
+         {{ info.text }}
+
          {% if info.url is defined and info.url %}</a>{% endif %}
        </p>
       {% endif %}
