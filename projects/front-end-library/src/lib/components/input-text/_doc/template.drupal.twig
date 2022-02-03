@@ -1,28 +1,29 @@
 
-{% set label      = label|json_parse %}
-{% set tooltip    = tooltip|json_parse %}
-{% set isDisabled = isDisabled|json_parse %}
-{% set isReadonly = isReadonly|json_parse %}
-{% set isInvalid  = isInvalid|json_parse %}
-{% set isRequired = isRequired|json_parse %}
-{% set info       = info|json_parse %}
-{% set inputType  = inputType|json_parse %}
+{% set label          = label|json_parse %}
+{% set description    = description|json_parse %}
+{% set tooltip        = tooltip|json_parse %}
+
+{% set inputType      = inputType|json_parse %}
+{% set id             = id|json_parse %}
+{% set name             = name|json_parse %}
+{% set isDisabled     = isDisabled|json_parse %}
+{% set isReadonly     = isReadonly|json_parse %}
+{% set isInvalid      = isInvalid|json_parse %}
+{% set isRequired     = isRequired|json_parse %}
+{% set maxlength      = maxlength|json_parse %}
+{% set minlength      = minlength|json_parse %}
+{% set autocomplete   = autocomplete|json_parse %}
+{% set extraAttribute = extraAttribute|json_parse %}
+
+{% set info           = info|json_parse %}
 {% set validationList = validationList|json_parse %}
 
-
 {% set backgrounds = ['bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight'] %}
-{% set defaultTypes  = ['text','email','tel','password','search'] %}
 
-{% for background in backgrounds %}
-  <div class='m-2 p-2 pb-0 d-flex flex-row flex-wrap gap-3 flex-grow-1 {{ background }}'>
-    {% for defaultType in defaultTypes %}
-      <div class='p-2 pb-0 d-flex flex-column flex-grow-1 '>
-        <h6 class='bf-text-display-sub-medium text-center'>{{ defaultType }}</h6>
-
-        {% include '@bf-components/input-text/twig/index.twig' with {
-          inputType : inputType|default(defaultType)
-        } %}
+  <div class='mt-6 px-2 d-flex flex-row flex-wrap gap-1 flex-grow-1'>
+    {% for background in backgrounds %}
+      <div class='p-3 d-flex flex-column flex-grow-1  {{ background }}'>
+        {% include '@bf-components/input-text/twig/index.twig' %}
       </div>
-    {% endfor %}
-  </div>
 {% endfor %}
+  </div>

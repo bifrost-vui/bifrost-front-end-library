@@ -8,26 +8,28 @@
 
 <div class='form-group bf-input-text  {{ inputType == 'password' ? 'bf-input-text--password'  }} {{ isInvalid ? 'bf-input-text--isInvalid' }} {{ isDisabled ? 'bf-input-text--disabled'}}{{ class|default('') }}'>
 
-  {% if (description is defined and description) or  (label.text is defined and label.text) %}
+  {% if (description is defined and description) or (label is defined and label) %}
     <div class=bf-input-text__head>
-      <label
-        for='{{ id }}'
-        class='{{ isRequired ? 'required' }}{{ label.class|default('') }}'>
-        {{ label.text|default('') }}
-      </label>
+      {% if label is defined and label %}
+        <label
+          for='{{ id }}'
+          class='{{ isRequired ? 'required' }}{{ label.class|default('') }}'>
+          {{ label.text|default('') }}
+        </label>
 
-      {% if tooltip.text is defined and tooltip.text %}
-      <button type='button' class="form-group__input-icon-container" data-toggle='tooltip' data-html='true' data-trigger='hover' data-placement='{{tooltip.position|default('top')}}' title='{{tooltip.text|raw}}'>
-        {% include '@bf-components/icon/twig/index.twig' with {
-          size  : 'xsmall',
-          class : 'ml-0 mb-1',
-          name  : 'question-circle-outline'
-        } %}
-      </button>
+        {% if tooltip.text is defined and tooltip.text %}
+        <button type='button' class="form-group__input-icon-container" data-toggle='tooltip' data-html='true' data-trigger='hover' data-placement='{{tooltip.position|default('top')}}' title='{{tooltip.text|raw}}'>
+          {% include '@bf-components/icon/twig/index.twig' with {
+            size  : 'xsmall',
+            class : 'ml-0 mb-1',
+            name  : 'question-circle-outline'
+          } %}
+        </button>
+        {% endif %}
       {% endif %}
 
       {% if description is defined and description %}
-        <p>{{ description | default('')}} </p>
+        <p>{{ description|default('') }} </p>
       {% endif %}
     </div>
   {% endif %}
@@ -35,7 +37,8 @@
   <div class="bf-input-text__input {{ inputType == 'password' ? 'js-form-password form-password' }} {{ inputType == 'search' ? 'form-group__input--search' }}">
     <input
       id='{{ id|default('') }}'
-      type='{{ type }}'
+      name='{{ name|default('') }}'
+      type='{{ type|default('text') }}'
       {% if placeholder is defined and placeholder %}
         placeholder='{{ placeholder }}'
       {% endif %}
@@ -47,7 +50,22 @@
       {% if description is defined and description %}
         aria-aria-describedby='{{ description }}'
       {% endif %}
-      {{ isDisabled ? 'disabled aria-disabled="true"'}}
+      {% if title is defined and title %}
+        title='{{ title }}'
+      {% endif %}
+      {% if maxlength is defined and maxlength %}
+        maxlength='{{ maxlength }}'
+      {%  endif %}
+      {% if minlength is defined and minlength %}
+        minlength='{{ minlength }}'
+      {%  endif %}
+      {% if pattern is defined and pattern %}
+        pattern='{{ pattern }}'
+      {%  endif %}
+      {% if autocomplete is defined and autocomplete %}
+        autocomplete='{{ autocomplete ? 'on': 'off' }}'
+      {%  endif %}
+      {{ isDisabled ? 'disabled aria-disabled="true"' }}
       {{ isRequired ? 'required' }}
       {{ isReadonly ? 'readonly' }}
       value='{{ value|default('') }}'
@@ -101,12 +119,14 @@
         </div>
       {% endif %}
     {% endif %}
+    {# TODO?  : add tootip here if a toottip is available but no label is defined? #}
   </div>
 
   {% if (errorMessage is defined and errorMessage and isInvalid) or  (info is defined and info is not empty) %}
     <div class="bf-input-text__footer">
       {% if errorMessage is defined and errorMessage and isInvalid %}
         <p class='invalid-feedback'>
+          {# TODO?  : add an optional Icon?  #}
           {{ errorMessage|default('') }}
         </p>
       {% endif %}
@@ -114,8 +134,8 @@
       {% if info is defined and info is not empty %}
        <p class='bf-input-text__info'>
          {% if info.url is defined and info.url %}<a href='{{ info.url }}'>{% endif %}
-
-         {{ info.text }}
+           {# TODO?  : add an optional Icon?  #}
+           {{ info.text }}
 
          {% if info.url is defined and info.url %}</a>{% endif %}
        </p>

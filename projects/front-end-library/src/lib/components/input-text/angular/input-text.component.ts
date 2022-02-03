@@ -13,52 +13,48 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 export class InputTextComponent implements OnInit {
     constructor() {}
 
-    @Input() class: string;
-
-    /** expected : { text: string, class: string } */
-    @Input() label: object;
-    @Input() description: string;
-    @Input() id: string;
-    @Input() placeholder: string;
-    @Input() value: string;
-
-    /** email|text(default)|password|phone|search  */
-    @Input() inputType: 'text'|'password'|'search'|'tel'|'email';
-
+    // Input-text Properties
+    /** Expected values : text(default)|tel|email|password|search */
+    @Input() inputType      : 'text'|'password'|'search'|'tel'|'email';
+    @Input() id             : string;
+    @Input() name           : string;
+    @Input() placeholder    : string;
+    @Input() value          : string;
+    /** Refers to the Input autocomplete attribute */
+    @Input() autocomplete   : boolean;
+    /** The maximum number of characters allowed */
+    @Input() maxlength      : number;
+    /** The minimum number of characters allowed */
+    @Input() minlength      : number;
     /** Will be used if no label.text is defined */
-    @Input() ariaLabel: string;
+    @Input() ariaLabel      : string;
+    /** The value should be a regular expression */
+    @Input() pattern        : string;
+    /** Refers to the input title attribute. Define when pattern is used*/
+    @Input() title          : string;
+    @Input() isDisabled     : boolean;
+    @Input() isReadonly     : boolean;
+    @Input() isInvalid      : boolean;
+    @Input() isRequired     : boolean;
+    @Input() extraAttribute : string;
 
-    /**  expected : { text: string, position: top|bottom|left|right  }*/
-    @Input() tooltip : object;
-
-    @Input() isDisabled: boolean;
-    @Input() isReadonly: boolean;
-    @Input() isInvalid : boolean;
-    @Input() isRequired: boolean;
-
+    // other elements components
+    /** expected : { text: string, class: string } */
+    @Input() label          : object;
+    /**  Expected : { text: string, position: top|bottom|left|right }*/
+    @Input() tooltip        : object;
+    @Input() description    : string;
     /** the message to display only when isInvalid is true*/
-    @Input() errorMessage : string;
-
-    @Input() validationTitle : string;
+    @Input() errorMessage   : string;
+    /** for Password input type only */
+    @Input() validationTitle: string;
+    /**  for Password input type only. Expected : { class: string, label: string } */
     @Input() validationList : object[];
-
-    /**  expected : {text: string, url: string}*/
-    @Input() info : object;
-
+    /**  expected : { text: string, url: string } */
+    @Input() info           : object;
+    @Input() class          : string;
 
     ngOnInit() {
         console.log('InputText', this);
     }
 }
-
-/**
- * Nice to have in Bifrost version :
- * - next versions : mask options et paterns
-        code postal = type text + mask de saisie,
-        credit card : type number + masque de saisie
-        Téléphone : type phone + masque de saisie canada
-        http://estelle.github.io/input-masking/
- * - bifrostisation du tooltip - tooltip bootstrap en attendant
- * - On a juste 1 orientation (columns) - offrir l'option row
-       (label + input côte à côte)
- * */
