@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input } from '@angular/core';
 
 
 @Component({
-    selector: "bf-template-badge",
+    selector: 'bf-template-badge',
     templateUrl: './template.angular.html',
 })
 export class BadgeTemplate implements OnInit {

@@ -15,7 +15,10 @@ export class BadgeComponent implements OnInit, OnChanges {
     @Input() angle          : ' ' | 'left' | 'right';
     /** `isRounded` property has precedence over `angle` */
     @Input() isRounded      : boolean;
-    @Input() classes        : string;
+    /** Angular only */
+    @Input() className      : string;
+    /** Drupal only */
+    @Input() class          : string;
     @Input() iconName       : string;
     @Input() reversed       : boolean;
 
@@ -23,7 +26,7 @@ export class BadgeComponent implements OnInit, OnChanges {
 
     computetNgClasses() {
         this.ngClasses = [
-            this.classes                    ? String(this.classes) : '',
+            this.className                  ? String(this.className) : '',
             this.hierarchy                  ? 'bf-badge--' + this.hierarchy : 'bf-badge--secondary',
             this.angle && !this.isRounded   ? 'bf-badge--angle-' + this.angle : '',
             this.isRounded                  ? 'bf-badge--rounded' : ''
