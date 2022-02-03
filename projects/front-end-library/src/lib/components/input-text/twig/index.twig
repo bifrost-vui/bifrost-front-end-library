@@ -6,7 +6,7 @@
 {% endif %}
 
 
-<div class='form-group bf-input-text  {{ inputType == 'password' ? 'bf-input-text--password'  }} {{ isInvalid ? 'bf-input-text--isInvalid' }} {{ isDisabled ? 'bf-input-text--disabled'}}{{ class|default('') }}'>
+<div class='form-group bf-input-text  {{ inputType == 'password' ? 'bf-input-text--password'  }} {{ inputType == 'search' ? 'bf-input-text--search' }} {{ isInvalid ? 'bf-input-text--isInvalid' }} {{ isDisabled ? 'bf-input-text--disabled'}}{{ class|default('') }}'>
 
   {% if (description is defined and description) or (label is defined and label) %}
     <div class=bf-input-text__head>
@@ -34,7 +34,7 @@
     </div>
   {% endif %}
 
-  <div class="bf-input-text__input {{ inputType == 'password' ? 'js-form-password form-password' }} {{ inputType == 'search' ? 'form-group__input--search' }}">
+  <div class="bf-input-text__input {{ inputType == 'password' ? 'js-form-password form-password' }} {{ inputType == 'search' ? 'js-input-search' }}">
     <input
       id='{{ id|default('') }}'
       name='{{ name|default('') }}'
@@ -62,7 +62,9 @@
       {% if pattern is defined and pattern %}
         pattern='{{ pattern }}'
       {%  endif %}
-      {% if autocomplete is defined and autocomplete %}
+      {% if inputType is same as ('search') %}
+        autocomplete='off'
+      {% elseif autocomplete is defined and autocomplete %}
         autocomplete='{{ autocomplete ? 'on': 'off' }}'
       {%  endif %}
       {{ isDisabled ? 'disabled aria-disabled="true"' }}

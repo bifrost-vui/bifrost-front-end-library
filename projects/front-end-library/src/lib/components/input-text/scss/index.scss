@@ -15,7 +15,7 @@
         color: var(--bf-color-neutral-primary);
 
         @include placeholder {
-            color: rgba(var( --bf-color-neutral-primary-rgb),.3);
+            color: rgba(var( --bf-color-neutral-primary-rgb),.35);
         }
         &:focus{
             @include placeholder {
@@ -41,7 +41,6 @@
     }
     &__input {
         position: relative;
-        margin-bottom: var(--bf-spacer-1);
         .form-group__input-icon-container {
             height: auto;
         }
@@ -49,6 +48,10 @@
            color: var(--bf-color-primary-irreversible);
         }
     }
+    &--search {
+        background-color: var(--bf-color-bg-ground);
+    }
+
     &--disabled {
         input.form-control {
             background-color: transparent;
@@ -72,13 +75,14 @@
         }
         .invalid-feedback {
             display: block;
-            margin-bottom: var(--bf-spacer-1);
+            margin:var(--bf-spacer-1) 0 0 ;
             color: var(--bf-color-feedback-negative);
         }
     }
     &__info {
         @extend .small;
         color : var(--bf-color-neutral-secondary);
+        margin:var(--bf-spacer-1) 0 0 ;
 
         a {
             text-decoration: underline;

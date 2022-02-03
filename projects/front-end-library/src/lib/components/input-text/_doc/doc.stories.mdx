@@ -1,8 +1,8 @@
 import { moduleMetadata }               from '@storybook/angular';
-import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
+import { Canvas, Meta, Story, Props }   from '@storybook/addon-docs';
 import { withDesign }                   from 'storybook-addon-designs'
 import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { InputTextComponent }     from '../angular/input-text.component';
+import { InputTextComponent }           from '../angular/input-text.component';
 
 <Meta
     title='Components/Input Text'
@@ -43,7 +43,7 @@ export const commonProps = {
     ariaLabel       : 'Arialabel is used when no label is defined',
     tooltip         : { text: `<em>HTML</em> tooltip <strong>text</strong>`, position: 'top' },
     errorMessage    : 'A short error message',
-    info            : {text: 'Additional information', url: 'http://www.example.com'}
+    info            : {text: 'Additional information'}
 };
 
 # Input Text
@@ -88,7 +88,7 @@ export const commonProps = {
     placeholder     : 'Input placeholder',
     ariaLabel       : 'Arialabel is used when no label is defined',
     tooltip         : { text: 'tooltiptext', position: 'top' },
-    info            : {text: 'Additional information', url: 'http://www.example.com'}
+    info            : {text: 'Additional information'}
 } %}
 ```
 
@@ -102,8 +102,9 @@ export const commonProps = {
         args={{
             elementPath     : 'components/input-text/_doc/template.drupal',
             ...commonProps,
-            label           : { text: 'password', class: '' },
+            label           : { text: 'Password', class: '' },
             inputType       : 'password',
+            info            : {text: 'forgot your password?', url: 'http://www.example.com'},
             validationTitle : 'Make sure you have :',
             validationList  : [
                 { class:'', label:'1 lowercase letter' },
@@ -122,13 +123,13 @@ export const commonProps = {
 
 ```jsx
 {% include '@bf-components/input-text/twig/index.twig' with {
+    inputType       : 'password',
     id              : 'myId',  // required argument
-    errorMessage    : 'A short error message',  // required argument
-    label           : { text: 'Label'},
+    label           : { text: 'Password', class: '' },
     placeholder     : 'Input placeholder',
     tooltip         : { text: 'tooltiptext', position: 'top' },
-    info            : {text: 'Additional information', url: 'http://www.example.com'},
-    inputType       : 'password',
+    info            : {text: 'forgot your password?', url: 'http://www.example.com'},
+    errorMessage    : 'A short error message',  // required argument
     validationTitle : 'Make sure you have :',
     validationList  : [
         { class:'', label:'1 lowercase letter' },
