@@ -1,0 +1,20 @@
+<div class='bf-input-checkbox  {{ class|default('') }} {{ isInvalid ? 'bf-input-checkbox--isInvalid' }}'>
+  <input type="checkbox" class='bf-checkbox {{ isInvalid ? 'bf-checkbox--isInvalid' }}'
+    {% if name is defined and name %} name='{{ name }}' {% endif %}
+    id='{{ id|default('') }}'
+    {% if value is defined and value %} value='{{ value }}' {% endif %}
+    {{ isChecked ? 'checked' }}
+    {{ isDisabled ? 'disabled' }}
+    {{ isRequired ? 'required' }}
+    {% if label.text is defined and label.text %}
+      aria-label='{{ label.text }}'
+    {% elseif ariaLabel is defined and ariaLabel %}
+      aria-label='{{ ariaLabel }}'
+    {% endif %}
+  >
+  {% if label.text is defined and label.text %}
+    <label for="{{ id|default('') }}" class='bf-text-display-sub-medium {{ isRequired ? 'required' }} {{ label.class|default('')}}'>
+      {{ label.text }}
+    </label>
+  {% endif %}
+</div>

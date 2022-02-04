@@ -34,68 +34,23 @@
         }
     }
     &__input {
+        @extend .bf-checkbox;
         display: block;
         position: relative;
         z-index: 3;
+        /*
         appearance: none;
         width: 1.5rem;
         height: 1.5rem;
         margin-right: var(--bf-spacer-1);
         border: 1px solid var(--bf-color-stroke-primary);
         border-radius: .125rem;
+        */
         background-color: transparent;
         pointer-events: none;
 
         &[type=radio] {
             border-radius: 50%;
-        }
-        &:focus-visible {
-            outline: none;
-
-            + label {
-                box-shadow: var(--bf-box-shadow-highlight);
-            }
-        }
-        &:disabled {
-            border: 1px solid var(--bf-color-stroke-secondary);
-        }
-        &:checked {
-            border-color: rgba(var(--bf-color-stroke-secondary-rgb), .43);
-            background-color:var(--bf-color-feedback-neutral);
-
-            &::before {
-                display: block;
-                position: absolute;
-                z-index: 3;
-                top: -1px;
-                left: -1px;
-                width: 1.5rem;
-                height: 1.5rem;
-                background: url('/images/icons/bifrost/check-bg.svg') center center no-repeat;
-                background-size: contain;
-                border-radius: inherit;
-                content: '';
-            }
-            + label {
-                @extend .bf-border-color-highlight;
-                background-color: var(--bf-color-bg-underground);
-                border-width: 2px;
-
-                &:hover {
-                    border-color: var(--bf-color-stroke-primary);
-                }
-            }
-            &:disabled {
-                border-color: rgba(var(--bf-color-stroke-secondary-rgb), .43);
-                background-color: rgba(var(--bf-color-bg-action-disabled-rgb), .35);
-
-                &::before {
-                    filter: opacity(0.5) grayscale(100) brightness(5);
-                }
-                + label {
-                    background: transparent;
-                }
-            }
         }
     }
     img {
@@ -222,6 +177,7 @@
     &.disabled {
         pointer-events: none;
         color: rgba(var(--bf-color-neutral-primary-rgb), 0.32);
+
         .bf-icon {
             color: rgba(var(--bf-color-neutral-primary-rgb), 0.32);
         }
