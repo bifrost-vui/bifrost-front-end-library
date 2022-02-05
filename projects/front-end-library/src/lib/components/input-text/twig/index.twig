@@ -121,14 +121,12 @@
         </div>
       {% endif %}
     {% endif %}
-    {# TODO?  : add tootip here if a toottip is available but no label is defined? #}
   </div>
 
   {% if (errorMessage is defined and errorMessage and isInvalid) or  (info is defined and info is not empty) %}
     <div class="bf-input-text__footer">
       {% if errorMessage is defined and errorMessage and isInvalid %}
         <p class='invalid-feedback'>
-          {# TODO?  : add an optional Icon?  #}
           {{ errorMessage|default('') }}
         </p>
       {% endif %}
@@ -136,9 +134,7 @@
       {% if info is defined and info is not empty %}
        <p class='bf-input-text__info'>
          {% if info.url is defined and info.url %}<a href='{{ info.url }}'>{% endif %}
-           {# TODO?  : add an optional Icon?  #}
            {{ info.text }}
-
          {% if info.url is defined and info.url %}</a>{% endif %}
        </p>
       {% endif %}

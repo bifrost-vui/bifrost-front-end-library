@@ -38,7 +38,7 @@ export class InputTextComponent implements OnInit {
     @Input() isRequired     : boolean;
     @Input() extraAttribute : string;
 
-    // other elements components
+    // Other elements components
     /** expected : { text: string, class: string } */
     @Input() label          : object;
     /**  Expected : { text: string, position: top|bottom|left|right }*/
