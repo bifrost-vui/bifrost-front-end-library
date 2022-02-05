@@ -1,0 +1,9 @@
+{% set reversed = reversed|json_parse %}
+
+<div class='d-flex flex-row justify-content-center m-4 {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
+  {% include '@bf-components/status/twig/index.twig' with {
+    label : label|default('item status'),
+    color : color|default('primary'),
+    class : class
+  } only %}
+</div>

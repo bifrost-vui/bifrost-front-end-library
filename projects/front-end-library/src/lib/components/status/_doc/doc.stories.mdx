@@ -1,0 +1,70 @@
+import { moduleMetadata }               from '@storybook/angular';
+import { Canvas, Meta, Story, Props }   from '@storybook/addon-docs';
+import { withDesign }                   from 'storybook-addon-designs' // TODO: TEST and DELETE if no positive effect
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { StatusComponent }              from '../angular/status.component';
+
+<Meta
+    title='Components/Status'
+    component={StatusComponent}
+    decorators={[
+        moduleMetadata({ declarations: [StatusComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    argTypes={{
+        label: { defaultValue: ''}, // TODO: set to be required
+        color: { defaultValue: ''}  // TODO: set the control as a selectbox
+    }}
+    /* TODO: do we keep that section, and change the figma url. */
+    parameters={{
+        design: {
+            type    : 'figma',
+            url     : 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            disable : false
+        },
+    }}
+/>
+
+# Status
+
+// TODO Write a description of your component.
+// TODO: Add a link to component in **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)
+
+## Component API
+<Props of={BadgeComponent} />
+
+## Drupal implementation exemple
+
+```jsx
+{% include '@bf-components/status/twig/index.twig' with {
+    color       : 'primary',
+    label       : 'item status',
+    class       : 'my-2'
+} only %}
+```
+
+## Drupal
+
+export const Drupal = (args) => ({
+  component: TwigContainerComponent,
+  props: args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath : 'components/status/_doc/template.drupal',
+            label       : 'item status'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+**// TODO**: Add Stories (variants of your component) as much as you want.
+
+## Design Guidelines
+
+**// TODO**: Add a link to the component in Figma file.
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>

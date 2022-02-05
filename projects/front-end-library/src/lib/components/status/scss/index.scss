@@ -1,0 +1,37 @@
+/* *****************************************************************************
+*
+*  Status
+*
+* ***************************************************************************** */
+
+.bf-status {}
+
+.status {
+    position: relative;
+    padding-left: 1rem;
+
+    &::before {
+        @include size(0.5rem);
+        @extend .position-absolute--center-left;
+        content:"";
+        border-radius: 50%;
+        background: $gray-100;
+    }
+
+    // theme-colors
+    @each $color, $value in $theme-colors {
+        &-#{$color} {
+            &::before {
+                background: $value !important;
+            }
+        }
+    }
+
+    @each $color, $value in $grays {
+        &-gray--#{$color} {
+            &::before {
+                background: $value !important;
+            }
+        }
+    }
+}
