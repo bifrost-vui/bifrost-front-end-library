@@ -41,6 +41,10 @@
         background-color: transparent;
         pointer-events: none;
 
+        &:checked {
+            border: 1px solid var(--bf-color-stroke-primary);
+        }
+
         &[type=radio] {
             border-radius: 50%;
         }
@@ -226,16 +230,6 @@
         }
         &:disabled + label {
             background-color: transparent;
-        }
-    }
-}
-.reversed .disabled,
-.reversed.disabled {
-    .bf-selection-tile__input:checked {
-        background-color: rgba(var(--bf-color-bg-action-disabled-rgb),.67);
-
-        &::before {
-            filter: opacity(0.5) grayscale(100) invert(1);
         }
     }
 }
