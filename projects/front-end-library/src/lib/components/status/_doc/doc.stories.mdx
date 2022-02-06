@@ -12,34 +12,41 @@ import { StatusComponent }              from '../angular/status.component';
         withDesign
     ]}
     argTypes={{
-        label: { defaultValue: ''}, // TODO: set to be required
-        color: { defaultValue: ''}  // TODO: set the control as a selectbox
+        label: {
+            type: { required: true }
+        },
+        color: {
+            control: {type: 'select', options: ['', 'primary', 'success' , 'gray--300', 'danger']}
+        },
+        reversed: {
+            description: '**[ ! ]** This control display as testing purposed. **[ ! ]**',
+            table: { defaultValue: { summary: false } }
+        }
     }}
-    /* TODO: do we keep that section, and change the figma url. */
     parameters={{
         design: {
             type    : 'figma',
-            url     : 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=10083%3A668',
             disable : false
         },
     }}
 />
 
 # Status
+[Design Documentation](https://zeroheight.com/79f1d3365/) not available
 
-// TODO Write a description of your component.
-// TODO: Add a link to component in **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)
+The component is display on all background as example, but it should be set or background highlight as shown in Figma
 
 ## Component API
-<Props of={BadgeComponent} />
+<Props of={StatusComponent} />
 
 ## Drupal implementation exemple
 
 ```jsx
 {% include '@bf-components/status/twig/index.twig' with {
-    color       : 'primary',
-    label       : 'item status',
-    class       : 'my-2'
+    color       : 'success',
+    label       : 'item name',
+    class       : 'mx-2'
 } only %}
 ```
 
@@ -53,18 +60,17 @@ export const Drupal = (args) => ({
 <Canvas withSource='none'>
     <Story
         name='Drupal'
+        height='100px'
         args={{
             elementPath : 'components/status/_doc/template.drupal',
-            label       : 'item status'
+            label       : '',
+            color       : '',
+            reversed    : false
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-**// TODO**: Add Stories (variants of your component) as much as you want.
-
 ## Design Guidelines
-
-**// TODO**: Add a link to the component in Figma file.
-<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=10083%3A668' frameBorder='0' allowFullScreen></iframe>
