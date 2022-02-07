@@ -13,13 +13,13 @@
     <div class='p-3 {% if reversed %}reversed{% endif %} {{ background }}'>
       {% include '@bf-components/status/twig/index.twig' with {
         label : label|default('Default status'),
-        color : color|default('gray--300'),
+        color : color|default('default'),
         class : class
       } only %}
 
       {% include '@bf-components/status/twig/index.twig' with {
         label : label|default('In progress status'),
-        color : color|default('primary'),
+        color : color|default('progress'),
         class : class
       } only %}
 
@@ -31,7 +31,7 @@
 
       {% include '@bf-components/status/twig/index.twig' with {
         label : label|default('Fail status'),
-        color : color|default('danger'),
+        color : color|default('failed'),
         class : class
       } only %}
     </div>
