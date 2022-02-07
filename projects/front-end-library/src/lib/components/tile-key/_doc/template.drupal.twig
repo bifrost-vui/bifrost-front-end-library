@@ -5,26 +5,26 @@
 {% set reversed         = reversed|json_parse %}
 
 <div class='template-container'>
-    {% for index in [1,2] %}
+  {% for index in [1,2] %}
 
-        <div class='flex-grow-1 d-flex align-items-center justify-content-center minh-100 py-4 {{ reversed|default(index == 2) ? 'reversed bf-color-bg-ground' }}'>
+    <div class='flex-grow-1 d-flex align-items-center justify-content-center minh-100 py-4 {{ reversed|default(index == 2) ? 'reversed bf-color-bg-ground' }}'>
 
-            {% include '@bf-components/tile-key/twig/index.twig' %}
+      {% include '@bf-components/tile-key/twig/index.twig' %}
 
-        </div>
+    </div>
 
-    {% endfor %}
+  {% endfor %}
 </div>
 
 <style>
+  .template-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+  }
+  @media (max-width: 768px) {
     .template-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        height: 100vh;
+      grid-template-columns: 1fr;
     }
-    @media (max-width: 768px) {
-        .template-container {
-            grid-template-columns: 1fr;
-        }
-    }
+  }
 </style>
