@@ -1,0 +1,72 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
+import { withDesign }                           from 'storybook-addon-designs'
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { InputRadioOnlyComponent }              from '../angular/input-radio-only.component';
+
+<Meta
+    title='Components/Input Radio Only'
+    component={InputRadioOnlyComponent}
+    decorators={[
+        moduleMetadata({ declarations: [InputRadioOnlyComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type    : 'figma',
+            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=16890%3A229796',
+            disable : false
+        },
+    }}
+    argTypes={{}}
+/>
+
+# Input Radio Only
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+## Component API
+
+**✅ Inputs are equivalent for Angular and Drupal.**
+
+<Props of={InputRadioOnlyComponent} />
+
+<Canvas
+    withSource='none'
+    style = {{ height: '400px' }}
+>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath : 'components/input-radio-only/_doc/template.drupal',
+            name: 'myRadio'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal implementation exemple
+
+```jsx
+{% include '@bf-components/input-radio-only/twig/index.twig' with {
+    id : 'myInputId',
+    value : 'value',
+    name : 'myInputName'
+    ariaLabel : 'input label'
+} only %}
+```
+
+
+## Design Guidelines
+
+**// TODO**: Add a link to the component in Figma file.
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D16890%253A229796' frameBorder='0' allowFullScreen></iframe>
