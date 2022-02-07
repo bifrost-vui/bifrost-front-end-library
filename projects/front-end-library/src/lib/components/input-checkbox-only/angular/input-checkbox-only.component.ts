@@ -16,10 +16,8 @@ export class InputCheckboxOnlyComponent implements OnInit {
     @Input() isDisabled     :boolean;
     @Input() isRequired     : boolean;
     @Input() isInvalid      : boolean
-    /** will be used if no label is defined */
     @Input() ariaLabel      : string;
-    /** Expected {text: string, class: string}*/
-    @Input extraAttribute   : string;
+    @Input() extraAttribute : string;
     @Input() class          : string;
 
     ngOnInit() {

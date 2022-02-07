@@ -5,9 +5,7 @@
   {{ isChecked ? 'checked' }}
   {{ isDisabled ? 'disabled' }}
   {{ isRequired ? 'required' }}
-  {% if label.text is defined and label.text %}
-    aria-label='{{ label.text }}'
-  {% elseif ariaLabel is defined and ariaLabel %}
+  {% if ariaLabel is defined and ariaLabel %}
     aria-label='{{ ariaLabel }}'
   {% endif %}
   {{ extraAttribute|default(NULL) }}
