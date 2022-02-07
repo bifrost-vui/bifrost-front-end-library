@@ -1,0 +1,84 @@
+/* *****************************************************************************
+*
+*  Input Checkbox Only
+*
+* ***************************************************************************** */
+
+.bf-input-checkbox-only {
+    appearance: none;
+    position: relative;
+    width: 1rem;
+    height: 1rem;
+    margin-right: var(--bf-spacer-2);
+    border: 1px solid var(--bf-color-stroke-primary);
+    border-radius: .125rem;
+    color: var(--bf-color-neutral-primary) ;
+    background-color: var(--bf-color-bg-ground);
+
+    &:focus-visible {
+        outline: none;
+
+        + label {
+            box-shadow: var(--bf-box-shadow-highlight);
+        }
+    }
+    &:disabled {
+        border: 1px solid var(--bf-color-stroke-secondary);
+        color: var(--bf-color-bg-action-disabled);
+        background-color: var(--bf-color-bg-action-disabled);
+
+        + label {
+            color: rgba(var(--bf-color-neutral-secondary-rgb),.35);
+        }
+    }
+    &:checked {
+        border: 1px solid var(--bf-color-stroke-tertiary);
+        background-color: var(--bf-color-feedback-neutral);
+
+        &::before {
+            display: block;
+            position: absolute;
+            z-index: 3;
+            top: -1px;
+            left: -1px;
+            width: 1rem;
+            height: 1rem;
+            background: url('/images/icons/bifrost/check-bg.svg') center center no-repeat;
+            background-size: contain;
+            border-radius: inherit;
+            content: '';
+        }
+        &:disabled {
+            border-color: rgba(var(--bf-color-stroke-tertiary-rgb),.75);
+            background-color: var(--bf-color-bg-action-disabled);
+
+            &::before {
+                filter: opacity(0.3);
+            }
+        }
+    }
+    &--isInvalid {
+        border-color: var(--bf-color-feedback-negative) !important;
+        background-color: var(--bf-color-bg-ground);
+
+        &:checked {
+            border-color: var(--bf-color-feedback-negative);
+            background-color: var(--bf-color-feedback-negative);
+
+            &::before {
+                filter: opacity(1) grayscale(100) invert(1)
+            }
+        }
+    }
+}
+.reversed .bf-input-checkbox-only {
+    &:checked:disabled::before {
+        filter: opacity(0.5) grayscale(100) invert(1);
+    }
+}
+.bf-color-bg-highlight .bf-input-checkbox-only {
+    &:not(.bf-input-checkbox-only--isInvalid):checked {
+        background-color: var(--bf-color-bg-ground);
+        border: 1px solid var(--bf-color-stroke-tertiary);
+    }
+}

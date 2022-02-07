@@ -1,0 +1,75 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
+import { withDesign }                           from 'storybook-addon-designs'
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { InputCheckboxOnlyComponent }           from '../angular/input-checkbox-only.component';
+
+<Meta
+    title='Components/Input Checkbox Only'
+    component={InputCheckboxOnlyComponent}
+    decorators={[
+        moduleMetadata({ declarations: [InputCheckboxOnlyComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type    : 'figma',
+            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=16890%3A229797',
+            disable : false
+        },
+    }}
+    argTypes={{}}
+/>
+
+# Input Checkbox Only
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Canvas
+    withSource='none'
+    style = {{ height: '400px' }}
+>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath : 'components/input-checkbox-only/_doc/template.drupal',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal implementation exemple
+
+```jsx
+//twig template
+{% include '@bf-components/input-checkbox-only/twig/index.twig' with {
+    id: 'myInputId',
+    value: 'value',
+    name  : 'myInputName'
+} %}
+
+// css only solution
+<input type="checkbox" class='bf-input-checkbox-only' name='myInputName' id='myInputId' value='value' {... your properties }/>
+/>
+```
+
+
+## Component API
+
+**✅ Inputs are equivalent for Angular and Drupal.**
+
+<Props of={InputCheckboxOnlyComponent} />
+
+
+
+## Design Guidelines
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D16890%253A229797
+' frameBorder='0' allowFullScreen></iframe>

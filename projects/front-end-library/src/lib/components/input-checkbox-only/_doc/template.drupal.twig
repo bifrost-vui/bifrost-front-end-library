@@ -1,0 +1,15 @@
+{% set isChecked      = isChecked|json_parse %}
+{% set isDisabled     = isDisabled|json_parse %}
+{% set isInvalid      = isInvalid|json_parse %}
+{% set isRequired     = isRequired|json_parse %}
+{% set extraAttribute = extraAttribute|json_parse %}
+
+{% set backgrounds = ['bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight'] %}
+
+<div class='mt-6 px-2 d-flex flex-row flex-wrap gap-1 flex-grow-1'>
+  {% for background in backgrounds %}
+    <div class='p-3 d-flex flex-column flex-grow-1  {{ background }}'>
+      {% include '@bf-components/input-checkbox-only/twig/index.twig' %}
+    </div>
+  {% endfor %}
+</div>
