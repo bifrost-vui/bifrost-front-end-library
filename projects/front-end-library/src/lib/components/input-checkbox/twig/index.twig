@@ -11,6 +11,7 @@
     {% elseif ariaLabel is defined and ariaLabel %}
       aria-label='{{ ariaLabel }}'
     {% endif %}
+    {{ extraAttribute|default(NULL) }}
   >
   {% if label.text is defined and label.text %}
     <label for="{{ id|default('') }}" class='bf-text-display-sub-medium {{ isRequired ? 'required' }} {{ label.class|default('')}}'>
