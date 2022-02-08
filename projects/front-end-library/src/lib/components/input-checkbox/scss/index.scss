@@ -9,19 +9,22 @@
     flex-flow: row nowrap;
     align-items: center;
 
-    input:required + label:after {
-        display: inline;
-        content: '*';
+    input {
+        align-self: flex-start;
+
+        &:required + label:after {
+            display: inline;
+            content: '*';
+        }
     }
     label {
-        line-height: 1.5rem;
+        line-height: 1rem;
+        padding: 0 0 var(--bf-spacer-2) 0;
         margin: 0;
 
     }
     &--isInvalid {
-        label {
-            color: var(--bf-color-feedback-negative);
-        }
+        color: var(--bf-color-feedback-negative);
     }
 }
 
@@ -35,6 +38,7 @@
     position: relative;
     width: 1rem;
     height: 1rem;
+    min-width: 1rem;
     margin-right: var(--bf-spacer-2);
     border: 1px solid var(--bf-color-stroke-primary);
     border-radius: .125rem;

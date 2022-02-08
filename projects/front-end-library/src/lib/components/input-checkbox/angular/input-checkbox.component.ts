@@ -16,12 +16,11 @@ export class InputCheckboxComponent implements OnInit {
     @Input() isDisabled     : boolean;
     @Input() isRequired     : boolean;
     @Input() isInvalid      : boolean;
+    @Input() extraAttribute : string;
+
+    @Input() label          : object;
     /** will be used if no label is defined */
     @Input() ariaLabel      : string;
-    /** Expected {text: string, class: string}*/
-    @Input() label          : string;
-    @Input() extraAttribute : string;
-    @Input() label          : object;
     @Input() class          : string;
 
     ngOnInit() {
