@@ -1,8 +1,8 @@
 <footer 
     class='
         bf-footer
-        {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}
-        {% if isReduced is defined and isReduced is same as (true) %}bf-footer--reduced{% endif %}
+        {{ reversed|default(false) ? 'reversed' }}
+        {{ isReduced|default(false) ? 'bf-footer--reduced' }}
     '
     {% if theme is defined %} data-theme={{theme}} {% endif %}
 >
