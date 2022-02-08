@@ -1,0 +1,20 @@
+
+<div class='bf-input-radio {{ isInvalid ? 'bf-input-radio--isInvalid' }} {{ isDisabled ? 'bf-input-radio--disabled' }} {{ class }}'>
+  <input type="radio"
+    {% if name is defined and name %} name='{{ name }}' {% endif %}
+         id='{{ id }}'
+    {% if value is defined and value %} value='{{ value }}' {% endif %}
+    {{ isChecked ? 'checked' }}
+    {{ isDisabled ? 'disabled' }}
+    {{ isRequired ? 'required' }}
+    {% if label is defined and label %}
+      aria-label='{{ label }}'
+    {% elseif ariaLabel is defined and ariaLabel %}
+      aria-label='{{ ariaLabel }}'
+    {% endif %}
+    {{ extraAttribute|default(NULL) }}
+  />
+  {% if label is defined and label %}
+    <label for='{{ id }}'>{{ label}}</label>
+  {% endif %}
+</div>
