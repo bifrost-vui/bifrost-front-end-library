@@ -18,7 +18,9 @@ import { InputCheckboxComponent }               from '../angular/input-checkbox.
             disable : false
         },
     }}
-    argTypes={{}}
+    argTypes={{
+        id: {type: {required : true}}
+    }}
 />
 
 # Input Checkbox
@@ -39,7 +41,10 @@ export const Drupal = (args) => ({
         height = '300px'
         args={{
             elementPath : 'components/input-checkbox/_doc/template.drupal',
-            label: {text: 'Checkbox label'},
+            label       : 'Checkbox label',
+            id          : 'myInputId',
+            value       : 'value',
+            name        : 'myInputName'
         }}
     >
         {Drupal.bind({})}
@@ -56,6 +61,7 @@ export const Drupal = (args) => ({
     value: 'value',
     name  : 'myInputName'
 } only %}
+
 ```
 
 ## Component API

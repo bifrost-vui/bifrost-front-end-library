@@ -10,16 +10,17 @@ export class InputCheckboxComponent implements OnInit {
 
     @Input() name           : string;
     /** @required */
-    @Input() id             :string;
-    @Input() value          :string;
-    @Input() isChecked      :boolean;
-    @Input() isDisabled     :boolean;
+    @Input() id             : string;
+    @Input() value          : string;
+    @Input() isChecked      : boolean;
+    @Input() isDisabled     : boolean;
     @Input() isRequired     : boolean;
-    @Input() isInvalid      : boolean
+    @Input() isInvalid      : boolean;
     /** will be used if no label is defined */
     @Input() ariaLabel      : string;
     /** Expected {text: string, class: string}*/
-    @Input extraAttribute   : string;
+    @Input() label          : string;
+    @Input() extraAttribute : string;
     @Input() label          : object;
     @Input() class          : string;
 

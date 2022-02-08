@@ -13,9 +13,9 @@
     {% endif %}
     {{ extraAttribute|default(NULL) }}
   >
-  {% if label.text is defined and label.text %}
-    <label for="{{ id|default('') }}" class='bf-text-display-sub-medium {{ isRequired ? 'required' }} {{ label.class|default('')}}'>
-      {{ label.text }}
+  {% if label is defined and label %}
+    <label for="{{ id|default('') }}" class='bf-text-display-sub-medium'>
+      {{ label|raw }}
     </label>
   {% endif %}
 </div>

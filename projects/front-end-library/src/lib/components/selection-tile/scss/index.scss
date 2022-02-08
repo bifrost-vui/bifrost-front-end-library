@@ -40,7 +40,6 @@
         width: 1.5rem;
         height: 1.5rem;
         margin-right: var(--bf-spacer-1);
-        background-color: transparent;
         pointer-events: none;
 
         &:checked {
@@ -198,8 +197,8 @@
             border-color: var(--bf-color-feedback-warning);
         }
 
-        .bf-selection-tile__input:checked::before {
-            background-color: var(--bf-color-feedback-warning);
+        .bf-selection-tile__input:checked {
+            @extend .bf-checkbox--isInvalid;
         }
         .bf-selection-tile__feedback {
             display: block;
@@ -238,4 +237,7 @@
             background-color: transparent;
         }
     }
+}
+.bf-color-bg-highlight .color-warning .bf-selection-tile__input:checked {
+    background-color: var(--bf-color-feedback-negative) ;
 }

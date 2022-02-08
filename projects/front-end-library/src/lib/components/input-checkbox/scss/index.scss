@@ -9,13 +9,14 @@
     flex-flow: row nowrap;
     align-items: center;
 
+    input:required + label:after {
+        display: inline;
+        content: '*';
+    }
     label {
         line-height: 1.5rem;
         margin: 0;
 
-        .required:after {
-            content: '*';
-        }
     }
     &--isInvalid {
         label {
@@ -25,11 +26,9 @@
 }
 
 /* *****************************************************************************
-*  bf-checkbox (bf-class of the input itself)
-*  can be used in another components
-*  (ex: selection tile...)
+*  bf-checkbox (class of the checkbox HTML input tag)
+*  to displays a Bifrost custom checkbox while not using the Input Checkbox component
 * ***************************************************************************** */
-
 
 .bf-checkbox {
     appearance: none;
