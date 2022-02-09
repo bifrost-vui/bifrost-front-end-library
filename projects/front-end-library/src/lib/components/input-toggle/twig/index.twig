@@ -1,0 +1,28 @@
+
+<div class='bf-input-toggle {{ isDisabled ? 'disabled' }} {{ class|default('') }}'>
+  <div class="d-block position-relative overflow-hidden">
+    <input
+      class='{{ isInvalid ? 'isInvalid' }}'
+      id='{{ id }}'
+      name='{{ name|default('')}}'
+      type='checkbox'
+      {{ isDisabled ? 'disabled aria-disabled="true"' }}
+      {{ isChecked ? 'checked aria-checked="true"' }}
+      {{ extraAttribute|default(NULL) }}
+      {% if ariaLabel is defined and ariaLabel %}
+        aria-label='{{ ariaLabel }}'
+      {% endif %}
+      {% if innerLabels is defined and innerLabels %}
+        {% if size is defined and size and size > '48' %}
+          style='width:calc({{ size ~'px + 1.4rem'}} ) '
+        {% endif %}
+        {% if innerLabels.off is defined and innerLabels.off %}
+          data-status-off = '{{ innerLabels.off }}'
+        {% endif %}
+        {% if innerLabels.on is defined and innerLabels.on %}
+          data-status-on = '{{ innerLabels.on }}'
+        {% endif %}
+      {% endif %}
+    >
+  </div>
+</div>

@@ -1,0 +1,96 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
+import { withDesign }                           from 'storybook-addon-designs'
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { InputToggleComponent }                 from '../angular/input-toggle.component';
+
+<Meta
+    title='Components/Input Toggle'
+    component={InputToggleComponent}
+    decorators={[
+        moduleMetadata({ declarations: [InputToggleComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type    : 'figma',
+            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=13846%3A114546',
+            disable : false
+        },
+    }}
+    argTypes={{
+    }}
+/>
+
+# Input Toggle
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+## Component API
+
+**✅ Inputs are equivalent for Angular and Drupal.**
+
+<Props of={InputToggleComponent} />
+
+
+<Canvas withSource='none'
+        style={{ height: '400px'}}>
+    <Story
+        name='Drupal - toggle Input'
+        height = '300px'
+        args={{
+            elementPath  : 'components/input-toggle/_doc/template.drupal',
+            id           : 'myToggleId',
+            ariaLabel    : 'Input Toggle',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'
+        style={{ height: '400px'}}>
+    <Story
+        name='Drupal - toggle Input with labels'
+        height = '300px'
+        args={{
+            elementPath  : 'components/input-toggle/_doc/template.drupal',
+            id           : 'myToggleId',
+            ariaLabel    : 'Input Toggle',
+            innerLabels : {on: 'on', off: 'off' }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal implementation exemple
+
+```jsx
+{% include '@bf-components/input-toggle/twig/index.twig' with {
+    id           : 'myToggleId',
+    ariaLabel    : 'Input Toggle',
+} only %}
+
+// if you need to display labels inside the input toggle
+// you may also need to adjust size to fit the longest of the `innerLabel`
+// otherwise the input will change size on toggle
+
+{% include '@bf-components/input-toggle/twig/index.twig' with {
+    id           : 'myToggleId',
+    ariaLabel    : 'Input Toggle',
+    innerLabels : {on: 'marche', off: 'arrêt' },
+    size         : 64
+} only %}
+
+```
+
+## Design Guidelines
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D13846%253A114546' frameBorder='0' allowFullScreen></iframe>

@@ -1,0 +1,86 @@
+/* *****************************************************************************
+*
+*  Input Toggle
+*
+* ***************************************************************************** */
+
+.bf-input-toggle {
+    position: relative;
+    padding: 0;
+    display: inline-block;
+
+    input {
+        position: relative;
+        appearance: none;
+        height: 2rem;
+        min-width: 4.5rem;
+        background: var(--bf-color-bg-ground);
+        border-radius: 1em;
+        border: 1px solid var(--bf-color-stroke-secondary);
+        padding: 0 .5rem;
+        transition: all .3s ease-in-out;
+        color: var(--bf-color-neutral-secondary);
+
+        &::before {
+            @extend .small;
+            display: inline-block;
+            position:relative;
+            line-height: 1.65rem;
+            width: 100%;
+            content:  attr(data-status-off);
+            text-align: right;
+            padding-left: 1.4rem;
+        }
+        &::after {
+            display: block;
+            position: absolute;
+            content: "";
+            border-radius: 50%;
+            background: var(--bf-color-neutral-secondary);
+            height: 2rem;
+            width: 2rem;
+            transform: scale(.7) translate(0, -70%);
+            left: 0;
+            top: 50%;
+            cursor: pointer;
+        }
+        &:checked {
+            background : var(--bf-color-bg-action-primary );
+            border-color: transparent;
+            color: var(--bf-color-primary-irreversible);
+
+            &:before {
+                content:  attr(data-status-on);
+                padding-left: 0;
+                padding-right: 1.4rem;
+                text-align: left;
+            }
+            &:after {
+                left: unset;
+                right:0;
+                background: var(--bf-color-neutral-primary);
+                transition: all .3s ease-in-out;
+            }
+        }
+        &:disabled,
+        &:disabled:checked {
+            border-color: var(--bf-color-stroke-tertiary);
+            background : var(--bf-color-bg-action-disabled);
+            color: var(--bf-color-neutral-tertiary);
+
+            &:after {
+                background : var(--bf-color-neutral-tertiary);
+            }
+        }
+        &.isInvalid,
+        &.isInvalid:checked {
+            border-color: var(--bf-color-feedback-negative);
+            background: #fff; // add this irreversible color in _colors.scss
+            color: var(--bf-color-feedback-negative);
+
+            &:after {
+                background : var(--bf-color-feedback-negative);
+            }
+        }
+    }
+}
