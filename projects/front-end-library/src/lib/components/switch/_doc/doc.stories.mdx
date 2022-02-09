@@ -2,13 +2,13 @@ import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
 import { withDesign }                           from 'storybook-addon-designs'
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { InputToggleComponent }                 from '../angular/input-toggle.component';
+import { SwitchComponent }                      from '../angular/switch.component';
 
 <Meta
-    title='Components/Input Toggle'
-    component={InputToggleComponent}
+    title='Components/Switch'
+    component={SwitchComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputToggleComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [SwitchComponent, TwigContainerComponent]}),
         withDesign
     ]}
     parameters={{
@@ -41,10 +41,10 @@ export const Drupal = (args) => ({
 <Canvas withSource='none'
         style={{ height: '400px'}}>
     <Story
-        name='Drupal - toggle Input'
+        name='Drupal - Switch'
         height = '300px'
         args={{
-            elementPath  : 'components/input-toggle/_doc/template.drupal',
+            elementPath  : 'components/switch/_doc/template.drupal',
             id           : 'myToggleId',
             ariaLabel    : 'Input Toggle',
         }}
@@ -56,12 +56,12 @@ export const Drupal = (args) => ({
 <Canvas withSource='none'
         style={{ height: '400px'}}>
     <Story
-        name='Drupal - toggle Input with labels'
+        name='Drupal - Switch with labels'
         height = '300px'
         args={{
-            elementPath  : 'components/input-toggle/_doc/template.drupal',
-            id           : 'myToggleId',
-            ariaLabel    : 'Input Toggle',
+            elementPath  : 'components/switch/_doc/template.drupal',
+            id           : 'mySwitchId',
+            ariaLabel    : 'switch',
             innerLabels : {on: 'on', off: 'off' }
         }}
     >
@@ -73,8 +73,8 @@ export const Drupal = (args) => ({
 ## Drupal implementation exemple
 
 ```jsx
-{% include '@bf-components/input-toggle/twig/index.twig' with {
-    id           : 'myToggleId',
+{% include '@bf-components/switch/twig/index.twig' with {
+    id           : 'mySwitchId',
     ariaLabel    : 'Input Toggle',
 } only %}
 
@@ -82,9 +82,9 @@ export const Drupal = (args) => ({
 // you may also need to adjust size to fit the longest of the `innerLabel`
 // otherwise the input will change size on toggle
 
-{% include '@bf-components/input-toggle/twig/index.twig' with {
-    id           : 'myToggleId',
-    ariaLabel    : 'Input Toggle',
+{% include '@bf-components/switch/twig/index.twig' with {
+    id           : 'mySwitchId',
+    ariaLabel    : 'switch',
     innerLabels : {on: 'marche', off: 'arrêt' },
     size         : 64
 } only %}

@@ -2,11 +2,11 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
 
 @Component({
-  selector: 'bf-input-toggle',
-  templateUrl: './input-toggle.component.html',
+  selector: 'bf-switch',
+  templateUrl: './switch.component.html',
   // styleUrls: ['../scss/index.scss'],
 })
-export class InputToggleComponent implements OnInit {
+export class SwitchComponent implements OnInit {
     constructor() {}
 
 
@@ -16,7 +16,7 @@ export class InputToggleComponent implements OnInit {
     @Input() isDisabled     : boolean;
     @Input() isChecked      : boolean;
     @Input() isInvalid      : boolean;
-    /** Display labels inside the input toggle. Expected : {on: string, off: string }*/
+    /** Display labels inside the `Switch`. Expected : {on: string, off: string }*/
     @Input() innerLabels   : object;
     /** Adjust size to properly display inner labels */
     @Input() size           : number;
@@ -24,6 +24,6 @@ export class InputToggleComponent implements OnInit {
     @Input() class          : string;
 
     ngOnInit() {
-        console.log('InputToggle', this);
+        console.log('Switch', this);
     }
 }
