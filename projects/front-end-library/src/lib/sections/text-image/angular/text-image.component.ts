@@ -5,17 +5,18 @@ interface IImage {
     icon        : object | string;
     fit         : 'fit' | 'fill';
 }
- 
+
 @Component({
     selector: 'bf-text-image',
     templateUrl: './text-image.component.html',
 })
 export class TextImageComponent implements OnInit {
     constructor() {}
-    /** image: { src: '', fit: 'fill', icon: { name: 'placeholder', position: 'bottom-left' } }  */
+    /** `image: { src: "", fit: "fill", icon: { name: "placeholder", position: "bottom-left" } }`  */
     @Input() image                  : IImage;
     @Input() upperTitle             : string;
     @Input() title                  : string;
+    @Input() titleTag               : string;
     @Input() subtitle               : string;
     @Input() description            : string;
     @Input() buttons                : object[];
@@ -28,5 +29,5 @@ export class TextImageComponent implements OnInit {
 
     ngOnInit() {
         console.log('text image', this);
-    }   
+    }
 }
