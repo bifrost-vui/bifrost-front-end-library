@@ -1,14 +1,10 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { IIcon } from '../../icon/angular/api.model';
 
 interface IImage {
     src         : string;
 }
 
-interface IIcon {
-    name        : string;
-    src         : string;
-    color       : null | 'success' | 'neutral' | 'warning' | 'negative';
-}
 
 @Component({
     selector: 'bf-tile-key',
