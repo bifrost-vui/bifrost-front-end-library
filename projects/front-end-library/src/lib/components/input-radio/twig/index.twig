@@ -1,4 +1,4 @@
-<div class='bf-input-radio {{ isInvalid ? 'bf-input-radio--isInvalid' }} {{ isDisabled ? 'bf-input-radio--disabled' }} {{ class }}'>
+<div class='bf-input-radio {{ isInvalid ? 'bf-input-radio--invalid' }} {{ isDisabled ? 'bf-input-radio--disabled' }} {{ class }}'>
   <input
     type="radio"
     id='{{ inputId }}'
@@ -11,9 +11,7 @@
     {{ isChecked ? 'checked' }}
     {{ isDisabled ? 'disabled' }}
     {{ isRequired ? 'required' }}
-    {% if label is defined and label %}
-      aria-label='{{ label }}'
-    {% elseif ariaLabel is defined and ariaLabel %}
+    {% if ariaLabel is defined and ariaLabel %}
       aria-label='{{ ariaLabel }}'
     {% endif %}
     {{ extraAttribute|default(NULL) }}

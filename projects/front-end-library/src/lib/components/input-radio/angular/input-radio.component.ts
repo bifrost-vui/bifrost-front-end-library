@@ -18,7 +18,7 @@ export class InputRadioComponent implements OnInit {
     @Input() isRequired     : boolean;
     @Input() isInvalid      : boolean;
     @Input() label          : string;
-    /** will be used if no label is defined */
+    /** Needs to be defined if no label is defined */
     @Input() ariaLabel      : string;
     @Input() labelTxtClass  : string;
     @Input() extraAttribute : string;
