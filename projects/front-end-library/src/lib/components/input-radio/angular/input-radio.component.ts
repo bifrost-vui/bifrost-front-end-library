@@ -9,9 +9,9 @@ export class InputRadioComponent implements OnInit {
 
     constructor() {}
 
-    @Input() name           : string;
+    @Input() InputName      : string;
     /** @required */
-    @Input() id             : string;
+    @Input() inptuId        : string;
     @Input() value          : string;
     @Input() isChecked      : boolean;
     @Input() isDisabled     : boolean;
@@ -20,6 +20,7 @@ export class InputRadioComponent implements OnInit {
     @Input() label          : string;
     /** will be used if no label is defined */
     @Input() ariaLabel      : string;
+    @Input() labelTxtClass  : string;
     @Input() extraAttribute : string;
     @Input() class          : string;
 
