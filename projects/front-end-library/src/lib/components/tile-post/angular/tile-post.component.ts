@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 interface IImage {
     src             : string;
@@ -19,7 +19,7 @@ interface ILink {
 export class TilePostComponent implements OnInit {
     constructor() {}
 
-    /** Expected format: `{ src, alt, fit, backgroundColor }` */
+    /** API: `{ src, alt, fit, backgroundColor }` */
     @Input() image              : IImage;
     @Input() title              : string;
     @Input() titleTag           : string;

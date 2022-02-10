@@ -4,11 +4,9 @@
 {% set reversed         = reversed|json_parse %}
 
 <div class='d-flex flex-column flex-md-row' style='height: 100vh'>
-    {% for index in [1,2] %}
-        <div class='d-flex align-items-center {{ reversed|default(index == 2) ? 'reversed bf-color-bg-ground' }}'>
-
-            {% include '@bf-components/tile-post/twig/index.twig' %}
-
-        </div>
-    {% endfor %}
+  {% for index in [1,2] %}
+    <div class='d-flex align-items-center {{ reversed|default(index == 2) ? 'reversed bf-color-bg-ground' }}'>
+      {% include '@bf-components/tile-post/twig/index.twig' %}
+    </div>
+  {% endfor %}
 </div>

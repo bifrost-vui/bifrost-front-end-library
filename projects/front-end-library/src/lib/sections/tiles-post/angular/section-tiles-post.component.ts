@@ -7,6 +7,8 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class SectionTilesPostComponent implements OnInit {
     constructor() {}
 
+    @Input() title              : string;
+    @Input() titleTag           : string;
     @Input() tiles              : object[];
     @Input() isFeatured         : boolean;
 
