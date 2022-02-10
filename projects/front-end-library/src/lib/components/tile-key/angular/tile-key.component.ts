@@ -5,7 +5,6 @@ interface IImage {
     src         : string;
 }
 
-
 @Component({
     selector: 'bf-tile-key',
     templateUrl: './tile-key.component.html',
@@ -19,7 +18,7 @@ export class TileKeyComponent implements OnInit {
     @Input() titleTag           : string;
     @Input() description        : string;
     @Input() linkLabel          : string;
-    /** Expected format: See [Icon API](?path=/docs/components-icon--drupal-interface). */
+    /** Expected format: See [Icon API](/?path=/docs/components-icon--drupal-interface). */
     @Input() icon               : IIcon;
     /** Expected format: `{ src: "my-image.png" }` */
     @Input() backgroundImage    : IImage;
