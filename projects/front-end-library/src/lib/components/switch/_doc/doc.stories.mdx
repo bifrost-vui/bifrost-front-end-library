@@ -19,6 +19,8 @@ import { SwitchComponent }                      from '../angular/switch.componen
         },
     }}
     argTypes={{
+        id :{ type: { required: true }},
+        size: { control: {type: 'select', options: ['sm', 'lg']}}
     }}
 />
 
@@ -35,7 +37,7 @@ export const Drupal = (args) => ({
 
 **✅ Inputs are equivalent for Angular and Drupal.**
 
-<Props of={InputToggleComponent} />
+<Props of={SwitchComponent} />
 
 
 <Canvas withSource='none'
@@ -45,8 +47,8 @@ export const Drupal = (args) => ({
         height = '300px'
         args={{
             elementPath  : 'components/switch/_doc/template.drupal',
-            id           : 'myToggleId',
-            ariaLabel    : 'Input Toggle',
+            id           : 'mySwitchId',
+            ariaLabel    : 'function activation',
         }}
     >
         {Drupal.bind({})}
@@ -61,8 +63,9 @@ export const Drupal = (args) => ({
         args={{
             elementPath  : 'components/switch/_doc/template.drupal',
             id           : 'mySwitchId',
-            ariaLabel    : 'switch',
-            innerLabels : {on: 'on', off: 'off' }
+            ariaLabel    : 'function activation',
+            labelOn      : 'on',
+            labelOff     : 'off'
         }}
     >
         {Drupal.bind({})}
@@ -75,18 +78,16 @@ export const Drupal = (args) => ({
 ```jsx
 {% include '@bf-components/switch/twig/index.twig' with {
     id           : 'mySwitchId',
-    ariaLabel    : 'Input Toggle',
+    ariaLabel    : 'function activation',
 } only %}
 
 // if you need to display labels inside the input toggle
-// you may also need to adjust size to fit the longest of the `innerLabel`
-// otherwise the input will change size on toggle
 
 {% include '@bf-components/switch/twig/index.twig' with {
     id           : 'mySwitchId',
-    ariaLabel    : 'switch',
-    innerLabels : {on: 'marche', off: 'arrêt' },
-    size         : 64
+    ariaLabel    : 'function activation',
+    labelOn      : 'on',
+    labelOff     : 'off',
 } only %}
 
 ```

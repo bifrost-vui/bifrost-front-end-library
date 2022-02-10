@@ -12,14 +12,16 @@ export class SwitchComponent implements OnInit {
 
     @Input() id             : string;
     @Input() name           : string;
+    /** Make sure to define an aria-label describing what the switch is for (not the same as labelOn or labelOff) */
     @Input() ariaLabel      : string;
     @Input() isDisabled     : boolean;
     @Input() isChecked      : boolean;
     @Input() isInvalid      : boolean;
-    /** Display labels inside the `Switch`. Expected : {on: string, off: string }*/
-    @Input() innerLabels   : object;
-    /** Adjust size to properly display inner labels */
-    @Input() size           : number;
+    /** */
+    @Input() labelOn        : string;
+    @Input() labelOff       : string;
+    /** set the font-size on the text inside the switch */
+    @Input() size           : 'sm'|'lg';
     @Input() extraAttribute : string;
     @Input() class          : string;
 

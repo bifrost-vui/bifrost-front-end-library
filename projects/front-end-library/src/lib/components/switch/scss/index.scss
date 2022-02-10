@@ -5,24 +5,27 @@
 * ***************************************************************************** */
 
 .bf-switch {
-    position: relative;
-    padding: 0;
-    display: inline-block;
-
-    input {
         position: relative;
         appearance: none;
         height: 2rem;
         min-width: 4.5rem;
-        background: var(--bf-color-bg-ground);
-        border-radius: 1em;
         border: 1px solid var(--bf-color-stroke-secondary);
-        padding: 0 .5rem;
-        transition: all .3s ease-in-out;
+        border-radius: 1em;
+        background: var(--bf-color-bg-ground);
         color: var(--bf-color-neutral-secondary);
+        transition: all .3s ease-in-out;
 
-        &::before {
+        // needed to prevent !important
+        &[type=checkbox] {
+            padding: 0 .5rem;
+        }
+        &--sm {
             @extend .small;
+        }
+        &--lg {
+            font-size: 1rem;
+        }
+        &::before {
             display: inline-block;
             position:relative;
             line-height: 1.65rem;
@@ -58,7 +61,7 @@
             &:after {
                 left: unset;
                 right:0;
-                background: var(--bf-color-neutral-primary);
+                background: var(--bf-color-primary-irreversible);
                 transition: all .3s ease-in-out;
             }
         }
@@ -83,4 +86,3 @@
             }
         }
     }
-}
