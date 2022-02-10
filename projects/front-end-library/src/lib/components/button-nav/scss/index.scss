@@ -7,13 +7,20 @@
 
 .bf-button-nav {
     width: auto;
-    text-transform: none;
+    margin: 0 auto;
+    align-items: flex-start;
     letter-spacing: 0;
+    text-transform: none;
 
-    .bf-button__inner {
-        @extend .flex-column;
+    .bf-button__label {
+        flex-flow: column;
         gap: var(--bf-spacer-2);
         white-space: unset;
+
+        &__text {
+            white-space: normal;
+            width: 6rem;
+        }
 
         @include media-breakpoint-down(sm) {
             gap: var(--bf-spacer-1);
