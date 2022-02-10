@@ -1,16 +1,16 @@
-{% set keys         	    = keys|json_parse %}
-{% set buttons         	    = buttons|json_parse %}
-{% set reversed             = reversed|json_parse %}
-{% set highlight            = highlight|json_parse %}
+{% set keys         = keys|json_parse %}
+{% set buttons      = buttons|json_parse %}
+{% set reversed     = reversed|json_parse %}
+{% set highlight    = highlight|json_parse %}
 
 {% set variants = [
-    {},
-    { reversed: reversed|default(true) },
-    { highlight: highlight|default(true) }
+  {},
+  { reversed: reversed|default(true) },
+  { highlight: highlight|default(true) }
 ] %}
 
 <div>
-    {% for variant in variants %}
-        {% include '@bf-sections/keys/twig/index.twig' with variant %}
-    {% endfor %}
+  {% for variant in variants %}
+    {% include '@bf-sections/keys/twig/index.twig' with variant %}
+  {% endfor %}
 </div>
