@@ -1,37 +1,36 @@
 {% set titleTag = titleTag|default('h1') %}
 
 {% if highlight is defined and highlight is same as (true) %}
-    {% set backgroundClass  = 'bf-color-bg-highlight' %}
+  {% set backgroundClass  = 'bf-color-bg-highlight' %}
 {% elseif reversed is defined and reversed is same as (true) %}
-    {% set backgroundClass  = 'reversed bf-color-bg-ground' %}
+  {% set backgroundClass  = 'reversed bf-color-bg-ground' %}
 {% endif %}
 
 
 <section class='bf-section-buttons-nav py-6 {{ class|default('') }} {{ backgroundClass|default('') }}'>
-    <div class='container-fluid d-flex flex-column align-items-center'>
-        {% if title is defined and title %}
-            <{{ titleTag }} class='h2 mb-4 text-center' style='max-width: 40rem'>
-                {{ title }}
-            </{{ titleTag }}>
+  <div class='container-fluid d-flex flex-column align-items-center'>
+    {% if title is defined and title %}
+      <{{ titleTag }} class='h2 mb-4 text-center' style='max-width: 40rem'>
+        {{ title }}
+      </{{ titleTag }}>
+    {% endif %}
+
+    {% if buttons is defined and buttons %}
+      {% set hasDescription = false %}
+      {% for button in buttons if not hasDescription %}
+        {% if button.description is defined and button.description %}
+          {% set hasDescription = true %}
         {% endif %}
+      {% endfor %}
 
-        {% if buttons is defined and buttons %}
-
-            {% set hasDescription = false %}
-            {% for button in buttons if not hasDescription %}
-                {% if button.description is defined and button.description %}
-                    {% set hasDescription = true %}
-                {% endif %}
-            {% endfor %}
-
-            <ul class='bf-section-buttons-nav__list {{ hasDescription ? 'bf-section-buttons-nav__list--has-description' }} list gap-4'>
-                {% for button in buttons %}
-                    <li class='bf-section-buttons-nav__item'>
-                        {% set button = button|merge({ class: 'h-100 align-items-start ' ~ button.class }) %}
-                        {% include '@bf-components/button-nav/twig/index.twig' with button %}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    </div>
+      <ul class='bf-section-buttons-nav__list {{ hasDescription ? 'bf-section-buttons-nav__list--has-description' }} list gap-4'>
+        {% for button in buttons %}
+          <li class='bf-section-buttons-nav__item'>
+            {% set button = button|merge({ class: 'h-100 align-items-start ' ~ button.class }) %}
+            {% include '@bf-components/button-nav/twig/index.twig' with button %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
 </section>
