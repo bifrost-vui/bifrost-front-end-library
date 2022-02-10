@@ -1,7 +1,7 @@
 {% set titleTag					= titleTag|default('p') %}
-{% set layout						= layout|default('text-image') %}
-{% set hasIcon					= image is defined and image.icon %}
-{% set iconPosition			= hasIcon ? image.icon.position %}
+{% set imagePosition	  = imagePosition|default('left') %}
+{% set hasIcon          = image is defined and image.icon %}
+{% set iconPosition     = hasIcon ? image.icon.position %}
 
 <article class='
 	bf-section-text-image d-block d-md-flex
@@ -14,7 +14,7 @@
 			<div
 				class='
 					bf-section-text-image__visual
-					{{ layout == 'image-text' ? 'order-0 order-md-1' }}
+					{{ imagePosition == 'left' ? 'order-0 order-md-1' }}
 					{{ hasIcon ? 'bf-section-text-image__visual--icon' }}
 					{{ iconPosition ? 'bf-section-text-image__visual--icon-' ~ iconPosition }}
 					{{ image.fit == 'fit' ? 'bf-section-text-image__visual--fit' }}

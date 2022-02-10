@@ -21,8 +21,8 @@ import { TextImageComponent }                   from '../angular/text-image.comp
         titleTag: {
             table: { defaultValue: { summary: 'h1' } },
         },
-        layout: {
-            table: { defaultValue: { summary: 'text-image' } },
+        imagePosition: {
+            table: { defaultValue: { summary: 'right' } },
         },
     }}
 />
@@ -146,26 +146,26 @@ export const rowButtonsProps = {
 
 <Canvas withSource='none'>
     <Story
-        name='Drupal - With layout'
+        name='Drupal - With imagePosition'
         height='800px'
         args={{
             elementPath: 'sections/text-image/_doc/template-multiple.drupal',
             items: [
                 {
-                    upperTitle: 'layout',
-                    title: 'text-image',
+                    upperTitle: 'imagePosition',
+                    title: 'right (default)',
                     image: {
                         src: window.location.origin + '/images/_docs/hero-helix-reversed.png'
                     },
-                    layout: 'text-image'
+                    imagePosition: 'left'
                 },
                 {
-                    upperTitle: 'layout',
-                    title: 'image-text',
+                    upperTitle: 'imagePosition',
+                    title: 'left',
                     image: {
                         src: window.location.origin + '/images/_docs/hero-helix-reversed.png'
                     },
-                    layout: 'image-text'
+                    imagePosition: 'right'
                 }
             ]
         }}
