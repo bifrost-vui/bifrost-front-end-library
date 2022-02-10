@@ -21,7 +21,7 @@ export class TextImageComponent implements OnInit {
     @Input() buttons                : object[];
     @Input() links                  : object[];
     @Input() rowButtons             : object[];
-    @Input() layout                 : 'text-image' | 'image-text';
+    @Input() imagePosition          : 'right' | 'left';
 
     @Input() class                  : string;
     @Input() reversed               : boolean;
