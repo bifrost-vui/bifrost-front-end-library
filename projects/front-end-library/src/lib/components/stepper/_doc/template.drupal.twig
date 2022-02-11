@@ -1,0 +1,17 @@
+{% set reversed = reversed|json_parse  %}
+{% set currentStep = currentStep|json_parse %}
+{% set steps = steps|json_parse %}
+{% set hasCounter = hasCounter|json_parse %}
+{% set counterLabel = counterLabel|json_parse %}
+{% set isNextClickable = isNextClickable|json_parse %}
+
+
+<div class='w-100'>
+  {% for index in [1,2] %}
+    <div class='p-3 m-1'>
+      {% include '@bf-components/stepper/twig/index.twig' with {
+        reversed : (reversed or index == 2) ? 'reversed'
+      } %}
+    </div>
+  {% endfor %}
+</div>

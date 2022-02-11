@@ -1,0 +1,115 @@
+import { moduleMetadata }               from '@storybook/angular';
+import { Meta, Story, Canvas, Props }   from '@storybook/addon-docs';
+import { withDesign }                   from 'storybook-addon-designs';
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { StepperComponent }             from '../angular/stepper.component';
+
+
+<Meta
+    title='Components/Stepper'
+    component={StepperComponent}
+    decorators={[
+        moduleMetadata({ declarations: [StepperComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type    : 'figma',
+            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=14042%3A3427',
+            disable : false
+        },
+    }}
+    argTypes={{
+        currentStep: {
+            type            : { control : { type: 'number' } },
+            table           : { defaultValue: { summary: 1 } }
+        }
+    }}
+/>
+
+# Stepper
+
+## Component API
+
+**✅ Inputs are equivalent for Angular and Drupal.**
+
+<Props of={StepperComponent} />
+
+
+## Drupal
+export const commonProps = {
+    currentStep : 1,
+    steps: [
+        {
+            label   : 'first step',
+            href    : 'http://example.com/step1'
+        },
+        {
+            label   : 'step 2',
+            href    : 'http://example.com/step2'
+        },
+        {
+            label   : 'step 3',
+            href    : 'http://example.com/step3'
+        },
+        {
+            label   : 'step 4',
+            href    : 'http://example.com/step4'
+        },
+        {
+            label   : 'last step',
+            href    : 'http://example.com/step5'
+        }
+    ]
+}
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Canvas
+    withSource='none'
+    style={{ height: '300px' }}
+>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath : 'components/stepper/_doc/template.drupal',
+            ...commonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/stepper/twig/index.twig' with {
+    currentStep : 1,
+    steps: [
+        {
+            label   : 'first step',
+            href    : 'http://example.com/step1'
+        },
+        {
+            label   : 'step 2',
+            href    : 'http://example.com/step2'
+        },
+        {
+            label   : 'step 3',
+            href    : 'http://example.com/step3'
+        },
+        {
+            label   : 'step 4',
+            href    : 'http://example.com/step4'
+        },
+        {
+            label   : 'last step',
+            href    : 'http://example.com/step5'
+        }
+    ]
+} only %}
+```
