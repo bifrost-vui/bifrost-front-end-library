@@ -12,15 +12,18 @@
 >
   {% if hasVisual %}
     <div
-      class='bf-card__visual {{ hasVisualCombo ? 'bf-card__visual--combo' : '' }} bf-color-bg-underground d-flex justify-content-center align-items-center p-3 p-sm-4'
-      {% if visualBackgroundColor is defined and visualBackgroundColor %}style='background-color: {{ visualBackgroundColor }}'{% endif %}
+      class='bf-card__visual {{ hasVisualCombo ? 'bf-card__visual--combo' }} {{ (image.size is defined and image.size is same as('small')) ? 'bf-card__visual--small' }} bf-color-bg-underground d-flex justify-content-center align-items-center p-3 p-sm-4'
+      {% if visualBackgroundColor is defined and visualBackgroundColor %} style='background-color: {{ visualBackgroundColor }}'{% endif %}
     >
       {% if hasImage %}
-        <img
-          src='{{ image.src|default('') }}'
-          data-src='{{ image.src|default('') }}'
-          alt='{{ image.alt|default('') }}'
-          class= {{ hasVisualCombo ? '' : 'mw-100' }}
+        {% if image.size is defined and image.size is same as('small') %}
+          {% set imgSize = 'bf-card__image-small' %}
+        {% else %}
+          {% set imgSize = 'mw-100' %}
+        {% endif %}
+
+        <img src='{{ image.src|default('') }}' data-src='{{ image.src|default('') }}' alt='{{ image.alt|default('') }}'
+          class= {{ hasVisualCombo ? '' : imgSize }}
         />
         {% if image.badgeIconName is defined %}
           <div class='bf-badge-icon z-index-1'>
@@ -39,6 +42,7 @@
       {% endif %}
 
       {% if hasVisualCombo %}
+
         {% include '@bf-components/icon/twig/index.twig' with {
           name    : 'plus',
           size    : 'small'
@@ -106,37 +110,6 @@
 
   <div class='bf-card__body flex-grow-1'>
     {% block card_body %}
-      {% if contentLists is defined and contentLists %}
-        {% for list in contentLists %}
-          <div class='bf-card__content-list pt-3 px-3 px-sm-4'>
-            {% if list.title is defined %}
-              <div class='d-flex mb-2'>
-                <p class='w-60 bf-text font-weight-bold mb-0'>
-                  {{ list.title }}
-                </p>
-                <p class='w-40 text-right mb-0'>
-                  {{ list.description }}
-                </p>
-              </div>
-            {% endif %}
-
-            <ul class='p-0 m-0'>
-              {% for content in list.content %}
-                <li class='d-flex flex-row mb-2'>
-                  {% include '@bf-components/icon/twig/index.twig' with {
-                    name    : content.icon,
-                    size    : small,
-                    class   : 'mr-2'
-                  } only %}
-                  <p class='mb-0'>
-                    {{ content.label }}
-                  </p>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endfor %}
-      {% endif %}
 
       {% if (detailsColors is defined and detailsColors) or (detailsStorage is defined and detailsStorage) %}
         <div class='d-flex mx-3 mx-sm-4'>
@@ -162,6 +135,14 @@
             </p>
           {% endif %}
         </div>
+      {% endif %}
+
+      {% if contentLists is defined and contentLists %}
+        {% for list in contentLists %}
+          <div class='bf-card__content-list pt-3 px-3 px-sm-4'>
+            {%  include '@bf-components/list/twig/index.twig' with list only %}
+          </div>
+        {% endfor %}
       {% endif %}
 
       {% if contentBadge is defined and contentBadge %}
@@ -203,6 +184,12 @@
         {{ note }}
       </p>
     {% endif %}
+
+    {% if bottomLink is defined and bottomLink %}
+      <a href='{{ bottomLink.href|default('#') }}'
+         class='bf-link {{ bottomLink.class|default('') }}'>{{ bottomLink.label|default('') }}</a>
+    {% endif %}
+
 
     {% if inputIncrement is defined and inputIncrement %}
       <div class='bf-card__controls'>

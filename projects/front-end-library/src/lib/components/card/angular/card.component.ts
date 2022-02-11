@@ -3,8 +3,9 @@ import { IPrice } from '../../price/angular/api.model';
 
 
 interface IImage {
-    script          : string;
+    src             : string;
     alt             : string;
+    size            : string;
     badgeIconName   : string;
 }
 
@@ -45,10 +46,18 @@ interface IBadge {
 })
 export class CardComponent implements OnInit {
     constructor() {}
-
+    /** Image Expected format:
+     <pre style='font-size: .75rem; padding: 0 1rem; marigin:0; background-color: #f2f2f0'>
+     {
+        src*          : string;
+        alt*          : string;
+        size          : null | 'small';
+        badgeIconName : string;
+     }
+     </pre>*/
     @Input() image                  : IImage;
     @Input() iconName               : string;
-    /** E.g. `#F6F6F6` */
+    /** E.g. `#F6F6F6` or `rgba(246,246,246,1)` */
     @Input() visualBackgroundColor  : string;
     @Input() comboLabel             : string;
     @Input() upperTitle             : string;
@@ -70,29 +79,18 @@ export class CardComponent implements OnInit {
     */
     @Input() link                   : ILink;
     /**
-        This badge displays in the card Header :
-        You can pass directly the `label` as a **string** or an **object**. Based on [Badge](/?path=/docs/components-badge--drupal) component API.
+        This badge displays in the card Header :<br/>
+        You can pass directly the `label` as a **string** or an **object**. <br/>
+        Based on [Badge](/?path=/docs/components-badge--drupal) component API.
     */
     @Input() badge                  : any;
-    /** Array of object. Expected format:
-    <pre style='font-size: .75rem; padding: 0 1rem; marigin:0; background-color: #f2f2f0'>
-    [
-        {
-          title       : 'TV',
-          description : '40 channels',
-          content     : [
-            {
-              label   : 'Unlimited Go after 10Go',
-              icon    : 'unlimited',
-            },
-          ],
-        }
-        ...
-    ]
-    </pre>*/
-    @Input() contentLists           : object;
     @Input() detailsColors          : object;
     @Input() detailsStorage         : object;
+    /**
+     Array of  [List](/?path=/docs/components-list--drupal) component
+    */
+    @Input() contentLists           : object[];
+
     /**
      This badge displays in the phone card content above the price and the promotion badges.
      Based on [Badge](/?path=/docs/components-badge--drupal) component API
@@ -117,6 +115,7 @@ export class CardComponent implements OnInit {
       [inputIncrement](/?path=/docs/components-input-increment--drupal) component.
      */
     @Input() inputIncrement         : IInputIncrement;
+    @Input() bottomLink             : ILink;
     /**
      Note: Can contains html.
      */

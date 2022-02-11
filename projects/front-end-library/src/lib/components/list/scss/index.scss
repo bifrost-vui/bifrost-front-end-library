@@ -1,13 +1,37 @@
 /* *****************************************************************************
 *
-*  List
+*  bf-list : Component class
 *
 * ***************************************************************************** */
 
 .bf-list {
-    @extend .list;
+    &--divider {
+        border-top: 1px solid var(--bf-color-stroke-secondary);
+        padding-top: var(--bf-spacer-3);
+        margin-top : var(--bf-spacer-3);
+    }
+    p {
+        font-weight: inherit;
+    }
+    .bf-content-list.bf-text-display-sub-small .bf-icon + span,
+    .bf-content-list.small .bf-icon + span {
+        padding-top : var(--bf-spacer-1)
+    }
+}
+
+/* *****************************************************************************
+*
+*  .list : Utilitary class (PaternLab legacy)
+*
+* ***************************************************************************** */
+
+.list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 0;
 
     &--divider {
+        border-top: 0;
         & > * {
             border-bottom: 1px solid var(--bf-color-stroke-secondary);
 
