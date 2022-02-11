@@ -10,9 +10,9 @@ export class SwitchComponent implements OnInit {
     constructor() {}
 
 
-    @Input() id             : string;
-    @Input() name           : string;
-    /** Make sure to define an aria-label describing what the switch is for (not the same as labelOn or labelOff) */
+    @Input() inputId        : string;
+    @Input() inputName      : string;
+    /** Make sure to define aria-label (labelOn or labelOff are not labels) */
     @Input() ariaLabel      : string;
     @Input() isDisabled     : boolean;
     @Input() isChecked      : boolean;
@@ -20,8 +20,8 @@ export class SwitchComponent implements OnInit {
     /** */
     @Input() labelOn        : string;
     @Input() labelOff       : string;
-    /** set the font-size on the text inside the switch */
-    @Input() size           : 'sm'|'lg';
+    /** sets the font-size on the text inside the switch */
+    @Input() inputSize      : 'sm'|'lg';
     @Input() extraAttribute : string;
     @Input() class          : string;
 

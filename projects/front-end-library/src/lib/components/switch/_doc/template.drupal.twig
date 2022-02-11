@@ -1,5 +1,5 @@
 {% set ariaLabels     = ariaLabels|json_parse %}
-{% set size           = size|json_parse %}
+{% set inputSize      = inputSize|json_parse %}
 {% set isChecked      = isChecked|json_parse %}
 {% set isDisabled     = isDisabled|json_parse %}
 {% set isInvalid      = isInvalid|json_parse %}
@@ -15,7 +15,7 @@
   {% for background in backgrounds %}
     <div class='p-3 {{ background }}'>
       {% include '@bf-components/switch/twig/index.twig' with {
-        id : id ~ loop.index
+        inputId : id ~ loop.index
       } %}
     </div>
   {% endfor %}

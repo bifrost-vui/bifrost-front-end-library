@@ -1,10 +1,10 @@
 {% set hasLabels =  labelOff is defined and labelOff and labelOn is defined and labelOn %}
-<div class='bf-switch {% if size is defined and size %} bf-switch--{{ size|default('sm') }}{% endif %}'>
+<div class='bf-switch {% if size is defined and size %} bf-switch--{{ inputSize|default('sm') }}{% endif %} {{ class|default('') }}'>
   <div class="d-block position-relative overflow-hidden">
     <input
-      class='bf-switch__input {{ isInvalid ? 'isInvalid' }} '
-      id='{{ id }}'
-      name='{{ name|default('')}}'
+      class='bf-switch__input {{ isInvalid ? 'invalid' }} '
+      id='{{ inputId }}'
+      name='{{ inputName|default('')}}'
       type='checkbox'
       {{ isDisabled ? 'disabled aria-disabled="true"' }}
       {{ isChecked ? 'checked aria-checked="true"' }}
