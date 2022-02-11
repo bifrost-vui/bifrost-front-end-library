@@ -1,20 +1,18 @@
-<div class='bf-input-checkbox  {{ class|default('') }} {{ isInvalid ? 'bf-input-checkbox--isInvalid' }}'>
-  <input type="checkbox" class='bf-checkbox {{ isInvalid ? 'bf-checkbox--isInvalid' }}'
-    {% if name is defined and name %} name='{{ name }}' {% endif %}
-    id='{{ id|default('') }}'
+<div class='bf-input-checkbox  {{ class|default('') }} {{ isInvalid ? 'bf-input-checkbox--invalid' }}'>
+  <input type="checkbox" class='bf-checkbox {{ isInvalid ? 'bf-checkbox--invalid' }}'
+    {% if inputName is defined and inputName %} name='{{ inputName }}' {% endif %}
+    id='{{ inputId }}'
     {% if value is defined and value %} value='{{ value }}' {% endif %}
     {{ isChecked ? 'checked' }}
     {{ isDisabled ? 'disabled' }}
     {{ isRequired ? 'required' }}
-    {% if label.text is defined and label.text %}
-      aria-label='{{ label.text }}'
-    {% elseif ariaLabel is defined and ariaLabel %}
+    {% if ariaLabel is defined and ariaLabel %}
       aria-label='{{ ariaLabel }}'
     {% endif %}
     {{ extraAttribute|default(NULL) }}
   >
   {% if label is defined and label %}
-    <label for="{{ id|default('') }}" class='bf-text-display-sub-medium'>
+    <label for="{{ id }}" class='bf-text-display-sub-medium {{ labelClass|default('') }}' {{ labelExtraAttribute|default(NULL) }}>
       {{ label|raw }}
     </label>
   {% endif %}
