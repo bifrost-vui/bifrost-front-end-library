@@ -1,0 +1,70 @@
+/* *****************************************************************************
+*
+*  Table Content
+*
+* ***************************************************************************** */
+
+.bf-table-content {
+    width: 100%;
+    .bf-tab {
+        &__control {
+            cursor: pointer;
+
+            @include media-breakpoint-up(md) {
+                &::-webkit-scrollbar {
+                    scrollbar-width: thin;
+                    width: 1px;
+                }
+            }
+        }
+
+        &__slider {
+            margin: 0 2.5rem 0;
+            border-bottom: none;
+        }
+
+        .nav-link {
+            font-family: $font-family-secondary;
+            line-height: 1.25rem;
+            color: var(--bf-color-neutral-primary) !important;
+            font-size: 1rem;
+            font-weight: normal;
+
+            &.active,
+            &:hover {
+                font-weight: bold;
+                @extend .h5;
+                color: inherit;
+            }
+            &:before {
+                transition: revert;
+            }
+        }
+
+        &.horizontal {
+            .bf-tab__slider {
+                .nav-link {
+                    &.active,
+                    &:hover {
+                        font-weight: bold;
+                        @extend .h5;
+                        color: inherit;
+                        &:before {
+                            transform: unset;
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .bf-dropdown {
+        margin: auto;
+    }
+    &.disabled {
+        pointer-events: none;
+        color: rgba(var(--bf-color-neutral-primary-rgb), 0.32);
+    }
+}
+
+

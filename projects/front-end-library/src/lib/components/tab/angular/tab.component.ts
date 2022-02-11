@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  * API is the same between **Angular** and **Drupal**.
  *
  */
- 
+
 @Component({
     selector: 'bf-tab',
     templateUrl: './tab.component.html',
@@ -17,7 +17,8 @@ export class TabComponent implements OnInit {
     @Input() sliderClass          : string;
     @Input() navItems             : object;
     @Input() itemClass            : string;
-    
+    @Input() orientation          : 'horizontal'|'vertical';
+
     @Input() reversed             : boolean;
 
     ngOnInit() {

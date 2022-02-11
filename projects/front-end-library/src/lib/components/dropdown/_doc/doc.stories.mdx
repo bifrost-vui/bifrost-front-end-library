@@ -1,0 +1,68 @@
+import { moduleMetadata }               from '@storybook/angular';
+import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
+import { withDesign }                   from 'storybook-addon-designs'
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { DropdownComponent }            from '../angular/dropdown.component';
+
+<Meta
+    title='Components/Dropdown'
+    component={DropdownComponent}
+    decorators={[
+        moduleMetadata({ declarations: [DropdownComponent, TwigContainerComponent]}),
+        withDesign
+    ]}    parameters={{}}
+    argTypes={{}}
+/>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Dropdown'
+        height = '400px'
+        args={{
+            elementPath     : 'components/dropdown/_doc/template.drupal',
+            id              : 'dropdown-id',
+            label           : 'Sauter directement à la section',
+            dropdownItems   : [
+                                {label:'Connexion', iconName: 'unlimited', href:'www.videotron.com', class:''},
+                                {label:'Modifier ses informations', iconName: '', href:'www.videotron.com', class:''},
+                                {label:'Modifier son mot de passe', iconName: '', href:'www.videotron.com', class:''},
+                                {label:'Modifier le NIP', iconName: 'camera', href:'www.videotron.com', class:""},
+                                {label:'Modifier ses coordonnées', iconName: 'unlimited', href:'www.videotron.com', class:''},
+                             ],
+            isDisabled      : false,
+            class           : 'mt-3',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal implementation exemple
+
+```jsx
+{% include '@bf-components/dropdown/twig/index.twig' with {
+    id              : 'dropdown-id',
+    label           : 'Sauter directement à la section',
+    dropdownItems   : [
+                        {label:'Connexion', iconName: 'unlimited', href:'www.videotron.com', class:''},
+                        {label:'Modifier ses informations', iconName: '', href:'www.videotron.com', class:''},
+                        {label:'Modifier son mot de passe',iconName: '',  href:'www.videotron.com', class:''},
+                        {label:'Modifier le NIP', iconName: 'camera', href:'www.videotron.com', class:""},
+                        {label:'Modifier ses coordonnées', iconName: 'unlimited', href:'www.videotron.com', class:''},
+                     ],
+    isDisabled      : false,
+    class           : 'mt-3',
+} only %}
+```
+
+
+
+<Props of={DropdownComponent} />

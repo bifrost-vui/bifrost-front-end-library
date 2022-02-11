@@ -1,0 +1,16 @@
+<div class='bf-table-content {{ isDisabled ? 'disabled' }}'>
+  {# Desktop #}
+ <div class='d-lg-block d-none'>
+    {% include '@bf-components/tab/twig/index.twig' %}
+ </div>
+  {# Tablet and mobile #}
+  <div class='d-lg-none d-block'>
+    {% include '@bf-components/dropdown/twig/index.twig' with {
+      id              : id,
+      label           : label,
+      dropdownItems   : navItems,
+      class           : '',
+    } only %}
+  </div>
+</div>
+

@@ -8,7 +8,7 @@
     position: relative;
     width: 100%;
 
-    & > div {
+    &__control {
         position: static;
         overflow-x: auto;
         padding:0 2.5rem var(--bf-spacer-2);
@@ -27,17 +27,25 @@
             }
         }
 
-        &:before {
+        &:before,
+        &:after {
             position: absolute;
-            right: 0;
             top: 0;
-            width: 5.5rem;
+            width: 3.75rem;
             height: 100%;
             z-index: 1;
             pointer-events: none;
-            background-image: var(--bf-color-bg-linear-ground-x);
             background-repeat: repeat-y;
             content: '';
+        }
+
+        &:before {
+            background-image: var(--bf-color-bg-linear-ground-left);
+            left: 0;
+        }
+        &:after {
+            background-image: var(--bf-color-bg-linear-ground-right);
+            right: 0;
         }
     }
 
@@ -48,6 +56,22 @@
         padding: 0;
         margin: 0;
         border-bottom: 1px solid var(--bf-color-stroke-secondary);
+    }
+    &.vertical {
+        .bf-tab__slider {
+            flex-direction: column;
+            border-bottom: none;
+            .nav-link {
+                padding-left: 1rem;
+                &:before,
+                &.active:before {
+                    top: 0;
+                    left: 0;
+                    width: .188rem;
+                    height: 100%;
+                }
+            }
+        }
     }
 
     .nav-link {
@@ -74,6 +98,11 @@
     }
 }
 
-.bf-color-bg-underground .bf-tab > div:before {
-    background-image: var(--bf-color-bg-linear-underground-x);
+.bf-color-bg-underground .bf-tab {
+        & > div:before {
+            background-image: var(--bf-color-bg-linear-underground-left);
+        }
+        & > div:after {
+        background-image: var(--bf-color-bg-linear-underground-right);
+    }
 }
