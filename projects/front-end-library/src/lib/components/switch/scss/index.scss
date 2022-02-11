@@ -5,84 +5,91 @@
 * ***************************************************************************** */
 
 .bf-switch {
-        position: relative;
-        appearance: none;
-        height: 2rem;
-        min-width: 4.5rem;
-        border: 1px solid var(--bf-color-stroke-secondary);
-        border-radius: 1em;
-        background: var(--bf-color-bg-ground);
-        color: var(--bf-color-neutral-secondary);
-        transition: all .3s ease-in-out;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0;
+    @extend .small;
 
-        // needed to prevent !important
-        &[type=checkbox] {
-            padding: 0 .5rem;
-        }
-        &--sm {
-            @extend .small;
-        }
-        &--lg {
-            font-size: 1rem;
-        }
-        &::before {
-            display: inline-block;
-            position:relative;
-            line-height: 1.65rem;
-            width: 100%;
-            content:  attr(data-status-off);
-            text-align: right;
-            padding-left: 1.4rem;
-        }
-        &::after {
-            display: block;
-            position: absolute;
-            content: "";
-            border-radius: 50%;
-            background: var(--bf-color-neutral-secondary);
-            height: 2rem;
-            width: 2rem;
-            transform: scale(.7) translate(0, -70%);
-            left: 0;
-            top: 50%;
-            cursor: pointer;
-        }
-        &:checked {
-            background : var(--bf-color-bg-action-primary );
-            border-color: transparent;
-            color: var(--bf-color-primary-irreversible);
-
-            &:before {
-                content:  attr(data-status-on);
-                padding-left: 0;
-                padding-right: 1.4rem;
-                text-align: left;
-            }
-            &:after {
-                left: unset;
-                right:0;
-                background: var(--bf-color-primary-irreversible);
-                transition: all .3s ease-in-out;
-            }
-        }
-        &:disabled,
-        &:disabled:checked {
-            border-color: var(--bf-color-stroke-tertiary);
-            background : var(--bf-color-bg-action-disabled);
-            color: var(--bf-color-neutral-tertiary);
-
-            &:after {
-                background : var(--bf-color-neutral-tertiary);
-            }
-        }
-        &.isInvalid,
-        &.isInvalid:checked {
-            border-color: var(--bf-color-feedback-negative);
-            background: #fff; // add this irreversible color in _colors.scss
-            color: var(--bf-color-feedback-negative);
-
-            &:after {
-                background : var(--bf-color-feedback-negative);
-            }
-        }
+    &--lg {
+        font-size: 1rem;
     }
+    &__labels {
+        @include transitions(transform .2s ease-in-out);
+        @include size(200%, 2rem);
+        position: absolute;
+        display: flex;
+        top: 0;
+        right: 0;
+        pointer-events: none;
+        padding: 0 1.2rem;
+        align-items: center;
+        color: var(--bf-color-neutral-primary);
+        opacity: .7;
+    }
+    input {
+        padding: 0 .5rem;
+        appearance: none;
+        position: relative;
+        width: 4.6rem;
+        height: 2rem;
+        border: 1px solid var(--bf-color-stroke-secondary);
+        border-radius: 1rem;
+        background: var(--bf-color-bg-ground);
+
+            &::after {
+                @include transitions(left .2s ease-in-out);
+                display: block;
+                position: absolute;
+                content: "";
+                border-radius: 50%;
+                background: var(--bf-color-neutral-secondary);
+                height: 2rem;
+                width: 2rem;
+                left: 0;
+                top: 50%;
+                cursor: pointer;
+                transform: scale(.7) translate(0, -70%);
+            }
+            &:checked {
+                background : var(--bf-color-bg-action-primary );
+                border-color: transparent;
+
+                &:after {
+                    left: calc(100% - 2rem);
+                    background: var(--bf-color-primary-irreversible);
+                }
+                & + .bf-switch__labels {
+                    transform: translate(50%, 0);
+                    color: var(--bf-color-primary-irreversible);
+                }
+            }
+            &.isInvalid,
+            &.isInvalid:checked {
+                border-color: var(--bf-color-feedback-negative);
+                background: #fff; // add this irreversible color in _colors.scss
+                color: var(--bf-color-feedback-negative);
+
+                &:after {
+                    background : var(--bf-color-feedback-negative);
+                }
+                & + .bf-switch__labels{
+                    color: var(--bf-color-feedback-negative);
+                }
+            }
+            &:disabled,
+            &:disabled:checked {
+                border-color: var(--bf-color-stroke-tertiary);
+                background : var(--bf-color-bg-action-disabled);
+                color: var(--bf-color-neutral-tertiary);
+
+                &:after {
+                    background : var(--bf-color-neutral-tertiary);
+                }
+                & + .bf-switch__labels {
+                    color: var(--bf-color-neutral-primary);
+                    opacity: .35;
+                }
+            }
+        }
+}
