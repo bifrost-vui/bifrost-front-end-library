@@ -11,7 +11,10 @@
 
     &::before {
         @include size(0.5rem);
-        @extend .position-absolute--center-left;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translate(0, -50%);
         content: "";
         border-radius: 50%;
         background-color: $gray-100;
@@ -38,26 +41,6 @@
     &-failed {
         &::before {
             background-color: var(--bf-color-feedback-negative);
-        }
-    }
-
-
-    /* uikit legacy feature kept for retro stability */
-    // theme-colors
-    @each $color, $value in $theme-colors {
-        &-#{$color} {
-            &::before {
-                background: $value !important;
-            }
-        }
-    }
-
-    /* uikit legacy feature kept for retro stability */
-    @each $color, $value in $grays {
-        &-gray--#{$color} {
-            &::before {
-                background: $value !important;
-            }
         }
     }
 }
