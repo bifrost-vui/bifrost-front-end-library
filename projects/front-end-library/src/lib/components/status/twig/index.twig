@@ -1,3 +1,6 @@
 {% if label is defined and label %}
-  <p class='bf-status bf-status-{{ color|default('') }} {{ class|default('') }}'>{{ label }}</p>
+  <p class='bf-status bf-status-{{ color|default('') }} {{ class|default('') }}'>
+    <span class='visuallyInvisible' role='status'>{{ color }}</span>
+    {{ label }}
+  </p>
 {% endif %}
