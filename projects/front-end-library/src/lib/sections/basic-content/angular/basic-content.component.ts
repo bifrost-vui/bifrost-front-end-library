@@ -7,10 +7,10 @@ interface IImage {
 }
 
 @Component({
-    selector: 'bf-text-image',
-    templateUrl: './text-image.component.html',
+    selector: 'bf-basic-content',
+    templateUrl: './basic-content.component.html',
 })
-export class TextImageComponent implements OnInit {
+export class BasicContentComponent implements OnInit {
     constructor() {}
     /** `image: { src: "", isFill: true, icon: { name: "placeholder", position: "bottom-left" } }`  */
     @Input() image                  : IImage;
@@ -30,6 +30,6 @@ export class TextImageComponent implements OnInit {
     @Input() reversed               : boolean;
 
     ngOnInit() {
-        console.log('text image', this);
+        console.log('basic content', this);
     }
 }

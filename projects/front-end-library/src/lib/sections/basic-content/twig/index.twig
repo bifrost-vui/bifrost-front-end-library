@@ -4,8 +4,8 @@
 {% set iconPosition     = hasIcon ? image.icon.position %}
 
 <article class='
-	bf-section-text-image d-block d-md-flex
-  {{ textAlign == 'center' ? 'bf-section-text-image--center' }}
+	bf-section-basic-content d-block d-md-flex
+  {{ textAlign == 'center' ? 'bf-section-basic-content--center' }}
 	{{ reversed ? 'reversed' }}
 	{{ class }}'
 >
@@ -14,11 +14,11 @@
 		{% if image is defined and image.src %}
 			<div
 				class='
-					bf-section-text-image__visual
+					bf-section-basic-content__visual
 					{{ imagePosition == 'left' ? 'order-0 order-md-1' }}
-					{{ hasIcon ? 'bf-section-text-image__visual--icon' }}
-					{{ iconPosition ? 'bf-section-text-image__visual--icon-' ~ iconPosition }}
-					{{ image.isFill|default(false) ? '' : 'bf-section-text-image__visual--fit' }}
+					{{ hasIcon ? 'bf-section-basic-content__visual--icon' }}
+					{{ iconPosition ? 'bf-section-basic-content__visual--icon-' ~ iconPosition }}
+					{{ image.isFill|default(false) ? '' : 'bf-section-basic-content__visual--fit' }}
 				'
 				style='background-image: url({{ image.src }})'
 			>
@@ -29,7 +29,7 @@
 			</div>
 		{% endif %}
 
-		<div class='bf-section-text-image__inner d-flex flex-column justify-content-center gap-4 py-0 pb-5 py-md-5'>
+		<div class='bf-section-basic-content__inner d-flex flex-column justify-content-center gap-4 py-0 pb-5 py-md-5'>
 			<div>
 				{% if upperTitle is defined and upperTitle %}
 					<p class='bf-text-interface-small mb-0'>
@@ -65,7 +65,7 @@
 			{% endif %}
 
 			{% if links is defined and links %}
-				<div class='bf-section-text-image__links d-flex flex-wrap gap-3' data-animate='fade-in'>
+				<div class='bf-section-basic-content__links d-flex flex-wrap gap-3' data-animate='fade-in'>
 					{% for link in links %}
 						<a href='{{ link.href|default('') }}' class='bf-link bf-link--primary'>
 							{{ link.label|default('') }}
@@ -75,7 +75,7 @@
 			{% endif %}
 
 			{% if buttons is defined and buttons %}
-				<div class='bf-section-text-image__buttons d-flex flex-wrap gap-3' data-animate='fade-in'>
+				<div class='bf-section-basic-content__buttons d-flex flex-wrap gap-3' data-animate='fade-in'>
 					{% for button in buttons %}
 						{% set defaultHierarchy = (loop.index == 1) ? 'primary-alt' : 'secondary' %}
 						{% set button = button|merge({

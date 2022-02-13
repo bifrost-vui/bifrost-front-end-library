@@ -1,14 +1,14 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { TextImageComponent }                   from '../angular/text-image.component';
+import { BasicContentComponent }                   from '../angular/basic-content.component';
 
 
 <Meta
-    title='Sections/Text Image'
-    component={TextImageComponent}
+    title='Sections/Basic Content'
+    component={BasicContentComponent}
     decorators={[
-        moduleMetadata({ declarations: [TextImageComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [BasicContentComponent, TwigContainerComponent]}),
     ]}
     parameters={{
         design: {
@@ -30,20 +30,20 @@ import { TextImageComponent }                   from '../angular/text-image.comp
     }}
 />
 
-# Section: Text Image
+# Section: Basic Content
 
 <br/>
 
 ## Component API
 
-<ArgsTable of={TextImageComponent} />
+<ArgsTable of={BasicContentComponent} />
 
 
 
 ## Drupal implementation example
 
 ```jsx
-{% include '@bf-sections/text-image/twig/index.twig' with {
+{% include '@bf-sections/basic-content/twig/index.twig' with {
     image           : {
         src: '/images/assets/helix-equipment.png',
         icon: {
@@ -138,7 +138,7 @@ export const rowButtonsProps = {
         name='Drupal - Basic'
         height='800px'
         args={{
-            elementPath: 'sections/text-image/_doc/template.drupal',
+            elementPath: 'sections/basic-content/_doc/template.drupal',
             ...commonProps,
             ...buttonsProps,
             image: null,
@@ -153,7 +153,7 @@ export const rowButtonsProps = {
         name='Drupal - With textAlign'
         height='800px'
         args={{
-            elementPath: 'sections/text-image/_doc/template.drupal',
+            elementPath: 'sections/basic-content/_doc/template.drupal',
             ...commonProps,
             ...buttonsProps,
             image: null,
@@ -169,7 +169,7 @@ export const rowButtonsProps = {
         name='Drupal - With Links'
         height='800px'
         args={{
-            elementPath: 'sections/text-image/_doc/template.drupal',
+            elementPath: 'sections/basic-content/_doc/template.drupal',
             ...commonProps,
             image: null,
             ...linksProps,
@@ -184,7 +184,7 @@ export const rowButtonsProps = {
         name='Drupal - With rowButtonsProps'
         height='800px'
         args={{
-            elementPath: 'sections/text-image/_doc/template.drupal',
+            elementPath: 'sections/basic-content/_doc/template.drupal',
             ...commonProps,
             image: null,
             ...rowButtonsProps,
@@ -199,7 +199,7 @@ export const rowButtonsProps = {
         name='Drupal - With imagePosition'
         height='800px'
         args={{
-            elementPath: 'sections/text-image/_doc/template-multiple.drupal',
+            elementPath: 'sections/basic-content/_doc/template-multiple.drupal',
             _items: [
                 {
                     upperTitle: 'imagePosition',
@@ -232,7 +232,7 @@ export const rowButtonsProps = {
         name='Drupal - With image isFill'
         height='800px'
         args={{
-            elementPath: 'sections/text-image/_doc/template-multiple.drupal',
+            elementPath: 'sections/basic-content/_doc/template-multiple.drupal',
             _items: [
                 {
                     upperTitle: 'Image isFill',
@@ -262,7 +262,7 @@ export const rowButtonsProps = {
         name='Drupal - With image icon position'
         height='800px'
         args={{
-            elementPath: 'sections/text-image/_doc/template-multiple.drupal',
+            elementPath: 'sections/basic-content/_doc/template-multiple.drupal',
             _items: [
                 {
                     upperTitle: 'Image icon position',
@@ -335,7 +335,7 @@ export const rowButtonsProps = {
         name='Drupal - Full'
         height='800px'
         args={{
-            elementPath: 'sections/text-image/_doc/template.drupal',
+            elementPath: 'sections/basic-content/_doc/template.drupal',
             ...commonProps,
             ...buttonsProps,
             ...linksProps,
