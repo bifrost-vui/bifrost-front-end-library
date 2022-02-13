@@ -1,29 +1,30 @@
-{% set button              = button|json_parse %}
-{% set image               = image|json_parse %}
-{% set isFeatured          = isFeatured|json_parse %}
-{% set reversed            = reversed|json_parse %}
+{% set button                 = button|json_parse %}
+{% set image                  = image|json_parse %}
+{% set isFeatured             = isFeatured|json_parse %}
+{% set isVisualBackgroundFill = isVisualBackgroundFill|json_parse %}
+{% set reversed               = reversed|json_parse %}
 
 <div class='container container-fluid my-6'>
-
+  {% include '@bf-components/block-highlight/twig/index.twig' with {
+    isFeatured: isFeatured|default(true),
+    image: image|default({
+        src: 'https://videotron.com/vtrn/images/resi/accueil/2021-12-02/TMO-BAN-J-DUOIPTV-570x448-2112_FR.jpg'
+    }),
+    isVisualBackgroundFill: isVisualBackgroundFill|default(false),
+    class: class|default('mb-4')
+  } %}
+  <div class='d-flex flex-column flex-lg-row gap-4'>
     {% include '@bf-components/block-highlight/twig/index.twig' with {
-        isFeatured : isFeatured|default(true),
-        image : image|default({
-            src: 'https://videotron.com/vtrn/images/resi/accueil/2021-12-02/TMO-BAN-J-DUOIPTV-570x448-2112_FR.jpg'
-        }),
-        visualBackgroundFit : visualBackgroundFit|default('fill'),
-        class : class|default('mb-4')
+      image: image|default({
+        src: 'https://videotron.com/sites/default/files/styles/original/public/image/TMO-BAN-PSGEN-521x288-FR-3_0.webp?itok=kPcZ_CR9'
+      }),
+      isVisualBackgroundFill: isVisualBackgroundFill|default(false),
     } %}
-
-    <div class='d-flex flex-column flex-lg-row gap-4'>
-        {% include '@bf-components/block-highlight/twig/index.twig' with {
-            image : image|default({
-                src: 'https://videotron.com/sites/default/files/styles/original/public/image/TMO-BAN-PSGEN-521x288-FR-3_0.webp?itok=kPcZ_CR9'
-            })
-        } %}
-        {% include '@bf-components/block-highlight/twig/index.twig' with {
-            image : image|default({
-                src: 'https://videotron.com/sites/default/files/styles/original/public/image/MicrosoftTeams-image%20%282%29_0.webp?itok=oFqIZUxK'
-            })
-        } %}
-    </div>
+    {% include '@bf-components/block-highlight/twig/index.twig' with {
+      image: image|default({
+        src: 'https://videotron.com/sites/default/files/styles/original/public/image/MicrosoftTeams-image%20%282%29_0.webp?itok=oFqIZUxK'
+      }),
+      isVisualBackgroundFill: isVisualBackgroundFill|default(false),
+    } %}
+  </div>
 </div>
