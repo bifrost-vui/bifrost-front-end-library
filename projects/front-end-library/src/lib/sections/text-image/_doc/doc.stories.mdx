@@ -24,6 +24,9 @@ import { TextImageComponent }                   from '../angular/text-image.comp
         imagePosition: {
             table: { defaultValue: { summary: 'right' } },
         },
+        textAlign: {
+            table: { defaultValue: { summary: 'left' } },
+        },
     }}
 />
 
@@ -47,9 +50,10 @@ import { TextImageComponent }                   from '../angular/text-image.comp
             name: 'trio-wifi',
             position: 'bottom-left'
         },
-        fit: 'fill'
+        isFill: true
     },
     imagePosition   : 'left',
+    textAlign       : 'left',
     upperTitle      : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title           : 'Discover our best Helix Internet and TV packages',
     subtitle        : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -78,7 +82,7 @@ export const commonProps = {
             name: 'trio-wifi',
             position: 'bottom-left'
         },
-        fit: 'fill'
+        isFill: true
     },
     upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title       : 'Discover our best Helix Internet and TV packages',
@@ -131,14 +135,59 @@ export const rowButtonsProps = {
 
 <Canvas withSource='none'>
     <Story
-        name='Drupal'
+        name='Drupal - Basic'
         height='800px'
         args={{
             elementPath: 'sections/text-image/_doc/template.drupal',
             ...commonProps,
             ...buttonsProps,
+            image: null,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With textAlign'
+        height='800px'
+        args={{
+            elementPath: 'sections/text-image/_doc/template.drupal',
+            ...commonProps,
+            ...buttonsProps,
+            image: null,
+            textAlign: 'center'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With Links'
+        height='800px'
+        args={{
+            elementPath: 'sections/text-image/_doc/template.drupal',
+            ...commonProps,
+            image: null,
             ...linksProps,
-            ...rowButtonsProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With rowButtonsProps'
+        height='800px'
+        args={{
+            elementPath: 'sections/text-image/_doc/template.drupal',
+            ...commonProps,
+            image: null,
+            ...rowButtonsProps,
         }}
     >
         {Drupal.bind({})}
@@ -151,12 +200,13 @@ export const rowButtonsProps = {
         height='800px'
         args={{
             elementPath: 'sections/text-image/_doc/template-multiple.drupal',
-            items: [
+            _items: [
                 {
                     upperTitle: 'imagePosition',
                     title: 'right (default)',
                     image: {
-                        src: window.location.origin + '/images/_docs/hero-helix-reversed.png'
+                        src: window.location.origin + '/images/_docs/hero-helix-reversed.png',
+                        isFill: true
                     },
                     imagePosition: 'left'
                 },
@@ -164,7 +214,8 @@ export const rowButtonsProps = {
                     upperTitle: 'imagePosition',
                     title: 'left',
                     image: {
-                        src: window.location.origin + '/images/_docs/hero-helix-reversed.png'
+                        src: window.location.origin + '/images/_docs/hero-helix-reversed.png',
+                        isFill: true
                     },
                     imagePosition: 'right'
                 }
@@ -178,24 +229,25 @@ export const rowButtonsProps = {
 
 <Canvas withSource='none'>
     <Story
-        name='Drupal - With image fit'
+        name='Drupal - With image isFill'
         height='800px'
         args={{
             elementPath: 'sections/text-image/_doc/template-multiple.drupal',
-            items: [
+            _items: [
                 {
-                    upperTitle: 'Image fit',
-                    title: 'fill (default)',
+                    upperTitle: 'Image isFill',
+                    title: 'true (default)',
                     image: {
-                        src: window.location.origin + '/images/_docs/hero-helix-reversed.png'
+                        src: window.location.origin + '/images/_docs/hero-helix-reversed.png',
+                        isFill: true
                     }
                 },
                 {
-                    upperTitle: 'Image fit',
-                    title: 'fit',
+                    upperTitle: 'Image isFill',
+                    title: 'false',
                     image: {
                         src: window.location.origin + '/images/_docs/hero-helix-reversed.png',
-                        fit: 'fit'
+                        isFill: false
                     }
                 }
             ]
@@ -211,7 +263,7 @@ export const rowButtonsProps = {
         height='800px'
         args={{
             elementPath: 'sections/text-image/_doc/template-multiple.drupal',
-            items: [
+            _items: [
                 {
                     upperTitle: 'Image icon position',
                     title: 'bottom-left (default)',
@@ -219,7 +271,8 @@ export const rowButtonsProps = {
                         src: window.location.origin + '/images/_docs/hero-helix-reversed.png',
                         icon: {
                             name: 'trio-wifi'
-                        }
+                        },
+                        isFill: true
                     }
                 },
                 {
@@ -230,7 +283,8 @@ export const rowButtonsProps = {
                         icon: {
                             name: 'trio-wifi',
                             position: 'bottom-right'
-                        }
+                        },
+                        isFill: true
                     }
                 },
                 {
@@ -241,7 +295,8 @@ export const rowButtonsProps = {
                         icon: {
                             name: 'trio-wifi',
                             position: 'top-left'
-                        }
+                        },
+                        isFill: true
                     }
                 },
                 {
@@ -252,7 +307,8 @@ export const rowButtonsProps = {
                         icon: {
                             name: 'trio-wifi',
                             position: 'top-right'
-                        }
+                        },
+                        isFill: true
                     }
                 },
                 {
@@ -263,7 +319,8 @@ export const rowButtonsProps = {
                         icon: {
                             name: 'trio-wifi',
                             position: 'center'
-                        }
+                        },
+                        isFill: true
                     }
                 }
             ]
@@ -275,42 +332,19 @@ export const rowButtonsProps = {
 
 <Canvas withSource='none'>
     <Story
-        name='Drupal - With buttons, links and rowButtons'
+        name='Drupal - Full'
         height='800px'
         args={{
-            elementPath: 'sections/text-image/_doc/template-multiple.drupal',
-            items: [
-                {
-                    image: {
-                        src: window.location.origin + '/images/_docs/hero-helix-reversed.png'
-                    },
-                    title: 'With Buttons',
-                    description: 'After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you. After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you.',
-                    ...buttonsProps
-                },
-                {
-                    image: {
-                        src: window.location.origin + '/images/_docs/hero-helix-reversed.png'
-                    },
-                    title: 'With Links',
-                    description: 'After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you. After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you.',
-                    ...linksProps
-                },
-                {
-                    image: {
-                        src: window.location.origin + '/images/_docs/hero-helix-reversed.png'
-                    },
-                    title: 'With Row Buttons',
-                    description: 'After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you. After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you.',
-                    ...rowButtonsProps
-                }
-            ]
+            elementPath: 'sections/text-image/_doc/template.drupal',
+            ...commonProps,
+            ...buttonsProps,
+            ...linksProps,
+            ...rowButtonsProps
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
-
 
 ## Design Guidelines
 

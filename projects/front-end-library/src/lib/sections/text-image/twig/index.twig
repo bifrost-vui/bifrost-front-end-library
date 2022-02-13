@@ -5,6 +5,7 @@
 
 <article class='
 	bf-section-text-image d-block d-md-flex
+  {{ textAlign == 'center' ? 'bf-section-text-image--center' }}
 	{{ reversed ? 'reversed' }}
 	{{ class }}'
 >
@@ -17,7 +18,7 @@
 					{{ imagePosition == 'left' ? 'order-0 order-md-1' }}
 					{{ hasIcon ? 'bf-section-text-image__visual--icon' }}
 					{{ iconPosition ? 'bf-section-text-image__visual--icon-' ~ iconPosition }}
-					{{ image.fit == 'fit' ? 'bf-section-text-image__visual--fit' }}
+					{{ image.isFill|default(false) ? '' : 'bf-section-text-image__visual--fit' }}
 				'
 				style='background-image: url({{ image.src }})'
 			>
@@ -64,7 +65,7 @@
 			{% endif %}
 
 			{% if links is defined and links %}
-				<div class='d-flex flex-wrap gap-3' data-animate='fade-in'>
+				<div class='bf-section-text-image__links d-flex flex-wrap gap-3' data-animate='fade-in'>
 					{% for link in links %}
 						<a href='{{ link.href|default('') }}' class='bf-link bf-link--primary'>
 							{{ link.label|default('') }}
@@ -74,7 +75,7 @@
 			{% endif %}
 
 			{% if buttons is defined and buttons %}
-				<div class='d-flex flex-wrap gap-3' data-animate='fade-in'>
+				<div class='bf-section-text-image__buttons d-flex flex-wrap gap-3' data-animate='fade-in'>
 					{% for button in buttons %}
 						{% set defaultHierarchy = (loop.index == 1) ? 'primary-alt' : 'secondary' %}
 						{% set button = button|merge({

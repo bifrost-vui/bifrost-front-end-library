@@ -1,9 +1,9 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 interface IImage {
     src         : string;
     icon        : object | string;
-    fit         : 'fit' | 'fill';
+    isFill      : boolean;
 }
 
 @Component({
@@ -12,12 +12,14 @@ interface IImage {
 })
 export class TextImageComponent implements OnInit {
     constructor() {}
-    /** `image: { src: "", fit: "fill", icon: { name: "placeholder", position: "bottom-left" } }`  */
+    /** `image: { src: "", isFill: true, icon: { name: "placeholder", position: "bottom-left" } }`  */
     @Input() image                  : IImage;
     @Input() upperTitle             : string;
     @Input() title                  : string;
     @Input() titleTag               : string;
     @Input() subtitle               : string;
+    /** Not work with image. */
+    @Input() textAlign              : 'left' | 'center';
     @Input() description            : string;
     @Input() buttons                : object[];
     @Input() links                  : object[];
