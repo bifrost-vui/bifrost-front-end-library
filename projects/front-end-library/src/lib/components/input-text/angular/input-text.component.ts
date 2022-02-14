@@ -41,16 +41,16 @@ export class InputTextComponent implements OnInit {
     // Other elements components
     /** expected : { text: string, class: string } */
     @Input() label          : object;
-    /**  Expected : { text: string, position: top|bottom|left|right }*/
+    /** Expected : { text: string, position: top|bottom|left|right }*/
     @Input() tooltip        : object;
     @Input() description    : string;
     /** the message to display only when isInvalid is true*/
     @Input() errorMessage   : string;
     /** for Password input type only */
     @Input() validationTitle: string;
-    /**  for Password input type only. Expected : { class: string, label: string } */
+    /** for Password input type only. Expected : { class: string, label: string } */
     @Input() validationList : object[];
-    /**  expected : { text: string, url: string } */
+    /** expected : { text: string, url: string } */
     @Input() info           : object;
     @Input() class          : string;
 
