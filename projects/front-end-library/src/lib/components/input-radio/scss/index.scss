@@ -7,72 +7,84 @@
 .bf-input-radio {
     display: flex;
     flex-flow: row nowrap;
-    align-items: flex-start;
     max-width: 16rem;
 
+    input {
+        align-self: flex-start;
+
+        &:required + label:after {
+            display: inline;
+            content: '*';
+        }
+    }
     label {
         margin: 0;
         line-height: 1rem;
         padding-bottom: .5rem;
         align-self: flex-start;
-    }
-    input {
-        appearance: none;
-        position: relative;
-        align-self: flex-start;
-        min-width: 1rem;
-        width: 1rem;
-        height: 1rem;
-        margin-top: .1rem;
-        margin-right: var(--bf-spacer-2);
-        border: 1px solid var(--bf-color-stroke-primary);
-        border-radius: 50%;
-        color: var(--bf-color-neutral-primary) ;
-        background-color: var(--bf-color-bg-ground);
-
-        &:checked {
-            background-color: var(--bf-color-bg-action-primary);
-            &:before {
-                content: "";
-                position: absolute;
-                display: block;
-                top: calc(50% - .25rem);
-                left: calc(50% - .25rem);
-                width: .5rem;
-                height: .5rem;
-                border-radius: 50%;
-                background-color: var(--bf-color-primary-irreversible);
-            }
-        }
+        cursor: pointer;
     }
     &--invalid {
         color: var(--bf-color-feedback-negative);
+    }
+    &--disabled {
+        color: rgba(var(--bf-color-neutral-secondary-rgb), .35);
+    }
+}
 
-        input {
-            border-color: var(--bf-color-feedback-negative);
-            background-color: var(--bf-color-bg-ground);
+/* *****************************************************************************
+*  bf-radio (class of the radio HTML input tag)
+*  to display a Bifrost custom radio while not using the Input Radio component
+* ***************************************************************************** */
 
-            &:checked {
-                background-color: var(--bf-color-feedback-negative);
+.bf-radio {
+    appearance: none;
+    position: relative;
+    align-self: flex-start;
+    min-width: 1rem;
+    width: 1rem;
+    height: 1rem;
+    margin-top: .1rem;
+    margin-right: var(--bf-spacer-2);
+    border: 1px solid var(--bf-color-stroke-primary);
+    border-radius: 50%;
+    color: var(--bf-color-neutral-primary) ;
+    background-color: var(--bf-color-bg-ground);
 
-                &:before {
-                    background-color: var(--bf-color-bg-ground);
-                }
+    &:checked {
+        background-color: var(--bf-color-bg-action-primary);
+        &:before {
+            content: "";
+            position: absolute;
+            display: block;
+            top: calc(50% - .25rem);
+            left: calc(50% - .25rem);
+            width: .5rem;
+            height: .5rem;
+            border-radius: 50%;
+            background-color: var(--bf-color-primary-irreversible);
+        }
+    }
+    &--invalid:not(:disabled){
+        border-color: var(--bf-color-feedback-negative);
+        background-color: var(--bf-color-bg-ground);
+
+        &:checked {
+            background-color: var(--bf-color-feedback-negative);
+
+            &:before {
+                background-color: var(--bf-color-bg-ground);
             }
         }
     }
-    &--disabled {
-        color: rgba(var(--bf-color-neutral-secondary-rgb),.35);
+    &:disabled {
+        border-color: var(--bf-color-stroke-secondary);
 
-        input {
-            border-color: var(--bf-color-stroke-secondary);
+        &:checked {
+            background-color: var(--bf-color-bg-action-disabled);
 
-            &:checked {
-                background-color: var(--bf-color-bg-action-disabled);
-
-                &:before {
-                    background-color: rgba(var(--bf-color-neutral-secondary-rgb), .35);
-                }
+            &:before {
+                background-color: rgba(var(--bf-color-neutral-secondary-rgb), .35);
             }
         }
     }
