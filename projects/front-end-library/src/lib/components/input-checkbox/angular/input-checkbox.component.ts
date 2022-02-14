@@ -14,8 +14,8 @@ export class InputCheckboxComponent implements OnInit {
     @Input() value              : string;
     @Input() isChecked          : boolean;
     @Input() isDisabled         : boolean;
-    @Input() isRequired         : boolean;
     @Input() isInvalid          : boolean;
+    @Input() isRequired         : boolean;
     @Input() extraAttribute     : string;
     @Input() label              : string;
     @Input() labelClass         : string;
