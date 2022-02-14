@@ -14,7 +14,7 @@ export class InputTextComponent implements OnInit {
     constructor() {}
 
     // Input-text Properties
-    /** Expected values : text(default)|tel|email|password|search */
+    /** Expected values : text(default)|password|search|tel|email */
     @Input() inputType      : 'text'|'password'|'search'|'tel'|'email';
     @Input() id             : string;
     @Input() name           : string;

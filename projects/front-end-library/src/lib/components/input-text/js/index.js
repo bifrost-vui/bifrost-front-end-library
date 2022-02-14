@@ -1,4 +1,3 @@
-
 import $ from 'jquery';
 
 /**
@@ -18,12 +17,13 @@ $(function () {
             e.preventDefault();
             isStateShowPassword = !isStateShowPassword;
 
-            (isStateShowPassword)
+            isStateShowPassword
                 ? $inputPassword.attr('type', 'text')
                 : $inputPassword.attr('type', 'password');
 
-            (isStateShowPassword) ? $this.addClass('state-show-password') :  $this.removeClass('state-show-password');
+            isStateShowPassword
+                ? $this.addClass('state-show-password')
+                : $this.removeClass('state-show-password');
         });
-
     });
 });

@@ -1,15 +1,13 @@
-
 {% if inputType is same as ('search') %}
   {% set type = 'text'%}
 {% else %}
   {% set type = inputType %}
 {% endif %}
 
-
 <div class='form-group bf-input-text  {{ inputType == 'password' ? 'bf-input-text--password'  }} {{ inputType == 'search' ? 'bf-input-text--search' }} {{ isInvalid ? 'bf-input-text--isInvalid' }} {{ isDisabled ? 'bf-input-text--disabled'}}{{ class|default('') }}'>
 
   {% if (description is defined and description) or (label is defined and label) %}
-    <div class=bf-input-text__head>
+    <div class='bf-input-text__head'>
       {% if label is defined and label %}
         <label
           for='{{ id }}'
@@ -18,13 +16,13 @@
         </label>
 
         {% if tooltip.text is defined and tooltip.text %}
-        <button type='button' class="form-group__input-icon-container" data-toggle='tooltip' data-html='true' data-trigger='hover' data-placement='{{tooltip.position|default('top')}}' title='{{tooltip.text|raw}}'>
-          {% include '@bf-components/icon/twig/index.twig' with {
-            size  : 'xsmall',
-            class : 'ml-0 mb-1',
-            name  : 'question-circle-outline'
-          } %}
-        </button>
+          <button type='button' class='form-group__input-icon-container' data-toggle='tooltip' data-html='true' data-trigger='hover' data-placement='{{tooltip.position|default('top')}}' title='{{tooltip.text|raw}}'>
+            {% include '@bf-components/icon/twig/index.twig' with {
+              size  : 'xsmall',
+              class : 'ml-0 mb-1',
+              name  : 'question-circle-outline'
+            } only %}
+          </button>
         {% endif %}
       {% endif %}
 
@@ -34,7 +32,7 @@
     </div>
   {% endif %}
 
-  <div class="bf-input-text__input {{ inputType == 'password' ? 'js-form-password form-password' }} {{ inputType == 'search' ? 'js-input-search' }}">
+  <div class='bf-input-text__input {{ inputType == 'password' ? 'js-form-password form-password' }} {{ inputType == 'search' ? 'js-input-search' }}'>
     <input
       id='{{ id|default('') }}'
       name='{{ name|default('') }}'
@@ -48,7 +46,7 @@
         aria-label='{{ ariaLabel|default('') }}'
       {% endif %}
       {% if description is defined and description %}
-        aria-aria-describedby='{{ description }}'
+        aria-describedby='{{ description }}'
       {% endif %}
       {% if title is defined and title %}
         title='{{ title }}'
@@ -76,7 +74,8 @@
     >
     {# Search Button #}
     {% if inputType is  same as ('search') %}
-      <button class="form-group__input-icon-container {{ inputType == 'search' ? 'form-group__input--search__btn' }}  {{ isReadonly ? 'd-none' }}" {{ isDisabled ? 'disabled aria-disabled="true"'}} type='submit'
+      <button class='form-group__input-icon-container {{ inputType == 'search' ? 'form-group__input--search__btn' }}  {{ isReadonly ? 'd-none' }}'
+        {{ isDisabled ? 'disabled aria-disabled="true"'}} type='submit'
       >
         {% include '@bf-components/icon/twig/index.twig' with {
           size  : 'small',
@@ -90,7 +89,8 @@
     {% if type is defined and type is same as ('password') %}
       <button
         type='button'
-        class="form-group__input-icon-container {{ inputType == 'password' ? 'js-form-password__btn' }} {{ isReadonly ? 'd-none' }}" {{ isDisabled ? 'disabled aria-disabled="true"'}}
+        class='form-group__input-icon-container {{ inputType == 'password' ? 'js-form-password__btn' }} {{ isReadonly ? 'd-none' }}'
+        {{ isDisabled ? 'disabled aria-disabled="true"'}}
       >
         {% include '@bf-components/icon/twig/index.twig' with {
           size  : 'small',
@@ -106,15 +106,15 @@
       </button>
 
       {% if (validationList is defined and validationList is not empty) or (validationTitle is defined and validationTitle) %}
-        <div class="form-password__infos">
+        <div class='form-password__infos'>
           {% if validationTitle is defined and validationTitle %}
-            <p class="font-weight-medium mb-1">{{ validationTitle }}</p>
+            <p class='font-weight-medium mb-1'>{{ validationTitle }}</p>
           {% endif %}
 
           {% if validationList is defined and validationList %}
-            <ul class="list-validation">
+            <ul class='list-validation'>
               {% for item in validationList %}
-                <li class="{{ item.class|default('') }}">{{ item.label|default('') }}</li>
+                <li class='{{ item.class|default('') }}'>{{ item.label|default('') }}</li>
               {% endfor %}
             </ul>
           {% endif %}
@@ -124,7 +124,7 @@
   </div>
 
   {% if (errorMessage is defined and errorMessage and isInvalid) or  (info is defined and info is not empty) %}
-    <div class="bf-input-text__footer">
+    <div class='bf-input-text__footer'>
       {% if errorMessage is defined and errorMessage and isInvalid %}
         <p class='invalid-feedback'>
           {{ errorMessage|default('') }}
