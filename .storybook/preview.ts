@@ -36,6 +36,7 @@ addParameters({
     controls: {
         expanded: true,
         hideNoControlsWarning: true,
+        sort: 'alpha',
         matchers: {
             color: /(background|color)$/i,
             date: /Date$/,

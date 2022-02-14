@@ -1,0 +1,55 @@
+import { Canvas, Meta }    from '@storybook/addon-docs';
+import colors               from './colors';
+
+
+<Meta
+    title="Styles/Colors"
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+/>
+
+# Colors
+
+> Bifrost defines 4 groups of colors: **Content, Background, Feedback, Stroke**.
+
+<Canvas withSource='none'>
+    <div class='d-flex flex-column gap-5'>
+        {colors.map(category =>
+            <section>
+                <header class='d-flex align-items-center gap-4 w-100'>
+                    <div class='w-65'>
+                        <h2>Colors: {category.name}</h2>
+                    </div>
+                    <div class='w-25'>
+                        <h5 class='m-0'>All Themes</h5>
+                        <p class='bf-text bf-color-neutral-secondary small m-0'>Default + Reversed</p>
+                    </div>
+                </header>
+                <ul class='list-unstyled'>
+                    {category.list.map(c =>
+                        <li key={c.name} class='d-flex align-items-center gap-4 w-100 border-top'>
+                            <div class='w-65 d-flex align-items-center gap-4'>
+                                <h4 class='mb-0' style={{ width: '13rem' }}>
+                                    {c.label}
+                                </h4>
+                                <div class='d-flex flex-column'>
+                                    <code>--bf-color-{c.name}</code>
+                                    {c.hasUtilityClass !== false &&
+                                        <code>.bf-color-{c.name}</code>
+                                    }
+                                </div>
+                            </div>
+                            <div class='w-25 d-flex align-items-center'>
+                                <div class='pr-7 pb-7' style={{ backgroundColor: `var(--bf-color-${c.name})` }}></div>
+                                <div class='pr-7 pb-7 reversed' style={{ backgroundColor: `var(--bf-color-${c.name})` }}></div>
+                            </div>
+                        </li>
+                    )}
+                </ul>
+            </section>
+        )}
+    </div>
+</Canvas>

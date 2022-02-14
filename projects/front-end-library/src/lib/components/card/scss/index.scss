@@ -51,9 +51,8 @@
             }
         }
     }
-    &[disabled] {
+    &.disabled {
         cursor: default;
-        // pointer-events: none;
         color: var(--bf-color-neutral-tertiary);
         border-color: var(--bf-color-stroke-secondary);
         .bf-card__visual img {
@@ -61,9 +60,6 @@
         }
         .bf-card__details-colors {
             opacity: .4;
-        }
-        .bf-card__header .bf-card__badge {
-            display: none;
         }
         .bf-color-neutral-secondary,
         .bf-icon {
@@ -144,8 +140,17 @@
         right: 0;
         top: 0;
     }
-    .bf-card__content-badge{
-        width: min-content;
+    .bf-card__content-badge {
+        &--promotion .bf-badge {
+            .bf-badge__inner {
+                border: 1px solid;
+                @extend .bf-border-color-secondary;
+            }
+
+            & + .bf-badge {
+                margin-top: var(--bf-spacer-2);
+            }
+        }
     }
     &__details-colors {
         display: flex;
