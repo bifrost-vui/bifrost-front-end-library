@@ -12,9 +12,9 @@
     {% if name is defined and name %} name='{{ name }}' {% endif %}
     id='{{ id }}'
     {% if value is defined and value %} value='{{ value }}' {% endif %}
-    {{ isChecked ? 'checked' }}
-    {{ isDisabled ? 'disabled' }}
-    {{ isRequired ? 'required' }}
+    {{ (isChecked is defined and isChecked) ? 'checked' }}
+    {{ (isDisabled is defined and isDisabled) ? 'disabled' }}
+    {{ (isRequired is defined and isDisabled) ? 'required' }}
     {% if ariaLabel is defined and ariaLabel %}
       aria-label='{{ ariaLabel }}'
     {% endif %}
