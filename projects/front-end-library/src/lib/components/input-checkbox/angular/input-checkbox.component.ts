@@ -9,8 +9,8 @@ export class InputCheckboxComponent implements OnInit {
     constructor() {}
 
     /** @required */
-    @Input() inputId            : string;
-    @Input() inputName          : string;
+    @Input() id                 : string;
+    @Input() name               : string;
     @Input() value              : string;
     @Input() isChecked          : boolean;
     @Input() isDisabled         : boolean;

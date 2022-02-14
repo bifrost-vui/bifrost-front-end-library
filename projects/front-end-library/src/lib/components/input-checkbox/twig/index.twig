@@ -1,7 +1,16 @@
+{# Retrocompatibility with Ui-Kit legacy #}
+{% if inputId is defined and inputId %}
+  {% set id= inputId %}
+{% endif %}
+
+{% if inputName is defined and inputName %}
+  {% set name= inputName %}
+{% endif %}
+
 <div class='bf-input-checkbox  {{ class|default('') }} {{ isInvalid ? 'bf-input-checkbox--invalid' }}'>
-  <input type="checkbox" class='bf-checkbox {{ isInvalid ? 'bf-checkbox--invalid' }}'
-    {% if inputName is defined and inputName %} name='{{ inputName }}' {% endif %}
-    id='{{ inputId }}'
+  <input type='checkbox' class='bf-checkbox {{ isInvalid ? 'bf-checkbox--invalid' }}'
+    {% if name is defined and name %} name='{{ name }}' {% endif %}
+    id='{{ id }}'
     {% if value is defined and value %} value='{{ value }}' {% endif %}
     {{ isChecked ? 'checked' }}
     {{ isDisabled ? 'disabled' }}
@@ -12,7 +21,7 @@
     {{ extraAttribute|default(NULL) }}
   >
   {% if label is defined and label %}
-    <label for="{{ id }}" class='bf-text-display-sub-medium {{ labelClass|default('') }}' {{ labelExtraAttribute|default(NULL) }}>
+    <label for='{{ id }}' class='bf-text-display-sub-medium {{ labelClass|default('') }}' {{ labelExtraAttribute|default(NULL) }}>
       {{ label|raw }}
     </label>
   {% endif %}
