@@ -73,8 +73,8 @@
       class='form-control {{ type == 'password' ? 'js-form-password__input' }}'
     >
     {# Search Button #}
-    {% if inputType is  same as ('search') %}
-      <button class='form-group__input-icon-container {{ inputType == 'search' ? 'form-group__input--search__btn' }}  {{ isReadonly ? 'd-none' }}'
+    {% if inputType is same as ('search') %}
+      <button class='form-group__input-icon-container {{ inputType == 'search' ? 'form-group__input--search__btn' }} {{ isReadonly ? 'd-none' }}'
         {{ isDisabled ? 'disabled aria-disabled="true"'}} type='submit'
       >
         {% include '@bf-components/icon/twig/index.twig' with {
@@ -123,7 +123,7 @@
     {% endif %}
   </div>
 
-  {% if (errorMessage is defined and errorMessage and isInvalid) or  (info is defined and info is not empty) %}
+  {% if (errorMessage is defined and errorMessage and isInvalid) or (info is defined and info is not empty) %}
     <div class='bf-input-text__footer'>
       {% if errorMessage is defined and errorMessage and isInvalid %}
         <p class='invalid-feedback'>
