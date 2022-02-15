@@ -1,11 +1,7 @@
 {# Retrocompatibility with Ui-Kit legacy #}
-{% if inputId is defined and inputId %}
-  {% set id = inputId %}
-{% endif %}
+{% set id = id|default(inputId) %}
 
-{% if inputName is defined and inputName %}
-  {% set name = inputName %}
-{% endif %}
+{% set name = name|default(inputName) %}
 
 <div class='bf-input-checkbox {{ class|default('') }} {{ (isInvalid is defined and isInvalid) ? 'bf-input-checkbox--invalid' }} {{ (isDisabled is defined and isDisabled) ? 'bf-input-checkbox--disabled' }}'>
   <input type='checkbox' class='bf-checkbox {{ (isInvalid is defined and isInvalid) ? 'bf-checkbox--invalid' }}'

@@ -19,7 +19,15 @@ import { InputCheckboxComponent }               from '../angular/input-checkbox.
         },
     }}
     argTypes={{
-        id: {type: {required : true}}
+        id: {type: {required : true}},
+        inputName: {
+            control: { type: 'none' },
+            description: 'Deprecated. Use `name` instead'
+        },
+        inputId: {
+            control: { type: 'none' },
+            description: 'Deprecated. Use `id` instead'
+        }
     }}
 />
 
@@ -38,7 +46,6 @@ export const Drupal = (args) => ({
 >
     <Story
         name='Drupal'
-        height = '300px'
         args={{
             elementPath : 'components/input-checkbox/_doc/template.drupal',
             label       : 'label',
