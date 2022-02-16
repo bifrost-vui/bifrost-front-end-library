@@ -19,8 +19,20 @@ import { SwitchComponent }                      from '../angular/switch.componen
         },
     }}
     argTypes={{
-        id :{ type: { required: true }},
-        size: { control: {type: 'select', options: ['sm', 'lg']}}
+        id: {type: {required: true}},
+        size: {control: {type: 'select', options: ['sm', 'lg']}},
+        inputSize: {
+            control: {type: 'select', options: ['sm', 'lg']},
+            description: 'UI-Kit legacy - Deprecated. Use `size` instead'
+        },
+        inputName: {
+            control: { type: 'text' },
+            description: 'UI-Kit legacy - Deprecated. Use `name` instead'
+        },
+        inputId: {
+            control: { type: 'text' },
+            description: 'UI-Kit legacy - Deprecated. Use `id` instead'
+        },
     }}
 />
 
@@ -44,11 +56,11 @@ export const Drupal = (args) => ({
         style={{ height: '400px'}}>
     <Story
         name='Drupal - Switch'
-        height = '300px'
         args={{
             elementPath  : 'components/switch/_doc/template.drupal',
-            inputId      : 'id',
-            ariaLabel    : 'switch',
+            id           : '',
+            inputId      : 'inputId',
+            ariaLabel    : 'aria label'
         }}
     >
         {Drupal.bind({})}
@@ -59,11 +71,11 @@ export const Drupal = (args) => ({
         style={{ height: '400px'}}>
     <Story
         name='Drupal - Switch with labels'
-        height = '300px'
         args={{
             elementPath  : 'components/switch/_doc/template.drupal',
-            inputId      : 'id',
-            ariaLabel    : 'switch',
+            id           : '',
+            inputId      : 'inputId',
+            ariaLabel    : 'aria label',
             labelOn      : 'On',
             labelOff     : 'Off'
         }}
@@ -77,14 +89,14 @@ export const Drupal = (args) => ({
 
 ```jsx
 {% include '@bf-components/switch/twig/index.twig' with {
-    inputId      : 'id',
-    ariaLabel    : 'aria-label',
+    id          : 'id',
+    ariaLabel   : 'aria-label',
 } only %}
 
 // if you need to display labels inside the input toggle
 
 {% include '@bf-components/switch/twig/index.twig' with {
-    inputId      : 'id',
+    id           : 'id',
     ariaLabel    : 'aria label',
     labelOn      : 'On',
     labelOff     : 'Off',
@@ -95,3 +107,5 @@ export const Drupal = (args) => ({
 ## Design Guidelines
 
 <iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D13846%253A114546' frameBorder='0' allowFullScreen></iframe>
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D17126%253A233251' frameBorder='0' allowFullScreen></iframe>

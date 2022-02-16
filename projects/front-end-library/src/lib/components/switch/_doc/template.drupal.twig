@@ -1,13 +1,9 @@
-{% set ariaLabels     = ariaLabels|json_parse %}
 {% set inputSize      = inputSize|json_parse %}
 {% set isChecked      = isChecked|json_parse %}
 {% set isDisabled     = isDisabled|json_parse %}
 {% set isInvalid      = isInvalid|json_parse %}
 {% set isRequired     = isRequired|json_parse %}
-{% set extraAttribute = extraAttribute|json_parse %}
-{% set labelOn        = labelOn|json_parse %}
-{% set labelOff       = labelOff|json_parse %}
-
+{% set hasNolabel     = hasNolabel|json_parse %}
 
 {% set backgrounds = ['bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight'] %}
 <table class="mt-4">
@@ -20,13 +16,13 @@
     <tr class='{{ background }}'>
       <td>
         {% include '@bf-components/switch/twig/index.twig' with {
-          inputId : id ~ '1-' ~ loop.index
+          id : id|default(inputId) ~ '1-' ~ loop.index
         } %}
 
       </td>
       <td>
         {% include '@bf-components/switch/twig/index.twig' with {
-          inputId    : id ~ '2-' ~ loop.index,
+          id : id|default(inputId) ~ '2-' ~ loop.index,
           isChecked  : isChecked|default(true)
         } %}
       </td>

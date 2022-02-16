@@ -10,18 +10,19 @@ export class SwitchComponent implements OnInit {
     constructor() {}
 
 
-    @Input() inputId        : string;
-    @Input() inputName      : string;
-    /** Make sure to define aria-label (labelOn or labelOff are not labels) */
+    @Input() id             : string;
+    @Input() name           : string;
+    /** Make sure to define aria-label (`labelOn` and `labelOff` are not HTML labels) */
     @Input() ariaLabel      : string;
     @Input() isDisabled     : boolean;
     @Input() isChecked      : boolean;
     @Input() isInvalid      : boolean;
-    /** */
+    /** (UI-Kit legacy) Prevents labels display when `labelOn` and `labelOff` are defined <br> leaving the labels undefined has the same result */
+    @Input() hasNolabel     : boolean;
     @Input() labelOn        : string;
     @Input() labelOff       : string;
-    /** sets the font-size on the text inside the switch */
-    @Input() inputSize      : 'sm'|'lg';
+    /** Sets the font-size of `labelOn` and `labelOff` */
+    @Input() size           : 'sm'|'lg';
     @Input() extraAttribute : string;
     @Input() class          : string;
 
