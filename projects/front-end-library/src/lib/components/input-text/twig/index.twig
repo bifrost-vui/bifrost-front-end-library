@@ -1,8 +1,24 @@
+{# UI-kit Legacy #}
+
+{# TODO provide legacy fallback for :
+  inputId
+  inputValue,
+  inputPlaceholder
+  inputName
+  mtValue (margin on top of the input),
+  inputClass,
+  invalidMsg
+  labelTooltipTxt
+  subInfos
+#}
+
 {% if inputType is same as ('search') %}
   {% set type = 'text'%}
 {% else %}
   {% set type = inputType %}
 {% endif %}
+
+
 
 <div class='form-group bf-input-text  {{ inputType == 'password' ? 'bf-input-text--password'  }} {{ inputType == 'search' ? 'bf-input-text--search' }} {{ isInvalid ? 'bf-input-text--isInvalid' }} {{ isDisabled ? 'bf-input-text--disabled'}}{{ class|default('') }}'>
 
@@ -14,6 +30,8 @@
           class='{{ isRequired ? 'required' }}{{ label.class|default('') }}'>
           {{ label.text|default('') }}
         </label>
+
+        {# TODO : add custom tooltip block when the tooltip component is available #}
 
         {% if tooltip.text is defined and tooltip.text %}
           <button type='button' class='form-group__input-icon-container' data-toggle='tooltip' data-html='true' data-trigger='hover' data-placement='{{tooltip.position|default('top')}}' title='{{tooltip.text|raw}}'>
@@ -72,7 +90,9 @@
       {{ extraAttribute|default(NULL) }}
       class='form-control {{ type == 'password' ? 'js-form-password__input' }}'
     >
-    {# Search Button #}
+    {# ***************************************************
+       Begin Search Button & suggestion list
+    *************************************************** #}
     {% if inputType is same as ('search') %}
       <button class='form-group__input-icon-container {{ inputType == 'search' ? 'form-group__input--search__btn' }} {{ isReadonly ? 'd-none' }}'
         {{ isDisabled ? 'disabled aria-disabled="true"'}} type='submit'
@@ -84,8 +104,12 @@
         } %}
       </button>
     {% endif %}
+    {# TODO : include selectionList #}
+    {# End Search Button #}
 
-    {# Password show/hide button & validation list #}
+    {# ***************************************************
+       Begin Password show/hide button & validation list
+    *************************************************** #}
     {% if type is defined and type is same as ('password') %}
       <button
         type='button'
@@ -121,6 +145,7 @@
         </div>
       {% endif %}
     {% endif %}
+    {# End Password show/hide button & validation list #}
   </div>
 
   {% if (errorMessage is defined and errorMessage and isInvalid) or (info is defined and info is not empty) %}

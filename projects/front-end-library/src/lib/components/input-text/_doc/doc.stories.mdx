@@ -28,7 +28,10 @@ import { InputTextComponent }           from '../angular/input-text.component';
         },
         errorMessage: {
             type: {required: true}
-        }
+        },
+        inputVariant: {
+            table: { disable: true }
+        },
     }}
 />
 
@@ -69,6 +72,7 @@ export const commonProps = {
         name='Drupal - type text'
         args={{
             elementPath     : 'components/input-text/_doc/template.drupal',
+            inputVariant    : 'text',
             ...commonProps,
             label           : { text: 'label', class: '' },
             inputType       : 'text'
@@ -102,9 +106,9 @@ export const commonProps = {
         name='Drupal - type password'
         args={{
             elementPath     : 'components/input-text/_doc/template.drupal',
+            inputVariant    : 'password',
             ...commonProps,
             label           : { text: 'Password', class: '' },
-            inputType       : 'password',
             info            : {text: 'forgot your password?', url: 'http://www.example.com'},
             validationTitle : 'Make sure you have :',
             validationList  : [
@@ -123,7 +127,7 @@ export const commonProps = {
 
 
 ```jsx
-{% include '@bf-components/input-text/twig/index.twig' with {
+{% include '@bf-components/input-text/twig/password.twig' with {
     inputType       : 'password',
     id              : 'myId', // required argument
     label           : { text: 'Password', class: '' },
@@ -151,6 +155,7 @@ export const commonProps = {
         name='Drupal - type search'
         args={{
             elementPath     : 'components/input-text/_doc/template.drupal',
+            inputVariant    : 'search',
             inputType       : 'search',
             id              : 'searchInputId',
             ariaLabel       : 'search',
