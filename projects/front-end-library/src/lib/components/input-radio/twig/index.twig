@@ -1,15 +1,7 @@
 {# Retrocompatibility with Ui-Kit legacy #}
-{% if inputId is defined and inputId %}
-  {% set id = inputId %}
-{% endif %}
-
-{% if inputName is defined and inputName %}
-  {% set name = inputName %}
-{% endif %}
-
-{% if labelTxtClass is defined and labelTxtClass %}
-  {% set labelClass = labelTxtClass %}
-{% endif %}
+  {% set id = id|default(inputId) %}
+  {% set name = name|default(inputName) %}
+  {% set labelClass = labelClass|default(labelTxtClass) %}
 
 <div class='bf-input-radio {{ isInvalid ? 'bf-input-radio--invalid' }} {{ isDisabled ? 'bf-input-radio--disabled' }} {{ class }}'>
   <input

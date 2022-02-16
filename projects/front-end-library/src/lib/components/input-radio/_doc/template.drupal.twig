@@ -7,9 +7,9 @@
 
 <div class='mt-6 px-2 d-flex flex-row flex-wrap gap-1'>
   {% for background in backgrounds %}
-    <div class='p-3 {{ background }}' style='flex:1'>
+    <div class='p-3 flex-grow-1 {{ background }}'>
       {% include '@bf-components/input-radio/twig/index.twig' with {
-        id : id ~ loop.index,
+        id : id|default(inputId) ~ loop.index,
       } %}
     </div>
   {% endfor %}

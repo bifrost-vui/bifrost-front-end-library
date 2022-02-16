@@ -21,6 +21,18 @@ import { InputRadioComponent }                  from '../angular/input-radio.com
     argTypes={{
         id: {
             type: { required : true }
+        },
+        inputName: {
+            control: { type: 'text' },
+            description: 'UI-Kit legacy - Deprecated. Use `name` instead'
+        },
+        inputId: {
+            control: { type: 'text' },
+            description: 'UI-Kit legacy - Deprecated. Use `id` instead'
+        },
+        labelTxtClass : {
+            control: { type: 'text' },
+            description: 'UI-Kit legacy - Deprecated. Use `labelClass` instead'
         }
     }}
 />
@@ -43,13 +55,14 @@ export const Drupal = (args) => ({
 
 <Canvas
     withSource='none'
-    style = {{ height: '400px' }}
+    style={{ height: '400px' }}
 >
     <Story
         name='Drupal'
         args={{
             elementPath : 'components/input-radio/_doc/template.drupal',
-            id          : 'id',
+            id          : '',
+            inputId     : 'inputId',
             name        : 'name',
             label       : 'radio button label'
         }}
