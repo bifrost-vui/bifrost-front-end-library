@@ -143,7 +143,7 @@ function appendCSS ({ name, NameReadable, type, typePlural, finalPath }) {
 
     if (type !== 'pipe') {
         // Import component style into index.scss.
-        const strinImportStyle = `@import '../${typePlural}/${name}/scss/index';`;
+        const strinImportStyle = `\r@import '../${typePlural}/${name}/scss/index';`;
         shell.exec( 'echo "' + strinImportStyle + '" >> projects/front-end-library/src/lib/scss/index.scss' );
     }
 
