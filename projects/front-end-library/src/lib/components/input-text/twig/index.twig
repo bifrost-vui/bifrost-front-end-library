@@ -1,15 +1,12 @@
-{# UI-kit Legacy #}
-
-{# TODO provide legacy fallback for :
-  inputId
-  inputValue,
-  inputPlaceholder
-  inputName
-  mtValue (margin on top of the input),
-  inputClass,
-  invalidMsg
-  labelTooltipTxt
-  subInfos
+{# TODO document migration :
+  inputId -> id
+  inputValue -> value
+  inputPlaceholder -> placeholder
+  inputName -> name
+  mtValue -> depricated , add the bootstrap `mt-[1-6]` class to the `inputClass` to set the top margin on the input
+  invalidMsg ->
+  labelTooltipTxt -> tooltip
+  subInfos -> info
 #}
 
 {% if inputType is same as ('search') %}
@@ -18,8 +15,6 @@
   {% set type = inputType %}
 {% endif %}
 
-
-
 <div class='form-group bf-input-text  {{ inputType == 'password' ? 'bf-input-text--password'  }} {{ inputType == 'search' ? 'bf-input-text--search' }} {{ isInvalid ? 'bf-input-text--isInvalid' }} {{ isDisabled ? 'bf-input-text--disabled'}}{{ class|default('') }}'>
 
   {% if (description is defined and description) or (label is defined and label) %}
@@ -27,14 +22,32 @@
       {% if label is defined and label %}
         <label
           for='{{ id }}'
-          class='{{ isRequired ? 'required' }}{{ label.class|default('') }}'>
-          {{ label.text|default('') }}
+          class='{{ isRequired ? 'required' }} {% if label.class is defined and label.class %}{{ label.class|default('') }} {% endif %}'
+        >
+          {% if label is not iterable %}
+            {{ label }}
+          {% else %}
+            {{ label.text|default('') }}
+          {% endif %}
         </label>
 
         {# TODO : add custom tooltip block when the tooltip component is available #}
 
-        {% if tooltip.text is defined and tooltip.text %}
-          <button type='button' class='form-group__input-icon-container' data-toggle='tooltip' data-html='true' data-trigger='hover' data-placement='{{tooltip.position|default('top')}}' title='{{tooltip.text|raw}}'>
+      {% if tooltip is defined and tooltip %}
+        {# allow tooltip to be a string #}
+        {% if tooltip is not iterable %}
+          {% set tooltipText = tooltip %}
+        {% else %}
+          {% set tooltipText = tooltip.text %}
+        {% endif %}
+          <button type='button'
+                  class='form-group__input-icon-container'
+                  data-toggle='tooltip'
+                  data-html='true'
+                  data-trigger='hover'
+                  data-placement='{% if tooltip.position is defined and tooltip.position %}{{tooltip.position|default('top')}}{% else %}top{% endif %}'
+                  title='{{tooltipText|raw}}'
+          >
             {% include '@bf-components/icon/twig/index.twig' with {
               size  : 'xsmall',
               class : 'ml-0 mb-1',
@@ -58,9 +71,7 @@
       {% if placeholder is defined and placeholder %}
         placeholder='{{ placeholder }}'
       {% endif %}
-      {% if label.text is defined and label.text %}
-        aria-label='{{ label.text }}'
-      {% else %}
+      {% if ariaLabel is defined and ariaLabel %}
         aria-label='{{ ariaLabel|default('') }}'
       {% endif %}
       {% if description is defined and description %}
@@ -88,7 +99,7 @@
       {{ isReadonly ? 'readonly' }}
       value='{{ value|default('') }}'
       {{ extraAttribute|default(NULL) }}
-      class='form-control {{ type == 'password' ? 'js-form-password__input' }}'
+      class='form-control {{ type == 'password' ? 'js-form-password__input' }} {{ (inputClass is defined and inputClass)? class|default('') }}'
     >
     {# ***************************************************
        Begin Search Button & suggestion list
@@ -128,7 +139,7 @@
           name  : 'eye'
         } %}
       </button>
-
+      {# TODO - make validation list consume a list of status component #}
       {% if (validationList is defined and validationList is not empty) or (validationTitle is defined and validationTitle) %}
         <div class='form-password__infos'>
           {% if validationTitle is defined and validationTitle %}

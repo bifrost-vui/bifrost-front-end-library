@@ -1,9 +1,6 @@
 {% set label          = label|json_parse %}
-{% set description    = description|json_parse %}
 {% set tooltip        = tooltip|json_parse %}
 {% set inputType      = inputType|json_parse %}
-{% set id             = id|json_parse %}
-{% set name             = name|json_parse %}
 {% set isDisabled     = isDisabled|json_parse %}
 {% set isReadonly     = isReadonly|json_parse %}
 {% set isInvalid      = isInvalid|json_parse %}
@@ -11,7 +8,6 @@
 {% set maxlength      = maxlength|json_parse %}
 {% set minlength      = minlength|json_parse %}
 {% set autocomplete   = autocomplete|json_parse %}
-{% set extraAttribute = extraAttribute|json_parse %}
 {% set info           = info|json_parse %}
 {% set validationList = validationList|json_parse %}
 
@@ -20,7 +16,7 @@
 <div class='mt-6 px-2 d-flex flex-row flex-wrap gap-1 flex-grow-1'>
   {% for background in backgrounds %}
     <div class='p-3 d-flex flex-column flex-grow-1 {{ background }}'>
-      {% include '@bf-components/input-text/twig/' ~ inputVariant|default('index') ~ '.twig' %}
+      {% include '@bf-components/input-text/twig/' ~ inputType|default('index') ~ '.twig' %}
     </div>
   {% endfor %}
 </div>

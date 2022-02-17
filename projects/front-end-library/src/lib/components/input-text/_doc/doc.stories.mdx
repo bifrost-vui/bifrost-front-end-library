@@ -5,7 +5,7 @@ import { TwigContainerComponent }       from '../../../../utils/twig-container/t
 import { InputTextComponent }           from '../angular/input-text.component';
 
 <Meta
-    title='Components/Input Text'
+    title='Components/Inputs with Text'
     component={InputTextComponent}
     decorators={[
         moduleMetadata({ declarations: [InputTextComponent, TwigContainerComponent]}),
@@ -21,7 +21,8 @@ import { InputTextComponent }           from '../angular/input-text.component';
     argTypes={{
         inputType: {
             control: {type: 'select'},
-            type: { defaultValue : 'text'}
+            type: { defaultValue : 'text'},
+            table: { disable: true }
         },
         id: {
             type: {required: true}
@@ -29,22 +30,13 @@ import { InputTextComponent }           from '../angular/input-text.component';
         errorMessage: {
             type: {required: true}
         },
-        inputVariant: {
-            table: { disable: true }
-        },
     }}
 />
-
-export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
-});
 
 export const commonProps = {
     description     : 'A short description',
     id              : 'myId',
-    placeholder     : 'Input placeholder',
-    ariaLabel       : 'Arialabel is used when no label is defined',
+    ariaLabel       : 'Aria-label',
     tooltip         : { text: `<em>HTML</em> tooltip <strong>text</strong>`, position: 'top' },
     errorMessage    : 'A short error message',
     info            : {text: 'Additional information'}
@@ -52,48 +44,57 @@ export const commonProps = {
 
 # Input Text
 
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : {
+        elementPath     : 'components/input-text/_doc/template.drupal',
+        ...args
+    }
+});
+
 ## Component API
 
 **✅ Inputs are equivalent for Angular and Drupal.**
 
 <Props of={InputTextComponent} />
 
-
-
 ## Drupal
-
-
-### Text Input field
+```jsx
+// There are 5 variants behaving as text fields :
+{% include '@bf-components/input-text/twig/email.twig' with {...} %}
+{% include '@bf-components/input-text/twig/text.twig' with {...} %}
+{% include '@bf-components/input-text/twig/password.twig' with {...} %}
+{% include '@bf-components/input-text/twig/tel.twig' with {...} %}
+{% include '@bf-components/input-text/twig/search.twig' with {...} %}
+```
+### Email Input field
 
 <Canvas withSource='none'
         style = {{ height: '500px' }}
 >
     <Story
-        name='Drupal - type text'
+        name='Drupal - type email'
         args={{
-            elementPath     : 'components/input-text/_doc/template.drupal',
-            inputVariant    : 'text',
             ...commonProps,
-            label           : { text: 'label', class: '' },
-            inputType       : 'text'
+            inputType       : 'email',
+            label           : 'Email address',
+            tooltip         : 'tooltip text as string',
+            placeholder     : 'Email Address',
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-### Drupal implementation example
+#### Email -  Drupal implementation example
 
 ```jsx
-{% include '@bf-components/input-text/twig/index.twig' with {
-    inputType       : 'text', // available options : 'text'|'password'|'search'|'tel'|'email'
+{% include '@bf-components/input-text/twig/email.twig' with {
     id              : 'myId', // required argument
+    label           : { text: 'email address', class: '' },
+    placeholder     : 'placeholder',
+    tooltip         : { text: 'tooltip text', position: 'top' },
     errorMessage    : 'A short error message', // required argument
-    label           : { text: 'Label'},
-    placeholder     : 'Input placeholder',
-    ariaLabel       : 'Arialabel is used when no label is defined',
-    tooltip         : { text: 'tooltiptext', position: 'top' },
-    info            : {text: 'Additional information'}
 } %}
 ```
 
@@ -105,11 +106,12 @@ export const commonProps = {
     <Story
         name='Drupal - type password'
         args={{
-            elementPath     : 'components/input-text/_doc/template.drupal',
-            inputVariant    : 'password',
             ...commonProps,
-            label           : { text: 'Password', class: '' },
-            info            : {text: 'forgot your password?', url: 'http://www.example.com'},
+            inputType       : 'password',
+            label           : 'Password',
+            tooltip         : 'tooltip text as string',
+            placeholder     : 'Password',
+            info            : { text: 'forgot your password?', url: 'http://www.example.com'},
             validationTitle : 'Make sure you have :',
             validationList  : [
                 { class:'', label:'1 lowercase letter' },
@@ -123,16 +125,14 @@ export const commonProps = {
     </Story>
 </Canvas>
 
-### Drupal implementation example
-
+#### Password - Drupal implementation example
 
 ```jsx
+// password creation
 {% include '@bf-components/input-text/twig/password.twig' with {
-    inputType       : 'password',
     id              : 'myId', // required argument
     label           : { text: 'Password', class: '' },
-    placeholder     : 'Input placeholder',
-    tooltip         : { text: 'tooltiptext', position: 'top' },
+    tooltip         : { text: 'tooltip text', position: 'top' },
     info            : {text: 'forgot your password?', url: 'http://www.example.com'},
     errorMessage    : 'A short error message', // required argument
     validationTitle : 'Make sure you have :',
@@ -142,9 +142,45 @@ export const commonProps = {
         { class:'is-invalid', label:'1 number' },
         { class:'is-invalid', label:'7 characters' }
     ]
-} %}
+} only %}
+// password
+{% include '@bf-components/input-text/twig/password.twig' with {
+    id              : 'myId', // required argument
+    label           : { text: 'Password', class: '' },
+    tooltip         : { text: 'tooltip text', position: 'top' },
+    info            : {text: 'forgot your password?', url: 'http://www.example.com'},
+    errorMessage    : 'A short error message', // required argument
+} only %}
 ```
 
+### Phone Input field
+
+<Canvas withSource='none'
+        style = {{ height: '500px' }}
+>
+    <Story
+        name='Drupal - type phone'
+        args={{
+            ...commonProps,
+            inputType       : 'tel',
+            label           : 'Phone Number',
+            tooltip         : 'tooltip text as string',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+#### Phone - Drupal implementation example
+
+```jsx
+{% include '@bf-components/input-text/twig/phone.twig' with {
+    id              : 'myId', // required argument
+    label           : { text: 'phone number', class: '' },
+    tooltip         : { text: 'tooltip text', position: 'top' },
+    errorMessage    : 'A short error message', // required argument
+} only %}
+```
 
 ### Search Input field
 
@@ -154,11 +190,9 @@ export const commonProps = {
     <Story
         name='Drupal - type search'
         args={{
-            elementPath     : 'components/input-text/_doc/template.drupal',
-            inputVariant    : 'search',
             inputType       : 'search',
             id              : 'searchInputId',
-            ariaLabel       : 'search',
+            ariaLabel       : 'aria-label',
             placeholder     : 'Search'
         }}
     >
@@ -166,27 +200,56 @@ export const commonProps = {
     </Story>
 </Canvas>
 
-### Drupal implementation example
+#### Search Drupal implementation example
 
 ```jsx
-{% include '@bf-components/input-text/twig/index.twig' with {
-    inputType       : 'search',
+{% include '@bf-components/input-text/twig/search.twig' with {
     id              : 'searchId', // required argument
-    placeholder     : 'search',
-    ariaLabel       : 'Search'
+    ariaLabel       : 'aria-label'
 
-} %}
+} only %}
 ```
+
+### Text Input field
+
+<Canvas withSource='none'
+        style = {{ height: '500px' }}
+>
+    <Story
+        name='Drupal - type text'
+        args={{
+            ...commonProps,
+            inputType       : 'text',
+            label           : { text: 'label', class: '' }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+#### Text - Drupal implementation example
+
+```jsx
+{% include '@bf-components/input-text/twig/text.twig' with {
+    id              : 'myId', // required argument
+    errorMessage    : 'A short error message', // required argument
+    label           : { text: 'Label'},
+    ariaLabel       : 'Aria-label',
+    tooltip         : { text: 'tooltiptext', position: 'top' },
+    info            : {text: 'Additional information'}
+} only %}
+```
+
 
 ## Design Guidelines
 
-### Text, Telephone(tel) or Email input types
+### Text, Phone or Email
 
 <iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D13846%253A114433' frameBorder='0' allowFullScreen></iframe>
 
-### Passord input type
+### Password
 
 <iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D13846%253A114479' frameBorder='0' allowFullScreen></iframe>
 
-### Search (text variant) input type
+### Search
 <iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D13846%253A114504' frameBorder='0' allowFullScreen></iframe>

@@ -37,12 +37,15 @@ export class InputTextComponent implements OnInit {
     @Input() isInvalid      : boolean;
     @Input() isRequired     : boolean;
     @Input() extraAttribute : string;
+    @Input() inputClass     : string;
 
     // Other elements components
-    /** expected : { text: string, class: string } */
-    @Input() label          : object;
-    /** Expected : { text: string, position: top|bottom|left|right }*/
-    @Input() tooltip        : object;
+    /** Object expected : { text: string, class: string }<br>
+     You can also pass the label text as a `string`*/
+    @Input() label          : any;
+    /** Object Expected : { text: string, position: top|bottom|left|right }<br>
+     You can also pass the tooltip text as a `string` */
+    @Input() tooltip        : any;
     @Input() description    : string;
     /** the message to display only when isInvalid is true*/
     @Input() errorMessage   : string;
