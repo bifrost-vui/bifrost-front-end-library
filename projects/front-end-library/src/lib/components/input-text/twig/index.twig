@@ -1,14 +1,3 @@
-{# TODO document migration :
-  inputId -> id
-  inputValue -> value
-  inputPlaceholder -> placeholder
-  inputName -> name
-  mtValue -> depricated , add the bootstrap `mt-[1-6]` class to the `inputClass` to set the top margin on the input
-  invalidMsg ->
-  labelTooltipTxt -> tooltip
-  subInfos -> info
-#}
-
 {% if inputType is same as ('search') %}
   {% set type = 'text'%}
 {% else %}
@@ -169,8 +158,14 @@
 
       {% if info is defined and info is not empty %}
        <p class='bf-input-text__info'>
+         {% if info is not iterable %}
+           {% set infoText = info %}
+         {% else %}
+           {% set infoText = info.text %}
+         {% endif %}
+
          {% if info.url is defined and info.url %}<a href='{{ info.url }}'>{% endif %}
-           {{ info.text }}
+           {{ infoText }}
          {% if info.url is defined and info.url %}</a>{% endif %}
        </p>
       {% endif %}

@@ -53,8 +53,9 @@ export class InputTextComponent implements OnInit {
     @Input() validationTitle: string;
     /** for Password input type only. Expected : { class: string, label: string } */
     @Input() validationList : object[];
-    /** expected : { text: string, url: string } */
-    @Input() info           : object;
+    /** expected : { text: string, url: string } <br>
+     You can also pass the info text as a `string` */
+    @Input() info           : any;
     @Input() class          : string;
 
     ngOnInit() {

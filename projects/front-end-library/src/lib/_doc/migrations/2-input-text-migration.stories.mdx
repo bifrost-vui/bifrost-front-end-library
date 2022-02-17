@@ -1,0 +1,81 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta
+    title='Migrations/Inputs with text'
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+/>
+
+# Input-text Migration to Bifrost
+Drupal only.
+
+<br/><br/>
+
+## New input-text Component API
+
+### Naming chnages  only
+Type | new name | old name | comment
+----------------- | ----------------- | ----------------- | -----------------
+string | inputId | id | -
+string | inputValue | value | -
+string | inputPlaceholder | placeholder | -
+string | inputName | name | -
+string | - | mtValue | depricated , add the bootstrap `mt-[1-6]` class to the `inputClass` to set the top margin on the input
+string | errorMessage | invalidMsg | -
+
+### naming and structural changes
+Type | new name | old name | comment
+----------------- | ----------------- | ----------------- | -----------------
+object | label | label | the text can be passed as a string or an object  { text: string, class: string }
+object | tooltip | labelTooltipTxt | the text can be passed as a string or an object { text: string, position: top,bottom,left or right }
+object | info| subInfos | the text can be passed as a string or an object { text: string, url: string }
+
+### Ui-Kit equivalents
+The new components aims to replace the following templates :
+
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-with-label--error
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-with-icon--tooltip
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-with-icon-and-label
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-with-label
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-phone
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-password
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-password-creation
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-search
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-search-global
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-readonly-with-label
+
+### drupal implementation :
+
+A generic template is available
+```{% include '@bf-components/input-text/twig/index.twig' with {...} %} ```
+
+But it's recommended to use the appropriate variant template depending on the type of data
+
+**email** : see [Component API](?path=/docs/components-inputs-with-text--drupal-input-email#email-input-field)
+```
+{% include '@bf-components/input-text/twig/email.twig' with {...} %}
+```
+
+**password** : see [Component API](?path=/docs/components-inputs-with-text--drupal-input-password#password-input-field)
+```
+{% include '@bf-components/input-text/twig/password.twig' with {...} %}
+```
+
+**phone** : see [Component API](?path=/docs/components-inputs-with-text--drupal-input-phone#phone-input-field)
+```
+{% include '@bf-components/input-text/twig/tel.twig' with {...} %}
+```
+
+**search** :see [Component API](?path=/docs/components-inputs-with-text--drupal-input-search#search-input-field)
+```
+{% include '@bf-components/input-text/twig/search.twig' with {...} %}
+```
+
+**text** : see [Component API](?path=/docs/components-inputs-with-text--drupal-input-text#text-input-field)
+```
+{% include '@bf-components/input-text/twig/text.twig' with {...} %}
+```
