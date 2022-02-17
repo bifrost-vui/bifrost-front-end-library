@@ -5,7 +5,7 @@ import { TwigContainerComponent }       from '../../../../utils/twig-container/t
 import { InputTextComponent }           from '../angular/input-text.component';
 
 <Meta
-    title='Components/Inputs with Text'
+    title='Components/Input with text'
     component={InputTextComponent}
     decorators={[
         moduleMetadata({ declarations: [InputTextComponent, TwigContainerComponent]}),
@@ -33,6 +33,13 @@ import { InputTextComponent }           from '../angular/input-text.component';
     }}
 />
 
+# Input Text
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args
+});
+
 export const commonProps = {
     description     : 'A short description',
     id              : 'myId',
@@ -42,15 +49,6 @@ export const commonProps = {
     info            : {text: 'Additional information'}
 };
 
-# Input Text
-
-export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : {
-        ...args
-    }
-});
-
 ## Component API
 
 **✅ Inputs are equivalent for Angular and Drupal.**
@@ -58,6 +56,7 @@ export const Drupal = (args) => ({
 <Props of={InputTextComponent} />
 
 ## Drupal
+
 ```jsx
 // There are 5 variants behaving as text fields :
 {% include '@bf-components/input-text/twig/email.twig' with {...} %}
@@ -72,9 +71,9 @@ export const Drupal = (args) => ({
         style={{ height: '600px' }}
 >
     <Story
-        name='Drupal - Input email'
+        name='Drupal - Email'
         args={{
-            elementPath     : 'components/input-text/_doc/template.Drupal',
+            elementPath     : 'components/input-text/_doc/template.drupal',
             ...commonProps,
             inputType       : 'email',
             label           : 'Email address',
@@ -104,15 +103,15 @@ export const Drupal = (args) => ({
         style={{ height: '600px' }}
 >
     <Story
-        name='Drupal - Input password'
+        name='Drupal - Password'
         args={{
-            elementPath     : 'components/input-text/_doc/template.Drupal',
+            elementPath     : 'components/input-text/_doc/template.drupal',
             ...commonProps,
             inputType       : 'password',
             label           : 'Password',
             tooltip         : 'tooltip text as string',
             placeholder     : 'Password',
-            info            : { text: 'forgot your password?', url: 'http://www.example.com'},
+            info            : { text: 'forgot your password?', url: 'https://www.example.com'},
             validationTitle : 'Make sure you have :',
             validationList  : [
                 { class:'', label:'1 lowercase letter' },
@@ -134,7 +133,7 @@ export const Drupal = (args) => ({
     id              : 'myId', // required argument
     label           : { text: 'Password', class: '' },
     tooltip         : { text: 'tooltip text', position: 'top' },
-    info            : {text: 'forgot your password?', url: 'http://www.example.com'},
+    info            : {text: 'forgot your password?', url: 'https://www.example.com'},
     errorMessage    : 'A short error message', // required argument
     validationTitle : 'Make sure you have :',
     validationList  : [
@@ -149,7 +148,7 @@ export const Drupal = (args) => ({
     id              : 'myId', // required argument
     label           : { text: 'Password', class: '' },
     tooltip         : { text: 'tooltip text', position: 'top' },
-    info            : {text: 'forgot your password?', url: 'http://www.example.com'},
+    info            : {text: 'forgot your password?', url: 'https://www.example.com'},
     errorMessage    : 'A short error message', // required argument
 } only %}
 ```
@@ -160,9 +159,9 @@ export const Drupal = (args) => ({
         style={{ height: '600px' }}
 >
     <Story
-        name='Drupal - Input phone'
+        name='Drupal - Phone'
         args={{
-            elementPath     : 'components/input-text/_doc/template.Drupal',
+            elementPath     : 'components/input-text/_doc/template.drupal',
             ...commonProps,
             inputType       : 'tel',
             label           : 'Phone Number',
@@ -190,9 +189,9 @@ export const Drupal = (args) => ({
         style={{ height: '600px' }}
 >
     <Story
-        name='Drupal - Input search'
+        name='Drupal - Search'
         args={{
-            elementPath     : 'components/input-text/_doc/template.Drupal',
+            elementPath     : 'components/input-text/_doc/template.drupal',
             inputType       : 'search',
             id              : 'searchInputId',
             ariaLabel       : 'aria-label',
@@ -219,9 +218,9 @@ export const Drupal = (args) => ({
         style={{ height: '600px' }}
 >
     <Story
-        name='Drupal - Input text'
+        name='Drupal - Text'
         args={{
-            elementPath     : 'components/input-text/_doc/template.Drupal',
+            elementPath     : 'components/input-text/_doc/template.drupal',
             ...commonProps,
             inputType       : 'text',
             label           : { text: 'label', class: '' }
@@ -256,4 +255,5 @@ export const Drupal = (args) => ({
 <iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D13846%253A114479' frameBorder='0' allowFullScreen></iframe>
 
 ### Search
+
 <iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D13846%253A114504' frameBorder='0' allowFullScreen></iframe>
