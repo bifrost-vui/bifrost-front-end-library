@@ -51,7 +51,8 @@ export class InputTextComponent implements OnInit {
     @Input() errorMessage   : string;
     /** for Password input type only */
     @Input() validationTitle: string;
-    /** for Password input type only. Expected : { class: string, label: string } */
+    /** for Password input type only.<br>
+     Expected : { class: string, label: string } */
     @Input() validationList : object[];
     /** expected : { text: string, url: string } <br>
      You can also pass the info text as a `string` */
