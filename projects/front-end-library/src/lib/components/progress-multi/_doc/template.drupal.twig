@@ -1,0 +1,10 @@
+{% set progressDatas = progressDatas|json_parse %}
+{% set backgrounds = ['bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight'] %}
+
+<div class='mt-6 px-2 container-fluid'>
+  {% for background in backgrounds %}
+    <div class='p-4 {{ background }}'>
+        {% include '@bf-components/progress-multi/twig/index.twig'  %}
+    </div>
+  {% endfor %}
+</div>
