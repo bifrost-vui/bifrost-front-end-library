@@ -1,10 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
-/**
- * Description of the component Progress
- *
- */
-
 @Component({
   selector: 'bf-progress',
   templateUrl: './progress.component.html',
@@ -12,7 +7,6 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 })
 export class ProgressComponent implements OnInit {
     constructor() {}
-
 
     @Input() progressPercentValue   : number;
     @Input() progressValue          : number;
