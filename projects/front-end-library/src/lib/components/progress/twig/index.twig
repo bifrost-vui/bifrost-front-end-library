@@ -1,0 +1,22 @@
+{% if progressPercentValue > 90 %}
+  {% set progressColor = "danger" %}
+{% elseif progressPercentValue > 50 %}
+  {% set progressColor = "warning" %}
+{% else %}
+  {% set progressColor = "success" %}
+{% endif %}
+
+{% if isMonochromeColor is defined and isMonochromeColor is same as (true) %}
+  {% set progressColor = "default" %}
+{% endif %}
+
+{# ------------------------------------------------------------------------------------------------------------------ #}
+
+<div class="progress {{ class|default('') }}">
+  <div class="progress-bar bg-{{ progressColor|default('success') }} {{ progressBarClass|default('') }}"
+       role="progressbar"
+       style="width: {{ progressPercentValue|default(0) }}%"
+       aria-valuenow="{{ progressValue|default(0) }}"
+       aria-valuemin="{{ progressMinValue|default(0) }}"
+       aria-valuemax="{{ progressMaxValue|default(100) }}"></div>
+</div>
