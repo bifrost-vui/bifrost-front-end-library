@@ -1,0 +1,79 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta
+    title='Migrations/UIKit'
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+/>
+
+# UIKIT Migration to Bifrost
+UIKit was code into Twig/php. This documentation is for Drupal only.
+
+
+## Why we migrate component into UIKIT?
+There are a few reasons why to want to kill the UIKIT.
+The more principal reason is the dead tool it is built on. The UIKIT was built with the tool "Patter Lab", since a few times this open
+software has a near dead community. No patch or update has been done for 2 years. The project is stuck at old dependencies
+and has some bugs still listed. It becomes a pain to work with it. In terms of production, we will gain more by switching to
+where the community got its focus "Storybook".
+
+But why not change Pattern Lab for Storybook into UIKIT you could ask... It's because the software brings his structure and system.
+It's kind of the same as changing React for Angular Framework... It's just better, simpler to burn the house and start from fresh.
+
+The problem of Pattern Lab being too old brings another problem on maintainability. The tool is stuck in PHP 5.6.
+Meaning, a developer using the UIKIT in a context of PHP newer than 5.6, can't easily run both versions and all other dependencies.
+Developing component into the UIKIT without being able to use Pattern Lab is just useless work losing the quality process.
+UIKIT is not dockerized and that solution was evaluated but still consider a plan B. Plan A migration is still to kill the UIKIT.
+
+The third reason and the one more related to business was the creation of a Theme by Designers.
+UIKIT was deserving: MyAccount Residential, MyAccount Business, and the e.com shopping flow. All those part was built with
+the same visual language. But the Theme request means we have to keep things modular, agnostic, and reusable.
+In terms of CSS, everything needs to be rebuilt, and we decide to start from scratch.
+
+And with the years, UIKIT has become full of garbage: duplicated components, bad structure, too complicated versioning, etc.
+
+With all that, we decide to start from 0 with Bifröst the new improved front-end library.
+
+
+## List components and their plan.
+In this section you will find all component and their plan for the migration.
+
+#### Status Component
+<table>
+    <tbody>
+        <tr>
+            <td># used in Drupal</td>
+            <td>?</td>
+            <td>backlog</td>
+        </tr>
+        <tr>
+            <td># used in UIKit</td>
+            <td>7</td>
+            <td>backlog</td>
+        </tr>
+        <tr>
+            <td>Twig UIKit inclusion path</td>
+            <td colspan='2'>@atoms/08-tags/status.twig</td>
+        </tr>
+        <tr>
+            <td>Replace with Bifrost inclusion path</td>
+            <td colspan='2'>@bf-components/status/twig/index.twig</td>
+        </tr>
+        <tr>
+            <td>Uikit behavior</td>
+            <td colspan='2'>The `color` property was able to received a lot of custom class `status-XX` related to all UIKIT color available.</td>
+        </tr>
+        <tr>
+            <td>Bifrost behavior</td>
+            <td colspan='2'>The `color` property is now a enum of 4 standarized classes.</td>
+        </tr>
+    </tbody>
+</table>
+
+## Ressources
+- [UIKit Labcx integration branch](https://labcx-marvel-uikit.etiya.com/?p=documentation-introduction)
+- [UIKit MASTER integration branch](https://marvel-uikit.etiya.com/?p=documentation-introduction)
+- [Migration presentation on Figma](https://www.figma.com/file/TF44fgu7UzsPSX7J0IsvZW/?node-id=8319%3A25548)
