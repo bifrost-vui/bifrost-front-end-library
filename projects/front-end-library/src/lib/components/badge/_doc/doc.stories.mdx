@@ -1,15 +1,16 @@
-import { moduleMetadata }               from '@storybook/angular';
-import { Canvas, Meta, Story, Props }   from '@storybook/addon-docs';
-import illustrationIcons                from '../../../../../../../public/icons/list/illustrations.json';
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { BadgeComponent }               from '../angular/badge.component';
+import { moduleMetadata }             from '@storybook/angular';
+import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
+import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
+import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
+import { BadgeComponent }           from '../angular/badge.component';
+import { BadgeTemplate }            from './template.angular.ts';
 
 
 <Meta
     title='Components/Badge'
     component={BadgeComponent}
     decorators={[
-        moduleMetadata({ declarations: [BadgeComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [BadgeComponent, BadgeTemplate, TwigContainerComponent]}),
     ]}
     argTypes={{
         hierarchy: {
@@ -61,7 +62,7 @@ export const Drupal = (args) => ({
 
 <Canvas
     withSource='none'
-    style = {{ height: '600px' }}
+    style={{ height: '600px' }}
 >
     <Story
         name='Drupal'
@@ -74,9 +75,30 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
+## Angular
+
+export const Angular = (args) => ({
+    component: BadgeTemplate,
+    props: args,
+});
+
 <Canvas
     withSource='none'
-    style = {{ height: '600px'}}
+    style={{ height: '600px' }}
+>
+    <Story
+        name='Angular'
+        args={{
+            className : 'my-2'
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}
 >
     <Story
         name='Drupal - Multiline'
@@ -92,7 +114,7 @@ export const Drupal = (args) => ({
 
 <Canvas
     withSource='none'
-    style = {{ height: '600px'}}
+    style={{ height: '600px'}}
 >
     <Story
         name='Drupal - Disabled'
