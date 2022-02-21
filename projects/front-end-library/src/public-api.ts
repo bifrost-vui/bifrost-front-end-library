@@ -15,5 +15,5 @@
 // ...
 
 // Components
-export * from './lib/components/icon/angular/icon.component';
-export * from './lib/components/icon/angular/icon.module';
+export * from './lib/components/badge/angular/badge.component';
+export * from './lib/components/badge/angular/badge.module';
