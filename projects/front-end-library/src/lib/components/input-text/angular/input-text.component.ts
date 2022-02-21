@@ -26,7 +26,7 @@ export class InputTextComponent implements OnInit {
     @Input() maxlength      : number;
     /** The minimum number of characters allowed */
     @Input() minlength      : number;
-    /** Will be used if no `label.text` is defined */
+    /** Should be defined when there is no `label.text` */
     @Input() ariaLabel      : string;
     /** The value should be a regular expression */
     @Input() pattern        : string;

@@ -47,7 +47,7 @@
       {% endif %}
 
       {% if description is defined and description %}
-        <p>{{ description|default('') }} </p>
+        <p>{{ description|default('') }}</p>
       {% endif %}
     </div>
   {% endif %}
@@ -83,9 +83,9 @@
       {% elseif autocomplete is defined and autocomplete %}
         autocomplete='{{ autocomplete ? 'on': 'off' }}'
       {%  endif %}
-      {{ isDisabled ? 'disabled aria-disabled="true"' }}
-      {{ isRequired ? 'required' }}
-      {{ isReadonly ? 'readonly' }}
+      {{ (isDisabled is defined and isDisabled) ? 'disabled aria-disabled="true"' }}
+      {{ (isRequired  is defined and isRequired) ? 'required' }}
+      {{ (isReadonly  is defined and isReadonly) ? 'readonly' }}
       value='{{ value|default('') }}'
       {{ extraAttribute|default(NULL) }}
       class='form-control {{ type == 'password' ? 'js-form-password__input' }} {{ (inputClass is defined and inputClass)? class|default('') }}'
@@ -94,8 +94,8 @@
        Begin Search Button & suggestion list
     *************************************************** #}
     {% if inputType is same as ('search') %}
-      <button class='form-group__input-icon-container {{ inputType == 'search' ? 'form-group__input--search__btn' }} {{ isReadonly ? 'd-none' }}'
-        {{ isDisabled ? 'disabled aria-disabled="true"'}} type='submit'
+      <button class='form-group__input-icon-container {{ inputType == 'search' ? 'form-group__input--search__btn' }} {{ (isReadonly  is defined and isReadonly) ? 'd-none' }}'
+        {{ (isDisabled is defined and isDisabled) ? 'disabled aria-disabled="true"'}} type='submit'
       >
         {% include '@bf-components/icon/twig/index.twig' with {
           size  : 'small',
@@ -113,7 +113,7 @@
     {% if type is defined and type is same as ('password') %}
       <button
         type='button'
-        class='form-group__input-icon-container {{ inputType == 'password' ? 'js-form-password__btn' }} {{ isReadonly ? 'd-none' }}'
+        class='form-group__input-icon-container {{ inputType == 'password' ? 'js-form-password__btn' }} {{ (isReadonly  is defined and isReadonly) ? 'd-none' }}'
         {{ isDisabled ? 'disabled aria-disabled="true"'}}
       >
         {% include '@bf-components/icon/twig/index.twig' with {

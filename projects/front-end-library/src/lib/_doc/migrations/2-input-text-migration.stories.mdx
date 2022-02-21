@@ -16,22 +16,36 @@ Drupal only.
 
 ## New input-text Component API
 
-### Naming chnages  only
-Type | new name | old name | comment
------------------ | ----------------- | ----------------- | -----------------
-string | inputId | id | -
-string | inputValue | value | -
-string | inputPlaceholder | placeholder | -
-string | inputName | name | -
-string | - | mtValue | depricated , add the bootstrap `mt-[1-6]` class to the `inputClass` to set the top margin on the input
-string | errorMessage | invalidMsg | -
+### Properties Name changes
+| Type   | new name     | old name         |
+|--------|--------------|------------------|
+| string | id*          | inputId          |
+| string | value        | inputValue       |
+| string | placeholder  | inputPlaceholder |
+| string | name         | inputName        |
+| string | errorMessage | invalidMsg       |
 
-### naming and structural changes
-Type | new name | old name | comment
------------------ | ----------------- | ----------------- | -----------------
-object | label | label | the text can be passed as a string or an object  { text: string, class: string }
-object | tooltip | labelTooltipTxt | the text can be passed as a string or an object { text: string, position: top,bottom,left or right }
-object | info| subInfos | the text can be passed as a string or an object { text: string, url: string }
+
+### Deprecated properties
+| Type   | Name(type)      | comment                                                                                   |
+|--------|-----------------|-------------------------------------------------------------------------------------------|
+| number | mtValue         | Add the bootstrap `mt-[1-6]` class to the `inputClass` to set the top margin on the input |
+| string | labelClass      | Use the `label.class` property                                                            |
+| string | labelTooltipTxt | Use the `tooltip.text` property. you can also pass a string to `tooltip`                  |
+
+### new properties
+| Type     | Name            | Comment                                                                                                                                 |
+|----------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| object   | label           | Can be passed as a string or an object: { text: string, class: string }                                                                 |
+| object   | tooltip         | Can be passed as a string or an object: { text: string, position: _top_, _bottom_, _left_ or _right_ }. The text may still contain HTML |
+| string   | ariaLabel       |                                                                                                                                         |
+| object   | info            | Can be passed as a string or an object: { text: string, url: string }                                                                   |
+| number   | maxlength       |                                                                                                                                         |
+| number   | minlength       |                                                                                                                                         |
+| string   | description     |                                                                                                                                         |
+| string   | validationTitle | For the password Variant only                                                                                                           |
+| object[] | validationList  | For the password Variant only                                                                                                           |
+
 
 ### Ui-Kit equivalents
 The new components aims to replace the following templates :
