@@ -1,0 +1,61 @@
+import { moduleMetadata }                   from '@storybook/angular';
+import { Canvas, Meta, Story, ArgsTable }   from '@storybook/addon-docs';
+import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
+import { ImageLazyLoadComponent }           from '../angular/image-lazy-load.component';
+
+<Meta
+    title='UI-Kit/Image Lazy Load'
+    component={ImageLazyLoadComponent}
+    decorators={[
+        moduleMetadata({ declarations: [ImageLazyLoadComponent, TwigContainerComponent]}),
+    ]}
+    parameters={{}}
+    argTypes={{
+        _maxWidth : {
+            control : { type : 'number' }
+        },
+        alt : {
+            type : { required: true }
+        },
+        src : {
+            type : { required: true }
+        }
+    }}
+/>
+
+# Image Lazy Load
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Canvas withSource='none'
+        style={{ height: '300px' }}
+>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath : 'components/image-lazy-load/_doc/template.drupal',
+            alt         : 'Image Lazy Load',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/image-lazy-load/twig/index.twig' with {
+    alt: 'alternative image text',
+    src: 'https://source.unsplash.com/260x180/?nature'
+} only %}
+```
+
+## Component API
+
+<ArgsTable of={ImageLazyLoadComponent} />
