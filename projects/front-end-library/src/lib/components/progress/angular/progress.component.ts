@@ -11,7 +11,7 @@ export class ProgressComponent implements OnInit {
     @Input() progressPercentValue   : number;
     @Input() progressValue          : number;
     @Input() progressMaxValue       : number;
-    @Input()  progressMinValue      : number;
+    @Input() progressMinValue       : number;
     @Input() progressBarClass       : string;
     @Input() class                  : string;
 

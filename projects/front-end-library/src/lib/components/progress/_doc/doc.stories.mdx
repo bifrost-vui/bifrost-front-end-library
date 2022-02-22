@@ -19,10 +19,19 @@ import { ProgressComponent }            from '../angular/progress.component';
         },
     }}
     argTypes={{
+        _background :{
+            control : {
+                type : 'select',
+                options : [null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight']
+            },
+            description : 'Preview the component on selected background'
+        }
     }}
 />
 
 # Progress
+
+This component has been migrated from the UI-Kit project without any optimisation
 
 ## Drupal
 
@@ -33,7 +42,7 @@ export const Drupal = (args) => ({
 
 <Canvas
     withSource='none'
-    style={{height: '700px'}}
+    style={{height: '400px'}}
 >
     <Story
         name='Drupal'
@@ -51,8 +60,8 @@ export const Drupal = (args) => ({
 
 ```jsx
 {% include '@bf-components/progress/twig/index.twig' with {
-    progressValue   : 20,
-    progressPercentValue : 50
+    progressValue   : 50,
+    progressPercentValue : 50 // Calculations must be made outside the component
 } only %}
 ```
 

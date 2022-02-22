@@ -1,8 +1,8 @@
-{% set backgrounds = ['bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight'] %}
+{% set _backgrounds = _backgrounds|json_parse %}
 
 <div class='mt-6 px-2 container-fluid'>
-  {% for background in backgrounds %}
-    <div class='p-3 m-1 flex-grow-1 d-flex flex-column gap-4 {{ background }}'>
+    <div class='p-3 m-1 flex-grow-1 d-flex flex-column gap-4 {{ _background }}'>
+      {% include '@bf-components/progress/twig/index.twig' %}
       {% include '@bf-components/progress/twig/index.twig'  with {
         progressPercentValue : progressPercentValue|default(25)
       } %}
@@ -13,5 +13,4 @@
         progressPercentValue : progressPercentValue|default(95)
       }%}
     </div>
-  {% endfor %}
 </div>
