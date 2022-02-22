@@ -6,7 +6,7 @@ import { ProgressMultiComponent }       from '../angular/progress-multi.componen
 import { progressData }                 from './data';
 
 <Meta
-    title='UI-Kit-Migrations/Progress Multi'
+    title='UI-Kit/Progress Multi'
     component={ProgressMultiComponent}
     decorators={[
         moduleMetadata({ declarations: [ProgressMultiComponent, TwigContainerComponent]}),
@@ -19,7 +19,15 @@ import { progressData }                 from './data';
             disable : false
         },
     }}
-    argTypes={{}}
+    argTypes={{
+        _background :{
+            control : {
+                type : 'select',
+                options : [ null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight' ]
+            },
+            description : 'Preview the component on selected background'
+        },
+    }}
 />
 
 # Progress Multi
@@ -33,7 +41,7 @@ export const Drupal = (args) => ({
 
 <Canvas
     withSource='none'
-    style={{height: '700px'}}
+    style={{height: '300px'}}
 >
     <Story
         name='Drupal'

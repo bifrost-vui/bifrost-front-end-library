@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
 interface IProgressData {
-    label: string,
-    cssClass: string,
-    percent: number,
+    label       : string,
+    cssClass    : string,
+    percent     : number,
     currentValue: number,
-    minValue: number,
-    maxValue:number
+    minValue    : number,
+    maxValue    :number
 }
 
 @Component({
