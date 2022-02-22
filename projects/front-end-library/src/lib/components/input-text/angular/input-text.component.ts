@@ -1,9 +1,11 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
-/**
- * Description of the component InputText
- *
- */
+
+interface IStatus {
+    label : string;
+    color : string;
+    class : string;
+}
 
 @Component({
   selector: 'bf-input-text',
@@ -52,8 +54,8 @@ export class InputTextComponent implements OnInit {
     /** for Password input type only */
     @Input() validationTitle: string;
     /** for Password input type only.<br>
-     Expected : { class: string, label: string } */
-    @Input() validationList : object[];
+     Expected : { class: string, label: string, color: string } */
+    @Input() validationList : IStatus[];
     /** expected : { text: string, url: string } <br>
      You can also pass the info text as a `string` */
     @Input() info           : any;

@@ -5,7 +5,6 @@
 {% endif %}
 
 <div class='form-group bf-input-text  {{ inputType == 'password' ? 'bf-input-text--password'  }} {{ inputType == 'search' ? 'bf-input-text--search' }} {{ isInvalid ? 'bf-input-text--isInvalid' }} {{ isDisabled ? 'bf-input-text--disabled'}}{{ class|default('') }}'>
-
   {% if (description is defined and description) or (label is defined and label) %}
     <div class='bf-input-text__head'>
       {% if label is defined and label %}
@@ -136,11 +135,15 @@
           {% endif %}
 
           {% if validationList is defined and validationList %}
-            <ul class='list-validation'>
+            <div class='list-validation'>
               {% for item in validationList %}
-                <li class='{{ item.class|default('') }}'>{{ item.label|default('') }}</li>
+                {% include '@bf-components/status/twig/index.twig' with {
+                  label : (item.label is defined and item.label) ? item.label|default('') : '',
+                  color : (item.color is defined and item.color) ? item.color|default('unknown') : 'unknown' ,
+                  class : (item.class is defined and item.class) ? item.class|default('') : ''
+                } only %}
               {% endfor %}
-            </ul>
+            </div>
           {% endif %}
         </div>
       {% endif %}
