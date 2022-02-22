@@ -1,0 +1,60 @@
+import { moduleMetadata }                   from '@storybook/angular';
+import { Canvas, Meta, Story, ArgsTable }   from '@storybook/addon-docs';
+import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
+import { IframeVideoComponent }             from '../angular/iframe-video.component';
+
+<Meta
+    title='UI-Kit/Iframe Video'
+    component={IframeVideoComponent}
+    decorators={[
+        moduleMetadata({ declarations: [IframeVideoComponent, TwigContainerComponent]}),
+    ]}
+    parameters={{}}
+    argTypes={{
+        videoSource : {
+            type: {required: true}
+        },
+        videoRatio :{
+            defaultValue: '16by9',
+            control     : {
+                type    : 'select',
+                options : ['21by9', '16by9', '4by3', '1by1']
+            }
+        }
+    }}
+/>
+
+# Iframe Video
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        height='300px'
+        args={{
+            elementPath : 'components/iframe-video/_doc/template.drupal',
+            videoSource : 'https://www.youtube.com/embed/Y9wrYkMH0RM?rel=0'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal implementation exemple
+
+```jsx
+{% include '@bf-components/iframe-video/twig/index.twig' with {
+    videoSource : 'https://www.youtube.com/embed/Y9wrYkMH0RM?rel=0'
+} only %}
+```
+
+## Component API
+
+<ArgsTable of={IframeVideoComponent} />
