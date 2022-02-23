@@ -19,10 +19,17 @@ import { SwitchComponent }                      from '../angular/switch.componen
         },
     }}
     argTypes={{
-        id: {type: {required: true}},
-        size: {control: {type: 'select', options: ['sm', 'lg']}},
+        _background :{
+            control : {
+                type : 'select',
+                options : [ null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight' ]
+            },
+            description : 'preview the component on selected background'
+        },
+        id: { type: { required: true }},
+        size: { control: {type: 'select', options: ['sm', 'lg'] }},
         inputSize: {
-            control: {type: 'select', options: ['sm', 'lg']},
+            control: { type: 'select', options: ['sm', 'lg'] },
             description: 'UI-Kit legacy - Deprecated. Use `size` instead'
         },
         inputName: {

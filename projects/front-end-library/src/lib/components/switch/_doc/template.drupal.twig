@@ -4,42 +4,44 @@
 {% set isInvalid      = isInvalid|json_parse %}
 {% set isRequired     = isRequired|json_parse %}
 {% set hasNolabel     = hasNolabel|json_parse %}
+{% set _background = _background |json_parse %}
 
-{% set backgrounds = ['bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight'] %}
-<table class="mt-4">
-  <tr>
-    <th> Unchecked</th>
-    <th> Checked</th>
-  <tr>
-
-  {% for background in backgrounds %}
-    <tr class='{{ background }}'>
-      <td>
-        {% include '@bf-components/switch/twig/index.twig' with {
-          id : id|default(inputId) ~ '1-' ~ loop.index
-        } %}
-
-      </td>
-      <td>
-        {% include '@bf-components/switch/twig/index.twig' with {
-          id : id|default(inputId) ~ '2-' ~ loop.index,
-          isChecked  : isChecked|default(true)
-        } %}
-      </td>
-    </tr>
-  {% endfor %}
-
-</table>
-
-<style>
-  table {
-    width: 100%;
-    margin: 0 auto;
-    max-width: 600px;
-  }
-  th { width: 25%;}
-  th,td {
-    text-align: center;
-    padding: .5rem 2rem .2rem;
-  }
-</style>
+<div class='container-fluid mt-4 p-4 {{ _background }}'>
+  <div class='d-flex flex-align-center-space-between gap-2'>
+    <div class='d-flex flex-column'>
+      <p> Default</p>
+      {% include '@bf-components/switch/twig/index.twig' with {
+        id : id|default(inputId) ~ '1-' ~ loop.index
+      } %}
+    </div>
+    <div class='d-flex flex-column align-center'>
+      <p> Checked</p>
+      {% include '@bf-components/switch/twig/index.twig' with {
+        id : id|default(inputId) ~ '2-' ~ loop.index,
+        isChecked  : isChecked|default(true)
+      } %}
+    </div>
+    <div class='d-flex flex-column'>
+      <p> Disabled</p>
+      {% include '@bf-components/switch/twig/index.twig' with {
+        id : id|default(inputId) ~ '3-' ~ loop.index,
+        isDisabled  : isDisabled|default(true)
+      } %}
+    </div>
+    <div class='d-flex flex-column'>
+      <p> Invalid</p>
+      {% include '@bf-components/switch/twig/index.twig' with {
+        id : id|default(inputId) ~ '4-' ~ loop.index,
+        isInvalid  : isInvalid|default(true)
+      } %}
+    </div>
+    <div class='d-flex flex-column'>
+      <p> checked + invalid</p>
+      {% include '@bf-components/switch/twig/index.twig' with {
+        id : id|default(inputId) ~ '5-' ~ loop.index,
+        isInvalid  : isInvalid|default(true),
+        isChecked  : isChecked|default(true)
+      } %}
+    </div>
+  </div>
+</div>
