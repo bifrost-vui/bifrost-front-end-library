@@ -1,0 +1,55 @@
+import { moduleMetadata }                   from '@storybook/angular';
+import { Canvas, Meta, Story, ArgsTable }   from '@storybook/addon-docs';
+import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
+import { TextFeaturedComponent }            from '../angular/text-featured.component';
+
+<Meta
+    title='UI-Kit/Text Featured'
+    component={TextFeaturedComponent}
+    decorators={[
+        moduleMetadata({ declarations: [TextFeaturedComponent, TwigContainerComponent]}),
+    ]}
+    parameters={{}}
+    argTypes={{
+        _background :{
+            control : {
+                type : 'select',
+                options : [null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight']
+            },
+            description : 'preview the component on selected background'
+        }
+    }}
+/>
+
+# Text Featured
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        height='300px'
+        args={{
+            elementPath : 'components/text-featured/_doc/template.drupal'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/text-featured/twig/index.twig' %}
+```
+
+## Component API
+
+<ArgsTable of={TextFeaturedComponent} />
+
