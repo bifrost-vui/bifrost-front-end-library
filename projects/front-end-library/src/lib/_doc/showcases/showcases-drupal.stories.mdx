@@ -15,36 +15,45 @@ import { Meta } from '@storybook/addon-docs';
 
 <br/>
 
+
 ### 1. Install Drupal
 ```
 cd projects/showcase-drupal
-curl -sSL https://www.drupal.org/download-latest/tar.gz | tar -xz --strip-components=1
-```
-
-### 2. Launch Drupal
-```
-php ./core/scripts/drupal quick-start bifrost
-```
-The front part of the website will not work, because you still have to install Module Component (next step).
-However, you should be able to access Drupal Administration from [http://127.0.0.1:8888/admin/](http://127.0.0.1:8888/admin/).
-
-### 3. Install Module Components
-See [Module documentation](https://www.drupal.org/project/components).
-```
+composer install
 composer require 'drupal/components:^2.4'
+php ./core/scripts/drupal quick-start
+# Choose Standard profile
 ```
+At this point you should be able to access [http://127.0.0.1:8888/](http://127.0.0.1:8888/).
 
-Go to [http://127.0.0.1:8888/admin/modules](http://127.0.0.1:8888/admin/modules) and enable Component Module in Drupal Administration.
+
+### 2. Install Module Component
+> See [Module documentation](https://www.drupal.org/project/components).
+
+Go to [http://127.0.0.1:8888/admin/modules](http://127.0.0.1:8888/admin/modules) and enable **Components** Module in Drupal Administration.
 You should see the confirmation message: **Module Components has been enabled.**
 
-### 4. Install Bifrost Package
+
+### 3. Install Bifrost Theme
 ```
 cd themes/bifrost && npm install
+cp -R node_modules/@videotron-ui/bifrost-front-end-library/assets/. ../../sites/default/files
 ```
+Go to page [http://127.0.0.1:8888/admin/appearance](http://127.0.0.1:8888/admin/appearance) and **Install and set as default** Bifrost theme.
+There you go.
 
-### 5. Relaunch Drupal
+### 4. Relaunch Drupal
+If needed:
 ```
-php ./core/scripts/drupal quick-start bifrost
+php ./core/scripts/drupal quick-start
 ```
 There you go.
+
+
+
+## Troubleshooting
+- Remenber to clear all caches from the Administration Page: [Configuration > Development](http://127.0.0.1:8888/admin/config/development/performance).
+- If you see the message, `The website encountered an unexpected error. Please try again later.` then it's possible that a Bifrost component needs to be upgrade.
+
+
 
