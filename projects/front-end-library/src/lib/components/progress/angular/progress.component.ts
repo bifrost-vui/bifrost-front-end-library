@@ -13,6 +13,7 @@ export class ProgressComponent implements OnInit {
     @Input() progressMaxValue       : number;
     @Input() progressMinValue       : number;
     @Input() progressBarClass       : string;
+    @Input() isMonochromeColor      : boolean;
     @Input() class                  : string;
 
     ngOnInit() {
