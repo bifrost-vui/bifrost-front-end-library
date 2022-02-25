@@ -1,16 +1,7 @@
 <div class="border-left--vui-yellow border-width-4 pl-{{ spacingLeft|default('3') }} {{ class|default('') }}">
-  {% block textFeatured_content %}
-    {#  Demo purpose only #}
-    <div class="mb-2">
-      <p>Order number <br>
-        <strong>NFSDG34535345</strong>
-      </p>
-    </div>
-
-    <div class="">
-      <p>Order date<br>
-        <strong>August8, 2019</strong>
-      </p>
-    </div>
-  {% endblock %}
+  {% if block('textFeatured_content') is defined %}
+    {{ block('textFeatured_content') }}
+  {% elseif textFeatured_content is defined %}
+    {{ textFeatured_content|raw }}
+  {% endif %}
 </div>

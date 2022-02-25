@@ -11,12 +11,17 @@ import { TextFeaturedComponent }            from '../angular/text-featured.compo
     ]}
     parameters={{}}
     argTypes={{
-        _background :{
+        _background         :{
             control : {
                 type : 'select',
-                options : [null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight']
+                options : [null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground']
             },
             description : 'preview the component on selected background'
+        },
+        textFeatured_content: {
+            table : {
+                type : { summary: 'TwigBlock' }
+            }
         }
     }}
 />
@@ -27,15 +32,23 @@ import { TextFeaturedComponent }            from '../angular/text-featured.compo
 
 export const Drupal = (args) => ({
     component   : TwigContainerComponent,
-    props       : args,
+    props       : args
 });
+
+
+
+## Component API
+
+<ArgsTable of={TextFeaturedComponent} />
+
 
 <Canvas withSource='none'>
     <Story
         name='Drupal'
         height='300px'
         args={{
-            elementPath : 'components/text-featured/_doc/template.drupal'
+            elementPath : 'components/text-featured/_doc/template.drupal',
+            textFeatured_content :"<div class='mb-2'><p>Order number<br><strong>NFSDG34535345</strong></p></div><div class='mb-2'><p>Order date<br><strong>August8, 2019</strong></p></div>"
         }}
     >
         {Drupal.bind({})}
@@ -46,10 +59,28 @@ export const Drupal = (args) => ({
 ## Drupal implementation example
 
 ```jsx
-{% include '@bf-components/text-featured/twig/index.twig' %}
+// Include with string (supports raw HTML)
+{% include '@bf-components/text-featured/twig/index.twig' with {
+    class:'d-inline-block',
+    textFeatured_content : "<p>Order number <br><strong>NFSDG34535345</strong></p>"
+} only %}
+
+// embed solution with twig Block
+{% embed '@bf-components/text-featured/twig/index.twig' with {
+    class:"d-inline-block"
+} only %}
+    {% block textFeatured_content %}
+        <div class="mb-2">
+            <p>Order number<br>
+            <strong>NFSDG34535345</strong>
+            </p>
+        </div>
+
+        <div class="mb-2">
+            <p>Order date<br>
+            <strong>August8, 2019</strong>
+            </p>
+        </div>
+    {% endblock %}
+{% endembed %}
 ```
-
-## Component API
-
-<ArgsTable of={TextFeaturedComponent} />
-
