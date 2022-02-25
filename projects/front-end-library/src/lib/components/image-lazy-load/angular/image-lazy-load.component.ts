@@ -1,9 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-/**
- * Description of the component ImageLazyLoad
- *
- */
 
 @Component({
     selector: 'bf-image-lazy-load',
