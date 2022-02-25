@@ -1,0 +1,85 @@
+import { moduleMetadata }               from '@storybook/angular';
+import { Meta, Story, Props }  from '@storybook/addon-docs';
+
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { ListComponent }     from '../angular/list.component';
+
+<Meta
+    title='Components/List'
+    component={ListComponent}
+    decorators={[
+        moduleMetadata({ declarations: [ListComponent, TwigContainerComponent]}),
+    ]}
+    argTypes={{}}
+/>
+
+# List
+
+<br />
+
+
+## Component API
+
+<Props of={ListComponent} />
+
+
+
+## Drupal implementation exemple
+
+```jsx
+{% include '@bf-components/list/twig/index.twig' with {
+    title       : 'Title',
+    titleTag    : 'h2',
+    content     : [
+        {
+            iconName: 'unlimited',
+            label   : 'Lorem ipsum'
+        },
+        {
+            iconName: 'desinstallation',
+            label   : 'Lorem ipsum'
+        },
+        {
+            iconName: 'placeholder',
+            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.'
+        }
+    ]
+} only %}
+```
+
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        height='300px'
+        args={{
+            elementPath : 'components/list/_doc/template.drupal',
+            title       : 'Title',
+            titleTag    : 'h2',
+            content     : [
+                {
+                    iconName    : 'unlimited',
+                    label       : 'Lorem ipsum'
+                },
+                {
+                    iconName    : 'desinstallation',
+                    label       : 'Lorem ipsum'
+                },
+                {
+                    iconName    : 'placeholder',
+                    label       : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.'
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>

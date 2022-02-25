@@ -5,28 +5,26 @@
 * ***************************************************************************** */
 
 .bf-block--highlight {
-    width: 100%;
-    border: 1px solid var(--bf-color-stroke-secondary);
-    border-radius: var(--bf-border-radius-medium);
-    overflow: hidden;
 
-    &.bf-block--fullwidth {
-        @extend .bf-color-bg-underground;
-    }
-
-    .bf-button {
-        @extend .mt-4;
+    &.bf-block--featured .bf-block__visual {
+        min-height: 26rem;
     }
 
     .bf-block__visual {
-        flex: 0 1 50%;
-        min-height: 18rem;
-        overflow: hidden;
+        flex: 0 0 50%;
+        min-height: 20rem;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
 
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+        &.bf-block__visual--fill {
+            background-size: cover;
+        }
+        
+        @media (max-width: 576px) {
+            position: relative;
+            padding-top: 75%;
+            min-height: auto !important;
         }
     }
 }

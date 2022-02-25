@@ -39,12 +39,15 @@ var Twig = require("twig"),
         return value;
     });
 
-
     // -----------------------------------------------------------------
     // Custom filters
 
     Twig.extendFilter('json_parse', function(value) {
-        return value && JSON.parse(value);
+        try {
+            return JSON.parse(value);
+        } catch (e) {
+            return value;
+        }
     });
 
     // -----------------------------------------------------------------
@@ -66,7 +69,7 @@ var Twig = require("twig"),
     app.set('views', path.join(__dirname, '../projects/front-end-library/src/lib'));
     app.set('view engine', 'twig');
 
-    app.render('main.twig', req.query, function(err, html){ 
+    app.render('main.twig', req.query, function(err, html){
         console.log((err) ? err : html);
         res.status(200).send(html);
     });

@@ -1,11 +1,11 @@
 import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story,  Props }  from '@storybook/addon-docs';
 
 import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
 import { CarouselComponent }            from '../angular/carousel.component';
 
-<Meta 
-    title='Components/Carousel' 
+<Meta
+    title='Components/Carousel'
     component={CarouselComponent}
     decorators={[
         moduleMetadata({ declarations: [CarouselComponent, TwigContainerComponent]}),
@@ -21,7 +21,7 @@ import { CarouselComponent }            from '../angular/carousel.component';
 
 ```js
     <div class='container py-5'>
-        <div class="js-slick-carousel--demo {{ class|default('') }}">
+        <div class='bf-carousel js-bf-carousel-demo {{ class|default('') }}'>
             {% include '@bf-components/card/twig/phone.twig' with {...} only %}
             {% include '@bf-components/card/twig/phone.twig' with {...} only %}
             {% include '@bf-components/card/twig/phone.twig' with {...} only %}
@@ -30,7 +30,7 @@ import { CarouselComponent }            from '../angular/carousel.component';
     </div>
 
     <script>
-        bfSlick.assignCarousel('.js-slick-carousel--demo', {
+        bfSlick.assignCarousel('.js-bf-carousel-demo', {
             // You are free to define your own Slick configuration.
             // Doc: https://kenwheeler.github.io/slick/
             arrows: true,
@@ -40,6 +40,25 @@ import { CarouselComponent }            from '../angular/carousel.component';
             mobileFirst: true,
             prevArrow: bfSlick.getPrevSlickBtn(),
             nextArrow: bfSlick.getNextSlickBtn(),
+            responsive: [
+                {
+                    breakpoint: (breakpoints.md-1),
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: breakpoints.lg,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
         }
     );
     </script>
@@ -57,16 +76,14 @@ export const Drupal = (args) => ({
     props       : args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '1000px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
+        height='800px'
+        args={{
             elementPath : 'components/carousel/_doc/template.drupal',
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

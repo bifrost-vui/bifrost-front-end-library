@@ -1,12 +1,12 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import { withDesign } from 'storybook-addon-designs'
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
-import { <ComponentName>Component } from '../angular/<component-name>.component';
+import { moduleMetadata }                   from '@storybook/angular';
+import { Canvas, Meta, Story, ArgsTable }   from '@storybook/addon-docs';
+import { withDesign }                       from 'storybook-addon-designs'
+import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
+import { %ComponentName%Component }         from '../angular/%component-name%.component';
 
-<Meta 
-    title='<Component-type>/<Component-Readable-Name>' 
-    component={<ComponentName>Component}
+<Meta
+    title='%Component-type%/%Component-Readable-Name%'
+    component={%ComponentName%Component}
     decorators={[
         moduleMetadata({ declarations: [<ComponentName>Component, TwigContainerComponent]}),
         withDesign
@@ -53,20 +53,18 @@ export const Drupal = (args) => ({
     props       : args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
-            elementPath : '<component-type>/<component-name>/_doc/template.drupal',
-            label       : '<Component-Readable-Name>',
+        height='300px'
+        args={{
+            elementPath : '%component-type%/%component-name%/_doc/template.drupal',
+            label       : '%Component-Readable-Name%',
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
 
@@ -77,16 +75,16 @@ export const Angular = (args) => ({
   props: args,
 });
 
-<Preview
-    withSource='none'
->
-    <Story 
-        name='Angular' 
-        args={{ label: '<Component-Readable-Name>' }}
+<Canvas withSource='none'>
+    <Story
+        name='Angular'
+        args={{
+            label: '%Component-Readable-Name%'
+        }}
     >
         {Angular.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 ## Angular implementation exemple
 
@@ -96,6 +94,9 @@ Please, read the [Implementation Page](/?path=/docs/implementation-angular--page
 **// TODO**: Add Stories (variants of your component) as much as you want.
 
 
+## Component API
+
+<ArgsTable of={%ComponentName%Component} />
 
 
 ## Design Guidelines

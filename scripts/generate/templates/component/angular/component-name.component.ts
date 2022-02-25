@@ -1,14 +1,13 @@
-import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 /**
  * Description of the component %ComponentName%
  *
  */
- 
+
 @Component({
-  selector: 'bf-%component-name%',
-  templateUrl: './%component-name%.component.html',
-  // styleUrls: ['../scss/index.scss'],
+    selector: 'bf-%component-name%',
+    templateUrl: './%component-name%.component.html',
 })
 export class %ComponentName%Component implements OnInit {
     constructor() {}

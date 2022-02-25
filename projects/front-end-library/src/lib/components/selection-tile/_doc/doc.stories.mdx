@@ -1,0 +1,196 @@
+import { moduleMetadata }               from '@storybook/angular';
+import { Meta, Story, Canvas, Props }   from '@storybook/addon-docs';
+import { withDesign }                   from 'storybook-addon-designs';
+import illustrationIcons                from '../../../../../../../public/icons/list/illustrations.json';
+
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { SelectionTileComponent }       from '../angular/selection-tile.component';
+
+
+<Meta
+    title='Components/Selection Tile'
+    component={SelectionTileComponent}
+    decorators={[
+        moduleMetadata({ declarations: [SelectionTileComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type    : 'figma',
+            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=14481%3A156160',
+            disable : false
+        },
+    }}
+    argTypes={{
+        type        :{
+            defaultValue: 'checkbox',
+            table       : { defaultValue : { summary: 'checkbox' } },
+            control     : { type : 'select' }
+        },
+        value       : {type : { required: true } },
+        inputId     : {type : { required: true } },
+        ariaLabel   : {type : { required: true } },
+        orientation : {
+            defaultValue: 'horizontal',
+            table       : { defaultValue : { summary : 'horizontal' } },
+            control     : { type: 'select' }
+        },
+        fit         :{
+            defaultValue: 'content',
+            table       : { defaultValue : { summary : 'content' } },
+            control     : { type : 'select' }
+        },
+        iconName    : {
+            defaultValue: '',
+            control     : {
+                type    : 'select',
+                options : [ ...illustrationIcons.map(a => a.list).flat().sort()],
+            }
+        },
+    }}
+/>
+
+# Selection Tile
+
+<br/>
+
+
+## Component API
+
+<Props of={SelectionTileComponent} />
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+export const commonProps = {
+    value       : 'value',
+    name        : 'name',
+    inputId     : 'intputId',
+    ariaLabel   : 'ariaLabel',
+    orientation : 'horizontal',
+    fit         : 'content',
+    errorMessage: 'This is an error message',
+    image       : {
+        src     :'/images/logo/channels/tva-sports.svg',
+        alt     :'TVA Sports',
+        class   :''
+    },
+    class       : 'm-2',
+};
+
+
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}>
+    <Story
+        name='Drupal - Selection Tile - vertical'
+        args={{
+            elementPath : 'components/selection-tile/_doc/template.drupal',
+            ...commonProps,
+            orientation : 'vertical',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story
+        name='Drupal - Selection Tile - horizontal'
+        args={{
+            elementPath : 'components/selection-tile/_doc/template.drupal',
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story
+        name='Example - Selection Color'
+        args={{
+            elementPath : 'components/selection-tile/_doc/example.drupal',
+            type : 'radio',
+            content : 'content',
+            image : null,
+            class : 'm-2 bf-selection-tile--color-wrap',
+            orientation: 'vertical'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal's implementation examples
+
+```jsx
+    {% include '@bf-components/selection-tile/twig/index.twig'  with {
+        inputId     : 'canal-plus',
+        ariaLabel   : 'Canal plus',
+        title       : 'Canal plus',
+    } only %}
+
+    {% include '@bf-components/selection-tile/twig/index.twig' with {
+        inputId     : 'canal-plus',
+        ariaLabel   : 'Canal plus',
+        fit         : 'fit-container',
+        title       : 'Canal plus',
+        description : 'Descriptium ipsum',
+        info        : '$12.34/Month'
+    } only %}
+
+    {% include '@bf-components/selection-tile/twig/index.twig' with {
+        inputId     : 'tva-sports',
+        ariaLabel   : 'TVA Sport',
+        type        : 'radio',
+        name        : 'radioGroupName',
+        orientation : 'vertical',
+        image       : {
+            src   : '/images/logo/channels/tva-sports.svg',
+            alt   : 'TVA Sport'
+        }
+    } only %}
+
+    {% include '@bf-components/selection-tile/twig/index.twig' with {
+        inputId     : 'movie-channel',
+        ariaLabel   : 'Movie Chanel',
+        fit         : 'container',
+        orientation : 'vertical',
+        title       : 'Movie Chanel',
+        description : 'lorem ipsum descriptum',
+        image       : {
+            src : '/images/logo/channels/tva-sports.svg',
+            alt : 'the movie chanel'
+        }
+        info        : '$12.34/Month'
+    } only %}
+```
+
+## More Info
+
+<!-- TODO mettre à jour si on transforme fit en bolean (genre fitContainer)-->
+- The *Selection Tile* comes in 4 layout combinations are :
+    - fit : `content`   + orientation : `horizontal` (default value)
+    - fit : `container` + orientation : `horizontal`
+    - fit : `content`   + orientation : `vertical` (mostly for channel selection tiles)
+    - fit : `container` + orientation : `vertical`
+
+- The Selection Tile mimics the behavior of the input type : **radio button** or **checkbox**
+
+## Design Guidelines
+
+<iframe width='100%' height='600' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D14481%253A156160&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>

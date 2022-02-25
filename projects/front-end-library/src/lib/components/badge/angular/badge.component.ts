@@ -1,32 +1,44 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import { Component, ElementRef, OnInit, OnChanges, Input } from "@angular/core";
 
-/**
- * API is the same between **Angular** and **Drupal**.
- *
- */
- 
+
 @Component({
     selector: "bf-badge",
     templateUrl: './badge.component.html',
-    // styleUrls: ['../common/style.scss'],
 })
-export class BadgeComponent implements OnInit {
+export class BadgeComponent implements OnInit, OnChanges {
     constructor() {}
 
     @Input() label          : string;
-    @Input() hierarchy      : string;
+    @Input() hierarchy      : 'primary' | 'secondary' | 'tertiary' | 'tertiary-ground';
     @Input() noUppercase    : boolean;
-    /**
-        Display an angle on a corner.
-        left | right
-    */
-    @Input() angle          : string;
-
+    /** Displays an angle on a corner. Won't have any effect if `isRounded` is true*/
+    @Input() angle          : null | 'left' | 'right';
+    /** `isRounded` property has precedence over `angle`  */
+    @Input() isRounded      : boolean;
+    /** Angular only */
+    @Input() className      : string;
+    /** Drupal only */
     @Input() class          : string;
+    @Input() iconName       : string;
     @Input() reversed       : boolean;
+
+    public ngClasses : string[] = [];
+
+    computetNgClasses() {
+        this.ngClasses = [
+            this.className                  ? String(this.className) : '',
+            this.hierarchy                  ? 'bf-badge--' + this.hierarchy : 'bf-badge--secondary',
+            this.angle && !this.isRounded   ? 'bf-badge--angle-' + this.angle : '',
+            this.isRounded                  ? 'bf-badge--rounded' : ''
+        ]
+    }
 
     ngOnInit() {
         console.log('badge', this);
+        this.computetNgClasses();
     }
-    
+
+    ngOnChanges() {
+        this.computetNgClasses();
+    }
 }

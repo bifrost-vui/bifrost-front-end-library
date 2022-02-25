@@ -17,13 +17,65 @@
         background-color: var(--bf-color-bg-action-primary);
     }
 
+    &--height-large {
+        @include media-breakpoint-up(md) {
+            min-height: 60vh;
+            max-height: 64rem;
+        }
+    }
+
+    &--image-splitted {
+        .bf-hero__header {
+            flex: 0 calc(50% - 4vw);
+        }
+
+        .bf-hero__image-splitted {
+            flex: 1 1 50%;
+            background-position: center;
+            background-size: cover;
+
+            // Reproduce .container-fluid behavior on the right of the image
+            @include media-breakpoint-up(md) {
+                margin-right: calc(-3.5vw - 8px);
+            }
+            @include media-breakpoint-up(lg) {
+                margin-right: calc(-11.5vw - 8px);
+            }
+        }
+        
+        // Switch to vertical layout (with image on top) is earlier in splitted than in default,
+        // in order to avoid tight texts between 992px and md.
+        @media (max-width: 992px) {
+            
+            .bf-hero__image-sm {
+                display: block !important;
+            }
+
+            .container-fluid {
+                flex-direction: column !important;
+            }
+
+            .bf-hero__content {
+                padding-top: var(--bf-spacer-2) !important;
+
+                .bf-badge {
+                    position: relative !important;
+                }
+            }
+        }
+    }
+
+    &__image-sm {
+        object-fit: cover;
+        max-height: 20rem;
+
+        @include media-breakpoint-down(xs) {
+            max-height: 9.5rem;
+        }
+    }
+
     @include media-breakpoint-down(sm) {
         background-image: none !important;
-
-        .bf-badge {
-            position: relative !important;
-            margin-bottom: 1rem;
-        }
     }
 
     .container-fluid {
@@ -36,5 +88,9 @@
                 max-width: none;
             }
         }
+    }
+
+    .breadcrumb .breadcrumb-item.active {
+        color: inherit;
     }
 }

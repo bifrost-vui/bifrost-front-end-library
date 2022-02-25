@@ -1,21 +1,26 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import { withDesign } from 'storybook-addon-designs'
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
-import { HeroComponent } from '../angular/hero.component';
+import { moduleMetadata }               from '@storybook/angular';
+import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
+import { withDesign }                   from 'storybook-addon-designs'
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { HeroComponent }                from '../angular/hero.component';
 
-<Meta 
-    title='Components/Hero' 
+<Meta
+    title='Components/Hero'
     component={HeroComponent}
     decorators={[
         moduleMetadata({ declarations: [HeroComponent, TwigContainerComponent]}),
     ]}
     argTypes={{
-        background: {
-            control : {
-                type: 'select',
-                options: ['', 'ground', 'underground', 'highlight' ]
+        _imageReversed: {
+            description: '**[ ! ]** This control is only used for testing a different image in the Hero reversed.'
+        },
+        breadcrumb: {
+            table: {
+                type: { summary: 'TwigBlock' }
             }
+        },
+        height: {
+            control: { type: 'select' }
         }
     }}
 />
@@ -36,21 +41,54 @@ import { HeroComponent } from '../angular/hero.component';
 
 ```jsx
 {% include '@bf-components/hero/twig/index.twig' with {
-    badge       : 'NEW',
+    badge       : {
+        label       : 'NEW',
+        hierarchy   : 'primary',
+        angle       : '',
+        iconName    : ''
+    },
+    breadcrumb  : `<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>`,
     upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
+    title       : 'Discover our best Helix Internet and TV packages',
     subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description : 'Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.',
+    description : 'After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you.',
+    buttons: [
+        {
+            label       : 'Main action',
+            hierarchy   : '',
+            class       : ''
+        },
+        {
+            label       : 'Secondary action',
+            hierarchy   : '',
+            class       : ''
+        }
+    ],
+    price           : {
+        upperTitle      : 'From',
+        dollar          : 86,
+        cent            : 99,
+        details         : '/month',
+        promotion       : {
+            priceStriked    : 40.99,
+            priceSaved      : 10,
+            savedLabel      : 'You saved :',
+            superscript     : 1,
+            direction       : 'horizontal',
+        }
+    },
     button      : {
         label       : 'Button',
         hierarchy   : 'primary-alt',
         class       : 'my-class'
     },
     image           : {
-        default : '/images/_docs/hero-helix.png',
-        mobile  : '/images/_docs/hero-helix-mobile.png',
+        lg      : '/images/_docs/hero-helix.png',
+        md      : '/images/_docs/hero-helix-tablet.png', // Only used if isSplitted: true
+        sm      : '/images/_docs/hero-helix-mobile.png',
         alt     : 'Helix'
     },
+    height          : 'large',
     background      : 'ground',
 } only %}
 ```
@@ -60,17 +98,29 @@ import { HeroComponent } from '../angular/hero.component';
 ## Drupal
 
 export const commonProps = {
-    breadcrumb  : '',
-    badge       : 'NEW',
+    badge       : {
+      label       : 'NEW',
+      hierarchy   : 'primary',
+      angle       : '',
+      iconName    : ''
+    },
+    breadcrumb  : `<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>`,
     upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
+    title       : 'Discover our best Helix Internet and TV packages',
     subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description : 'Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.',
-    button      : {
-        label       : 'Button',
-        hierarchy   : 'primary-alt',
-        class       : 'my-class'
-    }
+    description : 'After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you.',
+    buttons: [
+        {
+            label       : 'Main action',
+            hierarchy   : '',
+            class       : ''
+        },
+        {
+            label       : 'Secondary action',
+            hierarchy   : '',
+            class       : ''
+        }
+    ],
 };
 
 export const Drupal = (args) => ({
@@ -78,53 +128,146 @@ export const Drupal = (args) => ({
     props       : args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
+        height='500px'
+        args={{
             elementPath : 'components/hero/_doc/template.drupal',
             ...commonProps,
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
 
 ## Drupal Example
 
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal - With image'
+        height='500px'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
             image           : {
-                default : '/images/_docs/hero-helix.png',
-                mobile  : '/images/_docs/hero-helix-mobile.png',
+                lg      : '/images/_docs/hero-helix.png',
+                sm      : '/images/_docs/hero-helix-mobile.png',
                 alt     : 'Helix'
+            },
+            _imageReversed  : {
+                lg  : '/images/_docs/hero-helix-reversed.png',
+                sm  : '/images/_docs/hero-helix-reversed-mobile.png',
+                alt : 'Helix'
             }
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With height large'
+        height='800px'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            image           : {
+                lg  : '/images/_docs/hero-helix.png',
+                sm  : '/images/_docs/hero-helix-mobile.png',
+                alt : 'Helix'
+            },
+            _imageReversed  : {
+                lg  : '/images/_docs/hero-helix-reversed.png',
+                sm  : '/images/_docs/hero-helix-reversed-mobile.png',
+                alt : 'Helix'
+            },
+            height          : 'large'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
 
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With image splitted'
+        height='800px'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            image           : {
+                lg              : '/images/_docs/hero-helix.png',
+                md              : '/images/placeholder/800x600.png',
+                sm              : '/images/_docs/hero-helix-mobile.png',
+                alt             : 'Helix',
+                isSplitted      : true
+            },
+            _imageReversed  : {
+                lg              : '/images/_docs/hero-helix-reversed.png',
+                md              : '/images/placeholder/800x600.png',
+                sm              : '/images/_docs/hero-helix-reversed-mobile.png',
+                alt             : 'Helix',
+                isSplitted      : true
+            }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With icon'
+        height='500px'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            icon: { name: 'innovation' }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With price'
+        height='500px'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            price           : {
+                upperTitle      : 'From',
+                dollar          : 86,
+                cent            : 99,
+                details         : '/month',
+                promotion       : {
+                    priceStriked    : 40.99,
+                    priceSaved      : 10,
+                    savedLabel      : 'You saved :',
+                    superscript     : 1,
+                    direction       : 'vertical',
+                }
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+<Canvas withSource='none'>
+    <Story
         name='Drupal - With Block Selection'
+        height='500px'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
@@ -150,4 +293,25 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
+
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With content'
+        height='500px'
+        args={{
+            elementPath     : 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            content: '<p>The property <b>content</b> could be a string or a TwigBlock.</p>'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+<!--
+TODO DS-185: Add a story with real twig block from twig-block.drupal.twig.
+Currrently, `embed` are not working with twig module in express server.
+ -->

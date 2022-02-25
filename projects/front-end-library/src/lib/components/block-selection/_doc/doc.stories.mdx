@@ -1,13 +1,13 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
 
 import { contentListsData }                     from './data';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { BlockSelectionComponent }                       from '../angular/block-selection.component';
 
 
-<Meta 
-    title='Components/Block Selection' 
+<Meta
+    title='Components/Block Selection'
     component={BlockSelectionComponent}
     decorators={[
         moduleMetadata({ declarations: [BlockSelectionComponent, TwigContainerComponent]}),
@@ -30,44 +30,45 @@ import { BlockSelectionComponent }                       from '../angular/block-
 ## Drupal implementation example
 
 ```jsx
-// Selection
 {% include '@bf-components/block-selection/twig/index.twig' with {
-    title                   : 'My selection',
-    isCollapsableOnMobile   : true,
-    isCollapsedByDefaultOnMobile    : false,
-    topLink                 : {
-        href        : 'www.videotron.com',
-        label       : 'FINALIZE',
+    title : 'My selection',
+    titleTag : 'p',
+    isCollapsableOnMobile : true,
+    isCollapsedByDefaultOnMobile : false,
+    topLink : {
+        href : 'www.videotron.com',
+        label : 'FINALIZE',
     },
     contentLists : [
         {
-            title       : 'No device',
-            link        : {
-                href        : 'www.videotron.com',
-                label       : 'ADD A PHONE',
+            title : 'No device',
+            link : {
+                href : 'www.videotron.com',
+                label : 'ADD A PHONE',
             }
         },
         {
-            title       : 'Samsung Galaxy Note 20 Utra 5G',
+            title : 'Samsung Galaxy Note 20 Utra 5G',
             description : 'Navy Blue, 128 Go',
-            price       : '$24.00',
-            saving      : '$30.00',
-            fullPrice   : '$150.00',
+            price : '$24.00',
+            priceInfo : '/ month',
+            saving : '$30.00',
+            fullPrice : '$150.00',
         },
         {
-            title       : 'All-inclusive 12 GB Mobile',
+            title : 'All-inclusive 12 GB Mobile',
             description : 'Lorem ipsum',
-            price       : '$55.00',
+            price : '$55.00',
         }
     ],
-    totalPrice          : {
-        label               : 'Total',
-        details             : 'Plus applicable taxes',
-        price               : '$80.00',
-        priceDetails        : '(for 24 month)',
+    totalPrice : {
+        label : 'Total',
+        details : 'Plus applicable taxes',
+        price : '$80.00',
+        priceInfo : '/ month',
+        priceDetails : '(for 24 month)',
     },
-    month               : 'month',
-    class               : '',
+    class : '',
 } only %}
 ```
 
@@ -76,13 +77,14 @@ import { BlockSelectionComponent }                       from '../angular/block-
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
-    props: args,
+    component   : TwigContainerComponent,
+    props       : args,
 });
 
 export const commonProps = {
     elementPath                     : 'components/block-selection/_doc/template.drupal',
     title                           : 'My selection',
+    titleTag                        : 'p',
     isCollapsableOnMobile           : true,
     isCollapsedByDefaultOnMobile    : false,
     topLink             : {
@@ -94,22 +96,20 @@ export const commonProps = {
         label               : 'Total',
         details             : 'Plus applicable taxes',
         price               : '$80.00',
+        priceInfo           : '/ month',
         priceDetails        : '(for 24 month)',
     },
-    month               : 'month',
     class               : '',
 }
 
-<Preview
-    withSource='none'
-    style={{ height: '600px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
+        height='600px'
+        args={{
             ...commonProps
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

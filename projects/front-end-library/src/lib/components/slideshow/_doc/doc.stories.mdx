@@ -1,0 +1,126 @@
+import { moduleMetadata }               from '@storybook/angular';
+import { Meta, Story, Props }  from '@storybook/addon-docs';
+import { withDesign }                   from 'storybook-addon-designs';
+
+import {slides}                         from './data';
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { SlideshowComponent }           from '../angular/slideshow.component';
+
+<Meta
+    title='Components/Slideshow'
+    component={SlideshowComponent}
+    decorators={[
+        moduleMetadata({ declarations: [SlideshowComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type    : 'figma',
+            url     : 'https://www.figma.com/file/yFsS1z98l853oMi59vwbKI/D%C3%A9co-OC11---Design-UI?node-id=1379%3A186299',
+            disable : false
+        },
+    }}
+    argTypes={{
+    }}
+/>
+
+# Slideshow
+
+- supports `Hero` slides only
+- supports variable slide heights
+- autoplay is set to change slides every 5 seconds
+- dots and arrows are displayed in the current slides
+- automatic sliding pauses on mouseover and will restart 5 second after mouseout
+
+
+## Component API
+
+
+**✅ Inputs are equivalent for Angular and Drupal.**
+
+<Props of={SlideshowComponent} />
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        height='500px'
+        args={{
+            elementPath : 'components/slideshow/_doc/template.drupal',
+            slides
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/slideshow/twig/index.twig' with {
+    slides : [
+        {
+            badge       : {label: "Badge label 1", iconName: "placeholder"},
+            upperTitle  : "upper Title 1",
+            title       : "Title 1",
+            subtitle    : "Subtitle 1",
+            description : "Description 1",
+            buttons     : [
+                {
+                    label     : "Button",
+                    hierarchy : "primary-alt",
+                    class     : "my-class"
+                }
+            ],
+            background   : "highlight",
+        },
+        {
+            badge       : "badge label 2",
+            upperTitle  : "upper Title 2",
+            title       : "Title 2",
+            subtitle    : "Subtitle 2",
+            description : "Description 2",
+            buttons     :[
+                {
+                    label       : "Button",
+                    hierarchy   : "primary-alt",
+                },
+                {
+                    label       : "Button",
+                    hierarchy   : "secondary",
+                }
+            ],
+            reversed   : true,
+        },
+        {
+            upperTitle : "upper Title 3",
+            title      : "Title 3 ",
+            subtitle   : "subtitle 3",
+            buttons    : [{
+                label       : "Button",
+                hierarchy   : "primary-alt",
+            }],
+            image      : {
+                lg  : "/images/_docs/hero-helix-reversed.png",
+                sm  : "/images/_docs/hero-helix-reversed-mobile.png",
+                alt : "Helix"
+            },
+            reversed   : true,
+        },
+        {...}
+    ]
+} %}
+
+```
+
+
+## Design Guidelines
+
+[Figma design guidelines](https://www.figma.com/file/yFsS1z98l853oMi59vwbKI/D%C3%A9co-OC11---Design-UI?node-id=1379%3A186299)

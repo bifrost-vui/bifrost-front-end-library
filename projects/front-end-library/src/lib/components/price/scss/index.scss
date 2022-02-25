@@ -5,11 +5,12 @@
 * ***************************************************************************** */
 
 .bf-price {
+    width: fit-content;
 
     &__dollar {
         @extend .bf-text-display-small;
     }
-    
+
     &__dollarsign,
     &__cent,
     &__details {
@@ -19,8 +20,30 @@
     &__details {
         @extend .mt-minus-2;
     }
+    .promotion-container {
+        display: flex;
+        gap: 0.5rem;
+        .bf-price__infos {
+            display: inline-flex;
+            font-family: $font-family-secondary;
 
-    &--md {
+            sup.bf-price__asterisk {
+                top: .35rem;
+            }
+        }
+        .small.bf-display-highlight {
+            .price-superscript {
+                white-space: nowrap;
+                sup.bf-price__superscript {
+                    font-size: .5rem;
+                    top: -.25rem;
+                    margin-left: -2px;
+                }
+            }
+        }
+    }
+
+    &--medium {
         .bf-price__dollar {
             @extend .bf-text-display-medium;
         }
@@ -32,11 +55,19 @@
 
         .bf-price__details {
             position: relative;
-            top: -0.25rem;
+            top: -.5rem;
+        }
+        .promotion-container {
+            .bf-price__infos sup.bf-price__asterisk {
+                top: .8rem;
+            }
+        }
+        .mt-n1 {
+            margin-top: -0.25rem;
         }
     }
 
-    &--lg { 
+    &--large {
         .bf-price__dollar {
             @extend .bf-text-display-large;
         }
@@ -49,10 +80,15 @@
             @extend .bf-text-display-sub-medium;
             @extend .mt-minus-1;
         }
+        .promotion-container {
+            .bf-price__infos sup.bf-price__asterisk {
+                top: .4rem;
+            }
+        }
     }
 
-    &__infos {
-        font-family: $font-family-secondary;
+    &__upfront .bf-text-interface-large {
+        line-height: 0;
     }
 
     sub,

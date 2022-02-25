@@ -1,17 +1,34 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
 
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { PriceComponent }                       from '../angular/price.component';
 
 
-<Meta 
-    title='Components/Price' 
+<Meta
+    title='Components/Price'
     component={PriceComponent}
     decorators={[
         moduleMetadata({ declarations: [PriceComponent, TwigContainerComponent]}),
     ]}
     argTypes={{
+        language: {
+            control: { type: 'select' },
+            table: { defaultValue: { summary: 'en' } },
+        },
+        size: {
+            control: { type: 'select' },
+            table: { defaultValue: { summary: 'small' } },
+        },
+        hasAsterisk: {
+            table: { defaultValue: { summary: false } },
+        },
+        fullWidth: {
+            table: { defaultValue: { summary: false } },
+        },
+        reversed: {
+            table: { defaultValue: { summary: false } },
+        },
     }}
 />
 
@@ -33,16 +50,26 @@ import { PriceComponent }                       from '../angular/price.component
 ```jsx
 {% include '@bf-components/price/twig/index.twig' with {
     upperTitle      : 'From',
-    dollar          : '30',
-    dollarClass     : '',
-    cent            : '99',
-    hasAsterisk     : false,
+    upfront         : {
+        dollar          : 0
+        label           : 'upfront',
+    },
+    dollar          : 30,
+    dollarClass     : 'my-dollar-class',
+    cent            : 99,
+    hasAsterisk     : true,
     details         : '/month',
-    dashed          : '$150',
-    saved           : '$10',
-    message         : 'Lorem ipsum dolor sit amet',
-    class           : 'class',
-    size            : 'md',
+    promotion       : {
+        title       : '<b>Promotion</b> test',
+        priceStriked: 40.99,
+        priceSaved  : 10,
+        savedLabel  : 'You saved:',
+        superscript : 1,
+        direction   : 'horizontal',
+    },
+    message         : 'This is a message',
+    class           : '',
+    size            : 'medium',
     language        : 'en',
 } only %}
 ```
@@ -56,27 +83,65 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
+export const commonProps = {
+    upperTitle      : 'Upper Title',
+    upfront         : {
+        dollar          : 0,
+        label           : 'upfront'
+    },
+    dollar          : 30,
+    dollarClass     : '',
+    cent            : 99,
+    hasAsterisk     : false,
+    details         : '/month',
+    promotion       : {
+        title           : ' <b>Promotion</b> test',
+        priceStriked    : 40.99,
+        priceSaved      : 10,
+        savedLabel      : 'You saved:',
+        superscript     : 1,
+        direction       : 'horizontal',
+    },
+    message         : 'This is a message.',
+    class           : 'p-3',
+}
+
+
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
+        height='200px'
+        args={{
             elementPath     : 'components/price/_doc/template.drupal',
-            upperTitle      : 'From',
-            dollar          : '30',
-            dollarClass     : '',
-            cent            : '99',
-            hasAsterisk     : false,
-            details         : '/month',
-            dashed          : '$150',
-            saved           : '$10',
-            message         : 'Lorem ipsum dolor sit amet',
-            language        : 'en',
-            class           : 'm-3',
+            ...commonProps
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
+
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - All Prices'
+        height='800px'
+        args={{
+            elementPath     : 'components/price/_doc/template-all.drupal',
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Null validator'
+        height='800px'
+        args={{
+            elementPath     : 'components/price/_doc/template-null.drupal',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>

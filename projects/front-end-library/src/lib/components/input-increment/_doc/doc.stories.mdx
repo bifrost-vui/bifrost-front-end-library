@@ -1,0 +1,95 @@
+import { moduleMetadata }               from '@storybook/angular';
+import { Meta, Story, Props }  from '@storybook/addon-docs';
+import { withDesign }                   from 'storybook-addon-designs'
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { InputIncrementComponent }     from '../angular/input-increment.component';
+
+<Meta
+    title='Components/Input Increment'
+    component={InputIncrementComponent}
+    decorators={[
+        moduleMetadata({ declarations: [InputIncrementComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type    : 'figma',
+            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI?node-id=91%3A0',
+            disable : false
+        },
+    }}
+    argTypes={{
+        value : {
+            type:  {
+                control      : { type: 'number' },
+                required     : true,
+                defaultValue : 0
+            }
+        },
+        inputId : {
+            type :{ required: true }
+        },
+        class : {
+            description : 'Ex.: justify-content-end | justify-content-center | justify-content-between',
+        },
+        errorMessage : {
+            type : { required: false },
+            description : 'Should always be defined if a min or a max value is defined',
+        },
+    }}
+/>
+
+# Input increment
+
+## Component API
+
+<Props of={InputIncrementComponent} />
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        height='400px'
+        args={{
+            elementPath     : 'components/input-increment/_doc/template.drupal',
+            class           : '',
+            ariaLabel       : '',
+            inputId         : '',
+            value           : 0,
+            min             : null,
+            max             : null,
+            errorMessage    : ''
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/input-increment/twig/index.twig' with {
+        class           : '',
+        ariaLabel       : '',
+        inputId         : 'my-unique-input-id',
+        value           : 0,
+        min             : null,
+        max             : null,
+        isReadOnly      : false,
+        isDisabled      : false,
+        isInvalid       : false,
+        errorMessage    : 'Error message'
+   }
+} %}
+
+```
+
+## Design Guidelines
+
+Check the [Figma](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI?node-id=91%3A0) for more details

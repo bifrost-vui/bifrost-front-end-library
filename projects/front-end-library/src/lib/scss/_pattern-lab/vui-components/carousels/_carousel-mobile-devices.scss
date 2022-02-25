@@ -4,142 +4,172 @@
 *
 * ***************************************************************************** */
 
-.carousel-mobile-device {
-  display: block;
-  @include media-breakpoint-down(xs){
-    display: none;
-  }
+.carousel-mobile-devices {
+    .slick-slide {
+        @include transitions(opacity);
+        opacity: 0;
 
-  &.slick-slider {
-    max-width: 578px;
-    margin: 0 auto;
-    @include media-breakpoint-down(md){
-      max-width: 558px;
+        &.slick-active {
+            opacity: 1;
+        }
     }
-    @include media-breakpoint-down(sm){
-      max-width: 488px;
-    }
-  }
-
-  .slick-list { 
-    margin: auto;
-    justify-content: center;
-    width: 95%;
-    overflow: hidden; 
-  }
-
-  .slick-track {
-    display: flex;
-  }
-
-  .slick-slide {
-    display: flex;
-    margin: 0 0.6rem;
-    width: 90px;
-    height: 90px;
-    align-items: stretch;
-    border: 1.5px solid $gray-300;
-    border-radius: 5px;
-
-    > div {
-      width: 100%;
-    }
-  }
-
-  .slick-slide.slick-current {
-    border: 2px solid $gray-800;
-  }
-
-  .slick-dots {
-    bottom: -20px;
-
-    button { display: none; }
-  }
-
-  .slick-prev,
-  .slick-next {
-    @include size(4.5rem);
-    background: unset;
-    border-radius: 100px;
-    border: none;
-    z-index: 20;
-
-    &:before{
-      @include size(0.5rem);
-      content: "";
-      display: block;
-      border-color: $dark !important;
-      @extend .position-absolute--center;
-    }
-  }
-
-  .slick-prev.slick-disabled,
-  .slick-next.slick-disabled {
-    opacity: 0.6;
-  }
-
-  .slick-prev {
-    @extend .position-absolute--center-left;
-    left: -3.8rem;
-
-    &:before{
-      @extend .icon-arrow-to-left;
-      left: 43%;
-      top: 42%;
-    }
-  }
-
-  .slick-next {
-    @extend .position-absolute--center-right;
-    right: -3.8rem;
-
-    &:before{
-      @extend .icon-arrow-to-right;
-      left: 35%;
-      top: 43%;
-    }
-  }
-
-  .img-lazy-load-container,
-  .img-lazy-load-container__img {
-    height: 70px;
-  }
-
-  &--showcase {
-    .slick-slide,
-    .slick-slide > div > picture {
-      max-height: 640px;
-    }
-
-    img {
-      max-width: 275px;
-    }
-    
-    .slick-dots {
-      position: relative;
-      margin: 0;
-      padding: 2rem 0;
-      bottom: 0;
-      width: 100%;
-      background-color: $white;
-    }
-  }
-
-  &--showcase.network_5g {
-    .img-lazy-load-container__span {
-      position: relative;
-      
-      &:before {
-        content: "";
-        position: absolute;
-        width: 85px;
-        height: 85px;
-        bottom: -28px;
-        right: -46px;
-        background: url('/images/assets/network-type-5g.png') no-repeat;
-        z-index: 10;
-      }
-    }
-  }
 }
 
+.carousel-mobile-device {
+    display: block;
+    @include media-breakpoint-down(xs){
+        display: none;
+    }
+
+    &.slick-slider {
+        max-width: 578px;
+        margin: 0 auto;
+        @include media-breakpoint-down(md){
+            max-width: 558px;
+        }
+        @include media-breakpoint-down(sm){
+            max-width: 488px;
+        }
+    }
+
+    .slick-list {
+        margin: auto;
+        justify-content: center;
+        width: 95%;
+        overflow: hidden;
+    }
+
+    .slick-track {
+        display: flex;
+        margin-left: 0;
+        gap: 0;
+    }
+
+    .slick-slide {
+        display: flex;
+        margin: 0 0.6rem;
+        width: 90px;
+        height: 90px;
+        align-items: stretch;
+        border: 1.5px solid $gray-300;
+        border-radius: 5px;
+
+        > div {
+            width: 100%;
+        }
+    }
+
+    .slick-slide.slick-current {
+        border: 2px solid $gray-800;
+    }
+
+    .slick-dots {
+        bottom: -20px;
+        padding: 2rem 0;
+
+        button { display: none; }
+    }
+
+    .slick-prev,
+    .slick-next {
+        @include size(0);
+        background: unset;
+        border-radius: 100px;
+        border: none;
+        z-index: 20;
+
+        &:before{
+            @include size(0.5rem);
+            content: "";
+            display: block;
+            border-color: $dark !important;
+            @extend .position-absolute--center;
+        }
+    }
+
+    .slick-prev.slick-disabled,
+    .slick-next.slick-disabled {
+        opacity: 0.6;
+    }
+
+    .slick-prev {
+        @extend .position-absolute--center-left;
+        left: -0.5rem;
+
+        &:before{
+            @extend .icon-arrow-to-left;
+            left: 43%;
+            top: 42%;
+        }
+    }
+
+    .slick-next {
+        @extend .position-absolute--center-right;
+        right: 0.5rem;
+
+        &:before{
+            @extend .icon-arrow-to-right;
+            left: 35%;
+            top: 43%;
+        }
+    }
+
+    .img-lazy-load-container,
+    .img-lazy-load-container__img {
+        height: 70px;
+    }
+
+    &--showcase {
+        .slick-slide,
+        .slick-slide > div > picture {
+            max-height: 640px;
+        }
+
+        img {
+            max-width: 275px;
+        }
+
+        .slick-dots {
+            position: relative;
+            margin: 0;
+            padding: 2rem 0;
+            bottom: 0;
+            width: 100%;
+            background-color: $white;
+        }
+    }
+
+    &--showcase {
+        $logo5g: url('/images/assets/network-type-5g.png') no-repeat;
+
+        &.network_5g {
+            .img-lazy-load-container__span {
+                position: relative;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    width: 85px;
+                    height: 85px;
+                    bottom: -28px;
+                    right: -46px;
+                    z-index: 10;
+                }
+            }
+        }
+
+        &.network_5g:not(.network_5g_only_on_first_image) {
+            .img-lazy-load-container__span:before {
+                background: $logo5g;
+            }
+        }
+
+        &.network_5g.network_5g_only_on_first_image {
+            .slick-slide[data-slick-index="0"] {
+                .img-lazy-load-container__span:before {
+                    background: $logo5g;
+                }
+            }
+        }
+    }
+}

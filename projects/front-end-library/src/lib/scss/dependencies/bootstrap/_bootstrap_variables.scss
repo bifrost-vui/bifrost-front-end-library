@@ -5,6 +5,7 @@
 * ***************************************************************************** */
 
 $path-images: "/images/";
+@use "sass:math";
 
 
 // Variables should follow the `$component-state-property-size` formula for
@@ -33,6 +34,8 @@ $vui-orange-light:    #DA8000 !default;
 $vui-orange:          #c14d00 !default;
 $vui-csr:             #0b8339 !default;
 $vui-green:           #24AD72 !default;
+$vui-csr-light:       #c4ffdb !default;
+$vui-csr-bg:          #DBEDE3 !default;
 $vui-blue:            #00415F !default;
 
 // ---------------------------------------------------------------------
@@ -118,7 +121,8 @@ $theme-colors: map-merge((
         "white":      $white,
 
         // Videotron UI colors
-        "csr":        $vui-csr,
+        "csr":                $vui-csr ,
+        "csr-light":          $vui-csr-light,
         "vui-yellow":         $vui-yellow,
         "vui-yellow-dark":    $vui-yellow-dark,
         "vui-orange":         $vui-orange
@@ -134,7 +138,6 @@ $data-colors: map-merge((
         "data-bloc":      #05B58C,
         "ppu":            #00415F,
 ), $data-colors);
-
 
 // stylelint-enable
 
@@ -152,7 +155,7 @@ $yiq-text-light: $white !default;
 //
 // Quickly modify global styling by enabling or disabling optional features.
 
-$enable-caret:              true !default;
+$enable-caret:              false !default;
 $enable-rounded:            true !default;
 $enable-shadows:            false !default;
 $enable-gradients:          false !default;
@@ -169,8 +172,9 @@ $enable-print-styles:       true !default;
 // You can add more entries to the $spacers map, should you need more variation.
 
 // stylelint-disable
+// WARNING: `$spacer-x` sould not be used anymore. We keep it for legacy code only.
+// Please, use theme CSS variables instead: E.g. `var(--bf-spacer-1)`.
 $spacer: 1rem !default;
-
 $spacer-1: ($spacer * .25);     // 4px
 $spacer-2: ($spacer * .5);      // 8px
 $spacer-3: $spacer;             // 16px
@@ -180,6 +184,7 @@ $spacer-5: ($spacer * 2.5);     // 40px
 $spacer-6: ($spacer * 3);       // 48px
 $spacer-7: ($spacer * 4.5);     // 72px
 $spacer-8: ($spacer * 6);       // 96px
+$spacer-10: $spacer-8;
 
 $spacers: () !default;
 $spacers: map-merge((
@@ -193,9 +198,10 @@ $spacers: map-merge((
         6: $spacer-6,
         7: $spacer-7,
         8: $spacer-8,
+        10: $spacer-8 // (Deprecated: Currently used only in PatternLab)
 ), $spacers);
 
-// This variable affects the `.h-*`, `.w-*`, `.maxw-*` classes.
+// This variable affects the `.h-*`, `.w-*`, but not `.maxw-*` classes.
 $sizes: () !default;
 $sizes: map-merge((
         10: 10%,
@@ -213,6 +219,25 @@ $sizes: map-merge((
         200: 200%,
         auto: auto,
 ), $sizes);
+
+//This variable affects `.maxw-*` `.maxh-*` classes (none resets mw or mh)
+$m-sizes: () !default;
+$m-sizes: map-merge((
+  10: 10%,
+  20: 20%,
+  25: 25%,
+  30: 30%,
+  35: 35%,
+  40: 40%,
+  50: 50%,
+  60: 60%,
+  65: 65%,
+  75: 75%,
+  85: 85%,
+  100: 100%,
+  200: 200%,
+  auto: none,
+), $m-sizes);
 // stylelint-enable
 
 // Body
@@ -277,7 +302,7 @@ $container-max-widths: (
 
 $grid-columns:                12 !default;
 $grid-gutter-width:           16px !default;
-$grid-gutter-width-simple:    ($grid-gutter-width / 2) !default;
+$grid-gutter-width-simple:    math.div($grid-gutter-width, 2) !default;
 
 $responsive-padding:          calc(3.5vw + #{$grid-gutter-width-simple}) !default;
 
@@ -328,6 +353,7 @@ $font-family-icons:           'Font Awesome 5 Free'!default;
 // stylelint-enable value-keyword-case
 
 $font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
+$legacy-font-size-base:       .7rem !default; //  legacy - using Ui-kit Base font size
 $font-size-lg:                1rem !default;
 $font-size-sm:                1rem !default;
 
@@ -348,7 +374,7 @@ $h4-font-size:                $font-size-base * 1.25 !default; // 18px
 $h5-font-size:                $font-size-base !default; // 16px
 $h6-font-size:                $font-size-base * 0.875 !default; // 14px
 
-$headings-margin-bottom:      ($spacer / 2) !default;
+$headings-margin-bottom:      math.div($spacer, 2) !default;
 $headings-font-family:        $font-family-base !default;
 $headings-font-weight:        $font-weight-normal !default;
 $headings-line-height:        1.25rem !default;
@@ -682,13 +708,13 @@ $nav-link-padding-y:                .5rem !default;
 $nav-link-padding-x:                1rem !default;
 $nav-link-disabled-color:           $gray-600 !default;
 
-$nav-tabs-border-color:             none !default;
+$nav-tabs-border-color:             transparent !default;
 $nav-tabs-border-width:             0 !default;
 $nav-tabs-border-radius:            $border-radius !default;
 $nav-tabs-link-hover-border-color:  $gray-200 $gray-200 $nav-tabs-border-color !default;
 $nav-tabs-link-active-color:        $black !default;
 $nav-tabs-link-active-bg:           transparent !default;
-$nav-tabs-link-active-border-color: none !default;
+$nav-tabs-link-active-border-color: transparent !default;
 
 $nav-pills-border-radius:           $border-radius !default;
 $nav-pills-link-active-color:       $component-active-color !default;
@@ -696,7 +722,7 @@ $nav-pills-link-active-bg:          $component-active-bg !default;
 
 // Navbar
 
-$navbar-padding-y:                  ($spacer / 2) !default;
+$navbar-padding-y:                  math.div($spacer, 2) !default;
 $navbar-padding-x:                  $spacer !default;
 
 $navbar-nav-link-padding-x:         .5rem !default;
@@ -705,7 +731,7 @@ $navbar-brand-font-size:            $font-size-lg !default;
 // Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
 $nav-link-height:                   ($font-size-base * $line-height-base + $nav-link-padding-y * 2) !default;
 $navbar-brand-height:               $navbar-brand-font-size * $line-height-base !default;
-$navbar-brand-padding-y:            ($nav-link-height - $navbar-brand-height) / 2 !default;
+$navbar-brand-padding-y:            math.div($nav-link-height - $navbar-brand-height, 2) !default;
 
 $navbar-toggler-padding-y:          .25rem !default;
 $navbar-toggler-padding-x:          .75rem !default;
@@ -781,7 +807,7 @@ $card-bg:                           $white !default;
 
 $card-img-overlay-padding:          1.25rem !default;
 
-$card-group-margin:                 ($grid-gutter-width / 2) !default;
+$card-group-margin:                 math.div($grid-gutter-width, 2) !default;
 $card-deck-margin:                  $card-group-margin !default;
 
 $card-columns-count:                3 !default;
