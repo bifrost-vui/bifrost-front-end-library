@@ -21,5 +21,6 @@ export const progressData = [
         percent:5,
         currentValue:1,
         minValue:"",
-        maxValue:""},
+        maxValue:""
+    },
 ];
