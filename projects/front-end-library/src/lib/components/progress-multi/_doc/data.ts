@@ -5,7 +5,8 @@ export const progressData = [
         percent:30,
         currentValue:1,
         minValue:2,
-        maxValue:2,
+        maxValue:2
+    },
     {
         label: "Data-bloc",
         cssClass:"bg-data-bloc",
