@@ -1,11 +1,5 @@
-import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
-
-
-interface IStatus {
-    label : string;
-    color : string;
-    class : string;
-}
+import { Component, OnInit, Input } from '@angular/core';
+import { IStatus }                  from '../../status/angular/api.model'
 
 @Component({
   selector: 'bf-input-text',
@@ -54,7 +48,8 @@ export class InputTextComponent implements OnInit {
     /** for Password input type only */
     @Input() validationTitle: string;
     /** for Password input type only.<br>
-     Expected : { class: string, label: string, color: string } */
+     Expected : { class: string, label: string, color: string }
+     base on [status](/?path=/docs/components-ststus--drupal) component API */
     @Input() validationList : IStatus[];
     /** expected : { text: string, url: string } <br>
      You can also pass the info text as a `string` */

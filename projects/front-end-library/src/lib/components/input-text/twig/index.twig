@@ -4,7 +4,7 @@
   {% set type = inputType %}
 {% endif %}
 
-<div class='form-group bf-input-text  {{ inputType == 'password' ? 'bf-input-text--password'  }} {{ inputType == 'search' ? 'bf-input-text--search' }} {{ isInvalid ? 'bf-input-text--isInvalid' }} {{ isDisabled ? 'bf-input-text--disabled'}}{{ class|default('') }}'>
+<div class='form-group bf-input-text  {{ inputType == 'password' ? 'bf-input-text--password'  }} {{ inputType == 'search' ? 'bf-input-text--search' }} {{ isInvalid ? 'bf-input-text--isInvalid' }} {{ (isDisabled is defined and isDisabled) ? 'bf-input-text--disabled'}}{{ class|default('') }}'>
   {% if (description is defined and description) or (label is defined and label) %}
     <div class='bf-input-text__head'>
       {% if label is defined and label %}
@@ -19,7 +19,7 @@
           {% endif %}
         </label>
 
-        {# TODO : add custom tooltip block when the tooltip component is available #}
+        {# TODO DS-301 -> add custom tooltip block when the tooltip component is available #}
 
       {% if tooltip is defined and tooltip %}
         {# allow tooltip to be a string #}
@@ -90,7 +90,7 @@
       class='form-control {{ type == 'password' ? 'js-form-password__input' }} {{ (inputClass is defined and inputClass)? class|default('') }}'
     >
     {# ***************************************************
-       Begin Search Button & suggestion list
+       Begin Search Button
     *************************************************** #}
     {% if inputType is same as ('search') %}
       <button class='form-group__input-icon-container {{ inputType == 'search' ? 'form-group__input--search__btn' }} {{ (isReadonly  is defined and isReadonly) ? 'd-none' }}'
@@ -103,7 +103,6 @@
         } %}
       </button>
     {% endif %}
-    {# TODO : include selectionList #}
     {# End Search Button #}
 
     {# ***************************************************
@@ -127,7 +126,6 @@
           name  : 'eye'
         } %}
       </button>
-      {# TODO - make validation list consume a list of status component #}
       {% if (validationList is defined and validationList is not empty) or (validationTitle is defined and validationTitle) %}
         <div class='form-password__infos'>
           {% if validationTitle is defined and validationTitle %}
@@ -149,6 +147,8 @@
       {% endif %}
     {% endif %}
     {# End Password show/hide button & validation list #}
+
+    {# TODO - DS-302 Custom autocomplete : suggestion list #}
   </div>
 
   {% if (errorMessage is defined and errorMessage and isInvalid) or (info is defined and info is not empty) %}
