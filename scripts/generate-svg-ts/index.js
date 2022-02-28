@@ -23,22 +23,26 @@ function requestInfo() {
     return inquirer.prompt({
         type: 'confirm',
         name: 'confirmation',
-        message: 'Are tou sure?',
+        message: 'Are tou sure?'
 
     }).then(function(response) {
-        shell.echo( chalk.green('Okay let\'s go') );
+        if(response.confirmation) {
+            shell.echo( chalk.green('Okay let\'s go!') );
+            return generateFile();
+        } else {
+            shell.echo( 'Action canceled.' );
+            return false;
+        }
     });
 }
 
-function generateFile(element) {
+function generateFile() {
     var deferred = q.defer();
 
     const allIconList = interfaceIcons.concat(illustrationIcons);
     const svgList = {};
 
     allIconList.forEach(function(category){
-        shell.echo( category.category );
-
         category.list.forEach(function(iconName){
 
             ['sm', 'lg'].forEach(function(iconSize) {
@@ -61,7 +65,7 @@ function generateFile(element) {
         });
     });
 
-    shell.echo( '-> svgList  ' + JSON.stringify(svgList) );
+    // shell.echo( '-> svgList  ' + JSON.stringify(svgList) );
     const template = `
 // This file is generated automatically with command:
 // npm run generate-svg-ts
@@ -72,12 +76,12 @@ export default iconList;`;
     const buildFilePath = 'projects/front-end-library/src/lib/components/icon/svg/svg.ts';
     fs.writeFileSync(buildFilePath, template, 'utf-8');
 
-    return { buildFilePath };
+    // return { buildFilePath };
+    success({ buildFilePath });
 }
 
 function success ({ buildFilePath }) {
-    shell.echo( `\r` );
-    shell.echo( chalk.green.bold('\n👍 Done! \r') );
+    shell.echo( chalk.green.bold('\n👍 Done. \r') );
     shell.echo( chalk.green('\nFile updated: \r') );
     shell.echo( chalk.green(`${buildFilePath}`) );
     shell.echo( chalk.green('------------------------------------------------------------------------------------') );
@@ -85,6 +89,4 @@ function success ({ buildFilePath }) {
 }
 
 // Start
-requestInfo()
-    .then(generateFile)
-    .then(success);
+requestInfo();
