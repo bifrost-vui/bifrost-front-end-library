@@ -1,16 +1,17 @@
-import { moduleMetadata }             from '@storybook/angular';
-import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
-import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
-import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
-import { BadgeComponent }           from '../angular/badge.component';
-import { BadgeTemplate }            from './template.angular.ts';
+import { moduleMetadata }               from '@storybook/angular';
+import { Canvas, Meta, Story, Props }   from '@storybook/addon-docs';
+import illustrationIcons                from '../../../../../../../public/icons/list/illustrations.json';
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { IconComponent }                from '../../icon/angular/icon.component';
+import { BadgeComponent }               from '../angular/badge.component';
+import { BadgeTemplateComponent }       from './template.angular.component';
 
 
 <Meta
     title='Components/Badge'
     component={BadgeComponent}
     decorators={[
-        moduleMetadata({ declarations: [BadgeComponent, BadgeTemplate, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [BadgeComponent, IconComponent, BadgeTemplateComponent, TwigContainerComponent]}),
     ]}
     argTypes={{
         hierarchy: {
@@ -78,7 +79,7 @@ export const Drupal = (args) => ({
 ## Angular
 
 export const Angular = (args) => ({
-    component: BadgeTemplate,
+    component: BadgeTemplateComponent,
     props: args,
 });
 
@@ -95,6 +96,9 @@ export const Angular = (args) => ({
         {Angular.bind({})}
     </Story>
 </Canvas>
+
+
+## Drupal
 
 <Canvas
     withSource='none'

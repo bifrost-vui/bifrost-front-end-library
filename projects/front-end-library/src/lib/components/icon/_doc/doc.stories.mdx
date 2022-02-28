@@ -1,17 +1,16 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
-
+import { Canvas, Meta, Story, Props }           from '@storybook/addon-docs';
 import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
 import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { IconComponent }                        from '../angular/icon.component';
-
+import { IconTemplateComponent }                 from './template.angular.component';
 
 <Meta
     title='Components/Icon'
     component={IconComponent}
     decorators={[
-        moduleMetadata({ declarations: [IconComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [IconComponent, IconTemplateComponent, TwigContainerComponent]})
     ]}
     parameters={{
         design: {
@@ -86,13 +85,81 @@ import { IconComponent }                        from '../angular/icon.component'
 
 ```
 
+## Angular
+
+export const Angular = (args) => ({
+    component: IconTemplateComponent,
+    props: args,
+});
+
+### Interface Icons
+
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story
+        name='Angular - Interface'
+        args={{
+            className   : 'my-2',
+            icons       : interfaceIcons
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...interfaceIcons.map(a => a.list).flat().sort()],
+                }
+            },
+            size: {
+                defaultValue: 'small',
+                description: 'recommended : xsmall | small',
+            },
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+
+### Illustrations Icons
+
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story
+        name='Angular - Illustration'
+        args={{
+            className   : 'my-2',
+            icons       : illustrationIcons
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
+                },
+            },
+            size: {
+                defaultValue: 'large',
+                description: 'recommended : small | medium | large',
+            },
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+
 ## Drupal
 
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
     props: args,
 });
-
 
 ### Interface Icons
 
