@@ -1,7 +1,7 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-    selector: "bf-section-buttons-nav",
+    selector: 'bf-section-buttons-nav',
     templateUrl: './section-buttons-nav.component.html',
 })
 export class SectionButtonsNavComponent implements OnInit {
