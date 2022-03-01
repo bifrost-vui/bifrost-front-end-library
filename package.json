@@ -18,9 +18,9 @@
   "scripts": {
     "start-dev": "run-p twig:server webpack:watch storybook:prebuild storybook:start",
     "twig:server": "nodemon api/server.js --watch projects/ --watch public/ -e twig",
-    "build": "ng build --configuration production && npm run webpack:build && cp -R projects/front-end-library/src/lib dist/front-end-library/source && cp -R public dist/front-end-library/assets && rm -rf dist/front-end-library/assets/logo",
+    "build": "npm run bifrost:generate-svg-ts --no-prompt && ng build --configuration production && npm run webpack:build && cp -R projects/front-end-library/src/lib dist/front-end-library/source && cp -R public dist/front-end-library/assets && rm -rf dist/front-end-library/assets/logo",
     "publish": "npm run webpack:clear && npm run build && npm publish ./dist/front-end-library --access public",
-    "storybook:start": "start-storybook -p 9008 -s public",
+    "storybook:start": "npm run bifrost:generate-svg-ts --no-prompt & start-storybook -p 9008 -s public",
     "storybook:build": "npm run webpack:build && npm run storybook:prebuild && build-storybook -s public",
     "storybook:prebuild": "npm run docs:json",
     "docs:json": "compodoc -p .storybook/tsconfig.json -e json -d .",

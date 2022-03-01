@@ -5,7 +5,6 @@ import iconList from '../svg/svg';
 @Component({
     selector: 'bf-icon',
     templateUrl: './icon.component.html',
-    // styleUrls: ['../common/style.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconComponent implements OnChanges {
@@ -40,7 +39,6 @@ export class IconComponent implements OnChanges {
         {
             const sizeSuffix = ['large', 'huge'].includes(this.size) ? 'lg' : 'sm';
             const svg = iconList[`${iconName}`][`${sizeSuffix}`];
-            // this.element.nativeElement.innerHTML = svg;
             this.svg = this.sanitizer.bypassSecurityTrustHtml(svg);
         }
     }

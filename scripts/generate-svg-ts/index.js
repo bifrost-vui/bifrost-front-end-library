@@ -5,6 +5,7 @@ const fs            = require('fs');
 const replace       = require('replace-in-file');
 const open          = require('open');
 const chalk         = require('chalk');
+const path          = require('path');
 const textError     = chalk.red;
 
 const interfaceIcons    = require('../../public/icons/list/interfaces');
@@ -20,20 +21,30 @@ function requestInfo() {
     shell.echo( `This file export an object with all SVG icons based on the list: /public/icons/list/ ${chalk.bold('illustrations.json')} and ${chalk.bold('interfaces.json')}.` );
     shell.echo( `\r` );
 
-    return inquirer.prompt({
-        type: 'confirm',
-        name: 'confirmation',
-        message: 'Are tou sure?'
+    // Get command argument. E.g. : npm run generate-svg-ts --no-prompt
+    const args = process.argv.slice(2);
 
-    }).then(function(response) {
-        if(response.confirmation) {
-            shell.echo( chalk.green('Okay let\'s go!') );
-            return generateFile();
-        } else {
-            shell.echo( 'Action canceled.' );
-            return false;
-        }
-    });
+    // If no prompt:
+    if (args[0] === '--no-prompt') {
+        return generateFile();
+
+    // Else ask confirmation:
+    } else {
+        return inquirer.prompt({
+            type: 'confirm',
+            name: 'confirmation',
+            message: 'Are tou sure?'
+
+        }).then(function(response) {
+            if(response.confirmation) {
+                shell.echo( chalk.green('Okay let\'s go!') );
+                return generateFile();
+            } else {
+                shell.echo( 'Action canceled.' );
+                return false;
+            }
+        });
+    }
 }
 
 function generateFile() {
@@ -65,7 +76,7 @@ function generateFile() {
         });
     });
 
-    // shell.echo( '-> svgList  ' + JSON.stringify(svgList) );
+    // Create template
     const template = `
 // This file is generated automatically with command:
 // npm run generate-svg-ts
@@ -73,11 +84,20 @@ function generateFile() {
 const iconList = ${JSON.stringify(svgList, null, 2)};
 export default iconList;`;
 
-    const buildFilePath = 'projects/front-end-library/src/lib/components/icon/svg/svg.ts';
-    fs.writeFileSync(buildFilePath, template, 'utf-8');
+    // Create /svg folder if needed.
+    var dir = 'projects/front-end-library/src/lib/components/icon/svg';
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+    }
 
-    // return { buildFilePath };
-    success({ buildFilePath });
+    // Write avg.ts file with all SVG sources.
+    const buildFilePath = 'projects/front-end-library/src/lib/components/icon/svg.ts';
+    fs.writeFile(buildFilePath, template, 'utf8', function(err) {
+        if (err) {
+            return console.log(err);
+        }
+        success({ buildFilePath });
+    });
 }
 
 function success ({ buildFilePath }) {
