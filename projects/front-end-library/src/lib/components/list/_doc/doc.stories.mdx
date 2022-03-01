@@ -1,8 +1,8 @@
-import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Props }  from '@storybook/addon-docs';
+import { moduleMetadata }           from '@storybook/angular';
+import { Meta, Story, Props, Canvas }       from '@storybook/addon-docs';
 
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { ListComponent }     from '../angular/list.component';
+import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
+import { ListComponent }            from '../angular/list.component';
 
 <Meta
     title='Components/List'
@@ -22,64 +22,199 @@ import { ListComponent }     from '../angular/list.component';
 
 <Props of={ListComponent} />
 
+## Drupal
 
-
-## Drupal implementation exemple
-
-```jsx
-{% include '@bf-components/list/twig/index.twig' with {
+export const commonProps = {
     title       : 'Title',
-    titleTag    : 'h2',
+    link        : {
+        href    : 'https://www.example.com',
+        label   : 'link',
+        iconName: 'external-link'
+    },
+    description : 'Description',
+    details      : 'Details magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo',
     content     : [
         {
+            label   : 'Lorem ipsum',
             iconName: 'unlimited',
-            label   : 'Lorem ipsum'
+            link        : {
+                href    : 'https://www.example.com',
+                label   : 'link',
+                iconName: 'external-link',
+                iconPosition: 'right'
+            }
         },
         {
-            iconName: 'desinstallation',
-            label   : 'Lorem ipsum'
+            label   : 'Lorem ipsum',
+            iconName: 'desinstallation'
         },
         {
+            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
             iconName: 'placeholder',
-            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.'
+            link        : {
+                href    : 'https://www.example.com',
+                label   : 'link',
+                iconName: 'external-link',
+                iconPosition: 'right'
+            }
         }
-    ]
-} only %}
-```
+    ],
+};
+
+export const bulletListProps = {
+    content     : [
+        {
+            label   : 'Lorem ipsum',
+            link        : {
+                href    : 'https://www.example.com',
+                label   : 'link',
+            }
+        },
+        {
+            label   : 'Lorem ipsum',
+        },
+        {
+            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+            link        : {
+                href    : 'https://www.example.com',
+                label   : 'link',
+            }
+        }
+    ],
+    defaultBullet  : 'check'
+};
 
 
-
-## Drupal
 
 export const Drupal = (args) => ({
     component   : TwigContainerComponent,
     props       : args,
 });
 
-<Canvas withSource='none'>
+## Drupal implementation examples
+
+### List with header
+
+<Canvas
+    withSource='none'
+    style={{height : '500px'}}
+>
     <Story
-        name='Drupal'
-        height='300px'
+        name='Drupal - list with icons'
+        height= '500px'
         args={{
             elementPath : 'components/list/_doc/template.drupal',
-            title       : 'Title',
-            titleTag    : 'h2',
-            content     : [
-                {
-                    iconName    : 'unlimited',
-                    label       : 'Lorem ipsum'
-                },
-                {
-                    iconName    : 'desinstallation',
-                    label       : 'Lorem ipsum'
-                },
-                {
-                    iconName    : 'placeholder',
-                    label       : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.'
-                }
-            ]
+            ...commonProps
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
+
+```jsx
+
+{% include '@bf-components/list/twig/index.twig' with {
+    title       : 'Title',
+    titleTag    : 'p',
+    titleClass  : 'bf-text font-weight-bold',
+    link        : {
+        href    : 'https://www.eample.com',
+        label   : 'link'
+    },
+    description : 'Description',
+    details     : 'Details : magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo',
+    content     : [
+        {
+            label   : 'Lorem ipsum',
+        },
+        {
+            label   : 'Lorem ipsum',
+        },
+        {
+            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
+        }
+    ],
+    defaultBullet  : 'check'
+} only %}
+```
+
+### Simple list with icons
+
+<Canvas    withSource='none'
+           style={{height : '500px'}}
+>
+    <Story
+        name='Drupal - default bullet list'
+        args={{
+            elementPath : 'components/list/_doc/template.drupal',
+            ...commonProps,
+            ...bulletListProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+```jsx
+{% include '@bf-components/list/twig/index.twig' with {
+    content : [
+        {
+            label   : 'Lorem ipsum',
+            iconName: 'unlimited'
+        },
+        {
+            label   : 'Lorem ipsum',
+            iconName: 'desinstallation'
+        },
+        {
+            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
+            iconName: 'placeholder',
+            link    : {
+                href    : 'https://www.example.com',
+                label   : 'link',
+            }
+        }
+    ],
+    class  : 'bf-text-display-sub-medium'
+} only %}
+```
+
+## Css Only Example
+
+
+<Canvas
+    withSource='none'
+    style={{height : '750px'}}
+>
+    <Story
+        name='CSS only bullet list'
+        args={{
+            elementPath : 'components/list/_doc/css-only-template'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+```
+<div class='p-4'>
+    <ul class='list list--divider'>
+        <li>Lorem ipsum</li>
+        <li>Lorem ipsum</li>
+        <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus
+          eget urna mollis ornare vel eu leo.
+        </li>
+    </ul>
+</div>
+```
+
+## Design Guidelines
+
+List component in [figma](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=10057%3A2076)
+
+Cards using List component in figma :
+
+ - [Base card product](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=19609%3A268175)
+ - [Base card plan](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=12609%3A177232)
+ - [Card plan - TabTMO](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=12528%3A1022)
+ - [Card Plan TV + Internet](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=12609%3A164406)

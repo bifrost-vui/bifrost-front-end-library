@@ -1,0 +1,40 @@
+{#  Note #}
+<div class='bf-color-bg-underground p-4 my-4'>
+  <p class='bf-text small mb-0'>
+    <strong>Note: </strong> <br/> you can also use the <strong>list</strong> and <strong>list--divider</strong> CSS utilitary class directly on unordered lists <br/>
+  </p>
+</div>
+
+{#  CSS only #}
+<div class=''>
+  {% for index in [1,2] %}
+    <div class="container-fluid d-flex d-flex flex-column d-sm-flex flex-sm-row justify-content-center">
+      <div class='p-4'>
+        <p class='bf-text-interface-large'>List css only</p>
+
+        <div class='p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
+          <ul class='list'>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus
+              eget urna mollis ornare vel eu leo.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class='p-4'>
+        <p class='bf-text-interface-large'>List with divider css only</p>
+
+        <div class='p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
+          <ul class='list list--divider'>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus
+              eget urna mollis ornare vel eu leo.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
