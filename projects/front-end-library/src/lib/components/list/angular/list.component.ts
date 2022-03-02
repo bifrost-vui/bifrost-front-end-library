@@ -19,7 +19,7 @@ export class ListComponent implements OnInit {
     /** Displays bellow the title and may contain HTML tags */
     @Input() details            : string;
     /** Expected format:
-     <pre style='font-size: .75rem; padding: 0 1rem; marigin:0; background-color: #F8F8F8'>[{
+     <pre style='font-size: .75rem; padding: 0 1rem; margin:0; background-color: #F8F8F8'>[{
      label: "Label",
      iconName: "placeholder"
      link: {
@@ -30,7 +30,7 @@ export class ListComponent implements OnInit {
      {...}]</pre>*/
 
     @Input() content            : object;
-    /** When `true` creates a bullet list with a default `check` icon - you can still specify another iconName in `content[]` */
+    /** Creates a bullet list with a default `check` or `dot` icon - you can still specify another iconName in `content[]` */
     @Input() defaultBullet  : 'check' | 'dot' | null;
     /** Adds a bottom border between list elements */
     @Input() hasDivider         : boolean;
