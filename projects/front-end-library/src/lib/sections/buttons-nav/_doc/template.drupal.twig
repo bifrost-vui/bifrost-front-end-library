@@ -4,8 +4,10 @@
 {% set highlight            = highlight|json_parse %}
 
 {% set variants = [
-  {},
-  { reversed: reversed|default(true) },
+  { class: 'bf-color-bg-ground ' ~ class },
+  { class: 'bf-color-bg-underground ' ~ class },
+  { reversed: reversed|default(true), class: 'bf-color-bg-ground ' ~ class },
+  { reversed: reversed|default(true), class: 'bf-color-bg-underground ' ~ class },
   { highlight: highlight|default(true) }
 ] %}
 
