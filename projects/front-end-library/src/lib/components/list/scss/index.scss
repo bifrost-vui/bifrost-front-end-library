@@ -6,9 +6,20 @@
 
 .bf-list {
     &--divider {
-        border-top: 1px solid var(--bf-color-stroke-secondary);
-        padding-top: var(--bf-spacer-3);
-        margin-top : var(--bf-spacer-3);
+        &-top{
+            border-top: 1px solid var(--bf-color-stroke-secondary);
+            padding-top: var(--bf-spacer-3);
+            margin-top: var(--bf-spacer-3);
+        }
+        &-bottom {
+            border-bottom: 1px solid var(--bf-color-stroke-secondary);
+            padding-bottom: var(--bf-spacer-3);
+            margin-bottom: var(--bf-spacer-3);
+        }
+        &-both {
+            @extend .bf-list--divider-top;
+            @extend .bf-list--divider-bottom;
+        }
     }
     p {
         font-weight: inherit;

@@ -2,6 +2,7 @@ export const contentLists = [
     {
         title       : 'TV',
         description : '40 channels',
+        listDivider : 'bottom',
         content     : [
             {
                 label: 'Free and Unlimited Go after 10Go',
@@ -20,6 +21,7 @@ export const contentLists = [
     {
         title       : 'Internet',
         description : 'Unlimited',
+        listDivider : 'bottom',
         content      : [
             {
                 label: 'Utilisation illimité',
