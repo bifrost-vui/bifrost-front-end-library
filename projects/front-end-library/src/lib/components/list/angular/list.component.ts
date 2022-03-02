@@ -34,6 +34,8 @@ export class ListComponent implements OnInit {
     @Input() defaultBullet  : 'check' | 'dot' | null;
     /** Adds a bottom border between list elements */
     @Input() hasDivider         : boolean;
+    /** Adds a Top border to the component */
+    @Input() hasTopBorder         : boolean;
     @Input() reversed           : boolean;
 
     @Input() contentClass       : string;
