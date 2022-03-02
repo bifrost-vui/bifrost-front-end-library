@@ -13,6 +13,7 @@ export class SectionButtonsNavComponent implements OnInit {
     @Input() isFeatured     : boolean;
 
     @Input() class          : string;
+    @Input() extraAttribute : string;
     @Input() reversed       : boolean;
     @Input() highlight      : boolean;
 
