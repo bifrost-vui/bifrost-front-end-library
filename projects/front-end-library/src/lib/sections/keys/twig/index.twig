@@ -8,7 +8,7 @@
 {% endif %}
 
 <section class='bf-section-keys py-6 px-4 {{ class|default('') }} {{ backgroundClass|default('') }}'>
-	<div class='container-fluid d-flex flex-column gap-4 {{ align == 'center' ? 'text-left text-md-center align-items-start align-items-md-center'}}'>
+	<div class='container-fluid d-flex flex-column gap-4 {{ align == 'center' ? 'text-center align-items-stretch align-items-md-center'}}'>
 
 		{% if title is defined and title or description is defined and description %}
 			<header style='max-width: 40rem'>
@@ -28,7 +28,7 @@
 
 		<ul class='list d-flex flex-column flex-md-row flex-wrap gap-4'>
 			{% for key in keys %}
-				<li class='bf-section-keys__item d-flex flex-row flex-md-column align-items-start gap-4 p-0 {{ align == 'center' ? 'align-items-md-center'}}'>
+				<li class='bf-section-keys__item d-flex flex-row flex-md-column align-items-start gap-4 p-0 {{ align == 'center' ? 'text-left text-md-center align-items-md-center'}}'>
 					{% if key.iconName is defined and key.iconName %}
 						{% include '@bf-components/icon/twig/index.twig' with {
 							name: key.iconName,
