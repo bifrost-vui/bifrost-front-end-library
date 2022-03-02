@@ -28,9 +28,11 @@
 		{% endif %}
 
     {% if link is defined and link %}
-      <a class='bf-link bf-link--primary' href='{{ link.href|default('') }}'>
-        {{ link.label|default('') }}
-      </a>
+      {% include '@bf-components/link/twig/index.twig' with {
+        href        : link.href|default(''),
+        label       : link.label|default(''),
+        hierarchy   : 'primary'
+      } only %}
     {% endif %}
 	</div>
 </div>

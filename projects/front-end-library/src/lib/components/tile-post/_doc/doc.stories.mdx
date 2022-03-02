@@ -1,5 +1,6 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Meta, Story, Props }           from '@storybook/addon-docs';
+import { withDesign }                           from 'storybook-addon-designs'
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { TilePostComponent }                    from '../angular/tile-post.component';
 
@@ -8,8 +9,16 @@ import { TilePostComponent }                    from '../angular/tile-post.compo
     title='Components/Tile Post'
     component={TilePostComponent}
     decorators={[
-        moduleMetadata({ declarations: [TilePostComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [TilePostComponent, TwigContainerComponent]}),
+        withDesign
     ]}
+    parameters={{
+        design: {
+            type    : 'figma',
+            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=2806%3A9236',
+            disable : false
+        }
+    }}
     argTypes={{
         titleTag: {
             table: { defaultValue: { summary: 'p' } }
@@ -47,7 +56,7 @@ import { TilePostComponent }                    from '../angular/tile-post.compo
         src: '/images/_docs/hero-helix-reversed.png',
         alt: 'Image of an iPhone 13',
         fit: 'fill',
-        backgroundColor: 'red'
+        backgroundColor: '#ff00ff'
     },
     class           : 'm-6'
 } only %}
@@ -74,7 +83,7 @@ export const commonProps = {
         src: '/images/_docs/hero-helix-reversed.png',
         alt: 'Image of an iPhone 13',
         fit: 'fill',
-        backgroundColor: 'red'
+        backgroundColor: 'grey'
     },
     class           : 'm-6'
 }
@@ -91,3 +100,9 @@ export const commonProps = {
         {Drupal.bind({})}
     </Story>
 </Canvas>
+
+
+
+## Design Guidelines
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=2806%3A9236' frameBorder='0' allowFullScreen></iframe>
