@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
 import { IPrice } from '../../price/angular/api.model';
+import { IList }  from "../../list/angular/api.model";
 
 
 interface IImage {
@@ -90,7 +91,7 @@ export class CardComponent implements OnInit {
         ...
     ]
     </pre>*/
-    @Input() contentLists           : object;
+    @Input() contentLists           : IList;
     @Input() detailsColors          : object;
     @Input() detailsStorage         : object;
     /**
