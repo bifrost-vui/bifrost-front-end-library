@@ -1,0 +1,39 @@
+{% set reversed = reversed|json_parse %}
+
+<div class='d-flex flex-column flex-sm-row justify-content-center'>
+  {% for i in 1..3 %}
+    {% if i == 1 %}
+      {% set background = "bf-color-bg-ground" %}
+    {% elseif i == 2 %}
+      {% set background = "bf-color-bg-underground" %}
+    {% else %}
+      {% set background = "bf-color-bg-highlight" %}
+    {% endif %}
+
+    <div class='p-3 {% if reversed %}reversed{% endif %} {{ background }}'>
+      {% include '@bf-components/status/twig/index.twig' with {
+        label : label|default('Unknown status'),
+        color : color|default('unknown'),
+        class : class
+      } only %}
+
+      {% include '@bf-components/status/twig/index.twig' with {
+        label : label|default('In progress status'),
+        color : color|default('progress'),
+        class : class
+      } only %}
+
+      {% include '@bf-components/status/twig/index.twig' with {
+        label : label|default('Success status'),
+        color : color|default('success'),
+        class : class
+      } only %}
+
+      {% include '@bf-components/status/twig/index.twig' with {
+        label : label|default('Fail status'),
+        color : color|default('failed'),
+        class : class
+      } only %}
+    </div>
+  {% endfor %}
+</div>
