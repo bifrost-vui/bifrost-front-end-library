@@ -12,6 +12,7 @@ export class SectionKeysComponent implements OnInit {
     @Input() description    : string;
     @Input() keys           : object[];
     @Input() buttons        : object[];
+    @Input() align          : 'left' | 'center';
 
     @Input() class          : string;
     @Input() reversed       : boolean;
