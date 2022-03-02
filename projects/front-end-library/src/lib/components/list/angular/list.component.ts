@@ -1,15 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
-
-/**
- * Description of the component List
- *
- */
-interface ILink {
-    label           : string;
-    href            : string;
-    iconName        : string;
-    iconePosition   : string;
-}
+import { ILink } from "../../link/angular/api.model";
 
 @Component({
     selector: 'bf-list',
