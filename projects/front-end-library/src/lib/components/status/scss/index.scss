@@ -1,0 +1,46 @@
+/* *****************************************************************************
+*
+*  Status
+*
+* ***************************************************************************** */
+
+.bf-status {
+    position: relative;
+    padding-left: 1rem;
+    margin: 0;
+
+    &::before {
+        @include size(0.5rem);
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translate(0, -50%);
+        content: "";
+        border-radius: 50%;
+        background-color: $gray-100;
+    }
+
+    &-unknown {
+        &::before {
+            background-color: $gray-300;
+        }
+    }
+
+    &-progress {
+        &::before {
+            background-color: var(--bf-color-feedback-neutral);
+        }
+    }
+
+    &-success {
+        &::before {
+            background-color: var(--bf-color-feedback-success);
+        }
+    }
+
+    &-failed {
+        &::before {
+            background-color: var(--bf-color-feedback-negative);
+        }
+    }
+}
