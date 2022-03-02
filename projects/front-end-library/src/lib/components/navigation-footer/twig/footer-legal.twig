@@ -26,10 +26,11 @@
                     {% for linkField in linkFields %}
                         <li class='' data-animate='fade-in'>
                             {% include '@bf-components/link/twig/index.twig' with {
-                                href    : linkField.href,
-                                label   : linkField.label,
-                                class   : 'd-block bf-p-small bf-color-neutral-secondary',
-                                rel     : linkField.rel|default('dofollow')
+                                href        : linkField.href,
+                                label       : linkField.label,
+                                class       : 'd-block bf-p-small bf-color-neutral-secondary',
+                                rel         : linkField.rel|default('dofollow'),
+                                isUnderline : false
                             } only %}
                         </li>
                     {% endfor %}
@@ -39,9 +40,10 @@
                     {% else %}
                         <li class='mb-3 mb-md-0' data-animate='fade-in'>
                             {% include '@bf-components/link/twig/index.twig' with {
-                                href    : '',
-                                label   : (langcode == 'EN') ? 'FR' : 'EN',
-                                class   : 'd-block bf-p-small bf-color-neutral-secondary',
+                                href        : '',
+                                label       : (langcode == 'EN') ? 'FR' : 'EN',
+                                class       : 'd-block bf-p-small bf-color-neutral-secondary',
+                                isUnderline : false
                             } only %}
                         </li>
                     {% endif %}
