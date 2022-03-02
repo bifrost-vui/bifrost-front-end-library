@@ -109,6 +109,11 @@
       {% if contentLists is defined and contentLists %}
         {% for list in contentLists %}
           <div class='bf-card__content-list pt-3 px-3 px-sm-4'>
+            {%  include '@bf-components/list/twig/index.twig' with list only %}
+          </div>
+        {% endfor %}
+        {#{% for list in contentLists %}
+          <div class='bf-card__content-list pt-3 px-3 px-sm-4'>
             {% if list.title is defined %}
               <div class='d-flex mb-2'>
                 <p class='w-60 bf-text font-weight-bold mb-0'>
@@ -135,7 +140,7 @@
               {% endfor %}
             </ul>
           </div>
-        {% endfor %}
+        {% endfor %}#}
       {% endif %}
 
       {% if (detailsColors is defined and detailsColors) or (detailsStorage is defined and detailsStorage) %}
