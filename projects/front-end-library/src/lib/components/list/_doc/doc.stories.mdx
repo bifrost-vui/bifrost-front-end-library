@@ -36,6 +36,32 @@ export const commonProps = {
     content     : [
         {
             label   : 'Lorem ipsum',
+            link    : {
+                href        : 'https://www.example.com',
+                label       : 'link',
+                iconName    : 'external-link',
+                iconPosition: 'right'
+            }
+        },
+        {
+            label   : 'Lorem ipsum',
+        },
+        {
+            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+            link    : {
+                href        : 'https://www.example.com',
+                label       : 'link',
+                iconName    : 'external-link',
+                iconPosition: 'right'
+            }
+        }
+    ]
+};
+
+export const bulletListProps = {
+    content     : [
+        {
+            label   : 'Lorem ipsum',
             iconName: 'unlimited',
             link    : {
                 href        : 'https://www.example.com',
@@ -58,30 +84,7 @@ export const commonProps = {
                 iconPosition: 'right'
             }
         }
-    ],
-};
-
-export const bulletListProps = {
-    content     : [
-        {
-            label   : 'Lorem ipsum',
-            link    : {
-                href    : 'https://www.example.com',
-                label   : 'link',
-            }
-        },
-        {
-            label   : 'Lorem ipsum',
-        },
-        {
-            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-            link    : {
-                href    : 'https://www.example.com',
-                label   : 'link',
-            }
-        }
-    ],
-    defaultBullet : 'check'
+    ]
 };
 
 
@@ -93,62 +96,17 @@ export const Drupal = (args) => ({
 
 ## Drupal implementation examples
 
-### List with header
 
-<Canvas
-    withSource='none'
-    style={{height : '500px'}}
->
-    <Story
-        name='Drupal - list with icons'
-        height= '500px'
-        args={{
-            elementPath : 'components/list/_doc/template.drupal',
-            ...commonProps
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
-
-```jsx
-
-{% include '@bf-components/list/twig/index.twig' with {
-    title       : 'Title',
-    titleTag    : 'p',
-    titleClass  : 'bf-text font-weight-bold',
-    link        : {
-        href    : 'https://www.eample.com',
-        label   : 'link'
-    },
-    description : 'Description',
-    details     : 'Details : magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo',
-    content     : [
-        {
-            label   : 'Lorem ipsum',
-        },
-        {
-            label   : 'Lorem ipsum',
-        },
-        {
-            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
-        }
-    ],
-    defaultBullet  : 'check'
-} only %}
-```
-
-### Simple list with icons
+### Simple list with bullets
 
 <Canvas    withSource='none'
            style={{height : '500px'}}
 >
     <Story
-        name='Drupal - default bullet list'
+        name='Drupal'
         args={{
             elementPath : 'components/list/_doc/template.drupal',
-            ...commonProps,
-            ...bulletListProps
+            ...commonProps
         }}
     >
         {Drupal.bind({})}
@@ -179,6 +137,67 @@ export const Drupal = (args) => ({
 } only %}
 ```
 
+### List with with custom icons
+
+<Canvas
+    withSource='none'
+    style={{height : '500px'}}
+>
+    <Story
+        name='Drupal - list with custom icons'
+        height= '500px'
+        args={{
+            elementPath : 'components/list/_doc/template.drupal',
+            ...commonProps,
+            ...bulletListProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+```jsx
+
+{% include '@bf-components/list/twig/index.twig' with {
+    title       : 'Title',
+    titleTag    : 'p',
+    titleClass  : 'bf-text font-weight-bold',
+    link        : {
+        href    : 'https://www.eample.com',
+        label   : 'link'
+    },
+    description : 'Description',
+    details     : 'Details : magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo',
+        content     : [
+        {
+            label   : 'Lorem ipsum',
+            iconName: 'unlimited',
+            link    : {
+                href        : 'https://www.example.com',
+                label       : 'link',
+                iconName    : 'external-link',
+                iconPosition: 'right'
+            }
+        },
+        {
+            label   : 'Lorem ipsum',
+            iconName: 'desinstallation'
+        },
+        {
+            label   : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+            iconName: 'placeholder',
+            link    : {
+                href        : 'https://www.example.com',
+                label       : 'link',
+                iconName    : 'external-link',
+                iconPosition: 'right'
+            }
+        }
+    ]
+} only %}
+```
+
+
 ## Css Only Example
 
 
@@ -187,7 +206,7 @@ export const Drupal = (args) => ({
     style={{height : '750px'}}
 >
     <Story
-        name='Drupal CSS only'
+        name='Drupal - CSS only'
         args={{
             elementPath : 'components/list/_doc/css-only-template'
         }}

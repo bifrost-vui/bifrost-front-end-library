@@ -1,4 +1,4 @@
-<ul class='list  bf-content-list {{hasDivider|default('') ? 'list--divider' }} {{ contentClass|default('') }}'>
+<ul class='list  bf-list--content {{ contentClass|default('') }}'>
   {% for item in content %}
     <li class='d-flex flex-row mb-2 justify-content-between flex-1'>
       <p class='d-flex m-0'>
@@ -8,9 +8,9 @@
             class   : 'mr-2',
             size    : 'small'
           } only %}
-        {% elseif defaultBullet is defined and defaultBullet %}
+        {% else %}
           {% include '@bf-components/icon/twig/index.twig' with {
-            name    : defaultBullet,
+            name    : 'check',
             class   : 'mr-2',
             size    : 'small'
           } only %}
