@@ -8,8 +8,6 @@ export interface IList {
     description     : string;
     details         : string;
     content         : object;
-    defaultBullet   : string;
-    hasDivider      : boolean;
     reversed        : boolean;
     contentClass    : string;
     class           : string;
