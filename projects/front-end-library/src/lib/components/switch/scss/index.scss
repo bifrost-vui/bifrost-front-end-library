@@ -8,9 +8,9 @@
     position: relative;
     display: inline-block;
     width: fit-content;
-    overflow: hidden;
     height: 2rem;
     padding: 0;
+    overflow: hidden;
     @extend .small;
 
     &--lg {
@@ -23,39 +23,39 @@
         display: flex;
         top: 0;
         right: 0;
-        pointer-events: none;
         padding: 0 1.2rem;
         align-items: center;
         color: var(--bf-color-neutral-primary);
         opacity: .7;
+        pointer-events: none;
     }
     input {
-        padding: 0 .5rem;
-        appearance: none;
         position: relative;
+        appearance: none;
         width: 4.6rem;
         height: 2rem;
+        padding: 0 .5rem;
         border: 1px solid var(--bf-color-stroke-secondary);
         border-radius: 1rem;
         background-color: var(--bf-color-bg-ground);
+        cursor: pointer;
 
             &::after {
-                content: '';
                 display: block;
                 height: 1.5rem;
                 width: 1.5rem;
                 position: absolute;
                 left: .25rem;
                 top: 50%;
+                content: '';
                 border-radius: 50%;
                 background-color: var(--bf-color-neutral-secondary);
                 transform: translate(0, -50%);
                 @include transitions(left .2s ease-in-out);
-                cursor: pointer;
             }
             &:checked {
-                background-color: var(--bf-color-bg-action-primary);
                 border-color: transparent;
+                background-color: var(--bf-color-bg-action-primary);
 
                 &:after {
                     left: calc(100% - 1.75rem);
@@ -82,11 +82,12 @@
             &:disabled,
             &:disabled:checked {
                 border-color: var(--bf-color-stroke-tertiary);
-                background: var(--bf-color-bg-action-disabled);
+                background-color: var(--bf-color-bg-action-disabled);
                 color: var(--bf-color-neutral-tertiary);
+                cursor: not-allowed;
 
                 &:after {
-                    background : var(--bf-color-neutral-tertiary);
+                    background-color: var(--bf-color-neutral-tertiary);
                 }
                 & + .bf-switch__labels {
                     color: var(--bf-color-neutral-primary);
