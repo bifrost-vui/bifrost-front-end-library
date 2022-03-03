@@ -1,5 +1,5 @@
-import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
-import { ILink } from "../../link/angular/api.model";
+import { Component, OnInit, Input } from '@angular/core';
+import { ILink }                    from "../../link/angular/api.model";
 
 @Component({
     selector: 'bf-list',
@@ -16,7 +16,7 @@ export class ListComponent implements OnInit {
     @Input() link               : ILink;
     /** Displays on the right size of the title if no link is defined */
     @Input() description        : string;
-    /** Displays bellow the title and may contain HTML tags */
+    /** Displays bellow the title */
     @Input() details            : string;
     /** Expected format:
      <pre style='font-size: .75rem; padding: 0 1rem; margin:0; background-color: #F8F8F8'>[{
@@ -28,16 +28,10 @@ export class ListComponent implements OnInit {
           }
      },
      {...}]</pre>*/
-
     @Input() content            : object;
-    /** Creates a bullet list with a default `check` or `dot` icon - you can still specify another iconName in `content[]` */
-    @Input() defaultBullet  : 'check' | 'dot' | null;
-    /** Adds a bottom border between list elements */
-    @Input() hasDivider         : boolean;
-    /** Adds border to the component */
-    @Input() listDivider        : 'top'|'bottom'|'both'|null;
+    /** Adds a bottom border to list component */
     @Input() reversed           : boolean;
-
+    /** affects lists items :  Eg. the class `list--divider` will add separators between items*/
     @Input() contentClass       : string;
     @Input() class              : string;
 
