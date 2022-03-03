@@ -40,18 +40,18 @@
         background-color: var(--bf-color-bg-ground);
 
             &::after {
-                @include transitions(left .2s ease-in-out);
+                content: '';
                 display: block;
-                position: absolute;
-                content: "";
-                border-radius: 50%;
-                background: var(--bf-color-neutral-secondary);
                 height: 1.5rem;
                 width: 1.5rem;
+                position: absolute;
                 left: .25rem;
                 top: 50%;
-                cursor: pointer;
+                border-radius: 50%;
+                background-color: var(--bf-color-neutral-secondary);
                 transform: translate(0, -50%);
+                @include transitions(left .2s ease-in-out);
+                cursor: pointer;
             }
             &:checked {
                 background-color: var(--bf-color-bg-action-primary);
