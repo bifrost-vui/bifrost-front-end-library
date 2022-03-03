@@ -1,21 +1,35 @@
-{% if title is defined and title is not empty %}
-    <{{ titleTag|default('h3') }} class='h3'>
+{% set titleBlock = (title is defined and title) or (link is defined and link) or (description is defined and description) or (details is defined and details) %}
+<div class='bf-list {{ class|default('') }}'>
+  {% if titleBlock %}
+    <header class='d-flex justify-content-between'>
+      {% if title is defined and title %}
+        <{{ titleTag|default('h3') }} class={{ titleClass|default('h3') }}>
         {{ title }}
-    </{{ titleTag|default('h3') }}>
-{% endif %}
+        </{{ titleTag|default('h3') }}>
+      {% endif %}
 
-<ul class='bf-list {{ class|default('') }}'>
-    {% for item in content %}
-        <li class='d-flex flex-row mb-2'>
-            {% if item.iconName is defined %}
-                {% include '@bf-components/icon/twig/index.twig' with {
-                    name    : item.iconName,
-                    class   : 'mr-2'
-                } only %}
-            {% endif %}
-            <p class='m-0'>
-                {{ item.label }}
-            </p>
-        </li>
-    {% endfor %}
-</ul>
+      {% if (link is defined and link) or (description is defined and description) %}
+        <p class='text-right mb-0'>
+          {% if link is defined and link %}
+            {% set link = link|merge({
+              iconPosition: link.iconPosition|default('right'),
+              hierarchy: link.hierarchy|default('primary')
+            }) %}
+            {% include '@bf-components/link/twig/index.twig' with link %}
+          {% else %}
+            {# short title descripton - used in bf-card--plan #}
+            {{ description|default('') }}
+          {% endif %}
+        </p>
+      {% endif %}
+    </header>
+
+    {% if details is defined and details %}
+      <p>{{ details }}</p>
+    {% endif %}
+  {% endif %}
+
+  {% if content is defined and content %}
+    {% include '@bf-components/list/twig/list.twig' with content %}
+  {% endif %}
+</div>

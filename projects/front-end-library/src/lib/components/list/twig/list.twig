@@ -1,0 +1,32 @@
+<ul class='list  bf-list--content {{ contentClass|default('') }}'>
+  {% for item in content %}
+    <li class='d-flex flex-row mb-2 justify-content-between flex-1'>
+      <p class='d-flex m-0'>
+        {% if item.icon is defined and item.icon %}
+          {% include '@bf-components/icon/twig/index.twig' with {
+            name    :  item.icon,
+            class   : 'mr-2',
+            size    : 'small'
+          } only %}
+        {% else %}
+          {% include '@bf-components/icon/twig/index.twig' with {
+            name    : 'check',
+            class   : 'mr-2',
+            size    : 'small'
+          } only %}
+        {% endif %}
+
+        <span>{{ item.label }}</span>
+      </p>
+
+      {% if item.link is defined and item.link %}
+        <p class='text-right mb-0 ml-3'>
+          {% include '@bf-components/link/twig/index.twig' with {
+            label : item.link.label|default(''),
+            href  : item.link.href|default(''),
+          } only %}
+        </p>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
