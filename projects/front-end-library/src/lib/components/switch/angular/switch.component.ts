@@ -22,7 +22,7 @@ export class SwitchComponent implements OnInit {
     @Input() labelOn        : string;
     @Input() labelOff       : string;
     /** Sets the font-size of `labelOn` and `labelOff` */
-    @Input() size           : 'sm'|'lg';
+    @Input() size           : 'sm' | 'lg';
     @Input() extraAttribute : string;
     @Input() class          : string;
 
