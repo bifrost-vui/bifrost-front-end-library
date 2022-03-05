@@ -215,7 +215,6 @@ Warning! Before choosing a name for a new twig filter, ask AppNovation if they d
 
 <br/>
 
-
 # Create a new component
 
 > **Before creating a new component**, check with the Bifrost Team if its really a creation and not a variant of an existing component.
@@ -233,11 +232,19 @@ FYI, this command will:
 
 For Angular, don't forget to export your new module and/or component in `/lib/public-api.ts`.
 
-<br/>
+## Add a new Icon
+1. Receive the small and large file from designer exported from Figma
+1. (If the icon is an Illustration icon) Write into the file `public/icons/list/illustrations.json` the name of the component into the category it belongs
+1. (If the icon is an Interface icon) Write into the file `public/icons/list/interface.json` the name of the component into the category it belongs
+1. Save those file in `/public/icons/`
+1. Open those SVG files and replace all hardcoded color for `currentColor`
+1. Create svg-twig file for small and large size.
+1. Copy the corresponding SVG content into the svg-twig file.
+1. Test in storybook, all color, size and reverse state work properly, and he can be selected in component displaying icons
 
+<br/>
 
 # Build and Publish Front-end library
-<br/>
 
 Create a branch and the Pull Request named after the version name and replace dot with hypen (eg: v1-1-1)
  - the replacement is for Vercel to format the right URL
