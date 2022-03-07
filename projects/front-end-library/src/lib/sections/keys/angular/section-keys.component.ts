@@ -13,10 +13,10 @@ export class SectionKeysComponent implements OnInit {
     @Input() keys           : object[];
     @Input() buttons        : object[];
     @Input() align          : 'left' | 'center';
+    @Input() background     : 'ground' | 'underground' | 'highlight';
 
     @Input() class          : string;
     @Input() reversed       : boolean;
-    @Input() highlight      : boolean;
 
     ngOnInit() {
         console.log('section keys', this);
