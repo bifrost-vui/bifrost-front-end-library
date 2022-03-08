@@ -34,23 +34,26 @@
         align-items: start;
         text-align: center;
 
+        @include media-breakpoint-down(sm) {
+            padding-left: var(--bf-spacer-3);
+        }
         .bf-icon.size-small {
             margin-top: var(--bf-spacer-4);
         }
-
-        @include media-breakpoint-down(sm) {
-            padding-left: var(--bf-spacer-3);
-
-            .downscale-icons {
-                .bf-icon.size-large {
+        &.downscale-icons {
+            .bf-icon.size-large {
+                @include media-breakpoint-down(sm) {
                     width: 3rem;
                     height: 3rem;
                     min-width: 3rem;
                 }
-                .bf-icon.size-small {
+            }
+            .bf-icon.size-small {
+                @include media-breakpoint-down(sm) {
                     margin-top: var(--bf-spacer-2);
                 }
             }
         }
+
     }
 }

@@ -8,35 +8,35 @@
       <p>{{ subtitle|default('') }}</p>
     {% endif %}
   </header>
-  <div class='bf-banner-advanced__body pt-0 pt-sm-4 pb-3 pr-3 pr-sm-4'>
-    {% if icons is defined and icons %}
 
-      {# Used to reduce the size of the icons on mobile if there is more than 2 icons #}
-      {% set iconMobileClass  = (icons|length > 2) ? 'downscale-icons' : '' %}
+  {% if icons is defined and icons %}
 
+    {# Used to reduce the size of the icons on mobile if there is more than 2 icons #}
+    {% set iconMobileClass  = (icons|length > 2) ? 'downscale-icons' : '' %}
+
+    <div class='bf-banner-advanced__body pt-0 pt-sm-4 pb-3 pr-3 pr-sm-4 {{ iconMobileClass }}'>
       {% for icon in icons|slice(0, 3) %}
-        {% if not loop.first %}
-          {% include '@bf-components/icon/twig/index.twig' with {
-            name    : 'plus',
-            size    : 'small',
-            class   : 'ml-sm-1'
-          } only %}
-        {% endif %}
-
-
-        <div class='text-align-center {{ iconMobileClass }}'>
-          {% if  icon.name is defined and  icon.name %}
+        {% if  icon.name is defined and  icon.name and icon.label is defined and  icon.label %}
+          {# conditional plus sign #}
+          {% if not loop.first %}
             {% include '@bf-components/icon/twig/index.twig' with {
-              name    : icon.name,
-              size    : 'large'
+              name    : 'plus',
+              size    : 'small',
+              class   : 'ml-sm-1'
             } only %}
           {% endif %}
 
-          {% if  icon.label is defined and  icon.label %}
-            <p class='h5 mt-1'>{{ icon.label }}</p>
-          {% endif %}
-        </div>
+          <div class='text-align-center '>
+              {% include '@bf-components/icon/twig/index.twig' with {
+                name  : icon.name,
+                size  : 'large'
+              } only %}
+
+              <p class='h5 mt-1'>{{ icon.label }}</p>
+          </div>
+        {% endif %}
+
       {% endfor %}
-    {% endif %}
-  </div>
+    </div>
+  {% endif %}
 </div>
