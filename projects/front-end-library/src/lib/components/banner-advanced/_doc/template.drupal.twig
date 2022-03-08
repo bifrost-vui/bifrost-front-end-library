@@ -1,0 +1,24 @@
+{% set icons = icons|json_parse %}
+
+<section class='pt-4 px-3'>
+    {% include '@bf-components/banner-advanced/twig/index.twig'  %}
+</section>
+
+<section class='pt-4 px-3'>
+  {% include '@bf-components/banner-advanced/twig/index.twig' with {
+    icons       : [
+      {
+        name    : 'mobility',
+        label   : 'Mobile plan'
+      },
+      {
+        name    : 'bundle-1',
+        label   : 'Internet plan'
+      },
+      {
+        name    : 'helix-tv',
+        label   : 'Helix TV plan'
+      }
+    ]
+  } %}
+</section>
