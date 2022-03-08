@@ -4,11 +4,12 @@
 {% set highlight            = highlight|json_parse %}
 
 {% set variants = [
-  { class: 'bf-color-bg-ground ' ~ class },
-  { class: 'bf-color-bg-underground ' ~ class },
-  { reversed: reversed|default(true), class: 'bf-color-bg-ground ' ~ class },
-  { reversed: reversed|default(true), class: 'bf-color-bg-underground ' ~ class },
-  { highlight: highlight|default(true) }
+  { background: background|default('ground') },
+  { background: background|default('underground') },
+  { background: background|default('ground'), reversed: reversed|default(true) },
+  { background: background|default('underground'), reversed: reversed|default(true) },
+  { background: background|default('highlight') },
+  { background: background|default('highlight'), reversed: reversed|default(true) },
 ] %}
 
 <div>

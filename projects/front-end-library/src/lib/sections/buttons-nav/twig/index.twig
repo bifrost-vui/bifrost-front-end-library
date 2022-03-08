@@ -1,12 +1,14 @@
 {% set titleTag = titleTag|default('h1') %}
 
-{% if highlight is defined and highlight is same as (true) %}
+{% if background is defined and background == 'underground' %}
+  {% set backgroundClass = 'bf-color-bg-underground' %}
+{% elseif background is defined and background == 'highlight' %}
   {% set backgroundClass = 'bf-color-bg-highlight' %}
-{% elseif reversed is defined and reversed is same as (true) %}
-  {% set backgroundClass = 'reversed bf-color-bg-ground' %}
+{% else %}
+  {% set backgroundClass = 'bf-color-bg-ground' %}
 {% endif %}
 
-<section class='bf-section-buttons-nav py-6 {{ class|default('') }} {{ backgroundClass|default('') }}'>
+<section class='bf-section-buttons-nav py-6 {{ class|default('') }} {{ reversed|default(false) ? 'reversed' }} {{ backgroundClass }}'>
   <div class='container-fluid d-flex flex-column align-items-center'>
     {% if title is defined and title %}
       <{{ titleTag }} class='h2 mb-4 text-center' style='max-width: 40rem'>
