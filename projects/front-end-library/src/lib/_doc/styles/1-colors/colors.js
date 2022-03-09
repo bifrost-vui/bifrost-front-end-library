@@ -1,6 +1,7 @@
 const colors = [
     {
         name: 'Content',
+        description : 'The brand color is mostly used by logos and should never be used on non-reversed context for text or icons',
         list: [
             {
                 label            : 'Neutral Primary',
@@ -14,10 +15,15 @@ const colors = [
                 label            : 'Neutral Tertiary',
                 name             : 'neutral-tertiary'
             },
+            {
+                label            : 'Brand',
+                name             : 'brand'
+            },
         ]
     },
     {
-        name: 'Background',
+        name: 'Background ',
+        description: 'Theses background colors are meant to be used on non-interactive elements. The not reversible Highlight isn\'t compatible with the Reversed option',
         list: [
             {
                 label            : 'Ground',
@@ -29,17 +35,19 @@ const colors = [
             },
             {
                 label            : 'Highlight',
-                name             : 'bg-highlight'
-            },
-            {
-                label            : 'Brand',
-                name             : 'brand'
-            },
-            {
-                label            : 'Highlight',
                 name             : 'highlight',
                 hasUtilityClass  : false,
             },
+            {
+                label            : 'Highlight (not reversible)',
+                name             : 'bg-highlight'
+            }
+        ]
+    },
+    {
+        name: 'Background (action)',
+        description: 'These background colors are meant to be used on interactive components',
+        list: [
             {
                 label            : 'Action primary',
                 name             : 'bg-action-primary'
@@ -83,6 +91,7 @@ const colors = [
     },
     {
         name: 'Feedback',
+        description: 'Feedback colors are used to indicate a status and applies to content (never use as a background)',
         list: [
             {
                 label            : 'Neutral',
@@ -108,6 +117,7 @@ const colors = [
     },
     {
         name: 'Stroke',
+        description: 'Use the stroke colors for borders only',
         list: [
             {
                 label            : 'Primary',
