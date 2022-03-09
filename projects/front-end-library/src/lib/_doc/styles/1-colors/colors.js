@@ -95,15 +95,27 @@ const colors = [
         list: [
             {
                 label            : 'Primary',
-                name             : 'stroke-primary'
+                name             : 'stroke-primary',
+                hasUtilityClass  : false,
+                UtilityClassName : 'bf-border-color-primary'
             },
             {
                 label            : 'Secondary',
-                name             : 'stroke-secondary'
+                name             : 'stroke-secondary',
+                hasUtilityClass  : false,
+                UtilityClassName : 'bf-border-color-secondary'
             },
             {
                 label            : 'Tertiary',
-                name             : 'stroke-tertiary'
+                name             : 'stroke-tertiary',
+                hasUtilityClass  : false,
+                UtilityClassName : 'bf-border-color-tertiary'
+            },
+            {
+                label            : 'Highlight',
+                name             : 'stroke-highlight',
+                hasUtilityClass  : false,
+                UtilityClassName : 'bf-border-color-highlight'
             },
         ]
     },
