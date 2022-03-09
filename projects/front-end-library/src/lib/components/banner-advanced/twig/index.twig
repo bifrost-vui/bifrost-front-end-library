@@ -14,7 +14,7 @@
     {# Used to reduce the size of the icons on mobile if there is more than 2 icons #}
     {% set iconMobileClass  = (icons|length > 2) ? 'downscale-icons' : '' %}
 
-    <div class='bf-banner-advanced__body pt-0 pt-sm-4 pb-3 pr-3 pr-sm-4 {{ iconMobileClass }}'>
+    <div class='bf-banner-advanced__body pt-0 pb-3 px-3 pt-sm-4 px-sm-4 {{ iconMobileClass }}'>
       {% for icon in icons|slice(0, 3) %}
         {% if  icon.name is defined and  icon.name and icon.label is defined and  icon.label %}
           {# conditional plus sign #}
@@ -32,7 +32,7 @@
                 size  : 'large'
               } only %}
 
-              <p class='h5 mt-1'>{{ icon.label }}</p>
+              <p class='h5 my-1'>{{ icon.label }}</p>
           </div>
         {% endif %}
 
