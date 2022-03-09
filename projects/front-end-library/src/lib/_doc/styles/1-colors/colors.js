@@ -1,7 +1,7 @@
 const colors = [
     {
         name: 'Content',
-        description : 'The brand color is mostly used by logos and should never be used on non-reversed context for text or icons',
+        description : 'The brand color is mostly used by logos and shouldn\'t be used in non-reversed context on text or icons',
         list: [
             {
                 label            : 'Neutral Primary',
@@ -41,6 +41,16 @@ const colors = [
             {
                 label            : 'Highlight (not reversible)',
                 name             : 'bg-highlight'
+            },
+            {
+                label            : 'Overlay black 20%',
+                name             : 'bg-overlay-black-20prct',
+                hasUtilityClass  : false,
+            },
+            {
+                label            : 'Overlay black 50%',
+                name             : 'bg-overlay-black-50prct',
+                hasUtilityClass  : false,
             }
         ]
     },
@@ -76,22 +86,30 @@ const colors = [
                 label            : 'Action selected',
                 name             : 'bg-action-selected',
                 hasUtilityClass  : false,
+            }
+        ]
+    },
+    {
+        name: 'Stroke',
+        description: 'Use the stroke colors for borders only',
+        list: [
+            {
+                label            : 'Primary',
+                name             : 'stroke-primary'
             },
             {
-                label            : 'Overlay black 20%',
-                name             : 'bg-overlay-black-20prct',
-                hasUtilityClass  : false,
+                label            : 'Secondary',
+                name             : 'stroke-secondary'
             },
             {
-                label            : 'Overlay black 50%',
-                name             : 'bg-overlay-black-50prct',
-                hasUtilityClass  : false,
+                label            : 'Tertiary',
+                name             : 'stroke-tertiary'
             },
         ]
     },
     {
         name: 'Feedback',
-        description: 'Feedback colors are used to indicate a status and applies to content (never use as a background)',
+        description: 'Feedback colors are used to indicate a status and may apply to content or borders (never use as a background)',
         list: [
             {
                 label            : 'Neutral',
@@ -114,25 +132,7 @@ const colors = [
                 hasUtilityClass  : false
             },
         ]
-    },
-    {
-        name: 'Stroke',
-        description: 'Use the stroke colors for borders only',
-        list: [
-            {
-                label            : 'Primary',
-                name             : 'stroke-primary'
-            },
-            {
-                label            : 'Secondary',
-                name             : 'stroke-secondary'
-            },
-            {
-                label            : 'Tertiary',
-                name             : 'stroke-tertiary'
-            },
-        ]
-    },
+    }
 ];
 
 export default colors;
