@@ -10,10 +10,6 @@
   </header>
 
   {% if icons is defined and icons %}
-
-    {# Used to reduce the size of the icons on mobile if there is more than 2 icons #}
-    {% set iconMobileClass  = (icons|length > 2) ? 'downscale-icons' : '' %}
-
     <div class='bf-banner-advanced__body pt-0 pb-3 px-3 py-sm-4 px-sm-4 {{ iconMobileClass }}'>
       {% for icon in icons|slice(0, 3) %}
         {% if  icon.name is defined and  icon.name and icon.label is defined and  icon.label %}
