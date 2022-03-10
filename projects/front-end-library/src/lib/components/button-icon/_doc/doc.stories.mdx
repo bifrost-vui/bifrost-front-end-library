@@ -12,13 +12,17 @@ import { ButtonIconComponent }                  from '../angular/button-icon.com
         moduleMetadata({ declarations: [ButtonIconComponent, TwigContainerComponent]})
     ]}
     argTypes={{
-        icon: {
+        icon       : {
             control: {
-                type: 'select',
-                options: ['', ...interfaceIcons.map(a => a.list).flat().sort()]
+                type    : 'select',
+                options : ['', ...interfaceIcons.map(a => a.list).flat().sort()]
             }
         },
-    }}
+        label      : { type: { required: true } },
+        dataToggle : {
+            defaultValue : 'tooltip',
+            table        : { defaultValue : { summary : 'tooltip' } },
+        }    }}
 />
 
 
@@ -38,21 +42,25 @@ import { ButtonIconComponent }                  from '../angular/button-icon.com
 
 ```jsx
 {% include '@bf-components/button-icon/twig/index.twig' with {
-    icon : 'placeholder'
+    icon : 'placeholder',
+    label: 'label'
 } only %}
 
 // With a badge
 {% include '@bf-components/button-icon/twig/index.twig' with {
+    label: 'label',
     badgeLabel : '3'
 } only %}
 
 // With a link instead of a button
 {% include '@bf-components/button-icon/twig/index.twig' with {
+    label: 'label',
     href : '#'
 } %}
 
 // Disabled
 {% include '@bf-components/button-icon/twig/index.twig' with {
+    label: 'label',
     isDisabled : true
 } %}
 ```
@@ -72,7 +80,9 @@ export const Drupal = (args) => ({
         height='300px'
         args={{
             elementPath : 'components/button-icon/_doc/template.drupal',
-            icon        : 'cart'
+            icon        : 'cart',
+            label       : 'label',
+            href        : 'https://example.com'
         }}
     >
         {Drupal.bind({})}

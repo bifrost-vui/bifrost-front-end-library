@@ -1,22 +1,23 @@
-{% set isLink   = ((href is defined and href is not empty) and (isDisabled is not defined or not isDisabled )) %}
-{% set hasBadge = (badgeLabel is defined and badgeLabel and badgeLabel is not empty ) %}
+{% set isLink   = href is defined and href is not empty %}
+{% set hasBadge = badgeLabel is defined and badgeLabel %}
 
 <div class='bf-button-icon {{ isDisabled ? 'disabled' }} {{ class|default('') }}'>
   <{{ isLink ? 'a' : 'button' }}
     {% if isLink is same as (true) %}
-      href='{{ href|default('#') }}'
+      href='{{ href }}'
     {% else %}
       type='button'
+      {% if isDisabled is defined and isDisabled  %}disabled{% endif %}
     {% endif %}
-    class='bf-button-icon__inner {% if reversed %}reversed{% endif %} {% if isDisabled %}disabled{% endif %} {{ buttonClass|default('') }}'
-    {% if isDisabled is defined and isDisabled  %}disabled='disabled' aria-disabled='true'{% endif %}
-    {% if label is not empty %}data-title='{{ label|render|t([],{'langcode': 'EN','context':'data-title-attribute' }) }}'{% endif %}
-    {% if dataDismiss is defined %}data-dismiss='{{ dataDismiss|default(NULL) }}'{% endif %}
-    {% if dataToggle is defined %}data-toggle='{{ dataToggle|default(NULL) }}'{% endif %}
-    {% if dataTarget is defined %}data-target='{{ dataTarget|default(NULL) }}'{% endif %}
-    {% if ariaControls is defined %}aria-controls='{{ ariaControls|default(NULL) }}'{% endif %}
-    {% if ariaExpanded is defined %}aria-expanded='{{ ariaExpanded|default(NULL) }}'{% endif %}
-    {% if ariaLabel is defined %}aria-expanded='{{ ariaLabel|default(NULL) }}'{% endif %}
+    class='bf-button-icon__inner {% if reversed is defined and reversed %}reversed{% endif %} {{ isLink ? 'js-bf-button-icon-link' : buttonClass|default('') }}'
+    title='{{ (label is defined and label) ? label : '' }}'
+    data-toggle='{{ dataToggle|default('tooltip') }}'
+    {% if isDisabled is defined and isDisabled %} aria-disabled='true'{% endif %}
+    {% if dataDismiss is defined and dataDismiss %}data-dismiss='{{ dataDismiss }}'{% endif %}
+    {% if dataTarget is defined and dataTarget %}data-target='{{ dataTarget }}'{% endif %}
+    {% if ariaControls is defined and ariaControls %}aria-controls='{{ ariaControls }}'{% endif %}
+    {% if ariaExpanded is defined and ariaExpanded %}aria-expanded='{{ ariaExpanded }}'{% endif %}
+    {% if ariaLabel is defined and ariaLabel %}aria-label='{{ ariaLabel }}'{% endif %}
     {{ extraAttribute|default(NULL) }}
   >
     {% include '@bf-components/icon/twig/index.twig' with {

@@ -13,13 +13,14 @@ export class ButtonIconComponent implements OnInit {
     constructor() {}
 
     @Input() icon           : string;
-    /**  Display a data-title  */
+    /**  Displays in the tooltip on mouseOver */
     @Input() label          : string;
-    /**  A button will become a link if `href` is defined as long as it's not disabled. */
+    /**  A button will become a link if `href` is defined */
     @Input() href           : string;
     @Input() isDisabled     : boolean;
     @Input() dataDismiss    : string;
-    @Input() dataToggle     : string;
+    /** because there is no text associated with the button icon it will activate a tooltip on mouseover */
+    @Input() dataToggle      : string;
     @Input() dataTarget     : string;
     @Input() ariaControls   : string;
     @Input() ariaExpanded   : string;
@@ -28,7 +29,7 @@ export class ButtonIconComponent implements OnInit {
     @Input() badgeLabel     : string;
 
     @Input() class          : string;
-    /** Classes for <button> tag. */
+    /** Classes for `button` tag. */
     @Input() buttonClass    : string;
 
     ngOnInit() {
