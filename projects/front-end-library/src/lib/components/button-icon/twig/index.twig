@@ -1,4 +1,4 @@
-{% set isLink   = (href is defined and href is not empty) %}
+{% set isLink   = ((href is defined and href is not empty) and (isDisabled is not defined or not isDisabled )) %}
 {% set hasBadge = (badgeLabel is defined and badgeLabel and badgeLabel is not empty ) %}
 
 <div class='bf-button-icon {{ isDisabled ? 'disabled' }} {{ class|default('') }}'>
