@@ -1,0 +1,37 @@
+<div class='bf-banner-advanced {{ class|default('') }}'>
+  <header class='bf-banner-advanced__header p-3 p-sm-4'>
+    {% if title is defined and title %}
+      <h3>{{ title|default('') }}</h3>
+    {% endif %}
+
+    {% if description is defined and description %}
+      <p class='mb-0'>{{ description|default('') }}</p>
+    {% endif %}
+  </header>
+
+  {% if icons is defined and icons %}
+    <div class='bf-banner-advanced__body pt-0 pb-3 px-3 py-sm-4 px-sm-4 {{ iconMobileClass }}'>
+      {% for icon in icons|slice(0, 3) %}
+        {% if  icon.name is defined and  icon.name and icon.label is defined and icon.label %}
+          {# conditional plus sign #}
+          {% if not loop.first %}
+            {% include '@bf-components/icon/twig/index.twig' with {
+              name    : 'plus',
+              size    : 'small',
+              class   : 'ml-sm-1'
+            } only %}
+          {% endif %}
+
+          <div class='text-align-center '>
+              {% include '@bf-components/icon/twig/index.twig' with {
+                name  : icon.name,
+                size  : 'large'
+              } only %}
+
+              <p class='h5 my-1'>{{ icon.label }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
