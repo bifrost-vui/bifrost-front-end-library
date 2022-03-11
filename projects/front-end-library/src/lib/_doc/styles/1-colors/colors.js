@@ -1,7 +1,7 @@
 const colors = [
     {
         name: 'Content',
-        description : 'The brand color is mostly used by logos and shouldn\'t be used in non-reversed context on text or icons',
+        description: 'The brand color is mostly used by logos and shouldn\'t be used in non-reversed context on text or icons',
         list: [
             {
                 label            : 'Neutral Primary',
