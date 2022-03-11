@@ -1,7 +1,7 @@
 const colors = [
     {
         name: 'Content',
-        description: 'The brand color is mostly used by logos and shouldn\'t be used in non-reversed context on text or icons. The Highlight color shoud\'nt be used in combination with the Highlight background.' ,
+        description: 'The brand color is mostly used by logos and shouldn\'t be used in non-reversed context on text or icons. The Highlight color shoudn\'t be used in combination with the Highlight background.' ,
         list: [
             {
                 label            : 'Neutral Primary',
