@@ -1,7 +1,7 @@
 const colors = [
     {
         name: 'Content',
-        description: 'The brand color is mostly used by logos and shouldn\'t be used in non-reversed context on text or icons',
+        description: 'The brand color is mostly used by logos and shouldn\'t be used in non-reversed context on text or icons. The Highlight color shoud\'nt be used in combination with the Highlight background.' ,
         list: [
             {
                 label            : 'Neutral Primary',
@@ -16,6 +16,11 @@ const colors = [
                 name             : 'neutral-tertiary'
             },
             {
+                label            : 'Highlight',
+                name             : 'highlight',
+                hasUtilityClass  : false,
+            },
+            {
                 label            : 'Brand',
                 name             : 'brand'
             },
@@ -23,7 +28,7 @@ const colors = [
     },
     {
         name: 'Background ',
-        description: 'Theses background colors are meant to be used on non-interactive elements. The not reversible Highlight isn\'t compatible with the Reversed option',
+        description: 'Theses background colors are meant to be used on non-interactive elements. The Highlight isn\'t compatible with the Reversed option',
         list: [
             {
                 label            : 'Ground',
@@ -35,11 +40,6 @@ const colors = [
             },
             {
                 label            : 'Highlight',
-                name             : 'highlight',
-                hasUtilityClass  : false,
-            },
-            {
-                label            : 'Highlight (not reversible)',
                 name             : 'bg-highlight'
             },
             {
