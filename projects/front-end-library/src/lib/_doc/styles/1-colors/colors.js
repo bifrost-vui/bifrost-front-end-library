@@ -56,7 +56,7 @@ const colors = [
     },
     {
         name: 'Background (action)',
-        description: 'These background colors are meant to be used on interactive components',
+        description: 'These background colors are meant to be used on interactive components.',
         list: [
             {
                 label            : 'Action primary',
