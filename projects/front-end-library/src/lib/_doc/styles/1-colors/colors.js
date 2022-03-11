@@ -91,7 +91,7 @@ const colors = [
     },
     {
         name: 'Stroke',
-        description: 'Use the stroke colors for borders only',
+        description: 'Use the stroke colors for borders only.',
         list: [
             {
                 label            : 'Primary',
