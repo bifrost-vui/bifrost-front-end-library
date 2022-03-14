@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
-
+import {cartButton} from "../_doc/data";
 /**
  * API is the same between **Angular** and **Drupal**.
  *
@@ -31,22 +31,24 @@ export class HeaderComponent implements OnInit {
     @Input() topBar_secondaryItems   : any[];
 
     @Input() navItems                : any[];
-    /** Maximum 5 first element of the list will be display  */
+    /** Only the first 3 elements of the list will be displayed */
     @Input() rigthIconLinks          : any[];
+    /**  Will show up on all devices if activated */
     @Input() hasAccountBtn           : boolean;
     @Input() isConnected             : boolean;
 
     @Input() hrefLogOut               : string;
     @Input() labelLogOut              : string;
     @Input() hrefConnexion            : string;
+    /** Shows up in top bar only */
     @Input() labelConnexion           : string;
-    
+    /** Badge label value set to `0` will hide the badge on the cart*/
+    @Input() cartButton               : any[];
     /** String displayed before `accountName` in the Top Bar, when connected. */
     @Input() accountHello             : string;
     /** Name of the user, displayed in the Top Bar when connected. */
     @Input() accountName              : string;
 
-    // @Input() hasMiniCartBtn          : boolean;
     @Input() hasNoSearchBtn          : boolean;
 
     ngOnInit() {

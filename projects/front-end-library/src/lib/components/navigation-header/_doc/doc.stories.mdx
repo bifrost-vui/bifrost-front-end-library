@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
 
-import { topBar_items, topBar_secondaryItems, rigthIconLinks } from './data';
+import { topBar_items, topBar_secondaryItems, rigthIconLinks, cartButton } from './data';
 import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent }          from '../angular/header.component';
 
@@ -37,6 +37,9 @@ import { HeaderComponent }          from '../angular/header.component';
 
 <br/>
 
+## Component API
+
+<Props of={HeaderComponent} />
 
 
 ## Drupal implementation example
@@ -91,31 +94,25 @@ import { HeaderComponent }          from '../angular/header.component';
         { icon : 'email',   href : ' ', class : '' },
         { icon : 'pin',     href : ' ', class : '' },
     ],
-
+    cartButton : {
+        badgeLabel  : '3',
+        href        : 'https://www.videotron.com',
+        ariaLabel   : 'My cart',
+        class       : ''
+    },
     hasAccountBtn : true,
     isConnected : true,
     hrefLogOut : '#',
     labelLogOut : 'Log out',
     hrefConnexion : '#',
     labelConnexion : 'Connexion',
-
     search : {
         placeholder : 'What are you looking for?'
     },
-
     reversed : true,
     langcode : 'EN'
 } only %}
 ```
-
-
-
-## Component API
-
-<Props of={HeaderComponent} />
-
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -123,7 +120,10 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas withSource='none'>
+<Canvas
+    withSource='none'
+    style={{ height: '400px'}}
+>
     <Story
         name='Drupal'
         args={{
@@ -131,12 +131,12 @@ export const Drupal = (args) => ({
             topBar_items,
             topBar_secondaryItems,
             logo : {
-                name                : 'business',
-                href                : '/',
+                name    : 'business',
+                href    : '/',
             },
             rigthIconLinks,
+            cartButton
         }}
-        height='500px'
     >
         {Drupal.bind({})}
     </Story>

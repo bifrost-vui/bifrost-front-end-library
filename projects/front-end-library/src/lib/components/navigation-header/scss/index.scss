@@ -7,7 +7,6 @@
 @import './top-bar';
 
 .bf-header {
-
     &__nav {
         display: grid;
         grid-template-columns: min-content max-content auto;
@@ -55,6 +54,20 @@
         }
     }
 
+    &__actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+        height: 100%;
+        padding-right: var(--bf-spacer-small);
+    }
+
+    &__rigth-icon-links {
+        display: flex;
+        align-items: center;
+        @extend .d-lg-none;
+    }
     .nav-item {
         padding-left: 1rem;
         padding-right: 1rem;
@@ -80,12 +93,10 @@
             background: none;
             width: auto;
             border: none;
-            // color: var(--bf-color-neutral-primary);
             font-family: $font-family-secondary;
             font-size: 1.25rem;
             font-weight: 400;
             line-height: inherit;
-            // text-transform: uppercase;
             letter-spacing: 1px;
 
             @include media-breakpoint-down(md) {
@@ -98,7 +109,7 @@
                 padding: .25rem;
                 font-size: 1rem;
             }
-            
+
             @include media-breakpoint-up(lg) {
                 &:before {
                     content: '';
@@ -123,9 +134,10 @@
     }
 
     .bf-megamenu {
+        display: flex;
+        height: 100%;
 
         &__nav-item.open {
-
             .nav-link {
                 &:before {
                     transform: scaleX(1);
@@ -163,7 +175,7 @@
                 left: auto;
                 right: 0;
             }
-            
+
             @include media-breakpoint-down(md) {
                 .bf-megamenu__panel__inner,
                 .tab-content {
@@ -180,7 +192,6 @@
         }
     }
 
-
     .bf-tabs {
         min-width: 15rem;
         max-width: 15rem;
@@ -189,12 +200,12 @@
         @include media-breakpoint-down(md) {
             min-width: 4rem;
         }
-    
+
         &__tab {
             position: relative;
             font-family: $font-family-secondary;
             background-color: var(--bf-color-bg-underground);
-            
+
             &:hover,
             &:focus {
                 background-color: var(--bf-color-bg-ground);
@@ -213,7 +224,7 @@
             &:not(:last-of-type) {
                 border-bottom: 1px solid var(--bf-color-stroke-secondary);
             }
-            
+
             &:before {
                 content: '';
                 position: absolute;
