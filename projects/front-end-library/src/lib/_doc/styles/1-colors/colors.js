@@ -1,7 +1,7 @@
 const colors = [
     {
         name: 'Content',
-        description: 'The brand color is mostly used by logos and shouldn\'t be used in non-reversed context on text or icons. The Highlight color shoudn\'t be used in combination with the Highlight background.' ,
+        description: 'The content colors are used on text and svg (logos & icons)',
         list: [
             {
                 label            : 'Neutral Primary',
@@ -28,7 +28,7 @@ const colors = [
     },
     {
         name: 'Background ',
-        description: 'Theses background colors are meant to be used on non-interactive elements. The Highlight isn\'t compatible with the Reversed option',
+        description: "Theses background colors are meant to be used on non-interactive visual elements.",
         list: [
             {
                 label            : 'Ground',
@@ -121,7 +121,7 @@ const colors = [
     },
     {
         name: 'Feedback',
-        description: 'Feedback colors are used to indicate a status and may apply to content or borders (never use as a background)',
+        description: 'Feedback colors are used to indicate a status and generally apply to content or borders',
         list: [
             {
                 label            : 'Neutral',

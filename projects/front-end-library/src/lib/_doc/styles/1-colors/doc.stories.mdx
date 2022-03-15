@@ -20,11 +20,11 @@ import colors               from './colors';
         {colors.map(category =>
             <section>
                 <header class='d-flex align-items-center gap-4 w-100'>
-                    <div class='w-65'>
+                    <div class='w-75'>
                         <h2>{category.name} colors</h2>
-                        <p class='bf-text bf-color-neutral-secondary small maxw-75'>{category.description}</p>
+                        <h3 class='bf-text bf-color-neutral-secondary maxw-75 mt-1'>{category.description}</h3>
                     </div>
-                    <div class='w-25'>
+                    <div class='w-25 align-self-end'>
                         <h5 class='m-0'>All Themes</h5>
                         <p class='bf-text bf-color-neutral-secondary small m-0'>Default + Reversed</p>
                     </div>
@@ -32,11 +32,11 @@ import colors               from './colors';
                 <ul class='list-unstyled'>
                     {category.list.map(c =>
                         <li key={c.name} class='d-flex align-items-center gap-4 w-100 border-top'>
-                            <div class='w-65 d-flex align-items-center gap-4'>
+                            <div class='w-75 d-flex align-items-center gap-4'>
                                 <h4 class='mb-0' style={{ width: '13rem' }}>
                                     {c.label}
                                 </h4>
-                                <div class='d-flex flex-column'>
+                                <div class='d-flex flex-column nowrap'>
                                     <code>--bf-color-{c.name}</code>
                                     {c.hasUtilityClass !== false &&
                                         <code>.bf-color-{c.name}</code>
