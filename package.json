@@ -27,11 +27,12 @@
     "webpack:build": "webpack --mode=production --env production",
     "webpack:dev": "webpack --mode=development --env development",
     "webpack:watch": "webpack --mode=development --env development --watch",
-    "webpack:clear": "rm -rf public/css && rm -rf public/js",
+    "webpack:clear": "rm -rf public/css && rm -rf public/js && npm run bifrost:generate-svg-ts-clear",
     "showcase-drupal:start": "cd projects/showcase-drupal && php ./core/scripts/drupal quick-start bifrost",
     "showcase-angular:start": "ng serve showcase-angular --open",
     "bifrost:generate": "node scripts/generate",
-    "bifrost:generate-svg-ts": "node scripts/generate-svg-ts"
+    "bifrost:generate-svg-ts": "node scripts/generate-svg-ts",
+    "bifrost:generate-svg-ts-clear": "rm projects/front-end-library/src/lib/components/icon/svg/svg.ts"
   },
   "dependencies": {
     "@angular-devkit/architect": "^0.1202.10",
