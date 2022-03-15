@@ -91,7 +91,7 @@ export default iconList;`;
     }
 
     // Write avg.ts file with all SVG sources.
-    const buildFilePath = 'projects/front-end-library/src/lib/components/icon/svg.ts';
+    const buildFilePath = 'projects/front-end-library/src/lib/components/icon/svg/svg.ts';
     fs.writeFile(buildFilePath, template, 'utf8', function(err) {
         if (err) {
             return console.log(err);
