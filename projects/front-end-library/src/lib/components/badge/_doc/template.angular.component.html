@@ -1,6 +1,6 @@
 <div class='d-flex flex-column justify-content-center w-100vw'>
   <div *ngFor='let template of templates'>
-    <div class='d-flex flex-column flex-sm-row justify-content-center gap-4 p-4' [ngClass]='{"reversed bf-color-bg-ground": template === 2}'>
+    <div class='d-flex flex-column flex-sm-row justify-content-center gap-4 p-4' [ngClass]='{ "reversed bf-color-bg-ground": template === 2, "disabled": _disabled }'>
 
       <div class='d-flex flex-column align-items-start py-2'>
         <p class='small'>hierarchy</p>
@@ -22,8 +22,8 @@
         <p class="small">angle</p>
         <bf-badge [label]='label || "angle left"' [className]='className' [hierarchy]='hierarchy' [iconName]=iconName [angle]='angle || "left"' [noUppercase]='noUppercase' [isRounded]='isRounded'></bf-badge>
         <bf-badge [label]='label || "angle right"' [className]='className' [hierarchy]='hierarchy' [iconName]=iconName [angle]='angle || "right"' [noUppercase]='noUppercase' [isRounded]='isRounded'></bf-badge>
-        <bf-badge [label]='label || "angle left"' [className]='className' [hierarchy]='hierarchy' [iconName]=iconName [angle]='angle || "left"' [noUppercase]='noUppercase' [isRounded]='isRounded'></bf-badge>
-        <bf-badge [label]='label || "angle right"' [className]='className' [hierarchy]='hierarchy' [iconName]=iconName [angle]='angle || "right"' [noUppercase]='noUppercase' [isRounded]='isRounded'></bf-badge>
+        <bf-badge [label]='label || "angle left"' [className]='className' [hierarchy]='hierarchy' [iconName]='iconName || "camera"' [angle]='angle || "left"' [noUppercase]='noUppercase' [isRounded]='isRounded'></bf-badge>
+        <bf-badge [label]='label || "angle right"' [className]='className' [hierarchy]='hierarchy' [iconName]='iconName || "camera"' [angle]='angle || "right"' [noUppercase]='noUppercase' [isRounded]='isRounded'></bf-badge>
       </div>
 
       <div class="d-flex flex-column align-items-start py-2">

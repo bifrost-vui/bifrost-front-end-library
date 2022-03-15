@@ -85,74 +85,6 @@ import { IconTemplateComponent }                 from './template.angular.compon
 
 ```
 
-## Angular
-
-export const Angular = (args) => ({
-    component: IconTemplateComponent,
-    props: args,
-});
-
-### Interface Icons
-
-<Canvas
-    withSource='none'
-    style={{ height: '600px' }}
->
-    <Story
-        name='Angular - Interface'
-        args={{
-            className   : 'my-2',
-            icons       : interfaceIcons
-        }}
-        argTypes={{
-            name: {
-                defaultValue: '',
-                control: {
-                    type: 'select',
-                    options: ['All icons', ...interfaceIcons.map(a => a.list).flat().sort()],
-                }
-            },
-            size: {
-                defaultValue: 'small',
-                description: 'recommended : xsmall | small',
-            },
-        }}
-    >
-        {Angular.bind({})}
-    </Story>
-</Canvas>
-
-
-### Illustrations Icons
-
-<Canvas
-    withSource='none'
-    style={{ height: '600px' }}
->
-    <Story
-        name='Angular - Illustration'
-        args={{
-            className   : 'my-2',
-            icons       : illustrationIcons
-        }}
-        argTypes={{
-            name: {
-                defaultValue: '',
-                control: {
-                    type: 'select',
-                    options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
-                },
-            },
-            size: {
-                defaultValue: 'large',
-                description: 'recommended : small | medium | large',
-            },
-        }}
-    >
-        {Angular.bind({})}
-    </Story>
-</Canvas>
-
 
 ## Drupal
 
@@ -242,5 +174,101 @@ export const Drupal = (args) => ({
         }}
     >
         {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Angular
+
+export const Angular = (args) => ({
+    component: IconTemplateComponent,
+    props: args,
+});
+
+### Interface Icons
+
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story
+        name='Angular - Interface'
+        args={{
+            icons       : interfaceIcons
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...interfaceIcons.map(a => a.list).flat().sort()],
+                }
+            },
+            size: {
+                defaultValue: 'small',
+                description: 'recommended : xsmall | small',
+            },
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+### Illustration Icons
+
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story
+        name='Angular - Illustration'
+        args={{
+            icons       : illustrationIcons
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
+                },
+            },
+            size: {
+                defaultValue: 'large',
+                description: 'recommended : small | medium | large',
+            },
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+
+### Huge Illustration Icons
+
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story
+        name='Angular - Huge Illustration'
+        args={{
+            icons       : illustrationIcons
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
+                },
+            },
+            size: {
+                defaultValue: 'huge',
+                description: 'recommended : huge',
+            },
+        }}
+    >
+        {Angular.bind({})}
     </Story>
 </Canvas>

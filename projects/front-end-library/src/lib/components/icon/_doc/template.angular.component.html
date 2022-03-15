@@ -1,29 +1,30 @@
-<div class='bf-color-bg-underground p-4'>
-  <p class='small mb-0'>
-    <b>Huge icons</b> should only be displayed in <b>Hero components</b>. Do not use in other context.
-  </p>
-</div>
+<div class='videotron-ui'>
+  <div class='bf-color-bg-underground p-4' *ngIf="size === 'huge'">
+    <p class='small mb-0'>
+      <b>Huge icons</b> should only be displayed in <b>Hero components</b>. Do not use in other context.
+    </p>
+  </div>
 
-<div class='pt-4 bf-color-bg-ground' [ngClass]="{'reversed': reversed}">
-  <div class='container-fluid h-100'>
-    <div *ngFor='let category of icons'>
-      <div class='d-flex flex-wrap align-content-start my-4'>
-        <div class='w-100'>
-          <h4>{{ category.category }}</h4>
-        </div>
-        <div class='doc-list'>
-          <div *ngFor='let icon of category.list'>
-            <div class='d-flex flex-column align-items-center p-3' title='{{ iconName }}'>
-              <bf-icon [name]='icon' [size]='size' [color]='color' [reversed]='reversed' [className]='className'></bf-icon>
+  <div class='pt-4 bf-color-bg-ground' [ngClass]="{ 'reversed': reversed }">
+    <div class='container-fluid h-100'>
+      <div *ngFor='let category of icons'>
+        <div class='d-flex flex-wrap align-content-start my-4'>
+          <div class='w-100'>
+            <h4>{{ category.category }}</h4>
+          </div>
+          <div class='doc-list' [ngClass]="{ 'doc-list--huge': size === 'huge' }">
+            <div *ngFor='let icon of category.list'>
+              <div class='d-flex flex-column align-items-center p-3' title='{{ iconName }}'>
+                <bf-icon [name]='icon' [size]='size' [color]='color' [reversed]='reversed' [className]='className'></bf-icon>
+                <p class='small bf-color-neutral-secondary text-center pt-1'>{{ icon }}</p>
+              </div>
             </div>
-            <p class='small bf-color-neutral-secondary text-center pt-1'>{{ icon }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 
 <style>
   .doc-list {
