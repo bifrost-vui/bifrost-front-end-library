@@ -1,11 +1,11 @@
 export const progressData = [
     {
-        label: "Flex-go",
-        cssClass:"bg-flex-go",
-        percent:30,
-        currentValue:1,
-        minValue:2,
-        maxValue:2
+        label: 'Flex-go',
+        cssClass: 'bg-flex-go',
+        percent: 30,
+        currentValue: 1,
+        minValue: 2,
+        maxValue: 2
     },
     {
         label: "Data-bloc",
