@@ -1,7 +1,7 @@
 const colors = [
     {
         name: 'Content',
-        description: 'The content colors are used on text and svg (logos & icons)',
+        description: 'Meant to be used on text and SVG.,
         list: [
             {
                 label            : 'Neutral Primary',
