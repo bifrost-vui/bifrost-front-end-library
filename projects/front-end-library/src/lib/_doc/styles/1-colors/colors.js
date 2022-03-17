@@ -1,7 +1,7 @@
 const colors = [
     {
         name: 'Content',
-        description: 'Meant to be used on text and SVG.,
+        description: 'Meant to be used on text and SVG.',
         list: [
             {
                 label            : 'Neutral Primary',
@@ -28,7 +28,7 @@ const colors = [
     },
     {
         name: 'Background ',
-        description: "Theses background colors are meant to be used on non-interactive visual elements.",
+        description: 'Meant to be used on non-interactive visual elements.',
         list: [
             {
                 label            : 'Ground',
@@ -91,7 +91,7 @@ const colors = [
     },
     {
         name: 'Stroke',
-        description: 'Use the stroke colors for borders only.',
+        description: 'Meant to be used on borders.',
         list: [
             {
                 label            : 'Primary',
@@ -121,7 +121,7 @@ const colors = [
     },
     {
         name: 'Feedback',
-        description: 'Feedback colors are used to indicate a status and generally apply to content or borders',
+        description: 'Indicates a status and generally applies to content or borders',
         list: [
             {
                 label            : 'Neutral',
