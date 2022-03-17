@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
+import {Component, ViewEncapsulation, OnInit, Input} from '@angular/core';
 
 /**
  * Description of the component Chip
@@ -6,14 +6,24 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
  */
 
 @Component({
-  selector: 'bf-chip',
-  templateUrl: './chip.component.html',
-  // styleUrls: ['../scss/index.scss'],
+    selector: 'bf-chip',
+    templateUrl: './chip.component.html',
+    // styleUrls: ['../scss/index.scss'],
 })
 export class ChipComponent implements OnInit {
-    constructor() {}
+    constructor() {
+    }
+
+    @Input() dataDismiss: string;
+    @Input() dataToggle: string;
+    @Input() dataTarget: string;
+    @Input() ariaControls: string;
+    @Input() ariaLabel: string;
+    @Input() extraAttribute: string;
+    @Input() isDisabled: boolean;
 
     @Input() label: string;
+    @Input() noUppercase: boolean;
     @Input() class: string;
 
     ngOnInit() {

@@ -1,6 +1,7 @@
-<button class="bf-chip d-inline-flex align-items-center pl-2 pr-1 text-uppercase {{ class|default('') }}">
-  <span class="bf-chip__label">{{ label|default('Internet') }}</span>
-  <span class='bf-chip__close ml-2'>
+<button class="bf-chip d-inline-flex align-items-center pl-2 pr-1 text-uppercase js-bf-chip {{ class|default('') }}"
+>
+  <span class="bf-chip__label bf-text-interface-small {{ (noUppercase is defined and noUppercase)? 'text-transform-initial' }}">{{ label|default('Internet') }}</span>
+  <span class='bf-chip__close ml-2 js-bf-chip--close'>
       {% include '@bf-components/icon/twig/index.twig' with {
         name  : 'x',
         size  : 'xsmall',
