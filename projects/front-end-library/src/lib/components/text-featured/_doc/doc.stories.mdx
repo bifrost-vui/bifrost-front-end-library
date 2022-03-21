@@ -1,7 +1,7 @@
-import { moduleMetadata }                   from '@storybook/angular';
+import { moduleMetadata }  from '@storybook/angular';
 import { Canvas, Meta, Story, ArgsTable }   from '@storybook/addon-docs';
-import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
-import { TextFeaturedComponent }            from '../angular/text-featured.component';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { TextFeaturedComponent } from '../angular/text-featured.component';
 
 <Meta
     title='UI-Kit/Text Featured'
@@ -13,14 +13,13 @@ import { TextFeaturedComponent }            from '../angular/text-featured.compo
     argTypes={{
         _background: {
             control: {
-                type: 'select',
-                options: [null, 'bf-color-bg-ground', 'bf-color-bg-underground', 'reversed bf-color-bg-ground', 'reversed bf-color-bg-underground']
+                type : 'select',
+                options : ['', 'bf-color-bg-ground', 'bf-color-bg-underground', 'reversed bf-color-bg-ground', 'reversed bf-color-bg-underground']
             },
-            description: 'Preview the component on selected background'
+            description : 'Preview the component on selected background'
         },
         textFeatured_content: {
-            table: {
-                type: { summary: 'TwigBlock' }
+            table : { type: { summary: 'TwigBlock' }
             }
         }
     }}
@@ -61,13 +60,13 @@ export const Drupal = (args) => ({
 ```jsx
 // Include with string (supports raw HTML)
 {% include '@bf-components/text-featured/twig/index.twig' with {
-    class:'d-inline-block',
+    class :'d-inline-block',
     textFeatured_content : "<p>Order number <br><strong>NFSDG34535345</strong></p>"
 } only %}
 
 // embed solution with twig Block
 {% embed '@bf-components/text-featured/twig/index.twig' with {
-    class:"d-inline-block"
+    class : "d-inline-block"
 } only %}
     {% block textFeatured_content %}
         <div class="mb-2">

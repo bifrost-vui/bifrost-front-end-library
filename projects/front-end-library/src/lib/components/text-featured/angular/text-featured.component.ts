@@ -7,8 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TextFeaturedComponent implements OnInit {
     constructor() {}
 
-    @Input() spacingLeft: number;
-    @Input() class      : string;
+    @Input() spacingLeft : number;
+    @Input() class : string;
     @Input() textFeatured_content :  string | 'TwigBlock';
 
     ngOnInit() {
