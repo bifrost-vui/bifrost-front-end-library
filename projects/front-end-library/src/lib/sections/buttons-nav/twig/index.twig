@@ -8,8 +8,8 @@
   {% set backgroundClass = 'bf-color-bg-ground' %}
 {% endif %}
 
-<section class='bf-section-buttons-nav py-6 {{ class|default('') }} {{ reversed|default(false) ? 'reversed' }} {{ backgroundClass }}'>
-  <div class='container-fluid d-flex flex-column align-items-center'>
+<section class='bf-section-buttons-nav d-flex py-6 {{ class|default('') }} {{ reversed|default(false) ? 'reversed' }} {{ backgroundClass }}'>
+  <div class='container-fluid d-flex flex-row flex-sm-column align-items-center'>
     {% if title is defined and title %}
       <{{ titleTag }} class='h2 mb-4 text-center' style='max-width: 40rem'>
         {{ title }}
@@ -34,4 +34,17 @@
       </ul>
     {% endif %}
   </div>
+  {% if rightSection is defined and rightSection %}
+    <div class='bf-color-bg-underground text-center p-4'>
+      {% if rightSection.title is defined and rightSection.title %}
+        <h2>{{ rightSection.title }}</h2>
+      {% endif %}
+      {% if rightSection.description is defined and rightSection.description %}
+        <p>{{ rightSection.description }}</p>
+      {% endif %}
+      {% if rightSection.link is defined and rightSection.link %}
+        {% include '@bf-components/link/twig/index.twig' with rightSection.link %}
+      {% endif %}
+    </div>
+  {% endif %}
 </section>
