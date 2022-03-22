@@ -12,6 +12,7 @@ export class SectionButtonsNavComponent implements OnInit {
     @Input() buttons        : object[];
     @Input() isFeatured     : boolean;
     @Input() rightSection   : object;
+    @Input() background     : 'ground' | 'underground' | 'highlight';
 
     @Input() extraAttribute : string;
     @Input() class          : string;
