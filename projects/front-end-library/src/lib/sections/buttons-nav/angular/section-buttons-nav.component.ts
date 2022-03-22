@@ -11,9 +11,9 @@ export class SectionButtonsNavComponent implements OnInit {
     @Input() titleTag       : string;
     @Input() buttons        : object[];
     @Input() isFeatured     : boolean;
-
     @Input() rightSection   : object;
 
+    @Input() extraAttribute : string;
     @Input() class          : string;
     @Input() reversed       : boolean;
     @Input() highlight      : boolean;
