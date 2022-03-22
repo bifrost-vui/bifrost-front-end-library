@@ -3,7 +3,8 @@
 {% if background is defined and background == 'underground' %}
   {% set backgroundClass = 'bf-color-bg-underground' %}
 {% elseif background is defined and background == 'highlight' %}
-  {% set backgroundClass = 'bf-color-bg-highlight' %}
+  {% set backgroundClass = 'bf-color-bg-highlight highlight' %}
+  {% set buttonNavHighlight = true %}
 {% else %}
   {% set backgroundClass = 'bf-color-bg-ground' %}
 {% endif %}
@@ -27,7 +28,10 @@
       <ul class='bf-section-buttons-nav__list {{ hasDescription ? 'bf-section-buttons-nav__list--has-description' }} list gap-4'>
         {% for button in buttons %}
           <li class='bf-section-buttons-nav__item'>
-            {% set button = button|merge({ class: 'h-100 align-items-start ' ~ button.class }) %}
+            {% set button = button|merge({
+              class: 'h-100 align-items-start ' ~ button.class,
+              highlight: buttonNavHighlight|default(false)
+            }) %}
             {% include '@bf-components/button-nav/twig/index.twig' with button %}
           </li>
         {% endfor %}
