@@ -3,7 +3,7 @@
 <div class='bf-tile-post {{ reversed|default(false) ? 'reversed' }} {{ class|default('') }}'>
   {% if image is defined and image %}
     <div
-      class='bf-tile-post__visual {{ image.fit|default('fill') == 'fit' ? 'bf-tile-post__visual--fit' }}'
+      class='bf-tile-post__visual {{ image.isFill|default(true) ? 'bf-tile-post__visual--fill' }}'
       style='background-image: url({{ image.src|default('') }});
         {% if image.backgroundColor is defined and image.backgroundColor %}
           background-color: {{ image.backgroundColor }};

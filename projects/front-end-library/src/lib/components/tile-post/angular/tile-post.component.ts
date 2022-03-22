@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 interface IImage {
     src             : string;
     alt             : string;
-    fit             : 'fit' | 'fill';
+    isFill          : boolean;
     backgroundColor : string;
 }
 
