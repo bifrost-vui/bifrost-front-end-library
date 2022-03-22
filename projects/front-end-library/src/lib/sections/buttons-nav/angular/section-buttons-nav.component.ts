@@ -17,7 +17,6 @@ export class SectionButtonsNavComponent implements OnInit {
     @Input() extraAttribute : string;
     @Input() class          : string;
     @Input() reversed       : boolean;
-    @Input() highlight      : boolean;
 
     ngOnInit() {
         console.log('section buttons nav', this);
