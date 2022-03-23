@@ -1,0 +1,51 @@
+/* *****************************************************************************
+*
+*  Banner Advanced
+*
+* ***************************************************************************** */
+
+.bf-banner-advanced {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--bf-color-stroke-secondary);
+    @extend .bf-border-radius-small;
+    background-color: var(--bf-color-bg-ground);
+
+    @include media-breakpoint-down(sm) {
+        flex-flow: column;
+    }
+    &__header {
+        flex: 1;
+        min-width: 15rem;
+
+        h3, p {
+            @include media-breakpoint-down(sm) {
+                text-align: center;
+            }
+        }
+    }
+    &__body {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: start;
+        text-align: center;
+
+        .bf-icon.size-small {
+            margin-top: var(--bf-spacer-4);
+
+            @include media-breakpoint-down(sm) {
+                margin-top: var(--bf-spacer-2);
+            }
+        }
+        .bf-icon.size-large {
+            @include media-breakpoint-down(sm) {
+                width: 3rem;
+                height: 3rem;
+                min-width: 3rem;
+            }
+        }
+    }
+}
