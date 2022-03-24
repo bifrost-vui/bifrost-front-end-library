@@ -11,6 +11,7 @@ export class SectionTilesPostComponent implements OnInit {
     @Input() titleTag           : string;
     @Input() tiles              : object[];
     @Input() isFeatured         : boolean;
+    @Input() background         : 'ground' | 'underground';
 
     @Input() class              : string;
     @Input() reversed           : boolean;

@@ -1,7 +1,8 @@
 {% set titleTag = titleTag|default('p') %}
 
 <section class='
-  bf-section-tiles-post bf-color-bg-ground
+  bf-section-tiles-post
+  {{ background|default('ground') == 'ground' ? 'bf-color-bg-ground' : 'bf-color-bg-underground' }}
   {{ reversed|default(false) ? 'reversed' }}
   {{ class|default('') }}'
 >
