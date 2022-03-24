@@ -69,6 +69,7 @@ import { commonProps as tilePostProps }         from '../../../components/tile-p
                 isFill: true,
                 backgroundColor: '#ff00ff'
             },
+            isFeatured: false,
             class: ''
         },
     ],
@@ -134,6 +135,48 @@ export const commonProps = {
                 {
                     ...tilePostProps,
                     description: 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem. A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
+                    class: ''
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With 6 tiles'
+        height='600px'
+        args={{
+            elementPath: 'sections/tiles-post/_doc/template.drupal',
+            ...commonProps,
+            tiles: [
+                {
+                    ...tilePostProps,
+                    isFeatured: true,
+                    class: ''
+                },
+                {
+                    ...tilePostProps,
+                    description: 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem. A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
+                    isFeatured: true,
+                    class: ''
+                },
+                {
+                    ...tilePostProps,
+                    class: ''
+                },
+                {
+                    ...tilePostProps,
+                    class: ''
+                },
+                {
+                    ...tilePostProps,
+                    class: ''
+                },
+                {
+                    ...tilePostProps,
                     class: ''
                 }
             ]

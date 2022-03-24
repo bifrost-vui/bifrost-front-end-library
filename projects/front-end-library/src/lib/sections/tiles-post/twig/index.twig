@@ -12,9 +12,9 @@
         {{ title }}
       </{{ titleTag }}>
     {% endif %}
-    <ul class='d-flex flex-column flex-md-row gap-6 gap-md-4 list-unstyled'>
+    <ul class='d-flex flex-column flex-md-row flex-wrap gap-4 list-unstyled'>
       {% for tile in tiles %}
-        <li class='flex-1'>
+        <li class='bf-section-tiles-post__item mb-4 {{ tile.isFeatured|default(false) ? 'bf-section-tiles-post__item--featured' }}'>
           {% set tile = tile|merge({ isFeatured: isFeatured|default(false) }) %}
           {% include '@bf-components/tile-post/twig/index.twig' with tile only %}
         </li>
