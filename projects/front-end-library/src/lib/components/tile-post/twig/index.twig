@@ -2,18 +2,16 @@
 
 <div class='bf-tile-post {{ reversed|default(false) ? 'reversed' }} {{ class|default('') }}'>
   {% if image is defined and image and image.src is defined and image.src %}
-    <div
-      class='bf-tile-post__visual {{ image.isFill|default(true) ? 'bf-tile-post__visual--fill' }}'
+    <picture
+      class='d-block'
       style='background-image: url({{ image.src }});
         {% if image.backgroundColor is defined and image.backgroundColor %}
           background-color: {{ image.backgroundColor }};
         {% endif %}
       '
-      role='img'
-      {% if image.alt %}
-        aria-label='{{ image.alt|default('') }}'
-      {% endif %}
-    ></div>
+    >
+      <img src='{{ image.src }}' alt='{{ image.alt|default('') }}' class='w-100' />
+    </picture>
   {% endif %}
 
 	<div class='d-flex flex-column align-items-start gap-3 pt-3 pt-md-4'>
