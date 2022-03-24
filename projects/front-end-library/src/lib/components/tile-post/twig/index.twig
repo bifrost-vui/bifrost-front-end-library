@@ -1,10 +1,10 @@
 {% set titleTag = titleTag|default('p') %}
 
 <div class='bf-tile-post {{ reversed|default(false) ? 'reversed' }} {{ class|default('') }}'>
-  {% if image is defined and image %}
+  {% if image is defined and image and image.src is defined and image.src %}
     <div
       class='bf-tile-post__visual {{ image.isFill|default(true) ? 'bf-tile-post__visual--fill' }}'
-      style='background-image: url({{ image.src|default('') }});
+      style='background-image: url({{ image.src }});
         {% if image.backgroundColor is defined and image.backgroundColor %}
           background-color: {{ image.backgroundColor }};
         {% endif %}
