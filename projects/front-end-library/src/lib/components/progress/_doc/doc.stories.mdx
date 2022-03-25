@@ -25,19 +25,37 @@ import { ProgressComponent }            from '../angular/progress.component';
                 options : ['', 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight']
             },
             description : 'Preview the component on selected background'
+        },
+        progressMinValue : {
+            type:  {
+                control      : { type: 'number' },
+                defaultValue : 0
+            }
+        },
+        progressMaxValue : {
+            type:  {
+                control      : { type: 'number' },
+                defaultValue : 100
+            }
         }
     }}
 />
 
 # Progress
 
-This component has been migrated from the UI-Kit project without any optimisation
+This component has been migrated from the UI-Kit project
+
+**Arguments minor optimisation to prevent potential inconsistencies**
+
+- when `progressValue` is defined you don't have to set `progressPercentValue` and vice versa
+- when both are defined, `progressPercentValue` will be ignored
+- when `progressValue` and `progressPercentValue` are both undefined their default value will be 0
 
 **Progress bar Colors**
 
-- when `progressPercentValue` > 90 : color = danger (red)
-- when `progressPercentValue` > 50 : color = warning (orange)
-- when `progressPercentValue` =< 50 : color = success (green)
+- when progress > 90% : color = danger (red)
+- when progress > 50 : color = warning (orange)
+- when progress =< 50 : color = success (green)
 - when `isMonochromeColor` is true, the progression is always yellow, no regards to the progression percentage
 
 
@@ -56,7 +74,6 @@ export const Drupal = (args) => ({
         name='Drupal'
         args={{
             elementPath          : 'components/progress/_doc/template.drupal',
-            progressValue        : 20,
         }}
     >
         {Drupal.bind({})}
@@ -69,7 +86,10 @@ export const Drupal = (args) => ({
 ```jsx
 {% include '@bf-components/progress/twig/index.twig' with {
     progressValue   : 50,
-    progressPercentValue : 50 // Calculations must be made outside the component
+} only %}
+
+{% include '@bf-components/progress/twig/index.twig' with {
+    progressPercentValue : 50
 } only %}
 ```
 
