@@ -121,7 +121,7 @@ const colors = [
     },
     {
         name: 'Feedback',
-        description: 'Indicates a status and generally applies to content or borders',
+        description: 'Convey meaning through color for visual support element',
         list: [
             {
                 label            : 'Neutral',
