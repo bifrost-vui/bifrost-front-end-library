@@ -9,7 +9,7 @@ import iconList from '../svg/svg';
 })
 export class IconComponent implements OnChanges {
     constructor(private element: ElementRef, private sanitizer: DomSanitizer) {
-	}
+    }
 
     @Input() name               : string;
     @Input() size               : 'xsmall' | 'small' | 'medium' | 'large' | 'huge';
@@ -23,16 +23,16 @@ export class IconComponent implements OnChanges {
     public svg                  : SafeHtml;
     public ngClasses            : string[] = [];
 
-	ngOnInit() {
+    ngOnInit() {
         console.log('icon ngOnInit', this);
         this.computetNgClasses();
-	}
+    }
 
     ngOnChanges(changes: SimpleChanges) {
         console.log('icon ngOnChanges', this);
         this.computetNgClasses();
         this.updateIcon(`${this.name}`);
-	}
+    }
 
     private updateIcon(iconName:string) {
         if(iconName && iconList[`${iconName}`])
