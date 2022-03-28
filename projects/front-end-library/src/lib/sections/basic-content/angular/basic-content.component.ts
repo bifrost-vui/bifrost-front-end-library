@@ -25,6 +25,7 @@ export class BasicContentComponent implements OnInit {
     @Input() links                  : object[];
     @Input() rowButtons             : object[];
     @Input() imagePosition          : 'right' | 'left';
+    @Input() background             : 'ground' | 'underground';
 
     @Input() class                  : string;
     @Input() reversed               : boolean;
