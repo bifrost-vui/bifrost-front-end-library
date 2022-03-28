@@ -1,8 +1,8 @@
-import { moduleMetadata }               from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
-import { withDesign }                   from 'storybook-addon-designs'
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { %ComponentName%Component }     from '../angular/%component-name%.component';
+import { moduleMetadata }                   from '@storybook/angular';
+import { Canvas, Meta, Story, ArgsTable }   from '@storybook/addon-docs';
+import { withDesign }                       from 'storybook-addon-designs'
+import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
+import { %ComponentName%Component }         from '../angular/%component-name%.component';
 
 <Meta
     title='%Component-type%/%Component-Readable-Name%'
@@ -37,7 +37,7 @@ export const Drupal = (args) => ({
 <Canvas withSource='none'>
     <Story
         name='Drupal'
-        height = '300px'
+        height='300px'
         args={{
             elementPath : '%component-type%/%component-name%/_doc/template.drupal',
             label       : '%Component-Readable-Name%',
@@ -48,7 +48,7 @@ export const Drupal = (args) => ({
 </Canvas>
 
 
-## Drupal implementation exemple
+## Drupal implementation example
 
 ```jsx
 {% include '@bf-components/%component-name%/twig/index.twig' with {
@@ -64,16 +64,18 @@ export const Angular = (args) => ({
   props: args,
 });
 
-<Canvas  withSource='none'>
+<Canvas withSource='none'>
     <Story
         name='Angular'
-        args={{ label: '%Component-Readable-Name%' }}
+        args={{
+            label: '%Component-Readable-Name%'
+        }}
     >
         {Angular.bind({})}
     </Story>
 </Canvas>
 
-## Angular implementation exemple
+## Angular implementation example
 
 Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
 
@@ -83,11 +85,7 @@ Please, read the [Implementation Page](/?path=/docs/implementation-angular--page
 
 ## Component API
 
-**// TODO**: Add a sentence to clarify if API is consistent between Angular and Drupal.
-
-**✅ Inputs are equivalent for Angular and Drupal.**
-
-<Props of={%ComponentName%Component} />
+<ArgsTable of={%ComponentName%Component} />
 
 
 ## Design Guidelines

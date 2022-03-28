@@ -1,4 +1,26 @@
 export const slides = [
+
+    {
+        upperTitle  : "Upper Title",
+        title       : "Slide Title",
+        subtitle    : "subtitle",
+        description : "Description text",
+        buttons     : [
+            {
+                label       : "Button primary",
+                hierarchy   : "primary-alt",
+                class       : "my-class"
+            },
+            {
+                label       : "Button secondary",
+                hierarchy   : "secondary",
+                class       : "my-class"
+            }
+        ],
+
+        background  : "ground",
+        reversed    : true
+    },
     {
         badge       : {
             label       : "badge label with icon",
@@ -10,22 +32,32 @@ export const slides = [
         description : "Description description description description description description description description description",
         buttons     : [
             {
-                label       : "Button",
+                label       : "Button primary",
                 hierarchy   : "primary-alt",
+                class       : "my-class"
+            },
+            {
+                label       : "Button secondary",
+                hierarchy   : "secondary",
                 class       : "my-class"
             }
         ],
         background      : "highlight",
     },
     {
+        badge       : "Badge label",
         upperTitle  : "Upper Title",
-        title       : "Slide Title",
-        subtitle    : "subtitle",
-        description : "Description text",
+        title       : "Slide title slide title slide title slide title slide title ",
+        subtitle    : "Subtitle subtitle subtitle subtitle subtitle subtitle",
         buttons     : [
             {
-                label       : "Button",
+                label       : "Button primary",
                 hierarchy   : "primary-alt",
+                class       : "my-class"
+            },
+            {
+                label       : "Button secondary",
+                hierarchy   : "secondary",
                 class       : "my-class"
             }
         ],
@@ -35,39 +67,6 @@ export const slides = [
             alt : "Helix"
         },
         background  : "ground",
-    },
-    {
-        badge       : "Badge label",
-        upperTitle  : "Upper Title",
-        title       : "Slide title slide title slide title slide title slide title ",
-        subtitle    : "Subtitle subtitle subtitle subtitle subtitle subtitle",
-        buttons     : [
-            {
-                label       : "Button",
-                hierarchy   : "primary-alt",
-                class       : "my-class"
-            }
-        ],
-        blockSelection  : {
-            title               : 'My selection',
-            month               : 'month',
-            contentLists        : [
-                {
-                    title           : 'Samsung Galaxy Note 20 Utra 5G',
-                    description     : 'Navy Blue, 128 Go',
-                    price           : '$24.00',
-                    saving          : '$30.00',
-                    fullPrice       : '$150.00',
-                },
-                {
-                    title           : 'All-inclusive 12 GB Mobile',
-                    description     : 'Lorem ipsum',
-                    price           : '$55.00',
-                },
-            ],
-        },
-        background  : "ground",
-        reversed    : true,
     },
     {
         badge       : "badge label",
@@ -81,7 +80,7 @@ export const slides = [
                 class       : "my-class"
             },
             {
-                label       : "Button 2",
+                label       : "Button secondary",
                 hierarchy   : "secondary",
                 class       : "my-class"
             }
