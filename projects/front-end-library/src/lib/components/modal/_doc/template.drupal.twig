@@ -1,0 +1,41 @@
+{% set modalSize = modalSize|json_parse %}
+{% set modal_body_subcontainer = modal_body_subcontainer|json_parse|default('') %}
+{% set modal_body_scroll_container = modal_body_scroll_container|json_parse|default('') %}
+
+<div class='bf-hero--bg-ground reversed'>
+  <div class='container-fluid p-8'>
+    {# button for DEMO only #}
+    {% include '@bf-components/button/twig/index.twig' with {
+      label: 'Launch modal',
+      id: 'launchBtn',
+      hierarchy: 'primary',
+      dataToggle: 'modal',
+      dataTarget: '#exampleModal1'
+    } %}
+  </div>
+
+  {% include '@bf-components/modal/twig/index.twig' with {
+    modalId: 'exampleModal1',
+    modalSize: modalSize,
+    modal_body_subcontainer: modal_body_subcontainer,
+    modal_body_scroll_container: modal_body_scroll_container
+  } only %}
+
+</div>
+<div class='container-fluid p-8'>
+  {# button for DEMO only #}
+  {% include '@bf-components/button/twig/index.twig' with {
+    label: 'Launch modal',
+    id: 'launchBtn2',
+    hierarchy: 'primary',
+    dataToggle: 'modal',
+    dataTarget: '#exampleModal2',
+  } %}
+</div>
+
+{% include '@bf-components/modal/twig/index.twig' with {
+  modalId: 'exampleModal2',
+  modalSize: modalSize,
+  modal_body_subcontainer: modal_body_subcontainer,
+  modal_body_scroll_container: modal_body_scroll_container
+} only %}
