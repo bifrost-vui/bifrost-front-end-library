@@ -1,0 +1,38 @@
+{% set titleTag = titleTag|default('p') %}
+
+<div class='bf-tile-post {{ reversed|default(false) ? 'reversed' }} {{ class|default('') }}'>
+  {% if image is defined and image %}
+    <div
+      class='bf-tile-post__visual {{ image.fit|default('fill') == 'fit' ? 'bf-tile-post__visual--fit' }}'
+      style='background-image: url({{ image.src|default('') }});
+        {% if image.backgroundColor is defined and image.backgroundColor %}
+          background-color: {{ image.backgroundColor }};
+        {% endif %}
+      '
+      role='img'
+      {% if image.alt %}
+        aria-label='{{ image.alt|default('') }}'
+      {% endif %}
+    ></div>
+  {% endif %}
+
+	<div class='d-flex flex-column align-items-start gap-3 pt-3 pt-md-4'>
+    {% if title is defined and title %}
+      <{{ titleTag }} class='{{ isFeatured|default(false) ? 'h2' : 'h3' }} m-0'>
+        {{ title }}
+      </{{ titleTag }}>
+    {% endif %}
+
+		{% if description is defined and description %}
+			<p class='m-0'>{{ description }}</p>
+		{% endif %}
+
+    {% if link is defined and link %}
+      {% include '@bf-components/link/twig/index.twig' with {
+        href        : link.href|default(''),
+        label       : link.label|default(''),
+        hierarchy   : 'primary'
+      } only %}
+    {% endif %}
+	</div>
+</div>

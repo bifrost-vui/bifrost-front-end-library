@@ -3,7 +3,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 interface IImage {
     src         : string;
 }
- 
+
 @Component({
     selector: 'bf-block-highlight',
     templateUrl: './block-highlight.component.html',
@@ -14,8 +14,9 @@ export class BlockHighlightComponent implements OnInit {
 
     @Input() image                  : IImage;
     @Input() visualBackgroundColor  : string;
+    @Input() isVisualBackgroundFill : boolean;
     @Input() blockBackgroundColor   : 'ground' | 'underground';
-    
+
     @Input() title                  : string;
     /** E.g. `h2` */
     @Input() titleTag               : string;
@@ -28,5 +29,5 @@ export class BlockHighlightComponent implements OnInit {
 
     ngOnInit() {
         console.log('block highlight', this);
-    }   
+    }
 }

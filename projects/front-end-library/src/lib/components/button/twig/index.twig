@@ -22,7 +22,7 @@
     {% if dataTarget is defined %}data-target='{{ dataTarget|default(NULL) }}'{% endif %}
     {% if ariaControls is defined %}aria-controls='{{ ariaControls|default(NULL) }}'{% endif %}
     {% if ariaExpanded is defined %}aria-expanded='{{ ariaExpanded|default(NULL) }}'{% endif %}
-    {% if ariaLabel is defined %}aria-expanded='{{ ariaLabel|default(NULL) }}'{% endif %}
+    {% if ariaLabel is defined %}aria-label='{{ ariaLabel|default(NULL) }}'{% endif %}
     {{ extraAttribute|default(NULL) }}
 >
     <span class='bf-button__label'>
@@ -33,7 +33,11 @@
                 class   : iconPosition is same as ('right') ? 'bf-button__icon--right' : ''
             } only %}
         {% endif %}
-        {{ label|default('') }}
+        {% if label is defined and label %}
+          <span class='bf-button__label__text'>
+            {{ label }}
+          </span>
+        {% endif %}
     </span>
     {% if isLoading is same as (true) or hasLoading is same as (true) %}
         <div class='bf-button__loading' role='decoration'>
