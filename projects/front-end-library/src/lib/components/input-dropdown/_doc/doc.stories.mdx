@@ -1,0 +1,87 @@
+import { moduleMetadata }                   from '@storybook/angular';
+import { Canvas, Meta, Story, ArgsTable }   from '@storybook/addon-docs';
+import { withDesign }                       from 'storybook-addon-designs'
+import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
+import { InputDropdownComponent }           from '../angular/input-dropdown.component';
+
+<Meta
+    title='Components/Input Dropdown'
+    component={InputDropdownComponent}
+    decorators={[
+        moduleMetadata({ declarations: [InputDropdownComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{}}
+    argTypes={{}}
+/>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+export const commonProps = {
+    id: 'id',
+    label: 'Label',
+    placeholder: 'Placeholder',
+    message: 'Message',
+    options: [
+        { label: 'Option 1' },
+        { label: 'Option 2' },
+        { label: 'Option 3' },
+        { label: 'Option 4' },
+        { label: 'Option 5' },
+    ],
+    isDisabled: false,
+    class: 'm-4',
+}
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath: 'components/input-dropdown/_doc/template.drupal',
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - with isInvalid'
+        args={{
+            elementPath: 'components/input-dropdown/_doc/template.drupal',
+            ...commonProps,
+            isInvalid: true,
+            errorMessage: 'Error message.'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/input-dropdown/twig/index.twig' with {
+    id: 'id',
+    label: 'Sauter directement à la section',
+    options: [
+        { label: 'Connexion', iconName: 'unlimited', href: 'https://example.com', class: '' },
+        { label: 'Modifier ses informations', iconName: '', href: 'https://example.com', class: '' },
+        { label: 'Modifier son mot de passe', iconName: '', href: 'https://example.com', class: '' },
+        { label: 'Modifier le NIP', iconName: 'camera', href: 'https://example.com', class: '' },
+        { label: 'Modifier ses coordonnées', iconName: 'unlimited', href: 'https://example.com', class: '' },
+    ],
+    isDisabled: false,
+    class: 'mt-3',
+} only %}
+```
+
+
+<ArgsTable of={InputDropdownComponent} />

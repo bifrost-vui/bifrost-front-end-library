@@ -1,0 +1,67 @@
+import { moduleMetadata }               from '@storybook/angular';
+import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
+import { withDesign }                   from 'storybook-addon-designs'
+import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
+import { InputDropdownMenuComponent }            from '../angular/input-dropdown-menu.component';
+
+<Meta
+    title='Components/Input Dropdown Menu'
+    component={InputDropdownMenuComponent}
+    decorators={[
+        moduleMetadata({ declarations: [InputDropdownMenuComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{}}
+    argTypes={{}}
+/>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath: 'components/input-dropdown-menu/_doc/template.drupal',
+            id: 'id',
+            label: 'Sauter directement à la section',
+            options: [
+                { label: 'Connexion', iconName: 'unlimited', href: 'https://example.com', class: '' },
+                { label: 'Modifier ses informations', iconName: '', href: 'https://example.com', class: '' },
+                { label: 'Modifier son mot de passe', iconName: '', href: 'https://example.com', class: '' },
+                { label: 'Modifier le NIP', iconName: 'camera', href: 'https://example.com', class: '' },
+                { label: 'Modifier ses coordonnées', iconName: 'unlimited', href: 'https://example.com', class: '' },
+            ],
+            isDisabled: false,
+            class: 'm-4',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/input-dropdown-menu/twig/index.twig' with {
+    id: 'id',
+    label: 'Sauter directement à la section',
+    options: [
+        { label: 'Connexion', iconName: 'unlimited', href: 'https://example.com', class: '' },
+        { label: 'Modifier ses informations', iconName: '', href: 'https://example.com', class: '' },
+        { label: 'Modifier son mot de passe', iconName: '', href: 'https://example.com', class: '' },
+        { label: 'Modifier le NIP', iconName: 'camera', href: 'https://example.com', class: '' },
+        { label: 'Modifier ses coordonnées', iconName: 'unlimited', href: 'https://example.com', class: '' },
+    ],
+    isDisabled: false,
+    class: 'mt-3',
+} only %}
+```
+
+
+<Props of={InputDropdownMenuComponent} />
