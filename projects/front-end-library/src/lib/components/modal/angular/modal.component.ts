@@ -15,7 +15,7 @@ export class ModalComponent implements OnInit {
     @Input() modalAnimation: string;
     @Input() modalLabelledBy: string;
     @Input() extraAttribute:string;
-
+    @Input() modalTheme:string;
     @Input() bgImage: string;
     @Input() bgLgImage: string;
     @Input() bgMdImage: string;

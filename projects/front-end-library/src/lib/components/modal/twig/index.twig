@@ -1,6 +1,6 @@
 {% set class = (modalClass is defined and modalClass) ? modalClass : class|default('') %}
 
-<div class='modal {{ modalAnimation|default('fade') }} {{ class }}'
+<div class='modal  modal-theme--{{ modalTheme|default('light') }} {{ modalAnimation|default('fade') }} {{ class }}'
      id='{{ modalId|default('') }}'
      tabindex='-1'
      role='dialog'
@@ -49,7 +49,7 @@
               <div class="modal-body__scroll-container">
                 {{ block('modal_body_scroll_container') }}
               </div>
-            {% elseif modalBudy is defined and modalBudy %}
+            {% elseif modalBudy is defined and modalBudy is not empty %}
               {% block modal_body_scroll_container %}
                 <p>{{ modalBudy }}</p>
               {% endblock %}
