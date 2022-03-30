@@ -17,7 +17,7 @@ export const progressData = [
     },
     {
         label: "PPu",
-        cssClass:"bg-ppu",
+        cssClass:"bg-ppu progress-bar-striped progress-bar-animated",
         percent:20,
         currentValue:2,
         minValue:0,
