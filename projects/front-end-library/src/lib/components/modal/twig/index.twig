@@ -1,4 +1,5 @@
 {% set class = (modalClass is defined and modalClass) ? modalClass : class|default('') %}
+{% set hasBgImage = (bgImage is defined and bgImage) or (bgMdImage is defined and bgMdImage) or (bgLgImage is defined and bgLgImage) %}
 
 <div class='modal  modal-theme--{{ modalTheme|default('light') }} {{ modalAnimation|default('fade') }} {{ class }}'
      id='{{ modalId|default('') }}'
@@ -6,18 +7,20 @@
      role='dialog'
      aria-labelledby='{{ modalLabelledBy|default('') }}'
      aria-hidden='true'
-  {{ extraAttribute|default(null) }}
+    {{ extraAttribute|default(null) }}
 >
   <div class='modal-dialog modal-{{ modalSize|default('lg') }} modal-dialog-centered' role='document'>
     <div class='modal-content position-relative {{ modalContentCLass|default('') }}'
-         data-bg="{{ bgImage|default('') }}"
-         data-md-bg="{{ bgMdImage|default(bgImage) }}"
-         data-lg-bg="{{ bgLgImage|default(bgImage) }}">
-
+      {% if hasBgImage %}
+        data-bg='{{ bgImage|default('') }}'
+        data-md-bg='{{ bgMdImage|default(bgImage) }}'
+        data-lg-bg='{{ bgLgImage|default(bgImage) }}'
+      {% endif %}
+    >
       {% include '@bf-components/button-icon/twig/index.twig' with {
-        icon : 'x',
+        icon: 'x',
         dataDismiss: 'modal',
-        class: 'm-2 m-md-3 m-lg-4 p-3 position-absolute--top-right'
+        class: 'close m-2 m-md-3 m-lg-4 p-3 position-absolute--top-right'
       } %}
 
       <div class='modal-header border-bottom--0 {{ modalHeaderClass|default('') }}'>
@@ -27,7 +30,7 @@
           {{ modal_header }}
         {% else %}
           {% block modal_header %}
-            <h2 class='mb-2 w-100 h2'>{{ modalTitle|default('Title') }}</h2>
+            <h2 class='mb-2 w-100 h2'>{{ modalTitle|default('') }}</h2>
             {% if modalSubtitle is defined and modalSubtitle %}
               <p class='mb-0'>{{ modalSubtitle }}</p>
             {% endif %}
@@ -46,7 +49,7 @@
 
           {# Non scrollable content #}
           {% if block('modal_body_scroll_container') is defined %}
-            <div class="modal-body__scroll-container">
+            <div class='modal-body__scroll-container'>
               {{ block('modal_body_scroll_container') }}
             </div>
           {% elseif modalBudy is defined and modalBudy is not empty %}
@@ -54,7 +57,7 @@
               <p>{{ modalBudy }}</p>
             {% endblock %}
           {% else %}
-            <div class="modal-body__scroll-container">
+            <div class='modal-body__scroll-container'>
               {{ modal_body_scroll_container|raw }}
             </div>
           {% endif %}
@@ -62,11 +65,11 @@
       </div>
 
       {% if block('modal_footer') is defined %}
-        <div class="modal-footer">
+        <div class='modal-footer'>
           {{ block('modal_footer') }}
         </div>
       {% elseif modal_footer is defined and modal_footer is not empty %}
-        <div class="modal-footer">
+        <div class='modal-footer'>
           {{ modal_footer|raw }}
         </div>
       {% endif %}

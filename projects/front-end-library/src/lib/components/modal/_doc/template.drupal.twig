@@ -10,25 +10,17 @@
     id: 'launchBtn2',
     hierarchy: 'primary',
     dataToggle: 'modal',
-    dataTarget: '#exampleModal2',
+    dataTarget: '#exampleModal',
   } %}
 </div>
 
 {% include '@bf-components/modal/twig/index.twig' with {
-  modalId: 'exampleModal2',
-  modalSize: modalSize,
-  modalTheme: modalTheme,
-  modalTitle: modalTitle,
-  modalSubtitle: modalSubtitle,
-  modal_body_subcontainer: modal_body_subcontainer,
-  modal_body_scroll_container: modal_body_scroll_container,
-  modalBudy: modalBudy,
-  modal_footer :modal_footer
-} only %}
+  modalId: 'exampleModal',
+} %}
 
-<div class='bf-hero--bg-ground reversed'>
+{# FOR INTERNAL DEMO ONLY : If The modal is caught in reversed DIV, there will be issues #}
+<div class='bf-color-bg-ground reversed'>
   <div class='container-fluid p-8'>
-    {# button for DEMO only #}
     {% include '@bf-components/button/twig/index.twig' with {
       label: 'Launch modal',
       id: 'launchBtn',
@@ -40,13 +32,5 @@
 
   {% include '@bf-components/modal/twig/index.twig' with {
     modalId: 'exampleModal1',
-    modalSize: modalSize,
-    modalTheme: modalTheme|default('dark'),
-    modalTitle: modalTitle,
-    modalSubtitle: modalSubtitle,
-    modal_body_subcontainer: modal_body_subcontainer,
-    modal_body_scroll_container: modal_body_scroll_container,
-    modalBudy: modalBudy,
-    modal_footer: modal_footer
-  } only %}
+  }  %}
 </div>
