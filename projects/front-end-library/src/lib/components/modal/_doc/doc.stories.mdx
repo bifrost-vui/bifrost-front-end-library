@@ -38,11 +38,7 @@ import {contentDemo, footerDemo} from "./data";
 
 # Modal
 
-**// TODO** Write a description of your component.
-
-- This component has been migrated from UI-Kit
-- `modalTheme` parameter is no longer available because all modals have white background-color
-- TODO : explain Twig blocks for body
+This component has been migrated from UI-Kit
 
 ## Drupal
 
@@ -52,7 +48,7 @@ export const Drupal = (args) => ({
 });
 
 <Canvas withSource='none'
-        style={{height: '400px'}}
+        style={{height: '800px'}}
 >
     <Story
         name='Drupal - scrollable content'
@@ -85,12 +81,28 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-## Drupal implementation example
+## Drupal implementation examples
 
 ```jsx
 {% include '@bf-components/modal/twig/index.twig' with {
-    // Add relevant props here
+    modalTitle: 'Modal Title',
+    modalSubtitle: 'modalSubtitle',
+    modal_body_scroll_container: "<p>Enter <strong>HTML</strong> content here<p>",
+    modal_footer: "<a href='http://www.example.com'>Enter HTML content in the footer here</a>"
 } only %}
+
+{% embed '@bf-components/modal/twig/index.twig' with {
+    modalTitle: 'Modal Title',
+    modalSubtitle: 'modalSubtitle'
+} %}
+    {% block modal_body_scroll_container %}
+        Some content for the modal_body_scroll_container box
+    {% endblock %}
+    {% block modal_footer %}
+        Some content for the modal_footer box
+    {% endblock %}
+{% endembed %}
+
 ```
 
 
