@@ -3,9 +3,9 @@
 {% set maxValue = progressMaxValue|default(100) %}
 
 {% if progressValue is defined and progressValue %}
-  {% set percentValue =  progressValue/(maxValue-minValue)* 100 %}
+  {% set percentValue = progressValue/(maxValue-minValue)* 100 %}
 {% elseif progressPercentValue is defined and progressPercentValue %}
-  {% set percentValue =  progressPercentValue %}
+  {% set percentValue = progressPercentValue %}
 
   {% if progressValue is not defined or not progressValue %}
     {% set progressValue = percentValue/100*(maxValue-minValue) %}
