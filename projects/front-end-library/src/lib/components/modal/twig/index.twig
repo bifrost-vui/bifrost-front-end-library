@@ -20,7 +20,7 @@
         class: 'm-2 m-md-3 m-lg-4 p-3 position-absolute--top-right'
       } %}
 
-      <div class='modal-header {{ modalHeaderClass|default('') }}'>
+      <div class='modal-header border-bottom--0 {{ modalHeaderClass|default('') }}'>
         {% if block('modal_header') is defined %}
           {{ block('modal_header') }}
         {% elseif modal_header is defined and modal_header %}
@@ -35,38 +35,40 @@
         {% endif %}
       </div>
 
-      <div class='modal-body pt-3'>
-          {% block modal_body %}
-            {# Non scrollable content #}
-            {% if block('modal_body_subcontainer') is defined %}
-              {{ block('modal_body_subcontainer') }}
-            {% else %}
-              {{ modal_body_subcontainer|raw }}
-            {% endif %}
+      <div class='modal-body pt-3 {{ modalBodyClass|default('') }}'>
+        {% block modal_body %}
+          {# Non scrollable content #}
+          {% if block('modal_body_subcontainer') is defined %}
+            {{ block('modal_body_subcontainer') }}
+          {% else %}
+            {{ modal_body_subcontainer|raw }}
+          {% endif %}
 
-            {# Non scrollable content #}
-            {% if block('modal_body_scroll_container') is defined %}
-              <div class="modal-body__scroll-container">
-                {{ block('modal_body_scroll_container') }}
-              </div>
-            {% elseif modalBudy is defined and modalBudy is not empty %}
-              {% block modal_body_scroll_container %}
-                <p>{{ modalBudy }}</p>
-              {% endblock %}
-            {% else %}
-              <div class="modal-body__scroll-container">
-                {{ modal_body_scroll_container|raw }}
-              </div>
-            {% endif %}
-
-          {% endblock %}
-
+          {# Non scrollable content #}
+          {% if block('modal_body_scroll_container') is defined %}
+            <div class="modal-body__scroll-container">
+              {{ block('modal_body_scroll_container') }}
+            </div>
+          {% elseif modalBudy is defined and modalBudy is not empty %}
+            {% block modal_body_scroll_container %}
+              <p>{{ modalBudy }}</p>
+            {% endblock %}
+          {% else %}
+            <div class="modal-body__scroll-container">
+              {{ modal_body_scroll_container|raw }}
+            </div>
+          {% endif %}
+        {% endblock %}
       </div>
 
-      {% if modal_footer is defined and modal_footer %}
-        {{ block('modal_footer') }}
-      {% elseif modal_header is defined and modal_footer %}
-        {{ modal_footer }}
+      {% if block('modal_footer') is defined %}
+        <div class="modal-footer">
+          {{ block('modal_footer') }}
+        </div>
+      {% elseif modal_footer is defined and modal_footer is not empty %}
+        <div class="modal-footer">
+          {{ modal_footer|raw }}
+        </div>
       {% endif %}
     </div>
   </div>

@@ -3,7 +3,7 @@ import {Canvas, Meta, Story, ArgsTable} from '@storybook/addon-docs';
 import {withDesign} from 'storybook-addon-designs'
 import {TwigContainerComponent} from '../../../../utils/twig-container/twig-container.component';
 import {ModalComponent} from '../angular/modal.component';
-import {content} from "./data";
+import {contentDemo, footerDemo} from "./data";
 
 <Meta
     title='Components/Modal'
@@ -58,7 +58,10 @@ export const Drupal = (args) => ({
         name='Drupal - scrollable content'
         args={{
             elementPath: 'components/modal/_doc/template.drupal',
-            modal_body_scroll_container: content
+            modal_body_scroll_container: contentDemo,
+            modalTitle: 'Modal Title',
+            modalSubtitle: 'modalSubtitle',
+            modal_footer: footerDemo
         }}
     >
         {Drupal.bind({})}
@@ -72,7 +75,10 @@ export const Drupal = (args) => ({
         name='Drupal - non scrollable content'
         args={{
             elementPath: 'components/modal/_doc/template.drupal',
-            modal_body_subcontainer: content
+            modalTitle: 'Modal Title',
+            modalSubtitle: 'modalSubtitle',
+            modal_body_subcontainer: contentDemo,
+            modal_footer: footerDemo
         }}
     >
         {Drupal.bind({})}

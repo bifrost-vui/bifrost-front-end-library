@@ -30,7 +30,6 @@ export class ModalComponent implements OnInit {
     @Input() modal_body_subcontainer: string | 'TwigBlock';
     /** Makes the content of the modal scrollable */
     @Input() modal_body_scroll_container: string | 'TwigBlock';
-
     @Input() modalBudy: string;
     @Input() modal_footer: string | 'TwigBlock';
     /**Twig only*/
