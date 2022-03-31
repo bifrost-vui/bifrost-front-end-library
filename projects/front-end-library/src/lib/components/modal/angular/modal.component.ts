@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'bf-modal',
@@ -13,8 +13,7 @@ export class ModalComponent implements OnInit {
     @Input() modalSize: 'sm' | 'md' | 'lg';
     @Input() modalAnimation: string;
     @Input() modalLabelledBy: string;
-
-    @Input() modalTheme: 'light' | 'dark';
+    @Input() modalTheme: string;
 
     @Input() bgImage: string;
     @Input() bgLgImage: string;

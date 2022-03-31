@@ -1,9 +1,9 @@
-import {moduleMetadata} from '@storybook/angular';
-import {Canvas, Meta, Story, ArgsTable} from '@storybook/addon-docs';
-import {withDesign} from 'storybook-addon-designs'
-import {TwigContainerComponent} from '../../../../utils/twig-container/twig-container.component';
-import {ModalComponent} from '../angular/modal.component';
-import {contentDemo, footerDemo} from "./data";
+import { moduleMetadata } from '@storybook/angular';
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs'
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { ModalComponent } from '../angular/modal.component';
+import { contentDemo, footerDemo } from "./data";
 
 <Meta
     title='UI-Kit/Modal'
@@ -30,35 +30,40 @@ import {contentDemo, footerDemo} from "./data";
                 options: ['sm', 'md', 'lg']
             },
             table: {
-                defaultValue: {summary: 'lg'},
+                defaultValue: { summary: 'lg' },
             }
         },
         modalTheme: {
             table: {
-                defaultValue: {summary: 'light'},
+                defaultValue: { summary: 'light' },
             }
         },
         modalAnimation:{
             table: {
-                defaultValue: {summary: 'fade'},
+                defaultValue: { summary: 'fade' },
             }
         }
     }}
 />
-
-# Modal
-
-This component has been migrated from UI-Kit
-
-## Drupal
 
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
     props: args,
 });
 
+
+# Modal
+This component has been migrated from UI-Kit
+
+## Component API
+
+<ArgsTable of={ModalComponent}/>
+
+
+## Drupal
+
 <Canvas withSource='none'
-        style={{height: '800px'}}
+        style={{ height: '800px' }}
 >
     <Story
         name='Drupal - scrollable content'
@@ -75,7 +80,7 @@ export const Drupal = (args) => ({
 </Canvas>
 
 <Canvas withSource='none'
-        style={{height: '400px'}}
+        style={{ height: '800px' }}
 >
     <Story
         name='Drupal - non scrollable content'
@@ -94,30 +99,47 @@ export const Drupal = (args) => ({
 ## Drupal implementation examples
 
 ```jsx
+// Simple text content
 {% include '@bf-components/modal/twig/index.twig' with {
     modalTitle: 'Modal Title',
     modalSubtitle: 'modalSubtitle',
-    modal_body_scroll_container: "<p>Enter your modal HTML content here</p>",
+    modalBudy: "Enter your content here",
     modal_footer: "<a href='https://www.example.com'>Enter HTML content for the modal footer here</a>"
 } only %}
 
+// modal with scrollable content
 {% embed '@bf-components/modal/twig/index.twig' with {
     modalTitle: 'Modal Title',
     modalSubtitle: 'modalSubtitle'
-} %}
+    } %}
+
     {% block modal_body_scroll_container %}
-        Some content for the modal_body_scroll_container box
+        Some html content inside the modal_body_scroll_container box
     {% endblock %}
+
     {% block modal_footer %}
-        Some content for the modal_footer box
+        Some html  content inside the modal_footer box
+    {% endblock %}
+{% endembed %}
+
+// modal with non scrollable content
+{% embed '@bf-components/modal/twig/index.twig' with {
+    modalTitle: 'Modal Title',
+    modalSubtitle: 'modalSubtitle'
+    } %}
+
+    {% block modal_body_subcontainer %}
+        Some html content inside the modal_body_subcontainer box
+    {% endblock %}
+
+    {% block modal_footer %}
+        Some html  content inside the modal_footer box
     {% endblock %}
 {% endembed %}
 
 ```
 
-## Component API
 
-<ArgsTable of={ModalComponent}/>
 
 
 ## Design Guidelines

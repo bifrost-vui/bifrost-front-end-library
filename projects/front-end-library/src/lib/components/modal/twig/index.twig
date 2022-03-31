@@ -1,4 +1,5 @@
 {% set class = (modalClass is defined and modalClass) ? modalClass : class|default('') %}
+{# Minor improvment : don't set attributes if no bgImage is defined  #}
 {% set hasBgImage = (bgImage is defined and bgImage) or (bgMdImage is defined and bgMdImage) or (bgLgImage is defined and bgLgImage) %}
 
 <div class='modal  modal-theme--{{ modalTheme|default('light') }} {{ modalAnimation|default('fade') }} {{ class }}'
@@ -20,7 +21,7 @@
       {% include '@bf-components/button-icon/twig/index.twig' with {
         icon: 'x',
         dataDismiss: 'modal',
-        class: 'close m-2 m-md-3 m-lg-4 p-3 position-absolute--top-right'
+        class: 'm-2 m-md-3 m-lg-4 p-3 position-absolute--top-right'
       } %}
 
       <div class='modal-header border-bottom--0 {{ modalHeaderClass|default('') }}'>
