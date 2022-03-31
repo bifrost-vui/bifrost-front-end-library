@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-
 @Component({
     selector: 'bf-%component-name%',
     templateUrl: './template.angular.component.html',
