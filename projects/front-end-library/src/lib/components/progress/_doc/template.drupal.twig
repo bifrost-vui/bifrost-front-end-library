@@ -1,11 +1,11 @@
 {% set isMonochromeColor = isMonochromeColor|json_parse %}
 
-<div class='mt-6 px-2 container-fluid'>
-  <div class='p-3 m-1 flex-grow-1 d-flex flex-column gap-4 {{ _background }}'>
+<div class='mt-6 px-2 container-fluid {{ _background }}'>
+  <div class='p-3 m-1 flex-grow-1 d-flex flex-column gap-4 '>
     <p class='small'> No <strong>progressPercentValue</strong> or <strong>progressValue</strong> have been set</p>
     {% include '@bf-components/progress/twig/index.twig' %}
   </div>
-  <div class='p-3 m-1 flex-grow-1 d-flex flex-column gap-4 {{ _background }}'>
+  <div class='p-3 m-1 flex-grow-1 d-flex flex-column gap-4'>
     <p class='small'> Only <strong>progressPercentValue</strong> has been set</p>
     {% include '@bf-components/progress/twig/index.twig'  with {
       progressPercentValue: progressPercentValue|default(25)
@@ -17,8 +17,8 @@
       progressPercentValue: progressPercentValue|default(95)
     } %}
   </div>
-  <div class='p-3 m-1 flex-grow-1 d-flex flex-column gap-4 {{ _background }}'>
-    <p class='small'>NEW : Only <strong>progressValue</strong> has been set. If set, <strong>progressPercentValue</strong>
+  <div class='p-3 m-1 flex-grow-1 d-flex flex-column gap-4'>
+    <p class='small'>Only <strong>progressValue</strong> has been set. If set, <strong>progressPercentValue</strong>
       will be ignored</p>
     {% include '@bf-components/progress/twig/index.twig'  with {
       progressValue: progressValue|default(25)
@@ -31,5 +31,3 @@
     } %}
   </div>
 </div>
-
-

@@ -1,14 +1,14 @@
-import {moduleMetadata} from '@storybook/angular';
-import {Canvas, Meta, Story, Props} from '@storybook/addon-docs';
-import {withDesign} from 'storybook-addon-designs'
-import {TwigContainerComponent} from '../../../../utils/twig-container/twig-container.component';
-import {ProgressComponent} from '../angular/progress.component';
+import { moduleMetadata } from '@storybook/angular';
+import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs'
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { ProgressComponent } from '../angular/progress.component';
 
 <Meta
     title='UI-Kit/Progress'
     component={ProgressComponent}
     decorators={[
-        moduleMetadata({declarations: [ProgressComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [ProgressComponent, TwigContainerComponent] }),
         withDesign
     ]}
     parameters={{
@@ -25,33 +25,25 @@ import {ProgressComponent} from '../angular/progress.component';
                 options: ['', 'bf-color-bg-ground', 'bf-color-bg-underground', 'reversed bf-color-bg-ground', 'reversed bf-color-bg-underground', 'bf-color-bg-highlight']
             },
             description: 'Preview the component on selected background'
-        },
-        progressMinValue: {
-            type: {
-                control: {type: 'number'},
-                defaultValue: 0
-            }
-        },
-        progressMaxValue: {
-            type: {
-                control: {type: 'number'},
-                defaultValue: 100
-            }
         }
     }}
 />
 
+
 # Progress
+## Component API
+
+<Props of={ProgressComponent} />
 
 This component has been migrated from the UI-Kit project
 
-**Arguments minor optimisation to prevent potential inconsistencies**
+**Minor optimization front the UI-Kit version:**
 
 - when `progressValue` is defined you don't have to set `progressPercentValue` and vice versa
 - when both are defined, `progressPercentValue` will be ignored
 - when `progressValue` and `progressPercentValue` are both undefined their default value will be 0
 
-**Progress bar Colors**
+**Progress bar Colors:**
 
 - Progress > 90% = Danger color.
 - Progress > 50% = Warning color.
@@ -68,7 +60,7 @@ export const Drupal = (args) => ({
 
 <Canvas
     withSource='none'
-    style={{height: '400px'}}
+    style={{ height: '400px' }}
 >
     <Story
         name='Drupal'
@@ -85,24 +77,15 @@ export const Drupal = (args) => ({
 
 ```jsx
 {% include '@bf-components/progress/twig/index.twig' with {
-    progressValue   : 50,
+    progressValue: 50,
 } only %}
 
 {% include '@bf-components/progress/twig/index.twig' with {
-    progressPercentValue : 50
+    progressPercentValue: 50
 } only %}
 ```
 
-
-## Component API
-
-**✅ Inputs are equivalent for Angular and Drupal.**
-
-<Props of={ProgressComponent}/>
-
-
 ## Design Guidelines
-
 
 <iframe width='100%' height='450'
         src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D3182%253A13'

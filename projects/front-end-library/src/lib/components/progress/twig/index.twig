@@ -1,39 +1,35 @@
 {# for legacy purpose #}
 {% set minValue = progressMinValue|default(0) %}
 {% set maxValue = progressMaxValue|default(100) %}
+{% set percentValue = ((progressValue is defined and progressValue) ? progressValue/(maxValue-minValue)*100 : progressPercentValue)|default(0) %}
+{# Do no set progressValue if it's already defined #}
+{% set progressValue =((progressValue is not defined or not progressValue) ? (percentValue/100*(maxValue-minValue)) : progressValue )|default(0) %}
 
-{% if progressValue is defined and progressValue %}
-  {% set percentValue = progressValue/(maxValue-minValue)* 100 %}
-{% elseif progressPercentValue is defined and progressPercentValue %}
-  {% set percentValue = progressPercentValue %}
-
-  {% if progressValue is not defined or not progressValue %}
-    {% set progressValue = percentValue/100*(maxValue-minValue) %}
+{# Color settings #}
+{% if isMonochromeColor is defined and isMonochromeColor %}
+  {% set progressColor = 'default' %}
+{% else %}
+  {% if percentValue > 90 %}
+    {% set progressColor = 'danger' %}
+  {% elseif percentValue > 50 %}
+    {% set progressColor = 'warning' %}
+  {% else %}
+    {% set progressColor = 'success' %}
   {% endif %}
-{% else %}
-  {% set percentValue = percentValue|default(0) %}
-  {% set progressValue = progressValue|default(0) %}
-{% endif %}
-
-
-{% if percentValue > 90 %}
-  {% set progressColor = "danger" %}
-{% elseif percentValue > 50 %}
-  {% set progressColor = "warning" %}
-{% else %}
-  {% set progressColor = "success" %}
 {% endif %}
 
 {% if isMonochromeColor is defined and isMonochromeColor is same as (true) %}
   {% set progressColor = "default" %}
 {% endif %}
 
-<div class="bf-progress progress {{ class|default('') }}">
-  <div class="progress-bar bg-{{ progressColor|default('success') }} {{ progressBarClass|default('') }}"
+<div class="progress {{ class|default('') }}">
+  <div class="progress-bar bg-{{ progressColor }} {{ progressBarClass|default('') }}"
        role="progressbar"
        style="width: {{ percentValue }}%"
        aria-valuenow="{{ progressValue }}"
        aria-valuemin="{{ minValue }}"
        aria-valuemax="{{ maxValue }}"
-       data-toggle="tooltip" title="{{ percentValue|number_format(1) }}%"></div>
+       data-toggle="tooltip"
+       title="{{ percentValue|number_format(1) }}%"
+  ></div>
 </div>
