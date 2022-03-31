@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-
 @Component({
     selector: 'bf-template-badge',
     templateUrl: './template.angular.component.html',
