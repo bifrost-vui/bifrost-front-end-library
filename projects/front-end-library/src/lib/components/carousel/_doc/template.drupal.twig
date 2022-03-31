@@ -40,14 +40,12 @@
 
 <div class='container py-5'>
     <div class='bf-carousel js-bf-carousel-demo {{ class|default('') }}'>
-        {% include '@bf-components/card/twig/phone.twig' with card only %}
-        {% include '@bf-components/card/twig/phone.twig' with card only %}
-        {% include '@bf-components/card/twig/phone.twig' with card only %}
-        {% include '@bf-components/card/twig/phone.twig' with card only %}
-        {% include '@bf-components/card/twig/phone.twig' with card only %}
-        {% include '@bf-components/card/twig/phone.twig' with card only %}
-        {% include '@bf-components/card/twig/phone.twig' with card only %}
-        {% include '@bf-components/card/twig/phone.twig' with card only %}
+        {% for index in 1..8 %}
+            {% set card = card|merge({
+                    'title' : random(['iPhone 12 Mini', 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.' ])
+            }) %}
+            {% include '@bf-components/card/twig/phone.twig' with card only %}
+        {% endfor %}
     </div>
 </div>
 
