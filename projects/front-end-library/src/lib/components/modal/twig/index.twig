@@ -1,9 +1,11 @@
-{% set class = (modalClass is defined and modalClass) ? modalClass : class|default('') %}
-{# Minor improvment : don't set attributes if no bgImage is defined  #}
+{% set id = id|default(modalId) %}
+{% set class = class|default(modalClass) %}
+
+{# Minor improvment : don't set attributes if no bgImage is defined #}
 {% set hasBgImage = (bgImage is defined and bgImage) or (bgMdImage is defined and bgMdImage) or (bgLgImage is defined and bgLgImage) %}
 
-<div class='modal  modal-theme--{{ modalTheme|default('light') }} {{ modalAnimation|default('fade') }} {{ class }}'
-     id='{{ modalId|default('') }}'
+<div class='modal modal-theme--{{ modalTheme|default('light') }} {{ modalAnimation|default('fade') }} {{ class }}'
+     id='{{ id|default('') }}'
      tabindex='-1'
      role='dialog'
      aria-labelledby='{{ modalLabelledBy|default('') }}'

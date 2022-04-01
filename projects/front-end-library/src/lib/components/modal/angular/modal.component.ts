@@ -9,7 +9,7 @@ export class ModalComponent implements OnInit {
     constructor() {
     }
 
-    @Input() modalId: string;
+    @Input() id: string;
     @Input() modalSize: 'sm' | 'md' | 'lg';
     @Input() modalAnimation: string;
     @Input() modalLabelledBy: string;
