@@ -1,8 +1,8 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
-import { withDesign }                           from 'storybook-addon-designs'
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { InputCheckboxComponent }               from '../angular/input-checkbox.component';
+import { moduleMetadata } from '@storybook/angular';
+import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs'
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { InputCheckboxComponent } from '../angular/input-checkbox.component';
 
 <Meta
     title='Components/Input Checkbox'
@@ -13,13 +13,13 @@ import { InputCheckboxComponent }               from '../angular/input-checkbox.
     ]}
     parameters={{
         design: {
-            type    : 'figma',
-            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=16890%3A229797',
-            disable : false
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=16890%3A229797',
+            disable: false
         },
     }}
     argTypes={{
-        id: {type: {required : true}},
+        id: {type: {required: true}},
         inputName: {
             control: { type: 'text' },
             description: 'UI-Kit legacy - Deprecated. Use `name` instead'
@@ -28,24 +28,28 @@ import { InputCheckboxComponent }               from '../angular/input-checkbox.
             control: { type: 'text' },
             description: 'UI-Kit legacy - Deprecated. Use `id` instead'
         },
-        _background :{
-            control : {
-                type : 'select',
-                options : [null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight']
+        _background:{
+            control: {
+                type: 'select',
+                options: [null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight']
             },
-            description : 'preview the component on selected background'
+            description: 'preview the component on selected background'
         },
     }}
 />
 
 # Input Checkbox
 
-## Drupal
-
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    component: TwigContainerComponent,
+    props: args,
 });
+
+## Component API
+
+<Props of={InputCheckboxComponent} />
+
+## Drupal
 
 <Canvas
     withSource='none'
@@ -54,11 +58,11 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath : 'components/input-checkbox/_doc/template.drupal',
-            label       : 'label',
-            id          : '',
-            value       : 'value',
-            name        : 'name'
+            elementPath: 'components/input-checkbox/_doc/template.drupal',
+            label: 'label',
+            id: '',
+            value: 'value',
+            name: 'name'
         }}
     >
         {Drupal.bind({})}
@@ -70,18 +74,12 @@ export const Drupal = (args) => ({
 
 ```jsx
 {% include '@bf-components/input-checkbox/twig/index.twig' with {
-    label  : 'label',
-    id     : 'id',
-    value  : 'value',
-    name   : 'name'
+    label: 'label',
+    id: 'id',
+    value: 'value',
+    name: 'name'
 } only %}
 ```
-
-## Component API
-
-**✅ Inputs are equivalent for Angular and Drupal.**
-
-<Props of={InputCheckboxComponent} />
 
 
 ## Design Guidelines
