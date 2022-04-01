@@ -8,10 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class IframeVideoComponent implements OnInit {
     constructor() {}
 
-    @Input() videoSource    : string;
-    @Input() videoRatio     : '21by9' | '16by9' | '4by3' | '1by1';
-    @Input() iframeClass    : string;
-    @Input() class          : string;
+    @Input() videoSource: string;
+    @Input() videoRatio: '21by9' | '16by9' | '4by3' | '1by1';
+    @Input() iframeClass: string;
+    @Input() class: string;
 
     ngOnInit() {
         console.log('IframeVideo', this);
