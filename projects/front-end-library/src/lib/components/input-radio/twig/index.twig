@@ -1,9 +1,10 @@
-{# Retrocompatibility with Ui-Kit legacy #}
+{# Ui-Kit legacy fallback #}
   {% set id = id|default(inputId) %}
   {% set name = name|default(inputName) %}
   {% set labelClass = labelClass|default(labelTxtClass) %}
 
-<div class='bf-input-radio {{ isInvalid ? 'bf-input-radio--invalid' }} {{ isDisabled ? 'bf-input-radio--disabled' }} {{ class }}'>
+<div
+  class='bf-input-radio {{ isInvalid ? 'bf-input-radio--invalid' }} {{ isDisabled ? 'bf-input-radio--disabled' }} {{ class }}'>
   <input
     class='bf-radio {{ isInvalid ? 'bf-radio--invalid' }}'
     type='radio'
@@ -23,6 +24,6 @@
     {{ extraAttribute|default(NULL) }}
   />
   {% if label is defined and label %}
-    <label for='{{ id }}' class='bf-text-display-sub-medium {{ labelClass|default('') }}'>{{ label|raw }}</label>
+    <label for='{{ id }}' class='bf-text-display-sub-medium {{ labelClass|default('') }}'>{{ label }}</label>
   {% endif %}
 </div>

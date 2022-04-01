@@ -1,8 +1,8 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
-import { withDesign }                           from 'storybook-addon-designs'
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { InputRadioComponent }                  from '../angular/input-radio.component';
+import { moduleMetadata } from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs'
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { InputRadioComponent } from '../angular/input-radio.component';
 
 <Meta
     title='Components/Input Radio'
@@ -13,33 +13,36 @@ import { InputRadioComponent }                  from '../angular/input-radio.com
     ]}
     parameters={{
         design: {
-            type    : 'figma',
-            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=16890%3A229796',
-            disable : false
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=16890%3A229796',
+            disable: false
         },
     }}
     argTypes={{
         id: {
-            type: { required : true }
+            type: { required: true }
         },
         inputName: {
             control: { type: 'text' },
-            description: 'UI-Kit legacy - Deprecated. Use `name` instead'
+            description: 'Use `name` instead',
+            table: { category: 'Deprecated Inputs'}
         },
         inputId: {
             control: { type: 'text' },
-            description: 'UI-Kit legacy - Deprecated. Use `id` instead'
+            description: 'Use `id` instead',
+            table: { category: 'Deprecated Inputs'}
         },
-        labelTxtClass : {
+        labelTxtClass: {
             control: { type: 'text' },
-            description: 'UI-Kit legacy - Deprecated. Use `labelClass` instead'
+            description: 'Use `labelClass` instead',
+            table: { category: 'Deprecated Inputs'}
         },
-        _background :{
-            control : {
-                type : 'select',
-                options : [null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight']
+        _background: {
+            control: {
+                type: 'select',
+                options: [null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight']
             },
-            description : 'preview the component on selected background'
+            description: 'preview the component on selected background'
         }
     }}
 />
@@ -47,18 +50,16 @@ import { InputRadioComponent }                  from '../angular/input-radio.com
 # Input Radio
 
 
-## Drupal
-
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    component: TwigContainerComponent,
+    props: args,
 });
 
 ## Component API
 
-**✅ Inputs are equivalent for Angular and Drupal.**
-
 <Props of={InputRadioComponent} />
+
+## Drupal
 
 <Canvas
     withSource='none'
@@ -67,11 +68,11 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath : 'components/input-radio/_doc/template.drupal',
-            id          : '',
-            inputId     : 'inputId',
-            name        : 'name',
-            label       : 'label'
+            elementPath: 'components/input-radio/_doc/template.drupal',
+            id: '',
+            inputId: 'inputId',
+            name: 'name',
+            label: 'label'
         }}
     >
         {Drupal.bind({})}
@@ -83,10 +84,10 @@ export const Drupal = (args) => ({
 
 ```jsx
 {% include '@bf-components/input-radio/twig/index.twig' with {
-    id      : 'id',
-    value   : 'value',
-    name    : 'name',
-    label   : 'label'
+    id: 'id',
+    value: 'value',
+    name: 'name',
+    label: 'label'
 } only %}
 ```
 
