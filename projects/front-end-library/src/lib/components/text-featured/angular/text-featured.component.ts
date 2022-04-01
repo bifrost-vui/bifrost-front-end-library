@@ -7,9 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TextFeaturedComponent implements OnInit {
     constructor() {}
 
-    @Input() spacingLeft : number;
-    @Input() class : string;
-    @Input() textFeatured_content :  string | 'TwigBlock';
+    @Input() spacingLeft: number;
+    @Input() textFeatured_content: string | 'TwigBlock';
+    @Input() class: string;
 
     ngOnInit() {
         console.log('TextFeatured', this);
