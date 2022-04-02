@@ -15,7 +15,7 @@ export class IconComponent implements OnInit {
 
     @Input() name               : string;
     @Input() size               : 'xsmall' | 'small' | 'medium' | 'large' | 'huge';
-    @Input() color              : '' | 'success' | 'neutral'| 'warning' | 'negative';
+    @Input() color              : 'primary' | 'success' | 'neutral'| 'warning' | 'negative';
     @Input() class              : string;
     @Input() reversed           : boolean;
 

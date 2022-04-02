@@ -1,0 +1,20 @@
+{% set class = 'bf-input-text ' ~ class|default(NULL) %}
+
+{% extends '@bf-components/input/twig/index.twig' %}
+  {% block inputContent %}
+    <div class='position-relative'>
+      <input
+        {% if inputId is defined and inputId %}id='{{ inputId }}'{% endif %}
+        class='bf-input__control pr-6'
+        value="{{ value }}"
+        placeholder="{{ placeholder }}"
+        {{ isDisabled|default(false) or isReadOnly|default(false) ? 'disabled' }}
+        {{ inputExtraAttribute|default(NULL) }}
+      />
+      {% if adornment is defined and adornment %}
+        <div class='bf-input__adornment'>
+          {{ adornment }}
+        </div>
+      {% endif %}
+    </div>
+  {% endblock %}

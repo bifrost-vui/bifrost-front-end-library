@@ -1,46 +1,26 @@
-{% if options is not defined %}
-    {% set options = [
-        { label:"2018", value:"2018", isSelected:true },
-        { label:"2017", value:"2017" },
-        { label:"2016", value:"2016" },
-        { label:"2015", value:"2015" },
-        { label:"2014", value:"2014" },
-    ] %}
-{% endif %}
+{% set class = 'bf-input-dropdown ' ~ class|default(NULL) %}
 
+{% extends '@bf-components/input/twig/index.twig' %}
+  {% block inputContent %}
+    <div class='position-relative'>
+      <select {% if inputId is defined and inputId %}id='{{ inputId }}'{% endif %} class='bf-input__control pr-6' {{ isDisabled|default(false) or isReadOnly|default(false) ? 'disabled' }} {{ inputExtraAttribute|default(NULL) }}>
+        {% if placeholder is defined and placeholder %}
+          <option value='' disabled selected>
+            {{ placeholder|default('') }}
+          </option>
+        {% endif %}
 
-<div class='bf-input bf-input-dropdown form-group {{ class|default('') }}'>
-
-  {% if label %}
-    <label for='{{ inputId }}' class='{{ labelClass|default('') }}' {{ labelExtraAttribute|default(NULL) }}>
-      {{ label|default('Label') }}
-    </label>
-  {% endif %}
-  <div class=''>
-    <select id='{{ inputId }}' class='form-control {{ isInvalid ? 'is-invalid' }}' {{ extraAttribute|default(NULL) }}>
-      {% if placeholder is defined %}
-        <option value='' disabled selected>
-          {{ placeholder|default('') }}
-        </option>
-      {% endif %}
-
-      {% for option in options %}
-        <option value='{{ option.value }}' {% if option.isSelected|default(false) %}selected{% endif %}>
-          {{ option.label }}
-        </option>
-      {% endfor %}
-    </select>
-  </div>
-
-  {% if errorMessage is defined and errorMessage %}
-    <p class='small bf-color-feedback-negative mb-0 mt-1'>
-      {{ errorMessage }}
-    </p>
-  {% endif %}
-
-  {% if message is defined and message %}
-    <p class='small bf-color-neutral-secondary mb-0 mt-1'>
-      {{ message }}
-    </p>
-  {% endif %}
-</div>
+        {% for option in options %}
+          <option value='{{ option.value }}' {% if option.isSelected|default(false) %}selected{% endif %}>
+            {{ option.label }}
+          </option>
+        {% endfor %}
+      </select>
+      <div class='bf-input__adornment'>
+        {% include '@bf-components/icon/twig/index.twig' with {
+          name  : icon|default('chevron-down'),
+          size  : 'small'
+        } only %}
+      </div>
+    </div>
+  {% endblock %}

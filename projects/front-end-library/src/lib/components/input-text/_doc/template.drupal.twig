@@ -1,4 +1,3 @@
-{% set options          = options|json_parse %}
 {% set isInvalid        = isInvalid|json_parse %}
 {% set isDisabled       = isDisabled|json_parse %}
 {% set isReadOnly       = isReadOnly|json_parse %}
@@ -35,11 +34,13 @@
   }
 ] %}
 
-<div class='d-flex flex-column' style='min-height: 100vh'>
+<div class='d-flex flex-column'>
   {% for variant in variants %}
     <div class='d-flex flex-column align-items-center {{ variant.backgroundClass }}'>
-      {% set variantProps = variant.props|merge({ 'id': id|default(loop.index) }) %}
-      {% include '@bf-components/input-dropdown/twig/index.twig' with variantProps %}
+      <div class='d-flex flex-row'>
+        {% set variantProps = variant.props|merge({ 'id': id|default(loop.index) }) %}
+        {% include '@bf-components/input-text/twig/index.twig' with variantProps %}
+      </div>
     </div>
   {% endfor %}
 </div>

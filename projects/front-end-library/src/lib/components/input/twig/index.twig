@@ -1,0 +1,38 @@
+<div class='bf-input {{ isInvalid|default(false) ? 'invalid' }} {{ isDisabled|default(false) ? 'disabled' }} {{ isReadOnly|default(false) ? 'readonly' }} {{ class|default(NULL) }}'>
+  {% if (label is defined and label) or (description is defined and description) %}
+    <div class='mb-2'>
+      {% if label is defined and label %}
+        <label {% if inputId is defined and inputId %}for='{{ inputId }}'{% endif %}>
+          {{ label }}
+        </label>
+      {% endif %}
+      {% if labelButtonIcon is defined and labelButtonIcon %}
+        {% set labelButtonIcon = labelButtonIcon|merge({ 'size': 'xsmall' }) %}
+        {% include '@bf-components/button-icon/twig/index.twig' with labelButtonIcon only %}
+      {% endif %}
+      {% if description is defined and description %}
+        <p class='bf-color-neutral-secondary mb-0'>
+          {{ description }}
+        </p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if block('inputContent') is defined %}
+      {{ block('inputContent') }}
+  {% elseif inputContent is defined %}
+      {{ inputContent }}
+  {% endif %}
+
+  {% if errorMessage is defined and errorMessage %}
+    <p class='small bf-color-feedback-negative mb-0 mt-1'>
+      {{ errorMessage }}
+    </p>
+  {% endif %}
+
+  {% if helperText is defined and helperText %}
+    <p class='small bf-color-neutral-secondary mb-0 mt-1'>
+      {{ helperText }}
+    </p>
+  {% endif %}
+</div>

@@ -26,6 +26,7 @@ export class ButtonIconComponent implements OnInit {
     @Input() ariaLabel      : string;
     @Input() extraAttribute : string;
     @Input() badgeLabel     : string;
+    @Input() size           : 'small' | 'xsmall';
 
     @Input() class          : string;
     /** Classes for <button> tag. */

@@ -2,39 +2,36 @@ import { moduleMetadata }                   from '@storybook/angular';
 import { Canvas, Meta, Story, ArgsTable }   from '@storybook/addon-docs';
 import { withDesign }                       from 'storybook-addon-designs'
 import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
-import { InputDropdownComponent }           from '../angular/input-dropdown.component';
+import { InputTextComponent }               from '../angular/input-text.component';
 
 <Meta
-    title='Components/Input Dropdown'
-    component={InputDropdownComponent}
+    title='Components/Input Text'
+    component={InputTextComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputDropdownComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [InputTextComponent, TwigContainerComponent]}),
         withDesign
     ]}
     parameters={{}}
     argTypes={{}}
 />
 
-<ArgsTable of={InputDropdownComponent} />
+<ArgsTable of={InputTextComponent} />
 
 ## Drupal
 
 ## Drupal implementation example
 
 ```jsx
-{% include '@bf-components/input-dropdown/twig/index.twig' with {
+{% include '@bf-components/input-text/twig/index.twig' with {
     inputId: 'inputId',
     label: 'Label',
+    labelButtonIcon: {
+        icon: 'question-circle-outline'
+    },
     description: 'Description',
+    value: 'Value',
     placeholder: 'Placeholder',
     helperText: 'Helper Text',
-    options: [
-        { label: 'Option 1', value: 1, isSelected: true },
-        { label: 'Option 2', value: 2 },
-        { label: 'Option 3', value: 3 },
-        { label: 'Option 4', value: 4 },
-        { label: 'Option 5', value: 5 },
-    ],
     isInvalid: false,
     isDisabled: false,
     isReadOnly: false,
@@ -54,15 +51,10 @@ export const commonProps = {
         icon: 'question-circle-outline'
     },
     description: 'Description',
+    value: 'Value Nulla vitae elit libero, a pharetra augue.',
     placeholder: 'Placeholder',
+    adornment: `<p class='small mb-0'>Go</p>`,
     helperText: 'Helper Text',
-    options: [
-        { label: 'Option 1', value: 1, isSelected: true },
-        { label: 'Option 2', value: 2 },
-        { label: 'Option 3', value: 3 },
-        { label: 'Option 4', value: 4 },
-        { label: 'Option 5', value: 5 },
-    ],
     isInvalid: false,
     isDisabled: false,
     isReadOnly: false,
@@ -73,7 +65,7 @@ export const commonProps = {
     <Story
         name='Drupal'
         args={{
-            elementPath: 'components/input-dropdown/_doc/template.drupal',
+            elementPath: 'components/input-text/_doc/template.drupal',
             ...commonProps
         }}
     >
@@ -85,7 +77,7 @@ export const commonProps = {
     <Story
         name='Drupal - with isInvalid'
         args={{
-            elementPath: 'components/input-dropdown/_doc/template.drupal',
+            elementPath: 'components/input-text/_doc/template.drupal',
             ...commonProps,
             isInvalid: true,
             errorMessage: 'Error message.'
@@ -99,7 +91,7 @@ export const commonProps = {
     <Story
         name='Drupal - with isDisabled'
         args={{
-            elementPath: 'components/input-dropdown/_doc/template.drupal',
+            elementPath: 'components/input-text/_doc/template.drupal',
             ...commonProps,
             isDisabled: true,
         }}
@@ -112,7 +104,7 @@ export const commonProps = {
     <Story
         name='Drupal - with isReadOnly'
         args={{
-            elementPath: 'components/input-dropdown/_doc/template.drupal',
+            elementPath: 'components/input-text/_doc/template.drupal',
             ...commonProps,
             isReadOnly: true,
         }}

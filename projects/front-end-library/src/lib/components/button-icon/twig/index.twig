@@ -1,7 +1,8 @@
 {% set isLink   = ((href is defined and href is not empty) and (isDisabled is not defined or not isDisabled )) %}
 {% set hasBadge = (badgeLabel is defined and badgeLabel and badgeLabel is not empty ) %}
+{% set size     = size|default('small') %}
 
-<div class='bf-button-icon {{ isDisabled ? 'disabled' }} {{ class|default('') }}'>
+<div class='bf-button-icon {{ size != 'small' ? 'size-'~size }} {{ isDisabled ? 'disabled' }} {{ class|default('') }}'>
   <{{ isLink ? 'a' : 'button' }}
     {% if isLink is same as (true) %}
       href='{{ href|default('#') }}'
@@ -21,7 +22,7 @@
   >
     {% include '@bf-components/icon/twig/index.twig' with {
       name  : icon|default('placeholder'),
-      size  : 'small'
+      size  : size
     } only %}
   </{{ isLink ? 'a' : 'button' }}>
 

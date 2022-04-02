@@ -1,41 +1,38 @@
-<div class='bf-input-dropdown-menu form-group {{ isDisabled ? 'disabled' }} {{ class|default(NULL) }}'>
-  <label>Label</label>
-  {# {% include '@bf-components/button-icon/twig/index.twig' with {
-    iconName: 'question-circle-outline',
-    size: 'xsmall'
-  } only %} #}
-  <p class='small mb-1'>Description</p>
-  <div class='dropdown'>
-    {% include '@bf-components/button/twig/index.twig' with {
-      label: label,
-      id: id,
-      hierarchy: 'secondary',
-      isDisabled: false,
-      iconName: 'chevron-down',
-      dataToggle: 'dropdown',
-      ariaExpanded: false,
-      ariaHaspopup: true,
-      iconPosition: 'right',
-      class: 'dropdown-toggle',
-    } only %}
+{% set class = 'bf-input-dropdown-menu ' ~ class|default(NULL) %}
 
-    {% if options is defined and options is not empty %}
-      <ul class='dropdown-menu list-unstyled' aria-labelledby='{{ id }}'>
-        {% for item in options %}
-          {% if item.label is defined and item.label %}
-            <li>
-              {% include '@bf-components/link/twig/index.twig' with {
-                label: item.label,
-                class: 'dropdown-item',
-                href: item.href|default(NULL),
-                iconName: item.iconName|default(NULL),
-                iconPosition: 'left',
-                isUnderline: false
-              } only %}
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    {% endif %}
-  </div>
-</div>
+{% extends '@bf-components/input/twig/index.twig' %}
+  {% block inputContent %}
+    <div class='dropdown'>
+      {% include '@bf-components/button/twig/index.twig' with {
+        label: placeholder,
+        id: inputId,
+        hierarchy: 'secondary',
+        isDisabled: false,
+        iconName: 'chevron-down',
+        dataToggle: 'dropdown',
+        ariaExpanded: false,
+        ariaHaspopup: true,
+        iconPosition: 'right',
+        class: 'bf-input__control dropdown-toggle',
+      } only %}
+
+      {% if options is defined and options is not empty %}
+        <ul class='dropdown-menu list-unstyled' aria-labelledby='{{ inputId }}'>
+          {% for item in options %}
+            {% if item.label is defined and item.label %}
+              <li>
+                {% include '@bf-components/link/twig/index.twig' with {
+                  label: item.label,
+                  class: 'dropdown-item',
+                  href: item.href|default(NULL),
+                  iconName: item.iconName|default(NULL),
+                  iconPosition: 'left',
+                  isUnderline: false
+                } only %}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  {% endblock %}

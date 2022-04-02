@@ -7,13 +7,24 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InputDropdownMenuComponent implements OnInit {
     constructor() {}
 
-    @Input() inputId        : string;
-    @Input() label          : string;
-    @Input() options        : Array<object>[];
-    @Input() isDisabled     : boolean;
+    /** options: [ { label, href, iconName, class } ] */
+    @Input() options                : Array<object>[];
 
-    @Input() reversed       : boolean;
-    @Input() class          : string;
+    @Input() inputId                : string;
+    @Input() inputExtraAttribute    : string;
+    @Input() label                  : string;
+    /** See [Button Icon](?path=/docs/components-button-icon--drupal) component API. */
+    @Input() labelButtonIcon        : object;
+    @Input() description            : string;
+    @Input() placeholder            : string;
+    @Input() helperText             : string;
+    @Input() errorMessage           : string;
+    @Input() isInvalid              : boolean;
+    @Input() isDisabled             : boolean;
+    @Input() isReadOnly             : boolean;
+
+    @Input() reversed               : boolean;
+    @Input() class                  : string;
 
     ngOnInit() {
         console.log('Input Dropdown Menu', this);

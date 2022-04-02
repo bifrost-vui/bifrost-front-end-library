@@ -6,10 +6,11 @@
     <p>badge</p>
     <p>href</p>
     <p>isDisabled</p>
+    <p>xsmall</p>
   </div>
 
   {% for index in [1,2] %}
-    <div class='d-flex gap-4 p-5 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
+    <div class='d-flex align-items-center gap-4 p-5 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
       {% include '@bf-components/button-icon/twig/index.twig' %}
 
       {% include '@bf-components/button-icon/twig/index.twig' with {
@@ -23,6 +24,11 @@
       {% include '@bf-components/button-icon/twig/index.twig' with {
         isDisabled: isDisabled|default(true)
       } %}
+
+      {% include '@bf-components/button-icon/twig/index.twig' with {
+        size: size|default('xsmall')
+      } %}
+
     </div>
   {% endfor %}
 </div>

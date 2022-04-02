@@ -1,6 +1,9 @@
-{% set options        = options|json_parse %}
-{% set isDisabled     = isDisabled|json_parse %}
-{% set reversed       = reversed|json_parse %}
+{% set options          = options|json_parse %}
+{% set isInvalid        = isInvalid|json_parse %}
+{% set isDisabled       = isDisabled|json_parse %}
+{% set isReadOnly       = isReadOnly|json_parse %}
+{% set labelButtonIcon  = labelButtonIcon|json_parse %}
+{% set reversed         = reversed|json_parse %}
 
 
 {% set variants = [
@@ -32,11 +35,11 @@
   }
 ] %}
 
-<div class='d-flex flex-column' style='min-height: 100vh'>
+<div class='d-flex flex-column'>
   {% for variant in variants %}
     <div class='d-flex flex-column align-items-center {{ variant.backgroundClass }}'>
       {% set variantProps = variant.props|merge({
-        'id': id|default(id ~ loop.index)
+        'inputId': inputId|default(inputId ~ loop.index)
       }) %}
       {% include '@bf-components/input-dropdown-menu/twig/index.twig' with variantProps %}
     </div>
