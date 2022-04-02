@@ -13,7 +13,7 @@ export class IconComponent implements OnChanges {
 
     @Input() name               : string;
     @Input() size               : 'xsmall' | 'small' | 'medium' | 'large' | 'huge';
-    @Input() color              : null | 'success' | 'neutral'| 'warning' | 'negative';
+    @Input() color              : 'primary' | 'success' | 'neutral'| 'warning' | 'negative';
     /** Angular only */
     @Input() className          : string;
     /** Drupal only */
@@ -46,7 +46,7 @@ export class IconComponent implements OnChanges {
         this.ngClasses = [
             this.className ? String(this.className) : '',
             this.size ? `size-${this.size}` : 'size-small',
-            this.color ? `color-${this.color}` : '',
+            (this.color && this.color !== 'primary') ? `color-${this.color}` : '',
             this.reversed ? `reversed` : ''
         ]
     }
