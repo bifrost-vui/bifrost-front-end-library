@@ -1,24 +1,24 @@
-<div class='bf-banner-advanced {{ class|default('') }}'>
-  <header class='bf-banner-advanced__header p-3 p-sm-4'>
+<div class='bf-banner-advanced flex-column flex-md-row gap-3 gap-sm-4 p-3 p-sm-4 {{ class|default('') }}'>
+  <header class='flex-1 text-center text-md-left'>
     {% if title is defined and title %}
-      <h3>{{ title|default('') }}</h3>
+      <h3>{{ title }}</h3>
     {% endif %}
 
     {% if description is defined and description %}
-      <p class='mb-0'>{{ description|default('') }}</p>
+      <p class='mb-0'>{{ description }}</p>
     {% endif %}
   </header>
 
   {% if icons is defined and icons %}
-    <div class='bf-banner-advanced__body pt-0 pb-3 px-3 py-sm-4 px-sm-4 {{ iconMobileClass }}'>
+    <div class='bf-banner-advanced__body gap-0 gap-sm-2'>
       {% for icon in icons|slice(0, 3) %}
-        {% if  icon.name is defined and  icon.name and icon.label is defined and icon.label %}
+        {% if icon.name is defined and icon.name and icon.label is defined and icon.label %}
           {# conditional plus sign #}
           {% if not loop.first %}
             {% include '@bf-components/icon/twig/index.twig' with {
               name    : 'plus',
               size    : 'small',
-              class   : 'ml-sm-1'
+              class   : 'mb-4'
             } only %}
           {% endif %}
 

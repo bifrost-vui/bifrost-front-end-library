@@ -34,7 +34,7 @@ const headings = [
     {
         name            : 'h3',
         themeVideotron  : {
-            size                : '1.625rem',
+            size                : '1.5rem',
             leading             : '1.75rem',
             weight              : 700,
             sizeSM              : '1.25rem',
