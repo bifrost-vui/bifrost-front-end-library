@@ -35,7 +35,7 @@ export class IconComponent implements OnChanges {
     }
 
     private updateIcon(iconName:string) {
-        if(iconName && iconList[`${iconName}`]) {
+        if (iconName && iconList[`${iconName}`]) {
             const sizeSuffix = ['large', 'huge'].includes(this.size) ? 'lg' : 'sm';
             const svg = iconList[`${iconName}`][`${sizeSuffix}`];
             this.svg = this.sanitizer.bypassSecurityTrustHtml(svg);
