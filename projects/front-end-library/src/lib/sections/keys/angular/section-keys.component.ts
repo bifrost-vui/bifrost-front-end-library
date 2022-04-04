@@ -1,5 +1,4 @@
 import { Component, OnInit, Input }     from '@angular/core';
-import { IButton }                      from '../../../components/button/angular/api.model';
 import { ILink }                        from '../../../components/link/angular/api.model';
 
 export interface IKey {
@@ -21,7 +20,6 @@ export class SectionKeysComponent implements OnInit {
     @Input() titleTag       : string;
     @Input() description    : string;
     @Input() keys           : IKey[];
-    @Input() buttons        : IButton[];
     @Input() align          : 'left' | 'center';
     @Input() background     : 'ground' | 'underground' | 'highlight';
 
