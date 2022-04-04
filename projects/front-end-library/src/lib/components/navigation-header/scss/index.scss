@@ -15,13 +15,15 @@
     }
 
     &__logo {
+        .bf-logo{
+            height: 100%;
+        }
         @include media-breakpoint-down(md) {
             grid-column: 2;
         }
 
         @include media-breakpoint-down(sm) {
-            .bf-logo svg {
-                width: auto;
+            .bf-logo{
                 height: 3rem;
             }
         }
@@ -98,7 +100,7 @@
                 padding: .25rem;
                 font-size: 1rem;
             }
-            
+
             @include media-breakpoint-up(lg) {
                 &:before {
                     content: '';
@@ -108,7 +110,7 @@
                     top: auto;
                     left: 0;
                     transform: scaleX(0);
-                    transform-origin: center left;
+                    transform-origin: left center;
                     width: 100%;
                     height: 3px;
                     background-color: var(--bf-color-neutral-primary);
@@ -163,7 +165,7 @@
                 left: auto;
                 right: 0;
             }
-            
+
             @include media-breakpoint-down(md) {
                 .bf-megamenu__panel__inner,
                 .tab-content {
@@ -189,12 +191,12 @@
         @include media-breakpoint-down(md) {
             min-width: 4rem;
         }
-    
+
         &__tab {
             position: relative;
             font-family: $font-family-secondary;
             background-color: var(--bf-color-bg-underground);
-            
+
             &:hover,
             &:focus {
                 background-color: var(--bf-color-bg-ground);
@@ -213,7 +215,7 @@
             &:not(:last-of-type) {
                 border-bottom: 1px solid var(--bf-color-stroke-secondary);
             }
-            
+
             &:before {
                 content: '';
                 position: absolute;
