@@ -3,7 +3,7 @@
 {% set orientation      = orientation|default('horizontal') %}
 {% set hasVisual 	      = (iconName is defined and iconName) or (image.src is defined and image.src and image.alt is defined) %}
 
-<div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--{{ 'fit-' ~ fit }} {{ isInvalid ? 'color-warning' : '' }} {{ isDisabled ? 'disabled' }} {{ isSelected ? 'checked' : '' }} {{ class }}'>
+<div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--{{ 'fit-' ~ fit }} {{ asideContent is defined and asideContent ? 'bf-selection-tile--has-aside-content' }} {{ isInvalid ? 'color-warning' : '' }} {{ isDisabled ? 'disabled' }} {{ isSelected ? 'checked' : '' }} {{ class }}'>
   <div class='bf-selection-tile__inner'>
     <div class='bf-selection-tile__control'>
       {% apply spaceless %}
@@ -72,6 +72,15 @@
     </div>
 
   </div>
+  {% if block('asideContent') is defined or asideContent is defined and asideContent %}
+    <div class='border-bottom border-right border-left bf-border-color-primary rounded-bottom px-3 py-2'>
+      {% if block('asideContent') is defined %}
+        {{ block('asideContent') }}
+      {% elseif asideContent is defined and asideContent %}
+        {{ asideContent }}
+      {% endif %}
+    </div>
+  {% endif %}
   {% if isInvalid is defined and isInvalid and errorMessage is defined and errorMessage %}
     <div class='bf-selection-tile__feedback'>
       {{ errorMessage|striptags(allowedTags)|raw }}

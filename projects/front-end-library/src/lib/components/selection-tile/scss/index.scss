@@ -29,9 +29,14 @@
         transition-duration: .25s;
 
         &:hover {
-            @extend .bf-border-color-highlight;
+            border-color: var(--bf-color-stroke-highlight) !important;
             box-shadow: var(--bf-box-shadow-light);
         }
+    }
+    &.bf-selection-tile--has-aside-content .bf-selection-tile__label {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-bottom: 1px solid var(--bf-color-stroke-secondary);
     }
     &__input {
         display: block;
@@ -78,8 +83,9 @@
             }
             + label {
                 @extend .bf-border-color-highlight;
+                border-color: var(--bf-color-stroke-highlight) !important;
                 background-color: var(--bf-color-bg-underground);
-                border-width: 2px;
+                border-width: 2px !important;
 
                 &:hover {
                     border-color: var(--bf-color-stroke-primary);
@@ -161,7 +167,7 @@
         .bf-selection-tile__inner {
             display: flex;
             align-items: stretch;
-            width: max-content;
+            width: auto;
             min-height: 8rem;
             min-width: 8rem;
             @extend .bf-border-radius-small;
