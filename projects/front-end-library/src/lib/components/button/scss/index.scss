@@ -140,23 +140,6 @@
     to      { transform: scale(1); opacity: 1; }
 }
 
-
-// Apply Dark color on reversed Primary and Primary-alt.
-// TODO: Find a more elegant wy to give access to initial css variables in reversed.
-
-.reversed .bf-button,
-.reversed.bf-button {
-
-    &--primary,
-    &--primary-alt {
-
-        &.disabled {
-            color: var(--bf-color-neutral-tertiary) !important;
-            svg {color: var(--bf-color-neutral-tertiary) !important;}
-        }
-        &:not(.disabled) {
-            color: var(--bf-color-bg-ground) !important;
-            svg {color: var(--bf-color-bg-ground) !important;}
-        }
-    }
+.reversed .bf-button--primary:not(.disabled) {
+    color: var(--bf-color-primary-irreversible);
 }
