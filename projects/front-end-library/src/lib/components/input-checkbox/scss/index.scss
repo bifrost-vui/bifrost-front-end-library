@@ -47,6 +47,7 @@
     border-radius: .125rem;
     color: var(--bf-color-neutral-primary);
     background-color: var(--bf-color-bg-ground);
+    cursor: pointer;
 
     &:focus-visible {
         outline: none;
@@ -59,9 +60,11 @@
         border: 1px solid var(--bf-color-stroke-secondary);
         color: var(--bf-color-bg-action-disabled);
         background-color: var(--bf-color-bg-action-disabled);
+        cursor: not-allowed;
 
         + label {
             color: var(--bf-color-neutral-tertiary);
+            pointer-events: none;
         }
     }
     &:checked {
@@ -115,11 +118,5 @@
 .reversed .bf-checkbox {
     &:checked:disabled::before {
         filter: opacity(.5) grayscale(100) invert(1);
-    }
-}
-.bf-color-bg-highlight .bf-checkbox {
-    &:not(.bf-checkbox--invalid):checked {
-        background-color: var(--bf-color-bg-ground);
-        border: 1px solid var(--bf-color-stroke-tertiary);
     }
 }
