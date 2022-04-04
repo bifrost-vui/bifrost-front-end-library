@@ -58,12 +58,17 @@ Most **Components** have a props `reversed`, but feel free to check that in the 
 ```
 
 **Highlight:**
-Some **Components** have a props `highlight`.
+Some **Components** have a props `highlight` or `background: 'highlight'`.
 ```html
 <div>
     {% include '@bf-components/button-nav/twig/index.twig' with {
         label: 'My button',
         highlight: true
+    } only %}
+
+    {% include '@bf-components/hero/twig/index.twig' with {
+        label: 'My button',
+        background: 'highlight'
     } only %}
 </div>
 ```
@@ -91,11 +96,21 @@ Some **Components** have a props `highlight`.
 ```
 
 **Highlight:**
-**There is no ~~`.highlight`~~ class** like `.reversed`, since most of the time, it's only a change of background-color.
 ```html
-<div class='bf-color-bg-highlight'>
+<!-- All children of .highlight have highlight style. -->
+<div class='highlight'>
+
     {% include '@bf-components/button/twig/index.twig' with {
         label: 'My button'
     } only %}
+
+    <div class='bf-color-bg-highlight'>
+        <!-- Background color is highlight. -->
+    </div>
+</div>
+
+<!-- Or feel free to merge classes. -->
+<div class='highlight bf-color-bg-highlight'>
+    <!-- Background color is highlight. -->
 </div>
 ```
