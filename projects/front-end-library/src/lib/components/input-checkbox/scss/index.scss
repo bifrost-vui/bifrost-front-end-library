@@ -91,7 +91,7 @@
         }
     }
     &--invalid {
-        border-color: var(--bf-color-feedback-negative) !important;
+        border-color: var(--bf-color-feedback-negative);
         background-color: var(--bf-color-bg-ground);
 
         &:checked {
@@ -100,6 +100,13 @@
 
             &::before {
                 filter: opacity(1) grayscale(100) invert(1);
+            }
+            &:disabled {
+                border-color: var(--bf-color-stroke-tertiary);
+
+                &::before {
+                    filter: opacity(.3);
+                }
             }
         }
     }
