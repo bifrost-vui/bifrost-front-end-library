@@ -8,38 +8,31 @@
   <div class='d-flex flex-align-center-space-between gap-2'>
     <div class='d-flex flex-column'>
       <p> Default</p>
-      {% include '@bf-components/switch/twig/index.twig' with {
-        id : id|default(inputId) ~ '1-' ~ loop.index
+      {% include '@bf-components/input-switch/twig/index.twig' with {
+        id : id|default(inputId) ~ '1'
       } %}
     </div>
     <div class='d-flex flex-column align-center'>
       <p> Checked</p>
-      {% include '@bf-components/switch/twig/index.twig' with {
-        id : id|default(inputId) ~ '2-' ~ loop.index,
+      {% include '@bf-components/input-switch/twig/index.twig' with {
+        id : id|default(inputId) ~ '2',
         isChecked  : isChecked|default(true)
       } %}
     </div>
     <div class='d-flex flex-column'>
       <p> Disabled</p>
-      {% include '@bf-components/switch/twig/index.twig' with {
-        id : id|default(inputId) ~ '3-' ~ loop.index,
+      {% include '@bf-components/input-switch/twig/index.twig' with {
+        id : id|default(inputId) ~ '3',
         isDisabled  : isDisabled|default(true)
       } %}
     </div>
     <div class='d-flex flex-column'>
-      <p> Invalid</p>
-      {% include '@bf-components/switch/twig/index.twig' with {
-        id : id|default(inputId) ~ '4-' ~ loop.index,
-        isInvalid  : isInvalid|default(true)
-      } %}
-    </div>
-    <div class='d-flex flex-column'>
-      <p> checked + invalid</p>
-      {% include '@bf-components/switch/twig/index.twig' with {
-        id : id|default(inputId) ~ '5-' ~ loop.index,
-        isInvalid  : isInvalid|default(true),
+      <p> Disabled + checked</p>
+      {% include '@bf-components/input-switch/twig/index.twig' with {
+        id : id|default(inputId) ~ '4',
+        isDisabled  : isDisabled|default(true),
         isChecked  : isChecked|default(true)
-      } %}
+     } %}
     </div>
   </div>
 </div>

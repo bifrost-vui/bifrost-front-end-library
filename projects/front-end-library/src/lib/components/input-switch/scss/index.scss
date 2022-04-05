@@ -1,0 +1,68 @@
+/* *****************************************************************************
+*
+*  Input switch
+*
+* ***************************************************************************** */
+.bf-input-switch {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+/* *****************************************************************************
+*
+*  bf-switch utilitary class
+*
+* ***************************************************************************** */
+.bf-switch {
+    position: relative;
+    appearance: none;
+    width: 3rem;
+    height: 1rem;
+    padding: 0;
+    margin: .25rem 0;
+    border: 1px solid var(--bf-color-stroke-primary);
+    border-radius: 1rem;
+    background-color: var(--bf-color-bg-underground);
+    cursor: pointer;
+
+    &::after {
+        display: block;
+        height: 1.5rem;
+        width: 1.5rem;
+        position: absolute;
+        left: -1px;
+        top: 50%;
+        content: '';
+        border-radius: 50%;
+        background-color: var(--bf-color-bg-ground);
+        border: 1px solid var(--bf-color-stroke-primary);
+        transform: translate(0, -50%);
+        @include transitions(left .2s ease-in-out);
+    }
+    &:checked {
+        border-color: var(--bf-color-bg-action-primary);
+        background-color: var(--bf-color-bg-action-primary-hover);
+
+        &:after {
+            left: calc(100% - 1.5rem + 1px);
+            border-color: var(--bf-color-bg-action-primary-hover);
+            background-color: var(--bf-color-bg-action-primary);
+        }
+    }
+    &:disabled {
+        border-color: var(--bf-color-stroke-secondary);
+        background-color: var(--bf-color-bg-underground);
+        cursor: not-allowed;
+
+        &:after {
+            border-color: var(--bf-color-stroke-secondary);
+            background-color: var(--bf-color-bg-ground);
+        }
+        &:checked {
+            background-color: var(--bf-color-neutral-tertiary);
+            &:after {
+                background-color: var(--bf-color-bg-underground);
+            }
+        }
+    }
+}
