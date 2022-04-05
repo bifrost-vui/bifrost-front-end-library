@@ -11,10 +11,14 @@
         display: grid;
         grid-template-columns: min-content max-content auto;
         background-color: var(--bf-color-bg-ground);
+        @include media-breakpoint-down(md) {
+            grid-template-columns: min-content max-content;
+            grid-template-rows: 3.5rem auto ;
+        }
     }
     &__actions {
         @include media-breakpoint-down(md) {
-            grid-column: 3
+            grid-column: span 2
         }
     }
     &__logo {
@@ -24,8 +28,8 @@
         @include media-breakpoint-down(md) {
             grid-column: 1;
 
-            .bf-logo{
-                height: 3.5rem;
+            .bf-logo svg{
+                max-height: 3.5rem;
             }
         }
         @include media-breakpoint-down(sm) {
@@ -39,8 +43,8 @@
         z-index: 25;
 
         @include media-breakpoint-down(md) {
-            grid-column: 1/4;
-            grid-row: 2;
+            grid-column: span 3;
+            order: 3;
         }
     }
     &__search-bar {
