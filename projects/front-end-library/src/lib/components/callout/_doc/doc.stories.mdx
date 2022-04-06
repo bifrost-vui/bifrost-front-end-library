@@ -85,7 +85,7 @@ export const Drupal = (args) => ({
 
 
 <Canvas withSource='none'
-        style = {{ height: '300px'}}
+        style = {{ height: '400px'}}
 >
     <Story
         name='Drupal - Callout with custom Content'
@@ -105,11 +105,11 @@ export const Drupal = (args) => ({
 ## Drupal implementation example
 
 ```jsx
-//Callout with text only and no close button
+//Callout with text only
 {% include '@bf-components/callout/twig/index.twig' with {
     title: 'Title',
     description: 'Description',
-    hasCloseButton: false
+    hasCloseButton: false // remove the close button
 } only %}
 
 // callout with text and button
@@ -127,9 +127,9 @@ export const Drupal = (args) => ({
 {% embed '@bf-components/callout/twig/index.twig' with {
     title: 'Title',
     description: 'Description',
-}%}
+} %}
     {% block content %}
-        Some html content inside callout box
+        insert html custom content here
     {% endblock %}
 {% endembed %}
 
@@ -142,4 +142,5 @@ export const Drupal = (args) => ({
         height='450'
         src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D11007%253A15368'
         frameBorder='0'
-        allowFullScreen></iframe>
+        allowFullScreen>
+</iframe>

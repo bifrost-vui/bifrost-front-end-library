@@ -1,10 +1,12 @@
-{% set  hasCloseButton = (hasCloseButton is not defined or hasCloseButton) ? 'true' %}
+{# By default the close button is present unless hasCloseButton is explicitly false #}
+{% set hasCloseButton = (hasCloseButton is not defined or hasCloseButton) ? 'true' %}
 
 <div
   class='bf-callout js-bf-callout bf-callout--{{ feedback|default('neutral') }} p-3 p-sm-4 {{ class|default('') }}'
   role='{{ feedback is same as ('negative') ? 'alert' : 'status' }}'
 >
   {% if hasCloseButton %}
+    {# TO-DO: needs improvement, can't use <a> ou <button> tags nor existing components #}
     <span class='bf-callout__close ml-2 js-bf-callout--close'>
       {% include '@bf-components/icon/twig/index.twig' with {
         name: 'x',
@@ -14,35 +16,31 @@
   {% endif %}
 
   <div class='bf-callout__inner d-flex flex-column flex-md-row align-items-start align-items-md-center gap-md-4'>
-
     <div class='bf-callout__inner__content flex-1'>
-        {% if (title is defined and title ) %}
-          <h3>{{ title }}</h3>
-        {% endif %}
+      {% if title is defined and title %}
+        <h3>{{ title }}</h3>
+      {% endif %}
 
-        {% if description is defined and description %}
-          <p class='bf-text-display-sub-medium'>{{ description }}</p>
-        {% endif %}
+      {% if description is defined and description %}
+        <p class='bf-text-display-sub-medium'>{{ description }}</p>
+      {% endif %}
+    </div>
+
+    {% if button is defined and button is not empty %}
+      <div class='bf-callout__inner__action align-items-start align-items-lg-end '>
+        {% set button = button|merge({
+          hierarchy: button.hierarchy|default('secondary'),
+          iconPosition: button.iconPosition|default('right')
+        }) %}
+
+        {% include '@bf-components/button/twig/index.twig' with button %}
       </div>
-
-      {% if button is defined and button is not empty %}
-        <div class='bf-callout__inner__action align-items-start align-items-lg-end '>
-          {% include '@bf-components/button/twig/index.twig' with {
-            label: button.label|default(null),
-            hierarchy: button.hierarchy|default('secondary'),
-            href: button.href|default(null),
-            iconName: button.iconName|default(null),
-            iconPosition: button.iconPosition|default('right')
-          } %}
-        </div>
     {% endif %}
-
   </div>
 
   {% if block('content') is defined %}
     {{ block('content') }}
   {% elseif content is defined and content %}
-    {{ content }}
+    {{ content|raw }}
   {% endif %}
-
 </div>
