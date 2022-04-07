@@ -2,11 +2,11 @@
 {% set hasCloseButton = (hasCloseButton is not defined or hasCloseButton) ? 'true' %}
 
 <div
-  class='bf-callout js-bf-callout bf-callout--{{ feedback|default('neutral') }} p-3 p-sm-4 {{ class|default('') }}'
+  class='bf-callout js-bf-callout bf-callout--{{ feedback|default('neutral') }} {{ class|default('') }}'
   role='{{ feedback is same as ('negative') ? 'alert' : 'status' }}'
 >
   {% if hasCloseButton %}
-    {# TO-DO: needs improvement, can't use <a> ou <button> tags nor existing components #}
+    {# TO-DO: create close button component ? can't use <a> ou <button> tags nor existing components #}
     <span class='bf-callout__close js-bf-callout--close' role="button">
       {% include '@bf-components/icon/twig/index.twig' with {
         name: 'x',
@@ -22,7 +22,7 @@
       {% endif %}
 
       {% if description is defined and description %}
-        <p class='bf-text-display-sub-medium'>{{ description }}</p>
+        <p class='bf-text-display-sub-medium mb-md-0'>{{ description }}</p>
       {% endif %}
     </div>
 
