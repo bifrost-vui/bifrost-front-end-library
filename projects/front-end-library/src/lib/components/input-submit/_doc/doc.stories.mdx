@@ -1,0 +1,111 @@
+import { moduleMetadata }  from '@storybook/angular';
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs';
+import interfaceIcons  from '../../../../../../../public/icons/list/interfaces.json';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { InputSubmitComponent } from '../angular/input-submit.component';
+
+<Meta
+    title='Components/Input Submit'
+    component={InputSubmitComponent}
+    decorators={[
+        moduleMetadata({ declarations: [InputSubmitComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            disable: false
+        },
+    }}
+    argTypes={{
+        _background: {
+            control: {
+                type: 'select',
+                options: ['', 'bf-color-bg-ground', 'bf-color-bg-underground', 'reversed bf-color-bg-ground', 'reversed bf-color-bg-underground', 'bf-color-bg-highlight']
+            },
+            description: 'Preview the component on selected background'
+        },
+        hierarchy: {
+            defaultValue: 'primary',
+            table : { defaultValue: { summary: 'primary' } },
+            control: { type: 'select' }
+        },
+        iconName: {
+            defaultValue: null,
+            table : { defaultValue: { summary: 'null' } },
+            control: {
+                type: 'select',
+                options: [null, 'placeholder', ...interfaceIcons.map(a => a.list).flat().sort()]
+            }
+        },
+        iconPosition: {
+            defaultValue: null,
+            table: { defaultValue: { summary: 'null' } },
+            control: { type: 'select' }
+        },
+        formEncryptionType: {
+            defaultValue: null,
+            table: { defaultValue: { summary: 'null' } },
+            control: { type: 'select' }
+        },
+        formTarget: {
+            defaultValue: null,
+            table: { defaultValue: { summary: 'null' } },
+            control: { type: 'select' }
+        },
+        formNoValidate: {
+            defaultValue: false,
+            table: { defaultValue: { summary: false } },
+        },
+        autofocus: {
+            defaultValue: false,
+            table: { defaultValue: { summary: false } },
+        },
+        isDisabled: {
+            defaultValue: false,
+            table: { defaultValue: { summary: false } },
+        }
+    }}
+/>
+
+# Input Submit
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+## Component API
+
+<ArgsTable of={InputSubmitComponent} />
+
+## Drupal
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        height='300px'
+        args={{
+            elementPath : 'components/input-submit/_doc/template.drupal',
+            label       : 'Input Submit',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/input-submit/twig/index.twig' with {
+    // Add relevant props here
+} only %}
+```
+
+## Design Guidelines
+
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>

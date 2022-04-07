@@ -1,0 +1,29 @@
+<button class=' bf-button bf-button--{{ hierarchy|default('primary') }} {{ isDisabled|default(false) ? 'disabled' }} {{  fullWidth|default(false) ?'bf-button--fullwidth' }}'
+        type='submit'
+        aria-label='{{ ariaLabel|default(null)? }}'
+        {% if id|default(null) %}  id='{{ id }}' {% endif %}
+        {{ isDisabled|default(false) ? 'disabled' }}
+        {{ autofocus|default(false) ? 'autofocus' }}
+        {% if formId|default(null) %}  form='{{ formId }}' {% endif %}
+        {% if formAction|default(null) %}  formaction='{{ formAction }}' {% endif %}
+        {% if formEncryptionType|default(null) %}  formenctype='{{ formEncryptionType }}' {% endif %}
+        {% if formTarget|default(null) %}  formtarget='{{ formTarget }}' {% endif %}
+        {% if formMethod|default(null) %}  formmethod='{{ formMethod }}' {% endif %}
+        {% if formNoValidate|default(false) %}  formnovalidate="formnovalidate" {% endif %}
+        {{ extraAttribute|default(null) ? extraAttribute }}
+>
+  <span class='bf-button__label'>
+  {% if iconName is defined and iconName %}
+    {% include '@bf-components/icon/twig/index.twig' with {
+      name: iconName,
+      size: 'small',
+      class: iconPosition is same as ('right') ? 'bf-button__icon--right' : ''
+    } only %}
+  {% endif %}
+    {% if label is defined and label %}
+      <span class='bf-button__label__text'>
+        {{ label }}
+      </span>
+    {% endif %}
+  </span>
+</button>
