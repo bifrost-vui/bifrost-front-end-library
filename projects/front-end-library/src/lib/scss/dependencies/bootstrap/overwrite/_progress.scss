@@ -1,0 +1,33 @@
+/* *****************************************************************************
+*
+*  Progress
+*
+* ***************************************************************************** */
+
+.progress-container {
+    @each $color, $value in $data-colors {
+        .bg-#{$color} {
+            background-color: $value !important;
+        }
+    }
+
+    .color-square {
+        @include size(0.7rem);
+        display: inline-block;
+        position: relative;
+        top: 0.26rem;
+    }
+}
+
+
+.progress {
+    .vui--style-black & {
+        background: $gray-700;
+    }
+
+    &:not(.progress--multi){
+        .progress-bar {
+            @include border-radius($progress-border-radius);
+        }
+    }
+}
