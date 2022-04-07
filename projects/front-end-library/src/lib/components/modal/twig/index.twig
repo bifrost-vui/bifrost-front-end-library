@@ -20,11 +20,19 @@
         data-lg-bg='{{ bgLgImage|default(bgImage) }}'
       {% endif %}
     >
-      {% include '@bf-components/button-icon/twig/index.twig' with {
-        icon: 'x',
-        dataDismiss: 'modal',
-        class: 'm-2 m-md-3 m-lg-4 p-3 position-absolute--top-right'
-      } %}
+      <button type="button"
+              class="close m-2 m-md-3 m-lg-4 p-3 position-absolute--top-right"
+              data-dismiss="modal"
+              aria-label="X"
+              {{ extraAttributeX|default(NULL) }}
+      >
+        <span aria-hidden="true">
+          {% include '@bf-components/icon/twig/index.twig' with {
+            name: 'x',
+            size: 'small',
+          } %}
+        </span>
+      </button>
 
       <div class='modal-header border-bottom--0 {{ modalHeaderClass|default('') }}'>
         {% if block('modal_header') is defined %}
