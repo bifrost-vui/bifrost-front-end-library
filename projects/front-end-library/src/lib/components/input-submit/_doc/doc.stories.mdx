@@ -100,8 +100,15 @@ export const Drupal = (args) => ({
 ## Drupal implementation example
 
 ```jsx
+// The button is in the form :
 {% include '@bf-components/input-submit/twig/index.twig' with {
-    // Add relevant props here
+    label: 'Submit form'
+} only %}
+
+//The button is outside the form
+{% include '@bf-components/input-submit/twig/index.twig' with {
+    label: 'Submit form',
+    formId: 'myform'
 } only %}
 ```
 
