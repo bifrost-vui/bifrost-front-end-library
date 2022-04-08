@@ -23,7 +23,7 @@ export class ButtonComponent implements OnInit {
     @Input() fullWidth      : boolean;
 
     @Input() iconName       : string;
-    /** Changing the icon's size isn't recommended */
+    /** Changing the icon size isn't recommended */
     @Input() iconSize       : string;
     @Input() iconPosition   : string;
 
