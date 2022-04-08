@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {IButton} from "../../button/angular/api.model";
+import { IButton } from '../../button/angular/api.model';
 
 @Component({
     selector: 'bf-callout',
