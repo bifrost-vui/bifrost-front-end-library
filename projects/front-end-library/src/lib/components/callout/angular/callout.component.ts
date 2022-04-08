@@ -13,9 +13,9 @@ export class CalloutComponent implements OnInit {
     @Input() hasCloseButton: boolean;
     @Input() title: string;
     @Input() description: string;
-    /** See [Button](/?path=/story/components-button--drupal) component */
+    /** See [Component Button](/?path=/story/components-button--drupal) */
     @Input() button: IButton;
-    /** Custom content will display under the title and description */
+    /** HTML which display under the title and description. */
     @Input() content: string | 'TwigBlock';
 
     @Input() class: string;
