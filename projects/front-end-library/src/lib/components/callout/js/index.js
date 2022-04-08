@@ -4,7 +4,7 @@
 import $ from 'jquery';
 
 $(function() {
-    let container = $('.js-bf-callout');
+    const container = $('.js-bf-callout');
 
     container.each(function (i, el) {
         const $this = $(el),
