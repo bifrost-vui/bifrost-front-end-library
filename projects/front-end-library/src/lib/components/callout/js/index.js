@@ -1,5 +1,5 @@
 /**
- *  Script for the Bifrost Callout component
+ *  Script for the Bifrost Twig Component Callout.
  **/
 import $ from 'jquery';
 
