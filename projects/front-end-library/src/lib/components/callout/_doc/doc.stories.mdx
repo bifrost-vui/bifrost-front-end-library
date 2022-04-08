@@ -3,7 +3,7 @@ import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
 import { withDesign } from 'storybook-addon-designs'
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { CalloutComponent } from '../angular/callout.component';
-import {contentDemo} from "./data";
+
 
 <Meta
     title='Components/Callout'
@@ -42,6 +42,15 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+export const customContentProps  = `
+    <ul class='bf-text-display-sub-medium p-3 pb-0 mb-0'>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Integer tristique mi ut ornare malesuada.</li>
+        <li>Aenean ullamcorper neque at luctus accumsan.</li>
+        <li>Vestibulum ultricies ullamcorper sem.</li>
+    </ul>
+`;
+
 # Callout
 
 ## Component API
@@ -50,9 +59,7 @@ export const Drupal = (args) => ({
 
 ## Drupal
 
-<Canvas withSource='none'
-        style={{ height: '300px' }}
->
+<Canvas withSource='none' style={{ height: '300px' }} >
     <Story
         name='Drupal'
         args={{
@@ -65,9 +72,7 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-<Canvas withSource='none'
-        style = {{ height: '300px'}}
->
+<Canvas withSource='none' style = {{ height: '300px'}} >
     <Story
         name='Drupal - Callout with button'
         args={{
@@ -82,16 +87,14 @@ export const Drupal = (args) => ({
 </Canvas>
 
 
-<Canvas withSource='none'
-        style = {{ height: '400px'}}
->
+<Canvas withSource='none' style={{ height: '400px'}}>
     <Story
         name='Drupal - Callout with custom Content'
         args={{
             elementPath: 'components/callout/_doc/template.drupal',
             title: 'Callout Title',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            content: contentDemo
+            content: customContentProps
         }}
     >
         {Drupal.bind({})}
