@@ -8,7 +8,7 @@ import { IButton } from '../../button/angular/api.model';
 export class CalloutComponent implements OnInit {
     constructor() {}
 
-    @Input() feedback: 'neutral'|'success'|'warning'|'negative';
+    @Input() feedback: 'neutral' | 'success' | 'warning' | 'negative';
     /** Set to false to remove close button */
     @Input() hasCloseButton: boolean;
     @Input() title: string;
