@@ -1,6 +1,6 @@
 export interface IButton {
   label          : string;
-  href           : string; //A button will become a link if `href` is defined
+  href           : string; // A button will become a link if `href` is defined.
   hierarchy      : string;
   isDisabled     : boolean;
   hasLoading     : boolean;
