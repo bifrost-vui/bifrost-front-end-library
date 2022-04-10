@@ -1,17 +1,25 @@
-import { moduleMetadata }                       from '@storybook/angular';
+import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
-
-import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { ButtonComponent }                      from '../angular/button.component';
+import { withDesign } from 'storybook-addon-designs'
+import interfaceIcons from '../../../../../../../public/icons/list/interfaces.json';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { ButtonComponent } from '../angular/button.component';
 
 
 <Meta
     title='Components/Button'
     component={ButtonComponent}
     decorators={[
-        moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent]}),
+        withDesign
     ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=9579%3A88',
+            disable: false
+        },
+    }}
     argTypes={{
         _background: {
             control: {
@@ -53,13 +61,9 @@ import { ButtonComponent }                      from '../angular/button.componen
 
 # Button
 
-<br/>
-
 ## Component API
 
 <Props of={ButtonComponent} />
-
-
 
 ## Drupal implementation example
 
@@ -75,7 +79,6 @@ import { ButtonComponent }                      from '../angular/button.componen
 } only %}
 ```
 
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -87,8 +90,8 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath     : 'components/button/_doc/template.drupal',
-            class           : 'm-3',
+            elementPath: 'components/button/_doc/template.drupal',
+            class: 'm-3',
         }}
     >
         {Drupal.bind({})}
@@ -100,10 +103,14 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - CSS only'
         args={{
-            elementPath : 'components/button/_doc/css-only.drupal',
-            class       : 'ml-4 mb-3',
+            elementPath: 'components/button/_doc/css-only.drupal',
+            class: 'ml-4 mb-3',
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
+
+## Design Guidelines
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D9579%253A88' frameBorder='0' allowFullScreen></iframe>
