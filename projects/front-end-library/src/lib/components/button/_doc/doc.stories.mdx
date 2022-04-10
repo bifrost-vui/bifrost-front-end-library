@@ -13,12 +13,15 @@ import { ButtonComponent }                      from '../angular/button.componen
         moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent]})
     ]}
     argTypes={{
-        hierarchy: {
-            defaultValue: '',
+        _background: {
             control: {
                 type: 'select',
-                options: ['', 'primary', 'primary-alt', 'secondary', 'tertiary' ]
-            }
+                options: ['', 'bf-color-bg-ground', 'bf-color-bg-underground', 'reversed bf-color-bg-ground', 'reversed bf-color-bg-underground', 'bf-color-bg-highlight']
+            },
+            description: 'Preview the component on selected background'
+        },
+        hierarchy: {
+            control: { type: 'select' }
         },
         iconName: {
             defaultValue: '',
@@ -29,20 +32,28 @@ import { ButtonComponent }                      from '../angular/button.componen
         },
         iconPosition: {
             defaultValue: '',
-            control: {
-                type: 'select',
-                options: ['', 'left', 'right']
-            }
+            control: { type: 'select' }
         },
+        formEncryptionType: {
+            defaultValue: '',
+            table: { defaultValue: { summary: '' }},
+            control: { type: 'select' }
+        },
+        formTarget: {
+            defaultValue: '',
+            table: { defaultValue: { summary: '' }},
+            control: { type: 'select' }
+        },
+        formNoValidate: {
+            defaultValue: false,
+            table: { defaultValue: { summary: false }},
+        }
     }}
 />
-
 
 # Button
 
 <br/>
-
-
 
 ## Component API
 
@@ -72,20 +83,12 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas withSource='none'>
+<Canvas withSource='none' style={{height: '400px'}}>
     <Story
         name='Drupal'
-        height='700px'
         args={{
             elementPath     : 'components/button/_doc/template.drupal',
-            class           : 'ml-4 mb-3',
-            dataDismiss     : 'dataDismiss',
-            dataToggle      : 'dataToggle',
-            dataTarget      : 'dataTarget',
-            ariaControls    : 'ariaControls',
-            ariaExpanded    : 'ariaExpanded',
-            ariaLabel       : 'ariaLabel',
-            extraAttribute  : 'extraAttribute',
+            class           : 'm-3',
         }}
     >
         {Drupal.bind({})}
@@ -93,10 +96,9 @@ export const Drupal = (args) => ({
 </Canvas>
 
 
-<Canvas withSource='none'>
+<Canvas withSource='none' style={{height: '700px'}}>
     <Story
         name='Drupal - CSS only'
-        height='700px'
         args={{
             elementPath : 'components/button/_doc/css-only.drupal',
             class       : 'ml-4 mb-3',

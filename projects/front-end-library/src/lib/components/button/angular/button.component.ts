@@ -1,10 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
 
-/**
- * API is the same between **Angular** and **Drupal**.
- *
- */
- 
 @Component({
     selector: "bf-button",
     templateUrl: './button.component.html',
@@ -13,33 +8,42 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class ButtonComponent implements OnInit {
     constructor() {}
 
-    @Input() label          : string;
-    /**
-        A button will become a link if `href` is defined.
-    */
-    @Input() href           : string;
-    @Input() hierarchy      : string;
-    @Input() isDisabled     : boolean;
-    @Input() hasLoading     : boolean;
-    @Input() isLoading      : boolean;
-    @Input() fullWidth      : boolean;
+    @Input() hierarchy: '' | 'primary' | 'primary-alt' | 'secondary' | 'tertiary';
+    @Input() fullWidth: boolean;
 
-    @Input() iconName       : string;
-    /** This is not recommended to change the size of the icon. */
-    @Input() iconSize       : string;
-    @Input() iconPosition   : string;
+    /** A button will become a link if `href` is defined as long as it is not Disabled or a submit button. */
+    @Input() href: string;
+    @Input() label: string;
+    @Input() ariaLabel: string;
 
-    @Input() dataDismiss    : string;
-    @Input() dataToggle     : string;
-    @Input() dataTarget     : string;
-    @Input() ariaControls   : string;
-    @Input() ariaExpanded   : string;
-    @Input() ariaLabel      : string;
-    @Input() extraAttribute : string;
-    @Input() class          : string;
+    @Input() iconName: string;
+    @Input() iconPosition: '' | 'left' | 'right';
+    /** Changing the size of the icon isn't recommended. */
+    @Input() iconSize: string;
+
+    @Input() dataDismiss: string;
+    @Input() dataToggle: string;
+    @Input() dataTarget: string;
+    @Input() ariaControls: string;
+    @Input() ariaExpanded: string;
+    @Input() extraAttribute: string;
+    @Input() class: string;
+
+    @Input() formId: string;
+    @Input() formAction: string;
+    @Input() formEncryptionType: '' | 'application/x-www-form-urlencoded' |'multipart/form-data' | 'text/plain';
+    @Input() formTarget: null | '_self' | '_blank' | '_parent' | '_top';
+    @Input() formMethod: string;
+    @Input() formNoValidate: boolean;
+
+    @Input() isDisabled: boolean;
+    @Input() isSubmit: boolean;
+    @Input() isAutofocus: boolean;
+    @Input() isLoading: boolean;
+    @Input() hasLoading: boolean;
 
     ngOnInit() {
         console.log('button', this);
     }
-    
+
 }
