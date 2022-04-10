@@ -43,9 +43,17 @@ addParameters({
         },
     },
     argTypes: {
-        elementPath     : { table: { disable: true } },
-        iframeUrl       : { table: { disable: true } },
-        props           : { table: { disable: true } },
+        elementPath         : { table: { disable: true } },
+        iframeUrl           : { table: { disable: true } },
+        props               : { table: { disable: true } },
+        ngClasses           : { table: { disable: true } },
+        computetNgClasses   : { table: { disable: true } },
+        ngOnInit            : { table: { disable: true } },
+        ngOnChanges         : { table: { disable: true } },
+        _theme: {
+            table:   { defaultValue: { summary: 'videotron' } },
+            control: { type: 'select', options: [ 'videotron', 'business' ] }
+        },
     },
 
     actions: { argTypesRegex: "^on[A-Z].*" }

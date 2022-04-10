@@ -1,0 +1,89 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta
+    title='Implementation/Angular'
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+/>
+
+# Angular implementation
+You have an **Angular installation** and you want to use Bifrost Design System.
+
+<br/><br/>
+
+
+## 1. Install the Bifrost package
+[Package NPM Changelog](https://bifrost-front-end-library-vui.vercel.app/?path=/docs/changelog--page)
+```bash
+npm install @videotron-ui/bifrost-front-end-library --save
+```
+
+
+## 2. Add styles
+Add **bifrost.css** in your **angular.json** application:
+```ts
+"styles": [
+  "node_modules/@videotron-ui/bifrost-front-end-library/assets/css/bifrost.css",
+  //...
+],
+```
+
+
+## 3. Import components
+**Note:** Currently, only the component **Badge** is exported:
+[Badge API](https://bifrost-front-end-library-vui.vercel.app/?path=/story/components-badge--angular)
+```ts
+import { NgModule }             from '@angular/core';
+import { BadgeModule }          from '@videotron-ui/bifrost-front-end-library';
+
+@NgModule({
+    declarations: [],
+    imports: [
+        BadgeModule,
+    ],
+    providers: [],
+    bootstrap: []
+})
+export class YourModule { }
+```
+
+Use it in your template (note that all components tags are prefix with **bf-**).
+```html
+<bf-badge label='My Badge' hierarchy='primary' className='mt-3'></bf-badge>
+```
+
+
+
+## 4. Learn about the foundation
+For example, you could start with the [System of Colors](https://bifrost-front-end-library-vui.vercel.app/?path=/docs/styles-colors--page). Then explore the [Theme](https://bifrost-front-end-library-vui.vercel.app/?path=/docs/implementation-theme--page) and [Reversed](https://bifrost-front-end-library-vui.vercel.app/?path=/docs/implementation-reversed-highlight--page) documentation.
+But feel free to explore all pages in **IMPLEMENTATION** and **STYLES** sections.
+
+
+
+## 5. Learn about Components API and documentation
+Select any component on the sidebar, you will see tabs at the very top:
+- **Docs tab** displays complete documentation with all component variations in a single page.
+- **Canvas tab**: Please, select **Controls panel** and explore the (interactive) API documentation.
+
+
+
+<br/><br/><br/>
+
+### Examples of Angular Component Libraries:
+[IBM](https://angular.carbondesignsystem.com/?path=/story/components-skeleton--skeleton-placeholder)
+· [Salesforce](http://ng-lightning.github.io/ng-lightning/#/get-started)
+· [Google](https://material.angular.io/)
+· [VMWare](https://clarity.design/documentation/get-started)
+· [Ant](https://ng.ant.design/docs/introduce/en)
+· [PrimeNG]( https://www.primefaces.org/primeng/)
+· [Nebular](https://akveo.github.io/nebular/)
+
+
+### Architecture
+Structure your application to embrace Design System abstraction.
+> Angular articles:
+> - [Smart Components vs Presentational Components](https://blog.angular-university.io/angular-2-smart-components-vs-presentation-components-whats-the-difference-when-to-use-each-and-why/)
+> - [Write Composable and Pure Components](https://medium.com/@jtomaszewski/how-to-write-good-composable-and-pure-components-in-angular-2-1756945c0f5b)

@@ -1,0 +1,73 @@
+import { Canvas, Meta }    from '@storybook/addon-docs';
+import headings             from './headings';
+
+<Meta
+    title='Styles/Headings'
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+/>
+
+# Headings
+
+**Styles:** The style applies with only a heading tag, e.g. : `<h1>My title</h1>`.
+However, you would apply a heading style to a diffrent semantic tag, e.g: `<h1 class='h2'>My title</h1>`.
+
+**Theme:** If you are not using the videotron default theme, make sure you are wrapping your code arround a parent with parameter `data-theme='<your-theme-name>'`. See [Theme documentation](?path=/docs/implementation-theme--page).
+
+<br/>
+
+<Canvas withSource='none'>
+    <div>
+        <div class='d-flex align-items-center gap-4 w-100'>
+            <div class='w-65'>
+                <h5 class='m-0'>Name</h5>
+            </div>
+            <div class='w-25'>
+                <h5 class='m-0'>Theme Videotron</h5>
+            </div>
+            <div class='w-25'>
+                <h5 class='m-0'>Theme Business</h5>
+            </div>
+        </div>
+        <ul class='list-unstyled'>
+            {headings.map(h =>
+                <li key={h.name} class='d-flex align-items-start gap-4 w-100 border-top pt-3 mt-3'>
+                    <div class='w-65 d-flex gap-4'>
+                        <h4 class='mb-0'>{h.name}</h4>
+                        <div class='d-flex flex-column gap-4'>
+                            <code>--bf-{h.name}-size</code>
+                            <code>--bf-{h.name}-leading</code>
+                            <code>--bf-{h.name}-weight</code>
+                            <code>--bf-{h.name}-size-sm</code>
+                            <code>--bf-{h.name}-leading-sm</code>
+                            <code>--bf-{h.name}-weight-sm</code>
+                        </div>
+                    </div>
+                    <div class='w-25'>
+                        <p class='bf-text'>{h.themeVideotron.size}</p>
+                        <p class='bf-text'>{h.themeVideotron.leading}</p>
+                        <p class='bf-text'>{h.themeVideotron.weight}</p>
+                        <p class='bf-text'>{h.themeVideotron.sizeSM}</p>
+                        <p class='bf-text'>{h.themeVideotron.leadingSM}</p>
+                        <p class='bf-text'>{h.themeVideotron.weightSM}</p>
+                    </div>
+                    <div class='w-25'>
+                        {h.themeBusiness &&
+                            <div>
+                                <p class='bf-text'>{h.themeBusiness.size}</p>
+                                <p class='bf-text'>{h.themeBusiness.leading}</p>
+                                <p class='bf-text'>{h.themeBusiness.weight}</p>
+                                <p class='bf-text'>{h.themeBusiness.sizeSM}</p>
+                                <p class='bf-text'>{h.themeBusiness.leadingSM}</p>
+                                <p class='bf-text'>{h.themeBusiness.weightSM}</p>
+                            </div>
+                        }
+                    </div>
+                </li>
+            )}
+        </ul>
+    </div>
+</Canvas>
