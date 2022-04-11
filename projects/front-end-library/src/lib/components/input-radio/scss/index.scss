@@ -37,27 +37,28 @@
 *  to display a Bifrost custom radio while not using the Input Radio component
 * ***************************************************************************** */
 
+
 .bf-radio {
+    display: grid;
+    place-content: center;
+    flex-basis: 1rem;
     appearance: none;
-    position: relative;
-    min-width: 1rem;
     width: 1rem;
     height: 1rem;
-    margin-top: .1rem;
     margin-right: var(--bf-spacer-2);
     border: 1px solid var(--bf-color-stroke-primary);
     border-radius: 50%;
     color: var(--bf-color-neutral-primary);
     background-color: var(--bf-color-bg-ground);
+    transform: translateY(-0.05em);
 
     &:checked {
         background-color: var(--bf-color-bg-action-primary);
         &:before {
+            line-height: 1rem;
             content: "";
-            position: absolute;
+            position: relative;
             display: block;
-            top: calc(50% - .25rem);
-            left: calc(50% - .25rem);
             width: .5rem;
             height: .5rem;
             border-radius: 50%;
