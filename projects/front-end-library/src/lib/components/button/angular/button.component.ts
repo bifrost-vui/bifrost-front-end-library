@@ -8,7 +8,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class ButtonComponent implements OnInit {
     constructor() {}
 
-    @Input() hierarchy: '' | 'primary' | 'primary-alt' | 'secondary' | 'tertiary';
+    @Input() hierarchy: null | 'primary' | 'primary-alt' | 'secondary' | 'tertiary';
     @Input() fullWidth: boolean;
 
     /** A button will become a link if `href` is defined as long as it is not Disabled or a submit button. */
@@ -17,7 +17,7 @@ export class ButtonComponent implements OnInit {
     @Input() ariaLabel: string;
 
     @Input() iconName: string;
-    @Input() iconPosition: '' | 'left' | 'right';
+    @Input() iconPosition: null | 'left' | 'right';
     /** Changing the size of the icon isn't recommended. */
     @Input() iconSize: string;
 
@@ -31,7 +31,7 @@ export class ButtonComponent implements OnInit {
 
     @Input() formId: string;
     @Input() formAction: string;
-    @Input() formEncryptionType: '' | 'application/x-www-form-urlencoded' |'multipart/form-data' | 'text/plain';
+    @Input() formEncryptionType: null | 'application/x-www-form-urlencoded' |'multipart/form-data' | 'text/plain';
     @Input() formTarget: null | '_self' | '_blank' | '_parent' | '_top';
     @Input() formMethod: string;
     @Input() formNoValidate: boolean;

@@ -3,7 +3,7 @@
 {% set isLink = href is defined and href is not empty and not isSubmit and not isDisabled %}
 
 <{{ isLink ? 'a' : 'button' }}
-    {% if isLink is same as (true) %}
+    {% if isLink %}
         href='{{ href|default('#') }}'
     {% else %}
         type='{{ isSubmit ? 'submit' : 'button' }}'
@@ -11,31 +11,31 @@
     class='
         bf-button
         bf-button--{{ hierarchy|default('secondary') }}
-        {% if reversed is same as (true) %}reversed{% endif %}
-        {% if fullWidth is same as (true) %}bf-button--fullwidth{% endif %}
-        {% if isDisabled is same as (true) %}disabled{% endif %}
-        {% if isLoading is same as (true) %}loading{% endif %}
+        {% if reversed|default(false) %}reversed{% endif %}
+        {% if fullWidth|default(false) %}bf-button--fullwidth{% endif %}
+        {% if isDisabled %}disabled{% endif %}
+        {% if isLoading|default(false) %}loading{% endif %}
         {{ class|default('') }}'
     {% if isDisabled %}disabled='disabled' aria-disabled='true' {% endif %}
-    {% if dataDismiss is defined %}data-dismiss='{{ dataDismiss|default(NULL) }}'{% endif %}
-    {% if dataToggle is defined %}data-toggle='{{ dataToggle|default(NULL) }}'{% endif %}
-    {% if dataTarget is defined %}data-target='{{ dataTarget|default(NULL) }}'{% endif %}
-    {% if ariaControls is defined %}aria-controls='{{ ariaControls|default(NULL) }}'{% endif %}
-    {% if ariaExpanded is defined %}aria-expanded='{{ ariaExpanded|default(NULL) }}'{% endif %}
+    {% if dataDismiss|default(NULL) %}data-dismiss='{{ dataDismiss}}'{% endif %}
+    {% if dataToggle|default(NULL) %}data-toggle='{{ dataToggle }}'{% endif %}
+    {% if dataTarget|default(NULL) %}data-target='{{ dataTarget }}'{% endif %}
+    {% if ariaControls|default(NULL) %}aria-controls='{{ ariaControls }}'{% endif %}
+    {% if ariaExpanded|default(NULL) %}aria-expanded='{{ ariaExpanded }}'{% endif %}
+    {% if id|default('') %}id='{{ id }}'{% endif %}
 
     {% if isSubmit %}
-      {% if id|default('') %}  id='{{ id }}' {% endif %}
       {{ autofocus|default(false) ? 'autofocus' }}
-      {% if formId|default(null) %}  form='{{ formId }}' {% endif %}
-      {% if formAction|default('') %}  formaction='{{ formAction }}' {% endif %}
+      {% if formId|default(null) %}form='{{ formId }}' {% endif %}
+      {% if formAction|default('') %}formaction='{{ formAction }}'{% endif %}
       {% if formEncryptionType|default('') %}  formenctype='{{ formEncryptionType }}' {% endif %}
-      {% if formTarget|default('') %}  formtarget='{{ formTarget }}' {% endif %}
-      {% if formMethod|default('') %}  formmethod='{{ formMethod }}' {% endif %}
-      {% if formNoValidate|default(false) %}  formnovalidate="formnovalidate" {% endif %}
+      {% if formTarget|default('') %}formtarget='{{ formTarget }}'{% endif %}
+      {% if formMethod|default('') %}formmethod='{{ formMethod }}'{% endif %}
+      {% if formNoValidate|default(false) %}formnovalidate='formnovalidate'{% endif %}
     {% endif %}
 
-    {% if label is not empty %}data-title='{{ label }}'{% endif %}
-    {% if ariaLabel is defined %}aria-label='{{ ariaLabel|default(NULL) }}'{% endif %}
+    {% if label is defined and label %}data-title='{{ label }}'{% endif %}
+    {% if ariaLabel is defined and ariaLabel %}aria-label='{{ ariaLabel }}'{% endif %}
     {{ extraAttribute|default(NULL) }}
 >
     <span class='bf-button__label'>
@@ -52,7 +52,8 @@
           </span>
         {% endif %}
     </span>
-    {% if isLoading is same as (true) or hasLoading is same as (true) %}
+
+    {% if isLoading|default(false) or hasLoading|default(false) %}
         <div class='bf-button__loading' role='decoration'>
             <i></i>
             <i></i>
