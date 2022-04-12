@@ -49,20 +49,21 @@
 
       <div class='modal-body pt-3 {{ modalBodyClass|default('') }}'>
         {% block modal_body %}
-          {# Non scrollable content #}
+
+          {# TODO : make it an option to be scrollable or not #}
           {% if block('modal_body_subcontainer') is defined %}
             {{ block('modal_body_subcontainer') }}
           {% else %}
             {{ modal_body_subcontainer|raw }}
           {% endif %}
 
-          {# Scrollable content #}
           {% if block('modal_body_scroll_container') is defined %}
             <div class='modal-body__scroll-container'>
               {{ block('modal_body_scroll_container') }}
             </div>
           {% elseif modalBudy is defined and modalBudy is not empty %}
             {% block modal_body_scroll_container %}
+              {# TODO - rename properly #}
               <p>{{ modalBudy }}</p>
             {% endblock %}
           {% else %}
