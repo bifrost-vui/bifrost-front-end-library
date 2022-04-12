@@ -18,7 +18,7 @@ export class ButtonComponent implements OnInit {
 
     @Input() iconName: string;
     @Input() iconPosition: null | 'left' | 'right';
-    /** Changing the size of the icon isn't recommended. */
+    /** Changing the size of the icon is not recommended. */
     @Input() iconSize: string;
 
     @Input() dataDismiss: string;
@@ -29,6 +29,7 @@ export class ButtonComponent implements OnInit {
     @Input() extraAttribute: string;
     @Input() class: string;
 
+    @Input() id: string;
     @Input() formId: string;
     @Input() formAction: string;
     @Input() formEncryptionType: null | 'application/x-www-form-urlencoded' |'multipart/form-data' | 'text/plain';

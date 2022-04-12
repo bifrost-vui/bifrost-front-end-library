@@ -21,18 +21,15 @@ import { ButtonComponent } from '../angular/button.component';
         },
     }}
     argTypes={{
-        _background: {
-            control: {
-                type: 'select',
-                options: ['', 'bf-color-bg-ground', 'bf-color-bg-underground', 'reversed bf-color-bg-ground', 'reversed bf-color-bg-underground', 'bf-color-bg-highlight']
-            },
-            description: 'Preview the component on selected background'
-        },
-        hierarchy: {
-            control: { type: 'select' }
-        },
+        ariaLabel: { table: {subcategory: 'Aria' }},
+        ariaControls: { table: {subcategory: 'Aria' }},
+        ariaExpanded: { table: {subcategory: 'Aria' }},
+        dataDismiss: { table: {subcategory: 'Data' }},
+        dataToggle: { table: {subcategory: 'Data' }},
+        dataTarget: { table: {subcategory: 'Data' }},
         iconName: {
             defaultValue: '',
+            table: {subcategory: 'Icon' },
             control: {
                 type: 'select',
                 options: ['', 'placeholder', ...interfaceIcons.map(a => a.list).flat().sort()]
@@ -40,22 +37,51 @@ import { ButtonComponent } from '../angular/button.component';
         },
         iconPosition: {
             defaultValue: '',
+            table: {subcategory: 'Icon' },
             control: { type: 'select' }
         },
+        iconSize: {table: {subcategory: 'Icon' }},
+        hierarchy: {
+            control: { type: 'select' },
+            table: {subcategory: 'Layout' }
+        },
+        fullWidth: {table: {subcategory: 'Layout' }},
+        class: {table: {subcategory: 'Layout' }},
         formEncryptionType: {
             defaultValue: null,
-            table: { defaultValue: { summary: 'null' }},
+            table: {
+                defaultValue: { summary: 'null' },
+                subcategory: 'Submit Button'
+            },
             control: { type: 'select' }
         },
         formTarget: {
             defaultValue: null,
-            table: { defaultValue: { summary: 'null' }},
+            table: {
+                defaultValue: { summary: 'null' },
+                subcategory: 'Submit Button'
+            },
             control: { type: 'select' }
         },
         formNoValidate: {
             defaultValue: false,
-            table: { defaultValue: { summary: false }},
-        }
+            table: {
+                defaultValue: { summary: false },
+                subcategory: 'Submit Button'
+            },
+        },
+        formAction: { table: {subcategory: 'Submit Button' }},
+        formMethod: { table: {subcategory: 'Submit Button' }},
+        formId: { table: {subcategory: 'Submit Button' }},
+        isSubmit: { table: {subcategory: 'Submit Button' }},
+        extraAttribute: { table: {subcategory: 'Others' }},
+        hasLoading: { table: {subcategory: 'Others' }},
+        href: { table: {subcategory: 'Others' }},
+        id: { table: {subcategory: 'Others' }},
+        isAutofocus: { table: {subcategory: 'Others' }},
+        isDisabled: { table: {subcategory: 'Others' }},
+        isLoading: { table: {subcategory: 'Others' }},
+        label: { table: {subcategory: 'Others' }}
     }}
 />
 

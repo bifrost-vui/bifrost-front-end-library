@@ -3,7 +3,8 @@
 {% set isLoading    = isLoading|json_parse %}
 {% set fullWidth    = fullWidth|json_parse %}
 
-{% set hierarchyList = hierarchy is defined ? [hierarchy] : ['primary', 'primary-alt', 'secondary', 'tertiary'] %}
+{% set hierarchyList = hierarchy is defined ? [hierarchy]: ['primary', 'primary-alt', 'secondary', 'tertiary'] %}
+{% set backgrounds = ['bf-color-bg-ground', 'bf-color-bg-underground', 'reversed bf-color-bg-ground', 'reversed bf-color-bg-underground', 'bf-color-bg-highlight'] %}
 
 <div class='d-flex flex-column'>
 
@@ -14,7 +15,7 @@
       But then, if needed, you still have to recreate <strong>loading</strong> and <strong>icon</strong> behavior.
     </p>
   </div>
-
+  {% for _background in backgrounds %}
     <div
       class='d-flex flex-column justify-content-center flex-grow-1 minh-100 p-4  {{ _background}}'>
       {% for _hierarchy in hierarchyList %}
@@ -65,8 +66,8 @@
         </div>
       {% endfor %}
     </div>
+  {% endfor %}
 </div>
-
 
 {% if isLoading|json_parse|default(false) %}
   <script>

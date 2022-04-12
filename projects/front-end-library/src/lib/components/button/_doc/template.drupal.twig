@@ -8,7 +8,9 @@
 {% set isAutofocus = isAutofocus|json_parse %}
 
 {% set hierarchyList = hierarchy is defined ? [hierarchy]: ['primary', 'primary-alt', 'secondary', 'tertiary'] %}
+{% set backgrounds = ['bf-color-bg-ground', 'bf-color-bg-underground', 'reversed bf-color-bg-ground', 'reversed bf-color-bg-underground', 'bf-color-bg-highlight'] %}
 
+{% for _background in backgrounds %}
 <div class='d-flex flex-column justify-content-center flex-grow-1 {{ _background }}'>
   {% for _hierarchy in hierarchyList %}
     <div class='row'>
@@ -50,6 +52,7 @@
     </div>
   {% endfor %}
 </div>
+{% endfor %}
 
 {% if isLoading|json_parse|default(false) %}
   <script>
