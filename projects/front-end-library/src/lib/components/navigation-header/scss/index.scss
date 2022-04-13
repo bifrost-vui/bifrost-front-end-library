@@ -10,6 +10,7 @@
     &__nav {
         display: grid;
         grid-template-columns: min-content max-content auto;
+        grid-template-rows: 4rem auto ;
         background-color: var(--bf-color-bg-ground);
         @include media-breakpoint-down(md) {
             grid-template-columns: min-content max-content;
@@ -24,8 +25,6 @@
     &__logo {
         .bf-logo{
             height: 100%;
-            width: 100%;
-            max-width: min-content;
         }
         @include media-breakpoint-down(md) {
             grid-column: 1;
@@ -71,7 +70,6 @@
         padding-left: 1rem;
         padding-right: 1rem;
         color: var(--bf-color-neutral-primary);
-
         @include media-breakpoint-down(md) {
             min-height: 2rem;
             flex: 1;
@@ -88,7 +86,7 @@
 
         .nav-link {
             position: relative;
-            padding: 1rem 0;
+            //padding: 1rem 0;
             background: none;
             width: auto;
             border: none;
@@ -97,11 +95,12 @@
             font-weight: 400;
             line-height: inherit;
             letter-spacing: 1px;
+            white-space: nowrap;
 
             @include media-breakpoint-down(md) {
                 width: 100%;
                 justify-content: center;
-                padding: .5rem 1rem;
+                //padding: .5rem 1rem;
             }
             @include media-breakpoint-down(sm) {
                 padding: .25rem;
@@ -152,7 +151,7 @@
             float: none;
             display: block;
             width: 100vw;
-            margin: 1px 0 0 0;
+            margin: calc(1rem + 1px) 0 0 0;
             font-size: .75rem;
             background-color: var(--bf-color-bg-ground);
             @include transitions(opacity $transition-time-base);
