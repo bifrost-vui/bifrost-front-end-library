@@ -10,33 +10,39 @@
     &__nav {
         display: grid;
         grid-template-columns: min-content max-content auto;
-        grid-template-rows: 4.5rem auto ;
+        grid-template-rows: 4.5rem;
         background-color: var(--bf-color-bg-ground);
+
         @include media-breakpoint-down(md) {
-            grid-template-columns: min-content max-content;
-            grid-template-rows: 3.5rem auto ;
+            grid-template-rows: 3.5rem;
         }
-    }
-    &__actions {
-        @include media-breakpoint-down(md) {
-            grid-column: span 2
+        @include media-breakpoint-down(sm) {
+            grid-template-rows: 3rem;
         }
     }
     &__logo {
-        .bf-logo{
-            height: 100%;
+        .bf-logo svg {
+            height: 4.5rem;
+            width: auto;
         }
         @include media-breakpoint-down(md) {
-            grid-column: 1;
+            grid-column: 2;
+            .bf-logo svg {
+                height: 3.5rem;
+            }
+        }
+        @include media-breakpoint-down(sm) {
+            .bf-logo svg {
+                height: 3rem;
+            }
         }
     }
-
     &__nav-main {
         z-index: 25;
 
         @include media-breakpoint-down(md) {
-            grid-column: span 3;
-            order: 3;
+            grid-column: 1/4;
+            grid-row: 2;
         }
     }
     &__search-bar {
@@ -61,6 +67,7 @@
         padding-left: 1rem;
         padding-right: 1rem;
         color: var(--bf-color-neutral-primary);
+
         @include media-breakpoint-down(md) {
             min-height: 2rem;
             flex: 1;
