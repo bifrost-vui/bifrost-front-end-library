@@ -1,17 +1,32 @@
-{# UI-Kit - Legacy #}
-{% set id = id|default(inputId) %}
-{% set name = name|default(inputName) %}
-<div class='bf-input-switch {{ class|default('') }}'>
-      <input
-        class='bf-switch'
-        id='{{ id }}'
-        name='{{ name|default('')}}'
-        type='checkbox'
-        {{ (isDisabled is defined and isDisabled) ? 'disabled aria-disabled="true"' }}
-        {{ (isChecked is defined and isChecked ) ? 'checked aria-checked="true"' }}
-        {{ extraAttribute|default(NULL) }}
-        {% if ariaLabel is defined and ariaLabel %}
-          aria-label='{{ ariaLabel }}'
-        {% endif %}
-      />
+<div class='bf-input-switch gap-3 {{ (isDisabled is defined and isDisabled) ? 'disabled' }} {{ class|default('') }}'>
+  {% if label is defined and label %}
+    {% if label is iterable %}
+      {% set labelText = label.text %}
+      {% set labelPosition = label.position|default(null) %}
+
+    {% else %}
+      {% set labelText = label %}
+      {% set labelPosition = label.position|default(null) %}
+    {% endif %}
+
+    <label
+      class='bf-input-switch__label bf-text-display-sub-medium {{ labelPosition is same as ('right') ?'bf-input-switch__label--right' }} {{ label.class|default(null) }}'
+      for='{{ id }}'
+    >
+      {{ labelText }}
+    </label>
+  {% endif %}
+
+  <input
+    class='bf-switch'
+    id='{{ id }}'
+    name='{{ name|default(null)}}'
+    type='checkbox'
+    {{ (isDisabled is defined and isDisabled) ? 'disabled aria-disabled="true"' }}
+    {{ (isChecked is defined and isChecked ) ? 'checked aria-checked="true"' }}
+    {{ extraAttribute|default(null) }}
+    {% if ariaLabel is defined and ariaLabel %}
+      aria-label='{{ ariaLabel }}'
+    {% endif %}
+  />
 </div>

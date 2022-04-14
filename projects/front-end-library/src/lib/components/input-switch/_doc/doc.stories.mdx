@@ -1,8 +1,8 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs';
-import { withDesign }                           from 'storybook-addon-designs'
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { InputSwitchComponent }                      from '../angular/input-switch.component';
+import { moduleMetadata } from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs'
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { InputSwitchComponent } from '../angular/input-switch.component';
 
 <Meta
     title='Components/Input Switch'
@@ -26,21 +26,15 @@ import { InputSwitchComponent }                      from '../angular/input-swit
             },
             description: 'preview the component on selected background'
         },
-        id: { type: { required: true }},
-        inputName: {
-            control: { type: 'text' },
-            description: 'Use `name` instead',
-            table: { category: 'Deprecated Inputs'}
-        },
-        inputId: {
-            control: { type: 'text' },
-            description: 'UI-Kit legacy - Deprecated. Use `id` instead',
-            table: { category: 'Deprecated Inputs'}
-        },
+        id: { type: { required: true }}
     }}
 />
 
-# Input Toggle
+# Input Switch
+
+## Component API
+
+<Props of={InputSwitchComponent} />
 
 ## Drupal
 
@@ -49,41 +43,59 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-## Component API
-
-<Props of={InputSwitchComponent} />
-
-
-<Canvas withSource='none'
-        style={{ height: '400px'}}
+<Canvas withSource='none' style={{ height: '400px' }}
 >
     <Story
-        name='Drupal - Input Switch'
+        name='Drupal - Input Switch with label as string'
         args={{
             elementPath: 'components/input-switch/_doc/template.drupal',
-            inputId: 'inputId',
-            ariaLabel: 'ariaLabel'
+            id: 'inputId',
+            ariaLabel: 'ariaLabel',
+            label:  'Lorem ipsum dolor sit amet'
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-## Drupal implementation exemple
+
+<Canvas withSource='none' style={{ height: '400px' }}
+>
+    <Story
+        name='Drupal - Input Switch with label as object'
+        args={{
+            elementPath: 'components/input-switch/_doc/template.drupal',
+            id: 'inputId',
+            ariaLabel: 'ariaLabel',
+            label:  {
+                text: 'Lorem ipsum dolor sit amet',
+                position: 'right',
+                class: 'text-uppercase font-weight-bold'
+            }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+## Drupal implementation example
 
 ```jsx
 {% include '@bf-components/input-switch/twig/index.twig' with {
     id: 'id',
-    ariaLabel: 'aria-label',
+    ariaLabel: 'Lorem ipsum dolor sit amet',
+    label: 'Lorem ipsum dolor sit amet'
 } only %}
 
-// if you need to display labels inside the input toggle
 
 {% include '@bf-components/input-switch/twig/index.twig' with {
     id: 'id',
-    ariaLabel: 'aria label',
-    labelOn: 'On',
-    labelOff: 'Off',
+    ariaLabel: 'Lorem ipsum dolor sit amet',
+    label: {
+        text: 'Lorem ipsum dolor sit amet',
+        position: 'right',
+        class: 'text-uppercase font-weight-bold'
+    }
 } only %}
 
 ```

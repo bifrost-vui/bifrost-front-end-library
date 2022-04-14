@@ -5,7 +5,21 @@
 * ***************************************************************************** */
 .bf-input-switch {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row;
+    align-items: center;
+
+    &__label {
+        margin: var(--bf-spacer-2) 0;
+        cursor: pointer;
+        &--right {
+            order: 2;
+        }
+    }
+    &.disabled {
+        .bf-input-switch__label {
+            pointer-events: none;
+        }
+    }
 }
 
 /* *****************************************************************************
@@ -15,6 +29,7 @@
 * ***************************************************************************** */
 .bf-switch {
     position: relative;
+    flex: 0 0 3rem;
     appearance: none;
     width: 3rem;
     height: 1rem;
@@ -26,12 +41,12 @@
     cursor: pointer;
 
     &::after {
-        display: block;
-        height: 1.5rem;
-        width: 1.5rem;
         position: absolute;
         left: -1px;
         top: 50%;
+        display: block;
+        height: 1.5rem;
+        width: 1.5rem;
         content: '';
         border-radius: 50%;
         background-color: var(--bf-color-bg-ground);
