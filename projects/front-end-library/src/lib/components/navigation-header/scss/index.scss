@@ -7,40 +7,35 @@
 @import './top-bar';
 
 .bf-header {
-
     &__nav {
         display: grid;
         grid-template-columns: min-content max-content auto;
         background-color: var(--bf-color-bg-ground);
         grid-template-rows: 4.5rem;
+
         @include media-breakpoint-down(md) {
             grid-template-rows: 3.5rem;
         }
-
         @include media-breakpoint-down(sm) {
             grid-template-rows: 3rem;
         }
     }
-
     &__logo {
         svg {
             height: 4.5rem;
         }
-
         @include media-breakpoint-down(md) {
             grid-column: 2;
             .bf-logo svg {
                 height: 3.5rem;
             }
         }
-
         @include media-breakpoint-down(sm) {
             .bf-logo svg {
                 height: 3rem;
             }
         }
     }
-
     &__nav-main {
         z-index: 25;
 
@@ -49,7 +44,6 @@
             grid-row: 2;
         }
     }
-
     &__search-bar {
         width: 100%;
         max-width: 17rem;
@@ -68,7 +62,6 @@
             }
         }
     }
-
     .nav-item {
         padding-left: 1rem;
         padding-right: 1rem;
@@ -87,32 +80,26 @@
                 border-left: none;
             }
         }
-
         .nav-link {
             position: relative;
             padding: 1rem 0;
             background: none;
             width: auto;
             border: none;
-            // color: var(--bf-color-neutral-primary);
             font-family: $font-family-secondary;
             font-size: 1.25rem;
             font-weight: 400;
             line-height: inherit;
-            // text-transform: uppercase;
             letter-spacing: 1px;
-
             @include media-breakpoint-down(md) {
                 width: 100%;
                 justify-content: center;
                 padding: .5rem 1rem;
             }
-
             @include media-breakpoint-down(sm) {
                 padding: .25rem;
                 font-size: 1rem;
             }
-
             @include media-breakpoint-up(lg) {
                 &:before {
                     content: '';
@@ -135,7 +122,6 @@
             }
         }
     }
-
     .bf-megamenu {
 
         &__nav-item.open {
@@ -177,7 +163,6 @@
                 left: auto;
                 right: 0;
             }
-
             @include media-breakpoint-down(md) {
                 .bf-megamenu__panel__inner,
                 .tab-content {
@@ -187,14 +172,11 @@
                     overflow-x: hidden;
                 }
             }
-
             hr {
                 border-top: 1px solid var(--bf-color-stroke-secondary);
             }
         }
     }
-
-
     .bf-tabs {
         min-width: 15rem;
         max-width: 15rem;
@@ -203,7 +185,6 @@
         @include media-breakpoint-down(md) {
             min-width: 4rem;
         }
-
         &__tab {
             position: relative;
             font-family: $font-family-secondary;
@@ -214,7 +195,6 @@
                 background-color: var(--bf-color-bg-ground);
                 outline: none;
             }
-
             &.active {
                 font-weight: 700;
                 background-color: var(--bf-color-bg-ground);
@@ -223,11 +203,9 @@
                     transform: translate(0);
                 }
             }
-
             &:not(:last-of-type) {
                 border-bottom: 1px solid var(--bf-color-stroke-secondary);
             }
-
             &:before {
                 content: '';
                 position: absolute;
@@ -239,15 +217,12 @@
                 transition-duration: .2s;
                 background-color: var(--bf-color-bg-action-primary);
             }
-
             span {
                 font-size: 1.125rem;
                 line-height: 1.25rem;
             }
         }
-
     }
-
     button {
         color: inherit; // Override browser default
     }
