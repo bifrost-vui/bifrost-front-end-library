@@ -14,7 +14,7 @@ export class BannerAdvancedComponent implements OnInit {
     /** Expected format: [{name: string, label: string}, {...}]. A maximum of 3 icons is accepted */
     @Input() icons: object[];
     @Input() footer: string | 'TwigBlock';
-    @Input() switch: ISwitch;
+    @Input() inputSwitch: ISwitch;
     @Input() class: string;
     ngOnInit() {
         console.log('BannerAdvanced', this);

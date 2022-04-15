@@ -1,8 +1,8 @@
-import { moduleMetadata }                   from '@storybook/angular';
-import { Canvas, Meta, Story, ArgsTable }   from '@storybook/addon-docs';
-import { withDesign }                       from 'storybook-addon-designs'
-import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
-import { BannerAdvancedComponent }          from '../angular/banner-advanced.component';
+import { moduleMetadata } from '@storybook/angular';
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs'
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { BannerAdvancedComponent } from '../angular/banner-advanced.component';
 
 <Meta
     title='Components/Banner Advanced'
@@ -13,9 +13,9 @@ import { BannerAdvancedComponent }          from '../angular/banner-advanced.com
     ]}
     parameters={{
         design: {
-            type    : 'figma',
-            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=21784%3A284582',
-            disable : false
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=21784%3A284582',
+            disable: false
         },
     }}
     argTypes={{}}
@@ -31,9 +31,24 @@ import { BannerAdvancedComponent }          from '../angular/banner-advanced.com
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    component: TwigContainerComponent,
+    props: args,
 });
+
+export const commonProps= {
+    title: 'Mobile discount of $10 with an Internet plan',
+    description: 'Combine a Mobile plan to an Internet plan and get a $10 monthly discount.',
+    icons: [
+        {
+            name: 'mobility',
+            label: 'Mobile plan'
+        },
+        {
+            name: 'bundle-1',
+            label: 'Internet plan'
+        }
+    ]
+}
 
 <Canvas
     withSource='none'
@@ -43,53 +58,101 @@ export const Drupal = (args) => ({
         name='Drupal'
         args={{
             elementPath: 'components/banner-advanced/_doc/template.drupal',
-            title: 'Mobile discount of $10 with an Internet plan',
-            description: 'Combine a Mobile plan to an Internet plan and get a $10 monthly discount.',
-            icons: [
-                {
-                    name: 'mobility',
-                    label: 'Mobile plan'
-                },
-                {
-                    name: 'bundle-1',
-                    label: 'Internet plan'
-                }
-            ],
-            switch: {
-                id: 'id',
-                ariaLabel: 'Lorem ipsum dolor sit amet',
-                label: {
-                    text: 'Lorem ipsum dolor sit amet',
-                    position: 'right',
-                    class: 'text-uppercase font-weight-bold'
-                }
-            }
+            ...commonProps
         }}
         >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
+<Canvas
+    withSource='none'
+    style={{height: '600px'}}
+>
+    <Story
+        name='Drupal - with footer'
+        args={{
+            elementPath: 'components/banner-advanced/_doc/template.drupal',
+            inputSwitch: {
+                id: 'id',
+                ariaLabel: 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
+                label: {
+                    text: 'Lorem ipsum dolor sit amet',
+                    position: 'right',
+                    class: 'text-uppercase font-weight-bold'
+                }
+            },
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
 
 ## Drupal implementation example
 
 ```jsx
+
 {% include '@bf-components/banner-advanced/twig/index.twig' with {
-    title       : 'Mobile discount of $10 with an Internet plan',
-    description : 'Combine a Mobile plan to an Internet plan and get a $10 monthly discount.',
-    icons    : [
+    title: 'Mobile discount of $10 with an Internet plan',
+    description: 'Combine a Mobile plan to an Internet plan and get a $10 monthly discount.',
+    icons: [
         {
-            icon    : 'mobility',
-            label   : 'Mobile plan'
+            icon: 'mobility',
+            label: 'Mobile plan'
         },
         {
-            icon    : 'bundle-1',
-            label   : 'Internet plan'
+            icon: 'bundle-1',
+            label: 'Internet plan'
         }
     ]
 } only %}
-```
 
+// Banner with switch
+{% include '@bf-components/banner-advanced/twig/index.twig' with {
+    title: 'Mobile discount of $10 with an Internet plan',
+    description: 'Combine a Mobile plan to an Internet plan and get a $10 monthly discount.',
+    icons: [
+        {
+            icon: 'mobility',
+            label: 'Mobile plan'
+        },
+        {
+            icon: 'bundle-1',
+            label: 'Internet plan'
+        }
+    ],
+    inputSwitch: {
+        id: 'id',
+        ariaLabel: 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
+        label: {
+            text: 'Lorem ipsum dolor sit amet',
+            position: 'right',
+            class: 'text-uppercase font-weight-bold'
+        }
+    }
+} only %}
+
+// Banner with embedded footer
+{% embed '@bf-components/banner-advanced/twig/index.twig' with {
+    title: 'Mobile discount of $10 with an Internet plan',
+    description: 'Combine a Mobile plan to an Internet plan and get a $10 monthly discount.',
+    icons: [
+        {
+            icon: 'mobility',
+            label: 'Mobile plan'
+        },
+        {
+            icon: 'bundle-1',
+            label: 'Internet plan'
+        }
+    ],
+} only %}
+    {% block footer %}
+        // Insert html here.
+    {% endblock %}
+{% endembed %}
+```
 
 ## Design Guidelines
 

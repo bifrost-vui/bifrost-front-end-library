@@ -14,19 +14,19 @@
       <div class='bf-banner-advanced__body gap-0 gap-sm-2'>
         {% for icon in icons|slice(0, 3) %}
           {% if icon.name is defined and icon.name and icon.label is defined and icon.label %}
-            {# conditional plus sign #}
+            {# conditional plus sign between Icons #}
             {% if not loop.first %}
               {% include '@bf-components/icon/twig/index.twig' with {
-                name    : 'plus',
-                size    : 'small',
-                class   : 'mb-4'
+                name: 'plus',
+                size: 'small',
+                class: 'mb-4'
               } only %}
             {% endif %}
 
-            <div class='text-align-center '>
+            <div class='text-align-center'>
               {% include '@bf-components/icon/twig/index.twig' with {
-                name  : icon.name,
-                size  : 'large'
+                name: icon.name,
+                size: 'large'
               } only %}
 
               <p class='h5 my-1'>{{ icon.label }}</p>
@@ -37,8 +37,8 @@
     {% endif %}
   </div>
 
-  {# OPTIONAL FOOTER #}
-  {% set hasFooter = (block('footer') is defined or (footer is defined and footer) or (switch is defined and switch)) ? true : false %}
+  {% set hasFooter = (block('footer') is defined or (footer is defined and footer) or (inputSwitch is defined and inputSwitch)) ? true : false %}
+
   {% if hasFooter %}
   <div class='bf-banner-advanced__footer p-3 p-sm-4 pt-0 border-top'>
     {% if block('footer') is defined %}
@@ -46,7 +46,7 @@
     {% elseif footer is defined and footer %}
         {{ content }}
     {% else %}
-      {% include '@bf-components/input-switch/twig/index.twig' with switch %}
+      {% include '@bf-components/input-switch/twig/index.twig' with inputSwitch %}
     {% endif %}
   </div>
   {% endif %}
