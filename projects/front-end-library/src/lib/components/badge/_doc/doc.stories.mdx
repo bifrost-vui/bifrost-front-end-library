@@ -1,16 +1,16 @@
-import { moduleMetadata }             from '@storybook/angular';
-import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
+import { moduleMetadata }               from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs';
 import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
 import { IconComponent }                from '../../icon/angular/icon.component';
 import { BadgeComponent }           from '../angular/badge.component';
 import { BadgeTemplateComponent }       from './template.angular.component';
-import BannerTwigTemplate from './template.drupal.twig';
+import TwigTemplate from './template.drupal.twig';
 
 <Meta
     title='Components/Badge'
     component={BadgeComponent}
     decorators={[
-        moduleMetadata({ declarations: [BadgeComponent, IconComponent, BadgeTemplateComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [BadgeComponent, IconComponent]})
     ]}
     argTypes={{
         hierarchy: {
@@ -56,7 +56,7 @@ import BannerTwigTemplate from './template.drupal.twig';
 ## Drupal
 
 export const Drupal = (args) => ({
-    template: BannerTwigTemplate(args),
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -67,7 +67,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath: 'components/badge/_doc/template.drupal',
             class: 'my-2',
         }}
     >
@@ -82,7 +81,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - Multiline'
         args={{
-            elementPath: 'components/badge/_doc/template.drupal',
             class: 'my-2',
             label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
         }}
