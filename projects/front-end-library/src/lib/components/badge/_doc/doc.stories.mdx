@@ -1,17 +1,17 @@
 import { moduleMetadata }             from '@storybook/angular';
 import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
 import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
+import { IconComponent }                from '../../icon/angular/icon.component';
 import { BadgeComponent }           from '../angular/badge.component';
-import { BadgeTemplate }            from './template.angular.ts';
+import { BadgeTemplateComponent }       from './template.angular.component';
 import BannerTwigTemplate from './template.drupal.twig';
-
 
 <Meta
     title='Components/Badge'
     component={BadgeComponent}
-    /*decorators={[
-        moduleMetadata({ declarations: [BadgeComponent, BadgeTemplate, TwigContainerComponent]}),
-    ]}*/
+    decorators={[
+        moduleMetadata({ declarations: [BadgeComponent, IconComponent, BadgeTemplateComponent, TwigContainerComponent]}),
+    ]}
     argTypes={{
         hierarchy: {
             table:   { defaultValue: { summary: 'secondary' } },
@@ -21,7 +21,7 @@ import BannerTwigTemplate from './template.drupal.twig';
             control: { type: 'select' }
         },
         noUppercase: {
-            table:  { defaultValue: { summary: false } },
+            table: { defaultValue: { summary: false } },
         },
         iconName: {
             defaultValue: '',
@@ -30,7 +30,7 @@ import BannerTwigTemplate from './template.drupal.twig';
                 options: ['', 'placeholder', ...illustrationIcons.map(a => a.list).flat().sort()]
             }
         },
-        _disabled : {
+        _disabled: {
             table:{ disable: true }
         }
     }}
@@ -46,10 +46,10 @@ import BannerTwigTemplate from './template.drupal.twig';
 
 ```jsx
 {% include '@bf-components/badge/twig/index.twig' with {
-    label       : 'Free',
-    class       : 'my-2',
-    hierarchy   : 'primary',
-    iconName    : 'camera'
+    label: 'Free',
+    class: 'my-2',
+    hierarchy: 'primary',
+    iconName: 'camera'
 } only %}
 ```
 
@@ -67,31 +67,11 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            class       : 'my-2',
+            elementPath: 'components/badge/_doc/template.drupal',
+            class: 'my-2',
         }}
     >
         {Drupal.bind({})}
-    </Story>
-</Canvas>
-
-## Angular
-
-export const Angular = (args) => ({
-    component: BadgeTemplate,
-    props: args,
-});
-
-<Canvas
-    withSource='none'
-    style={{ height: '600px' }}
->
-    <Story
-        name='Angular'
-        args={{
-            className : 'my-2'
-        }}
-    >
-        {Angular.bind({})}
     </Story>
 </Canvas>
 
@@ -102,8 +82,9 @@ export const Angular = (args) => ({
     <Story
         name='Drupal - Multiline'
         args={{
-            class       : 'my-2',
-            label       : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
+            elementPath: 'components/badge/_doc/template.drupal',
+            class: 'my-2',
+            label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
         }}
     >
         {Drupal.bind({})}
@@ -117,10 +98,61 @@ export const Angular = (args) => ({
     <Story
         name='Drupal - Disabled'
         args={{
-            class       : 'my-2',
-            _disabled   : true
+            class: 'my-2',
+            _disabled: true
         }}
     >
         {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+## Angular
+
+export const Angular = (args) => ({
+    component: BadgeTemplateComponent,
+    props: args,
+});
+
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story
+        name='Angular'
+        args={{
+            className: 'my-2'
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story
+        name='Angular - Multiline'
+        args={{
+            className: 'my-2',
+            label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story
+        name='Angular - Disabled'
+        args={{
+            className: 'my-2',
+            _disabled: true
+        }}
+    >
+        {Angular.bind({})}
     </Story>
 </Canvas>

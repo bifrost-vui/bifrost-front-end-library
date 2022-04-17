@@ -99,6 +99,10 @@ addParameters({
         computetNgClasses   : { table: { disable: true } },
         ngOnInit            : { table: { disable: true } },
         ngOnChanges         : { table: { disable: true } },
+        _theme: {
+            table:   { defaultValue: { summary: 'videotron' } },
+            control: { type: 'select', options: [ 'videotron', 'business' ] }
+        },
     },
 
     actions: { argTypesRegex: "^on[A-Z].*" }
