@@ -7,7 +7,7 @@
 {% endif %}
 
 <div class='pt-4 bf-color-bg-ground {% if reversed %}reversed{% endif %}'>
-  {% if name is defined and name is not same as ('undefined') and name is not same as ('All icons') %}
+  {% if name is defined and name is not empty and name is not same as ('undefined') and name is not same as ('All icons') %}
     <div class='d-flex flex-wrap flex-column align-items-center'>
       {% include '@bf-components/icon/twig/index.twig' with {
         name  : name,
@@ -17,7 +17,6 @@
       } only %}
       <p class='small bf-color-neutral-secondary pt-1'>{{ name }}</p>
     </div>
-
   {% else %}
     <div class='container-fluid h-100'>
       {% if icons is defined %}
