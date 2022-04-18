@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { %ComponentName%Component } from './%component-name%.component';
 
-
 describe('%ComponentName%Component', () => {
     let component: %ComponentName%Component;
     let fixture: ComponentFixture<%ComponentName%Component>;
