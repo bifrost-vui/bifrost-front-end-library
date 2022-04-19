@@ -86,17 +86,46 @@ export const commonProps = {
 
 <Canvas withSource='none'>
     <Story
-        name='Drupal - With backgroundImage'
+        name='Drupal - With icon color'
         args={{
             elementPath: 'components/tile-key/_doc/template.drupal',
             ...commonProps,
             icon: {
                 name: 'television',
                 color: 'neutral'
-            },
+            }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With backgroundImage dark'
+        args={{
+            elementPath: 'components/tile-key/_doc/template.drupal',
+            ...commonProps,
             backgroundImage: {
                 src: '/images/_docs/hero-helix-reversed.png',
                 textColor: 'light'
+            }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With backgroundImage light'
+        args={{
+            elementPath: 'components/tile-key/_doc/template.drupal',
+            ...commonProps,
+            backgroundImage: {
+                src: '/images/_docs/hero-helix.png',
+                textColor: 'dark'
             }
         }}
     >
