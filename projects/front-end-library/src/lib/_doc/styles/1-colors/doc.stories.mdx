@@ -13,17 +13,18 @@ import colors               from './colors';
 
 # Colors
 
-> Bifrost defines 4 groups of colors: **Content, Background, Feedback, Stroke**.
+> Bifrost defines 5 groups of colors: **Content, Background, Background Action, Stroke** and **Feedback**.
 
 <Canvas withSource='none'>
     <div class='d-flex flex-column gap-5'>
         {colors.map(category =>
             <section>
                 <header class='d-flex align-items-center gap-4 w-100'>
-                    <div class='w-65'>
-                        <h2>Colors: {category.name}</h2>
+                    <div class='w-75'>
+                        <h2>{category.name} colors</h2>
+                        <h3 class='bf-text bf-color-neutral-secondary maxw-75 mt-1'>{category.description}</h3>
                     </div>
-                    <div class='w-25'>
+                    <div class='w-25 align-self-end'>
                         <h5 class='m-0'>All Themes</h5>
                         <p class='bf-text bf-color-neutral-secondary small m-0'>Default + Reversed</p>
                     </div>
@@ -31,20 +32,23 @@ import colors               from './colors';
                 <ul class='list-unstyled'>
                     {category.list.map(c =>
                         <li key={c.name} class='d-flex align-items-center gap-4 w-100 border-top'>
-                            <div class='w-65 d-flex align-items-center gap-4'>
+                            <div class='w-75 d-flex align-items-center gap-4'>
                                 <h4 class='mb-0' style={{ width: '13rem' }}>
                                     {c.label}
                                 </h4>
-                                <div class='d-flex flex-column'>
+                                <div class='d-flex flex-column nowrap'>
                                     <code>--bf-color-{c.name}</code>
                                     {c.hasUtilityClass !== false &&
                                         <code>.bf-color-{c.name}</code>
                                     }
+                                    {c.UtilityClassName &&
+                                    <code>.{c.UtilityClassName}</code>
+                                    }
                                 </div>
                             </div>
                             <div class='w-25 d-flex align-items-center'>
-                                <div class='pr-7 pb-7' style={{ backgroundColor: `var(--bf-color-${c.name})` }}></div>
-                                <div class='pr-7 pb-7 reversed' style={{ backgroundColor: `var(--bf-color-${c.name})` }}></div>
+                                <div class='pr-6 pb-6 my-2 mr-1' style={{backgroundColor: `var(--bf-color-${c.name})`}}/>
+                                <div class='pr-6 pb-6 my-2 reversed' style={{backgroundColor: `var(--bf-color-${c.name})`}}/>
                             </div>
                         </li>
                     )}
