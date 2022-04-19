@@ -1,15 +1,14 @@
 <div class='bf-input-switch gap-3 {{ (isDisabled is defined and isDisabled) ? 'disabled' }} {{ class|default('') }}'>
   {% if label is defined and label is not empty %}
     {% if label is iterable %}
-      {% set labelText = label.text %}
+      {% set labelText = label.text|default('') %}
       {% set labelPosition = label.position|default(null) %}
     {% else %}
       {% set labelText = label %}
-      {% set labelPosition = label.position|default(null) %}
     {% endif %}
 
     <label
-      class='bf-input-switch__label bf-text-display-sub-medium {{ labelPosition is same as ('right') ?'bf-input-switch__label--right' }} {{ label.class|default(null) }}'
+      class='bf-input-switch__label bf-text-display-sub-medium {{ labelPosition|default('right') == 'right' ? 'bf-input-switch__label--right' }} {{ label.class|default(null) }}'
       for='{{ id }}'
     >
       {{ labelText }}
