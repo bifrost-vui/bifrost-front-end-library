@@ -1,0 +1,37 @@
+<div class='bf-banner-advanced flex-column flex-md-row gap-3 gap-sm-4 p-3 p-sm-4 {{ class|default('') }}'>
+  <header class='flex-1 text-center text-md-left'>
+    {% if title is defined and title %}
+      <h3>{{ title }}</h3>
+    {% endif %}
+
+    {% if description is defined and description %}
+      <p class='mb-0'>{{ description }}</p>
+    {% endif %}
+  </header>
+
+  {% if icons is defined and icons %}
+    <div class='bf-banner-advanced__body gap-0 gap-sm-2'>
+      {% for icon in icons|slice(0, 3) %}
+        {% if icon.name is defined and icon.name and icon.label is defined and icon.label %}
+          {# conditional plus sign #}
+          {% if not loop.first %}
+            {% include '@bf-components/icon/twig/index.twig' with {
+              name    : 'plus',
+              size    : 'small',
+              class   : 'mb-4'
+            } only %}
+          {% endif %}
+
+          <div class='text-align-center '>
+              {% include '@bf-components/icon/twig/index.twig' with {
+                name  : icon.name,
+                size  : 'large'
+              } only %}
+
+              <p class='h5 my-1'>{{ icon.label }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

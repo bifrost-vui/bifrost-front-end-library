@@ -2,9 +2,9 @@
   class=
   'bf-badge
   bf-badge--{{ hierarchy|default('secondary') }}
-  {% if isRounded is defined and isRounded is same as (true) %}
+  {% if isRounded|default(false) %}
     bf-badge--rounded
-  {% elseif angle is defined and angle is not empty %}
+  {% elseif angle|default(null) %}
     bf-badge--angle-{{ angle }}
   {% endif %}
   {{ class|default('') }}'
@@ -14,16 +14,14 @@
       {% if iconName is defined and iconName %}
         {% include '@bf-components/icon/twig/index.twig' with {
           name  : iconName,
-          class : 'pr-1',
-          size  : 'small',
+          class : 'mr-2',
+          size  : 'small'
         } only %}
-
-        <span class='bf-badge__label__text'>
-          {{ label|default('') }}
-        </span>
-      {% else %}
-          {{ label|default('') }}
       {% endif %}
+
+      <span class='bf-badge__label__text'>
+        {{ label|default('') }}
+      </span>
     </p>
   </div>
 </div>

@@ -33,6 +33,7 @@ export class SelectionTileComponent implements OnInit {
     @Input() isInvalid      : boolean;
     @Input() errorMessage   : string;
     @Input() isRequired     : boolean;
+    @Input() content        : string | 'TwigBlock';
 
     ngOnInit() {
         console.log('SelectionTile', this);
