@@ -1,37 +1,46 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
-
+import { Canvas, Meta, Story, Props }           from '@storybook/addon-docs';
 import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
 import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { IconComponent }                        from '../angular/icon.component';
-
+import { IconTemplateComponent }                 from './template.angular.component';
 
 <Meta
     title='Components/Icon'
     component={IconComponent}
     decorators={[
-        moduleMetadata({ declarations: [IconComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [IconComponent, IconTemplateComponent, TwigContainerComponent]})
     ]}
     parameters={{
         design: {
-            type    : 'figma',
-            url     : 'https://www.figma.com/file/u25bSG8COM4azJ04CztTv8/DS-Medias?node-id=0%3A1',
-            disable : false
+            type: 'figma',
+            url: 'https://www.figma.com/file/u25bSG8COM4azJ04CztTv8/DS-Medias?node-id=0%3A1',
+            disable: false
         },
     }}
     argTypes={{
         color: {
             table: { defaultValue: { summary: 'primary' } },
-            control: { type: 'select'}
+            control: {type: 'select'}
         },
         icons: {
             table: { disable: true }
         },
         size: {
             type: { required: true },
+            table: { defaultValue: { summary: 'small' } },
             control: {type: 'select', options: ['xsmall', 'small' , 'medium', 'large', 'huge']},
-        }
+        },
+        reversed: {
+            table: { defaultValue: { summary: 'false' } },
+        },
+        svg: {
+            table: { disable: true }
+        },
+        updateIcon: {
+            table: { disable: true }
+        },
     }}
 />
 
@@ -57,10 +66,10 @@ import { IconComponent }                        from '../angular/icon.component'
 
 ``` jsx
 {% include '@bf-components/icon/twig/index.twig' with {
-    name    : 'edit',
-    size    : 'small'
-    color   : 'negative',
-    class   : 'mr-2'
+    name: 'edit',
+    size: 'small'
+    color: 'negative',
+    class: 'mr-2'
 } only %}
 
 ```
@@ -69,22 +78,23 @@ import { IconComponent }                        from '../angular/icon.component'
 
 ``` jsx
 {% include '@bf-components/icon/twig/index.twig' with {
-    name    : 'my-account',
-    size    : 'large',
+    name: 'my-account',
+    size: 'large',
 } only %}
 
 ```
 
-### Huge Illsutration Icons
+### Illsutration Huge Icons
 > NOTE : the icon size `huge` should only be used for hero components
 
 ``` jsx
 {% include '@bf-components/icon/twig/index.twig' with {
-    name    : 'my-account',
-    size    : 'huge',
+    name: 'my-account',
+    size: 'huge',
 } only %}
 
 ```
+
 
 ## Drupal
 
@@ -93,7 +103,6 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-
 ### Interface Icons
 
 <Canvas withSource='none'>
@@ -101,20 +110,20 @@ export const Drupal = (args) => ({
         name='Drupal - Interface'
         height='700px'
         args={{
-            elementPath : 'components/icon/_doc/template.drupal',
-            icons       : interfaceIcons
+            elementPath: 'components/icon/_doc/template.drupal',
+            icons: interfaceIcons
         }}
         argTypes={{
             name: {
                 defaultValue: '',
                 control: {
-                    type    : 'select',
-                    options : ['All icons', ...interfaceIcons.map(a => a.list).flat().sort()],
+                    type: 'select',
+                    options: ['All icons', ...interfaceIcons.map(a => a.list).flat().sort()],
                 }
             },
             size: {
-                defaultValue : 'small',
-                description  : 'recommended : xsmall | small',
+                defaultValue: 'small',
+                description: 'recommended : xsmall | small',
             },
         }}
     >
@@ -129,20 +138,20 @@ export const Drupal = (args) => ({
         name='Drupal - Illustration'
         height='700px'
         args={{
-            elementPath : 'components/icon/_doc/template.drupal',
-            icons       : illustrationIcons
+            elementPath: 'components/icon/_doc/template.drupal',
+            icons: illustrationIcons
         }}
         argTypes={{
             name: {
                 defaultValue: '',
                 control: {
-                    type    : 'select',
-                    options : ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
+                    type: 'select',
+                    options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
                 },
             },
             size: {
-                defaultValue : 'large',
-                description  : 'recommended : small | medium | large',
+                defaultValue: 'large',
+                description: 'recommended : small | medium | large',
             },
         }}
     >
@@ -150,30 +159,126 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-### Huge Illustration Icons
+### Illustration Huge Icons
 
 <Canvas withSource='none'>
     <Story
         name='Drupal - Illustration Huge'
         height='700px'
         args={{
-            elementPath : 'components/icon/_doc/template.drupal',
-            icons       : illustrationIcons
+            elementPath: 'components/icon/_doc/template.drupal',
+            icons: illustrationIcons
         }}
         argTypes={{
             name: {
                 defaultValue: '',
                 control: {
-                    type    : 'select',
-                    options : ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
+                    type: 'select',
+                    options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
                 },
             },
             size: {
-                defaultValue : 'huge',
-                description  : 'recommended : huge',
+                defaultValue: 'huge',
+                description: 'recommended : huge',
             },
         }}
     >
         {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Angular
+
+export const Angular = (args) => ({
+    component: IconTemplateComponent,
+    props: args,
+});
+
+### Interface Icons
+
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story
+        name='Angular - Interface'
+        args={{
+            icons: interfaceIcons
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...interfaceIcons.map(a => a.list).flat().sort()],
+                }
+            },
+            size: {
+                defaultValue: 'small',
+                description: 'recommended : xsmall | small',
+            },
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+### Illustration Icons
+
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story
+        name='Angular - Illustration'
+        args={{
+            icons: illustrationIcons
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
+                },
+            },
+            size: {
+                defaultValue: 'large',
+                description: 'recommended : small | medium | large',
+            },
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+
+### Illustration Huge Icons
+
+<Canvas
+    withSource='none'
+    style={{ height: '600px' }}
+>
+    <Story
+        name='Angular - Illustration Huge'
+        args={{
+            icons: illustrationIcons
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: ['All icons', ...illustrationIcons.map(a => a.list).flat().sort()],
+                },
+            },
+            size: {
+                defaultValue: 'huge',
+                description: 'recommended : huge',
+            },
+        }}
+    >
+        {Angular.bind({})}
     </Story>
 </Canvas>
