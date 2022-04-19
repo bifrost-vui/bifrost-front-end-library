@@ -1,7 +1,7 @@
 <div class='bf-input-switch gap-3 {{ (isDisabled is defined and isDisabled) ? 'disabled' }} {{ class|default('') }}'>
   {% if label is defined and label is not empty %}
     {% if label is iterable %}
-      {% set labelText = label.text|default('') %}
+      {% set labelText = label.text|default(null) %}
       {% set labelPosition = label.position|default(null) %}
     {% else %}
       {% set labelText = label %}
