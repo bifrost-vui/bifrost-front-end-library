@@ -8,7 +8,7 @@
     {% endif %}
 
     <label
-      class='bf-input-switch__label bf-text-display-sub-medium {{ labelPosition|default('right') == 'right' ? 'bf-input-switch__label--right' }} {{ label.class|default(null) }}'
+      class='bf-input-switch__label bf-text-display-sub-medium {{ labelPosition|default(null) == 'right' ? 'bf-input-switch__label--right' }} {{ label.class|default(null) }}'
       for='{{ id }}'
     >
       {{ labelText }}
@@ -20,11 +20,9 @@
     id='{{ id }}'
     name='{{ name|default(null) }}'
     type='checkbox'
-    {{ (isDisabled is defined and isDisabled) ? 'disabled aria-disabled="true"' }}
-    {{ (isChecked is defined and isChecked ) ? 'checked aria-checked="true"' }}
+    {% if isDisabled is defined and isDisabled %}disabled aria-disabled='true'{% endif %}
+    {% if isChecked is defined and isChecked  %}checked aria-checked='true'{% endif %}
     {{ extraAttribute|default(null) }}
-    {% if ariaLabel is defined and ariaLabel %}
-      aria-label='{{ ariaLabel }}'
-    {% endif %}
+    {% if ariaLabel is defined and ariaLabel %}aria-label='{{ ariaLabel }}'{% endif %}
   />
 </div>
