@@ -1,8 +1,9 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { IIcon } from '../../icon/angular/api.model';
 
 interface IImage {
     src         : string;
+    textColor   : 'light' | 'dark';
 }
 
 @Component({

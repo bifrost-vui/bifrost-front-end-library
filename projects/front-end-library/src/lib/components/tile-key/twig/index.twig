@@ -15,11 +15,15 @@
 		{% else %}
 			bf-color-bg-underground
 		{% endif %}
+    {% if backgroundImage is defined and backgroundImage.textColor is defined and backgroundImage.textColor %}
+      bf-tile-key--text-color-{{ backgroundImage.textColor }}
+      {{ backgroundImage.textColor == 'light' ? 'reversed' }}
+    {% endif %}
 		{{ reversed|default(false) ? 'reversed' }}
 		{{ class|default('') }}
 		'
 >
-	{% if backgroundImage is defined and backgroundImage %}
+	{% if backgroundImage is defined and backgroundImage.src is defined and backgroundImage.src %}
 		<div class='bf-tile-key__visual' style='background-image: url({{ backgroundImage.src }})'></div>
 	{% endif %}
 	<div class='bf-tile-key__inner gap-2 p-4 p-sm-6'>
@@ -37,11 +41,13 @@
 
 		{% if description is defined and description %}
 			<p class='m-0'>{{ description }}</p>
-			{% if isLink %}
-				<p class='bf-link bf-link--primary mb-0'>{{ linkLabel|default('') }}</p>
-			{% else %}
-				<a class='bf-link bf-link--primary' href='{{ href|default('') }}'>{{ linkLabel|default('') }}</a>
-			{% endif %}
 		{% endif %}
+    {% if linkLabel is defined and linkLabel %}
+      {% if isLink %}
+        <p class='bf-link bf-link--primary mb-0'>{{ linkLabel }}</p>
+      {% elseif href is defined and href %}
+        <a class='bf-link bf-link--primary' href='{{ href }}'>{{ linkLabel }}</a>
+      {% endif %}
+    {% endif %}
 	</div>
 </{{ isLink ? 'a' : 'div' }}>
