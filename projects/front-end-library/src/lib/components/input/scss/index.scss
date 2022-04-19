@@ -49,18 +49,25 @@
         background-color: transparent;
     }
 
-    &.disabled .bf-input__control {
-        color: var(--bf-color-neutral-tertiary);
-        border-color: var(--bf-color-stroke-secondary);
-        cursor: not-allowed;
-
-        & ~ .bf-input__adornment .bf-icon {
+    &.disabled {
+        .bf-input__control {
             color: var(--bf-color-neutral-tertiary);
+            border-color: var(--bf-color-stroke-secondary);
+            cursor: not-allowed;
+        }
+
+        .bf-input__adornment {
+            color: var(--bf-color-neutral-tertiary);
+
+            .bf-icon {
+                color: currentColor;
+            }
         }
     }
 
     &.readonly .bf-input__control {
         border-color: var(--bf-color-stroke-secondary);
+        color: var(--bf-color-neutral-secondary);
         cursor: default;
     }
 
@@ -90,5 +97,9 @@
         appearance: none;
         background: none;
         cursor: pointer;
+
+        &:disabled {
+            opacity: 1; // Reset browser behavior
+        }
     }
 }

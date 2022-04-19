@@ -4,16 +4,16 @@
   {% block inputContent %}
     <div class='dropdown'>
       {% include '@bf-components/button/twig/index.twig' with {
-        label: placeholder,
         id: inputId,
-        hierarchy: 'secondary',
-        isDisabled: false,
-        iconName: 'chevron-down',
         dataToggle: 'dropdown',
         ariaExpanded: false,
         ariaHaspopup: true,
+        label: placeholder,
+        hierarchy: 'secondary',
+        iconName: isReadOnly|default(false) ? '' : 'chevron-down',
         iconPosition: 'right',
-        class: 'bf-input__control dropdown-toggle',
+        isDisabled: (isReadOnly|default(false) or isDisabled|default(false)),
+        class: 'bf-input__control dropdown-toggle'
       } only %}
 
       {% if options is defined and options is not empty %}

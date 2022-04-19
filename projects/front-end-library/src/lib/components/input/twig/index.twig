@@ -1,12 +1,12 @@
 <div class='bf-input {{ isInvalid|default(false) ? 'invalid' }} {{ isDisabled|default(false) ? 'disabled' }} {{ isReadOnly|default(false) ? 'readonly' }} {{ class|default(NULL) }}'>
-  {% if (label is defined and label) or (description is defined and description) %}
+  {% if (label is defined and label) or (labelButtonIcon is defined and labelButtonIcon is not empty) or (description is defined and description) %}
     <div class='mb-2'>
       {% if label is defined and label %}
         <label {% if inputId is defined and inputId %}for='{{ inputId }}'{% endif %}>
           {{ label }}
         </label>
       {% endif %}
-      {% if labelButtonIcon is defined and labelButtonIcon %}
+      {% if labelButtonIcon is defined and labelButtonIcon is not empty %}
         {% set labelButtonIcon = labelButtonIcon|merge({ 'size': 'xsmall' }) %}
         {% include '@bf-components/button-icon/twig/index.twig' with labelButtonIcon only %}
       {% endif %}
