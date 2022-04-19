@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
-
 @Component({
   selector: 'bf-input-switch',
   templateUrl: './input-switch.component.html',
