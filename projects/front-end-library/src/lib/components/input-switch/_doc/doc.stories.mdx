@@ -1,5 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import { withDesign } from 'storybook-addon-designs'
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { InputSwitchComponent } from '../angular/input-switch.component';
@@ -34,7 +34,7 @@ import { InputSwitchComponent } from '../angular/input-switch.component';
 
 ## Component API
 
-<Props of={InputSwitchComponent} />
+<ArgsTable of={InputSwitchComponent} />
 
 ## Drupal
 
@@ -46,23 +46,7 @@ export const Drupal = (args) => ({
 <Canvas withSource='none' style={{ height: '400px' }}
 >
     <Story
-        name='Drupal - Input Switch with label as string'
-        args={{
-            elementPath: 'components/input-switch/_doc/template.drupal',
-            id: 'inputId',
-            ariaLabel: 'ariaLabel',
-            label: 'Lorem ipsum dolor sit amet'
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
-
-
-<Canvas withSource='none' style={{ height: '400px' }}
->
-    <Story
-        name='Drupal - Input Switch with label as object'
+        name='Drupal'
         args={{
             elementPath: 'components/input-switch/_doc/template.drupal',
             id: 'inputId',

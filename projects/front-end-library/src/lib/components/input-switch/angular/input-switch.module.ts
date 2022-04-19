@@ -3,8 +3,7 @@ import { InputSwitchComponent } from './input-switch.component';
 
 @NgModule({
   declarations: [InputSwitchComponent],
-  imports: [
-  ],
+  imports: [],
   exports: [InputSwitchComponent]
 })
 export class InputSwitchModule { }
