@@ -3,7 +3,6 @@ import { Component, OnInit, Input } from '@angular/core';
 interface IImage {
     src             : string;
     alt             : string;
-    fit             : 'fit' | 'fill';
     backgroundColor : string;
 }
 
@@ -19,7 +18,7 @@ interface ILink {
 export class TilePostComponent implements OnInit {
     constructor() {}
 
-    /** API: `{ src, alt, fit, backgroundColor }` */
+    /** API: `{ src, alt, backgroundColor }` */
     @Input() image              : IImage;
     @Input() title              : string;
     @Input() titleTag           : string;
