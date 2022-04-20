@@ -11,47 +11,47 @@
 {% set backgrounds = ['bf-color-bg-ground', 'bf-color-bg-underground', 'reversed bf-color-bg-ground', 'reversed bf-color-bg-underground', 'bf-color-bg-highlight'] %}
 
 {% for _background in backgrounds %}
-<div class='d-flex flex-column justify-content-center flex-grow-1 {{ _background }}'>
-  {% for _hierarchy in hierarchyList %}
-    <div class='row'>
-      <div class='flex-grow-1'>
-        {% include '@bf-components/button/twig/index.twig' with {
-          label: label|default(_hierarchy),
-          hierarchy: hierarchy|default(_hierarchy),
-        } %}
+  <div class='d-flex flex-column justify-content-center flex-grow-1 {{ _background }}'>
+    {% for _hierarchy in hierarchyList %}
+      <div class='row'>
+        <div class='flex-grow-1'>
+          {% include '@bf-components/button/twig/index.twig' with {
+            label: label|default(_hierarchy),
+            hierarchy: hierarchy|default(_hierarchy),
+          } %}
+        </div>
+        <div class='flex-grow-1'>
+          {% include '@bf-components/button/twig/index.twig' with {
+            label: label|default(_hierarchy),
+            hierarchy: hierarchy|default(_hierarchy),
+            iconName: iconName|default('placeholder'),
+          } %}
+        </div>
+        <div class='flex-grow-1'>
+          {% include '@bf-components/button/twig/index.twig' with {
+            label: label|default(_hierarchy),
+            hierarchy: hierarchy|default(_hierarchy),
+            iconName: iconName|default('placeholder'),
+            iconPosition: iconPosition|default('right'),
+          } %}
+        </div>
+        <div class='flex-grow-1'>
+          {% include '@bf-components/button/twig/index.twig' with {
+            label: label|default(_hierarchy),
+            hierarchy: hierarchy|default(_hierarchy),
+            isDisabled: isDisabled|default(true),
+          } %}
+        </div>
+        <div class='flex-grow-1'>
+          {% include '@bf-components/button/twig/index.twig' with {
+            label: label|default(_hierarchy),
+            hierarchy: hierarchy|default(_hierarchy),
+            isLoading: isLoading|default(true),
+          } %}
+        </div>
       </div>
-      <div class='flex-grow-1'>
-        {% include '@bf-components/button/twig/index.twig' with {
-          label: label|default(_hierarchy),
-          hierarchy: hierarchy|default(_hierarchy),
-          iconName: iconName|default('placeholder'),
-        } %}
-      </div>
-      <div class='flex-grow-1'>
-        {% include '@bf-components/button/twig/index.twig' with {
-          label: label|default(_hierarchy),
-          hierarchy: hierarchy|default(_hierarchy),
-          iconName: iconName|default('placeholder'),
-          iconPosition: iconPosition|default('right'),
-        } %}
-      </div>
-      <div class='flex-grow-1'>
-        {% include '@bf-components/button/twig/index.twig' with {
-          label: label|default(_hierarchy),
-          hierarchy: hierarchy|default(_hierarchy),
-          isDisabled: isDisabled|default(true),
-        } %}
-      </div>
-      <div class='flex-grow-1'>
-        {% include '@bf-components/button/twig/index.twig' with {
-          label: label|default(_hierarchy),
-          hierarchy: hierarchy|default(_hierarchy),
-          isLoading: isLoading|default(true),
-        } %}
-      </div>
-    </div>
-  {% endfor %}
-</div>
+    {% endfor %}
+  </div>
 {% endfor %}
 
 {% if isLoading|json_parse|default(false) %}
