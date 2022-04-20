@@ -1,0 +1,49 @@
+{# REMINDER : By default the close button is present unless hasCloseButton is explicitly false #}
+{% set hasCloseButton = (hasCloseButton is not defined or hasCloseButton) ? true %}
+
+<div
+  class='bf-callout js-bf-callout bf-callout--{{ feedback|default('neutral') }} {{ class|default(null) }}'
+  role='{{ feedback is same as ('negative') ? 'alert' : 'status' }}'
+>
+  {% if hasCloseButton %}
+    <button type='button'
+            class='bf-callout__button-close js-bf-callout--close'
+            aria-label='X'
+    >
+        <span aria-hidden='true'>
+          {% include '@bf-components/icon/twig/index.twig' with {
+            name: 'x',
+            size: 'small',
+          } only %}
+        </span>
+    </button>
+  {% endif %}
+
+  <div class='bf-callout__inner d-flex flex-column flex-md-row align-items-md-center gap-md-4'>
+    <div class='bf-callout__content flex-1'>
+      {% if title is defined and title %}
+        <h3>{{ title }}</h3>
+      {% endif %}
+
+      {% if description is defined and description %}
+        <p class='bf-text-display-sub-medium mb-md-0'>{{ description }}</p>
+      {% endif %}
+    </div>
+
+    {% if button is defined and button is not empty %}
+      <div class='bf-callout__action align-items-lg-end '>
+        {% set button = button|merge({
+          hierarchy: button.hierarchy|default('secondary'),
+        }) %}
+
+        {% include '@bf-components/button/twig/index.twig' with button %}
+      </div>
+    {% endif %}
+  </div>
+
+  {% if block('content') is defined %}
+    {{ block('content') }}
+  {% elseif content is defined and content %}
+    {{ content|raw }}
+  {% endif %}
+</div>

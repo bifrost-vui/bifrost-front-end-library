@@ -8,7 +8,8 @@ window.bfTheme.breakpoints = {
     xl: 1920
 };
 // Bifrost Components
+require("../components/callout/js/index.js");
 require("../components/input-increment/js/index.js");
 require("../components/input-slider/js/index.js");
 require("../components/navigation-header/js/index.js");
-require("../components/slideshow/js/index.js")
+require("../components/slideshow/js/index.js");
