@@ -36,7 +36,7 @@
         {% if block('modal_header') is defined %}
           {{ block('modal_header') }}
         {% elseif modal_header is defined and modal_header %}
-          {{ modal_header }}
+          {{ modal_header|raw }}
         {% else %}
           {% block modal_header %}
             <h2 class='mb-2 w-100 h2'>{{ modalTitle|default('') }}</h2>
