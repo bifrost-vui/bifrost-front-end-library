@@ -21,20 +21,20 @@ export class ButtonComponent implements OnInit {
     @Input() isAutofocus: boolean;
     @Input() isLoading: boolean;
     @Input() hasLoading: boolean;
-    
+
     @Input() iconName: string;
     @Input() iconPosition: null | 'left' | 'right';
     /** Changing the size of the icon is not recommended. */
     @Input() iconSize: string;
-    
+
     @Input() ariaLabel: string;
     @Input() ariaControls: string;
     @Input() ariaExpanded: string;
-    
+
     @Input() dataDismiss: string;
     @Input() dataToggle: string;
     @Input() dataTarget: string;
-    
+
     @Input() isSubmit: boolean;
     @Input() formId: string;
     @Input() formAction: string;
@@ -46,5 +46,4 @@ export class ButtonComponent implements OnInit {
     ngOnInit() {
         console.log('button', this);
     }
-
 }

@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: fit-content; // In order to avoid default fullwidth on a.bf-button.
+    width: fit-content;
     min-width: fit-content;
     min-height: 2.5rem;
     padding: 0 1.5rem;
@@ -31,13 +31,11 @@
     &:hover {
         text-decoration: none;
     }
-
     &.disabled {
         pointer-events: none;
         @extend .bf-color-neutral-tertiary;
         @extend .bf-color-bg-action-disabled;
     }
-
     &--primary {
         @extend .bf-color-bg-action-primary;
 
@@ -45,7 +43,6 @@
             @extend .bf-color-bg-action-primary-hover;
         }
     }
-
     &--primary-alt {
         @extend .bf-color-bg-action-secondary;
 
@@ -55,12 +52,10 @@
                 color: var(--bf-color-bg-ground);
             }
         }
-
         &:hover {
             @extend .bf-color-bg-action-secondary-hover;
         }
     }
-
     &--secondary {
         background-color: transparent;
         border: 1px solid var(--bf-color-stroke-secondary);
@@ -69,28 +64,23 @@
         &:hover {
             border-color: var(--bf-color-neutral-primary);
         }
-
         &.disabled {
             background-color: transparent;
         }
     }
-
     &--tertiary {
         background-color: transparent;
 
         &:hover {
             @extend .bf-color-bg-action-no-bg-hover;
         }
-
         &.disabled {
             background-color: transparent;
         }
     }
-
     &--fullwidth {
-        @extend .w-100;
+        width: 100%;
     }
-
     &.loading {
         pointer-events: none;
 
@@ -122,14 +112,12 @@
             }
         }
     }
-
     &__label {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: .5rem;
     }
-
     &__icon--right {
         order: 2;
     }
@@ -140,9 +128,7 @@
     to      { transform: scale(1); opacity: 1; }
 }
 
-
-// Apply Dark color on reversed Primary and Primary-alt.
-// TODO: Find a more elegant wy to give access to initial css variables in reversed.
+/* TODO: Find a more elegant wy to give access to initial css variables in reversed. #DS-338 */
 
 .reversed .bf-button,
 .reversed.bf-button {
