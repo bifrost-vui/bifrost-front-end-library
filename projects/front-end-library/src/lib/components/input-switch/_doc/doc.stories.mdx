@@ -1,5 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import { withDesign } from 'storybook-addon-designs'
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { InputSwitchComponent } from '../angular/input-switch.component';
@@ -24,7 +24,7 @@ import { InputSwitchComponent } from '../angular/input-switch.component';
                 type: 'select',
                 options: [ null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight' ]
             },
-            description: 'preview the component on selected background'
+            description: 'Preview component on selected background.'
         },
         id: { type: { required: true }}
     }}
@@ -34,7 +34,7 @@ import { InputSwitchComponent } from '../angular/input-switch.component';
 
 ## Component API
 
-<Props of={InputSwitchComponent} />
+<ArgsTable of={InputSwitchComponent} />
 
 ## Drupal
 
@@ -46,28 +46,12 @@ export const Drupal = (args) => ({
 <Canvas withSource='none' style={{ height: '400px' }}
 >
     <Story
-        name='Drupal - Input Switch with label as string'
+        name='Drupal'
         args={{
             elementPath: 'components/input-switch/_doc/template.drupal',
             id: 'inputId',
             ariaLabel: 'ariaLabel',
-            label:  'Lorem ipsum dolor sit amet'
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
-
-
-<Canvas withSource='none' style={{ height: '400px' }}
->
-    <Story
-        name='Drupal - Input Switch with label as object'
-        args={{
-            elementPath: 'components/input-switch/_doc/template.drupal',
-            id: 'inputId',
-            ariaLabel: 'ariaLabel',
-            label:  {
+            label: {
                 text: 'Lorem ipsum dolor sit amet',
                 position: 'right',
                 class: 'text-uppercase font-weight-bold'
