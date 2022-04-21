@@ -12,13 +12,16 @@ interface IImage {
 })
 export class BasicContentComponent implements OnInit {
     constructor() {}
-    /** `image: { src: "", isFill: true, icon: { name: "placeholder", position: "bottom-left" } }`  */
+
+    /** `image: { src: "", isFill: true, icon: { name: "placeholder", position: "bottom-left" } }`
+     * `image.icon.position: "bottom-left" | "bottom-right" | "top-left" | "top-right" | "center"`
+     */
     @Input() image                  : IImage;
     @Input() upperTitle             : string;
     @Input() title                  : string;
     @Input() titleTag               : string;
     @Input() subtitle               : string;
-    /** Not work with image. */
+    /** textAlign will not work with image. */
     @Input() textAlign              : 'left' | 'center';
     @Input() description            : string;
     @Input() buttons                : object[];
