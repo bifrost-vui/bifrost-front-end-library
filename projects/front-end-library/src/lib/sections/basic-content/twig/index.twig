@@ -1,5 +1,5 @@
 {% set titleTag = titleTag|default('p') %}
-{% set imagePosition = imagePosition|default('left') %}
+{% set imagePosition = imagePosition|default('right') %}
 {% set hasIcon = image is defined and image.icon %}
 {% set iconPosition = hasIcon ? image.icon.position %}
 
@@ -10,7 +10,7 @@
   {{ reversed ? 'reversed' }}
   {{ class }}'
 >
-  <div class='container-fluid d-flex flex-column flex-md-row gap-4'>
+  <div class='container-fluid d-flex flex-column flex-md-row gap-0 gap-md-4'>
     {% if image is defined and image.src %}
       <div
         class='
@@ -22,14 +22,14 @@
         '
         style='background-image: url({{ image.src }})'
       >
-        {% if image.icon %}
+        {% if hasIcon %}
           {% set icon = image.icon|merge({ size: 'large', reversed: true, class: 'position-relative m-4' }) %}
           {% include '@bf-components/icon/twig/index.twig' with icon only %}
         {% endif %}
       </div>
     {% endif %}
 
-    <div class='bf-section-basic-content__inner d-flex flex-column justify-content-center gap-4 py-4 py-md-5'>
+    <div class='bf-section-basic-content__inner d-flex flex-column justify-content-center gap-4 py-4 pb-5 py-md-5'>
       <div>
         {% if upperTitle is defined and upperTitle %}
           <p class='bf-text-interface-small mb-0'>
