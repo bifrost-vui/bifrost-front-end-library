@@ -21,7 +21,7 @@ export class TileKeyComponent implements OnInit {
     @Input() linkLabel          : string;
     /** Expected format: See [Icon API](/?path=/docs/components-icon--drupal-interface). */
     @Input() icon               : IIcon;
-    /** Expected format: `{ src: "my-image.png" }` */
+    /** Expected format: `{ src: "my-image.png", textColor: "light" | "dark" }` */
     @Input() backgroundImage    : IImage;
     @Input() backgroundColor    : 'ground' | 'underground' | 'highlight';
 
