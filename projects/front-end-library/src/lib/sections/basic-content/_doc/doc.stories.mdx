@@ -198,22 +198,8 @@ export const rowButtonsProps = {
         args={{
             elementPath: 'sections/basic-content/_doc/template.drupal',
             ...commonProps,
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
-
-<Canvas withSource='none'>
-    <Story
-        name='Drupal - With image isFill'
-        height='800px'
-        args={{
-            elementPath: 'sections/basic-content/_doc/template.drupal',
-            ...commonProps,
             image: {
                 src: `${window.location.origin}/images/_docs/hero-helix-reversed.png`,
-                isFill: false
             }
         }}
     >
@@ -223,12 +209,29 @@ export const rowButtonsProps = {
 
 <Canvas withSource='none'>
     <Story
-        name='Drupal - With imagePosition left'
+        name='Drupal - With image isFill true'
         height='800px'
         args={{
             elementPath: 'sections/basic-content/_doc/template.drupal',
             ...commonProps,
-            imagePosition: 'left'
+            image: {
+                src: `${window.location.origin}/images/_docs/hero-helix-reversed.png`,
+                isFill: true
+            }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With imagePosition right'
+        height='800px'
+        args={{
+            elementPath: 'sections/basic-content/_doc/template.drupal',
+            ...commonProps,
+            imagePosition: 'right'
         }}
     >
         {Drupal.bind({})}

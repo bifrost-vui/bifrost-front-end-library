@@ -1,5 +1,5 @@
 {% set titleTag = titleTag|default('p') %}
-{% set imagePosition = imagePosition|default('right') %}
+{% set imagePosition = imagePosition|default('left') %}
 {% set hasIcon = image is defined and image.icon %}
 {% set iconPosition = hasIcon ? image.icon.position %}
 
@@ -15,7 +15,7 @@
       <div
         class='
           bf-section-basic-content__visual
-          {{ imagePosition == 'left' ? 'order-0 order-md-1' }}
+          {{ imagePosition == 'right' ? 'order-0 order-md-1' }}
           {{ hasIcon ? 'bf-section-basic-content__visual--icon' }}
           {{ iconPosition ? 'bf-section-basic-content__visual--icon-' ~ iconPosition }}
           {{ image.isFill|default(false) ? '' : 'bf-section-basic-content__visual--fit' }}
