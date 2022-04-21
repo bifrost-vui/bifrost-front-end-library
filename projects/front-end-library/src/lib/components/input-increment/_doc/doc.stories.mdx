@@ -1,8 +1,9 @@
-import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Props }  from '@storybook/addon-docs';
-import { withDesign }                   from 'storybook-addon-designs'
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { InputIncrementComponent }     from '../angular/input-increment.component';
+import { moduleMetadata }                       from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import { withDesign }                           from 'storybook-addon-designs'
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { InputIncrementComponent }              from '../angular/input-increment.component';
+
 
 <Meta
     title='Components/Input Increment'
@@ -22,8 +23,7 @@ import { InputIncrementComponent }     from '../angular/input-increment.componen
         value : {
             type:  {
                 control      : { type: 'number' },
-                required     : true,
-                defaultValue : 0
+                required     : true
             }
         },
         inputId : {
@@ -36,6 +36,11 @@ import { InputIncrementComponent }     from '../angular/input-increment.componen
             type : { required: false },
             description : 'Should always be defined if a min or a max value is defined',
         },
+        isRequired : {
+            type : { required: false },
+            table: { defaultValue: { summary: true } },
+            description : 'set the input as required in the form',
+        }
     }}
 />
 
@@ -43,7 +48,7 @@ import { InputIncrementComponent }     from '../angular/input-increment.componen
 
 ## Component API
 
-<Props of={InputIncrementComponent} />
+<ArgsTable of={InputIncrementComponent} />
 
 ## Drupal
 
