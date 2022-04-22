@@ -9,30 +9,31 @@ import docJson from '../documentation.json';
 setCompodocJson(docJson);
 
 addParameters({
-    // Docs
+
+    options: {
+        storySort: {
+            order: ['*', 'UI-Kit']
+        }
+    },
+
     docs: {
         inlineStories: true,
         prepareForInline,
-        // prepareForInline: (storyFn, { args }) => {
-        //     const Story = toReact(storyFn());
-        //     return <Story {...args} />;
-        // },
-         iframeHeight: 600,
+        iframeHeight: 600,
     },
+
     layout: 'centered',
 
-    // Backgrounds
     backgrounds: {
-      default: 'Ground',
-      values: [
-        { name: 'Ground', value: '#fff' },
-        { name: 'Underground', value: '#f2f2f0' },
-        { name: 'Ground Reversed', value: '#050504' },
-        { name: 'Underground Reversed', value: '#2a2a27' },
-      ],
+        default: 'Ground',
+        values: [
+            { name: 'Ground', value: '#fff' },
+            { name: 'Underground', value: '#f2f2f0' },
+            { name: 'Ground Reversed', value: '#050504' },
+            { name: 'Underground Reversed', value: '#2a2a27' },
+        ],
     },
 
-    // Controls
     controls: {
         expanded: true,
         hideNoControlsWarning: true,
@@ -42,6 +43,7 @@ addParameters({
             date: /Date$/,
         },
     },
+
     argTypes: {
         elementPath         : { table: { disable: true } },
         iframeUrl           : { table: { disable: true } },
@@ -56,12 +58,7 @@ addParameters({
         },
     },
 
-    actions: { argTypesRegex: "^on[A-Z].*" }
-
-    // // Hide addons
-    // storySource: { disable: true },
-    // knobs: { disable: true },
-    // actions: { disable: true },
-    // design: { disable: true },
-    // 'design-assets': { disable: true },
+    actions: {
+        argTypesRegex: "^on[A-Z].*"
+    }
 });

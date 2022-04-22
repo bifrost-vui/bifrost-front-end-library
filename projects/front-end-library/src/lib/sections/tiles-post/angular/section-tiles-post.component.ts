@@ -9,8 +9,9 @@ export class SectionTilesPostComponent implements OnInit {
 
     @Input() title              : string;
     @Input() titleTag           : string;
+    /** Same API as [Tile Post Component API](/?path=/docs/components-tile-post--drupal) + `size: default | large`.*/
     @Input() tiles              : object[];
-    @Input() isFeatured         : boolean;
+    @Input() background         : 'ground' | 'underground';
 
     @Input() class              : string;
     @Input() reversed           : boolean;
