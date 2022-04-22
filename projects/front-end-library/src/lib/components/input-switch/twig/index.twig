@@ -1,4 +1,3 @@
-<div class='bf-input-switch gap-3 {{ (isDisabled is defined and isDisabled) ? 'disabled' }} {{ class|default('') }}'>
   {% if label is defined and label is not empty %}
     {% if label is iterable %}
       {% set labelText = label.text|default(null) %}
@@ -6,23 +5,21 @@
     {% else %}
       {% set labelText = label %}
     {% endif %}
-
-    <label
-      class='bf-input-switch__label bf-text-display-sub-medium {{ labelPosition|default(null) == 'right' ? 'bf-input-switch__label--right' }} {{ label.class|default(null) }}'
-      for='{{ id }}'
-    >
-      {{ labelText }}
-    </label>
   {% endif %}
 
-  <input
-    class='bf-switch'
-    id='{{ id }}'
-    name='{{ name|default(null) }}'
-    type='checkbox'
-    {% if isDisabled is defined and isDisabled %}disabled aria-disabled='true'{% endif %}
-    {% if isChecked is defined and isChecked %}checked aria-checked='true'{% endif %}
-    {% if ariaLabel is defined and ariaLabel %}aria-label='{{ ariaLabel }}'{% endif %}
-    {{ extraAttribute|default(null) }}
-   />
-</div>
+    <label
+      class='bf-input-switch gap-3 {{ (isDisabled is defined and isDisabled) ? 'disabled' }} {{ class|default('') }}'
+      for='{{ id }}'
+    >
+      <span class='bf-text-display-sub-medium  bf-input-switch__label {{ labelPosition|default(null) == 'right' ? 'bf-input-switch__label--right' }} {{ label.class|default(null) }}'>{{ labelText }}</span>
+      <input
+        id='{{ id }}'
+        name='{{ name }}'
+        type='checkbox'
+        {% if isDisabled is defined and isDisabled %}disabled aria-disabled='true'{% endif %}
+        {% if isChecked is defined and isChecked %}checked{% endif %}
+        {% if ariaLabel is defined and ariaLabel %}aria-label='{{ ariaLabel }}'{% endif %}
+        {{ extraAttribute|default(null) }}
+      />
+      <span class='bf-switch'></span>
+    </label>
