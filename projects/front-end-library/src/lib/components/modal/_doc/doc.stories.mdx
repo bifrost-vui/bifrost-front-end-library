@@ -30,12 +30,16 @@ import { ModalComponent } from '../angular/modal.component';
             table: { category: 'Deprecated Inputs'}
         },
         modalSize: {
-            control: { type: 'select' },
+            control: {
+                type: 'select',
+                options: ['sm', 'md' , 'lg']
+            },
             table: {
                 defaultValue: { summary: 'lg' },
             }
         },
         modalTheme: {
+            control: { type: 'text' },
             table: {
                 defaultValue: { summary: 'light' },
             }
@@ -69,6 +73,21 @@ export const footerDemo =`<div class='d-flex'><a href='https://www.example.com' 
 
 <Canvas withSource='none' style={{ height: '800px' }}>
     <Story
+        name='Drupal'
+        args={{
+            elementPath: 'components/modal/_doc/template.drupal',
+            modalTitle: 'Title Lorem ipsum dolor sit amet',
+            modalSubtitle: 'Subtitle Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+            modal_body_subcontainer: contentDemo,
+            modal_footer: footerDemo
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '800px' }}>
+    <Story
         name='Drupal - scrollable content'
         args={{
             elementPath: 'components/modal/_doc/template.drupal',
@@ -82,20 +101,6 @@ export const footerDemo =`<div class='d-flex'><a href='https://www.example.com' 
     </Story>
 </Canvas>
 
-<Canvas withSource='none' style={{ height: '800px' }}>
-    <Story
-        name='Drupal'
-        args={{
-            elementPath: 'components/modal/_doc/template.drupal',
-            modalTitle: 'Title Lorem ipsum dolor sit amet',
-            modalSubtitle: 'Subtitle Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-            modal_body_subcontainer: contentDemo,
-            modal_footer: footerDemo
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
 
 ## Drupal implementation examples
 
