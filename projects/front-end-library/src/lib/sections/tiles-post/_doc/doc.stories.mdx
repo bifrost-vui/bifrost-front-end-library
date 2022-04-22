@@ -15,17 +15,17 @@ import { commonProps as tilePostProps }         from '../../../components/tile-p
     ]}
     parameters={{
         design: {
-            type    : 'figma',
-            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=2806%3A9236',
-            disable : false
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=9210%3A11314',
+            disable: false
         }
     }}
     argTypes={{
         titleTag: {
             table: { defaultValue: { summary: 'h1' } }
         },
-        isFeatured: {
-            table: { defaultValue: { summary: false } }
+        background: {
+            table: { defaultValue: { summary: 'ground' } }
         },
         reversed: {
             table: { defaultValue: { summary: false } }
@@ -38,6 +38,9 @@ import { commonProps as tilePostProps }         from '../../../components/tile-p
 
 <br/>
 
+## Image Guidelines
+- **Size:** Image displayed will fit in available width.
+- **Ratio:** Image displayed will respect the ratio of the original image source.
 
 
 ## Component API
@@ -50,9 +53,9 @@ import { commonProps as tilePostProps }         from '../../../components/tile-p
 
 ```jsx
 {% include '@bf-sections/tiles-post/twig/index.twig' with {
-    title           : 'We are here to help you',
-    titleTag        : 'h1',
-    tiles           : [
+    title: 'We are here to help you',
+    titleTag: 'h1',
+    tiles: [
         {
             title: 'Visit the Community',
             description: 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
@@ -63,16 +66,16 @@ import { commonProps as tilePostProps }         from '../../../components/tile-p
             image: {
                 src: '/images/_docs/hero-helix-reversed.png',
                 alt: 'Image of an iPhone 13',
-                fit: 'fill',
                 backgroundColor: '#ff00ff'
             },
+            isFeatured: false,
+            size: 'large',
             class: ''
         },
     ],
-    class           : ''
+    class: ''
 } only %}
 ```
-
 
 
 ## Drupal
@@ -82,25 +85,30 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+export const tilePostPropsAndSize = {
+    ...tilePostProps,
+    size: 'default'
+};
+
 export const commonProps = {
-    title           : 'We are here to help you',
-    titleTag        : 'h1',
-    tiles           : [
+    title: 'We are here to help you',
+    titleTag: 'h1',
+    tiles: [
         {
-            ...tilePostProps,
+            ...tilePostPropsAndSize,
             class: ''
         },
         {
-            ...tilePostProps,
+            ...tilePostPropsAndSize,
             description: 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem. A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
             class: ''
         },
         {
-            ...tilePostProps,
+            ...tilePostPropsAndSize,
             class: ''
         }
     ],
-    class           : ''
+    class: ''
 }
 
 <Canvas withSource='none'>
@@ -118,19 +126,121 @@ export const commonProps = {
 
 <Canvas withSource='none'>
     <Story
-        name='Drupal - With 2 tiles only'
+        name='Drupal - With tiles isFeatured'
         height='600px'
         args={{
             elementPath: 'sections/tiles-post/_doc/template.drupal',
             ...commonProps,
             tiles: [
                 {
-                    ...tilePostProps,
+                    ...tilePostPropsAndSize,
+                    isFeatured: true,
                     class: ''
                 },
                 {
-                    ...tilePostProps,
+                    ...tilePostPropsAndSize,
+                    isFeatured: true,
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    isFeatured: true,
+                    class: ''
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With tile size large'
+        height='600px'
+        args={{
+            elementPath: 'sections/tiles-post/_doc/template.drupal',
+            ...commonProps,
+            tiles: [
+                {
+                    ...tilePostPropsAndSize,
+                    size: 'large',
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    size: 'large',
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    size: 'large',
+                    class: ''
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With 2 tiles'
+        height='600px'
+        args={{
+            elementPath: 'sections/tiles-post/_doc/template.drupal',
+            ...commonProps,
+            tiles: [
+                {
+                    ...tilePostPropsAndSize,
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
                     description: 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem. A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
+                    class: ''
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Usage example'
+        height='600px'
+        args={{
+            elementPath: 'sections/tiles-post/_doc/template.drupal',
+            ...commonProps,
+            tiles: [
+                {
+                    ...tilePostPropsAndSize,
+                    size: 'large',
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    size: 'large',
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
                     class: ''
                 }
             ]
@@ -143,4 +253,4 @@ export const commonProps = {
 
 ## Design Guidelines
 
-<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=2806%3A9236' frameBorder='0' allowFullScreen></iframe>
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D9210%253A11314' frameBorder='0' allowFullScreen></iframe>
