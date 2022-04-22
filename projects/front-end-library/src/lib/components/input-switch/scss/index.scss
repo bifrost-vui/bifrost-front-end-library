@@ -12,8 +12,11 @@
         margin: var(--bf-spacer-2) 0;
         cursor: pointer;
         line-height: 1em;
+        margin-right: var(--bf-spacer-3);
         &--right {
-            order: 2;
+            order: 3;
+            margin-right: 0;
+            margin-left: var(--bf-spacer-3);
         }
     }
     &.disabled {
@@ -21,41 +24,39 @@
             pointer-events: none;
         }
     }
-}
-
-/* *****************************************************************************
-*
-*  bf-switch utilitary class
-*
-* ***************************************************************************** */
-.bf-switch {
-    position: relative;
-    flex: 0 0 3rem;
-    appearance: none;
-    width: 3rem;
-    height: 1rem;
-    padding: 0;
-    margin: .25rem 0;
-    border: 1px solid var(--bf-color-stroke-primary);
-    border-radius: 1rem;
-    background-color: var(--bf-color-bg-underground);
-    cursor: pointer;
-
-    &::after {
+    input {
         position: absolute;
-        left: -1px;
-        top: 50%;
-        display: block;
-        height: 1.5rem;
-        width: 1.5rem;
-        content: '';
-        border-radius: 50%;
-        background-color: var(--bf-color-bg-ground);
-        border: 1px solid var(--bf-color-stroke-primary);
-        transform: translate(0, -50%);
-        @include transitions(left .2s ease-in-out);
+        top: -100vh
     }
-    &:checked {
+    .bf-input-switch__control {
+        position: relative;
+        flex: 0 0 3rem;
+        display: inline-block;
+        width: 3rem;
+        height: 1rem;
+        padding: 0;
+        margin: .25rem 0;
+        border: 1px solid var(--bf-color-stroke-primary);
+        border-radius: 1rem;
+        background-color: var(--bf-color-bg-underground);
+        cursor: pointer;
+
+        &::after {
+            position: absolute;
+            left: -1px;
+            top: 50%;
+            display: block;
+            height: 1.5rem;
+            width: 1.5rem;
+            content: '';
+            border-radius: 50%;
+            background-color: var(--bf-color-bg-ground);
+            border: 1px solid var(--bf-color-stroke-primary);
+            transform: translate(0, -50%);
+            @include transitions(left .2s ease-in-out);
+        }
+    }
+    input:checked + .bf-input-switch__control {
         border-color: var(--bf-color-bg-action-primary);
         background-color: var(--bf-color-bg-action-primary-hover);
 
@@ -65,7 +66,7 @@
             background-color: var(--bf-color-bg-action-primary);
         }
     }
-    &:disabled {
+    input:disabled + .bf-input-switch__control {
         border-color: var(--bf-color-stroke-secondary);
         background-color: var(--bf-color-bg-underground);
         cursor: not-allowed;
@@ -74,11 +75,15 @@
             border-color: var(--bf-color-stroke-secondary);
             background-color: var(--bf-color-bg-ground);
         }
-        &:checked {
-            background-color: var(--bf-color-neutral-tertiary);
-            &:after {
-                background-color: var(--bf-color-bg-underground);
-            }
+    }
+    input:disabled:checked + .bf-input-switch__control {
+        background-color: var(--bf-color-neutral-tertiary);
+        &:after {
+            background-color: var(--bf-color-bg-underground);
         }
     }
+    input:focus-visible + .bf-input-switch__control {
+        outline: 3px solid #81C2FF50;
+    }
+
 }
