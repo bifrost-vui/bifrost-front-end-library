@@ -1,6 +1,13 @@
+{# set booleans to false if the are undefined #}
+{% set reversed = reversed|default(false) %}
+{% set fullWidth = fullWidth|default(false) %}
+{% set isLoading = isLoading|default(false) %}
+{% set hasLoading = hasLoading|default(false) %}
+{% set autofocus = autofocus|default(false) %}
 {% set isSubmit = isSubmit|default(false) %}
 {% set isDisabled = isDisabled|default(false) %}
 {% set formNoValidate = formNoValidate|default(false) %}
+
 
 {# conditions that turn a button into a submit button #}
 {% if isSubmit or formNoValidate or
@@ -24,14 +31,7 @@
     {% else %}
         type='{{ isSubmitBtn ? 'submit' : 'button' }}'
     {% endif %}
-    class='
-        bf-button
-        bf-button--{{ hierarchy|default('secondary') }}
-        {% if reversed|default(false) %}reversed{% endif %}
-        {% if fullWidth|default(false) %}bf-button--fullwidth{% endif %}
-        {% if isDisabled %}disabled{% endif %}
-        {% if isLoading|default(false) %}loading{% endif %}
-        {{ class|default('') }}'
+    class='bf-button bf-button--{{ hierarchy|default('secondary') }} {{ reversed ? 'reversed' }} {{ fullWidth ? 'bf-button--fullwidth' }} {{ isDisabled ? 'disabled' }} {{ isLoading ? 'loading' }} {{ class|default('') }}'
     {% if isDisabled %}disabled='disabled' aria-disabled='true' {% endif %}
     {% if dataDismiss|default(null) %}data-dismiss='{{ dataDismiss}}'{% endif %}
     {% if dataToggle|default(null) %}data-toggle='{{ dataToggle }}'{% endif %}
@@ -41,13 +41,13 @@
     {% if id|default(null) %}id='{{ id }}'{% endif %}
 
     {% if isSubmitBtn %}
-      {{ autofocus|default(false) ? 'autofocus' }}
+      {{ autofocus ? 'autofocus' }}
       {% if formId|default(null) %}form='{{ formId }}' {% endif %}
       {% if formAction|default(null) %}formaction='{{ formAction }}'{% endif %}
       {% if formEncryptionType|default(null) %}  formenctype='{{ formEncryptionType }}' {% endif %}
       {% if formTarget|default(null) %}formtarget='{{ formTarget }}'{% endif %}
       {% if formMethod|default(null) %}formmethod='{{ formMethod }}'{% endif %}
-      {% if formNoValidate|default(false) %}formnovalidate{% endif %}
+      {{ formNoValidate ? 'formnovalidate' }}
     {% endif %}
 
     {% if label is defined and label %}data-title='{{ label }}'{% endif %}
@@ -69,7 +69,7 @@
         {% endif %}
     </span>
 
-    {% if isLoading|default(false) or hasLoading|default(false) %}
+    {% if isLoading or hasLoading %}
         <div class='bf-button__loading' role='decoration'>
             <i></i>
             <i></i>

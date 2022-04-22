@@ -1,8 +1,9 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { ButtonComponent }                      from '../angular/button.component';
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs';
+import interfaceIcons from '../../../../../../../public/icons/list/interfaces.json';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { ButtonComponent } from '../angular/button.component';
 
 <Meta
     title='Components/Button'
@@ -77,7 +78,10 @@ import { ButtonComponent }                      from '../angular/button.componen
             },
             control: { type: 'select' }
         },
-        iconSize: {table: { subcategory: 'Icon' }},
+        iconSize: { table: {
+            subcategory: 'Icon',
+            defaultValue: { summary: 'small' }
+        }},
         id: { table: { subcategory: 'Others' }},
         isAutofocus: { table: {
                 defaultValue: { summary: false },
