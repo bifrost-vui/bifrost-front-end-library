@@ -1,9 +1,9 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { withDesign }                           from 'storybook-addon-designs'
-import { linkFields, links }                    from './data';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { FooterComponent }                      from '../angular/footer.component';
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs'
+import { linkFields, links } from './data';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { FooterComponent } from '../angular/footer.component';
 
 
 <Meta
@@ -22,21 +22,21 @@ import { FooterComponent }                      from '../angular/footer.componen
     }}
     argTypes={{
         theme: {
-            defaultValue: 'videotron',
+            table: { defaultValue: { summary: 'videotron' }},
             control: {
                 type: 'select',
                 options: ['videotron', 'business'],
             }
         },
         langcode: {
-            defaultValue: 'EN',
+            table: { defaultValue: { summary: 'en' }},
             control: {
                 type: 'select',
                 options: ['EN', 'FR'],
             }
         },
         reversed: {
-            defaultValue: false,
+            table: { defaultValue: { summary: 'false' }},
         }
     }}
 />
@@ -117,12 +117,12 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath         : 'components/navigation-footer/_doc/template.drupal',
-            logo                : {
-                name                : 'business',
-                href                : '/',
+            elementPath: 'components/navigation-footer/_doc/template.drupal',
+            logo: {
+                name: 'business',
+                href: '/',
             },
-            hasBackToTopLink    : true,
+            hasBackToTopLink : true,
             linkFields,
             links,
         }}
@@ -137,13 +137,13 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - Reduced'
         args={{
-            elementPath         : 'components/navigation-footer/_doc/template.drupal',
-            logo                : {
-                name                : 'business',
-                href                : '/',
+            elementPath: 'components/navigation-footer/_doc/template.drupal',
+            logo: {
+                name: 'business',
+                href: '/',
             },
-            hasBackToTopLink    : true,
-            isReduced           : true,
+            hasBackToTopLink: true,
+            isReduced: true,
             linkFields,
             links,
         }}
