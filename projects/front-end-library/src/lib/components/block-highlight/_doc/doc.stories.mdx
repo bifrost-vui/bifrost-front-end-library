@@ -1,6 +1,5 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
-
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { BlockHighlightComponent }              from '../angular/block-highlight.component';
 
@@ -21,6 +20,9 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
                 type: 'select',
                 defaultValue: 'ground'
             }
+        },
+        isVisualBackgroundFill: {
+            table: { defaultValue: { summary: true } },
         }
     }}
 />
@@ -33,7 +35,7 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
 
 ## Component API
 
-<Props of={BlockHighlightComponent} />
+<ArgsTable of={BlockHighlightComponent} />
 
 
 
@@ -100,7 +102,8 @@ export const commonProps = {
         height='800px'
         args={{
             ...commonProps,
-            elementPath : 'components/block-highlight/_doc/usage-example.drupal',
+            elementPath : 'components/block-highlight/_doc/template-usage-example.drupal',
+            image       : null
         }}
     >
         {Drupal.bind({})}

@@ -22,13 +22,18 @@
     /**************************************************************************/
     /* Fix a padding around Docs Tab > iframe > body.sb-show-main
     */
-    
+
     body.sb-show-main {
         padding: 0 !important;
     }
 
+    body.sb-show-main.sb-main-centered {
+        flex-direction: column;
+    }
+
     body.sb-show-main.sb-main-centered #root {
         padding: 0 !important;
+        margin: inherit;
     }
 
     /**************************************************************************/
@@ -36,7 +41,6 @@
     */
     #root {
         width: 100%;
-        display: flex;
     }
     #root storybook-dynamic-app-root {
         width: 100%;
@@ -65,7 +69,7 @@
     {# .sbdocs h1 {
         font-size: 3rem;
     }
-    
+
     .sbdocs h1 + p {
         max-width: none;
         font-size: 1.4rem;
@@ -104,12 +108,12 @@
         max-width: none;
         margin: 0 !important;
     }
-    
+
     .sbdocs a {
         font-size: inherit;
         font-weight: 500;
     }
-    
+
     .sbdocs ul {
         margin: .5rem 0;
     }

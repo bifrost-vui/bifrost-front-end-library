@@ -1,0 +1,110 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import { withDesign }                           from 'storybook-addon-designs'
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { TilePostComponent }                    from '../angular/tile-post.component';
+
+
+<Meta
+    title='Components/Tile Post'
+    component={TilePostComponent}
+    decorators={[
+        moduleMetadata({ declarations: [TilePostComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=2806%3A9236',
+            disable: false
+        }
+    }}
+    argTypes={{
+        titleTag: {
+            table: { defaultValue: { summary: 'p' } }
+        },
+        isFeatured: {
+            table: { defaultValue: { summary: false } }
+        }
+    }}
+/>
+
+
+# Tile Post
+
+<br/>
+
+## Image Guidelines
+- **Size:** Image displayed will fit in available width.
+- **Ratio:** Image displayed will respect the ratio of the original image source.
+
+
+## Component API
+
+<ArgsTable of={TilePostComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/tile-post/twig/index.twig' with {
+    title: 'Visit the Community',
+    description: 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
+    link: {
+        label: 'Ask a question',
+        href: 'https://example.com'
+    },
+    image: {
+        src: '/images/_docs/hero-helix-reversed.png',
+        alt: 'Image of an iPhone 13',
+        backgroundColor: '#ff00ff'
+    },
+    class: 'm-6'
+} only %}
+```
+
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+export const commonProps = {
+    title: 'Visit the Community',
+    titleTag: 'h1',
+    description: '<b>A specific question?</b> Post it on our forum and see how experts and other users have solved a similar problem.',
+    link: {
+        label: 'Ask a question',
+        href: 'https://example.com'
+    },
+    image: {
+        src: 'https://videotron.com/sites/default/files/styles/cropped_small/public/image/apphelix-vrai_800x400.jpg?itok=_jOQ1ipy',
+        alt: 'Image of an iPhone 13',
+        backgroundColor: 'grey'
+    },
+    isFeatured: false,
+    class: 'm-6'
+}
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        height='600px'
+        args={{
+            elementPath: 'components/tile-post/_doc/template.drupal',
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+
+## Design Guidelines
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=2806%3A9236' frameBorder='0' allowFullScreen></iframe>
