@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  * API is the same between **Angular** and **Drupal**.
  *
  */
- 
+
 @Component({
     selector: "bf-button",
     templateUrl: './button.component.html',
@@ -23,6 +23,8 @@ export class ButtonComponent implements OnInit {
     @Input() hasLoading     : boolean;
     @Input() isLoading      : boolean;
     @Input() fullWidth      : boolean;
+    /** This option is only available for tertiary buttons */
+    @Input() hasNoPadding   : boolean;
 
     @Input() iconName       : string;
     /** This is not recommended to change the size of the icon. */
@@ -41,5 +43,5 @@ export class ButtonComponent implements OnInit {
     ngOnInit() {
         console.log('button', this);
     }
-    
+
 }

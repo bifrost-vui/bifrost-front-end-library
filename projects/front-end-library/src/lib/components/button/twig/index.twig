@@ -1,3 +1,4 @@
+{% set hasNoPadding = hasNoPadding|default(false) %}
 {% set isLink = (href is defined and href is not empty) %}
 
 <{{ isLink ? 'a' : 'button' }}
@@ -12,6 +13,7 @@
         {% if reversed is same as (true) %}reversed{% endif %}
         {% if fullWidth is same as (true) %}bf-button--fullwidth{% endif %}
         {% if isDisabled is same as (true) %}disabled{% endif %}
+        {% if hasNoPadding and hierarchy is same as ('tertiary') %}noPadding{% endif %}
         {% if isLoading is same as (true) %}loading{% endif %}
         {{ class|default('') }}'
     {% if isDisabled is same as (true) %}disabled='disabled'{% endif %}
