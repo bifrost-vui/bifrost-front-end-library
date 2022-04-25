@@ -41,7 +41,7 @@ import { TileKeyComponent }                     from '../angular/tile-key.compon
     href: 'https://example.com',
     title: 'Television',
     description: 'Find all your entertainment in one place.',
-    linkLabel: 'Mode details',
+    linkLabel: 'More details',
     icon: {
         name: 'television',
         color: 'neutral'
@@ -66,10 +66,10 @@ export const commonProps = {
     href: 'https://example.com',
     title: 'Television',
     description: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod.',
-    linkLabel: 'Mode details',
+    linkLabel: 'More details',
     icon: 'television',
     isClickable: true,
-    class: '',
+    class: 'm-7',
 }
 
 <Canvas withSource='none'>
@@ -78,6 +78,19 @@ export const commonProps = {
         args={{
             elementPath: 'components/tile-key/_doc/template.drupal',
             ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With isClickable false'
+        args={{
+            elementPath: 'components/tile-key/_doc/template.drupal',
+            ...commonProps,
+            isClickable: false,
         }}
     >
         {Drupal.bind({})}
