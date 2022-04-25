@@ -7,8 +7,9 @@
       <input
         {% if inputId is defined and inputId %}id='{{ inputId }}'{% endif %}
         class='bf-input__control {{ hasAdornment ? 'pr-6' }}'
-        value="{{ value }}"
-        placeholder="{{ placeholder }}"
+        value='{{ value }}'
+        placeholder='{{ placeholder }}'
+        {{ isRequired|default(false) ? 'required' }}
         {{ isDisabled|default(false) or isReadOnly|default(false) ? 'disabled' }}
         {{ inputExtraAttribute|default(NULL) }}
       />

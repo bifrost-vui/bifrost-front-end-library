@@ -7,21 +7,24 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InputTextComponent implements OnInit {
     constructor() {}
 
-    @Input() inputId                : string;
-    @Input() inputExtraAttribute    : string;
+    @Input() value                  : string;
+    @Input() placeholder            : string;
     @Input() label                  : string;
     /** See [Button Icon](?path=/docs/components-button-icon--drupal) component API. */
     @Input() labelButtonIcon        : object;
     @Input() description            : string;
-    @Input() value                  : string;
-    @Input() placeholder            : string;
     /** HTML string. 3 visible characters maximum. */
     @Input() adornment              : string;
     @Input() helperText             : string;
     @Input() errorMessage           : string;
+    @Input() isRequired             : boolean;
+    @Input() isAutofocus            : boolean;
     @Input() isInvalid              : boolean;
     @Input() isDisabled             : boolean;
     @Input() isReadOnly             : boolean;
+    @Input() inputId                : string;
+    @Input() inputName              : string;
+    @Input() inputExtraAttribute    : string;
 
     @Input() reversed               : boolean;
     @Input() class                  : string;
