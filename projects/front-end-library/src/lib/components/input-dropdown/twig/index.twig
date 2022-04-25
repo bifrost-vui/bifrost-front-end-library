@@ -2,25 +2,9 @@
 
 {% extends '@bf-components/input/twig/index.twig' %}
   {% block inputContent %}
-    <div class='position-relative'>
-      <select {% if inputId is defined and inputId %}id='{{ inputId }}'{% endif %} class='bf-input__control pr-6' {{ isDisabled|default(false) or isReadOnly|default(false) ? 'disabled' }} {{ inputExtraAttribute|default(NULL) }}>
-        {% if placeholder is defined and placeholder %}
-          <option value='' disabled selected>
-            {{ placeholder|default('') }}
-          </option>
-        {% endif %}
-
-        {% for option in options %}
-          <option value='{{ option.value }}' {% if option.isSelected|default(false) %}selected{% endif %}>
-            {{ option.label }}
-          </option>
-        {% endfor %}
-      </select>
-      <div class='bf-input__adornment'>
-        {% include '@bf-components/icon/twig/index.twig' with {
-          name  : icon|default('chevron-down'),
-          size  : 'small'
-        } only %}
-      </div>
-    </div>
+    {% if isNative is defined and isNative == false %}
+      {% include '@bf-components/input-dropdown/twig/_default.twig' %}
+    {% else %}
+      {% include '@bf-components/input-dropdown/twig/_native.twig' %}
+    {% endif %}
   {% endblock %}

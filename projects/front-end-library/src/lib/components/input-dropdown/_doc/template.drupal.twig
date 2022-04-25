@@ -1,9 +1,11 @@
-{% set options          = options|json_parse %}
-{% set isInvalid        = isInvalid|json_parse %}
-{% set isDisabled       = isDisabled|json_parse %}
-{% set isReadOnly       = isReadOnly|json_parse %}
-{% set labelButtonIcon  = labelButtonIcon|json_parse %}
-{% set reversed         = reversed|json_parse %}
+{% set options = options|json_parse %}
+{% set isRequired = isRequired|json_parse %}
+{% set isInvalid = isInvalid|json_parse %}
+{% set isDisabled = isDisabled|json_parse %}
+{% set isReadOnly = isReadOnly|json_parse %}
+{% set labelButtonIcon = labelButtonIcon|json_parse %}
+{% set isNative = isNative|json_parse %}
+{% set reversed = reversed|json_parse %}
 
 
 {% set variants = [
@@ -38,7 +40,7 @@
 <div class='d-flex flex-column' style='min-height: 100vh'>
   {% for variant in variants %}
     <div class='d-flex flex-column align-items-center {{ variant.backgroundClass }}'>
-      {% set variantProps = variant.props|merge({ 'id': id|default(loop.index) }) %}
+      {% set variantProps = variant.props|merge({ 'inputId': inputId ~ loop.index }) %}
       {% include '@bf-components/input-dropdown/twig/index.twig' with variantProps %}
     </div>
   {% endfor %}

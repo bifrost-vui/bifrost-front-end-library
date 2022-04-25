@@ -1,0 +1,29 @@
+<div class='position-relative'>
+  <select
+    {% if inputId|default(null) %}id='{{ inputId }}'{% endif %}
+    class='bf-input__control pr-6'
+    {% if inputName|default(null) %}name={{ inputName }}{% endif %}
+    {{ isRequired|default(false) ? 'required' }}
+    {{ isAutofocus|default(false) ? 'autofocus' }}
+    {{ isDisabled|default(false) or isReadOnly|default(false) ? 'disabled' }}
+    {{ inputExtraAttribute|default(NULL) }}
+  >
+    {% if placeholder is defined and placeholder %}
+      <option value='' disabled selected>
+        {{ placeholder|default('') }}
+      </option>
+    {% endif %}
+
+    {% for option in options %}
+      <option value='{{ option.value }}' {% if value is defined and value is not empty and value == option.value %}selected{% endif %}>
+        {{ option.label }}
+      </option>
+    {% endfor %}
+  </select>
+  <div class='bf-input__adornment'>
+    {% include '@bf-components/icon/twig/index.twig' with {
+      name  : icon|default('chevron-down'),
+      size  : 'small'
+    } only %}
+  </div>
+</div>
