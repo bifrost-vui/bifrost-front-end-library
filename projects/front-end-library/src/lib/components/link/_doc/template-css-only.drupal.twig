@@ -2,13 +2,13 @@
 {% set isDisabled   = isDisabled|json_parse %}
 {% set reversed     = reversed|json_parse %}
 
+{% set backgroundClasses = [ '', 'bf-color-bg-ground reversed', 'bf-color-bg-highlight highlight', 'bf-color-bg-highlight highlight reversed' ] %}
 
+<div class='template-container'>
+    {% for backgroundClass in backgroundClasses %}
 
-<div class='template-container w-100vw h-100vh'>
-    {% for index in [1,2] %}
-        
-        <div class='d-flex justify-content-center align-items-start gap-5 p-5 {{ reversed|default(index == 2) ? 'reversed bf-color-bg-ground' }}'>
-            
+        <div class='d-flex justify-content-center align-items-start gap-5 p-5 {{ backgroundClass|default(null) }}'>
+
             <div class='d-flex flex-column align-items-start'>
                 <p class='small flex-grow-1'>Native</p>
 
@@ -29,7 +29,7 @@
             </div>
 
             <div class='d-flex flex-column align-items-start'>
-            
+
                 <p class='small flex-grow-1'>Primary</p>
 
                 <a
@@ -49,14 +49,14 @@
             </div>
 
         </div>
-        
+
     {% endfor %}
 </div>
 
 <style>
-    .template-container {
-        display: grid;
-        grid-template-rows: min-content;
-        height: 100vh;
-    }
+  .template-container {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(400px, 1fr));
+    height: 100vh;
+  }
 </style>
