@@ -2,13 +2,13 @@ import { moduleMetadata }                   from '@storybook/angular';
 import { Canvas, Meta, Story, ArgsTable }   from '@storybook/addon-docs';
 import { withDesign }                       from 'storybook-addon-designs'
 import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
-import { InputTextComponent }               from '../angular/input-text.component';
+import { InputPasswordComponent }           from '../angular/input-password.component';
 
 <Meta
-    title='Components/Input Text'
-    component={InputTextComponent}
+    title='Components/Input Password'
+    component={InputPasswordComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputTextComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [InputPasswordComponent, TwigContainerComponent]}),
         withDesign
     ]}
     parameters={{}}
@@ -37,26 +37,30 @@ import { InputTextComponent }               from '../angular/input-text.componen
     }}
 />
 
-<ArgsTable of={InputTextComponent} />
+<ArgsTable of={InputPasswordComponent} />
 
 ## Drupal
 
 ## Drupal implementation example
 
 ```jsx
-{% include '@bf-components/input-text/twig/index.twig' with {
-    inputId: 'inputId',
+{% include '@bf-components/input-password/twig/index.twig' with {
+    value: 'Value',
+    placeholder: 'Placeholder',
     label: 'Label',
     labelButtonIcon: {
         icon: 'question-circle-outline'
     },
     description: 'Description',
-    value: 'Value',
-    placeholder: 'Placeholder',
+    adornment: `<p class='small mb-0'>Go</p>`,
     helperText: 'Helper Text',
+    isAutofocus: false,
+    isRequired: false,
     isInvalid: false,
     isDisabled: false,
     isReadOnly: false,
+    inputId: 'inputId',
+    inputName: 'inputName',
     class: 'm-4',
 } only %}
 ```
@@ -90,8 +94,7 @@ export const commonProps = {
     <Story
         name='Drupal'
         args={{
-            elementPath: 'components/input-text/_doc/template.drupal',
-            ...commonProps
+            elementPath: 'components/input-password/_doc/template.drupal',
         }}
     >
         {Drupal.bind({})}
@@ -102,7 +105,7 @@ export const commonProps = {
     <Story
         name='Drupal - with isInvalid'
         args={{
-            elementPath: 'components/input-text/_doc/template.drupal',
+            elementPath: 'components/input-password/_doc/template.drupal',
             ...commonProps,
             isInvalid: true,
             errorMessage: 'Error message.'
@@ -116,7 +119,7 @@ export const commonProps = {
     <Story
         name='Drupal - with isDisabled'
         args={{
-            elementPath: 'components/input-text/_doc/template.drupal',
+            elementPath: 'components/input-password/_doc/template.drupal',
             ...commonProps,
             isDisabled: true,
         }}
@@ -129,7 +132,7 @@ export const commonProps = {
     <Story
         name='Drupal - with isReadOnly'
         args={{
-            elementPath: 'components/input-text/_doc/template.drupal',
+            elementPath: 'components/input-password/_doc/template.drupal',
             ...commonProps,
             isReadOnly: true,
         }}

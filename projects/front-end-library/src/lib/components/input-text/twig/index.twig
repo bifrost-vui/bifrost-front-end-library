@@ -5,18 +5,35 @@
   {% block inputContent %}
     <div class='position-relative'>
       <input
-        {% if inputId is defined and inputId %}id='{{ inputId }}'{% endif %}
-        class='bf-input__control {{ hasAdornment ? 'pr-6' }}'
-        value='{{ value }}'
-        placeholder='{{ placeholder }}'
+        {% if value|default(null) %} value='{{ value }}' {% endif %}
+        {% if placeholder|default(null) %} placeholder='{{ placeholder }}' {% endif %}
+        {% if type|default(null) %} type='{{ type }}' {% endif %}
+        {{ isAutofocus|default(false) ? 'autofocus' }}
         {{ isRequired|default(false) ? 'required' }}
         {{ isDisabled|default(false) or isReadOnly|default(false) ? 'disabled' }}
-        {{ inputExtraAttribute|default(NULL) }}
+        {{ isReadOnly|default(false) ? 'readonly' }}
+        {% if ariaLabel|default(null) %} aria-label='{{ ariaLabel|default('') }}' {% endif %}
+        {% if description|default(null) %} aria-describedby='{{ description }}' {% endif %}
+        {% if title|default(null) %} title='{{ title }}' {% endif %}
+        {% if maxlength|default(null) %} maxlength='{{ maxlength }}' {% endif %}
+        {% if minlength|default(null) %} minlength='{{ minlength }}' {% endif %}
+        {% if pattern|default(null) %} pattern='{{ pattern }}' {% endif %}
+        {% if isAutocomplete|default(false) %} autocomplete='{{ autocomplete ? 'on': 'off' }}' {% endif %}
+        {% if inputId|default(null) %} id='{{ inputId }}' {% endif %}
+        {% if inputName|default(null) %} name='{{ inputName }}' {% endif %}
+        {{ inputExtraAttribute|default(null) }}
+        class='bf-input__control {{ hasAdornment ? 'pr-6' }}'
       />
-      {% if hasAdornment %}
+
+      {% if block('adornment') is defined %}
+        <div class='bf-input__adornment'>
+          {{ block('adornment') }}
+        </div>
+      {% elseif hasAdornment %}
         <div class='bf-input__adornment'>
           {{ adornment }}
         </div>
       {% endif %}
+
     </div>
   {% endblock %}

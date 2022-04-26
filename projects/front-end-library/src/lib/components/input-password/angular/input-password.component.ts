@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'bf-input-text',
-  templateUrl: './input-text.component.html',
+  selector: 'bf-input-password',
+  templateUrl: './input-password.component.html',
 })
-export class InputTextComponent implements OnInit {
+export class InputPasswordComponent implements OnInit {
     constructor() {}
 
     @Input() value                  : string;
@@ -17,19 +17,14 @@ export class InputTextComponent implements OnInit {
     @Input() adornment              : string;
     @Input() helperText             : string;
     @Input() errorMessage           : string;
-    @Input() ariaLabel              : string;
-    @Input() title                  : string;
 
-    @Input() type                   : string;
     @Input() minlength              : number;
     @Input() maxlength              : number;
-    @Input() pattern                : string;
     @Input() isRequired             : boolean;
     @Input() isAutofocus            : boolean;
     @Input() isInvalid              : boolean;
     @Input() isDisabled             : boolean;
     @Input() isReadOnly             : boolean;
-    @Input() isAutocomplete         : string;
     @Input() inputId                : string;
     @Input() inputName              : string;
     @Input() inputExtraAttribute    : string;
@@ -38,6 +33,6 @@ export class InputTextComponent implements OnInit {
     @Input() class                  : string;
 
     ngOnInit() {
-        console.log('Input Text', this);
+        console.log('Input Password', this);
     }
 }

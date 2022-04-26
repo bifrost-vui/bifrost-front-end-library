@@ -1,0 +1,78 @@
+{% set isRequired = isRequired|json_parse|default(false) %}
+{% set isInvalid = isInvalid|json_parse|default(false) %}
+{% set isDisabled = isDisabled|json_parse|default(false) %}
+{% set isReadOnly = isReadOnly|json_parse|default(false) %}
+
+<div class='container'>
+  <form>
+    <section class='d-flex flex-column gap-4 bf-color-bg-underground my-7 p-5'>
+      <div class='d-flex flex-column flex-lg-row gap-4'>
+
+        {% include '@bf-components/input-text/twig/index.twig' with {
+          label: label|default('Input Text'),
+        } %}
+
+        {% include '@bf-components/input-password/twig/index.twig' with {
+          label: label|default('Input Password'),
+        } %}
+
+        {# {% include '@bf-components/input-search/twig/index.twig' with {
+          label: label,
+        } %} #}
+
+        {% include '@bf-components/input-dropdown/twig/index.twig' with {
+          label: label|default('Input Dropdown'),
+          options: [
+            { label: 'Option 1', value: 1, isSelected: true },
+            { label: 'Option 2', value: 2 },
+            { label: 'Option 3', value: 3 },
+            { label: 'Option 4', value: 4 },
+            { label: 'Option 5', value: 5 },
+          ],
+        } %}
+
+        {% include '@bf-components/input-checkbox/twig/index.twig' with {
+          label: label|default('Input Checkbox')
+        } %}
+
+        {% include '@bf-components/input-radio/twig/index.twig' with {
+          label: label|default('Input Radio')
+        } %}
+
+      </div>
+      <div class='d-flex flex-column flex-lg-row gap-4'>
+
+        {% include '@bf-components/input-switch/twig/index.twig' with {
+          label: label|default('Input Switch')
+        } %}
+
+        {% include '@bf-components/selection-tile/twig/index.twig' with {
+          label: label|default('Selection Tile')
+          title: 'Title',
+        } %}
+
+        {% include '@bf-components/input-increment/twig/index.twig' with {
+          label: label|default('Input Increment'),
+        } %}
+
+        {% include '@bf-components/input-slider/twig/index.twig' with {
+          label: label|default('Input Slider'),
+          min: {
+              inputId: 'inputIdMin',
+              value: 20,
+              legend: 'Minimum',
+              description: '$20/month'
+          },
+          max: {
+              inputId: 'inputIdMax',
+              value: 150,
+              legend: 'Maximum',
+              description: '$150/month'
+          },
+          unitLabel: '$',
+        } %}
+      </div>
+    </section>
+  </form>
+  {# TODO: Check that we could gets valus from this form. #}
+</div>
