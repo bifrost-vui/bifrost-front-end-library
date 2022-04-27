@@ -5,28 +5,35 @@
 
 {% set variants = [
   {
-    backgroundClass: 'flex-1 p-4 bf-color-bg-ground'
+    backgroundClass: 'bf-color-bg-ground',
+    reversed: reversed|default(false),
+    highlight: highlight|default(false)
   },
   {
-    backgroundClass: 'flex-1 p-4 bf-color-bg-underground'
+    backgroundClass: 'bf-color-bg-underground',
+    reversed: reversed|default(false),
+    highlight: highlight|default(false)
   },
   {
-    backgroundClass: 'flex-1 p-4 bf-color-bg-ground reversed',
-    reversed: reversed|default(true)
+    backgroundClass: 'bf-color-bg-ground',
+    reversed: reversed|default(true),
+    highlight: highlight|default(false)
   },
   {
-    backgroundClass: 'flex-1 p-4 bf-color-bg-underground reversed',
-    reversed: reversed|default(true)
+    backgroundClass: 'bf-color-bg-underground',
+    reversed: reversed|default(true),
+    highlight: highlight|default(false)
   },
   {
-    backgroundClass: 'flex-1 p-4 bf-color-bg-highlight',
+    backgroundClass: 'bf-color-bg-highlight highlight',
+    reversed: reversed|default(false),
     highlight: highlight|default(true)
-    }
+  }
 ] %}
 
 <div class='d-flex flex-wrap'>
   {% for variant in variants %}
-    <div class='{{ variant.backgroundClass }}'>
+    <div class='flex-1 p-4 {{ variant.backgroundClass }} {{ variant.reversed ? 'reversed' }} {% if variant.highlight %}bf-color-bg-highlight highlight{% endif %}'>
       {% include '@bf-components/button-nav/twig/index.twig' with variant %}
     </div>
   {% endfor %}
