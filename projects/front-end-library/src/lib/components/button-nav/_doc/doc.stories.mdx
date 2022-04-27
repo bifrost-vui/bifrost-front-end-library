@@ -4,7 +4,6 @@ import illustrationIcons                        from '../../../../../../../publi
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { ButtonNavComponent }                   from '../angular/button-nav.component';
 
-
 <Meta
     title='Components/Button Nav'
     component={ButtonNavComponent}
@@ -13,17 +12,16 @@ import { ButtonNavComponent }                   from '../angular/button-nav.comp
     ]}
     argTypes={{
         iconName: {
-            defaultValue: 'placeholder',
             table: { defaultValue: { summary: 'placeholder' } },
             control: {
                 type: 'select',
                 options: ['', 'placeholder', ...illustrationIcons.map(a => a.list).flat().sort()]
             }
         },
-        isDisabled: {
+        isFeatured: {
             table: { defaultValue: { summary: false } }
         },
-        isFeatured: {
+        isDisabled: {
             table: { defaultValue: { summary: false } }
         },
         highlight: {
@@ -35,18 +33,13 @@ import { ButtonNavComponent }                   from '../angular/button-nav.comp
     }}
 />
 
-
 # Button Nav
 
 <br/>
 
-
-
 ## Component API
 
 <ArgsTable of={ButtonNavComponent} />
-
-
 
 ## Drupal implementation example
 
@@ -68,13 +61,11 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-
 <Canvas withSource='none'>
     <Story
         name='Drupal'
         args={{
             elementPath: 'components/button-nav/_doc/template.drupal',
-            iconName: 'placeholder',
             label: 'Label'
         }}
     >
@@ -87,7 +78,6 @@ export const Drupal = (args) => ({
         name='Drupal - With description'
         args={{
             elementPath: 'components/button-nav/_doc/template.drupal',
-            iconName: 'placeholder',
             label: 'Label',
             description: 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.'
         }}
@@ -101,7 +91,6 @@ export const Drupal = (args) => ({
         name='Drupal - With isFeatured'
         args={{
             elementPath: 'components/button-nav/_doc/template.drupal',
-            iconName: 'placeholder',
             label: 'Label',
             description: 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros.',
             isFeatured: true
