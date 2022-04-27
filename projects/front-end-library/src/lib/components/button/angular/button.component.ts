@@ -39,9 +39,7 @@ export class ButtonComponent implements OnInit {
     @Input() extraAttribute : string;
     @Input() class          : string;
 
-
     ngOnInit() {
         console.log('button', this);
     }
-
 }
