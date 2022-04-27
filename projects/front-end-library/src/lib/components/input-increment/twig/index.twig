@@ -5,23 +5,24 @@
 {% set classIsInvalid = (isInvalid is defined and isInvalid) ? ' is-invalid' : '' %}
 {% set isRequired = isRequired is not defined ? true : isRequired %}
 
-<div class='bf-input-increment js-bf-input-increment align-items-top {{ class ~ classDisabled ~ classIsInvalid }}' >
+<div class='bf-input-increment js-bf-input-increment {{ class ~ classDisabled ~ classIsInvalid }}' >
 
     {% include '@bf-components/button/twig/index.twig' with {
         label           : '',
         hierarchy       : 'secondary',
         iconName        : 'minus',
-        class           : classHide is empty ? ' js-bf-input-increment__minus bf-button rounded-circle px-2 ' : classHide,
+        class           : classHide is empty ? ' js-bf-input-increment__minus bf-button rounded-circle px-2' : classHide,
         ariaControls    : inputId,
     } only %}
 
         <input id='{{ inputId }}'
                type='number'
-               class='text-center bf-text-display-small bf-input-increment__input js-bf-input-increment__input border-0  m-0  py-0 {{ attrDisabled }}'
+               class='text-center bf-text-display-small bf-input-increment__input js-bf-input-increment__input border-0  {{ attrDisabled }}'
                aria-label='{{ ariaLabel }}'
-               value='{{ value }}'
-               {% if min is defined %}min='{{ min }}'{% endif %}
-               {% if max is defined %}max='{{ max }}'{% endif %}
+               value='{{ value|default(0) }}'
+               size='3'
+               {% if min is defined and min %}min='{{ min }}'{% endif %}
+               {% if max is defined and max %}max='{{ max }}'{% endif %}
                {{ attrReadOnly }}
                {{ attrDisabled }}
                {% if isRequired %} required aria-required='true' {% endif %}
@@ -31,7 +32,7 @@
         label           : '',
         hierarchy       : 'secondary',
         iconName        : 'plus',
-        class           : classHide is empty ? ' js-bf-input-increment__plus bf-button rounded-circle px-2 ' : classHide,
+        class           : classHide is empty ? ' js-bf-input-increment__plus bf-button rounded-circle px-2' : classHide,
         ariaControls    : inputId,
         } only %}
 
