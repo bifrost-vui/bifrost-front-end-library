@@ -1,4 +1,8 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { IButton } from '../../../components/button/angular/api.model';
+import { ILink } from '../../../components/link/angular/api.model';
+import { IRowButton } from '../../../components/row-button/angular/api.model';
+
 
 interface IImage {
     src         : string;
@@ -24,9 +28,9 @@ export class BasicContentComponent implements OnInit {
     /** textAlign will not work with image. */
     @Input() textAlign              : 'left' | 'center';
     @Input() description            : string;
-    @Input() buttons                : object[];
-    @Input() links                  : object[];
-    @Input() rowButtons             : object[];
+    @Input() buttons                : IButton[];
+    @Input() links                  : ILink[];
+    @Input() rowButtons             : IRowButton[];
     @Input() imagePosition          : 'right' | 'left';
     @Input() background             : 'ground' | 'underground';
 
