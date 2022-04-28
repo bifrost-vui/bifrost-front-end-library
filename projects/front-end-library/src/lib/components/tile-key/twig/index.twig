@@ -3,7 +3,7 @@
 
 <{{ isLink ? 'a' : 'div' }}
 	{% if isLink %}
-		href='{{ href|default('') }}'
+		href='{{ href }}'
 	{% endif %}
 	class='
 		bf-tile-key
@@ -20,7 +20,7 @@
       {{ backgroundImage.textColor == 'light' ? 'reversed' }}
     {% endif %}
 		{{ reversed|default(false) ? 'reversed' }}
-		{{ class|default('') }}
+		{{ class|default(null) }}
 		'
 >
 	{% if backgroundImage is defined and backgroundImage.src is defined and backgroundImage.src %}
@@ -31,17 +31,21 @@
 			{% if icon is not iterable %}
 				{% set icon = { name: icon } %}
 			{% endif %}
+
 			{% set icon = icon|merge({ size: 'large' }) %}
 			{% include '@bf-components/icon/twig/index.twig' with icon only %}
 		{% endif %}
 
-		<{{ titleTag }} class='bf-text-interface-large m-0'>
-			{{ title|default('') }}
-		</{{ titleTag }}>
+    {% if title is defined and title %}
+      <{{ titleTag }} class='bf-text-interface-large m-0'>
+        {{ title }}
+      </{{ titleTag }}>
+    {% endif %}
 
 		{% if description is defined and description %}
 			<p class='m-0'>{{ description }}</p>
 		{% endif %}
+
     {% if linkLabel is defined and linkLabel %}
       {% if isLink %}
         <p class='bf-link bf-link--primary mb-0'>{{ linkLabel }}</p>

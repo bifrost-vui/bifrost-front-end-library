@@ -38,6 +38,29 @@ import { SectionTilesKeyComponent }             from '../angular/section-tiles-k
 
 ```jsx
 {% include '@bf-sections/tiles-key/twig/index.twig' with {
+    title: 'Shop your cell phone plan and mobile phone your way',
+    hasFeaturedLayout: false,
+    tiles: [
+        {
+            isClickable: true,
+            href: 'https://example.com',
+            title: 'Trade-in your phone',
+            description: 'Trade-in your old phone and get a credit for a new phone.',
+            linkLabel: 'Trade-in program',
+            icon: {
+                name: 'helix-mic',
+                color: 'neutral'
+            },
+            backgroundImage: {
+                src: '/images/_docs/hero-helix-reversed.png'
+            },
+            reversed: false,
+            class: '',
+        },
+        {
+            title: 'Trade-in your phone'
+        }
+    ]
 } only %}
 ```
 
@@ -72,6 +95,7 @@ export const tiles = [
     },
     {
         ...tileKey,
+        description: 'Trade-in your old phone.',
         icon: {
             name: 'television'
         }
