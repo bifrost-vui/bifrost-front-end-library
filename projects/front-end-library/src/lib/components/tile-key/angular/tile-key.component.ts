@@ -1,10 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IIcon } from '../../icon/angular/api.model';
-
-interface IImage {
-    src         : string;
-    textColor   : 'light' | 'dark';
-}
+import { IImage } from './api.model';
 
 @Component({
     selector: 'bf-tile-key',
@@ -31,5 +27,4 @@ export class TileKeyComponent implements OnInit {
     ngOnInit() {
         console.log('Tile Key', this);
     }
-
 }

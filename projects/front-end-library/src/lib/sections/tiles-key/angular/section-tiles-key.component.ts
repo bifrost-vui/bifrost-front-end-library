@@ -1,5 +1,5 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from '@angular/core';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { ITileKey } from '../../../components/tile-key/angular/api.model';
 
 @Component({
     selector: 'bf-section-tiles-key',
@@ -9,7 +9,7 @@ export class SectionTilesKeyComponent implements OnInit {
     constructor() {}
 
     @Input() title              : string;
-    @Input() tiles              : object[];
+    @Input() tiles              : ITileKey[];
     @Input() hasFeaturedLayout  : boolean;
 
     @Input() class              : string;
