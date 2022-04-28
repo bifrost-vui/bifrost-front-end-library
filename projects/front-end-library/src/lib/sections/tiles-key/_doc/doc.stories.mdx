@@ -3,9 +3,8 @@ import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { SectionTilesKeyComponent }             from '../angular/section-tiles-key.component';
 
-
 <Meta
-    title='Sections/Tiles-Key'
+    title='Sections/Tiles Key'
     component={SectionTilesKeyComponent}
     decorators={[
         moduleMetadata({ declarations: [SectionTilesKeyComponent, TwigContainerComponent] })
@@ -20,22 +19,20 @@ import { SectionTilesKeyComponent }             from '../angular/section-tiles-k
     argTypes={{
         hasFeaturedLayout: {
             table: { defaultValue: { summary: false } }
+        },
+        reversed: {
+            table: { defaultValue: { summary: false } }
         }
     }}
 />
-
 
 # Section Tiles Key
 
 <br/>
 
-
-
 ## Component API
 
 <ArgsTable of={SectionTilesKeyComponent} />
-
-
 
 ## Drupal implementation example
 
@@ -43,8 +40,6 @@ import { SectionTilesKeyComponent }             from '../angular/section-tiles-k
 {% include '@bf-sections/tiles-key/twig/index.twig' with {
 } only %}
 ```
-
-
 
 ## Drupal
 
@@ -110,7 +105,6 @@ export const tiles = [
     </Story>
 </Canvas>
 
-
 <Canvas withSource='none'>
     <Story
         name='Drupal - With hasFeaturedLayout'
@@ -125,7 +119,6 @@ export const tiles = [
         {Drupal.bind({})}
     </Story>
 </Canvas>
-
 
 ## Design Guidelines
 
