@@ -1,6 +1,6 @@
 {% set reversed     = reversed|json_parse %}
 {% set isDisabled   = isDisabled|json_parse %}
-{% set isInvalid    = isInvalid|json_parse %}
+{% set _isInvalid    = _isInvalid|json_parse %}
 
 <div
     class="px-7 d-flex align-items-center justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}"
@@ -29,7 +29,7 @@
     } %}
 </div>
 
-{% if isInvalid %}
+{% if _isInvalid %}
     <script>
         function setInvalid() {
             document.getElementsByClassName('form-group')[0].classList.add('is-invalid');
