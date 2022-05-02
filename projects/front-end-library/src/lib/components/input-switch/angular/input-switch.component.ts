@@ -14,6 +14,7 @@ export class InputSwitchComponent implements OnInit {
     /** You can pass directly the `label` as a **string** or an **object**. The object accepts the `text`, `class` and `position`(left|right) properties. The label default position is left */
     @Input() label: object;
     @Input() ariaLabel: string;
+    @Input() ariaLabelledby: string;
 
     @Input() isDisabled: boolean;
     @Input() isChecked: boolean;
