@@ -1,6 +1,5 @@
 export const topBar_items = [
     { label: "Personal", href: "", class: "active" },
-
     { label:"Business", href:"", class:"" },
 ];
 
