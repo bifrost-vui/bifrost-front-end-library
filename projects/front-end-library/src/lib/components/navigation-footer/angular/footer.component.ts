@@ -9,7 +9,7 @@ interface ILogo {
     href: string;
     name: string;
 }
- 
+
 @Component({
     selector: 'bf-footer',
     templateUrl: './footer.component.html',
@@ -19,25 +19,26 @@ export class FooterComponent implements OnInit {
     constructor() {}
 
     /** Sets Footer Links on Bottom Footer. */
-    @Input() linkFields         : any[];
+    @Input() linkFields: any[];
 
     /** Sets Footer Links. */
-    @Input() links              : any[];
+    @Input() links: any[];
 
     /** See [Logo Component API](/?path=/docs/components-logo--drupal). E.g. `logo = { href: "#", name: "videotron" }` */
-    @Input() logo               : ILogo;
+    @Input() logo: ILogo;
 
-    @Input() hasBackToTopLink   : boolean;
-    @Input() backToTopLabel     : string;
+    @Input() hasBackToTopLink: boolean;
+    @Input() backToTopLabel: string;
 
-    @Input() isReduced          : boolean;
+    @Input() isReduced: boolean;
 
-    @Input() theme              : string;
-    @Input() reversed           : boolean;
-    @Input() languageBlock      : any;
+    @Input() theme: string;
+    @Input() reversed: boolean;
+    @Input() languageBlock: any;
+    @Input() langcode : 'EN' | 'FR'
 
     ngOnInit() {
         console.log('footer', this);
     }
-    
+
 }
