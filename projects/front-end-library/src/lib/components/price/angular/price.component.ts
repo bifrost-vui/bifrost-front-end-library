@@ -27,7 +27,7 @@ export class PriceComponent implements OnInit {
     @Input() saved                  : string;
     /** **Deprecated** Use `promotion.savedLabel` instead. */
     @Input() savedLabel             : string;
-    @Input() details                : string;
+    @Input() details                : HTMLElement;
     @Input() message                : string;
 
     @Input() size                   : 'small' | 'medium' | 'large';

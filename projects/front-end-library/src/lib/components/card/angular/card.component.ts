@@ -59,7 +59,7 @@ export class CardComponent implements OnInit {
     Note: Wrap your data with a semantic HTML tag.
     E.g. `description_html: "<p>this is a description</p>"`
     */
-    @Input() description_html       : string;
+    @Input() description_html       : HTMLElement;
     /** Expected format:
      <pre style='font-size: .75rem; padding: 0 1rem; marigin:0; background-color: #f2f2f0'>
         {
