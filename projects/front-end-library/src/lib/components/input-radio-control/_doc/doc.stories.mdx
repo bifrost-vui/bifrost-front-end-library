@@ -2,13 +2,13 @@ import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import { withDesign } from 'storybook-addon-designs'
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
-import { InputRadioComponent } from '../angular/input-radio.component';
+import { InputRadioControlComponent } from '../angular/input-radio-control.component';
 
 <Meta
-    title='Components/Input Radio'
-    component={InputRadioComponent}
+    title='Components/Input Radio Control'
+    component={InputRadioControlComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputRadioComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [InputRadioControlComponent, TwigContainerComponent] }),
         withDesign
     ]}
     parameters={{
@@ -23,19 +23,16 @@ import { InputRadioComponent } from '../angular/input-radio.component';
             type: { required: true }
         },
         inputName: {
-            control: { type: 'text' },
             description: 'Use `name` instead',
-            table: { category: 'Deprecated Inputs'}
+            table: { category: 'Deprecated Inputs' }
         },
         inputId: {
-            control: { type: 'text' },
             description: 'Use `id` instead',
-            table: { category: 'Deprecated Inputs'}
+            table: { category: 'Deprecated Inputs' }
         },
         labelTxtClass: {
-            control: { type: 'text' },
             description: 'Use `labelClass` instead',
-            table: { category: 'Deprecated Inputs'}
+            table: { category: 'Deprecated Inputs' }
         },
         _background: {
             control: {
@@ -47,11 +44,11 @@ import { InputRadioComponent } from '../angular/input-radio.component';
     }}
 />
 
-# Input Radio
+# Input Radio Control
 
 ## Component API
 
-<ArgsTable of={InputRadioComponent} />
+<ArgsTable of={InputRadioControlComponent} />
 
 ## Drupal
 
@@ -60,14 +57,11 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas
-    withSource='none'
-    style={{ height: '300px' }}
->
+<Canvas withSource='none' style={{ height: '300px' }}>
     <Story
         name='Drupal'
         args={{
-            elementPath: 'components/input-radio/_doc/template.drupal',
+            elementPath: 'components/input-radio-control/_doc/template.drupal',
             id: '',
             inputId: 'inputId',
             name: 'name',
@@ -81,7 +75,7 @@ export const Drupal = (args) => ({
 ## Drupal implementation example
 
 ```jsx
-{% include '@bf-components/input-radio/twig/index.twig' with {
+{% include '@bf-components/input-radio-control/twig/index.twig' with {
     id: 'id',
     value: 'value',
     name: 'name',

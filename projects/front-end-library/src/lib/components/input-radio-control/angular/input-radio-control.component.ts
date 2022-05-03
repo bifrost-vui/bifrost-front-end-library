@@ -1,11 +1,10 @@
-import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'bf-input-radio',
-  templateUrl: './input-radio.component.html',
-  // styleUrls: ['../scss/index.scss'],
+  selector: 'bf-input-radio-control',
+  templateUrl: './input-radio-control.component.html',
 })
-export class InputRadioComponent implements OnInit {
+export class InputRadioControlComponent implements OnInit {
 
     constructor() {}
 
@@ -25,6 +24,6 @@ export class InputRadioComponent implements OnInit {
     @Input() class: string;
 
     ngOnInit() {
-        console.log('InputRadio', this);
+        console.log('InputRadioControl', this);
     }
 }
