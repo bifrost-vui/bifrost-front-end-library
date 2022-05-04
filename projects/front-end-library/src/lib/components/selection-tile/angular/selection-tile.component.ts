@@ -26,7 +26,7 @@ export class SelectionTileComponent implements OnInit {
     @Input() title: string;
     @Input() description: string;
     /** Only available if the tile fits container and is vertical */
-    @Input() info: string;
+    @Input() info: HTMLElement;
     /**{ src: string, alt: string, class: string } */
     @Input() image: object;
     @Input() iconName: string;

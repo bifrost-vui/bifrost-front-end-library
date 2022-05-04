@@ -72,7 +72,7 @@
         {% if (info is defined and info) or (orientation is same as ('vertical') and fit is same as ('container')) %}
           <div class='bf-selection-tile__bottom'>
             <div class='bf-selection-tile__text'>
-              <p class='p-0 m-0 text-break'>{{ info }}</p>
+              <p class='p-0 m-0 text-break'>{{ info|striptags(inlineTags)|raw }}</p>
             </div>
           </div>
         {% endif %}
