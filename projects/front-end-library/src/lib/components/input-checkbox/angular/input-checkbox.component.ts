@@ -11,7 +11,7 @@ export class InputCheckboxComponent implements OnInit {
 
     /** @required */
     @Input() id: string;
-    /** will transform the checkbox into a radio button displaying a checkmark when checked */
+    /** Will transform the checkbox into a radio button displaying a checkmark when checked. See usage in [Selection Tiles](/?path=/story/components-selection-tile--drupal-selection-tile-horizontal) */
     @Input() type: 'checkbox' | 'radio'
     @Input() name: string;
     @Input() value: string;
