@@ -22,11 +22,11 @@ import { SelectionTileComponent }               from '../angular/selection-tile.
     }}
     argTypes={{
         type        :{
-            defaultValue: 'checkbox',
-            table       : { defaultValue : { summary: 'checkbox' } },
+            table       : { defaultValue : { summary: 'radio' } },
             control     : { type : 'select' }
         },
         value       : {type : { required: true } },
+        name        : {type : { required: true } },
         inputId     : {type : { required: true } },
         ariaLabel   : {type : { required: true } },
         orientation : {
@@ -91,6 +91,7 @@ export const commonProps = {
         args={{
             elementPath : 'components/selection-tile/_doc/template.drupal',
             ...commonProps,
+            type: 'checkbox',
             orientation : 'vertical',
         }}
     >

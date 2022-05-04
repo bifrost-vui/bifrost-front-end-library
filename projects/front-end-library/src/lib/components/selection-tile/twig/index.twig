@@ -6,21 +6,19 @@
 <div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--{{ 'fit-' ~ fit }} {{ isInvalid ? 'color-warning' : '' }} {{ isDisabled ? 'disabled' }} {{ isSelected ? 'checked' : '' }} {{ class }}'>
   <div class='bf-selection-tile__inner'>
     <div class='bf-selection-tile__control'>
-      {% apply spaceless %}
-        <input
-          type='{{ type|default('checkbox') }}'
-          class='bf-selection-tile__input'
-          id='{{ inputId|default('') }}'
-          name='{{ name }}'
-          value='{{ value|default('') }}'
-          {% if ariaLabel is defined and ariaLabel %} aria-label='{{ ariaLabel}}'{% endif %}
-          {{ isDisabled ? 'disabled' : '' }}
-          {{ isSelected ? 'checked' : '' }}
-          {{ isRequired ? 'required' : '' }}
-          {{ extraAttribute|default(NULL) }}
-        />
-      {% endapply %}
-      <label for='{{ inputId|default('') }}' class='bf-selection-tile__label' {% if ariaLabel is defined and ariaLabel %} title='{{ ariaLabel }}'{% endif %}></label>
+      {% include '@bf-components/input-checkbox/twig/index.twig' with {
+        id: inputId|default(''),
+        value: value|default(''),
+        name: name|default(''),
+        class: 'bf-selection-tile__label',
+        ariaLabel: ariaLabel|default(''),
+        type: type|default('radio'),
+        isChecked : isSelected|default(false),
+        isDisabled: isDisabled|default(false),
+        isInvalid: isInvalid|default(false),
+        isRequired: isRequired|default(false),
+        extraAttribute: extraAttribute|default(null)
+      } %}
     </div>
 
     <div class='bf-selection-tile__block'>

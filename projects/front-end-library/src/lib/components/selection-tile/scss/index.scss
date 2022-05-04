@@ -14,6 +14,9 @@
         @extend .bf-border-radius-small;
         width: 100%;
     }
+    .bf-input-checkbox {
+        max-width: unset;
+    }
     &__label {
         position: absolute;
         display: block;
@@ -33,26 +36,13 @@
             box-shadow: var(--bf-box-shadow-light);
         }
     }
-    &__input {
-        @extend .bf-checkbox;
+    .bf-input-checkbox__control {
         display: block;
         z-index: 3;
         width: 1.5rem;
         height: 1.5rem;
-        margin-right: var(--bf-spacer-1);
+        margin: var(--bf-spacer-2);
         pointer-events: none;
-
-        &:checked {
-            &::before {
-                width: 1.5rem;
-                height: 1.5rem;
-            }
-            border: 1px solid var(--bf-color-stroke-primary);
-        }
-
-        &[type=radio] {
-            border-radius: 50%;
-        }
     }
     img {
         height: 2.5rem;
@@ -79,10 +69,15 @@
             justify-content: space-between;
             align-items: center;
             width: auto;
+            margin-left: 1.5rem;
         }
         .bf-selection-tile__control {
             align-self: center;
             padding: var(--bf-spacer-2);
+        }
+        .bf-input-checkbox__control {
+            position: relative;
+            top: calc(50% - 1.25rem);
         }
         .bf-selection-tile__body {
             display: flex;
@@ -122,10 +117,10 @@
             @extend .bf-border-radius-small;
             padding: 1.5rem;
         }
-        .bf-selection-tile__input {
+        .bf-input-checkbox__control {
             position: absolute;
-            top: .5rem;
-            left: .5rem;
+            top: 0;
+            left: 0;
         }
         .bf-selection-tile__block {
             display: flex;
@@ -203,19 +198,6 @@
             p {
                 font-size: 0.875rem;
             }
-        }
-    }
-}
-/*-----------------------------------*
-** outer color contexts
-*------------------------------------*/
-.bf-color-bg-underground {
-    .bf-selection-tile__input:checked {
-        + label {
-            background-color: var(--bf-color-bg-ground);
-        }
-        &:disabled + label {
-            background-color: transparent;
         }
     }
 }
