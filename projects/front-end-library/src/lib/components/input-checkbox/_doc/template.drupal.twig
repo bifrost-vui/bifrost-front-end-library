@@ -13,37 +13,43 @@
   <div class='container-fluid m-3 px-2 d-flex flex-row flex-wrap {{ backgroundClass }}'>
     <div class='p-3'>
       {% include '@bf-components/input-checkbox/twig/index.twig' with {
-        id: id|default(inputId) ~ 1
+        id: id|default(inputId) ~ 1 ~ (loop.index -1),
+        name: name ~ (loop.index -1)
       } %}
     </div>
     <div class='p-3'>
       {% include '@bf-components/input-checkbox/twig/index.twig' with {
-        id: id|default(inputId) ~ 2,
+        id: id|default(inputId) ~ 2 ~ (loop.index -1),
+        name: name ~ (loop.index -1),
         isChecked: isChecked|default(true)
       } %}
     </div>
     <div class='p-3'>
       {% include '@bf-components/input-checkbox/twig/index.twig' with {
-        id: id|default(inputId) ~ 3,
+        id: id|default(inputId) ~ 3 ~ (loop.index -1),
+        name: name ~ (loop.index -1),
         isDisabled: isDisabled|default(true),
         isChecked: isChecked|default(true)
       } %}
     </div>
     <div class='p-3'>
       {% include '@bf-components/input-checkbox/twig/index.twig' with {
-        id: id|default(inputId) ~ 4,
+        id: id|default(inputId) ~ 4 ~ (loop.index -1),
+        name: name ~ (loop.index -1),
         isDisabled: isDisabled|default(true)
       } %}
     </div>
     <div class='p-3'>
       {% include '@bf-components/input-checkbox/twig/index.twig' with {
-        id: id|default(inputId) ~ 5,
+        id: id|default(inputId) ~ 5 ~ (loop.index -1),
+        name: name ~ (loop.index -1),
         isInvalid: isInvalid|default(true)
       } %}
     </div>
     <div class='p-3'>
       {% include '@bf-components/input-checkbox/twig/index.twig' with {
-        id: id|default(inputId) ~ 6,
+        id: id|default(inputId) ~ 6 ~ (loop.index -1),
+        name: name ~ (loop.index -1),
         isChecked: isChecked|default(true),
         isInvalid: isInvalid|default(true)
       } %}
