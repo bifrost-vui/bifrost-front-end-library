@@ -7,116 +7,83 @@
 .bf-input-checkbox {
     display: flex;
     flex-flow: row nowrap;
+    max-width: 16rem;
     align-items: center;
+    cursor: pointer;
 
-    input {
-        align-self: flex-start;
-
-        &:required + label:after {
-            display: inline;
-            content: '*';
-        }
-    }
-    label {
-        line-height: 1rem;
-        padding: 0 0 var(--bf-spacer-2) 0;
+    &--label {
+        display: inline-block;
         margin: 0;
+    }
+    &__control {
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        min-width: 1rem;
+        margin-right: var(--bf-spacer-2);
+        border: 1px solid var(--bf-color-stroke-primary);
+        border-radius: .125rem;
+        color: var(--bf-color-neutral-primary);
+        background-color: var(--bf-color-bg-ground);
         cursor: pointer;
+    }
+    input {
+        position: absolute;
+        top: -100vh;
+        &[type='radio'] + .bf-input-checkbox__control  {
+            border-radius: 50%;
+        }
+        &:checked + .bf-input-checkbox__control {
+            border: 1px solid var(--bf-color-stroke-tertiary);
+            background-color: var(--bf-color-feedback-neutral);
+
+            &:before {
+                position: relative;
+                display: block;
+                z-index: 3;
+                top: -1px;
+                left: -1px;
+                width: 1rem;
+                height: 1rem;
+                background: url('/images/icons/bifrost/check-bg.svg') center center no-repeat;
+                background-size: contain;
+                border-radius: inherit;
+                content: '';
+            }
+        }
+        &:focus-visible + .bf-input-checkbox__control {
+            box-shadow: var(--bf-box-shadow-highlight);
+        }
+        &:disabled + .bf-input-checkbox__control {
+            border: 1px solid var(--bf-color-stroke-secondary);
+            color: var(--bf-color-bg-action-disabled);
+            background-color: var(--bf-color-bg-action-disabled);
+            &:before {
+                filter: opacity(.3);
+            }
+        }
+
+        &.invalid:not(:disabled)+ .bf-input-checkbox__control {
+            border-color: var(--bf-color-feedback-negative);
+            background-color: var(--bf-color-bg-ground);
+            color: var(--bf-color-feedback-negative);
+        }
+        &:checked.invalid:not(:disabled)+ .bf-input-checkbox__control {
+            background-color: var(--bf-color-feedback-negative);
+            color: var(--bf-color-bg-ground);
+
+            &:before {
+                filter: opacity(1) grayscale(100) invert(1);
+            }
+        }
     }
     &--invalid {
         color: var(--bf-color-feedback-negative);
     }
     &--disabled {
         color: var(--bf-color-neutral-tertiary);
+        pointer-events: none;
     }
 }
 
-/* *****************************************************************************
-*  bf-checkbox (class of the checkbox HTML input tag)
-*  to displays a Bifröst custom checkbox while not using the Input Checkbox component
-* ***************************************************************************** */
-
-.bf-checkbox {
-    appearance: none;
-    position: relative;
-    width: 1rem;
-    height: 1rem;
-    min-width: 1rem;
-    margin-right: var(--bf-spacer-2);
-    border: 1px solid var(--bf-color-stroke-primary);
-    border-radius: .125rem;
-    color: var(--bf-color-neutral-primary);
-    background-color: var(--bf-color-bg-ground);
-    cursor: pointer;
-
-    &:focus-visible {
-        outline: none;
-
-        + label {
-            box-shadow: var(--bf-box-shadow-highlight);
-        }
-    }
-    &:disabled {
-        border: 1px solid var(--bf-color-stroke-secondary);
-        color: var(--bf-color-bg-action-disabled);
-        background-color: var(--bf-color-bg-action-disabled);
-        cursor: not-allowed;
-
-        + label {
-            color: var(--bf-color-neutral-tertiary);
-            pointer-events: none;
-        }
-    }
-    &:checked {
-        border: 1px solid var(--bf-color-stroke-tertiary);
-        background-color: var(--bf-color-feedback-neutral);
-
-        &::before {
-            display: block;
-            position: absolute;
-            z-index: 3;
-            top: -1px;
-            left: -1px;
-            width: 1rem;
-            height: 1rem;
-            background: url('/images/icons/bifrost/check-bg.svg') center center no-repeat;
-            background-size: contain;
-            border-radius: inherit;
-            content: '';
-        }
-        &:disabled {
-             border-color: var(--bf-color-stroke-tertiary);
-             background-color: var(--bf-color-bg-action-disabled);
-
-             &::before {
-                 filter: opacity(.3);
-            }
-        }
-    }
-    &--invalid {
-        border-color: var(--bf-color-feedback-negative);
-        background-color: var(--bf-color-bg-ground);
-
-        &:checked {
-            border-color: var(--bf-color-feedback-negative);
-            background-color: var(--bf-color-feedback-negative);
-
-            &::before {
-                filter: opacity(1) grayscale(100) invert(1);
-            }
-            &:disabled {
-                border-color: var(--bf-color-stroke-tertiary);
-
-                &::before {
-                    filter: opacity(.3);
-                }
-            }
-        }
-    }
- }
-
-.reversed .bf-checkbox {
-    &:checked:disabled::before {
-        filter: opacity(.5) grayscale(100) invert(1);
-    }
-}
+.bf-checkbox { display: none}
