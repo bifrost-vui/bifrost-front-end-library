@@ -16,16 +16,13 @@ import { commonProps as tilePostProps }         from '../../../components/tile-p
     parameters={{
         design: {
             type: 'figma',
-            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=2806%3A9236',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=9210%3A11314',
             disable: false
         }
     }}
     argTypes={{
         titleTag: {
             table: { defaultValue: { summary: 'h1' } }
-        },
-        isFeatured: {
-            table: { defaultValue: { summary: false } }
         },
         background: {
             table: { defaultValue: { summary: 'ground' } }
@@ -76,7 +73,7 @@ import { commonProps as tilePostProps }         from '../../../components/tile-p
             class: ''
         },
     ],
-    class           : ''
+    class: ''
 } only %}
 ```
 
@@ -129,7 +126,7 @@ export const commonProps = {
 
 <Canvas withSource='none'>
     <Story
-        name='Drupal - With isFeatured'
+        name='Drupal - With tiles isFeatured'
         height='600px'
         args={{
             elementPath: 'sections/tiles-post/_doc/template.drupal',
@@ -137,18 +134,20 @@ export const commonProps = {
             tiles: [
                 {
                     ...tilePostPropsAndSize,
+                    isFeatured: true,
                     class: ''
                 },
                 {
                     ...tilePostPropsAndSize,
+                    isFeatured: true,
                     class: ''
                 },
                 {
                     ...tilePostPropsAndSize,
+                    isFeatured: true,
                     class: ''
                 }
-            ],
-            isFeatured: true
+            ]
         }}
     >
         {Drupal.bind({})}
@@ -213,6 +212,7 @@ export const commonProps = {
 <Canvas withSource='none'>
     <Story
         name='Drupal - Usage example'
+        parameters={{ options: { showPanel: false } }}
         height='600px'
         args={{
             elementPath: 'sections/tiles-post/_doc/template.drupal',
@@ -254,4 +254,4 @@ export const commonProps = {
 
 ## Design Guidelines
 
-<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=2806%3A9236' frameBorder='0' allowFullScreen></iframe>
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D9210%253A11314' frameBorder='0' allowFullScreen></iframe>
