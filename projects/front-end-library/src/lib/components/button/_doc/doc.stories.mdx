@@ -43,7 +43,6 @@ import { ButtonComponent } from '../angular/button.component';
             control: { type: 'select' }
         },
         iconSize: { table: {defaultValue: { summary: 'small' }}},
-        isAutofocus:{ table: { defaultValue: { summary: false }}},
         isDisabled: { table:{ defaultValue: { summary: false }}},
         isLoading: { table: { defaultValue: { summary: false }}},
         isSubmit: { table: { defaultValue: { summary: false }}}
@@ -64,11 +63,39 @@ import { ButtonComponent } from '../angular/button.component';
 ## Drupal implementation example
 
 ```jsx
+// a regular button
 {% include '@bf-components/button/twig/index.twig' with {
     label           : 'Button label',
     hierarchy       : 'primary',
-    isDisabled      : false,
+    iconName        : 'placeholder',
+    iconPosition    : 'right',
+    class           : 'mt-3',
+} only %}
+
+// the link button
+{% include '@bf-components/button/twig/index.twig' with {
+    label           : 'Button label',
+    hierarchy       : 'primary',
+    href            : 'https://example.com',
     isLoading       : false,
+    iconName        : 'placeholder',
+    iconPosition    : 'right',
+    class           : 'mt-3',
+} only %}
+
+// the submit button
+{% include '@bf-components/button/twig/index.twig' with {
+    label           : 'Submit form',
+    hierarchy       : 'primary',
+    isSubmit        : true,
+    class           : 'mt-3',
+} only %}
+
+// the isLoading button
+{% include '@bf-components/button/twig/index.twig' with {
+    label           : 'Button label',
+    hierarchy       : 'primary',
+    isLoading       : true,
     iconName        : 'placeholder',
     iconPosition    : 'right',
     class           : 'mt-3',

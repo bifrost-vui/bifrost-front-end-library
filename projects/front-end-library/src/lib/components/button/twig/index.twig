@@ -1,25 +1,17 @@
 {# set booleans to false if the are undefined #}
-{% set reversed = reversed|default(false) %}
-{% set fullWidth = fullWidth|default(false) %}
 {% set isLoading = isLoading|default(false) %}
-{% set hasLoading = hasLoading|default(false) %}
-{% set autofocus = autofocus|default(false) %}
-{% set isSubmit = isSubmit|default(false) %}
 {% set isDisabled = isDisabled|default(false) %}
-{% set formNoValidate = formNoValidate|default(false) %}
 
-{# conditions that turn a button into a submit button #}
-{% if isSubmit or formNoValidate or
+{# conditions that turn a regular button into a submit button #}
+{% set isSubmit =
+  isSubmit|default(false) or
+  formNoValidate|default(false) or
   (formId is defined and formId) or
   (formAction is defined and formAction) or
   (formEncryptionType is defined and formEncryptionType) or
   (formTarget is defined and formTarget) or
   (formMethod is defined and formMethod)
 %}
-  {% set isSubmitBtn = true %}
-{% else %}
-  {% set isSubmitBtn = false %}
-{%  endif %}
 
 {# conditions that turns a button into a link #}
 {% set isLink = href is defined and href is not empty and not isSubmitBtn and not isDisabled %}
@@ -28,9 +20,9 @@
     {% if isLink %}
         href='{{ href|default('#') }}'
     {% else %}
-        type='{{ isSubmitBtn ? 'submit' : 'button' }}'
+        type='{{ isSubmit ? 'submit' : 'button' }}'
     {% endif %}
-    class='bf-button bf-button--{{ hierarchy|default('secondary') }} {{ reversed ? 'reversed' }} {{ fullWidth ? 'bf-button--fullwidth' }} {{ isDisabled ? 'disabled' }} {{ isLoading ? 'loading' }} {{ class|default('') }}'
+    class='bf-button bf-button--{{ hierarchy|default('secondary') }} {{ reversed|default(false) ? 'reversed' }} {{ fullWidth|default(false) ? 'bf-button--fullwidth' }} {{ isDisabled ? 'disabled' }} {{ isLoading ? 'loading' }} {{ class|default('') }}'
     {% if isDisabled %}disabled='disabled' aria-disabled='true' {% endif %}
     {% if dataDismiss|default(null) %}data-dismiss='{{ dataDismiss}}'{% endif %}
     {% if dataToggle|default(null) %}data-toggle='{{ dataToggle }}'{% endif %}
@@ -39,8 +31,7 @@
     {% if ariaExpanded|default(null) %}aria-expanded='{{ ariaExpanded }}'{% endif %}
     {% if id|default(null) %}id='{{ id }}'{% endif %}
 
-    {% if isSubmitBtn %}
-      {{ autofocus ? 'autofocus' }}
+    {% if isSubmit %}
       {% if formId|default(null) %}form='{{ formId }}' {% endif %}
       {% if formAction|default(null) %}formaction='{{ formAction }}'{% endif %}
       {% if formEncryptionType|default(null) %}  formenctype='{{ formEncryptionType }}' {% endif %}
@@ -68,7 +59,7 @@
         {% endif %}
     </span>
 
-    {% if isLoading or hasLoading %}
+    {% if isLoading or hasLoading|default(false) %}
         <div class='bf-button__loading' role='decoration'>
             <i></i>
             <i></i>

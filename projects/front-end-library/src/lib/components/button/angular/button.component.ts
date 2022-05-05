@@ -18,7 +18,6 @@ export class ButtonComponent implements OnInit {
     @Input() extraAttribute: string;
 
     @Input() isDisabled: boolean;
-    @Input() isAutofocus: boolean;
     @Input() isLoading: boolean;
     @Input() hasLoading: boolean;
 
