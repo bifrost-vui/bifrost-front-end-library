@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IButtonNav } from '../../../components/button-nav/angular/api.model';
 import { ILink } from '../../../components/link/angular/api.model';
+
 @Component({
     selector: 'bf-section-buttons-nav',
     templateUrl: './section-buttons-nav.component.html',

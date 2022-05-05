@@ -1,7 +1,6 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
-
+import { Component, OnInit, Input } from '@angular/core';
 @Component({
-    selector: "bf-button-nav",
+    selector: 'bf-button-nav',
     templateUrl: './button-nav.component.html',
 })
 export class ButtonNavComponent implements OnInit {
@@ -28,10 +27,8 @@ export class ButtonNavComponent implements OnInit {
     @Input() class          : string;
     @Input() reversed       : boolean;
     @Input() highlight      : boolean;
-    
 
     ngOnInit() {
         console.log('button nav', this);
     }
-    
 }
