@@ -1,5 +1,5 @@
 <div class='bf-banner-advanced {{ class|default('') }}'>
-  <div class='bf-banner-advanced__inner flex-column flex-md-row gap-3 gap-sm-4  p-3 p-sm-4 '>
+  <div class='bf-banner-advanced__inner flex-column flex-md-row gap-3 gap-sm-4 p-3 p-sm-4'>
     <header class='flex-1 text-center text-md-left'>
       {% if title is defined and title %}
         <h3>{{ title }}</h3>
@@ -37,7 +37,7 @@
     {% endif %}
   </div>
 
-  {% set hasFooter = (block('footer') is defined or (footer is defined and footer) or (inputSwitch is defined and inputSwitch)) ? true : false %}
+  {% set hasFooter = (block('footer') is defined or (footer is defined and footer) or (inputSwitch is defined and inputSwitch)) %}
 
   {% if hasFooter %}
   <div class='bf-banner-advanced__footer p-3 p-sm-4 pt-0 border-top'>
@@ -46,7 +46,7 @@
     {% elseif footer is defined and footer %}
         {{ content }}
     {% else %}
-      {% include '@bf-components/input-switch/twig/index.twig' with inputSwitch %}
+      {% include '@bf-components/input-switch/twig/index.twig' with inputSwitch only %}
     {% endif %}
   </div>
   {% endif %}
