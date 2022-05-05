@@ -30,7 +30,7 @@ export class SelectionTileComponent implements OnInit {
     /** extra attribute for the radio/checkbox input */
     @Input() extraAttribute: string
     @Input() orientation: 'horizontal'|'vertical';
-    /**  Tile  fits the content | Tile fits the container (up to 20.5rem)  */
+    /**  Tile  fits the content | Tile fits the container */
     @Input() fit: 'content'|'container';//hug content vs max width
     @Input() title: string;
     @Input() description: string;
