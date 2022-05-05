@@ -13,8 +13,8 @@ export class SectionButtonsNavComponent implements OnInit {
     @Input() buttons: IButtonNav[];
     @Input() isFeatured: boolean;
     @Input() background: 'ground' | 'underground' | 'highlight';
-    /** Add a section at the right of the section button nav. `{ title, description, link }` */
-    @Input() rightSection: IRightSection;
+    /** Add a section at the right. `{ title, description, link }` */
+    @Input() asideSection: IAsideSection;
 
     @Input() extraAttribute: string;
     @Input() class: string;
@@ -25,7 +25,7 @@ export class SectionButtonsNavComponent implements OnInit {
     }
 }
 
-interface IRightSection {
+interface IAsideSection {
     title: string;
     description: string;
     link: ILink;
