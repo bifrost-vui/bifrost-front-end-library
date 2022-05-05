@@ -31,7 +31,7 @@ export class SelectionTileComponent implements OnInit {
     @Input() isDisabled     : boolean;
     @Input() isSelected     : boolean;
     @Input() isInvalid      : boolean;
-    @Input() errorMessage   : string;
+    @Input() errorMessage   : HTMLElement;
     @Input() isRequired     : boolean;
     @Input() content        : string | 'TwigBlock';
 
