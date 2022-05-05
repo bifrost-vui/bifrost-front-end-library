@@ -17,9 +17,9 @@ export class LinkComponent implements OnInit {
     @Input() isDisabled     : boolean;
     @Input() title          : string;
     @Input() ariaLabel      : string;
-    @Input() extraAttribute : string;
     @Input() rel            : string;
 
+    @Input() extraAttribute : string;
     @Input() class          : string;
     @Input() reversed       : boolean;
 
