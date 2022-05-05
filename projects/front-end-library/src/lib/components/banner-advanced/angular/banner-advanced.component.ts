@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {HTMLElement} from '@webcomponents/custom-elements/src/Patch/Native';
 import { IInputSwitch } from '../../input-switch/angular/api.model';
 
 
