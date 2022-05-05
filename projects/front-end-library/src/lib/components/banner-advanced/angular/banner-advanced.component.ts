@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {HTMLElement} from '@webcomponents/custom-elements/src/Patch/Native';
-import { ISwitch } from '../../input-switch/angular/api.model';
+import { IInputSwitch } from '../../input-switch/angular/api.model';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class BannerAdvancedComponent implements OnInit {
     @Input() icons: object[];
     @Input() footer: HTMLElement | 'TwigBlock';
     /** See [Input Switch](/?path=/story/components-input-switch--drupal) */
-    @Input() inputSwitch: ISwitch;
+    @Input() inputSwitch: IInputSwitch;
     @Input() class: string;
     ngOnInit() {
         console.log('BannerAdvanced', this);

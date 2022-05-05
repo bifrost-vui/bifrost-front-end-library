@@ -1,4 +1,4 @@
-export interface ISwitch {
+export interface IInputSwitch {
     id: string;
     name: string;
     label: string|object;
