@@ -2,6 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { IButtonNav } from '../../../components/button-nav/angular/api.model';
 import { ILink } from '../../../components/link/angular/api.model';
 
+interface IAsideSection {
+    title: string;
+    description: string;
+    link: ILink;
+}
+
 @Component({
     selector: 'bf-section-buttons-nav',
     templateUrl: './section-buttons-nav.component.html',
@@ -24,10 +30,4 @@ export class SectionButtonsNavComponent implements OnInit {
     ngOnInit() {
         console.log('section buttons nav', this);
     }
-}
-
-interface IAsideSection {
-    title: string;
-    description: string;
-    link: ILink;
 }
