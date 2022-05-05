@@ -40,5 +40,4 @@ export class FooterComponent implements OnInit {
     ngOnInit() {
         console.log('footer', this);
     }
-
 }
