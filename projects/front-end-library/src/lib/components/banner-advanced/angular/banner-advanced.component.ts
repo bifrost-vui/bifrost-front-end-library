@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {HTMLElement} from '@webcomponents/custom-elements/src/Patch/Native';
 import { ISwitch } from '../../input-switch/angular/api.model';
 
 
@@ -13,7 +14,7 @@ export class BannerAdvancedComponent implements OnInit {
     @Input() description: string;
     /** Expected format: [{name: string, label: string}, {...}]. A maximum of 3 icons is accepted */
     @Input() icons: object[];
-    @Input() footer: string | 'TwigBlock';
+    @Input() footer: HTMLElement | 'TwigBlock';
     /** See [Input Switch](/?path=/story/components-input-switch--drupal) */
     @Input() inputSwitch: ISwitch;
     @Input() class: string;
