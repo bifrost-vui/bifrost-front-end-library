@@ -3,7 +3,7 @@
 
 {# locals #}
 {% set hasVisual = (iconName is defined and iconName) or (image.src is defined and image.src and image.alt is defined) %}
-{% set hasFooter =  orientation is same as ('horizontal') and fit is same as ('container') and ( (footerText is defined and footerText) or (footerLink is defined and footerLink is not empty)) %}
+{% set hasFooter =  orientation is same as ('horizontal') and fit is same as ('container') and ( (footer.text is defined and footer.text) or (footer.link is defined and footer.link is not empty)) %}
 
 {# striptag filter #}
 {% set inlineTags = '<br><em><i><strong><b><sup><sub>' %}
@@ -68,8 +68,8 @@
           </div>
         </div>
 
-        {# ---------Vertical Tiles Footer | Horizontal Tiles Right Side ------------  #}
-        {% if (info is defined and info) or (orientation is same as ('vertical') and fit is same as ('container')) %}
+        {# ---------Vertical Tiles Bottom | Horizontal Tiles Right Side ------------  #}
+        {% if (info is defined and info) or ((orientation is same as ('vertical') and fit is same as ('container')) %}
           <div class='bf-selection-tile__bottom'>
             <div class='bf-selection-tile__text'>
               <p class='p-0 m-0 text-break'>{{ info|striptags(inlineTags)|raw }}</p>
@@ -84,26 +84,26 @@
   {% if hasFooter %}
     <footer class='bf-selection-tile__footer p-3'>
       <div class='bf-text small bf-color-neutral-secondary'>
-        {% if footerText is defined and footerText %}
-          {{ footerText|striptags(allowedTags)|raw }}
+        {% if footer.text is defined and footer.text %}
+          {{ footer.text|striptags(allowedTags)|raw }}
         {% endif %}
 
-        {% if footerLink is defined and footerLink is not empty %}
+        {% if footer.link is defined and footer.link is not empty %}
           {% include '@bf-components/link/twig/index.twig' with {
-            href: footerLink.href,
-            label: footerLink.label,
+            href: footer.link.href,
+            label: footer.link.label,
           } only %}
         {% endif %}
       </div>
 
-      {% if footerIconName is defined and footerIconName %}
+      {% if footer.iconName is defined and footer.iconName %}
         {% include '@bf-components/icon/twig/index.twig' with {
-          name: footerIconName,
+          name: footer.iconName,
           size: 'medium'
         } only %}
 
-      {% elseif footerImage is defined and footerImage.src is defined and footerImage.src %}
-        <img src='{{ footerImage.src }}' alt='{{ footerImage.alt|default('') }}' />
+      {% elseif footer.image is defined and footer.image.src is defined and footer.image.src %}
+        <img src='{{ footer.image.src }}' alt='{{ footer.image.alt|default('') }}' />
       {% endif %}
     </footer>
   {% endif %}

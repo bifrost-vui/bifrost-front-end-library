@@ -2,6 +2,15 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 import { ILink } from '../../link/angular/api.model';
 import {HTMLElement} from '@webcomponents/custom-elements/src/Patch/Native';
 
+interface IFooter{
+    text: HTMLElement;
+    link: ILink;
+    iconName: string;
+    image:{
+        src: string,
+        alt:string
+    }
+}
 
 @Component({
   selector: 'bf-selection-tile',
@@ -16,8 +25,8 @@ export class SelectionTileComponent implements OnInit {
     @Input() type: 'checkbox'|'radio';
     @Input() inputId: string;
     @Input() value: string;
-    @Input() ariaLabel: string;
     @Input() name: string;
+    @Input() ariaLabel: string;
     /** extra attribute for the radio/checkbox input */
     @Input() extraAttribute: string
     @Input() orientation: 'horizontal'|'vertical';
@@ -37,15 +46,8 @@ export class SelectionTileComponent implements OnInit {
     @Input() errorMessage: string;
     @Input() isRequired: boolean;
     @Input() content: HTMLElement | 'TwigBlock';
-    /** For horizontal tile only - Can contain HTML */
-    @Input() footerText: HTMLElement;
-    /** for horizontal tile only - see [Link] */
-    @Input() footerLink: ILink;
-    /** For horizontal tile only. Expected: {src: string, alt:string}*/
-    @Input() footerImage: object;
-    /** For horizontal tile only.*/
-    @Input() footerIconName: string;
-
+    /** For horizontal tile only. Expected : {text: HTMLElement, link: {label:string, href:string} iconName: string, image:{ src: string, alt:string }} */
+    @Input() footer: IFooter;
 
     ngOnInit() {
         console.log('SelectionTile', this);

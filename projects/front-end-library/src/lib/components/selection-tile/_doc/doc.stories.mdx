@@ -45,13 +45,6 @@ import { SelectionTileComponent } from '../angular/selection-tile.component';
                 type: 'select',
                 options: [ ...illustrationIcons.map(a => a.list).flat().sort()],
             }
-        },
-        footerIconName: {
-            defaultValue: '',
-            control: {
-                type: 'select',
-                options: [ ...illustrationIcons.map(a => a.list).flat().sort()],
-            }
         }
     }}
 />
@@ -109,9 +102,14 @@ export const commonProps = {
             elementPath: 'components/selection-tile/_doc/template.drupal',
             ...commonProps,
             fit: 'container',
-            footerText: `<p>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
-            footerLink: { label: 'Learn more about Take-back Credit', href: 'https://example.com'},
-            footerIconName: 'credit-return'
+            footer: {
+                text: `<p>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
+                link: {
+                    label: 'Learn more about Take-back Credit',
+                    href: 'https://example.com'
+                },
+                iconName: 'credit-return'
+            }
         }}
     >
         {Drupal.bind({})}
@@ -128,12 +126,17 @@ export const commonProps = {
             elementPath: 'components/selection-tile/_doc/template.drupal',
             ...commonProps,
             fit: 'container',
-            footerText: `<p>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
-            footerLink: { label: 'Learn more about Take-back Credit', href: 'https://example.com'},
-            footerImage: {
-                src:'/images/assets/tv.png',
-                alt:'TVA Sports',
-            },
+            footer: {
+                text: `<p>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
+                link: {
+                    label: 'Learn more about Take-back Credit',
+                    href: 'https://example.com'
+                },
+                image: {
+                    src:'/images/assets/tv.png',
+                    alt:'TVA Sports',
+                }
+            }
         }}
     >
         {Drupal.bind({})}
@@ -204,21 +207,67 @@ export const commonProps = {
 ## Drupal's implementation examples
 
 ```jsx
+
+//Horizontal Tile - fit content
     {% include '@bf-components/selection-tile/twig/index.twig'  with {
         inputId: 'canal-plus',
         ariaLabel: 'Canal plus',
         title: 'Canal plus',
     } only %}
 
+//Horizontal Tile - fit container
     {% include '@bf-components/selection-tile/twig/index.twig' with {
         inputId: 'canal-plus',
         ariaLabel: 'Canal plus',
-        fit: 'fit-container',
+        fit: 'container',
         title: 'Canal plus',
         description: 'Descriptium ipsum',
         info: '$12.34/Month'
     } only %}
 
+//Horizontal Tile - with image in footer
+    {% include '@bf-components/selection-tile/twig/index.twig' with {
+        inputId: 'movie-channel',
+        ariaLabel: 'Movie Chanel',
+        fit: 'container',
+        orientation: 'horizontal',
+        title: 'Movie Chanel',
+        description: 'lorem ipsum descriptum',
+        info: '$12.34/Month',
+        footer: {
+            text: `<p>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
+            link: {
+                label: 'Learn more about Take-back Credit',
+                href: 'https://example.com'
+            },
+            image: {
+                src:'/images/logo/channels/tva-sports.svg',
+                alt:'TVA Sports',
+                class:''
+            },
+        }
+    } only %}
+
+//Horizontal Tile - with icon in footer
+    {% include '@bf-components/selection-tile/twig/index.twig' with {
+        inputId: 'movie-channel',
+        ariaLabel: 'Movie Chanel',
+        fit: 'container',
+        orientation: 'horizontal',
+        title: 'Movie Chanel',
+        description: 'lorem ipsum descriptum',
+        info: '$12.34/Month',
+        footer: {
+            text: `<p>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
+            link: {
+                label: 'Learn more about Take-back Credit',
+                href: 'https://example.com'
+            },
+            iconName: 'credit-return'
+        }
+    } only %}
+
+//vertical Tile - fit content
     {% include '@bf-components/selection-tile/twig/index.twig' with {
         inputId: 'tva-sports',
         ariaLabel: 'TVA Sport',
@@ -230,7 +279,7 @@ export const commonProps = {
             alt: 'TVA Sport'
         }
     } only %}
-
+//vertical Tile - fit container
     {% include '@bf-components/selection-tile/twig/index.twig' with {
         inputId: 'movie-channel',
         ariaLabel: 'Movie Chanel',
