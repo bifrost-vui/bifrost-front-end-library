@@ -14,7 +14,6 @@
       <div class='bf-banner-advanced__body gap-0 gap-sm-2'>
         {% for icon in icons|slice(0, 3) %}
           {% if icon.name is defined and icon.name and icon.label is defined and icon.label %}
-            {# conditional plus sign between Icons #}
             {% if not loop.first %}
               {% include '@bf-components/icon/twig/index.twig' with {
                 name: 'plus',
@@ -40,7 +39,7 @@
   {% if block('footer') is defined or footer is defined %}
     <div class='bf-banner-advanced__footer p-3 p-sm-4  border-top'>
       {% if block('footer') is defined %}
-      {{ block('footer') }}
+        {{ block('footer') }}
       {% elseif footer is iterable and footer.inputSwitch is defined and footer.inputSwitch is not empty %}
         {% include '@bf-components/input-switch/twig/index.twig' with footer.inputSwitch only %}
       {% else  %}
