@@ -30,12 +30,12 @@ export class SelectionTileComponent implements OnInit {
     @Input() extraAttribute: string
     @Input() orientation: 'horizontal' | 'vertical';
     /**  Tile  fits the content | Tile fits the container */
-    @Input() fit: 'content' | 'container';// tODO - revisit the fit behavior : hug content vs max width
+    @Input() fit: 'content' | 'container'; // TODO - revisit the fit behavior : hug content vs max width
     @Input() title: string;
     @Input() description: string;
     /** Only available for `orientation: vertical` and `fit: container`. */
     @Input() info: HTMLElement;
-    /** Expected format: { src: string, alt: string, class: string } */
+    /** Expected format: `{ src: string, alt: string, class: string }` */
     @Input() image: object;
     @Input() iconName: string;
     @Input() reversed: boolean;
