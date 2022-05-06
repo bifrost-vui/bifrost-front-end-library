@@ -1,0 +1,24 @@
+{% set class = 'bf-input-checkbox ' ~ class|default(null) %}
+
+{% extends '@bf-components/input/twig/index.twig' %}
+  {% block inputContent %}
+    {% if options %}
+      {% if isOptionTiles|default(false) %}
+        <ul class='list-unstyled d-flex flex-column gap-2 mb-0'>
+          {% for option in options %}
+            {% include '@bf-components/selection-tile/twig/index.twig' with option only %}
+          {% endfor %}
+        </ul>
+      {% else %}
+        <ul class='list-unstyled d-flex flex-column gap-2 mb-0'>
+          {% for option in options %}
+            {% set option = option|merge({
+              'type': 'checkbox',
+              'inputdId': id
+            }) %}
+            {% include '@bf-components/input-checkbox-option/twig/index.twig' with option only %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endif %}
+ {% endblock %}
