@@ -8,12 +8,12 @@ import { ITileKey } from '../../../components/tile-key/angular/api.model';
 export class SectionTilesKeyComponent implements OnInit {
     constructor() {}
 
-    @Input() title              : string;
-    @Input() tiles              : ITileKey[];
-    @Input() hasFeaturedLayout  : boolean;
+    @Input() title: string;
+    @Input() tiles: ITileKey[];
+    @Input() hasFeaturedLayout: boolean;
 
-    @Input() class              : string;
-    @Input() reversed           : boolean;
+    @Input() class: string;
+    @Input() reversed: boolean;
 
     ngOnInit() {
         console.log('Section Tiles Key', this);
