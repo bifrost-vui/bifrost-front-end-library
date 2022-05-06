@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { InputRadioComponent } from './input-radio.component';
+import { InputRadioOptionComponent } from './input-radio-option.component';
 
 @NgModule({
-  declarations: [InputRadioComponent],
+  declarations: [InputRadioOptionComponent],
   imports: [
   ],
-  exports: [InputRadioComponent]
+  exports: [InputRadioOptionComponent]
 })
-export class InputRadioModule { }
+export class InputRadioOptionModule { }
