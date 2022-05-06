@@ -1,0 +1,28 @@
+<div class='bf-input {{ isInvalid|default(false) ? 'invalid' }} {{ isDisabled|default(false) ? 'disabled' }} {{ isReadOnly|default(false) ? 'readonly' }} {{ class|default(null) }}'>
+  {% if (label is defined and label) or (labelButtonIcon is defined and labelButtonIcon is not empty) or (description is defined and description) %}
+    <div class='mb-2'>
+      {% if label is defined and label %}
+        <label class='bf-input__label' {% if id is defined and id %}for='{{ id }}'{% endif %}>
+          {{ label }}
+        </label>
+      {% endif %}
+      {% if description is defined and description %}
+        <p class='bf-color-neutral-secondary mb-0'>
+          {{ description }}
+        </p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if block('inputContent') is defined %}
+    {{ block('inputContent') }}
+  {% elseif inputContent is defined %}
+    {{ inputContent }}
+  {% endif %}
+
+  {% if errorMessage is defined and errorMessage %}
+    <p class='small bf-color-feedback-negative mb-0 mt-1'>
+      {{ errorMessage }}
+    </p>
+  {% endif %}
+</div>

@@ -1,0 +1,111 @@
+/* *****************************************************************************
+*
+*  Input
+*
+* ***************************************************************************** */
+
+.bf-input {
+
+    &__label {
+        font-weight: 700;
+        margin-bottom: 0;
+    }
+
+    &__label ~ .bf-button-icon {
+        transform: translateY(2px);
+    }
+
+    &__control {
+        width: 100%;
+        padding: calc(.5rem - 1px) 1rem; // In order to have height: 40px.
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        font-weight: 400;
+        text-transform: none;
+        letter-spacing: normal;
+        color: var(--bf-color-neutral-primary);
+        border-radius: var(--bf-border-radius-small);
+        border: 1px solid var(--bf-color-stroke-primary);
+        transition-property: border-color, background-color, box-shadow;
+        transition-duration: .25s;
+        transition-timing-function: ease-in-out;
+
+        &:not(:disabled) {
+            &:hover,
+            &:focus {
+                border-color: var(--bf-color-stroke-highlight);
+                background-color: transparent;
+            }
+
+            &:focus {
+                box-shadow: 0 0 0 3px rgba(129,194,255, .5) !important;
+                background-color: var(--bf-color-bg-ground);
+            }
+
+            &:focus:not(:focus-visible) {
+                box-shadow: none !important;
+            }
+        }
+    }
+
+    &.invalid .bf-input__control {
+        color: currentColor;
+        border-color: var(--bf-color-feedback-negative);
+        background-color: transparent;
+    }
+
+    &.disabled {
+        .bf-input__control {
+            color: var(--bf-color-neutral-tertiary);
+            border-color: var(--bf-color-stroke-secondary);
+            cursor: not-allowed;
+        }
+
+        .bf-input__adornment {
+            color: var(--bf-color-neutral-tertiary);
+
+            .bf-icon {
+                color: currentColor;
+            }
+        }
+    }
+
+    &.readonly .bf-input__control {
+        border-color: var(--bf-color-stroke-secondary);
+        color: var(--bf-color-neutral-secondary);
+        cursor: default;
+    }
+
+    &__adornment {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        border-radius: var(--bf-border-radius-small);
+        padding-right: var(--bf-spacer-3);
+        background-color: inherit;
+        // pointer-events: none;
+    }
+
+    input {
+        background: none;
+    }
+
+    input::-webkit-input-placeholder,
+    input::placeholder {
+        color: var(--bf-color-neutral-tertiary) !important;
+    }
+
+    select {
+        appearance: none;
+        background: none;
+        cursor: pointer;
+
+        &:disabled {
+            opacity: 1; // Reset browser behavior
+        }
+    }
+}
