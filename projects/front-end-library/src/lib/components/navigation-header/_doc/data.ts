@@ -1,8 +1,7 @@
 export const topBar_items = [
-    { label:"Personal", href:"", class:"active",  },
+    { label: "Personal", href: "", class: "active" },
     { label:"Business", href:"", class:"" },
 ];
-
 
 export const topBar_secondaryItems = [
     { label:"Webmail", href:"", class:"" },
@@ -11,6 +10,6 @@ export const topBar_secondaryItems = [
 ];
 
 export const rigthIconLinks = [
-    { icon:"email", href:" ", class:"" },
-    { icon:"pin", href:" ", class:"" },
+    { icon:"email", href:"", class:"" },
+    { icon:"pin", href:"", class:"" },
 ];

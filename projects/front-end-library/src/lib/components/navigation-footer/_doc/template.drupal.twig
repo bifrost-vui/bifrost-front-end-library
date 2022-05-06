@@ -1,21 +1,17 @@
+{% set links = links|json_parse %}
+{% set linkFields = linkFields|json_parse %}
+{% set hasBackToTopLink = hasBackToTopLink|json_parse|default(true) %}
+{% set logo = logo|json_parse %}
+{% set isReduced = isReduced|json_parse|default(false) %}
+{% set reversed = reversed|json_parse|default(false) %}
 
-{# ----------------------------------------------------------------- #}
-{% set links                = links|json_parse %}
-{% set linkFields           = linkFields|json_parse %}
-{% set hasBackToTopLink     = hasBackToTopLink|json_parse|default(true) %}
-{% set logo                 = logo|json_parse %}
-{% set isReduced            = isReduced|json_parse|default(false) %}
-{% set reversed             = reversed|json_parse|default(false) %}
-
-
-{# ----------------------------------------------------------------- #}
 {% include '@bf-components/navigation-footer/twig/index.twig' with {
-    links               : links,
-    linkFields          : linkFields,
-    logo                : logo,
-    hasBackToTopLink    : hasBackToTopLink,
-    languageBlock       : languageBlock,
-    isReduced           : isReduced,
-    reversed            : reversed,
-    langcode            : langcode|default('EN'),
+  links: links,
+  linkFields: linkFields,
+  logo: logo,
+  hasBackToTopLink: hasBackToTopLink,
+  languageBlock: languageBlock,
+  isReduced: isReduced,
+  reversed: reversed,
+  langcode: langcode|default('EN'),
 } only %}
