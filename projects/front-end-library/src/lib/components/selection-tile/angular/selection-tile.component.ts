@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 import { ILink } from '../../link/angular/api.model';
 
 interface IFooter{
-    text: HTMLElement;
+    description: HTMLElement;
     link: ILink;
     iconName: string;
     image: {
