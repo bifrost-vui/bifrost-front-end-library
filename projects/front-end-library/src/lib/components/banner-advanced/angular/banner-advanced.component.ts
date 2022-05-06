@@ -12,7 +12,6 @@ export class BannerAdvancedComponent implements OnInit {
     /** Expected format: [{name: string, label: string}, {...}]. A maximum of 3 icons is accepted */
     @Input() icons: object[];
     @Input() footer: object | HTMLElement | 'TwigBlock';
-    /** See [Input Switch](/?path=/story/components-input-switch--drupal) */
     @Input() class: string;
     ngOnInit() {
         console.log('BannerAdvanced', this);
