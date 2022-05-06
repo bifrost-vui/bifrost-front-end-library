@@ -1,8 +1,6 @@
-{# set booleans to false if the are undefined #}
 {% set isLoading = isLoading|default(false) %}
 {% set isDisabled = isDisabled|default(false) %}
 
-{# conditions that turn a regular button into a submit button #}
 {% set isSubmit =
   isSubmit|default(false) or
   formNoValidate|default(false) or
@@ -13,7 +11,6 @@
   (formMethod is defined and formMethod)
 %}
 
-{# conditions that turns a button into a link #}
 {% set isLink = href is defined and href is not empty and not isSubmit and not isDisabled %}
 
 <{{ isLink ? 'a' : 'button' }}
