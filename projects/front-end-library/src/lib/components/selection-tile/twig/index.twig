@@ -3,15 +3,15 @@
 
 {# locals #}
 {% set hasVisual = (iconName is defined and iconName) or (image.src is defined and image.src and image.alt is defined) %}
-{% set hasFooter =  orientation is same as ('horizontal') and fit is same as ('container') and ( (footer.text is defined and footer.text) or (footer.link is defined and footer.link is not empty)) %}
+{% set hasFooter = orientation is same as ('horizontal') and fit is same as ('container') and ((footer.text is defined and footer.text) or (footer.link is defined and footer.link is not empty)) %}
 
 {# striptag filter #}
 {% set inlineTags = '<br><em><i><strong><b><sup><sub>' %}
 {% set allowedTags = '<div><p><ol><ul><li><span><br><em><i><strong><b><sup><sub>' %}
 
 
-<div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--{{ 'fit-' ~ fit }} {{ isInvalid ? 'color-warning' : '' }} {{ isSelected ? 'checked' : '' }} {{ class }}'>
-  <div class='bf-selection-tile__inner {{ isDisabled ? 'disabled' }}'>
+<div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--fit-{{ fit }} {{ isInvalid|default(false) ? 'color-warning' }} {{ isSelected|default(false) ? 'checked' : '' }} {{ class|default(null) }}'>
+  <div class='bf-selection-tile__inner {{ isDisabled|default(false) ? 'disabled' }}'>
     <div class='bf-selection-tile__control'>
       {% apply spaceless %}
         <input
@@ -36,7 +36,7 @@
       {% elseif content is defined and content %}
         {{ content }}
       {% else %}
-        <div class='bf-selection-tile__content {{ hasVisual ? '' : 'bf-selection-tile__no-visual' }}' >
+        <div class='bf-selection-tile__content {{ hasVisual ? '' : 'bf-selection-tile__no-visual' }}'>
           <div class='bf-selection-tile__body'>
             {% if hasVisual %}
               <div class='bf-selection-tile__visual'>
@@ -69,7 +69,7 @@
         </div>
 
         {# ---------Vertical Tiles Bottom | Horizontal Tiles Right Side ------------  #}
-        {% if (info is defined and info) or ((orientation is same as ('vertical') and fit is same as ('container')) %}
+        {% if (info is defined and info) or (orientation == 'vertical' and fit  == 'container') %}
           <div class='bf-selection-tile__bottom'>
             <div class='bf-selection-tile__text'>
               <p class='p-0 m-0 text-break'>{{ info|striptags(inlineTags)|raw }}</p>

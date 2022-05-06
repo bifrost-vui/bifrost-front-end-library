@@ -6,9 +6,9 @@ interface IFooter{
     text: HTMLElement;
     link: ILink;
     iconName: string;
-    image:{
+    image: {
         src: string,
-        alt:string
+        alt: string
     }
 }
 
@@ -46,7 +46,7 @@ export class SelectionTileComponent implements OnInit {
     @Input() errorMessage: string;
     @Input() isRequired: boolean;
     @Input() content: HTMLElement | 'TwigBlock';
-    /** For horizontal tile only. Expected : {text: HTMLElement, link: {label:string, href:string} iconName: string, image:{ src: string, alt:string }} */
+    /** Only available for `orientation: horizontal`. API expected : `{ text: HTMLElement, link: { label: string, href: string }, iconName: string, image: { src: string, alt: string } }` */
     @Input() footer: IFooter;
 
     ngOnInit() {
