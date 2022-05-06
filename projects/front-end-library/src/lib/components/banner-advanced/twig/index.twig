@@ -37,17 +37,15 @@
     {% endif %}
   </div>
 
-  {% set hasFooter = (block('footer') is defined or (footer is defined and footer) or (inputSwitch is defined and inputSwitch)) %}
-
-  {% if hasFooter %}
-  <div class='bf-banner-advanced__footer p-3 p-sm-4 pt-0 border-top'>
-    {% if block('footer') is defined %}
+  {% if block('footer') is defined or footer is defined %}
+    <div class='bf-banner-advanced__footer p-3 p-sm-4  border-top'>
+      {% if block('footer') is defined %}
       {{ block('footer') }}
-    {% elseif footer is defined and footer %}
-        {{ content }}
-    {% else %}
-      {% include '@bf-components/input-switch/twig/index.twig' with inputSwitch only %}
-    {% endif %}
-  </div>
+      {% elseif footer is iterable and footer.inputSwitch is defined and footer.inputSwitch is not empty %}
+        {% include '@bf-components/input-switch/twig/index.twig' with footer.inputSwitch only %}
+      {% else  %}
+        {{ footer }}
+      {% endif %}
+    </div>
   {% endif %}
 </div>

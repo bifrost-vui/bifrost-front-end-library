@@ -64,23 +64,37 @@ export const commonProps= {
     </Story>
 </Canvas>
 
-### Banner Advanced with footer
+<Canvas withSource='none' style={{ height: '600px'}}>
+    <Story
+        name='Drupal - with inputSwitch in footer'
+        args={{
+            elementPath: 'components/banner-advanced/_doc/template.drupal',
+            footer: {
+                inputSwitch: {
+                    id: 'inputId',
+                    name: 'inputName',
+                    ariaLabel: `I'm already an Helix client`,
+                    class: 'mb-0',
+                    label: {
+                        text: `I'm an Helix client`,
+                        position: 'right',
+                        class: 'text-uppercase font-weight-bold'
+                    }
+                }
+            },
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
 
 <Canvas withSource='none' style={{ height: '600px'}}>
     <Story
-        name='Drupal - with footer'
+        name='Drupal - with HTML in footer'
         args={{
             elementPath: 'components/banner-advanced/_doc/template.drupal',
-            inputSwitch: {
-                id: 'inputId',
-                name: 'inputName',
-                ariaLabel: `I'm already an Helix client`,
-                label: {
-                    text: `I'm an Helix client`,
-                    position: 'right',
-                    class: 'text-uppercase font-weight-bold'
-                }
-            },
+            footer: `<ul class='py-0 my-0'><li>Lorem Ipsum</li><li>Lorem Ipsum</li><li>Lorem Ipsum</li></ul>`,
             ...commonProps
         }}
     >
@@ -91,7 +105,6 @@ export const commonProps= {
 ## Drupal implementation example
 
 ```jsx
-
 {% include '@bf-components/banner-advanced/twig/index.twig' with {
     title: 'Mobile discount of $10 with an Internet plan',
     description: 'Combine a Mobile plan to an Internet plan and get a $10 monthly discount.',
@@ -107,7 +120,6 @@ export const commonProps= {
     ]
 } only %}
 
-// Banner with input switch in footer
 {% include '@bf-components/banner-advanced/twig/index.twig' with {
     title: 'Mobile discount of $10 with an Internet plan',
     description: 'Combine a Mobile plan to an Internet plan and get a $10 monthly discount.',
@@ -121,37 +133,19 @@ export const commonProps= {
             label: 'Internet plan'
         }
     ],
-    inputSwitch: {
-        id: 'inputId',
-        name: 'inputName',
-        ariaLabel: 'I\'m already an Helix client',
-        label: {
-            text: 'I\'m an Helix client',
+    footer: {
+        inputSwitch: {
+            id: 'inputId',
+            name: 'inputName',
+            ariaLabel: `I'm already an Helix client`,
+            label: {
+            text: `I'm an Helix client`,
             position: 'right',
-            class: 'text-uppercase font-weight-bold'
+            class: 'text-uppercase font-weight-bold pb-0'
+            }
         }
     }
 } only %}
-
-// Banner with embedded footer
-{% embed '@bf-components/banner-advanced/twig/index.twig' with {
-    title: 'Mobile discount of $10 with an Internet plan',
-    description: 'Combine a Mobile plan to an Internet plan and get a $10 monthly discount.',
-    icons: [
-        {
-            icon: 'mobility',
-            label: 'Mobile plan'
-        },
-        {
-            icon: 'bundle-1',
-            label: 'Internet plan'
-        }
-    ],
-} only %}
-    {% block footer %}
-        // Insert html here.
-    {% endblock %}
-{% endembed %}
 ```
 
 ## Design Guidelines
