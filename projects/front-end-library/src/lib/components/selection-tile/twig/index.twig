@@ -1,14 +1,12 @@
 {% set orientation = orientation|default('horizontal') %}
 {% set fit = fit|default('content') %}
 
-{# locals #}
 {% set hasVisual = (iconName is defined and iconName) or (image.src is defined and image.src and image.alt is defined) %}
 {% set hasFooter = orientation is same as ('horizontal') and fit is same as ('container') and ((footer.text is defined and footer.text) or (footer.link is defined and footer.link is not empty)) %}
 
 {# striptag filter #}
 {% set inlineTags = '<br><em><i><strong><b><sup><sub>' %}
 {% set allowedTags = '<div><p><ol><ul><li><span><br><em><i><strong><b><sup><sub>' %}
-
 
 <div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--fit-{{ fit }} {{ isInvalid|default(false) ? 'color-warning' }} {{ isSelected|default(false) ? 'checked' : '' }} {{ class|default(null) }}'>
   <div class='bf-selection-tile__inner {{ isDisabled|default(false) ? 'disabled' }}'>
