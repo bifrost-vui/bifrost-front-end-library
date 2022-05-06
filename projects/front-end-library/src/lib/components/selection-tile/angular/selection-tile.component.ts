@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 import { ILink } from '../../link/angular/api.model';
-import {HTMLElement} from '@webcomponents/custom-elements/src/Patch/Native';
 
 interface IFooter{
     text: HTMLElement;
@@ -22,21 +21,21 @@ export class SelectionTileComponent implements OnInit {
 
     /** Class override */
     @Input() class: string;
-    @Input() type: 'checkbox'|'radio';
+    @Input() type: 'checkbox' | 'radio';
     @Input() inputId: string;
     @Input() value: string;
     @Input() name: string;
     @Input() ariaLabel: string;
     /** extra attribute for the radio/checkbox input */
     @Input() extraAttribute: string
-    @Input() orientation: 'horizontal'|'vertical';
+    @Input() orientation: 'horizontal' | 'vertical';
     /**  Tile  fits the content | Tile fits the container */
-    @Input() fit: 'content'|'container';//hug content vs max width
+    @Input() fit: 'content' | 'container';// tODO - revisit the fit behavior : hug content vs max width
     @Input() title: string;
     @Input() description: string;
     /** Only available for `orientation: vertical` and `fit: container`. */
     @Input() info: HTMLElement;
-    /**{ src: string, alt: string, class: string } */
+    /** Expected format: { src: string, alt: string, class: string } */
     @Input() image: object;
     @Input() iconName: string;
     @Input() reversed: boolean;
@@ -46,7 +45,7 @@ export class SelectionTileComponent implements OnInit {
     @Input() errorMessage: string;
     @Input() isRequired: boolean;
     @Input() content: HTMLElement | 'TwigBlock';
-    /** Only available for `orientation: horizontal`. API expected : `{ text: HTMLElement, link: { label: string, href: string }, iconName: string, image: { src: string, alt: string } }` */
+    /** Only available for `orientation: horizontal`. Expected format: { text: HTMLElement, link: { label: string, href: string }, iconName: string, image: { src: string, alt: string } } */
     @Input() footer: IFooter;
 
     ngOnInit() {
