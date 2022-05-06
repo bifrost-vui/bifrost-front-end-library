@@ -8,7 +8,7 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
     title='Components/Input Checkbox'
     component={InputCheckboxComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputCheckboxComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [InputCheckboxComponent, TwigContainerComponent] }),
         withDesign
     ]}
     parameters={{
@@ -16,10 +16,10 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
             type: 'figma',
             url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=16890%3A229797',
             disable: false
-        },
+        }
     }}
     argTypes={{
-        id: {type: {required: true}},
+        id: { type: { required: true } },
         inputName: {
             control: { type: 'text' },
             description: 'Use `name` instead',
@@ -35,17 +35,12 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
                 type: 'select',
                 options: [null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight']
             },
-            description: 'preview the component on selected background'
+            description: 'Preview the component on selected background.'
         },
     }}
 />
 
 # Input Checkbox
-
-export const Drupal = (args) => ({
-    component: TwigContainerComponent,
-    props: args,
-});
 
 ## Component API
 
@@ -53,38 +48,37 @@ export const Drupal = (args) => ({
 
 ## Drupal
 
-<Canvas
-    withSource='none'
-    style = {{ height: '400px' }}
->
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Canvas withSource='none' style={{ height: '400px' }}>
     <Story
         name='Drupal'
         args={{
             elementPath: 'components/input-checkbox/_doc/template.drupal',
-            label: 'label',
             id: '',
-            value: 'value',
             name: 'name'
+            value: true,
+            label: 'Label',
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-
 ## Drupal implementation example
 
 ```jsx
 {% include '@bf-components/input-checkbox/twig/index.twig' with {
-    label: 'label',
     id: 'id',
-    value: 'value',
     name: 'name'
+    value: true,
+    label: 'Label',
 } only %}
 ```
 
-
 ## Design Guidelines
 
-<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D16890%253A229797
-' frameBorder='0' allowFullScreen></iframe>
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D16890%253A229797' frameBorder='0' allowFullScreen></iframe>
