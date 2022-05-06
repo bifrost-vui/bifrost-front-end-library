@@ -8,7 +8,7 @@ import { InputRadioOptionComponent } from '../angular/input-radio-option.compone
     title='Components/Input Radio/Input Radio Option'
     component={InputRadioOptionComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputRadioOptionComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [InputRadioOptionComponent, TwigContainerComponent] }),
         withDesign
     ]}
     parameters={{
@@ -53,18 +53,15 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas
-    withSource='none'
-    style={{ height: '300px' }}
->
+<Canvas withSource='none' style={{ height: '300px' }}>
     <Story
         name='Drupal'
         args={{
             elementPath: 'components/input-radio-option/_doc/template.drupal',
-            id: '',
             inputId: 'inputId',
+            id: '',
             name: 'name',
-            label: 'label'
+            label: 'Label'
         }}
     >
         {Drupal.bind({})}
@@ -76,9 +73,9 @@ export const Drupal = (args) => ({
 ```jsx
 {% include '@bf-components/input-radio-option/twig/index.twig' with {
     id: 'id',
-    value: 'value',
     name: 'name',
-    label: 'label'
+    value: true,
+    label: 'Label'
 } only %}
 ```
 
