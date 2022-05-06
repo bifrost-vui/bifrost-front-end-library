@@ -34,7 +34,7 @@ export class SelectionTileComponent implements OnInit {
     @Input() fit: 'content'|'container';//hug content vs max width
     @Input() title: string;
     @Input() description: string;
-    /** Only available if the tile fits container and is vertical */
+    /** Only available for `orientation: vertical` and `fit: container`. */
     @Input() info: HTMLElement;
     /**{ src: string, alt: string, class: string } */
     @Input() image: object;
