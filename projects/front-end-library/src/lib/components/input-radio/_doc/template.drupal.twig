@@ -1,0 +1,45 @@
+{% set options = options|json_parse %}
+{% set isOptionTiles = isOptionTiles|json_parse %}
+
+{% set variants = [
+  {
+    backgroundClass: backgroundClass|default(''),
+    props: {}
+  },
+  {
+    backgroundClass: backgroundClass|default('bf-color-bg-underground'),
+    props: {}
+  },
+  {
+    backgroundClass: backgroundClass|default('reversed bf-color-bg-ground'),
+    props: {}
+  },
+  {
+    backgroundClass: backgroundClass|default('reversed bf-color-bg-underground'),
+    props: {}
+  },
+  {
+    backgroundClass: backgroundClass|default('bf-color-bg-highlight'),
+    props: {}
+  },
+  {
+    backgroundClass: backgroundClass|default('bf-color-bg-highlight'),
+    props: {}
+  }
+] %}
+
+<div class='d-flex flex-column' style='min-height: 100vh'>
+  {% for variant in variants %}
+    {% set loopIndex = loop.index %}
+
+    <div class='d-flex flex-column align-items-center {{ variant.backgroundClass }}'>
+      {% set variantProps = variant.props|merge({
+        'id': option.id ~ loopIndex,
+        'name': option.name ~ loopIndex
+       }) %}
+      {% include '@bf-components/input-radio/twig/index.twig' with variantProps %}
+    </div>
+  {% endfor %}
+</div>
+
+{# TODO: Prove that it is (easily) possible to toggle invalid state asynchronously (by usage example?). #}

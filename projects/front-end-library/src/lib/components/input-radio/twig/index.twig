@@ -1,4 +1,4 @@
-{% set class = 'bf-input-checkbox ' ~ class|default(null) %}
+{% set class = 'bf-input-radio ' ~ class|default(null) %}
 
 {% extends '@bf-components/input/twig/index.twig' %}
   {% block inputContent %}
@@ -16,7 +16,7 @@
       {% else %}
         <ul class='list-unstyled d-flex flex-column gap-2 mb-0'>
           {% for option in options %}
-            {% include '@bf-components/input-checkbox-option/twig/index.twig' with option only %}
+            {% include '@bf-components/input-radio-option/twig/index.twig' with option only %}
           {% endfor %}
         </ul>
       {% endif %}

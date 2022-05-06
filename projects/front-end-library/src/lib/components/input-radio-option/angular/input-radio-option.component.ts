@@ -5,14 +5,12 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './input-radio-option.component.html',
 })
 export class InputRadioOptionComponent implements OnInit {
-
     constructor() {}
 
-    @Input() name: string;
     /** @required */
     @Input() id: string;
-    @Input() value: string;
-    @Input() isChecked: boolean;
+    @Input() name: string;
+    @Input() value: boolean;
     @Input() isDisabled: boolean;
     @Input() isRequired: boolean;
     @Input() isInvalid: boolean;
