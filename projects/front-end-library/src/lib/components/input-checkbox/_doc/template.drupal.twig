@@ -14,7 +14,7 @@
     <div class='p-3'>
       {% include '@bf-components/input-checkbox/twig/index.twig' with {
         id: id|default(inputId) ~ 1 ~ (loop.index -1),
-        name: name ~ (loop.index -1)
+        name: name|default(name ~ (loop.index - 1))
       } %}
     </div>
     <div class='p-3'>
