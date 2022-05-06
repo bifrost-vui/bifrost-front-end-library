@@ -40,7 +40,7 @@
           <div class='bf-selection-tile__body'>
             {% if hasVisual %}
               <div class='bf-selection-tile__visual'>
-                {% if iconName is defined and iconName is not empty %}
+                {% if iconName is defined and iconName %}
                   {% include '@bf-components/icon/twig/index.twig' with {
                     name  : iconName,
                     size  : (orientation == 'vertical' and fit == 'container') ? 'large' : 'medium',
@@ -82,7 +82,7 @@
   </div>
   {# ---------Horizontal Tiles Footer ------------  #}
   {% if hasFooter %}
-    <footer class='bf-selection-tile__footer p-3'>
+    <div class='bf-selection-tile__footer p-3'>
       <div class='bf-text small bf-color-neutral-secondary'>
         {% if footer.text is defined and footer.text %}
           {{ footer.text|striptags(allowedTags)|raw }}
@@ -105,7 +105,7 @@
       {% elseif footer.image is defined and footer.image.src is defined and footer.image.src %}
         <img src='{{ footer.image.src }}' alt='{{ footer.image.alt|default('') }}' />
       {% endif %}
-    </footer>
+    </div>
   {% endif %}
 
   {% if isInvalid is defined and isInvalid and errorMessage is defined and errorMessage %}
