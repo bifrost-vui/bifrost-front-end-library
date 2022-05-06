@@ -4,52 +4,58 @@
 {% set isRequired = isRequired|json_parse %}
 {% set type = type|json_parse %}
 
+{% set _variants = [
+  { name: 'ground', backgroundClass: 'bf-color-bg-ground' },
+  { name: 'underground', backgroundClass: 'bf-color-bg-underground' },
+  { name: 'ground + reversed', backgroundClass: 'bf-color-bg-ground reversed' },
+  { name: 'underground + reversed', backgroundClass: 'bf-color-bg-underground reversed'},
+  { name: 'highlight', backgroundClass: 'bf-color-bg-highlight'},
+  { name: 'highlight + reversed', backgroundClass: 'bf-color-bg-highlight highlight reversed'}
+] %}
 
-{% set _backgroundClasses = ['bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight', 'bf-color-bg-highlight highlight reversed'] %}
-{% set _backgroundNames = ['ground','underground','ground + reversed','underground + reversed', 'highlight', 'highlight + reversed'] %}
-{% for backgroundClass in _backgroundClasses %}
+{% for variant in _variants %}
+  <p class='p-3'>Background: {{ variant.name }} </p>
 
-  <p class='p-3'>Background: {{ _backgroundNames[loop.index -1]}} </p>
-  <div class='container-fluid m-3 px-2 d-flex flex-row flex-wrap {{ backgroundClass }}'>
-    <div class='p-3'>
+  <div class='container-fluid m-3 px-2 d-flex flex-row flex-wrap {{ variant.backgroundClass }}'>
+    <div>
       {% include '@bf-components/input-checkbox/twig/index.twig' with {
         id: id|default(inputId) ~ 1 ~ (loop.index -1),
         name: name|default(name ~ (loop.index - 1))
       } %}
     </div>
-    <div class='p-3'>
+    <div>
       {% include '@bf-components/input-checkbox/twig/index.twig' with {
         id: id|default(inputId) ~ 2 ~ (loop.index -1),
-        name: name ~ (loop.index -1),
+        name: name|default(name ~ (loop.index - 1)),
         isChecked: isChecked|default(true)
       } %}
     </div>
-    <div class='p-3'>
+    <div>
       {% include '@bf-components/input-checkbox/twig/index.twig' with {
         id: id|default(inputId) ~ 3 ~ (loop.index -1),
-        name: name ~ (loop.index -1),
+        name: name|default(name ~ (loop.index - 1)),
         isDisabled: isDisabled|default(true),
         isChecked: isChecked|default(true)
       } %}
     </div>
-    <div class='p-3'>
+    <div>
       {% include '@bf-components/input-checkbox/twig/index.twig' with {
         id: id|default(inputId) ~ 4 ~ (loop.index -1),
-        name: name ~ (loop.index -1),
+        name: name|default(name ~ (loop.index - 1)),
         isDisabled: isDisabled|default(true)
       } %}
     </div>
-    <div class='p-3'>
+    <div>
       {% include '@bf-components/input-checkbox/twig/index.twig' with {
         id: id|default(inputId) ~ 5 ~ (loop.index -1),
-        name: name ~ (loop.index -1),
+        name: name|default(name ~ (loop.index - 1)),
         isInvalid: isInvalid|default(true)
       } %}
     </div>
-    <div class='p-3'>
+    <div>
       {% include '@bf-components/input-checkbox/twig/index.twig' with {
         id: id|default(inputId) ~ 6 ~ (loop.index -1),
-        name: name ~ (loop.index -1),
+        name: name|default(name ~ (loop.index - 1)),
         isChecked: isChecked|default(true),
         isInvalid: isInvalid|default(true)
       } %}
