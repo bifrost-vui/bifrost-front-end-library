@@ -36,7 +36,7 @@
     {% endif %}
   </div>
 
-  {% if footer is defined and footer is not empty %}
+  {% if block('footer') is defined or (footer is defined and footer is not empty) %}
     <div class='bf-banner-advanced__footer p-3 p-sm-4  border-top'>
       {% if block('footer') is defined %}
         {{ block('footer') }}
@@ -47,4 +47,4 @@
       {% endif %}
     </div>
   {% endif %}
-</div>
+</article>
