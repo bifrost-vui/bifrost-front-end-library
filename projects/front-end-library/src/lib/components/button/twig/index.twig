@@ -14,7 +14,7 @@
 %}
 
 {# conditions that turns a button into a link #}
-{% set isLink = href is defined and href is not empty and not isSubmitBtn and not isDisabled %}
+{% set isLink = href is defined and href is not empty and not isSubmit and not isDisabled %}
 
 <{{ isLink ? 'a' : 'button' }}
     {% if isLink %}
@@ -23,8 +23,8 @@
         type='{{ isSubmit ? 'submit' : 'button' }}'
     {% endif %}
     class='bf-button bf-button--{{ hierarchy|default('secondary') }} {{ reversed|default(false) ? 'reversed' }} {{ fullWidth|default(false) ? 'bf-button--fullwidth' }} {{ isDisabled ? 'disabled' }} {{ isLoading ? 'loading' }} {{ class|default('') }}'
-    {% if isDisabled %}disabled='disabled' aria-disabled='true' {% endif %}
-    {% if dataDismiss|default(null) %}data-dismiss='{{ dataDismiss}}'{% endif %}
+    {% if isDisabled %}disabled='disabled' aria-disabled='true'{% endif %}
+    {% if dataDismiss|default(null) %}data-dismiss='{{ dataDismiss }}'{% endif %}
     {% if dataToggle|default(null) %}data-toggle='{{ dataToggle }}'{% endif %}
     {% if dataTarget|default(null) %}data-target='{{ dataTarget }}'{% endif %}
     {% if ariaControls|default(null) %}aria-controls='{{ ariaControls }}'{% endif %}
@@ -40,8 +40,8 @@
       {{ formNoValidate ? 'formnovalidate' }}
     {% endif %}
 
-    {% if label is defined and label %}data-title='{{ label }}'{% endif %}
-    {% if ariaLabel is defined and ariaLabel %}aria-label='{{ ariaLabel }}'{% endif %}
+    {% if label|default(null) %}data-title='{{ label }}'{% endif %}
+    {% if ariaLabel|default(null) %}aria-label='{{ ariaLabel }}'{% endif %}
     {{ extraAttribute|default(null) }}
 >
     <span class='bf-button__label'>

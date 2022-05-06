@@ -32,14 +32,12 @@ import { ButtonComponent } from '../angular/button.component';
         hasLoading: { table: { defaultValue: { summary: false }}},
         hierarchy: { control: { type: 'select' } },
         iconName: {
-            table: { defaultValue: { summary: `null` }},
             control: {
                 type: 'select',
                 options: [null, 'placeholder', ...interfaceIcons.map(a => a.list).flat().sort()]
             }
         },
         iconPosition: {
-            table: { defaultValue: { summary: `null` }},
             control: { type: 'select' }
         },
         iconSize: { table: {defaultValue: { summary: 'small' }}},
@@ -63,7 +61,7 @@ import { ButtonComponent } from '../angular/button.component';
 ## Drupal implementation example
 
 ```jsx
-// a regular button
+// Button
 {% include '@bf-components/button/twig/index.twig' with {
     label           : 'Button label',
     hierarchy       : 'primary',
@@ -72,7 +70,7 @@ import { ButtonComponent } from '../angular/button.component';
     class           : 'mt-3',
 } only %}
 
-// the link button
+// Link
 {% include '@bf-components/button/twig/index.twig' with {
     label           : 'Button label',
     hierarchy       : 'primary',
@@ -83,15 +81,15 @@ import { ButtonComponent } from '../angular/button.component';
     class           : 'mt-3',
 } only %}
 
-// the submit button
+// Submit button
 {% include '@bf-components/button/twig/index.twig' with {
-    label           : 'Submit form',
+    label           : 'Button label',
     hierarchy       : 'primary',
     isSubmit        : true,
     class           : 'mt-3',
 } only %}
 
-// the isLoading button
+//  Loading button
 {% include '@bf-components/button/twig/index.twig' with {
     label           : 'Button label',
     hierarchy       : 'primary',
@@ -110,7 +108,7 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas withSource='none' style={{height: '400px'}}>
+<Canvas withSource='none' style={{ height: '400px' }}>
     <Story
         name='Drupal'
         args={{
@@ -122,7 +120,7 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-<Canvas withSource='none' style={{height: '700px'}}>
+<Canvas withSource='none' style={{ height: '700px' }}>
     <Story
         name='Drupal - CSS only'
         parameters={{ options: { showPanel: false } }}
