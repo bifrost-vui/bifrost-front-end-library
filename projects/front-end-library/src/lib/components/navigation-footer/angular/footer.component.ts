@@ -30,9 +30,9 @@ export class FooterComponent implements OnInit {
     @Input() theme: string;
     @Input() reversed: boolean;
     @Input() languageBlock: any;
+    @Input() langcode : 'EN' | 'FR'
 
     ngOnInit() {
         console.log('footer', this);
     }
-
 }

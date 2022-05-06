@@ -3,10 +3,10 @@
   {% set name = name|default(inputName) %}
   {% set labelClass = labelClass|default(labelTxtClass) %}
 
-<div
+<label
   class='bf-input-radio {{ (isInvalid is defined and isInvalid) ? 'bf-input-radio--invalid' }} {{ (isDisabled is defined and isDisabled) ? 'bf-input-radio--disabled' }} {{ class }}'>
   <input
-    class='bf-radio {{ isInvalid ? 'bf-radio--invalid' }}'
+    class='{{ isInvalid ? 'invalid' }}'
     type='radio'
     id='{{ id }}'
     {% if name is defined and name %}
@@ -23,7 +23,8 @@
     {% endif %}
     {{ extraAttribute|default(NULL) }}
   />
+  <span class='bf-input-radio__control'></span>
   {% if label is defined and label %}
-    <label for='{{ id }}' class='bf-text-display-sub-medium {{ labelClass|default('') }}'>{{ label }}</label>
+    <span class='bf-input-radio__label bf-text-display-sub-medium {{ labelClass|default('') }}'>{{ label }}</span>
   {% endif %}
-</div>
+</label>
