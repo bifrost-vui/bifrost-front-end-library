@@ -2,7 +2,6 @@
   <div class='container-fluid'>
     <div class='row align-items-center'>
       <div class='col-12 col-md-3 order-2 order-md-1 py-0 mt-2 mt-md-0' data-animate='fade-in'>
-
         {% if isReduced is not same as (true) %}
           <div class='d-flex flex-row align-items-start mb-2'>
             <a href='{{ logo.href|default('#') }}'>
@@ -37,12 +36,14 @@
           {% endfor %}
 
           {% if languageBlock is defined %}
-            {{ languageBlock }}
+            <li data-animate='fade-in'>
+              {{ languageBlock }}
+            </li>
           {% else %}
             <li class='mb-3 mb-md-0' data-animate='fade-in'>
               {% include '@bf-components/link/twig/index.twig' with {
                 href: '',
-                label: (langcode == 'EN') ? 'FR': 'EN',
+                label: (langcode == 'EN') ? 'FR' : 'EN',
                 class: 'd-block bf-p-small bf-color-neutral-secondary',
                 isUnderline: false
               } only %}
