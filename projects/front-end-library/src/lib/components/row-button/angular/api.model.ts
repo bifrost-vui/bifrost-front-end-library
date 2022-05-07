@@ -1,5 +1,3 @@
-
-
 export interface IImage {
     src                 : string;
     dataSrc             : string;
