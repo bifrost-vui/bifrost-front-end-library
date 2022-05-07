@@ -7,8 +7,8 @@
         <ul class='list-unstyled d-flex flex-column gap-2 mb-0'>
           {% for option in options %}
             {% set option = option|merge({
-              'type': 'radio',
-              'inputdId': id
+              'type': 'checkbox',
+              'name': name
             }) %}
             {% include '@bf-components/selection-tile/twig/index.twig' with option only %}
           {% endfor %}
@@ -16,6 +16,9 @@
       {% else %}
         <ul class='list-unstyled d-flex flex-column gap-2 mb-0'>
           {% for option in options %}
+            {% set option = option|merge({
+              'name': name
+            }) %}
             {% include '@bf-components/input-checkbox-option/twig/index.twig' with option only %}
           {% endfor %}
         </ul>

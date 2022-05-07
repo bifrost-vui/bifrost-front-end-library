@@ -9,6 +9,7 @@ import { ISelectionTile } from '../../selection-tile/angular/api.model';
 export class InputCheckboxComponent implements OnInit {
     constructor() {}
 
+    @Input() name: string;
     @Input() options: IInputCheckboxOption[] | ISelectionTile[];
     /** Transform options as tiles. Use [Selection Tile API](?path=/story/components-selection-tile--drupal-selection-tile-vertical). */
     @Input() isOptionTiles: boolean;

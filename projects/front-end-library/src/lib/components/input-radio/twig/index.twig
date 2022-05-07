@@ -8,7 +8,8 @@
           {% for option in options %}
             {% set option = option|merge({
               'type': 'radio',
-              'inputdId': id
+              'name': name,
+              'isRequired': isRequired|default(false)
             }) %}
             {% include '@bf-components/selection-tile/twig/index.twig' with option only %}
           {% endfor %}
@@ -16,6 +17,11 @@
       {% else %}
         <ul class='list-unstyled d-flex flex-column gap-2 mb-0'>
           {% for option in options %}
+            {# TODO: apply input id for name? #}
+            {% set option = option|merge({
+              'name': name,
+              'isRequired': isRequired|default(false)
+            }) %}
             {% include '@bf-components/input-radio-option/twig/index.twig' with option only %}
           {% endfor %}
         </ul>
