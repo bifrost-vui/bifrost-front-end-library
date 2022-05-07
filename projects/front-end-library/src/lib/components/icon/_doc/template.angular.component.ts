@@ -7,8 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class IconTemplateComponent implements OnInit {
     constructor() {}
 
-    @Input() reversed     : string;
-    @Input() icons        : string[];
+    @Input() reversed       : string;
+    @Input() name           : string;
+    @Input() size           : string;
+    @Input() icons          : string[];
 
     ngOnInit() {
         console.log('IconTemplateComponent', this);
