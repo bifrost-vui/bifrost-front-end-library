@@ -13,7 +13,8 @@ addParameters({
     options: {
         storySort: {
             order: ['*', 'UI-Kit']
-        }
+        },
+        showPanel: true
     },
 
     docs: {
@@ -33,7 +34,6 @@ addParameters({
             { name: 'Underground Reversed', value: '#2a2a27' },
         ],
     },
-
     controls: {
         expanded: true,
         hideNoControlsWarning: true,

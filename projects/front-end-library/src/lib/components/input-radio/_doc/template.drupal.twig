@@ -3,45 +3,50 @@
 {% set isRequired = isRequired|json_parse %}
 {% set isInvalid = isInvalid|json_parse %}
 
-<div class='ccontainer-fluid mt-6 px-2 d-flex flex-row flex-wrap {{ _background }}'>
-  <div class='p-3'>
-    {% include '@bf-components/input-radio/twig/index.twig' with {
-      id: id|default(inputId) ~ 1,
-      name: name|default('inputName')
-    } %}
+{% set _backgroundClasses = ['bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight', 'bf-color-bg-highlight highlight reversed'] %}
+{% for backgroundClass in _backgroundClasses %}
+  <div class='container-fluid m-3 px-2 d-flex flex-row flex-wrap {{ backgroundClass }}'>
+    <div class='p-3'>
+      {% include '@bf-components/input-radio/twig/index.twig' with {
+        id: id|default(inputId) ~ 1 ~ loop.index,
+        name: name|default('inputName') ~ loop.index
+      } %}
 
-    {% include '@bf-components/input-radio/twig/index.twig' with {
-      id: id|default(inputId) ~ 1 ,
-      name: name|default('inputName'),
-      isChecked: isChecked|default(true)
-    } %}
-  </div>
-  <div class='p-3'>
-    {% include '@bf-components/input-radio/twig/index.twig' with {
-      id: id|default(inputId) ~ 3,
-      name: name|default('inputName') ~ 1,
-      isDisabled: isDisabled|default(true)
-    } %}
+      {% include '@bf-components/input-radio/twig/index.twig' with {
+        id: id|default(inputId) ~ 2 ~ loop.index,
+        name: name|default('inputName') ~ loop.index,
+        isChecked: isChecked|default(true)
+      } %}
+    </div>
 
-    {% include '@bf-components/input-radio/twig/index.twig' with {
-      id: id|default(inputId) ~ 4,
-      name: name|default('inputName') ~ 1,
-      isChecked: isChecked|default(true),
-      isDisabled: isDisabled|default(true)
-    } %}
-  </div>
-  <div class='p-3'>
-    {% include '@bf-components/input-radio/twig/index.twig' with {
-      id: id|default(inputId) ~ 5,
-      name: name|default('inputName') ~ 2,
-      isInvalid: isInvalid|default(true)
-    } %}
+    <div class='p-3'>
+      {% include '@bf-components/input-radio/twig/index.twig' with {
+        id: id|default(inputId) ~ 3 ~ loop.index,
+        name: name|default('inputName') ~ loop.index ~ 1,
+        isDisabled: isDisabled|default(true)
+      } %}
 
-    {% include '@bf-components/input-radio/twig/index.twig' with {
-      id: id|default(inputId) ~ 6,
-      name: name|default('inputName') ~ 2,
-      isChecked: isChecked|default(true),
-      isInvalid: isInvalid|default(true)
-    } %}
+      {% include '@bf-components/input-radio/twig/index.twig' with {
+        id: id|default(inputId) ~ 4 ~ loop.index,
+        name: name|default('inputName') ~ loop.index ~ 1,
+        isChecked: isChecked|default(true),
+        isDisabled: isDisabled|default(true)
+      } %}
+    </div>
+
+    <div class='p-3'>
+      {% include '@bf-components/input-radio/twig/index.twig' with {
+        id: id|default(inputId) ~ 5 ~ loop.index,
+        name: name|default('inputName') ~ loop.index ~ 2,
+        isInvalid: isInvalid|default(true)
+      } %}
+
+      {% include '@bf-components/input-radio/twig/index.twig' with {
+        id: id|default(inputId) ~ 6 ~ loop.index,
+        name: name|default('inputName') ~ loop.index ~ 2,
+        isChecked: isChecked|default(true),
+        isInvalid: isInvalid|default(true)
+      } %}
+    </div>
   </div>
-</div>
+{% endfor %}

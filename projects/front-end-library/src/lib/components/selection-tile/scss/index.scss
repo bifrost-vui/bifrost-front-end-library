@@ -10,9 +10,27 @@
     &__inner {
         position: relative;
         display: flex;
-        padding: var(--bf-spacer-2);
+        padding: var(--bf-spacer-3);
         @extend .bf-border-radius-small;
         width: 100%;
+
+        /*-----------------------------------*
+        ** disabled state (colors)
+        *------------------------------------*/
+        &.disabled {
+            pointer-events: none;
+            color: var(--bf-color-neutral-tertiary);
+
+            img {
+                opacity: .5;
+            }
+            .bf-icon {
+                color: var(--bf-color-neutral-tertiary);
+            }
+            .bf-selection-tile__label {
+                border: 1px solid var(--bf-color-stroke-secondary);
+            }
+        }
     }
     &__label {
         position: absolute;
@@ -22,6 +40,7 @@
         top: 0;
         left: 0;
         border: 1px solid var(--bf-color-stroke-primary);
+        background-color: var(--bf-color-bg-ground);
         @extend .bf-border-radius-small;
         cursor: pointer;
         z-index: 0;
@@ -47,7 +66,16 @@
                 width: 1.5rem;
                 height: 1.5rem;
             }
-            border: 1px solid var(--bf-color-stroke-primary);
+            border: 1px solid var(--bf-color-stroke-highlight);
+
+            &+ label {
+                border: 2px solid var(--bf-color-stroke-highlight);
+                background-color: var(--bf-color-bg-underground); // Designer may comme back with a new color
+            }
+            &:disabled + label {
+                border-color: 2px solid var(--bf-color-stroke-secondary); ;
+
+            }
         }
 
         &[type=radio] {
@@ -63,6 +91,21 @@
     }
     &__text {
         @extend .small;
+
+    }
+    &__footer {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        background-color: var(--bf-color-bg-underground);
+        margin: 0 var(--bf-spacer-1);
+        gap: var(--bf-spacer-3);
+
+        img {
+            flex: 0 0 4.5rem;
+            width: 4.5rem;
+            height: 4.5rem;
+        }
     }
 
     /*-----------------------------------*
@@ -82,7 +125,7 @@
         }
         .bf-selection-tile__control {
             align-self: center;
-            padding: var(--bf-spacer-2);
+            padding-right: var(--bf-spacer-2);
         }
         .bf-selection-tile__body {
             display: flex;
@@ -91,12 +134,15 @@
         }
         .bf-selection-tile__visual {
             align-self: center;
-            @extend .pr-2;
+            padding-right: var(--bf-spacer-2);
+        }
+        .bf-selection-tile__content{
+            flex: 1 1;
         }
         .bf-selection-tile__text {
             align-self: center;
         }
-        .bf-selection-tile__footer {
+        .bf-selection-tile__bottom {
             padding-left: var(--bf-spacer-3);
         }
 
@@ -109,7 +155,6 @@
         }
         &.bf-selection-tile--fit-content {
             width: max-content;
-            max-width: 100%;
         }
     }
     &--vertical {
@@ -158,7 +203,7 @@
                 .bf-selection-tile__no-visual {
                     align-items: flex-start;
                 }
-                .bf-selection-tile__footer {
+                .bf-selection-tile__bottom {
                     @extend .pt-2;
                     align-items: flex-end;
                 }
@@ -169,24 +214,6 @@
         }
         &.bf-selection-tile--fit-content .bf-selection-tile__inner {
             max-width: 12rem;
-        }
-    }
-    /*-----------------------------------*
-    ** disabled state (colors)
-    *------------------------------------*/
-    &.disabled {
-        pointer-events: none;
-        color: rgba(var(--bf-color-neutral-primary-rgb), 0.32);
-
-        .bf-icon {
-            color: rgba(var(--bf-color-neutral-primary-rgb), 0.32);
-        }
-        .bf-selection-tile__label {
-            border: 1px solid var(--bf-color-stroke-primary);
-            background: transparent;
-        }
-        img {
-            opacity: .5;
         }
     }
     /*-----------------------------------*
@@ -203,19 +230,6 @@
             p {
                 font-size: 0.875rem;
             }
-        }
-    }
-}
-/*-----------------------------------*
-** outer color contexts
-*------------------------------------*/
-.bf-color-bg-underground {
-    .bf-selection-tile__input:checked {
-        + label {
-            background-color: var(--bf-color-bg-ground);
-        }
-        &:disabled + label {
-            background-color: transparent;
         }
     }
 }
