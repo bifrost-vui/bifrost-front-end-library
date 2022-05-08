@@ -1,19 +1,17 @@
 {% set titleTag = titleTag|default('p') %}
 
 <div class='bf-tile-post {{ reversed|default(false) ? 'reversed' }} {{ class|default('') }}'>
-  {% if image is defined and image %}
-    <div
-      class='bf-tile-post__visual {{ image.fit|default('fill') == 'fit' ? 'bf-tile-post__visual--fit' }}'
-      style='background-image: url({{ image.src|default('') }});
+  {% if image is defined and image and image.src is defined and image.src %}
+    <picture
+      class='d-block'
+      style='background-image: url({{ image.src }});
         {% if image.backgroundColor is defined and image.backgroundColor %}
           background-color: {{ image.backgroundColor }};
         {% endif %}
       '
-      role='img'
-      {% if image.alt %}
-        aria-label='{{ image.alt|default('') }}'
-      {% endif %}
-    ></div>
+    >
+      <img src='{{ image.src }}' alt='{{ image.alt|default('') }}' class='w-100' />
+    </picture>
   {% endif %}
 
 	<div class='d-flex flex-column align-items-start gap-3 pt-3 pt-md-4'>

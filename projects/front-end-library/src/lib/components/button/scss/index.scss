@@ -39,6 +39,7 @@
     }
 
     &--primary {
+        color: var(--bf-color-primary-irreversible);
         @extend .bf-color-bg-action-primary;
 
         &:hover {
@@ -52,7 +53,7 @@
         &:not(.disabled) {
             color: var(--bf-color-bg-ground);
             .bf-icon {
-                color: var(--bf-color-bg-ground);
+                color: currentColor;
             }
         }
 
@@ -123,7 +124,7 @@
         }
     }
 
-    &__label {
+    &__inner {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -138,25 +139,4 @@
 @keyframes loading-dot  {
     from    { transform: scale(.75); opacity: .5; }
     to      { transform: scale(1); opacity: 1; }
-}
-
-
-// Apply Dark color on reversed Primary and Primary-alt.
-// TODO: Find a more elegant wy to give access to initial css variables in reversed.
-
-.reversed .bf-button,
-.reversed.bf-button {
-
-    &--primary,
-    &--primary-alt {
-
-        &.disabled {
-            color: var(--bf-color-neutral-tertiary) !important;
-            svg {color: var(--bf-color-neutral-tertiary) !important;}
-        }
-        &:not(.disabled) {
-            color: var(--bf-color-bg-ground) !important;
-            svg {color: var(--bf-color-bg-ground) !important;}
-        }
-    }
 }
