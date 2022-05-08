@@ -1,10 +1,15 @@
-{% set fit              = fit|default('content') %}
-{% set allowedTags 	    = '<br><em><i><strong><b><sup><sub>' %}
-{% set orientation      = orientation|default('horizontal') %}
-{% set hasVisual 	      = (iconName is defined and iconName) or (image.src is defined and image.src and image.alt is defined) %}
+{% set orientation = orientation|default('horizontal') %}
+{% set fit = fit|default('content') %}
 
-<div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--{{ 'fit-' ~ fit }} {{ isInvalid ? 'color-warning' : '' }} {{ isDisabled ? 'disabled' }} {{ isSelected ? 'checked' : '' }} {{ class }}'>
-  <div class='bf-selection-tile__inner'>
+{% set hasVisual = (iconName is defined and iconName) or (image.src is defined and image.src and image.alt is defined) %}
+{% set hasFooter = orientation is same as ('horizontal') and fit is same as ('container') and ((footer.text is defined and footer.text) or (footer.link is defined and footer.link is not empty)) %}
+
+{# striptag filter #}
+{% set inlineTags = '<br><em><i><strong><b><sup><sub>' %}
+{% set allowedTags = '<div><p><ol><ul><li><span><br><em><i><strong><b><sup><sub>' %}
+
+<div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--fit-{{ fit }} {{ isInvalid|default(false) ? 'color-warning' }} {{ isSelected|default(false) ? 'checked' : '' }} {{ class|default(null) }}'>
+  <div class='bf-selection-tile__inner {{ isDisabled|default(false) ? 'disabled' }}'>
     <div class='bf-selection-tile__control'>
       {% apply spaceless %}
         <input
@@ -29,7 +34,7 @@
       {% elseif content is defined and content %}
         {{ content }}
       {% else %}
-        <div class='{{ hasVisual ? '' : 'bf-selection-tile__no-visual' }}' >
+        <div class='bf-selection-tile__content {{ hasVisual ? '' : 'bf-selection-tile__no-visual' }}'>
           <div class='bf-selection-tile__body'>
             {% if hasVisual %}
               <div class='bf-selection-tile__visual'>
@@ -61,10 +66,11 @@
           </div>
         </div>
 
-        {% if (info is defined and info) or (orientation is same as ('vertical') and fit is same as ('container')) %}
-          <div class='bf-selection-tile__footer'>
+        {# ---------Vertical Tiles Bottom | Horizontal Tiles Right Side ------------  #}
+        {% if (info is defined and info) or (orientation == 'vertical' and fit  == 'container') %}
+          <div class='bf-selection-tile__bottom'>
             <div class='bf-selection-tile__text'>
-              <p class='p-0 m-0 text-break'>{{ info }}</p>
+              <p class='p-0 m-0 text-break'>{{ info|striptags(inlineTags)|raw }}</p>
             </div>
           </div>
         {% endif %}
@@ -72,9 +78,37 @@
     </div>
 
   </div>
+  {# ---------Horizontal Tiles Footer ------------  #}
+  {% if hasFooter %}
+    <div class='bf-selection-tile__footer p-3'>
+      <div class='bf-text small bf-color-neutral-secondary'>
+        {% if footer.description is defined and footer.description %}
+          {{ footer.description|striptags(allowedTags)|raw }}
+        {% endif %}
+
+        {% if footer.link is defined and footer.link is not empty %}
+          {% include '@bf-components/link/twig/index.twig' with {
+            href: footer.link.href,
+            label: footer.link.label,
+          } only %}
+        {% endif %}
+      </div>
+
+      {% if footer.iconName is defined and footer.iconName %}
+        {% include '@bf-components/icon/twig/index.twig' with {
+          name: footer.iconName,
+          size: 'medium'
+        } only %}
+
+      {% elseif footer.image is defined and footer.image.src is defined and footer.image.src %}
+        <img src='{{ footer.image.src }}' alt='{{ footer.image.alt|default('') }}' />
+      {% endif %}
+    </div>
+  {% endif %}
+
   {% if isInvalid is defined and isInvalid and errorMessage is defined and errorMessage %}
     <div class='bf-selection-tile__feedback'>
-      {{ errorMessage|striptags(allowedTags)|raw }}
+      {{ errorMessage|striptags(inlineTags)|raw }}
     </div>
   {% endif %}
 </div>

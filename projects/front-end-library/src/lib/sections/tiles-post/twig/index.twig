@@ -15,7 +15,6 @@
     <ul class='d-flex flex-column flex-md-row flex-wrap gap-4 list-unstyled'>
       {% for tile in tiles %}
         <li class='bf-section-tiles-post__item mb-4 {{ tile.size|default('default') == 'large' ? 'bf-section-tiles-post__item--size-large' }}'>
-          {% set tile = tile|merge({ isFeatured: isFeatured|default(false) }) %}
           {% include '@bf-components/tile-post/twig/index.twig' with tile only %}
         </li>
       {% endfor %}
