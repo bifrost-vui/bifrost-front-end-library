@@ -7,50 +7,50 @@
 {% set formNoValidate = formNoValidate|json_parse %}
 {% set isAutofocus = isAutofocus|json_parse %}
 
-{% set hierarchyList = hierarchy is defined ? [hierarchy] : ['primary', 'primary-alt', 'secondary', 'tertiary'] %}
-{% set variants = [
+{% set _hierarchyList = hierarchy is defined ? [hierarchy] : ['primary', 'primary-alt', 'secondary', 'tertiary'] %}
+{% set _variants = [
   {
     _name: 'Ground',
-    backgroundClass: 'bf-color-bg-ground'
+    _backgroundClass: 'bf-color-bg-ground'
   },
   {
     _name: 'Underground',
-    backgroundClass: 'bf-color-bg-underground'
+    _backgroundClass: 'bf-color-bg-underground'
   },
   {
     _name: 'Ground + Reversed',
-    backgroundClass: 'bf-color-bg-ground reversed',
+    _backgroundClass: 'bf-color-bg-ground reversed',
     reversed: true,
   },
   {
     _name: 'Underground + Reversed',
-    backgroundClass: 'bf-color-bg-underground reversed',
+    _backgroundClass: 'bf-color-bg-underground reversed',
     reversed: true
   },
   {
     _name: 'Highlight',
-    backgroundClass: 'bf-color-bg-highlight highlight',
+    _backgroundClass: 'bf-color-bg-highlight highlight',
     highlight: true
   },
   {
     _name: 'Highlight + Reversed',
-    backgroundClass: 'bf-color-bg-highlight reversed highlight',
+    _backgroundClass: 'bf-color-bg-highlight reversed highlight',
     reversed: true,
     highlight: true
   }
 ] %}
 
 <div class='d-flex flex-column minh-100'>
-  {% for variant in variants %}
-    {% set reversed = reversed|default(variant.reversed) %}
-    {% set highlight = highlight|default(variant.highlight) %}
+  {% for _variant in _variants %}
+    {% set reversed = reversed|default(_variant.reversed) %}
+    {% set highlight = highlight|default(_variant.highlight) %}
 
-    <div class='d-flex flex-column justify-content-center flex-grow-1 minh-100 p-4 {{ variant.backgroundClass }}'>
+    <div class='d-flex flex-column justify-content-center flex-grow-1 minh-100 p-4 {{ _variant._backgroundClass }}'>
       <h1 class='h3 mb-4'>
-        {{ variant._name }}
+        {{ _variant._name }}
       </h1>
 
-      {% for _hierarchy in hierarchyList %}
+      {% for _hierarchy in _hierarchyList %}
         <div class='row'>
           <div class='flex-grow-1'>
             {% include '@bf-components/button/twig/index.twig' with {
