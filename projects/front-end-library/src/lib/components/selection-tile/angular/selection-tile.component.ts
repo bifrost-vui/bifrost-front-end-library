@@ -41,11 +41,11 @@ export class SelectionTileComponent implements OnInit {
     /** Only available for `orientation: horizontal`. Expected format: { description: HTMLElement, link: { label: string, href: string }, iconName: string, image: { src: string, alt: string } } */
     @Input() footer: IFooter;
 
-    /** extra attribute for the radio/checkbox input */
-    @Input() extraAttribute : string
-    @Input() reversed       : boolean;
+    /** Extra attributes for radio/checkbox inputs. */
+    @Input() extraAttribute: string
     /** Class override */
-    @Input() class          : string;
+    @Input() class: string;
+    @Input() reversed: boolean;
 
     ngOnInit() {
         console.log('SelectionTile', this);
