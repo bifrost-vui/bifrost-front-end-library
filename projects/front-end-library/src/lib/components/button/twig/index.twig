@@ -41,7 +41,7 @@
     {% if ariaLabel|default(null) %}aria-label='{{ ariaLabel }}'{% endif %}
     {{ extraAttribute|default(null) }}
 >
-    <span class='bf-button__label'>
+    <span class='bf-button__inner'>
         {% if iconName is defined and iconName is not empty %}
             {% include '@bf-components/icon/twig/index.twig' with {
                 name    : iconName,
@@ -50,10 +50,11 @@
             } only %}
         {% endif %}
         {% if label is defined and label %}
-          <span class='bf-button__label__text'>
-            {{ label }}
+          <span class='bf-button__label'>
+              {{ label }}
           </span>
         {% endif %}
+        {{ content|default('') }}
     </span>
 
     {% if isLoading or hasLoading|default(false) %}

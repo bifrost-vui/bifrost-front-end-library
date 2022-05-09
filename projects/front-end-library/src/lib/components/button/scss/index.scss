@@ -31,31 +31,37 @@
     &:hover {
         text-decoration: none;
     }
+
     &.disabled {
         pointer-events: none;
         @extend .bf-color-neutral-tertiary;
         @extend .bf-color-bg-action-disabled;
     }
+
     &--primary {
+        color: var(--bf-color-primary-irreversible);
         @extend .bf-color-bg-action-primary;
 
         &:hover {
             @extend .bf-color-bg-action-primary-hover;
         }
     }
+
     &--primary-alt {
         @extend .bf-color-bg-action-secondary;
 
         &:not(.disabled) {
             color: var(--bf-color-bg-ground);
             .bf-icon {
-                color: var(--bf-color-bg-ground);
+                color: currentColor;
             }
         }
+
         &:hover {
             @extend .bf-color-bg-action-secondary-hover;
         }
     }
+
     &--secondary {
         background-color: transparent;
         border: 1px solid var(--bf-color-stroke-secondary);
@@ -64,23 +70,28 @@
         &:hover {
             border-color: var(--bf-color-neutral-primary);
         }
+
         &.disabled {
             background-color: transparent;
         }
     }
+
     &--tertiary {
         background-color: transparent;
 
         &:hover {
             @extend .bf-color-bg-action-no-bg-hover;
         }
+
         &.disabled {
             background-color: transparent;
         }
     }
+
     &--fullwidth {
         width: 100%;
     }
+
     &.loading {
         pointer-events: none;
 
@@ -112,12 +123,14 @@
             }
         }
     }
-    &__label {
+
+    &__inner {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: .5rem;
     }
+
     &__icon--right {
         order: 2;
     }
@@ -126,21 +139,4 @@
 @keyframes loading-dot  {
     from    { transform: scale(.75); opacity: .5; }
     to      { transform: scale(1); opacity: 1; }
-}
-
-.reversed .bf-button,
-.reversed.bf-button {
-
-    &--primary,
-    &--primary-alt {
-
-        &.disabled {
-            color: var(--bf-color-neutral-tertiary) !important;
-            svg {color: var(--bf-color-neutral-tertiary) !important;}
-        }
-        &:not(.disabled) {
-            color: var(--bf-color-bg-ground) !important;
-            svg {color: var(--bf-color-bg-ground) !important;}
-        }
-    }
 }
