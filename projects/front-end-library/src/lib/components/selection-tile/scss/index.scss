@@ -14,9 +14,6 @@
         @extend .bf-border-radius-small;
         width: 100%;
 
-        /*-----------------------------------*
-        ** disabled state (colors)
-        *------------------------------------*/
         &.disabled {
             pointer-events: none;
             color: var(--bf-color-neutral-tertiary);
@@ -24,11 +21,9 @@
             img {
                 opacity: .5;
             }
+
             .bf-icon {
                 color: var(--bf-color-neutral-tertiary);
-            }
-            .bf-selection-tile__label {
-                border: 1px solid var(--bf-color-stroke-secondary);
             }
         }
     }
@@ -54,14 +49,17 @@
     }
     &__input {
         @extend .bf-checkbox;
-        display: block;
-        z-index: 3;
-        width: 1.5rem;
-        height: 1.5rem;
-        margin-right: var(--bf-spacer-1);
-        pointer-events: none;
 
-        &:checked {
+        + .bf-checkbox__control{
+            display: block;
+            z-index: 3;
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: var(--bf-spacer-1);
+            pointer-events: none;
+        }
+
+        &:checked + .bf-checkbox__control {
             &::before {
                 width: 1.5rem;
                 height: 1.5rem;
@@ -72,27 +70,41 @@
                 border: 2px solid var(--bf-color-stroke-highlight);
                 background-color: var(--bf-color-bg-underground); // Designer may comme back with a new color
             }
-            &:disabled + label {
-                border-color: 2px solid var(--bf-color-stroke-secondary); ;
 
-            }
         }
 
-        &[type=radio] {
+        &:disabled + .bf-checkbox__control + label {
+            border-color: 2px solid var(--bf-color-stroke-secondary);
+
+        }
+
+        &[type=radio] + .bf-checkbox__control {
             border-radius: 50%;
         }
+
+        &:focus-visible + .bf-checkbox__control {
+            box-shadow: unset;
+
+            + label {
+                box-shadow: 0 0 0 3px rgba(129, 194, 255, .5);
+            }
+        }
     }
+
     img {
         height: 2.5rem;
     }
+
     &__block {
         pointer-events: none;
         z-index: 10;
     }
+
     &__text {
         @extend .small;
 
     }
+
     &__footer {
         display: flex;
         flex-flow: row nowrap;
@@ -116,6 +128,7 @@
             display: flex;
             align-items: center;
         }
+
         & .bf-selection-tile__block {
             display: flex;
             flex-grow: 1;
@@ -123,25 +136,31 @@
             align-items: center;
             width: auto;
         }
+
         .bf-selection-tile__control {
             align-self: center;
             padding-right: var(--bf-spacer-2);
         }
+
         .bf-selection-tile__body {
             display: flex;
             flex-flow: row nowrap;
             align-content: center;
         }
+
         .bf-selection-tile__visual {
             align-self: center;
             padding-right: var(--bf-spacer-2);
         }
+
         .bf-selection-tile__content{
             flex: 1 1;
         }
+
         .bf-selection-tile__text {
             align-self: center;
         }
+
         .bf-selection-tile__bottom {
             padding-left: var(--bf-spacer-3);
         }
@@ -153,6 +172,7 @@
                 width: calc(100% - 3.5rem);
             }
         }
+
         &.bf-selection-tile--fit-content {
             width: max-content;
         }
@@ -167,11 +187,13 @@
             @extend .bf-border-radius-small;
             padding: 1.5rem;
         }
-        .bf-selection-tile__input {
+
+        .bf-checkbox__control {
             position: absolute;
             top: .5rem;
             left: .5rem;
         }
+
         .bf-selection-tile__block {
             display: flex;
             flex-flow: nowrap column;
@@ -185,6 +207,7 @@
                 flex-grow: 1;
                 align-items: center;
             }
+
             .bf-selection-tile__body {
                 display: flex;
                 flex-flow: column;
@@ -195,23 +218,28 @@
                 min-height: 16rem;
                 width: 12rem;
             }
+
             & .bf-selection-tile__block {
                & > div {
                     @extend .pt-2;
                     align-items: center;
                 }
+
                 .bf-selection-tile__no-visual {
                     align-items: flex-start;
                 }
+
                 .bf-selection-tile__bottom {
                     @extend .pt-2;
                     align-items: flex-end;
                 }
             }
+
             .bf-selection-tile__visual {
                 width: 100%;
             }
         }
+
         &.bf-selection-tile--fit-content .bf-selection-tile__inner {
             max-width: 12rem;
         }
@@ -222,11 +250,13 @@
     &--color-wrap {
         .color-container {
             flex-direction: column;
+
             .bf-selection-tile__color {
                 border-radius: 50%;
                 width: 3rem;
                 height: 3rem;
             }
+
             p {
                 font-size: 0.875rem;
             }
