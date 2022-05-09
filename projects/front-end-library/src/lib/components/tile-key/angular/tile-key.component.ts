@@ -13,7 +13,7 @@ export class TileKeyComponent implements OnInit {
     @Input() href: string;
     @Input() title: string;
     @Input() titleTag: string;
-    @Input() description: string;
+    @Input() description: HTMLElement;
     @Input() linkLabel: string;
     /** Expected format: See [Icon API](/?path=/docs/components-icon--drupal-interface). */
     @Input() icon: IIcon;
