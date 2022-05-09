@@ -1,4 +1,5 @@
 {% set class = 'bf-input-radio ' ~ class|default(null) %}
+{% set isLabelLegend = true %}
 
 {% extends '@bf-components/input/twig/index.twig' %}
   {% block inputContent %}
@@ -9,7 +10,7 @@
             {% set option = option|merge({
               'type': 'radio',
               'name': name,
-              'isRequired': isRequired|default(false)
+              'isRequired': option.isRequired|default(isRequired)|default(false)
             }) %}
             {% include '@bf-components/selection-tile/twig/index.twig' with option only %}
           {% endfor %}
@@ -20,7 +21,7 @@
             {# TODO: apply input id for name? #}
             {% set option = option|merge({
               'name': name,
-              'isRequired': isRequired|default(false)
+              'isRequired': option.isRequired|default(isRequired)|default(false)
             }) %}
             {% include '@bf-components/input-radio-option/twig/index.twig' with option only %}
           {% endfor %}

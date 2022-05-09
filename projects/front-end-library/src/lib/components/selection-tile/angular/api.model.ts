@@ -1,23 +1,24 @@
 export interface ISelectionTile {
-    class: string;
     type: 'checkbox' | 'radio';
-    inputId: string;
-    value: string;
-    ariaLabel: string;
+    id: string;
     name: string;
-    extraAttribute: string
-    orientation: 'horizontal' | 'vertical';
-    fit: 'content' | 'container';
-    title: string;
+    value: string;
+    isCheked: boolean;
+    label: string;
     description: string;
     info: string;
     image: object;
     iconName: string;
-    reversed: boolean;
+    isRequired: boolean;
     isDisabled: boolean;
-    isSelected: boolean;
     isInvalid: boolean;
     errorMessage: string;
-    isRequired: boolean;
+    ariaLabel: string;
+    orientation: 'horizontal' | 'vertical';
+    fit: 'content' | 'container';
     content: string | 'TwigBlock';
+
+    extraAttribute: string;
+    reversed: boolean;
+    class: string;
 }

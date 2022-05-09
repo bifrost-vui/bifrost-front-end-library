@@ -7,15 +7,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InputRadioOptionComponent implements OnInit {
     constructor() {}
 
-    /** @required */
     @Input() id: string;
+    /** @required */
     @Input() name: string;
-    @Input() value: boolean;
-    @Input() isDisabled: boolean;
-    @Input() isRequired: boolean;
-    @Input() isInvalid: boolean;
+    /** @required */
+    @Input() value: string;
+    @Input() isChecked: boolean;
     @Input() label: string;
     @Input() labelClass: string;
+    @Input() isRequired: boolean;
+    @Input() isDisabled: boolean;
+    @Input() isInvalid: boolean;
     /** Needs to be defined if no label is defined */
     @Input() ariaLabel: string;
     @Input() extraAttribute: string;

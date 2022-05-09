@@ -1,0 +1,142 @@
+{% set isRequired = isRequired|json_parse %}
+{% set isDisabled = isDisabled|json_parse %}
+{% set isInvalid = isInvalid|json_parse %}
+
+<section class='container-fluid my-6'>
+  <header>
+    <h1 class='h2'>Form example</h1>
+    <p class='bf-color-neutral-secondary'>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+  </header>
+  <div>
+    <form id='form-profile'>
+      <div class='d-flex flex-column gap-4'>
+        {% include '@bf-components/input-radio/twig/index.twig' with {
+          label: 'Data usage',
+          description: 'Description',
+          name: 'data-usage',
+          isRequired: isRequired,
+          options: [
+            {
+              value: 'casual',
+              id: '',
+              isChecked: false,
+              isDisabled: isDisabled,
+              isInvalid: isInvalid,
+              extraAttribute: '',
+              label: 'Casual',
+              labelClass: '',
+              labelExtraAttribute: '',
+              ariaLabel: '',
+              class: '',
+            },
+            {
+              value: 'regular',
+              isChecked: false,
+              isDisabled: isDisabled,
+              isInvalid: isInvalid,
+              label: 'Regular',
+            },
+            {
+              value: 'every-day',
+              isChecked: false,
+              isDisabled: isDisabled,
+              isInvalid: isInvalid,
+              label: 'Every Day',
+            }
+          ],
+          isOptionTiles: false,
+          errorMessage: '',
+          class: ''
+        } only %}
+
+        {% include '@bf-components/input-checkbox/twig/index.twig' with {
+          label: 'Devices',
+          description: 'Description',
+          name: 'devices',
+          options: [
+            {
+              id: 'phone',
+              value: 'phone',
+              isChecked: false,
+              isRequired: isRequired,
+              isDisabled: isDisabled,
+              isInvalid: isInvalid,
+              isInvalid: false,
+              extraAttribute: '',
+              label: 'Phone',
+              labelClass: '',
+              labelExtraAttribute: '',
+              ariaLabel: '',
+              class: '',
+            },
+            {
+              id: 'television',
+              value: 'television',
+              isChecked: false,
+              isRequired: isRequired,
+              isDisabled: isDisabled,
+              isInvalid: isInvalid,
+              label: 'Television',
+            },
+            {
+              id: 'tablet',
+              value: 'tablet',
+              isChecked: false,
+              isRequired: isRequired,
+              isDisabled: isDisabled,
+              isInvalid: isInvalid,
+              label: 'Tablet',
+            }
+          ],
+          isOptionTiles: false,
+          errorMessage: '',
+          class: ''
+        } only %}
+      </div>
+
+      {% include '@bf-components/button/twig/index.twig' with {
+        label: 'Submit',
+        type: 'submit',
+        hierarchy: 'primary',
+        class: 'mt-4'
+      } only %}
+    </form>
+  </div>
+  <aside class='bf-color-bg-underground mt-4 p-3'>
+    <h1 class='h4'>Output</h1>
+    <pre id='form-profile-output' class='m-0'></pre>
+  </aside>
+
+</section>
+
+<script type='text/javascript'>
+  const form = document.getElementById('form-profile');
+  const formOutput = document.getElementById('form-profile-output');
+
+  function displayOutput() {
+    const formData = new FormData(form);
+    let formObj = serialize(formData);
+    console.log(formObj);
+
+    function serialize (data) {
+      let obj = {};
+      for (let [key, value] of data) {
+        if (obj[key] !== undefined) {
+          if (!Array.isArray(obj[key])) {
+            obj[key] = [obj[key]];
+          }
+          obj[key].push(value);
+        } else {
+          obj[key] = value;
+        }
+      }
+      return obj;
+    }
+    formOutput.textContent = JSON.stringify(formObj, undefined, 2);
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    displayOutput();
+  });
+</script>

@@ -15,7 +15,7 @@
           name='{{ name }}'
           {% if ariaLabel is defined and ariaLabel %} aria-label='{{ ariaLabel}}'{% endif %}
           {{ isDisabled ? 'disabled' : '' }}
-          {{ value|default(false) ? 'checked' : '' }}
+          {{ isChecked|default(false) ? 'checked' : '' }}
           {{ isRequired ? 'required' : '' }}
           {{ extraAttribute|default(NULL) }}
         />
@@ -44,11 +44,11 @@
               </div>
             {% endif %}
 
-            {% if ( title is defined and title) or (description is defined and description) %}
+            {% if ( label is defined and label) or (description is defined and description) %}
               <div class='bf-selection-tile__text'>
-                {% if title is defined and title %}
+                {% if label is defined and label %}
                   <p class='p-0 m-0 text-break'>
-                    <strong>{{ title }}</strong>
+                    <strong>{{ label }}</strong>
                   </p>
                 {% endif %}
 

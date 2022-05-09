@@ -1,11 +1,11 @@
-{% set reversed         = reversed|json_parse %}
+{% set isChecked        = isChecked|json_parse %}
+{% set isRequired       = isRequired|json_parse %}
 {% set isDisabled       = isDisabled|json_parse %}
-{% set isSelected       = isSelected|json_parse %}
+{% set isInvalid        = isInvalid|json_parse %}
 {% set image            = image|json_parse %}
 {% set iconName         = iconName|json_parse %}
-{% set isInvalid        = isInvalid|json_parse %}
-{% set isRequired       = isRequired|json_parse %}
 {% set extraAttribute   = extraAttribute|json_parse %}
+{% set reversed         = reversed|json_parse %}
 
 
 <div class='container' {{ (orientation == 'horizontal') ? 'style="max-width :600px"':'style="max-width :1200px"'}}>
@@ -22,7 +22,7 @@
           inputId     : (inputId ~ '2' ~ loop.index)|default(inputId ~ '2' ~ loop.index),
           name        : (name ~ loop.index)|default(name ~ loop.index),
           ariaLabel   : (ariaLabel ~ '2' ~ loop.index)|default(ariaLabel ~ '2' ~ loop.index),
-          title       : title|default('Selection tile title'),
+          label       : label|default('Selection tile label'),
           iconName    : iconName|default('bundle-1'),
         }  %}
 
@@ -30,20 +30,20 @@
           inputId     : (inputId ~ '3' ~ loop.index)|default(inputId ~ '3' ~ loop.index),
           name        : (name ~ loop.index)|default(name ~ loop.index),
           ariaLabel   : (ariaLabel ~ '3' ~ loop.index)|default(ariaLabel ~ '3' ~ loop.index),
-          title       : title|default('Selection tile title'),
+          label       : label|default('Selection tile label'),
           description : description|default('lorem ipsum descriptum'),
           info        : info|default('12.34 $/Mois'),
-          isSelected  : isSelected|default(true),
+          isChecked  : isChecked|default(true),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
           inputId     : (inputId ~ '4' ~ loop.index)|default(inputId ~ '4' ~ loop.index),
           name        : (name ~ loop.index)|default(name ~ loop.index),
           ariaLabel   : (ariaLabel ~ '4' ~ loop.index)|default(ariaLabel ~ '4' ~ loop.index),
-          title       : title|default('Selection tile title'),
+          label       : label|default('Selection tile label'),
           description : description|default('lorem ipsum descriptum'),
           info        : info|default('12.34 $/Mois'),
-          isSelected  : isSelected|default(true),
+          isChecked  : isChecked|default(true),
           isDisabled  : isDisabled|default(true),
         }  %}
 
@@ -51,7 +51,7 @@
           inputId     : (inputId ~ '5' ~ loop.index)|default(inputId ~ '5' ~ loop.index),
           name        : (name ~ loop.index)|default(name ~ loop.index),
           ariaLabel   : (ariaLabel ~ '5' ~ loop.index)|default(ariaLabel ~ '5' ~ loop.index),
-          title       : title|default('Selection tile title'),
+          label       : label|default('Selection tile label'),
           description : description|default('lorem ipsum descriptum'),
           iconName    : iconName|default('bundle-1'),
           info        : info|default('22.34 $/Mois'),

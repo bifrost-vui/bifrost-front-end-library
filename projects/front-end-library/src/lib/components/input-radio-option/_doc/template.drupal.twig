@@ -1,4 +1,4 @@
-{% set value = value|json_parse %}
+{% set isChecked = isChecked|json_parse %}
 {% set isRequired = isRequired|json_parse %}
 {% set isDisabled = isDisabled|json_parse %}
 {% set isInvalid = isInvalid|json_parse %}
@@ -16,7 +16,7 @@
       {% include '@bf-components/input-radio-option/twig/index.twig' with {
         id: id|default(inputId) ~ 2 ~ loop.index,
         name: name ~ loop.index,
-        value: value|default(true)
+        isChecked: isChecked|default(true)
       } %}
     </div>
 
@@ -31,7 +31,7 @@
       {% include '@bf-components/input-radio-option/twig/index.twig' with {
         id: id|default(inputId) ~ 4 ~ loop.index,
         name: name ~ loop.index ~ 1,
-        value: value|default(true),
+        isChecked: isChecked|default(true),
         label: 'Disabled',
         isDisabled: isDisabled|default(true)
       } %}
@@ -48,7 +48,7 @@
       {% include '@bf-components/input-radio-option/twig/index.twig' with {
         id: id|default(inputId) ~ 6 ~ loop.index,
         name: name|default('inputName') ~ loop.index ~ 2,
-        value: value|default(true),
+        isChecked: isChecked|default(true),
         label: 'Invalid',
         isInvalid: isInvalid|default(true)
       } %}

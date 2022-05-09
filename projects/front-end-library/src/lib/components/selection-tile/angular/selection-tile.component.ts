@@ -1,39 +1,38 @@
-import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
-import { Url } from 'url';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'bf-selection-tile',
   templateUrl: './selection-tile.component.html',
-  // styleUrls: ['../scss/index.scss'],
 })
 export class SelectionTileComponent implements OnInit {
     constructor() {}
 
-    /** Class override */
-    @Input() class          : string;
     @Input() type           : 'checkbox'|'radio';
-    @Input() inputId        : string;
-    @Input() value          : string;
-    @Input() ariaLabel      : string;
+    @Input() id             : string;
     @Input() name           : string;
-    /** extra attribute for the radio/checkbox input */
-    @Input() extraAttribute : string
-    @Input() orientation    : 'horizontal'|'vertical';
-    /**  Tile  fits the content | Tile fits the container  */
-    @Input() fit            : 'content'|'container';
-    @Input() title          : string;
+    @Input() value          : string;
+    @Input() isChecked      : boolean;
+    @Input() label          : string;
     @Input() description    : string;
     @Input() info           : string;
     /**{ src : string, alt : string, class : string } */
     @Input() image          : object;
     @Input() iconName       : string;
-    @Input() reversed       : boolean;
-    @Input() isDisabled     : boolean;
-    @Input() isSelected     : boolean;
-    @Input() isInvalid      : boolean;
-    @Input() errorMessage   : HTMLElement;
     @Input() isRequired     : boolean;
+    @Input() isDisabled     : boolean;
+    @Input() isInvalid      : boolean;
+    @Input() ariaLabel      : string;
+    @Input() errorMessage   : HTMLElement;
+    @Input() orientation    : 'horizontal'|'vertical';
+    /**  Tile  fits the content | Tile fits the container  */
+    @Input() fit            : 'content'|'container';
     @Input() content        : string | 'TwigBlock';
+
+    /** extra attribute for the radio/checkbox input */
+    @Input() extraAttribute : string
+    @Input() reversed       : boolean;
+    /** Class override */
+    @Input() class          : string;
 
     ngOnInit() {
         console.log('SelectionTile', this);
