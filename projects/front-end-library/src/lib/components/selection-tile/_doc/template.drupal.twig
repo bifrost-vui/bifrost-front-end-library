@@ -1,61 +1,57 @@
-{% set isChecked        = isChecked|json_parse %}
-{% set isRequired       = isRequired|json_parse %}
-{% set isDisabled       = isDisabled|json_parse %}
-{% set isInvalid        = isInvalid|json_parse %}
-{% set image            = image|json_parse %}
-{% set iconName         = iconName|json_parse %}
-{% set extraAttribute   = extraAttribute|json_parse %}
-{% set reversed         = reversed|json_parse %}
+{% set reversed = reversed|json_parse %}
+{% set isDisabled = isDisabled|json_parse %}
+{% set isSelected = isSelected|json_parse %}
+{% set image = image|json_parse %}
+{% set iconName = iconName|json_parse %}
+{% set isInvalid = isInvalid|json_parse %}
+{% set isRequired = isRequired|json_parse %}
+{% set extraAttribute = extraAttribute|json_parse %}
+{% set orientation = orientation|json_parse %}
+{% set footer = footer|json_parse %}
 
-
-<div class='container' {{ (orientation == 'horizontal') ? 'style="max-width :600px"':'style="max-width :1200px"'}}>
-  {% for index in 1..5 %}
-    <div class='p-3 {{ (index == 2 or index == 4) ? 'bf-color-bg-underground' }} {{ (reversed or index == 3 or index == 4) ? 'reversed  bf-color-bg-ground' : '' }} {{ index == 5 ? 'bf-color-bg-highlight' : '' }}' >
-      <div class='d-flex gap-2 {{ (orientation == 'vertical') ? 'flex-row flex-wrap' : 'flex-column' }}'>
+<div class='container' {{ (orientation == 'horizontal') ? 'style="max-width: 600px"' : 'style="max-width: 1200px"' }}>
+  {% for index in 1..3 %}
+    <p class='py-3'>Background: {{ ( index == 1 ) ? 'Ground' : '' }} {{ ( index == 2 ) ? 'Reversed + Ground' : '' }} {{ index == 3 ? 'Highlight' : '' }}</p>
+    <div class='{{ ( index == 1 ) ? 'bf-color-bg-ground' : '' }} {{ ( index == 2 ) ? 'reversed  bf-color-bg-ground' : '' }} {{ index == 3 ? 'bf-color-bg-highlight' : '' }}' >
+      <div class='d-flex gap-2 {{ (orientation == 'vertical') ? 'flex-row flex-wrap': 'flex-column' }}'>
         {% include '@bf-components/selection-tile/twig/index.twig' with {
-          inputId     : (inputId ~ '1' ~ loop.index)|default(inputId ~ '1' ~ loop.index),
-          name        : (name ~ loop.index)|default(name ~ loop.index),
-          ariaLabel   : (ariaLabel ~ '1' ~ loop.index)|default(ariaLabel ~ '1' ~ loop.index),
+          inputId: (inputId ~ '2' ~ loop.index)|default(inputId ~ '2' ~ loop.index),
+          name: (name ~ loop.index)|default(name ~ loop.index),
+          ariaLabel: (ariaLabel ~ '2' ~ loop.index)|default(ariaLabel ~ '2' ~ loop.index),
+          label: label|default('Selection tile label'),
+          iconName: orientation == 'vertical' ? iconName|default('bundle-1') : iconName|default(null),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
-          inputId     : (inputId ~ '2' ~ loop.index)|default(inputId ~ '2' ~ loop.index),
-          name        : (name ~ loop.index)|default(name ~ loop.index),
-          ariaLabel   : (ariaLabel ~ '2' ~ loop.index)|default(ariaLabel ~ '2' ~ loop.index),
-          label       : label|default('Selection tile label'),
-          iconName    : iconName|default('bundle-1'),
+          inputId: (inputId ~ '3' ~ loop.index)|default(inputId ~ '3' ~ loop.index),
+          name: (name ~ loop.index)|default(name ~ loop.index),
+          ariaLabel: (ariaLabel ~ '3' ~ loop.index)|default(ariaLabel ~ '3' ~ loop.index),
+          label: label|default('Selection tile label'),
+          description: description|default('lorem ipsum descriptum'),
+          info: info|default('12.34 $/Month <br> for 24 months'),
+          isSelected: isSelected|default(true),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
-          inputId     : (inputId ~ '3' ~ loop.index)|default(inputId ~ '3' ~ loop.index),
-          name        : (name ~ loop.index)|default(name ~ loop.index),
-          ariaLabel   : (ariaLabel ~ '3' ~ loop.index)|default(ariaLabel ~ '3' ~ loop.index),
-          label       : label|default('Selection tile label'),
-          description : description|default('lorem ipsum descriptum'),
-          info        : info|default('12.34 $/Mois'),
-          isChecked  : isChecked|default(true),
+          inputId: (inputId ~ '4' ~ loop.index)|default(inputId ~ '4' ~ loop.index),
+          name: (name ~ loop.index)|default(name ~ loop.index),
+          ariaLabel: (ariaLabel ~ '4' ~ loop.index)|default(ariaLabel ~ '4' ~ loop.index),
+          label: label|default('Selection tile label'),
+          description: description|default('lorem ipsum descriptum'),
+          info: info|default('12.34 $/Month'),
+          isSelected: isSelected|default(true),
+          isDisabled: isDisabled|default(true),
         }  %}
 
         {% include '@bf-components/selection-tile/twig/index.twig' with {
-          inputId     : (inputId ~ '4' ~ loop.index)|default(inputId ~ '4' ~ loop.index),
-          name        : (name ~ loop.index)|default(name ~ loop.index),
-          ariaLabel   : (ariaLabel ~ '4' ~ loop.index)|default(ariaLabel ~ '4' ~ loop.index),
-          label       : label|default('Selection tile label'),
-          description : description|default('lorem ipsum descriptum'),
-          info        : info|default('12.34 $/Mois'),
-          isChecked  : isChecked|default(true),
-          isDisabled  : isDisabled|default(true),
-        }  %}
-
-        {% include '@bf-components/selection-tile/twig/index.twig' with {
-          inputId     : (inputId ~ '5' ~ loop.index)|default(inputId ~ '5' ~ loop.index),
-          name        : (name ~ loop.index)|default(name ~ loop.index),
-          ariaLabel   : (ariaLabel ~ '5' ~ loop.index)|default(ariaLabel ~ '5' ~ loop.index),
-          label       : label|default('Selection tile label'),
-          description : description|default('lorem ipsum descriptum'),
-          iconName    : iconName|default('bundle-1'),
-          info        : info|default('22.34 $/Mois'),
-          isDisabled  : isDisabled|default(true),
+          inputId: (inputId ~ '5' ~ loop.index)|default(inputId ~ '5' ~ loop.index),
+          name: (name ~ loop.index)|default(name ~ loop.index),
+          ariaLabel: (ariaLabel ~ '5' ~ loop.index)|default(ariaLabel ~ '5' ~ loop.index),
+          label: label|default('Selection tile label'),
+          description: description|default('lorem ipsum descriptum'),
+          iconName: (orientation == 'vertical') ? iconName|default('bundle-1') : iconName|default(''),
+          info: info|default('12.34 $/Month <br> for 24 months'),
+          isDisabled: isDisabled|default(true),
         } %}
       </div>
     </div>

@@ -1,10 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
 
-/**
- * API is the same between **Angular** and **Drupal**.
- *
- */
-
 interface ILogo {
     href: string;
     name: string;
