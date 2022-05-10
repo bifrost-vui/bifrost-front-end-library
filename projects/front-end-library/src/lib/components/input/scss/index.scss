@@ -49,13 +49,13 @@
         }
     }
 
-    &.invalid .bf-input__control {
+    &--invalid .bf-input__control {
         color: currentColor;
         border-color: var(--bf-color-feedback-negative);
         background-color: transparent;
     }
 
-    &.disabled {
+    &--disabled {
         .bf-input__control {
             color: var(--bf-color-neutral-tertiary);
             border-color: var(--bf-color-stroke-secondary);
@@ -71,7 +71,7 @@
         }
     }
 
-    &.readonly .bf-input__control {
+    &--readonly .bf-input__control {
         border-color: var(--bf-color-stroke-secondary);
         color: var(--bf-color-neutral-secondary);
         cursor: default;
@@ -92,11 +92,6 @@
 
     input {
         background: none;
-    }
-
-    input::-webkit-input-placeholder,
-    input::placeholder {
-        color: var(--bf-color-neutral-tertiary) !important;
     }
 
     select {
@@ -120,5 +115,79 @@
         line-height: inherit;
         color: inherit;
         white-space: normal;
+    }
+
+
+    &.form-group.is-invalid {
+        label {
+            color: currentColor;
+        }
+        .form-control {
+            color: currentColor;
+            border-color: var(--bf-color-feedback-negative);
+            background-color: transparent;
+        }
+    }
+
+    .form-control {
+        border-radius: var(--bf-border-radius-small);
+        border: 1px solid var(--bf-color-stroke-secondary);
+
+        &:hover,
+        &:focus {
+            border-color: var(--bf-color-stroke-primary);
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba(129,194,255, .5) !important;
+        }
+
+        &:focus:not(:focus-visible) {
+            box-shadow: none !important;
+        }
+
+        &:disabled,
+        &[readonly] {
+            color: var(--bf-color-neutral-tertiary);
+            border-color: var(--bf-color-stroke-secondary);
+            background-color: var(--bf-color-bg-action-disabled);
+
+            & ~ .form-group__input-icon-container {
+                cursor: not-allowed;
+                background-color: var(--bf-color-bg-action-disabled);
+            }
+
+            // Reversed exception
+            @at-root .reversed .form-control:disabled {
+                border-color: var(--bf-color-bg-action-disabled);
+
+                & ~ .form-group__input-icon-container {
+                    background-color: var(--bf-color-bg-action-disabled);
+                }
+            }
+        }
+    }
+
+    .form-control {
+        color: var(--bf-color-neutral-primary);
+        background-color: var(--bf-color-bg-ground);
+        border-radius: var(--bf-border-radius-small);
+    }
+    .form-group__input-icon-container {
+    }
+
+    .form-group__input-icon-container {
+        top: 1px;
+        right: 1px;
+        height: calc(100% - 2px);
+    }
+
+    .invalid-feedback {
+        color: var(--bf-color-feedback-negative);
+    }
+
+    input::-webkit-input-placeholder,
+    input::placeholder {
+        color: var(--bf-color-neutral-tertiary) !important;
     }
 }
