@@ -1,9 +1,9 @@
 {# Ui-Kit legacy fallback #}
-  {% set id = id|default(inputId) %}
-  {% set name = name|default(inputName) %}
-  {% set labelClass = labelClass|default(labelTxtClass) %}
-  {% set isInvalid = isInvalid|default(false) %}
-  {% set isDisabled = isDisabled|default(false) %}
+{% set id = id|default(inputId) %}
+{% set name = name|default(inputName) %}
+{% set labelClass = labelClass|default(labelTxtClass) %}
+{% set isInvalid = isInvalid|default(false) %}
+{% set isDisabled = isDisabled|default(false) %}
 
 <label class='bf-input-radio-option {{ isInvalid ? 'bf-input-radio-option--invalid' }} {{ isDisabled ? 'bf-input-radio-option--disabled' }} {{ class|default(null) }}'>
   <input
@@ -28,6 +28,6 @@
   />
   <span class='bf-input-radio-control'></span>
   {% if label|default(null) %}
-    <span class='bf-input-radio-option__label bf-text-display-sub-medium {{ labelClass|default(null) }}'>{{ label }}</span>
+    <span class='bf-input-radio-option__label bf-text-display-sub-medium {{ labelClass|default(null) }}'>{{ label|raw }}</span>
   {% endif %}
 </label>

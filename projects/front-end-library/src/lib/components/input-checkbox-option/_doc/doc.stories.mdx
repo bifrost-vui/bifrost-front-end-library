@@ -26,7 +26,19 @@ import { InputCheckboxOptionComponent } from '../angular/input-checkbox-option.c
                 options: [null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight']
             },
             description: 'Preview the component on selected background.'
-        }
+        },
+        isChecked: {
+            table: { defaultValue: { summary: false } }
+        },
+        isRequired: {
+            table: { defaultValue: { summary: false } }
+        },
+        isDisabled: {
+            table: { defaultValue: { summary: false } }
+        },
+        isInvalid: {
+            table: { defaultValue: { summary: false } }
+        },
     }}
 />
 
@@ -47,8 +59,17 @@ export const Drupal = (args) => ({
 {% include '@bf-components/input-checkbox-option/twig/index.twig' with {
     id: 'id',
     name: 'name',
-    value: true,
-    label: 'Label',
+    value: 'value',
+    isChecked: false,
+    label: 'Option label',
+    labelClass: '',
+    labelExtraAttribute: '',
+    isRequired: false,
+    isDisabled: false,
+    isInvalid: false,
+    ariaLabel: '',
+    extraAttribute: '',
+    class: ''
 } only %}
 ```
 

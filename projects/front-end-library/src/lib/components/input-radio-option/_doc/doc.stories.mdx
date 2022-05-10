@@ -19,8 +19,20 @@ import { InputRadioOptionComponent } from '../angular/input-radio-option.compone
         },
     }}
     argTypes={{
-        value: {
+        id: {
             type: { required: true }
+        },
+        isChecked: {
+            table: { defaultValue: { summary: false } }
+        },
+        isRequired: {
+            table: { defaultValue: { summary: false } }
+        },
+        isDisabled: {
+            table: { defaultValue: { summary: false } }
+        },
+        isInvalid: {
+            table: { defaultValue: { summary: false } }
         },
         inputName: {
             control: { type: 'text' },
@@ -48,6 +60,24 @@ import { InputRadioOptionComponent } from '../angular/input-radio-option.compone
 
 ## Drupal
 
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/input-radio-option/twig/index.twig' with {
+    id: 'id',
+    name: 'name',
+    isChecked: false,
+    label: 'Option label'
+    labelClass: '',
+    isRequired: false,
+    isDisabled: false,
+    isInvalid: false,
+    ariaLabel: '',
+    extraAttribute: '',
+    class: '',
+} only %}
+```
+
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
     props: args,
@@ -58,26 +88,14 @@ export const Drupal = (args) => ({
         name='Drupal'
         args={{
             elementPath: 'components/input-radio-option/_doc/template.drupal',
-            inputId: 'inputId',
-            id: '',
+            id: 'id',
             name: 'name',
-            label: 'Label'
+            label: 'Option label'
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
-
-## Drupal implementation example
-
-```jsx
-{% include '@bf-components/input-radio-option/twig/index.twig' with {
-    id: 'id',
-    name: 'name',
-    value: true,
-    label: 'Label'
-} only %}
-```
 
 ## Design Guidelines
 

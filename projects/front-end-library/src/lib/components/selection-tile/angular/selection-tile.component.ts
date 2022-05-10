@@ -18,7 +18,7 @@ interface IFooter{
 export class SelectionTileComponent implements OnInit {
     constructor() {}
     @Input() type: 'checkbox' | 'radio';
-    @Input() inputId: string;
+    @Input() id: string;
     @Input() name: string;
     @Input() value: string;
     @Input() isChecked: boolean;

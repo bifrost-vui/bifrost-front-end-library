@@ -18,7 +18,11 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
             disable: false
         }
     }}
-    argTypes={{}}
+    argTypes={{
+        isOptionTiles: {
+            table: { defaultValue: { summary: false } }
+        }
+    }}
 />
 
 # Input Checkbox
@@ -38,24 +42,24 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
     options: [
         {
             id: 'id-1',
-            value: true,
+            value: 'value-1',
+            label: 'Option label',
+            labelClass: 'labelClass',
+            labelExtraAttribute: 'data-labelExtraAttribute="1"',
             isRequired: false,
             isDisabled: false,
             isInvalid: false,
-            extraAttribute: 'data-extraAttribute="1"',
-            label: 'Label',
-            labelClass: 'labelClass',
-            labelExtraAttribute: 'data-labelExtraAttribute="1"',
             ariaLabel: 'ariaLabel',
+            extraAttribute: 'data-extraAttribute="1"',
             class: '',
         },
         {
             id: 'id-2',
-            value: false
+            value: 'value-2',
         },
         {
             id: 'id-3',
-            value: false
+            value: 'value-3',
         }
     ],
     isOptionTiles: false,
@@ -73,10 +77,10 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
     options: [
         {
             id: 'id-1',
-            value: false,
+            value: 'value-1',
             content: null,
-            title: 'Title',
-            description: 'Description',
+            label: 'Option label',
+            description: 'Option description',
             info: 'Info',
             image: {},
             iconName: 'placeholder',
@@ -87,18 +91,18 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
             errorMessage: 'errorMessage',
             orientation: 'horizontal',
             fit: 'content',
-            extraAttribute: 'data-extraAttribute="1"',
-            reversed: false,
             ariaLabel: 'ariaLabel',
+            extraAttribute: 'data-extraAttribute="1"',
             class: '',
+            reversed: false,
         },
         {
             id: 'id-2',
-            value: false
+            value: 'value-2',
         },
         {
             id: 'id-3',
-            value: false
+            value: 'value-3',
         }
     ],
     isOptionTiles: true,
@@ -109,39 +113,39 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
 
 export const optionProps = {
     id: 'id-1',
-    value: false,
-    isRequired: false,
-    isDisabled: false,
-    isInvalid: false,
-    extraAttribute: 'data-extraAttribute="1"',
+    value: 'value-1',
     label: 'Option label',
     labelClass: 'labelClass',
     labelExtraAttribute: 'labelExtraAttribute="1"',
+    isRequired: false,
+    isDisabled: false,
+    isInvalid: false,
     ariaLabel: 'ariaLabel',
+    extraAttribute: 'data-extraAttribute="1"',
     class: '',
 }
 
 export const optionTileProps = {
-    inputId: 'inputId', // TODO: Rename id.
+    id: 'id-1',
     name: 'name',
     value: false,
+    isChecked: false,
     content: null,
-    title: 'Title', // TODO: Rename label.
-    description: 'Description',
+    label: 'Option label',
+    description: 'Option description',
     info: 'Info', // TODO: Rename details. (info is not relevant since all is information).
     image: {},
     iconName: 'placeholder',
     isRequired: false,
-    isSelected: false, // TODO: Delete. Use value instead.
     isDisabled: false,
     isInvalid: false,
     errorMessage: 'errorMessage', // TODO: Check if errorMessage is by option or by input.
     orientation: 'horizontal',
     fit: 'content',
-    extraAttribute: 'data-extraAttribute="1"',
-    reversed: false, // TODO: Remove.
     ariaLabel: 'ariaLabel',
+    extraAttribute: 'data-extraAttribute="1"',
     class: 'class',
+    reversed: false, // TODO: Remove.
 }
 
 export const commonProps = {
@@ -156,12 +160,12 @@ export const commonProps = {
         {
             ...optionProps,
             id: 'id-2',
-            value: true
+            isChecked: true
         },
         {
             ...optionProps,
             id: 'id-3',
-            value: true
+            isChecked: true
         }
     ],
     isOptionTiles: false,
@@ -197,16 +201,19 @@ export const Drupal = (args) => ({
                 {
                     ...optionProps,
                     id: 'id-1',
+                    value: 'value-1',
                 },
                 {
                     ...optionProps,
                     id: 'id-2',
-                    value: true
+                    value: 'value-2',
+                    isChecked: true,
                 },
                 {
                     ...optionProps,
                     id: 'id-3',
-                    value: true
+                    value: 'value-3',
+                    isChecked: true,
                 }
             ],
             errorMessage: 'This is an error message',
@@ -226,18 +233,21 @@ export const Drupal = (args) => ({
                 {
                     ...optionProps,
                     id: 'id-1',
+                    value: 'value-1',
                     isDisabled: true,
                 },
                 {
                     ...optionProps,
                     id: 'id-2',
-                    value: true,
+                    value: 'value-2',
+                    isChecked: true,
                     isDisabled: true,
                 },
                 {
                     ...optionProps,
                     id: 'id-3',
-                    value: true,
+                    value: 'value-3',
+                    isChecked: true,
                     isDisabled: true,
                 }
             ]
@@ -257,18 +267,21 @@ export const Drupal = (args) => ({
                 {
                     ...optionProps,
                     id: 'id-1',
+                    value: 'value-1',
                     isInvalid: true,
                 },
                 {
                     ...optionProps,
                     id: 'id-2',
-                    value: true,
+                    value: 'value-2',
+                    isChecked: true,
                     isInvalid: true,
                 },
                 {
                     ...optionProps,
                     id: 'id-3',
-                    value: true,
+                    value: 'value-3',
+                    isChecked: true,
                     isInvalid: true,
                 }
             ]
@@ -288,18 +301,21 @@ export const Drupal = (args) => ({
                 {
                     ...optionProps,
                     id: 'id-1',
+                    value: 'value-1',
                     isRequired: true,
                 },
                 {
                     ...optionProps,
                     id: 'id-2',
-                    value: true,
+                    value: 'value-2',
+                    isChecked: true,
                     isRequired: true,
                 },
                 {
                     ...optionProps,
                     id: 'id-3',
-                    value: true,
+                    value: 'value-3',
+                    isChecked: true,
                     isRequired: true,
                 }
             ]
@@ -320,16 +336,19 @@ export const Drupal = (args) => ({
                 {
                     ...optionTileProps,
                     id: 'id-1',
+                    value: 'value-1',
                 },
                 {
                     ...optionTileProps,
                     id: 'id-2',
-                    value: true,
+                    value: 'value-2',
+                    isChecked: true,
                 },
                 {
                     ...optionTileProps,
                     id: 'id-3',
-                    value: true,
+                    value: 'value-3',
+                    isChecked: true,
                 }
             ]
         }}

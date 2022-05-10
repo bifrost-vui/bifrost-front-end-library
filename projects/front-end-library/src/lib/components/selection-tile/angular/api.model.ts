@@ -17,8 +17,7 @@ export interface ISelectionTile {
     orientation: 'horizontal' | 'vertical';
     fit: 'content' | 'container';
     content: string | 'TwigBlock';
-
     extraAttribute: string;
-    reversed: boolean;
     class: string;
+    reversed: boolean;
 }

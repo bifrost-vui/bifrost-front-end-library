@@ -18,7 +18,14 @@ import { InputRadioComponent } from '../angular/input-radio.component';
             disable: false
         }
     }}
-    argTypes={{}}
+    argTypes={{
+        isOptionTiles: {
+            table: { defaultValue: { summary: false } }
+        },
+        isRequired: {
+            table: { defaultValue: { summary: false } }
+        }
+    }}
 />
 
 # Input Radio
@@ -38,6 +45,7 @@ import { InputRadioComponent } from '../angular/input-radio.component';
     options: [
         {
             id: 'id-1',
+            value: 'value-1',
             isChecked: true,
             isRequired: false,
             isDisabled: false,
@@ -51,10 +59,12 @@ import { InputRadioComponent } from '../angular/input-radio.component';
         },
         {
             id: 'id-2',
+            value: 'value-2',
             isChecked: false
         },
         {
             id: 'id-3',
+            value: 'value-3',
             isChecked: false
         }
     ],
@@ -73,6 +83,7 @@ import { InputRadioComponent } from '../angular/input-radio.component';
     options: [
         {
             id: 'id-1',
+            value: 'value-1',
             isChecked: false,
             content: null,
             title: 'Title',
@@ -84,7 +95,6 @@ import { InputRadioComponent } from '../angular/input-radio.component';
             isSelected: false,
             isDisabled: false,
             isInvalid: false,
-            errorMessage: 'errorMessage',
             orientation: 'horizontal',
             fit: 'content',
             extraAttribute: 'data-extraAttribute="1"',
@@ -94,10 +104,12 @@ import { InputRadioComponent } from '../angular/input-radio.component';
         },
         {
             id: 'id-2',
+            value: 'value-2',
             isChecked: false
         },
         {
             id: 'id-3',
+            value: 'value-2',
             isChecked: false
         }
     ],
@@ -110,39 +122,40 @@ import { InputRadioComponent } from '../angular/input-radio.component';
 export const optionProps = {
     id: 'id',
     name: 'name',
+    value: 'value',
     isChecked: false,
     isRequired: false,
     isDisabled: false,
     isInvalid: false,
-    extraAttribute: 'data-extraAttribute="1"',
     label: 'Option label',
     labelClass: 'labelClass',
     labelExtraAttribute: 'labelExtraAttribute="1"',
     ariaLabel: 'ariaLabel',
+    extraAttribute: 'data-extraAttribute="1"',
     class: '',
 }
 
 export const optionTileProps = {
-    id: 'id', // TODO: Accept id and inputId.
+    id: 'id',
     name: 'name',
+    value: 'value',
     isChecked: false,
     content: null,
-    title: 'Title', // TODO: Rename label.
-    description: 'Description',
+    label: 'Option label',
+    description: 'Option description',
     info: 'Info', // TODO: Rename details. (info is not relevant since all is information).
     image: {},
     iconName: 'placeholder',
     isRequired: false,
-    isSelected: false, // TODO: Delete. Use isChecked instead.
     isDisabled: false,
     isInvalid: false,
-    errorMessage: 'errorMessage', // TODO: Check if errorMessage is by option or by input.
+    errorMessage: 'This ia an error message', // TODO: Check if errorMessage is by option or by input.
     orientation: 'horizontal',
     fit: 'content',
-    extraAttribute: 'data-extraAttribute="1"',
-    reversed: false, // TODO: Remove.
     ariaLabel: 'ariaLabel',
+    extraAttribute: 'data-extraAttribute="1"',
     class: 'class',
+    reversed: false, // TODO: Remove.
 }
 
 export const commonProps = {
@@ -197,15 +210,18 @@ export const Drupal = (args) => ({
                 {
                     ...optionProps,
                     id: 'id-1',
+                    value: 'value-1',
                 },
                 {
                     ...optionProps,
                     id: 'id-2',
+                    value: 'value-2',
                     isChecked: true
                 },
                 {
                     ...optionProps,
-                    id: 'id-3'
+                    id: 'id-3',
+                    value: 'value-3'
                 }
             ],
             errorMessage: 'This is an error message',
@@ -225,17 +241,20 @@ export const Drupal = (args) => ({
                 {
                     ...optionProps,
                     id: 'id-1',
+                    value: 'value-1',
                     isDisabled: true,
                 },
                 {
                     ...optionProps,
                     id: 'id-2',
+                    value: 'value-2',
                     isChecked: true,
                     isDisabled: true,
                 },
                 {
                     ...optionProps,
                     id: 'id-3',
+                    value: 'value-3',
                     isDisabled: true,
                 }
             ]
@@ -255,17 +274,20 @@ export const Drupal = (args) => ({
                 {
                     ...optionProps,
                     id: 'id-1',
+                    value: 'value-1',
                     isInvalid: true,
                 },
                 {
                     ...optionProps,
                     id: 'id-2',
+                    value: 'value-2',
                     isChecked: true,
                     isInvalid: true,
                 },
                 {
                     ...optionProps,
                     id: 'id-3',
+                    value: 'value-3',
                     isInvalid: true,
                 }
             ]
@@ -286,15 +308,18 @@ export const Drupal = (args) => ({
                 {
                     ...optionProps,
                     id: 'id-1',
+                    value: 'value-1',
                 },
                 {
                     ...optionProps,
                     id: 'id-2',
+                    value: 'value-2',
                     isChecked: true,
                 },
                 {
                     ...optionProps,
                     id: 'id-3',
+                    value: 'value-3',
                 }
             ]
         }}
@@ -314,15 +339,18 @@ export const Drupal = (args) => ({
                 {
                     ...optionTileProps,
                     id: 'id-1',
+                    value: 'value-1',
                 },
                 {
                     ...optionTileProps,
                     id: 'id-2',
+                    value: 'value-2',
                     isChecked: true,
                 },
                 {
                     ...optionTileProps,
-                    id: 'id-3'
+                    id: 'id-3',
+                    value: 'value-3',
                 }
             ]
         }}

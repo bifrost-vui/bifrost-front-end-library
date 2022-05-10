@@ -1,7 +1,8 @@
 export interface IInputCheckboxOption {
     id: string;
     name: string;
-    value: boolean;
+    value: string;
+    isChecked: boolean;
     label: HTMLElement;
     labelClass: string;
     labelExtraAttribute: string;
