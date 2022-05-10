@@ -4,7 +4,7 @@
   {% set labelClass = labelClass|default(labelTxtClass) %}
 
 <label
-  class='bf-input-radio {{ (isInvalid is defined and isInvalid) ? 'bf-input-radio--invalid' }} {{ (isDisabled is defined and isDisabled) ? 'bf-input-radio--disabled' }} {{ class }}'>
+  class='bf-input-radio-option {{ (isInvalid is defined and isInvalid) ? 'bf-input-radio-option--invalid' }} {{ (isDisabled is defined and isDisabled) ? 'bf-input-radio-option--disabled' }} {{ class }}'>
   <input
     class='{{ isInvalid ? 'invalid' }}'
     type='radio'
@@ -23,8 +23,8 @@
     {% endif %}
     {{ extraAttribute|default(NULL) }}
   />
-  <span class='bf-input-radio__control'></span>
+  <span class='bf-input-radio-option__control'></span>
   {% if label is defined and label %}
-    <span class='bf-input-radio__label bf-text-display-sub-medium {{ labelClass|default('') }}'>{{ label }}</span>
+    <span class='bf-input-radio-option__label bf-text-display-sub-medium {{ labelClass|default('') }}'>{{ label }}</span>
   {% endif %}
 </label>

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { InputCheckboxComponent } from './input-checkbox.component';
+import { InputCheckboxOptionComponent } from './input-checkbox-option.component';
 
 @NgModule({
-  declarations: [InputCheckboxComponent],
+  declarations: [InputCheckboxOptionComponent],
   imports: [
   ],
-  exports: [InputCheckboxComponent]
+  exports: [InputCheckboxOptionComponent]
 })
-export class InputCheckboxModule { }
+export class InputCheckboxOptionModule { }
