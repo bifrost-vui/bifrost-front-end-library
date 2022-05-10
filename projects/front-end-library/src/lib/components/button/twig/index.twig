@@ -14,54 +14,57 @@
 {% set isLink = href is defined and href is not empty and not isSubmit and not isDisabled %}
 
 <{{ isLink ? 'a' : 'button' }}
-    {% if isLink %}
-        href='{{ href|default('#') }}'
-    {% else %}
-        type='{{ isSubmit ? 'submit' : 'button' }}'
-    {% endif %}
-    class='bf-button bf-button--{{ hierarchy|default('secondary') }} {{ reversed|default(false) ? 'reversed' }} {{ fullWidth|default(false) ? 'bf-button--fullwidth' }} {{ isDisabled ? 'disabled' }} {{ isLoading ? 'loading' }} {{ class|default('') }}'
-    {% if isDisabled %}disabled='disabled' aria-disabled='true'{% endif %}
-    {% if dataDismiss|default(null) %}data-dismiss='{{ dataDismiss }}'{% endif %}
-    {% if dataToggle|default(null) %}data-toggle='{{ dataToggle }}'{% endif %}
-    {% if dataTarget|default(null) %}data-target='{{ dataTarget }}'{% endif %}
-    {% if ariaControls|default(null) %}aria-controls='{{ ariaControls }}'{% endif %}
-    {% if ariaExpanded|default(null) %}aria-expanded='{{ ariaExpanded }}'{% endif %}
-    {% if id|default(null) %}id='{{ id }}'{% endif %}
+  {% if isLink %}
+    href='{{ href|default('#') }}'
+  {% else %}
+    type='{{ isSubmit ? 'submit' : 'button' }}'
+  {% endif %}
+  class='bf-button bf-button--{{ hierarchy|default('secondary') }} {{ reversed|default(false) ? 'reversed' }} {{ fullWidth|default(false) ? 'bf-button--fullwidth' }} {{ isDisabled ? 'disabled' }} {{ isLoading ? 'loading' }} {{ class|default('') }}'
 
-    {% if isSubmit %}
-      {% if formId|default(null) %}form='{{ formId }}' {% endif %}
-      {% if formAction|default(null) %}formaction='{{ formAction }}'{% endif %}
-      {% if formEncryptionType|default(null) %}  formenctype='{{ formEncryptionType }}' {% endif %}
-      {% if formTarget|default(null) %}formtarget='{{ formTarget }}'{% endif %}
-      {% if formMethod|default(null) %}formmethod='{{ formMethod }}'{% endif %}
-      {{ formNoValidate ? 'formnovalidate' }}
-    {% endif %}
+  {% if isDisabled %}disabled='disabled' aria-disabled='true'{% endif %}
+  {% if dataDismiss|default(null) %}data-dismiss='{{ dataDismiss }}'{% endif %}
+  {% if dataToggle|default(null) %}data-toggle='{{ dataToggle }}'{% endif %}
+  {% if dataTarget|default(null) %}data-target='{{ dataTarget }}'{% endif %}
+  {% if ariaControls|default(null) %}aria-controls='{{ ariaControls }}'{% endif %}
+  {% if ariaExpanded|default(null) %}aria-expanded='{{ ariaExpanded }}'{% endif %}
+  {% if id|default(null) %}id='{{ id }}'{% endif %}
 
-    {% if label|default(null) %}data-title='{{ label }}'{% endif %}
-    {% if ariaLabel|default(null) %}aria-label='{{ ariaLabel }}'{% endif %}
-    {{ extraAttribute|default(null) }}
+  {% if isSubmit %}
+    {% if formId|default(null) %}form='{{ formId }}' {% endif %}
+    {% if formAction|default(null) %}formaction='{{ formAction }}'{% endif %}
+    {% if formEncryptionType|default(null) %}  formenctype='{{ formEncryptionType }}' {% endif %}
+    {% if formTarget|default(null) %}formtarget='{{ formTarget }}'{% endif %}
+    {% if formMethod|default(null) %}formmethod='{{ formMethod }}'{% endif %}
+    {{ formNoValidate ? 'formnovalidate' }}
+  {% endif %}
+
+  {% if label|default(null) %}data-title='{{ label }}'{% endif %}
+  {% if ariaLabel|default(null) %}aria-label='{{ ariaLabel }}'{% endif %}
+  {{ extraAttribute|default(null) }}
 >
-    <span class='bf-button__inner'>
-        {% if iconName is defined and iconName is not empty %}
-            {% include '@bf-components/icon/twig/index.twig' with {
-                name    : iconName,
-                size    : iconSize|default('small'),
-                class   : iconPosition is same as ('right') ? 'bf-button__icon--right' : ''
-            } only %}
-        {% endif %}
-        {% if label is defined and label %}
-          <span class='bf-button__label'>
-              {{ label }}
-          </span>
-        {% endif %}
-        {{ content|default('') }}
-    </span>
-
-    {% if isLoading or hasLoading|default(false) %}
-        <div class='bf-button__loading' role='decoration'>
-            <i></i>
-            <i></i>
-            <i></i>
-        </div>
+  <span class='bf-button__inner'>
+    {% if iconName is defined and iconName is not empty %}
+      {% include '@bf-components/icon/twig/index.twig' with {
+        name    : iconName,
+        size    : iconSize|default('small'),
+        class   : iconPosition is same as ('right') ? 'bf-button__icon--right' : ''
+      } only %}
     {% endif %}
+
+    {% if label is defined and label %}
+      <span class='bf-button__label'>
+        {{ label }}
+      </span>
+    {% endif %}
+
+    {{ content|default('') }}
+  </span>
+
+  {% if isLoading or hasLoading|default(false) %}
+    <div class='bf-button__loading' role='decoration'>
+      <i></i>
+      <i></i>
+      <i></i>
+    </div>
+  {% endif %}
 </{{ isLink ? 'a' : 'button' }}>
