@@ -23,8 +23,6 @@ export class ButtonComponent implements OnInit {
     @Input() hasLoading     : boolean;
     @Input() isLoading      : boolean;
     @Input() fullWidth      : boolean;
-    /** This option is only available for tertiary buttons */
-    @Input() hasNoPadding   : boolean;
 
     @Input() iconName       : string;
     /** This is not recommended to change the size of the icon. */
