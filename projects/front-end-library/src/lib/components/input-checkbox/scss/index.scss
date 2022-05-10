@@ -5,12 +5,12 @@
 * ***************************************************************************** */
 
 .bf-input-checkbox {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-
 
     label {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+
         line-height: 1rem;
         padding: 0;
         margin: 0;
@@ -33,7 +33,7 @@
     position: fixed;
     top: -100vh;
 
-    + .bf-checkbox__control {
+    + label .bf-checkbox__control {
         flex: 0 0 1rem;
         display: block;
         position: relative;
@@ -74,7 +74,7 @@
     }
 
     &:checked {
-        + .bf-checkbox__control {
+        + label .bf-checkbox__control {
             border: 1px solid var(--bf-color-stroke-tertiary);
             background-color: var(--bf-color-feedback-neutral);
 
@@ -93,7 +93,7 @@
             }
         }
 
-        &:disabled + .bf-checkbox__control {
+        &:disabled + label .bf-checkbox__control {
             border: 1px solid var(--bf-color-stroke-secondary);
             color: var(--bf-color-bg-action-disabled);
             background-color: var(--bf-color-bg-action-disabled);
@@ -101,13 +101,13 @@
     }
 
     &--invalid:not(:disabled) {
-        + .bf-checkbox__control {
+        + label .bf-checkbox__control {
             border-color: var(--bf-color-feedback-negative);
             background-color: var(--bf-color-bg-ground);
 
         }
 
-        &:checked + .bf-checkbox__control {
+        &:checked + label .bf-checkbox__control {
             border-color: var(--bf-color-feedback-negative);
             background-color: var(--bf-color-feedback-negative);
 
@@ -118,7 +118,7 @@
     }
 }
 .reversed .bf-checkbox {
-    &:checked:disabled + .bf-checkbox__control::before {
+    &:checked:disabled + label .bf-checkbox__control::before {
         filter: opacity(.5) grayscale(100) invert(1);
     }
 }

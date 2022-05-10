@@ -18,12 +18,13 @@
     {% endif %}
     {{ extraAttribute|default(NULL) }}
   >
+  <label for='{{ id }}'>
     <span class='bf-checkbox__control'></span>
-  {% if label is defined and label %}
-    <label for='{{ id }}'>
-      <span class='bf-text-display-sub-medium {{ labelClass|default(null) }}' {{ labelExtraAttribute|default(null) }}>
-        {{ label|raw }}
-      </span>
-    </label>
-  {% endif %}
+
+    {% if label is defined and label %}
+        <span class='bf-text-display-sub-medium {{ labelClass|default(null) }}' {{ labelExtraAttribute|default(null) }}>
+          {{ label|raw }}
+        </span>
+    {% endif %}
+  </label>
 </div>
