@@ -5,10 +5,10 @@ import { TwigContainerComponent } from '../../../../utils/twig-container/twig-co
 import { InputCheckboxComponent } from '../angular/input-checkbox.component';
 
 <Meta
-    title='Components/Input Checkbox'
-    component={InputCheckboxComponent}
+    title='Components/Input Checkbox/Input Checkbox Option'
+    component={InputCheckboxOptionComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputCheckboxComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [InputCheckboxOptionComponent, TwigContainerComponent]}),
         withDesign
     ]}
     parameters={{
@@ -16,31 +16,21 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
             type: 'figma',
             url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=16890%3A229797',
             disable: false
-        },
+        }
     }}
     argTypes={{
-        id: {type: {required: true}},
-        inputName: {
-            control: { type: 'text' },
-            description: 'Use `name` instead',
-            table: { category: 'Deprecated Inputs'}
-        },
-        inputId: {
-            control: { type: 'text' },
-            description: 'Use `id` instead',
-            table: { category: 'Deprecated Inputs'}
-        },
+        id: { type: { required: true } },
         _background:{
-            control: {
+            option: {
                 type: 'select',
                 options: [null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight']
             },
-            description: 'preview the component on selected background'
-        },
+            description: 'Preview the component on selected background.'
+        }
     }}
 />
 
-# Input Checkbox
+# Input Checkbox Option
 
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
@@ -49,39 +39,34 @@ export const Drupal = (args) => ({
 
 ## Component API
 
-<ArgsTable of={InputCheckboxComponent} />
+<ArgsTable of={InputCheckboxOptionComponent} />
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/input-checkbox-option/twig/index.twig' with {
+    id: 'id',
+    name: 'name',
+    value: true,
+    label: 'Label',
+} only %}
+```
 
 ## Drupal
 
-<Canvas
-    withSource='none'
-    style = {{ height: '400px' }}
->
+<Canvas withSource='none' style={{ height: '400px' }}>
     <Story
         name='Drupal'
         args={{
-            elementPath: 'components/input-checkbox/_doc/template.drupal',
-            label: 'label',
+            elementPath: 'components/input-checkbox-option/_doc/template.drupal',
             id: '',
-            value: 'value',
-            name: 'name'
+            name: 'name',
+            label: 'Label',
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
-
-
-## Drupal implementation example
-
-```jsx
-{% include '@bf-components/input-checkbox/twig/index.twig' with {
-    label: 'label',
-    id: 'id',
-    value: 'value',
-    name: 'name'
-} only %}
-```
 
 
 ## Design Guidelines
