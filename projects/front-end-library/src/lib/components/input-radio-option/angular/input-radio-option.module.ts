@@ -3,8 +3,7 @@ import { InputRadioComponent } from './input-radio.component';
 
 @NgModule({
   declarations: [InputRadioComponent],
-  imports: [
-  ],
+  imports: [],
   exports: [InputRadioComponent]
 })
 export class InputRadioModule { }

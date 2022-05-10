@@ -3,7 +3,6 @@ import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'bf-input-radio',
   templateUrl: './input-radio.component.html',
-  // styleUrls: ['../scss/index.scss'],
 })
 export class InputRadioComponent implements OnInit {
 
