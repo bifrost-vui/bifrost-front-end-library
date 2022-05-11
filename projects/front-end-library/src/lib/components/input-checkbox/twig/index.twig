@@ -11,16 +11,14 @@
             {% set option = option|merge({
               'type': 'checkbox',
               'name': name,
-              'errorMessage': null,
-              'orientation': isInline ? 'vertical' : 'horizontal'
+              'errorMessage': null
             }) %}
             {% include '@bf-components/selection-tile/twig/index.twig' with option only %}
           {% endfor %}
         {% else %}
           {% for option in options %}
             {% set option = option|merge({
-              'name': name,
-              'orientation': isInline ? 'vertical' : 'horizontal'
+              'name': name
             }) %}
             {% include '@bf-components/input-checkbox-option/twig/index.twig' with option only %}
           {% endfor %}
