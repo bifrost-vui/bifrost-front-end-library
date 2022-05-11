@@ -10,7 +10,8 @@
             {% set option = option|merge({
               'type': 'radio',
               'name': name,
-              'isRequired': option.isRequired|default(isRequired)|default(false)
+              'isRequired': option.isRequired|default(isRequired)|default(false),
+              'errorMessage': null
             }) %}
             {% include '@bf-components/selection-tile/twig/index.twig' with option only %}
           {% endfor %}
