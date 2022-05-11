@@ -12,11 +12,12 @@ export class InputCheckboxComponent implements OnInit {
     @Input() name: string;
     @Input() label: string;
     @Input() description: string;
-    @Input() errorMessage: string;
     @Input() options: IInputCheckboxOption[] | ISelectionTile[];
     /** Transform options as tiles. Then use options from [Selection Tile API](?path=/story/components-selection-tile--drupal-selection-tile-vertical). */
     @Input() isOptionTiles: boolean;
-    @Input() isInline: boolean;
+    /** Define orientation of the Component Selection Tile and the direction of the option list. Has effect only if `isOptionTiles = true`. */
+    @Input() optionTilesOrientation: 'horizontal' | 'horizontal-inline' | 'vertical-inline';
+    @Input() errorMessage: string;
 
     @Input() class: string;
 

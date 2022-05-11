@@ -22,8 +22,12 @@ import { InputRadioComponent } from '../angular/input-radio.component';
         isOptionTiles: {
             table: { defaultValue: { summary: false } }
         },
-        isInline: {
-            table: { defaultValue: { summary: false } }
+        optionTilesOrientation: {
+            table: { defaultValue: { summary: 'horizontal' } },
+            control: {
+                type: 'select',
+                options: [ 'horizontal', 'horizontal-inline', 'vertical-inline' ]
+            }
         },
         isRequired: {
             table: { defaultValue: { summary: false } }
@@ -72,7 +76,7 @@ import { InputRadioComponent } from '../angular/input-radio.component';
         }
     ],
     isOptionTiles: false,
-    isInline: false,
+    optionTilesOrientation: 'horizontal',
     errorMessage: 'This ia an error message.',
     class: 'm-4'
 } only %}
@@ -99,7 +103,6 @@ import { InputRadioComponent } from '../angular/input-radio.component';
             isSelected: false,
             isDisabled: false,
             isInvalid: false,
-            orientation: 'horizontal',
             fit: 'content',
             extraAttribute: 'data-extraAttribute="1"',
             reversed: false,
@@ -118,7 +121,7 @@ import { InputRadioComponent } from '../angular/input-radio.component';
         }
     ],
     isOptionTiles: true,
-    isInline: false,
+    optionTilesOrientation: 'horizontal',
     errorMessage: 'This ia an error message.',
     class: 'm-4'
 } only %}
@@ -154,7 +157,6 @@ export const optionTileProps = {
     isRequired: false,
     isDisabled: false,
     isInvalid: false,
-    orientation: 'horizontal',
     fit: 'content',
     ariaLabel: 'ariaLabel',
     extraAttribute: 'data-extraAttribute="1"',
@@ -182,7 +184,7 @@ export const commonProps = {
         }
     ],
     isOptionTiles: false,
-    isInline: false,
+    optionTilesOrientation: 'horizontal',
     class: 'm-4'
 }
 
@@ -199,19 +201,6 @@ export const Drupal = (args) => ({
         args={{
             elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
-
-<Canvas withSource='none' style={{ height: '400px' }}>
-    <Story
-        name='Drupal - isInline'
-        args={{
-            elementPath: 'components/input-radio/_doc/template.drupal',
-            ...commonProps,
-            isInline: true,
         }}
     >
         {Drupal.bind({})}
@@ -243,6 +232,37 @@ export const Drupal = (args) => ({
                 }
             ],
             errorMessage: 'This is an error message',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With isRequired'
+        args={{
+            elementPath: 'components/input-radio/_doc/template.drupal',
+            ...commonProps,
+            isRequired: true,
+            options: [
+                {
+                    ...optionProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                },
+                {
+                    ...optionProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                },
+                {
+                    ...optionProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                }
+            ]
         }}
     >
         {Drupal.bind({})}
@@ -317,37 +337,6 @@ export const Drupal = (args) => ({
 
 <Canvas withSource='none' style={{ height: '400px' }}>
     <Story
-        name='Drupal - With isRequired'
-        args={{
-            elementPath: 'components/input-radio/_doc/template.drupal',
-            ...commonProps,
-            isRequired: true,
-            options: [
-                {
-                    ...optionProps,
-                    id: 'id-1',
-                    value: 'value-1',
-                },
-                {
-                    ...optionProps,
-                    id: 'id-2',
-                    value: 'value-2',
-                    isChecked: true,
-                },
-                {
-                    ...optionProps,
-                    id: 'id-3',
-                    value: 'value-3',
-                }
-            ]
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
-
-<Canvas withSource='none' style={{ height: '400px' }}>
-    <Story
         name='Drupal - With isOptionTiles'
         args={{
             elementPath: 'components/input-radio/_doc/template.drupal',
@@ -369,38 +358,7 @@ export const Drupal = (args) => ({
                     ...optionTileProps,
                     id: 'id-3',
                     value: 'value-3',
-                }
-            ]
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
-
-<Canvas withSource='none' style={{ height: '400px' }}>
-    <Story
-        name='Drupal - With isOptionTiles isInline'
-        args={{
-            elementPath: 'components/input-radio/_doc/template.drupal',
-            ...commonProps,
-            isOptionTiles: true,
-            isInline: true,
-            options: [
-                {
-                    ...optionTileProps,
-                    id: 'id-1',
-                    value: 'value-1',
-                },
-                {
-                    ...optionTileProps,
-                    id: 'id-2',
-                    value: 'value-2',
                     isChecked: true,
-                },
-                {
-                    ...optionTileProps,
-                    id: 'id-3',
-                    value: 'value-3',
                 },
                 {
                     ...optionTileProps,
@@ -417,6 +375,107 @@ export const Drupal = (args) => ({
                     ...optionTileProps,
                     id: 'id-6',
                     value: 'value-6',
+                    isChecked: true,
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With optionTilesOrientation horizontal-inline'
+        args={{
+            elementPath: 'components/input-radio/_doc/template.drupal',
+            ...commonProps,
+            isOptionTiles: true,
+            optionTilesOrientation: 'horizontal-inline',
+            options: [
+                {
+                    ...optionTileProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-4',
+                    value: 'value-4',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-5',
+                    value: 'value-5',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-6',
+                    value: 'value-6',
+                    isChecked: true,
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With optionTilesOrientation vertical-inline'
+        args={{
+            elementPath: 'components/input-radio/_doc/template.drupal',
+            ...commonProps,
+            isOptionTiles: true,
+            optionTilesOrientation: 'vertical-inline',
+            options: [
+                {
+                    ...optionTileProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-4',
+                    value: 'value-4',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-5',
+                    value: 'value-5',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-6',
+                    value: 'value-6',
+                    isChecked: true,
                 }
             ]
         }}
