@@ -9,7 +9,8 @@
           {% for option in options %}
             {% set option = option|merge({
               'type': 'checkbox',
-              'name': name
+              'name': name,
+              'errorMessage': null
             }) %}
             {% include '@bf-components/selection-tile/twig/index.twig' with option only %}
           {% endfor %}
