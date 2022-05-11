@@ -22,6 +22,9 @@ import { InputRadioComponent } from '../angular/input-radio.component';
         isOptionTiles: {
             table: { defaultValue: { summary: false } }
         },
+        isInline: {
+            table: { defaultValue: { summary: false } }
+        },
         isRequired: {
             table: { defaultValue: { summary: false } }
         }
@@ -69,6 +72,7 @@ import { InputRadioComponent } from '../angular/input-radio.component';
         }
     ],
     isOptionTiles: false,
+    isInline: false,
     errorMessage: 'This ia an error message.',
     class: 'm-4'
 } only %}
@@ -114,6 +118,7 @@ import { InputRadioComponent } from '../angular/input-radio.component';
         }
     ],
     isOptionTiles: true,
+    isInline: false,
     errorMessage: 'This ia an error message.',
     class: 'm-4'
 } only %}
@@ -177,6 +182,7 @@ export const commonProps = {
         }
     ],
     isOptionTiles: false,
+    isInline: false,
     class: 'm-4'
 }
 
@@ -193,6 +199,19 @@ export const Drupal = (args) => ({
         args={{
             elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - isInline'
+        args={{
+            elementPath: 'components/input-radio/_doc/template.drupal',
+            ...commonProps,
+            isInline: true,
         }}
     >
         {Drupal.bind({})}
@@ -334,6 +353,38 @@ export const Drupal = (args) => ({
             elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
             isOptionTiles: true,
+            options: [
+                {
+                    ...optionTileProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With isOptionTiles isInline'
+        args={{
+            elementPath: 'components/input-radio/_doc/template.drupal',
+            ...commonProps,
+            isOptionTiles: true,
+            isInline: true,
             options: [
                 {
                     ...optionTileProps,

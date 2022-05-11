@@ -1,29 +1,30 @@
 {% set class = 'bf-input-checkbox ' ~ class|default(null) %}
 {% set isLabelLegend = true %}
+{% set isInline = isInline|default(false) %}
 
 {% extends '@bf-components/input/twig/index.twig' %}
   {% block inputContent %}
     {% if options is defined and options is not empty %}
-      {% if isOptionTiles|default(false) %}
-        <ul class='list-unstyled d-flex flex-column gap-2 mb-0'>
+      <ul class='list-unstyled d-flex {{ isInline ? 'flex-row' : 'flex-column' }} gap-2 mb-0'>
+        {% if isOptionTiles|default(false) %}
           {% for option in options %}
             {% set option = option|merge({
               'type': 'checkbox',
               'name': name,
-              'errorMessage': null
+              'errorMessage': null,
+              'orientation': isInline ? 'vertical' : 'horizontal'
             }) %}
             {% include '@bf-components/selection-tile/twig/index.twig' with option only %}
           {% endfor %}
-        </ul>
-      {% else %}
-        <ul class='list-unstyled d-flex flex-column gap-2 mb-0'>
+        {% else %}
           {% for option in options %}
             {% set option = option|merge({
-              'name': name
+              'name': name,
+              'orientation': isInline ? 'vertical' : 'horizontal'
             }) %}
             {% include '@bf-components/input-checkbox-option/twig/index.twig' with option only %}
           {% endfor %}
-        </ul>
-      {% endif %}
+        {% endif %}
+      </ul>
     {% endif %}
  {% endblock %}
