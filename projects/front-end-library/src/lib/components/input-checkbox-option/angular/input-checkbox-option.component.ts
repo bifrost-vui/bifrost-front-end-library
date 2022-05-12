@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
 @Component({
-    selector: 'bf-input-checkbox',
-    templateUrl: './input-checkbox.component.html',
+    selector: 'bf-input-checkbox-option',
+    templateUrl: './input-checkbox-option.component.html',
     // styleUrls: ['../scss/index.scss'],
 })
-export class InputCheckboxComponent implements OnInit {
+export class InputCheckboxOptionComponent implements OnInit {
     constructor() {
     }
 
@@ -26,6 +26,6 @@ export class InputCheckboxComponent implements OnInit {
     @Input() class: string;
 
     ngOnInit() {
-        console.log('InputCheckbox', this);
+        console.log('InputCheckboxOption', this);
     }
 }
