@@ -5,7 +5,6 @@ import illustrationIcons from '../../../../../../../public/icons/list/illustrati
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { SelectionTileComponent } from '../angular/selection-tile.component';
 
-
 <Meta
     title='Components/Selection Tile'
     component={SelectionTileComponent}
@@ -27,7 +26,7 @@ import { SelectionTileComponent } from '../angular/selection-tile.component';
             control: { type: 'select' }
         },
         value: {type: { required: true } },
-        inputId: {type: { required: true } },
+        id: {type: { required: true } },
         ariaLabel: {type: { required: true } },
         orientation: {
             defaultValue: 'horizontal',
@@ -53,11 +52,9 @@ import { SelectionTileComponent } from '../angular/selection-tile.component';
 
 <br/>
 
-
 ## Component API
 
 <ArgsTable of={SelectionTileComponent} />
-
 
 ## Drupal
 
@@ -67,9 +64,9 @@ export const Drupal = (args) => ({
 });
 
 export const commonProps = {
-    value: 'value',
+    id: 'id',
     name: 'name',
-    inputId: 'inputId',
+    value: 'value',
     ariaLabel: 'ariaLabel',
     orientation: 'horizontal',
     fit: 'content',
@@ -195,28 +192,28 @@ export const commonProps = {
 
     // Horizontal Tile - fit content
     {% include '@bf-components/selection-tile/twig/index.twig'  with {
-        inputId: 'canal-plus',
+        id: 'canal-plus',
         ariaLabel: 'Canal plus',
-        title: 'Canal plus',
+        label: 'Canal plus',
     } only %}
 
     // Horizontal Tile - fit container
     {% include '@bf-components/selection-tile/twig/index.twig' with {
-        inputId: 'canal-plus',
+        id: 'canal-plus',
         ariaLabel: 'Canal plus',
         fit: 'container',
-        title: 'Canal plus',
+        label: 'Canal plus',
         description: 'Descriptium ipsum',
         info: '$12.34/Month'
     } only %}
 
     // Horizontal Tile - with image in footer
     {% include '@bf-components/selection-tile/twig/index.twig' with {
-        inputId: 'movie-channel',
+        id: 'movie-channel',
         ariaLabel: 'Movie Chanel',
         fit: 'container',
         orientation: 'horizontal',
-        title: 'Movie Chanel',
+        label: 'Movie Chanel',
         description: 'lorem ipsum descriptum',
         info: '$12.34/Month',
         footer: {
@@ -235,11 +232,11 @@ export const commonProps = {
 
     // Horizontal Tile - with icon in footer
     {% include '@bf-components/selection-tile/twig/index.twig' with {
-        inputId: 'movie-channel',
+        id: 'tva-sports',
         ariaLabel: 'Movie Chanel',
         fit: 'container',
         orientation: 'horizontal',
-        title: 'Movie Chanel',
+        label: 'Movie Chanel',
         description: 'lorem ipsum descriptum',
         info: '$12.34/Month',
         footer: {
@@ -254,7 +251,7 @@ export const commonProps = {
 
     // vertical Tile - fit content
     {% include '@bf-components/selection-tile/twig/index.twig' with {
-        inputId: 'tva-sports',
+        id: 'tva-sports',
         ariaLabel: 'TVA Sport',
         type: 'radio',
         name: 'radioGroupName',
@@ -267,11 +264,11 @@ export const commonProps = {
 
     // vertical Tile - fit container
     {% include '@bf-components/selection-tile/twig/index.twig' with {
-        inputId: 'movie-channel',
+        id: 'movie-channel',
         ariaLabel: 'Movie Chanel',
         fit: 'container',
         orientation: 'vertical',
-        title: 'Movie Chanel',
+        label: 'Movie Chanel',
         description: 'lorem ipsum descriptum',
         image: {
             src: '/images/logo/channels/tva-sports.svg',
