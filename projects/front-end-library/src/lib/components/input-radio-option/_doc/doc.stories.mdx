@@ -5,10 +5,10 @@ import { TwigContainerComponent } from '../../../../utils/twig-container/twig-co
 import { InputRadioOptionComponent } from '../angular/input-radio-option.component';
 
 <Meta
-    title='Components/Input Radio Option'
+    title='Components/Input Radio/Input Radio Option'
     component={InputRadioOptionComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputRadioOptionComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [InputRadioOptionComponent, TwigContainerComponent] }),
         withDesign
     ]}
     parameters={{
@@ -21,6 +21,18 @@ import { InputRadioOptionComponent } from '../angular/input-radio-option.compone
     argTypes={{
         id: {
             type: { required: true }
+        },
+        isChecked: {
+            table: { defaultValue: { summary: false } }
+        },
+        isRequired: {
+            table: { defaultValue: { summary: false } }
+        },
+        isDisabled: {
+            table: { defaultValue: { summary: false } }
+        },
+        isInvalid: {
+            table: { defaultValue: { summary: false } }
         },
         inputName: {
             control: { type: 'text' },
@@ -48,39 +60,42 @@ import { InputRadioOptionComponent } from '../angular/input-radio-option.compone
 
 ## Drupal
 
-export const Drupal = (args) => ({
-    component: TwigContainerComponent,
-    props: args,
-});
-
-<Canvas
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story
-        name='Drupal'
-        args={{
-            elementPath: 'components/input-radio-option/_doc/template.drupal',
-            id: '',
-            inputId: 'inputId',
-            name: 'name',
-            label: 'label'
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
-
 ## Drupal implementation example
 
 ```jsx
 {% include '@bf-components/input-radio-option/twig/index.twig' with {
     id: 'id',
-    value: 'value',
     name: 'name',
-    label: 'label'
+    isChecked: false,
+    label: 'Option label'
+    labelClass: '',
+    isRequired: false,
+    isDisabled: false,
+    isInvalid: false,
+    ariaLabel: '',
+    extraAttribute: '',
+    class: '',
 } only %}
 ```
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Canvas withSource='none' style={{ height: '300px' }}>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath: 'components/input-radio-option/_doc/template.drupal',
+            id: 'id',
+            name: 'name',
+            label: 'Option label'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
 
 ## Design Guidelines
 

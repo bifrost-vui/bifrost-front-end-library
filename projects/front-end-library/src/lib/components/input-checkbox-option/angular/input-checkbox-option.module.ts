@@ -3,8 +3,7 @@ import { InputCheckboxOptionComponent } from './input-checkbox-option.component'
 
 @NgModule({
   declarations: [InputCheckboxOptionComponent],
-  imports: [
-  ],
+  imports: [],
   exports: [InputCheckboxOptionComponent]
 })
 export class InputCheckboxOptionModule { }

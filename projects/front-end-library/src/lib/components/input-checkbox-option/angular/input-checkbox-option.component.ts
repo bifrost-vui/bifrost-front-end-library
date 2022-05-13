@@ -1,28 +1,27 @@
-import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'bf-input-checkbox-option',
     templateUrl: './input-checkbox-option.component.html',
-    // styleUrls: ['../scss/index.scss'],
 })
 export class InputCheckboxOptionComponent implements OnInit {
-    constructor() {
-    }
+    constructor() {}
 
     /** @required */
     @Input() id: string;
     @Input() name: string;
     @Input() value: string;
     @Input() isChecked: boolean;
+    @Input() label: HTMLElement;
+    @Input() labelClass: string; // TODO: remove?
+    @Input() labelExtraAttribute: string; // TODO: remove?
+    @Input() isRequired: boolean;
     @Input() isDisabled: boolean;
     @Input() isInvalid: boolean;
-    @Input() isRequired: boolean;
-    @Input() extraAttribute: string;
-    @Input() label: HTMLElement;
-    @Input() labelClass: string;
-    @Input() labelExtraAttribute: string;
-    /** Needs to be defined if no label is defined */
+    /** Needs to be defined if label is not defined. */
     @Input() ariaLabel: string;
+
+    @Input() extraAttribute: string;
     @Input() class: string;
 
     ngOnInit() {

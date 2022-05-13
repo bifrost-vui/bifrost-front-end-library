@@ -1,30 +1,33 @@
 {# Ui-Kit legacy fallback #}
-  {% set id = id|default(inputId) %}
-  {% set name = name|default(inputName) %}
-  {% set labelClass = labelClass|default(labelTxtClass) %}
+{% set id = id|default(inputId) %}
+{% set name = name|default(inputName) %}
+{% set labelClass = labelClass|default(labelTxtClass) %}
+{% set isInvalid = isInvalid|default(false) %}
+{% set isDisabled = isDisabled|default(false) %}
 
-<label
-  class='bf-input-radio-option {{ (isInvalid is defined and isInvalid) ? 'bf-input-radio-option--invalid' }} {{ (isDisabled is defined and isDisabled) ? 'bf-input-radio-option--disabled' }} {{ class }}'>
+<label class='bf-input-radio-option {{ isInvalid ? 'bf-input-radio-option--invalid' }} {{ isDisabled ? 'bf-input-radio-option--disabled' }} {{ class|default(null) }}'>
   <input
     class='{{ isInvalid ? 'invalid' }}'
     type='radio'
-    id='{{ id }}'
-    {% if name is defined and name %}
+    {% if id|default(null) %}
+      id='{{ id }}'
+    {% endif %}
+    {% if name|default(null) %}
       name='{{ name }}'
     {% endif %}
-    {% if value is defined and value %}
+    {% if value|default(null) %}
       value='{{ value }}'
     {% endif %}
-    {{ (isChecked is defined and isChecked) ? 'checked' }}
-    {{ (isDisabled is defined and isDisabled) ? 'disabled' }}
-    {{ (isRequired is defined and isRequired) ? 'required' }}
-    {% if ariaLabel is defined and ariaLabel %}
+    {{ isChecked|default(false) ? 'checked' }}
+    {{ isDisabled ? 'disabled' }}
+    {{ isRequired|default(null) ? 'required' }}
+    {% if ariaLabel|default(null) %}
       aria-label='{{ ariaLabel }}'
     {% endif %}
-    {{ extraAttribute|default(NULL) }}
+    {{ extraAttribute|default(null) }}
   />
-  <span class='bf-input-radio-option__control'></span>
-  {% if label is defined and label %}
-    <span class='bf-input-radio-option__label bf-text-display-sub-medium {{ labelClass|default('') }}'>{{ label }}</span>
+  <span class='bf-input-radio-control'></span>
+  {% if label|default(null) %}
+    <span class='bf-input-radio-option__label bf-text-display-sub-medium {{ labelClass|default(null) }}'>{{ label|raw }}</span>
   {% endif %}
 </label>

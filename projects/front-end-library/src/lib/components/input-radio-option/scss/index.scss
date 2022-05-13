@@ -1,40 +1,23 @@
 /* *****************************************************************************
 *
-*  Input Radio
+*  Input Radio Option and Control
 *
 * ***************************************************************************** */
 
 .bf-input-radio-option {
     display: flex;
-    flex-flow: row nowrap;
     max-width: 16rem;
+    flex-flow: row nowrap;
     align-items: center;
+    margin-bottom: 0; // Override UI-Kit
     cursor: pointer;
 
-    &--label {
-        display: inline-block;
-        margin: 0;
-    }
-    &__control {
-        display: inline-block;
-        place-content: center;
-        flex: 0 0 1rem;
-        appearance: none;
-        width: 1rem;
-        height: 1rem;
-        padding: var(--bf-spacer-1);
-        margin-right: var(--bf-spacer-2);
-        border: 1px solid var(--bf-color-stroke-primary);
-        border-radius: 50%;
-        color: var(--bf-color-neutral-primary);
-        background-color: var(--bf-color-bg-ground);
-        transform: translateY(-0.05em);
-    }
     input {
         position: absolute;
-        top: -100vh;
+        clip: rect(0,0,0,0);
+        clip: rect(0 0 0 0);
 
-        &:checked + .bf-input-radio-option__control {
+        &:checked + .bf-input-radio-control {
             background-color: var(--bf-color-bg-action-primary);
 
             &:before {
@@ -48,12 +31,12 @@
                 background-color: var(--bf-color-primary-irreversible);
             }
         }
-        .invalid:not(:disabled) + .bf-input-radio-option__control {
+        .invalid:not(:disabled) + .bf-input-radio-control {
                 border-color: var(--bf-color-feedback-negative);
                 background-color: var(--bf-color-bg-ground);
             }
 
-        &:checked.invalid:not(:disabled) + .bf-input-radio-option__control {
+        &:checked.invalid:not(:disabled) + .bf-input-radio-control {
             border-color: var(--bf-color-feedback-negative);
             background-color: var(--bf-color-feedback-negative);
 
@@ -62,10 +45,10 @@
             }
         }
         &:disabled {
-            & + .bf-input-radio-option__control {
+            & + .bf-input-radio-control {
                 border-color: var(--bf-color-stroke-secondary);
             }
-            &:checked  + .bf-input-radio-option__control {
+            &:checked  + .bf-input-radio-control {
                 background-color: var(--bf-color-bg-action-disabled);
 
                 &:before {
@@ -81,4 +64,25 @@
         color: var(--bf-color-neutral-tertiary);
         pointer-events: none;
     }
+
+    &__label {
+        user-select: none;
+        line-height: 1.5rem;
+    }
+}
+
+.bf-input-radio-control {
+    display: inline-block;
+    place-content: center;
+    flex: 0 0 1rem;
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    padding: var(--bf-spacer-1);
+    margin-right: var(--bf-spacer-2);
+    border: 1px solid var(--bf-color-stroke-primary);
+    border-radius: 50%;
+    color: var(--bf-color-neutral-primary);
+    background-color: var(--bf-color-bg-ground);
+    transform: translateY(-0.05em);
 }
