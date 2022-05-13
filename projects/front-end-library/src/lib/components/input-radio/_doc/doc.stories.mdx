@@ -1,0 +1,493 @@
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs'
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { InputRadioComponent } from '../angular/input-radio.component';
+
+<Meta
+    title='Components/Input Radio'
+    component={InputRadioComponent}
+    decorators={[
+        moduleMetadata({ declarations: [InputRadioComponent, TwigContainerComponent] }),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=13846%3A114538',
+            disable: false
+        }
+    }}
+    argTypes={{
+        areOptionTiles: {
+            table: { defaultValue: { summary: false } }
+        },
+        areOptionTilesInline: {
+            table: { defaultValue: { summary: false } },
+        },
+        areOptionTilesLarge: {
+            table: { defaultValue: { summary: false } },
+        },
+        isRequired: {
+            table: { defaultValue: { summary: false } }
+        }
+    }}
+/>
+
+# Input Radio
+
+## Component API
+
+<ArgsTable of={InputRadioComponent} />
+
+## Drupal implementation example
+
+#### areOptionTiles: false
+```jsx
+{% include '@bf-components/input-radio/twig/index.twig' with {
+    label: 'Label',
+    description: 'Description',
+    name: 'name',
+    options: [
+        {
+            id: 'id-1',
+            value: 'value-1',
+            isChecked: true,
+            isRequired: false,
+            isDisabled: false,
+            isInvalid: false,
+            extraAttribute: 'data-extraAttribute="1"',
+            label: 'Label',
+            labelClass: 'labelClass',
+            labelExtraAttribute: 'data-labelExtraAttribute="1"',
+            ariaLabel: 'ariaLabel',
+            class: '',
+        },
+        {
+            id: 'id-2',
+            value: 'value-2',
+            isChecked: false
+        },
+        {
+            id: 'id-3',
+            value: 'value-3',
+            isChecked: false
+        }
+    ],
+    areOptionTiles: false,
+    areOptionTilesInline: false,
+    areOptionTilesLarge: false,
+    errorMessage: 'This is an error message.',
+    class: 'p-4 w-100'
+} only %}
+```
+
+#### areOptionTiles: true
+```jsx
+{% include '@bf-components/input-radio/twig/index.twig' with {
+    label: 'Label',
+    description: 'Description',
+    name: 'name',
+    options: [
+        {
+            id: 'id-1',
+            value: 'value-1',
+            isChecked: false,
+            content: null,
+            title: 'Title',
+            description: 'Description',
+            info: 'Info',
+            image: {},
+            iconName: 'placeholder',
+            isRequired: false,
+            isSelected: false,
+            isDisabled: false,
+            isInvalid: false,
+            extraAttribute: 'data-extraAttribute="1"',
+            reversed: false,
+            ariaLabel: 'ariaLabel',
+            class: '',
+        },
+        {
+            id: 'id-2',
+            value: 'value-2',
+            isChecked: false
+        },
+        {
+            id: 'id-3',
+            value: 'value-2',
+            isChecked: false
+        }
+    ],
+    areOptionTiles: true,
+    areOptionTilesInline: false,
+    areOptionTilesLarge: false,
+    errorMessage: 'This is an error message.',
+    class: 'p-4 w-100'
+} only %}
+```
+
+export const optionProps = {
+    id: 'id',
+    name: 'name',
+    value: 'value',
+    isChecked: false,
+    isRequired: false,
+    isDisabled: false,
+    isInvalid: false,
+    label: 'Option label',
+    labelClass: 'labelClass',
+    labelExtraAttribute: 'labelExtraAttribute="1"',
+    ariaLabel: 'ariaLabel',
+    extraAttribute: 'data-extraAttribute="1"',
+    class: '',
+}
+
+export const optionTileProps = {
+    id: 'id',
+    name: 'name',
+    value: 'value',
+    isChecked: false,
+    content: null,
+    label: 'Option label',
+    description: 'Option description',
+    info: 'Info', // TODO: Rename details. (info is not relevant since all is information).
+    image: {},
+    iconName: 'placeholder',
+    isRequired: false,
+    isDisabled: false,
+    isInvalid: false,
+    ariaLabel: 'ariaLabel',
+    extraAttribute: 'data-extraAttribute="1"',
+    class: 'class',
+    reversed: false, // TODO: Remove.
+}
+
+export const commonProps = {
+    label: 'Label',
+    description: 'Description',
+    name: 'name',
+    options: [
+        {
+            ...optionProps,
+            id: 'id-1',
+        },
+        {
+            ...optionProps,
+            id: 'id-2',
+            isChecked: true
+        },
+        {
+            ...optionProps,
+            id: 'id-3'
+        }
+    ],
+    areOptionTiles: false,
+    areOptionTilesInline: false,
+    areOptionTilesLarge: false,
+    class: 'p-4 w-100'
+}
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath: 'components/input-radio/_doc/template.drupal',
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With errorMessage'
+        args={{
+            elementPath: 'components/input-radio/_doc/template.drupal',
+            ...commonProps,
+            options: [
+                {
+                    ...optionProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                },
+                {
+                    ...optionProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true
+                },
+                {
+                    ...optionProps,
+                    id: 'id-3',
+                    value: 'value-3'
+                }
+            ],
+            errorMessage: 'This is an error message',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With isRequired'
+        args={{
+            elementPath: 'components/input-radio/_doc/template.drupal',
+            ...commonProps,
+            isRequired: true,
+            options: [
+                {
+                    ...optionProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                },
+                {
+                    ...optionProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                },
+                {
+                    ...optionProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With options isDisabled'
+        args={{
+            elementPath: 'components/input-radio/_doc/template.drupal',
+            ...commonProps,
+            options: [
+                {
+                    ...optionProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                    isDisabled: true,
+                },
+                {
+                    ...optionProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                    isDisabled: true,
+                },
+                {
+                    ...optionProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isDisabled: true,
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With options isInvalid'
+        args={{
+            elementPath: 'components/input-radio/_doc/template.drupal',
+            ...commonProps,
+            options: [
+                {
+                    ...optionProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                    isInvalid: true,
+                },
+                {
+                    ...optionProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                    isInvalid: true,
+                },
+                {
+                    ...optionProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isInvalid: true,
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With areOptionTiles'
+        args={{
+            elementPath: 'components/input-radio/_doc/template.drupal',
+            ...commonProps,
+            areOptionTiles: true,
+            options: [
+                {
+                    ...optionTileProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                    description: 'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.'
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-4',
+                    value: 'value-4',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-5',
+                    value: 'value-5',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-6',
+                    value: 'value-6',
+                    isChecked: true,
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With areOptionTiles areOptionTilesInline'
+        args={{
+            elementPath: 'components/input-radio/_doc/template.drupal',
+            ...commonProps,
+            areOptionTiles: true,
+            areOptionTilesInline: true,
+            options: [
+                {
+                    ...optionTileProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                    description: 'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.'
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-4',
+                    value: 'value-4',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-5',
+                    value: 'value-5',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-6',
+                    value: 'value-6',
+                    isChecked: true,
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With areOptionTiles areOptionTilesInline areOptionTilesLarge'
+        args={{
+            elementPath: 'components/input-radio/_doc/template.drupal',
+            ...commonProps,
+            areOptionTiles: true,
+            areOptionTilesInline: true,
+            areOptionTilesLarge: true,
+            options: [
+                {
+                    ...optionTileProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                    description: 'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.'
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-4',
+                    value: 'value-4',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-5',
+                    value: 'value-5',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-6',
+                    value: 'value-6',
+                    isChecked: true,
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+## Design Guidelines
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D13846%253A114538' frameBorder='0' allowFullScreen></iframe>
