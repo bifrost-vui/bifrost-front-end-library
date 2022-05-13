@@ -14,9 +14,11 @@ export class InputCheckboxComponent implements OnInit {
     @Input() description: string;
     @Input() options: IInputCheckboxOption[] | ISelectionTile[];
     /** Transform options as tiles. Then use options from [Selection Tile API](?path=/story/components-selection-tile--drupal-selection-tile-vertical). */
-    @Input() isOptionTiles: boolean;
-    /** Define orientation of the Component Selection Tile and the direction of the option list. Has effect only if `isOptionTiles = true`. */
-    @Input() optionTilesOrientation: 'horizontal' | 'horizontal-inline' | 'vertical-inline';
+    @Input() areOptionTiles: boolean;
+    /** Define direction of the option list. Has effect only if `areOptionTiles = true`. */
+    @Input() areOptionTilesInline: boolean;
+    /** Define if optionTiles height are small (default) or large. Has effect only if `areOptionTiles = true`. */
+    @Input() areOptionTilesLarge: boolean;
     @Input() errorMessage: string;
 
     @Input() class: string;

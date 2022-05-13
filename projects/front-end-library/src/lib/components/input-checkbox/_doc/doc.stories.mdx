@@ -19,15 +19,14 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
         }
     }}
     argTypes={{
-        isOptionTiles: {
+        areOptionTiles: {
             table: { defaultValue: { summary: false } }
         },
-        optionTilesOrientation: {
-            table: { defaultValue: { summary: 'horizontal' } },
-            control: {
-                type: 'select',
-                options: [ 'horizontal', 'horizontal-inline', 'vertical-inline' ]
-            }
+        areOptionTilesInline: {
+            table: { defaultValue: { summary: false } },
+        },
+        areOptionTilesLarge: {
+            table: { defaultValue: { summary: false } },
         }
     }}
 />
@@ -40,7 +39,7 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
 
 ## Drupal implementation example
 
-#### isOptionTiles: false
+#### areOptionTiles: false
 ```jsx
 {% include '@bf-components/input-checkbox/twig/index.twig' with {
     label: 'Label',
@@ -69,14 +68,15 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
             value: 'value-3',
         }
     ],
-    isOptionTiles: false,
-    optionTilesOrientation: 'horizontal',
-    errorMessage: 'This ia an error message.',
-    class: 'm-4'
+    areOptionTiles: false,
+    areOptionTilesInline: false,
+    areOptionTilesLarge: false,
+    errorMessage: 'This is an error message.',
+    class: 'p-4 w-100'
 } only %}
 ```
 
-#### isOptionTiles: true
+#### areOptionTiles: true
 ```jsx
 {% include '@bf-components/input-checkbox/twig/index.twig' with {
     label: 'Label',
@@ -96,7 +96,6 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
             isSelected: false,
             isDisabled: false,
             isInvalid: false,
-            fit: 'content',
             ariaLabel: 'ariaLabel',
             extraAttribute: 'data-extraAttribute="1"',
             class: '',
@@ -111,31 +110,35 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
             value: 'value-3',
         }
     ],
-    isOptionTiles: true,
+    areOptionTiles: true,
+    areOptionTilesInline: false,
+    areOptionTilesLarge: false,
     optionTilesOrientation: 'horizontal',
-    errorMessage: 'This ia an error message.',
-    class: 'm-4'
+    errorMessage: 'This is an error message.',
+    class: 'p-4 w-100'
 } only %}
 ```
 
 export const optionProps = {
-    id: 'id-1',
-    value: 'value-1',
-    label: 'Option label',
-    labelClass: 'labelClass',
-    labelExtraAttribute: 'labelExtraAttribute="1"',
+    id: 'id',
+    name: 'name',
+    value: 'value',
+    isChecked: false,
     isRequired: false,
     isDisabled: false,
     isInvalid: false,
+    label: 'Option label',
+    labelClass: 'labelClass',
+    labelExtraAttribute: 'labelExtraAttribute="1"',
     ariaLabel: 'ariaLabel',
     extraAttribute: 'data-extraAttribute="1"',
     class: '',
 }
 
 export const optionTileProps = {
-    id: 'id-1',
+    id: 'id',
     name: 'name',
-    value: false,
+    value: 'value',
     isChecked: false,
     content: null,
     label: 'Option label',
@@ -146,10 +149,9 @@ export const optionTileProps = {
     isRequired: false,
     isDisabled: false,
     isInvalid: false,
-    fit: 'content',
     ariaLabel: 'ariaLabel',
     extraAttribute: 'data-extraAttribute="1"',
-    class: 'class',
+    class: '',
     reversed: false, // TODO: Remove.
 }
 
@@ -210,9 +212,9 @@ export const commonProps = {
             isChecked: true
         }
     ],
-    isOptionTiles: false,
+    areOptionTiles: false,
     optionTilesOrientation: 'horizontal',
-    class: 'm-4'
+    class: 'p-4 w-100'
 }
 
 ## Drupal
@@ -370,11 +372,11 @@ export const Drupal = (args) => ({
 
 <Canvas withSource='none' style={{ height: '400px' }}>
     <Story
-        name='Drupal - With isOptionTiles'
+        name='Drupal - With areOptionTiles'
         args={{
             elementPath: 'components/input-checkbox/_doc/template.drupal',
             ...commonProps,
-            isOptionTiles: true,
+            areOptionTiles: true,
             options: [
                 {
                     ...optionTileProps,
@@ -386,6 +388,7 @@ export const Drupal = (args) => ({
                     id: 'id-2',
                     value: 'value-2',
                     isChecked: true,
+                    description: 'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.'
                 },
                 {
                     ...optionTileProps,
@@ -419,12 +422,12 @@ export const Drupal = (args) => ({
 
 <Canvas withSource='none' style={{ height: '400px' }}>
     <Story
-        name='Drupal - With optionTilesOrientation horizontal-inline'
+        name='Drupal - With areOptionTiles areOptionTilesInline'
         args={{
             elementPath: 'components/input-checkbox/_doc/template.drupal',
             ...commonProps,
-            isOptionTiles: true,
-            optionTilesOrientation: 'horizontal-inline',
+            areOptionTiles: true,
+            areOptionTilesInline: true,
             options: [
                 {
                     ...optionTileProps,
@@ -436,6 +439,7 @@ export const Drupal = (args) => ({
                     id: 'id-2',
                     value: 'value-2',
                     isChecked: true,
+                    description: 'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.'
                 },
                 {
                     ...optionTileProps,
@@ -469,12 +473,13 @@ export const Drupal = (args) => ({
 
 <Canvas withSource='none' style={{ height: '400px' }}>
     <Story
-        name='Drupal - With optionTilesOrientation vertical-inline'
+        name='Drupal - With areOptionTiles areOptionTilesInline areOptionTilesLarge'
         args={{
             elementPath: 'components/input-checkbox/_doc/template.drupal',
             ...commonProps,
-            isOptionTiles: true,
-            optionTilesOrientation: 'vertical-inline',
+            areOptionTiles: true,
+            areOptionTilesInline: true,
+            areOptionTilesLarge: true,
             options: [
                 {
                     ...optionTileProps,
@@ -486,6 +491,7 @@ export const Drupal = (args) => ({
                     id: 'id-2',
                     value: 'value-2',
                     isChecked: true,
+                    description: 'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.'
                 },
                 {
                     ...optionTileProps,

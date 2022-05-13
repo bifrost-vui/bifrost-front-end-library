@@ -1,17 +1,20 @@
 {% set class = 'bf-input-checkbox ' ~ class|default(null) %}
 {% set isLabelLegend = true %}
-{% set optionTilesOrientation = optionTilesOrientation|default('horizontal') %}
+{% set areOptionTilesInline = areOptionTilesInline|default(false) %}
+{% set areOptionTilesLarge = areOptionTilesLarge|default(false) %}
 
 {% extends '@bf-components/input/twig/index.twig' %}
   {% block inputContent %}
     {% if options is defined and options is not empty %}
-      <ul class='list-unstyled d-flex {{ (isOptionTiles and (optionTilesOrientation == 'horizontal-inline' or optionTilesOrientation == 'vertical-inline')) ? 'flex-row' : 'flex-column' }} flex-wrap gap-2 mb-0'>
-        {% if isOptionTiles|default(false) %}
+      <ul class='bf-input-radio__options list-unstyled {{ (areOptionTiles and areOptionTilesInline) ? 'bf-input-radio__options--inline' : 'd-flex flex-column flex-wrap' }} gap-2 mb-0'>
+        {% if areOptionTiles|default(false) %}
           {% for option in options %}
             {% set option = option|merge({
               'type': 'checkbox',
               'name': name,
-              'orientation': optionTilesOrientation == 'vertical-inline' ? 'vertical' : 'horizontal',
+              'orientation': areOptionTilesInline ? 'vertical' : 'horizontal',
+              'class': option.class|default('') ~ (areOptionTilesLarge ? ' bf-selection-tile--large' : ''),
+              'fit': 'content',
               'errorMessage': null
             }) %}
             {% include '@bf-components/selection-tile/twig/index.twig' with option only %}

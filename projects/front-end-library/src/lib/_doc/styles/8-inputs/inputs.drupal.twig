@@ -44,7 +44,48 @@
               label: 'Every Day',
             }
           ],
-          isOptionTiles: false,
+          areOptionTiles: false,
+          errorMessage: '',
+          class: ''
+        } only %}
+
+        {% include '@bf-components/input-radio/twig/index.twig' with {
+          label: 'Data usage',
+          description: 'Description',
+          name: 'data-usage-tile',
+          isRequired: isRequired,
+          options: [
+            {
+              value: 'casual',
+              id: 'casual-tile',
+              isChecked: false,
+              isDisabled: isDisabled,
+              isInvalid: isInvalid,
+              extraAttribute: '',
+              label: 'Casual',
+              labelClass: '',
+              labelExtraAttribute: '',
+              ariaLabel: '',
+              class: '',
+            },
+            {
+              value: 'regular',
+              id: 'regular-tile',
+              isChecked: false,
+              isDisabled: isDisabled,
+              isInvalid: isInvalid,
+              label: 'Regular',
+            },
+            {
+              value: 'every-day',
+              id: 'every-day-tile',
+              isChecked: false,
+              isDisabled: isDisabled,
+              isInvalid: isInvalid,
+              label: 'Every Day',
+            }
+          ],
+          areOptionTiles: true,
           errorMessage: '',
           class: ''
         } only %}
@@ -88,7 +129,51 @@
               label: 'Tablet',
             }
           ],
-          isOptionTiles: false,
+          areOptionTiles: false,
+          errorMessage: '',
+          class: ''
+        } only %}
+
+        {% include '@bf-components/input-checkbox/twig/index.twig' with {
+          label: 'Devices',
+          description: 'Description',
+          name: 'devices-tile',
+          options: [
+            {
+              id: 'phone-tile',
+              value: 'phone',
+              isChecked: false,
+              isRequired: isRequired,
+              isDisabled: isDisabled,
+              isInvalid: isInvalid,
+              isInvalid: false,
+              extraAttribute: '',
+              label: 'Phone',
+              labelClass: '',
+              labelExtraAttribute: '',
+              ariaLabel: '',
+              class: '',
+            },
+            {
+              id: 'television-tile',
+              value: 'television',
+              isChecked: false,
+              isRequired: isRequired,
+              isDisabled: isDisabled,
+              isInvalid: isInvalid,
+              label: 'Television',
+            },
+            {
+              id: 'tablet-tile',
+              value: 'tablet',
+              isChecked: false,
+              isRequired: isRequired,
+              isDisabled: isDisabled,
+              isInvalid: isInvalid,
+              label: 'Tablet',
+            }
+          ],
+          areOptionTiles: true,
           errorMessage: '',
           class: ''
         } only %}
