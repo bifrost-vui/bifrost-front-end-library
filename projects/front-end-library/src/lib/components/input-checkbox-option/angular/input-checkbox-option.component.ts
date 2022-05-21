@@ -13,8 +13,8 @@ export class InputCheckboxOptionComponent implements OnInit {
     @Input() value: string;
     @Input() isChecked: boolean;
     @Input() label: HTMLElement;
-    @Input() labelClass: string; // TODO: remove?
-    @Input() labelExtraAttribute: string; // TODO: remove?
+    @Input() labelClass: string;
+    @Input() labelExtraAttribute: string;
     @Input() isRequired: boolean;
     @Input() isDisabled: boolean;
     @Input() isInvalid: boolean;

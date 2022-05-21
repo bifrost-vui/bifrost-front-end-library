@@ -3,16 +3,16 @@
 {% set name = name|default(inputName) %}
 
 <div
-  class='bf-input-checkbox-option {{ class|default('') }} {{ (isInvalid is defined and isInvalid) ? 'bf-input-checkbox-option--invalid' }} {{ (isDisabled is defined and isDisabled) ? 'bf-input-checkbox-option--disabled' }}'>
+  class='bf-input-checkbox-option {{ class|default('') }} {{ isInvalid is defined and isInvalid ? 'bf-input-checkbox-option--invalid' }} {{ (isDisabled is defined and isDisabled) ? 'bf-input-checkbox-option--disabled' }}'>
   <input
     type='checkbox'
-    class='bf-input-checkbox-control {{ (isInvalid is defined and isInvalid) ? 'bf-input-checkbox-control--invalid' }}'
+    class='bf-input-checkbox-control {{ isInvalid is defined and isInvalid ? 'bf-input-checkbox-control--invalid' }}'
     {% if name is defined and name %} name='{{ name }}' {% endif %}
     id='{{ id }}'
     {% if value is defined and value %} value='{{ value }}' {% endif %}
-    {{ isChecked|default(false) ? 'checked' }}
-    {{ (isDisabled is defined and isDisabled) ? 'disabled' }}
-    {{ (isRequired is defined and isRequired) ? 'required' }}
+    {{ isChecked is defined and isChecked ? 'checked' }}
+    {{ isDisabled is defined and isDisabled)? 'disabled' }}
+    {{ isRequired is defined and isRequired ? 'required' }}
     {% if ariaLabel is defined and ariaLabel %}
       aria-label='{{ ariaLabel }}'
     {% endif %}
