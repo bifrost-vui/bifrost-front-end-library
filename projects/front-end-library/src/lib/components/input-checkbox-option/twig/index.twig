@@ -10,7 +10,7 @@
     {% if name is defined and name %} name='{{ name }}' {% endif %}
     id='{{ id }}'
     {% if value is defined and value %} value='{{ value }}' {% endif %}
-    {{ isChecked|default(false) ? 'checked' }}
+    {{ isChecked is defined and isChecked ? 'checked' }}
     {{ (isDisabled is defined and isDisabled) ? 'disabled' }}
     {{ (isRequired is defined and isRequired) ? 'required' }}
     {% if ariaLabel is defined and ariaLabel %}
