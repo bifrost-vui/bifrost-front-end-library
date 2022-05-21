@@ -12,6 +12,7 @@ export class InputCheckboxComponent implements OnInit {
     @Input() name: string;
     @Input() label: string;
     @Input() description: string;
+    /** [Input Checkbox Option API](?path=/docs/components-input-checkbox-input-checkbox-option--drupal) or [Selection Tile API](?path=/docs/components-selection-tile--drupal). */
     @Input() options: IInputCheckboxOption[] | ISelectionTile[];
     /** Transform options as tiles. Then use options from [Selection Tile API](?path=/story/components-selection-tile--drupal-selection-tile-vertical). */
     @Input() areOptionTiles: boolean;

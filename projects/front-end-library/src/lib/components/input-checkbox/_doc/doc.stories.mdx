@@ -87,6 +87,7 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
             id: 'id-1',
             value: 'value-1',
             content: null,
+            footer: null,
             label: 'Option label',
             description: 'Option description',
             info: 'Info',
@@ -141,6 +142,7 @@ export const optionTileProps = {
     value: 'value',
     isChecked: false,
     content: null,
+    footer: null,
     label: 'Option label',
     description: 'Option description',
     info: 'Info', // TODO: Rename details. (info is not relevant since all is information).
@@ -191,6 +193,15 @@ export const optionsProps = [
         isChecked: true,
     }
 ];
+
+export const optionFooterProps = {
+    description: `<p class='mb-0'>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
+    link: {
+        label: 'Learn more about Take-back Credit',
+        href: 'https://example.com'
+    },
+    iconName: 'credit-return'
+}
 
 export const commonProps = {
     label: 'Label',
@@ -498,6 +509,59 @@ export const Drupal = (args) => ({
                     id: 'id-3',
                     value: 'value-3',
                     isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-4',
+                    value: 'value-4',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-5',
+                    value: 'value-5',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-6',
+                    value: 'value-6',
+                    isChecked: true,
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With areOptionTiles footer'
+        args={{
+            elementPath: 'components/input-checkbox/_doc/template.drupal',
+            ...commonProps,
+            areOptionTiles: true,
+            areOptionTilesInline: false,
+            areOptionTilesLarge: false,
+            options: [
+                {
+                    ...optionTileProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                    footer: optionFooterProps
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                    description: 'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.'
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isChecked: true
                 },
                 {
                     ...optionTileProps,

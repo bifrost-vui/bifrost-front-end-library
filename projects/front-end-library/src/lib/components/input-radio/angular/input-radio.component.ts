@@ -12,6 +12,7 @@ export class InputRadioComponent implements OnInit {
     @Input() name: string;
     @Input() label: string;
     @Input() description: string;
+    /** [Input Radio Option API](?path=/docs/components-input-radio-input-radio-option--drupal) or [Selection Tile API](?path=/docs/components-selection-tile--drupal). */
     @Input() options: IInputRadioOption[] | ISelectionTile[];
     /** Transform options as tiles. Then use options from [Selection Tile API](?path=/story/components-selection-tile--drupal-selection-tile-vertical). */
     @Input() areOptionTiles: boolean;
