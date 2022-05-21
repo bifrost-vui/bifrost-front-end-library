@@ -552,6 +552,48 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - Usage Example: color selector'
+        args={{
+            elementPath: 'components/input-radio/_doc/template.drupal',
+            ...commonProps,
+            areOptionTiles: true,
+            areOptionTilesInline: true,
+            areOptionTilesLarge: false,
+            options: [
+                {
+                    id: 'red',
+                    value: 'red',
+                    ariaLabel: 'red',
+                    content: `<div class="color-container"><div class="bf-selection-tile__color" style="background-color: IndianRed"></div><p class="m-0 mt-3 font-weight-bold">Red</p></div>`
+                },
+                {
+                    id: 'midnight',
+                    value: 'midnight',
+                    ariaLabel: 'midnight',
+                    content: `<div class="color-container"><div class="bf-selection-tile__color" style="background-color: MidnightBlue"></div><p class="m-0 mt-3 font-weight-bold">Midnight</p></div>`
+                },
+                {
+                    id: 'blue',
+                    value: 'blue',
+                    ariaLabel: 'blue',
+                    content: `<div class="color-container"><div class="bf-selection-tile__color" style="background-color: CornflowerBlue"></div><p class="m-0 mt-3 font-weight-bold">Blue</p></div>`
+                },
+                {
+                    id: 'pink',
+                    value: 'pink',
+                    ariaLabel: 'pink',
+                    content: `<div class="color-container"><div class="bf-selection-tile__color" style="background-color: pink"></div><p class="m-0 mt-3 font-weight-bold">Pink</p></div>`
+                }
+            ],
+            class: 'p-4 w-100 bf-selection-tile--color-wrap'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
 ## Design Guidelines
 
 <iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D13846%253A114538' frameBorder='0' allowFullScreen></iframe>
