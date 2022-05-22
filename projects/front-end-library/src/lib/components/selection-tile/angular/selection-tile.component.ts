@@ -1,15 +1,5 @@
-import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
-import { ILink } from '../../link/angular/api.model';
-
-interface IFooter{
-    description: HTMLElement;
-    link: ILink;
-    iconName: string;
-    image: {
-        src: string,
-        alt: string
-    }
-}
+import { Component, OnInit, Input } from '@angular/core';
+import { IFooter } from './api.model';
 
 @Component({
   selector: 'bf-selection-tile',

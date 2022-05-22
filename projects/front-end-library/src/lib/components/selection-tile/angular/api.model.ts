@@ -1,9 +1,21 @@
+import {ILink} from "../../link/angular/api.model";
+
+export interface IFooter{
+    description: HTMLElement;
+    link: ILink;
+    iconName: string;
+    image: {
+        src: string,
+        alt: string
+    }
+}
+
 export interface ISelectionTile {
     type: 'checkbox' | 'radio';
     id: string;
     name: string;
     value: string;
-    isCheked: boolean;
+    isChecked: boolean;
     label: string;
     description: string;
     info: string;
@@ -17,6 +29,7 @@ export interface ISelectionTile {
     orientation: 'horizontal' | 'vertical';
     fit: 'content' | 'container';
     content: string | 'TwigBlock';
+    footer: IFooter;
     extraAttribute: string;
     class: string;
     reversed: boolean;
