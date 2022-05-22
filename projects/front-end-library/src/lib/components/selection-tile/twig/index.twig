@@ -1,31 +1,32 @@
+{% set id = id|default(inputId)|default('') %}
 {% set orientation = orientation|default('horizontal') %}
 {% set fit = fit|default('content') %}
 
 {% set hasVisual = (iconName is defined and iconName) or (image.src is defined and image.src and image.alt is defined) %}
-{% set hasFooter = orientation is same as ('horizontal') and fit is same as ('container') and ((footer.text is defined and footer.text) or (footer.link is defined and footer.link is not empty)) %}
+{% set hasFooter = orientation is same as ('horizontal') and ((footer.description is defined and footer.description) or (footer.link is defined and footer.link)) %}
 
 {# striptag filter #}
 {% set inlineTags = '<br><em><i><strong><b><sup><sub>' %}
 {% set allowedTags = '<div><p><ol><ul><li><span><br><em><i><strong><b><sup><sub>' %}
 
-<div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--fit-{{ fit }} {{ isInvalid|default(false) ? 'color-warning' }} {{ isSelected|default(false) ? 'checked' : '' }} {{ class|default(null) }}'>
+<div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--fit-{{ fit }} {{ isInvalid|default(false) ? 'bf-selection-tile--invalid' }} {{ isChecked|default(false) ? 'checked' : '' }} {{ class|default(null) }}'>
   <div class='bf-selection-tile__inner {{ isDisabled|default(false) ? 'disabled' }}'>
     <div class='bf-selection-tile__control'>
       {% apply spaceless %}
         <input
           type='{{ type|default('checkbox') }}'
           class='bf-selection-tile__input'
-          id='{{ inputId|default('') }}'
+          id='{{ id }}'
           name='{{ name }}'
           value='{{ value|default('') }}'
           {% if ariaLabel is defined and ariaLabel %} aria-label='{{ ariaLabel}}'{% endif %}
           {{ isDisabled ? 'disabled' : '' }}
-          {{ isSelected ? 'checked' : '' }}
+          {{ isChecked|default(false) ? 'checked' : '' }}
           {{ isRequired ? 'required' : '' }}
           {{ extraAttribute|default(NULL) }}
         />
       {% endapply %}
-      <label for='{{ inputId|default('') }}' class='bf-selection-tile__label' {% if ariaLabel is defined and ariaLabel %} title='{{ ariaLabel }}'{% endif %}></label>
+      <label for='{{ id }}' class='bf-selection-tile__label' {% if ariaLabel is defined and ariaLabel %} title='{{ ariaLabel }}'{% endif %}></label>
     </div>
 
     <div class='bf-selection-tile__block'>
@@ -49,11 +50,11 @@
               </div>
             {% endif %}
 
-            {% if ( title is defined and title) or (description is defined and description) %}
+            {% if ( label is defined and label) or (description is defined and description) %}
               <div class='bf-selection-tile__text'>
-                {% if title is defined and title %}
+                {% if label is defined and label %}
                   <p class='p-0 m-0 text-break'>
-                    <strong>{{ title }}</strong>
+                    <strong>{{ label }}</strong>
                   </p>
                 {% endif %}
 
@@ -86,7 +87,7 @@
           {{ footer.description|striptags(allowedTags)|raw }}
         {% endif %}
 
-        {% if footer.link is defined and footer.link is not empty %}
+        {% if footer.link is defined and footer.link.href is defined and footer.link.href and footer.link.label is defined and footer.link.label %}
           {% include '@bf-components/link/twig/index.twig' with {
             href: footer.link.href,
             label: footer.link.label,
@@ -103,12 +104,6 @@
       {% elseif footer.image is defined and footer.image.src is defined and footer.image.src %}
         <img src='{{ footer.image.src }}' alt='{{ footer.image.alt|default('') }}' />
       {% endif %}
-    </div>
-  {% endif %}
-
-  {% if isInvalid is defined and isInvalid and errorMessage is defined and errorMessage %}
-    <div class='bf-selection-tile__feedback'>
-      {{ errorMessage|striptags(inlineTags)|raw }}
     </div>
   {% endif %}
 </div>

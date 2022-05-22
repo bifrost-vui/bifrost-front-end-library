@@ -53,7 +53,7 @@
         }
     }
     &__input {
-        @extend .bf-checkbox;
+        @extend .bf-input-checkbox-control;
         display: block;
         z-index: 3;
         width: 1.5rem;
@@ -73,7 +73,7 @@
                 background-color: var(--bf-color-bg-underground); // Designer may comme back with a new color
             }
             &:disabled + label {
-                border-color: 2px solid var(--bf-color-stroke-secondary); ;
+                border-color: 2px solid var(--bf-color-stroke-secondary);
 
             }
         }
@@ -97,6 +97,7 @@
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
+        justify-content: space-between;
         background-color: var(--bf-color-bg-underground);
         margin: 0 var(--bf-spacer-1);
         gap: var(--bf-spacer-3);
@@ -105,6 +106,12 @@
             flex: 0 0 4.5rem;
             width: 4.5rem;
             height: 4.5rem;
+        }
+    }
+
+    &--invalid {
+        label, input {
+            border-color: var(--bf-color-feedback-negative) !important;
         }
     }
 
@@ -165,7 +172,7 @@
             min-height: 8rem;
             min-width: 8rem;
             @extend .bf-border-radius-small;
-            padding: 1.5rem;
+            padding: var(--bf-spacer-3);
         }
         .bf-selection-tile__input {
             position: absolute;
@@ -182,12 +189,13 @@
             & > div {
                 display: flex;
                 text-align: center;
-                flex-grow: 1;
                 align-items: center;
+                margin-top: var(--bf-spacer-3);
             }
             .bf-selection-tile__body {
                 display: flex;
                 flex-flow: column;
+                gap: .25rem;
             }
         }
         &.bf-selection-tile--fit-container {

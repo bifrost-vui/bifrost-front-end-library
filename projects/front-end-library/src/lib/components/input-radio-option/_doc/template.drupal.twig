@@ -1,43 +1,47 @@
 {% set isChecked = isChecked|json_parse %}
-{% set isDisabled = isDisabled|json_parse %}
 {% set isRequired = isRequired|json_parse %}
+{% set isDisabled = isDisabled|json_parse %}
 {% set isInvalid = isInvalid|json_parse %}
 
 {% set _backgroundClasses = ['bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight', 'bf-color-bg-highlight highlight reversed'] %}
-{% for backgroundClass in _backgroundClasses %}
-  <div class='container-fluid m-3 px-2 d-flex flex-row flex-wrap {{ backgroundClass }}'>
-    <div class='p-3'>
+
+{% for _backgroundClass in _backgroundClasses %}
+  <div class='d-flex flex-row flex-wrap p-4 gap-7 {{ _backgroundClass }}'>
+    <div>
       {% include '@bf-components/input-radio-option/twig/index.twig' with {
         id: id|default(inputId) ~ 1 ~ loop.index,
-        name: name|default('inputName') ~ loop.index
+        name: name ~ loop.index
       } %}
 
       {% include '@bf-components/input-radio-option/twig/index.twig' with {
         id: id|default(inputId) ~ 2 ~ loop.index,
-        name: name|default('inputName') ~ loop.index,
+        name: name ~ loop.index,
         isChecked: isChecked|default(true)
       } %}
     </div>
 
-    <div class='p-3'>
+    <div>
       {% include '@bf-components/input-radio-option/twig/index.twig' with {
         id: id|default(inputId) ~ 3 ~ loop.index,
-        name: name|default('inputName') ~ loop.index ~ 1,
+        name: name ~ loop.index ~ 1,
+        label: 'Disabled',
         isDisabled: isDisabled|default(true)
       } %}
 
       {% include '@bf-components/input-radio-option/twig/index.twig' with {
         id: id|default(inputId) ~ 4 ~ loop.index,
-        name: name|default('inputName') ~ loop.index ~ 1,
+        name: name ~ loop.index ~ 1,
         isChecked: isChecked|default(true),
+        label: 'Disabled',
         isDisabled: isDisabled|default(true)
       } %}
     </div>
 
-    <div class='p-3'>
+    <div>
       {% include '@bf-components/input-radio-option/twig/index.twig' with {
         id: id|default(inputId) ~ 5 ~ loop.index,
-        name: name|default('inputName') ~ loop.index ~ 2,
+        name: name ~ loop.index ~ 2,
+        label: 'Invalid',
         isInvalid: isInvalid|default(true)
       } %}
 
@@ -45,6 +49,7 @@
         id: id|default(inputId) ~ 6 ~ loop.index,
         name: name|default('inputName') ~ loop.index ~ 2,
         isChecked: isChecked|default(true),
+        label: 'Invalid',
         isInvalid: isInvalid|default(true)
       } %}
     </div>
