@@ -19,7 +19,6 @@ export class SelectionTileComponent implements OnInit {
     @Input() isRequired: boolean;
     @Input() isInvalid: boolean;
     @Input() isDisabled: boolean;
-    @Input() errorMessage: string;
     @Input() ariaLabel: string;
     @Input() orientation: 'horizontal' | 'vertical';
     /**  Tile  fits the content | Tile fits the container */
