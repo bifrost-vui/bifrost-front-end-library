@@ -15,6 +15,7 @@ module.exports = {
              },
           },
         },
+        'storycap'
     ],
   core: {
     builder: 'webpack5',

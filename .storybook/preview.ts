@@ -1,12 +1,17 @@
 import { addParameters, addDecorator } from '@storybook/angular';
 import { prepareForInline } from '@storybook/addon-docs/angular';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
+import { withScreenshot } from 'storycap';
 
 // @ts-ignore
 // eslint-disable-next-line import/extensions, import/no-unresolved
 import docJson from '../documentation.json';
 
 setCompodocJson(docJson);
+
+export const decorators = [
+  withScreenshot, // Registration the decorator is required
+];
 
 addParameters({
 
