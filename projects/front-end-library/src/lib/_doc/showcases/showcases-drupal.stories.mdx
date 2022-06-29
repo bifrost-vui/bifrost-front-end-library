@@ -15,12 +15,20 @@ import { Meta } from '@storybook/addon-docs';
 
 <br/>
 
+### Pre requirement,
+To ensure you have a working computer, you have to install PHP >7.2 to your computer.
+
+Then if you have a corporate computer, ensure you turn off the VPN
+and do https://medium.com/@narendravaghela/how-to-fix-curl-error-60-ssl-certificate-problem-80e7dafafa57 to prevent
+the SSL self-certificate error.
 
 ### 1. Install Drupal
 ```
 cd projects/showcase-drupal
+# ensure you are one any VPN before continuing
 composer install
-composer require 'drupal/components:^2.4'
+# You will be required to create a Drupal.org account if you don't have one
+# you will be required to create a GitHub Token for some checkout, follow instruction if you don't have one.
 php ./core/scripts/drupal quick-start
 # Choose Standard profile
 ```
@@ -54,6 +62,3 @@ There you go.
 ## Troubleshooting
 - Remenber to clear all caches from the Administration Page: [Configuration > Development](http://127.0.0.1:8888/admin/config/development/performance).
 - If you see the message, `The website encountered an unexpected error. Please try again later.` then it's possible that a Bifrost component needs to be upgrade.
-
-
-
