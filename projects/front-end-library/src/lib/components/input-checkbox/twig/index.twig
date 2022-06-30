@@ -1,27 +1,32 @@
-{# Ui-Kit legacy #}
-{% set id = id|default(inputId) %}
-{% set name = name|default(inputName) %}
+{% set class = 'bf-input-checkbox ' ~ class|default(null) %}
+{% set isLabelLegend = true %}
+{% set areOptionTilesInline = areOptionTilesInline|default(false) %}
+{% set areOptionTilesLarge = areOptionTilesLarge|default(false) %}
 
-<div
-  class='bf-input-checkbox {{ class|default('') }} {{ (isInvalid is defined and isInvalid) ? 'bf-input-checkbox--invalid' }} {{ (isDisabled is defined and isDisabled) ? 'bf-input-checkbox--disabled' }}'>
-  <input
-    type='checkbox'
-    class='bf-checkbox {{ (isInvalid is defined and isInvalid) ? 'bf-checkbox--invalid' }}'
-    {% if name is defined and name %} name='{{ name }}' {% endif %}
-    id='{{ id }}'
-    {% if value is defined and value %} value='{{ value }}' {% endif %}
-    {{ (isChecked is defined and isChecked) ? 'checked' }}
-    {{ (isDisabled is defined and isDisabled) ? 'disabled' }}
-    {{ (isRequired is defined and isDisabled) ? 'required' }}
-    {% if ariaLabel is defined and ariaLabel %}
-      aria-label='{{ ariaLabel }}'
+{% extends '@bf-components/input/twig/index.twig' %}
+  {% block inputContent %}
+    {% if options is defined and options is not empty %}
+      <ul class='bf-input-radio__options list-unstyled {{ (areOptionTiles and areOptionTilesInline) ? 'bf-input-radio__options--inline' : 'd-flex flex-column flex-wrap' }} gap-2 mb-0'>
+        {% if areOptionTiles|default(false) %}
+          {% for option in options %}
+            {% set option = option|merge({
+              'type': 'checkbox',
+              'name': name,
+              'orientation': areOptionTilesInline ? 'vertical' : 'horizontal',
+              'class': option.class|default('') ~ (areOptionTilesLarge ? ' bf-selection-tile--large' : ''),
+              'fit': 'content',
+              'errorMessage': null
+            }) %}
+            {% include '@bf-components/selection-tile/twig/index.twig' with option only %}
+          {% endfor %}
+        {% else %}
+          {% for option in options %}
+            {% set option = option|merge({
+              'name': name
+            }) %}
+            {% include '@bf-components/input-checkbox-option/twig/index.twig' with option only %}
+          {% endfor %}
+        {% endif %}
+      </ul>
     {% endif %}
-    {{ extraAttribute|default(NULL) }}
-  >
-  {% if label is defined and label %}
-    <label for='{{ id }}'
-           class='bf-text-display-sub-medium {{ labelClass|default(null) }}' {{ labelExtraAttribute|default(null) }}>
-      {{ label|raw }}
-    </label>
-  {% endif %}
-</div>
+ {% endblock %}

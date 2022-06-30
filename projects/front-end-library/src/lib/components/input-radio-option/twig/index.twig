@@ -1,0 +1,33 @@
+{# Ui-Kit legacy fallback #}
+{% set id = id|default(inputId) %}
+{% set name = name|default(inputName) %}
+{% set labelClass = labelClass|default(labelTxtClass) %}
+{% set isInvalid = isInvalid|default(false) %}
+{% set isDisabled = isDisabled|default(false) %}
+
+<label class='bf-input-radio-option {{ isInvalid ? 'bf-input-radio-option--invalid' }} {{ isDisabled ? 'bf-input-radio-option--disabled' }} {{ class|default(null) }}'>
+  <input
+    class='{{ isInvalid ? 'invalid' }}'
+    type='radio'
+    {% if id|default(null) %}
+      id='{{ id }}'
+    {% endif %}
+    {% if name|default(null) %}
+      name='{{ name }}'
+    {% endif %}
+    {% if value|default(null) %}
+      value='{{ value }}'
+    {% endif %}
+    {{ isChecked|default(false) ? 'checked' }}
+    {{ isDisabled ? 'disabled' }}
+    {{ isRequired|default(null) ? 'required' }}
+    {% if ariaLabel|default(null) %}
+      aria-label='{{ ariaLabel }}'
+    {% endif %}
+    {{ extraAttribute|default(null) }}
+  />
+  <span class='bf-input-radio-control'></span>
+  {% if label|default(null) %}
+    <span class='bf-input-radio-option__label {{ labelClass|default(null) }}'>{{ label|raw }}</span>
+  {% endif %}
+</label>
