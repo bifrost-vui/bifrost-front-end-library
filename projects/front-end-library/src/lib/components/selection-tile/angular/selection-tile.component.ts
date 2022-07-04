@@ -27,7 +27,7 @@ export class SelectionTileComponent implements OnInit {
     @Input() image: object;
     @Input() iconName: string;
     @Input() content: HTMLElement | 'TwigBlock';
-    /** Only available for `orientation: horizontal`. Expected format: { description: HTMLElement, link: { label: string, href: string }, iconName: string, image: { src: string, alt: string } } */
+    /** Only available for `orientation: horizontal`. Expected format: { description: HTMLElement, link: { label: string, href: string, ... }, iconName: string, image: { src: string, alt: string } } */
     @Input() footer: IFooter;
 
     /** Extra attributes for radio/checkbox inputs. */

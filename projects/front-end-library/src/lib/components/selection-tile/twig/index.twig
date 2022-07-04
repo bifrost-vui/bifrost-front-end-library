@@ -89,11 +89,8 @@
           {{ footer.description|striptags(allowedTags)|raw }}
         {% endif %}
 
-        {% if footer.link is defined and footer.link.href is defined and footer.link.href and footer.link.label is defined and footer.link.label %}
-          {% include '@bf-components/link/twig/index.twig' with {
-            href: footer.link.href,
-            label: footer.link.label,
-          } only %}
+        {% if footer.link is defined and footer.link.label is defined and footer.link.label %}
+          {% include '@bf-components/link/twig/index.twig' with footer.link only %}
         {% endif %}
       </div>
 
