@@ -1,12 +1,31 @@
-{% set isLink       = (href is defined and href is not empty and (isClickable is not defined or isClickable is same as (true))) %}
-{% set haslink      = (href is defined and href is not empty and linkLabel is defined and linkLabel is not empty ) %}
+{# deprecation support code #}
+{% if link is not defined and href is defined and href is not empty %}
+  {% set link = {href: href} %}
+
+  {% if linkLabel is defined and linkLabel is not empty %}
+    {% set link = link|merge({label: linkLabel}) %}
+  {% endif %}
+{% endif %}
+{# End deprecation support code #}
+
+{% set isLink = false %}
+{% set hasLink = false %}
+
+{% if link is defined and link is not empty and isClickable is defined and isClickable is same as (true) %}
+  {% set isLink = true %}
+{% endif %}
+
+{% if link is defined and link is not empty and link.label is defined and link.label is not empty and (isClickable is not defined or isClickable is not same as (true) %}
+  {% set haslink = true %}
+{% endif %}
+
 {% set hasImage     = image.src is defined and image.src is not empty %}
 {% set hasIcon      = iconName is defined and iconName is not empty %}
 {% set hasVisual    = hasImage or hasIcon %}
 
 <{{ isLink ? 'a' : 'div' }}
-    {% if isLink %}
-        href='{{ href|default('') }}'
+    {% if isLink and link.href is not empty %}
+        href='{{ link.href|default('') }}'
     {% endif %}
     class='bf-banner d-flex align-items-center {% if hasVisual %}bf-banner--has-visual{% endif %} {{class|default('')}}'
 >
@@ -35,16 +54,15 @@
         {% if paragraph is defined and paragraph is not empty %}
             <p class='small m-0'>
                 {{ paragraph }}
-                {% if haslink and isClickable is defined and isClickable is same as(false) %}
+                {% if haslink %}
                   <br/>
-                  <a class='bf-link' href='{{ href }}'>{{ linkLabel }}</a>
+                  {% include '@bf-components/link/twig/index.twig' with link only %}
                 {% endif %}
             </p>
         {% endif %}
     </div>
 
     {% if badge is defined and badge is not empty %}
-
         {% if badge is iterable %}
             {% set badgeLabel = badge.label %}
         {% else %}

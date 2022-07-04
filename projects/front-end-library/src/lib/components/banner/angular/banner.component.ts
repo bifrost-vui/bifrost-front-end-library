@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import { ILink } from "../../link/angular/api.model";
 
 /**
  * API is the same between **Angular** and **Drupal**.
@@ -13,12 +14,11 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class BannerComponent implements OnInit {
     constructor() {}
 
-    @Input() href               : string;
     @Input() title              : string;
     @Input() paragraph          : string;
-    @Input() linkLabel          : string;
     @Input() image              : object;
     @Input() iconName           : string;
+    @Input() link               : ILink;
     /**
         You can pass directly the **label** in string format or an object based on [Badge](/?path=/docs/components-badge--drupal) component API.
     */
@@ -26,6 +26,10 @@ export class BannerComponent implements OnInit {
     @Input() class              : string;
     @Input() reversed           : boolean;
     @Input() isClickable        : boolean;
+    /** deprecated. use `link` instead */
+    @Input() linkLabel          : string;
+    /** deprecated. use `link` instead */
+    @Input() href               : string;
 
     ngOnInit() {
         console.log('banner', this);

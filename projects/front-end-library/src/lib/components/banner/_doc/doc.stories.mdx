@@ -43,12 +43,12 @@ import { BannerComponent }                      from '../angular/banner.componen
 #### Clickable banner with icon
 ```jsx
 {% include '@bf-components/banner/twig/index.twig' with {
-    href        : 'https://videotron.com',
+    link        : { href: 'https://example.com' },
     title       : 'Galaxy Buds Live',
     paragraph   : 'Free with any purchase of this phone, valuted at $239.38.',
     iconName    : 'mobile-multiline',
     badge       : 'FREE',
-    isClickable : 'true'
+    isClickable : 'true',
     class       : 'mb-4',
 } only %}
 ```
@@ -57,7 +57,7 @@ import { BannerComponent }                      from '../angular/banner.componen
 ```jsx
 {% include '@bf-components/banner/twig/index.twig' with {
     //...
-    linkLabel   : 'Some conditions may apply',
+    link : { href: 'https://example.com', label: 'Some conditions may apply' },
     isClickable : 'false',
 } only %}
 ```
@@ -81,7 +81,9 @@ export const Drupal = (args) => ({
 });
 
 export const commonProps= {
-            href        : 'https://videotron.com',
+            link        : {
+                href: 'https://example.com'
+            },
             title       : 'Galaxy Buds Live',
             paragraph   : 'Free with any purchase of this phone, valuted at $239.38.',
             image       : {
