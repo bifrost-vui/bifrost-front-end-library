@@ -164,14 +164,15 @@
         </div>
       {% endif %}
 
-      {% if contentBadge is defined and contentBadge %}
-        {% set contentBadge = contentBadge|merge( {
-          'hierarchy' : contentBadge.hierarchy|default('tertiary'),
-          'angle'     : contentBadge.angle|default(''),
-          'class'     : 'bf-card__content-badge mt-3 mx-3 mx-sm-4'
-        } ) %}
-
-        {% include '@bf-components/badge/twig/index.twig' with contentBadge only %}
+      {% if contentBadges is defined and contentBadges %}
+        <div class='bf-card__content-badge mt-3 mx-3 mx-sm-4'>
+          {% for contentBadge in contentBadges %}
+            {% set contentBadge = contentBadge|merge( {
+              'hierarchy' : 'tertiary',
+            } ) %}
+            {% include '@bf-components/badge/twig/index.twig' with contentBadge only %}
+          {% endfor %}
+        </div>
       {% endif %}
 
       {% if promotionBadges is defined and promotionBadges %}

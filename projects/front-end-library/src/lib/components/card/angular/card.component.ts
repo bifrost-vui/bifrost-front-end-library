@@ -97,7 +97,7 @@ export class CardComponent implements OnInit {
      This badge displays in the phone card content above the price and the promotion badges.
      Based on [Badge](/?path=/docs/components-badge--drupal) component API
      */
-    @Input() contentBadge: object;
+    @Input() contentBadges: IBadge[];
     /**
      Theses Badges display in the phone card content above the price.
      Array of Badges based on [Badge](/?path=/docs/components-badge--drupal) component API
