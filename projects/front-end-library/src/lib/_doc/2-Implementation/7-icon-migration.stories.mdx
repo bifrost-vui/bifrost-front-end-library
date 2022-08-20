@@ -1,0 +1,109 @@
+import { Meta } from '@storybook/addon-docs';
+
+
+<Meta
+    title='Implementation/Icon Migration v1.3.0'
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+/>
+
+# Icon Migration to Bifrost v1.3.0
+Drupal only.
+
+<br/><br/>
+
+## New Icon Component API
+**Twig Icon component** changes in Bifrost v1.3.0:
+- The property **`type`** (`inertaface` or `illustration`) doesn't determine the size of the icon anymore.
+- The property **`size`** is `small` by default when icon is interface type, and `medium` by default for type illustration.
+- All `types` are available in all sizes and colors - make sure to follow [recommendations](https://www.figma.com/file/u25bSG8COM4azJ04CztTv8/DS---Medias?node-id=130%3A2093)
+
+## Icon renaming
+
+Most icons keep the same name so as long as the size is defined the change should be transparent. For those that do change name, refer to the following lists:
+
+<br/>
+
+### Illustration  new or renamed SVG icons
+
+Note: Remember to check if you need to adjust the component `size` property.
+
+
+Illustration change type | new name | old name
+----------------- | ----------------- | -----------------
+renamed | check | checkmark
+renamed | check-circle-outline | checkmark-circle
+renamed | check-circle-filled | checkmark-circle-filled
+renamed | download-speed | circle-download
+renamed | upload-speed | circle-upload
+renamed | data-graph | data
+renamed | handshake | differenciation
+renamed | exclamation-circle-outline | exclamation-circle
+renamed | tv-plan-discovery | forfait-la-decouverte
+renamed | tv-plan-showtime | forfait-le-fan-de-films-et-series
+renamed | tv-plan-sports | forfait-le-fan-de-sports
+renamed | tv-plan-light | forfait-le-leger
+renamed | tv-plan-light | helixinternet-streaming
+renamed | tv-plan-absolute | forfait-le-plein-la-vue
+renamed | tv-plan-all-in | fortait-la-total
+renamed | gateway-helix | gateway-helix-2
+renamed | information-circle-outline | information-circle
+renamed | invoice-deadline-48h | invoice-48h
+renamed | mobile-international-calls | mobile-international
+renamed | network-coverage-canada | network-coverage-1
+renamed | notifications-helix | notifications
+renamed | pin | point-of-sale
+renamed | parameters | settings
+renamed | clock | simultaneous recording
+renamed | profile | my-account
+deleted | -- | time (use clock)
+new icon | application-stream | --
+new icon | credit-return | --
+new icon | backward | --
+new icon | business-large-sized | --
+new icon | business-small-sized | --
+new icon | file-pdf | --
+new icon | home | --
+new icon | network-5g | --
+new icon | question-circle-filled | --
+new icon | video-quality-8k | --
+
+### Interface renamed SVG icons
+By default Interface Icons component uses small size icons (24px)
+
+Interface change type | new name | old name
+----------------- | ----------------- | -----------------
+renamed | delete | bin
+renamed | check-circle-outline | check
+renamed | check-circle-filled | checkmark-circle-filled
+renamed | exclamation-circle-outline | exclamation-circle
+renamed | information-circle-outline | information-circle
+renamed | dot | interpunct
+renamed | connection-reliable | lock
+renamed | notifications-helix | notifications
+renamed | logout | out
+renamed | pin | point-of-sale
+renamed | profile | my-account
+deleted | -- | time (use clock)
+new icon | file-pdf | --
+new icon | question-circle-filled | --
+
+
+### The following names also became invalid
+
+A simple rename may not be enought, you may also need to adjust the icon component `size` argument.
+
+old name | new name | size
+----------------- | ----------------- | -----------------
+question-circle-small | question-circle-outline | small
+exclamation-circle-filled-small24 | exclamation-circle-filled | small
+information-circle-filled-small24 | information-circle-filled | small
+
+
+### Ressources
+- [Icon component Style documentation](/story/styles-icons--page)
+- [Icon API Component](/story/components-icon--drupal-interface)
+- [Icons on Figma](https://www.figma.com/file/u25bSG8COM4azJ04CztTv8/DS---Medias?node-id=0%3A1)

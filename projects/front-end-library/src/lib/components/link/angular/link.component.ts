@@ -19,7 +19,9 @@ export class LinkComponent implements OnInit {
     @Input() ariaLabel      : string;
     @Input() extraAttribute : string;
     @Input() rel            : string;
-
+    @Input() dataDismiss    : string;
+    @Input() dataToggle     : string;
+    @Input() dataTarget     : string;
     @Input() class          : string;
     @Input() reversed       : boolean;
 

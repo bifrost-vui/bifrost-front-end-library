@@ -1,5 +1,5 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Props }           from '@storybook/addon-docs';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { LinkComponent }                        from '../angular/link.component';
@@ -40,7 +40,7 @@ import { LinkComponent }                        from '../angular/link.component'
 
 ## Component API
 
-<Props of={LinkComponent} />
+<ArgsTable of={LinkComponent} />
 
 
 ## Drupal implementation example
@@ -90,6 +90,7 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - Examples'
         height='600px'
+        parameters={{ options: { showPanel: false } }}
         args={{
             elementPath : 'components/link/_doc/template-examples.drupal'
         }}
@@ -101,6 +102,7 @@ export const Drupal = (args) => ({
 <Canvas withSource='none'>
     <Story
         name='Drupal - CSS Only'
+        parameters={{ options: { showPanel: false } }}
         args={{
             elementPath : 'components/link/_doc/template-css-only.drupal'
         }}

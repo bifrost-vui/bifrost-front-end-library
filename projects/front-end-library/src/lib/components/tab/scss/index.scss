@@ -10,13 +10,13 @@
 
     & > div {
         position: static;
-        overflow-x: auto;
+        flex: 1;
         padding:0 2.5rem var(--bf-spacer-2);
+        overflow-x: auto;
 
         @include media-breakpoint-down(md) {
             padding-left: var(--bf-spacer-1);
         }
-
         ::-webkit-scrollbar,
         ::-webkit-scrollbar-button {
             @include size(5px);
@@ -26,13 +26,12 @@
                 @include size(3px);
             }
         }
-
         &:before {
             position: absolute;
-            right: 0;
-            top: 0;
             width: 5.5rem;
             height: 100%;
+            right: 0;
+            top: 0;
             z-index: 1;
             pointer-events: none;
             background-image: var(--bf-color-bg-linear-ground-x);
@@ -40,16 +39,15 @@
             content: '';
         }
     }
-
     &__slider {
         display: flex;
-        width: max-content;
+        flex: 1;
+        width: 100%;
         white-space: nowrap;
-        padding: 0;
         margin: 0;
+        padding: 0;
         border-bottom: 1px solid var(--bf-color-stroke-secondary);
     }
-
     .nav-link {
         @extend .h3;
         padding:0;
@@ -67,8 +65,8 @@
 
             &:before {
                 position: absolute;
-                background-color: var(--bf-color-bg-action-primary);
                 bottom: -1px;
+                background-color: var(--bf-color-bg-action-primary);
             }
         }
     }

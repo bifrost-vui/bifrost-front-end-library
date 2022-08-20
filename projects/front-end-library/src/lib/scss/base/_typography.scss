@@ -10,7 +10,6 @@
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: $font-family-secondary;
-    font-weight: 700;
 
     a,
     a:hover {
@@ -31,62 +30,22 @@ a:hover {
     color: inherit;
 }
 
-h1, .h1 {
-  line-height: 3.5rem;
-  font-weight: 400;
 
-  @include media-breakpoint-down(sm){
-    font-size: $h2-font-size;
-    line-height: 2.5rem;
+$headings: ("h1", "h2", "h3", "h4", "h5", "h6");
+
+@each $name in $headings {
+  #{$name}, .#{$name} {
+		font-size: var(--bf-#{$name}-size);
+		line-height: var(--bf-#{$name}-leading);
+		font-weight: var(--bf-#{$name}-weight);
+
+		@include media-breakpoint-down(sm){
+			font-size: var(--bf-#{$name}-size-sm);
+			line-height: var(--bf-#{$name}-leading-sm);
+			font-weight: var(--bf-#{$name}-weight-sm);
+		}
   }
 }
-
-h2, .h2 {
-    line-height: 2.5rem;
-    font-weight: 500;
-
-    @include media-breakpoint-down(sm){
-      font-size: 1.75rem;
-      line-height: 2rem;
-    }
-}
-
-h3, .h3 {
-  line-height: 1.75rem;
-
-    @include media-breakpoint-down(sm){
-      font-size: $h4-font-size;
-      line-height: 1.5rem;
-    }
-}
-
-h4, .h4 {
-  line-height: 1.5rem;
-
-    @include media-breakpoint-down(sm){
-      font-size: $h5-font-size;
-      line-height: 1.25rem;
-    }
-}
-
-h5, .h5 {
-  line-height: 1.25rem;
-
-    @include media-breakpoint-down(sm){
-      font-size: $h6-font-size;
-      line-height: 1rem;
-    }
-}
-
-h6, .h6 {
-  line-height: 1rem;
-
-    @include media-breakpoint-down(sm){
-      font-size: .75rem;
-      line-height: .875rem;
-    }
-}
-
 
 // Paragraph
 
@@ -121,4 +80,14 @@ strong,
 pre {
   background: var(--bf-color-bg-action-secondary);
   color: var(--bf-color-neutral-primary);
+}
+
+// Max width
+
+.title-max-w {
+    max-width: 40rem;
+}
+
+.text-max-w {
+    max-width: 35rem;
 }

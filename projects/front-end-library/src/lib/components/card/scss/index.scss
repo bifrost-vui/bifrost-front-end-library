@@ -18,7 +18,7 @@
         background-color: transparent;
     }
     &--plan {
-        .bf-card__content-list:last-child li:last-of-type {
+        .bf-card__content-list {
             @extend .border-bottom;
             @extend .bf-border-color-secondary;
             @extend .pb-3
@@ -141,14 +141,16 @@
         top: 0;
     }
     .bf-card__content-badge {
+        .bf-badge {
+            & + .bf-badge {
+                margin-top: var(--bf-spacer-2);
+            }
+        }
+
         &--promotion .bf-badge {
             .bf-badge__inner {
                 border: 1px solid;
                 @extend .bf-border-color-secondary;
-            }
-
-            & + .bf-badge {
-                margin-top: var(--bf-spacer-2);
             }
         }
     }

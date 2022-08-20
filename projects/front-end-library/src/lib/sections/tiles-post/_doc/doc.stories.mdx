@@ -1,0 +1,257 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import { withDesign }                           from 'storybook-addon-designs'
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { SectionTilesPostComponent }            from '../angular/section-tiles-post.component';
+import { commonProps as tilePostProps }         from '../../../components/tile-post/_doc/doc.stories.mdx';
+
+
+<Meta
+    title='Sections/Tiles Post'
+    component={SectionTilesPostComponent}
+    decorators={[
+        moduleMetadata({ declarations: [SectionTilesPostComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=9210%3A11314',
+            disable: false
+        }
+    }}
+    argTypes={{
+        titleTag: {
+            table: { defaultValue: { summary: 'h1' } }
+        },
+        background: {
+            table: { defaultValue: { summary: 'ground' } }
+        },
+        reversed: {
+            table: { defaultValue: { summary: false } }
+        }
+    }}
+/>
+
+
+# Section Tiles Post
+
+<br/>
+
+## Image Guidelines
+- **Size:** Image displayed will fit in available width.
+- **Ratio:** Image displayed will respect the ratio of the original image source.
+
+
+## Component API
+
+<ArgsTable of={SectionTilesPostComponent} />
+
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-sections/tiles-post/twig/index.twig' with {
+    title: 'We are here to help you',
+    titleTag: 'h1',
+    tiles: [
+        {
+            title: 'Visit the Community',
+            description: 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
+            link: {
+                label: 'Ask a question',
+                href: 'https://example.com'
+            },
+            image: {
+                src: '/images/_docs/hero-helix-reversed.png',
+                alt: 'Image of an iPhone 13',
+                backgroundColor: '#ff00ff'
+            },
+            isFeatured: false,
+            size: 'large',
+            class: ''
+        },
+    ],
+    class: ''
+} only %}
+```
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+export const tilePostPropsAndSize = {
+    ...tilePostProps,
+    size: 'default'
+};
+
+export const commonProps = {
+    title: 'We are here to help you',
+    titleTag: 'h1',
+    tiles: [
+        {
+            ...tilePostPropsAndSize,
+            class: ''
+        },
+        {
+            ...tilePostPropsAndSize,
+            description: 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem. A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
+            class: ''
+        },
+        {
+            ...tilePostPropsAndSize,
+            class: ''
+        }
+    ],
+    class: ''
+}
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        height='600px'
+        args={{
+            elementPath: 'sections/tiles-post/_doc/template.drupal',
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With tiles isFeatured'
+        height='600px'
+        args={{
+            elementPath: 'sections/tiles-post/_doc/template.drupal',
+            ...commonProps,
+            tiles: [
+                {
+                    ...tilePostPropsAndSize,
+                    isFeatured: true,
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    isFeatured: true,
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    isFeatured: true,
+                    class: ''
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With tile size large'
+        height='600px'
+        args={{
+            elementPath: 'sections/tiles-post/_doc/template.drupal',
+            ...commonProps,
+            tiles: [
+                {
+                    ...tilePostPropsAndSize,
+                    size: 'large',
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    size: 'large',
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    size: 'large',
+                    class: ''
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With 2 tiles'
+        height='600px'
+        args={{
+            elementPath: 'sections/tiles-post/_doc/template.drupal',
+            ...commonProps,
+            tiles: [
+                {
+                    ...tilePostPropsAndSize,
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    description: 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem. A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
+                    class: ''
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Usage example'
+        parameters={{ options: { showPanel: false } }}
+        height='600px'
+        args={{
+            elementPath: 'sections/tiles-post/_doc/template.drupal',
+            ...commonProps,
+            tiles: [
+                {
+                    ...tilePostPropsAndSize,
+                    size: 'large',
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    size: 'large',
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    class: ''
+                },
+                {
+                    ...tilePostPropsAndSize,
+                    class: ''
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Design Guidelines
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D9210%253A11314' frameBorder='0' allowFullScreen></iframe>
