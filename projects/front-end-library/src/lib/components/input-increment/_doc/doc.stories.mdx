@@ -1,8 +1,9 @@
-import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Props }  from '@storybook/addon-docs';
-import { withDesign }                   from 'storybook-addon-designs'
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { InputIncrementComponent }     from '../angular/input-increment.component';
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs'
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { InputIncrementComponent } from '../angular/input-increment.component';
+
 
 <Meta
     title='Components/Input Increment'
@@ -13,32 +14,29 @@ import { InputIncrementComponent }     from '../angular/input-increment.componen
     ]}
     parameters={{
         design: {
-            type    : 'figma',
-            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI?node-id=91%3A0',
-            disable : false
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI?node-id=91%3A0',
+            disable: false
         },
     }}
     argTypes={{
-        value : {
+        value: {
             type:  {
-                control      : { type: 'number' },
-                required     : true
+                control: { type: 'number' },
+                required: true
             }
         },
-        inputId : {
-            type :{ required: true }
+        inputId: {
+            type:{ required: true }
         },
-        class : {
-            description : 'Ex.: justify-content-end | justify-content-center | justify-content-between',
+        errorMessage: {
+            type: { required: false },
+            description: 'Should always be defined if a min or a max value is defined',
         },
-        errorMessage : {
-            type : { required: false },
-            description : 'Should always be defined if a min or a max value is defined',
-        },
-        isRequired : {
-            type : { required: false },
+        isRequired: {
+            type: { required: false },
             table: { defaultValue: { summary: true } },
-            description : 'set the input as required in the form',
+            description: 'set the input as required in the form',
         }
     }}
 />
@@ -47,13 +45,13 @@ import { InputIncrementComponent }     from '../angular/input-increment.componen
 
 ## Component API
 
-<Props of={InputIncrementComponent} />
+<ArgsTable of={InputIncrementComponent} />
 
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    component: TwigContainerComponent,
+    props: args,
 });
 
 <Canvas withSource='none'>
@@ -61,14 +59,12 @@ export const Drupal = (args) => ({
         name='Drupal'
         height='400px'
         args={{
-            elementPath     : 'components/input-increment/_doc/template.drupal',
-            class           : '',
-            ariaLabel       : '',
-            inputId         : '',
-            value           : 0,
-            min             : null,
-            max             : null,
-            errorMessage    : ''
+            elementPath: 'components/input-increment/_doc/template.drupal',
+            class: '',
+            ariaLabel: '',
+            inputId: '',
+            value: 0,
+            errorMessage: ''
         }}
     >
         {Drupal.bind({})}
@@ -79,16 +75,16 @@ export const Drupal = (args) => ({
 
 ```jsx
 {% include '@bf-components/input-increment/twig/index.twig' with {
-        class           : '',
-        ariaLabel       : '',
-        inputId         : 'my-unique-input-id',
-        value           : 0,
-        min             : null,
-        max             : null,
-        isReadOnly      : false,
-        isDisabled      : false,
-        isInvalid       : false,
-        errorMessage    : 'Error message'
+        class: '',
+        ariaLabel: '',
+        inputId: 'my-unique-input-id',
+        value: 0,
+        min: null,
+        max: null,
+        isReadOnly: false,
+        isDisabled: false,
+        isInvalid: false,
+        errorMessage: 'Error message'
    }
 } %}
 

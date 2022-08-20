@@ -1,28 +1,27 @@
-import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { IInputCheckboxOption } from '../../input-checkbox-option/angular/api.model';
+import { ISelectionTile } from '../../selection-tile/angular/api.model';
 
 @Component({
     selector: 'bf-input-checkbox',
     templateUrl: './input-checkbox.component.html',
-    // styleUrls: ['../scss/index.scss'],
 })
 export class InputCheckboxComponent implements OnInit {
-    constructor() {
-    }
+    constructor() {}
 
-    /** @required */
-    @Input() id: string;
     @Input() name: string;
-    @Input() value: string;
-    @Input() isChecked: boolean;
-    @Input() isDisabled: boolean;
-    @Input() isInvalid: boolean;
-    @Input() isRequired: boolean;
-    @Input() extraAttribute: string;
     @Input() label: string;
-    @Input() labelClass: string;
-    @Input() labelExtraAttribute: string;
-    /** Needs to be defined if no label is defined */
-    @Input() ariaLabel: string;
+    @Input() description: string;
+    /** [Input Checkbox Option API](?path=/docs/components-input-checkbox-input-checkbox-option--drupal) or [Selection Tile API](?path=/docs/components-selection-tile--drupal). */
+    @Input() options: IInputCheckboxOption[] | ISelectionTile[];
+    /** Transform options as tiles. Then use options from [Selection Tile API](?path=/story/components-selection-tile--drupal-selection-tile-vertical). */
+    @Input() areOptionTiles: boolean;
+    /** Define direction of the option list. Has effect only if `areOptionTiles = true`. */
+    @Input() areOptionTilesInline: boolean;
+    /** Define if optionTiles height are small (default) or large. Has effect only if `areOptionTiles = true`. */
+    @Input() areOptionTilesLarge: boolean;
+    @Input() errorMessage: string;
+
     @Input() class: string;
 
     ngOnInit() {

@@ -1,13 +1,11 @@
-const path                  = require('path')
-const webpack               = require('webpack')
+const path                  = require('path');
 const globImporter          = require('node-sass-glob-importer');
-const ExtractTextPlugin     = require('extract-text-webpack-plugin')
 const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
 
 const devMode               = process.env.NODE_ENV !== 'production';
 
 
-module.exports = (env) => {
+module.exports = () => {
     return [{
         //devtool: "cheap-source-map",
         entry: {

@@ -1,8 +1,8 @@
-import { moduleMetadata }                   from '@storybook/angular';
-import { Canvas, Meta, Story, ArgsTable }   from '@storybook/addon-docs';
-import { withDesign }                       from 'storybook-addon-designs'
-import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
-import { BannerAdvancedComponent }          from '../angular/banner-advanced.component';
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs'
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { BannerAdvancedComponent } from '../angular/banner-advanced.component';
 
 <Meta
     title='Components/Banner Advanced'
@@ -13,9 +13,9 @@ import { BannerAdvancedComponent }          from '../angular/banner-advanced.com
     ]}
     parameters={{
         design: {
-            type    : 'figma',
-            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=21784%3A284582',
-            disable : false
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=21784%3A284582',
+            disable: false
         },
     }}
     argTypes={{}}
@@ -31,56 +31,126 @@ import { BannerAdvancedComponent }          from '../angular/banner-advanced.com
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    component: TwigContainerComponent,
+    props: args,
 });
 
-<Canvas
-    withSource='none'
-    style={{height: '450px'}}
->
+export const commonProps= {
+    title: 'Mobile discount of $10 with an Internet plan',
+    description: 'Combine a Mobile plan to an Internet plan and get a $10 monthly discount.',
+    icons: [
+        {
+            name: 'mobility',
+            label: 'Mobile plan'
+        },
+        {
+            name: 'bundle-1',
+            label: 'Internet plan'
+        },
+        {
+            name: 'helix-tv',
+            label: 'Helix TV plan'
+        }
+    ]
+}
+
+### Banner Advanced
+
+<Canvas withSource='none' style={{ height: '450px' }}>
     <Story
         name='Drupal'
         args={{
-            elementPath : 'components/banner-advanced/_doc/template.drupal',
-            title       : 'Mobile discount of $10 with an Internet plan',
-            description : 'Combine a Mobile plan to an Internet plan and get a $10 monthly discount.',
-            icons       : [
-                {
-                    name    : 'mobility',
-                    label   : 'Mobile plan'
-                },
-                {
-                    name    : 'bundle-1',
-                    label   : 'Internet plan'
+            elementPath: 'components/banner-advanced/_doc/template.drupal',
+            ...commonProps
+        }}
+        >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '600px' }}>
+    <Story
+        name='Drupal - With inputSwitch in footer'
+        args={{
+            elementPath: 'components/banner-advanced/_doc/template.drupal',
+            footer: {
+                inputSwitch: {
+                    id: 'inputId',
+                    name: 'inputName',
+                    ariaLabel: `I'm already an Helix client`,
+                    class: 'mb-0',
+                    label: {
+                        text: `I'm an Helix client`,
+                        position: 'right',
+                        class: 'text-uppercase font-weight-bold'
+                    }
                 }
-            ]
+            },
+            ...commonProps
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
+<Canvas withSource='none' style={{ height: '600px' }}>
+    <Story
+        name='Drupal - with HTMLElement in footer'
+        args={{
+            elementPath: 'components/banner-advanced/_doc/template.drupal',
+            footer: `<ul class='py-0 my-0'><li>Lorem Ipsum</li><li>Lorem Ipsum</li><li>Lorem Ipsum</li></ul>`,
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
 
 ## Drupal implementation example
 
 ```jsx
 {% include '@bf-components/banner-advanced/twig/index.twig' with {
-    title       : 'Mobile discount of $10 with an Internet plan',
-    description : 'Combine a Mobile plan to an Internet plan and get a $10 monthly discount.',
-    icons    : [
+    title: 'Mobile discount of $10 with an Internet plan',
+    description: 'Combine a Mobile plan to an Internet plan and get a $10 monthly discount.',
+    icons: [
         {
-            icon    : 'mobility',
-            label   : 'Mobile plan'
+            icon: 'mobility',
+            label: 'Mobile plan'
         },
         {
-            icon    : 'bundle-1',
-            label   : 'Internet plan'
+            icon: 'bundle-1',
+            label: 'Internet plan'
         }
     ]
 } only %}
-```
 
+{% include '@bf-components/banner-advanced/twig/index.twig' with {
+    title: 'Mobile discount of $10 with an Internet plan',
+    description: 'Combine a Mobile plan to an Internet plan and get a $10 monthly discount.',
+    icons: [
+        {
+            icon: 'mobility',
+            label: 'Mobile plan'
+        },
+        {
+            icon: 'bundle-1',
+            label: 'Internet plan'
+        }
+    ],
+    footer: {
+        inputSwitch: {
+            id: 'inputId',
+            name: 'inputName',
+            ariaLabel: `I'm already an Helix client`,
+            label: {
+            text: `I'm an Helix client`,
+            position: 'right',
+            class: 'text-uppercase font-weight-bold pb-0'
+            }
+        }
+    }
+} only %}
+```
 
 ## Design Guidelines
 

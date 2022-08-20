@@ -8,7 +8,7 @@ export class TextFeaturedComponent implements OnInit {
     constructor() {}
 
     @Input() spacingLeft: number;
-    @Input() textFeatured_content: string | 'TwigBlock';
+    @Input() textFeatured_content: HTMLElement | 'TwigBlock';
     @Input() class: string;
 
     ngOnInit() {

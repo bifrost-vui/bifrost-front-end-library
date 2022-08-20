@@ -1,24 +1,21 @@
 {% set icons = icons|json_parse %}
+{% set footer = footer|json_parse %}
 
 <section class='pt-4 px-3'>
-  {% include '@bf-components/banner-advanced/twig/index.twig'  %}
+  {% include '@bf-components/banner-advanced/twig/index.twig' %}
 </section>
 
 <section class='pt-4 px-3'>
   {% include '@bf-components/banner-advanced/twig/index.twig' with {
-    icons : [
+    icons: [
       {
-        name    : icons[0].name|default('mobility'),
-        label   : icons[0].label|default('Mobile plan')
+        name: icons[0].name,
+        label: icons[0].label
       },
       {
-        name    : icons[1].name|default('bundle-1'),
-        label   : icons[1].label|default('Internet plan')
+        name: icons[1].name,
+        label: icons[1].label
       },
-      {
-        name    : icons[2].name|default('helix-tv'),
-        label   : icons[2].label|default('Helix TV plan')
-      }
     ]
   } %}
 </section>

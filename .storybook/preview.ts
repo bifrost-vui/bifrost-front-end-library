@@ -34,54 +34,32 @@ twigDrupal(Twig);
 // CompoDoc
 setCompodocJson(docJson);
 
-// Storybook Decorators
-/*
-export const decorators = [
-    componentWrapperDecorator((story) => (`
-        <div class='videotron-ui'>
-            <script>
-                async function load() {
-                    await import('/js/core.js');
-                    await import('/js/vendors~bifrost-components.js');
-                    await import('/js/bifrost-components.js');
-                    await import('/js/bifrost-demo.js');
-                }
-                load();
-            </script>
-            ${story}
-        </div>
-    `)
-    ),
-];
-*/
-//---------------------------------------------------------------
-// Storybook Paramaters
-
 addParameters({
-    // Docs
+
+    options: {
+        storySort: {
+            order: ['*', 'UI-Kit']
+        },
+        showPanel: true
+    },
+
     docs: {
         inlineStories: true,
         prepareForInline,
-        // prepareForInline: (storyFn, { args }) => {
-        //     const Story = toReact(storyFn());
-        //     return <Story {...args} />;
-        // },
-         iframeHeight: 600,
+        iframeHeight: 600,
     },
+
     layout: 'centered',
 
-    // Backgrounds
     backgrounds: {
-      default: 'Ground',
-      values: [
-        { name: 'Ground', value: '#fff' },
-        { name: 'Underground', value: '#f2f2f0' },
-        { name: 'Ground Reversed', value: '#050504' },
-        { name: 'Underground Reversed', value: '#2a2a27' },
-      ],
+        default: 'Ground',
+        values: [
+            { name: 'Ground', value: '#fff' },
+            { name: 'Underground', value: '#f2f2f0' },
+            { name: 'Ground Reversed', value: '#050504' },
+            { name: 'Underground Reversed', value: '#2a2a27' },
+        ],
     },
-
-    // Controls
     controls: {
         expanded: true,
         hideNoControlsWarning: true,
@@ -105,5 +83,7 @@ addParameters({
         },
     },
 
-    actions: { argTypesRegex: "^on[A-Z].*" }
+    actions: {
+        argTypesRegex: "^on[A-Z].*"
+    }
 });

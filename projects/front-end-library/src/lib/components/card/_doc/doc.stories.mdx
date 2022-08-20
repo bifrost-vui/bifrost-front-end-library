@@ -1,7 +1,6 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
-
-import illustrationIcons            from '../../../../../../../public/icons/list/illustrations.json';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
 import { contentLists, contentListsNoTitle }    from './data';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { CardComponent }                        from '../angular/card.component';
@@ -48,7 +47,7 @@ import { CardComponent }                        from '../angular/card.component'
 
 ## Component API
 
-<Props of={CardComponent} />
+<ArgsTable of={CardComponent} />
 
 
 
@@ -176,13 +175,10 @@ import { CardComponent }                        from '../angular/card.component'
         label           : 'Choose another Plan',
         class           : ''
     }
-    contentBadge : {
+    contentBadges : [{
             label       : 'Lorem Ipsum',
-            hierarchy   : 'tertiary',
-            angle       : '',
             iconName    : '',
-            class       : '',
-    }
+    }]
     ...
 } only %}
 
@@ -199,6 +195,48 @@ import { CardComponent }                        from '../angular/card.component'
     ...
     }
 } only %}
+```
+
+## Drupal block override implementation example
+To override available block you need to embed the main index.twig
+```jsx
+{% embed '@bf-components/card/twig/index.twig' with {
+    class           : 'm-3',
+    isDisabled      : false,
+    upperTitle      : 'upperTitle',
+    title           : 'All-Inclusive 12 GB Mobile',
+    description     : 'So you can do what you want, when you want, without worrying about your data.',
+    description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
+    link            : {
+        label           : 'Learn more',
+        href            : 'www.videotron.com',
+    },
+    badge           : 'PROMOTION',
+    contentLists    : contentLists,
+    price           : {
+        upperTitle      : 'From',
+        dollar          : 86,
+        cent            : 99,
+        details         : '/month',
+        promotion       : {
+            title       : '<b>Promotion</b> test',
+            priceStriked: 40.99,
+            priceSaved  : 10,
+            savedLabel  : 'You saved :',
+            superscript : 1,
+            direction   : 'horizontal',
+        }
+    },
+    message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
+    language            : 'en',
+} %}
+    {% block card_body %}
+        ..override of the block..
+    {% endblock %}
+    {% block buttons %}
+        ..override of the block..
+    {% endblock %}
+{% endembed %}
 ```
 
 ## Drupal
@@ -347,12 +385,16 @@ export const phoneCommonProps = {
         { value :'C0C0C0', name : 'Amet' },
     ],
     detailsStorage : ['128 Go', '256 Go'],
-    contentBadge : {
-        label       : 'credit return',
-        hierarchy   : 'tertiary',
-        angle       : '',
-        iconName    : 'credit-return',
-    },
+    contentBadges : [
+        {
+            label       : 'credit return',
+            iconName    : 'credit-return',
+        },
+        {
+            label       : 'refurbish available',
+            iconName    : 'check-circle-outline',
+        }
+    ],
     promotionBadges : [
         {
             label    :'Free Galaxy Buds Live',
@@ -556,12 +598,16 @@ export const comboCommonProps = {
     visualBackgroundColor : '',
     title           : 'iPhone 12 Mini',
     subtitle        : 'Discover the power of the phone',
-    contentBadge : {
+    contentBadges : [
+        {
             label       : 'credit return',
-            hierarchy   : 'tertiary',
-            angle       : '',
             iconName    : 'credit-return',
-    },
+        },
+        {
+            label       : 'refurbish available',
+            iconName    : 'check-circle-outline',
+        }
+    ],
     promotionBadges : [
         {
             label    :'Free Galaxy Buds Live',

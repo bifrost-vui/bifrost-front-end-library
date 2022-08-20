@@ -2,7 +2,7 @@
 	class='
 		bf-link
 		{{ hierarchy is defined and hierarchy == 'primary' ? 'bf-link--primary' : 'bf-link--native' }}
-		{{ isUnderline|default(true) ? '' : 'bf-link--no-underline' }}
+		{{ isUnderline is defined and isUnderline == false ? 'bf-link--no-underline' }}
 		{{ label is defined and label is empty ? 'bf-link--icon-only' }}
 		{{ isDisabled is defined and isDisabled ? 'disabled' }}
 		{{ reversed is defined and reversed ? 'reversed' }}
@@ -22,6 +22,9 @@
 	{% if rel is defined and rel %}
 		rel='{{ rel }}'
 	{% endif %}
+  {% if dataDismiss is defined and dataDismiss %}data-dismiss='{{ dataDismiss }}'{% endif %}
+  {% if dataToggle is defined and dataToggle %}data-toggle='{{ dataToggle }}'{% endif %}
+  {% if dataTarget is defined and dataTarget %}data-target='{{ dataTarget }}'{% endif %}
 	{{ extraAttribute|default(NULL) }}
 >
 	<span class='d-flex align-items-center gap-1'>
