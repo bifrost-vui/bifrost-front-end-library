@@ -1,14 +1,14 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { SectionButtonsNavComponent }           from '../angular/section-buttons-nav.component';
 
 <Meta
     title='Sections/Buttons Nav'
     component={SectionButtonsNavComponent}
     decorators={[
-        moduleMetadata({ declarations: [SectionButtonsNavComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [SectionButtonsNavComponent]})
     ]}
     argTypes={{
         background: {
@@ -65,7 +65,7 @@ import { SectionButtonsNavComponent }           from '../angular/section-buttons
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -137,7 +137,6 @@ export const commonButtonPropsWithDescription = [
     <Story
         name='Drupal'
         args={{
-            elementPath: 'sections/buttons-nav/_doc/template.drupal',
             ...commonProps
         }}
     >
@@ -149,7 +148,6 @@ export const commonButtonPropsWithDescription = [
     <Story
         name='Drupal - With description'
         args={{
-            elementPath: 'sections/buttons-nav/_doc/template.drupal',
             ...commonProps,
             buttons: commonButtonPropsWithDescription
         }}
@@ -162,7 +160,6 @@ export const commonButtonPropsWithDescription = [
     <Story
         name='Drupal - With isFeatured'
         args={{
-            elementPath: 'sections/buttons-nav/_doc/template.drupal',
             ...commonProps,
             buttons: commonButtonPropsWithDescription,
             isFeatured: true
@@ -176,7 +173,6 @@ export const commonButtonPropsWithDescription = [
     <Story
         name='Drupal - With isFeatured and 4 buttons'
         args={{
-            elementPath: 'sections/buttons-nav/_doc/template.drupal',
             ...commonProps,
             buttons: commonButtonPropsWithDescription.slice(0, 4),
             isFeatured: true
@@ -190,7 +186,6 @@ export const commonButtonPropsWithDescription = [
     <Story
         name='Drupal - With isFeatured and 2 buttons'
         args={{
-            elementPath: 'sections/buttons-nav/_doc/template.drupal',
             ...commonProps,
             buttons: commonButtonPropsWithDescription.slice(0, 2),
             isFeatured: true
@@ -204,7 +199,6 @@ export const commonButtonPropsWithDescription = [
     <Story
         name='Drupal - With asideSection'
         args={{
-            elementPath: 'sections/buttons-nav/_doc/template.drupal',
             ...commonProps,
             asideSection: {
                 title: 'Videotron, an integral part of Quebecers’ daily lives',

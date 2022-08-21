@@ -1,7 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { allLogoCategories }                    from './data';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { LogoComponent }                        from '../angular/logo.component';
 
 
@@ -9,7 +9,7 @@ import { LogoComponent }                        from '../angular/logo.component'
     title='Components/Logo'
     component={LogoComponent}
     decorators={[
-        moduleMetadata({ declarations: [LogoComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [LogoComponent]}),
     ]}
     argTypes={{
         name: {
@@ -64,7 +64,7 @@ import { LogoComponent }                        from '../angular/logo.component'
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -73,7 +73,6 @@ export const Drupal = (args) => ({
         name='Drupal'
         height='300px'
         args={{
-            elementPath : 'components/logo/_doc/template.drupal',
         }}
         height='160px'
     >
@@ -90,10 +89,9 @@ export const Drupal = (args) => ({
         name='Drupal - All logos'
         height='800px'
         args={{
-            elementPath : 'components/logo/_doc/template-all.drupal',
             allLogoCategories
         }}
     >
-        {Drupal.bind()}
+        {Drupal.bind({})}
     </Story>
 </Canvas>

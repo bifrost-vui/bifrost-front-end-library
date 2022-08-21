@@ -1,14 +1,14 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import { withDesign } from 'storybook-addon-designs'
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { withDesign } from 'storybook-addon-designs';
+import TwigTemplate from './template.drupal.twig';
 import { BannerAdvancedComponent } from '../angular/banner-advanced.component';
 
 <Meta
     title='Components/Banner Advanced'
     component={BannerAdvancedComponent}
     decorators={[
-        moduleMetadata({ declarations: [BannerAdvancedComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [BannerAdvancedComponent]}),
         withDesign
     ]}
     parameters={{
@@ -31,8 +31,8 @@ import { BannerAdvancedComponent } from '../angular/banner-advanced.component';
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
-    props: args,
+    template: TwigTemplate(args),
+    props: args
 });
 
 export const commonProps= {
@@ -60,7 +60,6 @@ export const commonProps= {
     <Story
         name='Drupal'
         args={{
-            elementPath: 'components/banner-advanced/_doc/template.drupal',
             ...commonProps
         }}
         >
@@ -72,15 +71,14 @@ export const commonProps= {
     <Story
         name='Drupal - With inputSwitch in footer'
         args={{
-            elementPath: 'components/banner-advanced/_doc/template.drupal',
             footer: {
                 inputSwitch: {
                     id: 'inputId',
                     name: 'inputName',
-                    ariaLabel: `I'm already an Helix client`,
+                    ariaLabel: "I am already an Helix client",
                     class: 'mb-0',
                     label: {
-                        text: `I'm an Helix client`,
+                        text: "I am an Helix client",
                         position: 'right',
                         class: 'text-uppercase font-weight-bold'
                     }
@@ -97,8 +95,7 @@ export const commonProps= {
     <Story
         name='Drupal - with HTMLElement in footer'
         args={{
-            elementPath: 'components/banner-advanced/_doc/template.drupal',
-            footer: `<ul class='py-0 my-0'><li>Lorem Ipsum</li><li>Lorem Ipsum</li><li>Lorem Ipsum</li></ul>`,
+            footer: "<ul class='py-0 my-0'><li>Lorem Ipsum</li><li>Lorem Ipsum</li><li>Lorem Ipsum</li></ul>",
             ...commonProps
         }}
     >
@@ -141,11 +138,11 @@ export const commonProps= {
         inputSwitch: {
             id: 'inputId',
             name: 'inputName',
-            ariaLabel: `I'm already an Helix client`,
+            ariaLabel: 'I\'m already an Helix client',
             label: {
-            text: `I'm an Helix client`,
-            position: 'right',
-            class: 'text-uppercase font-weight-bold pb-0'
+                text: 'I\'m an Helix client',
+                position: 'right',
+                class: 'text-uppercase font-weight-bold pb-0'
             }
         }
     }

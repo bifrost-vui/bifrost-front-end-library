@@ -1,13 +1,13 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate from './template.drupal.twig';
 import { IframeVideoComponent } from '../angular/iframe-video.component';
 
 <Meta
     title='UI-Kit/Iframe Video'
     component={ IframeVideoComponent }
     decorators={[
-        moduleMetadata({ declarations: [IframeVideoComponent, TwigContainerComponent] }),
+        moduleMetadata({ declarations: [IframeVideoComponent]}),
     ]}
     parameters={{}}
     argTypes={{
@@ -30,7 +30,7 @@ This component has been migrated from the UI-Kit
 
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -47,7 +47,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath: 'components/iframe-video/_doc/template.drupal',
             videoSource: 'https://www.youtube.com/embed/Y9wrYkMH0RM?rel=0'
         }}
     >

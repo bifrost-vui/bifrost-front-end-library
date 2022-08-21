@@ -1,7 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { withDesign }                           from 'storybook-addon-designs'
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { %ComponentName%Component }             from '../angular/%component-name%.component';
 import { %ComponentName%TemplateComponent }     from './template.angular.component';
 
@@ -9,7 +9,7 @@ import { %ComponentName%TemplateComponent }     from './template.angular.compone
     title='%Component-type%/%Component-Readable-Name%'
     component={%ComponentName%Component}
     decorators={[
-        moduleMetadata({ declarations: [%ComponentName%Component, %ComponentName%TemplateComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [%ComponentName%Component, %ComponentName%TemplateComponent]}),
         withDesign
     ]}
     parameters={{
@@ -31,7 +31,7 @@ import { %ComponentName%TemplateComponent }     from './template.angular.compone
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
+    template: TwigTemplate(args),
     props       : args,
 });
 

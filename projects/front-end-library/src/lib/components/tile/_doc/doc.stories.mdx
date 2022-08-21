@@ -1,6 +1,6 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { TileComponent }                        from '../angular/tile.component';
 
 
@@ -8,7 +8,7 @@ import { TileComponent }                        from '../angular/tile.component'
     title='Components/Tile'
     component={TileComponent}
     decorators={[
-        moduleMetadata({ declarations: [TileComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [TileComponent]})
     ]}
     argTypes={{}}
 />
@@ -39,7 +39,7 @@ import { TileComponent }                        from '../angular/tile.component'
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 

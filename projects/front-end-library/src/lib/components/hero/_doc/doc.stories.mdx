@@ -1,7 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { withDesign }                           from 'storybook-addon-designs'
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { HeroComponent }                        from '../angular/hero.component';
 
 
@@ -9,7 +9,7 @@ import { HeroComponent }                        from '../angular/hero.component'
     title='Components/Hero'
     component={HeroComponent}
     decorators={[
-        moduleMetadata({ declarations: [HeroComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [HeroComponent]}),
     ]}
     argTypes={{
         _imageReversed: {
@@ -125,7 +125,7 @@ export const commonProps = {
 };
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
+    template: TwigTemplate(args),
     props       : args,
 });
 
@@ -134,7 +134,6 @@ export const Drupal = (args) => ({
         name='Drupal'
         height='500px'
         args={{
-            elementPath : 'components/hero/_doc/template.drupal',
             ...commonProps,
         }}
     >

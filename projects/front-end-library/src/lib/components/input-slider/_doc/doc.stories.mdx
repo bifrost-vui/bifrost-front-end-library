@@ -1,7 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { withDesign }                           from 'storybook-addon-designs'
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { InputSliderComponent }                 from '../angular/input-slider.component';
 
 
@@ -9,7 +9,7 @@ import { InputSliderComponent }                 from '../angular/input-slider.co
     title='Components/Input Slider'
     component={InputSliderComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputSliderComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [InputSliderComponent]}),
         withDesign
     ]}
     parameters={{
@@ -39,7 +39,7 @@ import { InputSliderComponent }                 from '../angular/input-slider.co
 <ArgsTable of={InputSliderComponent} />
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
+    template: TwigTemplate(args),
     props       : args,
 });
 
@@ -70,7 +70,6 @@ export const defaultProps = {
     <Story
         name='Drupal'
         args={{
-            elementPath : 'components/input-slider/_doc/template.drupal',
             ...defaultProps,
         }}
     >
@@ -106,7 +105,6 @@ export const defaultProps = {
     <Story
         name='Drupal - Inverted'
         args={{
-            elementPath : 'components/input-slider/_doc/template.drupal',
             ...defaultProps,
             isInverted : true
         }}
@@ -132,7 +130,6 @@ export const defaultProps = {
     <Story
         name='Drupal - 2 handles'
         args={{
-            elementPath : 'components/input-slider/_doc/template.drupal',
             ...defaultProps,
             value: [40, 130]
         }}

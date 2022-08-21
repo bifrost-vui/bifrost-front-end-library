@@ -3,5 +3,7 @@
 {% set langcode = langcode|default('en') %}
 
 <div class='bf-logo {{ class }}'>
-    {% include '@bf-components/logo/svg/logo-' ~ name|lower ~ '-' ~ size|lower ~ '-' ~ langcode|lower ~ '.svg' ignore missing %}
+  {# % include '@bf-components/logo/svg/logo-' ~ name|lower ~ '-' ~ size|lower ~ '-' ~ langcode|lower ~ '.svg' ignore missing % #}
+  {{ source('logo/logo-' ~ name|lower ~ '-' ~ size|lower ~ '-' ~ langcode|lower ~ '.svg') }}
+  {# TODO: test in Drupal context, this 'storybook build path' #}
 </div>

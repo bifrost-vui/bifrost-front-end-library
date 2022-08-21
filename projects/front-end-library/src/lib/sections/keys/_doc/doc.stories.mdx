@@ -1,7 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { SectionKeysComponent }                 from '../angular/section-keys.component';
 
 
@@ -9,7 +9,7 @@ import { SectionKeysComponent }                 from '../angular/section-keys.co
     title='Sections/Keys'
     component={SectionKeysComponent}
     decorators={[
-        moduleMetadata({ declarations: [SectionKeysComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [SectionKeysComponent]})
     ]}
     parameters={{
         design: {
@@ -72,7 +72,7 @@ import { SectionKeysComponent }                 from '../angular/section-keys.co
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -92,7 +92,6 @@ export const keyProps = {
         name='Drupal'
         height='300px'
         args={{
-            elementPath: 'sections/keys/_doc/template.drupal',
             title: 'Maecenas faucibus mollis interdum integer posuere erat.',
             titleTag: 'h2',
             description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis. Maecenas faucibus mollis interdum integer posuere.',

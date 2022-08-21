@@ -1,28 +1,19 @@
-{% set image            = image|json_parse %}
-{% set link             = link|json_parse %}
-{% set badge            = badge|json_parse %}
-{% set contentLists     = contentLists|json_parse %}
-{% set detailsColors    = detailsColors|default('')|json_parse %}
-{% set detailsStorage   = detailsStorage|json_parse %}
-{% set price            = price|json_parse %}
-{% set buttons          = buttons|json_parse %}
-{% set inputIncrement   = inputIncrement|json_parse %}
-{% set isDisabled       = isDisabled|json_parse %}
-{% set messageLink      = messageLink|json_parse %}
-{% set reversed         = reversed|json_parse %}
-{% set iconName         = iconName|json_parse %}
-{% set contentBadges     = contentBadges|json_parse %}
-{% set promotionBadges  = promotionBadges|json_parse %}
-{% set comboLabel       = comboLabel|json_parse %}
-
 <div class='d-flex flex-column flex-sm-row justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
-    {% for index in [1,2] %}
-
-        <div class='flex-grow-1 d-flex align-items-center justify-content-center minh-100 p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
-
-            {% include '@bf-components/card/twig/' ~ cardVariant|default('index') ~ '.twig' ignore missing %}
-
-        </div>
-
-    {% endfor %}
+  {% for index in [1,2] %}
+    <div class='flex-grow-1 d-flex align-items-center justify-content-center minh-100 p-4 {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'>
+      {% if cardVariant is same as ('phone') %}
+        {% include '@bf-components/card/twig/phone.twig' ignore missing %}
+      {% elseif cardVariant is same as ('plan') %}
+        {% include '@bf-components/card/twig/plan.twig' ignore missing %}
+      {% elseif cardVariant is same as ('protection') %}
+        {% include '@bf-components/card/twig/protection.twig' ignore missing %}
+      {% elseif cardVariant is same as ('combo') %}
+        {% include '@bf-components/card/twig/combo.twig' ignore missing %}
+      {% elseif cardVariant is same as ('increment') %}
+        {% include '@bf-components/card/twig/increment.twig' ignore missing %}
+      {% else %}
+        {% include '@bf-components/card/twig/index.twig' ignore missing %}
+      {% endif %}
+    </div>
+  {% endfor %}
 </div>

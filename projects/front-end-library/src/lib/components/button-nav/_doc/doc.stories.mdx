@@ -1,14 +1,14 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { ButtonNavComponent }                   from '../angular/button-nav.component';
 
 <Meta
     title='Components/Button Nav'
     component={ButtonNavComponent}
     decorators={[
-        moduleMetadata({ declarations: [ButtonNavComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [ButtonNavComponent]})
     ]}
     argTypes={{
         iconName: {
@@ -57,7 +57,7 @@ import { ButtonNavComponent }                   from '../angular/button-nav.comp
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -65,7 +65,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath: 'components/button-nav/_doc/template.drupal',
             label: 'Label'
         }}
     >
@@ -77,7 +76,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - With description'
         args={{
-            elementPath: 'components/button-nav/_doc/template.drupal',
             label: 'Label',
             description: 'Description morbi leo risus, porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.'
         }}
@@ -90,7 +88,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - With isFeatured'
         args={{
-            elementPath: 'components/button-nav/_doc/template.drupal',
             label: 'Label',
             description: 'Description morbi leo risus, porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.',
             isFeatured: true

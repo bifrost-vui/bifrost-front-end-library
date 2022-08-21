@@ -1,6 +1,6 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { PriceComponent }                       from '../angular/price.component';
 
 
@@ -8,7 +8,7 @@ import { PriceComponent }                       from '../angular/price.component
     title='Components/Price'
     component={PriceComponent}
     decorators={[
-        moduleMetadata({ declarations: [PriceComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [PriceComponent]}),
     ]}
     argTypes={{
         language: {
@@ -78,7 +78,7 @@ import { PriceComponent }                       from '../angular/price.component
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 

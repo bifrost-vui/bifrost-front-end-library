@@ -1,14 +1,14 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import { withDesign } from 'storybook-addon-designs'
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { withDesign } from 'storybook-addon-designs';
+import TwigTemplate from './template.drupal.twig';
 import { InputSwitchComponent } from '../angular/input-switch.component';
 
 <Meta
     title='Components/Input Switch'
     component={InputSwitchComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputSwitchComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [InputSwitchComponent]}),
         withDesign
     ]}
     parameters={{
@@ -40,7 +40,7 @@ import { InputSwitchComponent } from '../angular/input-switch.component';
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -48,7 +48,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath: 'components/input-switch/_doc/template.drupal',
             id: 'inputId',
             name: 'inputName',
             ariaLabel: 'ariaLabel',

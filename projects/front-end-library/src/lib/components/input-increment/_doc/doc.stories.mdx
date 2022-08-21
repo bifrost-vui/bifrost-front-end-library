@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import { withDesign } from 'storybook-addon-designs'
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { withDesign } from 'storybook-addon-designs';
+import TwigTemplate from './template.drupal.twig';
 import { InputIncrementComponent } from '../angular/input-increment.component';
 
 
@@ -9,7 +9,7 @@ import { InputIncrementComponent } from '../angular/input-increment.component';
     title='Components/Input Increment'
     component={InputIncrementComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputIncrementComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [InputIncrementComponent]}),
         withDesign
     ]}
     parameters={{
@@ -50,7 +50,7 @@ import { InputIncrementComponent } from '../angular/input-increment.component';
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -59,7 +59,6 @@ export const Drupal = (args) => ({
         name='Drupal'
         height='400px'
         args={{
-            elementPath: 'components/input-increment/_doc/template.drupal',
             class: '',
             ariaLabel: '',
             inputId: '',

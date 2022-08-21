@@ -1,7 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { LinkComponent }                        from '../angular/link.component';
 
 
@@ -9,7 +9,7 @@ import { LinkComponent }                        from '../angular/link.component'
     title='Components/Link'
     component={LinkComponent}
     decorators={[
-        moduleMetadata({ declarations: [LinkComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [LinkComponent]})
     ]}
     argTypes={{
         hierarchy: {
@@ -67,7 +67,7 @@ import { LinkComponent }                        from '../angular/link.component'
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -77,7 +77,6 @@ export const Drupal = (args) => ({
         name='Drupal'
         height='600px'
         args={{
-            elementPath : 'components/link/_doc/template.drupal',
             class       : 'mb-3',
             href        : 'https://example.com'
         }}
@@ -92,7 +91,6 @@ export const Drupal = (args) => ({
         height='600px'
         parameters={{ options: { showPanel: false } }}
         args={{
-            elementPath : 'components/link/_doc/template-examples.drupal'
         }}
     >
         {Drupal.bind({})}
@@ -104,7 +102,6 @@ export const Drupal = (args) => ({
         name='Drupal - CSS Only'
         parameters={{ options: { showPanel: false } }}
         args={{
-            elementPath : 'components/link/_doc/template-css-only.drupal'
         }}
     >
         {Drupal.bind({})}

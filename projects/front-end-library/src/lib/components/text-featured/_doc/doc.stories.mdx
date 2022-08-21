@@ -1,13 +1,13 @@
 import { moduleMetadata }  from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate from './template.drupal.twig';
 import { TextFeaturedComponent } from '../angular/text-featured.component';
 
 <Meta
     title='UI-Kit/Text Featured'
     component={TextFeaturedComponent}
     decorators={[
-        moduleMetadata({ declarations: [TextFeaturedComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [TextFeaturedComponent]}),
     ]}
     parameters={{}}
     argTypes={{
@@ -30,7 +30,7 @@ import { TextFeaturedComponent } from '../angular/text-featured.component';
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
+    template: TwigTemplate(args),
     props       : args
 });
 
@@ -53,7 +53,6 @@ export const textFeaturedContent =
         name='Drupal'
         height='300px'
         args={{
-            elementPath : 'components/text-featured/_doc/template.drupal',
             textFeatured_content :textFeaturedContent
         }}
     >

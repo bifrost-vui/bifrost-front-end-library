@@ -1,14 +1,14 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import { withDesign } from 'storybook-addon-designs'
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate from './template.drupal.twig';
 import { ProgressComponent } from '../angular/progress.component';
 
 <Meta
     title='UI-Kit/Progress'
     component={ProgressComponent}
     decorators={[
-        moduleMetadata({ declarations: [ProgressComponent, TwigContainerComponent] }),
+        moduleMetadata({ declarations: [ProgressComponent]}),
         withDesign
     ]}
     parameters={{
@@ -54,7 +54,7 @@ This component has been migrated from the UI-Kit project
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -65,7 +65,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath: 'components/progress/_doc/template.drupal',
         }}
     >
         {Drupal.bind({})}

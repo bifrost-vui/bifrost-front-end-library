@@ -1,12 +1,11 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { Canvas, Story, Meta }                  from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-
+import TwigTemplate from './template.drupal.twig';
 
 <Meta
     title='Styles/Headings - Stories'
     decorators={[
-        moduleMetadata({ declarations: [TwigContainerComponent]}),
+        moduleMetadata({ declarations: []}),
     ]}
 />
 
@@ -17,7 +16,7 @@ import { TwigContainerComponent }               from '../../../../utils/twig-con
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -25,7 +24,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - Headings'
         args={{
-            elementPath : '_doc/styles/3-headings/headings.drupal',
         }}
     >
         {Drupal.bind({})}

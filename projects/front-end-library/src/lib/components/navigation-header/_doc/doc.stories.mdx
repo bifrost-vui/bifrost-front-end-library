@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import { topBar_items, topBar_secondaryItems, rigthIconLinks} from './data';
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate from './template.drupal.twig';
 import { HeaderComponent } from '../angular/header.component';
 
 
@@ -9,7 +9,7 @@ import { HeaderComponent } from '../angular/header.component';
     title='Components/Navigation Header'
     component={HeaderComponent}
     decorators={[
-        moduleMetadata({ declarations: [HeaderComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [HeaderComponent]})
     ]}
     argTypes={{
         accountHello: {
@@ -115,7 +115,7 @@ import { HeaderComponent } from '../angular/header.component';
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -123,7 +123,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath: 'components/navigation-header/_doc/template.drupal',
             topBar_items,
             topBar_secondaryItems,
             logo: {

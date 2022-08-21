@@ -1,13 +1,13 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { ImageLazyLoadComponent }               from '../angular/image-lazy-load.component';
 
 <Meta
     title='UI-Kit/Image Lazy Load'
     component={ImageLazyLoadComponent}
     decorators={[
-        moduleMetadata({ declarations: [ImageLazyLoadComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [ImageLazyLoadComponent]}),
     ]}
     parameters={{}}
     argTypes={{
@@ -25,7 +25,7 @@ import { ImageLazyLoadComponent }               from '../angular/image-lazy-load
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
+    template: TwigTemplate(args),
     props       : args,
 });
 
@@ -35,7 +35,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath : 'components/image-lazy-load/_doc/template.drupal',
             alt         : 'Image Lazy Load',
         }}
     >
