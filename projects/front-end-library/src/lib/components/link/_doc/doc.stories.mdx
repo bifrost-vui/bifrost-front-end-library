@@ -2,6 +2,8 @@ import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
 import TwigTemplate                             from './template.drupal.twig';
+import TwigCSSTemplate                          from './template-css-only.drupal.twig';
+import TwigExampleTemplate                      from './template-examples.drupal.twig';
 import { LinkComponent }                        from '../angular/link.component';
 
 
@@ -71,7 +73,6 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-
 <Canvas withSource='none'>
     <Story
         name='Drupal'
@@ -85,6 +86,13 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
+## Drupal Examples
+
+export const DrupalExample = (args) => ({
+    template: TwigExampleTemplate(args),
+    props: args,
+});
+
 <Canvas withSource='none'>
     <Story
         name='Drupal - Examples'
@@ -93,9 +101,16 @@ export const Drupal = (args) => ({
         args={{
         }}
     >
-        {Drupal.bind({})}
+        {DrupalExample.bind({})}
     </Story>
 </Canvas>
+
+## Drupal CSS only
+
+export const DrupalCSS = (args) => ({
+    template: TwigCSSTemplate(args),
+    props: args,
+});
 
 <Canvas withSource='none'>
     <Story
@@ -104,6 +119,6 @@ export const Drupal = (args) => ({
         args={{
         }}
     >
-        {Drupal.bind({})}
+        {DrupalCSS.bind({})}
     </Story>
 </Canvas>
