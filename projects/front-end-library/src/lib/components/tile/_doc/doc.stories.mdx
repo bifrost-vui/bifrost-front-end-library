@@ -1,6 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import TwigTemplate                             from './template.drupal.twig';
+import TwigAllTemplate                          from './list.drupal.twig';
 import { TileComponent }                        from '../angular/tile.component';
 
 
@@ -58,6 +59,12 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
+## Drupal all example
+
+export const DrupalAll = (args) => ({
+    template: TwigAllTemplate(args),
+    props: args,
+});
 
 <Canvas withSource='none'>
     <Story
@@ -67,6 +74,6 @@ export const Drupal = (args) => ({
         args={{
         }}
     >
-        {Drupal.bind({})}
+        {DrupalAll.bind({})}
     </Story>
 </Canvas>
