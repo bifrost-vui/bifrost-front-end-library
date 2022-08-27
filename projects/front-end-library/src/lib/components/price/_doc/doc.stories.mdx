@@ -1,6 +1,8 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import TwigTemplate                             from './template.drupal.twig';
+import TwigAllTemplate                          from './template-all.drupal.twig';
+import TwigNullTemplate                         from './template-null.drupal.twig';
 import { PriceComponent }                       from '../angular/price.component';
 
 
@@ -105,7 +107,6 @@ export const commonProps = {
     class           : 'p-3',
 }
 
-
 <Canvas withSource='none'>
     <Story
         name='Drupal'
@@ -118,6 +119,12 @@ export const commonProps = {
     </Story>
 </Canvas>
 
+## Drupal All variants
+
+export const DrupalAll = (args) => ({
+    template: TwigAllTemplate(args),
+    props: args,
+});
 
 <Canvas withSource='none'>
     <Story
@@ -127,9 +134,16 @@ export const commonProps = {
             ...commonProps
         }}
     >
-        {Drupal.bind({})}
+        {DrupalAll.bind({})}
     </Story>
 </Canvas>
+
+## Drupal Null validation
+
+export const DrupalNull = (args) => ({
+    template: TwigNullTemplate(args),
+    props: args,
+});
 
 <Canvas withSource='none'>
     <Story
@@ -138,6 +152,6 @@ export const commonProps = {
         args={{
         }}
     >
-        {Drupal.bind({})}
+        {DrupalNull.bind({})}
     </Story>
 </Canvas>
