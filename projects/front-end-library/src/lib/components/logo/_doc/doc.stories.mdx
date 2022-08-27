@@ -2,6 +2,7 @@ import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { allLogoCategories }                    from './data';
 import TwigTemplate                             from './template.drupal.twig';
+import TwigAllTemplate                          from './template-all.drupal.twig';
 import { LogoComponent }                        from '../angular/logo.component';
 
 
@@ -81,8 +82,12 @@ export const Drupal = (args) => ({
 </Canvas>
 
 
-
 ## Drupal All Logos
+
+export const DrupalAll = (args) => ({
+    template: TwigAllTemplate(args),
+    props: args,
+});
 
 <Canvas withSource='none'>
     <Story
@@ -92,6 +97,6 @@ export const Drupal = (args) => ({
             allLogoCategories
         }}
     >
-        {Drupal.bind({})}
+        {DrupalAll.bind({})}
     </Story>
 </Canvas>

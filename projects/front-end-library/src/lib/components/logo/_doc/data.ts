@@ -5,10 +5,12 @@ export const allLogoCategories = [
         categoryName: 'Large',
         list: [
             {
+                name        : '',
                 size        : 'large',
                 langcode    : 'en'
             },
             {
+                name        : '',
                 size        : 'large',
                 langcode    : 'fr'
             },
@@ -33,10 +35,12 @@ export const allLogoCategories = [
         categoryName: 'Medium',
         list: [
             {
+                name        : '',
                 size        : 'medium',
                 langcode    : 'en'
             },
             {
+                name        : '',
                 size        : 'medium',
                 langcode    : 'fr'
             },
@@ -61,10 +65,12 @@ export const allLogoCategories = [
         categoryName: 'Small',
         list: [
             {
+                name        : '',
                 size        : 'small',
                 langcode    : 'en'
             },
             {
+                name        : '',
                 size        : 'small',
                 langcode    : 'fr'
             },
