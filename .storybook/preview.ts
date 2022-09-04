@@ -1,8 +1,7 @@
 import Twig from 'twig';
 import twigDrupal from 'twig-drupal-filters';
 
-import { addParameters, addDecorator } from '@storybook/angular';
-import { prepareForInline } from '@storybook/addon-docs/angular';
+import { addParameters } from '@storybook/angular';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 
 // @ts-ignore
@@ -44,8 +43,7 @@ addParameters({
     },
 
     docs: {
-        inlineStories: true,
-        prepareForInline,
+        inlineStories: false,
         iframeHeight: 600,
     },
 
@@ -74,7 +72,7 @@ addParameters({
         iframeUrl           : { table: { disable: true } },
         props               : { table: { disable: true } },
         ngClasses           : { table: { disable: true } },
-        computetNgClasses   : { table: { disable: true } },
+        computeNgClasses    : { table: { disable: true } },
         ngOnInit            : { table: { disable: true } },
         ngOnChanges         : { table: { disable: true } },
         _theme: {
