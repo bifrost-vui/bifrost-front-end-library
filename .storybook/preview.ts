@@ -68,11 +68,10 @@ addParameters({
         },
     },
     argTypes: {
-        elementPath         : { table: { disable: true } },
         iframeUrl           : { table: { disable: true } },
         props               : { table: { disable: true } },
         ngClasses           : { table: { disable: true } },
-        computeNgClasses    : { table: { disable: true } },
+        computetNgClasses   : { table: { disable: true } },
         ngOnInit            : { table: { disable: true } },
         ngOnChanges         : { table: { disable: true } },
         _theme: {
