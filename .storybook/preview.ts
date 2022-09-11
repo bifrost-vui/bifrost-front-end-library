@@ -33,6 +33,19 @@ twigDrupal(Twig);
 // CompoDoc
 setCompodocJson(docJson);
 
+export const argTypes = {
+    iframeUrl: { table: { disable: true } },
+    props: { table: { disable: true } },
+    ngClasses: { table: { disable: true } },
+    computetNgClasses: { table: { disable: true } },
+    ngOnInit: { table: { disable: true } },
+    ngOnChanges: { table: { disable: true } },
+    _theme: {
+        table: { defaultValue: { summary: 'videotron' } },
+        control: { type: 'select', options: [ 'videotron', 'business' ] }
+    }
+};
+
 addParameters({
 
     options: {
@@ -65,18 +78,6 @@ addParameters({
         matchers: {
             color: /(background|color)$/i,
             date: /Date$/,
-        },
-    },
-    argTypes: {
-        iframeUrl           : { table: { disable: true } },
-        props               : { table: { disable: true } },
-        ngClasses           : { table: { disable: true } },
-        computetNgClasses   : { table: { disable: true } },
-        ngOnInit            : { table: { disable: true } },
-        ngOnChanges         : { table: { disable: true } },
-        _theme: {
-            table:   { defaultValue: { summary: 'videotron' } },
-            control: { type: 'select', options: [ 'videotron', 'business' ] }
         },
     },
 
