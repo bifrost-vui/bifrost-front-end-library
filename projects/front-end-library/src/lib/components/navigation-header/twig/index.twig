@@ -58,17 +58,17 @@
 
         {# Btn account dropdown #}
         {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
+          {% include '@bf-components/button-icon/twig/index.twig' with {
+            href: hrefConnexion|default('#'),
+            icon: 'my-account',
+            ariaLabel: labelConnexion|default('Log in'),
+          } %}
+
           {% if isConnected is same as (true) %}
             {% include '@bf-components/button-icon/twig/index.twig' with {
               href: hrefLogOut|default('#'),
               icon: 'logout',
               ariaLabel: labelLogOut|default('Log out'),
-            } %}
-          {% else %}
-            {% include '@bf-components/button-icon/twig/index.twig' with {
-              href: hrefConnexion|default('#'),
-              icon: 'my-account',
-              ariaLabel: labelConnexion|default('Log in'),
             } %}
           {% endif %}
         {% endif %}

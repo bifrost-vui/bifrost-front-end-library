@@ -29,12 +29,18 @@ export class HeaderComponent implements OnInit {
     @Input() navItems: any[];
     /** Maximum 5 first element of the list will be display  */
     @Input() rigthIconLinks: any[];
+    /** In Mobile only, display the myAccount buttonIcon */
     @Input() hasAccountBtn: boolean;
+    /** In Mobile only, display the LogOut buttonIcon */
     @Input() isConnected: boolean;
 
+    /** Property of topBar in Desktop or the logOut buttonIcon in Mobile */
     @Input() hrefLogOut: string;
+    /** Property of topBar in Desktop or the logOut buttonIcon in Mobile */
     @Input() labelLogOut: string;
+    /** Property of topBar in Desktop or the myAccount buttonIcon in Mobile */
     @Input() hrefConnexion: string;
+    /** Property of topBar in Desktop or the myAccount buttonIcon in Mobile */
     @Input() labelConnexion: string;
 
     /** String displayed before `accountLink` in the Top Bar, when connected. */
