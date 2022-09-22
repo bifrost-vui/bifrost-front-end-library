@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
 
     /** String displayed before `accountName` in the Top Bar, when connected. */
     @Input() accountHello: string;
-    /** Name of the user, displayed in the Top Bar when connected. */
+    /** **Deprecated** Name of the user, displayed in the Top Bar when connected. */
     @Input() accountName: string;
 
     // @Input() hasMiniCartBtn: boolean;
