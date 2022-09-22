@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from '@angular/core';
-
+import { ILink } from '../../../components/link/angular/api.model';
 
 interface ILogo {
     href: string;
@@ -37,10 +37,12 @@ export class HeaderComponent implements OnInit {
     @Input() hrefConnexion: string;
     @Input() labelConnexion: string;
 
-    /** String displayed before `accountName` in the Top Bar, when connected. */
+    /** String displayed before `accountLink` in the Top Bar, when connected. */
     @Input() accountHello: string;
-    /** **Deprecated** Name of the user, displayed in the Top Bar when connected. */
+    /** **Deprecated** use accountLink instead. Name of the user, displayed in the Top Bar when connected. */
     @Input() accountName: string;
+    /** Link and Name of the user, displayed in the Top Bar when connected. */
+    @Input() accountLink: ILink;
 
     // @Input() hasMiniCartBtn: boolean;
     @Input() hasNoSearchBtn: boolean;
