@@ -34,7 +34,6 @@ export class SelectionTileComponent implements OnInit {
     @Input() extraAttribute: string
     /** Class override */
     @Input() class: string;
-    @Input() reversed: boolean;
 
     ngOnInit() {
         console.log('SelectionTile', this);

@@ -17,6 +17,12 @@ import { PriceComponent }                       from '../angular/price.component
             control: { type: 'select' },
             table: { defaultValue: { summary: 'en' } },
         },
+        dollar: {
+            table: { defaultValue: { summary: '0' } }
+        },
+        cent: {
+            table: { defaultValue: { summary: '0' } }
+        },
         size: {
             control: { type: 'select' },
             table: { defaultValue: { summary: 'small' } },
@@ -105,6 +111,7 @@ export const commonProps = {
     },
     message         : 'This is a message.',
     class           : 'p-3',
+    reversed: undefined,
 }
 
 <Canvas withSource='none'>
@@ -150,6 +157,7 @@ export const DrupalNull = (args) => ({
         name='Drupal - Null validator'
         height='800px'
         args={{
+            reversed: undefined,
         }}
     >
         {DrupalNull.bind({})}
