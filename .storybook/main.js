@@ -16,7 +16,7 @@ module.exports = {
           },
         },
     ],
-  core: {
-    builder: 'webpack5',
-  },
+    core: {
+        builder: 'webpack5',
+    },
 };
