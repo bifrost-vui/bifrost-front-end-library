@@ -34,6 +34,35 @@ $(function () {
     // -------------------------------------------------------------
     // Definition of each carousel
     // -------------------------------------------------------------
+
+    bfSlick.assignCarousel('.js-bf-carousel-demo', {
+        arrows: true,
+        infinite: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: true,
+        mobileFirst: true,
+        responsive: [
+            {
+                breakpoint: (bfTheme.breakpoints.md-1),
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: bfTheme.breakpoints.lg,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3
+                }
+            },
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+        ]
+    });
+
     bfSlick.assignCarousel('.js-slick-carousel--overflow-visible', {
         arrows: false,
         infinite: false,
