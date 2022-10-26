@@ -1,9 +1,9 @@
 import { cleanString } from './string-format';
 
 export const breakpoints = {
-  sm: Number(cleanString(getComputedStyle(document.body).getPropertyValue('--breakpoint-sm'), 'px')),
-  md: Number(cleanString(getComputedStyle(document.body).getPropertyValue('--breakpoint-md'), 'px')),
-  lg: Number(cleanString(getComputedStyle(document.body).getPropertyValue('--breakpoint-lg'), 'px'))
+  sm: document.body ? Number(cleanString(getComputedStyle(document.body).getPropertyValue('--breakpoint-sm'), 'px')) : "0px",
+  md: document.body ? Number(cleanString(getComputedStyle(document.body).getPropertyValue('--breakpoint-md'), 'px')) : "0px",
+  lg: document.body ? Number(cleanString(getComputedStyle(document.body).getPropertyValue('--breakpoint-lg'), 'px')) : "0px"
 };
 
 export function isMobileUp() {
