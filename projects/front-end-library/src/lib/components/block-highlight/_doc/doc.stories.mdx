@@ -2,6 +2,7 @@ import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { BlockHighlightComponent }              from '../angular/block-highlight.component';
 import TwigTemplate                             from './template.drupal.twig';
+import TwigTemplateExample                      from './template-usage-example.drupal.twig';
 
 <Meta
     title='Components/Block Highlight'
@@ -66,6 +67,11 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+export const DrupalUsageExample = (args) => ({
+template: TwigTemplateExample(args),
+props: args,
+});
+
 export const commonProps = {
     image               : {
         src : window.location.origin + '/images/placeholder/800x600.png',
@@ -102,10 +108,10 @@ export const commonProps = {
         parameters={{ options: { showPanel: false } }}
         args={{
             ...commonProps,
-            image: null,
+            image: undefined,
             reversed: undefined,
         }}
     >
-        {Drupal.bind({})}
+        {DrupalUsageExample.bind({})}
     </Story>
 </Canvas>
