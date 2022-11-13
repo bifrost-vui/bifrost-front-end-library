@@ -11,7 +11,6 @@ import docJson from '../documentation.json';
 import '../public/js/core.js';
 import '../public/js/vendors~bifrost-components.js';
 import '../public/js/bifrost-components.js';
-import '../public/js/bifrost-demo.js';
 
 //---------------------------------------------------------------
 // Twig.js
