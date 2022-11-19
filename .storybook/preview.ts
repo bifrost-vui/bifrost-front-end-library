@@ -1,5 +1,4 @@
-import { addParameters, addDecorator } from '@storybook/angular';
-import { prepareForInline } from '@storybook/addon-docs/angular';
+import { addParameters } from '@storybook/angular';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 
 // @ts-ignore
@@ -7,6 +6,20 @@ import { setCompodocJson } from '@storybook/addon-docs/angular';
 import docJson from '../documentation.json';
 
 setCompodocJson(docJson);
+
+export const argTypes = {
+    iframeUrl: { table: { disable: true } },
+    elementPath: { table: { disable: true } },
+    props: { table: { disable: true } },
+    ngClasses: { table: { disable: true } },
+    computetNgClasses: { table: { disable: true } },
+    ngOnInit: { table: { disable: true } },
+    ngOnChanges: { table: { disable: true } },
+    _theme: {
+        table: { defaultValue: { summary: 'videotron' } },
+        control: { type: 'select', options: [ 'videotron', 'business' ] }
+    }
+};
 
 addParameters({
 
@@ -18,8 +31,7 @@ addParameters({
     },
 
     docs: {
-        inlineStories: true,
-        prepareForInline,
+        inlineStories: false,
         iframeHeight: 600,
     },
 
@@ -41,20 +53,6 @@ addParameters({
         matchers: {
             color: /(background|color)$/i,
             date: /Date$/,
-        },
-    },
-
-    argTypes: {
-        elementPath         : { table: { disable: true } },
-        iframeUrl           : { table: { disable: true } },
-        props               : { table: { disable: true } },
-        ngClasses           : { table: { disable: true } },
-        computetNgClasses   : { table: { disable: true } },
-        ngOnInit            : { table: { disable: true } },
-        ngOnChanges         : { table: { disable: true } },
-        _theme: {
-            table:   { defaultValue: { summary: 'videotron' } },
-            control: { type: 'select', options: [ 'videotron', 'business' ] }
         },
     },
 

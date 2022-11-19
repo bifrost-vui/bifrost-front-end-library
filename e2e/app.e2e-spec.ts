@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/** eslint-disable import/no-extraneous-dependencies */
 import { AppPage } from './app.po';
 import 'jasmine';
 
