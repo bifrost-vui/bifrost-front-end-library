@@ -32,5 +32,4 @@ export interface ISelectionTile {
     footer: IFooter;
     extraAttribute: string;
     class: string;
-    reversed: boolean;
 }
