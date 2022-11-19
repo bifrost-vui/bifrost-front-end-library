@@ -9,6 +9,7 @@ setCompodocJson(docJson);
 
 export const argTypes = {
     iframeUrl: { table: { disable: true } },
+    elementPath: { table: { disable: true } },
     props: { table: { disable: true } },
     ngClasses: { table: { disable: true } },
     computetNgClasses: { table: { disable: true } },
