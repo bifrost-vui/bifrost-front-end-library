@@ -17,6 +17,7 @@ const {
     lowerCaseFirstLetter
 } = require('../utils');
 
+const projectPath = 'projects/front-end-library/src/lib';
 
 function requestInfo() {
 
@@ -56,7 +57,7 @@ function requestInfo() {
                 } else if (_value === 'component' || _value === 'pipe') {
                     return textError( 'Names `component` and `pipe` are not allowed.' );
 
-                } else if (fs.existsSync('projects/front-end-library/src/lib/components/' + _value)) {
+                } else if (fs.existsSync(projectPath + '/components/' + _value)) {
                     return textError( 'Component', chalk.bold(_value), 'already exist. 😓 \n Maybe you want to edit component here: "projects/front-end-library/src/lib/components/' + _value + '"' );
 
                 } else {
@@ -143,8 +144,8 @@ function appendCSS ({ name, NameReadable, type, typePlural, finalPath }) {
 
     if (type !== 'pipe') {
         // Import component style into index.scss.
-        const strinImportStyle = `\r@import '../${typePlural}/${name}/scss/index';`;
-        shell.exec( 'echo "' + strinImportStyle + '" >> projects/front-end-library/src/lib/scss/index.scss' );
+        const stringImportStyle = `\r@import '../${typePlural}/${name}/scss/index';`;
+        shell.exec( 'echo "' + stringImportStyle + '" >> projects/front-end-library/src/lib/scss/index.scss' );
     }
 
     return { name, NameReadable, type, typePlural, finalPath };
