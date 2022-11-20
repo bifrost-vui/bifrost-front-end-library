@@ -61,7 +61,7 @@ export class CardComponent implements OnInit {
     */
     @Input() description_html: HTMLElement;
     /** Expected format:
-     <pre style='font-size: .75rem; padding: 0 1rem; marigin:0; background-color: #f2f2f0'>
+     <pre style='font-size: .75rem; padding: 0 1rem; margin:0; background-color: #f2f2f0'>
         {
             label: "Learn more",
             href: "www.videotron.com",
