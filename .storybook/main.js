@@ -1,5 +1,6 @@
 module.exports = {
     stories: ['../projects/front-end-library/**/*.stories.@(ts|mdx)'],
+    staticDirs: ['../public'],
     logLevel: 'debug',
     addons: [
         '@storybook/addon-essentials',
@@ -16,7 +17,7 @@ module.exports = {
           },
         },
     ],
-  core: {
-    builder: 'webpack5',
-  },
+    core: {
+        builder: 'webpack5',
+    },
 };

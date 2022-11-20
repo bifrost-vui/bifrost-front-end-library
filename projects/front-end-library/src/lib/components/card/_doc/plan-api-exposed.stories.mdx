@@ -1,7 +1,6 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import { contentLists, contentListsNoTitle } from './data';
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate from './template.drupal.twig';
 import { CardComponent } from '../angular/card.component';
 
 
@@ -9,14 +8,13 @@ import { CardComponent } from '../angular/card.component';
     title='Components/Card/API exposed'
     component={CardComponent}
     decorators={[
-        moduleMetadata({ declarations: [CardComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [CardComponent]})
     ]}
 />
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: {
-        elementPath: 'components/card/_doc/template.drupal',
         ...args,
     }
 });

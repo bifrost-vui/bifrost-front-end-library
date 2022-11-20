@@ -1,7 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { withDesign }                           from 'storybook-addon-designs'
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { SectionTilesPostComponent }            from '../angular/section-tiles-post.component';
 import { commonProps as tilePostProps }         from '../../../components/tile-post/_doc/doc.stories.mdx';
 
@@ -10,7 +10,7 @@ import { commonProps as tilePostProps }         from '../../../components/tile-p
     title='Sections/Tiles Post'
     component={SectionTilesPostComponent}
     decorators={[
-        moduleMetadata({ declarations: [SectionTilesPostComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [SectionTilesPostComponent]}),
         withDesign
     ]}
     parameters={{
@@ -81,7 +81,7 @@ import { commonProps as tilePostProps }         from '../../../components/tile-p
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -117,7 +117,6 @@ export const commonProps = {
         name='Drupal'
         height='600px'
         args={{
-            elementPath: 'sections/tiles-post/_doc/template.drupal',
             ...commonProps
         }}
     >
@@ -130,7 +129,6 @@ export const commonProps = {
         name='Drupal - With tiles isFeatured'
         height='600px'
         args={{
-            elementPath: 'sections/tiles-post/_doc/template.drupal',
             ...commonProps,
             tiles: [
                 {
@@ -160,7 +158,6 @@ export const commonProps = {
         name='Drupal - With tile size large'
         height='600px'
         args={{
-            elementPath: 'sections/tiles-post/_doc/template.drupal',
             ...commonProps,
             tiles: [
                 {
@@ -191,7 +188,6 @@ export const commonProps = {
         name='Drupal - With 2 tiles'
         height='600px'
         args={{
-            elementPath: 'sections/tiles-post/_doc/template.drupal',
             ...commonProps,
             tiles: [
                 {
@@ -216,7 +212,6 @@ export const commonProps = {
         parameters={{ options: { showPanel: false } }}
         height='600px'
         args={{
-            elementPath: 'sections/tiles-post/_doc/template.drupal',
             ...commonProps,
             tiles: [
                 {

@@ -2,7 +2,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import { withDesign } from 'storybook-addon-designs'
 import { linkFields, links } from './data';
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate from './template.drupal.twig';
 import { FooterComponent } from '../angular/footer.component';
 
 
@@ -10,7 +10,7 @@ import { FooterComponent } from '../angular/footer.component';
     title='Components/Navigation Footer'
     component={FooterComponent}
     decorators={[
-        moduleMetadata({ declarations: [FooterComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [FooterComponent]}),
         withDesign
     ]}
     parameters={{
@@ -109,7 +109,7 @@ import { FooterComponent } from '../angular/footer.component';
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -117,7 +117,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath: 'components/navigation-footer/_doc/template.drupal',
             logo: {
                 name: 'business',
                 href: '/',
@@ -137,7 +136,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - Reduced'
         args={{
-            elementPath: 'components/navigation-footer/_doc/template.drupal',
             logo: {
                 name: 'business',
                 href: '/',

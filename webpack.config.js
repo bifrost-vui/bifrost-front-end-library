@@ -7,9 +7,9 @@ const devMode               = process.env.NODE_ENV !== 'production';
 
 module.exports = () => {
     return [{
+        devtool: "cheap-source-map",
         entry: {
             'bifrost-components': './projects/front-end-library/src/lib/js/bifrost-components.js',
-            'bifrost-demo'      : './projects/front-end-library/src/lib/js/demo/bifrost/carousel.js',
             core                : './projects/front-end-library/src/lib/js/index.js'
         },
         output: {
@@ -44,6 +44,16 @@ module.exports = () => {
         ],
         module: {
             rules: [
+                /** {
+                    test: /\.twig$/,
+                    loader: 'twig-loader-x',
+                    options: {
+                        namespaces: {
+                            '@bf-components': path.resolve(__dirname, '/', 'projects/front-end-library/src/lib/components'),
+                            '@bf-utils'     : path.resolve(__dirname, '/', 'projects/front-end-library/src/lib/utils')
+                        }
+                    }
+                },*/
                 {
                     test: /\.js$/,
                     loader:'babel-loader'
@@ -82,6 +92,9 @@ module.exports = () => {
                     ],
                 },
             ]
+        },
+        node: {
+            global: 'warn'
         }
     }]
 }

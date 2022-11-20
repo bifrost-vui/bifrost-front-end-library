@@ -1,7 +1,9 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
+import TwigCSSTemplate                          from './template-css-only.drupal.twig';
+import TwigExampleTemplate                      from './template-examples.drupal.twig';
 import { LinkComponent }                        from '../angular/link.component';
 
 
@@ -9,7 +11,7 @@ import { LinkComponent }                        from '../angular/link.component'
     title='Components/Link'
     component={LinkComponent}
     decorators={[
-        moduleMetadata({ declarations: [LinkComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [LinkComponent]})
     ]}
     argTypes={{
         hierarchy: {
@@ -67,17 +69,15 @@ import { LinkComponent }                        from '../angular/link.component'
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
-
 
 <Canvas withSource='none'>
     <Story
         name='Drupal'
         height='600px'
         args={{
-            elementPath : 'components/link/_doc/template.drupal',
             class       : 'mb-3',
             href        : 'https://example.com',
             reversed: undefined,
@@ -87,28 +87,40 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
+## Drupal Examples
+
+export const DrupalExample = (args) => ({
+    template: TwigExampleTemplate(args),
+    props: args,
+});
+
 <Canvas withSource='none'>
     <Story
         name='Drupal - Examples'
         height='600px'
         parameters={{ options: { showPanel: false } }}
         args={{
-            elementPath : 'components/link/_doc/template-examples.drupal'
         }}
     >
-        {Drupal.bind({})}
+        {DrupalExample.bind({})}
     </Story>
 </Canvas>
+
+## Drupal CSS only
+
+export const DrupalCSS = (args) => ({
+    template: TwigCSSTemplate(args),
+    props: args,
+});
 
 <Canvas withSource='none'>
     <Story
         name='Drupal - CSS Only'
         parameters={{ options: { showPanel: false } }}
         args={{
-            elementPath : 'components/link/_doc/template-css-only.drupal',
             reversed: undefined,
         }}
     >
-        {Drupal.bind({})}
+        {DrupalCSS.bind({})}
     </Story>
 </Canvas>

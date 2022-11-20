@@ -1,14 +1,14 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import { withDesign } from 'storybook-addon-designs'
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate from './template.drupal.twig';
 import { InputRadioComponent } from '../angular/input-radio.component';
 
 <Meta
     title='Components/Input Radio'
     component={InputRadioComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputRadioComponent, TwigContainerComponent] }),
+        moduleMetadata({ declarations: [InputRadioComponent]}),
         withDesign
     ]}
     parameters={{
@@ -202,7 +202,7 @@ export const commonProps = {
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -210,7 +210,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps
         }}
     >
@@ -222,7 +221,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - With errorMessage'
         args={{
-            elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
             options: [
                 {
@@ -253,7 +251,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - With isRequired'
         args={{
-            elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
             isRequired: true,
             options: [
@@ -284,7 +281,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - With options isDisabled'
         args={{
-            elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
             options: [
                 {
@@ -317,7 +313,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - With options isInvalid'
         args={{
-            elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
             options: [
                 {
@@ -350,7 +345,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - With areOptionTiles'
         args={{
-            elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
             areOptionTiles: true,
             options: [
@@ -400,7 +394,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - With areOptionTiles areOptionTilesInline'
         args={{
-            elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
             areOptionTiles: true,
             areOptionTilesInline: true,
@@ -451,7 +444,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - With areOptionTiles areOptionTilesInline areOptionTilesLarge'
         args={{
-            elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
             areOptionTiles: true,
             areOptionTilesInline: true,
@@ -503,7 +495,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - With areOptionTiles footer'
         args={{
-            elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
             areOptionTiles: true,
             areOptionTilesInline: false,
@@ -556,7 +547,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - Usage Example: color selector'
         args={{
-            elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
             areOptionTiles: true,
             areOptionTilesInline: true,

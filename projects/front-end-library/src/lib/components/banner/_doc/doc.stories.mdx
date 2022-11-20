@@ -1,22 +1,22 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { BannerComponent }                      from '../angular/banner.component';
-
+import TwigTemplate from './template.drupal.twig';
 
 <Meta
     title='Components/Banner'
     component={BannerComponent}
     decorators={[
-        moduleMetadata({ declarations: [BannerComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [BannerComponent]})
     ]}
     argTypes={{
         iconName    : {
             defaultValue: 'credit-return',
             control: {
                 type: 'select',
-                options: ['', ...illustrationIcons.map(a => a.list).flat().sort()]
+                options: ['', ...illustrationIcons.map(a => a.list).flat().sort()],
+                value: 'mobile-multiline',
             }
         },
         isClickable : {
@@ -76,7 +76,7 @@ import { BannerComponent }                      from '../angular/banner.componen
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -97,7 +97,6 @@ export const commonProps= {
         name='Drupal'
         height='400px'
         args={{
-            elementPath : 'components/banner/_doc/template.drupal',
             ... commonProps,
             reversed: undefined,
         }}

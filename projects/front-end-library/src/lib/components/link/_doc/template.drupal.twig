@@ -1,15 +1,8 @@
-{% set isUnderline  = isUnderline|json_parse %}
-{% set isDisabled   = isDisabled|json_parse %}
-{% set reversed     = reversed|json_parse %}
-
 <div class='template-container w-100vw h-100vh'>
     {% for index in [1,2] %}
-        
         <div class='d-flex justify-content-center align-items-start gap-5 p-5 {{ reversed|default(index == 2) ? 'reversed bf-color-bg-ground' }}'>
-            
             <div class='d-flex flex-column align-items-start'>
                 <p class='small flex-grow-1'>Native</p>
-                
                 {% include '@bf-components/link/twig/index.twig' with {
                     label       : label|default('Link native'),
                 } %}
@@ -41,11 +34,10 @@
                     label       : label|default(''),
                     iconName    : iconName|default('external-link')
                 } %}
-
             </div>
 
             <div class='d-flex flex-column align-items-start'>
-            
+
                 <p class='small flex-grow-1'>Primary</p>
 
                 {% include '@bf-components/link/twig/index.twig' with {
@@ -85,11 +77,8 @@
                     hierarchy   : hierarchy|default('primary'),
                     iconName    : iconName|default('external-link')
                 } %}
-                
             </div>
-
         </div>
-        
     {% endfor %}
 </div>
 

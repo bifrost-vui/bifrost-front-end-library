@@ -1,6 +1,8 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
+import TwigAllTemplate                          from './template-all.drupal.twig';
+import TwigNullTemplate                         from './template-null.drupal.twig';
 import { PriceComponent }                       from '../angular/price.component';
 
 
@@ -8,7 +10,7 @@ import { PriceComponent }                       from '../angular/price.component
     title='Components/Price'
     component={PriceComponent}
     decorators={[
-        moduleMetadata({ declarations: [PriceComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [PriceComponent]}),
     ]}
     argTypes={{
         language: {
@@ -84,7 +86,7 @@ import { PriceComponent }                       from '../angular/price.component
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -118,7 +120,6 @@ export const commonProps = {
         name='Drupal'
         height='200px'
         args={{
-            elementPath     : 'components/price/_doc/template.drupal',
             ...commonProps
         }}
     >
@@ -126,29 +127,40 @@ export const commonProps = {
     </Story>
 </Canvas>
 
+## Drupal All variants
+
+export const DrupalAll = (args) => ({
+    template: TwigAllTemplate(args),
+    props: args,
+});
 
 <Canvas withSource='none'>
     <Story
         name='Drupal - All Prices'
         height='800px'
         args={{
-            elementPath     : 'components/price/_doc/template-all.drupal',
             ...commonProps
         }}
     >
-        {Drupal.bind({})}
+        {DrupalAll.bind({})}
     </Story>
 </Canvas>
+
+## Drupal Null validation
+
+export const DrupalNull = (args) => ({
+    template: TwigNullTemplate(args),
+    props: args,
+});
 
 <Canvas withSource='none'>
     <Story
         name='Drupal - Null validator'
         height='800px'
         args={{
-            elementPath     : 'components/price/_doc/template-null.drupal',
             reversed: undefined,
         }}
     >
-        {Drupal.bind({})}
+        {DrupalNull.bind({})}
     </Story>
 </Canvas>

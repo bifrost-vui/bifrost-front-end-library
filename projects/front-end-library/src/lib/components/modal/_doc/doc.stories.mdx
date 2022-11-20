@@ -1,14 +1,14 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import { withDesign } from 'storybook-addon-designs'
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate from './template.drupal.twig';
 import { ModalComponent } from '../angular/modal.component';
 
 <Meta
     title='UI-Kit/Modal'
     component={ModalComponent}
     decorators={[
-        moduleMetadata({ declarations: [ModalComponent, TwigContainerComponent] }),
+        moduleMetadata({ declarations: [ModalComponent]}),
         withDesign
     ]}
     parameters={{
@@ -54,7 +54,7 @@ This component has been migrated from UI-Kit
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -66,7 +66,6 @@ export const modalFooterProps =`<div class='d-flex'><a href='https://www.example
     <Story
         name='Drupal'
         args={{
-            elementPath: 'components/modal/_doc/template.drupal',
             modalTitle: 'Title Lorem ipsum dolor sit amet',
             modalSubtitle: 'Subtitle Lorem ipsum dolor sit amet, consectetur adipiscing elit',
             modal_body_subcontainer: modalBodyProps,
@@ -81,7 +80,6 @@ export const modalFooterProps =`<div class='d-flex'><a href='https://www.example
     <Story
         name='Drupal - With scrollable content'
         args={{
-            elementPath: 'components/modal/_doc/template.drupal',
             modalTitle: 'Title Lorem ipsum dolor sit amet',
             modalSubtitle: 'Subtitle Lorem ipsum dolor sit amet, consectetur adipiscing elit',
             modal_body_scroll_container: modalBodyProps,

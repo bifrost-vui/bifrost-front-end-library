@@ -1,7 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { contentListsData }                     from './data';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { BlockSelectionComponent }              from '../angular/block-selection.component';
 
 
@@ -9,7 +9,7 @@ import { BlockSelectionComponent }              from '../angular/block-selection
     title='Components/Block Selection'
     component={BlockSelectionComponent}
     decorators={[
-        moduleMetadata({ declarations: [BlockSelectionComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [BlockSelectionComponent]}),
     ]}
     argTypes={{}}
 />
@@ -76,12 +76,11 @@ import { BlockSelectionComponent }              from '../angular/block-selection
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
+    template: TwigTemplate(args),
     props       : args,
 });
 
 export const commonProps = {
-    elementPath                     : 'components/block-selection/_doc/template.drupal',
     title                           : 'My selection',
     titleTag                        : 'p',
     isCollapsableOnMobile           : true,

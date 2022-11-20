@@ -1,7 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { ButtonComponent }                      from '../angular/button.component';
 
 
@@ -9,25 +9,22 @@ import { ButtonComponent }                      from '../angular/button.componen
     title='Components/Button'
     component={ButtonComponent}
     decorators={[
-        moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [ButtonComponent]})
     ]}
     argTypes={{
         hierarchy: {
-            defaultValue: '',
             control: {
                 type: 'select',
                 options: ['', 'primary', 'primary-alt', 'secondary', 'tertiary' ]
             }
         },
         iconName: {
-            defaultValue: '',
             control: {
                 type: 'select',
                 options: ['', 'placeholder', ...interfaceIcons.map(a => a.list).flat().sort()]
             }
         },
         iconPosition: {
-            defaultValue: '',
             control: {
                 type: 'select',
                 options: ['', 'left', 'right']
@@ -67,7 +64,7 @@ import { ButtonComponent }                      from '../angular/button.componen
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -76,7 +73,6 @@ export const Drupal = (args) => ({
         name='Drupal'
         height='700px'
         args={{
-            elementPath     : 'components/button/_doc/template.drupal',
             class           : 'mb-3',
             dataDismiss     : 'dataDismiss',
             dataToggle      : 'dataToggle',
@@ -98,7 +94,6 @@ export const Drupal = (args) => ({
         height='700px'
         parameters={{ options: { showPanel: false } }}
         args={{
-            elementPath : 'components/button/_doc/css-only.drupal',
             class       : 'ml-4 mb-3',
         }}
     >

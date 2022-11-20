@@ -1,6 +1,7 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
+import TwigAllTemplate                          from './list.drupal.twig';
 import { TileComponent }                        from '../angular/tile.component';
 
 
@@ -8,7 +9,7 @@ import { TileComponent }                        from '../angular/tile.component'
     title='Components/Tile'
     component={TileComponent}
     decorators={[
-        moduleMetadata({ declarations: [TileComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [TileComponent]})
     ]}
     argTypes={{}}
 />
@@ -39,7 +40,7 @@ import { TileComponent }                        from '../angular/tile.component'
 ## Drupal
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -48,7 +49,6 @@ export const Drupal = (args) => ({
         name='Drupal'
         height='600px'
         args={{
-            elementPath     : 'components/tile/_doc/template.drupal',
             class           : '',
             content         : `<div class='d-flex flex-column'><img src='/logo/google.svg' /></div>`,
             reversed: undefined,
@@ -58,6 +58,12 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
+## Drupal all example
+
+export const DrupalAll = (args) => ({
+    template: TwigAllTemplate(args),
+    props: args,
+});
 
 <Canvas withSource='none'>
     <Story
@@ -65,10 +71,9 @@ export const Drupal = (args) => ({
         height='600px'
         parameters={{ options: { showPanel: false } }}
         args={{
-            elementPath     : 'components/tile/_doc/list.drupal',
             reversed: undefined,
         }}
     >
-        {Drupal.bind({})}
+        {DrupalAll.bind({})}
     </Story>
 </Canvas>

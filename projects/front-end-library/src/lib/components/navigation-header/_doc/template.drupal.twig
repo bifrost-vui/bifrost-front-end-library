@@ -236,26 +236,21 @@
   },
 ] %}
 
-{% set hasAccountBtn = hasAccountBtn|json_parse %}
-{% set logo = logo|json_parse %}
-{% set isConnected = isConnected|json_parse %}
-{% set accountLink = accountLink|json_parse %}
-
 {% include '@bf-components/navigation-header/twig/index.twig' with {
-  hasTopBar: hasTopBar|json_parse|default(true),
+  hasTopBar: hasTopBar|default(true),
   topBar: {
-    items: topBar_items|json_parse|default([]),
-    secondaryItems: topBar_secondaryItems|json_parse|default([]),
+    items: topBar_items|default([]),
+    secondaryItems: topBar_secondaryItems|default([]),
   },
-  rigthIconLinks: rigthIconLinks|json_parse|default([]),
+  rigthIconLinks: rigthIconLinks|default([]),
   logo: logo,
   search: {
     placeholder: placeholder|default('What are you looking for?')
   },
   navItems: navItems,
-  hasAccountBtn: hasAccountBtn|json_parse|default(false),
-  hasMiniCartBtn: hasMiniCartBtn|json_parse|default(false),
-  hasNoSearchBtn: hasNoSearchBtn|json_parse|default(false),
-  reversed: reversed|json_parse|default(false),
+  hasAccountBtn: hasAccountBtn|default(false),
+  hasMiniCartBtn: hasMiniCartBtn|default(false),
+  hasNoSearchBtn: hasNoSearchBtn|default(false),
+  reversed: reversed|default(false),
   langcode: langcode|default('EN')
 } %}

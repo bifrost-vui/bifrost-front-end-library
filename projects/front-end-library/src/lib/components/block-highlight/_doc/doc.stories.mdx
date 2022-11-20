@@ -1,14 +1,14 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { BlockHighlightComponent }              from '../angular/block-highlight.component';
-
+import TwigTemplate                             from './template.drupal.twig';
+import TwigTemplateExample                      from './template-usage-example.drupal.twig';
 
 <Meta
     title='Components/Block Highlight'
     component={BlockHighlightComponent}
     decorators={[
-        moduleMetadata({ declarations: [BlockHighlightComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [BlockHighlightComponent]}),
     ]}
     argTypes={{
         titleTag: {
@@ -63,12 +63,16 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
 
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
+export const DrupalUsageExample = (args) => ({
+template: TwigTemplateExample(args),
+props: args,
+});
+
 export const commonProps = {
-    elementPath         : 'components/block-highlight/_doc/template.drupal',
     image               : {
         src : window.location.origin + '/images/placeholder/800x600.png',
         // src: 'https://i.stack.imgur.com/y9DpT.jpg'
@@ -104,11 +108,10 @@ export const commonProps = {
         parameters={{ options: { showPanel: false } }}
         args={{
             ...commonProps,
-            elementPath : 'components/block-highlight/_doc/template-usage-example.drupal',
-            image: null,
+            image: undefined,
             reversed: undefined,
         }}
     >
-        {Drupal.bind({})}
+        {DrupalUsageExample.bind({})}
     </Story>
 </Canvas>

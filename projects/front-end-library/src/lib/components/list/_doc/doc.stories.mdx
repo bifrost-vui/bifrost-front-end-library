@@ -1,6 +1,6 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { ListComponent }                        from '../angular/list.component';
 
 
@@ -8,7 +8,7 @@ import { ListComponent }                        from '../angular/list.component'
     title='Components/List'
     component={ListComponent}
     decorators={[
-        moduleMetadata({ declarations: [ListComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [ListComponent]}),
     ]}
     argTypes={{}}
 />
@@ -52,7 +52,7 @@ import { ListComponent }                        from '../angular/list.component'
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
+    template: TwigTemplate(args),
     props       : args,
 });
 
@@ -61,7 +61,6 @@ export const Drupal = (args) => ({
         name='Drupal'
         height='300px'
         args={{
-            elementPath : 'components/list/_doc/template.drupal',
             title       : 'Title',
             titleTag    : 'h2',
             content     : [

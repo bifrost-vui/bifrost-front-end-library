@@ -1,6 +1,6 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                             from './template.drupal.twig';
 import { BreadcrumbComponent }                  from '../angular/breadcrumb.component';
 
 
@@ -8,7 +8,7 @@ import { BreadcrumbComponent }                  from '../angular/breadcrumb.comp
     title='Components/Breadcrumb'
     component={BreadcrumbComponent}
     decorators={[
-        moduleMetadata({ declarations: [BreadcrumbComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [BreadcrumbComponent]})
     ]}
 />
 
@@ -39,7 +39,7 @@ import { BreadcrumbComponent }                  from '../angular/breadcrumb.comp
 
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -49,7 +49,6 @@ export const Drupal = (args) => ({
         height='400px'
         parameters={{ options: { showPanel: false } }}
         args={{
-            elementPath     : 'components/breadcrumb/_doc/template.drupal',
         }}
     >
         {Drupal.bind({})}

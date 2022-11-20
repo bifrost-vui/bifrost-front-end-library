@@ -1,14 +1,14 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import { withDesign } from 'storybook-addon-designs'
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate from './template.drupal.twig';
 import { InputCheckboxOptionComponent } from '../angular/input-checkbox-option.component';
 
 <Meta
     title='Components/Input Checkbox/Input Checkbox Option'
     component={InputCheckboxOptionComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputCheckboxOptionComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [InputCheckboxOptionComponent]}),
         withDesign
     ]}
     parameters={{
@@ -45,7 +45,7 @@ import { InputCheckboxOptionComponent } from '../angular/input-checkbox-option.c
 # Input Checkbox Option
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -79,7 +79,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath: 'components/input-checkbox-option/_doc/template.drupal',
             id: '',
             name: 'name',
             label: 'Label',

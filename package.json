@@ -23,12 +23,11 @@
     }
   ],
   "scripts": {
-    "start-dev": "run-p twig:server webpack:watch storybook:prebuild storybook:start",
-    "twig:server": "nodemon api/server.js --watch projects/ --watch public/ -e twig",
+    "start-dev": "run-p webpack:watch storybook:prebuild storybook:start",
     "build": "node scripts/generate-svg-ts --no-prompt && ng build --configuration production && npm run webpack:build && cp -R projects/front-end-library/src/lib dist/front-end-library/source && cp -R public dist/front-end-library/assets && rm -rf dist/front-end-library/assets/logo",
     "publish": "npm run webpack:clear && npm run build && npm publish ./dist/front-end-library --access public",
-    "storybook:start": "node scripts/generate-svg-ts --no-prompt & start-storybook -p 9008 -s public",
-    "storybook:build": "node scripts/generate-svg-ts --no-prompt && npm run webpack:build && npm run storybook:prebuild && build-storybook -s public",
+    "storybook:start": "node scripts/generate-svg-ts --no-prompt & start-storybook -p 9008 public",
+    "storybook:build": "node scripts/generate-svg-ts --no-prompt && npm run webpack:build && npm run storybook:prebuild && build-storybook public",
     "storybook:prebuild": "npm run docs:json",
     "docs:json": "compodoc -p .storybook/tsconfig.json -e json -d .",
     "webpack:build": "webpack --mode=production --env production",
@@ -92,6 +91,7 @@
     "chromatic": "6.11.4",
     "css-loader": "6.7.2",
     "cssnano": "5.1.14",
+    "drupal-attribute": "^1.0.2",
     "ejs": "3.1.8",
     "express": "4.18.2",
     "extract-loader": "5.1.0",
@@ -119,6 +119,9 @@
     "terser-webpack-plugin": "5.3.6",
     "ts-node": "8.9.1",
     "tslib": "2.4.1",
+    "twig-drupal-filters": "^3.1.2",
+    "twig-loader": "^0.5.5",
+    "twig-loader-x": "^0.5.1",
     "typescript": "4.3.5",
     "webpack": "5.75.0",
     "webpack-cli": "4.10.0"

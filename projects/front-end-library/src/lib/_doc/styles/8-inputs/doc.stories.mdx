@@ -1,11 +1,11 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Canvas, Story, Meta } from '@storybook/addon-docs';
-import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate from './inputs.drupal.twig';
 
 <Meta
     title='Styles/Inputs'
     decorators={[
-        moduleMetadata({ declarations: [TwigContainerComponent] }),
+        moduleMetadata({ declarations: [] }),
     ]}
     parameters={{
         layout: 'padded',
@@ -21,7 +21,7 @@ import { TwigContainerComponent } from '../../../../utils/twig-container/twig-co
 This is an example of a working form with twig component, simulating value sent to back-end with Javascript
 
 export const Drupal = (args) => ({
-    component: TwigContainerComponent,
+    template: TwigTemplate(args),
     props: args,
 });
 
@@ -29,7 +29,6 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - Inputs'
         args={{
-            elementPath : '_doc/styles/8-inputs/inputs.drupal',
             isRequired: false,
             isDisabled: false,
             isInvalid: false,

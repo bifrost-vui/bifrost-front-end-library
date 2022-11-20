@@ -1,16 +1,15 @@
 import { moduleMetadata }                   from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }   from '@storybook/addon-docs';
 import { withDesign }                       from 'storybook-addon-designs';
-
 import { slides }                           from './data';
-import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
+import TwigTemplate                         from './template.drupal.twig';
 import { SlideshowComponent }               from '../angular/slideshow.component';
 
 <Meta
     title='Components/Slideshow'
     component={SlideshowComponent}
     decorators={[
-        moduleMetadata({ declarations: [SlideshowComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [SlideshowComponent]}),
         withDesign
     ]}
     parameters={{
@@ -43,7 +42,7 @@ import { SlideshowComponent }               from '../angular/slideshow.component
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
+    template: TwigTemplate(args),
     props       : args,
 });
 
@@ -52,7 +51,6 @@ export const Drupal = (args) => ({
         name='Drupal'
         height='500px'
         args={{
-            elementPath : 'components/slideshow/_doc/template.drupal',
             slides
         }}
     >
