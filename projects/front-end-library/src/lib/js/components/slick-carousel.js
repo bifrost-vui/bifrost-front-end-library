@@ -166,6 +166,7 @@ $(function () {
 
     // Image gallery version
     bfSlick.assignCarousel('.js-slick-carousel--img-gallery', {
+        accessibility: false,
         centerMode: true,
         dots: true,
         mobileFirst: true,

@@ -3,8 +3,7 @@ import { IconModule } from './lib/components/icon/angular/icon.module';
 
 @NgModule({
   declarations: [],
-  imports: [IconModule
-  ],
+  imports: [IconModule],
   exports: [IconModule],
 })
 export class LibModule { }
