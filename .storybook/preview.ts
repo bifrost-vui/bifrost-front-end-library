@@ -1,5 +1,7 @@
 import { addParameters } from '@storybook/angular';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
+import { themes } from '@storybook/theming/';
+import { brandBifrost } from './brandBifrost';
 
 // @ts-ignore
 // eslint-disable-next-line import/extensions, import/no-unresolved
@@ -28,6 +30,18 @@ addParameters({
             order: ['*', 'UI-Kit']
         },
         showPanel: true
+    },
+
+    darkMode: {
+        stylePreview: true,
+        light: {
+            ...themes.light,
+            ...brandBifrost.light
+        },
+        dark: {
+            ...themes.dark,
+            ...brandBifrost.dark
+        },
     },
 
     docs: {
