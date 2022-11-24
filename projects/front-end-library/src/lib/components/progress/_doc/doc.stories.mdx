@@ -25,7 +25,19 @@ import { ProgressComponent } from '../angular/progress.component';
                 options: ['', 'bf-color-bg-ground', 'bf-color-bg-underground', 'reversed bf-color-bg-ground', 'reversed bf-color-bg-underground', 'bf-color-bg-highlight']
             },
             description: 'Preview the component on selected background'
-        }
+        },
+        progressValue: {
+            table:   { defaultValue: { summary: '0' } },
+        },
+        progressPercentValue: {
+            table:   { defaultValue: { summary: '0' } },
+        },
+        progressMinValue: {
+            table:   { defaultValue: { summary: '0' } },
+        },
+        progressMaxValue: {
+            table:   { defaultValue: { summary: '100' } },
+        },
     }}
 />
 
@@ -66,6 +78,10 @@ export const Drupal = (args) => ({
         name='Drupal'
         args={{
             elementPath: 'components/progress/_doc/template.drupal',
+            progressMaxValue: undefined,
+            progressMinValue: undefined,
+            progressPercentValue: undefined,
+            progressValue: undefined,
         }}
     >
         {Drupal.bind({})}
