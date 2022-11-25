@@ -27,31 +27,34 @@
     <div class='bf-tile-key__visual' style='background-image: url({{ backgroundImage.src }})'></div>
   {% endif %}
   <div class='bf-tile-key__inner gap-2 p-4 p-sm-6'>
-    {% if icon is defined and icon is not empty %}
-      {% if icon is not iterable %}
-        {% set icon = { name: icon } %}
+    <div>
+      {% if icon is defined and icon is not empty %}
+        {% if icon is not iterable %}
+          {% set icon = { name: icon } %}
+        {% endif %}
+
+        {% set icon = icon|merge({ size: 'large' }) %}
+        {% include '@bf-components/icon/twig/index.twig' with icon only %}
       {% endif %}
 
-      {% set icon = icon|merge({ size: 'large' }) %}
-      {% include '@bf-components/icon/twig/index.twig' with icon only %}
-    {% endif %}
-
-    {% if title is defined and title %}
-      <{{ titleTag }} class='bf-text-interface-large m-0'>
-        {{ title }}
-      </{{ titleTag }}>
-    {% endif %}
-
-    {% if description is defined and description %}
-      <div class='bf-text m-0'>{{ description|raw }}</div>
-    {% endif %}
-
-    {% if linkLabel is defined and linkLabel %}
-      {% if isLink %}
-        <p class='bf-link bf-link--primary mb-0'>{{ linkLabel }}</p>
-      {% elseif href is defined and href %}
-        <a class='bf-link bf-link--primary' href='{{ href }}'>{{ linkLabel }}</a>
+      {% if title is defined and title %}
+        <{{ titleTag }} class='bf-text-interface-large m-0'>
+          {{ title }}
+        </{{ titleTag }}>
       {% endif %}
-    {% endif %}
+
+      {% if description is defined and description %}
+        <div class='bf-text m-0'>{{ description|raw }}</div>
+      {% endif %}
+    </div>
+    <div>
+      {% if linkLabel is defined and linkLabel %}
+        {% if isLink %}
+          <p class='bf-link bf-link--primary mb-0'>{{ linkLabel }}</p>
+        {% elseif href is defined and href %}
+          <a class='bf-link bf-link--primary' href='{{ href }}'>{{ linkLabel }}</a>
+        {% endif %}
+      {% endif %}
+    </div>
   </div>
 </{{ isLink ? 'a' : 'div' }}>
