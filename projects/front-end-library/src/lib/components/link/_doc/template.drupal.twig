@@ -2,13 +2,47 @@
 {% set isDisabled   = isDisabled|json_parse %}
 {% set reversed     = reversed|json_parse %}
 
-{% set backgroundClasses = [ '', 'bf-color-bg-ground reversed', 'bf-color-bg-highlight highlight', 'bf-color-bg-highlight highlight reversed' ] %}
+{% set variants = [
+  {
+    _name: 'Ground',
+    backgroundClass: 'bf-color-bg-ground'
+  },
+  {
+    _name: 'Underground',
+    backgroundClass: 'bf-color-bg-underground'
+  },
+  {
+    _name: 'Ground + Reversed',
+    backgroundClass: 'bf-color-bg-ground reversed',
+    reversed: true,
+  },
+  {
+    _name: 'Underground + Reversed',
+    backgroundClass: 'bf-color-bg-underground reversed',
+    reversed: true
+  },
+  {
+    _name: 'Highlight',
+    backgroundClass: 'bf-color-bg-highlight highlight',
+    highlight: true
+  },
+  {
+    _name: 'Highlight + Reversed',
+    backgroundClass: 'bf-color-bg-highlight reversed highlight',
+    reversed: true,
+    highlight: true
+  }
+] %}
 
 <div class='template-container'>
-    {% for backgroundClass in backgroundClasses %}
-
-        <div class='d-flex justify-content-center align-items-start gap-5 p-5 {{ backgroundClass|default(null) }}'>
-
+  {% for variant in variants %}
+    {% set reversed = reversed|default(variant.reversed) %}
+    {% set highlight = highlight|default(variant.highlight) %}
+    <div class='d-flex flex-column {{ variant.backgroundClass }}'>
+      <h1 class='h3 p-4'>
+        {{ variant._name }}
+      </h1>
+        <div class='d-flex justify-content-center align-items-start gap-5'>
             <div class='d-flex flex-column align-items-start'>
                 <p class='small'>Native</p>
 
@@ -91,8 +125,8 @@
             </div>
 
         </div>
-
-    {% endfor %}
+    </div>
+  {% endfor %}
 </div>
 
 <style>
