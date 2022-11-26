@@ -1,5 +1,10 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
 
+/**
+ * API is the same between **Angular** and **Drupal**.
+ *
+ */
+
 @Component({
     selector: "bf-button",
     templateUrl: './button.component.html',
@@ -8,31 +13,31 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class ButtonComponent implements OnInit {
     constructor() {}
 
-    @Input() label: string;
-    @Input() hierarchy: null | 'primary' | 'primary-alt' | 'secondary' | 'tertiary';
-    /** A button will become a link if `href` is defined as long as it is not Disabled or a submit button. */
-    @Input() href: string;
-    @Input() fullWidth: boolean;
-    @Input() class: string;
     @Input() id: string;
-    @Input() extraAttribute: string;
+    @Input() label          : string;
+    /**
+        A button will become a link if `href` is defined.
+    */
+    @Input() href           : string;
+    @Input() hierarchy: null | 'primary' | 'primary-alt' | 'secondary' | 'tertiary';
+    @Input() isDisabled     : boolean;
+    @Input() hasLoading     : boolean;
+    @Input() isLoading      : boolean;
+    @Input() fullWidth      : boolean;
 
-    @Input() isDisabled: boolean;
-    @Input() isLoading: boolean;
-    @Input() hasLoading: boolean;
+    @Input() iconName       : string;
+    /** This is not recommended to change the size of the icon. */
+    @Input() iconSize       : string;
+    @Input() iconPosition   : null | 'left' | 'right';
 
-    @Input() iconName: string;
-    @Input() iconPosition: null | 'left' | 'right';
-    /** Changing the size of the icon is not recommended. */
-    @Input() iconSize: string;
-
-    @Input() ariaLabel: string;
-    @Input() ariaControls: string;
-    @Input() ariaExpanded: string;
-
-    @Input() dataDismiss: string;
-    @Input() dataToggle: string;
-    @Input() dataTarget: string;
+    @Input() dataDismiss    : string;
+    @Input() dataToggle     : string;
+    @Input() dataTarget     : string;
+    @Input() ariaControls   : string;
+    @Input() ariaExpanded   : string;
+    @Input() ariaLabel      : string;
+    @Input() extraAttribute : string;
+    @Input() class          : string;
 
     @Input() isSubmit: boolean;
     @Input() formId: string;

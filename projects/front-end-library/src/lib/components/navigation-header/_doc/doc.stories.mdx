@@ -15,6 +15,9 @@ import { HeaderComponent } from '../angular/header.component';
         accountHello: {
             table: { defaultValue: { summary: 'Hello' }},
         },
+        accountName: {
+            table: { category: 'Deprecated Inputs' }
+        },
         langcode: {
             table: { defaultValue: { summary: 'EN' }},
             control: {
@@ -127,12 +130,30 @@ export const Drupal = (args) => ({
             topBar_items,
             topBar_secondaryItems,
             logo: {
-                name: 'business',
+                name: 'videotron',
                 href: '/',
             },
             rigthIconLinks,
         }}
-        height='500px'
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - business'
+        args={{
+            elementPath: 'components/navigation-header/_doc/template.drupal',
+            topBar_items,
+            topBar_secondaryItems,
+            logo: {
+                name: 'business',
+                href: '/',
+            },
+            reversed: 'true',
+            rigthIconLinks,
+        }}
     >
         {Drupal.bind({})}
     </Story>

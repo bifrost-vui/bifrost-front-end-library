@@ -2,11 +2,7 @@ const q             = require('q');
 const inquirer      = require('inquirer');
 const shell         = require('shelljs');
 const fs            = require('fs');
-const replace       = require('replace-in-file');
-const open          = require('open');
 const chalk         = require('chalk');
-const path          = require('path');
-const textError     = chalk.red;
 
 const interfaceIcons    = require('../../public/icons/list/interfaces');
 const illustrationIcons = require('../../public/icons/list/illustrations');

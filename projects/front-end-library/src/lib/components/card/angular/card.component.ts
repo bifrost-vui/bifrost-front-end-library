@@ -61,7 +61,7 @@ export class CardComponent implements OnInit {
     */
     @Input() description_html: HTMLElement;
     /** Expected format:
-     <pre style='font-size: .75rem; padding: 0 1rem; marigin:0; background-color: #f2f2f0'>
+     <pre style='font-size: .75rem; padding: 0 1rem; margin:0; background-color: #f2f2f0'>
         {
             label: "Learn more",
             href: "www.videotron.com",
@@ -97,7 +97,7 @@ export class CardComponent implements OnInit {
      This badge displays in the phone card content above the price and the promotion badges.
      Based on [Badge](/?path=/docs/components-badge--drupal) component API
      */
-    @Input() contentBadge: object;
+    @Input() contentBadges: IBadge[];
     /**
      Theses Badges display in the phone card content above the price.
      Array of Badges based on [Badge](/?path=/docs/components-badge--drupal) component API
