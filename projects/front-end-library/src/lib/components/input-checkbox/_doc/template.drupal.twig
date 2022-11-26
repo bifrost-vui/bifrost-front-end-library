@@ -1,44 +1,71 @@
-{% set isChecked = isChecked|json_parse %}
-{% set isDisabled = isDisabled|json_parse %}
-{% set isInvalid = isInvalid|json_parse %}
-{% set isRequired = isRequired|json_parse %}
+{% set options = options|json_parse %}
+{% set areOptionTiles = areOptionTiles|json_parse %}
+{% set areOptionTilesInline = areOptionTilesInline|json_parse %}
+{% set areOptionTilesLarge = areOptionTilesLarge|json_parse %}
 
-<div class='container-fluid mt-6 px-2 d-flex flex-row flex-wrap {{ _background }}'>
-  <div class='p-3'>
-    {% include '@bf-components/input-checkbox/twig/index.twig' with {
-      id: id|default(inputId) ~ 1
-    } %}
-  </div>
-  <div class='p-3'>
-    {% include '@bf-components/input-checkbox/twig/index.twig' with {
-      id: id|default(inputId) ~ 2,
-      isChecked: isChecked|default(true)
-    } %}
-  </div>
-  <div class='p-3'>
-    {% include '@bf-components/input-checkbox/twig/index.twig' with {
-      id: id|default(inputId) ~ 3,
-      isDisabled: isDisabled|default(true),
-      isChecked: isChecked|default(true)
-    } %}
-  </div>
-  <div class='p-3'>
-    {% include '@bf-components/input-checkbox/twig/index.twig' with {
-      id: id|default(inputId) ~ 4,
-      isDisabled: isDisabled|default(true)
-    } %}
-  </div>
-  <div class='p-3'>
-    {% include '@bf-components/input-checkbox/twig/index.twig' with {
-      id: id|default(inputId) ~ 5,
-      isInvalid: isInvalid|default(true)
-    } %}
-  </div>
-  <div class='p-3'>
-    {% include '@bf-components/input-checkbox/twig/index.twig' with {
-      id: id|default(inputId) ~ 6,
-      isChecked: isChecked|default(true),
-      isInvalid: isInvalid|default(true)
-    } %}
-  </div>
+{% set _variants = [
+  {
+    backgroundClass: '',
+    props: {}
+  },
+  {
+    backgroundClass: 'bf-color-bg-underground',
+    props: {}
+  },
+  {
+    backgroundClass: 'reversed bf-color-bg-ground',
+    props: {}
+  },
+  {
+    backgroundClass: 'reversed bf-color-bg-underground',
+    props: {}
+  },
+  {
+    backgroundClass: 'bf-color-bg-highlight',
+    props: {}
+  },
+  {
+    backgroundClass: 'bf-color-bg-highlight',
+    props: {}
+  }
+] %}
+
+<div class='d-flex flex-column' style='min-height: 100vh'>
+  {% for _variant in _variants %}
+    <div class='d-flex flex-column align-items-center {{ _variant.backgroundClass }}'>
+      {% set loopIndexSuffix = '--' ~ loop.index %}
+
+      {% set _variantProps = _variant.props|merge({
+        'name': name ~ loopIndexSuffix
+      }) %}
+
+      {% if options|length == 1 %}
+        {% set options = [
+          options[0]|merge({ id: options[0].id ~ loopIndexSuffix })
+        ] %}
+      {% elseif options|length == 2 %}
+        {% set options = [
+          options[0]|merge({ id: options[0].id ~ loopIndexSuffix }),
+          options[1]|merge({ id: options[1].id ~ loopIndexSuffix })
+        ] %}
+      {% elseif options|length == 3 %}
+        {% set options = [
+          options[0]|merge({ id: options[0].id ~ loopIndexSuffix }),
+          options[1]|merge({ id: options[1].id ~ loopIndexSuffix }),
+          options[2]|merge({ id: options[2].id ~ loopIndexSuffix })
+        ] %}
+      {% elseif options|length == 4 %}
+        {% set options = [
+          options[0]|merge({ id: options[0].id ~ loopIndexSuffix }),
+          options[1]|merge({ id: options[1].id ~ loopIndexSuffix }),
+          options[2]|merge({ id: options[2].id ~ loopIndexSuffix }),
+          options[3]|merge({ id: options[3].id ~ loopIndexSuffix })
+        ] %}
+      {% endif %}
+
+      {% include '@bf-components/input-checkbox/twig/index.twig' with _variantProps %}
+    </div>
+  {% endfor %}
 </div>
+
+{# TODO: Prove that it is (easily) possible to toggle invalid state asynchronously (by usage example?). #}

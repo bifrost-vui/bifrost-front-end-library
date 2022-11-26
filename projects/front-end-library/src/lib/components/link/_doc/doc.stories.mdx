@@ -5,6 +5,7 @@ import interfaceIcons                           from '../../../../../../../publi
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { LinkComponent }                        from '../angular/link.component';
 
+
 <Meta
     title='Components/Link'
     component={LinkComponent}
@@ -22,7 +23,7 @@ import { LinkComponent }                        from '../angular/link.component'
     argTypes={{
         hierarchy: {
             control: { type: 'select' },
-            table: { defaultValue: { summary: 'native' } }
+            table: { defaultValue: { summary: 'native' } },
         },
         iconName: {
             control: {
@@ -31,22 +32,25 @@ import { LinkComponent }                        from '../angular/link.component'
             }
         },
         iconPosition: {
-            table: { defaultValue: { summary: 'left' } }
+            table: { defaultValue: { summary: 'left' } },
         },
         isUnderline: {
-            table: { defaultValue: { summary: true } }
+            table: { defaultValue: { summary: true } },
         },
         isDisabled: {
-            table: { defaultValue: { summary: false } }
+            table: { defaultValue: { summary: false } },
         },
     }}
 />
 
+
 # Link
+
 
 ## Component API
 
 <ArgsTable of={LinkComponent} />
+
 
 ## Drupal implementation example
 
@@ -68,6 +72,7 @@ import { LinkComponent }                        from '../angular/link.component'
 <a href='/' class='bf-link disabled' aria-disabled='true' role='link'>Link disabled</a>
 ```
 
+
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -75,14 +80,29 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+
 <Canvas withSource='none'>
     <Story
         name='Drupal'
         height='600px'
         args={{
-            elementPath: 'components/link/_doc/template.drupal',
-            href: 'https://example.com',
-            class: 'mb-3'
+            elementPath : 'components/link/_doc/template.drupal',
+            class : 'mb-3',
+            href : 'https://example.com',
+            reversed : undefined,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Examples'
+        height='600px'
+        parameters={{ options: { showPanel: false } }}
+        args={{
+            elementPath : 'components/link/_doc/template-examples.drupal'
         }}
     >
         {Drupal.bind({})}
@@ -94,21 +114,9 @@ export const Drupal = (args) => ({
         name='Drupal - CSS Only'
         parameters={{ options: { showPanel: false } }}
         args={{
-            elementPath: 'components/link/_doc/template-css-only.drupal',
-            class: 'mb-3'
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
-
-<Canvas withSource='none'>
-    <Story
-        name='Drupal - Usage example'
-        height='600px'
-        parameters={{ options: { showPanel: false } }}
-        args={{
-            elementPath: 'components/link/_doc/template-usage-example.drupal'
+            elementPath : 'components/link/_doc/template-css-only.drupal',
+            class: 'mb-3',
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}

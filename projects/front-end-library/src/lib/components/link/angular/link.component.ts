@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'bf-link',
@@ -17,9 +17,11 @@ export class LinkComponent implements OnInit {
     @Input() isDisabled     : boolean;
     @Input() title          : string;
     @Input() ariaLabel      : string;
-    @Input() rel            : string;
-
     @Input() extraAttribute : string;
+    @Input() rel            : string;
+    @Input() dataDismiss    : string;
+    @Input() dataToggle     : string;
+    @Input() dataTarget     : string;
     @Input() class          : string;
     @Input() reversed       : boolean;
 

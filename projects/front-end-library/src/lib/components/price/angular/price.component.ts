@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
 import { IUpfront, IPromotion } from './api.model';
- 
+
 @Component({
     selector: 'bf-price',
     templateUrl: './price.component.html',
@@ -28,7 +28,7 @@ export class PriceComponent implements OnInit {
     /** **Deprecated** Use `promotion.savedLabel` instead. */
     @Input() savedLabel             : string;
     @Input() details                : HTMLElement;
-    @Input() message                : string;
+    @Input() message                : HTMLElement;
 
     @Input() size                   : 'small' | 'medium' | 'large';
     /** This will make width at 100% of the parent. This behavior is useful when you want `promotion.direction: horizontal`.  */

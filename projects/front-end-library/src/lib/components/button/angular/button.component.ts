@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
  * API is the same between **Angular** and **Drupal**.
  *
  */
- 
+
 @Component({
     selector: "bf-button",
     templateUrl: './button.component.html',
@@ -41,5 +41,5 @@ export class ButtonComponent implements OnInit {
     ngOnInit() {
         console.log('button', this);
     }
-    
+
 }
