@@ -1,0 +1,60 @@
+{% set isLink = href is defined and href and isClickable is defined and isClickable %}
+{% set titleTag = titleTag|default('p') %}
+
+<{{ isLink ? 'a' : 'div' }}
+  {% if isLink %}
+    href='{{ href }}'
+  {% endif %}
+  class='
+    bf-tile-key
+    {{ isLink ? 'bf-tile-key--is-link' }}
+    {% if backgroundColor is defined and backgroundColor == 'ground' %}
+      bf-color-bg-ground
+    {% elseif backgroundColor is defined and backgroundColor == 'highlight' %}
+      bf-color-bg-highlight bf-tile-key--highlight highlight
+    {% else %}
+      bf-color-bg-underground
+    {% endif %}
+    {% if backgroundImage is defined and backgroundImage.textColor is defined and backgroundImage.textColor %}
+      bf-tile-key--text-color-{{ backgroundImage.textColor }}
+      {{ backgroundImage.textColor == 'light' ? 'reversed' }}
+    {% endif %}
+    {{ reversed|default(false) ? 'reversed' }}
+    {{ class|default(null) }}
+    '
+>
+  {% if backgroundImage is defined and backgroundImage.src is defined and backgroundImage.src %}
+    <div class='bf-tile-key__visual' style='background-image: url({{ backgroundImage.src }})'></div>
+  {% endif %}
+  <div class='bf-tile-key__inner gap-2 p-4 p-sm-6'>
+    <div>
+      {% if icon is defined and icon is not empty %}
+        {% if icon is not iterable %}
+          {% set icon = { name: icon } %}
+        {% endif %}
+
+        {% set icon = icon|merge({ size: 'large' }) %}
+        {% include '@bf-components/icon/twig/index.twig' with icon only %}
+      {% endif %}
+
+      {% if title is defined and title %}
+        <{{ titleTag }} class='bf-text-interface-large m-0'>
+          {{ title }}
+        </{{ titleTag }}>
+      {% endif %}
+
+      {% if description is defined and description %}
+        <div class='bf-text m-0'>{{ description|raw }}</div>
+      {% endif %}
+    </div>
+    <div>
+      {% if linkLabel is defined and linkLabel %}
+        {% if isLink %}
+          <p class='bf-link bf-link--primary mb-0'>{{ linkLabel }}</p>
+        {% elseif href is defined and href %}
+          <a class='bf-link bf-link--primary' href='{{ href }}'>{{ linkLabel }}</a>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</{{ isLink ? 'a' : 'div' }}>
