@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IButton } from '../../../components/button/angular/api.model';
-import { ILink } from '../../../components/link/angular/api.model';
-import { IRowButton } from '../../../components/row-button/angular/api.model';
+import { IButton } from '../../button/angular/api.model';
+import { ILink } from '../../link/angular/api.model';
+import { IRowButton } from '../../row-button/angular/api.model';
 
 
 interface IImage {
