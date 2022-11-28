@@ -1,5 +1,6 @@
 import { moduleMetadata }                       from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import { withDesign }                           from 'storybook-addon-designs'
 import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { LinkComponent }                        from '../angular/link.component';
@@ -9,8 +10,16 @@ import { LinkComponent }                        from '../angular/link.component'
     title='Components/Link'
     component={LinkComponent}
     decorators={[
-        moduleMetadata({ declarations: [LinkComponent, TwigContainerComponent]})
+        moduleMetadata({ declarations: [LinkComponent, TwigContainerComponent]}),
+        withDesign
     ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=9196%3A0',
+            disable: false
+        }
+    }}
     argTypes={{
         hierarchy: {
             control: { type: 'select' },
@@ -78,8 +87,9 @@ export const Drupal = (args) => ({
         height='600px'
         args={{
             elementPath : 'components/link/_doc/template.drupal',
-            class       : 'mb-3',
-            href        : 'https://example.com'
+            class : 'mb-3',
+            href : 'https://example.com',
+            reversed : undefined,
         }}
     >
         {Drupal.bind({})}
@@ -92,7 +102,9 @@ export const Drupal = (args) => ({
         height='600px'
         parameters={{ options: { showPanel: false } }}
         args={{
-            elementPath : 'components/link/_doc/template-examples.drupal'
+            elementPath : 'components/link/_doc/template-usage-example.drupal',
+            reversed : undefined,
+            isDisabled : undefined,
         }}
     >
         {Drupal.bind({})}
@@ -104,9 +116,15 @@ export const Drupal = (args) => ({
         name='Drupal - CSS Only'
         parameters={{ options: { showPanel: false } }}
         args={{
-            elementPath : 'components/link/_doc/template-css-only.drupal'
+            elementPath : 'components/link/_doc/template-css-only.drupal',
+            class: 'mb-3',
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
+
+## Design Guidelines
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D9196%253A0' frameBorder='0' allowFullScreen></iframe>

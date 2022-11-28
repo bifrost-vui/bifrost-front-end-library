@@ -21,20 +21,11 @@
             }
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/front-end-library/src/test.ts",
-            "tsConfig": "projects/front-end-library/tsconfig.spec.json",
-            "karmaConfig": "projects/front-end-library/karma.conf.js"
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/front-end-library/tsconfig.lib.json",
-              "projects/front-end-library/tsconfig.spec.json"
+              "projects/front-end-library/tsconfig.lib.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -140,24 +131,6 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "showcase-angular:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/showcase-angular/src/test.ts",
-            "polyfills": "projects/showcase-angular/src/polyfills.ts",
-            "tsConfig": "projects/showcase-angular/tsconfig.spec.json",
-            "karmaConfig": "projects/showcase-angular/karma.conf.js",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/showcase-angular/src/favicon.ico",
-              "projects/showcase-angular/src/assets"
-            ],
-            "styles": [
-              "projects/showcase-angular/src/styles.scss"
-            ],
-            "scripts": []
           }
         }
       }

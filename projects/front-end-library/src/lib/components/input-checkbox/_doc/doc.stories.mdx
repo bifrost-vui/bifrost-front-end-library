@@ -8,83 +8,583 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
     title='Components/Input Checkbox'
     component={InputCheckboxComponent}
     decorators={[
-        moduleMetadata({ declarations: [InputCheckboxComponent, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [InputCheckboxComponent, TwigContainerComponent] }),
         withDesign
     ]}
     parameters={{
         design: {
             type: 'figma',
-            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=16890%3A229797',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=13846%3A114530',
             disable: false
-        },
+        }
     }}
     argTypes={{
-        id: {type: {required: true}},
-        inputName: {
-            control: { type: 'text' },
-            description: 'Use `name` instead',
-            table: { category: 'Deprecated Inputs'}
+        areOptionTiles: {
+            table: { defaultValue: { summary: false } }
         },
-        inputId: {
-            control: { type: 'text' },
-            description: 'Use `id` instead',
-            table: { category: 'Deprecated Inputs'}
+        areOptionTilesInline: {
+            table: { defaultValue: { summary: false } },
         },
-        _background:{
-            control: {
-                type: 'select',
-                options: [null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight']
-            },
-            description: 'preview the component on selected background'
-        },
+        areOptionTilesLarge: {
+            table: { defaultValue: { summary: false } },
+        }
     }}
 />
 
 # Input Checkbox
+
+## Component API
+
+<ArgsTable of={InputCheckboxComponent} />
+
+## Drupal implementation example
+
+#### areOptionTiles: false
+```jsx
+{% include '@bf-components/input-checkbox/twig/index.twig' with {
+    label: 'Label',
+    description: 'Description',
+    name: 'name',
+    options: [
+        {
+            id: 'id-1',
+            value: 'value-1',
+            label: 'Option label',
+            labelClass: 'labelClass',
+            labelExtraAttribute: 'data-labelExtraAttribute="1"',
+            isRequired: false,
+            isDisabled: false,
+            isInvalid: false,
+            ariaLabel: 'ariaLabel',
+            extraAttribute: 'data-extraAttribute="1"',
+            class: '',
+        },
+        {
+            id: 'id-2',
+            value: 'value-2',
+        },
+        {
+            id: 'id-3',
+            value: 'value-3',
+        }
+    ],
+    areOptionTiles: false,
+    areOptionTilesInline: false,
+    areOptionTilesLarge: false,
+    errorMessage: 'This is an error message.',
+    class: 'p-4 w-100'
+} only %}
+```
+
+#### areOptionTiles: true
+```jsx
+{% include '@bf-components/input-checkbox/twig/index.twig' with {
+    label: 'Label',
+    description: 'Description',
+    name: 'name',
+    options: [
+        {
+            id: 'id-1',
+            value: 'value-1',
+            content: null,
+            footer: null,
+            label: 'Option label',
+            description: 'Option description',
+            info: 'Info',
+            image: {},
+            iconName: 'placeholder',
+            isRequired: false,
+            isSelected: false,
+            isDisabled: false,
+            isInvalid: false,
+            ariaLabel: 'ariaLabel',
+            extraAttribute: 'data-extraAttribute="1"',
+            class: '',
+            reversed: false,
+        },
+        {
+            id: 'id-2',
+            value: 'value-2',
+        },
+        {
+            id: 'id-3',
+            value: 'value-3',
+        }
+    ],
+    areOptionTiles: true,
+    areOptionTilesInline: false,
+    areOptionTilesLarge: false,
+    errorMessage: 'This is an error message.',
+    class: 'p-4 w-100'
+} only %}
+```
+
+export const optionProps = {
+    id: 'id',
+    name: 'name',
+    value: 'value',
+    isChecked: false,
+    isRequired: false,
+    isDisabled: false,
+    isInvalid: false,
+    label: 'Option label',
+    labelClass: 'labelClass',
+    labelExtraAttribute: 'labelExtraAttribute="1"',
+    ariaLabel: 'ariaLabel',
+    extraAttribute: 'data-extraAttribute="1"',
+    class: '',
+}
+
+export const optionTileProps = {
+    id: 'id',
+    name: 'name',
+    value: 'value',
+    isChecked: false,
+    content: null,
+    footer: null,
+    label: 'Option label',
+    description: 'Option description',
+    info: 'Info', // TODO: Rename details. (info is not relevant since all is information).
+    image: {},
+    iconName: 'placeholder',
+    isRequired: false,
+    isDisabled: false,
+    isInvalid: false,
+    ariaLabel: 'ariaLabel',
+    extraAttribute: 'data-extraAttribute="1"',
+    class: '',
+    reversed: false, // TODO: Remove.
+}
+
+export const optionsProps = [
+    {
+        ...optionTileProps,
+        id: 'id-1',
+        value: 'value-1',
+    },
+    {
+        ...optionTileProps,
+        id: 'id-2',
+        value: 'value-2',
+        isChecked: true,
+    },
+    {
+        ...optionTileProps,
+        id: 'id-3',
+        value: 'value-3',
+        isChecked: true,
+    },
+    {
+        ...optionTileProps,
+        id: 'id-4',
+        value: 'value-4',
+    },
+    {
+        ...optionTileProps,
+        id: 'id-5',
+        value: 'value-5',
+        isChecked: true,
+    },
+    {
+        ...optionTileProps,
+        id: 'id-6',
+        value: 'value-6',
+        isChecked: true,
+    }
+];
+
+export const optionFooterProps = {
+    description: `<p class='mb-0'>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
+    link: {
+        label: 'Learn more about Take-back Credit',
+        href: 'https://example.com'
+    },
+    iconName: 'credit-return'
+}
+
+export const commonProps = {
+    label: 'Label',
+    description: 'Description',
+    name: 'name',
+    options: [
+        {
+            ...optionProps,
+            id: 'id-1',
+        },
+        {
+            ...optionProps,
+            id: 'id-2',
+            isChecked: true
+        },
+        {
+            ...optionProps,
+            id: 'id-3',
+            isChecked: true
+        }
+    ],
+    areOptionTiles: false,
+    class: 'p-4 w-100'
+}
+
+## Drupal
 
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
     props: args,
 });
 
-## Component API
-
-<ArgsTable of={InputCheckboxComponent} />
-
-## Drupal
-
-<Canvas
-    withSource='none'
-    style = {{ height: '400px' }}
->
+<Canvas withSource='none' style={{ height: '400px' }}>
     <Story
         name='Drupal'
         args={{
             elementPath: 'components/input-checkbox/_doc/template.drupal',
-            label: 'label',
-            id: '',
-            value: 'value',
-            name: 'name'
+            ...commonProps
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With errorMessage'
+        args={{
+            elementPath: 'components/input-checkbox/_doc/template.drupal',
+            ...commonProps,
+            options: [
+                {
+                    ...optionProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                },
+                {
+                    ...optionProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                },
+                {
+                    ...optionProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isChecked: true,
+                }
+            ],
+            errorMessage: 'This is an error message',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
 
-## Drupal implementation example
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With options isRequired'
+        args={{
+            elementPath: 'components/input-checkbox/_doc/template.drupal',
+            ...commonProps,
+            options: [
+                {
+                    ...optionProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                    isRequired: true,
+                },
+                {
+                    ...optionProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                    isRequired: true,
+                },
+                {
+                    ...optionProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isChecked: true,
+                    isRequired: true,
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
 
-```jsx
-{% include '@bf-components/input-checkbox/twig/index.twig' with {
-    label: 'label',
-    id: 'id',
-    value: 'value',
-    name: 'name'
-} only %}
-```
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With options isDisabled'
+        args={{
+            elementPath: 'components/input-checkbox/_doc/template.drupal',
+            ...commonProps,
+            options: [
+                {
+                    ...optionProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                    isDisabled: true,
+                },
+                {
+                    ...optionProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                    isDisabled: true,
+                },
+                {
+                    ...optionProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isChecked: true,
+                    isDisabled: true,
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
 
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With options isInvalid'
+        args={{
+            elementPath: 'components/input-checkbox/_doc/template.drupal',
+            ...commonProps,
+            options: [
+                {
+                    ...optionProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                    isInvalid: true,
+                },
+                {
+                    ...optionProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                    isInvalid: true,
+                },
+                {
+                    ...optionProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isChecked: true,
+                    isInvalid: true,
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With areOptionTiles'
+        args={{
+            elementPath: 'components/input-checkbox/_doc/template.drupal',
+            ...commonProps,
+            areOptionTiles: true,
+            options: [
+                {
+                    ...optionTileProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                    description: 'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.'
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-4',
+                    value: 'value-4',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-5',
+                    value: 'value-5',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-6',
+                    value: 'value-6',
+                    isChecked: true,
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With areOptionTiles areOptionTilesInline'
+        args={{
+            elementPath: 'components/input-checkbox/_doc/template.drupal',
+            ...commonProps,
+            areOptionTiles: true,
+            areOptionTilesInline: true,
+            options: [
+                {
+                    ...optionTileProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                    description: 'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.'
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-4',
+                    value: 'value-4',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-5',
+                    value: 'value-5',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-6',
+                    value: 'value-6',
+                    isChecked: true,
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With areOptionTiles areOptionTilesInline areOptionTilesLarge'
+        args={{
+            elementPath: 'components/input-checkbox/_doc/template.drupal',
+            ...commonProps,
+            areOptionTiles: true,
+            areOptionTilesInline: true,
+            areOptionTilesLarge: true,
+            options: [
+                {
+                    ...optionTileProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                    description: 'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.'
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-4',
+                    value: 'value-4',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-5',
+                    value: 'value-5',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-6',
+                    value: 'value-6',
+                    isChecked: true,
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal - With areOptionTiles footer'
+        args={{
+            elementPath: 'components/input-checkbox/_doc/template.drupal',
+            ...commonProps,
+            areOptionTiles: true,
+            areOptionTilesInline: false,
+            areOptionTilesLarge: false,
+            options: [
+                {
+                    ...optionTileProps,
+                    id: 'id-1',
+                    value: 'value-1',
+                    footer: optionFooterProps
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-2',
+                    value: 'value-2',
+                    isChecked: true,
+                    description: 'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.'
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-3',
+                    value: 'value-3',
+                    isChecked: true
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-4',
+                    value: 'value-4',
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-5',
+                    value: 'value-5',
+                    isChecked: true,
+                },
+                {
+                    ...optionTileProps,
+                    id: 'id-6',
+                    value: 'value-6',
+                    isChecked: true,
+                }
+            ]
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
 
 ## Design Guidelines
 
-<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D16890%253A229797
-' frameBorder='0' allowFullScreen></iframe>
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D13846%253A114530' frameBorder='0' allowFullScreen></iframe>

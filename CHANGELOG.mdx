@@ -3,73 +3,174 @@
 <br/><br/>
 
 ## [Next Version](https://bifrost-front-end-library-vui.vercel.app/)
-### Navigation Header
-- New property `langcode` on the [Twig Component Navigation Header](/story/components-navigation-header--drupal).
+### ⚠️ Breaking Changes ⚠️
+- None
 
-### Navigation Footer
-- New property `langcode` on the [Twig Component Navigation Footer](/story/components-navigation-footer--drupal).
+### 🐛 Bugs fixes 🐛
+- Remove useless property `reversed` on [Selection Tile](/story/components-selection-tile--drupal)
+- Remove useless property `reversed` on [Tab](/story/components-tab--drupal)
+- fix Slick error `getPrevSlickBtn` for bad declaration of some Carousel declaration.
+- 🎨 Fix [Link](/story/components-link--drupal) highlight hover style.
 
-### Bug fix
-- Fixed HTML semantic in the [Navigation Footer](/story/components-navigation-footer--drupal) by wrapping the `languageBlock` with the proper tag.
-- Fix `disabled` property of [Button Icon](/story/components-button-icon--drupal) Twig component
-- Fix components visual bugs on both states **Reversed** and **Highlight** (ex: Hero). See [improved documentation](/docs/implementation-reversed-highlight--page).
-- Fix property `isUnderline` in **Twig Component Link**.
-- Add **isRequired** property to better management the `required` attribute and accessibility into [Input Increment](/story/components-input-increment--drupal).
-- Fixed bottom border in [Tab](/story/components-tab--drupal) to take up all the available width.
-- Fix logo size for 4k screens in [Navigation Header](/story/components-navigation-header--drupal)
-- Fix `message` property to support rich text in [Price](/story/components-price--drupal)
+### 📝 Special mention 📝
+- Upgrade Storybook framework from 6.3 to 6.5
 
-### Input Radio
-- new [Input Radio](/story/components-input-radio--drupal) twig component
+### Tile Key
+- 💧 New Component [Twig Tile Key](/story/components-tile-key--drupal).
+- 💧 New Section [Twig Tiles Key](/story/sections-tiles-key--drupal).
 
-### Checkbox
-- New [Twig component Input Checkbox](/story/components-input-checkbox--drupal).
+### Button
+- 🛠️ New properties on component [Twig Button](/story/components-button--drupal) to handle **type=submit** functionalities. `isSubmit`, `isAutofocus`, `id`, `formId`, `formAction`, `formEncryptionType`, `formTarget`, `formMethod` , `formNoValidate`.
 
-### Input Switch
-- new [Twig component Input Switch](/story/components-input-switch--drupal).
+<br/>
+
+## [v1.9.2](https://bifrost-front-end-library-git-v1-9-2-bifrost-vui.vercel.app/) - _2022-09-25_
+see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.9.2)
+### ⚠️ Breaking Changes ⚠️
+- None
+
+### 🐛 Bugs fixes 🐛
+- 🛠️ Deprecation of property `accountName` in [Navigation Header](/story/components-navigation-header--drupal). It will be removed in further release.
+- 🛠️ Add property `accountLink` in [Navigation Header](/story/components-navigation-header--drupal) to set a link under the account name connect
+- `hasAccountBtn` display ButtonIcon "MyAccount" to set the "connection" info or the "go back to nav" in [Navigation Header](/story/components-navigation-header--drupal)
+- `isConnected` only display the ButtonIcon "logout" in [Navigation Header](/story/components-navigation-header--drupal)
+- 🎨 Fix responsiveness svg Videotron Business logo in the [Navigation Header](/story/components-navigation-header--drupal)
+- 🎨 Fix [Secondary Button](?path=/story/components-button--drupal) rendering on highlight style and disabled
+
+<br/>
+
+## [v1.9.1](https://bifrost-front-end-library-git-v1-9-1-bifrost-vui.vercel.app/) - _2022-08-14_
+see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.9.1)
+
+### ⚠️ Breaking Changes ⚠️
+- None
+
+### 🐛 Bugs fixes 🐛
+- 💧 Fix [Card](/story/components-card--drupal-plan) master component to make work the block `buttons`
+
+<br/>
+
+## [v1.9.0](https://bifrost-front-end-library-git-v1-9-0-bifrost-vui.vercel.app/) - _2022-08-05_
+see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.9.0)
+
+### ⚠️ Breaking Changes ⚠️
+- 🛠️ the property `contentBadge` is renamed `contentBadges` as it become an array of limited [Badge](/story/components-badge--drupal) in [Card Phone](/story/components-card--drupal-phone) and [Card Combo](/story/components-card--drupal-combo)
+  - Therefore, Badge property `hierarchy` and `angle` are not customisable anymore in those Cards.
+
+### 🐛 Bugs fixes 🐛
+- None
+
+<br/>
+
+## [v1.8.0](https://bifrost-front-end-library-git-v1-8-0-bifrost-vui.vercel.app/) - _2022-07-03_
+see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.8.0)
+
+### ⚠️ Breaking Changes ⚠️
+- None
+
+### 🐛 Bugs fixes 🐛
+- 🎨 Fix [Navigation Header](/story/components-navigation-header--drupal) logo display moving with 4 `navItems`
+- 🎨 Fix [Input Switch](/story/components-input-switch--drupal) checkbox visible in some cases.
+- Fix [Input Increment](/story/components-input-increment--drupal) to move input from 1 to 0 or -1 to 0.
+- 🎨 Fix [Input Increment](/story/components-input-increment--drupal) layout on Safari.
+- 🎨 Fix [Selection Tile](/story/components-selection-tile--drupal) checkbox display in iOS Safari.
+
+### Link
+- 🛠️ New properties `data-toggle`, `data-target` and `data-dismiss` into [Link](/story/components-link--drupal) to support [bootstrap modal](https://getbootstrap.com/docs/4.0/components/modal/)
 
 ### Selection Tile
-- New property `footer` for `orientation horizontal` [Selection Tile Twig component](/story/components-selection-tile--drupal-with-footer-icons).
+- [Selection Tile](/story/components-selection-tile--drupal-with-footer-icons) `footer` property support the full api of [Link](/story/components-link--drupal) and manage [Modal](/story/ui-kit-modal--drupal)
+
+### Logo
+- 🎨 Update SVG files of the Videotron Business [logo](/story/components-logo--drupal-all-logos)
+
+<br/>
+
+## [v1.7.0](https://bifrost-front-end-library-git-v1-7-0-bifrost-vui.vercel.app/) - _2022-05-22_
+see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.7.0)
+
+### ⚠️ Breaking Changes ⚠️
+#### Selection Tile
+- Rename properties:
+  * `isSelected` for `isChecked`.
+  * `title` for `label`.
+- Removing `errorMessage`.
+
+#### Tile Post
+- Remove property `image.fit`. Images always respect their ratio.
+
+### 🐛 Bugs fixes 🐛
+- Fixed HTML semantic in the [Navigation Footer](/story/components-navigation-footer--drupal) by wrapping the `languageBlock` with the proper tag.
+- 🎨 Fix `disabled` property of [Button Icon](/story/components-button-icon--drupal) Twig component
+- 🎨 Fix components visual bugs on both states **Reversed** and **Highlight** (ex: Hero). See [improved documentation](/docs/implementation-reversed-highlight--page).
+- 🎨 Fix property `isUnderline` in [Twig Component Link](/story/components-link--drupal).
+- Add `isRequired` property to better management the `required` attribute and accessibility into [Input Increment](/story/components-input-increment--drupal).
+- 🎨 Fixed bottom border in [Tab](/story/components-tab--drupal) to take up all the available width.
+- 🎨 Fix logo size for 4k screens in [Navigation Header](/story/components-navigation-header--drupal)
+- 🛠️ Fix `message` property to support rich text in [Price](/story/components-price--drupal)
+- 🎨 Fix border color in component [Twig Navigation Footer](/story/components-navigation-footer--drupal).
+
+### Button
+- 🎨 UI improvement: apply underlined style to [Tertiary Button](?path=/story/components-button--drupal)
+
+### Input Checkbox
+- 💧 New component [Twig Input Checkbox](/story/components-input-checkbox--drupal).
+- 💧 New component [Twig Input Checkbox Option](/story/components-input-checkbox-option--drupal).
+
+### Input Radio
+- 💧 New component [Twig Input Radio](/story/components-input-radio--drupal).
+- 💧 New component [Twig Input Radio Option](/story/components-input-radio-option--drupal).
+
+### Navigation Header
+- 🛠️ New property `langcode` on the [Twig Component Navigation Header](/story/components-navigation-header--drupal).
+
+### Navigation Footer
+- 🛠️ New property `langcode` on the [Twig Component Navigation Footer](/story/components-navigation-footer--drupal).
+
+### Input Switch
+- 💧 New component [Twig Input Switch](/story/components-input-switch--drupal).
+
+### Selection Tile
+- 🛠️ New property `footer` on [Twig Selection Tile](/story/components-selection-tile--drupal-with-footer-icons) for `orientation horizontal`.
 
 ### Banner Advanced
-- New property `footer` on [Twig Component Banner Advanced](/story/components-banner-advanced--drupal).
+- 🛠️ New property `footer` on [Twig Banner Advanced](/story/components-banner-advanced--drupal).
 
 ### Icons
-- Export [Angular Component Icon](/story/components-icon--angular-interface) in Angular Library.
+- 🅰️ Export [Angular Component Icon](/story/components-icon--angular-interface) in Angular Library.
 - Improved [icon Illustration library](/story/components-icon--drupal-illustration) accessibility by adding `role="img"` to SVGs
 - Improved [icon Interface library](/story/components-icon--drupal-interface) accessibility by adding `role="img"` to SVGs
 
-### Tile Post
-- Remove property `image.fit`. Images always respect their ratio.
-
 ### Badge
-- Improve [Angular Component Badge](/story/components-badge--angular) with icons.
+- 🅰️🎨 Improve component [Angular Badge](/story/components-badge--angular) with icons.
 
 ### Section Buttons Nav
-- New [Twig Section Buttons Nav](/story/sections-buttons-nav--drupal).
+- 💧 New Section [Twig Buttons Nav](/story/sections-buttons-nav--drupal).
 
 ### Twig Section Keys
-- New [Twig Section Keys](?path=/docs/sections-keys--drupal).
+- 💧 New Section [Twig Keys](?path=/docs/sections-keys--drupal).
 
 ### Angular Showcase
-- Improve **Angular Showcase** with documentation templates for all Angular components.
+- 🅰️ Improve Angular Showcase with documentation templates for all Angular components.
 
 ### UI-Kit (migrations)
-- Migrated [Modal](/story/ui-kit-modal--drupal)
-- Migrated [Progress Multi](/story/ui-kit-progress-multi--drupal)
-- Migrated [Iframe Video](/story/ui-kit-iframe-video--drupal)
-- Migrated [Text Featured](/story/ui-kit-text-featured--drupal)
+- 💧 Migrated [Modal](/story/ui-kit-modal--drupal)
+- 💧 Migrated [Progress Multi](/story/ui-kit-progress-multi--drupal)
+- 💧 Migrated [Iframe Video](/story/ui-kit-iframe-video--drupal)
+- 💧 Migrated [Text Featured](/story/ui-kit-text-featured--drupal)
 
+<br/>
 
-## [v1.6.0](https://bifrost-front-end-library-git-v1-6-0-bifrost-vui.vercel.app/)
+## [v1.6.0](https://bifrost-front-end-library-git-v1-6-0-bifrost-vui.vercel.app/) - _2022-03-13_
+see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.6.0)
 
-### Bug fix
-- Fix MegaMenu in [Navigation Header](/story/components-navigation-header--drupal) with the width sizing section
-- Fix max-width to 13rem on mobile only for [badge](/story/components-badge--angular)
-- Fix spacing in header on mobile for [card](/story/components-card--drupal-plan)
+### 🐛 Bugs fixes 🐛
+- 🎨 Fix MegaMenu in [Navigation Header](/story/components-navigation-header--drupal) with the width sizing section
+- 🅰️ Fix max-width to 13rem on mobile only for [Angualr Badge](/story/components-badge--angular)
+- 🎨 Fix spacing in header on mobile for [card](/story/components-card--drupal-plan)
 
 ### Banner Advanced
-- New [Banner Advanded](/story/components-banner-advanced--drupal) twig compopent
+- 💧 New compopent [Twig Banner Advanded](/story/components-banner-advanced--drupal)
 
 ### Icons
 - Added tv-plans icons to the Bifröst [icon library](/story/components-icon--drupal-illustration):
@@ -88,37 +189,41 @@
 - Updated `upload-spead` and `download-spead` large format [Icons](/story/components-icon--drupal-illustration)
 
 ### Cards
-- Improved [card-plan](/story/components-card--drupal-plan) by adding list separators
+- 🎨 Improved [card-plan](/story/components-card--drupal-plan) by adding list separators
 
 ### Tiles Post
-- New [Tile Post](/story/components-tile-post--drupal) twig component
-- New [Tiles Post](/story/sections-tiles-post--drupal) twig section
+- 💧 New component [Twig Tile Post](/story/components-tile-post--drupal)
+- 💧 New component [Twig Tiles Post](/story/sections-tiles-post--drupal)
 
 ### UI-Kit (migrations)
-- Migrated [Progress](/story/ui-kit-progress--drupal).
-- Migrated [Image Lazy Load](/story/ui-kit-image-lazy-load--drupal).
+- 💧 Migrated [Progress](/story/ui-kit-progress--drupal).
+- 💧 Migrated [Image Lazy Load](/story/ui-kit-image-lazy-load--drupal).
 
 ### Typography
-- Make Headings style themable for Business theme.
+- 🎨 Make Headings style themeable for the Business theme.
 
 ### Block Highlight
-- New property `isVisualBackgroundFill` in order to choose between `false` (image fit in available space. So all part of the image is visible) and `true` (image fill all available space. It may hide some part of the image). Default is `true`.
+- 🛠️ New property `isVisualBackgroundFill` in order to choose between `false` (image fit in available space. So all part of the image is visible) and `true` (image fill all available space. It may hide some part of the image). Default is `true`.
 
 ### Badge
-- Component [Badge](/story/components-badge--angular) is now available for Angular
+- 🅰️ New component [Angular Badge](/story/components-badge--angular)
 
 ### Status
-- - New [Status](/story/components-status--drupal) twig component.
+- 💧 New component [Twig Status](/story/components-status--drupal)
 
 ### Link
-- Improve `Link` component (see [Component API](/story/components-link--drupal)).
+- Improve component [Twig Link](/story/components-link--drupal).
+
+<br/>
 
 ## [v1.5.2](https://bifrost-front-end-library-git-v1-5-2-bifrost-vui.vercel.app/)
 ### Bug fix
 - Fix [Hero](?path=/story/components-hero--drupal) responsiveness when both button are provided to slip one under the other
 - Fix [Button](?path=/story/components-button--drupal) to be able to display very long content on 2 line instead of overlapping
 - Fix [Slideshow](?path=/docs/components-slideshow--drupal) Make controls visible on the first slide when the first Hero slide has `reversed` set to `true`
-- Fix [Button-nav](?path=/story/components-button-nav--drupal) to be able to handle long label content without breaking rabit hole display.
+- Fix [Button-nav](?path=/story/components-button-nav--drupal) to be able to handle long label content without breaking rabbit hole display.
+
+<br/>
 
 ## [v1.5.1](https://bifrost-front-end-library-git-v1-5-1-bifrost-vui.vercel.app/)
 ### Cards
@@ -128,7 +233,9 @@
 - Enabled `badge` component to expand on multiple lines. Badges with `angle` will still display on one line but will display an ellipsis if the text is larger than 15rem.
 
 ### Input Slider
- - Improved UX of `Input Slider` by making it clickable. If the component displays 2 handles, the click will affect the closest handle.
+ - Improved the UX of `Input Slider` by making it clickable. If the component displays 2 handles, the click will affect the closest handle.
+
+<br/>
 
 ## [v1.5.0](https://bifrost-front-end-library-git-v1-5-0-bifrost-vui.vercel.app/)
 ### Input Slider
@@ -138,7 +245,6 @@
 - New Selection Tile component (see [Component API](/?path=/story/components-selection-tile--drupal)).
 
 ### Cards
-
 - New `combo` [card variant](?path=/docs/components-card--drupal-combo) and introducing the `comboLabel` property.
 - New `subtitle` property in cards (available in all variants)
 - New promotion badges in `Card` using `promotionBadges` (available in all variants)
@@ -152,12 +258,13 @@
 
 ### Bug fix
 - [Tab](?path=/docs/components-tab--drupal) component : position of the scroll bar on mobile (vertical & horizontal)
-- [Slideshow](?path=/docs/components-slideshow--drupal) visual fix for Safari browser about bullet badly align
+- [Slideshow](?path=/docs/components-slideshow--drupal) visual fix for Safari browser about bullets badly align
 
+<br/>
 
 ## [v1.4.0](https://bifrost-front-end-library-git-v1-4-0-bifrost-vui.vercel.app/)
 ### Slideshow
-- New `slideshow` component for heros (see [Component API](?path=/docs/components-slideshow--drupal))
+- New `slideshow` component for heroes (see [Component API](?path=/docs/components-slideshow--drupal))
 
 ### Row Button
 - New Row Button component (see [Component API](?path=/docs/components-row-button--drupal)).
@@ -171,7 +278,7 @@
 ### Hero
 - **BREAKING CHANGES**, the image property API used to be `image: { default: 'image.png', mobile: 'image-mobile.png' }` and is now `image: { lg: 'image.png', sm: 'image-mobile.png' }`.
 - Added property `image.isSplitted` to make a 50/50 hero
-- Added property `height: large` to have a min heigh.
+- Added property `height: large` to have a min height.
 - Display a `Price Component` between `description` and `buttons`.
 - **BREAKING CHANGES** Modified property `button` to `buttons` in order to display an array of max 2 buttons
 - Add TwigBlock `content` above buttons (The Pandora box).
@@ -185,6 +292,7 @@
 - The Breadcrumb property now accept a TwigBlock. Still work with injecting string html.
 - The Badge property now accept a Badge component. All property can ben set. Still work with only a string setting the label.
 
+<br/>
 
 ## [v1.3.1](https://bifrost-front-end-library-git-v1-3-1-jonathanlefebvrev.vercel.app)
 ### Bugs Fix
@@ -197,6 +305,7 @@
 #### Icon migration documentation
 - write the missing rename of "profile" to "my-account"
 
+<br/>
 
 ## [v1.3.0](https://bifrost-front-end-library-git-v1-3-0-jonathanlefebvrev.vercel.app)
 ### Card - phone variants
@@ -204,12 +313,11 @@
 
 ### Banner
 - added `isClickable` to make the banner clickable or not - true by default
-- added `linkLabel` to display a link at the end of the pargagraph when the banner is not clickable.
+- added `linkLabel` to display a link at the end of the paragraph when the banner is not clickable.
 - both options use the same `href`
 
 ### Badge
 - Added an option to display an illustration type `icon` in the Badge component
-
 
 ### Icon
 - **[BREAKING CHANGES]** see [migration documentation](/docs/migrations-icon--page)
@@ -229,18 +337,20 @@
 - Remove `fullWidth` property.
 - New properties:
   - `isFeatured`: Change the visual hierarchy of the block.
-  - `visualBackgroundColor`: Change the default yellow backgound color behind the image (usefull for PNG).
+  - `visualBackgroundColor`: Change the default yellow background color behind the image (useful for PNGs).
   - `blockBackgroundColor`: Change the background color of the block: 'ground' (default) or 'underground'.
 
 ### New Icons
 - **DS-142** Added the `credit-return` icon to the Bifröst icon library
 
 ### Bugs Fix
-- **DS-125** Replaced boostrap classes by CSS attribute in Increment Imput Component to permit class overides
-- **DS-145** Page scrollbbar disapears. The bug was introduced by bug fix **DS-86**.
+- **DS-125** Replaced boostrap classes by CSS attribute in Increment Input Component to permit class overrides
+- **DS-145** Page scrollbar disappears. The bug was introduced by bug fix **DS-86**.
 - **DS-135**
   - Make sure `buttons` and `inputIncrement` aren't empty before trying to display them in Card component
   - `ariaLabel` was misspelled in the `inputIncrement` component
+
+<br/>
 
 ## [v1.2.0](https://bifrost-front-end-library-git-v1-2-0-jonathanlefebvrev.vercel.app)
 ### New Components
@@ -251,6 +361,7 @@
 ### Bugs Fix
 - Fix CSS style class for MyAccount (uikit css sync)
 
+<br/>
 
 ## [v1.1.2](https://bifrost-front-end-library-git-v1-1-2-jonathanlefebvrev.vercel.app)
 ### Bugs Fix
@@ -258,16 +369,18 @@
 - **DS-70** Fix Card component to have an elastic height body.
 - **DS-95** Little fix from UIKIT carousel-mobile-devices.scss
 
+<br/>
 
 ## [v1.1.1](https://bifrost-front-end-library-git-v1-1-1-jonathanlefebvrev.vercel.app)
 ### Price
 Bugs Fix
-- format_price custom filter has been remove.
-  - `priceStriked` and `priceSaved` have to be language formated outside of the component.
+- format_price custom-filter has been remove.
+  - `priceStriked` and `priceSaved` have to be language formatted outside the component.
   - Note: '$' is still managed by the component.
 
-## [v1.1.0](https://bifrost-front-end-library-git-v1-1-0-jonathanlefebvrev.vercel.app)
+<br/>
 
+## [v1.1.0](https://bifrost-front-end-library-git-v1-1-0-jonathanlefebvrev.vercel.app)
 ### FONT
 Font now swap to help loading performance
 
@@ -282,9 +395,9 @@ include CSS from TPDXP-4065 of PR https://bitbucket.etiya.com/login?next=/projec
 - ⚠️ **[BREAK CHANGE]** ⚠️ `size` property API is now: `small | medium | large` (previously `sm | md | lg`).
 [See documentation](?path=/docs/components-price--drupal)
 - New properties: `promotion`, `upfront` and `fullWidth`.
-- **[Backward compatible Changes]** Use of `promotion` property is encourage instead of `dashed`, `saved` or `savedLabel`.
+- **[Backward compatible Changes]** Use of `promotion` property is encouraged instead of `dashed`, `saved` or `savedLabel`.
 - ⚠️ **[BREAK CHANGE]** ⚠  Properties `dollar`, `cent`, `priceStriked`, `priceSaved` are now numeric value instead of String with `$` to pass
-  - A filter was added to manage the price. `format_price` display price depending of the language pass (en|fr).
+  - A filter was added to manage the price. `format_price` display price depending on the language pass (en|fr).
 
 ### Badge
 - Documentation improved.
@@ -302,15 +415,19 @@ E.g. `description_html: '<p>This is a description</p>'`
 ### Footer
 - Add `only` for all include in order to avoid passing reversed props
 
+<br/>
+
 ## [v1.0.3](https://bifrost-front-end-library-git-v1-0-3-jonathanlefebvrev.vercel.app)
 Bugs Fix
 - DS-78 (clone of DS-73) Fix Hero block of the Block-selection
   - Fixing the component Hero to manage more efficiently the twig block `blockSelectionSection`
 
+<br/>
+
 ## [v1.0.2](https://bifrost-front-end-library-git-v102fixes-jonathanlefebvrev.vercel.app/)
 Bugs Fix
 - DS-73 Fix Hero block of the Block-selection
-  - Component Hero has a block `blockSelectionSection` to override the compoenent `blockSelection`
+  - Component Hero has a block `blockSelectionSection` to override the component `blockSelection`
 
 - DS-72 Carousel CSS update from UIKIT
   - New style definition updated
@@ -319,7 +436,7 @@ Bugs Fix
   - Remove animation of fix the broken state displayed
   - Set a maximum managed of the Array `rigthIconLinks` in Header component
 
-
+<br/>
 
 ## [v1.0.1](https://bifrost-front-end-library-7sh17fjm1-jonathanlefebvrev.vercel.app/)
 Bugs Fix
@@ -336,246 +453,21 @@ Bugs Fix
   - `btnDelete` type Object(optional) contain a `href` attribute - type string(mandatory)
   - `btnModify` type Object(optional) contain a `href` attribute - type string(mandatory)
 
-Knows bugs
+Know bugs
 - Hero integration with breadCrumb doesn't work.
 - Block selection manage links without the full API of the corresponding component.
 
 ## v0.0.18 (aka 1.0.0)
-
 ### Navigation Header
-
 - Add a login/logout icon.
 
-
+<br/>
 
 ## [v0.0.17](https://bifrost-front-end-library-hcluh8tfh-baptistemac.vercel.app)
-
 ### Bug Fix
 - Navigation Header: Allow vertical scroll in Mega-Menu.
 
-
-
-## [v0.0.16](https://bifrost-front-end-library-afwom3gzt-baptistemac.vercel.app)
-
-
-### New Twig component
-
-#### List
-- This component displays a list of icon and label.
-- [=> Documentation](?path=/docs/components-list--drupal)
-
-
-### Review Twig components
-
-#### Base
-- New global variable `bfTheme` to access breakpoints in javascript. Loading the file `assets/js/bifrost-components.js` is required to use this new variable.
-- Add a new SCSS file: `_carousel-mobility-phones.scss`:
-```css
-.carousel-mobility-phones {
-  //@include media-breakpoint-up(md) {
-    .slick-slide {
-      @include transitions(opacity);
-      opacity: 0;
-
-      &.slick-active { opacity: 1; }
-    }
-  //}
-
-  .slick-slide:focus {
-    //outline: none;
-  }
-}
-```
-- Refactor `json_parse` Twig filter:
-```jsx
-Twig.extendFilter('json_parse', function(value) {
-    try {
-        return JSON.parse(value);
-    } catch (e) {
-        return value;
-    }
-});
-```
-- Global documentation improvement.
-
-#### Banner, Block, Card and Hero
-- Property `badge` could be pass as a **string** to set a **label** directly:
-```jsx
-{% include '@bf-components/banner/twig/index.twig' with {
-    badge : 'This is a badge'
-} only %}
-```
-Or it could be pass as an **object** from the Badge Component API:
-```jsx
-{% include '@bf-components/banner/twig/index.twig' with {
-    badge : {
-        label: 'This is a badge',
-        hierarchy: 'primary'
-    }
-} only %}
-```
-
-#### Block and Card
-- New property `titleTag` to change the default `<h1>` tag:
-```jsx
-{% include '@bf-components/card/twig/plan.twig' with {
-    titleTag : 'p'
-} only %}
-```
-
-#### Block, Card and Hero
-- Property `button` now accept all properties from Button Component API.
-
-#### Carousel
-- New CSS class `.bf-carousel` could be used in a Slick carousel to automatically add `overflow: hidden` to `.slick-list`.
-- [=> Demo](?path=/docs/components-carousel--drupal)
-
-
-
-<br/><br/>
-
-## [v0.0.15](https://bifrost-front-end-library-9zfuorlqm-baptistemac.vercel.app/?path=/docs/changelog--page)
-
-### Base
-- Global documentation improvements.
-- update CSS based on uikit.
-- Upgrade to Storybook v6.2.5.
-
-#### Banner
-- Make `href` optionnal (temporary regression).
-
-#### Hero
-- Add property `background` with options 'ground' | 'underground' (default) | 'highlight'.
-- Improve style on `md` size.
-- Hero with Block Selection: improve CSS on mobile.
-
-<br/><br/>
-
-
-## [v0.0.14](https://bifrost-front-end-library-ps6z5a6un-baptistemac.vercel.app)
-
-### Base
-- **[DXP]** Roll-back previous `.fs-6`:
-```css
-.fs-6 {
-     font-size: 2.1rem !important;
-}
-```
-- **[DXP]**: Navigation Header: Apply **font-weight normal** by default for all elements with `.h5` class.
-```css
-.navbar--videotron-unify .dropdown-menu--megamenu .p-dropdown-megamenu {
-      [...]
-      .h5 {
-          font-weight: 400;
-      }
-}
-```
-- Now, Bifrost use Bootstrap utility class for border (e.g. `border-left`).
-- Add some logos to `/public` folder: apple.svg, google.svg, huawei.svg, lg.svg, motorola.sg, samsung.svg.
-- Add classes `.minh-100` and `.minw-100`.
-- Fix font-size for class `bf-text-display-sub-large`.
-
-### Review components
-
-#### Tile
-- Improve documentation.
-
-#### Badges
-- Add new hierarchies: `primary`, `secondary`, `tertiary`, `tertiary-ground`.
-- Uppercase is now by default. Add property `noUppercase: true` to disable this behavior.
-
-#### Block
-- **[BREAKING CHANGES]** `isListingMode` is not relevant anymore. Please use `isExpandable`.
-- Improve documentation.
-
-#### Carousel
-- Add a global `bfSlick` variable.
-- Add [Documentation for implementation in Drupal](/docs/components-carousel--drupal).
-
-#### Breadcrumb
-- Add documentation and examples.
-
-#### Price
-- Add sizes `large` and `medium`.
-
-#### Input-search
-- Improve style on reversed.
-- Improve documentation.
-
-#### Card
-- Add a `max-height: 18rem` to the image.
-
-
-
-<br/><br/>
-
-## v0.0.13
-
-### New style:
-- **Typography:** Add 2 new sets of typography: Display and Interface (See [Figma](https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI?node-id=61%3A118)).
-
-### Review components:
-- **Navigation Footer:** Fix titles style on mobile.
-
-### Webpack:
-- Review import order in order to fix CSS specificity issues.
-
-### Fix:
-- **[TPDXP-3796](https://jira.videotron.com/browse/TPDXP-3796) - TV tile block layout:** Button Next and Previous have not the right style.
-- **[TPDXP-3775](https://jira.videotron.com/browse/TPDXP-3775) - Featured KSP layout improvements:** The first box of the block in ACC0 is not showing a background with stripes as expected.
-- CSS added:
-```css
-.fs-2 {
-    font-size: 0.7rem !important;
-}
-
-.fs-3 {
-    font-size: 1.05rem !important;
-}
-
-.mb-minus-12,
-.my-minus-12 {
-    margin-bottom: -7rem!important;
-}
-
-.hero-block {
-    -webkit-background-size: cover;
-    background-size: cover;
-
-    p {
-        font-size: 0.875rem;
-    }
-}
-```
-- Reminder: In order to fix all components, we still need to update static data (like cards).
-
-
-
-<br/><br/>
-
-## v0.0.12
-
-### New component:
-#### Hero
-
-### Review components:
-
-#### Button
-- Document `.bf-button` class only on `input`, `button` and `a` link. See **Button/Drupal - Specials** page on Storybook.
-
-#### Card
-- Add `description_html` property for rich text.
-- Improve spacings on mobile.
-- Remove a useless default filter.
-- Improve documentation about `isDisabled` property.
-
-#### Badge
-- Create variants for angle right and left. Default is now without angle.
-
-### Webpack
-Remove shared dependencies from `assets/js/bifrost-components.js` (mainly Jquery).
-
-
 <br/>
+
 ----
 🤟🏽 Please, contact the Bifrost Team if you need a previous changelog.

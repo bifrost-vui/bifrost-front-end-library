@@ -15,6 +15,12 @@ import { PriceComponent }                       from '../angular/price.component
             control: { type: 'select' },
             table: { defaultValue: { summary: 'en' } },
         },
+        dollar: {
+            table: { defaultValue: { summary: '0' } }
+        },
+        cent: {
+            table: { defaultValue: { summary: '0' } }
+        },
         size: {
             control: { type: 'select' },
             table: { defaultValue: { summary: 'small' } },
@@ -103,6 +109,7 @@ export const commonProps = {
     },
     message         : 'This is a message.',
     class           : 'p-3',
+    reversed: undefined,
 }
 
 
@@ -139,6 +146,7 @@ export const commonProps = {
         height='800px'
         args={{
             elementPath     : 'components/price/_doc/template-null.drupal',
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}

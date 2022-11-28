@@ -137,6 +137,7 @@ $(function () {
 
     // Image gallery version
     bfSlick.assignCarousel('.js-slick-carousel--img-gallery', {
+        accessibility: false,
         centerMode: true,
         dots: true,
         mobileFirst: true,
@@ -270,14 +271,14 @@ $(function () {
     });
 
     // Mobile Devices
-    bfSlick.assignSlickCarousel('.js-slick-carousel--mobility-list-devices', {
+    bfSlick.assignCarousel('.js-slick-carousel--mobility-list-devices', {
         arrows: true,
         dots: true,
         infinite: false,
         slidesToShow: 4,
         slidesToScroll: 4,
-        prevArrow: getPrevSlickBtn(),
-        nextArrow: getNextSlickBtn(),
+        prevArrow: bfSlick.getPrevSlickBtn(),
+        nextArrow: bfSlick.getNextSlickBtn(),
         // See: https://github.com/kenwheeler/slick/issues/3207#issuecomment-342781958.
         rows: 0,
         responsive: [
@@ -299,14 +300,14 @@ $(function () {
         ]
     });
 
-    bfSlick.assignSlickCarousel('.js-slick-carousel--mobility-list-plans', {
+    bfSlick.assignCarousel('.js-slick-carousel--mobility-list-plans', {
         arrows: true,
         dots: true,
         infinite: false,
         slidesToShow: 3,
         slidesToScroll: 3,
-        prevArrow: getPrevSlickBtn(),
-        nextArrow: getNextSlickBtn(),
+        prevArrow: bfSlick.getPrevSlickBtn(),
+        nextArrow: bfSlick.getNextSlickBtn(),
         responsive: [
             {
                 breakpoint: (breakpoints.md+1),
