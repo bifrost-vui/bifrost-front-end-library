@@ -27,7 +27,7 @@ export class BasicContentComponent implements OnInit {
     @Input() subtitle               : string;
     /** textAlign will not work with image. */
     @Input() textAlign              : 'left' | 'center';
-    @Input() description            : string;
+    @Input() description            : HTMLElement;
     @Input() buttons                : IButton[];
     @Input() links                  : ILink[];
     @Input() rowButtons             : IRowButton[];
