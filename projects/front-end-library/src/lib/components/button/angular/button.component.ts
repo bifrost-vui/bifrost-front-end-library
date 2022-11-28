@@ -26,6 +26,7 @@ export class ButtonComponent implements OnInit {
     @Input() fullWidth      : boolean;
 
     @Input() iconName       : string;
+    /** only have effect if `iconName` is filled */
     @Input() iconPosition   : null | 'left' | 'right';
 
     @Input() dataDismiss    : string;
