@@ -1,0 +1,36 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { TwigContainerComponent }               from '../../../utils/twig-container/twig-container.component';
+
+
+<Meta 
+    title='Demo Page/OC11'
+    decorators={[
+        moduleMetadata({ declarations: [TwigContainerComponent]})
+    ]}
+    parameters={{
+        options: { showPanel: false },
+        previewTabs: {
+            'storybook/docs/panel': { hidden: true }
+        }
+    }}
+/>
+
+
+# OC11
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Preview withSource='none'>
+    <Story 
+        name='Drupal'
+        args={{ 
+            elementPath : 'page-examples/OC11/template.drupal',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Preview>
