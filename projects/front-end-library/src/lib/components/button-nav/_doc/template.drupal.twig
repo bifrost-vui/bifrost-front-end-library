@@ -1,39 +1,40 @@
-{# ----------------------------------------------------------------- #}
+{% set isFeatured  = isFeatured|json_parse %}
+{% set isDisabled  = isDisabled|json_parse %}
 {% set reversed    = reversed|json_parse %}
 {% set highlight   = highlight|json_parse %}
 
-{# ----------------------------------------------------------------- #}
-{# Force label and background if highlight or reversed are set. #}
-{% if highlight is defined and highlight is same as (true) %}
-    {% set backgroundClass  = 'bf-color-bg-highlight' %}
-    {% set defaultLabel     = 'Highlight' %}
-{% elseif reversed is defined and reversed is same as (true) %}
-    {% set backgroundClass  = 'reversed bf-color-bg-ground' %}
-    {% set defaultLabel     = 'Reversed' %}
-    {% set highlightDefault = false %}
-{% endif %}
+{% set variants = [
+  {
+    backgroundClass: 'bf-color-bg-ground',
+    reversed: reversed|default(false),
+    highlight: highlight|default(false)
+  },
+  {
+    backgroundClass: 'bf-color-bg-underground',
+    reversed: reversed|default(false),
+    highlight: highlight|default(false)
+  },
+  {
+    backgroundClass: 'bf-color-bg-ground',
+    reversed: reversed|default(true),
+    highlight: highlight|default(false)
+  },
+  {
+    backgroundClass: 'bf-color-bg-underground',
+    reversed: reversed|default(true),
+    highlight: highlight|default(false)
+  },
+  {
+    backgroundClass: 'bf-color-bg-highlight highlight',
+    reversed: reversed|default(false),
+    highlight: highlight|default(true)
+  }
+] %}
 
-{# ----------------------------------------------------------------- #}
-<div class='d-flex flex-column flex-sm-row' style='height: 100vh'>
-
-    <div class='flex-grow-1 d-flex flex-column justify-content-center align-items-center p-4 {{ backgroundClass }}'>
-        {% include '@bf-components/button-nav/twig/index.twig' with {
-            label   : label|default(defaultLabel)|default('Default')
-        } %}
+<div class='d-flex flex-wrap'>
+  {% for variant in variants %}
+    <div class='flex-1 p-4 {{ variant.backgroundClass }} {{ variant.reversed ? 'reversed' }} {% if variant.highlight %}bf-color-bg-highlight highlight{% endif %}'>
+      {% include '@bf-components/button-nav/twig/index.twig' with variant %}
     </div>
-
-    <div class='flex-grow-1 d-flex flex-column justify-content-center align-items-center p-4 {{ backgroundClass|default('reversed bf-color-bg-ground') }}'>
-        {% include '@bf-components/button-nav/twig/index.twig' with {
-            reversed    : reversed|default(true),
-            label       : label|default(defaultLabel)|default('Reversed')
-        } %}
-    </div>
-
-    <div class='flex-grow-1 d-flex flex-column justify-content-center align-items-center p-4 {{ backgroundClass|default('bf-color-bg-highlight') }}'>
-        {% include '@bf-components/button-nav/twig/index.twig' with {
-            highlight   : highlight|default(highlightDefault)|default(true),
-            label       : label|default(defaultLabel)|default('Highlight')
-        } %}
-    </div>
-
+  {% endfor %}
 </div>

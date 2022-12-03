@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-
 @Component({
     selector: 'bf-banner-advanced',
     templateUrl: './banner-advanced.component.html',
@@ -8,13 +7,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class BannerAdvancedComponent implements OnInit {
     constructor() {}
 
-    @Input() title      : string;
+    @Input() title: string;
     @Input() description: string;
-    /** Expected format: [{name: string, label: string}, {...}] - a maximum of 3 icons is accepted*/
-    @Input() icons      : object[];
-
-    @Input() class      : string;
-
+    /** Expected format: [{name: string, label: string}, {...}]. A maximum of 3 icons is accepted */
+    @Input() icons: object[];
+    @Input() footer: object | HTMLElement | 'TwigBlock';
+    @Input() class: string;
     ngOnInit() {
         console.log('BannerAdvanced', this);
     }

@@ -11,7 +11,7 @@ import imageStorybookCompnentList from '../../../../../../public/images/_docs/st
 />
 
 # Drupal implementation
-You have a **Drupal installation** and you want to use Bifröst Design System.
+You have a **Drupal installation**, and you want to use Bifröst Design System.
 
 <br/>
 
@@ -28,7 +28,7 @@ npm install @videotron-ui/bifrost-front-end-library@latest --save
 
 ## 2. Add Namespaces and filters
 Install [components module](https://www.drupal.org/project/components) in Drupal.
-Then, add theses namespace paths to **your-theme.info.yml**:
+Then, add these namespace paths to **your-theme.info.yml**:
 ```
 component-libraries:
   [...]
@@ -85,7 +85,7 @@ In your **CSS file**:
 ```css
 @import 'node_modules/@videotron-ui/bifrost-front-end-library/assets/css/bifrost.css';
 
-/* Or if you are using SASS: */
+/** Or if you are using SASS: */
 @import '~@videotron-ui/bifrost-front-end-library/assets/css/bifrost.css';
 ```
 
@@ -118,13 +118,20 @@ becomes
 <br />
 
 ## 6. Themes
-Components comes with multiples themes.
+Components come with multiples themes.
 
 [More details about Themes](?path=/docs/implementation-theme--page)
 
-<br />
+On Storybook, check if the component is available in a specific theme.
+Wrap the component with a `data-theme='x'`.
+```html
+<div data-theme='business'>
+    {% include '@bf-components/button/twig/index.twig' %}
+</div>
+```
 
-## 7. Reversed and Highlight contexts
+
+## 7. Reversed style
 Components could lives in multiple context.
 
 For example, in a [**Videotron Theme**](?path=/docs/implementation-theme--page) (default), the render is:
@@ -148,3 +155,32 @@ For example, in a [**Videotron Theme**](?path=/docs/implementation-theme--page) 
 ## Bifröst by example
 
 Explore Bifröst [Drupal Showcase on Github](https://github.com/bifrost-vui/bifrost-front-end-library/tree/master/projects/showcase-drupal)
+
+#### What is reversed?
+In every theme, we have a default background color. For example, in Videotron theme, the default is white, but some sections have black background. Those sections are `reversed`.
+//TODO: Add a link to Zeroheight Documentation.
+
+> **Note:** We didn't call it white-mode/dark-mode in order to be "color agnostic" and then more future-proof.
+
+#### How to implement?
+- Add a class `.reversed` in any HTML tag.
+```jsx
+// Note that if you want to display the reversed background,
+// you need to add it independently.
+<div class='reversed bf-color-bg-ground'>
+    {% include '@bf-components/button/twig/index.twig' %}
+</div>
+```
+
+- Some special components need to know explicitly the reversed state: `Navigation Header` and `Logo`.
+Then you need to pass the `reversed` property into the 'include' tag:
+```jsx
+{% include '@bf-components/navigation-header/twig/index.twig' with {
+    reversed : true
+} only %}
+```
+
+[More details about Reversed and Highlight](?path=/docs/implementation-reversed-highlight--page)
+
+## 8. Test Visual Regression
+- Check manually the differences in your localhost.

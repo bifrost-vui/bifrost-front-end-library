@@ -1,39 +1,39 @@
-import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
-import { Url } from 'url';
+import { Component, OnInit, Input } from '@angular/core';
+import { IFooter } from './api.model';
 
 @Component({
   selector: 'bf-selection-tile',
   templateUrl: './selection-tile.component.html',
-  // styleUrls: ['../scss/index.scss'],
 })
 export class SelectionTileComponent implements OnInit {
     constructor() {}
+    @Input() type: 'checkbox' | 'radio';
+    @Input() id: string;
+    @Input() name: string;
+    @Input() value: string;
+    @Input() isChecked: boolean;
+    @Input() label: string;
+    @Input() description: string;
+    /** Only available for `orientation: vertical` and `fit: container`. */
+    @Input() info: HTMLElement;
+    @Input() isRequired: boolean;
+    @Input() isInvalid: boolean;
+    @Input() isDisabled: boolean;
+    @Input() ariaLabel: string;
+    @Input() orientation: 'horizontal' | 'vertical';
+    /**  Tile  fits the content | Tile fits the container */
+    @Input() fit: 'content' | 'container'; // TODO - revisit the fit behavior : hug content vs max width
+    /** Expected format: `{ src: string, alt: string, class: string }` */
+    @Input() image: object;
+    @Input() iconName: string;
+    @Input() content: HTMLElement | 'TwigBlock';
+    /** Only available for `orientation: horizontal`. Expected format: { description: HTMLElement, link: { label: string, href: string, ... }, iconName: string, image: { src: string, alt: string } } */
+    @Input() footer: IFooter;
 
+    /** Extra attributes for radio/checkbox inputs. */
+    @Input() extraAttribute: string
     /** Class override */
-    @Input() class          : string;
-    @Input() type           : 'checkbox'|'radio';
-    @Input() inputId        : string;
-    @Input() value          : string;
-    @Input() ariaLabel      : string;
-    @Input() name           : string;
-    /** extra attribute for the radio/checkbox input */
-    @Input() extraAttribute : string
-    @Input() orientation    : 'horizontal'|'vertical';
-    /**  Tile  fits the content | Tile fits the container  */
-    @Input() fit            : 'content'|'container';
-    @Input() title          : string;
-    @Input() description    : string;
-    @Input() info           : string;
-    /**{ src : string, alt : string, class : string } */
-    @Input() image          : object;
-    @Input() iconName       : string;
-    @Input() reversed       : boolean;
-    @Input() isDisabled     : boolean;
-    @Input() isSelected     : boolean;
-    @Input() isInvalid      : boolean;
-    @Input() errorMessage   : string;
-    @Input() isRequired     : boolean;
-    @Input() content        : string | 'TwigBlock';
+    @Input() class: string;
 
     ngOnInit() {
         console.log('SelectionTile', this);
