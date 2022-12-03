@@ -11,12 +11,12 @@ import imageStorybookCompnentList from '../../../../../../public/images/_docs/st
 />
 
 # Drupal implementation
-You have a **Drupal installation**, and you want to use Bifrost Design System.
+You have a **Drupal installation**, and you want to use Bifröst Design System.
 
-<br/><br/>
+<br/>
 
 ## 1. Install NPM Package
-In your theme:
+Open terminal in your Drupal theme and enter:
 
 ```bash
 npm install @videotron-ui/bifrost-front-end-library@<specific-version> --save
@@ -24,36 +24,46 @@ npm install @videotron-ui/bifrost-front-end-library@<specific-version> --save
 # Or the latest version
 npm install @videotron-ui/bifrost-front-end-library@latest --save
 ```
+<br />
 
-
-## 2. Add Namespace and filters
+## 2. Add Namespaces and filters
 Install [components module](https://www.drupal.org/project/components) in Drupal.
-Then, add these paths to **your-theme.info.yml**:
+Then, add these namespace paths to **your-theme.info.yml**:
 ```
 component-libraries:
   [...]
   bf-components:
     paths:
       - node_modules/@videotron-ui/bifrost-front-end-library/source/components/
+  bf-sections:
+    paths:
+      - node_modules/@videotron-ui/bifrost-front-end-library/source/sections/
   bf-utils:
     paths:
       - node_modules/@videotron-ui/bifrost-front-end-library/source/utils/
 ```
 
-### Add filters list
-See [Filters list](?path=/docs/implementation-drupal-filters--page)
+Then add filters from the [Filters list](?path=/docs/implementation-drupal-filters--page).
+
+<br />
 
 ## 3. Add Base JS
 
-Replace `uikit-marvel.js` by `bifrost.js` from the NPM Package:
+> Note: If you previously load the Marvel UI-KIT, you should use `bifrost.js` instead of `uikit-marvel.js`.
+
+Import `bifrost.js` from the NPM Package:
+
 `node_modules/@videotron-ui/bifrost-front-end-library/assets/js/bifrost.js`.
 
-
+<br />
 
 ## 4. Add Base style
 
-Replace `uikit-marvel.css` by `bifrost.css` from the NPM Package, in order to provide the same CSS base for all Videotron websites.
-Here 4 possibles options:
+> Note: If you previously load the Marvel UI-KIT, you should use `bifrost.css` instead of `uikit-marvel.css`.
+
+Import `bifrost.css` from the NPM Package, in order to provide the same CSS base for all Videotron websites.
+
+**Multiple import options:**
 
 <br/>
 
@@ -90,26 +100,31 @@ In the **head** of your pages:
 </head>
 ```
 
-## 5. Migrate a Component
-- All Bifrost components are visible on this Storybook. In the sidebar, check if your component is available:
+## 5. Import a Component
+- All Bifröst components are visible on this Storybook. In the sidebar, check if your component is available:
 
-<img src={imageStorybookCompnentList} style={{maxWidth: '800px'}} />
+<img src={imageStorybookCompnentList} style={{maxWidth: '350px'}} />
 
-- Select the **Docs Tab** at the top of the component's page and look at the **Source Code** section.
-- Please, take note that we improved the path to the component. So for example:
+- Select the **Docs Tab** at the top of the component's page and look at the **Drupal implementation example** section.
+- In the **Component API** section, check that you send the right properties to your component.
+- **Note: If you previously load the Marvel UI-KIT, **take note that we improved the path to the component. So for example:
 ```jsx
 {% include '@atoms/02-buttons/10-button-outline.twig' %}
-
-# becomes
-
+```
+becomes
+```
 {% include '@bf-components/button/twig/index.twig' with {
     outline : true
 } only %}
 ```
-- In the **Component API** section, check that you send the right props to your component.
 
+<br />
 
 ## 6. Themes
+Components come with multiples themes.
+
+[More details about Themes](?path=/docs/implementation-theme--page)
+
 On Storybook, check if the component is available in a specific theme.
 Wrap the component with a `data-theme='x'`.
 ```html
@@ -120,6 +135,29 @@ Wrap the component with a `data-theme='x'`.
 
 
 ## 7. Reversed style
+Components could lives in multiple context.
+
+For example, in a [**Videotron Theme**](?path=/docs/implementation-theme--page) (default), the render is:
+
+<div class='d-flex border bf-border-color-tertiary'>
+    <div class='bf-color-bg-ground px-4 py-2' style={{ flex: 1 }}>
+        Default
+    </div>
+    <div class='bf-color-bg-ground reversed px-4 py-2' style={{ flex: 1 }}>
+        Reversed
+    </div>
+    <div class='bf-color-bg-highlight px-4 py-2' style={{ flex: 1 }}>
+        Highlight
+    </div>
+</div>
+
+[More details about Reversed and Highlight](?path=/docs/implementation-reversed-highlight--page)
+
+<br />
+
+## Bifröst by example
+
+Explore Bifröst [Drupal Showcase on Github](https://github.com/bifrost-vui/bifrost-front-end-library/tree/master/projects/showcase-drupal)
 
 #### What is reversed?
 In every theme, we have a default background color. For example, in Videotron theme, the default is white, but some sections have black background. Those sections are `reversed`.
@@ -145,12 +183,7 @@ Then you need to pass the `reversed` property into the 'include' tag:
 } only %}
 ```
 
+[More details about Reversed and Highlight](?path=/docs/implementation-reversed-highlight--page)
 
 ## 8. Test Visual Regression
 - Check manually the differences in your localhost.
-
-
-## Issues?
-- 1. **Issues with a component** (basically, component property or CSS issues.)
-=> Please, flag on Github repos issues Tab => Videotron Bifrost team will fix the issue or contributor could suggest a PR in the design system with CoreTeam member in review (refer to CONTRIBUTING.mdx).
-- 2. **Issues with the website** => Product team fix the issue.
