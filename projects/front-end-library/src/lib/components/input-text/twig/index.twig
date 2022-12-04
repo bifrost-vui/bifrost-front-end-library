@@ -4,7 +4,7 @@
   {% set type = inputType %}
 {% endif %}
 
-<div class='form-group bf-input-text  {{ inputType == 'password' ? 'bf-input-text--password'  }} {{ inputType == 'search' ? 'bf-input-text--search' }} {{ isInvalid ? 'bf-input-text--isInvalid' }} {{ (isDisabled is defined and isDisabled) ? 'bf-input-text--disabled'}}{{ class|default('') }}'>
+<div class='form-group bf-input-text {{ inputType == 'password' ? 'bf-input-text--password'  }} {{ inputType == 'search' ? 'bf-input-text--search' }} {{ isInvalid ? 'bf-input-text--isInvalid' }} {{ (isDisabled is defined and isDisabled) ? 'bf-input-text--disabled'}}{{ class|default('') }}'>
   {% if (description is defined and description) or (label is defined and label) %}
     <div class='bf-input-text__head'>
       {% if label is defined and label %}
@@ -160,17 +160,21 @@
       {% endif %}
 
       {% if info is defined and info is not empty %}
-       <p class='bf-input-text__info'>
-         {% if info is not iterable %}
-           {% set infoText = info %}
-         {% else %}
-           {% set infoText = info.text %}
-         {% endif %}
+        <p class='bf-input-text__info'>
+          {% if info is not iterable %}
+            {% set infoText = info %}
+          {% else %}
+            {% set infoText = info.text %}
+          {% endif %}
 
-         {% if info.url is defined and info.url %}<a href='{{ info.url }}'>{% endif %}
-           {{ infoText }}
-         {% if info.url is defined and info.url %}</a>{% endif %}
-       </p>
+          {% if info.url is defined and info.url %}
+            <a href='{{ info.url }}'>
+          {% endif %}
+          {{ infoText }}
+          {% if info.url is defined and info.url %}
+            </a>
+          {% endif %}
+        </p>
       {% endif %}
     </div>
   {% endif %}
