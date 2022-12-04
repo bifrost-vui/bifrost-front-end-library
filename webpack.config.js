@@ -1,6 +1,7 @@
 const path                  = require('path');
 const globImporter          = require('node-sass-glob-importer');
 const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const devMode               = process.env.NODE_ENV !== 'production';
 
@@ -40,6 +41,10 @@ module.exports = () => {
                 // both options are optional
                 filename: devMode ? '../css/bifrost.css' : '../css/bifrost.[hash].css',
                 chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+            }),
+            new HtmlWebpackPlugin({
+                // https://github.com/storybookjs/storybook/issues/17709
+                title: 'Bifröst',
             }),
         ],
         module: {
