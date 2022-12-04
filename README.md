@@ -2,9 +2,9 @@
 Front-end Vidéotron Visual language and components library
 
 # Legal Disclaimer
-By contributing to this project, you hereby to accept to transfer all your intellectual right property to Videotron lte inc. You are agreeing to do so without any sort of compensation, royalty, monetary or any sort of remuneration, otherwise explicitly said in a service agreement.
+By contributing to this project, you hereby accept to transfer all your intellectual right property to Videotron lte inc. You are agreeing to do so without any sort of compensation, royalty, or any sort of remuneration, monetary or else, otherwise explicitly said in a service agreement.
 
-Your transfer is irrevocable and effective immediately after submitting any sort of work, under any form (which include, but not limited to, code, images, idea, discussion verbal or written), to this repository.
+Your transfer is irrevocable and effective immediately after submitting any sort of work, under any form (which include, but not limited to: code, images, idea, discussion verbal or written), to this repository.
 
 By giving your contribution, you swear the work is original creation and are free of other trademark, license, or other rights restraining you to give the contribution to Videotron.
 
