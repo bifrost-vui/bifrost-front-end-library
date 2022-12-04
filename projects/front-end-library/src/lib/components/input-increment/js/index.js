@@ -1,5 +1,5 @@
 /**
- *  Script for the Bifrost Input increment component
+ *  Script for the Bifröst  Input increment component
  **/
 import $ from 'jquery';
 
@@ -27,8 +27,6 @@ $(function() {
     }
 
     function setCurrentValue(value) {
-      value = value ? value : $quantityInput.val();
-
       checkLimitValues(value);
       $quantityInput.val(value);
       currentValue = value;
@@ -43,7 +41,7 @@ $(function() {
     });
 
     $quantityInput.keyup(function() {
-      setCurrentValue();
+      setCurrentValue($quantityInput.val());
     });
 
     $quantityInput.blur(function() {

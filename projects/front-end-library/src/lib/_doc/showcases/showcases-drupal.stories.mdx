@@ -1,0 +1,64 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta
+    title='Showcases/Showcase Drupal'
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+/>
+
+# Showcase Drupal
+
+## Install Showcase Drupal
+
+<br/>
+
+### Pre requirement,
+To ensure you have a working computer, you have to install PHP >7.2 to your computer.
+
+Then if you have a corporate computer, ensure you turn off the VPN
+and do https://medium.com/@narendravaghela/how-to-fix-curl-error-60-ssl-certificate-problem-80e7dafafa57 to prevent
+the SSL self-certificate error.
+
+### 1. Install Drupal
+```
+cd projects/showcase-drupal
+# ensure you are one any VPN before continuing
+composer install
+# You will be required to create a Drupal.org account if you don't have one
+# you will be required to create a GitHub Token for some checkout, follow instruction if you don't have one.
+php ./core/scripts/drupal quick-start
+# Choose Standard profile
+```
+At this point you should be able to access [http://127.0.0.1:8888/](http://127.0.0.1:8888/).
+
+
+### 2. Install Module Component
+> See [Module documentation](https://www.drupal.org/project/components).
+
+Go to [http://127.0.0.1:8888/admin/modules](http://127.0.0.1:8888/admin/modules) and enable **Components** Module in Drupal Administration.
+You should see the confirmation message: **Module Components has been enabled.**
+
+
+### 3. Install Bifröst  Theme
+```
+cd themes/bifrost && npm install
+cp -R node_modules/@videotron-ui/bifrost-front-end-library/assets/. ../../sites/default/files
+```
+Go to page [http://127.0.0.1:8888/admin/appearance](http://127.0.0.1:8888/admin/appearance) and **Install and set as default** Bifröst  theme.
+There you go.
+
+### 4. Relaunch Drupal
+If needed:
+```
+php ./core/scripts/drupal quick-start
+```
+There you go.
+
+
+
+## Troubleshooting
+- Remember to clear all caches from the Administration Page: [Configuration > Development](http://127.0.0.1:8888/admin/config/development/performance).
+- If you see the message, `The website encountered an unexpected error. Please try again later.` then it's possible that a Bifröst  component needs to be upgrade.

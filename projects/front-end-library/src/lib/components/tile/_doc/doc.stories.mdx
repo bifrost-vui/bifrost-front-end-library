@@ -1,6 +1,5 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
-
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { TileComponent }                        from '../angular/tile.component';
 
@@ -23,7 +22,7 @@ import { TileComponent }                        from '../angular/tile.component'
 
 ## Component API
 
-<Props of={TileComponent} />
+<ArgsTable of={TileComponent} />
 
 
 
@@ -51,9 +50,8 @@ export const Drupal = (args) => ({
         args={{
             elementPath     : 'components/tile/_doc/template.drupal',
             class           : '',
-            content         : `<div class='d-flex flex-column'>
-    <img src='/logo/google.svg' />
-</div>`,
+            content         : `<div class='d-flex flex-column'><img src='/logo/google.svg' /></div>`,
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
@@ -65,8 +63,10 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal - List example'
         height='600px'
+        parameters={{ options: { showPanel: false } }}
         args={{
             elementPath     : 'components/tile/_doc/list.drupal',
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}

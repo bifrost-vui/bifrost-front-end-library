@@ -1,6 +1,5 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
-
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { BlockHighlightComponent }              from '../angular/block-highlight.component';
 
@@ -36,7 +35,7 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
 
 ## Component API
 
-<Props of={BlockHighlightComponent} />
+<ArgsTable of={BlockHighlightComponent} />
 
 
 
@@ -89,7 +88,8 @@ export const commonProps = {
         name='Drupal'
         height='800px'
         args={{
-            ...commonProps
+            ...commonProps,
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
@@ -101,10 +101,12 @@ export const commonProps = {
     <Story
         name='Drupal - Usage example'
         height='800px'
+        parameters={{ options: { showPanel: false } }}
         args={{
             ...commonProps,
             elementPath : 'components/block-highlight/_doc/template-usage-example.drupal',
-            image       : null
+            image: null,
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}

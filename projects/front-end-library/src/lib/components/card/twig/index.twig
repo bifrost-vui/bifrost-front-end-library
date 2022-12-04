@@ -57,7 +57,7 @@
     </div>
   {% endif %}
 
-  <header class='bf-card__header p-3 p-sm-4'>
+  <header class='bf-card__header px-3 py-4 p-sm-4'>
     {% if upperTitle is defined and upperTitle %}
       <p class='mb-1'>
         {{ upperTitle }}
@@ -108,7 +108,7 @@
     {% block card_body %}
       {% if contentLists is defined and contentLists %}
         {% for list in contentLists %}
-          <div class='bf-card__content-list pt-3 px-3 px-sm-4'>
+          <div class='bf-card__content-list pt-3 mx-3 mx-sm-4'>
             {% if list.title is defined %}
               <div class='d-flex mb-2'>
                 <p class='w-60 bf-text font-weight-bold mb-0'>
@@ -164,18 +164,19 @@
         </div>
       {% endif %}
 
-      {% if contentBadge is defined and contentBadge %}
-        {% set contentBadge = contentBadge|merge( {
-          'hierarchy' : contentBadge.hierarchy|default('tertiary'),
-          'angle'     : contentBadge.angle|default(''),
-          'class'     : 'bf-card__content-badge mt-3 mx-3 mx-sm-4'
-        } ) %}
-
-        {% include '@bf-components/badge/twig/index.twig' with contentBadge only %}
+      {% if contentBadges is defined and contentBadges %}
+        <div class='bf-card__content-badge mt-3 mx-3 mx-sm-4'>
+          {% for contentBadge in contentBadges %}
+            {% set contentBadge = contentBadge|merge( {
+              'hierarchy' : 'tertiary',
+            } ) %}
+            {% include '@bf-components/badge/twig/index.twig' with contentBadge only %}
+          {% endfor %}
+        </div>
       {% endif %}
 
       {% if promotionBadges is defined and promotionBadges %}
-        <div class='bf-card__content-badge bf-card__content-badge--promotion mt-3  mx-3 mx-sm-4'>
+        <div class='bf-card__content-badge bf-card__content-badge--promotion mt-3 mx-3 mx-sm-4'>
           {% for promotionBadge in promotionBadges %}
             {% include '@bf-components/badge/twig/index.twig' with {
               label       : promotionBadge.label,
@@ -210,14 +211,16 @@
       </div>
     {% endif %}
 
-    {% if buttons is defined and buttons %}
+    {% if block('buttons') is defined or buttons is defined and buttons %}
       <div class='bf-card__controls'>
-        {% block buttons %}
+        {% if block('buttons') is defined %}
+          {{ block('buttons') }}
+        {% else %}
           {% for button in buttons %}
             {% set button = button|merge( { 'class': 'w-100 ' ~ button.class } ) %}
             {% include '@bf-components/button/twig/index.twig' with button only %}
           {% endfor %}
-        {% endblock %}
+        {% endif %}
       </div>
     {% endif %}
 

@@ -1,37 +1,48 @@
 <main class='videotron-ui'>
-  <div class='container py-5'>
+  <div>
 
-    <header class='d-flex justify-content-between align-items-baseline pb-3 mb-3 border-bottom'>
+    <header class='p-4 py-5 pb-3 mb-3 border-bottom'>
       <h1>Angular Showcase</h1>
-      <a class='bf-link bf-color-neutral-secondary' href='https://bifrost-front-end-library-git-v1-4-0-bifrost-vui.vercel.app/?path=/docs/changelog--page' target='_blank'>
-        Bifrost @ 1.4.0
-      </a>
+      <div class='d-flex gap-4'>
+        <a class='bf-link bf-color-neutral-secondary' href='https://bifrost-front-end-library-git-v1-5-1-bifrost-vui.vercel.app/?path=/docs/changelog--page' target='_blank'>
+          Bifrost @ 1.5.1
+        </a>
+        <a class='bf-link bf-color-neutral-secondary' href='https://bifrost-front-end-library-vui.vercel.app/?path=/docs/implementation-angular--page' target='_blank'>
+          Documentation
+        </a>
+      </div>
     </header>
 
     <section class='py-4'>
-      <h1 class='h3 m-0 pb-2'>Badges</h1>
-      <div class='d-flex flex-wrap gap-3 p-4'>
-        <bf-badge label='default'></bf-badge>
-        <bf-badge className='' hierarchy='primary' label='primary'></bf-badge>
-        <bf-badge className='' hierarchy='primary-alt' label='primary-alt'></bf-badge>
-        <bf-badge className='' hierarchy='secondary' label='secondary'></bf-badge>
-        <bf-badge className='' hierarchy='tertiary' label='tertiary'></bf-badge>
-        <bf-badge className='' label='angle left' angle='left'></bf-badge>
-        <bf-badge className='' label='angle right' angle='right'></bf-badge>
-        <bf-badge className='' label='noUppercase' noUppercase='true'></bf-badge>
-        <bf-badge className='' label='isRounded' isRounded='true'></bf-badge>
+      <header class='px-4'>
+        <h1 class='h2'>Badge</h1>
+      </header>
+      <div class='px-4'>
+        <h2 class='h4'>BadgeModule</h2>
+        <bf-badge className='' hierarchy='primary' label='primary' iconName='wifi'></bf-badge>
+        <h2 class='h4'>Examples</h2>
       </div>
-      <div class='d-flex flex-wrap gap-3 reversed bf-color-bg-ground p-4'>
-        <bf-badge label='default'></bf-badge>
-        <bf-badge className='' hierarchy='primary' label='primary'></bf-badge>
-        <bf-badge className='' hierarchy='primary-alt' label='primary-alt'></bf-badge>
-        <bf-badge className='' hierarchy='secondary' label='secondary'></bf-badge>
-        <bf-badge className='' hierarchy='tertiary' label='tertiary'></bf-badge>
-        <bf-badge className='' label='angle left' angle='left'></bf-badge>
-        <bf-badge className='' label='angle right' angle='right'></bf-badge>
-        <bf-badge className='' label='noUppercase' noUppercase='true'></bf-badge>
-        <bf-badge className='' label='isRounded' isRounded='true'></bf-badge>
+      <bf-template-badge className='my-2'></bf-template-badge>
+    </section>
+
+    <section class='py-4'>
+      <header class='px-4'>
+        <h1 class='h2'>Icon</h1>
+      </header>
+      <div class='px-4'>
+        <h2 class='h4'>IconModule</h2>
+        <bf-icon className='mx-2' name='wifi' size='xsmall'></bf-icon>
+        <bf-icon className='mx-2' name='wifi' size='small'></bf-icon>
+        <bf-icon className='mx-2' name='wifi' size='medium'></bf-icon>
+        <bf-icon className='mx-2' name='wifi' size='large'></bf-icon>
+        <bf-icon className='mx-2' name='wifi' size='huge'></bf-icon>
+        <h2 class='h4'>Interface Icons</h2>
       </div>
+      <bf-template-icon [icons]='interfaceIcons'></bf-template-icon>
+      <div class='px-4'>
+        <h2 class='h4'>Illustration Icons</h2>
+      </div>
+      <bf-template-icon [icons]='illustrationIcons'></bf-template-icon>
     </section>
 
   </div>

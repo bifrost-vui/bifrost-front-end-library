@@ -1,6 +1,7 @@
 const colors = [
     {
         name: 'Content',
+        description: 'Meant to be used on text and SVG.',
         list: [
             {
                 label            : 'Neutral Primary',
@@ -14,10 +15,20 @@ const colors = [
                 label            : 'Neutral Tertiary',
                 name             : 'neutral-tertiary'
             },
+            {
+                label            : 'Highlight',
+                name             : 'highlight',
+                hasUtilityClass  : false,
+            },
+            {
+                label            : 'Brand',
+                name             : 'brand'
+            },
         ]
     },
     {
         name: 'Background',
+        description: 'Meant to be used on non-interactive visual elements.',
         list: [
             {
                 label            : 'Ground',
@@ -32,14 +43,21 @@ const colors = [
                 name             : 'bg-highlight'
             },
             {
-                label            : 'Brand',
-                name             : 'brand'
-            },
-            {
-                label            : 'Highlight',
-                name             : 'highlight',
+                label            : 'Overlay black 20%',
+                name             : 'bg-overlay-black-20prct',
                 hasUtilityClass  : false,
             },
+            {
+                label            : 'Overlay black 50%',
+                name             : 'bg-overlay-black-50prct',
+                hasUtilityClass  : false,
+            }
+        ]
+    },
+    {
+        name: 'Background Action',
+        description: 'Meant to be used on interactive visual elements.',
+        list: [
             {
                 label            : 'Action primary',
                 name             : 'bg-action-primary'
@@ -68,21 +86,42 @@ const colors = [
                 label            : 'Action selected',
                 name             : 'bg-action-selected',
                 hasUtilityClass  : false,
+            }
+        ]
+    },
+    {
+        name: 'Stroke',
+        description: 'Meant to be used on borders.',
+        list: [
+            {
+                label            : 'Primary',
+                name             : 'stroke-primary',
+                hasUtilityClass  : false,
+                UtilityClassName : 'bf-border-color-primary'
             },
             {
-                label            : 'Overlay black 20%',
-                name             : 'bg-overlay-black-20prct',
+                label            : 'Secondary',
+                name             : 'stroke-secondary',
                 hasUtilityClass  : false,
+                UtilityClassName : 'bf-border-color-secondary'
             },
             {
-                label            : 'Overlay black 50%',
-                name             : 'bg-overlay-black-50prct',
+                label            : 'Tertiary',
+                name             : 'stroke-tertiary',
                 hasUtilityClass  : false,
+                UtilityClassName : 'bf-border-color-tertiary'
+            },
+            {
+                label            : 'Highlight',
+                name             : 'stroke-highlight',
+                hasUtilityClass  : false,
+                UtilityClassName : 'bf-border-color-highlight'
             },
         ]
     },
     {
         name: 'Feedback',
+        description: 'Convey meaning through color for visual support element',
         list: [
             {
                 label            : 'Neutral',
@@ -105,24 +144,7 @@ const colors = [
                 hasUtilityClass  : false
             },
         ]
-    },
-    {
-        name: 'Stroke',
-        list: [
-            {
-                label            : 'Primary',
-                name             : 'stroke-primary'
-            },
-            {
-                label            : 'Secondary',
-                name             : 'stroke-secondary'
-            },
-            {
-                label            : 'Tertiary',
-                name             : 'stroke-tertiary'
-            },
-        ]
-    },
+    }
 ];
 
 export default colors;

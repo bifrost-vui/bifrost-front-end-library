@@ -1,8 +1,8 @@
-import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Props }  from '@storybook/addon-docs';
+import { moduleMetadata }                       from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { ListComponent }                        from '../angular/list.component';
 
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { ListComponent }     from '../angular/list.component';
 
 <Meta
     title='Components/List'
@@ -20,11 +20,11 @@ import { ListComponent }     from '../angular/list.component';
 
 ## Component API
 
-<Props of={ListComponent} />
+<ArgsTable of={ListComponent} />
 
 
 
-## Drupal implementation exemple
+## Drupal implementation example
 
 ```jsx
 {% include '@bf-components/list/twig/index.twig' with {
@@ -77,7 +77,8 @@ export const Drupal = (args) => ({
                     iconName    : 'placeholder',
                     label       : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.'
                 }
-            ]
+            ],
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
