@@ -1,8 +1,9 @@
-import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-import { withDesign }                   from 'storybook-addon-designs'
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { InputSliderComponent }         from '../angular/input-slider.component';
+import { moduleMetadata }                       from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import { withDesign }                           from 'storybook-addon-designs'
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { InputSliderComponent }                 from '../angular/input-slider.component';
+
 
 <Meta
     title='Components/Input Slider'
@@ -28,6 +29,9 @@ import { InputSliderComponent }         from '../angular/input-slider.component'
             table           : { defaultValue: { summary: 'end' } },
             control         : { type: 'select' }
         },
+        minimumGap: {
+            table           : { defaultValue: { summary: '1' } }
+        },
     }}
 />
 
@@ -35,7 +39,7 @@ import { InputSliderComponent }         from '../angular/input-slider.component'
 
 ## Component API
 
-<Props of={InputSliderComponent} />
+<ArgsTable of={InputSliderComponent} />
 
 export const Drupal = (args) => ({
     component   : TwigContainerComponent,
@@ -57,12 +61,13 @@ export const defaultProps = {
         description   : '$150/month'
     },
     unitLabel       : '$',
-    class           : 'p-3'
+    class           : 'p-3',
+    reversed: undefined,
 }
 
 ### 1 handle
 
-<Preview
+<Canvas
     withSource='none'
     style={{ height: '400px' }}
 >
@@ -75,7 +80,7 @@ export const defaultProps = {
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 ```jsx
 {% include '@bf-components/input-slider/twig/index.twig' with {
@@ -98,7 +103,7 @@ export const defaultProps = {
 ```
 ### 1 handle - Inverted
 
-<Preview
+<Canvas
     withSource='none'
     style={{ height: '400px' }}
 >
@@ -112,7 +117,7 @@ export const defaultProps = {
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 ```jsx
 {% include '@bf-components/input-slider/twig/index.twig' with {
@@ -124,7 +129,7 @@ export const defaultProps = {
 
 ### 2 handles
 
-<Preview
+<Canvas
     withSource='none'
     style={{ height: '400px' }}
 >
@@ -138,7 +143,7 @@ export const defaultProps = {
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 ```jsx
 {% include '@bf-components/input-slider/twig/index.twig' with {

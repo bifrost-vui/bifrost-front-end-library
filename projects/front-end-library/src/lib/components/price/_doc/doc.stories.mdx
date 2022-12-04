@@ -1,6 +1,5 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
-
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { PriceComponent }                       from '../angular/price.component';
 
@@ -15,6 +14,12 @@ import { PriceComponent }                       from '../angular/price.component
         language: {
             control: { type: 'select' },
             table: { defaultValue: { summary: 'en' } },
+        },
+        dollar: {
+            table: { defaultValue: { summary: '0' } }
+        },
+        cent: {
+            table: { defaultValue: { summary: '0' } }
         },
         size: {
             control: { type: 'select' },
@@ -41,7 +46,7 @@ import { PriceComponent }                       from '../angular/price.component
 
 ## Component API
 
-<Props of={PriceComponent} />
+<ArgsTable of={PriceComponent} />
 
 
 
@@ -104,6 +109,7 @@ export const commonProps = {
     },
     message         : 'This is a message.',
     class           : 'p-3',
+    reversed: undefined,
 }
 
 
@@ -140,6 +146,7 @@ export const commonProps = {
         height='800px'
         args={{
             elementPath     : 'components/price/_doc/template-null.drupal',
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}

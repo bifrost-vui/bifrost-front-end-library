@@ -1,5 +1,5 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Props }           from '@storybook/addon-docs';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { withDesign }                           from 'storybook-addon-designs'
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { TilePostComponent }                    from '../angular/tile-post.component';
@@ -14,9 +14,9 @@ import { TilePostComponent }                    from '../angular/tile-post.compo
     ]}
     parameters={{
         design: {
-            type    : 'figma',
-            url     : 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=2806%3A9236',
-            disable : false
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=2806%3A9236',
+            disable: false
         }
     }}
     argTypes={{
@@ -34,11 +34,14 @@ import { TilePostComponent }                    from '../angular/tile-post.compo
 
 <br/>
 
+## Image Guidelines
+- **Size:** Image displayed will fit in available width.
+- **Ratio:** Image displayed will respect the ratio of the original image source.
 
 
 ## Component API
 
-<Props of={TilePostComponent} />
+<ArgsTable of={TilePostComponent} />
 
 
 
@@ -46,19 +49,18 @@ import { TilePostComponent }                    from '../angular/tile-post.compo
 
 ```jsx
 {% include '@bf-components/tile-post/twig/index.twig' with {
-    title           : 'Visit the Community',
-    description     : 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
-    link            : {
+    title: 'Visit the Community',
+    description: 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
+    link: {
         label: 'Ask a question',
         href: 'https://example.com'
     },
-    image           : {
+    image: {
         src: '/images/_docs/hero-helix-reversed.png',
         alt: 'Image of an iPhone 13',
-        fit: 'fill',
         backgroundColor: '#ff00ff'
     },
-    class           : 'm-6'
+    class: 'm-6'
 } only %}
 ```
 
@@ -72,20 +74,21 @@ export const Drupal = (args) => ({
 });
 
 export const commonProps = {
-    title           : 'Visit the Community',
-    titleTag        : 'h1',
-    description     : 'A specific question? Post it on our forum and see how experts and other users have solved a similar problem.',
-    link            : {
+    title: 'Visit the Community',
+    titleTag: 'h1',
+    description: '<b>A specific question?</b> Post it on our forum and see how experts and other users have solved a similar problem.',
+    link: {
         label: 'Ask a question',
         href: 'https://example.com'
     },
-    image           : {
-        src: '/images/_docs/hero-helix-reversed.png',
+    image: {
+        src: 'https://videotron.com/sites/default/files/styles/cropped_small/public/image/apphelix-vrai_800x400.jpg?itok=_jOQ1ipy',
         alt: 'Image of an iPhone 13',
-        fit: 'fill',
         backgroundColor: 'grey'
     },
-    class           : 'm-6'
+    isFeatured: false,
+    class: 'm-6',
+    reversed: undefined,
 }
 
 <Canvas withSource='none'>

@@ -1,9 +1,8 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Props }  from '@storybook/addon-docs';
-
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { contentListsData }                     from './data';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { BlockSelectionComponent }                       from '../angular/block-selection.component';
+import { BlockSelectionComponent }              from '../angular/block-selection.component';
 
 
 <Meta
@@ -23,7 +22,7 @@ import { BlockSelectionComponent }                       from '../angular/block-
 
 ## Component API
 
-<Props of={BlockSelectionComponent} />
+<ArgsTable of={BlockSelectionComponent} />
 
 
 
@@ -107,7 +106,8 @@ export const commonProps = {
         name='Drupal'
         height='600px'
         args={{
-            ...commonProps
+            ...commonProps,
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}

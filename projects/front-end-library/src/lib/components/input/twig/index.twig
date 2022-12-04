@@ -1,14 +1,21 @@
-<div class='bf-input {{ isInvalid|default(false) ? 'invalid' }} {{ isDisabled|default(false) ? 'disabled' }} {{ isReadOnly|default(false) ? 'readonly' }} {{ class|default(NULL) }}'>
+<fieldset class='bf-input {{ isInvalid|default(false) ? 'bf-input--invalid' }} {{ isDisabled|default(false) ? 'bf-input--disabled' }} {{ isReadOnly|default(false) ? 'bf-input--readonly' }} {{ class|default(null) }}'>
+
   {% if (label is defined and label) or (labelButtonIcon is defined and labelButtonIcon is not empty) or (description is defined and description) %}
     <div class='mb-2'>
       {% if label is defined and label %}
-        <label {% if inputId is defined and inputId %}for='{{ inputId }}'{% endif %}>
-          {{ label }}
-        </label>
-      {% endif %}
-      {% if labelButtonIcon is defined and labelButtonIcon is not empty %}
-        {% set labelButtonIcon = labelButtonIcon|merge({ 'size': 'xsmall' }) %}
-        {% include '@bf-components/button-icon/twig/index.twig' with labelButtonIcon only %}
+        {% if isLabelLegend|default(false) %}
+          <legend class='bf-input__label'>
+            {{ label }}
+          </legend>
+        {% else %}
+          <label class='bf-input__label' {% if id is defined and id %}for='{{ id }}'{% endif %}>
+            {{ label }}
+          </label>
+        {% endif %}
+        {% if labelButtonIcon is defined and labelButtonIcon is not empty %}
+          {% set labelButtonIcon = labelButtonIcon|merge({ 'size': 'xsmall' }) %}
+          {% include '@bf-components/button-icon/twig/index.twig' with labelButtonIcon only %}
+        {% endif %}
       {% endif %}
       {% if description is defined and description %}
         <p class='bf-color-neutral-secondary mb-0'>
@@ -19,9 +26,9 @@
   {% endif %}
 
   {% if block('inputContent') is defined %}
-      {{ block('inputContent') }}
+    {{ block('inputContent') }}
   {% elseif inputContent is defined %}
-      {{ inputContent }}
+    {{ inputContent }}
   {% endif %}
 
   {% if errorMessage is defined and errorMessage %}
@@ -35,4 +42,4 @@
       {{ helperText }}
     </p>
   {% endif %}
-</div>
+</fieldset>

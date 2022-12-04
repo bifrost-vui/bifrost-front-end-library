@@ -15,6 +15,7 @@ module.exports = {
              },
           },
         },
+        'storybook-dark-mode',
     ],
   core: {
     builder: 'webpack5',

@@ -1,9 +1,8 @@
 import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Props } from '@storybook/addon-docs';
-
-import { topBar_items, topBar_secondaryItems, rigthIconLinks } from './data';
-import { TwigContainerComponent }   from '../../../../utils/twig-container/twig-container.component';
-import { HeaderComponent }          from '../angular/header.component';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { topBar_items, topBar_secondaryItems, rigthIconLinks} from './data';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { HeaderComponent } from '../angular/header.component';
 
 
 <Meta
@@ -14,20 +13,23 @@ import { HeaderComponent }          from '../angular/header.component';
     ]}
     argTypes={{
         accountHello: {
-            table: { defaultValue: { summary: 'Hello' } },
+            table: { defaultValue: { summary: 'Hello' }},
+        },
+        accountName: {
+            table: { category: 'Deprecated Inputs' }
         },
         langcode: {
-            defaultValue: 'FR',
+            table: { defaultValue: { summary: 'EN' }},
             control: {
                 type: 'select',
                 options: ['EN', 'FR'],
             }
         },
         hasTopBar: {
-            defaultValue: true,
+            table: { defaultValue: { summary: 'true' } },
         },
         reversed: {
-            defaultValue: false,
+            table: { defaultValue: { summary: 'false' } },
         }
     }}
 />
@@ -55,23 +57,23 @@ import { HeaderComponent }          from '../angular/header.component';
             { label: 'Locate',      href: '', class: '' }
         ],
     },
-    logo : {
-        name : 'business',
+    logo: {
+        name: 'business',
     },
     navItems: [
         {
             label: 'Shop', href: '', class: '',
             subItemsMultiDropdown: [
                 {
-                    label : 'Helix plans', href : '', class : '',
+                    label: 'Helix plans', href: '', class: '',
                     listItems: [
-                        { label : 'The Helix experience',   href : '', class : '' },
-                        { label : 'Helix TV',               href : '', class : '' },
-                        { label : 'Helix Internet',         href : '', class : '' },
+                        { label: 'The Helix experience',   href: '', class: '' },
+                        { label: 'Helix TV',               href: '', class: '' },
+                        { label: 'Helix Internet',         href: '', class: '' },
                     ]
                 },
                 {
-                    label : 'Other custom bundles', href : '', class : '',
+                    label: 'Other custom bundles', href: '', class: '',
                     listItems: []
                 },
             ],
@@ -81,30 +83,27 @@ import { HeaderComponent }          from '../angular/header.component';
             ]
         },
         {
-            label : 'Support', href : '#', class : '',
+            label: 'Support', href: '#', class: '',
             subItemsMultiDropdown: [...],
             mega: [...],
         }
         ...
     ],
-    rigthIconLinks : [
-        { icon : 'email',   href : ' ', class : '' },
-        { icon : 'pin',     href : ' ', class : '' },
+    rigthIconLinks: [
+        { icon: 'email',   href: ' ', class: '' },
+        { icon: 'pin',     href: ' ', class: '' },
     ],
+    hasAccountBtn: true,
+    isConnected: true,
+    hrefLogOut: '#',
+    labelLogOut: 'Log out',
+    hrefConnexion: '#',
+    labelConnexion: 'Connexion',
 
-    hasAccountBtn : true,
-    isConnected : true,
-    hrefLogOut : '#',
-    labelLogOut : 'Log out',
-    hrefConnexion : '#',
-    labelConnexion : 'Connexion',
-
-    search : {
-        placeholder : 'What are you looking for?'
+    search: {
+        placeholder: 'What are you looking for?'
     },
-
-    reversed : true,
-    langcode : 'EN'
+    reversed: true,
 } only %}
 ```
 
@@ -112,7 +111,7 @@ import { HeaderComponent }          from '../angular/header.component';
 
 ## Component API
 
-<Props of={HeaderComponent} />
+<ArgsTable of={HeaderComponent} />
 
 
 
@@ -127,16 +126,34 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         args={{
-            elementPath : 'components/navigation-header/_doc/template.drupal',
+            elementPath: 'components/navigation-header/_doc/template.drupal',
             topBar_items,
             topBar_secondaryItems,
-            logo : {
-                name                : 'business',
-                href                : '/',
+            logo: {
+                name: 'videotron',
+                href: '/',
             },
             rigthIconLinks,
         }}
-        height='500px'
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - business'
+        args={{
+            elementPath: 'components/navigation-header/_doc/template.drupal',
+            topBar_items,
+            topBar_secondaryItems,
+            logo: {
+                name: 'business',
+                href: '/',
+            },
+            reversed: 'true',
+            rigthIconLinks,
+        }}
     >
         {Drupal.bind({})}
     </Story>

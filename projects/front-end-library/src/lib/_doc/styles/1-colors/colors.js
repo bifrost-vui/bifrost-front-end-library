@@ -27,7 +27,7 @@ const colors = [
         ]
     },
     {
-        name: 'Background ',
+        name: 'Background',
         description: 'Meant to be used on non-interactive visual elements.',
         list: [
             {

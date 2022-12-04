@@ -6,22 +6,22 @@
 
 .bf-input {
 
-    label {
-        font-weight: 700;
+    &__label {
+        font-weight: $font-weight-bold;
         margin-bottom: 0;
     }
 
-    label ~ .bf-button-icon {
+    &__label ~ .bf-button-icon {
         transform: translateY(2px);
     }
 
-    .bf-input__control {
+    &__control {
         width: 100%;
         padding: calc(.5rem - 1px) 1rem; // In order to have height: 40px.
         font-family: inherit;
         font-size: inherit;
         line-height: inherit;
-        font-weight: 400;
+        font-weight: $font-weight-normal;
         text-transform: none;
         letter-spacing: normal;
         color: var(--bf-color-neutral-primary);
@@ -49,13 +49,13 @@
         }
     }
 
-    &.invalid .bf-input__control {
+    &--invalid .bf-input__control {
         color: currentColor;
         border-color: var(--bf-color-feedback-negative);
         background-color: transparent;
     }
 
-    &.disabled {
+    &--disabled {
         .bf-input__control {
             color: var(--bf-color-neutral-tertiary);
             border-color: var(--bf-color-stroke-secondary);
@@ -71,13 +71,13 @@
         }
     }
 
-    &.readonly .bf-input__control {
+    &--readonly .bf-input__control {
         border-color: var(--bf-color-stroke-secondary);
         color: var(--bf-color-neutral-secondary);
         cursor: default;
     }
 
-    .bf-input__adornment {
+    &__adornment {
         position: absolute;
         top: 0;
         right: 0;

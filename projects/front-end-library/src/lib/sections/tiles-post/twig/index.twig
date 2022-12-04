@@ -1,7 +1,8 @@
 {% set titleTag = titleTag|default('p') %}
 
 <section class='
-  bf-section-tiles-post bf-color-bg-ground
+  bf-section-tiles-post
+  {{ background|default('ground') == 'ground' ? 'bf-color-bg-ground' : 'bf-color-bg-underground' }}
   {{ reversed|default(false) ? 'reversed' }}
   {{ class|default('') }}'
 >
@@ -11,10 +12,9 @@
         {{ title }}
       </{{ titleTag }}>
     {% endif %}
-    <ul class='d-flex flex-column flex-md-row gap-6 gap-md-4 list-unstyled'>
+    <ul class='d-flex flex-column flex-md-row flex-wrap gap-4 list-unstyled'>
       {% for tile in tiles %}
-        <li class='flex-1'>
-          {% set tile = tile|merge({ isFeatured: isFeatured|default(false) }) %}
+        <li class='bf-section-tiles-post__item mb-4 {{ tile.size|default('default') == 'large' ? 'bf-section-tiles-post__item--size-large' }}'>
           {% include '@bf-components/tile-post/twig/index.twig' with tile only %}
         </li>
       {% endfor %}

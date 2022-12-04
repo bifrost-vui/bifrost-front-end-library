@@ -1,8 +1,8 @@
-import { moduleMetadata }               from '@storybook/angular';
-import { Canvas, Meta, Story,  Props }  from '@storybook/addon-docs';
+import { moduleMetadata }                       from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { CarouselComponent }                    from '../angular/carousel.component';
 
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { CarouselComponent }            from '../angular/carousel.component';
 
 <Meta
     title='Components/Carousel'
@@ -68,7 +68,7 @@ import { CarouselComponent }            from '../angular/carousel.component';
 
 ## Drupal
 
-> There is no Carousel Drupal component in Bifrost.
+> There is no Carousel Drupal component in Bifröst.
 > Please use <a class='bf-link' target='_blank' href='https://kenwheeler.github.io/slick/'>Slick carousel</a>.
 
 export const Drupal = (args) => ({
@@ -80,6 +80,7 @@ export const Drupal = (args) => ({
     <Story
         name='Drupal'
         height='800px'
+        parameters={{ options: { showPanel: false } }}
         args={{
             elementPath : 'components/carousel/_doc/template.drupal',
         }}
