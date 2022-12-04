@@ -1,9 +1,16 @@
 # Bifröst
-Front-end Vidéotron Visual language
+Front-end Vidéotron Visual language and components library
 
-## Legal Disclaimer
-By contributing to this project to accept to transfert all you intellectual right to Videotron, without any more compensation, moneytary or other. 
-blablabla more legal display...
+# Legal Disclaimer
+By contributing to this project, you hereby to accept to transfer all your intellectual right property to Videotron lte inc. You are agreeing to do so without any sort of compensation, royalty, monetary or any sort of remuneration, otherwise explicitly said in a service agreement.
+
+Your transfer is irrevocable and effective immediately after submitting any sort of work, under any form (which include, but not limited to, code, images, idea, discussion verbal or written), to this repository.
+
+By giving your contribution, you swear the work is original creation and are free of other trademark, license, or other rights restraining you to give the contribution to Videotron.
+
+You are not expected to support your contribution in the future. Your contribution is considered "as-is", with the transfer of your right on it.
+
+Contributing doesn't give you the right to sell, distribute, commercially or privately, or any use what so ever, of any part of this repository.
 
 ## What's inside?
 
@@ -30,12 +37,10 @@ The Front-End library contains:
 ## The Front-End library is published to NPM registry
 https://www.npmjs.com/package/@videotron-ui/bifrost-front-end-library
 
-## Storybook
-...
 
 
 ## Contributing
 
 If you'd like to contribute, please follow our [contributing guidelines](CONTRIBUTING.mdx).
 
-© Videotron 2020-2021
+© Videotron 2020-2023
