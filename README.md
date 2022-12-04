@@ -1,4 +1,4 @@
-# Bifröst
+# 🌈 Bifröst 🌈
 Front-end Vidéotron Visual language and components library
 
 # Legal Disclaimer
