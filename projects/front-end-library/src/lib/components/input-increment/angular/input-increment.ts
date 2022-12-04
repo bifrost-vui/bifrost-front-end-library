@@ -3,8 +3,7 @@ import { InputIncrementComponent } from './input-increment.component';
 
 @NgModule({
   declarations: [InputIncrementComponent],
-  imports: [
-  ],
+  imports: [],
   exports: [InputIncrementComponent]
 })
 export class InputIncrement { }

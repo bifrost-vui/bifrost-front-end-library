@@ -1,12 +1,11 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { PriceComponent }                       from '../angular/price.component';
 
 
-<Meta 
-    title='Components/Price' 
+<Meta
+    title='Components/Price'
     component={PriceComponent}
     decorators={[
         moduleMetadata({ declarations: [PriceComponent, TwigContainerComponent]}),
@@ -15,6 +14,12 @@ import { PriceComponent }                       from '../angular/price.component
         language: {
             control: { type: 'select' },
             table: { defaultValue: { summary: 'en' } },
+        },
+        dollar: {
+            table: { defaultValue: { summary: '0' } }
+        },
+        cent: {
+            table: { defaultValue: { summary: '0' } }
         },
         size: {
             control: { type: 'select' },
@@ -41,7 +46,7 @@ import { PriceComponent }                       from '../angular/price.component
 
 ## Component API
 
-<Props of={PriceComponent} />
+<ArgsTable of={PriceComponent} />
 
 
 
@@ -60,11 +65,12 @@ import { PriceComponent }                       from '../angular/price.component
     hasAsterisk     : true,
     details         : '/month',
     promotion       : {
-        priceStriked  : 40.99,
-        priceSaved    : 10,
-        savedLabel    : 'You saved:',
-        superscript   : 1,
-        direction     : 'horizontal',
+        title       : '<b>Promotion</b> test',
+        priceStriked: 40.99,
+        priceSaved  : 10,
+        savedLabel  : 'You saved:',
+        superscript : 1,
+        direction   : 'horizontal',
     },
     message         : 'This is a message',
     class           : '',
@@ -94,58 +100,55 @@ export const commonProps = {
     hasAsterisk     : false,
     details         : '/month',
     promotion       : {
-        priceStriked  : 40.99,
-        priceSaved    : 10,
-        savedLabel    : 'You saved:',
-        superscript   : 1,
-        direction     : 'horizontal',
+        title           : ' <b>Promotion</b> test',
+        priceStriked    : 40.99,
+        priceSaved      : 10,
+        savedLabel      : 'You saved:',
+        superscript     : 1,
+        direction       : 'horizontal',
     },
     message         : 'This is a message.',
     class           : 'p-3',
+    reversed: undefined,
 }
 
 
-<Preview
-    withSource='none'
-    style={{ height: '200px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
+        height='200px'
+        args={{
             elementPath     : 'components/price/_doc/template.drupal',
             ...commonProps
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-<Preview
-    withSource='none'
-    style={{ height: '800px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal - All Prices'
-        args={{ 
-            elementPath     : 'components/price/_doc/all-prices.drupal',
+        height='800px'
+        args={{
+            elementPath     : 'components/price/_doc/template-all.drupal',
             ...commonProps
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-<Preview
-    withSource='none'
-    style={{ height: '800px' }}
->
-    <Story 
-        name='Drupal - All Prices - Null validator'
-        args={{ 
-            elementPath     : 'components/price/_doc/null.drupal',
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Null validator'
+        height='800px'
+        args={{
+            elementPath     : 'components/price/_doc/template-null.drupal',
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

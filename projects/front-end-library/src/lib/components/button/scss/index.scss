@@ -4,13 +4,13 @@
 *
 * ***************************************************************************** */
 
-
 .bf-button {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: min-content; // In order to avoid default fullwidth on a.bf-button.
+    width: fit-content; // In order to avoid default fullwidth on a.bf-button.
+    min-width: fit-content;
     min-height: 2.5rem;
     padding: 0 1.5rem;
     color: inherit;
@@ -27,7 +27,7 @@
     border: none;
     cursor: pointer;
 
-    &:hover {
+    &:not(.bf-button--tertiary):hover {
         text-decoration: none;
     }
 
@@ -38,6 +38,7 @@
     }
 
     &--primary {
+        color: var(--bf-color-primary-irreversible);
         @extend .bf-color-bg-action-primary;
 
         &:hover {
@@ -50,8 +51,8 @@
 
         &:not(.disabled) {
             color: var(--bf-color-bg-ground);
-            .bf-icon { 
-                color: var(--bf-color-bg-ground);
+            .bf-icon {
+                color: currentColor;
             }
         }
 
@@ -68,7 +69,7 @@
         &:hover {
             border-color: var(--bf-color-neutral-primary);
         }
-        
+
         &.disabled {
             background-color: transparent;
         }
@@ -76,23 +77,24 @@
 
     &--tertiary {
         background-color: transparent;
-        
+        text-decoration: underline;
+
         &:hover {
             @extend .bf-color-bg-action-no-bg-hover;
         }
-        
+
         &.disabled {
             background-color: transparent;
         }
     }
 
     &--fullwidth {
-        @extend .w-100;
+        width: 100%;
     }
 
     &.loading {
         pointer-events: none;
-        
+
         .bf-button__label {
             visibility: hidden;
         }
@@ -115,19 +117,18 @@
                 transform: scale(.8);
                 opacity: .5;
                 animation: loading-dot .9s alternate infinite ease-in-out;
-                
+
                 &:nth-child(2) { animation-delay: .3s }
                 &:nth-child(3) { animation-delay: .6s }
             }
         }
     }
 
-    &__label {
+    &__inner {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: .5rem;
-        white-space: nowrap;
     }
 
     &__icon--right {
@@ -138,25 +139,4 @@
 @keyframes loading-dot  {
     from    { transform: scale(.75); opacity: .5; }
     to      { transform: scale(1); opacity: 1; }
-}
-
-
-// Apply Dark color on reversed Primary and Primary-alt.
-// TODO: Find a more elegant wy to give access to initial css variables in reversed.
-
-.reversed .bf-button,
-.reversed.bf-button {
-    
-    &--primary,
-    &--primary-alt {
-
-        &.disabled {
-            color: var(--bf-color-neutral-tertiary) !important;
-            svg {color: var(--bf-color-neutral-tertiary) !important;}
-        }
-        &:not(.disabled) {
-            color: var(--bf-color-bg-ground) !important;
-            svg {color: var(--bf-color-bg-ground) !important;}
-        }
-    }
 }

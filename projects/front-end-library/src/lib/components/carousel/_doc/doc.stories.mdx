@@ -1,11 +1,11 @@
-import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
+import { moduleMetadata }                       from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { CarouselComponent }                    from '../angular/carousel.component';
 
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { CarouselComponent }            from '../angular/carousel.component';
 
-<Meta 
-    title='Components/Carousel' 
+<Meta
+    title='Components/Carousel'
     component={CarouselComponent}
     decorators={[
         moduleMetadata({ declarations: [CarouselComponent, TwigContainerComponent]}),
@@ -42,14 +42,14 @@ import { CarouselComponent }            from '../angular/carousel.component';
             nextArrow: bfSlick.getNextSlickBtn(),
             responsive: [
                 {
-                    breakpoint: (bfTheme.breakpoints.md-1),
+                    breakpoint: (breakpoints.md-1),
                     settings: {
                         slidesToShow: 2,
                         slidesToScroll: 1
                     }
                 },
                 {
-                    breakpoint: bfTheme.breakpoints.lg,
+                    breakpoint: breakpoints.lg,
                     settings: {
                         slidesToShow: 3,
                         slidesToScroll: 3
@@ -68,7 +68,7 @@ import { CarouselComponent }            from '../angular/carousel.component';
 
 ## Drupal
 
-> There is no Carousel Drupal component in Bifrost.
+> There is no Carousel Drupal component in Bifröst.
 > Please use <a class='bf-link' target='_blank' href='https://kenwheeler.github.io/slick/'>Slick carousel</a>.
 
 export const Drupal = (args) => ({
@@ -76,16 +76,15 @@ export const Drupal = (args) => ({
     props       : args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '1000px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
+        height='800px'
+        parameters={{ options: { showPanel: false } }}
+        args={{
             elementPath : 'components/carousel/_doc/template.drupal',
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

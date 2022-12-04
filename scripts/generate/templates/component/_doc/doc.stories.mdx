@@ -1,14 +1,15 @@
-import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-import { withDesign }                   from 'storybook-addon-designs'
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { %ComponentName%Component }     from '../angular/%component-name%.component';
+import { moduleMetadata }                       from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import { withDesign }                           from 'storybook-addon-designs'
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { %ComponentName%Component }             from '../angular/%component-name%.component';
+import { %ComponentName%TemplateComponent }     from './template.angular.component';
 
-<Meta 
-    title='%Component-type%/%Component-Readable-Name%' 
+<Meta
+    title='%Component-type%/%Component-Readable-Name%'
     component={%ComponentName%Component}
     decorators={[
-        moduleMetadata({ declarations: [%ComponentName%Component, TwigContainerComponent]}),
+        moduleMetadata({ declarations: [%ComponentName%Component, %ComponentName%TemplateComponent, TwigContainerComponent]}),
         withDesign
     ]}
     parameters={{
@@ -34,23 +35,21 @@ export const Drupal = (args) => ({
     props       : args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
+        height='300px'
+        args={{
             elementPath : '%component-type%/%component-name%/_doc/template.drupal',
             label       : '%Component-Readable-Name%',
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-## Drupal implementation exemple
+## Drupal implementation example
 
 ```jsx
 {% include '@bf-components/%component-name%/twig/index.twig' with {
@@ -62,22 +61,22 @@ export const Drupal = (args) => ({
 ## Angular
 
 export const Angular = (args) => ({
-  component: %ComponentName%Component,
+  component: %ComponentName%TemplateComponent,
   props: args,
 });
 
-<Preview
-    withSource='none'
->
-    <Story 
-        name='Angular' 
-        args={{ label: '%Component-Readable-Name%' }}
+<Canvas withSource='none'>
+    <Story
+        name='Angular'
+        args={{
+            label: '%Component-Readable-Name%'
+        }}
     >
         {Angular.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-## Angular implementation exemple
+## Angular implementation example
 
 Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
 
@@ -87,11 +86,7 @@ Please, read the [Implementation Page](/?path=/docs/implementation-angular--page
 
 ## Component API
 
-**// TODO**: Add a sentence to clarify if API is consistent between Angular and Drupal.
-
-**✅ Inputs are equivalent for Angular and Drupal.**
-
-<Props of={%ComponentName%Component} />
+<ArgsTable of={%ComponentName%Component} />
 
 
 ## Design Guidelines

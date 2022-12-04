@@ -1,10 +1,10 @@
-import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-import { withDesign }                   from 'storybook-addon-designs';
+import { moduleMetadata }                   from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }   from '@storybook/addon-docs';
+import { withDesign }                       from 'storybook-addon-designs';
 
-import {slides}                         from './data';
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { SlideshowComponent }           from '../angular/slideshow.component';
+import { slides }                           from './data';
+import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
+import { SlideshowComponent }               from '../angular/slideshow.component';
 
 <Meta
     title='Components/Slideshow'
@@ -38,7 +38,7 @@ import { SlideshowComponent }           from '../angular/slideshow.component';
 
 **✅ Inputs are equivalent for Angular and Drupal.**
 
-<Props of={SlideshowComponent} />
+<ArgsTable of={SlideshowComponent} />
 
 ## Drupal
 
@@ -47,12 +47,10 @@ export const Drupal = (args) => ({
     props       : args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '500px' }}
->
+<Canvas withSource='none'>
     <Story
         name='Drupal'
+        height='500px'
         args={{
             elementPath : 'components/slideshow/_doc/template.drupal',
             slides
@@ -60,7 +58,7 @@ export const Drupal = (args) => ({
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
 ## Drupal implementation example
@@ -82,7 +80,6 @@ export const Drupal = (args) => ({
                 }
             ],
             background   : "highlight",
-            height       : 'large'
         },
         {
             badge       : "badge label 2",
@@ -101,7 +98,6 @@ export const Drupal = (args) => ({
                 }
             ],
             reversed   : true,
-            height     : 'large'
         },
         {
             upperTitle : "upper Title 3",
@@ -117,7 +113,6 @@ export const Drupal = (args) => ({
                 alt : "Helix"
             },
             reversed   : true,
-            height     : 'large'
         },
         {...}
     ]

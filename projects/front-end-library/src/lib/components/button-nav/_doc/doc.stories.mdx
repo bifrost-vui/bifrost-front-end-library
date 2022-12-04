@@ -1,50 +1,56 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { ButtonNavComponent }                   from '../angular/button-nav.component';
 
-
-<Meta 
-    title='Components/Button Nav' 
+<Meta
+    title='Components/Button Nav'
     component={ButtonNavComponent}
     decorators={[
         moduleMetadata({ declarations: [ButtonNavComponent, TwigContainerComponent]})
     ]}
     argTypes={{
         iconName: {
-            defaultValue: '',
+            table: { defaultValue: { summary: 'placeholder' } },
             control: {
                 type: 'select',
                 options: ['', 'placeholder', ...illustrationIcons.map(a => a.list).flat().sort()]
             }
+        },
+        isFeatured: {
+            table: { defaultValue: { summary: false } }
+        },
+        isDisabled: {
+            table: { defaultValue: { summary: false } }
+        },
+        highlight: {
+            table: { defaultValue: { summary: false } }
+        },
+        reversed: {
+            table: { defaultValue: { summary: false } }
         }
     }}
 />
-
 
 # Button Nav
 
 <br/>
 
-
-
 ## Component API
 
-<Props of={ButtonNavComponent} />
-
-
+<ArgsTable of={ButtonNavComponent} />
 
 ## Drupal implementation example
 
 ```jsx
 {% include '@bf-components/button-nav/twig/index.twig' with {
-    label           : 'Default',
-    iconName        : 'placeholder',
-    class           : 'mt-3',
-    reversed        : false,
-    highlight       : false,
+    label: 'Label',
+    description: 'Description',
+    iconName: 'placeholder',
+    class: 'mt-3',
+    reversed: false,
+    highlight: false,
 } only %}
 ```
 
@@ -55,34 +61,44 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
         args={{
-            elementPath : 'components/button-nav/_doc/template.drupal',
-            iconName    : 'placeholder'
+            elementPath: 'components/button-nav/_doc/template.drupal',
+            label: 'Label',
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-
-<Preview
-    withSource='none'
-    style={{ height: '900px' }}
->
-    <Story 
-        name='Drupal - Usage Example'
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With description'
         args={{
-            elementPath : 'components/button-nav/_doc/usage-example.drupal'
+            elementPath: 'components/button-nav/_doc/template.drupal',
+            label: 'Label',
+            description: 'Description morbi leo risus, porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.',
+            reversed: undefined,
         }}
-        argTypes={{}}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - With isFeatured'
+        args={{
+            elementPath: 'components/button-nav/_doc/template.drupal',
+            label: 'Label',
+            description: 'Description morbi leo risus, porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.',
+            isFeatured: true,
+            reversed: undefined,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>

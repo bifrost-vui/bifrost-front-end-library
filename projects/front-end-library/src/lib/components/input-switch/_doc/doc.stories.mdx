@@ -1,0 +1,94 @@
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs'
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { InputSwitchComponent } from '../angular/input-switch.component';
+
+<Meta
+    title='Components/Input Switch'
+    component={InputSwitchComponent}
+    decorators={[
+        moduleMetadata({ declarations: [InputSwitchComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=13846%3A114546',
+            disable: false
+        },
+    }}
+    argTypes={{
+        _background:{
+            control: {
+                type: 'select',
+                options: [ null, 'bf-color-bg-ground','bf-color-bg-underground','reversed bf-color-bg-ground','reversed bf-color-bg-underground', 'bf-color-bg-highlight' ]
+            },
+            description: 'Preview component on selected background.'
+        },
+        id: { type: { required: true }},
+        name: { type: { required: true }},
+    }}
+/>
+
+# Input Switch
+
+## Component API
+
+<ArgsTable of={InputSwitchComponent} />
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Canvas withSource='none' style={{ height: '400px' }}>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath: 'components/input-switch/_doc/template.drupal',
+            id: 'inputId',
+            name: 'inputName',
+            ariaLabel: 'ariaLabel',
+            label: {
+                text: 'Lorem ipsum dolor sit amet',
+                position: 'right',
+                class: 'text-uppercase font-weight-bold'
+            },
+            isChecked: undefined,
+            isDisabled: undefined,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/input-switch/twig/index.twig' with {
+    id: 'inputId',
+    name: 'inputName',
+    ariaLabel: 'Lorem ipsum dolor sit amet',
+    label: 'Lorem ipsum dolor sit amet'
+} only %}
+
+
+{% include '@bf-components/input-switch/twig/index.twig' with {
+    id: 'inputId',
+    name: 'inputName',
+    ariaLabel: 'Lorem ipsum dolor sit amet',
+    label: {
+        text: 'Lorem ipsum dolor sit amet',
+        position: 'right',
+        class: 'text-uppercase font-weight-bold'
+    }
+} only %}
+
+```
+
+## Design Guidelines
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D13846%253A114546' frameBorder='0' allowFullScreen></iframe>

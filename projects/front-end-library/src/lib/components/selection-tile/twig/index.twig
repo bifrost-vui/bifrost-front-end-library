@@ -1,0 +1,108 @@
+{% set id = id|default(inputId)|default('') %}
+{% set orientation = orientation|default('horizontal') %}
+{% set fit = fit|default('content') %}
+
+{% set hasVisual = (iconName is defined and iconName) or (image.src is defined and image.src and image.alt is defined) %}
+{% set hasFooter = orientation is same as ('horizontal') and ((footer.description is defined and footer.description) or (footer.link is defined and footer.link)) %}
+
+{# striptag filter #}
+{% set inlineTags = '<br><em><i><strong><b><sup><sub>' %}
+{% set allowedTags = '<div><p><ol><ul><li><span><br><em><i><strong><b><sup><sub>' %}
+
+<div class='bf-selection-tile bf-selection-tile--{{ orientation }} bf-selection-tile--fit-{{ fit }} {{ isInvalid|default(false) ? 'bf-selection-tile--invalid' }} {{ isChecked|default(false) ? 'checked' : '' }} {{ class|default(null) }}'>
+  <div class='bf-selection-tile__inner {{ isDisabled|default(false) ? 'disabled' }}'>
+    <div class='bf-selection-tile__control'>
+      {% apply spaceless %}
+        <input
+          type='{{ type|default('checkbox') }}'
+          class='bf-selection-tile__input'
+          id='{{ id }}'
+          name='{{ name }}'
+          value='{{ value|default('') }}'
+          {% if ariaLabel is defined and ariaLabel %} aria-label='{{ ariaLabel}}'{% endif %}
+          {{ isDisabled ? 'disabled' : '' }}
+          {{ isChecked|default(false) ? 'checked' : '' }}
+          {{ isRequired ? 'required' : '' }}
+          {{ extraAttribute|default(NULL) }}
+        />
+      {% endapply %}
+      <label for='{{ id }}' class='bf-selection-tile__label' {% if ariaLabel is defined and ariaLabel %} title='{{ ariaLabel }}'{% endif %}>
+        <span class='bf-checkbox__control'></span>
+      </label>
+    </div>
+
+    <div class='bf-selection-tile__block'>
+      {% if block('content') is defined %}
+        {{ block('content') }}
+      {% elseif content is defined and content %}
+        {{ content }}
+      {% else %}
+        <div class='bf-selection-tile__content {{ hasVisual ? '' : 'bf-selection-tile__no-visual' }}'>
+          <div class='bf-selection-tile__body'>
+            {% if hasVisual %}
+              <div class='bf-selection-tile__visual'>
+                {% if iconName is defined and iconName %}
+                  {% include '@bf-components/icon/twig/index.twig' with {
+                    name  : iconName,
+                    size  : (orientation == 'vertical' and fit == 'container') ? 'large' : 'medium',
+                  } only %}
+                {% elseif image.src is defined and image.src and image.alt is defined %}
+                  <img class='{{ image.class }}' src='{{ image.src }}' alt='{{ image.alt }}' />
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if ( label is defined and label) or (description is defined and description) %}
+              <div class='bf-selection-tile__text'>
+                {% if label is defined and label %}
+                  <p class='p-0 m-0 text-break'>
+                    <strong>{{ label }}</strong>
+                  </p>
+                {% endif %}
+
+                {% if description is defined and description %}
+                  <p class='p-0 m-0 text-break'>{{ description }}</p>
+                {% endif %}
+              </div>
+            {% endif %}
+
+          </div>
+        </div>
+
+        {# ---------Vertical Tiles Bottom | Horizontal Tiles Right Side ------------  #}
+        {% if (info is defined and info) or (orientation == 'vertical' and fit  == 'container') %}
+          <div class='bf-selection-tile__bottom'>
+            <div class='bf-selection-tile__text'>
+              <p class='p-0 m-0 text-break'>{{ info|striptags(inlineTags)|raw }}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endif %}
+    </div>
+
+  </div>
+  {# ---------Horizontal Tiles Footer ------------  #}
+  {% if hasFooter %}
+    <div class='bf-selection-tile__footer p-3'>
+      <div class='bf-text small bf-color-neutral-secondary'>
+        {% if footer.description is defined and footer.description %}
+          {{ footer.description|striptags(allowedTags)|raw }}
+        {% endif %}
+
+        {% if footer.link is defined and footer.link.label is defined and footer.link.label %}
+          {% include '@bf-components/link/twig/index.twig' with footer.link only %}
+        {% endif %}
+      </div>
+
+      {% if footer.iconName is defined and footer.iconName %}
+        {% include '@bf-components/icon/twig/index.twig' with {
+          name: footer.iconName,
+          size: 'medium'
+        } only %}
+
+      {% elseif footer.image is defined and footer.image.src is defined and footer.image.src %}
+        <img src='{{ footer.image.src }}' alt='{{ footer.image.alt|default('') }}' />
+      {% endif %}
+    </div>
+  {% endif %}
+</div>

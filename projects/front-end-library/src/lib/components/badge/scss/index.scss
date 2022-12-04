@@ -7,7 +7,7 @@
 .bf-badge {
     display: flex;
 
-    &--primary .bf-badge__container {
+    &--primary .bf-badge__inner {
         --color: var(--bf-color-bg-ground);
         --bg-color: var(--bf-color-neutral-primary);
         .bf-icon svg{
@@ -15,7 +15,7 @@
         }
     }
 
-    &--secondary .bf-badge__container {
+    &--secondary .bf-badge__inner {
         --bg-color: var(--bf-color-feedback-neutral);
         @at-root
         .reversed.bf-badge--secondary,
@@ -27,77 +27,107 @@
         }
     }
 
-    &--tertiary .bf-badge__container {
-        // color: var(--bf-color-bg-underground);
+    &--tertiary .bf-badge__inner {
         --bg-color: var(--bf-color-bg-underground);
     }
 
-    &--tertiary-ground .bf-badge__container {
-        // color: var(--bf-color-bg-underground);
+    &--tertiary-ground .bf-badge__inner {
         --bg-color: var(--bf-color-bg-ground);
     }
 
-    &__container {
+    &__inner {
+        position: relative;
+        display: flex;
+        align-items: center;
         padding: 0 .5rem;
         min-height: 1.5rem;
-        letter-spacing: .5px;
-        font-family: $font-family-secondary;
         color: var(--color);
         background-color: var(--bg-color);
+    }
+    &__label {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        z-index: 1;
+        margin: 0;
+        min-height: 1.5rem;
+
+        &__text {
+            padding:  var(--bf-spacer-1) 0;
+        }
+    }
+    &--rounded .bf-badge__inner {
+        border-radius: 1rem;
     }
 
     &--angle-left,
     &--angle-right {
-         .bf-badge__container:before {
+        .bf-badge__inner:before {
             content: '';
             position: absolute;
             top: 0;
             width: .5rem;
             height: 100%;
-            transform: translate(-50%) skew(19deg);
             background-color: inherit;
             z-index: 0;
         }
+
+        .bf-badge__label__text {
+            white-space: nowrap;
+            max-width: 13rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            @include media-breakpoint-up(sm) {
+                max-width: 15rem;
+            }
+        }
     }
 
-    &--angle-right .bf-badge__container {
+    &--angle-right .bf-badge__inner {
         padding: 0 .25rem 0 .75rem;
 
         &:before {
             right: 0;
-            transform: translate(50%) skew(-19deg);
+            transform: translate(50%) skew(-18deg);
         }
     }
 
-    &--angle-left .bf-badge__container {
+    &--angle-left .bf-badge__inner {
         padding: 0 .75rem 0 .25rem;
 
         &:before {
             left: 0;
-            transform: translate(-50%) skew(19deg);
-        }
-    }
-
-    &__label {
-        white-space: nowrap;
-        z-index: 1;
-        span{ vertical-align: middle;}
-        &__text{
-            display:inline-block;
-            line-height: 1.5rem;
+            transform: translate(-50%) skew(18deg);
         }
     }
 }
 
 // Apply White color when badge is dark and reversed.
-@at-root
 .reversed .bf-badge,
 .reversed.bf-badge {
-    &--primary svg{
+    &--primary svg {
         color: var(--bf-color-primary-irreversible)
     }
     &--dark {
         --bg-color: var(--bf-color-neutral-primary);
     }
+}
 
+.disabled {
+    .bf-badge {
+        .bf-badge__inner {
+            @extend .bf-color-neutral-tertiary;
+            @extend .bf-color-bg-action-disabled;
+
+            svg {
+                color: var(--bf-color-neutral-tertiary)
+            }
+        }
+
+        @at-root reversed,
+        &--primary .bf-badge__inner svg {
+            color: var(--bf-color-neutral-tertiary) !important;
+        }
+    }
 }

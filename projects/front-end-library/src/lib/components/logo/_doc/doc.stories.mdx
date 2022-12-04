@@ -1,13 +1,12 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { moduleMetadata }                       from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import { allLogoCategories }                    from './data';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { LogoComponent }                        from '../angular/logo.component';
 
-import { allLogoCategories }                from './data';
-import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
-import { LogoComponent }                    from '../angular/logo.component';
 
-
-<Meta 
-    title='Components/Logo' 
+<Meta
+    title='Components/Logo'
     component={LogoComponent}
     decorators={[
         moduleMetadata({ declarations: [LogoComponent, TwigContainerComponent]}),
@@ -22,7 +21,7 @@ import { LogoComponent }                    from '../angular/logo.component';
             table: { defaultValue: { summary: 'medium' } },
         },
         langcode: {
-            control: { 
+            control: {
                 type: 'select'
             },
             table: { defaultValue: { summary: 'en' } },
@@ -45,7 +44,7 @@ import { LogoComponent }                    from '../angular/logo.component';
 
 ## Component API
 
-<Props of={LogoComponent} />
+<ArgsTable of={LogoComponent} />
 
 
 
@@ -69,37 +68,33 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
+        height='300px'
+        args={{
             elementPath : 'components/logo/_doc/template.drupal',
+            reversed: undefined,
         }}
         height='160px'
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
 
 ## Drupal All Logos
 
-<Preview
-    withSource='none'
-    style={{ height: '800px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal - All logos'
-        args={{ 
+        height='800px'
+        args={{
             elementPath : 'components/logo/_doc/template-all.drupal',
-            allLogoCategories
+            allLogoCategories,
         }}
-        height='160px'
     >
         {Drupal.bind()}
     </Story>
-</Preview>
+</Canvas>

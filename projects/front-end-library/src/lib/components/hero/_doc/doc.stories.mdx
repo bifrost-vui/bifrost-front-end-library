@@ -1,8 +1,9 @@
-import { moduleMetadata }               from '@storybook/angular';
-import { Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-import { withDesign }                   from 'storybook-addon-designs'
-import { TwigContainerComponent }       from '../../../../utils/twig-container/twig-container.component';
-import { HeroComponent }                from '../angular/hero.component';
+import { moduleMetadata }                       from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import { withDesign }                           from 'storybook-addon-designs'
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { HeroComponent }                        from '../angular/hero.component';
+
 
 <Meta
     title='Components/Hero'
@@ -33,7 +34,7 @@ import { HeroComponent }                from '../angular/hero.component';
 
 ## Component API
 
-<Props of={HeroComponent} />
+<ArgsTable of={HeroComponent} />
 
 
 
@@ -49,9 +50,9 @@ import { HeroComponent }                from '../angular/hero.component';
     },
     breadcrumb  : `<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>`,
     upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
+    title       : 'Discover our best Helix Internet and TV packages',
     subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description : 'Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.',
+    description : 'After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you.',
     buttons: [
         {
             label       : 'Main action',
@@ -106,9 +107,9 @@ export const commonProps = {
     },
     breadcrumb  : `<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>`,
     upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    title       : 'Découvrez nos meilleurs forfaits Helix Internet et Télé',
+    title       : 'Discover our best Helix Internet and TV packages',
     subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description : 'Après avoir vérifié si les services Helix sont offerts à votre adresse, nous vous proposerons les meilleurs forfaits et promotions Helix pour vous.',
+    description : 'After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you.',
     buttons: [
         {
             label       : 'Main action',
@@ -128,32 +129,29 @@ export const Drupal = (args) => ({
     props       : args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
+<Canvas withSource='none'>
     <Story
         name='Drupal'
+        height='500px'
         args={{
             elementPath : 'components/hero/_doc/template.drupal',
             ...commonProps,
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
 
 ## Drupal Example
 
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
+<Canvas withSource='none'>
     <Story
         name='Drupal - With image'
+        height='500px'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
@@ -166,19 +164,18 @@ export const Drupal = (args) => ({
                 lg  : '/images/_docs/hero-helix-reversed.png',
                 sm  : '/images/_docs/hero-helix-reversed-mobile.png',
                 alt : 'Helix'
-            }
+            },
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
-<Preview
-    withSource='none'
-    style={{ height: '800px' }}
->
+<Canvas withSource='none'>
     <Story
         name='Drupal - With height large'
+        height='800px'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
@@ -192,20 +189,19 @@ export const Drupal = (args) => ({
                 sm  : '/images/_docs/hero-helix-reversed-mobile.png',
                 alt : 'Helix'
             },
-            height          : 'large'
+            height          : 'large',
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-<Preview
-    withSource='none'
-    style={{ height: '800px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal - With image splitted'
+        height='800px'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
@@ -222,37 +218,35 @@ export const Drupal = (args) => ({
                 sm              : '/images/_docs/hero-helix-reversed-mobile.png',
                 alt             : 'Helix',
                 isSplitted      : true
-            }
+            },
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal - With icon'
+        height='500px'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
-            icon: { name: 'innovation' }
+            icon: { name: 'innovation' },
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
+<Canvas withSource='none'>
     <Story
         name='Drupal - With price'
+        height='500px'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
@@ -269,19 +263,18 @@ export const Drupal = (args) => ({
                     direction       : 'vertical',
                 }
             },
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
+<Canvas withSource='none'>
     <Story
         name='Drupal - With Block Selection'
+        height='500px'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
@@ -302,29 +295,29 @@ export const Drupal = (args) => ({
                         price           : '$55.00',
                     },
                 ],
-            }
+            },
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
-<Preview
-    withSource='none'
-    style={{ height: '300px' }}
->
+<Canvas withSource='none'>
     <Story
         name='Drupal - With content'
+        height='500px'
         args={{
             elementPath     : 'components/hero/_doc/template.drupal',
             ...commonProps,
-            content: '<p>The property <b>content</b> could be a string or a TwigBlock.</p>'
+            content: '<p>The property <b>content</b> could be a string or a TwigBlock.</p>',
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
 
 
 <!--

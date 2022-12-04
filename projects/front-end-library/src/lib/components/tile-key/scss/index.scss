@@ -1,0 +1,55 @@
+/* *****************************************************************************
+*
+*  Tile Key
+*
+* ***************************************************************************** */
+
+.bf-tile-key {
+    position: relative;
+    display: block;
+    transition: background-color .25s;
+
+    &--is-link:hover {
+        color: var(--bf-color-neutral-primary);
+        text-decoration: none;
+        background-color: var(--bf-color-bg-action-no-bg-hover);
+
+        &.bf-tile-key--highlight {
+            background-color: var(--bf-color-bg-action-primary-hover);
+        }
+
+        .bf-tile-key__visual {
+            opacity: .7;
+        }
+    }
+
+    &--text-color-dark {
+        color: var(--bf-color-primary-irreversible);
+
+        &.bf-tile-key--is-link:hover {
+            color: var(--bf-color-primary-irreversible);
+        }
+    }
+
+    &__visual {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        background-position: center;
+        background-size: cover;
+        transition: opacity .25s;
+    }
+
+    &__inner {
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: space-between;
+        z-index: 10;
+    }
+}

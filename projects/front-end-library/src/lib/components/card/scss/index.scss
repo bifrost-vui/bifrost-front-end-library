@@ -18,13 +18,14 @@
         background-color: transparent;
     }
     &--plan {
-        .bf-card__content-list:last-child li:last-of-type {
+        .bf-card__content-list {
             @extend .border-bottom;
             @extend .bf-border-color-secondary;
             @extend .pb-3
         }
     }
-    &--phone {
+    &--phone,
+    &--combo {
         .bf-card__header {
             @extend .pb-3;
         }
@@ -50,9 +51,8 @@
             }
         }
     }
-    &[disabled] {
+    &.disabled {
         cursor: default;
-        // pointer-events: none;
         color: var(--bf-color-neutral-tertiary);
         border-color: var(--bf-color-stroke-secondary);
         .bf-card__visual img {
@@ -60,9 +60,6 @@
         }
         .bf-card__details-colors {
             opacity: .4;
-        }
-        .bf-card__header .bf-card__badge {
-            display: none;
         }
         .bf-color-neutral-secondary,
         .bf-icon {
@@ -72,7 +69,7 @@
             display: none;
         }
         .bf-card__message {
-            color: var(--bf-color-neutral-primary) !important;
+            color: var(--bf-color-neutral-primary);
         }
         .bf-price .bf-display-highlight {
             color: currentColor;
@@ -96,7 +93,23 @@
             .bf-icon {
                 width: 2rem;
                 height: 2rem;
+                min-width: 2rem;
             }
+        }
+        &--combo {
+            img {
+                max-width: 8rem;
+                max-height: 8rem;
+            }
+            .bf-icon.size-large.combo {
+                width: 8rem;
+                height: 8rem;
+                max-width: 8rem;
+            }
+        }
+        &__label {
+            max-width: 6rem;
+            @extend .h4;
         }
     }
     &__header {
@@ -127,8 +140,19 @@
         right: 0;
         top: 0;
     }
-    .bf-card__content-badge{
-        width: min-content;
+    .bf-card__content-badge {
+        .bf-badge {
+            & + .bf-badge {
+                margin-top: var(--bf-spacer-2);
+            }
+        }
+
+        &--promotion .bf-badge {
+            .bf-badge__inner {
+                border: 1px solid;
+                @extend .bf-border-color-secondary;
+            }
+        }
     }
     &__details-colors {
         display: flex;

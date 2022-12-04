@@ -1,9 +1,5 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
-
-/**
- * API is the same between **Angular** and **Drupal**.
- *
- */
+import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { ILink } from '../../../components/link/angular/api.model';
 
 interface ILogo {
     href: string;
@@ -18,36 +14,45 @@ interface ILogo {
 export class HeaderComponent implements OnInit {
     constructor() {}
 
-    @Input() reversed                : boolean;
+    @Input() reversed: boolean;
 
     /** See [Logo Component API](/?path=/docs/components-logo--drupal). E.g. `logo = { href: "#", name: "videotron" }` */
-    @Input() logo                    : ILogo;
+    @Input() logo: ILogo;
 
-    @Input() search_placeholder      : string;
+    @Input() search_placeholder: string;
 
     /** Note: TopBar is only visible on desktop. */
-    @Input() hasTopBar               : boolean;
-    @Input() topBar_items            : any[];
-    @Input() topBar_secondaryItems   : any[];
+    @Input() hasTopBar: boolean;
+    @Input() topBar_items: any[];
+    @Input() topBar_secondaryItems: any[];
 
-    @Input() navItems                : any[];
+    @Input() navItems: any[];
     /** Maximum 5 first element of the list will be display  */
-    @Input() rigthIconLinks          : any[];
-    @Input() hasAccountBtn           : boolean;
-    @Input() isConnected             : boolean;
+    @Input() rigthIconLinks: any[];
+    /** In Mobile only, display the myAccount buttonIcon */
+    @Input() hasAccountBtn: boolean;
+    /** In Mobile only, display the LogOut buttonIcon */
+    @Input() isConnected: boolean;
 
-    @Input() hrefLogOut               : string;
-    @Input() labelLogOut              : string;
-    @Input() hrefConnexion            : string;
-    @Input() labelConnexion           : string;
-    
-    /** String displayed before `accountName` in the Top Bar, when connected. */
-    @Input() accountHello             : string;
-    /** Name of the user, displayed in the Top Bar when connected. */
-    @Input() accountName              : string;
+    /** Property of topBar in Desktop or the logOut buttonIcon in Mobile */
+    @Input() hrefLogOut: string;
+    /** Property of topBar in Desktop or the logOut buttonIcon in Mobile */
+    @Input() labelLogOut: string;
+    /** Property of topBar in Desktop or the myAccount buttonIcon in Mobile */
+    @Input() hrefConnexion: string;
+    /** Property of topBar in Desktop or the myAccount buttonIcon in Mobile */
+    @Input() labelConnexion: string;
 
-    // @Input() hasMiniCartBtn          : boolean;
-    @Input() hasNoSearchBtn          : boolean;
+    /** String displayed before `accountLink` in the Top Bar, when connected. */
+    @Input() accountHello: string;
+    /** **Deprecated** use accountLink instead. Name of the user, displayed in the Top Bar when connected. */
+    @Input() accountName: string;
+    /** Link and Name of the user, displayed in the Top Bar when connected. */
+    @Input() accountLink: ILink;
+
+    // @Input() hasMiniCartBtn: boolean;
+    @Input() hasNoSearchBtn: boolean;
+    @Input() langcode : 'EN' | 'FR'
 
     ngOnInit() {
         console.log('Header', this);

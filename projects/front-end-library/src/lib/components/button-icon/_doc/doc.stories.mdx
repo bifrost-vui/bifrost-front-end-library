@@ -1,13 +1,12 @@
-import { moduleMetadata } from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { moduleMetadata }                       from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { ButtonIconComponent }                  from '../angular/button-icon.component';
 
-import interfaceIcons                       from '../../../../../../../public/icons/list/interfaces.json';
-import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
-import { ButtonIconComponent }              from '../angular/button-icon.component';
 
-
-<Meta 
-    title='Components/Button Icon' 
+<Meta
+    title='Components/Button Icon'
     component={ButtonIconComponent}
     decorators={[
         moduleMetadata({ declarations: [ButtonIconComponent, TwigContainerComponent]})
@@ -31,7 +30,7 @@ import { ButtonIconComponent }              from '../angular/button-icon.compone
 
 ## Component API
 
-<Props of={ButtonIconComponent} />
+<ArgsTable of={ButtonIconComponent} />
 
 
 
@@ -39,8 +38,23 @@ import { ButtonIconComponent }              from '../angular/button-icon.compone
 
 ```jsx
 {% include '@bf-components/button-icon/twig/index.twig' with {
-    icon        : 'placeholder'
+    icon : 'placeholder'
 } only %}
+
+// With a badge
+{% include '@bf-components/button-icon/twig/index.twig' with {
+    badgeLabel : '3'
+} only %}
+
+// With a link instead of a button
+{% include '@bf-components/button-icon/twig/index.twig' with {
+    href : '#'
+} %}
+
+// Disabled
+{% include '@bf-components/button-icon/twig/index.twig' with {
+    isDisabled : true
+} %}
 ```
 
 
@@ -52,18 +66,16 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '1000px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
+        height='300px'
+        args={{
             elementPath : 'components/button-icon/_doc/template.drupal',
-            icon        : 'helix-tv'
+            icon        : 'cart',
+            isDisabled: undefined,
         }}
-        height='160px'
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>

@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta
+    title='Implementation/Theme'
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+/>
+
+# Theme
+
+<br/>
+
+## Supported Themes
+The Bifröst library is build to support multiple themes. By default, the **videotron theme** is used.
+
+To override it, simply add `data-theme='THEME-NAME'` to any HTML tag.
+Since themes are based on **CSS variables**, it will apply without any additional code.
+
+| Theme                     | HTML attribute                | Differences with the default theme                            |
+| :--                       | :--                           | :--                                                           |
+| **Videotron** (default)   | `data-theme='videotron'`      | -                                                              |
+| **Business**              | `data-theme='business'`       | [Headings H1, H2 and H3](?path=/docs/styles-headings--page)   |
+
+<br/>
+
+## Example
+
+```html
+<body>
+    <!-- Videotron theme by default. -->
+
+    <div data-theme='business'>
+        <!-- Business theme -->
+    </div>
+</body>
+```
+**Note:** If the whole website is in a same theme, just add the `data-theme` property to a top level HTML tag (e.g `body`).

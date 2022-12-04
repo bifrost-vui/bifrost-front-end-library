@@ -1,22 +1,23 @@
-const q = require('q');
-const inquirer = require('inquirer');
-const shell = require('shelljs');
-const fs = require('fs');
-const replace = require('replace-in-file');
-const open = require('open');
-const chalk = require('chalk');
-const textError = chalk.red;
+const q             = require('q');
+const inquirer      = require('inquirer');
+const shell         = require('shelljs');
+const fs            = require('fs');
+const replace       = require('replace-in-file');
+const open          = require('open');
+const chalk         = require('chalk');
+const textError     = chalk.red;
 
-const { 
-    renameFiles, 
-    toCamelCase, 
-    hasUpperCase, 
-    hasSpace, 
-    capitalize, 
-    toReadableFormat, 
-    lowerCaseFirstLetter 
+const {
+    renameFiles,
+    toCamelCase,
+    hasUpperCase,
+    hasSpace,
+    capitalize,
+    toReadableFormat,
+    lowerCaseFirstLetter
 } = require('../utils');
 
+const projectPath = 'projects/front-end-library/src/lib';
 
 function requestInfo() {
 
@@ -30,16 +31,16 @@ function requestInfo() {
     shell.echo( `\r` );
     shell.echo( '------------------------------------------------------------------------------------' );
     shell.echo( `\r` );
-    
+
     return inquirer.prompt({
         type: 'list',
         name: 'type',
         message: 'Choose the kind of element:',
         choices: ['Component', 'Section', 'Template', 'Pipe'],
-    
+
     }).then(function(response) {
         const type = response.type.toLowerCase();
-        
+
         return inquirer.prompt({
             type: 'input',
             name: 'name',
@@ -56,7 +57,7 @@ function requestInfo() {
                 } else if (_value === 'component' || _value === 'pipe') {
                     return textError( 'Names `component` and `pipe` are not allowed.' );
 
-                } else if (fs.existsSync('projects/front-end-library/src/lib/components/' + _value)) {
+                } else if (fs.existsSync(projectPath + '/components/' + _value)) {
                     return textError( 'Component', chalk.bold(_value), 'already exist. 😓 \n Maybe you want to edit component here: "projects/front-end-library/src/lib/components/' + _value + '"' );
 
                 } else {
@@ -65,8 +66,8 @@ function requestInfo() {
             }
 
         }).then(function (value) {
-            return { 
-                name: value.name.trim().toLowerCase(), 
+            return {
+                name: value.name.trim().toLowerCase(),
                 type
             };
         });
@@ -84,7 +85,7 @@ function generateFromTemplate(element) {
     const nameCamelCase = toCamelCase(name);
     const NameCamelCase = capitalize(nameCamelCase);
     const NameReadable = capitalize(toReadableFormat(nameCamelCase));
-    
+
     // Duplicate templates structure
     const tempPath = `scripts/generate/templates/${name}`;
     const referenceFolder = (type === 'pipe') ? 'pipe' : 'component';
@@ -103,7 +104,7 @@ function generateFromTemplate(element) {
             if (error) {
                 return textError( 'Error occurred:', error );
             }
-            
+
             // Rename Files
             if (type === 'pipe') {
                 renameFiles( tempPath, 'pipe-name', name );
@@ -123,22 +124,28 @@ function generateFromTemplate(element) {
 }
 
 function appendPublicAPI ({ name, NameReadable, type, typePlural, finalPath }) {
-    
+
     if (type !== 'pipe') {
         // const stringExportComponent = `export * from './lib/${typePlural}/${name}/angular/${name}.component'`;
         const stringExportModule = `export * from './lib/${typePlural}/${name}/angular/${name}.module';`;
-        
+
         // Add imports to public-api.ts
         // shell.exec( 'echo "' + stringExportComponent + '" >> projects/front-end-library/src/public-api.ts' );
         shell.exec( 'echo "' + stringExportModule + '" >> projects/front-end-library/src/public-api.ts' );
-        
+
         // TODO: Insert export in the right section of the public-api.ts file.
         // shell.exec( "sed '/\Components/a Test Import' projects/front-end-library/src/public-api.ts" );
+    }
 
+    return { name, NameReadable, type, typePlural, finalPath };
+}
+
+function appendCSS ({ name, NameReadable, type, typePlural, finalPath }) {
+
+    if (type !== 'pipe') {
         // Import component style into index.scss.
-        const strinImportStyle = `@import '../${typePlural}/${name}/scss/index';`;
-        shell.exec( 'echo "' + strinImportStyle + '" >> projects/front-end-library/src/lib/scss/index.scss' );
-        
+        const stringImportStyle = `\r@import '../${typePlural}/${name}/scss/index';`;
+        shell.exec( 'echo "' + stringImportStyle + '" >> projects/front-end-library/src/lib/scss/index.scss' );
     }
 
     return { name, NameReadable, type, typePlural, finalPath };
@@ -155,19 +162,24 @@ function success ({ name, NameReadable, type, typePlural, finalPath }) {
     shell.echo( `${chalk.bold('Edit component')}:` );
     shell.exec( `ls -R -S -1 ${finalPath}${name}` );
     shell.echo( `\r` );
-    
+
     // Open Storybook in the default browser.
-    shell.echo( `${chalk.bold('We open Storybook right away')}. If you didn't started it yet, enter ${chalk.bold('npm run start-dev')}:` );
+    shell.echo( chalk.green('------------------------------------------------------------------------------------') );
+    shell.echo( `\r` );
+    shell.echo( `${chalk.bold('We open Storybook right away')}.`);
     shell.echo( `${chalk.blue(`http://localhost:9008/?path=/story/${typePlural}-${name}--drupal`)}` );
     shell.echo( `\r` );
-    (async () => {    
+    shell.echo( `📝 If Storybook is not running yet, enter ${chalk.green.bold('npm run start-dev')}`);
+    shell.echo( `\r` );
+    (async () => {
         await open(`http://localhost:9008/?path=/story/${typePlural}-${name}--drupal`);
     })();
 
     // Launch Compodoc to generate component API documentation in Storybook
     shell.echo( chalk.green('------------------------------------------------------------------------------------') );
     shell.echo( `\nIn the same time, Compodoc parses all Angular files to generate API documentation of your new ${type}.` );
-    shell.echo( `It could take 1 or 2 minutes and it will refresh yoiur browser with the documentation.` );
+    shell.echo( `It could take 1 or 2 minutes and it will refresh your browser with the documentation.` );
+    shell.echo( `\r` );
     shell.exec( `compodoc -p .storybook/tsconfig.json -e json -d . -t` );
     // shell.exec( `compodoc -p ./tsconfig.json -e json -d . -t`, code => {
     //     if (code !== 0) return textError('Error occurred with Compodoc.');
@@ -177,5 +189,6 @@ function success ({ name, NameReadable, type, typePlural, finalPath }) {
 // Start
 requestInfo()
     .then(generateFromTemplate)
-    .then(appendPublicAPI)
+    .then(appendCSS)
+    // .then(appendPublicAPI) // Note: Uncomment this line in order to append component in Angular API entry point.
     .then(success)

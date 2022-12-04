@@ -18,20 +18,32 @@
         overflow: hidden;
 
         .slick-track {
-            gap:0;
+            gap: 0;
+
+            .slick-slide {
+                height: auto;
+
+                & > div {
+                    height: 100%;
+                }
+            }
+
+            .bf-hero {
+                height: 100%;
+            }
         }
     }
     .bfslick__controls {
         position: relative;
         display: flex;
-        align-items: baseline;
+        align-items: flex-end;
 
         &__counter {
             .slick-dots {
                 position: relative;
                 margin: 0;
                 display: block;
-                bottom: unset;
+                bottom: -8px;
 
                 li {
                     line-height: 1rem;
@@ -60,7 +72,6 @@
             background: transparent;
             border-radius: 0;
             border: 0;
-            line-height: 1.125rem;
             overflow: hidden;
 
             &:before {

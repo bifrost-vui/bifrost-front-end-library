@@ -1,0 +1,276 @@
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs';
+import illustrationIcons from '../../../../../../../public/icons/list/illustrations.json';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { SelectionTileComponent } from '../angular/selection-tile.component';
+
+<Meta
+    title='Components/Selection Tile'
+    component={SelectionTileComponent}
+    decorators={[
+        moduleMetadata({ declarations: [SelectionTileComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=14481%3A156160',
+            disable: false
+        }
+    }}
+    argTypes={{
+        type:{
+            defaultValue: 'checkbox',
+            table: { defaultValue: { summary: 'checkbox' } },
+            control: { type: 'select' }
+        },
+        value: {type: { required: true } },
+        id: {type: { required: true } },
+        ariaLabel: {type: { required: true } },
+        orientation: {
+            defaultValue: 'horizontal',
+            table: { defaultValue: { summary: 'horizontal' } },
+            control: { type: 'select' }
+        },
+        fit:{
+            defaultValue: 'content',
+            table: { defaultValue: { summary: 'content' } },
+            control: { type: 'select' }
+        },
+        iconName: {
+            defaultValue: '',
+            control: {
+                type: 'select',
+                options: [ ...illustrationIcons.map(a => a.list).flat().sort()],
+            }
+        }
+    }}
+/>
+
+# Selection Tile
+
+<br/>
+
+## Component API
+
+<ArgsTable of={SelectionTileComponent} />
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+export const commonProps = {
+    id: 'id',
+    name: 'name',
+    value: 'value',
+    ariaLabel: 'ariaLabel',
+    orientation: 'horizontal',
+    fit: 'content',
+    class: 'm-2',
+};
+
+<Canvas withSource='none' style={{ height: '600px' }}>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath: 'components/selection-tile/_doc/template.drupal',
+            ...commonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '600px' }}>
+    <Story
+        name='Drupal - With footer icons'
+        args={{
+            elementPath: 'components/selection-tile/_doc/template.drupal',
+            ...commonProps,
+            fit: 'container',
+            footer: {
+                description: `<p class='mb-0'>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
+                link: {
+                    label: 'Learn more about Take-back Credit',
+                    href: 'https://example.com'
+                },
+                iconName: 'credit-return'
+            }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '600px' }}>
+    <Story
+        name='Drupal - With footer image'
+        args={{
+            elementPath: 'components/selection-tile/_doc/template.drupal',
+            ...commonProps,
+            fit: 'container',
+            footer: {
+                description: `<p class='mb-0'>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
+                link: {
+                    label: 'Learn more about Take-back Credit',
+                    href: 'https://example.com'
+                },
+                image: {
+                    src:'/images/assets/tv.png',
+                    alt:'TVA Sports',
+                }
+            }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '600px' }}>
+    <Story
+        name='Drupal - With orientation vertical'
+        args={{
+            elementPath: 'components/selection-tile/_doc/template.drupal',
+            ...commonProps,
+            image: {
+                src: '/images/logo/channels/tva-sports.svg',
+                alt: 'TVA Sports',
+                class: ''
+            },
+            orientation: 'vertical',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none' style={{ height: '600px' }}>
+    <Story
+        name='Drupal - With orientation vertical and fit container'
+        args={{
+            elementPath: 'components/selection-tile/_doc/template.drupal',
+            ...commonProps,
+            image: {
+                src: '/images/logo/channels/tva-sports.svg',
+                alt: 'TVA Sports',
+                class: ''
+            },
+            orientation: 'vertical',
+            fit: 'container',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal's implementation examples
+
+```jsx
+
+    // Horizontal Tile - fit content
+    {% include '@bf-components/selection-tile/twig/index.twig'  with {
+        id: 'canal-plus',
+        ariaLabel: 'Canal plus',
+        label: 'Canal plus',
+    } only %}
+
+    // Horizontal Tile - fit container
+    {% include '@bf-components/selection-tile/twig/index.twig' with {
+        id: 'canal-plus',
+        ariaLabel: 'Canal plus',
+        fit: 'container',
+        label: 'Canal plus',
+        description: 'Descriptium ipsum',
+        info: '$12.34/Month'
+    } only %}
+
+    // Horizontal Tile - with image in footer
+    {% include '@bf-components/selection-tile/twig/index.twig' with {
+        id: 'movie-channel',
+        ariaLabel: 'Movie Chanel',
+        fit: 'container',
+        orientation: 'horizontal',
+        label: 'Movie Chanel',
+        description: 'lorem ipsum descriptum',
+        info: '$12.34/Month',
+        footer: {
+            description: `<p class='mb-0'>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
+            link: {
+                label: 'Learn more about Take-back Credit',
+                href: 'https://example.com'
+            },
+            image: {
+                src: '/images/logo/channels/tva-sports.svg',
+                alt: 'TVA Sports',
+                class: ''
+            },
+        }
+    } only %}
+
+    // Horizontal Tile - with icon in footer
+    {% include '@bf-components/selection-tile/twig/index.twig' with {
+        id: 'tva-sports',
+        ariaLabel: 'Movie Chanel',
+        fit: 'container',
+        orientation: 'horizontal',
+        label: 'Movie Chanel',
+        description: 'lorem ipsum descriptum',
+        info: '$12.34/Month',
+        footer: {
+            description: `<p class='mb-0'>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
+            link: {
+                label: 'Learn more about Take-back Credit',
+                href: 'https://example.com'
+            },
+            iconName: 'credit-return'
+        }
+    } only %}
+
+    // vertical Tile - fit content
+    {% include '@bf-components/selection-tile/twig/index.twig' with {
+        id: 'tva-sports',
+        ariaLabel: 'TVA Sport',
+        type: 'radio',
+        name: 'radioGroupName',
+        orientation: 'vertical',
+        image: {
+            src: '/images/logo/channels/tva-sports.svg',
+            alt: 'TVA Sport'
+        }
+    } only %}
+
+    // vertical Tile - fit container
+    {% include '@bf-components/selection-tile/twig/index.twig' with {
+        id: 'movie-channel',
+        ariaLabel: 'Movie Chanel',
+        fit: 'container',
+        orientation: 'vertical',
+        label: 'Movie Chanel',
+        description: 'lorem ipsum descriptum',
+        image: {
+            src: '/images/logo/channels/tva-sports.svg',
+            alt: 'the movie chanel'
+        }
+        info: '$12.34/Month'
+    } only %}
+```
+
+## More Info
+
+<!-- TODO mettre à jour si on transforme fit en bolean (genre fitContainer) -->
+- The *Selection Tile* comes in 4 layout combinations are:
+    - fit: `content`   + orientation: `horizontal` (default value)
+    - fit: `container` + orientation: `horizontal`
+    - fit: `content`   + orientation: `vertical` (mostly for channel selection tiles)
+    - fit: `container` + orientation: `vertical`
+
+- The Selection Tile mimics the behavior of the input type: **radio button** or **checkbox**
+
+## Design Guidelines
+
+<iframe width='100%' height='600' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D14481%253A156160&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>

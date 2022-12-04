@@ -5,6 +5,7 @@
 * ***************************************************************************** */
 
 $path-images: "/images/";
+@use "sass:math";
 
 
 // Variables should follow the `$component-state-property-size` formula for
@@ -128,14 +129,14 @@ $theme-colors: map-merge((
 ), $theme-colors);
 
 
-// Drop 5 : service datas colors
+// service datas colors ( commented = DXP colors)
 $data-colors: () !default;
 $data-colors: map-merge((
         "roll-over":      $gray-200,
         "data":           #DE6161,
-        "flex-go":        #AC0665,
-        "data-bloc":      #05B58C,
-        "ppu":            #00415F,
+        "flex-go":        #e5c06b, // #AC0665
+        "data-bloc":      #c3855f, // #05B58C
+        "ppu":            #c0575f, // #00415F
 ), $data-colors);
 
 // stylelint-enable
@@ -301,7 +302,7 @@ $container-max-widths: (
 
 $grid-columns:                12 !default;
 $grid-gutter-width:           16px !default;
-$grid-gutter-width-simple:    ($grid-gutter-width / 2) !default;
+$grid-gutter-width-simple:    math.div($grid-gutter-width, 2) !default;
 
 $responsive-padding:          calc(3.5vw + #{$grid-gutter-width-simple}) !default;
 
@@ -366,14 +367,16 @@ $line-height-base:            1.5 !default; // 20px
 $line-height-lg:              1.5 !default;
 $line-height-sm:              1.5 !default;
 
-$h1-font-size:                $font-size-base * 3.25 !default; // 52px -- mobile (36px)
-$h2-font-size:                $font-size-base * 2.25 !default; // 36px -- mobile (28px)
-$h3-font-size:                $font-size-base * 1.5 !default; // 26px
-$h4-font-size:                $font-size-base * 1.25 !default; // 18px
-$h5-font-size:                $font-size-base !default; // 16px
-$h6-font-size:                $font-size-base * 0.875 !default; // 14px
+// Deprecated: Instead of using $h1-font-size, use directly Bifröst  CCS Variables. E.g. `font-size: var(--bf-h1-size)`.
+$h1-font-size:                var(--bf-h1-size) !default;
+$h2-font-size:                var(--bf-h2-size) !default;
+$h3-font-size:                var(--bf-h3-size) !default;
+$h4-font-size:                var(--bf-h4-size) !default;
+$h5-font-size:                var(--bf-h5-size) !default;
+$h6-font-size:                var(--bf-h6-size) !default;
 
-$headings-margin-bottom:      ($spacer / 2) !default;
+// Deprecated: Use Bifröst  CCS Variables instead.
+$headings-margin-bottom:      math.div($spacer, 2) !default;
 $headings-font-family:        $font-family-base !default;
 $headings-font-weight:        $font-weight-normal !default;
 $headings-line-height:        1.25rem !default;
@@ -721,7 +724,7 @@ $nav-pills-link-active-bg:          $component-active-bg !default;
 
 // Navbar
 
-$navbar-padding-y:                  ($spacer / 2) !default;
+$navbar-padding-y:                  math.div($spacer, 2) !default;
 $navbar-padding-x:                  $spacer !default;
 
 $navbar-nav-link-padding-x:         .5rem !default;
@@ -730,7 +733,7 @@ $navbar-brand-font-size:            $font-size-lg !default;
 // Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
 $nav-link-height:                   ($font-size-base * $line-height-base + $nav-link-padding-y * 2) !default;
 $navbar-brand-height:               $navbar-brand-font-size * $line-height-base !default;
-$navbar-brand-padding-y:            ($nav-link-height - $navbar-brand-height) / 2 !default;
+$navbar-brand-padding-y:            math.div($nav-link-height - $navbar-brand-height, 2) !default;
 
 $navbar-toggler-padding-y:          .25rem !default;
 $navbar-toggler-padding-x:          .75rem !default;
@@ -806,7 +809,7 @@ $card-bg:                           $white !default;
 
 $card-img-overlay-padding:          1.25rem !default;
 
-$card-group-margin:                 ($grid-gutter-width / 2) !default;
+$card-group-margin:                 math.div($grid-gutter-width, 2) !default;
 $card-deck-margin:                  $card-group-margin !default;
 
 $card-columns-count:                3 !default;

@@ -1,13 +1,11 @@
-const path                  = require('path')
-const webpack               = require('webpack')
+const path                  = require('path');
 const globImporter          = require('node-sass-glob-importer');
-const ExtractTextPlugin     = require('extract-text-webpack-plugin')
 const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
 
 const devMode               = process.env.NODE_ENV !== 'production';
 
 
-module.exports = (env) => {    
+module.exports = () => {
     return [{
         entry: {
             'bifrost-components': './projects/front-end-library/src/lib/js/bifrost-components.js',
@@ -21,16 +19,20 @@ module.exports = (env) => {
         },
         optimization: {
             splitChunks: {
-                chunks(chunk) {
-                    return chunk.name === 'bifrost-components';
-                },
+                cacheGroups: {
+                    commons: {
+                        test: /[\\/]node_modules[\\/]/,
+                        name: 'vendors~bifrost-components',
+                        chunks: 'all',
+                    },
+                }
             },
         },
         resolve: {
             extensions: ['.js', '.scss'],
             alias: {
                 'pickerdate': 'pickadate/lib/picker.date'
-            }
+            },
         },
         plugins: [
             new MiniCssExtractPlugin({
@@ -38,17 +40,24 @@ module.exports = (env) => {
                 // both options are optional
                 filename: devMode ? '../css/bifrost.css' : '../css/bifrost.[hash].css',
                 chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
-            })
+            }),
         ],
         module: {
             rules: [
                 {
                     test: /\.js$/,
-                    use: 'babel-loader'
+                    loader:'babel-loader'
                 },
                 {
                     test: /\.(png|woff|jpg|woff2|eot|ttf|svg)$/,
-                    loader: 'url-loader?limit=100000'
+                    use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                              limit: 1000
+                            }
+                        }
+                    ]
                 },
                 {
                     test: /\.(scss|css)$/,
@@ -61,17 +70,6 @@ module.exports = (env) => {
                                 // modules: true,
                                 importLoaders: 1
                             },
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                sourceMap: true,
-                                plugins: (loader) => [
-                                    require('autoprefixer')(),
-                                    require('postcss-flexbugs-fixes'),
-                                    // require('cssnano')()
-                                ]
-                            }
                         },
                         {
                             loader: 'sass-loader',

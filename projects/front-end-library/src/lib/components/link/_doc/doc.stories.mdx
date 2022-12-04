@@ -1,27 +1,79 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import { withDesign }                           from 'storybook-addon-designs'
+import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { LinkComponent }                        from '../angular/link.component';
 
 
-<Meta 
+<Meta
     title='Components/Link'
+    component={LinkComponent}
     decorators={[
-        moduleMetadata({ declarations: [TwigContainerComponent]})
+        moduleMetadata({ declarations: [LinkComponent, TwigContainerComponent]}),
+        withDesign
     ]}
-    argTypes={{}}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=9196%3A0',
+            disable: false
+        }
+    }}
+    argTypes={{
+        hierarchy: {
+            control: { type: 'select' },
+            table: { defaultValue: { summary: 'native' } },
+        },
+        iconName: {
+            control: {
+                type: 'select',
+                options: ['', 'placeholder', ...interfaceIcons.map(a => a.list).flat().sort()]
+            }
+        },
+        iconPosition: {
+            table: { defaultValue: { summary: 'left' } },
+        },
+        isUnderline: {
+            table: { defaultValue: { summary: true } },
+        },
+        isDisabled: {
+            table: { defaultValue: { summary: false } },
+        },
+    }}
 />
 
 
 # Link
 
-<br/>
+
+## Component API
+
+<ArgsTable of={LinkComponent} />
+
+
+## Drupal implementation example
+
+```jsx
+// Link native (default)
+{% include '@bf-components/link/twig/index.twig' with {
+    label       : 'Link native',
+} only %}
+
+// Link primary
+{% include '@bf-components/link/twig/index.twig' with {
+    label       : 'Link primary',
+    hierarchy   : 'primary'
+} only %}
+
+// Or use .bf-link class
+<a href='/' class='bf-link'>Link native</a>
+<a href='/' class='bf-link bf-link--primary'>Link primary</a>
+<a href='/' class='bf-link disabled' aria-disabled='true' role='link'>Link disabled</a>
+```
 
 
 ## Drupal
-
-> There is no Link Drupal component in Bifrost.
-> Just, use Bifrost classes <b>.bf-link</b>.
 
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
@@ -29,16 +81,50 @@ export const Drupal = (args) => ({
 });
 
 
-<Preview
-    withSource='none'
-    style={{ height: '600px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
+        height='600px'
         args={{
             elementPath : 'components/link/_doc/template.drupal',
+            class : 'mb-3',
+            href : 'https://example.com',
+            reversed : undefined,
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Examples'
+        height='600px'
+        parameters={{ options: { showPanel: false } }}
+        args={{
+            elementPath : 'components/link/_doc/template-usage-example.drupal',
+            reversed : undefined,
+            isDisabled : undefined,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - CSS Only'
+        parameters={{ options: { showPanel: false } }}
+        args={{
+            elementPath : 'components/link/_doc/template-css-only.drupal',
+            class: 'mb-3',
+            reversed: undefined,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+## Design Guidelines
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D9196%253A0' frameBorder='0' allowFullScreen></iframe>

@@ -1,0 +1,52 @@
+import { Canvas, Meta }     from '@storybook/addon-docs';
+import spacings             from './spacings';
+
+
+<Meta
+    title='Styles/Spacing'
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+/>
+
+# Spacing
+
+For example, Bootstrap CSS class `pt-2` will output `padding-top: .5rem`.
+
+<Canvas withSource='none'>
+    <div>
+        <div className='d-flex align-items-center gap-4 w-100'>
+            <div className='w-65'>
+                <h5 className='m-0'>Name</h5>
+            </div>
+            <div className='w-35'>
+                <h5 className='m-0'>All Themes</h5>
+            </div>
+        </div>
+        <ul className='list-unstyled'>
+            {spacings.map(s =>
+                <li key={s.name} className='d-flex align-items-center gap-4 w-100 border-top pt-3 mt-3'>
+                    <div className='w-65 d-flex align-items-center gap-4'>
+                        <h4 className='mb-0' style={{ width: '2rem' }}>
+                            {s.name}
+                        </h4>
+                        <code>
+                            --bf-spacer-{s.name}
+                        </code>
+                    </div>
+                    <div className='w-35 d-flex align-items-center gap-4'>
+                        <p className='bf-text mb-0' style={{ width: '3.5rem' }}>
+                            {s.valueREM}rem
+                        </p>
+                        <span className='bf-text small bf-color-neutral-secondary text-right' style={{ width: '3rem' }}>
+                            {s.valueREM * 16}px
+                        </span>
+                        <div className={`bf-color-bg-action-primary pr-${s.name} pb-1`}></div>
+                    </div>
+                </li>
+            )}
+        </ul>
+    </div>
+</Canvas>

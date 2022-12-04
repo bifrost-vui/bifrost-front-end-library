@@ -1,25 +1,138 @@
-<p class='px-4 pt-4'>
-    <b>Note: </b>
-    There is no Link Drupal component in Bifrost.
-    Just, use Bifrost classes <b>.bf-link</b>.
-</p>
+{% set isUnderline  = isUnderline|json_parse %}
+{% set isDisabled   = isDisabled|json_parse %}
+{% set reversed     = reversed|json_parse %}
 
-<div class='px-7 d-flex flex-column align-items-center justify-content-center minh-100'>
-    {% for index in [1,2] %}
-        
-        <div class='p-5 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
+{% set variants = [
+  {
+    _name: 'Ground',
+    backgroundClass: 'bf-color-bg-ground'
+  },
+  {
+    _name: 'Underground',
+    backgroundClass: 'bf-color-bg-underground'
+  },
+  {
+    _name: 'Ground + Reversed',
+    backgroundClass: 'bf-color-bg-ground reversed',
+    reversed: true,
+  },
+  {
+    _name: 'Underground + Reversed',
+    backgroundClass: 'bf-color-bg-underground reversed',
+    reversed: true
+  },
+  {
+    _name: 'Highlight',
+    backgroundClass: 'bf-color-bg-highlight highlight',
+    highlight: true
+  },
+  {
+    _name: 'Highlight + Reversed',
+    backgroundClass: 'bf-color-bg-highlight reversed highlight',
+    reversed: true,
+    highlight: true
+  }
+] %}
 
-            <div>
-                <a href='#' class='bf-link m-2'>Link native</a>
-                <a href='#' class='bf-link disabled m-2'>Link disabled</a>
+<div class='template-container'>
+  {% for variant in variants %}
+    {% set reversed = reversed|default(variant.reversed) %}
+    {% set highlight = highlight|default(variant.highlight) %}
+    <div class='d-flex flex-column {{ variant.backgroundClass }}'>
+      <h1 class='h3 p-4'>
+        {{ variant._name }}
+      </h1>
+        <div class='d-flex justify-content-center align-items-start gap-5'>
+            <div class='d-flex flex-column align-items-start'>
+                <p class='small'>Native</p>
+
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default('Link native'),
+                } %}
+
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default('Link native'),
+                    iconName    : iconName|default('chevron-left')
+                } %}
+
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default('Link native'),
+                    iconName    : iconName|default('external-link'),
+                    iconPosition: iconPosition|default('right')
+                } %}
+
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default('Disabled'),
+                    iconName    : iconName|default('external-link'),
+                    isDisabled  : isDisabled|default(true)
+                } %}
+
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default('No underline'),
+                    iconName    : iconName|default('external-link'),
+                    isUnderline : isUnderline|default(false)
+                } %}
+
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default(''),
+                    iconName    : iconName|default('external-link')
+                } %}
+
             </div>
 
-            <div>
-                <a href='#' class='bf-link bf-link--primary m-2'>Link Primary</a>
-                <a href='#' class='bf-link bf-link--primary disabled m-2'>Link disabled</a>
+            <div class='d-flex flex-column align-items-start'>
+
+                <p class='small flex-grow-1'>Primary</p>
+
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default('Link primary'),
+                    hierarchy   : hierarchy|default('primary'),
+                } %}
+
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default('Link primary'),
+                    hierarchy   : hierarchy|default('primary'),
+                    iconName    : iconName|default('chevron-left')
+                } %}
+
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default('Link primary'),
+                    hierarchy   : hierarchy|default('primary'),
+                    iconName    : iconName|default('external-link'),
+                    iconPosition: iconPosition|default('right')
+                } %}
+
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default('Disabled'),
+                    hierarchy   : hierarchy|default('primary'),
+                    iconName    : iconName|default('external-link'),
+                    isDisabled  : isDisabled|default(true)
+                } %}
+
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default('No underline'),
+                    hierarchy   : hierarchy|default('primary'),
+                    iconName    : iconName|default('external-link'),
+                    isUnderline : isUnderline|default(false)
+                } %}
+
+                {% include '@bf-components/link/twig/index.twig' with {
+                    label       : label|default(''),
+                    hierarchy   : hierarchy|default('primary'),
+                    iconName    : iconName|default('external-link')
+                } %}
+
             </div>
 
         </div>
-        
-    {% endfor %}
+    </div>
+  {% endfor %}
 </div>
+
+<style>
+  .template-container {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(400px, 1fr));
+    height: 100vh;
+  }
+</style>

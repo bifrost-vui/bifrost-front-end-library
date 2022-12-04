@@ -1,0 +1,61 @@
+import { Canvas, Meta }     from '@storybook/addon-docs';
+import shadows              from './shadows';
+
+<Meta
+    title='Styles/Shadow'
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+/>
+
+# Shadow
+
+<Canvas withSource='none'>
+    <div>
+        <div className='d-flex align-items-center gap-4 w-100'>
+            <div className='w-65'>
+                <h5 className='mb-0'>Name</h5>
+            </div>
+            <div className='w-35'>
+                <h5 className='mb-0'>All Themes</h5>
+                <p className='bf-text bf-color-neutral-secondary small m-0'>Default + Reversed</p>
+            </div>
+        </div>
+        <ul className='list-unstyled'>
+            {shadows.map(s =>
+                <li key={s.name} className='d-flex align-items-center gap-4 w-100 border-top pt-3 mt-3'>
+                    <div className='w-65 d-flex align-items-center gap-4'>
+                        <h4 className='mb-0' style={{ width: '8rem' }}>
+                            {s.name}
+                        </h4>
+                        <code>
+                            --bf-box-shadow-{s.name}
+                        </code>
+                    </div>
+                    <div className='w-35'>
+                        <div className='d-flex align-items-center'>
+                            <p className='bf-text mb-0' style={{ width: '18rem' }}>
+                                {s.value}
+                            </p>
+                            <div className='p-2'>
+                                <div style={{ boxShadow: `var(--bf-box-shadow-${s.name})`, width: '24px', height: '24px' }}></div>
+                            </div>
+                        </div>
+                        {s.valueReversed &&
+                            <div className='d-flex align-items-center'>
+                                <p className='bf-text mb-0' style={{ width: '18rem' }}>
+                                    {s.valueReversed}
+                                </p>
+                                <div className='reversed p-2 bf-color-bg-underground'>
+                                    <div style={{ boxShadow: `var(--bf-box-shadow-${s.name})`, width: '24px', height: '24px' }}></div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </li>
+            )}
+        </ul>
+    </div>
+</Canvas>

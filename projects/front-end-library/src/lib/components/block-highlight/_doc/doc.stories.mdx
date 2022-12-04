@@ -1,12 +1,11 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { BlockHighlightComponent }              from '../angular/block-highlight.component';
 
 
-<Meta 
-    title='Components/Block Highlight' 
+<Meta
+    title='Components/Block Highlight'
     component={BlockHighlightComponent}
     decorators={[
         moduleMetadata({ declarations: [BlockHighlightComponent, TwigContainerComponent]}),
@@ -21,6 +20,9 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
                 type: 'select',
                 defaultValue: 'ground'
             }
+        },
+        isVisualBackgroundFill: {
+            table: { defaultValue: { summary: true } },
         }
     }}
 />
@@ -33,7 +35,7 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
 
 ## Component API
 
-<Props of={BlockHighlightComponent} />
+<ArgsTable of={BlockHighlightComponent} />
 
 
 
@@ -81,16 +83,32 @@ export const commonProps = {
     class               : ''
 }
 
-<Preview
-    withSource='none'
-    style={{ height: '800px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
+        height='800px'
         args={{
-            ...commonProps
+            ...commonProps,
+            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
+
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Usage example'
+        height='800px'
+        parameters={{ options: { showPanel: false } }}
+        args={{
+            ...commonProps,
+            elementPath : 'components/block-highlight/_doc/template-usage-example.drupal',
+            image: null,
+            reversed: undefined,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>

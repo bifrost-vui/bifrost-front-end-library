@@ -1,42 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import { IUpfront, IPromotion } from './api.model';
 
-interface IUpfront {
-  label         : string;
-  dollar        : number;
-}
-
-interface IPromotion {
-  priceStriked  : number;
-  priceSaved    : number;
-  savedLabel    : string;
-  superscript   : string;
-  direction     : string;
-}
-
-export interface IPrice {
-    upperTitle  : string;
-    upfront     : IUpfront;
-    dollar      : number;
-    dollarClass : string;
-    cent        : number;
-    hasAsterisk : boolean;
-    promotion   : IPromotion;
-    details     : string;
-    message     : string;
-    size        : 'small' | 'medium' | 'large';
-    fullWidth   : boolean;
-    class       : string;
-    reversed    : boolean;
-    language    : 'en' | 'fr';
-}
-
-// 'vertical' | 'horizontal';
-
-/**
- * API is the same between **Angular** and **Drupal**.
- *
- */
- 
 @Component({
     selector: 'bf-price',
     templateUrl: './price.component.html',
@@ -63,9 +27,8 @@ export class PriceComponent implements OnInit {
     @Input() saved                  : string;
     /** **Deprecated** Use `promotion.savedLabel` instead. */
     @Input() savedLabel             : string;
-
-    @Input() details                : string;
-    @Input() message                : string;
+    @Input() details                : HTMLElement;
+    @Input() message                : HTMLElement;
 
     @Input() size                   : 'small' | 'medium' | 'large';
     /** This will make width at 100% of the parent. This behavior is useful when you want `promotion.direction: horizontal`.  */

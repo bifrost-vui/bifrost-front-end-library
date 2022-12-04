@@ -1,12 +1,11 @@
 import { moduleMetadata }                       from '@storybook/angular';
-import { Canvas, Meta, Story, Preview, Props }  from '@storybook/addon-docs/blocks';
-
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
 import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
 import { BreadcrumbComponent }                  from '../angular/breadcrumb.component';
 
 
-<Meta 
-    title='Components/Breadcrumb' 
+<Meta
+    title='Components/Breadcrumb'
     component={BreadcrumbComponent}
     decorators={[
         moduleMetadata({ declarations: [BreadcrumbComponent, TwigContainerComponent]})
@@ -35,7 +34,7 @@ import { BreadcrumbComponent }                  from '../angular/breadcrumb.comp
 
 ## Drupal
 
-> There is no Breadcrumb Drupal component in Bifrost.
+> There is no Breadcrumb Drupal component in Bifröst.
 > Please use <a class='bf-link' target='_blank' href='https://getbootstrap.com/docs/4.0/components/breadcrumb/'>Bootstrap syntax</a>.
 
 
@@ -44,16 +43,15 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Preview
-    withSource='none'
-    style={{ height: '600px' }}
->
-    <Story 
+<Canvas withSource='none'>
+    <Story
         name='Drupal'
-        args={{ 
+        height='400px'
+        parameters={{ options: { showPanel: false } }}
+        args={{
             elementPath     : 'components/breadcrumb/_doc/template.drupal',
         }}
     >
         {Drupal.bind({})}
     </Story>
-</Preview>
+</Canvas>
