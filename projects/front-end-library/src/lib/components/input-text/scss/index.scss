@@ -1,0 +1,106 @@
+/* *****************************************************************************
+*
+*  Input Text
+*
+* ***************************************************************************** */
+
+.bf-input-text {
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 0;
+
+    input {
+        background-color: transparent;
+        border-color: rgba(var( --bf-color-neutral-primary-rgb), .3);
+        color: var(--bf-color-neutral-primary);
+
+        @include placeholder {
+            color: rgba(var( --bf-color-neutral-primary-rgb), .35);
+        }
+        &:focus{
+            @include placeholder {
+                color: rgba(var( --bf-color-primary-irreversible-rgb), .3);
+            }
+            & ~ .form-password__infos {
+                width: 100%;
+                padding: var(--bf-spacer-3);
+                color: var(--bf-color-neutral-primary);
+                @extend .bf-border-radius-small;
+                @extend .bf-color-bg-ground;
+            }
+        }
+    }
+    label.required:after {
+        content: '*';
+    }
+    &__head .form-group__input-icon-container {
+        padding: 0;
+        position: relative;
+        height: auto;
+        display: inline-block;
+    }
+    &__input {
+        position: relative;
+        .form-group__input-icon-container {
+            height: auto;
+        }
+        input:focus + button .bf-icon {
+           color: var(--bf-color-primary-irreversible);
+        }
+    }
+    &--search {
+        background-color: var(--bf-color-bg-ground);
+    }
+
+    &--disabled {
+        input.form-control {
+            background-color: transparent;
+            border-color: rgba(var( --bf-color-neutral-primary-rgb), .1);
+            color: rgba(var( --bf-color-neutral-primary-rgb), .25) ;
+        }
+        .bf-input-text__input {
+            .bf-icon {
+                color: rgba(var( --bf-color-neutral-primary-rgb), .3);
+                cursor: none;
+            }
+            .form-group__input-icon-container {
+                background-color: transparent;
+                cursor: not-allowed;
+            }
+        }
+    }
+    &--isInvalid {
+        input.form-control {
+            border-color: var(--bf-color-feedback-negative);
+        }
+        .invalid-feedback {
+            display: block;
+            margin: var(--bf-spacer-1) 0 0;
+            color: var(--bf-color-feedback-negative);
+        }
+    }
+    &__info {
+        @extend .small;
+        color: var(--bf-color-neutral-secondary);
+        margin: var(--bf-spacer-1) 0 0;
+
+        a {
+            text-decoration: underline;
+            color: var(--bf-color-neutral-primary);
+        }
+    }
+    .icon__see {
+        display: none;
+    }
+    .icon__hide {
+        display: block;
+    }
+    .state-show-password {
+        .icon__see {
+            display: block;
+        }
+        .icon__hide {
+            display: none;
+        }
+    }
+}

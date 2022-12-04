@@ -1,73 +1,80 @@
 html {
-  @include transitions(opacity);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  max-width: 100vw;
-  background: $dark;
-  opacity: 0;
-  //font-size:0.275rem;
+    @include transitions(opacity);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    max-width: 100vw;
+    background: $dark;
+    opacity: 0;
+    //font-size:0.275rem;
 
-  body:not(.user-is-tabbing) label:focus,
-  body:not(.user-is-tabbing) label:focus,
-  body:not(.user-is-tabbing) button:focus,
-  body:not(.user-is-tabbing) button:active,
-  body:not(.user-is-tabbing) input:focus,
-  body:not(.user-is-tabbing) input:active,
-  body:not(.user-is-tabbing) select:focus,
-  body:not(.user-is-tabbing) select:active,
-  body:not(.user-is-tabbing) textarea:focus,
-  body:not(.user-is-tabbing) textarea:active,
-  body:not(.user-is-tabbing) .tab-pane.active {
-    outline: none !important;
-    box-shadow: none !important;
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    * {
-      transition: none!important;
-      animation: none!important;
+    body:not(.user-is-tabbing) label:focus,
+    body:not(.user-is-tabbing) label:focus,
+    body:not(.user-is-tabbing) button:focus,
+    body:not(.user-is-tabbing) button:active,
+    body:not(.user-is-tabbing) input[type=number]:focus,
+    body:not(.user-is-tabbing) input:active,
+    body:not(.user-is-tabbing) select:focus,
+    body:not(.user-is-tabbing) select:active,
+    body:not(.user-is-tabbing) textarea:focus,
+    body:not(.user-is-tabbing) textarea:active,
+    body:not(.user-is-tabbing) .tab-pane.active {
+        outline: none !important;
+        box-shadow: none !important;
     }
 
-    [data-animate] {
-      opacity: 1 !important;
-    }
-  }
-
-  &.loaded-end {
-    opacity: 1 !important;
-  }
-
-  @include media-breakpoint-up(xl) {
-    $border-width: 0.05rem;
-    font-size: 0.94vw;
-  }
-
-  .videotron-ui {
-    @include media-breakpoint-down(md){
-      overflow-x: hidden;
-      max-width: 100vw;
+    body:not(.user-is-tabbing) input[type=text]:focus,
+    body:not(.user-is-tabbing) input[type=tel]:focus,
+    body:not(.user-is-tabbing) input[type=email]:focus,
+    body:not(.user-is-tabbing) input[type=password]:focus {
+        box-shadow: 0 0 0 3px rgba(129, 194, 255, .5) !important;
     }
 
-    &.js-scrollspy-overflow {
-      overflow-x: visible;
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            transition: none !important;
+            animation: none !important;
+        }
+
+        [data-animate] {
+            opacity: 1 !important;
+        }
     }
 
-    //&__main-container {
-      //margin: 4rem auto;
-    //}
-
-    .container-fluid {
-      @include media-scale(max-width, 93vw, 93vw, 75vw, 77vw);
-
-      @include media-breakpoint-up(lg){
-        min-width: 1200px;
-      }
+    &.loaded-end {
+        opacity: 1 !important;
     }
-  }
 
-  .container-fluid-percentage {
-    margin: auto;
-    @include media-scale(max-width, 93%, 93%, 75%, 77%);
-  }
+    @include media-breakpoint-up(xl) {
+        $border-width: 0.05rem;
+        font-size: 0.94vw;
+    }
+
+    .videotron-ui {
+        @include media-breakpoint-down(md) {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        &.js-scrollspy-overflow {
+            overflow-x: visible;
+        }
+
+        //&__main-container {
+        //margin: 4rem auto;
+        //}
+
+        .container-fluid {
+            @include media-scale(max-width, 93vw, 93vw, 75vw, 77vw);
+
+            @include media-breakpoint-up(lg) {
+                min-width: 1200px;
+            }
+        }
+    }
+
+    .container-fluid-percentage {
+        margin: auto;
+        @include media-scale(max-width, 93%, 93%, 75%, 77%);
+    }
 }

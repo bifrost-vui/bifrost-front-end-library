@@ -1,0 +1,95 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta
+    title='Migrations/Text inputs'
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } }
+    }}
+/>
+
+# Input-text Migration to Bifrost
+Drupal only.
+
+<br/><br/>
+
+## New input-text Component API
+
+### Properties Name changes
+| Type   | new name     | old name         |
+|--------|--------------|------------------|
+| string | id*          | inputId          |
+| string | value        | inputValue       |
+| string | placeholder  | inputPlaceholder |
+| string | name         | inputName        |
+| string | errorMessage | invalidMsg       |
+
+
+### Deprecated properties
+| Type   | Name(type)      | comment                                                                                   |
+|--------|-----------------|-------------------------------------------------------------------------------------------|
+| number | mtValue         | Add the bootstrap `mt-[1-6]` class to the `inputClass` to set the top margin on the input |
+| string | labelClass      | Use the `label.class` property                                                            |
+| string | labelTooltipTxt | Use the `tooltip.text` property. you can also pass a string to `tooltip`                  |
+
+### new properties
+| Type      | Name            | Comment                                                                                                                                 |
+|-----------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| object    | label           | Can be passed as a string or an object: { text: string, class: string }                                                                 |
+| object    | tooltip         | Can be passed as a string or an object: { text: string, position: _top_, _bottom_, _left_ or _right_ }. The text may still contain HTML |
+| string    | ariaLabel       |                                                                                                                                         |
+| object    | info            | Can be passed as a string or an object: { text: string, url: string }                                                                   |
+| number    | maxlength       |                                                                                                                                         |
+| number    | minlength       |                                                                                                                                         |
+| string    | description     |                                                                                                                                         |
+| string    | validationTitle | For the password Variant only                                                                                                           |
+| IStatus[] | validationList  | For the password Variant only                                                                                                           |
+
+
+### Ui-Kit equivalents
+The new components aims to replace the following templates :
+
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-with-label--error
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-with-icon--tooltip
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-with-icon-and-label
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-with-label
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-phone
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-password
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-password-creation
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-search
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-search-global
+- https://labcx-marvel-uikit.etiya.com/?p=atoms-input-readonly-with-label
+
+### drupal implementation :
+
+A generic template is available
+```{% include '@bf-components/input-text/twig/index.twig' with {...} %} ```
+
+But it's recommended to use the appropriate variant template depending on the type of data
+
+**email** : see [Component API](?path=/docs/components-input-text--drupal-email#email-input-field)
+```
+{% include '@bf-components/input-text/twig/email.twig' with {...} %}
+```
+
+**password** : see [Component API](?path=/docs/components-input-text--drupal-password#password-input-field)
+```
+{% include '@bf-components/input-text/twig/password.twig' with {...} %}
+```
+
+**phone** : see [Component API](?path=/docs/components-input-text--drupal-phone#phone-input-field)
+```
+{% include '@bf-components/input-text/twig/tel.twig' with {...} %}
+```
+
+**search** :see [Component API](?path=/docs/components-input-text--drupal-search#search-input-field)
+```
+{% include '@bf-components/input-text/twig/search.twig' with {...} %}
+```
+
+**text** : see [Component API](?path=/docs/components-input-text--drupal-text#text-input-field)
+```
+{% include '@bf-components/input-text/twig/text.twig' with {...} %}
+```
