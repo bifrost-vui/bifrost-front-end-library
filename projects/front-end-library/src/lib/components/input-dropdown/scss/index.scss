@@ -1,0 +1,63 @@
+/* *****************************************************************************
+*
+*  Input Dropdown
+*
+* ***************************************************************************** */
+
+.bf-input-dropdown {
+    &.readonly .bf-input__adornment {
+        display: none;
+    }
+
+    .dropdown {
+        &.show {
+            border-color: var(--bf-color-neutral-primary);
+
+            .dropdown-toggle {
+                .bf-button__icon--right {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        .dropdown-toggle {
+            .bf-button__icon--right {
+                transition: transform .05s;
+            }
+        }
+
+        .dropdown-menu {
+            width: max-content;
+            margin-left: -1px; // Hide border left of button
+            background-color: var(--bf-color-bg-ground);
+            border-radius: var(--bf-border-radius-small);
+
+            .dropdown-item.bf-button {
+                justify-content: flex-start;
+                border-radius: 0;
+
+                &:hover,
+                &:focus {
+                    color: inherit; // Override Ui-Kit legacy
+                    background-color: var(--bf-color-bg-action-no-bg-hover); // Override Ui-Kit legacy
+                }
+
+                &.dropdown-item--current {
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        width: 3px;
+                        height: 100%;
+                        background-color: var(--bf-color-bg-action-primary);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Use to keep button hover overrides the selected background-color.
+.dropdown-item--current {
+    background-color: var(--bf-color-bg-action-selected);
+}

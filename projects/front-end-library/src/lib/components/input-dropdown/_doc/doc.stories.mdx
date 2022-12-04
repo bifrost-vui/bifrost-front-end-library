@@ -1,0 +1,191 @@
+import { moduleMetadata }                   from '@storybook/angular';
+import { Canvas, Meta, Story, ArgsTable }   from '@storybook/addon-docs';
+import { withDesign }                       from 'storybook-addon-designs'
+import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
+import { InputDropdownComponent }           from '../angular/input-dropdown.component';
+
+<Meta
+    title='Components/Input Dropdown'
+    component={InputDropdownComponent}
+    decorators={[
+        moduleMetadata({ declarations: [InputDropdownComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{}}
+    argTypes={{
+        inputId: {
+            type: { required: true }
+        },
+        isNative: {
+            table: { defaultValue: { summary: false } }
+        },
+        isRequired: {
+            table: { defaultValue: { summary: false } }
+        },
+        isAutofocus: {
+            table: { defaultValue: { summary: false } }
+        },
+        isDisabled: {
+            table: { defaultValue: { summary: false } }
+        },
+        isInvalid: {
+            table: { defaultValue: { summary: false } }
+        },
+        isReadOnly: {
+            table: { defaultValue: { summary: false } }
+        },
+    }}
+/>
+
+<ArgsTable of={InputDropdownComponent} />
+
+## Drupal implementation example
+
+```jsx
+// Native style:
+
+{% include '@bf-components/input-dropdown/twig/index.twig' with {
+    inputId: 'inputId',
+    value: 1,
+    isNative: true,
+    options: [
+        { label: 'Option 1', value: 1 },
+        { label: 'Option 2', value: 2 },
+        { label: 'Option 3', value: 3 },
+        { label: 'Option 4', value: 4 },
+        { label: 'Option 5', value: 5 },
+    ],
+    label: 'Label',
+    description: 'Description',
+    placeholder: 'Placeholder',
+    helperText: 'Helper Text',
+    isInvalid: false,
+    isDisabled: false,
+    isReadOnly: false,
+    class: 'm-4',
+} only %}
+
+
+// Custom style with list of buttons as options:
+
+{% include '@bf-components/input-dropdown/twig/index.twig' with {
+    value: 1,
+    isNative: false,
+    options: [
+        { label: 'Option 1', value: 1, href: 'https://example.com' },
+        { label: 'Option 2', value: 2, dataTarget: 'my-data-target'},
+        { label: 'Option 3', value: 3, class: 'my-specific-class' },
+        { label: 'Option 4', value: 4, iconName: 'unlimited'},
+        { label: 'Option 5', value: 5 },
+    ],
+    // ... and same properties as native style.
+} only %}
+```
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+export const commonProps = {
+    inputId: 'inputId',
+    value: null,
+    label: 'Label',
+    labelButtonIcon: {
+        icon: 'question-circle-outline'
+    },
+    description: 'Description',
+    placeholder: 'Placeholder',
+    helperText: 'Helper Text',
+    value: 0,
+    options: [
+        { label: 'Connexion', value: 1, href: 'https://example.com', iconName: 'my-account', class: '' },
+        { label: 'Modify your NIP', value: 2, href: 'https://example.com', iconName: 'parameters', class: '' },
+        { label: 'Modify your contact information', value: 3, href: 'https://example.com', iconName: 'troubleshooting', class: '' },
+        { label: 'Modify your profile informations', value: 4 },
+        { label: 'Modify your password', value: 5 },
+    ],
+    isInvalid: false,
+    isDisabled: false,
+    isReadOnly: false,
+    isNative: false,
+    class: 'm-4',
+}
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath: 'components/input-dropdown/_doc/template.drupal',
+            ...commonProps
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - with value'
+        args={{
+            elementPath: 'components/input-dropdown/_doc/template.drupal',
+            ...commonProps,
+            value: 2,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - with isNative'
+        args={{
+            elementPath: 'components/input-dropdown/_doc/template.drupal',
+            ...commonProps,
+            isNative: true,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - with isInvalid'
+        args={{
+            elementPath: 'components/input-dropdown/_doc/template.drupal',
+            ...commonProps,
+            isInvalid: true,
+            errorMessage: 'Error message.'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - with isDisabled'
+        args={{
+            elementPath: 'components/input-dropdown/_doc/template.drupal',
+            ...commonProps,
+            isDisabled: true,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - with isReadOnly'
+        args={{
+            elementPath: 'components/input-dropdown/_doc/template.drupal',
+            ...commonProps,
+            isReadOnly: true,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>

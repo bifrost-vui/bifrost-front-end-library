@@ -1,0 +1,23 @@
+{% set class = 'bf-input-password js-bf-input-password ' ~ class|default(NULL) %}
+{% set type = 'password' %}
+
+{% extends '@bf-components/input-text/twig/index.twig' %}
+  {% block adornment %}
+    <div class='bf-button-icon' style='margin-right: -.5rem'>
+      <button
+        class='bf-button-icon__inner {{ type == 'password' ? 'js-bf-input-password__visibility-button' }}'
+      >
+        {% include '@bf-components/icon/twig/index.twig' with {
+          name: 'eye-dash',
+          size: 'small',
+          class: 'icon-hide'
+        } only %}
+
+        {% include '@bf-components/icon/twig/index.twig' with {
+          name: 'eye',
+          size: 'small',
+          class: 'icon-show'
+        } only %}
+      </button>
+    </div>
+  {% endblock %}

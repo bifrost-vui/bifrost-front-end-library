@@ -1,6 +1,6 @@
 {# For Demo purposes only #}
-{% if dropdownItems is not defined or dropdownItems is empty %}
-    {% set dropdownItems = [
+{% if options is not defined or options is empty %}
+    {% set options = [
         {id:"#", href:"", label:"Item 1", class:""},
         {id:"#", href:"", label:"Item 2", class:""},
         {id:"#", href:"", label:"Item 3", class:""},
@@ -29,7 +29,7 @@
          aria-labelledby="{{ dropdownId|default('btnOutlineDropdownMenu') }}">
         {% block dropdown_content %}
             <div class="list-group py-2">
-                {% for item in dropdownItems %}
+                {% for item in options %}
                     <button class="list-group-item list-group-item-action">{{ item.label|default('Item') }}</button>
                 {% endfor %}
             </div>

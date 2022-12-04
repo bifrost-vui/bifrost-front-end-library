@@ -1,0 +1,47 @@
+{% set isRequired       = isRequired|json_parse %}
+{% set isAutofocus      = isAutofocus|json_parse %}
+{% set isInvalid        = isInvalid|json_parse %}
+{% set isDisabled       = isDisabled|json_parse %}
+{% set isReadOnly       = isReadOnly|json_parse %}
+{% set labelButtonIcon  = labelButtonIcon|json_parse %}
+{% set reversed         = reversed|json_parse %}
+
+{% set variants = [
+  {
+    backgroundClass: backgroundClass|default(''),
+    props: {}
+  },
+  {
+    backgroundClass: backgroundClass|default('bf-color-bg-underground'),
+    props: {}
+  },
+  {
+    backgroundClass: backgroundClass|default('reversed bf-color-bg-ground'),
+    props: {
+      reversed: reversed|default(true)
+    }
+  },
+  {
+    backgroundClass: backgroundClass|default('reversed bf-color-bg-underground'),
+    props: {
+      reversed: reversed|default(true)
+    }
+  },
+  {
+    backgroundClass: backgroundClass|default('bf-color-bg-highlight'),
+    props: {
+      highlight: highlight|default(true)
+    }
+  }
+] %}
+
+<div class='d-flex flex-column'>
+  {% for variant in variants %}
+    <div class='d-flex flex-column align-items-center {{ variant.backgroundClass }}'>
+      <div class='d-flex flex-row'>
+        {% set variantProps = variant.props|merge({ 'id': id|default(loop.index) }) %}
+        {% include '@bf-components/input-text/twig/index.twig' with variantProps %}
+      </div>
+    </div>
+  {% endfor %}
+</div>

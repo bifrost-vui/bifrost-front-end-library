@@ -1,0 +1,142 @@
+import { moduleMetadata }                   from '@storybook/angular';
+import { Canvas, Meta, Story, ArgsTable }   from '@storybook/addon-docs';
+import { withDesign }                       from 'storybook-addon-designs'
+import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
+import { InputPasswordComponent }           from '../angular/input-password.component';
+
+<Meta
+    title='Components/Input Password'
+    component={InputPasswordComponent}
+    decorators={[
+        moduleMetadata({ declarations: [InputPasswordComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{}}
+    argTypes={{
+        inputId: {
+            type: { required: true }
+        },
+        isAutofocus: {
+            table: { defaultValue: { summary: false } }
+        },
+        isRequired: {
+            table: { defaultValue: { summary: false } }
+        },
+        isDisabled: {
+            table: { defaultValue: { summary: false } }
+        },
+        isInvalid: {
+            table: { defaultValue: { summary: false } }
+        },
+        isReadOnly: {
+            table: { defaultValue: { summary: false } }
+        },
+        reversed: {
+            table: { defaultValue: { summary: false } }
+        },
+    }}
+/>
+
+<ArgsTable of={InputPasswordComponent} />
+
+## Drupal
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/input-password/twig/index.twig' with {
+    value: 'Value',
+    placeholder: 'Placeholder',
+    label: 'Label',
+    labelButtonIcon: {
+        icon: 'question-circle-outline'
+    },
+    description: 'Description',
+    adornment: `<p class='small mb-0'>Go</p>`,
+    helperText: 'Helper Text',
+    isAutofocus: false,
+    isRequired: false,
+    isInvalid: false,
+    isDisabled: false,
+    isReadOnly: false,
+    inputId: 'inputId',
+    inputName: 'inputName',
+    class: 'm-4',
+} only %}
+```
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+export const commonProps = {
+    value: 'Value Nulla vitae elit libero, a pharetra augue.',
+    placeholder: 'Placeholder',
+    label: 'Label',
+    labelButtonIcon: {
+        icon: 'question-circle-outline'
+    },
+    description: 'Description',
+    adornment: `<p class='small mb-0'>Go</p>`,
+    helperText: 'Helper Text',
+    isAutofocus: false,
+    isRequired: false,
+    isInvalid: false,
+    isDisabled: false,
+    isReadOnly: false,
+    inputId: 'inputId',
+    inputName: 'inputName',
+    class: 'm-4',
+}
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath: 'components/input-password/_doc/template.drupal',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - with isInvalid'
+        args={{
+            elementPath: 'components/input-password/_doc/template.drupal',
+            ...commonProps,
+            isInvalid: true,
+            errorMessage: 'Error message.'
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - with isDisabled'
+        args={{
+            elementPath: 'components/input-password/_doc/template.drupal',
+            ...commonProps,
+            isDisabled: true,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - with isReadOnly'
+        args={{
+            elementPath: 'components/input-password/_doc/template.drupal',
+            ...commonProps,
+            isReadOnly: true,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>

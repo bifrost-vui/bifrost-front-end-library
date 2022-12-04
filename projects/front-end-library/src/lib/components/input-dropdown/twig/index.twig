@@ -1,0 +1,10 @@
+{% set class = 'bf-input-dropdown ' ~ class|default(NULL) %}
+
+{% extends '@bf-components/input/twig/index.twig' %}
+  {% block inputContent %}
+    {% if isNative is defined and isNative == false %}
+      {% include '@bf-components/input-dropdown/twig/_default.twig' %}
+    {% else %}
+      {% include '@bf-components/input-dropdown/twig/_native.twig' %}
+    {% endif %}
+  {% endblock %}

@@ -1,6 +1,6 @@
 <fieldset class='bf-input {{ isInvalid|default(false) ? 'bf-input--invalid' }} {{ isDisabled|default(false) ? 'bf-input--disabled' }} {{ isReadOnly|default(false) ? 'bf-input--readonly' }} {{ class|default(null) }}'>
 
-  {% if (label is defined and label) or (description is defined and description) %}
+  {% if (label is defined and label) or (labelButtonIcon is defined and labelButtonIcon is not empty) or (description is defined and description) %}
     <div class='mb-2'>
       {% if label is defined and label %}
         {% if isLabelLegend|default(false) %}
@@ -11,6 +11,10 @@
           <label class='bf-input__label' {% if id is defined and id %}for='{{ id }}'{% endif %}>
             {{ label }}
           </label>
+        {% endif %}
+        {% if labelButtonIcon is defined and labelButtonIcon is not empty %}
+          {% set labelButtonIcon = labelButtonIcon|merge({ 'size': 'xsmall' }) %}
+          {% include '@bf-components/button-icon/twig/index.twig' with labelButtonIcon only %}
         {% endif %}
       {% endif %}
       {% if description is defined and description %}
@@ -30,6 +34,12 @@
   {% if errorMessage is defined and errorMessage %}
     <p class='small bf-color-feedback-negative mb-0 mt-1'>
       {{ errorMessage }}
+    </p>
+  {% endif %}
+
+  {% if helperText is defined and helperText %}
+    <p class='small bf-color-neutral-secondary mb-0 mt-1'>
+      {{ helperText }}
     </p>
   {% endif %}
 </fieldset>

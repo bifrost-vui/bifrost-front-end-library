@@ -1,0 +1,42 @@
+import { moduleMetadata }                   from '@storybook/angular';
+import { Canvas, Meta, Story, ArgsTable }   from '@storybook/addon-docs';
+import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
+
+<Meta
+    title='Components/Form example'
+    decorators={[
+        moduleMetadata({ declarations: [TwigContainerComponent]}),
+    ]}
+/>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        args={{
+            elementPath: 'components/input-form-example/_doc/template.drupal',
+            value: 3,
+            placeholder: 'Placeholder',
+            label: '',
+            adornment: `<p class='small mb-0'>Go</p>`,
+            description: 'Description',
+            helperText: 'Helper text',
+            errorMessage: 'Error message',
+            isRequired: false,
+            isInvalid: false,
+            isDisabled: false,
+            isReadOnly: false,
+            inputId: 'inputId',
+            inputName: 'inputName',
+            class: 'flex-1',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>

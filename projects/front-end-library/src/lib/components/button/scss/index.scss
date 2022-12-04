@@ -17,7 +17,7 @@
     font-family: $font-family-secondary;
     font-size: 1rem;
     line-height: 1rem;
-    @extend .font-weight-bold;
+    font-weight: 700;
     letter-spacing: 1px;
     text-align: center;
     text-transform: uppercase;
@@ -32,9 +32,13 @@
     }
 
     &.disabled {
-        pointer-events: none;
         @extend .bf-color-neutral-tertiary;
         @extend .bf-color-bg-action-disabled;
+        pointer-events: none;
+
+        .bf-icon {
+            color: currentColor;
+        }
     }
 
     &--primary {
