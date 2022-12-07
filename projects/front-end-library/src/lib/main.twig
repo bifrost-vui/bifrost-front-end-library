@@ -1,49 +1,49 @@
 <!DOCTYPE html>
-<html lang='en' class='loaded-end'>
+<html lang="en" class="loaded-end">
     <head>
 
         <title>Main Twig</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <meta name='description' content='Main Twig'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Main Twig">
 
         {# Preconnect and preload #}
         {#
             And BTW, bifrost.css is builded in dev mode, so without mignification.
             The minify version is here: /dist/front-end-library/assets/css/bifrost.css
         #}
-        <link rel='preload' href='/css/bifrost.css' as='style'>
-        <link rel='preconnect' href='https://fonts.gstatic.com/' crossorigin>
-        <link rel='preload' href='/fonts/BlenderPro/2.1/BlenderPro-Thin.woff2' as='font' type='font/woff2' crossorigin>
-        <link rel='preload' href='/fonts/BlenderPro/2.1/BlenderPro-Medium.woff2' as='font' type='font/woff2' crossorigin>
-        <link rel='preload' href='/fonts/BlenderPro/2.1/BlenderPro-Bold.woff2' as='font' type='font/woff2' crossorigin>
-        <link rel='preload' href='/fonts/BlenderPro/2.1/BlenderPro-Book.woff2' as='font' type='font/woff2' crossorigin>
+        <link rel="preload" href="/css/bifrost.css" as="style">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+        <link rel="preload" href="/fonts/BlenderPro/2.1/BlenderPro-Thin.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="/fonts/BlenderPro/2.1/BlenderPro-Medium.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="/fonts/BlenderPro/2.1/BlenderPro-Bold.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="/fonts/BlenderPro/2.1/BlenderPro-Book.woff2" as="font" type="font/woff2" crossorigin>
 
         {# Bifröst  style #}
-        <link href='/css/bifrost.css' rel='stylesheet'>
+        <link href="/css/bifrost.css" rel="stylesheet">
 
         {# Bifröst  scripts #}
-        {# <script src='/js/core.js'></script>
-        <script src='/js/vendors~bifrost-components.js'></script>
-        <script src='/js/bifrost-components.js'></script>
-        <script src='/js/bifrost-demo.js'></script> #}
+        {# <script src="/js/core.js"></script>
+        <script src="/js/vendors~bifrost-components.js"></script>
+        <script src="/js/bifrost-components.js"></script>
+        <script src="/js/bifrost-demo.js"></script> #}
 
         {#  ---------------------------------------------------------------
             NOTE: To avoid cache in Storybook, we need to dynamically load styles and scripts
         #}
         {# <script>
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.type = 'text/css';
-            link.href = '/css/bifrost.css';
-            document.getElementsByTagName('HEAD')[0].appendChild(link);
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.type = "text/css";
+            link.href = "/css/bifrost.css";
+            document.getElementsByTagName("HEAD")[0].appendChild(link);
         </script> #}
 
         <script>
             async function load() {
-                await import('/js/core.js');
-                await import('/js/vendors~bifrost-components.js');
-                await import('/js/bifrost-components.js');
-                await import('/js/bifrost-demo.js');
+                await import("/js/core.js");
+                await import("/js/vendors~bifrost-components.js");
+                await import("/js/bifrost-components.js");
+                await import("/js/bifrost-demo.js");
             }
             load();
         </script>
@@ -60,7 +60,7 @@
 
         {#  --------------------------------------------------------------- #}
     </head>
-    <body {{ _theme ? 'data-theme='~_theme }}>
+    <body {{ _theme ? "data-theme="~_theme }}>
         <main>
 
             {# For DEBUG puropose: #}
@@ -70,8 +70,8 @@
 
                 {% set elementPath = _context.elementPath %}
 
-                <div class='videotron-ui'>
-                    {% include './' ~ elementPath ~ '.twig' with _context %}
+                <div class="videotron-ui">
+                    {% include "./" ~ elementPath ~ ".twig" with _context %}
                 </div>
 
             {% else %}
