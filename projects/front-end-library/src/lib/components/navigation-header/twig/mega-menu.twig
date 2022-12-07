@@ -7,9 +7,9 @@
         {% if not navItem.subItems and not navItem.subItemsMultiDropdown %}
 
             <a
-                class="nav-link {{ navItem.class|default('') }}"
-                href="{{ navItem.href|default('#') }}"
-                rel="{{ navItem.rel|default('dofollow') }}"
+                class="nav-link {{ navItem.class|default("") }}"
+                href="{{ navItem.href|default("#") }}"
+                rel="{{ navItem.rel|default("dofollow") }}"
             >
                 {{ navItem.label }}
             </a>
@@ -26,7 +26,7 @@
                 <span class="mb-0">
                     {{ navItem.label }}
                 </span>
-                {% include '@bf-components/icon/twig/index.twig' with {
+                {% include "@bf-components/icon/twig/index.twig" with {
                     name        : "chevron-down",
                     class       : "d-none d-lg-block ml-1",
                 } %}
@@ -36,9 +36,9 @@
 
                 <div class="bf-megamenu__panel js-bf-megamenu__panel js-bf-megamenu__full-height" aria-labelledby="menuDropdown{{ loop.index }}">
 
-                    {% include '@bf-components/button-icon/twig/index.twig' with {
-                        icon        : 'x',
-                        class       : 'btn-close d-block d-lg-none m-2 m-md-4 z-index-10 js-bf-megamenu__close',
+                    {% include "@bf-components/button-icon/twig/index.twig" with {
+                        icon        : "x",
+                        class       : "btn-close d-block d-lg-none m-2 m-md-4 z-index-10 js-bf-megamenu__close",
                     } only %}
 
                     <div class="bf-megamenu__panel__inner d-flex h-100">
@@ -55,21 +55,21 @@
                                 {% endif %}
 
                                 <a class="bf-tabs__tab js-bf-tabs__tab link--no-decoration d-flex align-items-center p-2 p-lg-3 {{ tabClass }}"
-                                   id="v-pills-{{ subItem.catLabel|default('category')|url_encode }}-tab"
+                                   id="v-pills-{{ subItem.catLabel|default("category")|url_encode }}-tab"
                                    data-toggle="pill"
-                                   href="#v-pills-{{ subItem.catLabel|default('category')|url_encode }}"
+                                   href="#v-pills-{{ subItem.catLabel|default("category")|url_encode }}"
                                    role="tab"
-                                   aria-controls="v-pills-{{ subItem.catLabel|default('category')|url_encode }}"
+                                   aria-controls="v-pills-{{ subItem.catLabel|default("category")|url_encode }}"
                                    aria-selected="true"
                                    tabindex=-1>
-                                    {% include '@bf-components/icon/twig/index.twig' with {
+                                    {% include "@bf-components/icon/twig/index.twig" with {
                                         name        : subItem.iconName|default,
-                                        size        : 'medium',
-                                        class       : 'img-fluid position-relative',
+                                        size        : "medium",
+                                        class       : "img-fluid position-relative",
                                         reversed    : reversed|default,
                                     } only %}
                                     <span class="d-none d-lg-inline-block ml-3">
-                                        {{ subItem.catLabel|default('category') }}
+                                        {{ subItem.catLabel|default("category") }}
                                     </span>
                                 </a>
                             {% endfor %}
@@ -85,24 +85,24 @@
                                 {% endif %}
 
                                 <div class="tab-pane js-bf-tab-pane fade h-100 {{ tabPaneClass }}"
-                                     id="v-pills-{{ dropdownSubItem.catLabel|default('category')|url_encode }}"
+                                     id="v-pills-{{ dropdownSubItem.catLabel|default("category")|url_encode }}"
                                      role="tabpanel"
-                                     aria-labelledby="v-pills-{{ dropdownSubItem.catLabel|default('category')|url_encode }}-tab"
+                                     aria-labelledby="v-pills-{{ dropdownSubItem.catLabel|default("category")|url_encode }}-tab"
                                 >
                                     <div class="p-dropdown-megamenu js-bf-dropdown-megamenu h-100 d-flex flex-column justify-content-between p-3 py-md-4 px-md-5 flex-1">
                                         <div class="row">
                                             {% for subItem in dropdownSubItem.subdropdownItems %}
-                                                {% set fullWidth = subItem.isFullWidth ? 'col-lg-12' : 'col-lg-3'  %}
-                                                {% set hasBorder = (subItem.isFullWidth and subItem.fullWidthHasBorder) ? subItem.fullWidthHasBorder : ''  %}
+                                                {% set fullWidth = subItem.isFullWidth ? "col-lg-12" : "col-lg-3"  %}
+                                                {% set hasBorder = (subItem.isFullWidth and subItem.fullWidthHasBorder) ? subItem.fullWidthHasBorder : ""  %}
                                                 <div class="{{ fullWidth }} py-0 {{ hasBorder }} ">
                                                     {% if subItem.label is defined and subItem.label is not empty %}
                                                         <div class="mb-2">
                                                             <a href="{{ subItem.href }}"
                                                                class="js-bf-dropdown-item-link font-weight-bold"
-                                                               rel="{{ subItem.rel|default('') }}"
+                                                               rel="{{ subItem.rel|default("") }}"
                                                                tabindex=-1
                                                                     {{ subItem.extraAttribute|default(NULL) }}
-                                                            >{{ subItem.label|default('Link') }}</a>
+                                                            >{{ subItem.label|default("Link") }}</a>
                                                         </div>
                                                     {% endif %}
 
@@ -112,10 +112,10 @@
                                                                 <li class="mb-2">
                                                                     <a href="{{ subItem.href }}"
                                                                         class="js-bf-dropdown-item-link d-block d-lg-inline py-1 py-lg-0 {{ subItem.class }}"
-                                                                        rel="{{ subItem.rel|default('dofollow') }}"
+                                                                        rel="{{ subItem.rel|default("dofollow") }}"
                                                                         tabindex=-1
                                                                             {{ subItem.extraAttribute|default(NULL) }}
-                                                                    >{{ subItem.label|default('Link') }}</a>
+                                                                    >{{ subItem.label|default("Link") }}</a>
                                                                 </li>
                                                             {% endfor %}
                                                         </ul>
@@ -132,7 +132,7 @@
                                                     <div class="row">
                                                         {% for item in dropdownSubItem.mega %}
                                                             <div class="col-md-6 mb-3 mb-md-0">
-                                                                {% include '@bf-components/navigation-header/twig/mega-menu-block.twig' with {
+                                                                {% include "@bf-components/navigation-header/twig/mega-menu-block.twig" with {
                                                                     imgSrc: item.imgSrc,
                                                                     imgAlt: item.imgAlt,
                                                                     href: item.href,
@@ -160,7 +160,7 @@
                             {#<div class="row">#}
                                     {#{% for item in navItem.mega %}#}
                                         {#<div class="col-6">#}
-                                            {#{% include '@organisms/00-navigation-videotron-unify/31-mega-menu-block-videotron-unify.twig' with {#}
+                                            {#{% include "@organisms/00-navigation-videotron-unify/31-mega-menu-block-videotron-unify.twig" with {#}
                                                 {#imgSrc: item.imgSrc,#}
                                                 {#imgAlt: item.imgAlt,#}
                                                 {#href: item.href,#}
@@ -178,26 +178,26 @@
 
                 <div class="bf-megamenu__panel js-bf-megamenu__panel" aria-labelledby="menuDropdown{{ loop.index }}">
 
-                    {% include '@bf-components/button-icon/twig/index.twig' with {
-                        icon        : 'x',
-                        class       : 'btn-close d-block d-lg-none m-2 m-md-4 z-index-10 js-bf-megamenu__close',
+                    {% include "@bf-components/button-icon/twig/index.twig" with {
+                        icon        : "x",
+                        class       : "btn-close d-block d-lg-none m-2 m-md-4 z-index-10 js-bf-megamenu__close",
                     } only %}
 
                     <div class="p-3 py-md-4 px-md-5">
                         <div class="row">
                             {% for subItem in navItem.subItems %}
-                                {% set fullWidth = subItem.isFullWidth ? 'col-lg-12' : 'col-lg-3'  %}
-                                {% set hasBorder = (subItem.isFullWidth and subItem.fullWidthHasBorder) ? subItem.fullWidthHasBorder : ''  %}
-                                {% set itemClass = subItem.class ? subItem.class : ''  %}
+                                {% set fullWidth = subItem.isFullWidth ? "col-lg-12" : "col-lg-3"  %}
+                                {% set hasBorder = (subItem.isFullWidth and subItem.fullWidthHasBorder) ? subItem.fullWidthHasBorder : ""  %}
+                                {% set itemClass = subItem.class ? subItem.class : ""  %}
                                 <div class="{{ fullWidth }} mb-3 {{ itemClass }} {{ hasBorder }}">
                                     {% if subItem.label is defined and subItem.label is not empty %}
                                         <div class="mb-2">
                                             <a href="{{ subItem.href }}"
                                                class="js-bf-dropdown-item-link font-weight-bold"
-                                               rel="{{ subItem.rel|default('') }}"
+                                               rel="{{ subItem.rel|default("") }}"
                                                tabindex=-1
                                                     {{ subItem.extraAttribute|default(NULL) }}
-                                            >{{ subItem.label|default('Link') }}</a>
+                                            >{{ subItem.label|default("Link") }}</a>
                                         </div>
                                     {% endif %}
 
@@ -207,10 +207,10 @@
                                                 <li class="mb-2">
                                                     <a href="{{ subItem.href }}"
                                                        class="js-bf-dropdown-item-link d-block d-lg-inline py-1 py-lg-0 {{ subItem.class }}"
-                                                       rel="{{ subItem.rel|default('dofollow') }}"
+                                                       rel="{{ subItem.rel|default("dofollow") }}"
                                                        tabindex=-1
                                                             {{ subItem.extraAttribute|default(NULL) }}
-                                                    >{{ subItem.label|default('Link') }}</a>
+                                                    >{{ subItem.label|default("Link") }}</a>
                                                 </li>
                                             {% endfor %}
                                         </ul>
@@ -226,7 +226,7 @@
                                 <div class="row">
                                     {% for item in navItem.mega %}
                                         <div class="col-md-6 mb-3 mb-md-0">
-                                            {% include '@bf-components/navigation-header/twig/mega-menu-block.twig' with {
+                                            {% include "@bf-components/navigation-header/twig/mega-menu-block.twig" with {
                                                 imgSrc  : item.imgSrc,
                                                 imgAlt  : item.imgAlt,
                                                 href    : item.href,

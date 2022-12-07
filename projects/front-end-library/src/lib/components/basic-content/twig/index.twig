@@ -1,90 +1,90 @@
-{% set titleTag = titleTag|default('p') %}
-{% set imagePosition = imagePosition|default('left') %}
+{% set titleTag = titleTag|default("p") %}
+{% set imagePosition = imagePosition|default("left") %}
 {% set hasIcon = image is defined and image.icon %}
 {% set iconPosition = hasIcon ? image.icon.position %}
 
-<article class='
+<article class="
   bf-basic-content d-block d-md-flex
-  {{ textAlign == 'center' ? 'bf-basic-content--center' }}
-  {{ background|default('ground') == 'ground' ? 'bf-color-bg-ground' : 'bf-color-bg-underground' }}
-  {{ reversed ? 'reversed' }}
-  {{ class }}'
+  {{ textAlign == "center" ? "bf-basic-content--center" }}
+  {{ background|default("ground") == "ground" ? "bf-color-bg-ground" : "bf-color-bg-underground" }}
+  {{ reversed ? "reversed" }}
+  {{ class }}"
 >
-  <div class='container-fluid d-flex flex-column flex-md-row gap-4'>
+  <div class="container-fluid d-flex flex-column flex-md-row gap-4">
     {% if image is defined and image.src %}
       <div
-        class='
+        class="
           bf-basic-content__visual
-          {{ imagePosition == 'right' ? 'order-0 order-md-1' }}
-          {{ hasIcon ? 'bf-basic-content__visual--icon' }}
-          {{ iconPosition ? 'bf-basic-content__visual--icon-' ~ iconPosition }}
-          {{ image.isFill|default(false) ? '' : 'bf-basic-content__visual--fit' }}
-        '
-        style='background-image: url({{ image.src }})'
+          {{ imagePosition == "right" ? "order-0 order-md-1" }}
+          {{ hasIcon ? "bf-basic-content__visual--icon" }}
+          {{ iconPosition ? "bf-basic-content__visual--icon-" ~ iconPosition }}
+          {{ image.isFill|default(false) ? "" : "bf-basic-content__visual--fit" }}
+        "
+        style="background-image: url({{ image.src }})"
       >
         {% if hasIcon %}
-          {% set icon = image.icon|merge({ size: 'large', reversed: true, class: 'position-relative m-4' }) %}
-          {% include '@bf-components/icon/twig/index.twig' with icon only %}
+          {% set icon = image.icon|merge({ size: "large", reversed: true, class: "position-relative m-4" }) %}
+          {% include "@bf-components/icon/twig/index.twig" with icon only %}
         {% endif %}
       </div>
     {% endif %}
 
-    <div class='bf-basic-content__inner d-flex flex-column gap-4'>
+    <div class="bf-basic-content__inner d-flex flex-column gap-4">
       <div>
         {% if upperTitle is defined and upperTitle %}
-          <p class='bf-text-interface-small mb-0'>
+          <p class="bf-text-interface-small mb-0">
             {{ upperTitle }}
           </p>
         {% endif %}
 
         {% if title is defined and title %}
-          <{{ titleTag|default('h1') }} class='h2 mt-2 mb-0'>
+          <{{ titleTag|default("h1") }} class="h2 mt-2 mb-0">
             {{ title }}
-          </{{ titleTag|default('h1') }}>
+          </{{ titleTag|default("h1") }}>
         {% endif %}
 
         {% if subtitle is defined and subtitle %}
-          <p class='h4 mt-2 mb-0'>
+          <p class="h4 mt-2 mb-0">
             {{ subtitle }}
           </p>
         {% endif %}
       </div>
 
       {% if description is defined and description %}
-        <div class='bf-text'>
+        <div class="bf-text">
           {{ description|raw }}
         </div>
       {% endif %}
 
       {% if rowButtons is defined and rowButtons %}
-        <ul class='bf-list bf-list--divider border-top border-bottom bf-border-color-secondary' data-animate='fade-in'>
+        <ul class="bf-list bf-list--divider border-top border-bottom bf-border-color-secondary" data-animate="fade-in">
           {% for rowButton in rowButtons %}
             <li>
-              {% include '@bf-components/row-button/twig/index.twig' with rowButton only %}
+              {% include "@bf-components/row-button/twig/index.twig" with rowButton only %}
             </li>
           {% endfor %}
         </ul>
       {% endif %}
 
       {% if links is defined and links %}
-        <div class='bf--basic-content__links d-flex flex-wrap gap-3' data-animate='fade-in'>
+        <div class="bf--basic-content__links d-flex flex-wrap gap-3" data-animate="fade-in">
           {% for link in links %}
-            <a href='{{ link.href|default('') }}' class='bf-link bf-link--primary'>
-              {{ link.label|default('') }}
+            <a href="{{ link.href|default("") }}" class="bf-link bf-link--primary">
+              {{ link.label|default("") }}
             </a>
           {% endfor %}
         </div>
       {% endif %}
 
       {% if buttons is defined and buttons %}
-        <div class='bf-basic-content__buttons d-flex flex-wrap gap-3' data-animate='fade-in'>
+        <div class="bf-basic-content__buttons d-flex flex-wrap gap-3" data-animate="fade-in">
           {% for button in buttons %}
-            {% set defaultHierarchy = (loop.index == 1) ? 'primary-alt' : 'secondary' %}
+            {% set defaultHierarchy = (loop.index == 1) ? "primary-alt" : "secondary" %}
             {% set button = button|merge({
-              'hierarchy': button.hierarchy|default(defaultHierarchy),
-              'class':  button.class
+              "hierarchy": button.hierarchy|default(defaultHierarchy),
+              "class":  button.class
             }) %}
-            {% include '@bf-components/button/twig/index.twig' with button only %}
+            {% include "@bf-components/button/twig/index.twig" with button only %}
           {% endfor %}
         </div>
       {% endif %}

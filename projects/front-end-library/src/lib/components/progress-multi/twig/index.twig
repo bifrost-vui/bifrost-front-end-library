@@ -1,26 +1,26 @@
-<div class='progress-container small {{ class|default('') }}'>
-  <div class='progress progress--multi mb-3 {{ progressClass|default('') }}'>
+<div class="progress-container small {{ class|default("") }}">
+  <div class="progress progress--multi mb-3 {{ progressClass|default("") }}">
     {% for data in progressDatas %}
-      <div class='progress-bar {{ data.cssClass }}'
-           role='progressbar'
-           style='width: {{ data.percent }}%'
-           aria-valuenow='{{ data.percent }}'
-           aria-valuemin='{{ data.minValue }}'
-           aria-valuemax='{{ data.maxValue }}'
+      <div class="progress-bar {{ data.cssClass }}"
+           role="progressbar"
+           style="width: {{ data.percent }}%"
+           aria-valuenow="{{ data.percent }}"
+           aria-valuemin="{{ data.minValue }}"
+           aria-valuemax="{{ data.maxValue }}"
       >
       </div>
     {% endfor %}
   </div>
 
-  <div class='progress-legend d-flex flex-wrap {{ legendClass|default('') }}'>
+  <div class="progress-legend d-flex flex-wrap {{ legendClass|default("") }}">
     {% for data in progressDatas %}
-      <div class='mr-4 d-flex'>
-        <span class='color-square mr-2 {{ data.cssClass }}'></span>
+      <div class="mr-4 d-flex">
+        <span class="color-square mr-2 {{ data.cssClass }}"></span>
 
-        <div class=''>
-          <p class='font-weight-bold mb-0'>{{ data.label }}</p>
+        <div class="">
+          <p class="font-weight-bold mb-0">{{ data.label }}</p>
           {% if data.hasNoDetails is not defined %}
-            <p class='mb-0'>{{ data.currentValue ~ 'g/' ~ data.maxValue ~ 'g'}}</p>
+            <p class="mb-0">{{ data.currentValue ~ "g/" ~ data.maxValue ~ "g"}}</p>
           {% endif %}
         </div>
       </div>

@@ -1,18 +1,18 @@
-{% set titleTag = titleTag|default('h1') %}
+{% set titleTag = titleTag|default("h1") %}
 
-{% if background is defined and background == 'underground' %}
-  {% set backgroundClass = 'bf-color-bg-underground' %}
-{% elseif background is defined and background == 'highlight' %}
-  {% set backgroundClass = 'bf-color-bg-highlight highlight' %}
+{% if background is defined and background == "underground" %}
+  {% set backgroundClass = "bf-color-bg-underground" %}
+{% elseif background is defined and background == "highlight" %}
+  {% set backgroundClass = "bf-color-bg-highlight highlight" %}
   {% set buttonNavHighlight = true %}
 {% else %}
-  {% set backgroundClass = 'bf-color-bg-ground' %}
+  {% set backgroundClass = "bf-color-bg-ground" %}
 {% endif %}
 
-<section class='bf-section-buttons-nav d-flex flex-column flex-lg-row {{ backgroundClass }} {{ reversed|default(false) ? 'reversed' }} {{ class|default(null) }}' {{ extraAttribute|default(null) }}>
-  <div class='container-fluid-percentage d-flex flex-column align-items-center py-6 px-4'>
+<section class="bf-section-buttons-nav d-flex flex-column flex-lg-row {{ backgroundClass }} {{ reversed|default(false) ? "reversed" }} {{ class|default(null) }}" {{ extraAttribute|default(null) }}>
+  <div class="container-fluid-percentage d-flex flex-column align-items-center py-6 px-4">
     {% if title is defined and title %}
-      <{{ titleTag }} class='h2 mb-4 text-center title-max-w'>
+      <{{ titleTag }} class="h2 mb-4 text-center title-max-w">
         {{ title }}
       </{{ titleTag }}>
     {% endif %}
@@ -25,14 +25,14 @@
         {% endif %}
       {% endfor %}
 
-      <ul class='bf-section-buttons-nav__list {{ hasDescription ? 'bf-section-buttons-nav__list--has-description' }} list gap-4'>
+      <ul class="bf-section-buttons-nav__list {{ hasDescription ? "bf-section-buttons-nav__list--has-description" }} list gap-4">
         {% for button in buttons %}
-          <li class='bf-section-buttons-nav__item'>
+          <li class="bf-section-buttons-nav__item">
             {% set button = button|merge({
-              class: 'h-100 align-items-start ' ~ button.class,
+              class: "h-100 align-items-start " ~ button.class,
               highlight: buttonNavHighlight|default(false)
             }) %}
-            {% include '@bf-components/button-nav/twig/index.twig' with button %}
+            {% include "@bf-components/button-nav/twig/index.twig" with button %}
           </li>
         {% endfor %}
       </ul>
@@ -40,8 +40,8 @@
   </div>
 
   {% if asideSection is defined and asideSection is not empty %}
-    <div class='bf-section-buttons-nav__right-section d-flex flex-column justify-content-center align-items-center bf-color-bg-underground text-center p-6'>
-      <div class='bf-section-buttons-nav__right-section__inner'>
+    <div class="bf-section-buttons-nav__right-section d-flex flex-column justify-content-center align-items-center bf-color-bg-underground text-center p-6">
+      <div class="bf-section-buttons-nav__right-section__inner">
         {% if asideSection.title is defined and asideSection.title %}
           <h2>{{ asideSection.title }}</h2>
         {% endif %}
@@ -49,7 +49,7 @@
           <p>{{ asideSection.description }}</p>
         {% endif %}
         {% if asideSection.link is defined and asideSection.link %}
-          {% include '@bf-components/link/twig/index.twig' with asideSection.link only %}
+          {% include "@bf-components/link/twig/index.twig" with asideSection.link only %}
         {% endif %}
       </div>
     </div>

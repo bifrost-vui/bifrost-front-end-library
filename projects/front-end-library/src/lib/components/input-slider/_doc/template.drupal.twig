@@ -6,20 +6,20 @@
 {% set isInverted = isInverted|json_parse %}
 {% set reversed   = reversed|json_parse %}
 
-<div class='input-slider-wrapper'>
+<div class="input-slider-wrapper">
 
   {% for i in 1..5 %}
     {# Set backgroundClass #}
     {% if i == 1 or i == 4 %}
-      {% set backgroundClass = 'bf-color-bg-ground' %}
+      {% set backgroundClass = "bf-color-bg-ground" %}
     {% elseif i == 2 or i == 5 %}
-      {% set backgroundClass = 'bf-color-bg-underground' %}
+      {% set backgroundClass = "bf-color-bg-underground" %}
     {% else %}
-      {% set backgroundClass = 'bf-color-bg-highlight' %}
+      {% set backgroundClass = "bf-color-bg-highlight" %}
     {% endif %}
 
-    {% include '@bf-components/input-slider/twig/index.twig' with {
-      class    : class ~ ' ' ~ backgroundClass,
+    {% include "@bf-components/input-slider/twig/index.twig" with {
+      class    : class ~ " " ~ backgroundClass,
       reversed : reversed|default(i == 4 or i == 5)
     } %}
   {% endfor %}

@@ -1,19 +1,19 @@
 {% if title is defined and title is not empty %}
-    <{{ titleTag|default('h3') }} class='h3'>
+    <{{ titleTag|default("h3") }} class="h3">
         {{ title }}
-    </{{ titleTag|default('h3') }}>
+    </{{ titleTag|default("h3") }}>
 {% endif %}
 
-<ul class='bf-list {{ class|default('') }}'>
+<ul class="bf-list {{ class|default("") }}">
     {% for item in content %}
-        <li class='d-flex flex-row mb-2'>
+        <li class="d-flex flex-row mb-2">
             {% if item.iconName is defined %}
-                {% include '@bf-components/icon/twig/index.twig' with {
+                {% include "@bf-components/icon/twig/index.twig" with {
                     name    : item.iconName,
-                    class   : 'mr-2'
+                    class   : "mr-2"
                 } only %}
             {% endif %}
-            <p class='m-0'>
+            <p class="m-0">
                 {{ item.label }}
             </p>
         </li>

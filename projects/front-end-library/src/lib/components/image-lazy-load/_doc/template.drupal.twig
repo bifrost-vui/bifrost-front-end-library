@@ -1,7 +1,7 @@
 {% set isSquareMode = isSquareMode|json_parse %}
 
-<div class='p-6'>
-  {% include '@bf-components/image-lazy-load/twig/index.twig' %}
+<div class="p-6">
+  {% include "@bf-components/image-lazy-load/twig/index.twig" %}
 </div>
 
 <script>
@@ -11,15 +11,15 @@
    *  The script in the image.js works normally in DXP
    *  unfortunately, because of asynchronous loading the script is not responding in Storybook
    * */
-  const allImages = document.getElementsByTagName('img');
+  const allImages = document.getElementsByTagName("img");
 
   for (let i = 0; i < allImages.length; i++) {
-    if (allImages[i].getAttribute('data-src')) {
+    if (allImages[i].getAttribute("data-src")) {
       let img = new Image();
-      img.src = allImages[i].getAttribute('data-src');
+      img.src = allImages[i].getAttribute("data-src");
       img.onload = function () {
-        allImages[i].setAttribute('src', allImages[i].getAttribute('data-src'));
-        allImages[i].classList.add('loaded');
+        allImages[i].setAttribute("src", allImages[i].getAttribute("data-src"));
+        allImages[i].classList.add("loaded");
       }
     }
   }

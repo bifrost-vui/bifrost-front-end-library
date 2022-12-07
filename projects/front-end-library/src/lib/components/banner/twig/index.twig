@@ -4,40 +4,40 @@
 {% set hasIcon      = iconName is defined and iconName is not empty %}
 {% set hasVisual    = hasImage or hasIcon %}
 
-<{{ isLink ? 'a' : 'div' }}
+<{{ isLink ? "a" : "div" }}
     {% if isLink %}
-        href='{{ href|default('') }}'
+        href="{{ href|default("") }}"
     {% endif %}
-    class='bf-banner d-flex align-items-center {% if hasVisual %}bf-banner--has-visual{% endif %} {{class|default('')}}'
+    class="bf-banner d-flex align-items-center {% if hasVisual %}bf-banner--has-visual{% endif %} {{class|default("")}}"
 >
 
     {% if hasVisual %}
-        <div class='bf-banner__visual'>
+        <div class="bf-banner__visual">
             {% if hasImage %}
                 <img
-                    src='{{ image.src|default('') }}'
-                    data-src='{{ image.dataSrc|default('') }}'
-                    alt='{{ image.alt|default('') }}'
+                    src="{{ image.src|default("") }}"
+                    data-src="{{ image.dataSrc|default("") }}"
+                    alt="{{ image.alt|default("") }}"
                 />
             {% elseif hasIcon %}
-                {% include '@bf-components/icon/twig/index.twig' with {
+                {% include "@bf-components/icon/twig/index.twig" with {
                     name    : iconName,
-                    size    : 'large'
+                    size    : "large"
                 } only %}
             {% endif %}
         </div>
     {% endif %}
 
-    <div class='bf-banner__content'>
-        <p class='small font-weight-bold mb-1'>
-            {{ title|default('') }}
+    <div class="bf-banner__content">
+        <p class="small font-weight-bold mb-1">
+            {{ title|default("") }}
         </p>
         {% if paragraph is defined and paragraph is not empty %}
-            <p class='small m-0'>
+            <p class="small m-0">
                 {{ paragraph }}
                 {% if haslink and isClickable is defined and isClickable is same as(false) %}
                   <br/>
-                  <a class='bf-link' href='{{ href }}'>{{ linkLabel }}</a>
+                  <a class="bf-link" href="{{ href }}">{{ linkLabel }}</a>
                 {% endif %}
             </p>
         {% endif %}
@@ -51,8 +51,8 @@
             {% set badge = { label: badge } %}
         {% endif %}
 
-        {% set badge = badge|merge( { 'angle': badge.angle|default('left') } ) %}
-        {% include '@bf-components/badge/twig/index.twig' with badge only %}
+        {% set badge = badge|merge( { "angle": badge.angle|default("left") } ) %}
+        {% include "@bf-components/badge/twig/index.twig" with badge only %}
     {% endif %}
 
-</{{ isLink ? 'a' : 'div' }}>
+</{{ isLink ? "a" : "div" }}>

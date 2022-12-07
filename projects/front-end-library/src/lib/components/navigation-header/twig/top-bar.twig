@@ -1,6 +1,6 @@
 <nav class="
     bf-header-top-bar d-none d-lg-flex px-3
-    {{ class|default('') }}
+    {{ class|default("") }}
     {% if reversed is defined and reversed is same as (false) %}reversed{% endif %}"
 >
     <div class="d-flex justify-content-between w-100">
@@ -14,10 +14,10 @@
                     {% set itemClass = "" %}
                 {% endif %}
 
-                <li class="d-flex align-items-center {{ itemClass|default('') }}">
-                    <a class="link small {{ item.class|default('') }}"
-                       href="{{ item.href|default('#') }}"
-                       rel="{{ item.rel|default('dofollow') }}">
+                <li class="d-flex align-items-center {{ itemClass|default("") }}">
+                    <a class="link small {{ item.class|default("") }}"
+                       href="{{ item.href|default("#") }}"
+                       rel="{{ item.rel|default("dofollow") }}">
                         {{ item.label }}
                     </a>
                 </li>
@@ -29,36 +29,36 @@
             <li class="d-flex align-items-center">
                 {% if isConnected is defined and isConnected is same as (true) %}
                     <span class="small">
-                      {{ accountHello|default('Hello') }}
+                      {{ accountHello|default("Hello") }}
                       {% if accountLink is defined and accountLink.label is defined and accountLink.label is not empty %}
                         {% set accountLink = accountLink|merge({
                           iconName: null,
-                          hierarchy: 'native',
+                          hierarchy: "native",
                         }) %}
-                        {% include '@bf-components/link/twig/index.twig' with accountLink only %}
+                        {% include "@bf-components/link/twig/index.twig" with accountLink only %}
                       {% else %}
-                        {{ accountName|default('Benjamin Desjardins') }}
+                        {{ accountName|default("Benjamin Desjardins") }}
                       {% endif %}
                     </span>
                     <a class="link small ml-1 pl-1"
-                       href="{{ hrefLogOut|default('#') }}"
+                       href="{{ hrefLogOut|default("#") }}"
                        rel="dofollow">
-                        {{ labelLogOut|default('Logout') }}
+                        {{ labelLogOut|default("Logout") }}
                     </a>
                 {% else %}
                     <a class="link small"
-                       href="{{ hrefConnexion|default('#') }}"
+                       href="{{ hrefConnexion|default("#") }}"
                        rel="dofollow">
-                        {{ labelConnexion|default('My Customer Centre') }}
+                        {{ labelConnexion|default("My Customer Centre") }}
                     </a>
                 {% endif %}
             </li>
 
             {% for item in secondaryItems %}
                 <li class="d-flex align-items-center ml-2 pl-2">
-                    <a class="link small {{ item.class|default('') }}"
-                       href="{{ item.href|default('#') }}"
-                       rel="{{ item.rel|default('dofollow') }}">
+                    <a class="link small {{ item.class|default("") }}"
+                       href="{{ item.href|default("#") }}"
+                       rel="{{ item.rel|default("dofollow") }}">
                         {{ item.label }}
                     </a>
                 </li>

@@ -6,38 +6,38 @@
 
 {% set _variants = [
   {
-    backgroundClass: '',
+    backgroundClass: "",
     props: {}
   },
   {
-    backgroundClass: 'bf-color-bg-underground',
+    backgroundClass: "bf-color-bg-underground",
     props: {}
   },
   {
-    backgroundClass: 'reversed bf-color-bg-ground',
+    backgroundClass: "reversed bf-color-bg-ground",
     props: {}
   },
   {
-    backgroundClass: 'reversed bf-color-bg-underground',
+    backgroundClass: "reversed bf-color-bg-underground",
     props: {}
   },
   {
-    backgroundClass: 'bf-color-bg-highlight',
+    backgroundClass: "bf-color-bg-highlight",
     props: {}
   },
   {
-    backgroundClass: 'bf-color-bg-highlight',
+    backgroundClass: "bf-color-bg-highlight",
     props: {}
   }
 ] %}
 
-<div class='d-flex flex-column' style='min-height: 100vh'>
+<div class="d-flex flex-column" style="min-height: 100vh">
   {% for _variant in _variants %}
-    <div class='d-flex flex-column align-items-center {{ _variant.backgroundClass }}'>
-      {% set loopIndexSuffix = '--' ~ loop.index %}
+    <div class="d-flex flex-column align-items-center {{ _variant.backgroundClass }}">
+      {% set loopIndexSuffix = "--" ~ loop.index %}
 
       {% set _variantProps = _variant.props|merge({
-        'name': name ~ loopIndexSuffix
+        "name": name ~ loopIndexSuffix
       }) %}
 
       {% if options|length == 1 %}
@@ -64,7 +64,7 @@
         ] %}
       {% endif %}
 
-      {% include '@bf-components/input-radio/twig/index.twig' with _variantProps %}
+      {% include "@bf-components/input-radio/twig/index.twig" with _variantProps %}
     </div>
   {% endfor %}
 </div>

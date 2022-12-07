@@ -1,50 +1,50 @@
-<div class='bf-color-bg-underground p-4'>
-    <p class='small mb-0'>
+<div class="bf-color-bg-underground p-4">
+    <p class="small mb-0">
         <b>Note: </b>
         There is no Carousel Drupal component in Bifrost.
-        But we have an implemenation of <a class='bf-link' target='_blank' href='https://kenwheeler.github.io/slick/'>Slick carousel</a>.
+        But we have an implemenation of <a class="bf-link" target="_blank" href="https://kenwheeler.github.io/slick/">Slick carousel</a>.
         Please read the <b>Drupal implementation example</b> in <b>Docs tab</b>.
     </p>
 </div>
 
 {% set card = {
-    badgeColor      : 'dark',
+    badgeColor      : "dark",
     image           : {
-        src             : '/images/_docs/abstract-background.png',
-        alt             : 'iPhone 12 Mini',
-        badgeIconName   : 'security'
+        src             : "/images/_docs/abstract-background.png",
+        alt             : "iPhone 12 Mini",
+        badgeIconName   : "security"
     },
-    title           : 'iPhone 12 Mini',
+    title           : "iPhone 12 Mini",
     detailsColors   : [
-        { value :'4B4A46', name : 'Lorem' },
-        { value :'2C4651', name : 'Ipsum' },
-        { value :'D4BBA5', name : 'Dolor' },
-        { value :'C0C0C0', name : 'Amet' },
+        { value :"4B4A46", name : "Lorem" },
+        { value :"2C4651", name : "Ipsum" },
+        { value :"D4BBA5", name : "Dolor" },
+        { value :"C0C0C0", name : "Amet" },
     ],
-    detailsStorage : ['128 Go', '256 Go'],
+    detailsStorage : ["128 Go", "256 Go"],
     price           : {
-        upperTitle      : 'From',
-        dollar          : '86',
-        cent            : '99',
-        details         : '/month',
+        upperTitle      : "From",
+        dollar          : "86",
+        cent            : "99",
+        details         : "/month",
     },
-    note                : 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
+    note                : "Plan + Phone: from $150/month (24 months)<br/>No upfront payment",
     buttons           : [
         {
-            label       : 'Configurate',
-            hierarchy   : 'primary-alt',
-            href        : 'www.videotron.com',
+            label       : "Configurate",
+            hierarchy   : "primary-alt",
+            href        : "www.videotron.com",
         }
     ],
 } %}
 
-<div class='container py-5'>
-    <div class='bf-carousel js-bf-carousel-demo {{ class|default('') }}'>
+<div class="container py-5">
+    <div class="bf-carousel js-bf-carousel-demo {{ class|default("") }}">
         {% for index in 1..8 %}
             {% set card = card|merge({
-                    'title' : random(['iPhone 12 Mini', 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.' ])
+                    "title" : random(["iPhone 12 Mini", "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor." ])
             }) %}
-            {% include '@bf-components/card/twig/phone.twig' with card only %}
+            {% include "@bf-components/card/twig/phone.twig" with card only %}
         {% endfor %}
     </div>
 </div>
@@ -52,7 +52,7 @@
 
 {# ------------------------------------------------------------------------------------------------------------------ #}
 
-<h2 class='px-4 py-4'>
+<h2 class="px-4 py-4">
     Demo of the previous solution from Pattern Lab:
 </h2>
 
@@ -64,7 +64,7 @@
     ] %}
 {% endif %}
 
-<div id="{{ carouselId|default('') }}" class="js-slick-carousel--img-gallery carousel-img-gallery">
+<div id="{{ carouselId|default("") }}" class="js-slick-carousel--img-gallery carousel-img-gallery">
     {% for item in items %}
         <img class="img-fluid" alt="{{ item.alt }}" src="{{ item.imgSrc }}">
     {% endfor %}

@@ -4,16 +4,16 @@
 {% set reversed             = reversed|json_parse %}
 
 {% set variants = [
-  { background: background|default('ground') },
-  { background: background|default('underground') },
-  { background: background|default('ground'), reversed: reversed|default(true) },
-  { background: background|default('underground'), reversed: reversed|default(true) },
-  { background: background|default('highlight') },
-  { background: background|default('highlight'), reversed: reversed|default(true) },
+  { background: background|default("ground") },
+  { background: background|default("underground") },
+  { background: background|default("ground"), reversed: reversed|default(true) },
+  { background: background|default("underground"), reversed: reversed|default(true) },
+  { background: background|default("highlight") },
+  { background: background|default("highlight"), reversed: reversed|default(true) },
 ] %}
 
 <div>
   {% for variant in variants %}
-    {% include '@bf-sections/buttons-nav/twig/index.twig' with variant %}
+    {% include "@bf-sections/buttons-nav/twig/index.twig" with variant %}
   {% endfor %}
 </div>

@@ -1,46 +1,46 @@
 <div class="
     bf-input bf-input-search form-group
     {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}
-    {{ class|default('') }}"
+    {{ class|default("") }}"
 >
     {% if label %}
         <label
             for="{{ input.id }}"
-            class="{{ label.class|default('') }}"
+            class="{{ label.class|default("") }}"
             {{ label.extraAttribute|default(NULL) }}
         >
-            {{ label.value|default('Label') }}
+            {{ label.value|default("Label") }}
         </label>
     {% endif %}
 
     <div class="position-relative">
         <input id="{{ input.id }}"
                {% if isDisabled is defined and isDisabled is same as (true) %}disabled {% endif %}
-               class="form-control mt-{{ mtValue|default('0') }} {{ input.class|default('') }}"
-               type="{{ input.type|default('text') }}"
-               placeholder="{{ input.placeholder|default('') }}"
-               name="{{ input.name|default('') }}"
-               value="{{ input.value|default('') }}"
+               class="form-control mt-{{ mtValue|default("0") }} {{ input.class|default("") }}"
+               type="{{ input.type|default("text") }}"
+               placeholder="{{ input.placeholder|default("") }}"
+               name="{{ input.name|default("") }}"
+               value="{{ input.value|default("") }}"
                {{ input.extraAttribute|default(NULL) }}>
 
-        <div class="form-group__input-icon-container rounded {{ input.iconPosition|default('') }}">
+        <div class="form-group__input-icon-container rounded {{ input.iconPosition|default("") }}">
             {% block icon_container %}
-                {% include '@bf-components/input-search/twig/button-tooltip.twig' with {
+                {% include "@bf-components/input-search/twig/button-tooltip.twig" with {
                     buttonClass:"p-0"
                 } %}
             {% endblock %}
         </div>
 
         {# <div class="icon--error d-none">
-            {% include '@bf-components/icon/twig/index.twig' with {
-                name    : 'svg-error',
-                color   : 'negative'
+            {% include "@bf-components/icon/twig/index.twig" with {
+                name    : "svg-error",
+                color   : "negative"
             } only %}
         </div> #}
     </div>
 
 
     <div class="invalid-feedback">
-        {{ invalidMsg|default('This is an invalid error message') }}
+        {{ invalidMsg|default("This is an invalid error message") }}
     </div>
 </div>

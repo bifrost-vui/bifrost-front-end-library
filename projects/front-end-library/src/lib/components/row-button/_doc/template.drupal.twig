@@ -2,70 +2,70 @@
 {% set hasChevron   = hasChevron|json_parse %}
 {% set reversed     = reversed|json_parse %}
 
-<div class='bf-color-bg-underground p-4'>
-    <p class='small mb-0'>
+<div class="bf-color-bg-underground p-4">
+    <p class="small mb-0">
         <b>Note:</b> Wrap your <b>Row Buttons</b> with CSS classes <b>.bf-list .bf-list--divider</b> in order to display dividers between them.
     </p>
 </div>
 
-<div class='d-flex flex-column flex-sm-row justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
+<div class="d-flex flex-column flex-sm-row justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}">
 
     {% for index in [1,2] %}
-        <ul class='bf-list bf-list--divider flex-grow-1 d-flex flex-column align-items-center justify-content-center minh-100 p-4
-        {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'
+        <ul class="bf-list bf-list--divider flex-grow-1 d-flex flex-column align-items-center justify-content-center minh-100 p-4
+        {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}"
         >
-            <li class='w-100'>
-                {% include '@bf-components/row-button/twig/index.twig' with {
-                    title       : title|default('Size small'),
+            <li class="w-100">
+                {% include "@bf-components/row-button/twig/index.twig" with {
+                    title       : title|default("Size small"),
                     image       : NULL,
-                    size        : size|default('small'),
+                    size        : size|default("small"),
                 } %}
             </li>
 
-            <li class='w-100'>
-                {% include '@bf-components/row-button/twig/index.twig' with {
-                    title       : title|default('Size medium'),
+            <li class="w-100">
+                {% include "@bf-components/row-button/twig/index.twig" with {
+                    title       : title|default("Size medium"),
                     image       : NULL,
-                    size        : size|default('medium'),
+                    size        : size|default("medium"),
                 } %}
             </li>
 
-            <li class='w-100'>
-                {% include '@bf-components/row-button/twig/index.twig' with {
-                    title       : title|default('Size large'),
+            <li class="w-100">
+                {% include "@bf-components/row-button/twig/index.twig" with {
+                    title       : title|default("Size large"),
                     image       : NULL,
-                    size        : size|default('large'),
+                    size        : size|default("large"),
                 } %}
             </li>
 
-            <li class='w-100'>
-                {% include '@bf-components/row-button/twig/index.twig' with {
-                    title       : title|default('With image'),
+            <li class="w-100">
+                {% include "@bf-components/row-button/twig/index.twig" with {
+                    title       : title|default("With image"),
                     iconName    : NULL,
                 } %}
             </li>
 
-            <li class='w-100'>
-                {% include '@bf-components/row-button/twig/index.twig' with {
-                    title       : title|default('Without chevron'),
+            <li class="w-100">
+                {% include "@bf-components/row-button/twig/index.twig" with {
+                    title       : title|default("Without chevron"),
                     image       : NULL,
                     iconName    : NULL,
                     hasChevron  : hasChevron|default(false),
                 } %}
             </li>
 
-            <li class='w-100'>
-                {% include '@bf-components/row-button/twig/index.twig' with {
-                    title       : title|default('With link label'),
+            <li class="w-100">
+                {% include "@bf-components/row-button/twig/index.twig" with {
+                    title       : title|default("With link label"),
                     image       : NULL,
                     iconName    : NULL,
-                    linkLabel   : linkLabel|default('This is a link label'),
+                    linkLabel   : linkLabel|default("This is a link label"),
                 } %}
             </li>
 
-            <li class='w-100'>
-                {% include '@bf-components/row-button/twig/index.twig' with {
-                    title       : title|default('Default'),
+            <li class="w-100">
+                {% include "@bf-components/row-button/twig/index.twig" with {
+                    title       : title|default("Default"),
                     image       : NULL,
                     iconName    : NULL,
                 } %}

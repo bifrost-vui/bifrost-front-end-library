@@ -1,109 +1,109 @@
 {% set isImageSplitted = (image is defined and image.isSplitted is same as (true)) %}
 
 <section
-    class='
+    class="
         bf-hero d-flex flex-column
-        {{ reversed ? 'reversed' }}
-        {% if background is defined and background is same as ('ground') %}bf-hero--bg-ground{% endif %}
-        {% if background is defined and background is same as ('highlight') %}bf-hero--bg-highlight highlight{% endif %}
-        {% if height is defined and height is same as ('large') %}bf-hero--height-large{% endif %}
+        {{ reversed ? "reversed" }}
+        {% if background is defined and background is same as ("ground") %}bf-hero--bg-ground{% endif %}
+        {% if background is defined and background is same as ("highlight") %}bf-hero--bg-highlight highlight{% endif %}
+        {% if height is defined and height is same as ("large") %}bf-hero--height-large{% endif %}
         {% if isImageSplitted %}bf-hero--image-splitted{% endif %}
-        {{ class|default('') }}
-        '
+        {{ class|default("") }}
+        "
     {% if image is defined and image.lg is not empty and image.isSplitted is not same as (true) %}
-        style='background-image: url("{{ image.lg }}")'
+        style="background-image: url("{{ image.lg }}")"
     {% endif %}
 >
     {% block hero_mobile_image %}{% endblock %}
     {% if image is defined and image.sm is not empty %}
         <picture>
             {% if image.md is defined %}
-                <source srcset='{{ image.md }}' media='(max-width: 992px) and (min-width: 576px)'>
+                <source srcset="{{ image.md }}" media="(max-width: 992px) and (min-width: 576px)">
             {% endif %}
-            <img src='{{ image.sm }}' alt='{{ image.alt|default('') }}' class='bf-hero__image-sm w-100 d-block d-md-none' />
+            <img src="{{ image.sm }}" alt="{{ image.alt|default("") }}" class="bf-hero__image-sm w-100 d-block d-md-none" />
         </picture>
     {% endif %}
 
-    {% if block('blockSelection') is defined or blockSelection is defined %}
-        <div class='d-block d-md-none' data-animate='fade-in'>
-            {% if block('blockSelection') is defined %}
-                {{ block('blockSelection') }}
+    {% if block("blockSelection") is defined or blockSelection is defined %}
+        <div class="d-block d-md-none" data-animate="fade-in">
+            {% if block("blockSelection") is defined %}
+                {{ block("blockSelection") }}
             {% elseif blockSelection is defined and blockSelection is iterable %}
-                {% set blockSelectionMobile = blockSelection|merge( { 'isCollapsableOnMobile' : true, 'isCollapsedByDefaultOnMobile': true } ) %}
-                {% include '@bf-components/block-selection/twig/index.twig' with blockSelectionMobile only %}
+                {% set blockSelectionMobile = blockSelection|merge( { "isCollapsableOnMobile" : true, "isCollapsedByDefaultOnMobile": true } ) %}
+                {% include "@bf-components/block-selection/twig/index.twig" with blockSelectionMobile only %}
             {% endif %}
         </div>
     {% endif %}
 
-    <div class='container-fluid d-flex flex-column flex-md-row flex-grow-1' data-animate-row=''>
-        <header class='bf-hero__header d-flex flex-column flex-grow-1 pb-2 pb-sm-4'>
-            {% if block('breadcrumb') is defined %}
-                {{ block('breadcrumb') }}
+    <div class="container-fluid d-flex flex-column flex-md-row flex-grow-1" data-animate-row="">
+        <header class="bf-hero__header d-flex flex-column flex-grow-1 pb-2 pb-sm-4">
+            {% if block("breadcrumb") is defined %}
+                {{ block("breadcrumb") }}
             {% elseif breadcrumb is defined and breadcrumb %}
                 {{ breadcrumb }}
             {% endif %}
-            <div class='d-flex flex-column justify-content-center h-100'>
-                <div class='bf-hero__content position-relative pb-5 pt-2 pt-md-5 mt-2'>
+            <div class="d-flex flex-column justify-content-center h-100">
+                <div class="bf-hero__content position-relative pb-5 pt-2 pt-md-5 mt-2">
                     {% if badge is defined and badge is not empty %}
                         {% if badge is not iterable %}
                             {% set badge = { label: badge } %}
                         {% endif %}
                         {% set badge = badge|merge( {
-                            'hierarchy' : badge.hierarchy|default('primary'),
-                            'class'     : 'position-relative position-md-absolute top-0 mb-3' ~ badge.class|default('')
+                            "hierarchy" : badge.hierarchy|default("primary"),
+                            "class"     : "position-relative position-md-absolute top-0 mb-3" ~ badge.class|default("")
                         } ) %}
-                        {% include '@bf-components/badge/twig/index.twig' with badge only %}
+                        {% include "@bf-components/badge/twig/index.twig" with badge only %}
                     {% endif %}
 
                     {% if upperTitle is defined and upperTitle is not empty %}
-                        <p class='h5 mt-0 mb-2' data-animate='fade-in'>
+                        <p class="h5 mt-0 mb-2" data-animate="fade-in">
                             {{ upperTitle }}
                         </p>
                     {% endif %}
                     {% if title is defined and title is not empty %}
-                        <h1 class='mt-0' data-animate='fade-in'>
+                        <h1 class="mt-0" data-animate="fade-in">
                             {{ title }}
                         </h1>
                     {% endif  %}
                     {% if subtitle is defined and subtitle is not empty %}
-                        <h2 class='h3 my-2' data-animate='fade-in'>
+                        <h2 class="h3 my-2" data-animate="fade-in">
                             {{ subtitle }}
                         </h2>
                     {% endif  %}
                     {% if description is defined and description is not empty %}
-                        <p class='mt-2' data-animate='fade-in'>
+                        <p class="mt-2" data-animate="fade-in">
                             {{ description }}
                         </p>
                     {% endif %}
 
-                    {% if block('content') is defined %}
-                        {{ block('content') }}
+                    {% if block("content") is defined %}
+                        {{ block("content") }}
                     {% elseif content is defined and content %}
                         {{ content }}
                     {% endif %}
                     {% if price is defined and price %}
                         {% set price = price|merge({
-                            'class'     : 'w-100 mt-4 ' ~ price.class,
-                            'language'  : price.language|default(language)
+                            "class"     : "w-100 mt-4 " ~ price.class,
+                            "language"  : price.language|default(language)
                         }) %}
-                        {% include '@bf-components/price/twig/index.twig' with price only %}
+                        {% include "@bf-components/price/twig/index.twig" with price only %}
                     {% endif %}
                   {% if buttons is defined and buttons %}
-                    <div class='d-flex flex-wrap gap-3 mt-4' data-animate='fade-in'>
+                    <div class="d-flex flex-wrap gap-3 mt-4" data-animate="fade-in">
                       {% for button in buttons|slice(0, 2) %}
-                        {% set defaultHierarchy = (loop.index == 1) ? 'primary-alt' : 'secondary' %}
-                        {% set button = button|merge( {'hierarchy': button.hierarchy|default(defaultHierarchy),
-                          'class':  button.class} ) %}
-                        {% include '@bf-components/button/twig/index.twig' with button only %}
+                        {% set defaultHierarchy = (loop.index == 1) ? "primary-alt" : "secondary" %}
+                        {% set button = button|merge( {"hierarchy": button.hierarchy|default(defaultHierarchy),
+                          "class":  button.class} ) %}
+                        {% include "@bf-components/button/twig/index.twig" with button only %}
                       {% endfor %}
                     </div>
                   {% endif %}
                 </div>
             </div>
         </header>
-        
+
         {% if isImageSplitted and image.lg is not empty %}
-            <span class='bf-hero__image-splitted d-none d-md-block' style='background-image: url("{{ image.lg }}")' role='img' aria-label={{ image.alt|default('') }}>
+            <span class="bf-hero__image-splitted d-none d-md-block" style="background-image: url("{{ image.lg }}")" role="img" aria-label={{ image.alt|default("") }}>
             </span>
         {% endif %}
 
@@ -111,18 +111,18 @@
             {% if icon is not iterable %}
                 {% set icon = { name: icon } %}
             {% endif %}
-            {% set icon = icon|merge( { 'size' : 'huge' } ) %}
-            <div class='flex-grow-1 d-flex justify-content-center align-items-center mt-2 mt-md-0 order-first order-md-1'>
-                {% include '@bf-components/icon/twig/index.twig' with icon only %}
+            {% set icon = icon|merge( { "size" : "huge" } ) %}
+            <div class="flex-grow-1 d-flex justify-content-center align-items-center mt-2 mt-md-0 order-first order-md-1">
+                {% include "@bf-components/icon/twig/index.twig" with icon only %}
             </div>
         {% endif %}
 
-        {% if block('blockSelection') is defined or blockSelection is defined %}
-            <div class='d-none d-md-flex align-items-center' data-animate='fade-in'>
-                {% if block('blockSelection') is defined %}
-                    {{ block('blockSelection') }}
+        {% if block("blockSelection") is defined or blockSelection is defined %}
+            <div class="d-none d-md-flex align-items-center" data-animate="fade-in">
+                {% if block("blockSelection") is defined %}
+                    {{ block("blockSelection") }}
                 {% elseif blockSelection is defined and blockSelection is iterable %}
-                    {% include '@bf-components/block-selection/twig/index.twig' with blockSelection only %}
+                    {% include "@bf-components/block-selection/twig/index.twig" with blockSelection only %}
                 {% endif %}
             </div>
         {% endif %}
