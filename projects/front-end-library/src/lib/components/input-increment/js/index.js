@@ -1,5 +1,5 @@
 /**
- *  Script for the Bifrost Input increment component
+ *  Script for the Bifröst  Input increment component
  **/
 import $ from 'jquery';
 
