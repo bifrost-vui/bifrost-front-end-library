@@ -2,7 +2,7 @@
 {% set minValue = progressMinValue|default(0) %}
 {% set maxValue = progressMaxValue|default(100) %}
 {% set percentValue = ((progressValue is defined and progressValue) ? progressValue/(maxValue-minValue)*100 : progressPercentValue)|default(0) %}
-{# Do no set progressValue if it"s already defined #}
+{# Do no set progressValue if it's already defined #}
 {% set progressValue =((progressValue is not defined or not progressValue) ? (percentValue/100*(maxValue-minValue)) : progressValue )|default(0) %}
 
 {# Color settings #}
