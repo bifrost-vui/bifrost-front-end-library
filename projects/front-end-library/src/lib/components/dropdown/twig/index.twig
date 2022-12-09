@@ -8,16 +8,16 @@
 {% endif %}
 
 {# ------------------------------------------------------------------------------------------------------------------ #}
-<div class="dropdown dropdown--{{ dropdownTheme|default('light') }} {{ class|default('') }} ">
+<div class="dropdown dropdown--{{ dropdownTheme|default("light") }} {{ class|default("") }} ">
     <button class="p-2 d-inline-flex align-items-center justify-content-between {{ buttonClass|default() }} vui--style-reset"
             type="button"
-            id="{{ dropdownId|default('dropdownMenuButtonScrollSpy') }}"
+            id="{{ dropdownId|default("dropdownMenuButtonScrollSpy") }}"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
     >
-        {% include '@bf-components/icon/twig/index.twig' with {
-            name: iconName|default('helix'),
+        {% include "@bf-components/icon/twig/index.twig" with {
+            name: iconName|default("helix"),
             size: iconSize|default(2),
             color: iconColor|default(""),
             class: iconClass|default("")
@@ -25,12 +25,12 @@
     </button>
 
     <div class="dropdown-menu dropdown-menu--arrow border-0"
-         x-placement="{{ dropdownXPlacement|default('bottom-center') }}"
-         aria-labelledby="{{ dropdownId|default('btnOutlineDropdownMenu') }}">
+         x-placement="{{ dropdownXPlacement|default("bottom-center") }}"
+         aria-labelledby="{{ dropdownId|default("btnOutlineDropdownMenu") }}">
         {% block dropdown_content %}
             <div class="list-group py-2">
                 {% for item in dropdownItems %}
-                    <button class="list-group-item list-group-item-action">{{ item.label|default('Item') }}</button>
+                    <button class="list-group-item list-group-item-action">{{ item.label|default("Item") }}</button>
                 {% endfor %}
             </div>
         {% endblock %}

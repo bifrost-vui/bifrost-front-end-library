@@ -6,7 +6,7 @@
 {% set dropdownXPlacement   = "bottom-end" %}
 {% set miniCartDatas        = miniCartDatas %}
 
-{% extends '@bf-components/dropdown/twig/index.twig' %}
+{% extends "@bf-components/dropdown/twig/index.twig" %}
     {% block dropdown_content %}
         <div class="p-3">
             {% if miniCartDatas is not empty %}
@@ -18,15 +18,15 @@
 
                         {% for item in cart.items %}
                             <div class="d-flex justify-content-between mb-2">
-                                {% if item.tag == 'added' %}
+                                {% if item.tag == "added" %}
                                     <span class="color-gray--700">{{ item.title }}</span>
-                                    {% include '@bf-components/badge/twig/badge-tag.twig' with { label:"Added", color: "primary" } only %}
-                                {% elseif item.tag == 'replaced' %}
+                                    {% include "@bf-components/badge/twig/badge-tag.twig" with { label:"Added", color: "primary" } only %}
+                                {% elseif item.tag == "replaced" %}
                                     <span class="color-gray--700">{{ item.title }}</span>
-                                    {% include '@bf-components/badge/twig/badge-tag.twig' with { label:"Replaced", color: "gray--300" } only %}
-                                {% elseif item.tag == 'removed' %}
+                                    {% include "@bf-components/badge/twig/badge-tag.twig" with { label:"Replaced", color: "gray--300" } only %}
+                                {% elseif item.tag == "removed" %}
                                     <span class="color-gray--700 text-strike">{{ item.title }}</span>
-                                    {% include '@bf-components/badge/twig/badge-tag.twig' with { label:"Removed", color: "gray--300" } only %}
+                                    {% include "@bf-components/badge/twig/badge-tag.twig" with { label:"Removed", color: "gray--300" } only %}
                                 {% else %}
                                     <span class="color-gray--700">{{ item.title }}</span>
                                 {% endif %}
@@ -35,7 +35,7 @@
                     </div>
                 {% endfor %}
 
-                {% include '@bf-components/link/twig/button.twig' with {
+                {% include "@bf-components/link/twig/button.twig" with {
                     class:"w-100 color--dark px-3 mt-3",
                     label: "Review your order",
                     href: ""
@@ -48,7 +48,7 @@
                     <p class="color-gray--700">Natus odit ratione, reprehenderit similique, voluptatum. Dignissimos doloremque ipsam labore sequi voluptates?</p>
                 </div>
 
-                {% include '@bf-components/link/twig/button.twig' with {
+                {% include "@bf-components/link/twig/button.twig" with {
                     class:"w-100 color--dark px-3 mt-3",
                     label: "View bundles & deals",
                     href: ""

@@ -7,14 +7,14 @@
 
 {# Color settings #}
 {% if isMonochromeColor is defined and isMonochromeColor %}
-  {% set progressColor = 'default' %}
+  {% set progressColor = "default" %}
 {% else %}
   {% if percentValue > 90 %}
-    {% set progressColor = 'danger' %}
+    {% set progressColor = "danger" %}
   {% elseif percentValue > 50 %}
-    {% set progressColor = 'warning' %}
+    {% set progressColor = "warning" %}
   {% else %}
-    {% set progressColor = 'success' %}
+    {% set progressColor = "success" %}
   {% endif %}
 {% endif %}
 
@@ -22,8 +22,8 @@
   {% set progressColor = "default" %}
 {% endif %}
 
-<div class="progress {{ class|default('') }}">
-  <div class="progress-bar bg-{{ progressColor }} {{ progressBarClass|default('') }}"
+<div class="progress {{ class|default("") }}">
+  <div class="progress-bar bg-{{ progressColor }} {{ progressBarClass|default("") }}"
        role="progressbar"
        style="width: {{ percentValue }}%"
        aria-valuenow="{{ progressValue }}"
