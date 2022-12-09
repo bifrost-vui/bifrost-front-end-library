@@ -7,87 +7,87 @@
 {% set formNoValidate = formNoValidate|json_parse %}
 {% set isAutofocus = isAutofocus|json_parse %}
 
-{% set _hierarchyList = hierarchy is defined ? [hierarchy] : ['primary', 'primary-alt', 'secondary', 'tertiary'] %}
+{% set _hierarchyList = hierarchy is defined ? [hierarchy] : ["primary", "primary-alt", "secondary", "tertiary"] %}
 {% set _variants = [
   {
-    _name: 'Ground',
-    _backgroundClass: 'bf-color-bg-ground'
+    _name: "Ground",
+    _backgroundClass: "bf-color-bg-ground"
   },
   {
-    _name: 'Underground',
-    _backgroundClass: 'bf-color-bg-underground'
+    _name: "Underground",
+    _backgroundClass: "bf-color-bg-underground"
   },
   {
-    _name: 'Ground + Reversed',
-    _backgroundClass: 'bf-color-bg-ground reversed',
+    _name: "Ground + Reversed",
+    _backgroundClass: "bf-color-bg-ground reversed",
     reversed: true,
   },
   {
-    _name: 'Underground + Reversed',
-    _backgroundClass: 'bf-color-bg-underground reversed',
+    _name: "Underground + Reversed",
+    _backgroundClass: "bf-color-bg-underground reversed",
     reversed: true
   },
   {
-    _name: 'Highlight',
-    _backgroundClass: 'bf-color-bg-highlight highlight',
+    _name: "Highlight",
+    _backgroundClass: "bf-color-bg-highlight highlight",
     highlight: true
   },
   {
-    _name: 'Highlight + Reversed',
-    _backgroundClass: 'bf-color-bg-highlight reversed highlight',
+    _name: "Highlight + Reversed",
+    _backgroundClass: "bf-color-bg-highlight reversed highlight",
     reversed: true,
     highlight: true
   }
 ] %}
 
-<div class='d-flex flex-column minh-100'>
+<div class="d-flex flex-column minh-100">
   {% for _variant in _variants %}
     {% set reversed = reversed|default(_variant.reversed) %}
     {% set highlight = highlight|default(_variant.highlight) %}
 
-    <div class='d-flex flex-column justify-content-center flex-grow-1 minh-100 p-4 {{ _variant._backgroundClass }}'>
-      <h1 class='h3 mb-4'>
+    <div class="d-flex flex-column justify-content-center flex-grow-1 minh-100 p-4 {{ _variant._backgroundClass }}">
+      <h1 class="h3 mb-4">
         {{ _variant._name }}
       </h1>
 
       {% for _hierarchy in _hierarchyList %}
-        <div class='row'>
-          <div class='flex-grow-1'>
-            {% include '@bf-components/button/twig/index.twig' with {
+        <div class="row">
+          <div class="flex-grow-1">
+            {% include "@bf-components/button/twig/index.twig" with {
               label: label|default(_hierarchy),
               hierarchy: hierarchy|default(_hierarchy),
             } %}
           </div>
 
-          <div class='flex-grow-1'>
-            {% include '@bf-components/button/twig/index.twig' with {
+          <div class="flex-grow-1">
+            {% include "@bf-components/button/twig/index.twig" with {
               label: label|default(_hierarchy),
               hierarchy: hierarchy|default(_hierarchy),
-              iconName: iconName|default('placeholder'),
+              iconName: iconName|default("placeholder"),
             } %}
           </div>
 
-          <div class='flex-grow-1'>
-            {% include '@bf-components/button/twig/index.twig' with {
+          <div class="flex-grow-1">
+            {% include "@bf-components/button/twig/index.twig" with {
               label: label|default(_hierarchy),
               hierarchy: hierarchy|default(_hierarchy),
-              iconName: iconName|default('placeholder'),
-              iconPosition: iconPosition|default('right'),
+              iconName: iconName|default("placeholder"),
+              iconPosition: iconPosition|default("right"),
             } %}
           </div>
 
-          <div class='flex-grow-1'>
-            {% include '@bf-components/button/twig/index.twig' with {
+          <div class="flex-grow-1">
+            {% include "@bf-components/button/twig/index.twig" with {
               label: label|default(_hierarchy),
               hierarchy: hierarchy|default(_hierarchy),
-              iconName: iconName|default('placeholder'),
-              iconPosition: iconPosition|default('right'),
+              iconName: iconName|default("placeholder"),
+              iconPosition: iconPosition|default("right"),
               isDisabled: isDisabled|default(true),
             } %}
           </div>
 
-          <div class='flex-grow-1'>
-            {% include '@bf-components/button/twig/index.twig' with {
+          <div class="flex-grow-1">
+            {% include "@bf-components/button/twig/index.twig" with {
               label: label|default(_hierarchy),
               hierarchy: hierarchy|default(_hierarchy),
               isLoading: isLoading|default(true),
@@ -103,7 +103,7 @@
 {% if isLoading|json_parse|default(false) %}
   <script>
     function setLoading() {
-      document.getElementsByClassName('.bf-button')[0].classList.add('loading');
+      document.getElementsByClassName(".bf-button")[0].classList.add("loading");
     }
     setLoading();
   </script>

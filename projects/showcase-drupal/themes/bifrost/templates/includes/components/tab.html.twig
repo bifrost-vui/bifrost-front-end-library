@@ -1,24 +1,24 @@
 {% set navItems = [
-    { label:'Channel selection',                href:'/channelSelection', class:'active' },
-    { label:'Premium and speciality channels',  href:'/premiumChannels', class:'' },
-    { label:'Remote control',                   href:'/remoteControl', class:'' },
-    { label:'Home network',                     href:'/homeNetwork', class:'' }
+    { label:"Channel selection",                href:"/channelSelection", class:"active" },
+    { label:"Premium and speciality channels",  href:"/premiumChannels", class:"" },
+    { label:"Remote control",                   href:"/remoteControl", class:"" },
+    { label:"Home network",                     href:"/homeNetwork", class:"" }
 ] %}
 
 <div>
     {% for index in [1,2] %}
-        
-        <div class='d-flex gap-3 p-5 {{ index == 2 ? 'reversed bf-color-bg-ground' : ''  }}'>
-            {% include '@bf-components/tab/twig/index.twig' with navItems %}
+
+        <div class="d-flex gap-3 p-5 {{ index == 2 ? "reversed bf-color-bg-ground" : ""  }}">
+            {% include "@bf-components/tab/twig/index.twig" with navItems %}
         </div>
-        
+
     {% endfor %}
 </div>
 
 <script>
     function init() {
-        document.querySelectorAll('.nav-link').forEach(item => {
-            item.addEventListener('click', event => {
+        document.querySelectorAll(".nav-link").forEach(item => {
+            item.addEventListener("click", event => {
                 event.preventDefault();
             })
         })

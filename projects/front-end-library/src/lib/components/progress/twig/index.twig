@@ -2,19 +2,19 @@
 {% set minValue = progressMinValue|default(0) %}
 {% set maxValue = progressMaxValue|default(100) %}
 {% set percentValue = ((progressValue is defined and progressValue) ? progressValue/(maxValue-minValue)*100 : progressPercentValue)|default(0) %}
-{# Do no set progressValue if it's already defined #}
+{# Do no set progressValue if it"s already defined #}
 {% set progressValue =((progressValue is not defined or not progressValue) ? (percentValue/100*(maxValue-minValue)) : progressValue )|default(0) %}
 
 {# Color settings #}
 {% if isMonochromeColor is defined and isMonochromeColor %}
-  {% set progressColor = 'default' %}
+  {% set progressColor = "default" %}
 {% else %}
   {% if percentValue > 90 %}
-    {% set progressColor = 'danger' %}
+    {% set progressColor = "danger" %}
   {% elseif percentValue > 50 %}
-    {% set progressColor = 'warning' %}
+    {% set progressColor = "warning" %}
   {% else %}
-    {% set progressColor = 'success' %}
+    {% set progressColor = "success" %}
   {% endif %}
 {% endif %}
 
@@ -22,8 +22,8 @@
   {% set progressColor = "default" %}
 {% endif %}
 
-<div class="progress {{ class|default('') }}">
-  <div class="progress-bar bg-{{ progressColor }} {{ progressBarClass|default('') }}"
+<div class="progress {{ class|default("") }}">
+  <div class="progress-bar bg-{{ progressColor }} {{ progressBarClass|default("") }}"
        role="progressbar"
        style="width: {{ percentValue }}%"
        aria-valuenow="{{ progressValue }}"

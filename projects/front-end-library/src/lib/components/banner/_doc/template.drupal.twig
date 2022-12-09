@@ -4,24 +4,24 @@
 {% set isClickable  = isClickable|json_parse %}
 {% set linkLabel    = linkLabel|json_parse %}
 
-<div class='d-flex flex-column flex-sm-row justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}'>
+<div class="d-flex flex-column flex-sm-row justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}">
     {% for index in [1,2] %}
-        <div class='flex-grow-1 d-flex flex-column align-items-center justify-content-center minh-100 p-4
-        {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}'
+        <div class="flex-grow-1 d-flex flex-column align-items-center justify-content-center minh-100 p-4
+        {% if index == 2 and reversed is not defined %}reversed bf-color-bg-ground{% endif %}"
         >
-            {% include '@bf-components/banner/twig/index.twig' with {
+            {% include "@bf-components/banner/twig/index.twig" with {
                 image       : NULL,
                 iconName    : NULL,
             } %}
 
-            {% include '@bf-components/banner/twig/index.twig' with {
+            {% include "@bf-components/banner/twig/index.twig" with {
                 image       : NULL,
             } %}
 
-            {% include '@bf-components/banner/twig/index.twig' with {
+            {% include "@bf-components/banner/twig/index.twig" with {
                 iconName    : NULL,
                 isClickable : isClickable|default(FALSE) ,
-                linkLabel   : linkLabel|default('This is a link inside a banner')
+                linkLabel   : linkLabel|default("This is a link inside a banner")
             } %}
         </div>
     {% endfor %}
