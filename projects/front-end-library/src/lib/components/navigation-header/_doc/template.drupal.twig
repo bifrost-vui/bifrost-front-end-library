@@ -178,6 +178,7 @@
         subItems: [
           { label:"How do I reset my voicemail PIN?", href:"#", class:"" },
           { label:"How do I know when I've reached my data overage limits?", href:"#", class:"" },
+
           { label:"How do I program my new illico remote?", href:"#", class:"" },
           { label:"How do I sign up for the online invoicing service?", href:"#", class:"" },
           { label:"View all questions", href:"#", class:"link" },
@@ -241,7 +242,7 @@
 {% set isConnected = isConnected|json_parse %}
 {% set accountLink = accountLink|json_parse %}
 
-{% include '@bf-components/navigation-header/twig/index.twig' with {
+{% include "@bf-components/navigation-header/twig/index.twig" with {
   hasTopBar: hasTopBar|json_parse|default(true),
   topBar: {
     items: topBar_items|json_parse|default([]),
@@ -250,12 +251,12 @@
   rigthIconLinks: rigthIconLinks|json_parse|default([]),
   logo: logo,
   search: {
-    placeholder: placeholder|default('What are you looking for?')
+    placeholder: placeholder|default("What are you looking for?")
   },
   navItems: navItems,
   hasAccountBtn: hasAccountBtn|json_parse|default(false),
   hasMiniCartBtn: hasMiniCartBtn|json_parse|default(false),
   hasNoSearchBtn: hasNoSearchBtn|json_parse|default(false),
   reversed: reversed|json_parse|default(false),
-  langcode: langcode|default('EN')
+  langcode: langcode|default("EN")
 } %}

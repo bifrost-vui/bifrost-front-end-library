@@ -5,7 +5,7 @@
 } %}
 
 {# Retreive component name from `name` variable ("@components/button/twig/button.twig") #}
-{% set componentName = self|split('/')|last|split('.')|first %}
+{% set componentName = self|split("/")|last|split(".")|first %}
 
 {# Create an array of unsed properties #}
 {% set propsNotUsed = [] %}
@@ -25,7 +25,7 @@
         (function(){
             let componentName = {{ componentName|json_encode|raw }};
             let errors = {{ propsNotUsed|json_encode|raw }};
-            console.log('%c Bifröst  ' + componentName + ' ', 'background: #FFD200; color: #000000', ' Theses variables are not used in ' + componentName + ':');
+            console.log("%c Bifröst  " + componentName + " ", "background: #FFD200; color: #000000", " Theses variables are not used in " + componentName + ":");
             console.table(errors);
         })();
     </script>

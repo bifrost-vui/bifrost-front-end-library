@@ -1,10 +1,10 @@
-{% set buttonHierarchy = (highlight is defined and highlight) ? 'primary' : 'tertiary' %}
-{% set buttonClass = isFeatured is defined and (isFeatured is same as (true) or isFeatured is same as ('true')) ? 'bf-button-nav__featured ' %}
+{% set buttonHierarchy = (highlight is defined and highlight) ? "primary" : "tertiary" %}
+{% set buttonClass = isFeatured is defined and (isFeatured is same as (true) or isFeatured is same as ("true")) ? "bf-button-nav__featured " %}
 
-{% include '@bf-components/button/twig/index.twig' with {
+{% include "@bf-components/button/twig/index.twig" with {
   hierarchy: buttonHierarchy,
-  iconName: iconName|default('placeholder'),
-  iconSize: 'large',
-  class: 'bf-button-nav p-2 ' ~ buttonClass ~ (highlight|default(false) ? 'highlight ') ~ class|default(''),
-  content: (description|default(null) ? '<span class="bf-text small">' ~ description ~ '</span>')
+  iconName: iconName|default("placeholder"),
+  iconSize: "large",
+  class: "bf-button-nav p-2 " ~ buttonClass ~ (highlight|default(false) ? "highlight ") ~ class|default(""),
+  content: (description|default(null) ? "<span class=\"bf-text small\">" ~ description ~ "</span>")
 } %}
