@@ -11,7 +11,7 @@
         {{ class|default("") }}
         "
     {% if image is defined and image.lg is not empty and image.isSplitted is not same as (true) %}
-        style="background-image: url("{{ image.lg }}")"
+        style="background-image: url({{ image.lg }})"
     {% endif %}
 >
     {% block hero_mobile_image %}{% endblock %}
@@ -20,7 +20,7 @@
             {% if image.md is defined %}
                 <source srcset="{{ image.md }}" media="(max-width: 992px) and (min-width: 576px)">
             {% endif %}
-            <img src="{{ image.sm }}" alt="{{ image.alt|default("") }}" class="bf-hero__image-sm w-100 d-block d-md-none" />
+            <img src={{ image.sm }} alt="{{ image.alt|default("") }}" class="bf-hero__image-sm w-100 d-block d-md-none" />
         </picture>
     {% endif %}
 
@@ -103,7 +103,7 @@
         </header>
 
         {% if isImageSplitted and image.lg is not empty %}
-            <span class="bf-hero__image-splitted d-none d-md-block" style="background-image: url("{{ image.lg }}")" role="img" aria-label={{ image.alt|default("") }}>
+            <span class="bf-hero__image-splitted d-none d-md-block" style="background-image: url({{ image.lg }})" role="img" aria-label={{ image.alt|default("") }}>
             </span>
         {% endif %}
 
