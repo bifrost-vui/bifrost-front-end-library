@@ -7,7 +7,10 @@
 {% set formNoValidate = formNoValidate|json_parse %}
 {% set isAutofocus = isAutofocus|json_parse %}
 
-{% set _hierarchyList = hierarchy is defined ? [hierarchy] : ["primary", "primary-alt", "secondary", "tertiary"] %}
+{% set _hierarchyList = hierarchy is defined
+  ? [hierarchy]
+  : ["primary", "primary-alt", "secondary", "tertiary"]
+%}
 {% set _variants = [
   {
     _name: "Ground",
@@ -20,7 +23,7 @@
   {
     _name: "Ground + Reversed",
     _backgroundClass: "bf-color-bg-ground reversed",
-    reversed: true,
+    reversed: true
   },
   {
     _name: "Underground + Reversed",
@@ -45,17 +48,27 @@
     {% set reversed = reversed|default(_variant.reversed) %}
     {% set highlight = highlight|default(_variant.highlight) %}
 
-    <div class="d-flex flex-column justify-content-center flex-grow-1 minh-100 p-4 {{ _variant._backgroundClass }}">
-      <h1 class="h3 mb-4">
-        {{ _variant._name }}
-      </h1>
+    <div
+      class="d-flex flex-column justify-content-center flex-grow-1 minh-100 p-4 {{
+      _variant._backgroundClass
+      }}"
+    >
+      <h1 class="h3 mb-4">{{ _variant._name }}</h1>
 
       {% for _hierarchy in _hierarchyList %}
         <div class="row">
           <div class="flex-grow-1">
             {% include "@bf-components/button/twig/index.twig" with {
               label: label|default(_hierarchy),
+              hierarchy: hierarchy|default(_hierarchy)
+            } %}
+          </div>
+
+          <div class="flex-grow-1">
+            {% include "@bf-components/button/twig/index.twig" with {
+              label: label|default(_hierarchy),
               hierarchy: hierarchy|default(_hierarchy),
+              iconName: iconName|default("placeholder")
             } %}
           </div>
 
@@ -64,6 +77,7 @@
               label: label|default(_hierarchy),
               hierarchy: hierarchy|default(_hierarchy),
               iconName: iconName|default("placeholder"),
+              iconPosition: iconPosition|default("right")
             } %}
           </div>
 
@@ -73,6 +87,7 @@
               hierarchy: hierarchy|default(_hierarchy),
               iconName: iconName|default("placeholder"),
               iconPosition: iconPosition|default("right"),
+              isDisabled: isDisabled|default(true)
             } %}
           </div>
 
@@ -80,17 +95,7 @@
             {% include "@bf-components/button/twig/index.twig" with {
               label: label|default(_hierarchy),
               hierarchy: hierarchy|default(_hierarchy),
-              iconName: iconName|default("placeholder"),
-              iconPosition: iconPosition|default("right"),
-              isDisabled: isDisabled|default(true),
-            } %}
-          </div>
-
-          <div class="flex-grow-1">
-            {% include "@bf-components/button/twig/index.twig" with {
-              label: label|default(_hierarchy),
-              hierarchy: hierarchy|default(_hierarchy),
-              isLoading: isLoading|default(true),
+              isLoading: isLoading|default(true)
             } %}
           </div>
         </div>
@@ -99,12 +104,10 @@
   {% endfor %}
 </div>
 
-
 {% if isLoading|json_parse|default(false) %}
   <script>
     function setLoading() {
-      document.getElementsByClassName(".bf-button")[0].classList.add("loading");
-    }
+    document.getElementsByClassName(".bf-button")[0].classList.add("loading"); }
     setLoading();
   </script>
 {% endif %}
