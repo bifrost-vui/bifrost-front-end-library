@@ -1,25 +1,31 @@
-import { moduleMetadata }                   from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }   from '@storybook/addon-docs';
-import illustrationIcons                    from '../../../../../../../public/icons/list/illustrations.json';
-import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
-import { IconComponent }                    from '../../icon/angular/icon.component';
-import { BadgeComponent }                   from '../angular/badge.component';
-import { BadgeTemplateComponent }           from './template.angular.component';
-
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import illustrationIcons from '../../../../../../../public/icons/list/illustrations.json';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { IconComponent } from '../../icon/angular/icon.component';
+import { BadgeComponent } from '../angular/badge.component';
+import { BadgeTemplateComponent } from './template.angular.component';
 
 <Meta
-    title='Components/Badge'
+    title="Components/Badge"
     component={BadgeComponent}
     decorators={[
-        moduleMetadata({ declarations: [BadgeComponent, IconComponent, BadgeTemplateComponent, TwigContainerComponent]}),
+        moduleMetadata({
+            declarations: [
+                BadgeComponent,
+                IconComponent,
+                BadgeTemplateComponent,
+                TwigContainerComponent,
+            ],
+        }),
     ]}
     argTypes={{
         hierarchy: {
-            table:   { defaultValue: { summary: 'secondary' } },
-            control: { type: 'select' }
+            table: { defaultValue: { summary: 'secondary' } },
+            control: { type: 'select' },
         },
         angle: {
-            control: { type: 'select' }
+            control: { type: 'select' },
         },
         noUppercase: {
             table: { defaultValue: { summary: false } },
@@ -28,19 +34,28 @@ import { BadgeTemplateComponent }           from './template.angular.component';
             defaultValue: '',
             control: {
                 type: 'select',
-                options: ['', 'placeholder', ...illustrationIcons.map(a => a.list).flat().sort()]
-            }
+                options: [
+                    '',
+                    'placeholder',
+                    ...illustrationIcons
+                        .map((a) => a.list)
+                        .flat()
+                        .sort(),
+                ],
+            },
         },
         _disabled: {
-            table:{ disable: true }
-        }
+            table: { disable: true },
+        },
     }}
 />
 
 # Badge
-<br/>
+
+<br />
 
 ## Component API
+
 <ArgsTable of={BadgeComponent} />
 
 ## Drupal implementation example
@@ -61,12 +76,9 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas
-    withSource='none'
-    style={{ height: '600px' }}
->
+<Canvas withSource="none" style={{ height: '600px' }}>
     <Story
-        name='Drupal'
+        name="Drupal"
         args={{
             elementPath: 'components/badge/_doc/template.drupal',
             class: 'my-2',
@@ -77,40 +89,33 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-<Canvas
-    withSource='none'
-    style={{ height: '600px' }}
->
+<Canvas withSource="none" style={{ height: '600px' }}>
     <Story
-        name='Drupal - Multiline'
+        name="Drupal - Multiline"
         args={{
             elementPath: 'components/badge/_doc/template.drupal',
             class: 'my-2',
             reversed: undefined,
-            label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
+            label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas
-    withSource='none'
-    style={{ height: '600px'}}
->
+<Canvas withSource="none" style={{ height: '600px' }}>
     <Story
-        name='Drupal - Disabled'
+        name="Drupal - Disabled"
         args={{
             elementPath: 'components/badge/_doc/template.drupal',
             class: 'my-2',
             reversed: undefined,
-            _disabled: true
+            _disabled: true,
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
-
 
 ## Angular
 
@@ -119,12 +124,9 @@ export const Angular = (args) => ({
     props: args,
 });
 
-<Canvas
-    withSource='none'
-    style={{ height: '600px' }}
->
+<Canvas withSource="none" style={{ height: '600px' }}>
     <Story
-        name='Angular'
+        name="Angular"
         args={{
             className: 'my-2',
             reversed: undefined,
@@ -134,32 +136,26 @@ export const Angular = (args) => ({
     </Story>
 </Canvas>
 
-<Canvas
-    withSource='none'
-    style={{ height: '600px' }}
->
+<Canvas withSource="none" style={{ height: '600px' }}>
     <Story
-        name='Angular - Multiline'
+        name="Angular - Multiline"
         args={{
             className: 'my-2',
             reversed: undefined,
-            label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
+            label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
         }}
     >
         {Angular.bind({})}
     </Story>
 </Canvas>
 
-<Canvas
-    withSource='none'
-    style={{ height: '600px' }}
->
+<Canvas withSource="none" style={{ height: '600px' }}>
     <Story
-        name='Angular - Disabled'
+        name="Angular - Disabled"
         args={{
             className: 'my-2',
             reversed: undefined,
-            _disabled: true
+            _disabled: true,
         }}
     >
         {Angular.bind({})}

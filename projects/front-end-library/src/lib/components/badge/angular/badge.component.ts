@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, OnChanges, Input } from '@angular/core';
 
-
 @Component({
     selector: 'bf-badge',
     templateUrl: './badge.component.html',
@@ -8,21 +7,25 @@ import { Component, ElementRef, OnInit, OnChanges, Input } from '@angular/core';
 export class BadgeComponent implements OnInit, OnChanges {
     constructor() {}
 
-    @Input() label          : string;
-    @Input() hierarchy      : 'primary' | 'secondary' | 'tertiary' | 'tertiary-ground';
-    @Input() noUppercase    : boolean;
+    @Input() label: string;
+    @Input() hierarchy:
+        | 'primary'
+        | 'secondary'
+        | 'tertiary'
+        | 'tertiary-ground';
+    @Input() noUppercase: boolean;
     /** Displays an angle on a corner. Won't have any effect if `isRounded` is true*/
-    @Input() angle          : null | 'left' | 'right';
+    @Input() angle: null | 'left' | 'right';
     /** `isRounded` property has precedence over `angle`  */
-    @Input() isRounded      : boolean;
-    @Input() iconName       : string;
+    @Input() isRounded: boolean;
+    @Input() iconName: string;
     /** Angular only */
-    @Input() className      : string;
+    @Input() className: string;
     /** Drupal only */
-    @Input() class          : string;
-    @Input() reversed       : boolean;
+    @Input() class: string;
+    @Input() reversed: boolean;
 
-    public ngClasses        : string[] = [];
+    public ngClasses: string[] = [];
 
     ngOnInit() {
         console.log('badge', this);
@@ -35,11 +38,15 @@ export class BadgeComponent implements OnInit, OnChanges {
 
     computetNgClasses() {
         this.ngClasses = [
-            this.className                  ? String(this.className) : '',
-            this.hierarchy                  ? 'bf-badge--' + this.hierarchy : 'bf-badge--secondary',
-            this.angle && !this.isRounded   ? 'bf-badge--angle-' + this.angle : '',
-            this.isRounded                  ? 'bf-badge--rounded' : '',
-            this.reversed                   ? `reversed` : ''
-        ]
+            this.className ? String(this.className) : '',
+            this.hierarchy
+                ? 'bf-badge--' + this.hierarchy
+                : 'bf-badge--secondary',
+            this.angle && !this.isRounded
+                ? 'bf-badge--angle-' + this.angle
+                : '',
+            this.isRounded ? 'bf-badge--rounded' : '',
+            this.reversed ? `reversed` : '',
+        ];
     }
 }

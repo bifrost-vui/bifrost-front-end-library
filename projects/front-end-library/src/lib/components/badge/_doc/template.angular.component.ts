@@ -7,9 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class BadgeTemplateComponent implements OnInit {
     constructor() {}
 
-    @Input() className      : string;
+    @Input() className: string;
 
-    templates               : number[] = [1,2];
+    templates: number[] = [1, 2];
 
     ngOnInit() {
         console.log('BadgeTemplateComponent', this);
