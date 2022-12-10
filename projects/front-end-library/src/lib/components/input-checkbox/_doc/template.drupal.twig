@@ -32,34 +32,60 @@
 
 <div class="d-flex flex-column" style="min-height: 100vh">
   {% for _variant in _variants %}
-    <div class="d-flex flex-column align-items-center {{ _variant.backgroundClass }}">
+    <div
+      class="d-flex flex-column align-items-center {{
+      _variant.backgroundClass
+      }}"
+    >
       {% set loopIndexSuffix = "--" ~ loop.index %}
 
-      {% set _variantProps = _variant.props|merge({
-        "name": name ~ loopIndexSuffix
-      }) %}
+      {% set _variantProps =
+        _variant.props|merge({
+          name: name ~ loopIndexSuffix
+        })
+      %}
 
-      {% if options|length == 1 %}
+      {% if (options|length) == 1 %}
         {% set options = [
-          options[0]|merge({ id: options[0].id ~ loopIndexSuffix })
+          options[0]|merge({
+            id: options[0].id ~ loopIndexSuffix
+          })
         ] %}
-      {% elseif options|length == 2 %}
+      {% elseif (options|length) == 2 %}
         {% set options = [
-          options[0]|merge({ id: options[0].id ~ loopIndexSuffix }),
-          options[1]|merge({ id: options[1].id ~ loopIndexSuffix })
+          options[0]|merge({
+            id: options[0].id ~ loopIndexSuffix
+          }),
+          options[1]|merge({
+            id: options[1].id ~ loopIndexSuffix
+          })
         ] %}
-      {% elseif options|length == 3 %}
+      {% elseif (options|length) == 3 %}
         {% set options = [
-          options[0]|merge({ id: options[0].id ~ loopIndexSuffix }),
-          options[1]|merge({ id: options[1].id ~ loopIndexSuffix }),
-          options[2]|merge({ id: options[2].id ~ loopIndexSuffix })
+          options[0]|merge({
+            id: options[0].id ~ loopIndexSuffix
+          }),
+          options[1]|merge({
+            id: options[1].id ~ loopIndexSuffix
+          }),
+          options[2]|merge({
+            id: options[2].id ~ loopIndexSuffix
+          })
         ] %}
-      {% elseif options|length == 4 %}
+      {% elseif (options|length) == 4 %}
         {% set options = [
-          options[0]|merge({ id: options[0].id ~ loopIndexSuffix }),
-          options[1]|merge({ id: options[1].id ~ loopIndexSuffix }),
-          options[2]|merge({ id: options[2].id ~ loopIndexSuffix }),
-          options[3]|merge({ id: options[3].id ~ loopIndexSuffix })
+          options[0]|merge({
+            id: options[0].id ~ loopIndexSuffix
+          }),
+          options[1]|merge({
+            id: options[1].id ~ loopIndexSuffix
+          }),
+          options[2]|merge({
+            id: options[2].id ~ loopIndexSuffix
+          }),
+          options[3]|merge({
+            id: options[3].id ~ loopIndexSuffix
+          })
         ] %}
       {% endif %}
 
