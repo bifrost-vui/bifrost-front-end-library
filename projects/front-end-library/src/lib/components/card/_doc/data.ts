@@ -1,8 +1,8 @@
 export const contentLists = [
     {
-        title       : 'TV',
-        description : '40 channels',
-        content     : [
+        title: 'TV',
+        description: '40 channels',
+        content: [
             {
                 label: 'Free and Unlimited Go after 10Go',
                 icon: 'unlimited',
@@ -18,22 +18,20 @@ export const contentLists = [
         ],
     },
     {
-        title       : 'Internet',
-        description : 'Unlimited',
-        content      : [
+        title: 'Internet',
+        description: 'Unlimited',
+        content: [
             {
                 label: 'Utilisation illimité',
                 icon: 'tv-plan-showtime',
             },
             {
-                label: 'Vitesse de téléchargement jusqu\'à 100mbit/s',
+                label: "Vitesse de téléchargement jusqu'à 100mbit/s",
                 icon: 'download-speed',
             },
-
         ],
-    }
+    },
 ];
-
 
 export const contentListsNoTitle = [
     {
@@ -51,6 +49,5 @@ export const contentListsNoTitle = [
                 icon: 'tv-plan-absolute',
             },
         ],
-    }
+    },
 ];
-
