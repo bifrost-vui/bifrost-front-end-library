@@ -1,22 +1,28 @@
-<fieldset class="bf-input {{ isInvalid|default(false) ? "bf-input--invalid" }} {{ isDisabled|default(false) ? "bf-input--disabled" }} {{ isReadOnly|default(false) ? "bf-input--readonly" }} {{ class|default(null) }}">
-
-  {% if (label is defined and label) or (description is defined and description) %}
+<fieldset
+  class="bf-input {{ isInvalid|default(false) ? "bf-input--invalid" }} {{
+  isDisabled|default(false)
+    ? "bf-input--disabled"
+  }} {{ isReadOnly|default(false) ? "bf-input--readonly" }} {{ class|default(
+    null
+  ) }}"
+>
+  {% if
+    (label is defined and label) or (description is defined and description) %}
     <div class="mb-2">
       {% if label is defined and label %}
         {% if isLabelLegend|default(false) %}
-          <legend class="bf-input__label">
-            {{ label }}
-          </legend>
+          <legend class="bf-input__label">{{ label }}</legend>
         {% else %}
-          <label class="bf-input__label" {% if id is defined and id %}for="{{ id }}"{% endif %}>
+          <label
+            class="bf-input__label"
+            {{ id is defined and id ? "for='" ~ id ~ "'" }}
+          >
             {{ label }}
           </label>
         {% endif %}
       {% endif %}
       {% if description is defined and description %}
-        <p class="bf-color-neutral-secondary mb-0">
-          {{ description }}
-        </p>
+        <p class="bf-color-neutral-secondary mb-0">{{ description }}</p>
       {% endif %}
     </div>
   {% endif %}
@@ -28,8 +34,6 @@
   {% endif %}
 
   {% if errorMessage is defined and errorMessage %}
-    <p class="small bf-color-feedback-negative mb-0 mt-1">
-      {{ errorMessage }}
-    </p>
+    <p class="small bf-color-feedback-negative mb-0 mt-1">{{ errorMessage }}</p>
   {% endif %}
 </fieldset>
