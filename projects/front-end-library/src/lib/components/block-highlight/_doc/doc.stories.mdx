@@ -1,15 +1,12 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { BlockHighlightComponent }              from '../angular/block-highlight.component';
-
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { BlockHighlightComponent } from '../angular/block-highlight.component';
 
 <Meta
-    title='Components/Block Highlight'
+    title="Components/Block Highlight"
     component={BlockHighlightComponent}
-    decorators={[
-        moduleMetadata({ declarations: [BlockHighlightComponent, TwigContainerComponent]}),
-    ]}
+    decorators={[moduleMetadata({ declarations: [BlockHighlightComponent, TwigContainerComponent] })]}
     argTypes={{
         titleTag: {
             table: { defaultValue: { summary: 'p' } },
@@ -18,12 +15,12 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
             table: { defaultValue: { summary: 'ground' } },
             control: {
                 type: 'select',
-                defaultValue: 'ground'
-            }
+                defaultValue: 'ground',
+            },
         },
         isVisualBackgroundFill: {
             table: { defaultValue: { summary: true } },
-        }
+        },
     }}
 />
 
@@ -31,13 +28,11 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
 
 > 👉 &nbsp; Please, read [Full Documentation about Block-Highlight](https://zeroheight.com/79f1d3365/p/688590-block-highlight).
 
-<br/>
+<br />
 
 ## Component API
 
 <ArgsTable of={BlockHighlightComponent} />
-
-
 
 ## Drupal implementation example
 
@@ -61,32 +56,31 @@ import { BlockHighlightComponent }              from '../angular/block-highlight
 } only %}
 ```
 
-
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
     props: args,
 });
 
 export const commonProps = {
-    elementPath         : 'components/block-highlight/_doc/template.drupal',
-    image               : {
-        src : window.location.origin + '/images/placeholder/800x600.png',
+    elementPath: 'components/block-highlight/_doc/template.drupal',
+    image: {
+        src: window.location.origin + '/images/placeholder/800x600.png',
         // src: 'https://i.stack.imgur.com/y9DpT.jpg'
     },
-    title               : 'All the mobile accessories',
-    paragraph           : 'Find the perfect accessories for your device.',
-    button              : {
-        label   : 'Shop',
-        class   : ''
+    title: 'All the mobile accessories',
+    paragraph: 'Find the perfect accessories for your device.',
+    button: {
+        label: 'Shop',
+        class: '',
     },
-    isFeatured          : false,
-    class               : ''
-}
+    isFeatured: false,
+    class: '',
+};
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        height='800px'
+        name="Drupal"
+        height="800px"
         args={{
             ...commonProps,
             reversed: undefined,
@@ -96,15 +90,14 @@ export const commonProps = {
     </Story>
 </Canvas>
 
-
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - Usage example'
-        height='800px'
+        name="Drupal - Usage example"
+        height="800px"
         parameters={{ options: { showPanel: false } }}
         args={{
             ...commonProps,
-            elementPath : 'components/block-highlight/_doc/template-usage-example.drupal',
+            elementPath: 'components/block-highlight/_doc/template-usage-example.drupal',
             image: null,
             reversed: undefined,
         }}

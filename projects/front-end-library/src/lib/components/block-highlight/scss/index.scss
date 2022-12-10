@@ -5,26 +5,25 @@
 * ***************************************************************************** */
 
 .bf-block--highlight {
+  &.bf-block--featured .bf-block__visual {
+    min-height: 26rem;
+  }
 
-    &.bf-block--featured .bf-block__visual {
-        min-height: 26rem;
+  .bf-block__visual {
+    flex: 0 0 50%;
+    min-height: 20rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    &.bf-block__visual--fill {
+      background-size: cover;
     }
 
-    .bf-block__visual {
-        flex: 0 0 50%;
-        min-height: 20rem;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center center;
-
-        &.bf-block__visual--fill {
-            background-size: cover;
-        }
-        
-        @media (max-width: 576px) {
-            position: relative;
-            padding-top: 75%;
-            min-height: auto !important;
-        }
+    @media (max-width: 576px) {
+      position: relative;
+      padding-top: 75%;
+      min-height: auto !important;
     }
+  }
 }
