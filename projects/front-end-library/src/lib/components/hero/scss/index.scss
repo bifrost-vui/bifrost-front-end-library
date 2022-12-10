@@ -5,92 +5,91 @@
 * ***************************************************************************** */
 
 .bf-hero {
-    background-color: var(--bf-color-bg-underground);
-    background-position: center;
-    background-size: cover;
+  background-color: var(--bf-color-bg-underground);
+  background-position: center;
+  background-size: cover;
 
-    &--bg-ground {
-        background-color: var(--bf-color-bg-ground);
+  &--bg-ground {
+    background-color: var(--bf-color-bg-ground);
+  }
+
+  &--bg-highlight {
+    background-color: var(--bf-color-bg-action-primary);
+  }
+
+  &--height-large {
+    @include media-breakpoint-up(md) {
+      min-height: 60vh;
+      max-height: 64rem;
+    }
+  }
+
+  &--image-splitted {
+    .bf-hero__header {
+      flex: 0 calc(50% - 4vw);
     }
 
-    &--bg-highlight {
-        background-color: var(--bf-color-bg-action-primary);
+    .bf-hero__image-splitted {
+      flex: 1 1 50%;
+      background-position: center;
+      background-size: cover;
+
+      // Reproduce .container-fluid behavior on the right of the image
+      @include media-breakpoint-up(md) {
+        margin-right: calc(-3.5vw - 8px);
+      }
+      @include media-breakpoint-up(lg) {
+        margin-right: calc(-11.5vw - 8px);
+      }
     }
 
-    &--height-large {
-        @include media-breakpoint-up(md) {
-            min-height: 60vh;
-            max-height: 64rem;
+    // Switch to vertical layout (with image on top) is earlier in splitted than in default,
+    // in order to avoid tight texts between 992px and md.
+    @media (max-width: 992px) {
+      .bf-hero__image-sm {
+        display: block !important;
+      }
+
+      .container-fluid {
+        flex-direction: column !important;
+      }
+
+      .bf-hero__content {
+        padding-top: var(--bf-spacer-2) !important;
+
+        .bf-badge {
+          position: relative !important;
         }
+      }
     }
+  }
 
-    &--image-splitted {
-        .bf-hero__header {
-            flex: 0 calc(50% - 4vw);
-        }
+  &__image-sm {
+    object-fit: cover;
+    max-height: 20rem;
 
-        .bf-hero__image-splitted {
-            flex: 1 1 50%;
-            background-position: center;
-            background-size: cover;
-
-            // Reproduce .container-fluid behavior on the right of the image
-            @include media-breakpoint-up(md) {
-                margin-right: calc(-3.5vw - 8px);
-            }
-            @include media-breakpoint-up(lg) {
-                margin-right: calc(-11.5vw - 8px);
-            }
-        }
-        
-        // Switch to vertical layout (with image on top) is earlier in splitted than in default,
-        // in order to avoid tight texts between 992px and md.
-        @media (max-width: 992px) {
-            
-            .bf-hero__image-sm {
-                display: block !important;
-            }
-
-            .container-fluid {
-                flex-direction: column !important;
-            }
-
-            .bf-hero__content {
-                padding-top: var(--bf-spacer-2) !important;
-
-                .bf-badge {
-                    position: relative !important;
-                }
-            }
-        }
+    @include media-breakpoint-down(xs) {
+      max-height: 9.5rem;
     }
+  }
 
-    &__image-sm {
-        object-fit: cover;
-        max-height: 20rem;
+  @include media-breakpoint-down(sm) {
+    background-image: none !important;
+  }
 
-        @include media-breakpoint-down(xs) {
-            max-height: 9.5rem;
-        }
+  .container-fluid {
+    gap: 0.5rem;
+
+    header {
+      max-width: 40rem;
+
+      @include media-breakpoint-down(sm) {
+        max-width: none;
+      }
     }
+  }
 
-    @include media-breakpoint-down(sm) {
-        background-image: none !important;
-    }
-
-    .container-fluid {
-        gap: .5rem;
-
-        header {
-            max-width: 40rem;
-
-            @include media-breakpoint-down(sm) {
-                max-width: none;
-            }
-        }
-    }
-
-    .breadcrumb .breadcrumb-item.active {
-        color: inherit;
-    }
+  .breadcrumb .breadcrumb-item.active {
+    color: inherit;
+  }
 }

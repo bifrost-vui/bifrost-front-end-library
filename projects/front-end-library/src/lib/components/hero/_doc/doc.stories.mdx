@@ -1,42 +1,35 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { withDesign }                           from 'storybook-addon-designs'
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { HeroComponent }                        from '../angular/hero.component';
-
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { HeroComponent } from '../angular/hero.component';
 
 <Meta
-    title='Components/Hero'
+    title="Components/Hero"
     component={HeroComponent}
-    decorators={[
-        moduleMetadata({ declarations: [HeroComponent, TwigContainerComponent]}),
-    ]}
+    decorators={[moduleMetadata({ declarations: [HeroComponent, TwigContainerComponent] })]}
     argTypes={{
         _imageReversed: {
-            description: '**[ ! ]** This control is only used for testing a different image in the Hero reversed.'
+            description: '**[ ! ]** This control is only used for testing a different image in the Hero reversed.',
         },
         breadcrumb: {
             table: {
-                type: { summary: 'TwigBlock' }
-            }
+                type: { summary: 'TwigBlock' },
+            },
         },
         height: {
-            control: { type: 'select' }
-        }
+            control: { type: 'select' },
+        },
     }}
 />
 
 # Hero
 
-<br/>
-
-
+<br />
 
 ## Component API
 
 <ArgsTable of={HeroComponent} />
-
-
 
 ## Drupal implementation example
 
@@ -94,47 +87,46 @@ import { HeroComponent }                        from '../angular/hero.component'
 } only %}
 ```
 
-
-
 ## Drupal
 
 export const commonProps = {
-    badge       : {
-      label       : 'NEW',
-      hierarchy   : 'primary',
-      angle       : '',
-      iconName    : ''
+    badge: {
+        label: 'NEW',
+        hierarchy: 'primary',
+        angle: '',
+        iconName: '',
     },
-    breadcrumb  : `<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>`,
-    upperTitle  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    title       : 'Discover our best Helix Internet and TV packages',
-    subtitle    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description : 'After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you.',
+    breadcrumb: `<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>`,
+    upperTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    title: 'Discover our best Helix Internet and TV packages',
+    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description:
+        'After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you.',
     buttons: [
         {
-            label       : 'Main action',
-            hierarchy   : '',
-            class       : ''
+            label: 'Main action',
+            hierarchy: '',
+            class: '',
         },
         {
-            label       : 'Secondary action',
-            hierarchy   : '',
-            class       : ''
-        }
+            label: 'Secondary action',
+            hierarchy: '',
+            class: '',
+        },
     ],
 };
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    component: TwigContainerComponent,
+    props: args,
 });
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        height='500px'
+        name="Drupal"
+        height="500px"
         args={{
-            elementPath : 'components/hero/_doc/template.drupal',
+            elementPath: 'components/hero/_doc/template.drupal',
             ...commonProps,
             reversed: undefined,
         }}
@@ -142,28 +134,25 @@ export const Drupal = (args) => ({
         {Drupal.bind({})}
     </Story>
 </Canvas>
-
-
 
 ## Drupal Example
 
-
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With image'
-        height='500px'
+        name="Drupal - With image"
+        height="500px"
         args={{
-            elementPath     : 'components/hero/_doc/template.drupal',
+            elementPath: 'components/hero/_doc/template.drupal',
             ...commonProps,
-            image           : {
-                lg      : '/images/_docs/hero-helix.png',
-                sm      : '/images/_docs/hero-helix-mobile.png',
-                alt     : 'Helix'
+            image: {
+                lg: '/images/_docs/hero-helix.png',
+                sm: '/images/_docs/hero-helix-mobile.png',
+                alt: 'Helix',
             },
-            _imageReversed  : {
-                lg  : '/images/_docs/hero-helix-reversed.png',
-                sm  : '/images/_docs/hero-helix-reversed-mobile.png',
-                alt : 'Helix'
+            _imageReversed: {
+                lg: '/images/_docs/hero-helix-reversed.png',
+                sm: '/images/_docs/hero-helix-reversed-mobile.png',
+                alt: 'Helix',
             },
             reversed: undefined,
         }}
@@ -172,24 +161,24 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With height large'
-        height='800px'
+        name="Drupal - With height large"
+        height="800px"
         args={{
-            elementPath     : 'components/hero/_doc/template.drupal',
+            elementPath: 'components/hero/_doc/template.drupal',
             ...commonProps,
-            image           : {
-                lg  : '/images/_docs/hero-helix.png',
-                sm  : '/images/_docs/hero-helix-mobile.png',
-                alt : 'Helix'
+            image: {
+                lg: '/images/_docs/hero-helix.png',
+                sm: '/images/_docs/hero-helix-mobile.png',
+                alt: 'Helix',
             },
-            _imageReversed  : {
-                lg  : '/images/_docs/hero-helix-reversed.png',
-                sm  : '/images/_docs/hero-helix-reversed-mobile.png',
-                alt : 'Helix'
+            _imageReversed: {
+                lg: '/images/_docs/hero-helix-reversed.png',
+                sm: '/images/_docs/hero-helix-reversed-mobile.png',
+                alt: 'Helix',
             },
-            height          : 'large',
+            height: 'large',
             reversed: undefined,
         }}
     >
@@ -197,27 +186,26 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With image splitted'
-        height='800px'
+        name="Drupal - With image splitted"
+        height="800px"
         args={{
-            elementPath     : 'components/hero/_doc/template.drupal',
+            elementPath: 'components/hero/_doc/template.drupal',
             ...commonProps,
-            image           : {
-                lg              : '/images/_docs/hero-helix.png',
-                md              : '/images/placeholder/800x600.png',
-                sm              : '/images/_docs/hero-helix-mobile.png',
-                alt             : 'Helix',
-                isSplitted      : true
+            image: {
+                lg: '/images/_docs/hero-helix.png',
+                md: '/images/placeholder/800x600.png',
+                sm: '/images/_docs/hero-helix-mobile.png',
+                alt: 'Helix',
+                isSplitted: true,
             },
-            _imageReversed  : {
-                lg              : '/images/_docs/hero-helix-reversed.png',
-                md              : '/images/placeholder/800x600.png',
-                sm              : '/images/_docs/hero-helix-reversed-mobile.png',
-                alt             : 'Helix',
-                isSplitted      : true
+            _imageReversed: {
+                lg: '/images/_docs/hero-helix-reversed.png',
+                md: '/images/placeholder/800x600.png',
+                sm: '/images/_docs/hero-helix-reversed-mobile.png',
+                alt: 'Helix',
+                isSplitted: true,
             },
             reversed: undefined,
         }}
@@ -226,13 +214,12 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With icon'
-        height='500px'
+        name="Drupal - With icon"
+        height="500px"
         args={{
-            elementPath     : 'components/hero/_doc/template.drupal',
+            elementPath: 'components/hero/_doc/template.drupal',
             ...commonProps,
             icon: { name: 'innovation' },
             reversed: undefined,
@@ -242,26 +229,25 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With price'
-        height='500px'
+        name="Drupal - With price"
+        height="500px"
         args={{
-            elementPath     : 'components/hero/_doc/template.drupal',
+            elementPath: 'components/hero/_doc/template.drupal',
             ...commonProps,
-            price           : {
-                upperTitle      : 'From',
-                dollar          : 86,
-                cent            : 99,
-                details         : '/month',
-                promotion       : {
-                    priceStriked    : 40.99,
-                    priceSaved      : 10,
-                    savedLabel      : 'You saved :',
-                    superscript     : 1,
-                    direction       : 'vertical',
-                }
+            price: {
+                upperTitle: 'From',
+                dollar: 86,
+                cent: 99,
+                details: '/month',
+                promotion: {
+                    priceStriked: 40.99,
+                    priceSaved: 10,
+                    savedLabel: 'You saved :',
+                    superscript: 1,
+                    direction: 'vertical',
+                },
             },
             reversed: undefined,
         }}
@@ -270,29 +256,28 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With Block Selection'
-        height='500px'
+        name="Drupal - With Block Selection"
+        height="500px"
         args={{
-            elementPath     : 'components/hero/_doc/template.drupal',
+            elementPath: 'components/hero/_doc/template.drupal',
             ...commonProps,
-            blockSelection  : {
-                title               : 'My selection',
-                month               : 'month',
-                contentLists        : [
+            blockSelection: {
+                title: 'My selection',
+                month: 'month',
+                contentLists: [
                     {
-                        title           : 'Samsung Galaxy Note 20 Utra 5G',
-                        description     : 'Navy Blue, 128 Go',
-                        price           : '$24.00',
-                        saving          : '$30.00',
-                        fullPrice       : '$150.00',
+                        title: 'Samsung Galaxy Note 20 Utra 5G',
+                        description: 'Navy Blue, 128 Go',
+                        price: '$24.00',
+                        saving: '$30.00',
+                        fullPrice: '$150.00',
                     },
                     {
-                        title           : 'All-inclusive 12 GB Mobile',
-                        description     : 'Lorem ipsum',
-                        price           : '$55.00',
+                        title: 'All-inclusive 12 GB Mobile',
+                        description: 'Lorem ipsum',
+                        price: '$55.00',
                     },
                 ],
             },
@@ -303,13 +288,12 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With content'
-        height='500px'
+        name="Drupal - With content"
+        height="500px"
         args={{
-            elementPath     : 'components/hero/_doc/template.drupal',
+            elementPath: 'components/hero/_doc/template.drupal',
             ...commonProps,
             content: '<p>The property <b>content</b> could be a string or a TwigBlock.</p>',
             reversed: undefined,
@@ -318,7 +302,6 @@ export const Drupal = (args) => ({
         {Drupal.bind({})}
     </Story>
 </Canvas>
-
 
 <!--
 TODO DS-185: Add a story with real twig block from twig-block.drupal.twig.

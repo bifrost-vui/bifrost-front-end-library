@@ -1,37 +1,30 @@
-
-{% embed "@bf-components/hero/twig/index.twig" with {
-    breadcrumb          : "<b>Breadcrumb</b>",
-    image               : {
-        mobile: bgMobileImage|default(NULL),
-        default: bgImage|default(NULL)
+{% embed "@bf-components/hero/twig/index.twig"
+  with {
+    breadcrumb: "<b>Breadcrumb</b>",
+    image: {
+      mobile: bgMobileImage|default(null),
+      default: bgImage|default(null)
     },
-    upperTitle          : "Upper Title",
-    title               : "Title",
-    subtitle            : "Subtitle",
-    description         : "Description",
-    blockSelection      : {
-        title : "My selection",
-        titleTag : "p",
-        isCollapsableOnMobile : true,
-        isCollapsedByDefaultOnMobile : false,
+    upperTitle: "Upper Title",
+    title: "Title",
+    subtitle: "Subtitle",
+    description: "Description",
+    blockSelection: {
+      title: "My selection",
+      titleTag: "p",
+      isCollapsableOnMobile: true,
+      isCollapsedByDefaultOnMobile: false
     },
-    reversed            : false,
-} %}
-    {% block breadcrumb %}
-        <p>
-            TwigBlock breadcrumb
-        </p>
-    {% endblock %}
-
-    {% block content %}
-        <p>
-            TwigBlock content
-        </p>
-    {% endblock %}
-
-    {% block blockSelection %}
-        <p>
-            TwigBlock blockSelection
-        </p>
+    reversed: false
+  }
+%}
+  {% block breadcrumb %}
+    <p>TwigBlock breadcrumb</p>
+  {% endblock %}
+  {% block content %}
+    <p>TwigBlock content</p>
+  {% endblock %}
+  {% block blockSelection %}
+    <p>TwigBlock blockSelection</p>
   {% endblock %}
 {% endembed %}

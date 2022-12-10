@@ -7,53 +7,53 @@ import { IPrice } from '../../price/angular/api.model';
  */
 
 @Component({
-  selector: 'bf-hero',
-  templateUrl: './hero.component.html',
-  // styleUrls: ['../scss/index.scss'],
+    selector: 'bf-hero',
+    templateUrl: './hero.component.html',
+    // styleUrls: ['../scss/index.scss'],
 })
 export class HeroComponent implements OnInit {
     constructor() {}
 
-    @Input() breadcrumb         : string;
+    @Input() breadcrumb: string;
     /**
         You can pass directly the **label** as a **string** or an **object** based on [Badge](/?path=/docs/components-badge--drupal) component API.
     */
-    @Input() badge              : any;
-    @Input() upperTitle         : string;
-    @Input() title              : string;
-    @Input() subtitle           : string;
-    @Input() description        : string;
-  /**
+    @Input() badge: any;
+    @Input() upperTitle: string;
+    @Input() title: string;
+    @Input() subtitle: string;
+    @Input() description: string;
+    /**
    Insert buttons (max of 2 buttons). Explore its [Component API](/?path=/docs/components-button--drupal).
    */
-    @Input() buttons            : Array<object>[];
+    @Input() buttons: Array<object>[];
     /**
         [Price](/?path=/docs/components-price--drupal) component.
     */
-    @Input() price              : IPrice;
+    @Input() price: IPrice;
     /** HTML string or TwigBlock. Will be displayed between the description and the buttons. */
-    @Input() content            : string | 'TwigBlock';
+    @Input() content: string | 'TwigBlock';
     /**
      You can pass directly the **name** of the icon as a **string** or an **object** based on [Icon component API](/?path=/docs/components-icon--drupal).
       The **size** is always override with **huge**
      */
-    @Input() icon               : any;
+    @Input() icon: any;
     /** Add `isSplitted: true` to display the image on the right side only. */
-    @Input() image              : object;
-    @Input() background         : 'ground' | 'underground' | 'highlight';
+    @Input() image: object;
+    @Input() background: 'ground' | 'underground' | 'highlight';
 
     /**
         Insert the component BlockSelection. Explore its [Component API](/?path=/docs/components-block--drupal-selection).
     */
-    @Input() blockSelection     : object | 'TwigBlock';
+    @Input() blockSelection: object | 'TwigBlock';
 
     /** Class override */
-    @Input() class              : string;
+    @Input() class: string;
     /** Note: height large will add a min-height of 60vh. */
-    @Input() height             : '' | 'large';
-    @Input() reversed           : boolean;
+    @Input() height: '' | 'large';
+    @Input() reversed: boolean;
 
-    @Input() language           : 'en' | 'fr';
+    @Input() language: 'en' | 'fr';
 
     ngOnInit() {
         console.log('Hero', this);
