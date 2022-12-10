@@ -4,6 +4,6 @@ import { ImageLazyLoadComponent } from './image-lazy-load.component';
 @NgModule({
     declarations: [ImageLazyLoadComponent],
     imports: [],
-    exports: [ImageLazyLoadComponent]
+    exports: [ImageLazyLoadComponent],
 })
-export class ImageLazyLoadModule { }
+export class ImageLazyLoadModule {}
