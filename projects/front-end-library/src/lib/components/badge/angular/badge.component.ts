@@ -8,11 +8,7 @@ export class BadgeComponent implements OnInit, OnChanges {
     constructor() {}
 
     @Input() label: string;
-    @Input() hierarchy:
-        | 'primary'
-        | 'secondary'
-        | 'tertiary'
-        | 'tertiary-ground';
+    @Input() hierarchy: 'primary' | 'secondary' | 'tertiary' | 'tertiary-ground';
     @Input() noUppercase: boolean;
     /** Displays an angle on a corner. Won't have any effect if `isRounded` is true*/
     @Input() angle: null | 'left' | 'right';
@@ -39,12 +35,8 @@ export class BadgeComponent implements OnInit, OnChanges {
     computetNgClasses() {
         this.ngClasses = [
             this.className ? String(this.className) : '',
-            this.hierarchy
-                ? 'bf-badge--' + this.hierarchy
-                : 'bf-badge--secondary',
-            this.angle && !this.isRounded
-                ? 'bf-badge--angle-' + this.angle
-                : '',
+            this.hierarchy ? 'bf-badge--' + this.hierarchy : 'bf-badge--secondary',
+            this.angle && !this.isRounded ? 'bf-badge--angle-' + this.angle : '',
             this.isRounded ? 'bf-badge--rounded' : '',
             this.reversed ? `reversed` : '',
         ];
