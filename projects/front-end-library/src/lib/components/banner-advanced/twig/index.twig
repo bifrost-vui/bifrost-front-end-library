@@ -1,5 +1,7 @@
 <article class="bf-banner-advanced {{ class|default("") }}">
-  <div class="bf-banner-advanced__inner flex-column flex-md-row gap-3 gap-sm-4 p-3 p-sm-4">
+  <div
+    class="bf-banner-advanced__inner flex-column flex-md-row gap-3 gap-sm-4 p-3 p-sm-4"
+  >
     <header class="flex-1 text-center text-md-left">
       {% if title is defined and title %}
         <h3>{{ title }}</h3>
@@ -13,6 +15,7 @@
     {% if icons is defined and icons is not empty %}
       <div class="bf-banner-advanced__body gap-0 gap-sm-2">
         {% for icon in icons|slice(0, 3) %}
+          {# prettier-ignore #}
           {% if icon.name is defined and icon.name and icon.label is defined and icon.label %}
             {% if not loop.first %}
               {% include "@bf-components/icon/twig/index.twig" with {
@@ -36,13 +39,15 @@
     {% endif %}
   </div>
 
+  {# prettier-ignore #}
   {% if block("footer") is defined or (footer is defined and footer is not empty) %}
-    <div class="bf-banner-advanced__footer p-3 p-sm-4  border-top">
+    <div class="bf-banner-advanced__footer p-3 p-sm-4 border-top">
       {% if block("footer") is defined %}
         {{ block("footer") }}
+      {# prettier-ignore #}
       {% elseif footer is iterable and footer.inputSwitch is defined and footer.inputSwitch is not empty %}
         {% include "@bf-components/input-switch/twig/index.twig" with footer.inputSwitch only %}
-      {% else  %}
+      {% else %}
         {{ footer }}
       {% endif %}
     </div>
