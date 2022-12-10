@@ -1,45 +1,51 @@
 {% set reversed = reversed|json_parse %}
-{% set icons    = icons|json_parse %}
-{% set size     = size|json_parse %}
+{% set icons = icons|json_parse %}
+{% set size = size|json_parse %}
 
-{% if size is same as ("huge") %}
+{% if size is same as(huge) %}
   <div class="bf-color-bg-underground p-4">
     <p class="small mb-0">
-      <b>Huge icons</b> should only be displayed in <b>Hero components</b>. Do not use in other context.
+      <b>Huge icons</b> should only be displayed in <b>Hero components</b>. Do
+      not use in other context.
     </p>
   </div>
 {% endif %}
 
-<div class="pt-4 bf-color-bg-ground {% if reversed %}reversed{% endif %}">
-  {% if name is defined and name is not same as ("undefined") and name is not same as ("- All icons -") %}
+<div class="pt-4 bf-color-bg-ground {{ reversed ? " reversed" }}">
+  {% if
+    name is defined
+      and name is not same as("undefined")
+      and name is not same as("- All icons -") %}
     <div class="d-flex flex-wrap flex-column align-items-center">
       {% include "@bf-components/icon/twig/index.twig" with {
-        name  : name,
-        color  : color,
-        size  : size,
-        class  : class,
+        name: name,
+        color: color,
+        size: size,
+        class: class
       } only %}
       <p class="small bf-color-neutral-secondary pt-1">{{ name }}</p>
     </div>
-
   {% else %}
     <div class="container-fluid h-100">
       {% if icons is defined %}
         {% for category in icons %}
           <div class="d-flex flex-wrap align-content-start my-4">
-            <div class="w-100">
-              <h4>{{ category.category }}</h4>
-            </div>
-            <div class="doc-list {{ (size == "huge") ? "doc-list--huge"}}">
+            <div class="w-100"><h4>{{ category.category }}</h4></div>
+            <div class="doc-list {{ size == "huge" ? " doc-list--huge" }}">
               {% for iconName in category.list %}
-                <div class="d-flex flex-column align-items-center p-3" title="{{ iconName }}">
+                <div
+                  class="d-flex flex-column align-items-center p-3"
+                  title="{{ iconName }}"
+                >
                   {% include "@bf-components/icon/twig/index.twig" with {
-                    name  : iconName,
-                    color : color,
-                    size  : size,
-                    class : class,
+                    name: iconName,
+                    color: color,
+                    size: size,
+                    class: class
                   } only %}
-                  <p class="small bf-color-neutral-secondary text-center pt-1">{{ iconName }}</p>
+                  <p class="small bf-color-neutral-secondary text-center pt-1">
+                    {{ iconName }}
+                  </p>
                 </div>
               {% endfor %}
             </div>
@@ -51,16 +57,10 @@
 </div>
 
 <style>
-  /** FOR DEMO ONLY */
-  .doc-list {
-    --minmax: 120px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(var(--minmax), 1fr));
-    width: 100%;
-  }
+  /** FOR DEMO ONLY */ .doc-list { --minmax: 120px; display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--minmax), 1fr)); width:
+  100%; }
 
-  .doc-list--huge {
-    --minmax: 300px;
-    grid-template-columns: repeat(auto-fill, minmax(var(--minmax), 1fr));
-  }
+  .doc-list--huge { --minmax: 300px; grid-template-columns: repeat(auto-fill,
+  minmax(var(--minmax), 1fr)); }
 </style>

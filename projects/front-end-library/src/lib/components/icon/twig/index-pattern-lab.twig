@@ -1,8 +1,13 @@
-{% set classReversed    = (reversed is defined and reversed is same as (true)) ? " reversed" : "" %}
-{% set classColor       = (color is defined) ? " color-" ~ color : "" %}
-{% set classSize        = (size is defined) ? " size-" ~ size : "" %}
-{% set class            = "bf-icon" ~ classReversed ~ classColor ~ classSize ~ " " ~ class %}
+{% set classReversed = reversed is defined and reversed is same as(true)
+  ? " reversed"
+  : ""
+%}
+{% set classColor = color is defined ? " color-" ~ color : "" %}
+{% set classSize = size is defined ? " size-" ~ size : "" %}
+{% set class = "bf-icon" ~ classReversed ~ classColor ~ classSize ~ " " ~ class
+%}
 
-{% include "@bf-components/icon/svg/pattern-lab/icon-" ~ name|default("svg-truck") ~ ".twig" with {
-    class : class
+{# prettier-ignore #}
+{% include "@bf-components/icon/svg/pattern-lab/icon-" ~ (name|default("svg-truck")) ~ ".twig" with {
+  class: class
 } only %}
