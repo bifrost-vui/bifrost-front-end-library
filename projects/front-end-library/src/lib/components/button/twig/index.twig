@@ -16,7 +16,7 @@
   and not isDisabled
 %}
 
-{{ "<" ~ isLink ? "a" : "button" }}
+{{ isLink ? "<a" : "<button" }}
 {% if isLink is same as(true) %}
   href="{{ href|default("#") }}"
 {% elseif isSubmit %}
@@ -105,4 +105,4 @@
     <i></i>
   </div>
 {% endif %}
-{{ "</" ~ isLink ? "a" : "button" }}>
+{{ isLink ? "</a" : "</button" }}>
