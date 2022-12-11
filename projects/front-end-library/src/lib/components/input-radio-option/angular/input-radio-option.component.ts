@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'bf-input-radio-option',
-  templateUrl: './input-radio-option.component.html',
+    selector: 'bf-input-radio-option',
+    templateUrl: './input-radio-option.component.html',
 })
 export class InputRadioOptionComponent implements OnInit {
     constructor() {}
