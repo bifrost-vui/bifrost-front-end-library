@@ -1,36 +1,32 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { withDesign }                           from 'storybook-addon-designs'
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { InputSliderComponent }                 from '../angular/input-slider.component';
-
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { InputSliderComponent } from '../angular/input-slider.component';
 
 <Meta
-    title='Components/Input Slider'
+    title="Components/Input Slider"
     component={InputSliderComponent}
-    decorators={[
-        moduleMetadata({ declarations: [InputSliderComponent, TwigContainerComponent]}),
-        withDesign
-    ]}
+    decorators={[moduleMetadata({ declarations: [InputSliderComponent, TwigContainerComponent] }), withDesign]}
     parameters={{
         design: {
-            type    : 'figma',
-            url     : 'https://www.figma.com/file/yFsS1z98l853oMi59vwbKI/D%C3%A9co-OC11---Design-UI?node-id=4%3A113',
-            disable : false
+            type: 'figma',
+            url: 'https://www.figma.com/file/yFsS1z98l853oMi59vwbKI/D%C3%A9co-OC11---Design-UI?node-id=4%3A113',
+            disable: false,
         },
     }}
     argTypes={{
         step: {
-            defaultValue    : 1,
-            table           : { defaultValue: { summary: '1' } }
+            defaultValue: 1,
+            table: { defaultValue: { summary: '1' } },
         },
         unitPosition: {
-            defaultValue    : 'end',
-            table           : { defaultValue: { summary: 'end' } },
-            control         : { type: 'select' }
+            defaultValue: 'end',
+            table: { defaultValue: { summary: 'end' } },
+            control: { type: 'select' },
         },
         minimumGap: {
-            table           : { defaultValue: { summary: '1' } }
+            table: { defaultValue: { summary: '1' } },
         },
     }}
 />
@@ -42,39 +38,36 @@ import { InputSliderComponent }                 from '../angular/input-slider.co
 <ArgsTable of={InputSliderComponent} />
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    component: TwigContainerComponent,
+    props: args,
 });
 
 export const defaultProps = {
-    value           : 40,
-    min             : {
-        inputId       : 'inputIdMin',
-        value         : 20,
-        legend        : 'Minimum',
-        description   : '$20/month'
+    value: 40,
+    min: {
+        inputId: 'inputIdMin',
+        value: 20,
+        legend: 'Minimum',
+        description: '$20/month',
     },
-    max             : {
-        inputId       : 'inputIdMax',
-        value         : 150,
-        legend        : 'Maximum',
-        description   : '$150/month'
+    max: {
+        inputId: 'inputIdMax',
+        value: 150,
+        legend: 'Maximum',
+        description: '$150/month',
     },
-    unitLabel       : '$',
-    class           : 'p-3',
+    unitLabel: '$',
+    class: 'p-3',
     reversed: undefined,
-}
+};
 
 ### 1 handle
 
-<Canvas
-    withSource='none'
-    style={{ height: '400px' }}
->
+<Canvas withSource="none" style={{ height: '400px' }}>
     <Story
-        name='Drupal'
+        name="Drupal"
         args={{
-            elementPath : 'components/input-slider/_doc/template.drupal',
+            elementPath: 'components/input-slider/_doc/template.drupal',
             ...defaultProps,
         }}
     >
@@ -101,18 +94,16 @@ export const defaultProps = {
     unitPosition    : 'end'
 } %}
 ```
+
 ### 1 handle - Inverted
 
-<Canvas
-    withSource='none'
-    style={{ height: '400px' }}
->
+<Canvas withSource="none" style={{ height: '400px' }}>
     <Story
-        name='Drupal - Inverted'
+        name="Drupal - Inverted"
         args={{
-            elementPath : 'components/input-slider/_doc/template.drupal',
+            elementPath: 'components/input-slider/_doc/template.drupal',
             ...defaultProps,
-            isInverted : true
+            isInverted: true,
         }}
     >
         {Drupal.bind({})}
@@ -126,19 +117,15 @@ export const defaultProps = {
 } only %}
 ```
 
-
 ### 2 handles
 
-<Canvas
-    withSource='none'
-    style={{ height: '400px' }}
->
+<Canvas withSource="none" style={{ height: '400px' }}>
     <Story
-        name='Drupal - 2 handles'
+        name="Drupal - 2 handles"
         args={{
-            elementPath : 'components/input-slider/_doc/template.drupal',
+            elementPath: 'components/input-slider/_doc/template.drupal',
             ...defaultProps,
-            value: [40, 130]
+            value: [40, 130],
         }}
     >
         {Drupal.bind({})}
@@ -152,7 +139,12 @@ export const defaultProps = {
 } only %}
 ```
 
-
 ## Design Guidelines
 
-<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FyFsS1z98l853oMi59vwbKI%2FD%25C3%25A9co-OC11---Design-UI%3Fnode-id%3D3410%253A214676' frameBorder='0' allowFullScreen></iframe>
+<iframe
+    width="100%"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FyFsS1z98l853oMi59vwbKI%2FD%25C3%25A9co-OC11---Design-UI%3Fnode-id%3D3410%253A214676"
+    frameBorder="0"
+    allowFullScreen
+></iframe>
