@@ -4,6 +4,6 @@ import { TileKeyComponent } from './tile-key.component';
 @NgModule({
     declarations: [TileKeyComponent],
     imports: [],
-    exports: [TileKeyComponent]
+    exports: [TileKeyComponent],
 })
-export class TileKeyModule { }
+export class TileKeyModule {}
