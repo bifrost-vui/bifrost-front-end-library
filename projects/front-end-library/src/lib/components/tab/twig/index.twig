@@ -1,15 +1,19 @@
 <nav class="bf-tab nav {{ class|default("") }}">
-    <div>
+  <div>
     <ul class="bf-tab__slider list-reset {{ sliderClass|default("") }}">
-        {% for item in navItems %}
-            <li>
-                <a
-                    class="nav-link mr-lg-6 mr-4 my-0 {{ itemClass|default("") }} {{ item.class|default("") }}"
-                    href="{{ item.href|default("#") }}"
-                    {{ item.extraAttribute }}
-                >{{ item.label|default("") }}</a>
-            </li>
-        {% endfor %}
+      {% for item in navItems %}
+        <li>
+          <a
+            class="nav-link mr-lg-6 mr-4 my-0 {{ itemClass|default(
+              ""
+            ) }} {{ item.class|default("") }}"
+            href="{{ item.href|default("#") }}"
+            {{ item.extraAttribute }}
+          >
+            {{ item.label|default("") }}
+          </a>
+        </li>
+      {% endfor %}
     </ul>
-    </div>
+  </div>
 </nav>

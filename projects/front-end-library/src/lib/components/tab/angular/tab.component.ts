@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 /**
  * API is the same between **Angular** and **Drupal**.
@@ -13,10 +13,10 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class TabComponent implements OnInit {
     constructor() {}
 
-    @Input() class                : string;
-    @Input() sliderClass          : string;
-    @Input() navItems             : object;
-    @Input() itemClass            : string;
+    @Input() class: string;
+    @Input() sliderClass: string;
+    @Input() navItems: object;
+    @Input() itemClass: string;
 
     ngOnInit() {
         console.log('Tab', this);

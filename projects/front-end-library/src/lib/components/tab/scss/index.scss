@@ -5,73 +5,73 @@
 * ***************************************************************************** */
 
 .bf-tab {
-    position: relative;
+  position: relative;
+  width: 100%;
+
+  & > div {
+    position: static;
+    flex: 1;
+    padding: 0 2.5rem var(--bf-spacer-2);
+    overflow-x: auto;
+
+    @include media-breakpoint-down(md) {
+      padding-left: var(--bf-spacer-1);
+    }
+    ::-webkit-scrollbar,
+    ::-webkit-scrollbar-button {
+      @include size(5px);
+      background-color: var(--bf-color-stroke-secondary);
+
+      @include media-breakpoint-down(md) {
+        @include size(3px);
+      }
+    }
+    &:before {
+      position: absolute;
+      width: 5.5rem;
+      height: 100%;
+      right: 0;
+      top: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-image: var(--bf-color-bg-linear-ground-x);
+      background-repeat: repeat-y;
+      content: '';
+    }
+  }
+  &__slider {
+    display: flex;
+    flex: 1;
     width: 100%;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid var(--bf-color-stroke-secondary);
+  }
+  .nav-link {
+    @extend .h3;
+    padding: 0;
+    line-height: 3.5rem;
+    color: var(--bf-color-neutral-secondary);
+    text-transform: none;
+    letter-spacing: 0;
+    white-space: nowrap;
+    text-align: center;
+    transition: color 0.25s;
 
-    & > div {
-        position: static;
-        flex: 1;
-        padding:0 2.5rem var(--bf-spacer-2);
-        overflow-x: auto;
+    &.active,
+    &:hover {
+      color: inherit;
 
-        @include media-breakpoint-down(md) {
-            padding-left: var(--bf-spacer-1);
-        }
-        ::-webkit-scrollbar,
-        ::-webkit-scrollbar-button {
-            @include size(5px);
-            background-color: var(--bf-color-stroke-secondary);
-
-            @include media-breakpoint-down(md) {
-                @include size(3px);
-            }
-        }
-        &:before {
-            position: absolute;
-            width: 5.5rem;
-            height: 100%;
-            right: 0;
-            top: 0;
-            z-index: 1;
-            pointer-events: none;
-            background-image: var(--bf-color-bg-linear-ground-x);
-            background-repeat: repeat-y;
-            content: '';
-        }
+      &:before {
+        position: absolute;
+        bottom: -1px;
+        background-color: var(--bf-color-bg-action-primary);
+      }
     }
-    &__slider {
-        display: flex;
-        flex: 1;
-        width: 100%;
-        white-space: nowrap;
-        margin: 0;
-        padding: 0;
-        border-bottom: 1px solid var(--bf-color-stroke-secondary);
-    }
-    .nav-link {
-        @extend .h3;
-        padding:0;
-        line-height: 3.5rem;
-        color: var(--bf-color-neutral-secondary) ;
-        text-transform: none;
-        letter-spacing: 0;
-        white-space: nowrap;
-        text-align: center;
-        transition: color .25s;
-
-        &.active,
-        &:hover {
-            color: inherit;
-
-            &:before {
-                position: absolute;
-                bottom: -1px;
-                background-color: var(--bf-color-bg-action-primary);
-            }
-        }
-    }
+  }
 }
 
 .bf-color-bg-underground .bf-tab > div:before {
-    background-image: var(--bf-color-bg-linear-underground-x);
+  background-image: var(--bf-color-bg-linear-underground-x);
 }
