@@ -1,6 +1,6 @@
-{% set isUnderline  = isUnderline|json_parse %}
-{% set isDisabled   = isDisabled|json_parse %}
-{% set reversed     = reversed|json_parse %}
+{% set isUnderline = isUnderline|json_parse %}
+{% set isDisabled = isDisabled|json_parse %}
+{% set reversed = reversed|json_parse %}
 
 {% set variants = [
   {
@@ -14,7 +14,7 @@
   {
     _name: "Ground + Reversed",
     backgroundClass: "bf-color-bg-ground reversed",
-    reversed: true,
+    reversed: true
   },
   {
     _name: "Underground + Reversed",
@@ -39,100 +39,91 @@
     {% set reversed = reversed|default(variant.reversed) %}
     {% set highlight = highlight|default(variant.highlight) %}
     <div class="d-flex flex-column {{ variant.backgroundClass }}">
-      <h1 class="h3 p-4">
-        {{ variant._name }}
-      </h1>
-        <div class="d-flex justify-content-center align-items-start gap-5">
-            <div class="d-flex flex-column align-items-start">
-                <p class="small">Native</p>
+      <h1 class="h3 p-4">{{ variant._name }}</h1>
+      <div class="d-flex justify-content-center align-items-start gap-5">
+        <div class="d-flex flex-column align-items-start">
+          <p class="small">Native</p>
 
-                {% include "@bf-components/link/twig/index.twig" with {
-                    label       : label|default("Link native"),
-                } %}
+          {% include "@bf-components/link/twig/index.twig" with {
+            label: label|default("Link native")
+          } %}
 
-                {% include "@bf-components/link/twig/index.twig" with {
-                    label       : label|default("Link native"),
-                    iconName    : iconName|default("chevron-left")
-                } %}
+          {% include "@bf-components/link/twig/index.twig" with {
+            label: label|default("Link native"),
+            iconName: iconName|default("chevron-left")
+          } %}
 
-                {% include "@bf-components/link/twig/index.twig" with {
-                    label       : label|default("Link native"),
-                    iconName    : iconName|default("external-link"),
-                    iconPosition: iconPosition|default("right")
-                } %}
+          {% include "@bf-components/link/twig/index.twig" with {
+            label: label|default("Link native"),
+            iconName: iconName|default("external-link"),
+            iconPosition: iconPosition|default("right")
+          } %}
 
-                {% include "@bf-components/link/twig/index.twig" with {
-                    label       : label|default("Disabled"),
-                    iconName    : iconName|default("external-link"),
-                    isDisabled  : isDisabled|default(true)
-                } %}
+          {% include "@bf-components/link/twig/index.twig" with {
+            label: label|default("Disabled"),
+            iconName: iconName|default("external-link"),
+            isDisabled: isDisabled|default(true)
+          } %}
 
-                {% include "@bf-components/link/twig/index.twig" with {
-                    label       : label|default("No underline"),
-                    iconName    : iconName|default("external-link"),
-                    isUnderline : isUnderline|default(false)
-                } %}
+          {% include "@bf-components/link/twig/index.twig" with {
+            label: label|default("No underline"),
+            iconName: iconName|default("external-link"),
+            isUnderline: isUnderline|default(false)
+          } %}
 
-                {% include "@bf-components/link/twig/index.twig" with {
-                    label       : label|default(""),
-                    iconName    : iconName|default("external-link")
-                } %}
-
-            </div>
-
-            <div class="d-flex flex-column align-items-start">
-
-                <p class="small flex-grow-1">Primary</p>
-
-                {% include "@bf-components/link/twig/index.twig" with {
-                    label       : label|default("Link primary"),
-                    hierarchy   : hierarchy|default("primary"),
-                } %}
-
-                {% include "@bf-components/link/twig/index.twig" with {
-                    label       : label|default("Link primary"),
-                    hierarchy   : hierarchy|default("primary"),
-                    iconName    : iconName|default("chevron-left")
-                } %}
-
-                {% include "@bf-components/link/twig/index.twig" with {
-                    label       : label|default("Link primary"),
-                    hierarchy   : hierarchy|default("primary"),
-                    iconName    : iconName|default("external-link"),
-                    iconPosition: iconPosition|default("right")
-                } %}
-
-                {% include "@bf-components/link/twig/index.twig" with {
-                    label       : label|default("Disabled"),
-                    hierarchy   : hierarchy|default("primary"),
-                    iconName    : iconName|default("external-link"),
-                    isDisabled  : isDisabled|default(true)
-                } %}
-
-                {% include "@bf-components/link/twig/index.twig" with {
-                    label       : label|default("No underline"),
-                    hierarchy   : hierarchy|default("primary"),
-                    iconName    : iconName|default("external-link"),
-                    isUnderline : isUnderline|default(false)
-                } %}
-
-                {% include "@bf-components/link/twig/index.twig" with {
-                    label       : label|default(""),
-                    hierarchy   : hierarchy|default("primary"),
-                    iconName    : iconName|default("external-link")
-                } %}
-
-            </div>
-
+          {% include "@bf-components/link/twig/index.twig" with {
+            label: label|default(""),
+            iconName: iconName|default("external-link")
+          } %}
         </div>
+
+        <div class="d-flex flex-column align-items-start">
+          <p class="small flex-grow-1">Primary</p>
+
+          {% include "@bf-components/link/twig/index.twig" with {
+            label: label|default("Link primary"),
+            hierarchy: hierarchy|default("primary")
+          } %}
+
+          {% include "@bf-components/link/twig/index.twig" with {
+            label: label|default("Link primary"),
+            hierarchy: hierarchy|default("primary"),
+            iconName: iconName|default("chevron-left")
+          } %}
+
+          {% include "@bf-components/link/twig/index.twig" with {
+            label: label|default("Link primary"),
+            hierarchy: hierarchy|default("primary"),
+            iconName: iconName|default("external-link"),
+            iconPosition: iconPosition|default("right")
+          } %}
+
+          {% include "@bf-components/link/twig/index.twig" with {
+            label: label|default("Disabled"),
+            hierarchy: hierarchy|default("primary"),
+            iconName: iconName|default("external-link"),
+            isDisabled: isDisabled|default(true)
+          } %}
+
+          {% include "@bf-components/link/twig/index.twig" with {
+            label: label|default("No underline"),
+            hierarchy: hierarchy|default("primary"),
+            iconName: iconName|default("external-link"),
+            isUnderline: isUnderline|default(false)
+          } %}
+
+          {% include "@bf-components/link/twig/index.twig" with {
+            label: label|default(""),
+            hierarchy: hierarchy|default("primary"),
+            iconName: iconName|default("external-link")
+          } %}
+        </div>
+      </div>
     </div>
   {% endfor %}
 </div>
 
 <style>
-  .template-container {
-    display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(400px, 1fr));
-    height: 100vh;
-  }
+  .template-container { display: grid; grid-template-columns: repeat( auto-fit,
+  minmax(400px, 1fr)); height: 100vh; }
 </style>

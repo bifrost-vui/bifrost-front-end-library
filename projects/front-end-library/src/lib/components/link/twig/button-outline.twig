@@ -1,8 +1,23 @@
 <a
-    class="btn btn-{{ buttonSize|default("md") }} btn-outline-{{ buttonColor|default("dark") }}  {{ class|default("") }}"
-    {% if label is not empty %}data-title="{{ label|render|t([],{"langcode": "EN","context":"data-title-attribute" }) }}"{% endif %}
-    href="{{ href|default("#") }}"
-    {{ extraAttribute|default(NULL) }}
+  class="btn btn-{{ buttonSize|default(
+    "md"
+  ) }} btn-outline-{{ buttonColor|default("dark") }}  {{ class|default("") }}"
+  {{
+  label is not empty
+    ? "data-title='"
+      ~ (label
+        |render
+        |t(
+          [],
+          {
+            langcode: "EN",
+            context: "data-title-attribute"
+          }
+        ))
+      ~ "'"
+  }}
+  href="{{ href|default("#") }}"
+  {{ extraAttribute|default(null) }}
 >
-    {{ label|default("Link button label") }}
+  {{ label|default("Link button label") }}
 </a>
