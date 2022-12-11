@@ -1,15 +1,12 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { ListComponent }                        from '../angular/list.component';
-
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { ListComponent } from '../angular/list.component';
 
 <Meta
-    title='Components/List'
+    title="Components/List"
     component={ListComponent}
-    decorators={[
-        moduleMetadata({ declarations: [ListComponent, TwigContainerComponent]}),
-    ]}
+    decorators={[moduleMetadata({ declarations: [ListComponent, TwigContainerComponent] })]}
     argTypes={{}}
 />
 
@@ -17,12 +14,9 @@ import { ListComponent }                        from '../angular/list.component'
 
 <br />
 
-
 ## Component API
 
 <ArgsTable of={ListComponent} />
-
-
 
 ## Drupal implementation example
 
@@ -47,36 +41,34 @@ import { ListComponent }                        from '../angular/list.component'
 } only %}
 ```
 
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    component: TwigContainerComponent,
+    props: args,
 });
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        height='300px'
+        name="Drupal"
+        height="300px"
         args={{
-            elementPath : 'components/list/_doc/template.drupal',
-            title       : 'Title',
-            titleTag    : 'h2',
-            content     : [
+            elementPath: 'components/list/_doc/template.drupal',
+            title: 'Title',
+            titleTag: 'h2',
+            content: [
                 {
-                    iconName    : 'unlimited',
-                    label       : 'Lorem ipsum'
+                    iconName: 'unlimited',
+                    label: 'Lorem ipsum',
                 },
                 {
-                    iconName    : 'desinstallation',
-                    label       : 'Lorem ipsum'
+                    iconName: 'desinstallation',
+                    label: 'Lorem ipsum',
                 },
                 {
-                    iconName    : 'placeholder',
-                    label       : 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.'
-                }
+                    iconName: 'placeholder',
+                    label: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
+                },
             ],
             reversed: undefined,
         }}
