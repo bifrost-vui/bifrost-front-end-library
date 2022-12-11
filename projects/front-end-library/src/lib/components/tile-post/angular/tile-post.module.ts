@@ -4,6 +4,6 @@ import { TilePostComponent } from './tile-post.component';
 @NgModule({
     declarations: [TilePostComponent],
     imports: [],
-    exports: [TilePostComponent]
+    exports: [TilePostComponent],
 })
-export class TilePostModule { }
+export class TilePostModule {}
