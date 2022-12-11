@@ -4,10 +4,8 @@ import { Component, OnInit, Input } from '@angular/core';
     selector: 'bf-modal',
     templateUrl: './modal.component.html',
 })
-
 export class ModalComponent implements OnInit {
-    constructor() {
-    }
+    constructor() {}
 
     @Input() id: string;
     @Input() modalSize: 'sm' | 'md' | 'lg';

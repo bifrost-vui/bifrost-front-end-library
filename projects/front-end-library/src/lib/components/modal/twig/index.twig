@@ -1,38 +1,58 @@
 {% set id = id|default(modalId) %}
 {% set class = class|default(modalClass) %}
-{% set hasBgImage = (bgImage is defined and bgImage) or (bgMdImage is defined and bgMdImage) or (bgLgImage is defined and bgLgImage) %}
+{% set hasBgImage = (bgImage is defined and bgImage)
+  or (bgMdImage is defined and bgMdImage)
+  or (bgLgImage is defined and bgLgImage)
+%}
 
-<div class="modal modal-theme--{{ modalTheme|default("light") }} {{ modalAnimation|default("fade") }} {{ class|default("") }}"
-     id="{{ id|default("") }}"
-     tabindex="-1"
-     role="dialog"
-     aria-labelledby="{{ modalLabelledBy|default("") }}"
-     aria-hidden="true"
-    {{ extraAttribute|default(null) }}
+<div
+  class="modal modal-theme--{{ modalTheme|default(
+    "light"
+  ) }} {{ modalAnimation|default("fade") }} {{ class|default("") }}"
+  id="{{ id|default("") }}"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="{{ modalLabelledBy|default("") }}"
+  aria-hidden="true"
+  {{ extraAttribute|default(null) }}
 >
-  <div class="modal-dialog modal-{{ modalSize|default("lg") }} modal-dialog-centered" role="document">
-    <div class="modal-content position-relative {{ modalContentCLass|default("") }}"
-      {% if hasBgImage %}
-        data-bg="{{ bgImage|default("") }}"
-        data-md-bg="{{ bgMdImage|default(bgImage) }}"
-        data-lg-bg="{{ bgLgImage|default(bgImage) }}"
-      {% endif %}
+  <div
+    class="modal-dialog modal-{{ modalSize|default(
+      "lg"
+    ) }} modal-dialog-centered"
+    role="document"
+  >
+    <div
+      class="modal-content position-relative {{ modalContentCLass|default(
+        ""
+      ) }}"
+      {{
+      hasBgImage
+        ? "data-bg='" ~ (bgImage|default("")) ~ "' data-md-bg='"
+          ~ (bgMdImage|default(bgImage))
+          ~ "' data-lg-bg='"
+          ~ (bgLgImage|default(bgImage))
+          ~ "'"
+      }}
     >
-      <button type="button"
-              class="close m-2 m-md-3 m-lg-4 p-3 position-absolute--top-right"
-              data-dismiss="modal"
-              aria-label="X"
-              {{ extraAttributeX|default(NULL) }}
+      <button
+        type="button"
+        class="close m-2 m-md-3 m-lg-4 p-3 position-absolute--top-right"
+        data-dismiss="modal"
+        aria-label="X"
+        {{ extraAttributeX|default(null) }}
       >
         <span aria-hidden="true">
           {% include "@bf-components/icon/twig/index.twig" with {
             name: "x",
-            size: "small",
+            size: "small"
           } %}
         </span>
       </button>
 
-      <div class="modal-header border-bottom--0 {{ modalHeaderClass|default("") }}">
+      <div
+        class="modal-header border-bottom--0 {{ modalHeaderClass|default("") }}"
+      >
         {% if block("modal_header") is defined %}
           {{ block("modal_header") }}
         {% elseif modal_header is defined and modal_header %}
@@ -49,7 +69,6 @@
 
       <div class="modal-body pt-3 {{ modalBodyClass|default("") }}">
         {% block modal_body %}
-
           {# TODO : make it an option to be scrollable or not #}
           {% if block("modal_body_subcontainer") is defined %}
             {{ block("modal_body_subcontainer") }}
@@ -75,13 +94,9 @@
       </div>
 
       {% if block("modal_footer") is defined %}
-        <div class="modal-footer">
-          {{ block("modal_footer") }}
-        </div>
+        <div class="modal-footer">{{ block("modal_footer") }}</div>
       {% elseif modal_footer is defined and modal_footer is not empty %}
-        <div class="modal-footer">
-          {{ modal_footer|raw }}
-        </div>
+        <div class="modal-footer">{{ modal_footer|raw }}</div>
       {% endif %}
     </div>
   </div>
