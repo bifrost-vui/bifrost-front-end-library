@@ -1,29 +1,21 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { InputSearchComponent }                 from '../angular/input-search.component';
-
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { InputSearchComponent } from '../angular/input-search.component';
 
 <Meta
-    title='Components/Input Search'
+    title="Components/Input Search"
     component={InputSearchComponent}
-    decorators={[
-        moduleMetadata({ declarations: [InputSearchComponent, TwigContainerComponent]})
-    ]}
+    decorators={[moduleMetadata({ declarations: [InputSearchComponent, TwigContainerComponent] })]}
 />
-
 
 # Input Search
 
-<br/>
-
-
+<br />
 
 ## Component API
 
 <ArgsTable of={InputSearchComponent} />
-
-
 
 ## Drupal implementation example
 
@@ -59,8 +51,6 @@ import { InputSearchComponent }                 from '../angular/input-search.co
 } only %}
 ```
 
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -68,10 +58,10 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        height='300px'
+        name="Drupal"
+        height="300px"
         args={{
             elementPath: 'components/input-search/_doc/template.drupal',
             label_value: 'Label',
