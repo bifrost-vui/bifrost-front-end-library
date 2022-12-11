@@ -10,29 +10,29 @@
       {% set background = "bf-color-bg-highlight" %}
     {% endif %}
 
-    <div class="p-3 {% if _reversed %}reversed{% endif %} {{ background }}">
+    <div class="p-3 {{ _reversed ? "reversed" }} {{ background }}">
       {% include "@bf-components/status/twig/index.twig" with {
-        label : label|default("Unknown status"),
-        color : color|default("unknown"),
-        class : class
+        label: label|default("Unknown status"),
+        color: color|default("unknown"),
+        class: class
       } only %}
 
       {% include "@bf-components/status/twig/index.twig" with {
-        label : label|default("In progress status"),
-        color : color|default("progress"),
-        class : class
+        label: label|default("In progress status"),
+        color: color|default("progress"),
+        class: class
       } only %}
 
       {% include "@bf-components/status/twig/index.twig" with {
-        label : label|default("Success status"),
-        color : color|default("success"),
-        class : class
+        label: label|default("Success status"),
+        color: color|default("success"),
+        class: class
       } only %}
 
       {% include "@bf-components/status/twig/index.twig" with {
-        label : label|default("Fail status"),
-        color : color|default("failed"),
-        class : class
+        label: label|default("Fail status"),
+        color: color|default("failed"),
+        class: class
       } only %}
     </div>
   {% endfor %}
