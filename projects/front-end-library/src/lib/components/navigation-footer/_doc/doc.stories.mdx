@@ -1,58 +1,49 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import { withDesign } from 'storybook-addon-designs'
+import { withDesign } from 'storybook-addon-designs';
 import { linkFields, links } from './data';
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { FooterComponent } from '../angular/footer.component';
 
-
 <Meta
-    title='Components/Navigation Footer'
+    title="Components/Navigation Footer"
     component={FooterComponent}
-    decorators={[
-        moduleMetadata({ declarations: [FooterComponent, TwigContainerComponent]}),
-        withDesign
-    ]}
+    decorators={[moduleMetadata({ declarations: [FooterComponent, TwigContainerComponent] }), withDesign]}
     parameters={{
         design: {
             type: 'figma',
             url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS-Library-UI-Kit-Pattern-lab?node-id=11017%3A708',
-            disable: false
+            disable: false,
         },
     }}
     argTypes={{
         theme: {
-            table: { defaultValue: { summary: 'videotron' }},
+            table: { defaultValue: { summary: 'videotron' } },
             control: {
                 type: 'select',
                 options: ['videotron', 'business'],
-            }
+            },
         },
         langcode: {
-            table: { defaultValue: { summary: 'EN' }},
+            table: { defaultValue: { summary: 'EN' } },
             control: {
                 type: 'select',
                 options: ['EN', 'FR'],
-            }
+            },
         },
         reversed: {
-            table: { defaultValue: { summary: 'false' }},
-        }
+            table: { defaultValue: { summary: 'false' } },
+        },
     }}
 />
 
-
 # Navigation Footer
 
-<br/>
-
-
+<br />
 
 ## Component API
 
 <ArgsTable of={FooterComponent} />
-
-
 
 ## Drupal implementation example
 
@@ -104,8 +95,6 @@ import { FooterComponent } from '../angular/footer.component';
 } only %}
 ```
 
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -113,9 +102,9 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
+        name="Drupal"
         args={{
             elementPath: 'components/navigation-footer/_doc/template.drupal',
             logo: {
@@ -126,16 +115,15 @@ export const Drupal = (args) => ({
             linkFields,
             links,
         }}
-        height='500px'
+        height="500px"
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - Reduced'
+        name="Drupal - Reduced"
         args={{
             elementPath: 'components/navigation-footer/_doc/template.drupal',
             logo: {
@@ -147,7 +135,7 @@ export const Drupal = (args) => ({
             linkFields,
             links,
         }}
-        height='500px'
+        height="500px"
     >
         {Drupal.bind({})}
     </Story>

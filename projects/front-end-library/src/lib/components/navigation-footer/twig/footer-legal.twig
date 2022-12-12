@@ -1,28 +1,33 @@
 <nav class="bf-footer__legal d-flex align-items-center py-4">
   <div class="container-fluid">
     <div class="row align-items-center">
-      <div class="col-12 col-md-3 order-2 order-md-1 py-0 mt-2 mt-md-0" data-animate="fade-in">
-        {% if isReduced is not same as (true) %}
+      <div
+        class="col-12 col-md-3 order-2 order-md-1 py-0 mt-2 mt-md-0"
+        data-animate="fade-in"
+      >
+        {% if isReduced is not same as(true) %}
           <div class="d-flex flex-row align-items-start mb-2">
             <a href="{{ logo.href|default("#") }}">
               {% include "@bf-components/logo/twig/index.twig" with {
                 name: logo.name,
                 size: "small",
                 langcode: langcode|default("EN"),
-                reversed: reversed,
+                reversed: reversed
               } only %}
             </a>
           </div>
         {% endif %}
 
         <p class="m-0 small bf-color-neutral-secondary">
-          &copy; {{ (langcode is same as ("EN")) ? "Videotron": "Vidéotron" }} {{ now|date("Y") }}
+          &copy; {{ langcode is same as("EN") ? "Videotron" : "Vidéotron" }} {{ now|date("Y") }}
         </p>
       </div>
 
       <div class="col-12 col-md-9 order-1 order-md-2">
-        <ul class="list-reset small pl-0 mb-0 d-flex flex-wrap justify-content-start justify-content-md-end gap-3"
-            data-animate-row="">
+        <ul
+          class="list-reset small pl-0 mb-0 d-flex flex-wrap justify-content-start justify-content-md-end gap-3"
+          data-animate-row=""
+        >
           {% for linkField in linkFields %}
             <li class="" data-animate="fade-in">
               {% include "@bf-components/link/twig/index.twig" with {
@@ -36,14 +41,12 @@
           {% endfor %}
 
           {% if languageBlock is defined %}
-            <li data-animate="fade-in">
-              {{ languageBlock }}
-            </li>
+            <li data-animate="fade-in">{{ languageBlock }}</li>
           {% else %}
             <li class="mb-3 mb-md-0" data-animate="fade-in">
               {% include "@bf-components/link/twig/index.twig" with {
                 href: "",
-                label: (langcode == "EN") ? "FR" : "EN",
+                label: langcode == "EN" ? "FR" : "EN",
                 class: "d-block bf-p-small bf-color-neutral-secondary",
                 isUnderline: false
               } only %}
