@@ -2,6 +2,7 @@ var Twig = require("twig"),
     express = require('express'),
     app = express(),
     path = require('path');
+    minify = require('html-minifier').minify;
 
 const port = 3001;
 
@@ -30,10 +31,19 @@ app.set("twig options", {
 app.set('views', 'projects/front-end-library/src/lib');
 app.set('view engine', 'twig');
 
-app.get('/api/twig', function(req, res){
+app.get('/api/twig', function (req, res) {
     // console.log(req.params, req);
     // Object.assign(req.params, req.query);
-    res.render('main.twig', req.query);
+
+    res.render('main.twig', req.query, function (err, html) { 
+            res.send(
+                minify( html, {
+                    collapseWhitespace: true,
+                    minifyCSS: true,
+                    minifyJS: true,
+                })
+            );
+    });
 });
 
 
