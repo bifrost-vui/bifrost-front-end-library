@@ -1,46 +1,44 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { RowButtonComponent }                   from '../angular/row-button.component';
-
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import illustrationIcons from '../../../../../../../public/icons/list/illustrations.json';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { RowButtonComponent } from '../angular/row-button.component';
 
 <Meta
-    title='Components/Row Button'
+    title="Components/Row Button"
     component={RowButtonComponent}
-    decorators={[
-        moduleMetadata({ declarations: [RowButtonComponent, TwigContainerComponent]})
-    ]}
+    decorators={[moduleMetadata({ declarations: [RowButtonComponent, TwigContainerComponent] })]}
     argTypes={{
         iconName: {
             defaultValue: 'credit-return',
             control: {
                 type: 'select',
-                options: ['', ...illustrationIcons.map(a => a.list).flat().sort()]
-            }
+                options: [
+                    '',
+                    ...illustrationIcons
+                        .map((a) => a.list)
+                        .flat()
+                        .sort(),
+                ],
+            },
         },
         size: {
-            table: { defaultValue: { summary: 'large' } }
-        }
+            table: { defaultValue: { summary: 'large' } },
+        },
     }}
 />
 
-
 # Row Button
 
-<br/>
-
-
+<br />
 
 ## Component API
 
 <ArgsTable of={RowButtonComponent} />
 
-
-
 ## Drupal implementation example
 
-<br/>
+<br />
 
 #### List of Row Buttons
 
@@ -60,6 +58,7 @@ Wrap your <b>Row Buttons</b> with CSS classes `.bf-list .bf-list--divider` in or
 ```
 
 #### Row Button only
+
 ```jsx
 {% include '@bf-components/row-button/twig/index.twig' with {
     href        : 'https://example.com',
@@ -70,6 +69,7 @@ Wrap your <b>Row Buttons</b> with CSS classes `.bf-list .bf-list--divider` in or
 ```
 
 #### Row Button with icon
+
 ```jsx
 {% include '@bf-components/row-button/twig/index.twig' with {
     // ...
@@ -78,6 +78,7 @@ Wrap your <b>Row Buttons</b> with CSS classes `.bf-list .bf-list--divider` in or
 ```
 
 #### Row Button with image
+
 ```jsx
 {% include '@bf-components/row-button/twig/index.twig' with {
     // ...
@@ -95,25 +96,25 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-export const commonProps= {
-    href        : 'https://example.com',
-    title       : '',
-    paragraph   : 'Contribute to the ambiance of your spaces.',
-    image       : {
+export const commonProps = {
+    href: 'https://example.com',
+    title: '',
+    paragraph: 'Contribute to the ambiance of your spaces.',
+    image: {
         src: 'https://videotron.com/images/assets/helix-equipment.png',
-        alt: 'Alt description'
+        alt: 'Alt description',
     },
-    class       : '',
+    class: '',
     reversed: undefined,
-}
+};
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        height='500px'
+        name="Drupal"
+        height="500px"
         args={{
-            elementPath : 'components/row-button/_doc/template.drupal',
-            ... commonProps
+            elementPath: 'components/row-button/_doc/template.drupal',
+            ...commonProps,
         }}
     >
         {Drupal.bind({})}
