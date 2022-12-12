@@ -1,9 +1,17 @@
 {# for legacy purpose #}
 {% set minValue = progressMinValue|default(0) %}
 {% set maxValue = progressMaxValue|default(100) %}
-{% set percentValue = ((progressValue is defined and progressValue) ? progressValue/(maxValue-minValue)*100 : progressPercentValue)|default(0) %}
+{% set percentValue =
+  (progressValue is defined and progressValue
+    ? progressValue / (maxValue - minValue) * 100
+    : progressPercentValue)|default(0)
+%}
 {# Do no set progressValue if it's already defined #}
-{% set progressValue =((progressValue is not defined or not progressValue) ? (percentValue/100*(maxValue-minValue)) : progressValue )|default(0) %}
+{% set progressValue =
+  (progressValue is not defined or not progressValue
+    ? percentValue / 100 * (maxValue - minValue)
+    : progressValue)|default(0)
+%}
 
 {# Color settings #}
 {% if isMonochromeColor is defined and isMonochromeColor %}
@@ -18,18 +26,21 @@
   {% endif %}
 {% endif %}
 
-{% if isMonochromeColor is defined and isMonochromeColor is same as (true) %}
+{% if isMonochromeColor is defined and isMonochromeColor is same as(true) %}
   {% set progressColor = "default" %}
 {% endif %}
 
 <div class="progress {{ class|default("") }}">
-  <div class="progress-bar bg-{{ progressColor }} {{ progressBarClass|default("") }}"
-       role="progressbar"
-       style="width: {{ percentValue }}%"
-       aria-valuenow="{{ progressValue }}"
-       aria-valuemin="{{ minValue }}"
-       aria-valuemax="{{ maxValue }}"
-       data-toggle="tooltip"
-       title="{{ percentValue|number_format(1) }}%"
+  <div
+    class="progress-bar bg-{{ progressColor }} {{ progressBarClass|default(
+      ""
+    ) }}"
+    role="progressbar"
+    style="width: {{ percentValue }}%"
+    aria-valuenow="{{ progressValue }}"
+    aria-valuemin="{{ minValue }}"
+    aria-valuemax="{{ maxValue }}"
+    data-toggle="tooltip"
+    title="{{ percentValue|number_format(1) }}%"
   ></div>
 </div>

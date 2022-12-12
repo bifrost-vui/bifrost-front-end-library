@@ -1,48 +1,52 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import { withDesign } from 'storybook-addon-designs'
+import { withDesign } from 'storybook-addon-designs';
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { ProgressComponent } from '../angular/progress.component';
 
 <Meta
-    title='UI-Kit/Progress'
+    title="UI-Kit/Progress"
     component={ProgressComponent}
-    decorators={[
-        moduleMetadata({ declarations: [ProgressComponent, TwigContainerComponent] }),
-        withDesign
-    ]}
+    decorators={[moduleMetadata({ declarations: [ProgressComponent, TwigContainerComponent] }), withDesign]}
     parameters={{
         design: {
             type: 'figma',
             url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=3182%3A13',
-            disable: false
+            disable: false,
         },
     }}
     argTypes={{
         _background: {
             control: {
                 type: 'select',
-                options: ['', 'bf-color-bg-ground', 'bf-color-bg-underground', 'reversed bf-color-bg-ground', 'reversed bf-color-bg-underground', 'bf-color-bg-highlight']
+                options: [
+                    '',
+                    'bf-color-bg-ground',
+                    'bf-color-bg-underground',
+                    'reversed bf-color-bg-ground',
+                    'reversed bf-color-bg-underground',
+                    'bf-color-bg-highlight',
+                ],
             },
-            description: 'Preview the component on selected background'
+            description: 'Preview the component on selected background',
         },
         progressValue: {
-            table:   { defaultValue: { summary: '0' } },
+            table: { defaultValue: { summary: '0' } },
         },
         progressPercentValue: {
-            table:   { defaultValue: { summary: '0' } },
+            table: { defaultValue: { summary: '0' } },
         },
         progressMinValue: {
-            table:   { defaultValue: { summary: '0' } },
+            table: { defaultValue: { summary: '0' } },
         },
         progressMaxValue: {
-            table:   { defaultValue: { summary: '100' } },
+            table: { defaultValue: { summary: '100' } },
         },
     }}
 />
 
-
 # Progress
+
 ## Component API
 
 <ArgsTable of={ProgressComponent} />
@@ -51,17 +55,16 @@ This component has been migrated from the UI-Kit project
 
 **Minor optimization front the UI-Kit version:**
 
-- when `progressValue` is defined you don't have to set `progressPercentValue` and vice versa
-- when both are defined, `progressPercentValue` will be ignored
-- when `progressValue` and `progressPercentValue` are both undefined their default value will be 0
+-   when `progressValue` is defined you don't have to set `progressPercentValue` and vice versa
+-   when both are defined, `progressPercentValue` will be ignored
+-   when `progressValue` and `progressPercentValue` are both undefined their default value will be 0
 
 **Progress bar Colors:**
 
-- Progress > 90% = Danger color.
-- Progress > 50% = Warning color.
-- Progress =< 50% = Success color.
-- when `isMonochromeColor` is true, the progression is always yellow, no regards to the progression percentage
-
+-   Progress > 90% = Danger color.
+-   Progress > 50% = Warning color.
+-   Progress =< 50% = Success color.
+-   when `isMonochromeColor` is true, the progression is always yellow, no regards to the progression percentage
 
 ## Drupal
 
@@ -70,12 +73,9 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas
-    withSource='none'
-    style={{ height: '400px' }}
->
+<Canvas withSource="none" style={{ height: '400px' }}>
     <Story
-        name='Drupal'
+        name="Drupal"
         args={{
             elementPath: 'components/progress/_doc/template.drupal',
             progressMaxValue: undefined,
@@ -87,7 +87,6 @@ export const Drupal = (args) => ({
         {Drupal.bind({})}
     </Story>
 </Canvas>
-
 
 ## Drupal implementation example
 
@@ -103,6 +102,10 @@ export const Drupal = (args) => ({
 
 ## Design Guidelines
 
-<iframe width='100%' height='450'
-        src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D3182%253A13'
-        frameBorder='0' allowFullScreen></iframe>
+<iframe
+    width="100%"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D3182%253A13"
+    frameBorder="0"
+    allowFullScreen
+></iframe>
