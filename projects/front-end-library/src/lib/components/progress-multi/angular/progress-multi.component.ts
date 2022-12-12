@@ -1,18 +1,18 @@
 import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
 interface IProgressData {
-    label: string,
-    cssClass: string,
-    percent: number,
-    currentValue: number,
-    minValue: number,
-    maxValue: number
+    label: string;
+    cssClass: string;
+    percent: number;
+    currentValue: number;
+    minValue: number;
+    maxValue: number;
 }
 
 @Component({
-  selector: 'bf-progress-multi',
-  templateUrl: './progress-multi.component.html',
-  // styleUrls: ['../scss/index.scss'],
+    selector: 'bf-progress-multi',
+    templateUrl: './progress-multi.component.html',
+    // styleUrls: ['../scss/index.scss'],
 })
 export class ProgressMultiComponent implements OnInit {
     constructor() {}
