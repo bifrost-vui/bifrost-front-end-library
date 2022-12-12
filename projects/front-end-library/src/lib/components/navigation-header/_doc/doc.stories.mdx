@@ -1,45 +1,39 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import { topBar_items, topBar_secondaryItems, rigthIconLinks} from './data';
+import { topBar_items, topBar_secondaryItems, rigthIconLinks } from './data';
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent } from '../angular/header.component';
 
-
 <Meta
-    title='Components/Navigation Header'
+    title="Components/Navigation Header"
     component={HeaderComponent}
-    decorators={[
-        moduleMetadata({ declarations: [HeaderComponent, TwigContainerComponent]})
-    ]}
+    decorators={[moduleMetadata({ declarations: [HeaderComponent, TwigContainerComponent] })]}
     argTypes={{
         accountHello: {
-            table: { defaultValue: { summary: 'Hello' }},
+            table: { defaultValue: { summary: 'Hello' } },
         },
         accountName: {
-            table: { category: 'Deprecated Inputs' }
+            table: { category: 'Deprecated Inputs' },
         },
         langcode: {
-            table: { defaultValue: { summary: 'EN' }},
+            table: { defaultValue: { summary: 'EN' } },
             control: {
                 type: 'select',
                 options: ['EN', 'FR'],
-            }
+            },
         },
         hasTopBar: {
             table: { defaultValue: { summary: 'true' } },
         },
         reversed: {
             table: { defaultValue: { summary: 'false' } },
-        }
+        },
     }}
 />
 
-
 # Header
 
-<br/>
-
-
+<br />
 
 ## Drupal implementation example
 
@@ -107,13 +101,9 @@ import { HeaderComponent } from '../angular/header.component';
 } only %}
 ```
 
-
-
 ## Component API
 
 <ArgsTable of={HeaderComponent} />
-
-
 
 ## Drupal
 
@@ -122,9 +112,9 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
+        name="Drupal"
         args={{
             elementPath: 'components/navigation-header/_doc/template.drupal',
             topBar_items,
@@ -140,9 +130,9 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - business'
+        name="Drupal - business"
         args={{
             elementPath: 'components/navigation-header/_doc/template.drupal',
             topBar_items,

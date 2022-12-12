@@ -1,4 +1,4 @@
-{% if hasTopBar is defined and hasTopBar is same as (true) %}
+{% if hasTopBar is defined and hasTopBar is same as(true) %}
   {% include "@bf-components/navigation-header/twig/top-bar.twig" with {
     items: topBar.items|default([]),
     secondaryItems: topBar.secondaryItems|default([]),
@@ -10,23 +10,30 @@
     labelLogOut: labelLogOut|default("Logout"),
     hrefConnexion: hrefConnexion|default("#"),
     labelConnexion: labelConnexion|default("My Customer Centre"),
-    reversed: reversed|default(false),
+    reversed: reversed|default(false)
   } only %}
 {% endif %}
 
 <header
   role="banner"
-  class="bf-header z-index-18 {% if reversed is defined and reversed is same as (true) %}reversed{% endif %}"
-  {% if theme is defined %} data-theme={{ theme }} {% endif %}
+  class="bf-header z-index-18 {{
+  reversed is defined and reversed is same as(true)
+    ? "reversed"
+  }}"
+  {{ theme is defined ? "data-theme='" ~ theme ~ "'" }}
 >
-  <nav class="bf-header__nav w-100 border-bottom bf-border-color-secondary {{ class|default("") }}">
+  <nav
+    class="bf-header__nav w-100 border-bottom bf-border-color-secondary {{ class|default(
+      ""
+    ) }}"
+  >
     {# Logo #}
     <div class="bf-header__logo">
       <a href="{{ logo.href|default("#") }}" class="d-flex">
         {% include "@bf-components/logo/twig/index.twig" with {
           name: logo.name,
           size: "large",
-          langcode: langcode|default("EN"),
+          langcode: langcode|default("EN")
         } only %}
       </a>
     </div>
@@ -44,10 +51,15 @@
     </div>
 
     {# Actions #}
-    <div class="bf-header__actions d-flex align-items-center justify-content-end w-100 h-100 pr-3">
+    <div
+      class="bf-header__actions d-flex align-items-center justify-content-end w-100 h-100 pr-3"
+    >
       <div class="d-flex d-lg-none align-items-center">
         {% for link in rigthIconLinks|default([])|slice(0, 5) %}
-          {% if link is defined and link.href is not empty and link.icon is not empty %}
+          {% if
+            link is defined
+              and link.href is not empty
+              and link.icon is not empty %}
             {% include "@bf-components/button-icon/twig/index.twig" with {
               href: link.href,
               icon: link.icon,
@@ -57,18 +69,18 @@
         {% endfor %}
 
         {# Btn account dropdown #}
-        {% if hasAccountBtn is defined and hasAccountBtn is same as (true) %}
+        {% if hasAccountBtn is defined and hasAccountBtn is same as(true) %}
           {% include "@bf-components/button-icon/twig/index.twig" with {
             href: hrefConnexion|default("#"),
             icon: "my-account",
-            ariaLabel: labelConnexion|default("Log in"),
+            ariaLabel: labelConnexion|default("Log in")
           } %}
 
-          {% if isConnected is same as (true) %}
+          {% if isConnected is same as(true) %}
             {% include "@bf-components/button-icon/twig/index.twig" with {
               href: hrefLogOut|default("#"),
               icon: "logout",
-              ariaLabel: labelLogOut|default("Log out"),
+              ariaLabel: labelLogOut|default("Log out")
             } %}
           {% endif %}
         {% endif %}
@@ -90,16 +102,19 @@
       </div>
 
       {# Search #}
-      {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
-        <div class="bf-header__search-bar js-bf-header__search-bar d-none d-md-block ml-1" id="navbarSearch">
+      {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as(false) %}
+        <div
+          class="bf-header__search-bar js-bf-header__search-bar d-none d-md-block ml-1"
+          id="navbarSearch"
+        >
           <div class="d-flex align-items-center justify-content-between w-100">
             {% block globalSearch %}
               {% include "@bf-components/input-search/twig/index.twig" with {
                 class: "mb-0",
                 input: {
-                  placeholder: search.placeholder|default("")|t,
+                  placeholder: search.placeholder|default("")|t
                 },
-                reversed: reversed,
+                reversed: reversed
               } %}
             {% endblock %}
 
@@ -117,7 +132,7 @@
     </div>
   </nav>
 
-  {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as (false) %}
+  {% if hasNoSearchBtn is not defined or hasNoSearchBtn is same as(false) %}
     <div class="align-items-center justify-content-between w-100">
       <div id="alg-hits" class="ais-Hits bf-color-bg-ground alg-hidden"></div>
     </div>
