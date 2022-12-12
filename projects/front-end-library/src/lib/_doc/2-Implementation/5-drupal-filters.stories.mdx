@@ -1,42 +1,44 @@
 import { Meta } from '@storybook/addon-docs';
 
-
 <Meta
-    title='Implementation/Drupal - Filters'
+    title="Implementation/Drupal - Filters"
     parameters={{
         layout: 'padded',
         viewMode: 'docs',
-        previewTabs: { canvas: { hidden: true } }
+        previewTabs: { canvas: { hidden: true } },
     }}
 />
 
 # Twig filters list
 
-<br/><br/>
+<br />
+<br />
 
 We support all filters documented in **[Twig 1.x](https://twig.symfony.com/doc/1.x/)** and all theses **custom filters**:
-- clean_class
-- clean_id
-- json_parse *(documentation only)*
-- placeholder
-- price_one_line
-- render
-- safe_join
-- t
+
+-   clean_class
+-   clean_id
+-   json_parse _(documentation only)_
+-   placeholder
+-   price_one_line
+-   render
+-   safe_join
+-   t
 
 > **Note to contributors:** Before creating a new filter, talk with DXP team to avoid conflict with DXP internal twig filters.
 
-<br/>
+<br />
 
 ## More details on some filters:
 
-<br/>
+<br />
 
 ### json_parse
+
 Transfrom string passed in URL to Boolean. **Used only for documentation (Storybook)!**
 
 ```jsx
-Twig.extendFilter('json_parse', function(value) {
+Twig.extendFilter('json_parse', function (value) {
     try {
         return JSON.parse(value);
     } catch (e) {
@@ -45,15 +47,14 @@ Twig.extendFilter('json_parse', function(value) {
 });
 ```
 
-<br/>
+<br />
 
 ### format_price
 
 **WARNING! This filter is not available**, since DXP need to be improved to accept a new filter.
 
 ```jsx
-Twig.extendFilter('format_price', function(price, options) {
-
+Twig.extendFilter('format_price', function (price, options) {
     const language = (options && options[0]) || 'en';
     if (language === 'fr') {
         return price + '&nbsp;$';

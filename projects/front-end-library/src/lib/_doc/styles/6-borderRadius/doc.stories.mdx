@@ -1,47 +1,48 @@
-import { Meta, Canvas }     from '@storybook/addon-docs';
-import borderRadius         from './borderRadius';
+import { Meta, Canvas } from '@storybook/addon-docs';
+import borderRadius from './borderRadius';
 
 <Meta
-    title='Styles/Border Radius'
+    title="Styles/Border Radius"
     parameters={{
         layout: 'padded',
         viewMode: 'docs',
-        previewTabs: { canvas: { hidden: true } }
+        previewTabs: { canvas: { hidden: true } },
     }}
 />
 
 # Border Radius
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <div>
-        <div className='d-flex align-items-center gap-4 w-100'>
-            <div className='w-65'>
-                <h5 className='mb-0'>Name</h5>
+        <div className="d-flex align-items-center gap-4 w-100">
+            <div className="w-65">
+                <h5 className="mb-0">Name</h5>
             </div>
-            <div className='w-35'>
-                <h5 className='mb-0'>All Themes</h5>
+            <div className="w-35">
+                <h5 className="mb-0">All Themes</h5>
             </div>
         </div>
-        <ul className='list-unstyled'>
-            {borderRadius.map(b =>
-                <li key={b.name} className='d-flex align-items-center gap-4 w-100 border-top pt-3 mt-3'>
-                    <div className='w-65 d-flex align-items-start gap-4'>
-                        <h4 className='mb-0' style={{ width: '8rem' }}>
+        <ul className="list-unstyled">
+            {borderRadius.map((b) => (
+                <li key={b.name} className="d-flex align-items-center gap-4 w-100 border-top pt-3 mt-3">
+                    <div className="w-65 d-flex align-items-start gap-4">
+                        <h4 className="mb-0" style={{ width: '8rem' }}>
                             {b.name}
                         </h4>
-                        <div className='d-flex flex-column'>
+                        <div className="d-flex flex-column">
                             <code>--bf-border-radius-{b.name}</code>
                             <code>.bf-border-radius-{b.name}</code>
                         </div>
                     </div>
-                    <div className='w-35 d-flex align-items-center gap-4'>
-                        <p className='bf-text mb-0'>
-                            {b.value}
-                        </p>
-                        <div className={`bf-border-radius-${b.name} border bf-border-color-primary`} style={{ width: '40px', height: '40px' }}></div>
+                    <div className="w-35 d-flex align-items-center gap-4">
+                        <p className="bf-text mb-0">{b.value}</p>
+                        <div
+                            className={`bf-border-radius-${b.name} border bf-border-color-primary`}
+                            style={{ width: '40px', height: '40px' }}
+                        ></div>
                     </div>
                 </li>
-            )}
+            ))}
         </ul>
     </div>
 </Canvas>

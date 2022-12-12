@@ -1,13 +1,12 @@
-import { Canvas, Meta }    from '@storybook/addon-docs';
-import colors               from './colors';
-
+import { Canvas, Meta } from '@storybook/addon-docs';
+import colors from './colors';
 
 <Meta
     title="Styles/Colors"
     parameters={{
         layout: 'padded',
         viewMode: 'docs',
-        previewTabs: { canvas: { hidden: true } }
+        previewTabs: { canvas: { hidden: true } },
     }}
 />
 
@@ -15,45 +14,47 @@ import colors               from './colors';
 
 > Bifröst defines 5 groups of colors: **Content, Background, Background Action, Stroke** and **Feedback**.
 
-<Canvas withSource='none'>
-    <div className='d-flex flex-column gap-5'>
-        {colors.map(category =>
+<Canvas withSource="none">
+    <div className="d-flex flex-column gap-5">
+        {colors.map((category) => (
             <section key={category.name}>
-                <header className='d-flex align-items-center gap-4 w-100'>
-                    <div className='w-75'>
+                <header className="d-flex align-items-center gap-4 w-100">
+                    <div className="w-75">
                         <h2>{category.name} colors</h2>
-                        <h3 className='bf-text bf-color-neutral-secondary maxw-75 mt-1'>{category.description}</h3>
+                        <h3 className="bf-text bf-color-neutral-secondary maxw-75 mt-1">{category.description}</h3>
                     </div>
-                    <div className='w-25 align-self-end'>
-                        <h5 className='m-0'>All Themes</h5>
-                        <p className='bf-text bf-color-neutral-secondary small m-0'>Default + Reversed</p>
+                    <div className="w-25 align-self-end">
+                        <h5 className="m-0">All Themes</h5>
+                        <p className="bf-text bf-color-neutral-secondary small m-0">Default + Reversed</p>
                     </div>
                 </header>
-                <ul className='list-unstyled'>
-                    {category.list.map(c =>
-                        <li key={c.name} className='d-flex align-items-center gap-4 w-100 border-top'>
-                            <div className='w-75 d-flex align-items-center gap-4'>
-                                <h4 className='mb-0' style={{ width: '13rem' }}>
+                <ul className="list-unstyled">
+                    {category.list.map((c) => (
+                        <li key={c.name} className="d-flex align-items-center gap-4 w-100 border-top">
+                            <div className="w-75 d-flex align-items-center gap-4">
+                                <h4 className="mb-0" style={{ width: '13rem' }}>
                                     {c.label}
                                 </h4>
-                                <div className='d-flex flex-column nowrap'>
+                                <div className="d-flex flex-column nowrap">
                                     <code>--bf-color-{c.name}</code>
-                                    {c.hasUtilityClass !== false &&
-                                        <code>.bf-color-{c.name}</code>
-                                    }
-                                    {c.UtilityClassName &&
-                                    <code>.{c.UtilityClassName}</code>
-                                    }
+                                    {c.hasUtilityClass !== false && <code>.bf-color-{c.name}</code>}
+                                    {c.UtilityClassName && <code>.{c.UtilityClassName}</code>}
                                 </div>
                             </div>
-                            <div className='w-25 d-flex align-items-center'>
-                                <div className='pr-6 pb-6 my-2 mr-1' style={{backgroundColor: `var(--bf-color-${c.name})`}}/>
-                                <div className='pr-6 pb-6 my-2 reversed' style={{backgroundColor: `var(--bf-color-${c.name})`}}/>
+                            <div className="w-25 d-flex align-items-center">
+                                <div
+                                    className="pr-6 pb-6 my-2 mr-1"
+                                    style={{ backgroundColor: `var(--bf-color-${c.name})` }}
+                                />
+                                <div
+                                    className="pr-6 pb-6 my-2 reversed"
+                                    style={{ backgroundColor: `var(--bf-color-${c.name})` }}
+                                />
                             </div>
                         </li>
-                    )}
+                    ))}
                 </ul>
             </section>
-        )}
+        ))}
     </div>
 </Canvas>
