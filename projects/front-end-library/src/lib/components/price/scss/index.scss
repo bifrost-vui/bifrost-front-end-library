@@ -5,95 +5,95 @@
 * ***************************************************************************** */
 
 .bf-price {
-    width: fit-content;
+  width: fit-content;
 
-    &__dollar {
-        @extend .bf-text-display-small;
+  &__dollar {
+    @extend .bf-text-display-small;
+  }
+
+  &__dollarsign,
+  &__cent,
+  &__details {
+    @extend .bf-text-display-sub-small;
+  }
+
+  &__details {
+    @extend .mt-minus-2;
+  }
+  .promotion-container {
+    display: flex;
+    gap: 0.5rem;
+    .bf-price__infos {
+      display: inline-flex;
+      font-family: $font-family-secondary;
+
+      sup.bf-price__asterisk {
+        top: 0.35rem;
+      }
+    }
+    .small.bf-display-highlight {
+      .price-superscript {
+        white-space: nowrap;
+        sup.bf-price__superscript {
+          font-size: 0.5rem;
+          top: -0.25rem;
+          margin-left: -2px;
+        }
+      }
+    }
+  }
+
+  &--medium {
+    .bf-price__dollar {
+      @extend .bf-text-display-medium;
     }
 
-    &__dollarsign,
-    &__cent,
-    &__details {
-        @extend .bf-text-display-sub-small;
+    .bf-price__dollarsign,
+    .bf-price__cent {
+      @extend .bf-text-display-sub-medium;
     }
 
-    &__details {
-        @extend .mt-minus-2;
+    .bf-price__details {
+      position: relative;
+      top: -0.5rem;
     }
     .promotion-container {
-        display: flex;
-        gap: 0.5rem;
-        .bf-price__infos {
-            display: inline-flex;
-            font-family: $font-family-secondary;
+      .bf-price__infos sup.bf-price__asterisk {
+        top: 0.8rem;
+      }
+    }
+    .mt-n1 {
+      margin-top: -0.25rem;
+    }
+  }
 
-            sup.bf-price__asterisk {
-                top: .35rem;
-            }
-        }
-        .small.bf-display-highlight {
-            .price-superscript {
-                white-space: nowrap;
-                sup.bf-price__superscript {
-                    font-size: .5rem;
-                    top: -.25rem;
-                    margin-left: -2px;
-                }
-            }
-        }
+  &--large {
+    .bf-price__dollar {
+      @extend .bf-text-display-large;
+    }
+    .bf-price__dollarsign,
+    .bf-price__cent {
+      @extend .bf-text-display-sub-large;
     }
 
-    &--medium {
-        .bf-price__dollar {
-            @extend .bf-text-display-medium;
-        }
-
-        .bf-price__dollarsign,
-        .bf-price__cent {
-            @extend .bf-text-display-sub-medium;
-        }
-
-        .bf-price__details {
-            position: relative;
-            top: -.5rem;
-        }
-        .promotion-container {
-            .bf-price__infos sup.bf-price__asterisk {
-                top: .8rem;
-            }
-        }
-        .mt-n1 {
-            margin-top: -0.25rem;
-        }
+    .bf-price__details {
+      @extend .bf-text-display-sub-medium;
+      @extend .mt-minus-1;
     }
-
-    &--large {
-        .bf-price__dollar {
-            @extend .bf-text-display-large;
-        }
-        .bf-price__dollarsign,
-        .bf-price__cent {
-            @extend .bf-text-display-sub-large;
-        }
-
-        .bf-price__details {
-            @extend .bf-text-display-sub-medium;
-            @extend .mt-minus-1;
-        }
-        .promotion-container {
-            .bf-price__infos sup.bf-price__asterisk {
-                top: .4rem;
-            }
-        }
+    .promotion-container {
+      .bf-price__infos sup.bf-price__asterisk {
+        top: 0.4rem;
+      }
     }
+  }
 
-    &__upfront .bf-text-interface-large {
-        line-height: 0;
-    }
+  &__upfront .bf-text-interface-large {
+    line-height: 0;
+  }
 
-    sub,
-    sup {
-        top: inherit;
-        vertical-align: inherit;
-    }
+  sub,
+  sup {
+    top: inherit;
+    vertical-align: inherit;
+  }
 }

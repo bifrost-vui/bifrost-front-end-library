@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IUpfront, IPromotion } from './api.model';
 
 @Component({
@@ -9,34 +9,34 @@ import { IUpfront, IPromotion } from './api.model';
 export class PriceComponent implements OnInit {
     constructor() {}
 
-    @Input() upperTitle             : string;
+    @Input() upperTitle: string;
 
-    @Input() upfront                : IUpfront;
+    @Input() upfront: IUpfront;
 
-    @Input() dollar                 : number;
-    @Input() dollarClass            : string;
-    @Input() cent                   : number;
-    @Input() hasAsterisk            : boolean;
+    @Input() dollar: number;
+    @Input() dollarClass: string;
+    @Input() cent: number;
+    @Input() hasAsterisk: boolean;
 
     /** promotion.direction = "vertical" | "horizontal" */
-    @Input() promotion              : IPromotion;
+    @Input() promotion: IPromotion;
 
     /** **Deprecated** Use `promotion.priceStriked` instead. */
-    @Input() dashed                 : string;
+    @Input() dashed: string;
     /** **Deprecated** Use `promotion.priceSaved` instead. */
-    @Input() saved                  : string;
+    @Input() saved: string;
     /** **Deprecated** Use `promotion.savedLabel` instead. */
-    @Input() savedLabel             : string;
-    @Input() details                : HTMLElement;
-    @Input() message                : HTMLElement;
+    @Input() savedLabel: string;
+    @Input() details: HTMLElement;
+    @Input() message: HTMLElement;
 
-    @Input() size                   : 'small' | 'medium' | 'large';
+    @Input() size: 'small' | 'medium' | 'large';
     /** This will make width at 100% of the parent. This behavior is useful when you want `promotion.direction: horizontal`.  */
-    @Input() fullWidth              : boolean;
-    @Input() class                  : string;
-    @Input() reversed               : boolean;
+    @Input() fullWidth: boolean;
+    @Input() class: string;
+    @Input() reversed: boolean;
 
-    @Input() language               : 'en' | 'fr';
+    @Input() language: 'en' | 'fr';
 
     ngOnInit() {
         console.log('Price', this);
