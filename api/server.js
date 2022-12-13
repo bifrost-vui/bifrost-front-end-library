@@ -2,7 +2,7 @@ var Twig = require("twig"),
     express = require('express'),
     app = express(),
     path = require('path');
-    minify = require('html-minifier').minify;
+    minify = require('html-minifier-terser').minify;
 
 const port = 3001;
 
@@ -35,14 +35,13 @@ app.get('/api/twig', function (req, res) {
     // console.log(req.params, req);
     // Object.assign(req.params, req.query);
 
-    res.render('main.twig', req.query, function (err, html) { 
-            res.send(
-                minify( html, {
-                    collapseWhitespace: true,
-                    minifyCSS: true,
-                    minifyJS: true,
-                })
-            );
+    res.render('main.twig', req.query, async function (err, html) {
+        const result = await minify(html, {
+            collapseWhitespace: true,
+            minifyCSS: true,
+            minifyJS: true,
+        });
+        res.send(result);
     });
 });
 
