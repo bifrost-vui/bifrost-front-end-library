@@ -1,22 +1,15 @@
 //------------------------------------------------------------------------------
-import React        from "react";
+import React from 'react';
 
 //------------------------------------------------------------------------------
-export default class ElementList extends React.Component
-{
+export default class ElementList extends React.Component {
     //--------------------------------------------------------------------------
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
     }
 
     //--------------------------------------------------------------------------
-    render()
-    {
-        return (
-            <div>
-                yolo
-            </div>
-        );
+    render() {
+        return <div>yolo</div>;
     }
 }

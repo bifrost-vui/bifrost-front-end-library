@@ -1,4 +1,4 @@
-import { styled, css } from '@storybook/theming'
+import { styled, css } from '@storybook/theming';
 
 export const ImageBackground = styled.img`
     position: absolute;
@@ -41,7 +41,7 @@ export const TileLink = styled.button`
     border: 1px solid #e6eaef;
     border-radius: 4px;
     text-decoration: none;
-    transition: border-color .35s;
+    transition: border-color 0.35s;
     cursor: pointer;
 
     &:hover,
@@ -62,12 +62,12 @@ export const TileLink = styled.button`
         max-height: 3rem;
         margin-right: 1rem;
     }
-`
+`;
 
 export const Image = styled.img`
     max-width: 4rem;
     max-height: 4rem;
-`
+`;
 
 export const Stack = styled.div`
     display: grid;
@@ -91,16 +91,16 @@ export const Tile = styled.button`
     justify-content: flex-start;
     align-items: flex-end;
     height: 12rem;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     font-size: 1rem;
     background: #f5f7fb;
     border: 1px solid #e6eaef;
     border-radius: 4px;
     text-decoration: none;
-    transition: border-color .35s;
+    transition: border-color 0.35s;
     overflow: hidden;
     cursor: pointer;
-    
+
     &:hover,
     &:focus {
         border-color: #cfd6e0;
@@ -110,28 +110,32 @@ export const Tile = styled.button`
         content: '';
         display: none;
         position: absolute;
-        top: .75rem;
-        left: .75rem;
-        width: .6rem;
-        height: .6rem;
+        top: 0.75rem;
+        left: 0.75rem;
+        width: 0.6rem;
+        height: 0.6rem;
         border-radius: 50%;
 
-        ${props => props.status === 'complete' && css`
-            background: green!important;
-            box-shadow: 0 0 2px green;
-        `}
+        ${(props) =>
+            props.status === 'complete' &&
+            css`
+                background: green !important;
+                box-shadow: 0 0 2px green;
+            `}
 
-        ${props => props.status === 'pending' && css`
-            background: orange!important;
-            box-shadow: 0 0 2px orange;
-        `}
+        ${(props) =>
+            props.status === 'pending' &&
+            css`
+                background: orange !important;
+                box-shadow: 0 0 2px orange;
+            `}
     }
 
     &:after {
         content: '';
         position: absolute;
-        bottom: .75rem;
-        right: .75rem;
+        bottom: 0.75rem;
+        right: 0.75rem;
         width: 2.25rem;
         height: 1.125rem;
         background: url('/logo/angular.svg') top left no-repeat, url('/logo/drupal.svg') top right no-repeat;
@@ -146,5 +150,4 @@ export const Tile = styled.button`
         border: 0;
         pointer-events: none;
     }
-    
-`
+`;
