@@ -4,6 +4,6 @@ import { SectionTilesPostComponent } from './section-tiles-post.component';
 @NgModule({
     declarations: [SectionTilesPostComponent],
     imports: [],
-    exports: [SectionTilesPostComponent]
+    exports: [SectionTilesPostComponent],
 })
-export class SectionTilesPostModule { }
+export class SectionTilesPostModule {}
