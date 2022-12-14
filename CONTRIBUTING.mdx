@@ -27,7 +27,7 @@ Private spaces:
 ## Issues?
 
 -   1. **Issues with a component** (basically, component property or CSS issues.)
-       => Please, flag on Github repos issues Tab => Videotron Bifrost team will fix the issue or contributor could suggest a PR in the design system with CoreTeam member in review (refer to CONTRIBUTING.mdx).
+    -   => Please, flag on Github repos issues Tab => Videotron Bifrost team will fix the issue or contributor could suggest a PR in the design system with CoreTeam member in review (refer to CONTRIBUTING.mdx).
 -   2. **Issues with the website** => Product team fix the issue.
 
 ## Frameworks
@@ -65,7 +65,15 @@ npm run start-dev
 
 At this point, Storybook should open on **http://localhost:9008** with the Front-end library inside.
 
-<br />
+### Post installation
+
+The project use Prettier to remove any discusion about styling, so that Pull request are focus on the code instead of the styling.
+You should ensure
+
+-   your IDE is working is the `.editorconfig` _what is [editorconfig](https://editorconfig.org/#overview)_
+-   You have install a helper coding tool. _suggestion : [Tabnine](https://hub.tabnine.com/)_
+-   Configure your IDE to use [Prettier config](https://prettier.io/docs/en/editors.html)
+    <br />
 
 **Take a time, to explore components in Storybook.** For each component:
 
@@ -98,11 +106,11 @@ npm run start-dev
 ```
 
 > Under the hood, `npm run start-dev` will:
->
-> -   Launch an express server to serve twig files.
-> -   Watch changes on twig files and auto-reload.
-> -   Prebuild Storybook (**Compodoc** fetch Angular components props in order to display **Controls Panel** in Storybook).
-> -   Finally, launch Storybook at **http://localhost:9008**.
+
+-   Launch an express server to serve twig files.
+-   Watch changes on twig files and auto-reload.
+-   Prebuild Storybook (**Compodoc** fetch Angular components props in order to display **Controls Panel** in Storybook).
+-   Finally, launch Storybook at **http://localhost:9008**.
 
 **Note about Hot Module Reload:** Since **Drupal** components are server side, you need to refresh the browser to see changes during development.
 
@@ -122,9 +130,9 @@ npm run start-dev
 Everything starts with a Jira ticket :)
 
 -   The goal might come from different source.
-    -   Videotron Designer: Set the goal of new components, and change in design required.
-    -   Core Team: Improvement of the project or technical requirements. Also, Bifrostisation of UIKIT components
-    -   Consumer: They inform us of a bug, an improvement required, and new need from their contact(ex Studio)
+-   Videotron Designer: Set the goal of new components, and change in design required.
+-   Core Team: Improvement of the project or technical requirements. Also, Bifrostisation of UIKIT components
+-   Consumer: They inform us of a bug, an improvement required, and new need from their contact(ex Studio)
 
 **2. Understand the needs**
 
@@ -139,8 +147,8 @@ Everything starts with a Jira ticket :)
 -   Git: For each change, create a new branch with the id of the Jira ticket.
 -   Git: Use the commit naming convention (see below).
 -   Develop in isolation locally with Storybook.
-    -   Ensure you use and IDE compatible with the `.editorconfig`. It give the code styling
-    -   Run a `npm run prettier:format` to ensure every code is accuratly formated
+-   Ensure you use and IDE compatible with the `.editorconfig`. It give the code styling
+-   Run a `npm run prettier:format` to ensure every code is accuratly formated
 -   Set the changelog if the goal was to update something reflected in the NPM package.
 -   Create your Pull Request, when ready to interact with team member.
 -   Git: Push in your branch to run automated tests.
@@ -171,11 +179,11 @@ When required (depending on Minor of Patch version), core maintainers will merge
 The process of merging depends on if the reality of what the Release is about.
 
 -   If it is a Patch: The version must include only change agreed with the end Customer
-    -   If no other minor version has been release: Merge the PR on master if he is clean in the history from the last
-    -   In any other case: Start a branch from the last version TAG, and merge into the new branch.
+-   If no other minor version has been release: Merge the PR on master if he is clean in the history from the last
+-   In any other case: Start a branch from the last version TAG, and merge into the new branch.
 -   If it is a Minor: The version can include any kind of change.
-    -   Merge PR into Master.
-        The core maintainers notify everyone in the Bifrost Teams channel with a link to the new changelog.
+-   Merge PR into Master.
+    The core maintainers notify everyone in the Bifrost Teams channel with a link to the new changelog.
 
 ### Git commit message
 
@@ -215,8 +223,9 @@ If you need to add/change a style:
 
 1. If Bootstrap provides a class for that style, use it in the html or `@extends` the Bootstrap class in your SCSS file. We tend to respect Bootstrap **utility-first** architecture.
 2. If the class should be global, define if it's the Bifrost responsibility or not.
-    - It yes, prefix the class with `bf-` and host it in a SCSS file in **/lib/scss/dependencies/bifrost/**.
-    - If not, you should **warn Bifrost Team** that it could generate visual regressions.
+
+-   It yes, prefix the class with `bf-` and host it in a SCSS file in **/lib/scss/dependencies/bifrost/**.
+-   If not, you should **warn Bifrost Team** that it could generate visual regressions.
 
 ### JS variable bfTheme
 
@@ -257,7 +266,9 @@ For Angular, don't forget to export your new module and/or component in `/lib/pu
 
 1. Receive the small and large svg file from designer exported from Figma
 1. Save those files in `/public/icons/`
-    - Ensure to follow the naming convention (aka: `[icon-name]-[sm|lg].svg`)
+
+-   Ensure to follow the naming convention (aka: `[icon-name]-[sm|lg].svg`)
+
 1. Open those SVG files and replace all hardcoded color for `currentColor`
 1. Copy each SVG files into `projects/front-end-library/src/lib/components/icon/twig/svg-twig`
    and rename them : [original-name.svg].twig
@@ -273,8 +284,8 @@ Create a branch, and the Pull Request named after the version name and replace d
 
 -   the replacement is for Vercel to format the right URL
 -   The new pull request give us a space to work.
-    -   For a Minor, work on last changes for the ChangeLog and generate the version URL for it.
-    -   For a Patch, merge and fix corresponding Jira problem required. also give us the space to work on change log and version ULR.
+-   For a Minor, work on last changes for the ChangeLog and generate the version URL for it.
+-   For a Patch, merge and fix corresponding Jira problem required. also give us the space to work on change log and version ULR.
 
 On the branch version, increment the version in `projects/front-end-library/package.json` depending on the context of the version for the pattern: **MAJOR.MINOR.PATCH**.
 
