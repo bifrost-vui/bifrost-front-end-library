@@ -1,6 +1,6 @@
-{% set isUnderline  = isUnderline|json_parse %}
-{% set isDisabled   = isDisabled|json_parse %}
-{% set reversed     = reversed|json_parse %}
+{% set isUnderline = isUnderline|json_parse %}
+{% set isDisabled = isDisabled|json_parse %}
+{% set reversed = reversed|json_parse %}
 
 {% set variants = [
   {
@@ -14,7 +14,7 @@
   {
     _name: "Ground + Reversed",
     backgroundClass: "bf-color-bg-ground reversed",
-    reversed: true,
+    reversed: true
   },
   {
     _name: "Underground + Reversed",
@@ -35,66 +35,79 @@
 ] %}
 
 <div class="bf-color-bg-underground p-4">
-    <p class="small mb-0">
-        Apply classes <strong>.bflink.bf-link--native</strong> or <strong>.bflink.bf-link--primary</strong> on <code>< a ></code> will display links correctly.
-        <br/> But then, if needed, you still have to recreate <strong>icon</strong> behavior.
-    </p>
+  <p class="small mb-0">
+    Apply classes <strong>.bflink.bf-link--native</strong> or <strong>
+      .bflink.bf-link--primary
+    </strong> on <code>< a ></code> will display links correctly.
+    <br /> But then, if needed, you still have to recreate <strong>icon</strong>
+    behavior.
+  </p>
 </div>
 
 <div class="template-container">
   {% for variant in variants %}
     <div class="d-flex flex-column {{ variant.backgroundClass }}">
-      <h1 class="h3 p-4">
-        {{ variant._name }}
-      </h1>
+      <h1 class="h3 p-4">{{ variant._name }}</h1>
       <div class="d-flex justify-content-center align-items-start gap-5">
-            <div class="d-flex flex-column align-items-start">
-                <p class="small flex-grow-1">Native</p>
+        <div class="d-flex flex-column align-items-start">
+          <p class="small flex-grow-1">Native</p>
 
-                <a
-                    href="#"
-                    class="bf-link {{ hierarchy == "primary" ? "bf-link--primary" : "bf-link--native" }} {{ isDisabled ? "disabled" : "" }} {{ class }}"
-                    {% if isDisabled %}aria-disabled="true" role="link"{% endif %}
-                >
-                    {{ label|default("CSS only") }}
-                </a>
-                <a
-                    href="#"
-                    class="bf-link {{ hierarchy == "primary" ? "bf-link--primary" : "bf-link--native" }} {{ isDisabled|default(true) ? "disabled" : "" }} {{ class }}"
-                    {% if isDisabled|default(true) %}aria-disabled="true" role="link"{% endif %}
-                >
-                    {{ label|default("CSS only disabled") }}
-                </a>
-            </div>
+          <a
+            href="#"
+            class="bf-link {{
+            hierarchy == "primary"
+              ? "bf-link--primary"
+              : "bf-link--native"
+            }} {{ isDisabled ? "disabled" : "" }} {{ class }}"
+            {{ isDisabled ? "aria-disabled='true' role='link'" }}
+          >
+            {{ label|default("CSS only") }}
+          </a>
+          <a
+            href="#"
+            class="bf-link {{
+            hierarchy == "primary"
+              ? "bf-link--primary"
+              : "bf-link--native"
+            }} {{ isDisabled|default(true) ? "disabled" : "" }} {{ class }}"
+            {{ isDisabled|default(true) ? "aria-disabled='true' role='link'" }}
+          >
+            {{ label|default("CSS only disabled") }}
+          </a>
+        </div>
 
-            <div class="d-flex flex-column align-items-start">
+        <div class="d-flex flex-column align-items-start">
+          <p class="small flex-grow-1">Primary</p>
 
-                <p class="small flex-grow-1">Primary</p>
-
-                <a
-                    href="#"
-                    class="bf-link {{ hierarchy|default("primary") == "primary" ? "bf-link--primary" : "bf-link--native" }} {{ isDisabled ? "disabled" : "" }} {{ class }}"
-                    {% if isDisabled %}aria-disabled="true" role="link"{% endif %}
-                >
-                    {{ label|default("CSS only") }}
-                </a>
-                <a
-                    href="#"
-                    class="bf-link {{ hierarchy|default("primary") == "primary" ? "bf-link--primary" : "bf-link--native" }} {{ isDisabled|default(true) ? "disabled" : "" }} {{ class }}"
-                    {% if isDisabled|default(true) %}aria-disabled="true" role="link"{% endif %}
-                >
-                    {{ label|default("CSS only disabled") }}
-                </a>
-            </div>
+          <a
+            href="#"
+            class="bf-link {{
+            (hierarchy|default("primary")) == "primary"
+              ? "bf-link--primary"
+              : "bf-link--native"
+            }} {{ isDisabled ? "disabled" : "" }} {{ class }}"
+            {{ isDisabled ? "aria-disabled='true' role='link'" }}
+          >
+            {{ label|default("CSS only") }}
+          </a>
+          <a
+            href="#"
+            class="bf-link {{
+            (hierarchy|default("primary")) == "primary"
+              ? "bf-link--primary"
+              : "bf-link--native"
+            }} {{ isDisabled|default(true) ? "disabled" : "" }} {{ class }}"
+            {{ isDisabled|default(true) ? "aria-disabled='true' role='link'" }}
+          >
+            {{ label|default("CSS only disabled") }}
+          </a>
+        </div>
       </div>
     </div>
   {% endfor %}
 </div>
 
 <style>
-  .template-container {
-    display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(400px, 1fr));
-    height: 100vh;
-  }
+  .template-container { display: grid; grid-template-columns: repeat( auto-fit,
+  minmax(400px, 1fr)); height: 100vh; }
 </style>

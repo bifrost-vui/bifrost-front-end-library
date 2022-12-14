@@ -1,13 +1,13 @@
-import {ILink} from "../../link/angular/api.model";
+import { ILink } from '../../link/angular/api.model';
 
-export interface IFooter{
+export interface IFooter {
     description: HTMLElement;
     link: ILink;
     iconName: string;
     image: {
-        src: string,
-        alt: string
-    }
+        src: string;
+        alt: string;
+    };
 }
 
 export interface ISelectionTile {

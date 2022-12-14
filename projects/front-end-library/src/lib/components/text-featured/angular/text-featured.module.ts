@@ -4,6 +4,6 @@ import { TextFeaturedComponent } from './text-featured.component';
 @NgModule({
     declarations: [TextFeaturedComponent],
     imports: [],
-    exports: [TextFeaturedComponent]
+    exports: [TextFeaturedComponent],
 })
-export class TextFeaturedModule { }
+export class TextFeaturedModule {}

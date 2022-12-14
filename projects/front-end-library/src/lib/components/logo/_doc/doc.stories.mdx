@@ -1,16 +1,13 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { allLogoCategories }                    from './data';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { LogoComponent }                        from '../angular/logo.component';
-
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { allLogoCategories } from './data';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { LogoComponent } from '../angular/logo.component';
 
 <Meta
-    title='Components/Logo'
+    title="Components/Logo"
     component={LogoComponent}
-    decorators={[
-        moduleMetadata({ declarations: [LogoComponent, TwigContainerComponent]}),
-    ]}
+    decorators={[moduleMetadata({ declarations: [LogoComponent, TwigContainerComponent] })]}
     argTypes={{
         name: {
             control: { type: 'select' },
@@ -22,7 +19,7 @@ import { LogoComponent }                        from '../angular/logo.component'
         },
         langcode: {
             control: {
-                type: 'select'
+                type: 'select',
             },
             table: { defaultValue: { summary: 'en' } },
         },
@@ -30,24 +27,18 @@ import { LogoComponent }                        from '../angular/logo.component'
             table: { defaultValue: { summary: false } },
         },
         allLogoCategories: {
-            table: { disable: true }
-        }
+            table: { disable: true },
+        },
     }}
 />
 
-
 # Logo
 
-<br/>
-
-
+<br />
 
 ## Component API
 
 <ArgsTable of={LogoComponent} />
-
-
-
 
 ## Drupal implementation example
 
@@ -59,8 +50,6 @@ import { LogoComponent }                        from '../angular/logo.component'
 } only %}
 ```
 
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -68,30 +57,28 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        height='300px'
+        name="Drupal"
+        height="300px"
         args={{
-            elementPath : 'components/logo/_doc/template.drupal',
+            elementPath: 'components/logo/_doc/template.drupal',
             reversed: undefined,
         }}
-        height='160px'
+        height="160px"
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-
-
 ## Drupal All Logos
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - All logos'
-        height='800px'
+        name="Drupal - All logos"
+        height="800px"
         args={{
-            elementPath : 'components/logo/_doc/template-all.drupal',
+            elementPath: 'components/logo/_doc/template-all.drupal',
             allLogoCategories,
         }}
     >

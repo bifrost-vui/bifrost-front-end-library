@@ -1,30 +1,22 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { TileComponent }                        from '../angular/tile.component';
-
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { TileComponent } from '../angular/tile.component';
 
 <Meta
-    title='Components/Tile'
+    title="Components/Tile"
     component={TileComponent}
-    decorators={[
-        moduleMetadata({ declarations: [TileComponent, TwigContainerComponent]})
-    ]}
+    decorators={[moduleMetadata({ declarations: [TileComponent, TwigContainerComponent] })]}
     argTypes={{}}
 />
 
-
 # Tile
 
-<br/>
-
-
+<br />
 
 ## Component API
 
 <ArgsTable of={TileComponent} />
-
-
 
 ## Drupal implementation example
 
@@ -34,8 +26,6 @@ import { TileComponent }                        from '../angular/tile.component'
 } only %}
 ```
 
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -43,14 +33,14 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        height='600px'
+        name="Drupal"
+        height="600px"
         args={{
-            elementPath     : 'components/tile/_doc/template.drupal',
-            class           : '',
-            content         : `<div class='d-flex flex-column'><img src='/logo/google.svg' /></div>`,
+            elementPath: 'components/tile/_doc/template.drupal',
+            class: '',
+            content: `<div class='d-flex flex-column'><img src='/logo/google.svg' /></div>`,
             reversed: undefined,
         }}
     >
@@ -58,14 +48,13 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - List example'
-        height='600px'
+        name="Drupal - List example"
+        height="600px"
         parameters={{ options: { showPanel: false } }}
         args={{
-            elementPath     : 'components/tile/_doc/list.drupal',
+            elementPath: 'components/tile/_doc/list.drupal',
             reversed: undefined,
         }}
     >

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 /**
  * API is the same between **Angular** and **Drupal**.
@@ -13,16 +13,16 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from
 export class BlockSelectionComponent implements OnInit {
     constructor() {}
 
-    @Input() topLink                : object;
-    @Input() contentLists           : object;
-    @Input() totalPrice             : object;
-    @Input() isCollapsableOnMobile  : boolean;
-    @Input() isCollapsedByDefaultOnMobile   : boolean;
+    @Input() topLink: object;
+    @Input() contentLists: object;
+    @Input() totalPrice: object;
+    @Input() isCollapsableOnMobile: boolean;
+    @Input() isCollapsedByDefaultOnMobile: boolean;
 
-    @Input() title                  : string;
-    @Input() titleTag               : string;
-    @Input() class                  : string;
-    @Input() reversed               : boolean;
+    @Input() title: string;
+    @Input() titleTag: string;
+    @Input() class: string;
+    @Input() reversed: boolean;
 
     ngOnInit() {
         console.log('block selection', this);

@@ -6,51 +6,53 @@ import { TwigContainerComponent } from '../../../../utils/twig-container/twig-co
 import { SelectionTileComponent } from '../angular/selection-tile.component';
 
 <Meta
-    title='Components/Selection Tile'
+    title="Components/Selection Tile"
     component={SelectionTileComponent}
-    decorators={[
-        moduleMetadata({ declarations: [SelectionTileComponent, TwigContainerComponent]}),
-        withDesign
-    ]}
+    decorators={[moduleMetadata({ declarations: [SelectionTileComponent, TwigContainerComponent] }), withDesign]}
     parameters={{
         design: {
             type: 'figma',
             url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=14481%3A156160',
-            disable: false
-        }
+            disable: false,
+        },
     }}
     argTypes={{
-        type:{
+        type: {
             defaultValue: 'checkbox',
             table: { defaultValue: { summary: 'checkbox' } },
-            control: { type: 'select' }
+            control: { type: 'select' },
         },
-        value: {type: { required: true } },
-        id: {type: { required: true } },
-        ariaLabel: {type: { required: true } },
+        value: { type: { required: true } },
+        id: { type: { required: true } },
+        ariaLabel: { type: { required: true } },
         orientation: {
             defaultValue: 'horizontal',
             table: { defaultValue: { summary: 'horizontal' } },
-            control: { type: 'select' }
+            control: { type: 'select' },
         },
-        fit:{
+        fit: {
             defaultValue: 'content',
             table: { defaultValue: { summary: 'content' } },
-            control: { type: 'select' }
+            control: { type: 'select' },
         },
         iconName: {
             defaultValue: '',
             control: {
                 type: 'select',
-                options: [ ...illustrationIcons.map(a => a.list).flat().sort()],
-            }
-        }
+                options: [
+                    ...illustrationIcons
+                        .map((a) => a.list)
+                        .flat()
+                        .sort(),
+                ],
+            },
+        },
     }}
 />
 
 # Selection Tile
 
-<br/>
+<br />
 
 ## Component API
 
@@ -73,9 +75,9 @@ export const commonProps = {
     class: 'm-2',
 };
 
-<Canvas withSource='none' style={{ height: '600px' }}>
+<Canvas withSource="none" style={{ height: '600px' }}>
     <Story
-        name='Drupal'
+        name="Drupal"
         args={{
             elementPath: 'components/selection-tile/_doc/template.drupal',
             ...commonProps,
@@ -85,9 +87,9 @@ export const commonProps = {
     </Story>
 </Canvas>
 
-<Canvas withSource='none' style={{ height: '600px' }}>
+<Canvas withSource="none" style={{ height: '600px' }}>
     <Story
-        name='Drupal - With footer icons'
+        name="Drupal - With footer icons"
         args={{
             elementPath: 'components/selection-tile/_doc/template.drupal',
             ...commonProps,
@@ -96,19 +98,19 @@ export const commonProps = {
                 description: `<p class='mb-0'>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
                 link: {
                     label: 'Learn more about Take-back Credit',
-                    href: 'https://example.com'
+                    href: 'https://example.com',
                 },
-                iconName: 'credit-return'
-            }
+                iconName: 'credit-return',
+            },
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none' style={{ height: '600px' }}>
+<Canvas withSource="none" style={{ height: '600px' }}>
     <Story
-        name='Drupal - With footer image'
+        name="Drupal - With footer image"
         args={{
             elementPath: 'components/selection-tile/_doc/template.drupal',
             ...commonProps,
@@ -117,29 +119,29 @@ export const commonProps = {
                 description: `<p class='mb-0'>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
                 link: {
                     label: 'Learn more about Take-back Credit',
-                    href: 'https://example.com'
+                    href: 'https://example.com',
                 },
                 image: {
-                    src:'/images/assets/tv.png',
-                    alt:'TVA Sports',
-                }
-            }
+                    src: '/images/assets/tv.png',
+                    alt: 'TVA Sports',
+                },
+            },
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none' style={{ height: '600px' }}>
+<Canvas withSource="none" style={{ height: '600px' }}>
     <Story
-        name='Drupal - With orientation vertical'
+        name="Drupal - With orientation vertical"
         args={{
             elementPath: 'components/selection-tile/_doc/template.drupal',
             ...commonProps,
             image: {
                 src: '/images/logo/channels/tva-sports.svg',
                 alt: 'TVA Sports',
-                class: ''
+                class: '',
             },
             orientation: 'vertical',
         }}
@@ -148,16 +150,16 @@ export const commonProps = {
     </Story>
 </Canvas>
 
-<Canvas withSource='none' style={{ height: '600px' }}>
+<Canvas withSource="none" style={{ height: '600px' }}>
     <Story
-        name='Drupal - With orientation vertical and fit container'
+        name="Drupal - With orientation vertical and fit container"
         args={{
             elementPath: 'components/selection-tile/_doc/template.drupal',
             ...commonProps,
             image: {
                 src: '/images/logo/channels/tva-sports.svg',
                 alt: 'TVA Sports',
-                class: ''
+                class: '',
             },
             orientation: 'vertical',
             fit: 'container',
@@ -166,7 +168,6 @@ export const commonProps = {
         {Drupal.bind({})}
     </Story>
 </Canvas>
-
 
 ## Drupal's implementation examples
 
@@ -263,14 +264,22 @@ export const commonProps = {
 ## More Info
 
 <!-- TODO mettre à jour si on transforme fit en bolean (genre fitContainer) -->
-- The *Selection Tile* comes in 4 layout combinations are:
-    - fit: `content`   + orientation: `horizontal` (default value)
-    - fit: `container` + orientation: `horizontal`
-    - fit: `content`   + orientation: `vertical` (mostly for channel selection tiles)
-    - fit: `container` + orientation: `vertical`
 
-- The Selection Tile mimics the behavior of the input type: **radio button** or **checkbox**
+-   The _Selection Tile_ comes in 4 layout combinations are:
+
+    -   fit: `content` + orientation: `horizontal` (default value)
+    -   fit: `container` + orientation: `horizontal`
+    -   fit: `content` + orientation: `vertical` (mostly for channel selection tiles)
+    -   fit: `container` + orientation: `vertical`
+
+-   The Selection Tile mimics the behavior of the input type: **radio button** or **checkbox**
 
 ## Design Guidelines
 
-<iframe width='100%' height='600' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D14481%253A156160&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>
+<iframe
+    width="100%"
+    height="600"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D14481%253A156160&chrome=DOCUMENTATION"
+    frameBorder="0"
+    allowFullScreen
+></iframe>

@@ -5,7 +5,7 @@
 * ***************************************************************************** */
 
 .btn {
-  @include transitions(background,color,border-color);
+  @include transitions(background, color, border-color);
   @extend .vui--text-highlight;
   @extend .vui--font-secondary-bold;
   font-size: $form-font-size;
@@ -22,7 +22,7 @@
   }
 
   &:not(.btn-small):not(.w-100):not(.link-underline):not(.btn-link-underline) {
-    @include media-breakpoint-up(md){
+    @include media-breakpoint-up(md) {
       min-width: 12rem;
       padding-left: 3rem;
       padding-right: 3rem;
@@ -45,7 +45,7 @@
   &-disabled,
   &[disabled],
   &.disabled {
-    @include plain-hover-focus(){
+    @include plain-hover-focus() {
       background: $input-disabled-bg;
       border-color: $input-disabled-bg;
       cursor: inherit;
@@ -65,26 +65,26 @@
   }
 
   &--load-more {
-    @include hover-focus(){
+    @include hover-focus() {
       padding-left: $btn-padding-y !important;
       padding-right: $btn-padding-y !important;
     }
   }
 
   &--no-hover {
-    @include hover-focus-active{
+    @include hover-focus-active {
       background: inherit !important;
     }
   }
 
   &--collapse-sticky-bottom {
-    padding: 0.2rem .8rem;
+    padding: 0.2rem 0.8rem;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     font-size: $legacy-font-size-base;
     position: relative;
 
-    &[aria-expanded="true"]{
+    &[aria-expanded='true'] {
       .icon {
         transform: rotate(-225deg) translate(-0.1rem, 0.1rem);
       }
@@ -93,34 +93,42 @@
     &:before,
     &:after {
       @include size(0);
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       border-style: solid;
     }
 
     &:before {
-      left:0;
+      left: 0;
       transform: translate(-95%, 0);
-      border-width: 0 0 1.698rem .8rem;
+      border-width: 0 0 1.698rem 0.8rem;
       border-color: transparent transparent $dark transparent;
     }
 
     &:after {
       right: 0;
       transform: translate(95%, 0);
-      border-width: 1.698rem 0 0 .8rem;
+      border-width: 1.698rem 0 0 0.8rem;
       border-color: transparent transparent transparent $dark;
     }
   }
 }
 
-button[aria-expanded]{
-  .button-expanded__label-false { display: block;}
-  .button-expanded__label-true { display: none;}
+button[aria-expanded] {
+  .button-expanded__label-false {
+    display: block;
+  }
+  .button-expanded__label-true {
+    display: none;
+  }
 
-  &[aria-expanded="true"]{
-    .button-expanded__label-false { display: none;}
-    .button-expanded__label-true { display: block;}
+  &[aria-expanded='true'] {
+    .button-expanded__label-false {
+      display: none;
+    }
+    .button-expanded__label-true {
+      display: block;
+    }
   }
 }

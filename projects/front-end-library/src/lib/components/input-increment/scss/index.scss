@@ -5,38 +5,38 @@
 * ***************************************************************************** */
 
 .bf-input-increment {
-    display: flex;
-    flex-flow: row;
-    align-items: center;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
 
-    input[type=number] {
-        appearance: textfield;
+  input[type='number'] {
+    appearance: textfield;
 
-        &::-webkit-inner-spin-button,
-        &::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
-    &__feedback {
-        display: none;
+  }
+  &__feedback {
+    display: none;
+  }
+  &__input {
+    padding: 0;
+    max-width: 5rem;
+    line-height: 2.5rem;
+    color: currentColor;
+    background: none;
+  }
+  &.disabled {
+    @extend .bf-color-neutral-secondary;
+  }
+  &.is-invalid {
+    .bf-input-increment__feedback {
+      @extend .invalid-feedback;
+      @extend .pt-2;
+      @extend .w-100;
+      display: block;
     }
-    &__input {
-        padding: 0;
-        max-width: 5rem;
-        line-height: 2.5rem;
-        color: currentColor;
-        background: none;
-    }
-    &.disabled {
-        @extend .bf-color-neutral-secondary;
-    }
-    &.is-invalid {
-        .bf-input-increment__feedback {
-            @extend .invalid-feedback;
-            @extend .pt-2;
-            @extend .w-100;
-            display: block;
-        }
-    }
+  }
 }

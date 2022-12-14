@@ -4,6 +4,6 @@ import { SectionKeysComponent } from './section-keys.component';
 @NgModule({
     declarations: [SectionKeysComponent],
     imports: [],
-    exports: [SectionKeysComponent]
+    exports: [SectionKeysComponent],
 })
-export class SectionKeysModule { }
+export class SectionKeysModule {}

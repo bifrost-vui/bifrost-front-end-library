@@ -1,42 +1,61 @@
-{% set hasImage         = image is defined and image.src %}
-{% set titleTag         = titleTag|default("p") %}
-{% set isFeatured       = isFeatured|default(false) %}
+{% set hasImage = image is defined and image.src %}
+{% set titleTag = titleTag|default("p") %}
+{% set isFeatured = isFeatured|default(false) %}
 
-<article class="
-  bf-block bf-block--highlight {{ isFeatured ? "bf-block--featured" }}
-  w-100 d-flex flex-column flex-sm-row overflow-hidden bf-border-radius-medium border bf-border-color-secondary
-  {{ blockBackgroundColor|default("ground") == "underground" ? "bf-color-bg-underground" : "bf-color-bg-ground" }}
+<article
+  class="bf-block bf-block--highlight w-100 d-flex flex-column flex-sm-row overflow-hidden bf-border-radius-medium border bf-border-color-secondary
+  {{
+  isFeatured
+    ? "bf-block--featured"
+  }}
+  {{
+  (blockBackgroundColor|default("ground")) == "underground"
+    ? "bf-color-bg-underground"
+    : "bf-color-bg-ground"
+  }}
   {{ reversed is defined and reversed ? "reversed" }}
-  {{ class|default("") }}"
+  {{ class|default(
+    ""
+  ) }}"
 >
   {% if hasImage %}
     <div
-      class="bf-block__visual bf-color-bg-brand {{ isVisualBackgroundFill|default(true) ? "bf-block__visual--fill" }}"
+      class="bf-block__visual bf-color-bg-brand {{
+      isVisualBackgroundFill|default(true)
+        ? "bf-block__visual--fill"
+      }}"
       style="background-image: url({{ image.src }});
-        {% if visualBackgroundColor is defined and visualBackgroundColor %}background-color: {{ visualBackgroundColor }}; {% endif %}
+        {{
+      visualBackgroundColor is defined and visualBackgroundColor
+        ? "background-color: " ~ visualBackgroundColor ~ ";"
+      }}
       "
-    >
-    </div>
+    ></div>
   {% endif %}
 
-  <div class="d-flex flex-column {{ isFeatured ? "justify-content-center" }} p-4 p-sm-5">
+  <div
+    class="d-flex flex-column {{
+    isFeatured
+      ? "justify-content-center"
+    }} p-4 p-sm-5"
+  >
     {% if title is defined %}
-      <{{ titleTag }} class="text-break {{ isFeatured ? "h2" : "h3" }}">
-        {{ title }}
-      </{{ titleTag }}>
+      {{ "<" ~ titleTag }} class="text-break {{ isFeatured ? "h2" : "h3" }}">
+      {{ title }}
+      {{ "</" ~ titleTag }}>
     {% endif %}
     {% if paragraph is defined %}
-      <p>
-        {{ paragraph }}
-      </p>
+      <p>{{ paragraph }}</p>
     {% endif %}
     {% if button is defined %}
-      {% set button = button|merge(
-        {
-          "class"     : "mt-2 " ~ button.class,
-          "hierarchy" : button.hierarchy|default(isFeatured ? "primary-alt" : "secondary")
-        }
-      ) %}
+      {% set button =
+        button|merge({
+          class: "mt-2 " ~ button.class,
+          hierarchy: button.hierarchy|default(
+            isFeatured ? "primary-alt" : "secondary"
+          )
+        })
+      %}
       {% include "@bf-components/button/twig/index.twig" with button only %}
     {% endif %}
   </div>

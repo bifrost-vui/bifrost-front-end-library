@@ -10,24 +10,24 @@ export class ButtonNavComponent implements OnInit {
     /**
         A button will become a link if `href` is defined.
     */
-    @Input() href           : string;
-    @Input() label          : string;
-    @Input() description    : string;
-    @Input() iconName       : string;
-    @Input() isFeatured     : boolean;
-    @Input() isDisabled     : boolean;
+    @Input() href: string;
+    @Input() label: string;
+    @Input() description: string;
+    @Input() iconName: string;
+    @Input() isFeatured: boolean;
+    @Input() isDisabled: boolean;
 
-    @Input() dataDismiss    : string;
-    @Input() dataToggle     : string;
-    @Input() dataTarget     : string;
-    @Input() ariaControls   : string;
-    @Input() ariaExpanded   : string;
-    @Input() ariaLabel      : string;
-    @Input() extraAttribute : string;
+    @Input() dataDismiss: string;
+    @Input() dataToggle: string;
+    @Input() dataTarget: string;
+    @Input() ariaControls: string;
+    @Input() ariaExpanded: string;
+    @Input() ariaLabel: string;
+    @Input() extraAttribute: string;
 
-    @Input() class          : string;
-    @Input() reversed       : boolean;
-    @Input() highlight      : boolean;
+    @Input() class: string;
+    @Input() reversed: boolean;
+    @Input() highlight: boolean;
 
     ngOnInit() {
         console.log('button nav', this);

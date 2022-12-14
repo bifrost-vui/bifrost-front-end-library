@@ -5,70 +5,67 @@
 * ***************************************************************************** */
 
 .bf-block--selection {
-    width: 100%;
-    border: 1px solid var(--bf-color-stroke-primary);
-    border-radius: var(--bf-border-radius-medium);
-    overflow: hidden;
+  width: 100%;
+  border: 1px solid var(--bf-color-stroke-primary);
+  border-radius: var(--bf-border-radius-medium);
+  overflow: hidden;
 
-    .bf-block__toggle {
-        display: none;
-        padding: 0;
-        border: 0;
-        background: none;
-        appearance: none;
+  .bf-block__toggle {
+    display: none;
+    padding: 0;
+    border: 0;
+    background: none;
+    appearance: none;
+  }
+
+  &.bf-block--collapsable {
+    #bf-block-collapse {
+      // display: block; // Nice to Have: Force visibility on resize above small
     }
 
-    &.bf-block--collapsable {
-
-        #bf-block-collapse {
-            // display: block; // Nice to Have: Force visibility on resize above small
-        }
-
-        @include media-breakpoint-up(md) {
-            #bf-block-collapse.collapse {
-                display: block;
-            }
-        }
-
-        @include media-breakpoint-down(sm) {
-            border-radius: 0;
-            border: none;
-            border-bottom: 1px solid var(--bf-color-stroke-secondary);
-
-            .bf-block__toggle {
-                display: block;
-                color: inherit; // NOTE: Could be applied to all `button` when PL will be disconnected.
-
-                &:not(.collapsed) .bf-icon.icon-plus {
-                    display: none;
-                }
-
-                &.collapsed {
-
-                    .bf-icon.icon-minus {
-                        display: none;
-                    }
-                }
-            }
-
-            #bf-block-collapse {
-                padding-top: 0 !important;
-
-                header .header__title {
-                    visibility: hidden;
-                }
-            }
-        }
+    @include media-breakpoint-up(md) {
+      #bf-block-collapse.collapse {
+        display: block;
+      }
     }
 
-    .bf-block__item {
+    @include media-breakpoint-down(sm) {
+      border-radius: 0;
+      border: none;
+      border-bottom: 1px solid var(--bf-color-stroke-secondary);
 
-        &:first-child {
-            border-top: none !important;
+      .bf-block__toggle {
+        display: block;
+        color: inherit; // NOTE: Could be applied to all `button` when PL will be disconnected.
+
+        &:not(.collapsed) .bf-icon.icon-plus {
+          display: none;
         }
 
-        &:last-child {
-            padding-bottom: 0 !important;
+        &.collapsed {
+          .bf-icon.icon-minus {
+            display: none;
+          }
         }
+      }
+
+      #bf-block-collapse {
+        padding-top: 0 !important;
+
+        header .header__title {
+          visibility: hidden;
+        }
+      }
     }
+  }
+
+  .bf-block__item {
+    &:first-child {
+      border-top: none !important;
+    }
+
+    &:last-child {
+      padding-bottom: 0 !important;
+    }
+  }
 }

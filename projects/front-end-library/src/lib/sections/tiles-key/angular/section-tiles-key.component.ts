@@ -18,5 +18,4 @@ export class SectionTilesKeyComponent implements OnInit {
     ngOnInit() {
         console.log('Section Tiles Key', this);
     }
-
 }

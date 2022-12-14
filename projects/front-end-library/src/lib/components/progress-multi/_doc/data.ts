@@ -5,7 +5,7 @@ export const progressData = [
         percent: 10,
         currentValue: 1,
         minValue: 0,
-        maxValue: 2
+        maxValue: 2,
     },
     {
         label: 'Data-bloc',
@@ -13,7 +13,7 @@ export const progressData = [
         percent: 22.5,
         currentValue: 3,
         minValue: 0,
-        maxValue: 4
+        maxValue: 4,
     },
     {
         label: 'PPu',
@@ -21,6 +21,6 @@ export const progressData = [
         percent: 20,
         currentValue: 2,
         minValue: 0,
-        maxValue: 4
+        maxValue: 4,
     },
 ];

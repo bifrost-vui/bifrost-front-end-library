@@ -5,19 +5,15 @@ import interfaceIcons from '../../../../../../../public/icons/list/interfaces.js
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { ButtonComponent } from '../angular/button.component';
 
-
 <Meta
-    title='Components/Button'
+    title="Components/Button"
     component={ButtonComponent}
-    decorators={[
-        moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent]}),
-        withDesign
-    ]}
+    decorators={[moduleMetadata({ declarations: [ButtonComponent, TwigContainerComponent] }), withDesign]}
     parameters={{
         design: {
             type: 'figma',
             url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=9579%3A88',
-            disable: false
+            disable: false,
         },
     }}
     argTypes={{
@@ -25,51 +21,54 @@ import { ButtonComponent } from '../angular/button.component';
             defaultValue: '',
             control: {
                 type: 'select',
-                options: ['', 'primary', 'primary-alt', 'secondary', 'tertiary' ]
-            }
+                options: ['', 'primary', 'primary-alt', 'secondary', 'tertiary'],
+            },
         },
         formEncryptionType: {
-            table: { defaultValue: { summary: `null` }},
-            control: { type: 'select' }
+            table: { defaultValue: { summary: `null` } },
+            control: { type: 'select' },
         },
-        formNoValidate: { table: {defaultValue: {summary: false}}},
+        formNoValidate: { table: { defaultValue: { summary: false } } },
         formTarget: {
-            table: { defaultValue: { summary: `null` }},
-            control: { type: 'select' }
+            table: { defaultValue: { summary: `null` } },
+            control: { type: 'select' },
         },
-        hasLoading: { table: { defaultValue: { summary: false }}},
+        hasLoading: { table: { defaultValue: { summary: false } } },
         iconName: {
             defaultValue: '',
             control: {
                 type: 'select',
-                options: ['', 'placeholder', ...interfaceIcons.map(a => a.list).flat().sort()]
-            }
+                options: [
+                    '',
+                    'placeholder',
+                    ...interfaceIcons
+                        .map((a) => a.list)
+                        .flat()
+                        .sort(),
+                ],
+            },
         },
         iconPosition: {
             defaultValue: '',
-            table: { defaultValue: { summary: `left` }},
+            table: { defaultValue: { summary: `left` } },
             control: {
                 type: 'select',
-                options: ['', 'left', 'right']
-            }
+                options: ['', 'left', 'right'],
+            },
         },
-        isDisabled: { table:{ defaultValue: { summary: false }}},
-        isLoading: { table: { defaultValue: { summary: false }}},
-        isSubmit: { table: { defaultValue: { summary: false }}}
+        isDisabled: { table: { defaultValue: { summary: false } } },
+        isLoading: { table: { defaultValue: { summary: false } } },
+        isSubmit: { table: { defaultValue: { summary: false } } },
     }}
 />
 
-
 # Button
 
-<br/>
-
-
+<br />
 
 ## Component API
 
 <ArgsTable of={ButtonComponent} />
-
 
 ## Drupal implementation example
 
@@ -116,7 +115,6 @@ import { ButtonComponent } from '../angular/button.component';
 } only %}
 ```
 
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -124,36 +122,35 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
+        name="Drupal"
         args={{
-            elementPath     : 'components/button/_doc/template.drupal',
-            class           : 'mb-3',
-            dataDismiss     : 'dataDismiss',
-            dataToggle      : 'dataToggle',
-            dataTarget      : 'dataTarget',
-            ariaControls    : 'ariaControls',
-            ariaExpanded    : 'ariaExpanded',
-            ariaLabel       : 'ariaLabel',
-            extraAttribute  : 'extraAttribute',
-            isDisabled : undefined,
-            isLoading : undefined,
+            elementPath: 'components/button/_doc/template.drupal',
+            class: 'mb-3',
+            dataDismiss: 'dataDismiss',
+            dataToggle: 'dataToggle',
+            dataTarget: 'dataTarget',
+            ariaControls: 'ariaControls',
+            ariaExpanded: 'ariaExpanded',
+            ariaLabel: 'ariaLabel',
+            extraAttribute: 'extraAttribute',
+            isDisabled: undefined,
+            isLoading: undefined,
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - CSS only'
-        height='700px'
+        name="Drupal - CSS only"
+        height="700px"
         parameters={{ options: { showPanel: false } }}
         args={{
-            elementPath : 'components/button/_doc/css-only.drupal',
-            class       : 'ml-4 mb-3',
+            elementPath: 'components/button/_doc/css-only.drupal',
+            class: 'ml-4 mb-3',
         }}
     >
         {Drupal.bind({})}
@@ -162,4 +159,10 @@ export const Drupal = (args) => ({
 
 ## Design Guidelines
 
-<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D9579%253A88' frameBorder='0' allowFullScreen></iframe>
+<iframe
+    width="100%"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D9579%253A88"
+    frameBorder="0"
+    allowFullScreen
+></iframe>

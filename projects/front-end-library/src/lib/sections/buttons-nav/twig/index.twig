@@ -9,12 +9,19 @@
   {% set backgroundClass = "bf-color-bg-ground" %}
 {% endif %}
 
-<section class="bf-section-buttons-nav d-flex flex-column flex-lg-row {{ backgroundClass }} {{ reversed|default(false) ? "reversed" }} {{ class|default(null) }}" {{ extraAttribute|default(null) }}>
-  <div class="container-fluid-percentage d-flex flex-column align-items-center py-6 px-4">
+<section
+  class="bf-section-buttons-nav d-flex flex-column flex-lg-row {{
+  backgroundClass
+  }} {{ reversed|default(false) ? "reversed" }} {{ class|default(null) }}"
+  {{ extraAttribute|default(null) }}
+>
+  <div
+    class="container-fluid-percentage d-flex flex-column align-items-center py-6 px-4"
+  >
     {% if title is defined and title %}
-      <{{ titleTag }} class="h2 mb-4 text-center title-max-w">
-        {{ title }}
-      </{{ titleTag }}>
+      {{ "<" ~ titleTag }} class="h2 mb-4 text-center title-max-w">
+      {{ title }}
+      {{ "</" ~ titleTag }}>
     {% endif %}
 
     {% if buttons is defined and buttons %}
@@ -25,13 +32,20 @@
         {% endif %}
       {% endfor %}
 
-      <ul class="bf-section-buttons-nav__list {{ hasDescription ? "bf-section-buttons-nav__list--has-description" }} list gap-4">
+      <ul
+        class="bf-section-buttons-nav__list {{
+        hasDescription
+          ? "bf-section-buttons-nav__list--has-description"
+        }} list gap-4"
+      >
         {% for button in buttons %}
           <li class="bf-section-buttons-nav__item">
-            {% set button = button|merge({
-              class: "h-100 align-items-start " ~ button.class,
-              highlight: buttonNavHighlight|default(false)
-            }) %}
+            {% set button =
+              button|merge({
+                class: "h-100 align-items-start " ~ button.class,
+                highlight: buttonNavHighlight|default(false)
+              })
+            %}
             {% include "@bf-components/button-nav/twig/index.twig" with button %}
           </li>
         {% endfor %}
@@ -40,12 +54,15 @@
   </div>
 
   {% if asideSection is defined and asideSection is not empty %}
-    <div class="bf-section-buttons-nav__right-section d-flex flex-column justify-content-center align-items-center bf-color-bg-underground text-center p-6">
+    <div
+      class="bf-section-buttons-nav__right-section d-flex flex-column justify-content-center align-items-center bf-color-bg-underground text-center p-6"
+    >
       <div class="bf-section-buttons-nav__right-section__inner">
         {% if asideSection.title is defined and asideSection.title %}
           <h2>{{ asideSection.title }}</h2>
         {% endif %}
-        {% if asideSection.description is defined and asideSection.description %}
+        {% if
+          asideSection.description is defined and asideSection.description %}
           <p>{{ asideSection.description }}</p>
         {% endif %}
         {% if asideSection.link is defined and asideSection.link %}

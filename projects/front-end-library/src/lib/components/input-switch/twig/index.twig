@@ -7,16 +7,35 @@
   {% endif %}
 {% endif %}
 
-<label class="bf-input-switch {{ (isDisabled is defined and isDisabled) ? "disabled" }} {{ class|default("") }}">
-  <span class="bf-text-display-sub-medium  bf-input-switch__label {{ labelPosition|default(null) == "right" ? "bf-input-switch__label--right" }} {{ label.class|default(null) }}">{{ labelText }}</span>
+<label
+  class="bf-input-switch {{
+  isDisabled is defined and isDisabled
+    ? "disabled"
+  }} {{ class|default("") }}"
+>
+  <span
+    class="bf-text-display-sub-medium  bf-input-switch__label {{
+    (labelPosition|default(null)) == "right"
+      ? "bf-input-switch__label--right"
+    }} {{ label.class|default(null) }}"
+  >
+    {{ labelText }}
+  </span>
   <input
     id="{{ id }}"
     name="{{ name }}"
     type="checkbox"
-    {% if isDisabled is defined and isDisabled %}disabled aria-disabled="true"{% endif %}
-    {% if isChecked is defined and isChecked %}checked{% endif %}
-    {% if ariaLabel is defined and ariaLabel %}aria-label="{{ ariaLabel }}"
-    {% elseif ariaLabelledby is defined and ariaLabelledby %}aria-labelledby="{{ ariaLabelledby }}" {% endif %}
+    {{
+    isDisabled is defined and isDisabled
+      ? " disabled aria-disabled='true'"
+    }}
+    {{ isChecked is defined and isChecked ? " checked" }}
+    {{
+    ariaLabel is defined and ariaLabel
+      ? " aria-label='" ~ ariaLabel ~ "'"
+      : ariaLabelledby is defined and ariaLabelledby
+        ? " aria-labelledby='" ~ ariaLabelledby ~ "'"
+    }}
     {{ extraAttribute|default(null) }}
   />
   <span class="bf-input-switch__control"></span>

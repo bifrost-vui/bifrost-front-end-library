@@ -5,8 +5,6 @@
 * ***************************************************************************** */
 
 .dropdown {
-
-
   &__selected-text {
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -15,18 +13,18 @@
 
   // Legacy
   &--selectlist {
-    @include hover-focus{
+    @include hover-focus {
       // All buttons dropdown except those in a navbar
-      button[data-toggle='dropdown']:not(.navbar-toggler){
+      button[data-toggle='dropdown']:not(.navbar-toggler) {
         background: $gray-100;
       }
     }
 
     // All buttons dropdown except those in a navbar
-    button[data-toggle='dropdown']:not(.navbar-toggler){
-      border: $input-border-width solid $input-border-color!important;
+    button[data-toggle='dropdown']:not(.navbar-toggler) {
+      border: $input-border-width solid $input-border-color !important;
 
-      &[aria-expanded=true]{
+      &[aria-expanded='true'] {
         background: $gray-100;
         //border-color: $dark!important;
       }
@@ -37,7 +35,7 @@
   &-menu {
     position: absolute !important;
     //box-shadow: $dropdown-box-shadow;
-    filter: drop-shadow(0 0 4px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
     border-radius: 0;
 
     &:not(.dropdown-menu--arrow) {
@@ -52,11 +50,11 @@
     &--arrow {
       left: 50%;
       transform: translate(-50%, 10%);
-      min-width:12rem;
+      min-width: 12rem;
       top: 0;
 
       &:before {
-        content: "";
+        content: '';
         width: 0;
         height: 0;
         border-style: solid;
@@ -69,7 +67,7 @@
         pointer-events: none;
       }
 
-      &[x-placement="top-start"] {
+      &[x-placement='top-start'] {
         margin-bottom: 1.5rem;
 
         &:before {
@@ -79,7 +77,7 @@
         }
       }
 
-      &[x-placement="bottom-start"] {
+      &[x-placement='bottom-start'] {
         margin-top: 1.5rem;
 
         &:before {
@@ -88,7 +86,7 @@
         }
       }
 
-      &[x-placement="bottom-end"] {
+      &[x-placement='bottom-end'] {
         left: auto;
         right: 0;
         transform: translate(10%, 3.8rem);
@@ -96,8 +94,8 @@
         &:before {
           transform: translate(-170%, -99%);
           left: auto;
-          right: 0
-;        }
+          right: 0;
+        }
       }
     }
   }
@@ -155,7 +153,7 @@
       width: 25rem;
     }
   }
-// Legacy
+  // Legacy
   .tab-vertical {
     .nav-tabs--vertical__item-link {
       background: $white;

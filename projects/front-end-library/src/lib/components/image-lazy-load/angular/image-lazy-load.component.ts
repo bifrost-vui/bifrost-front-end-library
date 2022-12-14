@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-
 @Component({
     selector: 'bf-image-lazy-load',
     templateUrl: './image-lazy-load.component.html',
@@ -8,10 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ImageLazyLoadComponent implements OnInit {
     constructor() {}
 
-    @Input() containerClass : string;
-    @Input() isSquareMode   : boolean;
-    @Input() alt            : string;
-    @Input() src            : string;
+    @Input() containerClass: string;
+    @Input() isSquareMode: boolean;
+    @Input() alt: string;
+    @Input() src: string;
 
     /** Class override */
     @Input() class: string;

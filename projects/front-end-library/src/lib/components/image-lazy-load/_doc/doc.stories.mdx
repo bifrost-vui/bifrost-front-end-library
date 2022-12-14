@@ -1,22 +1,20 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { ImageLazyLoadComponent }               from '../angular/image-lazy-load.component';
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { ImageLazyLoadComponent } from '../angular/image-lazy-load.component';
 
 <Meta
-    title='UI-Kit/Image Lazy Load'
+    title="UI-Kit/Image Lazy Load"
     component={ImageLazyLoadComponent}
-    decorators={[
-        moduleMetadata({ declarations: [ImageLazyLoadComponent, TwigContainerComponent]}),
-    ]}
+    decorators={[moduleMetadata({ declarations: [ImageLazyLoadComponent, TwigContainerComponent] })]}
     parameters={{}}
     argTypes={{
-        alt : {
-            type : { required: true }
+        alt: {
+            type: { required: true },
         },
-        src : {
-            type : { required: true }
-        }
+        src: {
+            type: { required: true },
+        },
     }}
 />
 
@@ -25,24 +23,21 @@ import { ImageLazyLoadComponent }               from '../angular/image-lazy-load
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    component: TwigContainerComponent,
+    props: args,
 });
 
-<Canvas withSource='none'
-        style={{ height: '300px' }}
->
+<Canvas withSource="none" style={{ height: '300px' }}>
     <Story
-        name='Drupal'
+        name="Drupal"
         args={{
-            elementPath : 'components/image-lazy-load/_doc/template.drupal',
-            alt         : 'Image Lazy Load',
+            elementPath: 'components/image-lazy-load/_doc/template.drupal',
+            alt: 'Image Lazy Load',
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
-
 
 ## Drupal implementation example
 

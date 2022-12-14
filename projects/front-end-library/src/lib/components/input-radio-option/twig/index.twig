@@ -5,29 +5,30 @@
 {% set isInvalid = isInvalid|default(false) %}
 {% set isDisabled = isDisabled|default(false) %}
 
-<label class="bf-input-radio-option {{ isInvalid ? "bf-input-radio-option--invalid" }} {{ isDisabled ? "bf-input-radio-option--disabled" }} {{ class|default(null) }}">
+<label
+  class="bf-input-radio-option {{
+  isInvalid
+    ? "bf-input-radio-option--invalid"
+  }} {{ isDisabled ? "bf-input-radio-option--disabled" }} {{ class|default(
+    null
+  ) }}"
+>
   <input
     class="{{ isInvalid ? "invalid" }}"
     type="radio"
-    {% if id|default(null) %}
-      id="{{ id }}"
-    {% endif %}
-    {% if name|default(null) %}
-      name="{{ name }}"
-    {% endif %}
-    {% if value|default(null) %}
-      value="{{ value }}"
-    {% endif %}
+    {{ id|default(null) ? "id='" ~ id ~ "'" }}
+    {{ name|default(null) ? "name='" ~ name ~ "'" }}
+    {{ value|default(null) ? "value='" ~ value ~ "'" }}
     {{ isChecked|default(false) ? "checked" }}
     {{ isDisabled ? "disabled" }}
     {{ isRequired|default(null) ? "required" }}
-    {% if ariaLabel|default(null) %}
-      aria-label="{{ ariaLabel }}"
-    {% endif %}
+    {{ ariaLabel|default(null) ? "aria-label='" ~ ariaLabel ~ "'" }}
     {{ extraAttribute|default(null) }}
   />
   <span class="bf-input-radio-control"></span>
   {% if label|default(null) %}
-    <span class="bf-input-radio-option__label {{ labelClass|default(null) }}">{{ label|raw }}</span>
+    <span class="bf-input-radio-option__label {{ labelClass|default(null) }}">
+      {{ label|raw }}
+    </span>
   {% endif %}
 </label>

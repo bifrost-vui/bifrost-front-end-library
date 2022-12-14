@@ -5,7 +5,10 @@
 <section className="container-fluid my-6">
   <header>
     <h1 className="h2">Form example</h1>
-    <p className="bf-color-neutral-secondary">Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+    <p className="bf-color-neutral-secondary">
+      Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce
+      dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
+    </p>
   </header>
   <div>
     <form id="form-profile">
@@ -27,21 +30,21 @@
               labelClass: "",
               labelExtraAttribute: "",
               ariaLabel: "",
-              class: "",
+              class: ""
             },
             {
               value: "regular",
               isChecked: false,
               isDisabled: isDisabled,
               isInvalid: isInvalid,
-              label: "Regular",
+              label: "Regular"
             },
             {
               value: "every-day",
               isChecked: false,
               isDisabled: isDisabled,
               isInvalid: isInvalid,
-              label: "Every Day",
+              label: "Every Day"
             }
           ],
           areOptionTiles: false,
@@ -65,7 +68,7 @@
               labelClass: "",
               labelExtraAttribute: "",
               ariaLabel: "",
-              class: "",
+              class: ""
             },
             {
               value: "regular",
@@ -73,7 +76,7 @@
               isChecked: false,
               isDisabled: isDisabled,
               isInvalid: isInvalid,
-              label: "Regular",
+              label: "Regular"
             },
             {
               value: "every-day",
@@ -81,7 +84,7 @@
               isChecked: false,
               isDisabled: isDisabled,
               isInvalid: isInvalid,
-              label: "Every Day",
+              label: "Every Day"
             }
           ],
           areOptionTiles: true,
@@ -106,7 +109,7 @@
               labelClass: "",
               labelExtraAttribute: "",
               ariaLabel: "",
-              class: "",
+              class: ""
             },
             {
               id: "television",
@@ -115,7 +118,7 @@
               isRequired: isRequired,
               isDisabled: isDisabled,
               isInvalid: isInvalid,
-              label: "Television",
+              label: "Television"
             },
             {
               id: "tablet",
@@ -124,7 +127,7 @@
               isRequired: isRequired,
               isDisabled: isDisabled,
               isInvalid: isInvalid,
-              label: "Tablet",
+              label: "Tablet"
             }
           ],
           areOptionTiles: false,
@@ -150,7 +153,7 @@
               labelClass: "",
               labelExtraAttribute: "",
               ariaLabel: "",
-              class: "",
+              class: ""
             },
             {
               id: "television-tile",
@@ -159,7 +162,7 @@
               isRequired: isRequired,
               isDisabled: isDisabled,
               isInvalid: isInvalid,
-              label: "Television",
+              label: "Television"
             },
             {
               id: "tablet-tile",
@@ -168,7 +171,7 @@
               isRequired: isRequired,
               isDisabled: isDisabled,
               isInvalid: isInvalid,
-              label: "Tablet",
+              label: "Tablet"
             }
           ],
           areOptionTiles: true,
@@ -177,12 +180,16 @@
         } only %}
       </div>
 
-    <button type="submit" className="bf-button bf-button--primary mt-4" data-title="Submit">
+      <button
+        type="submit"
+        className="bf-button bf-button--primary mt-4"
+        data-title="Submit"
+      >
         <span className="bf-button__inner">
           <span className="bf-button__label">Submit</span>
-      </span>
-    </button>
-    {# TODO: replace with bifrost Button when type=submit is merged
+        </span>
+      </button>
+      {# TODO: replace with bifrost Button when type=submit is merged
       {% include "@bf-components/button/twig/index.twig" with {
         label: "Submit",
         type: "submit",
@@ -197,37 +204,20 @@
     <h1 className="h4">Output</h1>
     <pre id="form-profile-output" className="m-0"></pre>
   </aside>
-
 </section>
 
 <script type="text/javascript">
-  const form = document.getElementById("form-profile");
-  const formOutput = document.getElementById("form-profile-output");
+  const form = document.getElementById("form-profile"); const formOutput =
+  document.getElementById("form-profile-output");
 
-  function displayOutput() {
-    const formData = new FormData(form);
-    let formObj = serialize(formData);
-    console.log(formObj);
+  function displayOutput() { const formData = new FormData(form); let formObj =
+  serialize(formData); console.log(formObj);
 
-    function serialize (data) {
-      let obj = {};
-      for (let [key, value] of data) {
-        if (obj[key] !== undefined) {
-          if (!Array.isArray(obj[key])) {
-            obj[key] = [obj[key]];
-          }
-          obj[key].push(value);
-        } else {
-          obj[key] = value;
-        }
-      }
-      return obj;
-    }
-    formOutput.textContent = JSON.stringify(formObj, undefined, 2);
-  }
+  function serialize (data) { let obj = {}; for (let [key, value] of data) { if
+  (obj[key] !== undefined) { if (!Array.isArray(obj[key])) { obj[key] =
+  [obj[key]]; } obj[key].push(value); } else { obj[key] = value; } } return obj;
+  } formOutput.textContent = JSON.stringify(formObj, undefined, 2); }
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    displayOutput();
-  });
+  form.addEventListener("submit", function (event) { event.preventDefault();
+  displayOutput(); });
 </script>

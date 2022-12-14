@@ -1,46 +1,49 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { BannerComponent }                      from '../angular/banner.component';
-
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import illustrationIcons from '../../../../../../../public/icons/list/illustrations.json';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { BannerComponent } from '../angular/banner.component';
 
 <Meta
-    title='Components/Banner'
+    title="Components/Banner"
     component={BannerComponent}
     decorators={[
-        moduleMetadata({ declarations: [BannerComponent, TwigContainerComponent]})
+        moduleMetadata({
+            declarations: [BannerComponent, TwigContainerComponent],
+        }),
     ]}
     argTypes={{
-        iconName    : {
+        iconName: {
             defaultValue: 'credit-return',
             control: {
                 type: 'select',
-                options: ['', ...illustrationIcons.map(a => a.list).flat().sort()]
-            }
+                options: [
+                    '',
+                    ...illustrationIcons
+                        .map((a) => a.list)
+                        .flat()
+                        .sort(),
+                ],
+            },
         },
-        isClickable : {
-            defaultValue : true
-        }
+        isClickable: {
+            defaultValue: true,
+        },
     }}
 />
 
-
 # Banner
 
-<br/>
-
-
+<br />
 
 ## Component API
 
 <ArgsTable of={BannerComponent} />
 
-
-
 ## Drupal implementation example
 
 #### Clickable banner with icon
+
 ```jsx
 {% include '@bf-components/banner/twig/index.twig' with {
     href        : 'https://videotron.com',
@@ -54,6 +57,7 @@ import { BannerComponent }                      from '../angular/banner.componen
 ```
 
 #### Banner with icon and link
+
 ```jsx
 {% include '@bf-components/banner/twig/index.twig' with {
     //...
@@ -63,6 +67,7 @@ import { BannerComponent }                      from '../angular/banner.componen
 ```
 
 #### Banner with image
+
 ```jsx
 {% include '@bf-components/banner/twig/index.twig' with {
     // ...
@@ -80,25 +85,25 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-export const commonProps= {
-            href        : 'https://videotron.com',
-            title       : 'Galaxy Buds Live',
-            paragraph   : 'Free with any purchase of this phone, valuted at $239.38.',
-            image       : {
-                src: 'https://videotron.com/images/assets/helix-equipment.png',
-                alt: 'Alt description'
-            },
-            badge       : 'FREE',
-            class       : 'mb-4',
-}
+export const commonProps = {
+    href: 'https://videotron.com',
+    title: 'Galaxy Buds Live',
+    paragraph: 'Free with any purchase of this phone, valuted at $239.38.',
+    image: {
+        src: 'https://videotron.com/images/assets/helix-equipment.png',
+        alt: 'Alt description',
+    },
+    badge: 'FREE',
+    class: 'mb-4',
+};
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        height='400px'
+        name="Drupal"
+        height="400px"
         args={{
-            elementPath : 'components/banner/_doc/template.drupal',
-            ... commonProps,
+            elementPath: 'components/banner/_doc/template.drupal',
+            ...commonProps,
             reversed: undefined,
         }}
     >

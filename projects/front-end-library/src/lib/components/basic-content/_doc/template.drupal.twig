@@ -5,8 +5,13 @@
 {% set reversed = reversed|json_parse %}
 
 <section class="d-flex flex-column justify-content-center minh-100">
-  {% for index in [1,2] %}
-    <div class="flex-grow-1 d-flex flex-column justify-content-center p-4 minh-100 {{ reversed|default(index == 2) ? "reversed bf-color-bg-ground" }}">
+  {% for index in [1, 2] %}
+    <div
+      class="flex-grow-1 d-flex flex-column justify-content-center p-4 minh-100 {{
+      reversed|default(index == 2)
+        ? "reversed bf-color-bg-ground"
+      }}"
+    >
       {% include "@bf-components/basic-content/twig/index.twig" %}
     </div>
   {% endfor %}

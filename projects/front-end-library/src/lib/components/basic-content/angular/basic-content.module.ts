@@ -4,6 +4,6 @@ import { BasicContentComponent } from './basic-content.component';
 @NgModule({
     declarations: [BasicContentComponent],
     imports: [],
-    exports: [BasicContentComponent]
+    exports: [BasicContentComponent],
 })
-export class BasicContentModule { }
+export class BasicContentModule {}
