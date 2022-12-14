@@ -4,6 +4,6 @@ import { SectionTilesKeyComponent } from './section-tiles-key.component';
 @NgModule({
     declarations: [SectionTilesKeyComponent],
     imports: [],
-    exports: [SectionTilesKeyComponent]
+    exports: [SectionTilesKeyComponent],
 })
-export class SectionTilesKeyModule { }
+export class SectionTilesKeyModule {}
