@@ -21,7 +21,7 @@
   }
 
   &:before {
-    content:"";
+    content: '';
     width: 0;
     height: 0;
     border-style: solid;
@@ -30,29 +30,47 @@
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translate(-50%,-99%);
+    transform: translate(-50%, -99%);
     pointer-events: none;
   }
 
-  &[x-placement="top-left"] { @extend .position-absolute--top-left; transform: translate(0%, -105%);}
-  &[x-placement="top-center"] { @extend .position-absolute--top; transform: translate(-50%, -105%);}
-  &[x-placement="top-right"] { @extend .position-absolute--top-right; transform: translate(0%, -105%);}
-  &[x-placement="bottom-left"]{ @extend .position-absolute--bottom-left; transform: translate(0%, 105%);}
-  &[x-placement="bottom-center"]{ @extend .position-absolute--bottom; transform: translate(-50%, 105%);}
-  &[x-placement="bottom-right"]{ @extend .position-absolute--bottom-right; transform: translate(0%, 105%);}
+  &[x-placement='top-left'] {
+    @extend .position-absolute--top-left;
+    transform: translate(0%, -105%);
+  }
+  &[x-placement='top-center'] {
+    @extend .position-absolute--top;
+    transform: translate(-50%, -105%);
+  }
+  &[x-placement='top-right'] {
+    @extend .position-absolute--top-right;
+    transform: translate(0%, -105%);
+  }
+  &[x-placement='bottom-left'] {
+    @extend .position-absolute--bottom-left;
+    transform: translate(0%, 105%);
+  }
+  &[x-placement='bottom-center'] {
+    @extend .position-absolute--bottom;
+    transform: translate(-50%, 105%);
+  }
+  &[x-placement='bottom-right'] {
+    @extend .position-absolute--bottom-right;
+    transform: translate(0%, 105%);
+  }
 
-  &[x-placement*="left"] {
+  &[x-placement*='left'] {
     &:before {
       left: 10%;
     }
   }
-  &[x-placement*="right"] {
+  &[x-placement*='right'] {
     &:before {
       left: 90%;
     }
   }
 
-  &[x-placement*="top"] {
+  &[x-placement*='top'] {
     margin-bottom: 1.5rem;
 
     &:before {
@@ -61,22 +79,33 @@
       bottom: 0;
     }
   }
-  &[x-placement*="bottom"] {
+  &[x-placement*='bottom'] {
     margin-top: 1.5rem;
     transform: translate(-50%, 105%);
   }
-
 
   &.show {
     opacity: 1;
     z-index: 20;
     pointer-events: initial;
 
-    &[x-placement="top-left"] { transform: translate(0%, -110%);}
-    &[x-placement="top-center"] { transform: translate(-50%, -110%);}
-    &[x-placement="top-right"] { transform: translate(0%, -110%);}
-    &[x-placement="bottom-left"]{ transform: translate(0%, 110%);}
-    &[x-placement="bottom-center"]{ transform: translate(-50%, 110%);}
-    &[x-placement="bottom-right"]{  transform: translate(0%, 110%);}
+    &[x-placement='top-left'] {
+      transform: translate(0%, -110%);
+    }
+    &[x-placement='top-center'] {
+      transform: translate(-50%, -110%);
+    }
+    &[x-placement='top-right'] {
+      transform: translate(0%, -110%);
+    }
+    &[x-placement='bottom-left'] {
+      transform: translate(0%, 110%);
+    }
+    &[x-placement='bottom-center'] {
+      transform: translate(-50%, 110%);
+    }
+    &[x-placement='bottom-right'] {
+      transform: translate(0%, 110%);
+    }
   }
 }

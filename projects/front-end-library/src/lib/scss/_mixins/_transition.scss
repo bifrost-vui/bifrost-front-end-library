@@ -17,8 +17,12 @@
   will-change: $unfoldTransitionProperty;
 }
 
-
-@mixin hover-transition-to($transitionElem, $transitionValue, $transitionTime: $transition-time-base, $transitionEasing: ease-out) {
+@mixin hover-transition-to(
+  $transitionElem,
+  $transitionValue,
+  $transitionTime: $transition-time-base,
+  $transitionEasing: ease-out
+) {
   transition: $transitionElem $transition-time-short $transitionEasing;
   will-change: $transitionElem;
 
@@ -32,7 +36,13 @@
   }
 }
 
-@mixin hover-transition-from-to($transitionElem, $initValue, $transitionValue, $transitionTime: 0.1s, $transitionEasing: ease-out) {
+@mixin hover-transition-from-to(
+  $transitionElem,
+  $initValue,
+  $transitionValue,
+  $transitionTime: 0.1s,
+  $transitionEasing: ease-out
+) {
   #{$transitionElem}: $initValue;
-  @include hover-transition-to($transitionElem, $transitionValue, $transitionTime, $transitionEasing)
+  @include hover-transition-to($transitionElem, $transitionValue, $transitionTime, $transitionEasing);
 }

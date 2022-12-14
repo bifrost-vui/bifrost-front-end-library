@@ -4,7 +4,6 @@
 *
 * ***************************************************************************** */
 .modal {
-
   &-open {
     padding-right: 0 !important;
   }
@@ -23,28 +22,34 @@
     font-size: $h2-font-size;
     font-family: $font-family-secondary;
 
-    @include media-breakpoint-down(sm){
+    @include media-breakpoint-down(sm) {
       font-size: 2rem;
     }
   }
 
   &-dialog {
     &.modal-lg {
-      @include media-breakpoint-up(xl){
+      @include media-breakpoint-up(xl) {
         max-width: 70vw;
       }
 
-      .modal-header, .modal-body, .modal-footer {
+      .modal-header,
+      .modal-body,
+      .modal-footer {
         @include media-scale(padding, 3.5rem 2rem 2rem, 3.5rem 4rem, 4rem 5.5rem);
       }
     }
     &.modal-md {
-      .modal-header, .modal-body, .modal-footer {
+      .modal-header,
+      .modal-body,
+      .modal-footer {
         @include media-scale(padding, 3.5rem 2rem 2rem, 3.5rem 3rem, 4rem 4.5rem);
       }
     }
     &.modal-sm {
-      .modal-header, .modal-body, .modal-footer {
+      .modal-header,
+      .modal-body,
+      .modal-footer {
         padding: 4rem 3.5rem;
       }
     }
@@ -109,20 +114,24 @@
         button.close svg {
           fill: $white;
 
-          ._svg-fill { fill: $white; }
-          ._svg-stroke { stroke: $white; }
+          ._svg-fill {
+            fill: $white;
+          }
+          ._svg-stroke {
+            stroke: $white;
+          }
         }
       }
     }
   }
 
-    button.close {
-        appearance: none;
-        cursor: pointer;
-    }
+  button.close {
+    appearance: none;
+    cursor: pointer;
+  }
 }
 
 /*------ FOR INTERNAL DEMO ----------------*/
 .reversed .modal-theme--light * {
-    color: $black !important;
+  color: $black !important;
 }

@@ -29,23 +29,22 @@
         }
 */
 
-@mixin media-scale($elem, $defaultValue, $mdValue:$defaultValue, $lgValue:$mdValue, $xlValue:$lgValue) {
+@mixin media-scale($elem, $defaultValue, $mdValue: $defaultValue, $lgValue: $mdValue, $xlValue: $lgValue) {
   #{$elem}: $defaultValue;
 
-  @include media-breakpoint-up(md){
+  @include media-breakpoint-up(md) {
     #{$elem}: $mdValue;
   }
-  @include media-breakpoint-up(lg){
+  @include media-breakpoint-up(lg) {
     #{$elem}: $lgValue;
   }
-  @include media-breakpoint-up(xl){
+  @include media-breakpoint-up(xl) {
     #{$elem}: $xlValue;
   }
 }
 
-@mixin media-up($breakpoint){
+@mixin media-up($breakpoint) {
   @media (min-width: $breakpoint) {
     @content;
   }
 }
-

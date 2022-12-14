@@ -3,23 +3,20 @@
 *  Links
 *
 * ***************************************************************************** */
-@mixin linkDefaultOptimizedSetup($bgColor:$white, $linkColor:$link-color){
-  text-shadow:
-          0px -2px 0 $bgColor,  0px -1px 0 $bgColor,  0px 0px 0 $bgColor,
-          2px -2px 0 $bgColor,  2px -1px 0 $bgColor,  2px 0px 0 $bgColor,
-          -2px -2px 0 $bgColor, -2px -1px 0 $bgColor, -2px 0px 0 $bgColor,
-          1px -2px 0 $bgColor,  1px -1px 0 $bgColor,  1px 0px 0 $bgColor,
-          -1px -2px 0 $bgColor, -1px -1px 0 $bgColor, -1px 0px 0 $bgColor,
-          0px -2px 0 $bgColor,  0px -1px 0 $bgColor,  0px 0px 0 $bgColor;
-  box-shadow: 0 -1px 0 0 $bgColor inset, 0 -2px 0 0 transparent inset ;
+@mixin linkDefaultOptimizedSetup($bgColor: $white, $linkColor: $link-color) {
+  text-shadow: 0px -2px 0 $bgColor, 0px -1px 0 $bgColor, 0px 0px 0 $bgColor, 2px -2px 0 $bgColor, 2px -1px 0 $bgColor,
+    2px 0px 0 $bgColor, -2px -2px 0 $bgColor, -2px -1px 0 $bgColor, -2px 0px 0 $bgColor, 1px -2px 0 $bgColor,
+    1px -1px 0 $bgColor, 1px 0px 0 $bgColor, -1px -2px 0 $bgColor, -1px -1px 0 $bgColor, -1px 0px 0 $bgColor,
+    0px -2px 0 $bgColor, 0px -1px 0 $bgColor, 0px 0px 0 $bgColor;
+  box-shadow: 0 -1px 0 0 $bgColor inset, 0 -2px 0 0 transparent inset;
 
-  @include hover-focus(){
+  @include hover-focus() {
     @include transitions(all $transition-time-base ease-out);
-    box-shadow:  0 -1px 0 0 $bgColor inset, 0 -2px 0 0 $linkColor inset ;
+    box-shadow: 0 -1px 0 0 $bgColor inset, 0 -2px 0 0 $linkColor inset;
   }
 
   &.active {
-    box-shadow:  0 -1px 0 0 $bgColor inset, 0 -2px 0 0 $linkColor inset ;
+    box-shadow: 0 -1px 0 0 $bgColor inset, 0 -2px 0 0 $linkColor inset;
   }
 }
 
@@ -43,7 +40,7 @@
   }
 
   .vui--style-dark-gray &,
-  .navbar-dark .dropdown-menu &  {
+  .navbar-dark .dropdown-menu & {
     @include linkDefaultOptimizedSetup($gray-1000, $white);
   }
 }
