@@ -1,34 +1,32 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import illustrationIcons                        from '../../../../../../../public/icons/list/illustrations.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { SectionButtonsNavComponent }           from '../angular/section-buttons-nav.component';
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import illustrationIcons from '../../../../../../../public/icons/list/illustrations.json';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { SectionButtonsNavComponent } from '../angular/section-buttons-nav.component';
 
 <Meta
-    title='Sections/Buttons Nav'
+    title="Sections/Buttons Nav"
     component={SectionButtonsNavComponent}
-    decorators={[
-        moduleMetadata({ declarations: [SectionButtonsNavComponent, TwigContainerComponent]})
-    ]}
+    decorators={[moduleMetadata({ declarations: [SectionButtonsNavComponent, TwigContainerComponent] })]}
     argTypes={{
         background: {
-            table: { defaultValue: { summary: 'ground' } }
+            table: { defaultValue: { summary: 'ground' } },
         },
         titleTag: {
-            table: { defaultValue: { summary: 'h1' } }
+            table: { defaultValue: { summary: 'h1' } },
         },
         isFeatured: {
-            table: { defaultValue: { summary: false } }
+            table: { defaultValue: { summary: false } },
         },
         reversed: {
-            table: { defaultValue: { summary: false } }
-        }
+            table: { defaultValue: { summary: false } },
+        },
     }}
 />
 
 # Section Buttons Nav
 
-<br/>
+<br />
 
 ## Component API
 
@@ -75,147 +73,149 @@ export const commonProps = {
     buttons: [
         {
             label: 'Mobility',
-            iconName: 'mobility'
+            iconName: 'mobility',
         },
         {
             label: 'Internet',
-            iconName: 'internet-residential'
+            iconName: 'internet-residential',
         },
         {
             label: 'Television',
-            iconName: 'television'
+            iconName: 'television',
         },
         {
             label: 'Bundle',
-            iconName: 'multi-product'
+            iconName: 'multi-product',
         },
         {
             label: 'Entertainment',
-            iconName: 'play'
+            iconName: 'play',
         },
         {
             label: 'Automation',
-            iconName: 'smart-home'
-        }
+            iconName: 'smart-home',
+        },
     ],
     class: '',
     reversed: undefined,
-}
+};
 
 export const commonButtonPropsWithDescription = [
     {
         label: 'Mobility',
         iconName: 'mobility',
-        description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis. Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.'
+        description:
+            'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis. Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.',
     },
     {
         label: 'Internet',
         iconName: 'internet-residential',
-        description: 'Maecenas faucibus mollis.'
+        description: 'Maecenas faucibus mollis.',
     },
     {
         label: 'Television',
         iconName: 'television',
-        description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.'
+        description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.',
     },
     {
         label: 'Bundle',
         iconName: 'multi-product',
-        description: 'Maecenas faucibus.'
+        description: 'Maecenas faucibus.',
     },
     {
         label: 'Entertainment',
-        iconName: 'play'
+        iconName: 'play',
     },
     {
         label: 'Automation',
         iconName: 'smart-home',
-        description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.'
-    }
-]
+        description: 'Maecenas faucibus mollis interdum integer posuere erat a ante venenatis.',
+    },
+];
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        args={{
-            elementPath: 'sections/buttons-nav/_doc/template.drupal',
-            ...commonProps
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
-
-<Canvas withSource='none'>
-    <Story
-        name='Drupal - With description'
+        name="Drupal"
         args={{
             elementPath: 'sections/buttons-nav/_doc/template.drupal',
             ...commonProps,
-            buttons: commonButtonPropsWithDescription
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With isFeatured'
+        name="Drupal - With description"
         args={{
             elementPath: 'sections/buttons-nav/_doc/template.drupal',
             ...commonProps,
             buttons: commonButtonPropsWithDescription,
-            isFeatured: true
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With isFeatured and 4 buttons'
+        name="Drupal - With isFeatured"
+        args={{
+            elementPath: 'sections/buttons-nav/_doc/template.drupal',
+            ...commonProps,
+            buttons: commonButtonPropsWithDescription,
+            isFeatured: true,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - With isFeatured and 4 buttons"
         args={{
             elementPath: 'sections/buttons-nav/_doc/template.drupal',
             ...commonProps,
             buttons: commonButtonPropsWithDescription.slice(0, 4),
-            isFeatured: true
+            isFeatured: true,
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With isFeatured and 2 buttons'
+        name="Drupal - With isFeatured and 2 buttons"
         args={{
             elementPath: 'sections/buttons-nav/_doc/template.drupal',
             ...commonProps,
             buttons: commonButtonPropsWithDescription.slice(0, 2),
-            isFeatured: true
+            isFeatured: true,
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With asideSection'
+        name="Drupal - With asideSection"
         args={{
             elementPath: 'sections/buttons-nav/_doc/template.drupal',
             ...commonProps,
             asideSection: {
                 title: 'Videotron, an integral part of Quebecers’ daily lives',
-                description: 'Partner of your connected life, Videotron offers you state-of-the-art communication and entertainment solutions, as well as a unique customer experience.',
+                description:
+                    'Partner of your connected life, Videotron offers you state-of-the-art communication and entertainment solutions, as well as a unique customer experience.',
                 link: {
                     label: 'Why choose videotron?',
-                    href: 'https://videotron.com/en/why-choose-videotron'
-                }
+                    href: 'https://videotron.com/en/why-choose-videotron',
+                },
             },
-            class: 'mb-6'
+            class: 'mb-6',
         }}
     >
         {Drupal.bind({})}
