@@ -1,38 +1,36 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import interfaceIcons                           from '../../../../../../../public/icons/list/interfaces.json';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { ButtonIconComponent }                  from '../angular/button-icon.component';
-
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import interfaceIcons from '../../../../../../../public/icons/list/interfaces.json';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { ButtonIconComponent } from '../angular/button-icon.component';
 
 <Meta
-    title='Components/Button Icon'
+    title="Components/Button Icon"
     component={ButtonIconComponent}
-    decorators={[
-        moduleMetadata({ declarations: [ButtonIconComponent, TwigContainerComponent]})
-    ]}
+    decorators={[moduleMetadata({ declarations: [ButtonIconComponent, TwigContainerComponent] })]}
     argTypes={{
         icon: {
             control: {
                 type: 'select',
-                options: ['', ...interfaceIcons.map(a => a.list).flat().sort()]
-            }
+                options: [
+                    '',
+                    ...interfaceIcons
+                        .map((a) => a.list)
+                        .flat()
+                        .sort(),
+                ],
+            },
         },
     }}
 />
 
-
 # Button Icon
 
-<br/>
-
-
+<br />
 
 ## Component API
 
 <ArgsTable of={ButtonIconComponent} />
-
-
 
 ## Drupal implementation example
 
@@ -57,8 +55,6 @@ import { ButtonIconComponent }                  from '../angular/button-icon.com
 } %}
 ```
 
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -66,13 +62,13 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        height='300px'
+        name="Drupal"
+        height="300px"
         args={{
-            elementPath : 'components/button-icon/_doc/template.drupal',
-            icon        : 'cart',
+            elementPath: 'components/button-icon/_doc/template.drupal',
+            icon: 'cart',
             isDisabled: undefined,
         }}
     >

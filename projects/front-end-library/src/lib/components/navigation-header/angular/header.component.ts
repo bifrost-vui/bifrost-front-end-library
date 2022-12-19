@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ILink } from '../../../components/link/angular/api.model';
 
 interface ILogo {
@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit {
 
     // @Input() hasMiniCartBtn: boolean;
     @Input() hasNoSearchBtn: boolean;
-    @Input() langcode : 'EN' | 'FR'
+    @Input() langcode: 'EN' | 'FR';
 
     ngOnInit() {
         console.log('Header', this);

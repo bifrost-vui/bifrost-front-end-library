@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation, OnInit, Input} from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'bf-progress',
@@ -6,8 +6,7 @@ import {Component, ViewEncapsulation, OnInit, Input} from '@angular/core';
     // styleUrls: ['../scss/index.scss'],
 })
 export class ProgressComponent implements OnInit {
-    constructor() {
-    }
+    constructor() {}
 
     @Input() progressValue: number;
     @Input() progressPercentValue: number;

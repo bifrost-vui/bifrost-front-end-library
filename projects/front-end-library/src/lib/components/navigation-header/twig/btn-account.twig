@@ -1,51 +1,51 @@
-{% set class                = "js-bf-dropdown-fixed-viewport" %}
-{% set iconName             = "my-account" %}
-{% set iconSize             = 3 %}
-{% set iconColor            = iconColor|default("svg-fill--dark") %}
-{% set dropdownId           = "navbarDropdown_accountPerso" %}
-{% set dropdownXPlacement   = "bottom-end" %}
+{% set class = "js-bf-dropdown-fixed-viewport" %}
+{% set iconName = "my-account" %}
+{% set iconSize = 3 %}
+{% set iconColor = iconColor|default("svg-fill--dark") %}
+{% set dropdownId = "navbarDropdown_accountPerso" %}
+{% set dropdownXPlacement = "bottom-end" %}
 
 {% extends "@bf-components/dropdown/twig/index.twig" %}
-    {% block dropdown_content %}
-        <div class="p-3">
-            {% if isConnected is same as (true) %}
-                {# TODO : get all URL links from array (for multi-subscribers) #}
-                {#{% include "@atoms/15-list/list-arrow.twig" with {#}
-                {#listItems:listItems,#}
-                {#linkClass:"h5",#}
-                {#linkPaddingClass: "py-2"#}
-                {#} %}#}
+{% block dropdown_content %}
+  <div class="p-3">
+    {% if isConnected is same as(true) %}
+      {# TODO : get all URL links from array (for multi-subscribers) #}
+      {# {% include "@atoms/15-list/list-arrow.twig" with { #}
+      {# listItems:listItems, #}
+      {# linkClass:"h5", #}
+      {# linkPaddingClass: "py-2" #}
+      {# } %} #}
 
-                {% include "@bf-components/link/twig/next.twig" with {
-                    linkLabel: labelMyAccount|default("My account"),
-                    linkSize: 6,
-                    href: hrefMyAccount|default("#my-account"),
-                    linkClass: "mb-3 d-block " ~ linkClass|default(""),
-                    iconClass:"ml-2"
-                } only %}
+      {% include "@bf-components/link/twig/next.twig" with {
+        linkLabel: labelMyAccount|default("My account"),
+        linkSize: 6,
+        href: hrefMyAccount|default("#my-account"),
+        linkClass: "mb-3 d-block " ~ (linkClass|default("")),
+        iconClass: "ml-2"
+      } only %}
 
-                {# Delegate user view #}
-                {#{% include "@atoms/04-links/next.twig" with {#}
-                {#linkLabel: labelMyAccount|default("John Dow account"),#}
-                {#linkSize: 6,#}
-                {#href: hrefMyAccount|default("#my-account"),#}
-                {#linkClass: "mb-3 d-block font-weight-bold" ~ linkClass|default(""),#}
-                {#iconClass:"ml-2"#}
-                {#} only %}#}
+      {# Delegate user view #}
+      {# {% include "@atoms/04-links/next.twig" with { #}
+      {# linkLabel: labelMyAccount|default("John Dow account"), #}
+      {# linkSize: 6, #}
+      {# href: hrefMyAccount|default("#my-account"), #}
+      {# linkClass: "mb-3 d-block font-weight-bold" ~ linkClass|default(""), #}
+      {# iconClass:"ml-2" #}
+      {# } only %} #}
 
-                {% include "@bf-components/link/twig/button-outline.twig" with {
-                    label: labelLogOut|default("Log out"),
-                    href: hrefLogOut|default("#"),
-                    buttonColor: "dark",
-                    class:"w-100 mt-3"
-                } %}
-            {% else %}
-                {% include "@bf-components/link/twig/button-outline.twig" with {
-                    label: labelConnexion|default("Log in"),
-                    href: hrefConnexion|default("#"),
-                    buttonColor: "dark",
-                    class:"w-100 mt-3"
-                } %}
-            {% endif %}
-        </div>
-    {% endblock %}
+      {% include "@bf-components/link/twig/button-outline.twig" with {
+        label: labelLogOut|default("Log out"),
+        href: hrefLogOut|default("#"),
+        buttonColor: "dark",
+        class: "w-100 mt-3"
+      } %}
+    {% else %}
+      {% include "@bf-components/link/twig/button-outline.twig" with {
+        label: labelConnexion|default("Log in"),
+        href: hrefConnexion|default("#"),
+        buttonColor: "dark",
+        class: "w-100 mt-3"
+      } %}
+    {% endif %}
+  </div>
+{% endblock %}

@@ -1,13 +1,12 @@
 const borderRadius = [
     {
-        name            : 'small',
-        value           : '4px'
+        name: 'small',
+        value: '4px',
     },
     {
-        name            : 'medium',
-        value           : '8px'
+        name: 'medium',
+        value: '8px',
     },
 ];
-
 
 export default borderRadius;

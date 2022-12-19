@@ -1,40 +1,34 @@
-import { moduleMetadata }                   from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }   from '@storybook/addon-docs';
-import { withDesign }                       from 'storybook-addon-designs';
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs';
 
-import { slides }                           from './data';
-import { TwigContainerComponent }           from '../../../../utils/twig-container/twig-container.component';
-import { SlideshowComponent }               from '../angular/slideshow.component';
+import { slides } from './data';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { SlideshowComponent } from '../angular/slideshow.component';
 
 <Meta
-    title='Components/Slideshow'
+    title="Components/Slideshow"
     component={SlideshowComponent}
-    decorators={[
-        moduleMetadata({ declarations: [SlideshowComponent, TwigContainerComponent]}),
-        withDesign
-    ]}
+    decorators={[moduleMetadata({ declarations: [SlideshowComponent, TwigContainerComponent] }), withDesign]}
     parameters={{
         design: {
-            type    : 'figma',
-            url     : 'https://www.figma.com/file/yFsS1z98l853oMi59vwbKI/D%C3%A9co-OC11---Design-UI?node-id=1379%3A186299',
-            disable : false
+            type: 'figma',
+            url: 'https://www.figma.com/file/yFsS1z98l853oMi59vwbKI/D%C3%A9co-OC11---Design-UI?node-id=1379%3A186299',
+            disable: false,
         },
     }}
-    argTypes={{
-    }}
+    argTypes={{}}
 />
 
 # Slideshow
 
-- supports `Hero` slides only
-- supports variable slide heights
-- autoplay is set to change slides every 5 seconds
-- dots and arrows are displayed in the current slides
-- automatic sliding pauses on mouseover and will restart 5 second after mouseout
-
+-   supports `Hero` slides only
+-   supports variable slide heights
+-   autoplay is set to change slides every 5 seconds
+-   dots and arrows are displayed in the current slides
+-   automatic sliding pauses on mouseover and will restart 5 second after mouseout
 
 ## Component API
-
 
 **✅ Inputs are equivalent for Angular and Drupal.**
 
@@ -43,23 +37,22 @@ import { SlideshowComponent }               from '../angular/slideshow.component
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    component: TwigContainerComponent,
+    props: args,
 });
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        height='500px'
+        name="Drupal"
+        height="500px"
         args={{
-            elementPath : 'components/slideshow/_doc/template.drupal',
-            slides
+            elementPath: 'components/slideshow/_doc/template.drupal',
+            slides,
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
-
 
 ## Drupal implementation example
 
@@ -119,7 +112,6 @@ export const Drupal = (args) => ({
 } %}
 
 ```
-
 
 ## Design Guidelines
 

@@ -1,27 +1,23 @@
 {% set reversed = reversed|json_parse %}
 
-<div class="{% if reversed %}reversed bf-color-bg-ground{% endif %}">
-    <div class="container-fluid">
+<div class="{{ reversed ? "reversed bf-color-bg-ground" }}">
+  <div class="container-fluid">
+    {% for category in allLogoCategories|json_parse %}
+      <div
+        class="d-flex flex-column flex-md-row border-bottom bf-border-color-secondary py-4"
+      >
+        <div style="flex: 0 25%"><h4>{{ category.categoryName }}</h4></div>
 
-        {% for category in allLogoCategories|json_parse %}
-            <div class="d-flex flex-column flex-md-row border-bottom bf-border-color-secondary py-4">
-
-                <div style="flex: 0 25%">
-                    <h4>{{category.categoryName}}</h4>
-                </div>
-
-                {% for logo in category.list %}
-                    <div class="flex-grow-1 py-2">
-                        {% include "@bf-components/logo/twig/index.twig" with {
-                            name        : logo.name,
-                            size        : logo.size,
-                            langcode    : logo.langcode,
-                        } %}
-                    </div>
-                {% endfor %}
-
-            </div>
+        {% for logo in category.list %}
+          <div class="flex-grow-1 py-2">
+            {% include "@bf-components/logo/twig/index.twig" with {
+              name: logo.name,
+              size: logo.size,
+              langcode: logo.langcode
+            } %}
+          </div>
         {% endfor %}
-
-    </div>
+      </div>
+    {% endfor %}
+  </div>
 </div>

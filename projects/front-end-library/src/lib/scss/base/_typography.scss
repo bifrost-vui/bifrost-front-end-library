@@ -4,46 +4,65 @@
 *
 * ***************************************************************************** */
 
-
 // Headings
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: $font-family-secondary;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: $font-family-secondary;
 
-    a,
-    a:hover {
-        color: $body-color;
-    }
+  a,
+  a:hover {
+    color: $body-color;
+  }
 }
 
 * + {
-    h1, h2, h3, h4, h5, h6,
-    .h1, .h2, .h3, .h4, .h5, .h6 {
-        // @extend .mt-4;
-        margin-top: $spacer-4;
-    }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
+    // @extend .mt-4;
+    margin-top: $spacer-4;
+  }
 }
 
 a,
 a:hover {
-    color: inherit;
+  color: inherit;
 }
 
-
-$headings: ("h1", "h2", "h3", "h4", "h5", "h6");
+$headings: ('h1', 'h2', 'h3', 'h4', 'h5', 'h6');
 
 @each $name in $headings {
-  #{$name}, .#{$name} {
-		font-size: var(--bf-#{$name}-size);
-		line-height: var(--bf-#{$name}-leading);
-		font-weight: var(--bf-#{$name}-weight);
+  #{$name},
+  .#{$name} {
+    font-size: var(--bf-#{$name}-size);
+    line-height: var(--bf-#{$name}-leading);
+    font-weight: var(--bf-#{$name}-weight);
 
-		@include media-breakpoint-down(sm){
-			font-size: var(--bf-#{$name}-size-sm);
-			line-height: var(--bf-#{$name}-leading-sm);
-			font-weight: var(--bf-#{$name}-weight-sm);
-		}
+    @include media-breakpoint-down(sm) {
+      font-size: var(--bf-#{$name}-size-sm);
+      line-height: var(--bf-#{$name}-leading-sm);
+      font-weight: var(--bf-#{$name}-weight-sm);
+    }
   }
 }
 
@@ -52,9 +71,9 @@ $headings: ("h1", "h2", "h3", "h4", "h5", "h6");
 .bf-text,
 p,
 .p,
-ul, 
+ul,
 ol {
-//   font-size: $h6-font-size;
+  //   font-size: $h6-font-size;
   font-weight: $font-weight-normal;
   line-height: $line-height-base;
 
@@ -65,8 +84,8 @@ ol {
 }
 
 .bf-text {
-    font-family: $font-family-base;
-    font-size: $font-size-base;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
 }
 
 b,
@@ -74,7 +93,6 @@ strong,
 .strong {
   font-weight: $font-weight-bold;
 }
-
 
 // Others
 pre {
@@ -85,9 +103,9 @@ pre {
 // Max width
 
 .title-max-w {
-    max-width: 40rem;
+  max-width: 40rem;
 }
 
 .text-max-w {
-    max-width: 35rem;
+  max-width: 35rem;
 }

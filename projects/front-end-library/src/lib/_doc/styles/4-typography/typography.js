@@ -1,32 +1,32 @@
 export const typographyInterface = [
     {
-        name            : 'small',
+        name: 'small',
     },
     {
-        name            : 'medium',
+        name: 'medium',
     },
     {
-        name            : 'large',
-    }
+        name: 'large',
+    },
 ];
 
 export const typographyDisplay = [
     {
-        name            : 'sub-small',
+        name: 'sub-small',
     },
     {
-        name            : 'sub-medium',
+        name: 'sub-medium',
     },
     {
-        name            : 'sub-large',
+        name: 'sub-large',
     },
     {
-        name            : 'small',
+        name: 'small',
     },
     {
-        name            : 'medium',
+        name: 'medium',
     },
     {
-        name            : 'large',
-    }
+        name: 'large',
+    },
 ];

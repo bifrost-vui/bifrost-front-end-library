@@ -1,25 +1,22 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { PriceComponent }                       from '../angular/price.component';
-
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { PriceComponent } from '../angular/price.component';
 
 <Meta
-    title='Components/Price'
+    title="Components/Price"
     component={PriceComponent}
-    decorators={[
-        moduleMetadata({ declarations: [PriceComponent, TwigContainerComponent]}),
-    ]}
+    decorators={[moduleMetadata({ declarations: [PriceComponent, TwigContainerComponent] })]}
     argTypes={{
         language: {
             control: { type: 'select' },
             table: { defaultValue: { summary: 'en' } },
         },
         dollar: {
-            table: { defaultValue: { summary: '0' } }
+            table: { defaultValue: { summary: '0' } },
         },
         cent: {
-            table: { defaultValue: { summary: '0' } }
+            table: { defaultValue: { summary: '0' } },
         },
         size: {
             control: { type: 'select' },
@@ -37,18 +34,13 @@ import { PriceComponent }                       from '../angular/price.component
     }}
 />
 
-
 # Price
 
-<br/>
-
-
+<br />
 
 ## Component API
 
 <ArgsTable of={PriceComponent} />
-
-
 
 ## Drupal implementation example
 
@@ -79,8 +71,6 @@ import { PriceComponent }                       from '../angular/price.component
 } only %}
 ```
 
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
@@ -89,63 +79,61 @@ export const Drupal = (args) => ({
 });
 
 export const commonProps = {
-    upperTitle      : 'Upper Title',
-    upfront         : {
-        dollar          : 0,
-        label           : 'upfront'
+    upperTitle: 'Upper Title',
+    upfront: {
+        dollar: 0,
+        label: 'upfront',
     },
-    dollar          : 30,
-    dollarClass     : '',
-    cent            : 99,
-    hasAsterisk     : false,
-    details         : '/month',
-    promotion       : {
-        title           : ' <b>Promotion</b> test',
-        priceStriked    : 40.99,
-        priceSaved      : 10,
-        savedLabel      : 'You saved:',
-        superscript     : 1,
-        direction       : 'horizontal',
+    dollar: 30,
+    dollarClass: '',
+    cent: 99,
+    hasAsterisk: false,
+    details: '/month',
+    promotion: {
+        title: ' <b>Promotion</b> test',
+        priceStriked: 40.99,
+        priceSaved: 10,
+        savedLabel: 'You saved:',
+        superscript: 1,
+        direction: 'horizontal',
     },
-    message         : 'This is a message.',
-    class           : 'p-3',
+    message: 'This is a message.',
+    class: 'p-3',
     reversed: undefined,
-}
+};
 
-
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        height='200px'
+        name="Drupal"
+        height="200px"
         args={{
-            elementPath     : 'components/price/_doc/template.drupal',
-            ...commonProps
+            elementPath: 'components/price/_doc/template.drupal',
+            ...commonProps,
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - All Prices'
-        height='800px'
+        name="Drupal - All Prices"
+        height="800px"
         args={{
-            elementPath     : 'components/price/_doc/template-all.drupal',
-            ...commonProps
+            elementPath: 'components/price/_doc/template-all.drupal',
+            ...commonProps,
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - Null validator'
-        height='800px'
+        name="Drupal - Null validator"
+        height="800px"
         args={{
-            elementPath     : 'components/price/_doc/template-null.drupal',
+            elementPath: 'components/price/_doc/template-null.drupal',
             reversed: undefined,
         }}
     >

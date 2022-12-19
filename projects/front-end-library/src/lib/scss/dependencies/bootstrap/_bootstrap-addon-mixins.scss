@@ -32,7 +32,7 @@
   @include media-breakpoint-up($breakpoint) {
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-    @each $prop, $abbrev in (max-height:maxh, max-width: maxw) {
+    @each $prop, $abbrev in (max-height: maxh, max-width: maxw) {
       @each $size, $length in $m-sizes {
         .#{$abbrev}#{$infix}-#{$size} {
           #{$prop}: $length !important;
@@ -72,8 +72,9 @@
 
     @each $prop, $abbrev in (margin: m, padding: p) {
       @each $size, $length in $spacers {
-
-        .#{$abbrev}#{$infix}-minus-#{$size} { #{$prop}: $length !important; }
+        .#{$abbrev}#{$infix}-minus-#{$size} {
+          #{$prop}: $length !important;
+        }
         .#{$abbrev}t#{$infix}-minus-#{$size},
         .#{$abbrev}y#{$infix}-minus-#{$size} {
           #{$prop}-top: ($length * -1) !important;
@@ -104,9 +105,8 @@
   @include media-breakpoint-up($breakpoint) {
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-    @each $prop, $abbrev in (top: top, bottom: bottom, left:left, right:right) {
+    @each $prop, $abbrev in (top: top, bottom: bottom, left: left, right: right) {
       @each $size, $length in $spacers {
-
         .#{$abbrev}#{$infix}-#{$size} {
           #{$prop}: ($length * 0.7) !important;
         }
@@ -148,9 +148,9 @@
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
     @each $prop, $abbrev in $positions {
-        .position#{$infix}-#{$prop} {
-            position: #{$prop} !important;
-        }
+      .position#{$infix}-#{$prop} {
+        position: #{$prop} !important;
+      }
     }
   }
 }
@@ -167,16 +167,13 @@
     $i: 1;
     @while ($i <= 20) {
       .fs#{$infix}-#{$i} {
-        font-size: $font-size-base*$i*.5 !important;
+        font-size: $font-size-base * $i * 0.5 !important;
       }
 
-      $i: $i+1;
+      $i: $i + 1;
     }
-
   }
 }
-
-
 
 // Scale
 // ----------------------------------
@@ -187,16 +184,14 @@
     $i: 1;
     @while ($i <= 10) {
       .scale#{$infix}-#{$i} {
-        transform: scale($i*.1) !important;
+        transform: scale($i * 0.1) !important;
         transform-origin: left;
       }
 
-      $i: $i+1;
+      $i: $i + 1;
     }
   }
 }
-
-
 
 // z-index
 // ----------------------------------
@@ -206,9 +201,8 @@ $i: 1;
     z-index: $i !important;
   }
 
-  $i: $i+1;
+  $i: $i + 1;
 }
-
 
 // Flex-grow
 // ----------------------------------
@@ -252,7 +246,7 @@ $i: 1;
     }
   }
 
-  $i: $i+1;
+  $i: $i + 1;
 }
 
 // Flex
@@ -280,15 +274,13 @@ $i: 1;
   }
 }
 
-
-
 // List format
 // ----------------------------------
 @each $breakpoint in map-keys($grid-breakpoints) {
   @include media-breakpoint-up($breakpoint) {
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-    @each $size, $length in (1,2,3,4,5,6) {
+    @each $size, $length in (1, 2, 3, 4, 5, 6) {
       .list-col#{$infix}-#{$size} {
         column-count: $size;
       }
@@ -304,15 +296,13 @@ $i: 1;
     border-width: $border-width * $i !important;
   }
 
-  $i: $i+1;
+  $i: $i + 1;
 }
-
 
 // SVG fill
 // ----------------------------------
 @each $breakpoint in map-keys($grid-breakpoints) {
   @include media-breakpoint-up($breakpoint) {
-
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
     @each $color, $value in $theme-colors {
@@ -339,7 +329,7 @@ $i: 1;
 
     @each $color, $value in $theme-colors {
       .svg-stroke#{$infix}--#{$color} {
-          stroke: $value !important;
+        stroke: $value !important;
       }
     }
   }
@@ -354,7 +344,7 @@ $i: 1;
     @each $spacer, $value in $spacers {
       .svg-size#{$infix}--#{$spacer} {
         //@include size(($value*.8)+.75);
-        width: ($value*.8)+.75;
+        width: ($value * 0.8)+0.75;
       }
     }
   }

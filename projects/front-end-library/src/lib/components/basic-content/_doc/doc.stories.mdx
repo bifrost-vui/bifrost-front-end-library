@@ -4,16 +4,14 @@ import { TwigContainerComponent } from '../../../../utils/twig-container/twig-co
 import { BasicContentComponent } from '../angular/basic-content.component';
 
 <Meta
-    title='Components/Basic Content'
+    title="Components/Basic Content"
     component={BasicContentComponent}
-    decorators={[
-        moduleMetadata({ declarations: [BasicContentComponent, TwigContainerComponent]}),
-    ]}
+    decorators={[moduleMetadata({ declarations: [BasicContentComponent, TwigContainerComponent] })]}
     parameters={{
         design: {
             type: 'figma',
             url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=9210%3A11314',
-            disable: false
+            disable: false,
         },
     }}
     argTypes={{
@@ -34,12 +32,11 @@ import { BasicContentComponent } from '../angular/basic-content.component';
 
 # Section: Basic Content
 
-<br/>
+<br />
 
 ## Component API
 
 <ArgsTable of={BasicContentComponent} />
-
 
 ## Drupal implementation example
 
@@ -69,7 +66,6 @@ import { BasicContentComponent } from '../angular/basic-content.component';
 } only %}
 ```
 
-
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
     props: args,
@@ -79,30 +75,31 @@ export const commonProps = {
     image: {
         src: `/images/_docs/hero-helix-reversed.png`,
         // src: 'https://i.stack.imgur.com/y9DpT.jpg'
-        isFill: true
+        isFill: true,
     },
     upperTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title: 'Discover our best Helix Internet and TV packages',
     subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description: 'After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you. After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you.',
+    description:
+        'After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you. After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you.',
     class: '',
     reversed: undefined,
-}
+};
 
 export const buttonsProps = {
     buttons: [
         {
             label: 'Main action',
             hierarchy: '',
-            class: ''
+            class: '',
         },
         {
             label: 'Secondary action',
             hierarchy: '',
-            class: ''
-        }
-    ]
-}
+            class: '',
+        },
+    ],
+};
 
 export const linksProps = {
     links: [
@@ -110,9 +107,9 @@ export const linksProps = {
         { href: '', label: 'Internet' },
         { href: '', label: 'TV' },
         { href: '', label: 'TOC / Voice' },
-        { href: '', label: 'Domotic' }
-    ]
-}
+        { href: '', label: 'Domotic' },
+    ],
+};
 
 export const rowButtonsProps = {
     rowButtons: [
@@ -120,21 +117,21 @@ export const rowButtonsProps = {
             href: 'https://example.com',
             title: 'Forfaits internet et télé',
             paragraph: 'Contribute to the ambiance of your spaces.',
-            iconName: 'placeholder'
+            iconName: 'placeholder',
         },
         {
             href: 'https://example.com',
             title: 'Forfaits internet et télé',
             paragraph: 'Contribute to the ambiance of your spaces.',
-            iconName: 'placeholder'
-        }
-    ]
-}
+            iconName: 'placeholder',
+        },
+    ],
+};
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        height='800px'
+        name="Drupal"
+        height="800px"
         args={{
             elementPath: 'components/basic-content/_doc/template.drupal',
             ...commonProps,
@@ -146,26 +143,26 @@ export const rowButtonsProps = {
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With textAlign'
-        height='800px'
+        name="Drupal - With textAlign"
+        height="800px"
         args={{
             elementPath: 'components/basic-content/_doc/template.drupal',
             ...commonProps,
             ...buttonsProps,
             image: null,
-            textAlign: 'center'
+            textAlign: 'center',
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With Links'
-        height='800px'
+        name="Drupal - With Links"
+        height="800px"
         args={{
             elementPath: 'components/basic-content/_doc/template.drupal',
             ...commonProps,
@@ -177,10 +174,10 @@ export const rowButtonsProps = {
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With rowButtons'
-        height='800px'
+        name="Drupal - With rowButtons"
+        height="800px"
         args={{
             elementPath: 'components/basic-content/_doc/template.drupal',
             ...commonProps,
@@ -192,78 +189,57 @@ export const rowButtonsProps = {
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With image'
-        height='800px'
+        name="Drupal - With image"
+        height="800px"
         args={{
             elementPath: 'components/basic-content/_doc/template.drupal',
             ...commonProps,
             image: {
                 src: `/images/_docs/hero-helix-reversed.png`,
-            }
+            },
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With image isFill true'
-        height='800px'
+        name="Drupal - With image isFill true"
+        height="800px"
         args={{
             elementPath: 'components/basic-content/_doc/template.drupal',
             ...commonProps,
             image: {
                 src: `/images/_docs/hero-helix-reversed.png`,
-                isFill: true
-            }
+                isFill: true,
+            },
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With imagePosition right'
-        height='800px'
+        name="Drupal - With imagePosition right"
+        height="800px"
         args={{
             elementPath: 'components/basic-content/_doc/template.drupal',
             ...commonProps,
-            imagePosition: 'right'
+            imagePosition: 'right',
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With image icon position bottom-right'
-        height='800px'
-        args={{
-            elementPath: 'components/basic-content/_doc/template.drupal',
-            ...commonProps,
-            image: {
-                src: `/images/_docs/hero-helix-reversed.png`,
-                icon: {
-                    name: 'trio-wifi',
-                    position: 'bottom-right'
-                },
-                isFill: true
-            }
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
-
-<Canvas withSource='none'>
-    <Story
-        name='Drupal - With image icon position bottom-left'
-        height='800px'
+        name="Drupal - With image icon position bottom-right"
+        height="800px"
         args={{
             elementPath: 'components/basic-content/_doc/template.drupal',
             ...commonProps,
@@ -271,20 +247,20 @@ export const rowButtonsProps = {
                 src: `/images/_docs/hero-helix-reversed.png`,
                 icon: {
                     name: 'trio-wifi',
-                    position: 'bottom-left'
+                    position: 'bottom-right',
                 },
-                isFill: true
-            }
+                isFill: true,
+            },
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With image icon position top-right'
-        height='800px'
+        name="Drupal - With image icon position bottom-left"
+        height="800px"
         args={{
             elementPath: 'components/basic-content/_doc/template.drupal',
             ...commonProps,
@@ -292,20 +268,20 @@ export const rowButtonsProps = {
                 src: `/images/_docs/hero-helix-reversed.png`,
                 icon: {
                     name: 'trio-wifi',
-                    position: 'top-right'
+                    position: 'bottom-left',
                 },
-                isFill: true
-            }
+                isFill: true,
+            },
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With image icon position top-left'
-        height='800px'
+        name="Drupal - With image icon position top-right"
+        height="800px"
         args={{
             elementPath: 'components/basic-content/_doc/template.drupal',
             ...commonProps,
@@ -313,20 +289,20 @@ export const rowButtonsProps = {
                 src: `/images/_docs/hero-helix-reversed.png`,
                 icon: {
                     name: 'trio-wifi',
-                    position: 'top-left'
+                    position: 'top-right',
                 },
-                isFill: true
-            }
+                isFill: true,
+            },
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With image icon position center'
-        height='800px'
+        name="Drupal - With image icon position top-left"
+        height="800px"
         args={{
             elementPath: 'components/basic-content/_doc/template.drupal',
             ...commonProps,
@@ -334,20 +310,20 @@ export const rowButtonsProps = {
                 src: `/images/_docs/hero-helix-reversed.png`,
                 icon: {
                     name: 'trio-wifi',
-                    position: 'center'
+                    position: 'top-left',
                 },
-                isFill: true
-            }
+                isFill: true,
+            },
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - Full'
-        height='800px'
+        name="Drupal - With image icon position center"
+        height="800px"
         args={{
             elementPath: 'components/basic-content/_doc/template.drupal',
             ...commonProps,
@@ -355,30 +331,51 @@ export const rowButtonsProps = {
                 src: `/images/_docs/hero-helix-reversed.png`,
                 icon: {
                     name: 'trio-wifi',
-                    position: 'bottom-right'
+                    position: 'center',
                 },
-                isFill: true
+                isFill: true,
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Full"
+        height="800px"
+        args={{
+            elementPath: 'components/basic-content/_doc/template.drupal',
+            ...commonProps,
+            image: {
+                src: `/images/_docs/hero-helix-reversed.png`,
+                icon: {
+                    name: 'trio-wifi',
+                    position: 'bottom-right',
+                },
+                isFill: true,
             },
             ...buttonsProps,
             ...linksProps,
-            ...rowButtonsProps
+            ...rowButtonsProps,
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - Usage example 1'
-        height='800px'
+        name="Drupal - Usage example 1"
+        height="800px"
         args={{
             elementPath: 'components/basic-content/_doc/template.drupal',
             title: 'Internet 100',
             description: `<p class='font-weight-bold mb-0'>Download capacity</p><p>Unlimited</p><p class='font-weight-bold mb-0'>Upload speed</p><p>Up until 1000 Mbit/s</p><p class='font-weight-bold mb-0'>Download speed</p><p>Up until 1000 Mbit/s</p><p class='font-weight-bold mb-0'>Simultaneous devices</p><p>12+ devices</p><p class='font-weight-bold'>Included</p><ul class='list-checkmark'><li class='list-checkmark__item'>An ultrapowerful and smart Wi-Fi</li><li class='list-checkmark__item'>The Helix Fi App</li><li class='list-checkmark__item'>Parental control</li></ul>`,
             image: {
                 src: `/images/_docs/hero-helix-reversed.png`,
-                isFill: true
+                isFill: true,
             },
             reversed: undefined,
         }}
@@ -387,17 +384,17 @@ export const rowButtonsProps = {
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - Usage example 2'
-        height='800px'
+        name="Drupal - Usage example 2"
+        height="800px"
         args={{
             elementPath: 'components/basic-content/_doc/template.drupal',
             title: 'Helix TV',
             description: `<p class='font-weight-bold'>38 channels in total including :</p><p>23 Basic Channels</p><p>+15 channels of your choice</p><p class='font-weight-bold'>Included</p><ul class='list-checkmark'><li class='list-checkmark__item'>100 hours of cloud DVR time</li><li class='list-checkmark__item'>The Helix app</li><li class='list-checkmark__item'>Kids Zone</li><li class='list-checkmark__item'>Sports App</li></ul>`,
             image: {
                 src: `/images/_docs/hero-helix-reversed.png`,
-                isFill: true
+                isFill: true,
             },
             imagePosition: 'right',
             reversed: undefined,
@@ -407,7 +404,12 @@ export const rowButtonsProps = {
     </Story>
 </Canvas>
 
-
 ## Design Guidelines
 
-<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D9210%253A11314' frameBorder='0' allowFullScreen></iframe>
+<iframe
+    width="100%"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D9210%253A11314"
+    frameBorder="0"
+    allowFullScreen
+></iframe>

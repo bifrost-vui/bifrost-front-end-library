@@ -4,6 +4,6 @@ import { SectionButtonsNavComponent } from './section-buttons-nav.component';
 @NgModule({
     declarations: [SectionButtonsNavComponent],
     imports: [],
-    exports: [SectionButtonsNavComponent]
+    exports: [SectionButtonsNavComponent],
 })
-export class SectionButtonsNavModule { }
+export class SectionButtonsNavModule {}

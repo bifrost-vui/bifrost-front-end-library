@@ -1,12 +1,12 @@
-import { Component, OnInit, Input }     from '@angular/core';
-import { ILink }                        from '../../../components/link/angular/api.model';
+import { Component, OnInit, Input } from '@angular/core';
+import { ILink } from '../../../components/link/angular/api.model';
 
 export interface IKey {
-    iconName        : string;
-    title           : string;
-    titleTag        : string;
-    description     : string;
-    link            : ILink;
+    iconName: string;
+    title: string;
+    titleTag: string;
+    description: string;
+    link: ILink;
 }
 
 @Component({
@@ -16,15 +16,15 @@ export interface IKey {
 export class SectionKeysComponent implements OnInit {
     constructor() {}
 
-    @Input() title          : string;
-    @Input() titleTag       : string;
-    @Input() description    : string;
-    @Input() keys           : IKey[];
-    @Input() align          : 'left' | 'center';
-    @Input() background     : 'ground' | 'underground' | 'highlight';
+    @Input() title: string;
+    @Input() titleTag: string;
+    @Input() description: string;
+    @Input() keys: IKey[];
+    @Input() align: 'left' | 'center';
+    @Input() background: 'ground' | 'underground' | 'highlight';
 
-    @Input() class          : string;
-    @Input() reversed       : boolean;
+    @Input() class: string;
+    @Input() reversed: boolean;
 
     ngOnInit() {
         console.log('section keys', this);

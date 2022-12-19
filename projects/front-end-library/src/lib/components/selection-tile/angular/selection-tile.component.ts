@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { IFooter } from './api.model';
 
 @Component({
-  selector: 'bf-selection-tile',
-  templateUrl: './selection-tile.component.html',
+    selector: 'bf-selection-tile',
+    templateUrl: './selection-tile.component.html',
 })
 export class SelectionTileComponent implements OnInit {
     constructor() {}
@@ -31,7 +31,7 @@ export class SelectionTileComponent implements OnInit {
     @Input() footer: IFooter;
 
     /** Extra attributes for radio/checkbox inputs. */
-    @Input() extraAttribute: string
+    @Input() extraAttribute: string;
     /** Class override */
     @Input() class: string;
 

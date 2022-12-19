@@ -4,7 +4,6 @@ import { Component, OnInit, Input } from '@angular/core';
     selector: 'bf-iframe-video',
     templateUrl: './iframe-video.component.html',
 })
-
 export class IframeVideoComponent implements OnInit {
     constructor() {}
 

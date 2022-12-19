@@ -2,20 +2,22 @@ import { Meta } from '@storybook/addon-docs';
 import imageStorybookCompnentList from '../../../../../../public/images/_docs/storybook-compnent-list.png';
 
 <Meta
-    title='Implementation/Drupal'
+    title="Implementation/Drupal"
     parameters={{
         layout: 'padded',
         viewMode: 'docs',
-        previewTabs: { canvas: { hidden: true } }
+        previewTabs: { canvas: { hidden: true } },
     }}
 />
 
 # Drupal implementation
+
 You have a **Drupal installation**, and you want to use Bifröst Design System.
 
-<br/>
+<br />
 
 ## 1. Install NPM Package
+
 Open terminal in your Drupal theme and enter:
 
 ```bash
@@ -24,11 +26,14 @@ npm install @videotron-ui/bifrost-front-end-library@<specific-version> --save
 # Or the latest version
 npm install @videotron-ui/bifrost-front-end-library@latest --save
 ```
+
 <br />
 
 ## 2. Add Namespaces and filters
+
 Install [components module](https://www.drupal.org/project/components) in Drupal.
 Then, add these namespace paths to **your-theme.info.yml**:
+
 ```
 component-libraries:
   [...]
@@ -65,10 +70,12 @@ Import `bifrost.css` from the NPM Package, in order to provide the same CSS base
 
 **Multiple import options:**
 
-<br/>
+<br />
 
 ### Option 1:
+
 Create a library **your-theme.libraries.yml**:
+
 ```js
 global-styling:
   css:
@@ -78,13 +85,15 @@ global-styling:
 ```
 
 Then, add this library to **your-theme.info.yml**:
+
 ```js
-libraries:
-  - your-theme/global-styling
+libraries: -your - theme / global - styling;
 ```
 
 ### Option 2:
+
 In your **CSS file**:
+
 ```css
 @import 'node_modules/@videotron-ui/bifrost-front-end-library/assets/css/bifrost.css';
 
@@ -93,25 +102,31 @@ In your **CSS file**:
 ```
 
 ### Option 3:
+
 In the **head** of your pages:
+
 ```html
 <head>
-    <link href="./node_modules/@videotron-ui/bifrost-front-end-library/assets/css/bifrost.css" rel='stylesheet' />
+    <link href="./node_modules/@videotron-ui/bifrost-front-end-library/assets/css/bifrost.css" rel="stylesheet" />
 </head>
 ```
 
 ## 5. Import a Component
-- All Bifröst components are visible on this Storybook. In the sidebar, check if your component is available:
 
-<img src={imageStorybookCompnentList} style={{maxWidth: '350px'}} />
+-   All Bifröst components are visible on this Storybook. In the sidebar, check if your component is available:
 
-- Select the **Docs Tab** at the top of the component's page and look at the **Drupal implementation example** section.
-- In the **Component API** section, check that you send the right properties to your component.
-- **Note: If you previously load the Marvel UI-KIT, **take note that we improved the path to the component. So for example:
+<img src={imageStorybookCompnentList} style={{ maxWidth: '350px' }} />
+
+-   Select the **Docs Tab** at the top of the component's page and look at the **Drupal implementation example** section.
+-   In the **Component API** section, check that you send the right properties to your component.
+-   **Note: If you previously load the Marvel UI-KIT, **take note that we improved the path to the component. So for example:
+
 ```jsx
 {% include '@atoms/02-buttons/10-button-outline.twig' %}
 ```
+
 becomes
+
 ```
 {% include '@bf-components/button/twig/index.twig' with {
     outline : true
@@ -121,32 +136,32 @@ becomes
 <br />
 
 ## 6. Themes
+
 Components come with multiples themes.
 
 [More details about Themes](?path=/docs/implementation-theme--page)
 
 On Storybook, check if the component is available in a specific theme.
 Wrap the component with a `data-theme='x'`.
+
 ```html
-<div data-theme='business'>
-    {% include '@bf-components/button/twig/index.twig' %}
-</div>
+<div data-theme="business">{% include '@bf-components/button/twig/index.twig' %}</div>
 ```
 
-
 ## 7. Reversed style
+
 Components could lives in multiple context.
 
 For example, in a [**Videotron Theme**](?path=/docs/implementation-theme--page) (default), the render is:
 
-<div class='d-flex border bf-border-color-tertiary'>
-    <div class='bf-color-bg-ground px-4 py-2' style={{ flex: 1 }}>
+<div class="d-flex border bf-border-color-tertiary">
+    <div class="bf-color-bg-ground px-4 py-2" style={{ flex: 1 }}>
         Default
     </div>
-    <div class='bf-color-bg-ground reversed px-4 py-2' style={{ flex: 1 }}>
+    <div class="bf-color-bg-ground reversed px-4 py-2" style={{ flex: 1 }}>
         Reversed
     </div>
-    <div class='bf-color-bg-highlight px-4 py-2' style={{ flex: 1 }}>
+    <div class="bf-color-bg-highlight px-4 py-2" style={{ flex: 1 }}>
         Highlight
     </div>
 </div>
@@ -160,13 +175,16 @@ For example, in a [**Videotron Theme**](?path=/docs/implementation-theme--page) 
 Explore Bifröst [Drupal Showcase on Github](https://github.com/bifrost-vui/bifrost-front-end-library/tree/master/projects/showcase-drupal)
 
 #### What is reversed?
+
 In every theme, we have a default background color. For example, in Videotron theme, the default is white, but some sections have black background. Those sections are `reversed`.
 //TODO: Add a link to Zeroheight Documentation.
 
 > **Note:** We didn't call it white-mode/dark-mode in order to be "color agnostic" and then more future-proof.
 
 #### How to implement?
-- Add a class `.reversed` in any HTML tag.
+
+-   Add a class `.reversed` in any HTML tag.
+
 ```jsx
 // Note that if you want to display the reversed background,
 // you need to add it independently.
@@ -175,8 +193,9 @@ In every theme, we have a default background color. For example, in Videotron th
 </div>
 ```
 
-- Some special components need to know explicitly the reversed state: `Navigation Header` and `Logo`.
-Then you need to pass the `reversed` property into the 'include' tag:
+-   Some special components need to know explicitly the reversed state: `Navigation Header` and `Logo`.
+    Then you need to pass the `reversed` property into the 'include' tag:
+
 ```jsx
 {% include '@bf-components/navigation-header/twig/index.twig' with {
     reversed : true
@@ -186,4 +205,5 @@ Then you need to pass the `reversed` property into the 'include' tag:
 [More details about Reversed and Highlight](?path=/docs/implementation-reversed-highlight--page)
 
 ## 8. Test Visual Regression
-- Check manually the differences in your localhost.
+
+-   Check manually the differences in your localhost.

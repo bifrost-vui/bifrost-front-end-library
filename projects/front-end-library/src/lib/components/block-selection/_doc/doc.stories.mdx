@@ -1,30 +1,23 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { contentListsData }                     from './data';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { BlockSelectionComponent }              from '../angular/block-selection.component';
-
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { contentListsData } from './data';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { BlockSelectionComponent } from '../angular/block-selection.component';
 
 <Meta
-    title='Components/Block Selection'
+    title="Components/Block Selection"
     component={BlockSelectionComponent}
-    decorators={[
-        moduleMetadata({ declarations: [BlockSelectionComponent, TwigContainerComponent]}),
-    ]}
+    decorators={[moduleMetadata({ declarations: [BlockSelectionComponent, TwigContainerComponent] })]}
     argTypes={{}}
 />
 
 # Block Selection
 
-<br/>
-
-
+<br />
 
 ## Component API
 
 <ArgsTable of={BlockSelectionComponent} />
-
-
 
 ## Drupal implementation example
 
@@ -71,40 +64,38 @@ import { BlockSelectionComponent }              from '../angular/block-selection
 } only %}
 ```
 
-
-
 ## Drupal
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    component: TwigContainerComponent,
+    props: args,
 });
 
 export const commonProps = {
-    elementPath                     : 'components/block-selection/_doc/template.drupal',
-    title                           : 'My selection',
-    titleTag                        : 'p',
-    isCollapsableOnMobile           : true,
-    isCollapsedByDefaultOnMobile    : false,
-    topLink             : {
-        href                : 'www.videotron.com',
-        label               : 'FINALIZE',
+    elementPath: 'components/block-selection/_doc/template.drupal',
+    title: 'My selection',
+    titleTag: 'p',
+    isCollapsableOnMobile: true,
+    isCollapsedByDefaultOnMobile: false,
+    topLink: {
+        href: 'www.videotron.com',
+        label: 'FINALIZE',
     },
-    contentLists        : contentListsData,
-    totalPrice          : {
-        label               : 'Total',
-        details             : 'Plus applicable taxes',
-        price               : '$80.00',
-        priceInfo           : '/ month',
-        priceDetails        : '(for 24 month)',
+    contentLists: contentListsData,
+    totalPrice: {
+        label: 'Total',
+        details: 'Plus applicable taxes',
+        price: '$80.00',
+        priceInfo: '/ month',
+        priceDetails: '(for 24 month)',
     },
-    class               : '',
-}
+    class: '',
+};
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        height='600px'
+        name="Drupal"
+        height="600px"
         args={{
             ...commonProps,
             reversed: undefined,

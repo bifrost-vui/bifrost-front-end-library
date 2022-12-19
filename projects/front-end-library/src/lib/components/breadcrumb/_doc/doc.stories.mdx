@@ -1,55 +1,50 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { BreadcrumbComponent }                  from '../angular/breadcrumb.component';
-
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { BreadcrumbComponent } from '../angular/breadcrumb.component';
 
 <Meta
-    title='Components/Breadcrumb'
+    title="Components/Breadcrumb"
     component={BreadcrumbComponent}
-    decorators={[
-        moduleMetadata({ declarations: [BreadcrumbComponent, TwigContainerComponent]})
-    ]}
+    decorators={[moduleMetadata({ declarations: [BreadcrumbComponent, TwigContainerComponent] })]}
 />
-
 
 # Breadcrumb
 
-<br/>
-
-
+<br />
 
 ## Drupal implementation example
 
 ```jsx
-<nav aria-label='breadcrumb'>
-    <ol class='breadcrumb'>
-        <li class='breadcrumb-item'><a href='#'>Home</a></li>
-        <li class='breadcrumb-item active' aria-current='page'>Library</li>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Library
+        </li>
     </ol>
 </nav>
 ```
-
-
 
 ## Drupal
 
 > There is no Breadcrumb Drupal component in Bifröst.
 > Please use <a class='bf-link' target='_blank' href='https://getbootstrap.com/docs/4.0/components/breadcrumb/'>Bootstrap syntax</a>.
 
-
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
     props: args,
 });
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        height='400px'
+        name="Drupal"
+        height="400px"
         parameters={{ options: { showPanel: false } }}
         args={{
-            elementPath     : 'components/breadcrumb/_doc/template.drupal',
+            elementPath: 'components/breadcrumb/_doc/template.drupal',
         }}
     >
         {Drupal.bind({})}

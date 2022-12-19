@@ -1,14 +1,21 @@
-{% if isSquareMode is defined and isSquareMode is same as (true) %}
-    {% set containerClass = "img-lazy-load-container--square" %}
+{% if isSquareMode is defined and isSquareMode is same as(true) %}
+  {% set containerClass = "img-lazy-load-container--square" %}
 {% endif %}
 {% if src is not defined %}
-    {% set src = "https://source.unsplash.com/260x180/?nature" %}
+  {% set src = "https://source.unsplash.com/260x180/?nature" %}
 {% endif %}
 {# ------------------------------------------------------------------------------------------------------------------ #}
 
-<picture class="img-lazy-load-container {{ containerClass|default("") }} w-100 overflow-hidden bg-{{ bgColor|default("gray--1000") }} position-{{ positionClass|default("relative") }} {{ class|default("") }}">
-    <img class="img-lazy-load-container__img"
-         data-src="{{ src }}"
-         {% if alt is not empty %}alt="{{ alt|default("") }}"{% endif %}
-    >
+<picture
+  class="img-lazy-load-container {{ containerClass|default(
+    ""
+  ) }} w-100 overflow-hidden bg-{{ bgColor|default(
+    "gray--1000"
+  ) }} position-{{ positionClass|default("relative") }} {{ class|default("") }}"
+>
+  <img
+    class="img-lazy-load-container__img"
+    data-src="{{ src }}"
+    {{ alt is not empty ? "alt='" ~ (alt|default("")) ~ "'" }}
+  />
 </picture>

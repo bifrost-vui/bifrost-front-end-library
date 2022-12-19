@@ -5,84 +5,84 @@
 * ***************************************************************************** */
 
 .bf-input-radio-option {
-    display: flex;
-    max-width: 16rem;
-    flex-flow: row nowrap;
-    align-items: center;
-    margin-bottom: 0; // Override UI-Kit
-    cursor: pointer;
+  display: flex;
+  max-width: 16rem;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-bottom: 0; // Override UI-Kit
+  cursor: pointer;
 
-    input {
-        position: absolute;
-        clip: rect(0,0,0,0);
-        clip: rect(0 0 0 0);
+  input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    clip: rect(0 0 0 0);
 
-        &:checked + .bf-input-radio-control {
-            background-color: var(--bf-color-bg-action-primary);
+    &:checked + .bf-input-radio-control {
+      background-color: var(--bf-color-bg-action-primary);
 
-            &:before {
-                position: relative;
-                display: block;
-                width: 100%;
-                height: 100%;
-                line-height: 1rem;
-                content: "";
-                border-radius: 50%;
-                background-color: var(--bf-color-primary-irreversible);
-            }
+      &:before {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: 1rem;
+        content: '';
+        border-radius: 50%;
+        background-color: var(--bf-color-primary-irreversible);
+      }
+    }
+    .invalid:not(:disabled) + .bf-input-radio-control {
+      border-color: var(--bf-color-feedback-negative);
+      background-color: var(--bf-color-bg-ground);
+    }
+
+    &:checked.invalid:not(:disabled) + .bf-input-radio-control {
+      border-color: var(--bf-color-feedback-negative);
+      background-color: var(--bf-color-feedback-negative);
+
+      &:before {
+        background-color: var(--bf-color-bg-ground);
+      }
+    }
+    &:disabled {
+      & + .bf-input-radio-control {
+        border-color: var(--bf-color-stroke-secondary);
+      }
+      &:checked + .bf-input-radio-control {
+        background-color: var(--bf-color-bg-action-disabled);
+
+        &:before {
+          background-color: var(--bf-color-neutral-tertiary);
         }
-        .invalid:not(:disabled) + .bf-input-radio-control {
-                border-color: var(--bf-color-feedback-negative);
-                background-color: var(--bf-color-bg-ground);
-            }
-
-        &:checked.invalid:not(:disabled) + .bf-input-radio-control {
-            border-color: var(--bf-color-feedback-negative);
-            background-color: var(--bf-color-feedback-negative);
-
-            &:before {
-                background-color: var(--bf-color-bg-ground);
-            }
-        }
-        &:disabled {
-            & + .bf-input-radio-control {
-                border-color: var(--bf-color-stroke-secondary);
-            }
-            &:checked  + .bf-input-radio-control {
-                background-color: var(--bf-color-bg-action-disabled);
-
-                &:before {
-                    background-color: var(--bf-color-neutral-tertiary);
-                }
-            }
-        }
+      }
     }
-    &--invalid {
-        color: var(--bf-color-feedback-negative);
-    }
-    &--disabled {
-        color: var(--bf-color-neutral-tertiary);
-        pointer-events: none;
-    }
+  }
+  &--invalid {
+    color: var(--bf-color-feedback-negative);
+  }
+  &--disabled {
+    color: var(--bf-color-neutral-tertiary);
+    pointer-events: none;
+  }
 
-    &__label {
-        user-select: none;
-        line-height: $line-height-base;
-    }
+  &__label {
+    user-select: none;
+    line-height: $line-height-base;
+  }
 }
 
 .bf-input-radio-control {
-    display: inline-block;
-    place-content: center;
-    flex: 0 0 1rem;
-    appearance: none;
-    width: 1rem;
-    height: 1rem;
-    padding: var(--bf-spacer-1);
-    margin-right: var(--bf-spacer-2);
-    border: 1px solid var(--bf-color-stroke-primary);
-    border-radius: 50%;
-    color: var(--bf-color-neutral-primary);
-    background-color: var(--bf-color-bg-ground);
-    transform: translateY(-0.05em);
+  display: inline-block;
+  place-content: center;
+  flex: 0 0 1rem;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  padding: var(--bf-spacer-1);
+  margin-right: var(--bf-spacer-2);
+  border: 1px solid var(--bf-color-stroke-primary);
+  border-radius: 50%;
+  color: var(--bf-color-neutral-primary);
+  background-color: var(--bf-color-bg-ground);
+  transform: translateY(-0.05em);
 }

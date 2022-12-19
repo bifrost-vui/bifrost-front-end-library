@@ -1,7 +1,7 @@
-{% set isFeatured  = isFeatured|json_parse %}
-{% set isDisabled  = isDisabled|json_parse %}
-{% set reversed    = reversed|json_parse %}
-{% set highlight   = highlight|json_parse %}
+{% set isFeatured = isFeatured|json_parse %}
+{% set isDisabled = isDisabled|json_parse %}
+{% set reversed = reversed|json_parse %}
+{% set highlight = highlight|json_parse %}
 
 {% set variants = [
   {
@@ -33,7 +33,12 @@
 
 <div class="d-flex flex-wrap">
   {% for variant in variants %}
-    <div class="flex-1 p-4 {{ variant.backgroundClass }} {{ variant.reversed ? "reversed" }} {% if variant.highlight %}bf-color-bg-highlight highlight{% endif %}">
+    <div
+      class="flex-1 p-4 {{ variant.backgroundClass }} {{
+      variant.reversed
+        ? "reversed"
+      }} {{ variant.highlight ? "bf-color-bg-highlight highlight" }}"
+    >
       {% include "@bf-components/button-nav/twig/index.twig" with variant %}
     </div>
   {% endfor %}

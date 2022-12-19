@@ -2,8 +2,12 @@
 {% set isDisabled = isDisabled|json_parse %}
 {% set _isInvalid = _isInvalid|json_parse %}
 
-<div class="px-7 d-flex align-items-center justify-content-center minh-100 {% if reversed %}reversed bf-color-bg-ground{% endif %}">
-
+<div
+  class="px-7 d-flex align-items-center justify-content-center minh-100 {{
+  reversed
+    ? " reversed bf-color-bg-ground"
+  }}"
+>
   {% include "@bf-components/input-search/twig/index.twig" with {
     input: {
       id: input_id,
@@ -13,25 +17,25 @@
       placeholder: input_Placeholder,
       name: input_Name,
       value: input_Value,
-      extraAttribute: input_extraAttribute,
+      extraAttribute: input_extraAttribute
     },
     inputSubmit: {
       id: inputSubmit_id,
       value: inputSubmit_value,
-      extraAttribute: inputSubmit_extraAttribute,
+      extraAttribute: inputSubmit_extraAttribute
     },
     label: {
       value: label_value,
       class: label_class,
-      extraAttribute: label_extraAttribute,
-    },
+      extraAttribute: label_extraAttribute
+    }
   } %}
 </div>
 
 {% if _isInvalid %}
   <script>
     function setInvalid() {
-      document.getElementsByClassName("form-group")[0].classList.add("is-invalid");
+    document.getElementsByClassName("form-group")[0].classList.add("is-invalid");
     }
 
     setInvalid();

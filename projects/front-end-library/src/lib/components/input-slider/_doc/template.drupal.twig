@@ -1,13 +1,12 @@
-{% set min        = min|json_parse %}
-{% set max        = max|json_parse %}
-{% set step       = step|json_parse %}
-{% set class      = class|json_parse %}
-{% set value      = value|json_parse %}
+{% set min = min|json_parse %}
+{% set max = max|json_parse %}
+{% set step = step|json_parse %}
+{% set class = class|json_parse %}
+{% set value = value|json_parse %}
 {% set isInverted = isInverted|json_parse %}
-{% set reversed   = reversed|json_parse %}
+{% set reversed = reversed|json_parse %}
 
 <div class="input-slider-wrapper">
-
   {% for i in 1..5 %}
     {# Set backgroundClass #}
     {% if i == 1 or i == 4 %}
@@ -19,27 +18,16 @@
     {% endif %}
 
     {% include "@bf-components/input-slider/twig/index.twig" with {
-      class    : class ~ " " ~ backgroundClass,
-      reversed : reversed|default(i == 4 or i == 5)
+      class: class ~ " " ~ backgroundClass,
+      reversed: reversed|default(i == 4 or i == 5)
     } %}
   {% endfor %}
-
 </div>
 
 <style>
-  .input-slider-wrapper {
-    width: 100%;
-    max-width: 1400px;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    align-content: center;
-    margin: 0 auto;
-  }
+  .input-slider-wrapper { width: 100%; max-width: 1400px; height: 100vh;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  align-content: center; margin: 0 auto; }
 
-	@media (max-width: 768px) {
-		.input-slider-wrapper {
-			display: block;
-		}
-	}
+  @media (max-width: 768px) { .input-slider-wrapper { display: block; } }
 </style>

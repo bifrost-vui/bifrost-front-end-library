@@ -4,6 +4,6 @@ import { ButtonNavComponent } from './button-nav.component';
 @NgModule({
     declarations: [ButtonNavComponent],
     imports: [],
-    exports: [ButtonNavComponent]
+    exports: [ButtonNavComponent],
 })
-export class ButtonNavModule { }
+export class ButtonNavModule {}

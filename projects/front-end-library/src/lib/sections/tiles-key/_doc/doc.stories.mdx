@@ -1,34 +1,32 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { SectionTilesKeyComponent }             from '../angular/section-tiles-key.component';
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { SectionTilesKeyComponent } from '../angular/section-tiles-key.component';
 
 <Meta
-    title='Sections/Tiles Key'
+    title="Sections/Tiles Key"
     component={SectionTilesKeyComponent}
-    decorators={[
-        moduleMetadata({ declarations: [SectionTilesKeyComponent, TwigContainerComponent] })
-    ]}
+    decorators={[moduleMetadata({ declarations: [SectionTilesKeyComponent, TwigContainerComponent] })]}
     parameters={{
         design: {
             type: 'figma',
             url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=9225%3A135',
-            disable: false
+            disable: false,
         },
     }}
     argTypes={{
         hasFeaturedLayout: {
-            table: { defaultValue: { summary: false } }
+            table: { defaultValue: { summary: false } },
         },
         reversed: {
-            table: { defaultValue: { summary: false } }
-        }
+            table: { defaultValue: { summary: false } },
+        },
     }}
 />
 
 # Section Tiles Key
 
-<br/>
+<br />
 
 ## Component API
 
@@ -79,17 +77,17 @@ export const tileKey = {
     linkLabel: 'Trade-in program',
     reversed: false,
     class: '',
-}
+};
 
 export const tiles = [
     {
         ...tileKey,
         icon: {
             name: 'helix-mic',
-            color: 'neutral'
+            color: 'neutral',
         },
         backgroundImage: {
-            src: '/images/_docs/hero-helix-reversed.png'
+            src: '/images/_docs/hero-helix-reversed.png',
         },
         reversed: true,
     },
@@ -97,47 +95,47 @@ export const tiles = [
         ...tileKey,
         description: 'Trade-in your old phone.',
         icon: {
-            name: 'television'
-        }
+            name: 'television',
+        },
     },
     {
         ...tileKey,
         backgroundColor: 'highlight',
         icon: {
-            name: 'wifi'
-        }
+            name: 'wifi',
+        },
     },
     {
         ...tileKey,
         icon: {
-            name: 'trio-wifi'
-        }
-    }
+            name: 'trio-wifi',
+        },
+    },
 ];
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal'
-        height='600px'
+        name="Drupal"
+        height="600px"
         args={{
             elementPath: 'sections/tiles-key/_doc/template.drupal',
             title: 'Shop your cell phone plan and mobile phone your way',
-            tiles
+            tiles,
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none'>
+<Canvas withSource="none">
     <Story
-        name='Drupal - With hasFeaturedLayout'
-        height='600px'
+        name="Drupal - With hasFeaturedLayout"
+        height="600px"
         args={{
             elementPath: 'sections/tiles-key/_doc/template.drupal',
             title: 'Shop your cell phone plan and mobile phone your way',
             hasFeaturedLayout: true,
-            tiles
+            tiles,
         }}
     >
         {Drupal.bind({})}
@@ -146,4 +144,10 @@ export const tiles = [
 
 ## Design Guidelines
 
-<iframe width='100%' height='450' src='https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=9225%3A135' frameBorder='0' allowFullScreen></iframe>
+<iframe
+    width="100%"
+    height="450"
+    src="https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=9225%3A135"
+    frameBorder="0"
+    allowFullScreen
+></iframe>

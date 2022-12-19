@@ -4,30 +4,27 @@ import { TwigContainerComponent } from '../../../../utils/twig-container/twig-co
 import { IframeVideoComponent } from '../angular/iframe-video.component';
 
 <Meta
-    title='UI-Kit/Iframe Video'
-    component={ IframeVideoComponent }
-    decorators={[
-        moduleMetadata({ declarations: [IframeVideoComponent, TwigContainerComponent] }),
-    ]}
+    title="UI-Kit/Iframe Video"
+    component={IframeVideoComponent}
+    decorators={[moduleMetadata({ declarations: [IframeVideoComponent, TwigContainerComponent] })]}
     parameters={{}}
     argTypes={{
         videoSource: {
-            type: {required: true}
+            type: { required: true },
         },
         videoRatio: {
             defaultValue: '16by9',
             control: {
                 type: 'select',
-                options: ['21by9', '16by9', '4by3', '1by1']
-            }
-        }
+                options: ['21by9', '16by9', '4by3', '1by1'],
+            },
+        },
     }}
 />
 
 # Iframe Video
 
 This component has been migrated from the UI-Kit
-
 
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
@@ -36,25 +33,21 @@ export const Drupal = (args) => ({
 
 ## Component API
 
-<ArgsTable of={IframeVideoComponent}/>
+<ArgsTable of={IframeVideoComponent} />
 
 ## Drupal
 
-<Canvas
-    withSource='none'
-    style={{height: '600px'}}
->
+<Canvas withSource="none" style={{ height: '600px' }}>
     <Story
-        name='Drupal'
+        name="Drupal"
         args={{
             elementPath: 'components/iframe-video/_doc/template.drupal',
-            videoSource: 'https://www.youtube.com/embed/Y9wrYkMH0RM?rel=0'
+            videoSource: 'https://www.youtube.com/embed/Y9wrYkMH0RM?rel=0',
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
-
 
 ## Drupal implementation exemple
 

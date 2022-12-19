@@ -1,26 +1,23 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import { withDesign } from 'storybook-addon-designs'
+import { withDesign } from 'storybook-addon-designs';
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { InputRadioComponent } from '../angular/input-radio.component';
 
 <Meta
-    title='Components/Input Radio'
+    title="Components/Input Radio"
     component={InputRadioComponent}
-    decorators={[
-        moduleMetadata({ declarations: [InputRadioComponent, TwigContainerComponent] }),
-        withDesign
-    ]}
+    decorators={[moduleMetadata({ declarations: [InputRadioComponent, TwigContainerComponent] }), withDesign]}
     parameters={{
         design: {
             type: 'figma',
             url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?node-id=13846%3A114538',
-            disable: false
-        }
+            disable: false,
+        },
     }}
     argTypes={{
         areOptionTiles: {
-            table: { defaultValue: { summary: false } }
+            table: { defaultValue: { summary: false } },
         },
         areOptionTilesInline: {
             table: { defaultValue: { summary: false } },
@@ -29,8 +26,8 @@ import { InputRadioComponent } from '../angular/input-radio.component';
             table: { defaultValue: { summary: false } },
         },
         isRequired: {
-            table: { defaultValue: { summary: false } }
-        }
+            table: { defaultValue: { summary: false } },
+        },
     }}
 />
 
@@ -43,6 +40,7 @@ import { InputRadioComponent } from '../angular/input-radio.component';
 ## Drupal implementation example
 
 #### areOptionTiles: false
+
 ```jsx
 {% include '@bf-components/input-radio/twig/index.twig' with {
     label: 'Label',
@@ -83,6 +81,7 @@ import { InputRadioComponent } from '../angular/input-radio.component';
 ```
 
 #### areOptionTiles: true
+
 ```jsx
 {% include '@bf-components/input-radio/twig/index.twig' with {
     label: 'Label',
@@ -142,7 +141,7 @@ export const optionProps = {
     ariaLabel: 'ariaLabel',
     extraAttribute: 'data-extraAttribute="1"',
     class: '',
-}
+};
 
 export const optionTileProps = {
     id: 'id',
@@ -163,16 +162,16 @@ export const optionTileProps = {
     extraAttribute: 'data-extraAttribute="1"',
     class: 'class',
     reversed: false, // TODO: Remove.
-}
+};
 
 export const optionFooterProps = {
     description: `<p class='mb-0'>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
     link: {
         label: 'Learn more about Take-back Credit',
-        href: 'https://example.com'
+        href: 'https://example.com',
     },
-    iconName: 'credit-return'
-}
+    iconName: 'credit-return',
+};
 
 export const commonProps = {
     label: 'Label',
@@ -186,18 +185,18 @@ export const commonProps = {
         {
             ...optionProps,
             id: 'id-2',
-            isChecked: true
+            isChecked: true,
         },
         {
             ...optionProps,
-            id: 'id-3'
-        }
+            id: 'id-3',
+        },
     ],
     areOptionTiles: false,
     areOptionTilesInline: false,
     areOptionTilesLarge: false,
-    class: 'p-4 w-100'
-}
+    class: 'p-4 w-100',
+};
 
 ## Drupal
 
@@ -206,21 +205,21 @@ export const Drupal = (args) => ({
     props: args,
 });
 
-<Canvas withSource='none' style={{ height: '400px' }}>
+<Canvas withSource="none" style={{ height: '400px' }}>
     <Story
-        name='Drupal'
+        name="Drupal"
         args={{
             elementPath: 'components/input-radio/_doc/template.drupal',
-            ...commonProps
+            ...commonProps,
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none' style={{ height: '400px' }}>
+<Canvas withSource="none" style={{ height: '400px' }}>
     <Story
-        name='Drupal - With errorMessage'
+        name="Drupal - With errorMessage"
         args={{
             elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
@@ -234,13 +233,13 @@ export const Drupal = (args) => ({
                     ...optionProps,
                     id: 'id-2',
                     value: 'value-2',
-                    isChecked: true
+                    isChecked: true,
                 },
                 {
                     ...optionProps,
                     id: 'id-3',
-                    value: 'value-3'
-                }
+                    value: 'value-3',
+                },
             ],
             errorMessage: 'This is an error message',
         }}
@@ -249,9 +248,9 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-<Canvas withSource='none' style={{ height: '400px' }}>
+<Canvas withSource="none" style={{ height: '400px' }}>
     <Story
-        name='Drupal - With isRequired'
+        name="Drupal - With isRequired"
         args={{
             elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
@@ -272,17 +271,17 @@ export const Drupal = (args) => ({
                     ...optionProps,
                     id: 'id-3',
                     value: 'value-3',
-                }
-            ]
+                },
+            ],
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none' style={{ height: '400px' }}>
+<Canvas withSource="none" style={{ height: '400px' }}>
     <Story
-        name='Drupal - With options isDisabled'
+        name="Drupal - With options isDisabled"
         args={{
             elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
@@ -305,17 +304,17 @@ export const Drupal = (args) => ({
                     id: 'id-3',
                     value: 'value-3',
                     isDisabled: true,
-                }
-            ]
+                },
+            ],
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none' style={{ height: '400px' }}>
+<Canvas withSource="none" style={{ height: '400px' }}>
     <Story
-        name='Drupal - With options isInvalid'
+        name="Drupal - With options isInvalid"
         args={{
             elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
@@ -338,17 +337,17 @@ export const Drupal = (args) => ({
                     id: 'id-3',
                     value: 'value-3',
                     isInvalid: true,
-                }
-            ]
+                },
+            ],
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none' style={{ height: '400px' }}>
+<Canvas withSource="none" style={{ height: '400px' }}>
     <Story
-        name='Drupal - With areOptionTiles'
+        name="Drupal - With areOptionTiles"
         args={{
             elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
@@ -364,7 +363,8 @@ export const Drupal = (args) => ({
                     id: 'id-2',
                     value: 'value-2',
                     isChecked: true,
-                    description: 'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.'
+                    description:
+                        'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.',
                 },
                 {
                     ...optionTileProps,
@@ -388,17 +388,17 @@ export const Drupal = (args) => ({
                     id: 'id-6',
                     value: 'value-6',
                     isChecked: true,
-                }
-            ]
+                },
+            ],
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none' style={{ height: '400px' }}>
+<Canvas withSource="none" style={{ height: '400px' }}>
     <Story
-        name='Drupal - With areOptionTiles areOptionTilesInline'
+        name="Drupal - With areOptionTiles areOptionTilesInline"
         args={{
             elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
@@ -415,7 +415,8 @@ export const Drupal = (args) => ({
                     id: 'id-2',
                     value: 'value-2',
                     isChecked: true,
-                    description: 'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.'
+                    description:
+                        'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.',
                 },
                 {
                     ...optionTileProps,
@@ -439,17 +440,17 @@ export const Drupal = (args) => ({
                     id: 'id-6',
                     value: 'value-6',
                     isChecked: true,
-                }
-            ]
+                },
+            ],
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none' style={{ height: '400px' }}>
+<Canvas withSource="none" style={{ height: '400px' }}>
     <Story
-        name='Drupal - With areOptionTiles areOptionTilesInline areOptionTilesLarge'
+        name="Drupal - With areOptionTiles areOptionTilesInline areOptionTilesLarge"
         args={{
             elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
@@ -467,7 +468,8 @@ export const Drupal = (args) => ({
                     id: 'id-2',
                     value: 'value-2',
                     isChecked: true,
-                    description: 'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.'
+                    description:
+                        'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.',
                 },
                 {
                     ...optionTileProps,
@@ -491,17 +493,17 @@ export const Drupal = (args) => ({
                     id: 'id-6',
                     value: 'value-6',
                     isChecked: true,
-                }
-            ]
+                },
+            ],
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none' style={{ height: '400px' }}>
+<Canvas withSource="none" style={{ height: '400px' }}>
     <Story
-        name='Drupal - With areOptionTiles footer'
+        name="Drupal - With areOptionTiles footer"
         args={{
             elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
@@ -513,20 +515,21 @@ export const Drupal = (args) => ({
                     ...optionTileProps,
                     id: 'id-1',
                     value: 'value-1',
-                    footer: optionFooterProps
+                    footer: optionFooterProps,
                 },
                 {
                     ...optionTileProps,
                     id: 'id-2',
                     value: 'value-2',
                     isChecked: true,
-                    description: 'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.'
+                    description:
+                        'Long option desription Donec sed odio dui Cras justo odio, dapibus ac facilisis in, egestas eget.',
                 },
                 {
                     ...optionTileProps,
                     id: 'id-3',
                     value: 'value-3',
-                    isChecked: true
+                    isChecked: true,
                 },
                 {
                     ...optionTileProps,
@@ -544,17 +547,17 @@ export const Drupal = (args) => ({
                     id: 'id-6',
                     value: 'value-6',
                     isChecked: true,
-                }
-            ]
+                },
+            ],
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource='none' style={{ height: '400px' }}>
+<Canvas withSource="none" style={{ height: '400px' }}>
     <Story
-        name='Drupal - Usage Example: color selector'
+        name="Drupal - Usage Example: color selector"
         args={{
             elementPath: 'components/input-radio/_doc/template.drupal',
             ...commonProps,
@@ -566,28 +569,28 @@ export const Drupal = (args) => ({
                     id: 'red',
                     value: 'red',
                     ariaLabel: 'red',
-                    content: `<div class="color-container"><div class="bf-selection-tile__color" style="background-color: IndianRed"></div><p class="m-0 mt-3 font-weight-bold">Red</p></div>`
+                    content: `<div class="color-container"><div class="bf-selection-tile__color" style="background-color: IndianRed"></div><p class="m-0 mt-3 font-weight-bold">Red</p></div>`,
                 },
                 {
                     id: 'midnight',
                     value: 'midnight',
                     ariaLabel: 'midnight',
-                    content: `<div class="color-container"><div class="bf-selection-tile__color" style="background-color: MidnightBlue"></div><p class="m-0 mt-3 font-weight-bold">Midnight</p></div>`
+                    content: `<div class="color-container"><div class="bf-selection-tile__color" style="background-color: MidnightBlue"></div><p class="m-0 mt-3 font-weight-bold">Midnight</p></div>`,
                 },
                 {
                     id: 'blue',
                     value: 'blue',
                     ariaLabel: 'blue',
-                    content: `<div class="color-container"><div class="bf-selection-tile__color" style="background-color: CornflowerBlue"></div><p class="m-0 mt-3 font-weight-bold">Blue</p></div>`
+                    content: `<div class="color-container"><div class="bf-selection-tile__color" style="background-color: CornflowerBlue"></div><p class="m-0 mt-3 font-weight-bold">Blue</p></div>`,
                 },
                 {
                     id: 'pink',
                     value: 'pink',
                     ariaLabel: 'pink',
-                    content: `<div class="color-container"><div class="bf-selection-tile__color" style="background-color: pink"></div><p class="m-0 mt-3 font-weight-bold">Pink</p></div>`
-                }
+                    content: `<div class="color-container"><div class="bf-selection-tile__color" style="background-color: pink"></div><p class="m-0 mt-3 font-weight-bold">Pink</p></div>`,
+                },
             ],
-            class: 'p-4 w-100 bf-selection-tile--color-wrap'
+            class: 'p-4 w-100 bf-selection-tile--color-wrap',
         }}
     >
         {Drupal.bind({})}
@@ -596,4 +599,10 @@ export const Drupal = (args) => ({
 
 ## Design Guidelines
 
-<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D13846%253A114538' frameBorder='0' allowFullScreen></iframe>
+<iframe
+    width="100%"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Fnode-id%3D13846%253A114538"
+    frameBorder="0"
+    allowFullScreen
+></iframe>
