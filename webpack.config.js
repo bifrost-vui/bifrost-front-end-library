@@ -2,6 +2,7 @@ const path = require('path');
 const globImporter = require('node-sass-glob-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
 
 const devMode = process.env.NODE_ENV !== 'production';
 
@@ -28,6 +29,10 @@ module.exports = () => {
                         },
                     },
                 },
+                minimize: true,
+                minimizer: [
+                    new HtmlMinimizerPlugin(),
+                ]
             },
             resolve: {
                 extensions: ['.js', '.scss'],
