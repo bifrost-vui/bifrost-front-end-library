@@ -52,7 +52,16 @@ export class CardComponent implements OnInit {
     @Input() comboLabel: string;
     @Input() upperTitle: string;
     @Input() subtitle: string;
-    @Input() title: string;
+    /**
+     Can be a simple **string** or an **object**
+     <pre style='font-size: .75rem; padding: 0 1rem; margin:0; background-color: #f2f2f0'>
+        {
+            category: "Category Title",
+            detail: "Some descriptive title",
+        }
+     </pre>
+     */
+    @Input() title: any;
     @Input() titleTag: string;
     /**
     Note: Wrap your data with a semantic HTML tag.

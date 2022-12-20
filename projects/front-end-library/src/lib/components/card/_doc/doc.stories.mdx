@@ -53,7 +53,7 @@ import { CardComponent } from '../angular/card.component';
 ## Drupal implementation example
 
 ```jsx
-// There are 3 kinds of Cards:
+// There are many kinds of Cards:
 {% include '@bf-components/card/twig/plan.twig' with {...} %}
 {% include '@bf-components/card/twig/phone.twig' with {...} %}
 {% include '@bf-components/card/twig/protection.twig' with {...} %}
@@ -63,7 +63,10 @@ import { CardComponent } from '../angular/card.component';
     isDisabled      : false,
     upperTitle      : 'upperTitle',
     subtitle        : 'Lorem ipsum subtitle',
-    title           : 'All-Inclusive 12 GB Mobile',
+    title           : {
+        category: 'CellPhone plan',
+        detail: '40GB - All inclusive Canada'
+    },
     description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
     link            : {
         label           : 'Learn more',
@@ -314,6 +317,10 @@ export const Drupal = (args) => ({
             elementPath: 'components/card/_doc/template.drupal',
             ...commonProps,
             cardVariant: 'plan',
+            title: {
+                category: 'CellPhone plan',
+                detail: '40GB - All inclusive Canada',
+            },
             isDisabled: false,
             reversed: undefined,
         }}
@@ -328,6 +335,10 @@ export const Drupal = (args) => ({
         args={{
             ...commonProps,
             cardVariant: 'plan',
+            title: {
+                category: 'CellPhone plan',
+                detail: '40GB - All inclusive Canada',
+            },
             isDisabled: true,
             reversed: undefined,
         }}
@@ -343,6 +354,10 @@ export const Drupal = (args) => ({
             ...commonProps,
             cardVariant: 'plan',
             upperTitle: undefined,
+            title: {
+                category: 'CellPhone plan',
+                detail: '40GB - All inclusive Canada',
+            },
             contentLists: contentListsNoTitle,
             buttons: [
                 {

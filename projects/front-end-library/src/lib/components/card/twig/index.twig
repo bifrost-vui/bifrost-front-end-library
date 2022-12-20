@@ -78,7 +78,12 @@
 
     {% if title is defined and title %}
       {{ "<" ~ (titleTag|default("h1")) }} class="h3 mt-0 mb-1">
-      {{ title }}
+      {# prettier-ignore #}
+      {% if title.category is defined and title.detail is defined %}
+        <span class="d-block font-weight-light">{{ title.category }}</span>{{ title.detail }}
+      {% else %}
+        {{ title }}
+      {% endif %}
       {{ "</" ~ (titleTag|default("h1")) }}>
     {% endif %}
 
