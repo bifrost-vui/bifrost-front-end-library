@@ -86,3 +86,36 @@ Output:
 ## Resources:
 
 Icons are documented in Page [Components/Icon](/story/components-icon--drupal-illustration).
+
+## How to add new Icons or Logo
+
+Procédure pour ajouter un nouvel icône dans Bifrost :
+
+Procédure pour ajouter les SVG et les rendre disponibles au autres composantes Bifröst
+
+remplacer les couleurs hardcodées dans le SVG par “currentColor”
+
+les 2 svg doivent être sauvegardés dans /public/icones
+
+il faut également en garder une copie dans projects\front-end-library\src\lib\components\icon\twig\svg-twig\ avec l’extension .svg.twig (cette portion va peut-être disparaître après le retrait du serveur express)
+
+Il faut ensuite mettre à jour la liste dans : public\icons\list\illustrations.json
+
+Procédure pour ajouter de nouveaux logo de header
+
+La récupération se fait directement dans le figma (via copy as SVG)
+
+Les nouveaux SVG doivent être nettoyés et stokés dans un répertoire svg du composant navigation-header
+
+le nommage : logo-header- logoName -lg.svg et logo-header- logoName -sm.svg
+pour les logo qui auraient un logoNamedifférent en français et en anglais penser à aller documenter l’exception dans twig puisque logoName est utilisé pour construire le nom du fichier à inclure (voir l’exemple business/affaires)
+
+Il doivent utiliser les classes définies dans logo.css (.fill-brand .fill-neutral .fill-highlight-on-reversed)
+
+les couleurs hardcodées doivent être supprimées ou remplacée par currentColor ( currentColor permet surtout de voir les path du svg dans l'éditeur, il sera écrasé par le css)
+
+Ultimement ajouter le nouveau logo dans la documentation de storybook dans les options pour qu’il puisse être sélectionné
+
+Procédure pour ajouter de nouveaux logo
+
+à venir
