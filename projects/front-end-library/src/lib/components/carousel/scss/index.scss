@@ -3,14 +3,31 @@
 *  Carousel
 *
 * ***************************************************************************** */
-
 .bf-carousel {
   .slick-list {
-    overflow: hidden;
+    overflow: visible;
     display: flex;
+
+		@include media-breakpoint-up(sm) {
+      overflow: hidden;
+    }
   }
   .slick-slide {
     display: flex;
     height: auto;
+  }
+}
+
+.container,
+.container-fluid {
+
+  .bf-carousel {
+    margin-left: calc(-3.5vw - $spacer-2);
+    margin-right: calc(-3.5vw - $spacer-2);
+
+    @include media-breakpoint-up(sm) {
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 }

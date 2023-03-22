@@ -272,56 +272,70 @@ $(function () {
     });
 
     // Mobile Devices
-    bfSlick.assignCarousel('.js-slick-carousel--mobility-list-devices', {
-        arrows: true,
+    bfSlick.assignCarousel('.js-bf-slick-carousel--mobility-list-devices', {
+        arrows: false,
+        centerMode: true,
+        centerPadding: "48px",
         dots: true,
         infinite: false,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        prevArrow: bfSlick.getPrevSlickBtn(),
+        mobileFirst: true,
         nextArrow: bfSlick.getNextSlickBtn(),
+        prevArrow: bfSlick.getPrevSlickBtn(),
         // See: https://github.com/kenwheeler/slick/issues/3207#issuecomment-342781958.
         rows: 0,
+        slidesToShow: 1,
+        slidesToScroll: 1,
         responsive: [
             {
-                breakpoint: breakpoints.md + 1,
+                breakpoint: bfTheme.breakpoints.sm - 1,
                 settings: {
+                    arrows: true,
+                    centerMode: false,
                     slidesToShow: 2,
                     slidesToScroll: 2,
                 },
             },
             {
-                breakpoint: breakpoints.sm,
+                breakpoint: bfTheme.breakpoints.md,
                 settings: {
-                    arrows: false,
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
+                    arrows: true,
+                    centerMode: false,
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
                 },
             },
         ],
     });
 
-    bfSlick.assignCarousel('.js-slick-carousel--mobility-list-plans', {
-        arrows: true,
+    bfSlick.assignCarousel('.js-bf-slick-carousel--mobility-list-plans', {
+        arrows: false,
+        centerMode: true,
+        centerPadding: "48px",
         dots: true,
         infinite: false,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        prevArrow: bfSlick.getPrevSlickBtn(),
+        mobileFirst: true,
         nextArrow: bfSlick.getNextSlickBtn(),
+        prevArrow: bfSlick.getPrevSlickBtn(),
+        rows: 0, // See: https://github.com/kenwheeler/slick/issues/3207#issuecomment-342781958.
+        slidesToShow: 1,
+        slidesToScroll: 1,
         responsive: [
             {
-                breakpoint: breakpoints.md + 1,
+                breakpoint: bfTheme.breakpoints.sm - 1,
                 settings: {
+                    arrows: true,
+                    centerMode: false,
                     slidesToShow: 2,
                     slidesToScroll: 2,
                 },
             },
             {
-                breakpoint: breakpoints.sm,
+                breakpoint: bfTheme.breakpoints.md,
                 settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
+                    arrows: true,
+                    centerMode: false,
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
                 },
             },
         ],
