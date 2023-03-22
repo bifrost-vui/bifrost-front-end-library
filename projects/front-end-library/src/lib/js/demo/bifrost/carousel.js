@@ -3,27 +3,34 @@ import 'slick-carousel';
 // Documentation: https://kenwheeler.github.io/slick/
 
 bfSlick.assignCarousel('.js-bf-carousel-demo', {
-    arrows: true,
+    arrows: false,
+    centerMode: true,
+    centerPadding: "48px",
+    dots: true,
     infinite: false,
+    mobileFirst: true,
+    nextArrow: bfSlick.getNextSlickBtn(),
+    prevArrow: bfSlick.getPrevSlickBtn(),
+    rows: 0, // See: https://github.com/kenwheeler/slick/issues/3207#issuecomment-342781958.
     slidesToShow: 1,
     slidesToScroll: 1,
-    dots: true,
-    mobileFirst: true,
-    prevArrow: bfSlick.getPrevSlickBtn(),
-    nextArrow: bfSlick.getNextSlickBtn(),
     responsive: [
         {
-            breakpoint: bfTheme.breakpoints.md - 1,
+            breakpoint: bfTheme.breakpoints.sm - 1,
             settings: {
+                arrows: true,
+                centerMode: false,
                 slidesToShow: 2,
-                slidesToScroll: 1,
+                slidesToScroll: 2,
             },
         },
         {
-            breakpoint: bfTheme.breakpoints.lg,
+            breakpoint: bfTheme.breakpoints.md,
             settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
+                arrows: true,
+                centerMode: false,
+                slidesToShow: 4,
+                slidesToScroll: 4,
             },
         },
         // You can unslick at a given breakpoint now by adding:

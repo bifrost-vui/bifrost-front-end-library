@@ -15,48 +15,56 @@ import { CarouselComponent } from '../angular/carousel.component';
 ## Drupal implementation example
 
 ```js
-    <div class='container py-5'>
-        <div class='bf-carousel js-bf-carousel-demo {{ class|default('') }}'>
-            {% include '@bf-components/card/twig/phone.twig' with {...} only %}
-            {% include '@bf-components/card/twig/phone.twig' with {...} only %}
-            {% include '@bf-components/card/twig/phone.twig' with {...} only %}
-            {% include '@bf-components/card/twig/phone.twig' with {...} only %}
-        </div>
+<div class='container-fluid py-5'>
+    <div class='bf-carousel js-bf-carousel-demo {{ class|default('') }}'>
+        {% include '@bf-components/card/twig/phone.twig' with {...} only %}
+        {% include '@bf-components/card/twig/phone.twig' with {...} only %}
+        {% include '@bf-components/card/twig/phone.twig' with {...} only %}
+        {% include '@bf-components/card/twig/phone.twig' with {...} only %}
     </div>
+</div>
 
-    <script>
-        bfSlick.assignCarousel('.js-bf-carousel-demo', {
-            // You are free to define your own Slick configuration.
-            // Doc: https://kenwheeler.github.io/slick/
-            arrows: true,
-            infinite: false,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            mobileFirst: true,
-            prevArrow: bfSlick.getPrevSlickBtn(),
-            nextArrow: bfSlick.getNextSlickBtn(),
-            responsive: [
-                {
-                    breakpoint: (breakpoints.md-1),
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1
-                    }
+<script>
+    bfSlick.assignCarousel('.js-bf-carousel-demo', {
+        // You are free to define your own Slick configuration.
+        // Doc: https://kenwheeler.github.io/slick/
+        arrows: false,
+        centerMode: true,
+        centerPadding: "48px",
+        dots: true,
+        infinite: false,
+        mobileFirst: true,
+        nextArrow: bfSlick.getNextSlickBtn(),
+        prevArrow: bfSlick.getPrevSlickBtn(),
+        rows: 0, // See: https://github.com/kenwheeler/slick/issues/3207#issuecomment-342781958.
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: bfTheme.breakpoints.sm - 1,
+                settings: {
+                    arrows: true,
+                    centerMode: false,
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
                 },
-                {
-                    breakpoint: breakpoints.lg,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3
-                    }
+            },
+            {
+                breakpoint: bfTheme.breakpoints.md,
+                settings: {
+                    arrows: true,
+                    centerMode: false,
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
                 },
-                // You can unslick at a given breakpoint now by adding:
-                // settings: "unslick"
-                // instead of a settings object
-            ]
-        }
-    );
-    </script>
+            },
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+        ],
+    }
+);
+</script>
 ```
 
 ## Drupal
