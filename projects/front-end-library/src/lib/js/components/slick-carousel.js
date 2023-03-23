@@ -287,7 +287,7 @@ $(function () {
         slidesToScroll: 1,
         responsive: [
             {
-                breakpoint: bfTheme.breakpoints.sm - 1,
+                breakpoint: breakpoints.sm - 1,
                 settings: {
                     arrows: true,
                     centerMode: false,
@@ -296,7 +296,7 @@ $(function () {
                 },
             },
             {
-                breakpoint: bfTheme.breakpoints.md,
+                breakpoint: breakpoints.md,
                 settings: {
                     arrows: true,
                     centerMode: false,
@@ -305,7 +305,7 @@ $(function () {
                 },
             },
             {
-                breakpoint: bfTheme.breakpoints.lg - 1,
+                breakpoint: breakpoints.lg - 1,
                 settings: {
                     arrows: true,
                     centerMode: false,
@@ -330,7 +330,7 @@ $(function () {
         slidesToScroll: 1,
         responsive: [
             {
-                breakpoint: bfTheme.breakpoints.sm - 1,
+                breakpoint: breakpoints.sm - 1,
                 settings: {
                     arrows: true,
                     centerMode: false,
@@ -339,7 +339,7 @@ $(function () {
                 },
             },
             {
-                breakpoint: bfTheme.breakpoints.md,
+                breakpoint: breakpoints.md,
                 settings: {
                     arrows: true,
                     centerMode: false,
