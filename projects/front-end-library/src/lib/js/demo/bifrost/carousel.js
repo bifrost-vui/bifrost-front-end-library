@@ -29,6 +29,15 @@ bfSlick.assignCarousel('.js-bf-carousel-demo', {
             settings: {
                 arrows: true,
                 centerMode: false,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+            },
+        },
+        {
+            breakpoint: bfTheme.breakpoints.lg - 1,
+            settings: {
+                arrows: true,
+                centerMode: false,
                 slidesToShow: 4,
                 slidesToScroll: 4,
             },
