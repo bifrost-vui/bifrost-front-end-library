@@ -275,7 +275,7 @@ $(function () {
     bfSlick.assignCarousel('.js-bf-slick-carousel--mobility-list-devices', {
         arrows: false,
         centerMode: true,
-        centerPadding: '48px',
+        centerPadding: '3rem',
         dots: true,
         infinite: false,
         mobileFirst: true,
@@ -319,7 +319,7 @@ $(function () {
     bfSlick.assignCarousel('.js-bf-slick-carousel--mobility-list-plans', {
         arrows: false,
         centerMode: true,
-        centerPadding: '48px',
+        centerPadding: '3rem',
         dots: true,
         infinite: false,
         mobileFirst: true,

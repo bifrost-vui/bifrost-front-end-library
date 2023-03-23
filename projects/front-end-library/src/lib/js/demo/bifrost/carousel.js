@@ -5,7 +5,7 @@ import 'slick-carousel';
 bfSlick.assignCarousel('.js-bf-carousel-demo', {
     arrows: false,
     centerMode: true,
-    centerPadding: '48px',
+    centerPadding: '3rem',
     dots: true,
     infinite: false,
     mobileFirst: true,
