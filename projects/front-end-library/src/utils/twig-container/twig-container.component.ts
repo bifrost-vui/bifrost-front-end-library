@@ -50,7 +50,7 @@ export class TwigContainerComponent implements OnInit {
             })
             .join('&');
         const baseURL = isDevMode() ? 'http://localhost:3001/' : '/';
-        const url = baseURL + 'api/twig?' + paramsString;
+        const url = baseURL + 'api/twig?' + encodeURI(paramsString);
         console.log('url', url);
 
         this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
