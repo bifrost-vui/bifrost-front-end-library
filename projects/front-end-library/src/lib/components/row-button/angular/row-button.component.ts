@@ -29,7 +29,17 @@ export class RowButtonComponent implements OnInit {
     @Input() dataTarget: string;
     @Input() ariaControls: string;
     @Input() ariaLabel: string;
-    @Input() extraAttribute: string;
+    /**
+     Can be a simple **string** or an **object**
+     <pre style='font-size: 0.75rem; padding: 0.5rem; margin: 0.5rem 0; border: 1px solid currentColor'>
+        {
+            attributeName_1: "attribute_value_1",
+            attributeName_2: "attribute_value_2",
+            etc.
+        }
+     </pre>
+     */
+    @Input() extraAttribute: string | object;
 
     @Input() class: string;
     @Input() reversed: boolean;

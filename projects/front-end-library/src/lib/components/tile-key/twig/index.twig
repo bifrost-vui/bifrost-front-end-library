@@ -1,10 +1,14 @@
+{# Boolean Variables #}
 {% set isLink = href is defined
   and href
   and isClickable is defined
   and isClickable
 %}
+
+{# Default Variables #}
 {% set titleTag = titleTag|default("p") %}
 
+{# Template #}
 {{ isLink ? "<a" : "<div" }}
 {% if isLink %}
   href="{{ href }}"
@@ -53,9 +57,14 @@
     {% endif %}
 
     {% if title is defined and title %}
-      {{ "<" ~ titleTag }} class="bf-text-interface-large m-0">
-      {{ title }}
-      {{ "</" ~ titleTag }}>
+      {% embed "@bf-utils/title-custom-tag/twig/index.twig" with {
+        customTitleTag: titleTag,
+        titleTagClasses: "bf-text-interface-large m-0",
+      } %}
+        {% block titleTagContent %}
+          {{ title }}
+        {% endblock %}
+      {% endembed %}
     {% endif %}
 
     {% if description is defined and description %}

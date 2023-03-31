@@ -1,48 +1,61 @@
+{# Boolean Variables #}
 {% set hasImage = image is defined and image.src %}
-{% set titleTag = titleTag|default("p") %}
 {% set isFeatured = isFeatured|default(false) %}
 
-<article
-  class="bf-block bf-block--highlight w-100 d-flex flex-column flex-sm-row overflow-hidden bf-border-radius-medium border bf-border-color-secondary
-  {{
-  isFeatured
-    ? "bf-block--featured"
-  }}
-  {{
-  (blockBackgroundColor|default("ground")) == "underground"
-    ? "bf-color-bg-underground"
-    : "bf-color-bg-ground"
-  }}
-  {{ reversed is defined and reversed ? "reversed" }}
-  {{ class|default(
-    ""
-  ) }}"
->
+{# Default Variables #}
+{% set titleTag = titleTag|default("p") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set blockClasses = [
+  "bf-block bf-block--highlight",
+  "d-flex flex-column flex-sm-row w-100 overflow-hidden",
+  "bf-border-radius-medium border bf-border-color-secondary",
+  (isFeatured ? "bf-block--featured"),
+  (
+    (blockBackgroundColor|default("ground")) == "underground"
+      ? "bf-color-bg-underground"
+      : "bf-color-bg-ground"
+  ),
+  (reversed is defined and reversed ? "reversed"),
+  (class|default("")),
+] %}
+{% set blockVisualClasses = [
+  "bf-block__visual bf-color-bg-brand",
+  (isVisualBackgroundFill|default(true) ? "bf-block__visual--fill"),
+] %}
+{% set blockContentClasses = [
+  "d-flex flex-column p-4 p-sm-5",
+  (isFeatured ? "justify-content-center"),
+] %}
+
+{# Arrays of Styles With Dynamic Elements #}
+{% set blockVisualStyles = [
+  "background-image: url(" ~ image.src ~ ");",
+  (
+    visualBackgroundColor is defined and visualBackgroundColor
+      ? 'background-color: ' ~ visualBackgroundColor ~ ';'
+  ),
+] %}
+
+{# Template #}
+<article class="{{ blockClasses|join(' ')|trim }}">
   {% if hasImage %}
     <div
-      class="bf-block__visual bf-color-bg-brand {{
-      isVisualBackgroundFill|default(true)
-        ? "bf-block__visual--fill"
-      }}"
-      style="background-image: url({{ image.src }});
-        {{
-      visualBackgroundColor is defined and visualBackgroundColor
-        ? "background-color: " ~ visualBackgroundColor ~ ";"
-      }}
-      "
+      class="{{ blockVisualClasses|join(' ')|trim }}"
+      style="{{ blockVisualStyles|join(' ')|trim }}"
     ></div>
   {% endif %}
 
-  <div
-    class="d-flex flex-column {{
-    isFeatured
-      ? "justify-content-center"
-    }} p-4 p-sm-5"
-  >
+  <div class="{{ blockContentClasses|join(' ')|trim }}">
     {% if title is defined %}
-      {{ "<" ~ titleTag }} class="text-break {{ isFeatured ? "h2" : "h3" }}">
-      {{ title }}
-      {{ "</" ~ titleTag }}>
+      {% embed "@bf-utils/title-custom-tag/twig/index.twig" with {
+        customTitleTag: titleTag,
+        titleTagClasses: "text-break " ~ (isFeatured ? "h2" : "h3"),
+      } %}
+        {% block titleTagContent %}
+          {{ title }}
+        {% endblock %}
+      {% endembed %}
     {% endif %}
     {% if paragraph is defined %}
       <p>{{ paragraph }}</p>

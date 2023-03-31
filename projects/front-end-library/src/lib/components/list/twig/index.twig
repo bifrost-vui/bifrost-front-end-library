@@ -1,10 +1,25 @@
+{# Default Variables #}
+{% set titleTag = titleTag|default("h3") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set listContainerClasses = [
+  "bf-list",
+  (class|default("")),
+] %}
+
+{# Template #}
 {% if title is defined and title is not empty %}
-  {{ "<" ~ (titleTag|default("h3")) }} class="h3">
-  {{ title }}
-  {{ "</" ~ (titleTag|default("h3")) }}>
+  {% embed "@bf-utils/title-custom-tag/twig/index.twig" with {
+    customTitleTag: titleTag,
+    titleTagClasses: "h3",
+  } %}
+    {% block titleTagContent %}
+      {{ title }}
+    {% endblock %}
+  {% endembed %}
 {% endif %}
 
-<ul class="bf-list {{ class|default("") }}">
+<ul class="{{ listContainerClasses|join(' ')|trim }}">
   {% for item in content %}
     <li class="d-flex flex-row mb-2">
       {% if item.iconName is defined %}
@@ -13,7 +28,9 @@
           class: "mr-2"
         } only %}
       {% endif %}
-      <p class="m-0">{{ item.label }}</p>
+      <p class="m-0">
+        {{ item.label }}
+      </p>
     </li>
   {% endfor %}
 </ul>
