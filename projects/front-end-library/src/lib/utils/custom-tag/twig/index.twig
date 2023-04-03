@@ -7,12 +7,16 @@
 {% if attr is defined and attr %}
   {% for attrName, attrValue in attr %}
     {% if attrValue != null %}
-      {% set attrCompiled = attrCompiled|merge([attrName ~ '="' ~ attrValue ~ '"']) %}
+      {% if attrName != "bfString" %}
+        {% set attrCompiled = attrCompiled|merge([attrName ~ '="' ~ attrValue ~ '"']) %}
+      {% else %}
+        {% set attrCompiled = attrCompiled|merge([attrValue|raw]) %}
+      {% endif %}
     {% endif %}
   {% endfor %}
 {% endif %}
 
 {# Template #}
-{# {{ ('<' ~ customTag ~ class)|raw }}
-  {% block titleTagContent %}{% endblock %}
-{{ ('</' ~ customTag ~ '>')|raw }} #}
+<{{ customTag|raw }} {{ attrCompiled|join(' ')|trim|raw }}>
+  {% block customTagContent %}{% endblock %}
+</{{ customTag }}>

@@ -57,11 +57,13 @@
     {% endif %}
 
     {% if title is defined and title %}
-      {% embed "@bf-utils/title-custom-tag/twig/index.twig" with {
-        customTitleTag: titleTag,
-        titleTagClasses: "bf-text-interface-large m-0",
+      {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+        customTag: titleTag,
+        attr: {
+          "class": "bf-text-interface-large m-0"
+        },
       } %}
-        {% block titleTagContent %}
+        {% block customTagContent %}
           {{ title }}
         {% endblock %}
       {% endembed %}

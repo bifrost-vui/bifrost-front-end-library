@@ -32,11 +32,13 @@
     >
       <div class="d-flex flex-row justify-content-between align-items-center p-3 p-sm-4">
         {% if title is defined %}
-          {% embed "@bf-utils/title-custom-tag/twig/index.twig" with {
-            customTitleTag: titleTag,
-            titleTagClasses: "h3 m-0",
+          {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+            customTag: titleTag,
+            attr: {
+              "class": "h3 m-0"
+            },
           } %}
-            {% block titleTagContent %}
+            {% block customTagContent %}
               {{ title }}
             {% endblock %}
           {% endembed %}
@@ -64,11 +66,13 @@
   >
     <header class="d-flex justify-content-between mb-1">
       {% if title is defined %}
-        {% embed "@bf-utils/title-custom-tag/twig/index.twig" with {
-          customTitleTag: titleTag,
-          titleTagClasses: "header__title h3 mb-0",
+        {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+          customTag: titleTag,
+          attr: {
+            "class": "header__title h3 mb-0"
+          },
         } %}
-          {% block titleTagContent %}
+          {% block customTagContent %}
             {{ title }}
           {% endblock %}
         {% endembed %}

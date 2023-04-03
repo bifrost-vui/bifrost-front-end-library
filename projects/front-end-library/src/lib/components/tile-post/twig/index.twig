@@ -29,11 +29,13 @@
 
   <div class="d-flex flex-column align-items-start gap-3 pt-3 pt-md-4">
     {% if title is defined and title %}
-      {% embed "@bf-utils/title-custom-tag/twig/index.twig" with {
-        customTitleTag: titleTag,
-        titleTagClasses: "m-0 " ~ isFeatured|default(false) ? "h2" : "h3",
+      {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+        customTag: titleTag,
+        attr: {
+          "class": "m-0 " ~ isFeatured|default(false) ? "h2" : "h3"
+        },
       } %}
-        {% block titleTagContent %}
+        {% block customTagContent %}
           {{ title }}
         {% endblock %}
       {% endembed %}

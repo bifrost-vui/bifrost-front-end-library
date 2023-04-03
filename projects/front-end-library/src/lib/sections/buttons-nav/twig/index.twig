@@ -22,11 +22,13 @@
     class="container-fluid-percentage d-flex flex-column align-items-center py-6 px-4"
   >
     {% if title is defined and title %}
-      {% embed "@bf-utils/title-custom-tag/twig/index.twig" with {
-        customTitleTag: titleTag,
-        titleTagClasses: "h2 mb-4 text-center title-max-w",
+      {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+        customTag: titleTag,
+        attr: {
+          "class": "h2 mb-4 text-center title-max-w"
+        },
       } %}
-        {% block titleTagContent %}
+        {% block customTagContent %}
           {{ title }}
         {% endblock %}
       {% endembed %}

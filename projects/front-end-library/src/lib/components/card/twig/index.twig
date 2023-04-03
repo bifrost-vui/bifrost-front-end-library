@@ -92,11 +92,13 @@
     {% endif %}
 
     {% if title is defined and title %}
-      {% embed "@bf-utils/title-custom-tag/twig/index.twig" with {
-        customTitleTag: titleTag,
-        titleTagClasses: "h3 mt-0 mb-1",
+      {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+        customTag: titleTag,
+        attr: {
+          "class": "h3 mt-0 mb-1"
+        },
       } %}
-        {% block titleTagContent %}
+        {% block customTagContent %}
           {% if title.category is defined and title.detail is defined %}
             <span class="d-block font-weight-light">
               {{ title.category }}

@@ -31,94 +31,74 @@
     "aria-label": (ariaLabel is defined ? ariaLabel : null),
 } %}
 {% if extraAttribute is defined %}
-  {% set rowButtonAttributes = rowButtonAttributes|merge(extraAttribute) %}
+  {% if extraAttribute is iterable %}
+    {# is an object #}
+    {% set rowButtonAttributes = rowButtonAttributes|merge(extraAttribute) %}
+  {% else %}
+    {# is a string #}
+    {% set rowButtonAttributes = rowButtonAttributes|merge({"bfString": extraAttribute}) %}
+  {% endif %}
 {% endif %}
 
 {# Template #}
 {% embed "@bf-utils/custom-tag/twig/index.twig" with {
-  customTag: titleTag,
+  customTag: componentTag,
   attr: rowButtonAttributes,
 } %}
-  {# {% block titleTagContent %}
-    {{ title }}
-  {% endblock %} #}
-{% endembed %}
-
-
-{{ isLink ? "<a" : "<button" }}
-{% if isLink %}
-  href="{{ href }}"
-{% endif %}
-class=" bf-row-button bf-row-button--{{ size }} d-flex align-items-center w-100 px-3 {{ size == "large" ? "py-4" : "py-3" }} {{ class|default("") }}"
-{% if dataDismiss is defined %}
-  data-dismiss="{{ dataDismiss|default(null) }}"
-{% endif %}
-{% if dataToggle is defined %}
-  data-toggle="{{ dataToggle|default(null) }}"
-{% endif %}
-{% if dataTarget is defined %}
-  data-target="{{ dataTarget|default(null) }}"
-{% endif %}
-{% if ariaControls is defined %}
-  aria-controls="{{ ariaControls|default(null) }}"
-{% endif %}
-{% if ariaExpanded is defined %}
-  aria-expanded="{{ ariaExpanded|default(null) }}"
-{% endif %}
-{% if ariaLabel is defined %}
-  aria-label="{{ ariaLabel|default(null) }}"
-{% endif %}
-{{ extraAttribute|default(null) }}
->{% if hasVisual %}
-  <span class="bf-row-button__visual d-block mr-3">
-    {% if hasIcon %}
-      {% include "@bf-components/icon/twig/index.twig" with {
-        name: iconName,
-        size: size
-      } only %}
-    {% elseif hasImage %}
-      <img
-        src="{{ image.src|default("") }}"
-        data-src="{{ image.dataSrc|default("") }}"
-        alt="{{ image.alt|default("") }}"
-        loading="lazy"
-      />
+  {% block customTagContent %}
+    {% if hasVisual %}
+      <span class="bf-row-button__visual d-block mr-3">
+        {% if hasIcon %}
+          {% include "@bf-components/icon/twig/index.twig" with {
+            name: iconName,
+            size: size
+          } only %}
+        {% elseif hasImage %}
+          <img
+            src="{{ image.src|default("") }}"
+            data-src="{{ image.dataSrc|default("") }}"
+            alt="{{ image.alt|default("") }}"
+            loading="lazy"
+          />
+        {% endif %}
+      </span>
     {% endif %}
-  </span>
-{% endif %}
 
-<span class="bf-row-button__content d-block flex-grow-1">
-  {% if title is defined and title %}
-    {% embed "@bf-utils/title-custom-tag/twig/index.twig" with {
-      customTitleTag: titleTag,
-      titleTagClasses: "d-block " ~ size == "large" ? "h3 mb-1" : "h4 mb-0",
-    } %}
-      {% block titleTagContent %}
-        {{ title }}
-      {% endblock %}
-    {% endembed %}
-  {% endif %}
-  {% if paragraph is defined and paragraph %}
-    <span class="d-block small">{{ paragraph }}</span>
-  {% endif %}
-  {% if linkLabel is defined and linkLabel %}
-    <span
-      class="d-block bf-text-interface-medium text-underline {{
-      size != "small"
-        ? "mt-1"
-        : ""
-      }}"
-    >
-      {{ linkLabel }}
+    <span class="bf-row-button__content d-block flex-grow-1">
+      {% if title is defined and title %}
+        {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+          customTag: titleTag,
+          attr: {
+            "class": "d-block " ~ size == "large" ? "h3 mb-1" : "h4 mb-0"
+          },
+        } %}
+          {% block customTagContent %}
+            {{ title }}
+          {% endblock %}
+        {% endembed %}
+      {% endif %}
+      {% if paragraph is defined and paragraph %}
+        <span class="d-block small">{{ paragraph }}</span>
+      {% endif %}
+      {% if linkLabel is defined and linkLabel %}
+        <span
+          class="d-block bf-text-interface-medium text-underline {{
+          size != "small"
+            ? "mt-1"
+            : ""
+          }}"
+        >
+          {{ linkLabel }}
+        </span>
+      {% endif %}
     </span>
-  {% endif %}
-</span>
 
-{% if hasChevron|default(true) %}
-  {% include "@bf-components/icon/twig/index.twig" with {
-    name: "chevron-right",
-    size: "small",
-    class: "ml-3"
-  } only %}
-{% endif %}
-{{ isLink ? "</a" : "</button" }}>
+    {% if hasChevron|default(true) %}
+      {% include "@bf-components/icon/twig/index.twig" with {
+        name: "chevron-right",
+        size: "small",
+        class: "ml-3"
+      } only %}
+    {% endif %}
+  {% endblock %}
+{% endembed %}

@@ -14,11 +14,13 @@
 >
   <div class="container-fluid py-5 py-md-7">
     {% if title is defined and title %}
-      {% embed "@bf-utils/title-custom-tag/twig/index.twig" with {
-        customTitleTag: titleTag,
-        titleTagClasses: "h2 mb-4 mb-md-5",
+      {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+        customTag: titleTag,
+        attr: {
+          "class": "h2 mb-4 mb-md-5"
+        },
       } %}
-        {% block titleTagContent %}
+        {% block customTagContent %}
           {{ title }}
         {% endblock %}
       {% endembed %}

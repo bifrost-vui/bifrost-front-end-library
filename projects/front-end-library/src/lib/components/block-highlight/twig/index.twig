@@ -48,11 +48,13 @@
 
   <div class="{{ blockContentClasses|join(' ')|trim }}">
     {% if title is defined %}
-      {% embed "@bf-utils/title-custom-tag/twig/index.twig" with {
-        customTitleTag: titleTag,
-        titleTagClasses: "text-break " ~ (isFeatured ? "h2" : "h3"),
+      {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+        customTag: titleTag,
+        attr: {
+          "class": "text-break " ~ (isFeatured ? "h2" : "h3")
+        },
       } %}
-        {% block titleTagContent %}
+        {% block customTagContent %}
           {{ title }}
         {% endblock %}
       {% endembed %}

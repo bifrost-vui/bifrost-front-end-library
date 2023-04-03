@@ -9,11 +9,13 @@
 
 {# Template #}
 {% if title is defined and title is not empty %}
-  {% embed "@bf-utils/title-custom-tag/twig/index.twig" with {
-    customTitleTag: titleTag,
-    titleTagClasses: "h3",
+  {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+    customTag: titleTag,
+    attr: {
+      "class": "h3"
+    },
   } %}
-    {% block titleTagContent %}
+    {% block customTagContent %}
       {{ title }}
     {% endblock %}
   {% endembed %}
