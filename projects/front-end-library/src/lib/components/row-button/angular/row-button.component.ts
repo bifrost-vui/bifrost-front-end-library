@@ -39,7 +39,7 @@ export class RowButtonComponent implements OnInit {
         }
      </pre>
      */
-    @Input() extraAttribute: any;
+    @Input() extraAttribute: string | object;
 
     @Input() class: string;
     @Input() reversed: boolean;

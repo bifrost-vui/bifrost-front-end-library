@@ -21,7 +21,7 @@ export interface IRowButton {
     dataTarget: string;
     ariaControls: string;
     ariaLabel: string;
-    extraAttribute: any;
+    extraAttribute: string | object;
 
     class: string;
     reversed: boolean;
