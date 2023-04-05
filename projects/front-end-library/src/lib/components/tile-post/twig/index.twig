@@ -1,5 +1,7 @@
+{# Default Variables #}
 {% set titleTag = titleTag|default("p") %}
 
+{# Template #}
 <div
   class="bf-tile-post {{
   reversed|default(false)
@@ -27,9 +29,16 @@
 
   <div class="d-flex flex-column align-items-start gap-3 pt-3 pt-md-4">
     {% if title is defined and title %}
-      {{ "<" ~ titleTag }} class="{{ isFeatured|default(false) ? "h2" : "h3" }} m-0">
-      {{ title }}
-      {{ "</" ~ titleTag }}>
+      {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+        customTag: titleTag,
+        attr: {
+          "class": "m-0 " ~ isFeatured|default(false) ? "h2" : "h3"
+        },
+      } %}
+        {% block customTagContent %}
+          {{ title }}
+        {% endblock %}
+      {% endembed %}
     {% endif %}
 
     {% if description is defined and description %}

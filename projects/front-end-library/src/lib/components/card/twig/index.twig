@@ -1,37 +1,49 @@
+{# Boolean Variables #}
 {% set hasImage = image.src is defined and image.src %}
 {% set hasIcon = iconName is defined and iconName %}
 {% set hasVisual = hasImage or hasIcon %}
 {% set hasVisualCombo = hasVisual and comboLabel is defined and comboLabel %}
 
-<article
-  class="bf-card d-flex flex-column
-    {{
-  hasVisual
-    ? " bf-card--has-visual"
-  }}
-    {{ isDisabled is same as(true) ? " disabled" }}
-    {{
-  " "
-    ~ (class|default(""))
-  }}"
->
+{# Default Variables #}
+{% set titleTag = titleTag|default("h1") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set cardClasses = [
+  "bf-card d-flex flex-column",
+  (hasVisual ? "bf-card--has-visual"),
+  (isDisabled is same as(true) ? "disabled"),
+  (class|default("")),
+] %}
+{% set cardVisualClasses = [
+  "bf-card__visual",
+  (hasVisualCombo ? "bf-card__visual--combo"),
+  "bf-color-bg-underground d-flex justify-content-center align-items-center p-3 p-sm-4",
+] %}
+{% set messageLinkClasses = [
+  "bf-link",
+  (messageLink.class|default('')),
+] %}
+
+{# Arrays of Styles With Dynamic Elements #}
+{% set cardVisualStyles = [
+  (
+    visualBackgroundColor is defined and visualBackgroundColor
+      ? 'background-color: ' ~ visualBackgroundColor ~ ';'
+  ),
+] %}
+
+{# Template #}
+<article class="{{ cardClasses|join(' ')|trim }}">
   {% if hasVisual %}
     <div
-      class="bf-card__visual {{
-      hasVisualCombo
-        ? "bf-card__visual--combo"
-        : ""
-      }} bf-color-bg-underground d-flex justify-content-center align-items-center p-3 p-sm-4"
-      {{
-      visualBackgroundColor is defined and visualBackgroundColor
-        ? " style=background-color: " ~ visualBackgroundColor
-      }}
+      class="{{ cardVisualClasses|join(' ')|trim }}"
+      style="{{ cardVisualStyles|join(' ')|trim }}"
     >
       {% if hasImage %}
         <img
-          src="{{ image.src|default("") }}"
-          data-src="{{ image.src|default("") }}"
-          alt="{{ image.alt|default("") }}"
+          src="{{ image.src|default('') }}"
+          data-src="{{ image.src|default('') }}"
+          alt="{{ image.alt|default('') }}"
           class="{{ hasVisualCombo ? "" : "mw-100" }}"
           loading="lazy"
         />
@@ -57,16 +69,16 @@
           size: "small"
         } only %}
 
-        <div
-          class="text-center align-self-end d-flex flex-column pl-1 text-center pt-2"
-        >
+        <div class="text-center align-self-end d-flex flex-column pl-1 text-center pt-2">
           {% include "@bf-components/icon/twig/index.twig" with {
             name: "card-sim",
             size: "large",
             class: "align-self-center"
           } only %}
 
-          <span class="bf-card__visual__label mt-0">{{ comboLabel }}</span>
+          <span class="bf-card__visual__label mt-0">
+            {{ comboLabel }}
+          </span>
         </div>
       {% endif %}
     </div>
@@ -74,30 +86,45 @@
 
   <header class="bf-card__header px-3 py-4 p-sm-4">
     {% if upperTitle is defined and upperTitle %}
-      <p class="mb-1">{{ upperTitle }}</p>
+      <p class="mb-1">
+        {{ upperTitle }}
+      </p>
     {% endif %}
 
     {% if title is defined and title %}
-      {{ "<" ~ (titleTag|default("h1")) }} class="h3 mt-0 mb-1">
-      {# prettier-ignore #}
-      {% if title.category is defined and title.detail is defined %}
-        <span class="d-block font-weight-light">{{ title.category }}</span>{{ title.detail }}
-      {% else %}
-        {{ title }}
-      {% endif %}
-      {{ "</" ~ (titleTag|default("h1")) }}>
+      {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+        customTag: titleTag,
+        attr: {
+          "class": "h3 mt-0 mb-1"
+        },
+      } %}
+        {% block customTagContent %}
+          {% if title.category is defined and title.detail is defined %}
+            <span class="d-block font-weight-light">
+              {{ title.category }}
+            </span>
+            {{ title.detail }}
+          {% else %}
+            {{ title }}
+          {% endif %}
+        {% endblock %}
+      {% endembed %}
     {% endif %}
 
     {% if subtitle is defined and subtitle %}
-      <p class="h5 my-1">{{ subtitle }}</p>
+      <p class="h5 my-1">
+        {{ subtitle }}
+      </p>
     {% endif %}
 
     {% if description_html is defined and description_html %}
-      <div class="bf-card__description">{{ description_html|raw }}</div>
+      <div class="bf-card__description">
+        {{ description_html|raw }}
+      </div>
     {% endif %}
 
     {% if link.href is defined and link.href %}
-      <a href="{{ link.href|default("") }}" class="bf-link">
+      <a href="{{ link.href|default('') }}" class="bf-link">
         {{ link.label|default("") }}
       </a>
     {% endif %}
@@ -132,7 +159,9 @@
                 <p class="w-60 bf-text font-weight-bold mb-0">
                   {{ list.title }}
                 </p>
-                <p class="w-40 text-right mb-0">{{ list.description }}</p>
+                <p class="w-40 text-right mb-0">
+                  {{ list.description }}
+                </p>
               </div>
             {% endif %}
 
@@ -144,7 +173,9 @@
                     size: small,
                     class: "mr-2"
                   } only %}
-                  <p class="mb-0">{{ content.label }}</p>
+                  <p class="mb-0">
+                    {{ content.label }}
+                  </p>
                 </li>
               {% endfor %}
             </ul>
@@ -152,15 +183,13 @@
         {% endfor %}
       {% endif %}
 
-      {% if
-        (detailsColors is defined and detailsColors)
-          or (detailsStorage is defined and detailsStorage) %}
+      {% if (detailsColors is defined and detailsColors) or (detailsStorage is defined and detailsStorage) %}
         <div class="d-flex mx-3 mx-sm-4">
           {% if detailsColors is defined %}
             <ul class="bf-card__details-colors list-unstyled d-flex mb-0 mr-2">
               {% for color in detailsColors|default([]) %}
                 <li
-                  style="background-color: {{ "#" ~ color.value }}"
+                  style="background-color: #{{ color.value }}"
                   title="Color {{ color.name }}"
                 ></li>
               {% endfor %}
@@ -170,7 +199,9 @@
           {% if detailsStorage is defined and detailsStorage %}
             <p class="small mb-0">
               {% for stockage in detailsStorage|default([]) %}
-                <span class="font-weight-bold">{{ stockage }}</span>
+                <span class="font-weight-bold">
+                  {{ stockage }}
+                </span>
                 {% if loop.last is same as(false) %}/{% endif %}
               {% endfor %}
             </p>
@@ -192,9 +223,7 @@
       {% endif %}
 
       {% if promotionBadges is defined and promotionBadges %}
-        <div
-          class="bf-card__content-badge bf-card__content-badge--promotion mt-3 mx-3 mx-sm-4"
-        >
+        <div class="bf-card__content-badge bf-card__content-badge--promotion mt-3 mx-3 mx-sm-4">
           {% for promotionBadge in promotionBadges %}
             {% include "@bf-components/badge/twig/index.twig" with {
               label: promotionBadge.label,
@@ -220,7 +249,9 @@
     {% endif %}
 
     {% if note is defined and note %}
-      <p class="small bf-color-neutral-secondary mb-0">{{ note }}</p>
+      <p class="small bf-color-neutral-secondary mb-0">
+        {{ note }}
+      </p>
     {% endif %}
 
     {% if inputIncrement is defined and inputIncrement %}
@@ -246,9 +277,7 @@
       </div>
     {% endif %}
 
-    {% if
-      (message is defined and message)
-        or (messageLink is defined and messageLink) %}
+    {% if (message is defined and message) or (messageLink is defined and messageLink) %}
       <div class="bf-card__message d-flex">
         {% include "@bf-components/icon/twig/index.twig" with {
           name: "information-circle-filled",
@@ -259,8 +288,8 @@
           {{ message }}
           {% if messageLink is defined and messageLink %}
             <a
-              href="{{ messageLink.href|default("#") }}"
-              class="bf-link {{ messageLink.class|default("") }}"
+              href="{{ messageLink.href|default('#') }}"
+              class="{{ messageLinkClasses|join(' ')|trim }}"
             >
               {{ messageLink.label|default("") }}
             </a>

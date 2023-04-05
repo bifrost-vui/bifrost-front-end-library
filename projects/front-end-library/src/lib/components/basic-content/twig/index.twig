@@ -1,41 +1,41 @@
-{% set titleTag = titleTag|default("p") %}
-{% set imagePosition = imagePosition|default("left") %}
+{# Boolean Variables #}
 {% set hasIcon = image is defined and image.icon %}
+
+{# Default Variables #}
+{% set titleTag = titleTag|default("h1") %}
+{% set imagePosition = imagePosition|default("left") %}
 {% set iconPosition = hasIcon ? image.icon.position %}
 
-<article
-  class="bf-basic-content d-block d-md-flex
-  {{
-  textAlign == "center"
-    ? "bf-basic-content--center"
-  }}
-  {{
-  (background|default("ground")) == "ground"
-    ? "bf-color-bg-ground"
-    : "bf-color-bg-underground"
-  }}
-  {{ reversed ? "reversed" }}
-  {{ class }}"
->
+{# Arrays of Classes With Dynamic Elements #}
+{% set basicContentClasses = [
+  "bf-basic-content d-block d-md-flex",
+  (textAlign == "center" ? "bf-basic-content--center"),
+  (
+    (background|default("ground")) == "ground"
+      ? "bf-color-bg-ground"
+      : "bf-color-bg-underground"
+  ),
+  (reversed ? "reversed"),
+  (class|default("")),
+] %}
+{% set basicContentVisualClasses = [
+  "bf-basic-content__visual",
+  (imagePosition == "right" ? "order-0 order-md-1"),
+  (hasIcon ? "bf-basic-content__visual--icon"),
+  (iconPosition ? "bf-basic-content__visual--icon-" ~ iconPosition),
+  (
+    image.isFill|default(false)
+      ? ""
+      : "bf-basic-content__visual--fit"
+  ),
+] %}
+
+{# Template #}
+<article class="{{ basicContentClasses|join(' ')|trim }}">
   <div class="container-fluid d-flex flex-column flex-md-row gap-4">
     {% if image is defined and image.src %}
       <div
-        class="bf-basic-content__visual
-          {{
-        imagePosition == "right"
-          ? "order-0 order-md-1"
-        }}
-          {{ hasIcon ? "bf-basic-content__visual--icon" }}
-          {{
-        iconPosition
-          ? "bf-basic-content__visual--icon-" ~ iconPosition
-        }}
-          {{
-        image.isFill|default(false)
-          ? ""
-          : "bf-basic-content__visual--fit"
-        }}
-        "
+        class="{{ basicContentVisualClasses|join(' ')|trim }}"
         style="background-image: url({{ image.src }})"
       >
         {% if hasIcon %}
@@ -54,22 +54,35 @@
     <div class="bf-basic-content__inner d-flex flex-column gap-4">
       <div>
         {% if upperTitle is defined and upperTitle %}
-          <p class="bf-text-interface-small mb-0">{{ upperTitle }}</p>
+          <p class="bf-text-interface-small mb-0">
+            {{ upperTitle }}
+          </p>
         {% endif %}
 
         {% if title is defined and title %}
-          {{ "<" ~ (titleTag|default("h1")) }} class="h2 mt-2 mb-0">
-          {{ title }}
-          {{ "</" ~ (titleTag|default("h1")) }}>
+          {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+            customTag: titleTag,
+            attr: {
+              "class": "h2 mt-2 mb-0"
+            },
+          } %}
+            {% block customTagContent %}
+              {{ title }}
+            {% endblock %}
+          {% endembed %}
         {% endif %}
 
         {% if subtitle is defined and subtitle %}
-          <p class="h4 mt-2 mb-0">{{ subtitle }}</p>
+          <p class="h4 mt-2 mb-0">
+            {{ subtitle }}
+          </p>
         {% endif %}
       </div>
 
       {% if description is defined and description %}
-        <div class="bf-text">{{ description|raw }}</div>
+        <div class="bf-text">
+          {{ description|raw }}
+        </div>
       {% endif %}
 
       {% if rowButtons is defined and rowButtons %}
