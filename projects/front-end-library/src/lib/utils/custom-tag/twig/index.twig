@@ -1,0 +1,22 @@
+{# Default variables #}
+{% set customTag = customTag|default("div") %}
+{% set attr = attr|default({}) %}
+{% set attrCompiled = [] %}
+
+{# Attributes #}
+{% if attr is defined and attr %}
+  {% for attrName, attrValue in attr %}
+    {% if attrValue != null %}
+      {% if attrName != "bfString" %}
+        {% set attrCompiled = attrCompiled|merge([attrName ~ '="' ~ attrValue ~ '"']) %}
+      {% else %}
+        {% set attrCompiled = attrCompiled|merge([attrValue|raw]) %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{# Template #}
+<{{ customTag|raw }} {{ attrCompiled|join(' ')|trim|raw }}>
+  {% block customTagContent %}{% endblock %}
+</{{ customTag|raw }}>

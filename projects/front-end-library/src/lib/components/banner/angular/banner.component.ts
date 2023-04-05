@@ -15,7 +15,11 @@ export class BannerComponent implements OnInit {
 
     @Input() href: string;
     @Input() title: string;
-    @Input() paragraph: string;
+    /**
+        Note: Wrap your data with a semantic HTML tag.
+        E.g. `description_html: "<p>this is a description</p>"`
+    */
+    @Input() description_html: HTMLElement;
     @Input() linkLabel: string;
     @Input() image: object;
     @Input() iconName: string;

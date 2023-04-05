@@ -1,28 +1,46 @@
+{# Default Variables #}
 {% set titleTag = titleTag|default("p") %}
 
-<section
-  class="bf-section-tiles-post
-  {{
-  (background|default("ground")) == "ground"
-    ? "bf-color-bg-ground"
-    : "bf-color-bg-underground"
-  }}
-  {{ reversed|default(false) ? "reversed" }}
-  {{ class|default("") }}"
->
+{# Background Classes #}
+{% if background is defined and background == "underground" %}
+  {% set backgroundClass = "bf-color-bg-underground" %}
+{% else %}
+  {% set backgroundClass = "bf-color-bg-ground" %}
+{% endif %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set sectionTilesPostClasses = [
+  "bf-section-tiles-post",
+  backgroundClass,
+  (reversed|default(false) ? "reversed"),
+  (class|default("")),
+] %}
+
+{# Template #}
+<section class="{{ sectionTilesPostClasses|join(' ')|trim }}">
   <div class="container-fluid py-5 py-md-7">
     {% if title is defined and title %}
-      {{ "<" ~ titleTag }} class="h2 mb-4 mb-md-5">
-      {{ title }}
-      {{ "</" ~ titleTag }}>
+      {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+        customTag: titleTag,
+        attr: {
+          "class": "h2 mb-4 mb-md-5"
+        },
+      } %}
+        {% block customTagContent %}
+          {{ title }}
+        {% endblock %}
+      {% endembed %}
     {% endif %}
     <ul class="d-flex flex-column flex-md-row flex-wrap gap-4 list-unstyled">
       {% for tile in tiles %}
         <li
-          class="bf-section-tiles-post__item mb-4 {{
-          (tile.size|default("default")) == "large"
-            ? "bf-section-tiles-post__item--size-large"
-          }}"
+          class="
+            bf-section-tiles-post__item mb-4
+            {{
+              (tile.size|default("default")) == "large"
+                ? "bf-section-tiles-post__item--size-large"
+            }}
+          "
         >
           {% include "@bf-components/tile-post/twig/index.twig" with tile only %}
         </li>
