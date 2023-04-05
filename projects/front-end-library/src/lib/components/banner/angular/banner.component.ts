@@ -16,10 +16,10 @@ export class BannerComponent implements OnInit {
     @Input() href: string;
     @Input() title: string;
     /**
-        Data from **paragraph** comes from rich text editor, so this string is HTML code.
-        `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>`
+        Note: Wrap your data with a semantic HTML tag.
+        E.g. `description_html: "<p>this is a description</p>"`
     */
-    @Input() paragraph: string;
+    @Input() description_html: HTMLElement;
     @Input() linkLabel: string;
     @Input() image: object;
     @Input() iconName: string;
