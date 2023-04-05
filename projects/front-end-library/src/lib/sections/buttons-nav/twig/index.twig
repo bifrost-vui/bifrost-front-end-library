@@ -11,11 +11,17 @@
   {% set backgroundClass = "bf-color-bg-ground" %}
 {% endif %}
 
+{# Arrays of Classes With Dynamic Elements #}
+{% set sectionButtonsNavClasses = [
+  "bf-section-buttons-nav d-flex flex-column flex-lg-row",
+  backgroundClass,
+  (reversed|default(false) ? "reversed"),
+  (class|default("")),
+] %}
+
 {# Template #}
 <section
-  class="bf-section-buttons-nav d-flex flex-column flex-lg-row {{
-  backgroundClass
-  }} {{ reversed|default(false) ? "reversed" }} {{ class|default(null) }}"
+  class="{{ sectionButtonsNavClasses|join(' ')|trim }}"
   {{ extraAttribute|default(null) }}
 >
   <div
