@@ -280,56 +280,115 @@ For Angular, don't forget to export your new module and/or component in `/lib/pu
 
 # Build and Publish Front-end library
 
-Create a branch, and the Pull Request named after the version name and replace dots with hyphens (eg: v1-1-1)
+Create a branch and a Pull Request (when the branch will be pushed on Github) named after the version number and replace the dots with hyphens (eg: v1-1-1).
 
--   the replacement is for Vercel to format the right URL
--   The new pull request give us a space to work.
--   For a Minor, work on last changes for the ChangeLog and generate the version URL for it.
--   For a Patch, merge and fix corresponding Jira problem required. also give us the space to work on change log and version ULR.
+Here's some infos:
+-   The replacement from dots to hyphens is for Vercel to format the right URL.
+-   The new Pull Request give us a space to work.
+-   For a Minor, work on last changes for the CHANGELOG and generate the version URL for it.
+-   For a Patch, merge and fix corresponding Jira problem required. It also give us the space to work on the CHANGELOG and version URL.
 
 On the branch version, increment the version in `projects/front-end-library/package.json` depending on the context of the version for the pattern: **MAJOR.MINOR.PATCH**.
 
-## CheckList of the PR
+## 1) Create the new branch
 
--   [ ] package.json version changed
--   [ ] ChangeLog properly written, explicit and understandable with new features and or bugs fix.
--   [ ] New URL version of the storybook working and reference
+> **Change the version number in the example below for your version number**
+> _Don't forget to use hyphens here instead of dots_
 
-## Make the version in Git,
-
-```
--git fetch
--git pull
--git commit -m "v[x.y.z] new npm package release"
--git push
--git tag v[x.y.z]
--git push --tags
+```bash
+git checkout -b v1-1-1
 ```
 
-## Make the NPM package
+## 2) Before the commit
 
-From your related version branch. Only maintainer have the power to do this
+> **Don't forget to do these things**
+
+-   [ ] Update version number in `projects/front-end-library/package.json`
+-   [ ] CHANGELOG is properly written, explicit and understandable with new features and or bugs fix.
+	- For the Vercel link on the version number, just use the link for a past version and change the version number for yours
+
+## 3) Commit and Push on GitHub
+
+> **Be sure to be up to date with the `master` branch**
+
+```bash
+git fetch
+git pull
+```
+
+> **Then commit and push**
+> - _Don't forget to change the version number in the example below_
+> - _Here, use **dots** for the version number_
+
+```bash
+git add CHANGELOG.mdx
+git add projects/front-end-library/package.json
+git commit -m "v1.1.1 new npm package release"
+git push
+```
+
+## 4) Create the new tag
+
+> **Change the version number in the example below for your version number**
+> _Here, use **dots** for the version number_
+
+```bash
+git tag v1.1.1
+git push --tags
+```
+
+## 5) Make the NPM package
+
+Only maintainer have the power to do this. You need to have access to the `videotron-ui` organization on [NPMJS](https://www.npmjs.com/). If you don't, you need to ask your manager for access.
+
+> **First, you need to log in**
 
 ```bash
 npm login --scope=@videotron-ui
-# This command will build and publish a new version of the front-end library.
+```
+
+> **Then, you run this command to publish your package**
+> This command will build and publish a new version of the front-end library.
+
+```bash
 npm run publish
 ```
 
 Your new package version is now available for everyone.
 You could check availability on the [NPM registry](https://www.npmjs.com/package/@videotron-ui/bifrost-front-end-library) page.
 
-Then merge you PR of the version into master
 
-## Finish the Release the Jira version,
+## 6) Merge your PR into the `master` branch
 
--   Previous to all this, all related Jira has been mark with the right version(Jira definition: release)
--   If it was not done, move all corresponding issue(should be in "ready to package") to "Packaged"
--   Find the related release number and "release it"
+Now that the NPM package is created, you can merge your PR into the `master` branch.
 
-## Make the new GitHub Release
+## 7) Make the new Jira release
 
--   Find you tag in the Repository,
--   Click on "create a release"
--   Fill the form with the link of the changelog of Jira, of your Storybook Change log, and the NPM url.
--   Save
+1. If it's not already done, create a new release in [Jira release page](https://groupemedia.atlassian.net/projects/DS?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page). The Jira release number is the same as the version created in earlier steps. Then adjust the description to explain what was done in this new release.
+
+2. In [Jira Kanban view](https://groupemedia.atlassian.net/jira/software/c/projects/DS/boards/1036), for all the tickets that are in the `READY TO PACKAGE` column, if it's not already done, add a `Fix versions / Versions corrigées` to the same number as the new Jira release number.
+
+3. Then, move all tickets from `READY TO PACKAGE` column to `PACKAGED - CLOSED` column.
+
+4. In [Jira release page](https://groupemedia.atlassian.net/projects/DS?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page), find the related release number and "release it". You do it by pressing the `RELEASE / PUBLIER` button.
+
+## 8) Make the new GitHub release
+
+1. On GitHub, find your tag in the [tag page](https://github.com/bifrost-vui/bifrost-front-end-library/tags).
+
+2. Click on the `Create release from tag` button
+
+3. Add a description to your release. Use the text below, **but don't forget to change all links path to the right ones**.
+
+```markdown
+### Storybook changelog
+https://bifrost-front-end-library-git-v1-11-0-bifrost-vui.vercel.app/?path=/docs/changelog--page
+
+### ChangeLog Jira
+https://groupemedia.atlassian.net/projects/DS/versions/38177/tab/release-report-all-issues
+
+### NPM package
+https://www.npmjs.com/package/@videotron-ui/bifrost-front-end-library/v/1.11.0
+```
+
+4. Save
