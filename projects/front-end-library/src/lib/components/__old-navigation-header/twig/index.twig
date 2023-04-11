@@ -1,5 +1,5 @@
 {% if hasTopBar is defined and hasTopBar is same as(true) %}
-  {% include "@bf-components/navigation-header/twig/top-bar.twig" with {
+  {% include "@bf-components/__old-navigation-header/twig/top-bar.twig" with {
     items: topBar.items|default([]),
     secondaryItems: topBar.secondaryItems|default([]),
     isConnected: isConnected ?? false,
@@ -46,7 +46,7 @@
     <div class="bf-header__nav-main js-collapse-full-height">
       <ul class="bf-megamenu d-flex list h-100">
         {% block navbar_content %}
-          {% include "@bf-components/navigation-header/twig/mega-menu.twig" with {
+          {% include "@bf-components/__old-navigation-header/twig/mega-menu.twig" with {
             navItems: navItems,
             reversed: reversed
           } only %}
@@ -86,7 +86,7 @@
 
         {# Btn mini cart #}
         {# {% if hasMiniCartBtn is defined and hasMiniCartBtn is same as (true) %}
-            {% include "@bf-components/navigation-header/twig/btn-minicart.twig" with { class:"" } only %}
+            {% include "@bf-components/__old-navigation-header/twig/btn-minicart.twig" with { class:"" } only %}
         {% endif %} #}
 
         {# Btn search toggle #}

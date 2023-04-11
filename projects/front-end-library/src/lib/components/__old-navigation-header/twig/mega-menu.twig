@@ -142,18 +142,21 @@
                     {% if dropdownSubItem.mega is not empty %}
                       <div class="d-none d-lg-block mt-4 mt-lg-0">
                         <hr class="my-4" />
-                        <div class="row">
-                          {% for item in dropdownSubItem.mega %}
-                            <div class="col-md-6 mb-3 mb-md-0">
-                              {% include "@bf-components/navigation-header/twig/mega-menu-block.twig" with {
-                                imgSrc: item.imgSrc,
-                                imgAlt: item.imgAlt,
-                                href: item.href,
-                                title: item.title,
-                                text: item.text
-                              } %}
-                            </div>
-                          {% endfor %}
+
+                        <div class="">
+                          <div class="row">
+                            {% for item in dropdownSubItem.mega %}
+                              <div class="col-md-6 mb-3 mb-md-0">
+                                {% include "@bf-components/__old-navigation-header/twig/mega-menu-block.twig" with {
+                                  imgSrc: item.imgSrc,
+                                  imgAlt: item.imgAlt,
+                                  href: item.href,
+                                  title: item.title,
+                                  text: item.text
+                                } %}
+                              </div>
+                            {% endfor %}
+                          </div>
                         </div>
                       </div>
                     {% endif %}
@@ -254,7 +257,7 @@
                 <div class="row">
                   {% for item in navItem.mega %}
                     <div class="col-md-6 mb-3 mb-md-0">
-                      {% include "@bf-components/navigation-header/twig/mega-menu-block.twig" with {
+                      {% include "@bf-components/__old-navigation-header/twig/mega-menu-block.twig" with {
                         imgSrc: item.imgSrc,
                         imgAlt: item.imgAlt,
                         href: item.href,
