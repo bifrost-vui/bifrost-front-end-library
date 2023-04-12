@@ -4,7 +4,7 @@ import { isDesktopUp } from '../../../js/utils/breakpoints';
 
 $(function () {
     // Mega-Menu
-    const navMain = '.bf-header';
+    const navMain = '.bf-old-header';
     const navItem = '.js-bf-megamenu__nav-item';
     const navLink = '.js-bf-megamenu__nav-link';
     const navClose = '.js-bf-megamenu__close';
@@ -119,7 +119,7 @@ const keyTab = 9;
 $(function () {
     'use strict';
 
-    const navMain = '.bf-header';
+    const navMain = '.bf-old-header';
     const navItem = '.js-bf-megamenu__nav-item';
     const navLink = '.js-bf-megamenu__nav-link';
     const tabsTab = '.js-bf-tabs__tab';

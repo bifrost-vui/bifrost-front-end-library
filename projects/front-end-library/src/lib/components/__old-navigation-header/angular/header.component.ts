@@ -7,11 +7,11 @@ interface ILogo {
 }
 
 @Component({
-    selector: 'bf-header',
+    selector: 'bf-old-header',
     templateUrl: './header.component.html',
     // styleUrls: ['../common/style.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class OldHeaderComponent implements OnInit {
     constructor() {}
 
     @Input() reversed: boolean;
@@ -63,6 +63,6 @@ export class HeaderComponent implements OnInit {
     @Input() langcode: 'EN' | 'FR';
 
     ngOnInit() {
-        console.log('Header', this);
+        console.log('OldHeader', this);
     }
 }
