@@ -18,7 +18,9 @@ export const argTypes = {
     ngOnInit: { table: { disable: true } },
     ngOnChanges: { table: { disable: true } },
     _theme: {
-        table: { defaultValue: { summary: 'videotron' } },
+        type: { name: 'string', required: false },
+        description: 'Storybook canvas `<body>` `data-theme` attribute',
+        table: { type: { summary: 'string' }, defaultValue: { summary: 'videotron' } },
         control: { type: 'select', options: ['videotron', 'business'] },
     },
 };
