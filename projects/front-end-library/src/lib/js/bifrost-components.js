@@ -13,3 +13,6 @@ require('../components/input-slider/js/index.js');
 require('../components/navigation-header/js/index.js');
 require('../components/slideshow/js/index.js');
 require('../components/tab/js/index.js');
+
+// TODO (MAIN-NAV): To delete when new Navigation Header is completed
+require('../components/__old-navigation-header/js/index.js');
