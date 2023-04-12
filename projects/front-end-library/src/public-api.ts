@@ -19,3 +19,6 @@ export * from './lib/components/badge/angular/badge.module';
 
 export * from './lib/components/icon/angular/icon.component';
 export * from './lib/components/icon/angular/icon.module';
+
+export * from './lib/components/navigation-header/angular/header.component';
+export * from './lib/components/navigation-header/angular/header.module';
