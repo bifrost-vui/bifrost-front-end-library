@@ -1,9 +1,23 @@
 /* *****************************************************************************
 *
-*  Header
+*  Navigation Header
 *
 * ***************************************************************************** */
 
 .bf-header {
-    background-color: var(--bf-color-bg-action-primary);
+  @include media-scale(
+    --header-height,
+    #{calculateRem(44px)},
+    #{calculateRem(56px)},
+    $xlValue: #{calculateRem(72px)}
+  );
+  height: var(--header-height);
+  max-height: var(--header-height);
+
+  // Logo
+  &__logo {
+    svg {
+      height: var(--header-height);
+    }
+  }
 }
