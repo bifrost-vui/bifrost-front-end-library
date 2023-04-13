@@ -1,0 +1,18 @@
+@use "sass:math";
+
+ /** *****************************************************************************
+ *
+ * calculateRem function
+ *
+ * Function for converting a px based size to rem.
+ *
+ * Usage:   --header-height: #{calculateRem(44px)};
+ * Output:  --header-height: 2.75rem;
+ *
+ * Then you can use it with any sizes property:
+ * height: var(--header-height);
+ *
+ ***************************************************************************** */
+@function calculateRem($size) {
+  @return math.div($size, $baseFontSize) * 1rem;
+}

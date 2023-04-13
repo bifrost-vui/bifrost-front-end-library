@@ -1,4 +1,15 @@
 // Global
+$baseFontSize: 16px;
+$baseFontSizeXXL: 0.94vw; // Same as : projects/front-end-library/src/lib/scss/base/_layouts-core.scss - on line 43
+
+html {
+  --bf-base-font-size: #{$baseFontSize};
+  font-size: var(--bf-base-font-size);
+
+  @include media-breakpoint-up(xxl) {
+    --bf-base-font-size: #{$baseFontSizeXXL};
+  }
+}
 
 body,
 .reversed,
