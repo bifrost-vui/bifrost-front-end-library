@@ -12,16 +12,17 @@
           </h4>
         </div>
 
-        {% for logo in category.list %}
-          <div class="flex-grow-1 py-2">
-            {% include "@bf-components/logo/twig/index.twig" with {
-              name: logo.name,
-              size: logo.size,
-              langcode: logo.langcode
-            } %}
+            {% for logo in category.list %}
+              <div class="flex-grow-1 py-2">
+                {% include "@bf-components/logo/twig/index.twig" with {
+                  name: logo.name,
+                  size: logo.size,
+                  langcode: logo.langcode
+                } %}
+              </div>
+            {% endfor %}
           </div>
         {% endfor %}
-      </div>
     {% endfor %}
   </div>
 </div>
