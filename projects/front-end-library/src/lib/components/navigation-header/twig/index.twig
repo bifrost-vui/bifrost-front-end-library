@@ -7,13 +7,15 @@
 {% set reversed = reversed|default(false) %}
 {% set theme    = theme|default("videotron") %}
 
+{# Dynamic Variables #}
+{% set langSwitchLabel = langcode == "EN" ? "FR" : "EN" %}
+
 {# Boolean Variables #}
 {% set isReversed = reversed is defined and reversed is same as(true) %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set headerClasses = [
   "bf-header",
-  "z-index-18",
   (isReversed ? "reversed"),
 ] %}
 
@@ -31,13 +33,89 @@
 		{# Logo #}
 		<div class="bf-header__logo">
 			<a href="{{ logo.href }}" class="d-flex">
-				{% include "@bf-components/logo/twig/index.twig" with {
-          name: logo.name,
-          size: "large",
-          langcode: langcode
-        } only %}
+        <div class="bf-header__logo__desktop">
+          {% include "@bf-components/logo/twig/index.twig" with {
+            name: logo.name,
+            size: "large",
+            langcode: langcode
+          } only %}
+        </div>
+        <div class="bf-header__logo__mobile">
+          {% include "@bf-components/logo/twig/index.twig" with {
+            name: logo.name,
+            size: "medium",
+            langcode: langcode
+          } only %}
+        </div>
 			</a>
 		</div>
+
+    {# Main menu (Mobile|Tablet: Burger Menu, Desktop: Full menu) #}
+    <div class="bf-header__main-menu">
+
+      {# Burger menu button #}
+      <div class="bf-header__main-menu__mobile-toggle">
+        {% include "@bf-components/button-icon/twig/index.twig" with {
+            icon: "menu-burger"
+        } only %}
+        {# {% include "@bf-components/button-icon/twig/index.twig" with {
+            icon: "x"
+        } only %} #}
+      </div>
+
+      <div class="bf-header__main-menu__container">
+      </div>
+    </div>
+
+    {# Search + Account + Support #}
+    <div class="bf-header__functions">
+      {# Search #}
+      <div class="bf-header__functions__search-bar">
+        {% include "@bf-components/button-icon/twig/index.twig" with {
+          icon: "search"
+        } only %}
+      </div>
+
+      {# My account #}
+      <div class="bf-header__functions__account">
+        {% include "@bf-components/button-icon/twig/index.twig" with {
+          icon: "my-account"
+        } only %}
+      </div>
+
+      {# Support #}
+      <div class="bf-header__functions__support">
+        {% include "@bf-components/button-icon/twig/index.twig" with {
+          icon: "question-circle-outline"
+        } only %}
+      </div>
+    </div>
+
+    {# Language Switcher #}
+    <div class="bf-header__language-switcher">
+      {# New way to do link, but for now I have no way to get what I need from Drupal #}
+      {# {% include '@bf-components/button/twig/index.twig' with {
+        label    : langSwitchLabel,
+        hierarchy: 'tertiary',
+        href     : "#",
+        class    : "bf-header__language-switcher__link",
+      } only %} #}
+
+      {# Current way the link is rendered in Drupal #}
+      {% block language_switcher_desktop %}
+        <a
+          href="#"
+          class="bf-button bf-button--tertiary bf-header__language-switcher__link js-bf-header__language-switcher__link"
+          title="Français"
+          language="fr"
+          hreflang="fr"
+          data-drupal-link-system-path="node/8531"
+          tabindex="-1"
+        >
+          Français
+        </a>
+      {% endblock %}
+    </div>
 
 	</nav>
 </header>
