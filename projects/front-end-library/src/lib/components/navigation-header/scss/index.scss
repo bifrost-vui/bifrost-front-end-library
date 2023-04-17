@@ -4,6 +4,11 @@
 *
 * ***************************************************************************** */
 
+// Variables
+$header_buttons_gap: 0;
+$header_buttons_gap_md: #{calculateRem(4px)};
+
+// Styles
 .bf-header {
   @include media-scale(
     --header-height,
@@ -11,13 +16,102 @@
     #{calculateRem(56px)},
     $xlValue: #{calculateRem(72px)}
   );
+  width: 100%;
   height: var(--header-height);
   max-height: var(--header-height);
+  padding-right: #{calculateRem(8px)};
+
+  &__nav {
+    display: grid;
+    width: 100%;
+    @include media-scale(
+      grid-template-columns,
+      min-content auto min-content,
+      $xlValue: min-content auto min-content min-content
+    );
+    align-items: center;
+    background-color: var(--bf-color-bg-ground);
+  }
 
   // Logo
   &__logo {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+
     svg {
       height: var(--header-height);
+    }
+
+    &__desktop {
+      @include media-scale(
+        display,
+        none,
+        $xlValue: block
+      );
+    }
+
+    &__mobile {
+      @include media-scale(
+        display,
+        block,
+        $xlValue: none
+      );
+    }
+  }
+
+  // Main menu
+  &__main-menu {
+    display: flex;
+    @include media-scale(grid-column, #{3 / 4}, $xlValue: #{2 / 3});
+    grid-row: 1 / 2;
+    @include media-scale(
+      margin-left,
+      $header_buttons_gap,
+      $header_buttons_gap_md
+    );
+  }
+
+  // Functions (Search, Account, Support)
+  &__functions {
+    display: flex;
+    @include media-scale(grid-column, #{2 / 3}, $xlValue: #{3 / 4});
+    grid-row: 1 / 2;
+    justify-self: end;
+    @include media-scale(
+      column-gap,
+      $header_buttons_gap,
+      $header_buttons_gap_md
+    );
+  }
+
+  // Language Switcher
+  &__language-switcher {
+    @include media-scale(
+      margin-left,
+      $header_buttons_gap,
+      $header_buttons_gap_md
+    );
+
+    // Temporary, until the mobile/tablet mega menu is done
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
+
+    // Link
+    &__link {
+      opacity: 0;
+      @include transitions(opacity $transition-time-medium);
+
+      @include media-breakpoint-up(xl) {
+        width: #{calculateRem(40px)};
+        height: #{calculateRem(40px)};
+        padding: 0;
+        border-radius: 100%;
+      }
+
+      &.loaded {
+        opacity: 1;
+      }
     }
   }
 }
