@@ -1,5 +1,7 @@
 import { cleanString } from './string-format';
 
+// TODO: Adjust "window.screen.availWidth" because it is not working as to get the browser's window width
+
 export const breakpoints = {
     sm: Number(cleanString(getComputedStyle(document.body).getPropertyValue('--breakpoint-sm'), 'px')),
     md: Number(cleanString(getComputedStyle(document.body).getPropertyValue('--breakpoint-md'), 'px')),
