@@ -5,10 +5,10 @@ import { isDesktopUp } from '../../../js/utils/breakpoints';
 $(function () {
     // Mega-Menu
     const navMain = '.bf-header-business';
-    const navItem = '.js-bf-megamenu__nav-item';
-    const navLink = '.js-bf-megamenu__nav-link';
-    const navClose = '.js-bf-megamenu__close';
-    const navFullHeight = '.js-bf-megamenu__full-height';
+    const navItem = '.js-bf-business-megamenu__nav-item';
+    const navLink = '.js-bf-business-megamenu__nav-link';
+    const navClose = '.js-bf-business-megamenu__close';
+    const navFullHeight = '.js-bf-business-megamenu__full-height';
 
     let isDropdownMegamenuOpen = false;
 
@@ -120,8 +120,8 @@ $(function () {
     'use strict';
 
     const navMain = '.bf-header-business';
-    const navItem = '.js-bf-megamenu__nav-item';
-    const navLink = '.js-bf-megamenu__nav-link';
+    const navItem = '.js-bf-business-megamenu__nav-item';
+    const navLink = '.js-bf-business-megamenu__nav-link';
     const tabsTab = '.js-bf-tabs__tab';
 
     const $megamenuLink = $('.js-bf-dropdown-item-link');
@@ -171,11 +171,11 @@ $(function () {
 
     $(tabsTab).keydown(function (e) {
         if (e.which == keyTab) {
-            const $parent = $(this).parents().closest('.js-bf-megamenu__panel');
+            const $parent = $(this).parents().closest('.js-bf-business-megamenu__panel');
             let $megamenuItems = $parent.find(tabsTab);
             let $megamenuPane = $parent.find('.js-bf-tab-pane.show.active');
             let $megamenuLinks = $megamenuPane.find('.js-bf-dropdown-item-link');
-            let $megamenuItemsDropdown = $('.js-bf-megamenu__nav-item');
+            let $megamenuItemsDropdown = $('.js-bf-business-megamenu__nav-item');
 
             // don't use e.preventDefault outside conditions
             // the default behavior is good enough for navigation
@@ -183,7 +183,7 @@ $(function () {
                 if ($megamenuItems.last().is(':focus')) {
                     let $itemActive = $megamenuItemsDropdown.filter('.open');
                     if ($itemActive.next().length > 0) {
-                        $itemActive.next().find('.js-bf-megamenu__nav-link').focus();
+                        $itemActive.next().find('.js-bf-business-megamenu__nav-link').focus();
                     } else {
                         $(megamenuSearchBtn).focus();
                     }
@@ -202,7 +202,7 @@ $(function () {
 
     $megamenuLink.keydown(function (e) {
         if (e.which == keyTab) {
-            const $parent = $(this).parents().closest('.js-bf-megamenu__panel');
+            const $parent = $(this).parents().closest('.js-bf-business-megamenu__panel');
             let $megamenuPaneTabs = $parent.find('.js-bf-tab-pane.show.active');
             let $megamenuPaneItem = $parent.find('.js-bf-dropdown-megamenu');
             let $megamenuTabsLinks = $megamenuPaneTabs.find('.js-bf-dropdown-item-link');
@@ -240,7 +240,7 @@ $(function () {
         // This lets us 'shift + tab' to the last visible tab
         if (e.which == keyTab && e.shiftKey) {
             let $megamenuTabs = $('.js-bf-tabs__tab.active').parent().find(tabsTab);
-            let $megamenuDropdownItem = $('.js-bf-megamenu__nav-item.open');
+            let $megamenuDropdownItem = $('.js-bf-business-megamenu__nav-item.open');
             let $megamenuDropdownNext = $megamenuDropdownItem.next().children();
 
             if ($megamenuDropdownItem.find(tabsTab).length > 0) {
