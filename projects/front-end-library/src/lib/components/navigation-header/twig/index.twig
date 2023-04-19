@@ -18,12 +18,28 @@
   "bf-header",
   (isReversed ? "reversed"),
 ] %}
+{% set burgerMenuButtonClasses = [
+  "bf-button-icon__inner",
+  "bf-header__main-menu__mobile-toggle__burger",
+  "js-bf-burger-menu-toggle",
+] %}
 
 {# Objects of Attributes With Dynamic Elements #}
 {% set headerAttributes = {
-  "role": "banner",
-  "class": headerClasses|join(' ')|trim,
+  "role"      : "banner",
+  "class"     : headerClasses|join(' ')|trim,
   "data-theme": (theme is defined ? theme),
+} %}
+{% set burgerMenuButtonAttributes = {
+  "type"            : "button",
+  "class"           : burgerMenuButtonClasses|join(' ')|trim,
+  "aria-label"      : "Open Main Menu"|t,
+  "data-label-open" : "Open Main Menu"|t,
+  "data-label-close": "Close Main Menu"|t,
+  "data-toggle"     : "collapse",
+  "data-target"     : "#mainMenuContainer",
+  "aria-controls"   : "mainMenuContainer",
+  "aria-expanded"   : "false",
 } %}
 
 {# Template #}
@@ -51,19 +67,29 @@
 		</div>
 
     {# Main menu (Mobile|Tablet: Burger Menu, Desktop: Full menu) #}
-    <div class="bf-header__main-menu">
+    <div id="mainMenu" class="bf-header__main-menu">
 
       {# Burger menu button #}
-      <div class="bf-header__main-menu__mobile-toggle">
-        {% include "@bf-components/button-icon/twig/index.twig" with {
-            icon: "menu-burger"
-        } only %}
-        {# {% include "@bf-components/button-icon/twig/index.twig" with {
-            icon: "x"
-        } only %} #}
+      <div class="bf-button-icon bf-header__main-menu__mobile-toggle">
+        <button {{ macros.addAttributes(burgerMenuButtonAttributes) }}>
+          {% include '@bf-components/icon/twig/index.twig' with {
+            name: "menu-burger",
+            size: "small",
+            class: "",
+          } only %}
+          {% include '@bf-components/icon/twig/index.twig' with {
+            name: "x",
+            size: "small",
+            class: "d-none",
+          } only %}
+        </button>
       </div>
 
-      <div class="bf-header__main-menu__container">
+      <div id="mainMenuContainer" class="bf-header__main-menu__container collapse">
+        {% include "@bf-components/navigation-header/twig/mega-menu.twig" with {
+          navItems: navItems,
+          reversed: reversed
+        } only %}
       </div>
     </div>
 
@@ -92,7 +118,7 @@
     </div>
 
     {# Language Switcher #}
-    <div class="bf-header__language-switcher">
+    <div id="languageSwitcher" class="bf-header__language-switcher">
       {# New way to do link, but for now I have no way to get what I need from Drupal #}
       {# {% include '@bf-components/button/twig/index.twig' with {
         label    : langSwitchLabel,
@@ -110,7 +136,6 @@
           language="fr"
           hreflang="fr"
           data-drupal-link-system-path="node/8531"
-          tabindex="-1"
         >
           Français
         </a>

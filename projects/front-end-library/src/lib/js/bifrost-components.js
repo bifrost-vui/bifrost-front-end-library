@@ -5,7 +5,8 @@ window.bfTheme.breakpoints = {
     sm: 576,
     md: 768,
     lg: 1200,
-    xl: 1920,
+    xl: 1440,
+    xxl: 1920,
 };
 // Bifröst  Components
 require('../components/input-increment/js/index.js');

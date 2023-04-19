@@ -1,0 +1,54 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Template #}
+<ul class="bf-megamenu">
+  {% for navItem in navItems %}
+
+    {# Arrays of Classes With Dynamic Elements #}
+    {% set navItemClasses = [
+      "bf-megamenu__nav-item",
+      "js-bf-megamenu__nav-item",
+      navItem.class,
+    ] %}
+    {% set navItemLinkClasses = [
+      "bf-megamenu__nav-item__link",
+      navItem.class|default("")
+    ] %}
+    {% set navItemButtonClasses = [
+      "bf-megamenu__nav-item__link",
+      "js-bf-megamenu__nav-link"
+    ] %}
+
+    {# Objects of Attributes With Dynamic Elements #}
+    {% set navItemLinkAttributes = {
+      "class": navItemLinkClasses|join(' ')|trim,
+      "href" : navItem.href|default("#"),
+      "rel"  : navItem.rel|default("dofollow")
+    } %}
+    {% set navItemButtonAttributes = {
+      "class"        : navItemButtonClasses|join(' ')|trim,
+      "type"         : "button",
+      "id"           : "menuDropdown" ~ loop.index,
+      "aria-expanded": "false",
+      "aria-label"   : "Toggle navigation",
+    } %}
+
+    {# Main menu item #}
+    <li class="{{ navItemClasses|join(' ')|trim }}">
+      {% if not navItem.subItems and not navItem.subItemsMultiDropdown %}
+        <a {{ macros.addAttributes(navItemLinkAttributes) }}>
+          {{ navItem.label }}
+        </a>
+      {% else %}
+        <button {{ macros.addAttributes(navItemButtonAttributes) }}>
+          <span class="mb-0">{{ navItem.label }}</span>
+          {% include "@bf-components/icon/twig/index.twig" with {
+            name: "chevron-down",
+            class: "d-none d-lg-block ml-1"
+          } %}
+        </button>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

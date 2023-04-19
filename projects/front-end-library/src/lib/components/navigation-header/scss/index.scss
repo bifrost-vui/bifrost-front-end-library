@@ -7,6 +7,10 @@
 // Variables
 $header_buttons_gap: 0;
 $header_buttons_gap_md: #{calculateRem(4px)};
+$header_buttons_gap_xl: #{calculateRem(8px)};
+$header_nav_pr: #{calculateRem(8px)};
+$header_nav_pr_md: #{calculateRem(24px)};
+$header_nav_pr_xl: #{calculateRem(16px)};
 
 // Styles
 .bf-header {
@@ -16,10 +20,10 @@ $header_buttons_gap_md: #{calculateRem(4px)};
     #{calculateRem(56px)},
     $xlValue: #{calculateRem(72px)}
   );
+  position: relative;
   width: 100%;
   height: var(--header-height);
   max-height: var(--header-height);
-  padding-right: #{calculateRem(8px)};
 
   &__nav {
     display: grid;
@@ -30,6 +34,12 @@ $header_buttons_gap_md: #{calculateRem(4px)};
       $xlValue: min-content auto min-content min-content
     );
     align-items: center;
+    @include media-scale(
+      padding-right,
+      $header_nav_pr,
+      $header_nav_pr_md,
+      $xlValue: $header_nav_pr_xl
+    );
     background-color: var(--bf-color-bg-ground);
   }
 
@@ -43,19 +53,11 @@ $header_buttons_gap_md: #{calculateRem(4px)};
     }
 
     &__desktop {
-      @include media-scale(
-        display,
-        none,
-        $xlValue: block
-      );
+      @include media-scale(display, none, $xlValue: block);
     }
 
     &__mobile {
-      @include media-scale(
-        display,
-        block,
-        $xlValue: none
-      );
+      @include media-scale(display, block, $xlValue: none);
     }
   }
 
@@ -67,8 +69,30 @@ $header_buttons_gap_md: #{calculateRem(4px)};
     @include media-scale(
       margin-left,
       $header_buttons_gap,
-      $header_buttons_gap_md
+      $header_buttons_gap_md,
+      $xlValue: $header_buttons_gap_xl
     );
+
+    @include media-breakpoint-up(xl) {
+      height: 100%;
+    }
+
+    // Mobile Menu Toggle Button
+    &__mobile-toggle {
+      @include media-breakpoint-up(xl) {
+        display: none;
+      }
+    }
+
+    // Main menu Container
+    &__container {
+      @include media-breakpoint-down(lg) {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+      }
+    }
   }
 
   // Functions (Search, Account, Support)
@@ -80,16 +104,19 @@ $header_buttons_gap_md: #{calculateRem(4px)};
     @include media-scale(
       column-gap,
       $header_buttons_gap,
-      $header_buttons_gap_md
+      $header_buttons_gap_md,
+      $xlValue: $header_buttons_gap_xl
     );
   }
 
   // Language Switcher
   &__language-switcher {
+    @extend .bf-visibility-transition;
     @include media-scale(
       margin-left,
       $header_buttons_gap,
-      $header_buttons_gap_md
+      $header_buttons_gap_md,
+      $xlValue: $header_buttons_gap_xl
     );
 
     // Temporary, until the mobile/tablet mega menu is done
@@ -99,8 +126,6 @@ $header_buttons_gap_md: #{calculateRem(4px)};
 
     // Link
     &__link {
-      opacity: 0;
-      @include transitions(opacity $transition-time-medium);
 
       @include media-breakpoint-up(xl) {
         width: #{calculateRem(40px)};
@@ -108,10 +133,34 @@ $header_buttons_gap_md: #{calculateRem(4px)};
         padding: 0;
         border-radius: 100%;
       }
+    }
+  }
+}
 
-      &.loaded {
-        opacity: 1;
-      }
+.bf-megamenu {
+  @extend .bf-list;
+  display: flex;
+  gap: $header_buttons_gap_xl;
+  height: 100%;
+
+  // Nav item
+  &__nav-item {
+    color: var(--bf-color-neutral-primary);
+
+    // Link
+    &__link {
+      display: flex;
+      align-items: center;
+      gap: $header_buttons_gap_xl;
+      width: auto;
+      height: 100%;
+      padding: $header_buttons_gap_xl;
+      font-family: $font-family-secondary;
+      font-size: 1.25rem;
+      font-weight: 400;
+      line-height: inherit;
+      border: none;
+      background: none;
     }
   }
 }

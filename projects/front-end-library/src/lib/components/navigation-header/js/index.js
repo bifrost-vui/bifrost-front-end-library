@@ -1,25 +1,22 @@
 import $ from 'jquery';
-import { _window } from '../../../js/utils/window';
-import { isDesktopXlUp } from '../../../js/utils/breakpoints';
+import { throttle } from '../../../js/utils/debounce-throttle';
+import { updateLanguageSwitcherLinkLabel } from './language-switcher';
+import { BurgerMenu, toggleBurgerMenu, hideOrShowMainMenuContainer } from './burger-menu';
+
+const resizeFunctions = () => {
+    hideOrShowMainMenuContainer();
+    updateLanguageSwitcherLinkLabel();
+};
 
 $(function () {
-    const languageSwitcherLink = '.js-bf-header__language-switcher__link';
+    // Window Events
+    $(window).on(
+        'resize',
+        throttle(() => resizeFunctions())
+    );
 
-    // Change Language Switcher Label Depending of Window Resolution
-    const updateLanguageSwitcherLinkLabel = function () {
-        const $link = $(languageSwitcherLink);
-        const $linkLabel = $link[0].attributes.title.value;
-        const $linkLang = $link[0].attributes.language.value;
-
-        if (!isDesktopXlUp()) {
-            $link[0].text = $linkLabel;
-        } else {
-            $link[0].text = $linkLang;
-        }
-
-        $link.addClass('loaded');
-    }
-
-    $(window).on('resize', updateLanguageSwitcherLinkLabel);
+    // Call functions for the first time
+    toggleBurgerMenu();
+    hideOrShowMainMenuContainer();
     updateLanguageSwitcherLinkLabel();
 });
