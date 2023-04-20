@@ -1,0 +1,22 @@
+{% macro addAttributes(attributes) %}
+
+  {# Default variables #}
+  {% set attributes = attributes|default({}) %}
+  {% set compiledAttributes = [] %}
+
+  {# Create an array of attributes #}
+  {% if attributes is defined and attributes %}
+    {% for attrName, attrValue in attributes %}
+      {% if attrValue != null %}
+        {% if attrName == "bfString" %}
+          {% set compiledAttributes = compiledAttributes|merge([attrValue|raw]) %}
+        {% else %}
+          {% set compiledAttributes = compiledAttributes|merge([attrName ~ '="' ~ attrValue ~ '"']) %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {# Return the value as a string #}
+  {{ compiledAttributes|join(' ')|trim|raw }}
+{% endmacro %}
