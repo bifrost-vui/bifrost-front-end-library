@@ -6,8 +6,8 @@
 {# Arrays of Classes With Dynamic Elements #}
 {% set mainContainerClasses = [
   "d-flex flex-column justify-content-center",
-  reversed ? "reversed bf-color-bg-ground" : "",
-  _disabled ? "disabled" : "",
+  (reversed ? "reversed bf-color-bg-ground"),
+  (_disabled ? "disabled"),
 ] %}
 
 {# Template #}
@@ -20,7 +20,7 @@
     {# In Loop : Arrays of Classes With Dynamic Elements #}
     {% set innerContainerClasses = [
       "d-flex flex-column flex-sm-row justify-content-center gap-4 p-4",
-      isReversed ? "reversed bf-color-bg-ground" : "",
+      (isReversed ? "reversed bf-color-bg-ground"),
     ] %}
 
     <div class="{{ innerContainerClasses|join(' ')|trim }}">

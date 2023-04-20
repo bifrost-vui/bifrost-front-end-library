@@ -15,13 +15,13 @@
 {% set badgeClasses = [
   "bf-badge",
   "bf-badge--" ~ hierarchy,
-  isRounded ? "bf-badge--rounded" : hasAngle ? "bf-badge--angle-" ~ angle : "",
-  class,
+  (isRounded ? "bf-badge--rounded" : hasAngle ? "bf-badge--angle-" ~ angle : ""),
+  (class),
 ] %}
 {% set badgeTextClasses = [
   "bf-text-interface-small bf-badge__label",
   "m-0",
-  noUppercase ? "text-transform-initial" : "",
+  (noUppercase ? "text-transform-initial"),
 ] %}
 
 {# Template #}

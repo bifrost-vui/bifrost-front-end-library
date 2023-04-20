@@ -1,26 +1,30 @@
 {# Boolean Variables #}
 {% set isLink = href is defined
-  and href is not empty
-  and (isClickable is not defined or isClickable is same as(true))
+    and href is not empty
+    and (isClickable is not defined or isClickable is same as(true))
 %}
 {% set haslink = href is defined
-  and href is not empty
-  and linkLabel is defined
-  and linkLabel is not empty
+    and href is not empty
+    and linkLabel is defined
+    and linkLabel is not empty
 %}
 {% set hasImage = image.src is defined and image.src is not empty %}
 {% set hasIcon = iconName is defined and iconName is not empty %}
 {% set hasVisual = hasImage or hasIcon %}
+{% set hasDescription = description_html is defined and description_html is not empty %}
+{% set hasBadge = badge is defined and badge is not empty %}
 
 {# Default Variables #}
+{% set class = class|default("") %}
 {% set componentTag = isLink ? "a" : "div" %}
 {% set href = href|default("") %}
+{% set title = title|default("") %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set bannerClasses = [
   "bf-banner d-flex align-items-center",
   (hasVisual ? "bf-banner--has-visual"),
-  (class|default("")),
+  (class),
 ] %}
 
 {# Banner Attributes #}
@@ -54,23 +58,24 @@
     {% endif %}
 
     <div class="bf-banner__content">
-      <p class="small font-weight-bold mb-1">{{ title|default("") }}</p>
-      {% if description_html is defined and description_html is not empty %}
+      <p class="small font-weight-bold mb-1">
+        {{ title }}
+      </p>
+      {% if hasDescription %}
         <div class="small children--mb-1 last-child--mb-0">
           {{ description_html }}
-          {%
-            if haslink
-            and isClickable is defined
-            and isClickable is same as(false)
-          %}
+
+          {% if haslink and isClickable is defined and isClickable is same as(false) %}
             <br />
-            <a class="bf-link" href="{{ href }}">{{ linkLabel }}</a>
+            <a class="bf-link" href="{{ href }}">
+              {{ linkLabel }}
+            </a>
           {% endif %}
         </div>
       {% endif %}
     </div>
 
-    {% if badge is defined and badge is not empty %}
+    {% if hasBadge %}
       {% if badge is iterable %}
         {% set badgeLabel = badge.label %}
       {% else %}
@@ -79,8 +84,7 @@
         } %}
       {% endif %}
 
-      {% set badge =
-        badge|merge({
+      {% set badge = badge|merge({
           angle: badge.angle|default("left")
         })
       %}
