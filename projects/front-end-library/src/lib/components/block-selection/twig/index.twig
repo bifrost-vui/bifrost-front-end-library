@@ -1,14 +1,23 @@
-{# Default Variables #}
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasContentLists = contentLists is defined and contentLists %}
+{% set hasTitle = title is defined and title %}
+{% set hasTopLink = topLink is defined and topLink is not empty %}
+{% set hasTotalPrice = totalPrice is defined and totalPrice is not empty %}
+{% set hasTotalPriceInfo = totalPrice.priceInfo is defined and totalPrice.priceInfo is not empty %}
+{% set isCollapsableOnMobile = isCollapsableOnMobile is defined and isCollapsableOnMobile is same as(true) %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
 {% set titleTag = titleTag|default("h1") %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set blockClasses = [
   "bf-block bf-block--selection d-flex flex-column",
-  (
-    isCollapsableOnMobile is defined and isCollapsableOnMobile is same as(true)
-      ? "bf-block--collapsable"
-  ),
-  (class|default("")),
+  (isCollapsableOnMobile ? "bf-block--collapsable"),
+  (class),
 ] %}
 {% set blockToggleClasses = [
   "bf-block__toggle",
@@ -16,15 +25,12 @@
 ] %}
 {% set blockContentClasses = [
   "p-3 p-sm-4",
-  (
-    isCollapsableOnMobile is defined and isCollapsableOnMobile is same as(true)
-      ? isCollapsedByDefaultOnMobile ? "collapse" : "show"
-  ),
+  (isCollapsableOnMobile and isCollapsedByDefaultOnMobile ? "collapse" : "show"),
 ] %}
 
 {# Template #}
 <article class="{{ blockClasses|join(' ')|trim }}">
-  {% if isCollapsableOnMobile is defined and isCollapsableOnMobile is same as(true) %}
+  {% if isCollapsableOnMobile %}
     <button
       class="{{ blockToggleClasses|join(' ')|trim }}"
       type="button"
@@ -34,7 +40,7 @@
       aria-controls="bf-block-collapse"
     >
       <div class="d-flex flex-row justify-content-between align-items-center p-3 p-sm-4">
-        {% if title is defined %}
+        {% if hasTitle %}
           {% embed "@bf-utils/custom-tag/twig/index.twig" with {
             customTag: titleTag,
             attr: {
@@ -60,15 +66,13 @@
     </button>
   {% endif %}
 
-  <div
-    class="{{ blockContentClasses|join(' ')|trim }}"
-    {{
-      isCollapsableOnMobile is defined and isCollapsableOnMobile is same as(true)
-        ? ('id="bf-block-collapse"')|raw
-    }}
-  >
+  {% set blockContentAttributes = {
+    "class": blockContentClasses|join(' ')|trim,
+    "id": (isCollapsableOnMobile ? "bf-block-collapse"),
+  } %}
+  <div {{ macros.addAttributes(blockContentAttributes) }}>
     <header class="d-flex justify-content-between mb-1">
-      {% if title is defined %}
+      {% if hasTitle %}
         {% embed "@bf-utils/custom-tag/twig/index.twig" with {
           customTag: titleTag,
           attr: {
@@ -81,7 +85,7 @@
         {% endembed %}
       {% endif %}
 
-      {% if topLink is defined and topLink is not empty %}
+      {% if hasTopLink %}
         <a
           href="{{ topLink.href }}"
           class="bf-link bf-link--primary text-right mb-3"
@@ -91,25 +95,35 @@
       {% endif %}
     </header>
 
-    {% if contentLists is defined %}
+    {% if hasContentLists %}
       <ul class="list">
         {% for item in contentLists %}
+
+          {# In Loop : Boolean Variables #}
+          {% set hasItemButtonDelete = item.btnDelete is defined and item.btnDelete %}
+          {% set hasItemButtonModify = item.btnModify is defined and item.btnModify %}
+          {% set hasItemDescription = item.description is defined and item.description %}
+          {% set hasItemLink = item.link is defined and item.link is not empty %}
+          {% set hasItemPriceInfo = item.priceInfo is defined and item.priceInfo is not empty %}
+          {% set hasItemSaving = item.saving is defined and item.saving %}
+          {% set hasItemTitle = item.title is defined and item.title %}
+
           <li class="bf-block__item d-flex justify-content-between align-items-center border-top bf-border-color-secondary pt-2 pb-3">
             <div class="label mr-3">
-              {% if item.title is defined %}
+              {% if hasItemTitle %}
                 <p class="bf-text font-weight-bold mb-0">
                   {{ item.title }}
                 </p>
               {% endif %}
 
-              {% if item.description is defined %}
+              {% if hasItemDescription %}
                 <p class="description bf-color-neutral-secondary mt-2 mb-0">
                   {{ item.description }}
                 </p>
               {% endif %}
             </div>
 
-            {% if item.link is defined and item.link is not empty %}
+            {% if hasItemLink %}
               <a
                 href="{{ item.link.href }}"
                 class="bf-link bf-link--primary text-right"
@@ -120,14 +134,14 @@
               <div>
                 <div class="d-flex justify-content-end pb-1">
                   {% block itemActionBlock %}
-                    {% if item.btnDelete is defined %}
+                    {% if hasItemButtonDelete %}
                       {% include "@bf-components/button-icon/twig/index.twig" with {
                         icon: "delete",
                         class: "ml-2",
                         href: item.btnDelete.href
                       } only %}
                     {% endif %}
-                    {% if item.btnModify is defined %}
+                    {% if hasItemButtonModify %}
                       {% include "@bf-components/button-icon/twig/index.twig" with {
                         icon: "edit",
                         class: "ml-2",
@@ -140,11 +154,11 @@
                 <div class="text-right">
                   <span class="d-block bf-color-neutral-secondary">
                     {{ item.price }}
-                    {% if item.priceInfo is defined and item.priceInfo is not empty %}
+                    {% if hasItemPriceInfo %}
                       {{ item.priceInfo }}
                     {% endif %}
                   </span>
-                  {% if item.saving is defined %}
+                  {% if hasItemSaving %}
                     <div class="d-inline-flex align-items-center mt-2">
                       <p class="small text-strike mb-0">
                         {{ item.fullPrice }}
@@ -167,7 +181,7 @@
       </ul>
     {% endif %}
 
-    {% if totalPrice is defined and totalPrice is not empty %}
+    {% if hasTotalPrice %}
       <footer class="d-flex justify-content-between mt-3 pt-3 border-top bf-border-color-highlight">
         <div>
           <p class="font-weight-bold mb-0">
@@ -180,7 +194,7 @@
         <div class="text-right">
           <p class="font-weight-bold mb-0">
             {{ totalPrice.price }}
-            {% if totalPrice.priceInfo is defined and totalPrice.priceInfo is not empty %}
+            {% if hasTotalPriceInfo %}
               {{ totalPrice.priceInfo }}
             {% endif %}
           </p>

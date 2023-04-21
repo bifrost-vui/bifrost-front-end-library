@@ -1,3 +1,4 @@
+{# Default Variables (Props, Controls) #}
 {% set topLink = topLink|json_parse|default({}) %}
 {% set contentLists = contentLists|json_parse|default([]) %}
 {% set totalPrice = totalPrice|json_parse|default({}) %}
@@ -5,19 +6,26 @@
 {% set isCollapsedByDefaultOnMobile = isCollapsedByDefaultOnMobile|json_parse %}
 {% set reversed = reversed|json_parse %}
 
-<div
-  class="d-flex flex-column flex-sm-row justify-content-center minh-100 {{
-  reversed
-    ? "reversed bf-color-bg-ground"
-  }}"
->
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "d-flex flex-column flex-sm-row justify-content-center minh-100",
+  (reversed ? "reversed bf-color-bg-ground"),
+] %}
+
+{# Template #}
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
   {% for index in [1, 2] %}
-    <div
-      class="flex-grow-1 d-flex flex-column align-items-center justify-content-center minh-100 p-4 {{
-      index == 2 and reversed is not defined
-        ? "reversed bf-color-bg-ground"
-      }}"
-    >
+
+    {# In Loop : Boolean Variables #}
+    {% set isReversed = index == 2 and reversed is not defined %}
+
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set innerContainerClasses = [
+      "flex-grow-1 d-flex flex-column align-items-center justify-content-center minh-100 p-4",
+      (isReversed ? "reversed bf-color-bg-ground"),
+    ] %}
+
+    <div class="{{ innerContainerClasses|join(' ')|trim }}">
       {% include "@bf-components/block-selection/twig/index.twig" %}
     </div>
   {% endfor %}
