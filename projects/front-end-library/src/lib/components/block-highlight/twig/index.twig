@@ -1,8 +1,14 @@
 {# Boolean Variables #}
+{% set hasButton = button is defined and button %}
 {% set hasImage = image is defined and image.src %}
-{% set isFeatured = isFeatured|default(false) %}
+{% set hasParagraph = paragraph is defined and paragraph %}
+{% set hasTitle = title is defined and title %}
+{% set hasVisualBackgroundColor = visualBackgroundColor is defined and visualBackgroundColor %}
 
-{# Default Variables #}
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set isFeatured = isFeatured|default(false) %}
+{% set isVisualBackgroundFill = isVisualBackgroundFill|default(true) %}
 {% set titleTag = titleTag|default("p") %}
 
 {# Arrays of Classes With Dynamic Elements #}
@@ -16,12 +22,12 @@
       ? "bf-color-bg-underground"
       : "bf-color-bg-ground"
   ),
-  (reversed is defined and reversed ? "reversed"),
-  (class|default("")),
+  (reversed ? "reversed"),
+  (class),
 ] %}
 {% set blockVisualClasses = [
   "bf-block__visual bf-color-bg-brand",
-  (isVisualBackgroundFill|default(true) ? "bf-block__visual--fill"),
+  (isVisualBackgroundFill ? "bf-block__visual--fill"),
 ] %}
 {% set blockContentClasses = [
   "d-flex flex-column p-4 p-sm-5",
@@ -31,10 +37,7 @@
 {# Arrays of Styles With Dynamic Elements #}
 {% set blockVisualStyles = [
   "background-image: url(" ~ image.src ~ ");",
-  (
-    visualBackgroundColor is defined and visualBackgroundColor
-      ? 'background-color: ' ~ visualBackgroundColor ~ ';'
-  ),
+  (hasVisualBackgroundColor ? "background-color: " ~ visualBackgroundColor ~ ";"),
 ] %}
 
 {# Template #}
@@ -47,7 +50,7 @@
   {% endif %}
 
   <div class="{{ blockContentClasses|join(' ')|trim }}">
-    {% if title is defined %}
+    {% if hasTitle %}
       {% embed "@bf-utils/custom-tag/twig/index.twig" with {
         customTag: titleTag,
         attr: {
@@ -59,10 +62,12 @@
         {% endblock %}
       {% endembed %}
     {% endif %}
-    {% if paragraph is defined %}
-      <p>{{ paragraph }}</p>
+    {% if hasParagraph %}
+      <p>
+        {{ paragraph }}
+      </p>
     {% endif %}
-    {% if button is defined %}
+    {% if hasButton %}
       {% set button =
         button|merge({
           class: "mt-2 " ~ button.class,
