@@ -1,10 +1,19 @@
 {# Boolean Variables #}
+{% set hasButtons = buttons is defined and buttons %}
+{% set hasDescription = description is defined and description %}
 {% set hasIcon = image is defined and image.icon %}
+{% set hasImage = image is defined and image.src %}
+{% set hasLinks = links is defined and links %}
+{% set hasRowButtons = rowButtons is defined and rowButtons %}
+{% set hasTitle = title is defined and title %}
+{% set hasSubitle = subtitle is defined and subtitle %}
+{% set hasUpperTitle = upperTitle is defined and upperTitle %}
 
 {# Default Variables #}
-{% set titleTag = titleTag|default("h1") %}
-{% set imagePosition = imagePosition|default("left") %}
+{% set class = class|default("") %}
 {% set iconPosition = hasIcon ? image.icon.position %}
+{% set imagePosition = imagePosition|default("left") %}
+{% set titleTag = titleTag|default("h1") %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set basicContentClasses = [
@@ -16,24 +25,20 @@
       : "bf-color-bg-underground"
   ),
   (reversed ? "reversed"),
-  (class|default("")),
+  (class),
 ] %}
 {% set basicContentVisualClasses = [
   "bf-basic-content__visual",
   (imagePosition == "right" ? "order-0 order-md-1"),
   (hasIcon ? "bf-basic-content__visual--icon"),
   (iconPosition ? "bf-basic-content__visual--icon-" ~ iconPosition),
-  (
-    image.isFill|default(false)
-      ? ""
-      : "bf-basic-content__visual--fit"
-  ),
+  (image.isFill|default(false) ?: "bf-basic-content__visual--fit"),
 ] %}
 
 {# Template #}
 <article class="{{ basicContentClasses|join(' ')|trim }}">
   <div class="container-fluid d-flex flex-column flex-md-row gap-4">
-    {% if image is defined and image.src %}
+    {% if hasImage %}
       <div
         class="{{ basicContentVisualClasses|join(' ')|trim }}"
         style="background-image: url({{ image.src }})"
@@ -53,13 +58,13 @@
 
     <div class="bf-basic-content__inner d-flex flex-column gap-4">
       <div>
-        {% if upperTitle is defined and upperTitle %}
+        {% if hasUpperTitle %}
           <p class="bf-text-interface-small mb-0">
             {{ upperTitle }}
           </p>
         {% endif %}
 
-        {% if title is defined and title %}
+        {% if hasTitle %}
           {% embed "@bf-utils/custom-tag/twig/index.twig" with {
             customTag: titleTag,
             attr: {
@@ -72,20 +77,20 @@
           {% endembed %}
         {% endif %}
 
-        {% if subtitle is defined and subtitle %}
+        {% if hasSubitle %}
           <p class="h4 mt-2 mb-0">
             {{ subtitle }}
           </p>
         {% endif %}
       </div>
 
-      {% if description is defined and description %}
+      {% if hasDescription %}
         <div class="bf-text">
           {{ description|raw }}
         </div>
       {% endif %}
 
-      {% if rowButtons is defined and rowButtons %}
+      {% if hasRowButtons %}
         <ul
           class="bf-list bf-list--divider border-top border-bottom bf-border-color-secondary"
           data-animate="fade-in"
@@ -98,7 +103,7 @@
         </ul>
       {% endif %}
 
-      {% if links is defined and links %}
+      {% if hasLinks %}
         <div
           class="bf--basic-content__links d-flex flex-wrap gap-3"
           data-animate="fade-in"
@@ -114,7 +119,7 @@
         </div>
       {% endif %}
 
-      {% if buttons is defined and buttons %}
+      {% if hasButtons %}
         <div
           class="bf-basic-content__buttons d-flex flex-wrap gap-3"
           data-animate="fade-in"
