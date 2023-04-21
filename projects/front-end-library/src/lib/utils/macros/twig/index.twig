@@ -1,3 +1,18 @@
+{#
+ # Print HTML attributes on a tag
+ #
+ # @param {object} attributes - HTML attributes
+ #
+ # Use example :
+ # {% set exampleAttributes = {
+ #   "class": "d-block mt-2",
+ #   "id": (hasId ? "example-id"),
+ # } %}
+ # <div {{ macros.addAttributes(exampleAttributes) }}>
+ #   I am a block
+ # </div>
+ #
+#}
 {% macro addAttributes(attributes) %}
 
   {# Default variables #}
@@ -7,7 +22,15 @@
   {# Create an array of attributes #}
   {% if attributes is defined and attributes %}
     {% for attrName, attrValue in attributes %}
+      {# If an attribute has no value, this attribute won't be printed #}
       {% if attrValue != null %}
+        {#
+          If an attribute name is "bfString", then it means that the value
+          already contains an attribute name and its value.
+          Example : attrValue : 'id="example-id"'
+
+          Else, it is a normal key and value
+        #}
         {% if attrName == "bfString" %}
           {% set compiledAttributes = compiledAttributes|merge([attrValue|raw]) %}
         {% else %}
