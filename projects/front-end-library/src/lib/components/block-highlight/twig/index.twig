@@ -1,9 +1,9 @@
 {# Boolean Variables #}
-{% set hasButton = button is defined and button %}
-{% set hasImage = image is defined and image.src %}
-{% set hasParagraph = paragraph is defined and paragraph %}
-{% set hasTitle = title is defined and title %}
-{% set hasVisualBackgroundColor = visualBackgroundColor is defined and visualBackgroundColor %}
+{% set hasButton = button is defined and button is not empty %}
+{% set hasImage = image is defined and image.src is not empty %}
+{% set hasParagraph = paragraph is defined and paragraph is not empty %}
+{% set hasTitle = title is defined and title is not empty %}
+{% set hasVisualBackgroundColor = visualBackgroundColor is defined and visualBackgroundColor is not empty %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}

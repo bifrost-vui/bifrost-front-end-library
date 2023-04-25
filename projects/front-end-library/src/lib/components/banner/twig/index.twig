@@ -1,18 +1,16 @@
 {# Boolean Variables #}
-{% set isLink = href is defined
-    and href is not empty
-    and (isClickable is not defined or isClickable is same as(true))
-%}
-{% set haslink = href is defined
-    and href is not empty
-    and linkLabel is defined
-    and linkLabel is not empty
-%}
+{% set hasHref = href is defined and href is not empty %}
 {% set hasImage = image.src is defined and image.src is not empty %}
 {% set hasIcon = iconName is defined and iconName is not empty %}
+{% set hasLinkLabel = linkLabel is defined and linkLabel is not empty %}
 {% set hasVisual = hasImage or hasIcon %}
 {% set hasDescription = description_html is defined and description_html is not empty %}
 {% set hasBadge = badge is defined and badge is not empty %}
+{% set isClickable = isClickable|default(false) is same as(true) %}
+
+{# Boolean Variables - ORDER IS IMPORTANT #}
+{% set isLink = hasHref and isClickable %}
+{% set haslink = hasHref and hasLinkLabel %}
 
 {# Default Variables #}
 {% set class = class|default("") %}
@@ -65,7 +63,7 @@
         <div class="small children--mb-1 last-child--mb-0">
           {{ description_html }}
 
-          {% if haslink and isClickable is defined and isClickable is same as(false) %}
+          {% if haslink and isClickable is same as(false) %}
             <br />
             <a class="bf-link" href="{{ href }}">
               {{ linkLabel }}

@@ -1,13 +1,13 @@
 {# Boolean Variables #}
-{% set hasButtons = buttons is defined and buttons %}
-{% set hasDescription = description is defined and description %}
-{% set hasIcon = image is defined and image.icon %}
-{% set hasImage = image is defined and image.src %}
-{% set hasLinks = links is defined and links %}
-{% set hasRowButtons = rowButtons is defined and rowButtons %}
-{% set hasTitle = title is defined and title %}
-{% set hasSubitle = subtitle is defined and subtitle %}
-{% set hasUpperTitle = upperTitle is defined and upperTitle %}
+{% set hasButtons = buttons is defined and buttons is not empty %}
+{% set hasDescription = description is defined and description is not empty %}
+{% set hasIcon = image is defined and image.icon is not empty %}
+{% set hasImage = image is defined and image.src is not empty %}
+{% set hasLinks = links is defined and links is not empty %}
+{% set hasRowButtons = rowButtons is defined and rowButtons is not empty %}
+{% set hasTitle = title is defined and title is not empty %}
+{% set hasSubitle = subtitle is defined and subtitle is not empty %}
+{% set hasUpperTitle = upperTitle is defined and upperTitle is not empty %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}

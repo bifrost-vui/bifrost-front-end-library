@@ -2,12 +2,12 @@
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
 {# Boolean Variables #}
-{% set hasContentLists = contentLists is defined and contentLists %}
-{% set hasTitle = title is defined and title %}
+{% set hasContentLists = contentLists is defined and contentLists is not empty %}
+{% set hasTitle = title is defined and title is not empty %}
 {% set hasTopLink = topLink is defined and topLink is not empty %}
 {% set hasTotalPrice = totalPrice is defined and totalPrice is not empty %}
 {% set hasTotalPriceInfo = totalPrice.priceInfo is defined and totalPrice.priceInfo is not empty %}
-{% set isCollapsableOnMobile = isCollapsableOnMobile is defined and isCollapsableOnMobile is same as(true) %}
+{% set isCollapsableOnMobile = isCollapsableOnMobile|default(false) is same as(true) %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}
