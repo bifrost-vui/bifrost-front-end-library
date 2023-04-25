@@ -1,0 +1,135 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta
+    title="Coding/Standards"
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } },
+    }}
+/>
+
+# Coding Standards
+
+## Twig Official Standards
+
+Taken from [Twig v3 docs](https://twig.symfony.com/doc/3.x/coding_standards.html) and adjusted to our needs.
+
+When writing Twig templates, we recommend you to follow these official coding standards:
+
+Put one (and only one) space after the start of a delimiter (`{{`, `{%`, and `{#`) and before the end of a delimiter (`}}`, `%}`, and `#}`):
+
+```twig
+{{ foo }}
+{# comment #}
+{% if foo %}{% endif %}
+```
+
+When using the whitespace control character, do not put any spaces between it and the delimiter:
+
+```twig
+{{- foo -}}
+{#- comment -#}
+{%- if foo -%}{%- endif -%}
+```
+
+Put one (and only one) space before and after the following operators: comparison operators (`==`, `!=`, `<`, `>`, `>=`, `<=`), math operators (`+`, `-`, `/`, `*`, `%`, `//`, `**`), logic operators (`not`, `and`, `or`), `~`, `is`, `in`, and the ternary operator (`?:`):
+
+```twig
+{{ 1 + 2 }}
+{{ foo ~ bar }}
+{{ true ? true : false }}
+```
+
+Put one (and only one) space after the `:` sign in hashes and `,` in arrays and hashes:
+
+```twig
+{{ [1, 2, 3] }}
+{{ {'foo': 'bar'} }}
+```
+
+Do not put any spaces after an opening parenthesis and before a closing parenthesis in expressions:
+
+```twig
+{{ 1 + (2 * 3) }}
+```
+
+Do not put any spaces before and after string delimiters:
+
+```twig
+{{ 'foo' }}
+{{ "foo" }}
+```
+
+Do not put any spaces before and after the following operators: `|`, `.`, `..`, `[]`:
+
+```twig
+{{ foo|upper|lower }}
+{{ user.name }}
+{{ user[name] }}
+{% for i in 1..12 %}{% endfor %}
+```
+
+Do not put any spaces before and after the parenthesis used for filter and function calls:
+
+```twig
+{{ foo|default('foo') }}
+{{ range(1..10) }}
+```
+
+Do not put any spaces before and after the opening and the closing of arrays and hashes:
+
+```twig
+{{ [1, 2, 3] }}
+{{ {'foo': 'bar'} }}
+```
+
+Use lower cased and underscored variable names:
+
+> In the current project, this one is not possible right now as per Bifrost `v1.11.1`.
+> The project was started without this standard, so it will need a lot of refactoring
+> to fix all variable names and this will create a lot of breaking changes.
+
+```twig
+{% set foo = 'foo' %}
+{% set foo_bar = 'foo' %}
+```
+
+Indent your code inside tags (use the same indentation as the one used for the target language of the rendered template):
+
+> In the current project, we use two spaces for indentation.
+
+```twig
+{% block foo %}
+  {% if true %}
+    true
+  {% endif %}
+{% endblock %}
+```
+
+## Test Operator
+
+### Variable `is defined` and has a value
+
+> Within Drupal, it crashes with `boolean` variable. So don't use with `boolean` variable.
+
+```twig
+{% set has_content = content_var is defined and content_var %}
+{% if has_content %}
+  ...
+{% endif %}
+```
+
+### Boolean variable is `true`
+
+To be sure that the value of a boolean variable is *true*, we first apply a `default` filter with a `false` value
+in case of the variable being not defined and then we check if the value is the same as `true`.
+
+The result will give us a real `true/false`.
+
+```twig
+{% set is_disabled = is_disabled|default(false) is same as(true) %}
+{% if is_disabled %}
+  ...
+{% endif %}
+```
