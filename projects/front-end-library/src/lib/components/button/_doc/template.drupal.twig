@@ -1,11 +1,11 @@
-{% set isDisabled = isDisabled|json_parse %}
-{% set hasLoading = hasLoading|json_parse %}
-{% set isLoading = isLoading|json_parse %}
-{% set fullWidth = fullWidth|json_parse %}
-{% set formTarget = formTarget|json_parse %}
+{# Default Variables (Props, Controls) #}
 {% set formEncryptionType = formEncryptionType|json_parse %}
 {% set formNoValidate = formNoValidate|json_parse %}
-{% set isAutofocus = isAutofocus|json_parse %}
+{% set formTarget = formTarget|json_parse %}
+{% set fullWidth = fullWidth|json_parse %}
+{% set isDisabled = isDisabled|json_parse %}
+{% set isLoading = isLoading|json_parse %}
+{% set isSubmit = isSubmit|json_parse %}
 
 {% set _hierarchyList = hierarchy is defined
   ? [hierarchy]
@@ -43,17 +43,22 @@
   }
 ] %}
 
+{# Template #}
 <div class="d-flex flex-column minh-100">
   {% for _variant in _variants %}
     {% set reversed = reversed|default(_variant.reversed) %}
     {% set highlight = highlight|default(_variant.highlight) %}
 
-    <div
-      class="d-flex flex-column justify-content-center flex-grow-1 minh-100 p-4 {{
-      _variant._backgroundClass
-      }}"
-    >
-      <h1 class="h3 mb-4">{{ _variant._name }}</h1>
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set variantContainerClasses = [
+      "d-flex flex-column justify-content-center flex-grow-1 minh-100 p-4",
+      (_variant._backgroundClass),
+    ] %}
+
+    <div class="{{ variantContainerClasses|join(' ')|trim }}">
+      <h1 class="h3 mb-4">
+        {{ _variant._name }}
+      </h1>
 
       {% for _hierarchy in _hierarchyList %}
         <div class="row">

@@ -1,5 +1,8 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) #}
 {% set isDisabled = isDisabled|json_parse %}
-{% set hasLoading = hasLoading|json_parse %}
 {% set isLoading = isLoading|json_parse %}
 {% set fullWidth = fullWidth|json_parse %}
 
@@ -28,33 +31,35 @@
     </p>
   </div>
   {% for _background in backgrounds %}
-    <div
-      class="d-flex flex-column justify-content-center flex-grow-1 minh-100 p-4 {{
-      _background
-      }}"
-    >
+
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set variantContainerClasses = [
+      "d-flex flex-column justify-content-center flex-grow-1 minh-100 p-4",
+      (_background),
+    ] %}
+
+    <div class="{{ variantContainerClasses|join(' ')|trim }}">
       {% for _hierarchy in hierarchyList %}
+
+        {# In Loop : Arrays of Classes With Dynamic Elements #}
+        {% set button_classes = [
+          "bf-button",
+          "bf-button--" ~ _hierarchy|default("secondary"),
+          (reversed is same as(true) ? "reversed"),
+          (fullWidth is same as(true) ? "bf-button--fullwidth"),
+          (isDisabled is same as(true) ? "disabled"),
+          (class|default("")),
+        ] %}
+
+        {# In Loop : Arrays of Attributes #}
+        {% set button_attributes = {
+          "class": button_classes|join(' ')|trim,
+          "disabled": (isDisabled is same as(true) ? "disabled"),
+        } %}
+
         <div class="row">
           <div class="flex-grow-1">
-            <button
-              class="bf-button bf-button--{{ _hierarchy|default(
-                "secondary"
-              ) }}
-              {{
-              reversed is same as(true)
-                ? " reversed"
-              }}
-              {{
-              fullWidth is same as(true)
-                ? " bf-button--fullwidth"
-              }}
-              {{
-              isDisabled is same as(true)
-                ? " disabled"
-              }}
-              {{ class|default("") }}"
-              {{ isDisabled is same as(true) ? " disabled=disabled" }}
-            >
+            <button {{ macros.addAttributes(button_attributes) }}>
               Button
             </button>
           </div>
@@ -62,24 +67,8 @@
           <div class="flex-grow-1">
             <input
               type="button"
-              class="bf-button bf-button--{{ _hierarchy|default(
-                "secondary"
-              ) }}
-                {{
-              reversed is same as(true)
-                ? " reversed"
-              }}
-                {{
-              fullWidth is same as(true)
-                ? " bf-button--fullwidth"
-              }}
-                {{
-              isDisabled is same as(true)
-                ? " disabled"
-              }}
-                {{ " " ~ (class|default("")) }}"
-              {{ isDisabled is same as(true) ? " disabled=disabled" }}
               value="Input"
+              {{ macros.addAttributes(button_attributes) }}
             />
           </div>
 
@@ -87,23 +76,7 @@
             <a
               href="#"
               role="button"
-              class="bf-button bf-button--{{ _hierarchy|default(
-                "secondary"
-              ) }}
-                {{
-              reversed is same as(true)
-                ? "reversed"
-              }}
-                {{
-              fullWidth is same as(true)
-                ? "bf-button--fullwidth"
-              }}
-                {{
-              isDisabled is same as(true)
-                ? "disabled"
-              }}
-                {{ " " ~ (class|default("")) }}"
-              {{ isDisabled is same as(true) ? " disabled=disabled" }}
+              {{ macros.addAttributes(button_attributes) }}
             >
               Link
             </a>

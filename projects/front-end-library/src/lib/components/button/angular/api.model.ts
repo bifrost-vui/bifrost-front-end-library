@@ -3,7 +3,6 @@ export interface IButton {
     href: string;
     hierarchy: string;
     isDisabled: boolean;
-    hasLoading: boolean;
     isLoading: boolean;
     fullWidth: boolean;
 

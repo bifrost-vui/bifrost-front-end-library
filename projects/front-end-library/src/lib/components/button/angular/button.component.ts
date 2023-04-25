@@ -21,7 +21,6 @@ export class ButtonComponent implements OnInit {
     @Input() href: string;
     @Input() hierarchy: null | 'primary' | 'primary-alt' | 'secondary' | 'tertiary';
     @Input() isDisabled: boolean;
-    @Input() hasLoading: boolean;
     @Input() isLoading: boolean;
     @Input() fullWidth: boolean;
 
