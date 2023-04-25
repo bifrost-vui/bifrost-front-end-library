@@ -14,8 +14,16 @@ import { Meta } from '@storybook/addon-docs';
 ## Twig Official Standards
 
 Taken from [Twig v3 docs](https://twig.symfony.com/doc/3.x/coding_standards.html) and adjusted to our needs.
+When writing Twig templates, we recommend you to follow these official coding standards.
 
-When writing Twig templates, we recommend you to follow these official coding standards:
+Use double-quote (`"`) instead of single-quote (`'`) for strings:
+
+```twig
+{{ "foo" }}
+{{ foo|default("foo") }}
+{{ {"foo": "bar"} }}
+{% set foo = "foo" %}
+```
 
 Put one (and only one) space after the start of a delimiter (`{{`, `{%`, and `{#`) and before the end of a delimiter (`}}`, `%}`, and `#}`):
 
@@ -45,7 +53,7 @@ Put one (and only one) space after the `:` sign in hashes and `,` in arrays and 
 
 ```twig
 {{ [1, 2, 3] }}
-{{ {'foo': 'bar'} }}
+{{ {"foo": "bar"} }}
 ```
 
 Do not put any spaces after an opening parenthesis and before a closing parenthesis in expressions:
@@ -57,7 +65,6 @@ Do not put any spaces after an opening parenthesis and before a closing parenthe
 Do not put any spaces before and after string delimiters:
 
 ```twig
-{{ 'foo' }}
 {{ "foo" }}
 ```
 
@@ -73,7 +80,7 @@ Do not put any spaces before and after the following operators: `|`, `.`, `..`, 
 Do not put any spaces before and after the parenthesis used for filter and function calls:
 
 ```twig
-{{ foo|default('foo') }}
+{{ foo|default("foo") }}
 {{ range(1..10) }}
 ```
 
@@ -81,7 +88,7 @@ Do not put any spaces before and after the opening and the closing of arrays and
 
 ```twig
 {{ [1, 2, 3] }}
-{{ {'foo': 'bar'} }}
+{{ {"foo": "bar"} }}
 ```
 
 Use lower cased and underscored variable names:
@@ -90,9 +97,11 @@ Use lower cased and underscored variable names:
 > The project was started without this standard, so it will need a lot of refactoring
 > to fix all variable names and this will create a lot of breaking changes.
 
+> **For new developments, we will use this standards.**
+
 ```twig
-{% set foo = 'foo' %}
-{% set foo_bar = 'foo' %}
+{% set foo = "foo" %}
+{% set foo_bar = "foo" %}
 ```
 
 Indent your code inside tags (use the same indentation as the one used for the target language of the rendered template):
@@ -107,14 +116,38 @@ Indent your code inside tags (use the same indentation as the one used for the t
 {% endblock %}
 ```
 
-## Test Operator
+## Boolean Variable Names
+
+To be able to differenciate normal variables from boolean ones, here's the standards to use.
+It is inspired from these two articles:
+
+- https://www.samanthaming.com/tidbits/34-better-boolean-variable-names/
+- https://dev.to/michi/tips-on-naming-boolean-variables-cleaner-code-35ig
+
+```twig
+{# Better Boolean Variable Names #}
+
+{# ❌ bad #}
+{% set person = true %}
+{% set age = true %}
+{% set dance = true %}
+
+{# ✅ Prefix with: is, has, can #}
+{% set is_person = true %}
+{% set has_age = true %}
+{% set can_dance = true %}
+```
+
+With this standard, it will be easier to see if a variable has a boolean value and to use them in conditional expressions.
+
+## Conditional Expressions
 
 ### Variable `is defined` and has a value
 
 > Within Drupal, it crashes with `boolean` variable. So don't use with `boolean` variable.
 
 ```twig
-{% set has_content = content_var is defined and content_var %}
+{% set has_content = content_var is defined and content_var is not empty %}
 {% if has_content %}
   ...
 {% endif %}
