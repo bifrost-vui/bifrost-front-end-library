@@ -1,62 +1,86 @@
-{% set isLink = href is defined
-  and href is not empty
-  and (isDisabled is not defined or not isDisabled)
-%}
-{% set hasBadge = badgeLabel is defined
-  and badgeLabel
-  and badgeLabel is not empty
-%}
+{# Boolean Variables #}
+{% set hasAriaControls = ariaControls is defined and ariaControls is not empty %}
+{% set hasAriaExpanded = ariaExpanded is defined and ariaExpanded is not empty %}
+{% set hasAriaLabel = ariaLabel is defined and ariaLabel is not empty %}
+{% set hasBadge = badgeLabel is defined and badgeLabel is not empty %}
+{% set hasDataDismiss = dataDismiss is defined and dataDismiss is not empty %}
+{% set hasDataTarget = dataTarget is defined and dataTarget is not empty %}
+{% set hasDataToggle = dataToggle is defined and dataToggle is not empty %}
+{% set hasHref = href is defined and href is not empty %}
+{% set hasLabel = label is defined and label is not empty %}
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isReversed = reversed|default(false) is same as(true) %}
 
-<div
-  class="bf-button-icon {{ isDisabled ? "disabled" }} {{ class|default("") }}"
->
-  {{ isLink ? "<a" : "<button" }}
-  {% if isLink is same as(true) %}
-    href="{{ href|default("#") }}"
+{# Boolean Variables - ORDER IS IMPORTANT #}
+{% set isLink = hasHref and not isDisabled %}
+
+{# Default Variables (Props, Controls) #}
+{% set buttonClass = buttonClass|default("") %}
+{% set class = class|default("") %}
+{% set icon = icon|default("placeholder") %}
+
+{# Variables #}
+{% set componentTag = isLink ? "a" : "button" %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set buttonContainerClasses = [
+  "bf-button-icon",
+  (isDisabled ? "disabled"),
+  (class),
+] %}
+{% set buttonIconClasses = [
+  "bf-button-icon__inner",
+  (isReversed ? "reversed"),
+  (isDisabled ? "disabled"),
+  (buttonClass),
+] %}
+
+{# Button Attributes #}
+{% set buttonIconAttributes = {
+  "href": (isLink ? href),
+  "type": (isLink is same as(false) ? "button"),
+  "class": buttonIconClasses|join(' ')|trim,
+  "disabled": (isDisabled ? "disabled"),
+  "aria-controls": (hasAriaControls ? ariaControls),
+  "aria-disabled": (isDisabled ? "true"),
+  "aria-expanded": (hasAriaExpanded ? ariaExpanded),
+  "aria-label": (hasAriaLabel ? ariaLabel),
+  "data-dismiss": (hasDataDismiss ? dataDismiss),
+  "data-target": (hasDataTarget ? dataTarget),
+  "data-toggle": (hasDataToggle ? dataToggle),
+  "data-title": (hasLabel ? label|render|t(
+      [],
+      {
+        langcode: "EN",
+        context: "data-title-attribute"
+      }
+  )),
+} %}
+{% if extraAttribute is defined %}
+  {% if extraAttribute is iterable %}
+    {# is an object #}
+    {% set buttonIconAttributes = buttonIconAttributes|merge(extraAttribute) %}
   {% else %}
-    type="button"
-  {% endif %}class="bf-button-icon__inner{% if reversed %}reversed{% endif %} {% if
-    isDisabled %}disabled{% endif %} {{ buttonClass|default("") }}"{% if
-    isDisabled is defined and isDisabled %}
-    disabled="disabled" aria-disabled="true"
+    {# is a string #}
+    {% set buttonIconAttributes = buttonIconAttributes|merge({"bfString": extraAttribute}) %}
   {% endif %}
-  {% if label is not empty %}
-    data-title="{{
-      label
-        |render
-        |t(
-          [],
-          {
-            langcode: "EN",
-            context: "data-title-attribute"
-          }
-        )
-    }}"
-  {% endif %}
-  {% if dataDismiss is defined %}
-    data-dismiss="{{ dataDismiss|default(null) }}"
-  {% endif %}
-  {% if dataToggle is defined %}
-    data-toggle="{{ dataToggle|default(null) }}"
-  {% endif %}
-  {% if dataTarget is defined %}
-    data-target="{{ dataTarget|default(null) }}"
-  {% endif %}
-  {% if ariaControls is defined %}
-    aria-controls="{{ ariaControls|default(null) }}"
-  {% endif %}
-  {% if ariaExpanded is defined %}
-    aria-expanded="{{ ariaExpanded|default(null) }}"
-  {% endif %}
-  {% if ariaLabel is defined %}
-    aria-expanded="{{ ariaLabel|default(null) }}"
-  {% endif %}
-  {{ extraAttribute|default(null) }}
-  >{% include "@bf-components/icon/twig/index.twig" with {
-    name: icon|default("placeholder"),
-    size: "small"
-  } only %}
-  {{ isLink ? "</a" : "</button" }}>{% if hasBadge %}
+{% endif %}
+
+{# Template #}
+<div class="{{ buttonContainerClasses|join(' ')|trim }}">
+  {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+    customTag: componentTag,
+    attr: buttonIconAttributes,
+  } %}
+    {% block customTagContent %}
+      {% include "@bf-components/icon/twig/index.twig" with {
+        name: icon,
+        size: "small"
+      } only %}
+    {% endblock %}
+  {% endembed %}
+
+  {% if hasBadge %}
     {% set badgeLabel = badgeLabel > 99 ? "+99" : badgeLabel %}
     {% include "@bf-components/badge/twig/index.twig" with {
       label: badgeLabel,
