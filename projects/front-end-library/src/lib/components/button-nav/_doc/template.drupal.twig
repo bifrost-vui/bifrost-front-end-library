@@ -1,3 +1,4 @@
+{# Default Variables (Props, Controls) #}
 {% set isFeatured = isFeatured|json_parse %}
 {% set isDisabled = isDisabled|json_parse %}
 {% set reversed = reversed|json_parse %}
@@ -15,12 +16,12 @@
     highlight: highlight|default(false)
   },
   {
-    backgroundClass: "bf-color-bg-ground",
+    backgroundClass: "bf-color-bg-ground reversed",
     reversed: reversed|default(true),
     highlight: highlight|default(false)
   },
   {
-    backgroundClass: "bf-color-bg-underground",
+    backgroundClass: "bf-color-bg-underground reversed",
     reversed: reversed|default(true),
     highlight: highlight|default(false)
   },
@@ -31,14 +32,17 @@
   }
 ] %}
 
+{# Template #}
 <div class="d-flex flex-wrap">
   {% for variant in variants %}
-    <div
-      class="flex-1 p-4 {{ variant.backgroundClass }} {{
-      variant.reversed
-        ? "reversed"
-      }} {{ variant.highlight ? "bf-color-bg-highlight highlight" }}"
-    >
+
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set variantContainerClasses = [
+      "flex-1 p-4",
+      (variant.backgroundClass),
+    ] %}
+
+    <div class="{{ variantContainerClasses|join(' ')|trim }}">
       {% include "@bf-components/button-nav/twig/index.twig" with variant %}
     </div>
   {% endfor %}
