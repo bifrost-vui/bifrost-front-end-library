@@ -11,6 +11,7 @@
 {% set hasFormMethod = formMethod is defined and formMethod is not empty %}
 {% set hasFormNoValidate = formNoValidate|default(false) is same as(true) %}
 {% set hasFormTarget = formTarget is defined and formTarget is not empty %}
+{% set hasHref = href is defined and href is not empty %}
 {% set hasIconName = iconName is defined and iconName is not empty %}
 {% set hasLabel = label is defined and label is not empty %}
 {% set isDisabled = isDisabled|default(false) is same as(true) %}
@@ -30,8 +31,7 @@
     or hasFormTarget
 %}
 
-{% set isLink = href is defined
-    and href is not empty
+{% set isLink = hasHref
     and not isSubmit
     and not isDisabled
 %}
@@ -60,29 +60,29 @@
 
 {# Button Attributes #}
 {% set buttonAttributes = {
-    "href": (isLink ? href),
-    "type": (isLink is same as(false) ? isSubmit ? "submit" : "button"),
-    "class": buttonClasses|join(' ')|trim,
-    "disabled": (isDisabled ? "disabled"),
-    "aria-controls": (hasAriaControls ? ariaControls),
-    "aria-expanded": (hasAriaExpanded ? ariaExpanded),
-    "aria-label": (hasAriaLabel ? ariaLabel),
-    "data-dismiss": (hasDataDismiss ? dataDismiss),
-    "data-target": (hasDataTarget ? dataTarget),
-    "data-toggle": (hasDataToggle ? dataToggle),
-    "data-title": (hasLabel ? label|render|t(
-      [],
-      {
-        langcode: "EN",
-        context: "data-title-attribute"
-      }
-    )),
-    "form": (isSubmit and hasFormId ? formId),
-    "formaction": (isSubmit and hasFormAction ? formAction),
-    "formenctype": (isSubmit and hasFormEncryptionType ? formEncryptionType),
-    "formmethod": (isSubmit and hasFormMethod ? formMethod),
-    "formNoValidate": (isSubmit and hasFormNoValidate ? "formnovalidate"),
-    "formtarget": (isSubmit and hasFormTarget ? formTarget),
+  "href": (isLink ? href),
+  "type": (isLink is same as(false) ? isSubmit ? "submit" : "button"),
+  "class": buttonClasses|join(' ')|trim,
+  "disabled": (isDisabled ? "disabled"),
+  "aria-controls": (hasAriaControls ? ariaControls),
+  "aria-expanded": (hasAriaExpanded ? ariaExpanded),
+  "aria-label": (hasAriaLabel ? ariaLabel),
+  "data-dismiss": (hasDataDismiss ? dataDismiss),
+  "data-target": (hasDataTarget ? dataTarget),
+  "data-toggle": (hasDataToggle ? dataToggle),
+  "data-title": (hasLabel ? label|render|t(
+    [],
+    {
+      langcode: "EN",
+      context: "data-title-attribute"
+    }
+  )),
+  "form": (isSubmit and hasFormId ? formId),
+  "formaction": (isSubmit and hasFormAction ? formAction),
+  "formenctype": (isSubmit and hasFormEncryptionType ? formEncryptionType),
+  "formmethod": (isSubmit and hasFormMethod ? formMethod),
+  "formNoValidate": (isSubmit and hasFormNoValidate ? "formnovalidate"),
+  "formtarget": (isSubmit and hasFormTarget ? formTarget),
 } %}
 {% if extraAttribute is defined %}
   {% if extraAttribute is iterable %}
