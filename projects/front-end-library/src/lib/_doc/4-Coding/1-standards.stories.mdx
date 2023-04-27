@@ -91,17 +91,15 @@ Do not put any spaces before and after the opening and the closing of arrays and
 {{ {"foo": "bar"} }}
 ```
 
-Use lower cased and underscored variable names:
+Use lower camel case variable names:
 
-> In the current project, this one is not possible right now as per Bifrost `v1.11.1`.
-> The project was started without this standard, so it will need a lot of refactoring
-> to fix all variable names and this will create a lot of breaking changes.
-
-> **For new developments, we will use this standards.**
+> Normally with Twig, it would be *lower cased and underscored variable names*,
+> but because we also have to support Angular, the choice made is to use lower camel case.
+> The project was started with this standard, so we will continue to use it.
 
 ```twig
 {% set foo = "foo" %}
-{% set foo_bar = "foo" %}
+{% set fooBar = "foo" %}
 ```
 
 Indent your code inside tags (use the same indentation as the one used for the target language of the rendered template):
@@ -133,9 +131,9 @@ It is inspired from these two articles:
 {% set dance = true %}
 
 {# ✅ Prefix with: is, has, can #}
-{% set is_person = true %}
-{% set has_age = true %}
-{% set can_dance = true %}
+{% set isPerson = true %}
+{% set hasAge = true %}
+{% set canDance = true %}
 ```
 
 With this standard, it will be easier to see if a variable has a boolean value and to use them in conditional expressions.
@@ -147,8 +145,8 @@ With this standard, it will be easier to see if a variable has a boolean value a
 > Within Drupal, it crashes with `boolean` variable. So don't use with `boolean` variable.
 
 ```twig
-{% set has_content = content_var is defined and content_var is not empty %}
-{% if has_content %}
+{% set hasContent = contentVar is defined and contentVar is not empty %}
+{% if hasContent %}
   ...
 {% endif %}
 ```
@@ -161,8 +159,8 @@ in case of the variable being not defined and then we check if the value is the 
 The result will give us a real `true/false`.
 
 ```twig
-{% set is_disabled = is_disabled|default(false) is same as(true) %}
-{% if is_disabled %}
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% if isDisabled %}
   ...
 {% endif %}
 ```

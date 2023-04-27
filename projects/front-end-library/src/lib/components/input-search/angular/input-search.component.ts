@@ -16,9 +16,7 @@ export class InputSearchComponent implements OnInit {
     @Input() reversed: boolean;
     @Input() class: string;
 
-    /**
-        You could use this attribute, or just add `.is-invalid` class to element `.form-control`.
-     */
+    /** You could use this attribute, or just add `.is-invalid` class to element `.form-control`. */
     @Input() isDisabled: boolean;
 
     @Input() label_value: string;

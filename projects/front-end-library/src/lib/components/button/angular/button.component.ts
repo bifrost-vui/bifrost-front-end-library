@@ -15,9 +15,7 @@ export class ButtonComponent implements OnInit {
 
     @Input() id: string;
     @Input() label: string;
-    /**
-        A button will become a link if `href` is defined.
-    */
+    /** A button will become a link if `href` is defined. */
     @Input() href: string;
     @Input() hierarchy: null | 'primary' | 'primary-alt' | 'secondary' | 'tertiary';
     @Input() isDisabled: boolean;
@@ -25,7 +23,7 @@ export class ButtonComponent implements OnInit {
     @Input() fullWidth: boolean;
 
     @Input() iconName: string;
-    /** only have effect if `iconName` is filled */
+    /** Only have effect if `iconName` is filled. */
     @Input() iconPosition: null | 'left' | 'right';
 
     @Input() dataDismiss: string;

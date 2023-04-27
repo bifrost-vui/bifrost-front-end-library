@@ -53,81 +53,85 @@ export class CardComponent implements OnInit {
     @Input() upperTitle: string;
     @Input() subtitle: string;
     /**
-     Can be a simple **string** or an **object**
-     <pre style='font-size: .75rem; padding: 0 1rem; margin:0; background-color: #f2f2f0'>
-        {
-            category: "Category Title",
-            detail: "Some descriptive title",
-        }
-     </pre>
+     * Can be a simple **string** or an **object**
+     * <pre>
+     *     <code>
+     *         {
+     *             category: "Category Title",
+     *             detail: "Some descriptive title",
+     *         }
+     *     </code>
+     * </pre>
      */
     @Input() title: any;
     @Input() titleTag: string;
     /**
-    Note: Wrap your data with a semantic HTML tag.
-    E.g. `description_html: "<p>this is a description</p>"`
-    */
+     * Note: Wrap your data with a semantic HTML tag.
+     *
+     * E.g. `description_html: "<p>this is a description</p>"`.
+     */
     @Input() description_html: HTMLElement;
     /** Expected format:
-     <pre style='font-size: .75rem; padding: 0 1rem; margin:0; background-color: #f2f2f0'>
-        {
-            label: "Learn more",
-            href: "www.videotron.com",
-        }
-    </pre>
-    */
+     * <pre>
+     *     <code>
+     *         {
+     *             "label": `string`,
+     *             "href": `string`
+     *         }
+     *     </code>
+     * </pre>
+     */
     @Input() link: ILink;
     /**
-        This badge displays in the card Header:
-        You can pass directly the `label` as a **string** or an **object**. Based on [Badge](/?path=/docs/components-badge--drupal) component API.
-    */
+     * - This badge displays in the card header.
+     * - You can pass directly the `label` as a **string** or an **object**.
+     * - Based on [Badge](/?path=/docs/components-badge--drupal) component API.
+     */
     @Input() badge: any;
     /** Array of object. Expected format:
-    <pre style='font-size: .75rem; padding: 0 1rem; marigin:0; background-color: #f2f2f0'>
-    [
-        {
-          title: 'TV',
-          description: '40 channels',
-          content: [
-            {
-              label: 'Unlimited Go after 10Go',
-              icon: 'unlimited',
-            },
-          ],
-        }
-        ...
-    ]
-    </pre>*/
-    @Input() contentLists: object;
+     * <pre>
+     *     <code>
+     *         [
+     *             {
+     *                 "title": `string`,
+     *                 "description": `string`,
+     *                 "content": [
+     *                     {
+     *                         "label": `string`,
+     *                         "icon": `string`
+     *                     },
+     *                     {...},
+     *                 ]
+     *             },
+     *             {...},
+     *         ]
+     *     </code>
+     * </pre>
+     */
+    @Input() contentLists: object[];
     @Input() detailsColors: object;
     @Input() detailsStorage: object;
     /**
-     This badge displays in the phone card content above the price and the promotion badges.
-     Based on [Badge](/?path=/docs/components-badge--drupal) component API
+     * - This badge displays in the phone card content above the price and the promotion badges.
+     * - Based on [Badge](/?path=/docs/components-badge--drupal) component API.
      */
     @Input() contentBadges: IBadge[];
     /**
-     Theses Badges display in the phone card content above the price.
-     Array of Badges based on [Badge](/?path=/docs/components-badge--drupal) component API
-     Will only accept the Badge `Label` and `iconName` properties
+     * - Theses Badges display in the phone card content above the price.
+     * - Array of Badges based on [Badge](/?path=/docs/components-badge--drupal) component API.
+     * - Will only accept the Badge `Label` and `iconName` properties.
      */
     @Input() promotionBadges: IBadge[];
-    /**
-     [Price](/?path=/docs/components-price--drupal) component.
-     */
+    /** [Price](/?path=/docs/components-price--drupal) component. */
     @Input() price: IPrice;
     /**
-     Array of [Button](/?path=/docs/components-button--drupal) component.
-     Or extends with a block: {% block buttons %} ... {% endblock %}.
+     * Array of [Button](/?path=/docs/components-button--drupal) component
+     * or extends with a block: `{% block buttons %} ... {% endblock %}`.
      */
     @Input() buttons: IButton[];
-    /**
-      [inputIncrement](/?path=/docs/components-input-increment--drupal) component.
-     */
+    /** [inputIncrement](/?path=/docs/components-input-increment--drupal) component. */
     @Input() inputIncrement: IInputIncrement;
-    /**
-     Note: Can contains html.
-     */
+    /** Note: Can contains html. */
     @Input() note: string;
     @Input() message: string;
     @Input() messageLink: ILink;

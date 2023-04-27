@@ -18,7 +18,17 @@ interface ILink {
 export class TilePostComponent implements OnInit {
     constructor() {}
 
-    /** API: `{ src, alt, backgroundColor }` */
+    /** Expected format:
+     * <pre>
+     *     <code>
+     *         {
+     *             "src": `string`,
+     *             "alt": `string`,
+     *             "backgroundColor": `string`
+     *         }
+     *     </code>
+     * </pre>
+     */
     @Input() image: IImage;
     @Input() title: string;
     @Input() titleTag: string;

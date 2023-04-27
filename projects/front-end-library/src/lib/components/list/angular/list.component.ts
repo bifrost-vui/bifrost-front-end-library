@@ -15,15 +15,20 @@ export class ListComponent implements OnInit {
 
     @Input() title: string;
     @Input() titleTag: string;
-    /** Expected format: 
-    ```
-    [{
-        label   : "Label",
-        iconName: "placeholder"
-    }]
-    ```
-    */
-    @Input() content: object;
+    /** Array of object. Expected format:
+     * <pre>
+     *     <code>
+     *         [
+     *             {
+     *                 "label": `string`,
+     *                 "iconName": `string`
+     *             },
+     *             {...},
+     *         ]
+     *     </code>
+     * </pre>
+     */
+    @Input() content: object[];
 
     @Input() reversed: boolean;
     @Input() class: string;

@@ -9,7 +9,21 @@ export class BannerAdvancedComponent implements OnInit {
 
     @Input() title: string;
     @Input() description: string;
-    /** Expected format: [{name: string, label: string}, {...}]. A maximum of 3 icons is accepted */
+    /** Array of object. Expected format:
+     * <pre>
+     *     <code>
+     *         [
+     *             {
+     *                 "name": `string`,
+     *                 "label": `string`
+     *             },
+     *             {...},
+     *         ]
+     *     </code>
+     * </pre>
+     *
+     * __A maximum of 3 icons is accepted.__
+     */
     @Input() icons: object[];
     @Input() footer: object | HTMLElement | 'TwigBlock';
     @Input() class: string;

@@ -13,9 +13,9 @@ export class ButtonIconComponent implements OnInit {
     constructor() {}
 
     @Input() icon: string;
-    /**  Display a data-title  */
+    /** Display a `data-title` attribute.  */
     @Input() label: string;
-    /**  A button will become a link if `href` is defined as long as it's not disabled. */
+    /** A button will become a link if `href` is defined as long as it's not disabled. */
     @Input() href: string;
     @Input() isDisabled: boolean;
     @Input() dataDismiss: string;

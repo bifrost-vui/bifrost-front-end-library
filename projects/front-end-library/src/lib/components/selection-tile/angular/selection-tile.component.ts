@@ -21,13 +21,43 @@ export class SelectionTileComponent implements OnInit {
     @Input() isDisabled: boolean;
     @Input() ariaLabel: string;
     @Input() orientation: 'horizontal' | 'vertical';
-    /**  Tile  fits the content | Tile fits the container */
+    /**
+     * - Tile fits the content: `content`
+     * - Tile fits the container: `container`
+     */
     @Input() fit: 'content' | 'container'; // TODO - revisit the fit behavior : hug content vs max width
-    /** Expected format: `{ src: string, alt: string, class: string }` */
+    /** Expected format:
+     * <pre>
+     *     <code>
+     *         {
+     *             "src": `string`,
+     *             "alt": `string`,
+     *             "class": `string`
+     *         }
+     *     </code>
+     * </pre>
+     */
     @Input() image: object;
     @Input() iconName: string;
     @Input() content: HTMLElement | 'TwigBlock';
-    /** Only available for `orientation: horizontal`. Expected format: { description: HTMLElement, link: { label: string, href: string, ... }, iconName: string, image: { src: string, alt: string } } */
+    /**
+     * __Only available for `orientation: horizontal`.__
+     *
+     * Expected format:
+     * <pre>
+     *     <code>
+     *         {
+     *             "description": `HTMLElement`,
+     *             "link": `ILink` [see API](/?path=/docs/components-link--drupal#component-api),
+     *             "iconName": `string`,
+     *             "image": {
+     *                 "src": `string`,
+     *                 "alt": `string`
+     *             }
+     *         }
+     *     </code>
+     * </pre>
+     */
     @Input() footer: IFooter;
 
     /** Extra attributes for radio/checkbox inputs. */

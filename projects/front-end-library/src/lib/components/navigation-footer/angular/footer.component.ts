@@ -19,7 +19,10 @@ export class FooterComponent implements OnInit {
     /** Sets Footer Links. */
     @Input() links: any[];
 
-    /** See [Logo Component API](/?path=/docs/components-logo--drupal). E.g. `logo = { href: "#", name: "videotron" }` */
+    /**
+     * - See [Logo Component API](/?path=/docs/components-logo--drupal).
+     * - E.g. `logo = { href: "#", name: "videotron" }`.
+     */
     @Input() logo: ILogo;
 
     @Input() hasBackToTopLink: boolean;

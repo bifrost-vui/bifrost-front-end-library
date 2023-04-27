@@ -1,0 +1,84 @@
+import { Meta } from '@storybook/addon-docs';
+import { Image } from '../../../utils/documentation-style.js';
+
+<Meta
+    title="Coding/Documentation"
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } },
+    }}
+/>
+
+# Documentation
+
+## Controls
+
+In each component `angular` folder, you will find a file named `*.component.ts`.
+In it, you will find each `controls` associated with the component.
+
+A control will look like this : `@Input() title: any;`.
+
+It is possible to add explanation or documentation to each controls using [JSDoc](https://jsdoc.app/).
+
+### JSDoc
+
+It is important that the JSDoc comment block is written correctly.
+You can see the **Compodoc** documentation for [comments](https://compodoc.app/guides/comments.html)
+and for [JSDoc tags](https://compodoc.app/guides/jsdoc-tags.html).
+You can use inline comment syntax for a simple one line description or you can
+use a comments block syntax for something more descriptive.
+
+#### Inline
+
+```javascript
+/** This is a description of the foo function. */
+```
+
+#### Block
+
+```javascript
+/**
+ * Note: Wrap your data with a semantic HTML tag.
+ * E.g. `description_html: "<p>this is a description</p>"`
+ */
+```
+
+Also, your JSDoc comment should be **before** the control you want to add documentation.
+
+### Documentation of code or data
+
+There is cases when you have to document what a piece of code will look like
+or what the data for a control needs to be (ex.: array, object, JSON, etc.).
+
+When you need to do that, put your code or data inside the `<code>` tag in this HTML code:
+
+```html
+<pre>
+    <code>
+        ...
+    </code>
+</pre>
+```
+
+In the file, for example, it will look like this:
+
+```javascript
+/** Expected format:
+ * <pre>
+ *     <code>
+ *         {
+ *             "label": `string`,
+ *             "href": `string`
+ *         }
+ *     </code>
+ * </pre>
+ */
+@Input() link: ILink;
+```
+
+In `Canvas addons' Controls` tab and the `Docs` main tab, it will look like this:
+
+<Image src="/images/_docs/jsdoc-preview.png" width="100%" maxWidth="50%" />
+
+

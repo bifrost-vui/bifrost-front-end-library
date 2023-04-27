@@ -16,7 +16,21 @@ interface IImage {
 export class BasicContentComponent implements OnInit {
     constructor() {}
 
-    /** `image: { src: "", isFill: true, icon: { name: "placeholder", position: "bottom-left" } }`
+    /** Expected format:
+     * <pre>
+     *     <code>
+     *         image: {
+     *             "src": `string`,
+     *             "isFill": `boolean`,
+     *             "icon": {
+     *                 "name": `string`,
+     *                 "position": `string`
+     *             }
+     *         }
+     *     </code>
+     * </pre>
+     *
+     * Icon position choices:
      * `image.icon.position: "bottom-left" | "bottom-right" | "top-left" | "top-right" | "center"`
      */
     @Input() image: IImage;
@@ -24,7 +38,7 @@ export class BasicContentComponent implements OnInit {
     @Input() title: string;
     @Input() titleTag: string;
     @Input() subtitle: string;
-    /** textAlign will not work with image. */
+    /** It will not work with image, only with text. */
     @Input() textAlign: 'left' | 'center';
     @Input() description: HTMLElement;
     @Input() buttons: IButton[];
