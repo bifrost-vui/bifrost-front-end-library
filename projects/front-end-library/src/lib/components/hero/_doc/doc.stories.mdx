@@ -194,9 +194,9 @@ export const Drupal = (args) => ({
             elementPath: 'components/hero/_doc/template.drupal',
             ...commonProps,
             image: {
-                lg: '/images/_docs/hero-helix.png',
-                md: '/images/placeholder/800x600.png',
-                sm: '/images/_docs/hero-helix-mobile.png',
+                lg: '/images/_docs/hero-1440x922.webp',
+                md: '/images/_docs/hero-992x550.webp',
+                sm: '/images/_docs/hero-575x288.webp',
                 alt: 'Helix',
                 isSplitted: true,
             },
@@ -207,6 +207,50 @@ export const Drupal = (args) => ({
                 alt: 'Helix',
                 isSplitted: true,
             },
+            reversed: undefined,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - With image splitted and height large"
+        height="800px"
+        args={{
+            elementPath: 'components/hero/_doc/template.drupal',
+            breadcrumb: `<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>`,
+            title: 'Discover our best Helix Internet and TV packages',
+            description:
+                'After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you.',
+            buttons: [
+                {
+                    label: 'Main action',
+                    hierarchy: '',
+                    class: '',
+                },
+                {
+                    label: 'Secondary action',
+                    hierarchy: '',
+                    class: '',
+                },
+            ],
+            image: {
+                lg: '/images/_docs/hero-1440x922.webp',
+                md: '/images/_docs/hero-992x550.webp',
+                sm: '/images/_docs/hero-575x288.webp',
+                alt: 'Helix',
+                isSplitted: true,
+            },
+            _imageReversed: {
+                lg: '/images/_docs/hero-helix-reversed.png',
+                md: '/images/placeholder/800x600.png',
+                sm: '/images/_docs/hero-helix-reversed-mobile.png',
+                alt: 'Helix',
+                isSplitted: true,
+            },
+            height: 'large',
             reversed: undefined,
         }}
     >

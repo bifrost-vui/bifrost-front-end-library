@@ -44,6 +44,7 @@ export class HeroComponent implements OnInit {
     @Input() background: 'ground' | 'underground' | 'highlight';
 
     /**
+     * - Does not work if there is an `image` and `image.isSplitted: true`.
      * - Insert the component BlockSelection.
      * - Explore its [Component API](/?path=/docs/components-block--drupal-selection).
      */

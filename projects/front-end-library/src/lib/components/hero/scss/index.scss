@@ -18,9 +18,12 @@
   }
 
   &--height-large {
-    @include media-breakpoint-up(md) {
-      min-height: 60vh;
-      max-height: 64rem;
+
+    &:not(.bf-hero--image-splitted) {
+      @include media-breakpoint-up(md) {
+        min-height: 60vh;
+        max-height: 64rem;
+      }
     }
   }
 
@@ -30,9 +33,14 @@
     }
 
     .bf-hero__image-splitted {
+      display: none;
       flex: 1 1 50%;
       background-position: center;
       background-size: cover;
+
+      @media (min-width: 993px) {
+        display: block;
+      }
 
       // Reproduce .container-fluid behavior on the right of the image
       @include media-breakpoint-up(md) {
