@@ -1,39 +1,67 @@
 {# Boolean Variables #}
-{% set hasImage = image.src is defined and image.src %}
-{% set hasIcon = iconName is defined and iconName %}
+{% set hasBadge = badge.label is defined and badge.label is not empty %}
+{% set hasButtons = buttons is defined and buttons is not empty %}
+{% set hasComboLabel = comboLabel is defined and comboLabel is not empty %}
+{% set hasContentBadges = contentBadges is defined and contentBadges is not empty %}
+{% set hasContentLists = contentLists is defined and contentLists is not empty %}
+{% set hasDescription = description_html is defined and description_html is not empty %}
+{% set hasDetailsColors = detailsColors is defined and detailsColors is not empty %}
+{% set hasDetailsStorage = detailsStorage is defined and detailsStorage is not empty %}
+{% set hasIcon = iconName is defined and iconName is not empty %}
+{% set hasImage = image.src is defined and image.src is not empty %}
+{% set hasInputIncrement = inputIncrement is defined and inputIncrement is not empty %}
+{% set hasImageBadgeIconName = image.badgeIconName is defined and image.badgeIconName is not empty %}
+{% set hasLink = link.href is defined and link.href is not empty %}
+{% set hasMessage = message is defined and message is not empty %}
+{% set hasMessageLink = messageLink is defined and messageLink is not empty %}
+{% set hasNote = note is defined and note is not empty %}
+{% set hasPrice = price is defined and price is not empty %}
+{% set hasPromotionBadges = promotionBadges is defined and promotionBadges is not empty %}
+{% set hasSubtitle = subtitle is defined and subtitle is not empty %}
+{% set hasTitle = title is defined and title is not empty %}
+{% set hasTitleCategory = title.category is defined and title.category is not empty %}
+{% set hasTitleDetail = title.detail is defined and title.detail is not empty %}
+{% set hasUpperTitle = upperTitle is defined and upperTitle is not empty %}
+{% set hasVisualBackgroundColor = visualBackgroundColor is defined and visualBackgroundColor is not empty %}
+{% set isBlockButtonsDefined = block("buttons") is defined %}
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
+
+{# Boolean Variables - ORDER IS IMPORTANT #}
 {% set hasVisual = hasImage or hasIcon %}
-{% set hasVisualCombo = hasVisual and comboLabel is defined and comboLabel %}
+{% set hasVisualCombo = hasVisual and hasComboLabel %}
 
 {# Default Variables #}
+{% set class = class|default("") %}
 {% set titleTag = titleTag|default("h1") %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set cardClasses = [
   "bf-card d-flex flex-column",
   (hasVisual ? "bf-card--has-visual"),
-  (isDisabled is same as(true) ? "disabled"),
-  (class|default("")),
+  (isDisabled ? "disabled"),
+  (class),
 ] %}
 {% set cardVisualClasses = [
   "bf-card__visual",
   (hasVisualCombo ? "bf-card__visual--combo"),
-  "bf-color-bg-underground d-flex justify-content-center align-items-center p-3 p-sm-4",
+  "bf-color-bg-underground",
+  "d-flex justify-content-center align-items-center p-3 p-sm-4",
 ] %}
 {% set messageLinkClasses = [
   "bf-link",
-  (messageLink.class|default('')),
+  (messageLink.class|default("")),
 ] %}
 
 {# Arrays of Styles With Dynamic Elements #}
+{# TODO: Create a macro for a better custom style management #}
 {% set cardVisualStyles = [
-  (
-    visualBackgroundColor is defined and visualBackgroundColor
-      ? 'background-color: ' ~ visualBackgroundColor ~ ';'
-  ),
+  (hasVisualBackgroundColor ? 'background-color: ' ~ visualBackgroundColor ~ ';'),
 ] %}
 
 {# Template #}
 <article class="{{ cardClasses|join(' ')|trim }}">
+
+  {# Image #}
   {% if hasVisual %}
     <div
       class="{{ cardVisualClasses|join(' ')|trim }}"
@@ -41,13 +69,13 @@
     >
       {% if hasImage %}
         <img
-          src="{{ image.src|default('') }}"
-          data-src="{{ image.src|default('') }}"
-          alt="{{ image.alt|default('') }}"
-          class="{{ hasVisualCombo ? "" : "mw-100" }}"
+          src="{{ image.src|default("") }}"
+          data-src="{{ image.src|default("") }}"
+          alt="{{ image.alt|default("") }}"
+          class="{{ hasVisualCombo ?: "mw-100" }}"
           loading="lazy"
         />
-        {% if image.badgeIconName is defined %}
+        {% if hasImageBadgeIconName %}
           <div class="bf-badge-icon z-index-1">
             {% include "@bf-components/icon/twig/index.twig" with {
               name: image.badgeIconName,
@@ -59,7 +87,7 @@
         {% include "@bf-components/icon/twig/index.twig" with {
           name: iconName,
           size: "large",
-          class: hasVisualCombo ? "combo" : ""
+          class: (hasVisualCombo ? "combo")
         } only %}
       {% endif %}
 
@@ -84,14 +112,15 @@
     </div>
   {% endif %}
 
+  {# Header #}
   <header class="bf-card__header px-3 py-4 p-sm-4">
-    {% if upperTitle is defined and upperTitle %}
+    {% if hasUpperTitle %}
       <p class="mb-1">
         {{ upperTitle }}
       </p>
     {% endif %}
 
-    {% if title is defined and title %}
+    {% if hasTitle %}
       {% embed "@bf-utils/custom-tag/twig/index.twig" with {
         customTag: titleTag,
         attr: {
@@ -99,7 +128,7 @@
         },
       } %}
         {% block customTagContent %}
-          {% if title.category is defined and title.detail is defined %}
+          {% if hasTitleCategory and hasTitleDetail %}
             <span class="d-block font-weight-light">
               {{ title.category }}
             </span>
@@ -111,33 +140,25 @@
       {% endembed %}
     {% endif %}
 
-    {% if subtitle is defined and subtitle %}
+    {% if hasSubtitle %}
       <p class="h5 my-1">
         {{ subtitle }}
       </p>
     {% endif %}
 
-    {% if description_html is defined and description_html %}
+    {% if hasDescription %}
       <div class="bf-card__description">
         {{ description_html|raw }}
       </div>
     {% endif %}
 
-    {% if link.href is defined and link.href %}
-      <a href="{{ link.href|default('') }}" class="bf-link">
+    {% if hasLink %}
+      <a href="{{ link.href|default("") }}" class="bf-link">
         {{ link.label|default("") }}
       </a>
     {% endif %}
 
-    {% if badge is defined and badge %}
-      {% if badge is iterable %}
-        {% set badgeLabel = badge.label %}
-      {% else %}
-        {% set badge = {
-          label: badge
-        } %}
-      {% endif %}
-
+    {% if hasBadge %}
       {% set badge =
         badge|merge({
           hierarchy: badge.hierarchy|default("primary"),
@@ -149,9 +170,10 @@
     {% endif %}
   </header>
 
+  {# Body #}
   <div class="bf-card__body flex-grow-1">
     {% block card_body %}
-      {% if contentLists is defined and contentLists %}
+      {% if hasContentLists %}
         {% for list in contentLists %}
           <div class="bf-card__content-list pt-3 mx-3 mx-sm-4">
             {% if list.title is defined %}
@@ -183,9 +205,9 @@
         {% endfor %}
       {% endif %}
 
-      {% if (detailsColors is defined and detailsColors) or (detailsStorage is defined and detailsStorage) %}
+      {% if hasDetailsColors or hasDetailsStorage %}
         <div class="d-flex mx-3 mx-sm-4">
-          {% if detailsColors is defined %}
+          {% if hasDetailsColors %}
             <ul class="bf-card__details-colors list-unstyled d-flex mb-0 mr-2">
               {% for color in detailsColors|default([]) %}
                 <li
@@ -196,7 +218,7 @@
             </ul>
           {% endif %}
 
-          {% if detailsStorage is defined and detailsStorage %}
+          {% if hasDetailsStorage %}
             <p class="small mb-0">
               {% for stockage in detailsStorage|default([]) %}
                 <span class="font-weight-bold">
@@ -209,7 +231,7 @@
         </div>
       {% endif %}
 
-      {% if contentBadges is defined and contentBadges %}
+      {% if hasContentBadges %}
         <div class="bf-card__content-badge mt-3 mx-3 mx-sm-4">
           {% for contentBadge in contentBadges %}
             {% set contentBadge =
@@ -222,7 +244,7 @@
         </div>
       {% endif %}
 
-      {% if promotionBadges is defined and promotionBadges %}
+      {% if hasPromotionBadges %}
         <div class="bf-card__content-badge bf-card__content-badge--promotion mt-3 mx-3 mx-sm-4">
           {% for promotionBadge in promotionBadges %}
             {% include "@bf-components/badge/twig/index.twig" with {
@@ -237,8 +259,9 @@
     {% endblock %}
   </div>
 
+  {# Footer #}
   <footer class="bf-card__footer pt-0 mx-3 mx-sm-4 mb-3 mb-sm-4 mt-3">
-    {% if price is defined and price %}
+    {% if hasPrice %}
       {% set price =
         price|merge({
           class: "w-100 " ~ price.class,
@@ -248,21 +271,21 @@
       {% include "@bf-components/price/twig/index.twig" with price only %}
     {% endif %}
 
-    {% if note is defined and note %}
+    {% if hasNote %}
       <p class="small bf-color-neutral-secondary mb-0">
         {{ note }}
       </p>
     {% endif %}
 
-    {% if inputIncrement is defined and inputIncrement %}
+    {% if hasInputIncrement %}
       <div class="bf-card__controls">
         {% include "@bf-components/input-increment/twig/index.twig" with inputIncrement only %}
       </div>
     {% endif %}
 
-    {% if block("buttons") is defined or (buttons is defined and buttons) %}
+    {% if isBlockButtonsDefined or hasButtons %}
       <div class="bf-card__controls">
-        {% if block("buttons") is defined %}
+        {% if isBlockButtonsDefined %}
           {{ block("buttons") }}
         {% else %}
           {% for button in buttons %}
@@ -277,7 +300,7 @@
       </div>
     {% endif %}
 
-    {% if (message is defined and message) or (messageLink is defined and messageLink) %}
+    {% if hasMessage or hasMessageLink %}
       <div class="bf-card__message d-flex">
         {% include "@bf-components/icon/twig/index.twig" with {
           name: "information-circle-filled",
@@ -286,7 +309,7 @@
         } only %}
         <p class="mb-0">
           {{ message }}
-          {% if messageLink is defined and messageLink %}
+          {% if hasMessageLink %}
             <a
               href="{{ messageLink.href|default('#') }}"
               class="{{ messageLinkClasses|join(' ')|trim }}"
