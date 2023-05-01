@@ -1,14 +1,26 @@
-{# Responsive iframe video #}
-<div
-  class="embed-responsive embed-responsive-{{ videoRatio|default(
-    "16by9"
-  ) }} video-container {{ class|default("") }}"
->
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set iframeClass = iframeClass|default("") %}
+{% set videoRatio = videoRatio|default("16by9") %}
+{% set videoSource = videoSource|default("https://www.youtube.com/embed/Y9wrYkMH0RM?rel=0") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set containerClasses = [
+  "embed-responsive",
+  "embed-responsive-" ~ videoRatio,
+  "video-container",
+  (class),
+] %}
+{% set iframeClasses = [
+  "embed-responsive-item",
+  (iframeClass),
+] %}
+
+{# Template #}
+<div class="{{ containerClasses|join(' ')|trim }}">
   <iframe
-    class="embed-responsive-item {{ iframeClass|default("") }}"
-    src="{{ videoSource|default(
-      "https://www.youtube.com/embed/Y9wrYkMH0RM?rel=0"
-    ) }}"
+    class="{{ iframeClasses|join(' ')|trim }}"
+    src="{{ videoSource }}"
     allowfullscreen
   ></iframe>
 </div>
