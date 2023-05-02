@@ -19,28 +19,27 @@ export const argTypes = {
     ngOnChanges: { table: { disable: true } },
     _theme: {
         table: { defaultValue: { summary: 'videotron' } },
-        control: { type: 'select', options: [ 'videotron', 'business' ] }
-    }
+        control: { type: 'select', options: ['videotron', 'business'] },
+    },
 };
 
 addParameters({
-
     options: {
         storySort: {
-            order: ['*', 'UI-Kit']
+            order: ['*', 'UI-Kit', 'Deprecated'],
         },
-        showPanel: true
+        showPanel: true,
     },
 
     darkMode: {
         stylePreview: true,
         light: {
             ...themes.light,
-            ...brandBifrost.light
+            ...brandBifrost.light,
         },
         dark: {
             ...themes.dark,
-            ...brandBifrost.dark
+            ...brandBifrost.dark,
         },
     },
 
@@ -71,6 +70,6 @@ addParameters({
     },
 
     actions: {
-        argTypesRegex: "^on[A-Z].*"
-    }
+        argTypesRegex: '^on[A-Z].*',
+    },
 });
