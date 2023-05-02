@@ -1,38 +1,82 @@
-{# Ui-Kit legacy #}
-{% set id = id|default(inputId) %}
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasAriaLabel = ariaLabel is defined and ariaLabel is not empty %}
+{% set hasLabel = label is defined and label is not empty %}
+{% set hasName = name is defined and name is not empty %}
+{% set hasValue = value is defined and value is not empty %}
+{% set isChecked = isChecked|default(false) is same as(true) %}
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isInvalid = isInvalid|default(false) is same as(true) %}
+{% set isRequired = isRequired|default(false) is same as(true) %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set extraAttribute = extraAttribute|default(null) %}
+{% set id = id|default(inputId) %} {# inputId is Ui-Kit legacy #}
+{% set labelClass = labelClass|default(null) %}
+{% set labelExtraAttribute = labelExtraAttribute|default(null) %}
 {% set name = name|default(inputName) %}
 
-<div
-  class="bf-input-checkbox-option {{ class|default("") }} {{
-  isInvalid is defined and isInvalid
-    ? "bf-input-checkbox-option--invalid"
-  }} {{
-  isDisabled is defined and isDisabled
-    ? "bf-input-checkbox-option--disabled"
-  }}"
->
-  <input
-    type="checkbox"
-    class="bf-input-checkbox-control {{
-    isInvalid is defined and isInvalid
-      ? "bf-input-checkbox-control--invalid"
-    }}"
-    {{ name is defined and name ? "name='" ~ name ~ "'" }}
-    id="{{ id }}"
-    {{ value is defined and value ? "value='" ~ value ~ "'" }}
-    {{ isChecked is defined and isChecked ? "checked" }}
-    {{ isDisabled is defined and isDisabled ? "disabled" }}
-    {{ isRequired is defined and isRequired ? "required" }}
-    {{ ariaLabel is defined and ariaLabel ? "aria-label='" ~ ariaLabel ~ "'" }}
-    {{ extraAttribute|default(null) }}
-  />
-  {% if label is defined and label %}
+{# Arrays of Classes With Dynamic Elements #}
+{% set containerClasses = [
+  "bf-input-checkbox-option",
+  (isInvalid ? "bf-input-checkbox-option--invalid"),
+  (isDisabled ? "bf-input-checkbox-option--disabled"),
+  (class),
+] %}
+{% set inputClasses = [
+  "bf-input-checkbox-control",
+  (isInvalid ? "bf-input-checkbox-control--invalid"),
+] %}
+{% set labelSecondSpanClasses = [
+  "bf-text-display-sub-medium",
+  (labelClass),
+] %}
+
+{# Objects of Attributes With Dynamic Elements #}
+{% set inputAttributes = {
+  "type": "checkbox",
+  "class": (inputClasses|join(' ')|trim),
+  "name": (hasName ? name),
+  "id": (id),
+  "value": (hasValue ? value),
+  "checked": (isChecked ? "checked"),
+  "disabled": (isDisabled ? "disabled"),
+  "required": (isRequired ? "required"),
+  "aria-label": (hasAriaLabel ? ariaLabel),
+} %}
+{% if extraAttribute is defined %}
+  {% if extraAttribute is iterable %}
+    {# is an object #}
+    {% set inputAttributes = inputAttributes|merge(extraAttribute) %}
+  {% else %}
+    {# is a string #}
+    {% set inputAttributes = inputAttributes|merge({"bfString": extraAttribute}) %}
+  {% endif %}
+{% endif %}
+
+{% set labelSecondSpanAttributes = {
+  "class": (labelSecondSpanClasses|join(' ')|trim),
+} %}
+{% if labelExtraAttribute is defined %}
+  {% if labelExtraAttribute is iterable %}
+    {# is an object #}
+    {% set inputAttributes = labelSecondSpanAttributes|merge(labelExtraAttribute) %}
+  {% else %}
+    {# is a string #}
+    {% set labelSecondSpanAttributes = labelSecondSpanAttributes|merge({"bfString": labelExtraAttribute}) %}
+  {% endif %}
+{% endif %}
+
+{# Template #}
+<div class="{{ containerClasses|join(' ')|trim }}">
+  <input {{ macros.addAttributes(inputAttributes) }} />
+  {% if hasLabel %}
     <label for="{{ id }}">
       <span class="bf-checkbox__control"></span>
-      <span
-        class="bf-text-display-sub-medium {{ labelClass|default(null) }}"
-        {{ labelExtraAttribute|default(null) }}
-      >
+      <span {{ macros.addAttributes(labelSecondSpanAttributes) }}>
         {{ label|raw }}
       </span>
     </label>

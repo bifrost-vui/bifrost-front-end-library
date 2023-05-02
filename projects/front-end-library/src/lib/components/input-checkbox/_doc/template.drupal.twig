@@ -1,3 +1,4 @@
+{# Default Variables (Props, Controls) #}
 {% set options = options|json_parse %}
 {% set areOptionTiles = areOptionTiles|json_parse %}
 {% set areOptionTilesInline = areOptionTilesInline|json_parse %}
@@ -30,13 +31,17 @@
   }
 ] %}
 
+{# Template #}
 <div class="d-flex flex-column" style="min-height: 100vh">
   {% for _variant in _variants %}
-    <div
-      class="d-flex flex-column align-items-center {{
-      _variant.backgroundClass
-      }}"
-    >
+
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set variantContainerClasses = [
+      "d-flex flex-column align-items-center",
+      ( _variant.backgroundClass),
+    ] %}
+
+    <div class="{{ variantContainerClasses|join(' ')|trim }}">
       {% set loopIndexSuffix = "--" ~ loop.index %}
 
       {% set _variantProps =
