@@ -84,20 +84,12 @@
   "formNoValidate": (isSubmit and hasFormNoValidate ? "formnovalidate"),
   "formtarget": (isSubmit and hasFormTarget ? formTarget),
 } %}
-{% if extraAttribute is defined %}
-  {% if extraAttribute is iterable %}
-    {# is an object #}
-    {% set buttonAttributes = buttonAttributes|merge(extraAttribute) %}
-  {% else %}
-    {# is a string #}
-    {% set buttonAttributes = buttonAttributes|merge({"bfString": extraAttribute}) %}
-  {% endif %}
-{% endif %}
 
 {# Template #}
 {% embed "@bf-utils/custom-tag/twig/index.twig" with {
   customTag: componentTag,
   attr: buttonAttributes,
+  extraAttr: extraAttribute,
 } %}
   {% block customTagContent %}
     <span class="bf-button__inner">

@@ -30,20 +30,12 @@
     "aria-expanded": (ariaExpanded is defined ? ariaExpanded : null),
     "aria-label": (ariaLabel is defined ? ariaLabel : null),
 } %}
-{% if extraAttribute is defined %}
-  {% if extraAttribute is iterable %}
-    {# is an object #}
-    {% set rowButtonAttributes = rowButtonAttributes|merge(extraAttribute) %}
-  {% else %}
-    {# is a string #}
-    {% set rowButtonAttributes = rowButtonAttributes|merge({"bfString": extraAttribute}) %}
-  {% endif %}
-{% endif %}
 
 {# Template #}
 {% embed "@bf-utils/custom-tag/twig/index.twig" with {
   customTag: componentTag,
   attr: rowButtonAttributes,
+  extraAttr: extraAttribute,
 } %}
   {% block customTagContent %}
     {% if hasVisual %}

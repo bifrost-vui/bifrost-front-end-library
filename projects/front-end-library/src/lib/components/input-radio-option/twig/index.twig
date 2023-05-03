@@ -46,34 +46,15 @@
   "required": (isRequired ? "required"),
   "aria-label": (hasAriaLabel ? ariaLabel),
 } %}
-{% if extraAttribute is defined %}
-  {% if extraAttribute is iterable %}
-    {# is an object #}
-    {% set inputAttributes = inputAttributes|merge(extraAttribute) %}
-  {% else %}
-    {# is a string #}
-    {% set inputAttributes = inputAttributes|merge({"bfString": extraAttribute}) %}
-  {% endif %}
-{% endif %}
-
 {% set labelSecondSpanAttributes = {
   "class": (labelSecondSpanClasses|join(' ')|trim),
 } %}
-{% if labelExtraAttribute is defined %}
-  {% if labelExtraAttribute is iterable %}
-    {# is an object #}
-    {% set inputAttributes = labelSecondSpanAttributes|merge(labelExtraAttribute) %}
-  {% else %}
-    {# is a string #}
-    {% set labelSecondSpanAttributes = labelSecondSpanAttributes|merge({"bfString": labelExtraAttribute}) %}
-  {% endif %}
-{% endif %}
 
 <label class="{{ containerClasses|join(' ')|trim }}">
-  <input {{ macros.addAttributes(inputAttributes) }} />
+  <input {{ macros.addAttributes(inputAttributes, extraAttribute) }} />
   <span class="bf-input-radio-control"></span>
   {% if hasLabel %}
-    <span {{ macros.addAttributes(labelSecondSpanAttributes) }}>
+    <span {{ macros.addAttributes(labelSecondSpanAttributes, labelExtraAttribute) }}>
       {{ label|raw }}
     </span>
   {% endif %}

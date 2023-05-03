@@ -4,8 +4,9 @@
 {# Default variables #}
 {% set customTag = customTag|default("div") %}
 {% set attr = attr|default({}) %}
+{% set extraAttr = extraAttr|default({}) %}
 
 {# Template #}
-<{{ customTag|raw }} {{ macros.addAttributes(attr) }}>
+<{{ customTag|raw }} {{ macros.addAttributes(attr, extraAttr) }}>
   {% block customTagContent %}{% endblock %}
 </{{ customTag|raw }}>

@@ -56,21 +56,13 @@
       }
   )),
 } %}
-{% if extraAttribute is defined %}
-  {% if extraAttribute is iterable %}
-    {# is an object #}
-    {% set buttonIconAttributes = buttonIconAttributes|merge(extraAttribute) %}
-  {% else %}
-    {# is a string #}
-    {% set buttonIconAttributes = buttonIconAttributes|merge({"bfString": extraAttribute}) %}
-  {% endif %}
-{% endif %}
 
 {# Template #}
 <div class="{{ buttonContainerClasses|join(' ')|trim }}">
   {% embed "@bf-utils/custom-tag/twig/index.twig" with {
     customTag: componentTag,
     attr: buttonIconAttributes,
+    extraAttr: extraAttribute,
   } %}
     {% block customTagContent %}
       {% include "@bf-components/icon/twig/index.twig" with {

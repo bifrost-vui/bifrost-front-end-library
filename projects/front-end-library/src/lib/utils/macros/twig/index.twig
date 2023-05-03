@@ -8,22 +8,40 @@
  #   "class": "d-block mt-2",
  #   "id": (hasId ? "example-id"),
  # } %}
- # <div {{ macros.addAttributes(exampleAttributes) }}>
+ # <div {{ macros.addAttributes(exampleAttributes, extraAttributesVariable) }}>
  #   I am a block
  # </div>
  #
 #}
-{% macro addAttributes(attributes) %}
+{% macro addAttributes(attributes, extraAttributes = null) %}
+
+  {# Boolean Variables #}
+  {% set hasAttributes = attributes is defined and attributes is not empty %}
+  {% set hasExtraAttributes = extraAttributes is defined and extraAttributes is not empty %}
+  {% set isExtraAttributesIterable = extraAttributes is iterable %}
 
   {# Default variables #}
   {% set attributes = attributes|default({}) %}
   {% set compiledAttributes = [] %}
 
   {# Create an array of attributes #}
-  {% if attributes is defined and attributes %}
+  {% if hasAttributes %}
+
+    {# If there is "extraAttributes", we merge it with "attributes" #}
+    {% if hasExtraAttributes %}
+      {% if isExtraAttributesIterable %}
+        {# is an object #}
+        {% set attributes = attributes|merge(extraAttributes) %}
+      {% else %}
+        {# is a string #}
+        {% set attributes = attributes|merge({"bfString": extraAttributes}) %}
+      {% endif %}
+    {% endif %}
+
+    {# Format attributes object #}
     {% for attrName, attrValue in attributes %}
       {# If an attribute has no value, this attribute won't be printed #}
-      {% if attrValue != null %}
+      {% if attrValue is not empty %}
         {#
           If an attribute name is "bfString", then it means that the value
           already contains an attribute name and its value.
