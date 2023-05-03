@@ -1,54 +1,88 @@
-{% set attrReadOnly = isReadOnly is defined and isReadOnly ? " readonly" : "" %}
-{% set classHide = isReadOnly is defined and isReadOnly ? " d-none" : "" %}
-{% set attrDisabled = isDisabled is defined and isDisabled ? " disabled" : "" %}
-{% set classDisabled = isDisabled is defined and isDisabled ? " disabled" : ""
-%}
-{% set classIsInvalid = isInvalid is defined and isInvalid ? " is-invalid" : ""
-%}
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasAriaLabel = ariaLabel is defined and ariaLabel is not empty %}
+{% set hasErrorMessage = errorMessage is defined and errorMessage is not empty %}
+{% set hasMin = min is defined and min is not same as("NaN") %}
+{% set hasMax = max is defined and max is not same as("NaN") %}
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isInvalid = isInvalid|default(false) is same as(true) %}
+{% set isReadOnly = isReadOnly|default(false) is same as(true) %}
 {% set isRequired = isRequired is not defined ? true : isRequired %}
 
-<div
-  class="bf-input-increment js-bf-input-increment flex-wrap {{
-  class ~ classDisabled
-    ~ classIsInvalid
-  }}"
->
+{# Default Variables #}
+{% set class = class|default("") %}
+{% set value = value|default(0) %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set containerClasses = [
+  "bf-input-increment js-bf-input-increment flex-wrap",
+  (isInvalid ? "is-invalid"),
+  (isDisabled ? "disabled"),
+  (class),
+] %}
+{% set buttonDefaultClasses = [
+  (isReadOnly ? "d-none" : "bf-button rounded-circle px-2"),
+] %}
+{% set buttonMinusClasses = [
+  (isReadOnly ?: "js-bf-input-increment__minus"),
+] %}
+{% set buttonPlusClasses = [
+  (isReadOnly ?: "js-bf-input-increment__plus"),
+] %}
+{% set inputClasses = [
+  "bf-text-display-small bf-input-increment__input js-bf-input-increment__input",
+  "text-center border-0",
+  (isDisabled ? "disabled"),
+] %}
+
+{# Objects of Attributes With Dynamic Elements #}
+{% set inputAttributes = {
+  "id": inputId,
+  "type": "number",
+  "class": inputClasses|join(' ')|trim,
+  "aria-label": (hasAriaLabel ? ariaLabel),
+  "value": value,
+  "size": 3,
+  "min": (hasMin ? min),
+  "max": (hasMax ? max),
+  "readonly": (isReadOnly ? "readonly"),
+  "disabled": (isDisabled ? "disabled"),
+  "required": (isRequired ? "required"),
+  "aria-required": (isRequired ? "true"),
+} %}
+
+{# Template #}
+<div class="{{ containerClasses|join(' ')|trim }}">
+
+  {# Minus button #}
   {% include "@bf-components/button/twig/index.twig" with {
     label: "",
     hierarchy: "secondary",
     iconName: "minus",
-    class: classHide is empty
-      ? " js-bf-input-increment__minus bf-button rounded-circle px-2"
-      : classHide,
+    class: buttonDefaultClasses|merge(buttonMinusClasses)|join(' ')|trim,
     ariaControls: inputId
   } only %}
-  <input
-    id="{{ inputId }}"
-    type="number"
-    class="text-center bf-text-display-small bf-input-increment__input js-bf-input-increment__input border-0 {{
-    attrDisabled
-    }}"
-    aria-label="{{ ariaLabel }}"
-    value="{{ value|default(0) }}"
-    size="3"
-    {{ min is defined and min ? "min='" ~ min ~ "'" }}
-    {{ max is defined and max ? "max='" ~ max ~ "'" }}
-    {{ attrReadOnly }}
-    {{ attrDisabled }}
-    {{ isRequired ? "required aria-required='true'" }}
-  />
 
+  {# Input #}
+  <input {{ macros.addAttributes(inputAttributes) }}/>
+
+  {# Plus button #}
   {% include "@bf-components/button/twig/index.twig" with {
     label: "",
     hierarchy: "secondary",
     iconName: "plus",
-    class: classHide is empty
-      ? " js-bf-input-increment__plus bf-button rounded-circle px-2"
-      : classHide,
+    class: buttonDefaultClasses|merge(buttonPlusClasses)|join(' ')|trim,
     ariaControls: inputId
   } only %}
 
-  <div class="bf-input-increment__feedback">
-    <p class="mb-2">{{ errorMessage }}</p>
-  </div>
+  {# Error message #}
+  {% if hasErrorMessage %}
+    <div class="bf-input-increment__feedback">
+      <p class="mb-2">
+        {{ errorMessage }}
+      </p>
+    </div>
+  {% endif %}
 </div>
