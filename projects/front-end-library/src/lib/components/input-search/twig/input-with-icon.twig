@@ -1,41 +1,59 @@
-<div
-  class="
-    bf-input bf-input-search form-group
-    {{
-  reversed is defined and reversed is same as(true)
-    ? " reversed"
-  }}
-    {{ class|default("") }}"
->
-  {% if label %}
-    <label
-      for="{{ input.id }}"
-      class="{{ label.class|default("") }}"
-      {{ label.extraAttribute|default(null) }}
-    >
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasInputId = input.id is defined and input.id is not empty %}
+{% set hasLabel = label.value is defined and label.value is not empty %}
+{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set mtValue = mtValue|default("0") %}
+{% set invalidMsg = invalidMsg|default("This is an invalid error message") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set containerClasses = [
+  "bf-input bf-input-search form-group",
+  (isReversed ? "reversed"),
+  (class),
+] %}
+{% set inputClasses = [
+  "form-control",
+  "mt-" ~ mtValue,
+  (input.class|default("")),
+] %}
+{% set iconContainerClasses = [
+  "form-group__input-icon-container rounded",
+  (input.iconPosition|default("")),
+] %}
+
+{# Objects of Attributes With Dynamic Elements #}
+{% set labelAttributes = {
+  "for": (hasInputId ? input.id),
+  "class": label.class|default(""),
+} %}
+{% set inputAttributes = {
+  "type": input.type|default("text"),
+  "id": (hasInputId ? input.id),
+  "class": inputClasses|join(' ')|trim,
+  "disabled": (isDisabled ? "disabled"),
+  "placeholder": input.placeholder|default(""),
+  "name": input.name|default(""),
+  "value": input.value|default(""),
+} %}
+
+<div class="{{ containerClasses|join(' ')|trim }}">
+  {% if hasLabel %}
+    <label {{ macros.addAttributes(labelAttributes, label.extraAttribute) }}>
       {{ label.value|default("Label") }}
     </label>
   {% endif %}
 
   <div class="position-relative">
-    <input
-      id="{{ input.id }}"
-      {{ isDisabled is defined and isDisabled is same as(true) ? " disabled" }}
-      class="form-control mt-{{ mtValue|default("0") }} {{ input.class|default(
-        ""
-      ) }}"
-      type="{{ input.type|default("text") }}"
-      placeholder="{{ input.placeholder|default("") }}"
-      name="{{ input.name|default("") }}"
-      value="{{ input.value|default("") }}"
-      {{ input.extraAttribute|default(null) }}
-    />
+    <input {{ macros.addAttributes(inputAttributes, input.extraAttribute) }} />
 
-    <div
-      class="form-group__input-icon-container rounded {{ input.iconPosition|default(
-        ""
-      ) }}"
-    >
+    <div class="{{ iconContainerClasses|join(' ')|trim }}">
       {% block icon_container %}
         {% include "@bf-components/input-search/twig/button-tooltip.twig" with {
           buttonClass: "p-0"
@@ -52,6 +70,6 @@
   </div>
 
   <div class="invalid-feedback">
-    {{ invalidMsg|default("This is an invalid error message") }}
+    {{ invalidMsg }}
   </div>
 </div>

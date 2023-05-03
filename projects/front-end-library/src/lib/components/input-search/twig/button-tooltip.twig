@@ -1,20 +1,38 @@
-<button
-  type="button"
-  class="button-tooltip vui--style-reset d-{{ buttonDisplay|default(
-    "flex"
-  ) }} align-items-center {{ buttonClass|default(
-    ""
-  ) }} position-{{ buttonPosition|default("relative") }} "
-  data-toggle="{{ dataToggle|default("tooltip") }}"
-  data-placement="top"
-  title="{{ tooltipTxt|default("Tooltip on top") }}"
-  {{ extraAttribute|default(null) }}
->
-  {% include "@bf-components/icon/twig/icon-svg.twig" with {
-    iconName: "interrogation",
-    iconColor: iconColor|default(""),
-    iconSize: 2,
-    iconColor: iconColor|default(""),
-    iconClass: "d-flex " ~ (iconClass|default(""))
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) #}
+{% set buttonClass = buttonClass|default("") %}
+{% set buttonDisplay = buttonDisplay|default("flex") %}
+{% set buttonPosition = buttonPosition|default("relative") %}
+{% set dataToggle = dataToggle|default("tooltip") %}
+{% set tooltipTxt = tooltipTxt|default("Tooltip on top") %}
+{% set iconColor = iconColor|default("") %}
+{% set iconClass = iconClass|default("") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set buttonClasses = [
+  "button-tooltip vui--style-reset align-items-center",
+  "d-" ~ buttonDisplay,
+  "position-" ~ buttonPosition,
+  (buttonClass),
+] %}
+
+{# Objects of Attributes With Dynamic Elements #}
+{% set buttonAttributes = {
+  "type": "button",
+  "class": buttonClasses|join(' ')|trim,
+  "data-toggle": dataToggle,
+  "data-placement": "top",
+  "title": tooltipTxt,
+} %}
+
+{# Template #}
+<button {{ macros.addAttributes(buttonAttributes, extraAttribute) }}>
+  {% include "@bf-components/icon/twig/index.twig" with {
+    name: "question-circle-outline",
+    color: iconColor,
+    size: "small",
+    class: "d-flex " ~ (iconClass)
   } only %}
 </button>
