@@ -1,3 +1,4 @@
+{# Default Variables (Props, Controls) #}
 {% set min = min|json_parse %}
 {% set max = max|json_parse %}
 {% set step = step|json_parse %}
@@ -6,6 +7,7 @@
 {% set isInverted = isInverted|json_parse %}
 {% set reversed = reversed|json_parse %}
 
+{# Template #}
 <div class="input-slider-wrapper">
   {% for i in 1..5 %}
     {# Set backgroundClass #}
@@ -19,7 +21,9 @@
 
     {% include "@bf-components/input-slider/twig/index.twig" with {
       class: class ~ " " ~ backgroundClass,
-      reversed: reversed|default(i == 4 or i == 5)
+      reversed: reversed|default(i == 4 or i == 5),
+      min: min|merge({inputId: min.inputId ~ "_" ~ loop.index}),
+      max: max|merge({inputId: max.inputId ~ "_" ~ loop.index}),
     } %}
   {% endfor %}
 </div>

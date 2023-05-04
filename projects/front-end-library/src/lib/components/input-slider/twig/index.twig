@@ -1,14 +1,53 @@
-{% set isRange = value is iterable
-  and value[0] is defined
-  and value[1] is defined
-%}
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set step = step|default(1) %}
+{% set minimumGap = minimumGap|default(1) %}
 {% set unitPosition = unitPosition|default("end") %}
 
+{# Boolean Variables #}
+{% set hasMaxDescription = max.description is defined and max.description is not empty %}
+{% set hasMaxLegend = max.legend is defined and max.legend is not empty %}
+{% set hasMinDescription = min.description is defined and min.description is not empty %}
+{% set hasMinLegend = min.legend is defined and min.legend is not empty %}
+{% set hasUnitLabel = unitLabel is defined and unitLabel is not empty %}
+{% set hasValue0 = value[0] is defined and value[0] is not empty %}
+{% set hasValue1 = value[1] is defined and value[1] is not empty %}
+{% set isInverted = isInverted|default(false) is same as(true) %}
+{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isUnitPositionEnd = unitPosition is same as("end") %}
+{% set isUnitPositionStart = unitPosition is same as("start") %}
+
+{# Boolean Variables - ORDER IS IMPORTANT #}
+{% set hasLegend = hasMinLegend or hasMaxLegend %}
+{% set hasDescription = hasMinDescription or hasMaxDescription %}
+{% set isRange = value is iterable and hasValue0 and hasValue1 %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set sliderContainerClasses = [
+  "bf-input-slider js-bf-input-slider",
+  (isReversed ? "reversed"),
+  (class),
+] %}
+
+{# Objects of Attributes With Dynamic Elements #}
+{% set sliderContainerAttributes = {
+  "class": sliderContainerClasses|join(' ')|trim,
+  "data-range": macros.boolToString(isRange),
+  "data-minimum-gap": minimumGap,
+  "data-inverted": (isRange is same as(false) ? macros.boolToString(isInverted))
+} %}
+
+
+{# Initialize with correct value for "value" variable when in "range" #}
 {% if isRange %}
   {# Reorder value array in case of mistake: Smallest number should be at position 0. #}
   {% if value[0] > value[1] %}
     {% set value = [value[1], value[0]] %}
   {% endif %}
+
   {# Values should be between min and max. #}
   {% set value = [
     min(max(value[0], min.value), max.value),
@@ -19,36 +58,27 @@
   {% set value = min(max(value, min.value), max.value) %}
 {% endif %}
 
-<div
-  class="bf-input-slider js-bf-input-slider {{ class|default("") }} {{
-  reversed
-    ? "reversed"
-    : ""
-  }}"
-  data-range="{{ isRange }}"
-  {{
-  minimumGap is defined and minimumGap
-    ? "data-minimum-gap='" ~ minimumGap ~ "'"
-  }}
-  {{ isRange is same as(false) ? "data-inverted='" ~ isInverted ~ "'" }}
->
+{# Template #}
+<div {{ macros.addAttributes(sliderContainerAttributes) }}>
   {% if isRange %}
     <div class="d-flex justify-content-between mx-2">
       <label for="{{ min.inputId }}">
-        {% if unitLabel and unitPosition is same as("start") %}{{
-          unitLabel
-        }}{% endif %}<span class="bf-input-slider__label-min-value"></span>{% if
-          unitLabel and unitPosition is same as("end") %}{{
-          unitLabel
-        }}{% endif %}
+        {% if hasUnitLabel and isUnitPositionStart %}
+          {{ unitLabel }}
+        {% endif %}
+        <span class="bf-input-slider__label-min-value"></span>
+        {% if hasUnitLabel and isUnitPositionEnd %}
+          {{ unitLabel }}
+        {% endif %}
       </label>
       <label for="{{ max.inputId }}">
-        {% if unitLabel and unitPosition is same as("start") %}{{
-          unitLabel
-        }}{% endif %}<span class="bf-input-slider__label-max-value"></span>{% if
-          unitLabel and unitPosition is same as("end") %}{{
-          unitLabel
-        }}{% endif %}
+        {% if hasUnitLabel and isUnitPositionStart %}
+          {{ unitLabel }}
+        {% endif %}
+        <span class="bf-input-slider__label-max-value"></span>
+        {% if hasUnitLabel and isUnitPositionEnd %}
+          {{ unitLabel }}
+        {% endif %}
       </label>
     </div>
   {% else %}
@@ -58,12 +88,13 @@
           for="{{ min.inputId|default(max.inputId) }}"
           class="bf-input-slider__label"
         >
-          {% if unitLabel and unitPosition is same as("start") %}{{
-            unitLabel
-          }}{% endif %}<span class="bf-input-slider__label__value"></span>{% if
-            unitLabel and unitPosition is same as("end") %}{{
-            unitLabel
-          }}{% endif %}
+          {% if hasUnitLabel and isUnitPositionStart %}
+            {{ unitLabel }}
+          {% endif %}
+          <span class="bf-input-slider__label__value"></span>
+          {% if hasUnitLabel and isUnitPositionEnd %}
+            {{ unitLabel }}
+          {% endif %}
         </label>
       </div>
     </div>
@@ -79,21 +110,21 @@
 
     {% if isRange %}
       <input
-        class="bf-input-slider__input__min"
+        class="bf-input-slider__input bf-input-slider__input__min"
         type="range"
         max="{{ max.value }}"
         min="{{ min.value }}"
-        step="{{ step|default(1) }}"
+        step="{{ step }}"
         id="{{ min.inputId }}"
         value="{{ value[0] }}"
         data-unit="{{ unitLabel }}"
       />
       <input
-        class="bf-input-slider__input__max"
+        class="bf-input-slider__input bf-input-slider__input__max"
         type="range"
         max="{{ max.value }}"
         min="{{ min.value }}"
-        step="{{ step|default(1) }}"
+        step="{{ step }}"
         id="{{ max.inputId }}"
         value="{{ value[1] }}"
         data-unit="{{ unitLabel }}"
@@ -104,7 +135,7 @@
         type="range"
         max="{{ max.value }}"
         min="{{ min.value }}"
-        step="{{ step|default(1) }}"
+        step="{{ step }}"
         id="{{ min.inputId|default(max.inputId) }}"
         value="{{ value }}"
         data-unit="{{ unitLabel }}"
@@ -112,32 +143,21 @@
     {% endif %}
   </div>
 
-  {% set hasLegend = (min.legend is defined and min.legend)
-    or (max.legend is defined and max.legend)
-  %}
-  {% set hasDescription = (min.description is defined and min.description)
-    or (max.description is defined and max.description)
-  %}
-
   {% if hasLegend or hasDescription %}
     <div class="bf-input-slider__legend mx-2 mt-2">
-      {% if
-        (min.legend is defined and min.legend)
-          or (min.description is defined and min.description) %}
+      {% if hasMinLegend or hasMinDescription %}
         <p class="bf-input-slider__legend__min">
           {{ min.legend|default("") }}
-          {% if min.description is defined and min.description %}
+          {% if hasMinDescription %}
             <strong>{{ min.description }}</strong>
           {% endif %}
         </p>
       {% endif %}
 
-      {% if
-        (min.legend is defined and min.legend)
-          or (max.description is defined and max.description) %}
+      {% if hasMaxLegend or hasMaxDescription %}
         <p class="bf-input-slider__legend__max">
           {{ max.legend|default("") }}
-          {% if max.description is defined and max.description %}
+          {% if hasMaxDescription %}
             <strong>{{ max.description }}</strong>
           {% endif %}
         </p>

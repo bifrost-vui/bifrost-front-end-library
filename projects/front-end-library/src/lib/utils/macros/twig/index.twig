@@ -2,6 +2,7 @@
  # Print HTML attributes on a tag
  #
  # @param {object} attributes - HTML attributes
+ # @param {string|object} extraAttributes - HTML attributes
  #
  # Use example :
  # {% set exampleAttributes = {
@@ -60,4 +61,21 @@
 
   {# Return the value as a string #}
   {{ compiledAttributes|join(' ')|trim|raw }}
+{% endmacro %}
+
+{#
+ # Transform boolean value to string
+ #
+ # @param {boolean} value - Boolean value
+ #
+ # Use example :
+ # {% set isInverted = isInverted|default(false) is same as(true) %}
+ # {% set exampleAttributes = {
+ #   "data-inverted": macros.boolToString(isInverted),
+ # } %}
+ #
+#}
+{% macro boolToString(value) %}
+  {%- set value = value ? "true" : "false" -%}
+  {{- value -}}
 {% endmacro %}
