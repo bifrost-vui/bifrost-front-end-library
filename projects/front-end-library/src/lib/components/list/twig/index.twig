@@ -1,3 +1,6 @@
+{# Boolean Variables #}
+{% set hasTitle = title is defined and title is not empty %}
+
 {# Default Variables #}
 {% set titleTag = titleTag|default("h3") %}
 
@@ -8,7 +11,7 @@
 ] %}
 
 {# Template #}
-{% if title is defined and title is not empty %}
+{% if hasTitle %}
   {% embed "@bf-utils/custom-tag/twig/index.twig" with {
     customTag: titleTag,
     attr: {
