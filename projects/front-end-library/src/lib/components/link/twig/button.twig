@@ -1,25 +1,44 @@
-<a
-  id="{{ id|default("") }}"
-  class="btn btn-{{ buttonSize|default("md") }} btn-{{ buttonColor|default(
-    "primary"
-  ) }}  {{ class|default("") }}"
-  {{
-  label is not empty
-    ? "data-title='"
-      ~ (label
-        |render
-        |t(
-          [],
-          {
-            langcode: "EN",
-            context: "data-title-attribute"
-          }
-        ))
-      ~ "'"
-  }}
-  href="{{ href|default("#") }}"
-  target="{{ target|default("_self") }}"
-  {{ extraAttribute|default(null) }}
->
-  {{ label|default("Link button label") }}
+<!-- TODO: Do not seem that this file is used anywhere. Check if it is really the case. -->
+
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasLabel = label is defined and label is not empty %}
+
+{# Default Variables (Props, Controls) #}
+{% set buttonColor = buttonColor|default("primary") %}
+{% set buttonSize = buttonSize|default("md") %}
+{% set class = class|default("") %}
+{% set href = href|default("#") %}
+{% set id = id|default("") %}
+{% set label = label|default("Link button label") %}
+{% set target = target|default("_self") %}
+
+{# "data-title" Translation Filter Object #}
+{% set dataTitleTranslationObject = {
+  langcode: "EN",
+  context: "data-title-attribute"
+} %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set buttonClasses = [
+  "btn",
+  "btn-" ~ buttonSize,
+  "btn-outline-" ~ buttonColor,
+  (class),
+] %}
+
+{# Objects of Attributes With Dynamic Elements #}
+{% set buttonAttributes = {
+  "href": href,
+  "id": id,
+  "class": buttonClasses|join(' ')|trim,
+  "target": target,
+  "data-title": (hasLabel ? label|render|t([],dataTitleTranslationObject)),
+} %}
+
+{# Template #}
+<a {{ macros.addAttributes(buttonAttributes, extraAttribute) }}>
+  {{ label }}
 </a>

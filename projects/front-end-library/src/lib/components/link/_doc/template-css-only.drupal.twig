@@ -1,6 +1,17 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+{% import _self as selfMacro %}
+
+{# Default Variables (Props, Controls) #}
 {% set isUnderline = isUnderline|json_parse %}
 {% set isDisabled = isDisabled|json_parse %}
 {% set reversed = reversed|json_parse %}
+
+{# Boolean Variables #}
+{% set isDisabledTrue = isDisabled is same as(true) %}
+{% set isDisabledDefaultTrue = isDisabled|default(true) is same as(true) %}
+{% set isHierarchyPrimary = hierarchy is defined and hierarchy is same as("primary") %}
+{% set isHierarchyDefaultPrimary = hierarchy|default("primary") is defined and hierarchy|default("primary") is same as("primary") %}
 
 {% set variants = [
   {
@@ -34,6 +45,21 @@
   }
 ] %}
 
+{# Arrays of Classes With Dynamic Elements #}
+{% set linkBaseClasses = [
+  "bf-link",
+  (class),
+] %}
+
+{# Macros #}
+{% macro hierarchyClasses(condition) %}
+  {{ condition is same as(true) ? "bf-link--primary" : "bf-link--native" }}
+{% endmacro %}
+{% macro disabledClasses(condition) %}
+  {{ condition is same as(true) ? "disabled" }}
+{% endmacro %}
+
+{# Template #}
 <div class="bf-color-bg-underground p-4">
   <p class="small mb-0">
     Apply classes <strong>.bflink.bf-link--native</strong> or <strong>
@@ -46,58 +72,76 @@
 
 <div class="template-container">
   {% for variant in variants %}
+
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set linkNativeClasses = linkBaseClasses|merge([
+      (selfMacro.disabledClasses(isDisabledTrue)),
+      (selfMacro.hierarchyClasses(isHierarchyPrimary)),
+    ]) %}
+    {% set linkNativeDisabledClasses = linkBaseClasses|merge([
+      (selfMacro.disabledClasses(isDisabledDefaultTrue)),
+      (selfMacro.hierarchyClasses(isHierarchyPrimary)),
+    ]) %}
+    {% set linkPrimaryClasses = linkBaseClasses|merge([
+      (selfMacro.disabledClasses(isDisabledTrue)),
+      (selfMacro.hierarchyClasses(isHierarchyDefaultPrimary)),
+    ]) %}
+    {% set linkPrimaryDisabledClasses = linkBaseClasses|merge([
+      (selfMacro.disabledClasses(isDisabledDefaultTrue)),
+      (selfMacro.hierarchyClasses(isHierarchyDefaultPrimary)),
+    ]) %}
+
     <div class="d-flex flex-column {{ variant.backgroundClass }}">
       <h1 class="h3 p-4">{{ variant._name }}</h1>
       <div class="d-flex justify-content-center align-items-start gap-5">
+
+        {# Native Links #}
         <div class="d-flex flex-column align-items-start">
           <p class="small flex-grow-1">Native</p>
 
           <a
-            href="#"
-            class="bf-link {{
-            hierarchy == "primary"
-              ? "bf-link--primary"
-              : "bf-link--native"
-            }} {{ isDisabled ? "disabled" : "" }} {{ class }}"
-            {{ isDisabled ? "aria-disabled='true' role='link'" }}
+            {{ macros.addAttributes({
+              "href": "#",
+              "class": linkNativeClasses|join(' ')|trim,
+              "aria-disabled": (isDisabledTrue ? "true"),
+              "role": (isDisabledTrue ? "link"),
+            }) }}
           >
             {{ label|default("CSS only") }}
           </a>
           <a
-            href="#"
-            class="bf-link {{
-            hierarchy == "primary"
-              ? "bf-link--primary"
-              : "bf-link--native"
-            }} {{ isDisabled|default(true) ? "disabled" : "" }} {{ class }}"
-            {{ isDisabled|default(true) ? "aria-disabled='true' role='link'" }}
+            {{ macros.addAttributes({
+              "href": "#",
+              "class": linkNativeDisabledClasses|join(' ')|trim,
+              "aria-disabled": (isDisabledDefaultTrue ? "true"),
+              "role": (isDisabledDefaultTrue ? "link"),
+            }) }}
           >
             {{ label|default("CSS only disabled") }}
           </a>
         </div>
 
+        {# Primary Links #}
         <div class="d-flex flex-column align-items-start">
           <p class="small flex-grow-1">Primary</p>
 
           <a
-            href="#"
-            class="bf-link {{
-            (hierarchy|default("primary")) == "primary"
-              ? "bf-link--primary"
-              : "bf-link--native"
-            }} {{ isDisabled ? "disabled" : "" }} {{ class }}"
-            {{ isDisabled ? "aria-disabled='true' role='link'" }}
+            {{ macros.addAttributes({
+              "href": "#",
+              "class": linkPrimaryClasses|join(' ')|trim,
+              "aria-disabled": (isDisabledTrue ? "true"),
+              "role": (isDisabledTrue ? "link"),
+            }) }}
           >
             {{ label|default("CSS only") }}
           </a>
           <a
-            href="#"
-            class="bf-link {{
-            (hierarchy|default("primary")) == "primary"
-              ? "bf-link--primary"
-              : "bf-link--native"
-            }} {{ isDisabled|default(true) ? "disabled" : "" }} {{ class }}"
-            {{ isDisabled|default(true) ? "aria-disabled='true' role='link'" }}
+            {{ macros.addAttributes({
+              "href": "#",
+              "class": linkPrimaryDisabledClasses|join(' ')|trim,
+              "aria-disabled": (isDisabledDefaultTrue ? "true"),
+              "role": (isDisabledDefaultTrue ? "link"),
+            }) }}
           >
             {{ label|default("CSS only disabled") }}
           </a>
