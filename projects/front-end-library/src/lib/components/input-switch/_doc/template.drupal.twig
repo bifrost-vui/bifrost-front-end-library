@@ -1,13 +1,17 @@
+{# Default Variables (Props, Controls) #}
 {% set isChecked = isChecked|json_parse %}
 {% set isDisabled = isDisabled|json_parse %}
 {% set isRequired = isRequired|json_parse %}
 {% set label = label|json_parse %}
 
-<div
-  class="d-flex flex-align-center-space-between gap-4 {{
-  _background
-  }} flex-wrap p-4"
->
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "d-flex flex-align-center-space-between flex-wrap p-4 gap-4",
+  (_background),
+] %}
+
+{# Template #}
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
   <div class="d-flex flex-column">
     <p class="text-center">Default</p>
     {% include "@bf-components/input-switch/twig/index.twig" with {
