@@ -1,11 +1,13 @@
-{% set name = name is defined and name is same as("business")
-  ? "videotron-business"
-  : "videotron"
-%}
+{# Boolean Variables #}
+{% set hasName = name is defined and name is not empty %}
+{% set isNameBusiness = hasName and name is same as("business") %}
+
+{# Default Variables (Props, Controls) #}
+{% set name = isNameBusiness ? "videotron-business" : "videotron" %}
 {% set size = size|default("medium") %}
 {% set langcode = langcode|default("en") %}
 
+{# Template #}
 <div class="bf-logo {{ class }}">
-  {# prettier-ignore #}
   {% include "@bf-components/logo/svg/logo-" ~ (name|lower) ~ "-" ~ (size|lower) ~ "-" ~ (langcode|lower) ~ ".svg" %}
 </div>
