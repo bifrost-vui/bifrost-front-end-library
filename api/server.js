@@ -1,31 +1,32 @@
-var Twig = require("twig"),
+var Twig = require('twig'),
+    twigDrupal = require('twig-drupal-filters'),
     express = require('express'),
     app = express(),
     path = require('path');
-    minify = require('html-minifier-terser').minify;
+minify = require('html-minifier-terser').minify;
+
+twigDrupal(Twig);
 
 const port = 3001;
-
 
 // -----------------------------------------------------------------
 // Expose Assets. Especially style.min.css
 
 app.use('/', express.static('public'));
 
-
 // -----------------------------------------------------------------
 // Expose Twig files
 
-app.set("twig options", {
+app.set('twig options', {
     allow_async: false, // Allow asynchronous compiling
     strict_variables: false,
     allowInlineIncludes: true,
     rethrow: true,
     namespaces: {
-        'bf-components' : path.resolve(__dirname, '../projects/front-end-library/src/lib/components'),
-        'bf-sections'   : path.resolve(__dirname, '../projects/front-end-library/src/lib/sections'),
-        'bf-utils'      : path.resolve(__dirname, '../projects/front-end-library/src/lib/utils'),
-    }
+        'bf-components': path.resolve(__dirname, '../projects/front-end-library/src/lib/components'),
+        'bf-sections': path.resolve(__dirname, '../projects/front-end-library/src/lib/sections'),
+        'bf-utils': path.resolve(__dirname, '../projects/front-end-library/src/lib/utils'),
+    },
 });
 
 app.set('views', 'projects/front-end-library/src/lib');
@@ -45,46 +46,14 @@ app.get('/api/twig', function (req, res) {
     });
 });
 
-
-// -----------------------------------------------------------------
-// Filters
-
-Twig.extendFilter('clean_class', function(value) {
-    return value;
-});
-
-Twig.extendFilter('clean_id', function(value) {
-    return value;
-});
-
-Twig.extendFilter('format_date', function(value) {
-    return value;
-});
-
-Twig.extendFilter('placeholder', function(value) {
-    return value;
-});
-
-Twig.extendFilter('price_one_line', function(value) {
-    return value;
-});
-
-Twig.extendFilter('render', function(value) {
-    return value;
-});
-
-Twig.extendFilter('safe_join', function(value) {
-    return value;
-});
-
-Twig.extendFilter('t', function(value) {
-    return value;
-});
-
 // -----------------------------------------------------------------
 // Custom filters
 
-Twig.extendFilter('json_parse', function(value) {
+Twig.extendFilter('price_one_line', function (value) {
+    return value;
+});
+
+Twig.extendFilter('json_parse', function (value) {
     try {
         return JSON.parse(value);
     } catch (e) {
@@ -92,10 +61,9 @@ Twig.extendFilter('json_parse', function(value) {
     }
 });
 
-
 // -----------------------------------------------------------------
 // Listen
 
 app.listen(port, () => {
-    console.log('Node.js Express server listening on port '+port);
+    console.log('Node.js Express server listening on port ' + port);
 });
