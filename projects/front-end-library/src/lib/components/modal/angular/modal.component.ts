@@ -35,6 +35,7 @@ export class ModalComponent implements OnInit {
     @Input() modalBodyClass: string;
 
     @Input() extraAttribute: string;
+    @Input() extraAttributeCloseButton: string;
 
     ngOnInit() {
         console.log('Modal', this);

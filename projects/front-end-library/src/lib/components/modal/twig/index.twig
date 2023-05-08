@@ -1,46 +1,101 @@
-{% set id = id|default(modalId) %}
-{% set class = class|default(modalClass) %}
-{% set hasBgImage = (bgImage is defined and bgImage)
-  or (bgMdImage is defined and bgMdImage)
-  or (bgLgImage is defined and bgLgImage)
-%}
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
 
-<div
-  class="modal modal-theme--{{ modalTheme|default(
-    "light"
-  ) }} {{ modalAnimation|default("fade") }} {{ class|default("") }}"
-  id="{{ id|default("") }}"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="{{ modalLabelledBy|default("") }}"
-  aria-hidden="true"
-  {{ extraAttribute|default(null) }}
->
+{# Boolean Variables #}
+{% set hasBgImage = bgImage is defined and bgImage is not empty %}
+{% set hasBgMdImage = bgMdImage is defined and bgMdImage is not empty %}
+{% set hasBgLgImage = bgLgImage is defined and bgLgImage is not empty %}
+{% set hasModalBodyScrollContainer = modal_body_scroll_container is defined and modal_body_scroll_container is not empty %}
+{% set hasModalBodySubcontainer = modal_body_subcontainer is defined and modal_body_subcontainer is not empty %}
+{% set hasModalBudy = modalBudy is defined and modalBudy is not empty %}
+{% set hasModalFooter = modal_footer is defined and modal_footer is not empty %}
+{% set hasModalHeader = modal_header is defined and modal_header is not empty %}
+{% set hasModalSubtitle = modalSubtitle is defined and modalSubtitle is not empty %}
+{% set isBlockModalBodyScrollContainerDefined = block("modal_body_scroll_container") is defined %}
+{% set isBlockModalBodySubcontainerDefined = block("modal_body_subcontainer") is defined %}
+{% set isBlockModalFooterDefined = block("modal_footer") is defined %}
+{% set isBlockModalHeaderDefined = block("modal_header") is defined %}
+
+{# Boolean Variables - ORDER IS IMPORTANT #}
+{% set hasBgImage = hasBgImage or hasBgMdImage or hasBgLgImage %}
+
+{# Default Variables (Props, Controls) #}
+{# --- modalClass is deprecated, but in case of legacy support --- #}
+{% set class = class|default(modalClass)|default("") %}
+{% set extraAttribute = extraAttribute|default({}) %}
+{# ---
+  extraAttributeX was present in file, but there was no control variable declared,
+  so I keep it in case of legacy support.
+--- #}
+{% set extraAttributeCloseButton = extraAttributeCloseButton|default(extraAttributeX)|default({}) %}
+{# --- modalId is deprecated, but in case of legacy support --- #}
+{% set id = id|default(modalId)|default("") %}
+{% set modalAnimation = modalAnimation|default("fade") %}
+{% set modalBodyClass = modalBodyClass|default("") %}
+{% set modalContentCLass = modalContentCLass|default("") %}
+{% set modalHeaderClass = modalHeaderClass|default("") %}
+{% set modalLabelledBy = modalLabelledBy|default("") %}
+{% set modalSize = modalSize|default("lg") %}
+{% set modalTheme = modalTheme|default("light") %}
+{% set modalTitle = modalTitle|default("") %}
+
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set modalContainerClasses = [
+  "modal",
+  "modal-theme--" ~ modalTheme,
+  modalAnimation,
+  (class),
+] %}
+{% set modalDialogClasses = [
+  "modal-dialog",
+  "modal-" ~ modalSize,
+  "modal-dialog-centered",
+] %}
+{% set modalContentClasses = [
+  "modal-content",
+  "position-relative",
+  modalContentCLass,
+] %}
+{% set modalHeaderClasses = [
+  "modal-header",
+  "border-bottom--0",
+  modalHeaderClass,
+] %}
+{% set modalBodyClasses = [
+  "modal-body pt-3",
+  modalBodyClass,
+] %}
+
+{# Objects of Attributes With Dynamic Elements #}
+{% set modalContainerAttributes = {
+  "class": modalContainerClasses|join(' ')|trim,
+  "id": id,
+  "tabindex": "-1",
+  "role": "dialog",
+  "aria-labelledby": modalLabelledBy,
+  "aria-hidden": "true",
+} %}
+{% set modalContentAttributes = {
+  "class": modalContentClasses|join(' ')|trim,
+  "data-bg": (hasBgImage ? bgImage),
+  "data-md-bg": (hasBgImage ? bgMdImage|default(bgImage)),
+  "data-lg-bg": (hasBgImage ? bgLgImage|default(bgImage)),
+} %} {# TODO: "data-bg", "data-md-bg" and "data-lg-bg" doesn't seem to be used anywhere. Will have to check that eventually. #}
+
+{# Template #}
+<div {{ macros.addAttributes(modalContainerAttributes, extraAttribute) }}>
   <div
-    class="modal-dialog modal-{{ modalSize|default(
-      "lg"
-    ) }} modal-dialog-centered"
+    class="{{ modalDialogClasses|join(' ')|trim }}"
     role="document"
   >
-    <div
-      class="modal-content position-relative {{ modalContentCLass|default(
-        ""
-      ) }}"
-      {{
-      hasBgImage
-        ? "data-bg='" ~ (bgImage|default("")) ~ "' data-md-bg='"
-          ~ (bgMdImage|default(bgImage))
-          ~ "' data-lg-bg='"
-          ~ (bgLgImage|default(bgImage))
-          ~ "'"
-      }}
-    >
+    <div {{ macros.addAttributes(modalContentAttributes) }}>
       <button
         type="button"
         class="close m-2 m-md-3 m-lg-4 p-3 position-absolute--top-right"
         data-dismiss="modal"
         aria-label="X"
-        {{ extraAttributeX|default(null) }}
+        {{ macros.addAttributes({}, extraAttributeCloseButton) }}
       >
         <span aria-hidden="true">
           {% include "@bf-components/icon/twig/index.twig" with {
@@ -50,42 +105,46 @@
         </span>
       </button>
 
-      <div
-        class="modal-header border-bottom--0 {{ modalHeaderClass|default("") }}"
-      >
-        {% if block("modal_header") is defined %}
+      <div class="{{ modalHeaderClasses|join(' ')|trim }}">
+        {% if isBlockModalHeaderDefined %}
           {{ block("modal_header") }}
-        {% elseif modal_header is defined and modal_header %}
+        {% elseif hasModalHeader %}
           {{ modal_header|raw }}
         {% else %}
           {% block modal_header %}
-            <h2 class="mb-2 w-100 h2">{{ modalTitle|default("") }}</h2>
-            {% if modalSubtitle is defined and modalSubtitle %}
-              <p class="mb-0">{{ modalSubtitle }}</p>
+            <h2 class="mb-2 w-100 h2">
+              {{ modalTitle }}
+            </h2>
+            {% if hasModalSubtitle %}
+              <p class="mb-0">
+                {{ modalSubtitle }}
+              </p>
             {% endif %}
           {% endblock %}
         {% endif %}
       </div>
 
-      <div class="modal-body pt-3 {{ modalBodyClass|default("") }}">
+      <div class="{{ modalBodyClasses|join(' ')|trim }}">
         {% block modal_body %}
           {# TODO : make it an option to be scrollable or not #}
-          {% if block("modal_body_subcontainer") is defined %}
+          {% if isBlockModalBodySubcontainerDefined %}
             {{ block("modal_body_subcontainer") }}
-          {% else %}
+          {% elseif hasModalBodySubcontainer %}
             {{ modal_body_subcontainer|raw }}
           {% endif %}
 
-          {% if block("modal_body_scroll_container") is defined %}
+          {% if isBlockModalBodyScrollContainerDefined %}
             <div class="modal-body__scroll-container">
               {{ block("modal_body_scroll_container") }}
             </div>
-          {% elseif modalBudy is defined and modalBudy is not empty %}
+          {% elseif hasModalBudy %}
             {% block modal_body_scroll_container %}
               {# TODO - rename properly #}
-              <p>{{ modalBudy }}</p>
+              <p>
+                {{ modalBudy }}
+              </p>
             {% endblock %}
-          {% else %}
+          {% elseif hasModalBodyScrollContainer %}
             <div class="modal-body__scroll-container">
               {{ modal_body_scroll_container|raw }}
             </div>
@@ -93,10 +152,14 @@
         {% endblock %}
       </div>
 
-      {% if block("modal_footer") is defined %}
-        <div class="modal-footer">{{ block("modal_footer") }}</div>
-      {% elseif modal_footer is defined and modal_footer is not empty %}
-        <div class="modal-footer">{{ modal_footer|raw }}</div>
+      {% if isBlockModalFooterDefined %}
+        <div class="modal-footer">
+          {{ block("modal_footer") }}
+        </div>
+      {% elseif hasModalFooter %}
+        <div class="modal-footer">
+          {{ modal_footer|raw }}
+        </div>
       {% endif %}
     </div>
   </div>
