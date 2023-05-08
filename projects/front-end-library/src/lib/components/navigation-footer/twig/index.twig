@@ -1,11 +1,27 @@
-<footer
-  class="bf-footer {{ reversed|default(false) ? "reversed" }} {{
-  isReduced|default(false)
-    ? "bf-footer--reduced"
-  }}"
-  {{ theme is defined ? "data-theme='" ~ theme ~ "'" }}
->
-  {% if isReduced is not defined or isReduced is not same as(true) %}
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasTheme = theme is defined and theme is not empty %}
+{% set isReduced = isReduced|default(false) is same as(true) %}
+{% set isReversed = reversed|default(false) is same as(true) %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set footerClasses = [
+  "bf-footer",
+  (isReduced ? "bf-footer--reduced"),
+  (isReversed ? "reversed"),
+] %}
+
+{# Objects of Attributes With Dynamic Elements #}
+{% set footerAttributes = {
+  "class": footerClasses|join(' ')|trim,
+  "data-theme": (hasTheme ? theme)
+} %}
+
+{# Template #}
+<footer {{ macros.addAttributes(footerAttributes) }}>
+  {% if isReduced is same as(false) %}
     {% include "@bf-components/navigation-footer/twig/footer-main.twig" %}
   {% endif %}
   {% include "@bf-components/navigation-footer/twig/footer-legal.twig" %}
