@@ -1,7 +1,7 @@
 {#
  # Print HTML attributes on a tag
  #
- # @param {object} attributes - HTML attributes
+ # @param {object} htmlAttributes - HTML attributes
  # @param {string|object} extraAttributes - HTML attributes
  #
  # Use example :
@@ -14,33 +14,33 @@
  # </div>
  #
 #}
-{% macro addAttributes(attributes, extraAttributes = null) %}
+{% macro addAttributes(htmlAttributes, extraAttributes = null) %}
 
   {# Boolean Variables #}
-  {% set hasAttributes = attributes is defined and attributes is not empty %}
+  {% set hasAttributes = htmlAttributes is defined and htmlAttributes is not empty %}
   {% set hasExtraAttributes = extraAttributes is defined and extraAttributes is not empty %}
   {% set isExtraAttributesIterable = extraAttributes is iterable %}
 
   {# Default variables #}
-  {% set attributes = attributes|default({}) %}
+  {% set htmlAttributes = htmlAttributes|default({}) %}
   {% set compiledAttributes = [] %}
 
-  {# Create an array of attributes #}
+  {# Create an array of HTML attributes #}
   {% if hasAttributes or hasExtraAttributes %}
 
-    {# If there is "extraAttributes", we merge it with "attributes" #}
+    {# If there is "extraAttributes", we merge it with "htmlAttributes" #}
     {% if hasExtraAttributes %}
       {% if isExtraAttributesIterable %}
         {# is an object #}
-        {% set attributes = attributes|merge(extraAttributes) %}
+        {% set htmlAttributes = htmlAttributes|merge(extraAttributes) %}
       {% else %}
         {# is a string #}
-        {% set attributes = attributes|merge({"bfString": extraAttributes}) %}
+        {% set htmlAttributes = htmlAttributes|merge({"bfString": extraAttributes|render}) %}
       {% endif %}
     {% endif %}
 
-    {# Format attributes object #}
-    {% for attrName, attrValue in attributes %}
+    {# Format htmlAttributes object #}
+    {% for attrName, attrValue in htmlAttributes %}
       {# If an attribute has no value, this attribute won't be printed #}
       {% if attrValue is not empty %}
         {#
@@ -51,9 +51,9 @@
           Else, it is a normal key and value
         #}
         {% if attrName == "bfString" %}
-          {% set compiledAttributes = compiledAttributes|merge([attrValue|raw]) %}
+          {% set compiledAttributes = compiledAttributes|merge([attrValue|render|raw]) %}
         {% else %}
-          {% set compiledAttributes = compiledAttributes|merge([attrName ~ '="' ~ attrValue ~ '"']) %}
+          {% set compiledAttributes = compiledAttributes|merge([attrName ~ '="' ~ attrValue|render|raw ~ '"']) %}
         {% endif %}
       {% endif %}
     {% endfor %}
