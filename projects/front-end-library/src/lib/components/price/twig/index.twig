@@ -1,7 +1,52 @@
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set class = class|default("") %}
+{% set dollar = dollar|default(0)|number_format %}
+{% set dollarClass = dollarClass|default("") %}
 {% set language = language|default("en") %}
+{% set size = size|default("small") %}
+
+{# Boolean Variables #}
+{% set hasAsterisk = hasAsterisk|default(false) is same as(true) %}
+{% set hasCent = cent is defined and (cent is not empty and cent is not same as("NaN")) %}
+{% set hasDashed = dashed is defined and dashed is not empty %}
+{% set hasDetails = details is defined and details is not empty %}
+{% set hasMessage = message is defined and message is not empty %}
+{% set hasPromotion = promotion is defined and promotion is not empty %}
+{% set hasPromotionDirection = promotion.direction is defined and promotion.direction is not empty %}
+{% set hasPromotionPriceSaved = promotion.priceSaved is defined and promotion.priceSaved is not empty %}
+{% set hasPromotionPriceStriked = promotion.priceStriked is defined and promotion.priceStriked is not empty %}
+{% set hasPromotionSavedLabel = promotion.savedLabel is defined and promotion.savedLabel is not empty %}
+{% set hasPromotionSuperscript = promotion.superscript is defined and promotion.superscript is not empty %}
+{% set hasPromotionTitle = promotion.title is defined and promotion.title is not empty %}
+{% set hasSaved = saved is defined and saved is not empty %}
+{% set hasSavedLabel = savedLabel is defined and savedLabel is not empty %}
+{% set hasUpfrontDollar = upfront.dollar is defined and upfront.dollar is not empty %}
+{% set hasUpfrontLabel = upfront.label is defined and upfront.label is not empty %}
+{% set hasUpperTitle = upperTitle is defined and upperTitle is not empty %}
+{% set isFullWidth = fullWidth|default(false) is same as(true) %}
+{% set isLanguageEN = language is same as("en") %}
+{% set isLanguageFR = language is same as("fr") %}
+{% set isPromotionDirectionHorizontal = hasPromotionDirection and promotion.direction is same as("horizontal") %}
+
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
+{% set cent = hasCent ? cent|number_format : "00" %}
+{% set details = details|default("")|raw %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set priceContainerClasses = [
+  "bf-price",
+  "bf-price--" ~ size,
+  "d-flex flex-column",
+  (isFullWidth ? "w-100"),
+  (class),
+] %}
+{% set promotionContainerClasses = [
+  "promotion-container",
+  (isPromotionDirectionHorizontal ? "flex-row justify-content-between" : "flex-column"),
+] %}
 
 {# Keep backward compatibility #}
-{% if dashed is defined or saved is defined or savedLabel is defined %}
+{% if hasDashed or hasSaved or hasSavedLabel %}
   {% set promotion = promotion|default({}) %}
   {% set promotion =
     promotion|merge({
@@ -12,116 +57,118 @@
   %}
 {% endif %}
 
-<div
-  class="bf-price bf-price--{{ size|default("small") }} d-flex flex-column
-    {{
-  fullWidth is defined and fullWidth
-    ? "w-100"
-  }}
-    {{ class|default("") }}"
->
-  {% if upperTitle is defined and upperTitle %}
-    <p class="small bf-color-neutral-secondary mb-1">{{ upperTitle }}</p>
+{# Template #}
+<div class="{{ priceContainerClasses|join(' ')|trim }}">
+  {% if hasUpperTitle %}
+    <p class="small bf-color-neutral-secondary mb-1">
+      {{ upperTitle }}
+    </p>
   {% endif %}
 
-  {% if (upfront is defined and upfront and upfront.dollar) or upfront.label %}
+  {% if hasUpfrontDollar or hasUpfrontLabel %}
     <p class="bf-price__upfront mb-1">
       {% apply spaceless %}
-      {% if language == "en" %}
-        {# prettier-ignore #}
-        <span class="bf-text-display-sub-small" style="padding-right: 2px">$</span>
-      {% endif %}
-      {# TODO: Reduce the line-height of bf-text-interface-large. #}
-      {# prettier-ignore #}
-      <span class="bf-text-interface-large">{{ upfront.dollar|default("0") }}</span>
-      {% if language == "fr" %}
-        {# prettier-ignore #}
-        <span class="bf-text-display-sub-small" style="padding-left: 2px">$</span>
-      {% endif %}
-      {# prettier-ignore #}
-      <span class="bf-text-display-sub-small pl-1">{{ upfront.label|default("upfront") }}</span>
+        {% if isLanguageEN %}
+          <span
+            class="bf-text-display-sub-small"
+            style="padding-right: 2px"
+          >$</span>
+        {% endif %}
+        {# TODO: Reduce the line-height of bf-text-interface-large. #}
+        <span class="bf-text-interface-large">
+          {{- upfront.dollar|default("0") -}}
+        </span>
+        {% if isLanguageFR %}
+          <span
+            class="bf-text-display-sub-small"
+            style="padding-left: 2px"
+          >$</span>
+        {% endif %}
+        <span class="bf-text-display-sub-small pl-1">
+          {{- upfront.label|default("upfront") -}}
+        </span>
       {% endapply %}
     </p>
   {% endif %}
 
-  <div
-    class="promotion-container {{
-    promotion.direction is defined and promotion.direction == "horizontal"
-      ? "flex-row justify-content-between"
-      : "flex-column"
-    }}"
-  >
+  <div class="{{ promotionContainerClasses|join(' ')|trim }}">
     <div class="bf-price__infos">
-      {% if language == "en" %}
+      {% if isLanguageEN %}
         <sup class="bf-price__dollarsign mt-n1">$</sup>
       {% endif %}
 
       <div
         class="d-flex"
-        aria-label="$ {{ dollar|default("0") }}.{{ cent|default(
-          "00"
-        ) }} {{ details|default("")|raw }}"
+        aria-label="$ {{ dollar }}.{{ cent }} {{ details }}"
         role="contentinfo"
       >
         <span
-          class="bf-price__dollar {{ dollarClass|default("") }}"
+          class="bf-price__dollar {{ dollarClass }}"
           role="contentinfo"
         >
-          {{ dollar|default("00") }}
+          {{ dollar }}
         </span>
 
         <div class="d-block flex-column justify-content-between">
           <div class="d-flex align-items-start">
-            {% if cent is defined and cent %}
-              <span class="bf-price__cent ml-1">{{ cent|default("00") }}</span>
+            {% if hasCent %}
+              <span class="bf-price__cent ml-1">
+                {{ cent }}
+              </span>
             {% endif %}
-            {% if language == "fr" %}
+            {% if isLanguageFR %}
               <sup class="bf-price__dollarsign ml-1">$</sup>
             {% endif %}
-            {% if hasAsterisk is defined and hasAsterisk %}
+            {% if hasAsterisk %}
               <sup class="bf-price__asterisk">*</sup>
             {% endif %}
           </div>
 
-          {% if details is defined and details %}
-            <span class="bf-price__details ml-1">{{ details|raw }}</span>
+          {% if hasDetails %}
+            <span class="bf-price__details ml-1">
+              {{ details }}
+            </span>
           {% endif %}
         </div>
       </div>
     </div>
 
-    {% if promotion is defined and promotion %}
+    {% if hasPromotion %}
       <div class="d-flex flex-column">
-        {% if promotion.title is defined and promotion.title %}
-          <p class="small mb-1">{{ promotion.title }}</p>
+        {% if hasPromotionTitle %}
+          <p class="small mb-1">
+            {{ promotion.title }}
+          </p>
         {% endif %}
         <div class="d-inline-flex">
-          {# prettier-ignore #}
-          {% if promotion.priceStriked is defined and promotion.priceStriked is not empty %}
+          {% if hasPromotionPriceStriked %}
             <p class="small text-strike mr-2 mb-0">
-              {# prettier-ignore-start #}
-              {% if language == "en" %}${% endif %}{{ promotion.priceStriked }}{% if language == "fr" %}&nbsp;${% endif %}
-              {# prettier-ignore-end #}
+              {% if isLanguageEN %}${% endif %}
+              {{- promotion.priceStriked -}}
+              {% if isLanguageFR %}&nbsp;${% endif %}
             </p>
           {% endif %}
 
-          {# prettier-ignore #}
-          {% if promotion.savedLabel is defined or promotion.priceSaved is defined or promotion.superscript is defined %}
+          {% if hasPromotionSavedLabel or hasPromotionPriceSaved or hasPromotionSuperscript %}
             <p class="small bf-display-highlight mb-0">
-              {% if promotion.savedLabel is defined and promotion.savedLabel %}
-                <span class="mr-1">{{ promotion.savedLabel }}</span>
+              {% if hasPromotionSavedLabel %}
+                <span class="mr-1">
+                  {{ promotion.savedLabel }}
+                </span>
               {% endif %}
               <span class="price-superscript">
-                {# prettier-ignore-start #}
-                {% if promotion.priceSaved is defined and promotion.priceSaved is not empty %}
+                {% if hasPromotionPriceSaved %}
                   <span class="font-weight-bold">
-                    {% if language == "en" %}${% endif %}{{ promotion.priceSaved }}{% if language == "fr" %}&nbsp;${% endif %}
+                    {% if isLanguageEN %}${% endif %}
+                    {{- promotion.priceSaved -}}
+                    {% if isLanguageFR %}&nbsp;${% endif %}
                   </span>
                 {% endif %}
-                {% if promotion.superscript is defined and promotion.superscript is not empty %}
-                  <sup class="bf-price__superscript">{{ promotion.superscript }}</sup>
+                {% if hasPromotionSuperscript %}
+                  <sup class="bf-price__superscript">
+                    {{ promotion.superscript }}
+                  </sup>
                 {% endif %}
-                {# prettier-ignore-end #}
               </span>
             </p>
           {% endif %}
@@ -130,7 +177,7 @@
     {% endif %}
   </div>
 
-  {% if message is defined and message is not empty %}
+  {% if hasMessage %}
     <p class="small bf-color-neutral-secondary mb-0 mt-1">
       {{ message|price_one_line|raw }}
     </p>
