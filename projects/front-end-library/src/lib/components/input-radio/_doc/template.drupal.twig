@@ -88,6 +88,45 @@
             id: options[3].id ~ loopIndexSuffix
           })
         ] %}
+      {% elseif (options|length) == 5 %}
+        {% set options = [
+          options[0]|merge({
+            id: options[0].id ~ loopIndexSuffix
+          }),
+          options[1]|merge({
+            id: options[1].id ~ loopIndexSuffix
+          }),
+          options[2]|merge({
+            id: options[2].id ~ loopIndexSuffix
+          }),
+          options[3]|merge({
+            id: options[3].id ~ loopIndexSuffix
+          }),
+          options[4]|merge({
+            id: options[4].id ~ loopIndexSuffix
+          })
+        ] %}
+      {% elseif (options|length) == 6 %}
+        {% set options = [
+          options[0]|merge({
+            id: options[0].id ~ loopIndexSuffix
+          }),
+          options[1]|merge({
+            id: options[1].id ~ loopIndexSuffix
+          }),
+          options[2]|merge({
+            id: options[2].id ~ loopIndexSuffix
+          }),
+          options[3]|merge({
+            id: options[3].id ~ loopIndexSuffix
+          }),
+          options[4]|merge({
+            id: options[4].id ~ loopIndexSuffix
+          }),
+          options[5]|merge({
+            id: options[5].id ~ loopIndexSuffix
+          })
+        ] %}
       {% endif %}
 
       {% include "@bf-components/input-radio/twig/index.twig" with _variantProps %}
