@@ -1,14 +1,46 @@
-{% set id = id|default(inputId)|default("") %}
-{% set orientation = orientation|default("horizontal") %}
-{% set fit = fit|default("content") %}
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
 
-{% set hasVisual = (iconName is defined and iconName)
-  or (image.src is defined and image.src and image.alt is defined)
-%}
-{% set hasFooter = orientation is same as("horizontal")
-  and ((footer.description is defined and footer.description)
-    or (footer.link is defined and footer.link))
-%}
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set fit = fit|default("content") %}
+{% set orientation = orientation|default("horizontal") %}
+
+{# Boolean Variables #}
+{% set hasAriaLabel = ariaLabel is defined and ariaLabel is not empty %}
+{% set hasContent = content is defined and content is not empty %}
+{% set hasDescription = description is defined and description is not empty %}
+{% set hasFooterDescription = footer.description is defined and footer.description is not empty %}
+{% set hasFooterIcon = footer.iconName is defined and footer.iconName is not empty %}
+{% set hasFooterImage = footer.image is defined and footer.image is not empty %}
+{% set hasFooterImageSrc = footer.image.src is defined and footer.image.src is not empty %}
+{% set hasFooterLink = footer.link is defined and footer.link is not empty %}
+{% set hasFooterLinkLabel = footer.link.label is defined and footer.link.label is not empty %}
+{% set hasIcon = iconName is defined and iconName is not empty %}
+{% set hasInfo = info is defined and info is not empty %}
+{% set hasImageSrc = image.src is defined and image.src is not empty %}
+{% set hasImageAlt = image.alt is defined and image.alt is not empty %}
+{% set hasLabel = label is defined and label is not empty %}
+{% set isBlockContentDefined = block("content") is defined %}
+{% set isChecked = isChecked|default(false) is same as(true) %}
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isFitContainer = fit is same as("container") %}
+{% set isFitContent = fit is same as("content") %}
+{% set isInvalid = isInvalid|default(false) is same as(true) %}
+{% set isOrientationHorizontal = orientation is same as("horizontal") %}
+{% set isOrientationVertical = orientation is same as("vertical") %}
+
+{# Boolean Variables - ORDER IS IMPORTANT #}
+{% set isFooterImageValid = hasFooterImage and hasFooterImageSrc %}
+{% set isImageValid = hasImageSrc and hasImageAlt %}
+{% set hasVisual = hasIcon or isImageValid %}
+{% set hasFooter = isOrientationHorizontal and (hasFooterDescription or hasFooterLink) %}
+
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
+{% set class = class|default("") %}
+{% set extraAttribute = extraAttribute|default({}) %}
+{% set id = id|default(inputId)|default("") %}
+{% set type = type|default("checkbox") %}
+{% set value = value|default("") %}
 
 {# striptag filter #}
 {% set inlineTags = "<br><em><i><strong><b><sup><sub>" %}
@@ -16,94 +48,88 @@
   "<div><p><ol><ul><li><span><br><em><i><strong><b><sup><sub>"
 %}
 
-<div
-  class="bf-selection-tile bf-selection-tile--{{
-  orientation
-  }} bf-selection-tile--fit-{{ fit }} {{
-  isInvalid|default(false)
-    ? "bf-selection-tile--invalid"
-  }} {{ isChecked|default(false) ? "checked" : "" }} {{ class|default(null) }}"
->
+{# Arrays of Classes With Dynamic Elements #}
+{% set selectionTileClasses = [
+  "bf-selection-tile",
+  "bf-selection-tile--" ~ orientation,
+  "bf-selection-tile--fit-" ~ fit,
+  (isInvalid ? "bf-selection-tile--invalid"),
+  (isChecked ? "checked"),
+  (class),
+] %}
+{% set selectionTileContentClasses = [
+  "bf-selection-tile__content",
+  (hasVisual is same as(false) ? "bf-selection-tile__no-visual"),
+] %}
+
+{# Template #}
+<div class="{{ selectionTileClasses|join(' ')|trim }}">
   <div
-    class="bf-selection-tile__inner {{
-    isDisabled|default(false)
-      ? "disabled"
-    }}"
+    class="
+      bf-selection-tile__inner
+      {{ isDisabled ? "disabled" }}
+    "
   >
     <div class="bf-selection-tile__control">
-      {% apply spaceless %}
-      <input
-        type="{{ type|default("checkbox") }}"
-        class="bf-selection-tile__input"
-        id="{{ id }}"
-        name="{{ name }}"
-        value="{{ value|default("") }}"
-        {{
-        ariaLabel is defined and ariaLabel
-          ? "aria-label='" ~ ariaLabel ~ "'"
-        }}
-        {{ isDisabled ? "disabled" : "" }}
-        {{ isChecked|default(false) ? "checked" : "" }}
-        {{ isRequired ? "required" : "" }}
-        {{ extraAttribute|default(null) }}
-      />
-      {% endapply %}
-      <label
-        for="{{ id }}"
-        class="bf-selection-tile__label"
-        {{ ariaLabel is defined and ariaLabel ? "title='" ~ ariaLabel ~ "'" }}
-      >
+      <input {{ macros.addAttributes({
+        "type": type,
+        "class": "bf-selection-tile__input",
+        "id": id,
+        "name": name,
+        "value": value,
+        "aria-label": (hasAriaLabel ? ariaLabel),
+        "disabled": (isDisabled ? "disabled"),
+        "checked": (isChecked ? "checked"),
+        "required": (isRequired ? "required"),
+      }, extraAttribute) }}/>
+      <label {{ macros.addAttributes({
+        "for": id,
+        "class": "bf-selection-tile__label",
+        "title": (hasAriaLabel ? ariaLabel),
+      }) }}>
         <span class="bf-checkbox__control"></span>
       </label>
     </div>
 
     <div class="bf-selection-tile__block">
-      {% if block("content") is defined %}
+      {% if isBlockContentDefined %}
         {{ block("content") }}
-      {% elseif content is defined and content %}
+      {% elseif hasContent %}
         {{ content }}
       {% else %}
-        <div
-          class="bf-selection-tile__content {{
-          hasVisual
-            ? ""
-            : "bf-selection-tile__no-visual"
-          }}"
-        >
+        <div class="{{ selectionTileContentClasses|join(' ')|trim }}">
           <div class="bf-selection-tile__body">
             {% if hasVisual %}
               <div class="bf-selection-tile__visual">
-                {% set isImageValid = image.src is defined
-                  and image.src
-                  and image.alt is defined
-                %}
-                {% if iconName is defined and iconName %}
+                {% if hasIcon %}
                   {% include "@bf-components/icon/twig/index.twig" with {
                     name: iconName,
-                    size: orientation == "vertical" and fit == "container"
-                      ? "large"
-                      : "medium"
+                    size: isOrientationVertical and isFitContainer ? "large" : "medium"
                   } only %}
                 {% elseif isImageValid %}
-                  <img
-                    class="{{ image.class }}"
-                    src="{{ image.src }}"
-                    alt="{{ image.alt }}"
-                    loading="lazy"
-                  />
+                  <img {{ macros.addAttributes({
+                    "class": image.class,
+                    "src": image.src,
+                    "alt": image.alt,
+                    "loading": "lazy",
+                  }) }}/>
                 {% endif %}
               </div>
             {% endif %}
 
             {# prettier-ignore #}
-            {% if (label is defined and label) or (description is defined and description) %}
+            {% if hasLabel or hasDescription %}
               <div class="bf-selection-tile__text">
-                {% if label is defined and label %}
-                  <p class="p-0 m-0 text-break"><strong>{{ label }}</strong></p>
+                {% if hasLabel %}
+                  <p class="p-0 m-0 text-break">
+                    <strong>{{ label }}</strong>
+                  </p>
                 {% endif %}
 
-                {% if description is defined and description %}
-                  <p class="p-0 m-0 text-break">{{ description }}</p>
+                {% if hasDescription %}
+                  <p class="p-0 m-0 text-break">
+                    {{ description }}
+                  </p>
                 {% endif %}
               </div>
             {% endif %}
@@ -112,7 +138,7 @@
 
         {# ---------Vertical Tiles Bottom | Horizontal Tiles Right Side ------------ #}
         {# prettier-ignore #}
-        {% if (info is defined and info) or (orientation == "vertical" and fit == "container") %}
+        {% if hasInfo or (isOrientationVertical and isFitContainer) %}
           <div class="bf-selection-tile__bottom">
             <div class="bf-selection-tile__text">
               <p class="p-0 m-0 text-break">
@@ -128,31 +154,26 @@
   {% if hasFooter %}
     <div class="bf-selection-tile__footer p-3">
       <div class="bf-text small bf-color-neutral-secondary">
-        {% if footer.description is defined and footer.description %}
+        {% if hasFooterDescription %}
           {{ footer.description|striptags(allowedTags)|raw }}
         {% endif %}
 
-        {# prettier-ignore #}
-        {% if footer.link is defined and footer.link.label is defined and footer.link.label %}
+        {% if hasFooterLink and hasFooterLinkLabel %}
           {% include "@bf-components/link/twig/index.twig" with footer.link only %}
         {% endif %}
       </div>
 
-      {% set isFooterImageValid = footer.image is defined
-        and footer.image.src is defined
-        and footer.image.src
-      %}
-      {% if footer.iconName is defined and footer.iconName %}
+      {% if hasFooterIcon %}
         {% include "@bf-components/icon/twig/index.twig" with {
           name: footer.iconName,
           size: "medium"
         } only %}
       {% elseif isFooterImageValid %}
-        <img
-          src="{{ footer.image.src }}"
-          alt="{{ footer.image.alt|default("") }}"
-          loading="lazy"
-        />
+        <img {{ macros.addAttributes({
+          "src": footer.image.src,
+          "alt": footer.image.alt,
+          "loading": "lazy",
+        }) }}/>
       {% endif %}
     </div>
   {% endif %}
