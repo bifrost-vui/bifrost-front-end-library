@@ -1,5 +1,15 @@
-<div class="progress-container small {{ class|default("") }}">
-  <div class="progress progress--multi mb-3 {{ progressClass|default("") }}">
+
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set legendClass = legendClass|default("") %}
+{% set progressClass = progressClass|default("") %}
+
+
+
+{# Template #}
+<div class="progress-container small {{ class }}">
+  <div class="progress progress--multi mb-3 {{ progressClass }}">
     {% for data in progressDatas %}
       <div
         class="progress-bar {{ data.cssClass }}"
@@ -12,13 +22,15 @@
     {% endfor %}
   </div>
 
-  <div class="progress-legend d-flex flex-wrap {{ legendClass|default("") }}">
+  <div class="progress-legend d-flex flex-wrap {{ legendClass }}">
     {% for data in progressDatas %}
       <div class="mr-4 d-flex">
         <span class="color-square mr-2 {{ data.cssClass }}"></span>
 
-        <div class="">
-          <p class="font-weight-bold mb-0">{{ data.label }}</p>
+        <div>
+          <p class="font-weight-bold mb-0">
+            {{ data.label }}
+          </p>
           {% if data.hasNoDetails is not defined %}
             <p class="mb-0">
               {{ data.currentValue ~ "g/" ~ data.maxValue ~ "g" }}
