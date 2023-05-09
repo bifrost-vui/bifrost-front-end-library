@@ -1,8 +1,23 @@
-{% if label is defined and label %}
-  <p
-    class="bf-status bf-status-{{ color|default("") }} {{ class|default("") }}"
-  >
-    <span class="visuallyInvisible" role="status">{{ color }}</span>
+{# Boolean Variables #}
+{% set hasLabel = label is defined and label is not empty %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set color = color|default("") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set statusClasses = [
+  "bf-status",
+  "bf-status-" ~ color,
+  (class),
+] %}
+
+{# Template #}
+{% if hasLabel %}
+  <p class="{{ statusClasses|join(' ')|trim }}" >
+    <span class="visuallyInvisible" role="status">
+      {{ color }}
+    </span>
     {{ label }}
   </p>
 {% endif %}
