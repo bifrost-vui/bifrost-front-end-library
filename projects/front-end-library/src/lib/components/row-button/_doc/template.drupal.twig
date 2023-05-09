@@ -1,8 +1,16 @@
+{# Default Variables (Props, Controls) #}
 {% set extraAttribute = extraAttribute|json_parse %}
 {% set image = image|json_parse %}
 {% set hasChevron = hasChevron|json_parse %}
 {% set reversed = reversed|json_parse %}
 
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "d-flex flex-column flex-sm-row justify-content-center minh-100",
+  (reversed ? "reversed bf-color-bg-ground"),
+] %}
+
+{# Template #}
 <div class="bf-color-bg-underground p-4">
   <p class="small mb-0">
     <b>Note:</b> Wrap your <b>Row Buttons</b> with CSS classes <b>
@@ -11,20 +19,19 @@
   </p>
 </div>
 
-<div
-  class="d-flex flex-column flex-sm-row justify-content-center minh-100 {{
-  reversed
-    ? "reversed bf-color-bg-ground"
-  }}"
->
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
   {% for index in [1, 2] %}
-    <ul
-      class="bf-list bf-list--divider flex-grow-1 d-flex flex-column align-items-center justify-content-center minh-100 p-4
-        {{
-      index == 2 and reversed is not defined
-        ? "reversed bf-color-bg-ground"
-      }}"
-    >
+
+    {# In Loop : Boolean Variables #}
+    {% set isReversed = index == 2 and reversed is not defined %}
+
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set innerContainerClasses = [
+      "bf-list bf-list--divider flex-grow-1 d-flex flex-column align-items-center justify-content-center minh-100 p-4",
+      (isReversed ? "reversed bf-color-bg-ground"),
+    ] %}
+
+    <ul class="{{ innerContainerClasses|join(' ')|trim }}">
       <li class="w-100">
         {% include "@bf-components/row-button/twig/index.twig" with {
           title: title|default("Size small"),
@@ -61,7 +68,7 @@
           title: title|default("Without chevron"),
           image: null,
           iconName: null,
-          hasChevron: hasChevron|default(false)
+          hasChevron: false
         } %}
       </li>
 
