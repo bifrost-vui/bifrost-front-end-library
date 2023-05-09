@@ -1,9 +1,9 @@
 <nav
-  class="bf-header-top-bar d-none d-lg-flex px-3
-    {{ class|default(
-    ""
-  ) }}
-    {{ reversed is defined and reversed is same as(false) ? "reversed" }}"
+  class="
+    bf-header-top-bar d-none d-lg-flex px-3
+    {{ class|default("") }}
+    {{ reversed is defined and reversed is same as(false) ? "reversed" }}
+  "
 >
   <div class="d-flex justify-content-between w-100">
     <!-- Main navigation -->
@@ -33,10 +33,7 @@
         {% if isConnected is defined and isConnected is same as(true) %}
           <span class="small">
             {{ accountHello|default("Hello") }}
-            {% if
-              accountLink is defined
-                and accountLink.label is defined
-                and accountLink.label is not empty %}
+            {% if accountLink is defined and accountLink.label is defined and accountLink.label is not empty %}
               {% set accountLink =
                 accountLink|merge({
                   iconName: null,
@@ -82,7 +79,9 @@
         class="d-flex align-items-center border-left bf-border-color-primary ml-3 pl-3"
       >
         {% block language_switcher_desktop %}
-          <a href="" class="link small">Français</a>
+          <a href="" class="link small">
+            Français
+          </a>
         {% endblock %}
       </li>
     </ul>
