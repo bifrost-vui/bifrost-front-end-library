@@ -1,20 +1,24 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasProgressValue = progressValue is defined and progressValue is not empty %}
+{% set isMonochromeColorDefined = isMonochromeColor is defined and isMonochromeColor is not empty %}
+{% set isMonochromeColorTrue = isMonochromeColorDefined and isMonochromeColor|default(false) is same as(true) %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set progressBarClass = progressBarClass|default("") %}
+
 {# for legacy purpose #}
 {% set minValue = progressMinValue|default(0) %}
 {% set maxValue = progressMaxValue|default(100) %}
-{% set percentValue =
-  (progressValue is defined and progressValue
-    ? progressValue / (maxValue - minValue) * 100
-    : progressPercentValue)|default(0)
-%}
+{% set percentValue = (hasProgressValue ? progressValue / (maxValue - minValue) * 100 : progressPercentValue)|default(0) %}
 {# Do no set progressValue if it's already defined #}
-{% set progressValue =
-  (progressValue is not defined or not progressValue
-    ? percentValue / 100 * (maxValue - minValue)
-    : progressValue)|default(0)
-%}
+{% set progressValue = (hasProgressValue is same as(false) ? percentValue / 100 * (maxValue - minValue) : progressValue)|default(0) %}
 
 {# Color settings #}
-{% if isMonochromeColor is defined and isMonochromeColor %}
+{% if isMonochromeColorDefined %}
   {% set progressColor = "default" %}
 {% else %}
   {% if percentValue > 90 %}
@@ -26,21 +30,31 @@
   {% endif %}
 {% endif %}
 
-{% if isMonochromeColor is defined and isMonochromeColor is same as(true) %}
+{% if isMonochromeColorTrue %}
   {% set progressColor = "default" %}
 {% endif %}
 
-<div class="progress {{ class|default("") }}">
-  <div
-    class="progress-bar bg-{{ progressColor }} {{ progressBarClass|default(
-      ""
-    ) }}"
-    role="progressbar"
-    style="width: {{ percentValue }}%"
-    aria-valuenow="{{ progressValue }}"
-    aria-valuemin="{{ minValue }}"
-    aria-valuemax="{{ maxValue }}"
-    data-toggle="tooltip"
-    title="{{ percentValue|number_format(1) }}%"
-  ></div>
+{# Arrays of Classes With Dynamic Elements #}
+{% set progressClasses = [
+  "progress",
+  (class),
+] %}
+{% set progressBarClasses = [
+  "progress-bar",
+  "bg-" ~ progressColor,
+  (progressBarClass),
+] %}
+
+{# Template #}
+<div class="{{ progressClasses|join(' ')|trim }}">
+  <div {{ macros.addAttributes({
+    "class": progressBarClasses|join(' ')|trim,
+    "role": "progressbar",
+    "style": "width: " ~ percentValue ~ "%",
+    "aria-valuenow": progressValue,
+    "aria-valuemin": minValue,
+    "aria-valuemax": maxValue,
+    "data-toggle": "tooltip",
+    "title": percentValue|number_format(1) ~ "%",
+  }) }}></div>
 </div>
