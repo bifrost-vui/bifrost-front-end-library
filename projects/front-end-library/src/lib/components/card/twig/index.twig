@@ -1,3 +1,6 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
 {# Boolean Variables #}
 {% set hasBadge = badge.label is defined and badge.label is not empty %}
 {% set hasButtons = buttons is defined and buttons is not empty %}
@@ -32,6 +35,7 @@
 
 {# Default Variables #}
 {% set class = class|default("") %}
+{% set language = language|default("en") %}
 {% set titleTag = titleTag|default("h1") %}
 
 {# Arrays of Classes With Dynamic Elements #}
@@ -63,18 +67,18 @@
 
   {# Image #}
   {% if hasVisual %}
-    <div
-      class="{{ cardVisualClasses|join(' ')|trim }}"
-      style="{{ cardVisualStyles|join(' ')|trim }}"
-    >
+    <div {{ macros.addAttributes({
+      "class": cardVisualClasses|join(' ')|trim,
+      "style": cardVisualStyles|join(' ')|trim,
+    }) }}>
       {% if hasImage %}
-        <img
-          src="{{ image.src|default("") }}"
-          data-src="{{ image.src|default("") }}"
-          alt="{{ image.alt|default("") }}"
-          class="{{ hasVisualCombo ?: "mw-100" }}"
-          loading="lazy"
-        />
+        <img {{ macros.addAttributes({
+          "src": image.src|default(""),
+          "data-src": image.src|default(""),
+          "alt": image.alt|default(""),
+          "class": (hasVisualCombo ?: "mw-100"),
+          "loading": "lazy",
+        }) }}/>
         {% if hasImageBadgeIconName %}
           <div class="bf-badge-icon z-index-1">
             {% include "@bf-components/icon/twig/index.twig" with {
@@ -153,7 +157,10 @@
     {% endif %}
 
     {% if hasLink %}
-      <a href="{{ link.href|default("") }}" class="bf-link">
+      <a {{ macros.addAttributes({
+        "href": link.href|default(""),
+        "class": "bf-link",
+      }) }}>
         {{ link.label|default("") }}
       </a>
     {% endif %}
@@ -210,10 +217,10 @@
           {% if hasDetailsColors %}
             <ul class="bf-card__details-colors list-unstyled d-flex mb-0 mr-2">
               {% for color in detailsColors|default([]) %}
-                <li
-                  style="background-color: #{{ color.value }}"
-                  title="Color {{ color.name }}"
-                ></li>
+                <li {{ macros.addAttributes({
+                  "style": "background-color: #" ~ color.value,
+                  "title": "Color " ~ color.name,
+                }) }}></li>
               {% endfor %}
             </ul>
           {% endif %}
@@ -265,7 +272,7 @@
       {% set price =
         price|merge({
           class: "w-100 " ~ price.class,
-          language: language|default("en")
+          language: language
         })
       %}
       {% include "@bf-components/price/twig/index.twig" with price only %}
@@ -310,10 +317,10 @@
         <p class="mb-0">
           {{ message }}
           {% if hasMessageLink %}
-            <a
-              href="{{ messageLink.href|default('#') }}"
-              class="{{ messageLinkClasses|join(' ')|trim }}"
-            >
+            <a {{ macros.addAttributes({
+              "href": messageLink.href|default('#'),
+              "class": messageLinkClasses|join(' ')|trim,
+            }) }}>
               {{ messageLink.label|default("") }}
             </a>
           {% endif %}

@@ -1,3 +1,6 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
 {# Boolean Variables #}
 {% set hasBadge = badge is defined and badge is not empty %}
 {% set hasBlockSelection = blockSelection is defined and blockSelection is not empty %}
@@ -46,25 +49,25 @@
 ] %}
 
 {# Template #}
-<section
-  class="{{ heroClasses|join(' ')|trim }}"
-  style="{{ heroStyles|join(' ')|trim }}"
->
+<section {{ macros.addAttributes({
+  "class": heroClasses|join(' ')|trim,
+  "style": heroStyles|join(' ')|trim,
+}) }}>
   {% block hero_mobile_image %}{% endblock %}
   {% if hasImageSmall %}
     <picture>
       {% if hasImageMedium %}
-        <source
-          srcset="{{ image.md }}"
-          media="(max-width: 992px) and (min-width: 576px)"
-        />
+        <source {{ macros.addAttributes({
+          "srcset": image.md,
+          "media": "(max-width: 992px) and (min-width: 576px)",
+        }) }}/>
       {% endif %}
-      <img
-        src="{{ image.sm }}"
-        alt="{{ image.alt|default("") }}"
-        class="bf-hero__image-sm w-100 d-block d-md-none"
-        loading="lazy"
-      />
+      <img {{ macros.addAttributes({
+        "src": image.sm,
+        "alt": image.alt|default(""),
+        "class": "bf-hero__image-sm w-100 d-block d-md-none",
+        "loading": "lazy",
+      }) }}/>
     </picture>
   {% endif %}
 
@@ -86,7 +89,7 @@
 
   <div
     class="container-fluid d-flex flex-column flex-md-row flex-grow-1"
-    data-animate-row=""
+    data-animate-row
   >
     <header class="bf-hero__header d-flex flex-column flex-grow-1 pb-2 pb-sm-4">
       {% if isBlockBreadcrumbDefined %}
@@ -105,30 +108,41 @@
             {% set badge =
               badge|merge({
                 hierarchy: badge.hierarchy|default("primary"),
-                class: "position-relative position-md-absolute top-0 mb-3"
-                  ~ (badge.class|default(""))
+                class: "position-relative position-md-absolute top-0 mb-3" ~ (badge.class|default("")),
               })
             %}
             {% include "@bf-components/badge/twig/index.twig" with badge only %}
           {% endif %}
 
           {% if hasUpperTitle %}
-            <p class="h5 mt-0 mb-2" data-animate="fade-in">
+            <p
+              class="h5 mt-0 mb-2"
+              data-animate="fade-in"
+            >
               {{ upperTitle }}
             </p>
           {% endif %}
           {% if hasTitle %}
-            <h1 class="mt-0" data-animate="fade-in">
+            <h1
+              class="mt-0"
+              data-animate="fade-in"
+            >
               {{ title }}
             </h1>
           {% endif %}
           {% if hasSubtitle %}
-            <h2 class="h3 my-2" data-animate="fade-in">
+            <h2
+              class="h3 my-2"
+              data-animate="fade-in"
+            >
               {{ subtitle }}
             </h2>
           {% endif %}
           {% if hasDescription %}
-            <p class="mt-2" data-animate="fade-in">
+            <p
+              class="mt-2"
+              data-animate="fade-in"
+            >
               {{ description }}
             </p>
           {% endif %}
@@ -169,12 +183,12 @@
     </header>
 
     {% if isImageSplitted and hasImageLarge %}
-      <span
-        class="bf-hero__image-splitted"
-        style="background-image: url({{ image.lg }})"
-        role="img"
-        aria-label="{{ image.alt|default("") }}"
-      ></span>
+      <span {{ macros.addAttributes({
+        "class": "bf-hero__image-splitted",
+        "style": "background-image: url(" ~ image.lg ~ ")",
+        "role": "img",
+        "aria-label": image.alt|default(""),
+      }) }}></span>
     {% endif %}
 
     {% if hasIcon %}
@@ -193,7 +207,10 @@
     {% endif %}
 
     {% if isBlockBlockSelectionDefined or hasBlockSelection %}
-      <div class="d-none d-md-flex align-items-center" data-animate="fade-in">
+      <div
+        class="d-none d-md-flex align-items-center"
+        data-animate="fade-in"
+      >
         {% if isBlockBlockSelectionDefined %}
           {{ block("blockSelection") }}
         {% elseif hasBlockSelection and blockSelection is iterable %}

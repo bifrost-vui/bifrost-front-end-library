@@ -30,11 +30,7 @@
     or hasFormNoValidate
     or hasFormTarget
 %}
-
-{% set isLink = hasHref
-    and not isSubmit
-    and not isDisabled
-%}
+{% set isLink = hasHref and not isSubmit and not isDisabled %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}
@@ -61,7 +57,7 @@
 {# Button Attributes #}
 {% set buttonAttributes = {
   "href": (isLink ? href),
-  "type": (isLink is same as(false) ? isSubmit ? "submit" : "button"),
+  "type": (isLink ?: isSubmit ? "submit" : "button"),
   "class": buttonClasses|join(' ')|trim,
   "disabled": (isDisabled ? "disabled"),
   "aria-controls": (hasAriaControls ? ariaControls),
@@ -102,13 +98,18 @@
       {% endif %}
 
       {% if hasLabel %}
-        <span class="bf-button__label">{{ label }}</span>
+        <span class="bf-button__label">
+          {{ label }}
+        </span>
       {% endif %}
 
-      {{ content|default("") }}
+      {{ content }}
     </span>
     {% if isLoading %}
-      <div class="bf-button__loading" role="decoration">
+      <div
+        class="bf-button__loading"
+        role="decoration"
+      >
         <i></i>
         <i></i>
         <i></i>

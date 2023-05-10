@@ -17,6 +17,7 @@
 {# Default Variables (Props, Controls) #}
 {% set buttonClass = buttonClass|default("") %}
 {% set class = class|default("") %}
+{% set extraAttribute = extraAttribute|default({}) %}
 {% set icon = icon|default("placeholder") %}
 
 {# Variables #}
@@ -38,7 +39,7 @@
 {# Button Attributes #}
 {% set buttonIconAttributes = {
   "href": (isLink ? href),
-  "type": (isLink is same as(false) ? "button"),
+  "type": (isLink ?: "button"),
   "class": buttonIconClasses|join(' ')|trim,
   "disabled": (isDisabled ? "disabled"),
   "aria-controls": (hasAriaControls ? ariaControls),
