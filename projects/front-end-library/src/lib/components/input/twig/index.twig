@@ -25,12 +25,6 @@
   (class),
 ] %}
 
-{# Objects of Attributes With Dynamic Elements #}
-{% set labelAttributes = {
-  "class": "bf-input__label",
-  "for": (hasId ? id)
-} %}
-
 {# Template #}
 <fieldset class="{{ fieldsetClasses|join(' ')|trim }}">
   {% if hasLabel or hasDescription %}
@@ -41,7 +35,10 @@
             {{ label }}
           </legend>
         {% else %}
-          <label {{ macros.addAttributes(labelAttributes) }}>
+          <label {{ macros.addAttributes({
+            "class": "bf-input__label",
+            "for": (hasId ? id)
+          }) }}>
             {{ label }}
           </label>
         {% endif %}

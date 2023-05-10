@@ -35,29 +35,25 @@
   (labelClass),
 ] %}
 
-{# Objects of Attributes With Dynamic Elements #}
-{% set inputAttributes = {
-  "type": "checkbox",
-  "class": (inputClasses|join(' ')|trim),
-  "name": (hasName ? name),
-  "id": (id),
-  "value": (hasValue ? value),
-  "checked": (isChecked ? "checked"),
-  "disabled": (isDisabled ? "disabled"),
-  "required": (isRequired ? "required"),
-  "aria-label": (hasAriaLabel ? ariaLabel),
-} %}
-{% set labelSecondSpanAttributes = {
-  "class": (labelSecondSpanClasses|join(' ')|trim),
-} %}
-
 {# Template #}
 <div class="{{ containerClasses|join(' ')|trim }}">
-  <input {{ macros.addAttributes(inputAttributes, extraAttribute) }} />
+  <input {{ macros.addAttributes({
+    "type": "checkbox",
+    "class": (inputClasses|join(' ')|trim),
+    "name": (hasName ? name),
+    "id": (id),
+    "value": (hasValue ? value),
+    "checked": (isChecked ? "checked"),
+    "disabled": (isDisabled ? "disabled"),
+    "required": (isRequired ? "required"),
+    "aria-label": (hasAriaLabel ? ariaLabel),
+  }, extraAttribute) }} />
   {% if hasLabel %}
     <label for="{{ id }}">
       <span class="bf-checkbox__control"></span>
-      <span {{ macros.addAttributes(labelSecondSpanAttributes, labelExtraAttribute) }}>
+      <span {{ macros.addAttributes({
+        "class": (labelSecondSpanClasses|join(' ')|trim),
+      }, labelExtraAttribute) }}>
         {{ label|raw }}
       </span>
     </label>

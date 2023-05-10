@@ -18,17 +18,14 @@
   (buttonClass),
 ] %}
 
-{# Objects of Attributes With Dynamic Elements #}
-{% set buttonAttributes = {
+{# Template #}
+<button {{ macros.addAttributes({
   "type": "button",
   "class": buttonClasses|join(' ')|trim,
   "data-toggle": dataToggle,
   "data-placement": "top",
   "title": tooltipTxt,
-} %}
-
-{# Template #}
-<button {{ macros.addAttributes(buttonAttributes, extraAttribute) }}>
+}, extraAttribute) }}>
   {% include "@bf-components/icon/twig/index.twig" with {
     name: "question-circle-outline",
     color: iconColor,

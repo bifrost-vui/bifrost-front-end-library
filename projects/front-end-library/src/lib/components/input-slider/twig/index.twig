@@ -32,14 +32,6 @@
   (class),
 ] %}
 
-{# Objects of Attributes With Dynamic Elements #}
-{% set sliderContainerAttributes = {
-  "class": sliderContainerClasses|join(' ')|trim,
-  "data-range": macros.boolToString(isRange),
-  "data-minimum-gap": minimumGap,
-  "data-inverted": (isRange is same as(false) ? macros.boolToString(isInverted))
-} %}
-
 
 {# Initialize with correct value for "value" variable when in "range" #}
 {% if isRange %}
@@ -59,7 +51,12 @@
 {% endif %}
 
 {# Template #}
-<div {{ macros.addAttributes(sliderContainerAttributes) }}>
+<div {{ macros.addAttributes({
+  "class": sliderContainerClasses|join(' ')|trim,
+  "data-range": macros.boolToString(isRange),
+  "data-minimum-gap": minimumGap,
+  "data-inverted": (isRange is same as(false) ? macros.boolToString(isInverted))
+}) }}>
   {% if isRange %}
     <div class="d-flex justify-content-between mx-2">
       <label for="{{ min.inputId }}">
@@ -84,10 +81,10 @@
   {% else %}
     <div class="bf-input-slider__handle-container position-relative mx-3">
       <div class="bf-input-slider__handle">
-        <label
-          for="{{ min.inputId|default(max.inputId) }}"
-          class="bf-input-slider__label"
-        >
+        <label {{ macros.addAttributes({
+          "class": "bf-input-slider__label",
+          "for": min.inputId|default(max.inputId),
+        }) }}>
           {% if hasUnitLabel and isUnitPositionStart %}
             {{ unitLabel }}
           {% endif %}
@@ -109,37 +106,37 @@
     </div>
 
     {% if isRange %}
-      <input
-        class="bf-input-slider__input bf-input-slider__input__min"
-        type="range"
-        max="{{ max.value }}"
-        min="{{ min.value }}"
-        step="{{ step }}"
-        id="{{ min.inputId }}"
-        value="{{ value[0] }}"
-        data-unit="{{ unitLabel }}"
-      />
-      <input
-        class="bf-input-slider__input bf-input-slider__input__max"
-        type="range"
-        max="{{ max.value }}"
-        min="{{ min.value }}"
-        step="{{ step }}"
-        id="{{ max.inputId }}"
-        value="{{ value[1] }}"
-        data-unit="{{ unitLabel }}"
-      />
+      <input {{ macros.addAttributes({
+        "class": "bf-input-slider__input bf-input-slider__input__min",
+        "type": "range",
+        "max": max.value|number_format,
+        "min": min.value|number_format,
+        "step": step|number_format,
+        "id": min.inputId,
+        "value": value[0]|number_format,
+        "data-unit": unitLabel,
+      }) }} />
+      <input {{ macros.addAttributes({
+        "class": "bf-input-slider__input bf-input-slider__input__max",
+        "type": "range",
+        "max": max.value|number_format,
+        "min": min.value|number_format,
+        "step": step|number_format,
+        "id": max.inputId,
+        "value": value[1]|number_format,
+        "data-unit": unitLabel,
+      }) }} />
     {% else %}
-      <input
-        class="bf-input-slider__input"
-        type="range"
-        max="{{ max.value }}"
-        min="{{ min.value }}"
-        step="{{ step }}"
-        id="{{ min.inputId|default(max.inputId) }}"
-        value="{{ value }}"
-        data-unit="{{ unitLabel }}"
-      />
+      <input {{ macros.addAttributes({
+        "class": "bf-input-slider__input",
+        "type": "range",
+        "max": max.value|number_format,
+        "min": min.value|number_format,
+        "step": step|number_format,
+        "id": min.inputId|default(max.inputId),
+        "value": value|number_format,
+        "data-unit": unitLabel,
+      }) }} />
     {% endif %}
   </div>
 

@@ -28,31 +28,27 @@
   (input.iconPosition|default("")),
 ] %}
 
-{# Objects of Attributes With Dynamic Elements #}
-{% set labelAttributes = {
-  "for": (hasInputId ? input.id),
-  "class": label.class|default(""),
-} %}
-{% set inputAttributes = {
-  "type": input.type|default("text"),
-  "id": (hasInputId ? input.id),
-  "class": inputClasses|join(' ')|trim,
-  "disabled": (isDisabled ? "disabled"),
-  "placeholder": input.placeholder|default(""),
-  "name": input.name|default(""),
-  "value": input.value|default(""),
-} %}
-
 {# Template #}
 <div class="{{ containerClasses|join(' ')|trim }}">
   {% if hasLabel %}
-    <label {{ macros.addAttributes(labelAttributes, label.extraAttribute) }}>
+    <label {{ macros.addAttributes({
+      "for": (hasInputId ? input.id),
+      "class": label.class|default(""),
+    }, label.extraAttribute) }}>
       {{ label.value|default("Label") }}
     </label>
   {% endif %}
 
   <div class="position-relative">
-    <input {{ macros.addAttributes(inputAttributes, input.extraAttribute) }} />
+    <input {{ macros.addAttributes({
+      "type": input.type|default("text"),
+      "id": (hasInputId ? input.id),
+      "class": inputClasses|join(' ')|trim,
+      "disabled": (isDisabled ? "disabled"),
+      "placeholder": input.placeholder|default(""),
+      "name": input.name|default(""),
+      "value": input.value|default(""),
+    }, input.extraAttribute) }} />
 
     <div class="{{ iconContainerClasses|join(' ')|trim }}">
       {% block icon_container %}

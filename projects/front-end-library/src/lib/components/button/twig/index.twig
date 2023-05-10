@@ -57,7 +57,7 @@
 {# Button Attributes #}
 {% set buttonAttributes = {
   "href": (isLink ? href),
-  "type": (isLink ?: isSubmit ? "submit" : "button"),
+  "type": (isLink is same as(false) ? isSubmit ? "submit" : "button"),
   "class": buttonClasses|join(' ')|trim,
   "disabled": (isDisabled ? "disabled"),
   "aria-controls": (hasAriaControls ? ariaControls),

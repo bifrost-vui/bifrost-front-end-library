@@ -36,6 +36,8 @@ interface ILabel {
 export class InputSearchComponent implements OnInit {
     constructor() {}
 
+    // TODO: It seems there is some control here that is not used anymore, like "iconClass". A checkup will be necessary.
+
     @Input() reversed: boolean;
     @Input() class: string;
 

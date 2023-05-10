@@ -34,27 +34,23 @@
   (labelClass),
 ] %}
 
-{# Objects of Attributes With Dynamic Elements #}
-{% set inputAttributes = {
-  "type": "radio",
-  "class": (isInvalid ? "invalid"),
-  "id": (id),
-  "name": (hasName ? name),
-  "value": (hasValue ? value),
-  "checked": (isChecked ? "checked"),
-  "disabled": (isDisabled ? "disabled"),
-  "required": (isRequired ? "required"),
-  "aria-label": (hasAriaLabel ? ariaLabel),
-} %}
-{% set labelSecondSpanAttributes = {
-  "class": (labelSecondSpanClasses|join(' ')|trim),
-} %}
-
 <label class="{{ containerClasses|join(' ')|trim }}">
-  <input {{ macros.addAttributes(inputAttributes, extraAttribute) }} />
+  <input {{ macros.addAttributes({
+    "type": "radio",
+    "class": (isInvalid ? "invalid"),
+    "id": (id),
+    "name": (hasName ? name),
+    "value": (hasValue ? value),
+    "checked": (isChecked ? "checked"),
+    "disabled": (isDisabled ? "disabled"),
+    "required": (isRequired ? "required"),
+    "aria-label": (hasAriaLabel ? ariaLabel),
+  }, extraAttribute) }} />
   <span class="bf-input-radio-control"></span>
   {% if hasLabel %}
-    <span {{ macros.addAttributes(labelSecondSpanAttributes, labelExtraAttribute) }}>
+    <span {{ macros.addAttributes({
+      "class": (labelSecondSpanClasses|join(' ')|trim),
+    }, labelExtraAttribute) }}>
       {{ label|raw }}
     </span>
   {% endif %}

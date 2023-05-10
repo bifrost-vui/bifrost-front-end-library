@@ -42,7 +42,7 @@
     {# Format htmlAttributes object #}
     {% for attrName, attrValue in htmlAttributes %}
       {# If an attribute has no value, this attribute won't be printed #}
-      {% if attrValue is not empty %}
+      {% if attrValue is not empty or attrValue is same as(true) %}
         {#
           If an attribute name is "bfString", then it means that the value
           already contains an attribute name and its value.
@@ -52,6 +52,8 @@
         #}
         {% if attrName == "bfString" %}
           {% set compiledAttributes = compiledAttributes|merge([attrValue|render|raw]) %}
+        {% elseif attrValue is same as(true) %}
+          {% set compiledAttributes = compiledAttributes|merge([attrName]) %}
         {% else %}
           {% set compiledAttributes = compiledAttributes|merge([attrName ~ '="' ~ attrValue|render|raw ~ '"']) %}
         {% endif %}

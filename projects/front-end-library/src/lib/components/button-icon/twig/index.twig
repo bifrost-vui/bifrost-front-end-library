@@ -39,7 +39,7 @@
 {# Button Attributes #}
 {% set buttonIconAttributes = {
   "href": (isLink ? href),
-  "type": (isLink ?: "button"),
+  "type": (isLink is same as(false) ? "button"),
   "class": buttonIconClasses|join(' ')|trim,
   "disabled": (isDisabled ? "disabled"),
   "aria-controls": (hasAriaControls ? ariaControls),

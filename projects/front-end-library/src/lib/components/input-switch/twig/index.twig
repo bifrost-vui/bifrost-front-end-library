@@ -26,18 +26,6 @@
   (label.class|default("")),
 ] %}
 
-{# Objects of Attributes With Dynamic Elements #}
-{% set inputAttributes = {
-  "id": id,
-  "name": name,
-  "type": "checkbox",
-  "checked": (isChecked ? "checked"),
-  "disabled": (isDisabled ? "disabled"),
-  "aria-disabled": (isDisabled ? "true"),
-  "aria-label": (hasAriaLabel ? ariaLabel),
-  "aria-labelledby": (hasAriaLabel is same as(false) and hasAriaLabelledby ? ariaLabelledby),
-} %}
-
 {# Template #}
 <label class="{{ switchLabelClasses|join(' ')|trim }}">
 
@@ -49,7 +37,16 @@
   {% endif %}
 
   {# Input #}
-  <input {{ macros.addAttributes(inputAttributes, extraAttribute) }} />
+  <input {{ macros.addAttributes({
+    "id": id,
+    "name": name,
+    "type": "checkbox",
+    "checked": (isChecked ? "checked"),
+    "disabled": (isDisabled ? "disabled"),
+    "aria-disabled": (isDisabled ? "true"),
+    "aria-label": (hasAriaLabel ? ariaLabel),
+    "aria-labelledby": (hasAriaLabel is same as(false) and hasAriaLabelledby ? ariaLabelledby),
+  }, extraAttribute) }} />
 
   {# Toggle button #}
   <span class="bf-input-switch__control"></span>

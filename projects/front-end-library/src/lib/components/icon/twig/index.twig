@@ -1,3 +1,6 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}
 {% set name = name|default("placeholder") %}
@@ -20,11 +23,14 @@
   "bf-icon",
   "size-" ~ size,
   (isReversed ? "reversed"),
-  (hasColor and isColorPrimary is same as(false) ? "color-" ~ color),
+  (hasColor and not isColorPrimary ? "color-" ~ color),
   (class),
 ] %}
 
 {# Template #}
-<span class="{{ iconClasses|join(' ')|trim }}" role="presentation">
+<span {{ macros.addAttributes({
+  "class": iconClasses|join(' ')|trim,
+  "role": "presentation",
+}) }}>
   {% include "@bf-components/icon/twig/svg-twig/" ~ name ~ "-" ~ sizeSuffix ~ ".svg.twig" %}
 </span>

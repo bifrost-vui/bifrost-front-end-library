@@ -26,32 +26,16 @@
   (isReadOnly ? "d-none" : "bf-button rounded-circle px-2"),
 ] %}
 {% set buttonMinusClasses = [
-  (isReadOnly ?: "js-bf-input-increment__minus"),
+  (isReadOnly is same as(false) ? "js-bf-input-increment__minus"),
 ] %}
 {% set buttonPlusClasses = [
-  (isReadOnly ?: "js-bf-input-increment__plus"),
+  (isReadOnly is same as(false) ? "js-bf-input-increment__plus"),
 ] %}
 {% set inputClasses = [
   "bf-text-display-small bf-input-increment__input js-bf-input-increment__input",
   "text-center border-0",
   (isDisabled ? "disabled"),
 ] %}
-
-{# Objects of Attributes With Dynamic Elements #}
-{% set inputAttributes = {
-  "id": inputId,
-  "type": "number",
-  "class": inputClasses|join(' ')|trim,
-  "aria-label": (hasAriaLabel ? ariaLabel),
-  "value": value,
-  "size": 3,
-  "min": (hasMin ? min),
-  "max": (hasMax ? max),
-  "readonly": (isReadOnly ? "readonly"),
-  "disabled": (isDisabled ? "disabled"),
-  "required": (isRequired ? "required"),
-  "aria-required": (isRequired ? "true"),
-} %}
 
 {# Template #}
 <div class="{{ containerClasses|join(' ')|trim }}">
@@ -66,7 +50,20 @@
   } only %}
 
   {# Input #}
-  <input {{ macros.addAttributes(inputAttributes) }}/>
+  <input {{ macros.addAttributes({
+    "id": inputId,
+    "type": "number",
+    "class": inputClasses|join(' ')|trim,
+    "aria-label": (hasAriaLabel ? ariaLabel),
+    "value": value,
+    "size": 3,
+    "min": (hasMin ? min),
+    "max": (hasMax ? max),
+    "readonly": (isReadOnly ? "readonly"),
+    "disabled": (isDisabled ? "disabled"),
+    "required": (isRequired ? "required"),
+    "aria-required": (isRequired ? "true"),
+  }) }}/>
 
   {# Plus button #}
   {% include "@bf-components/button/twig/index.twig" with {
