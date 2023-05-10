@@ -1,38 +1,58 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasDescription = description is defined and description is not empty %}
+{% set hasImageBgColor = image.backgroundColor is defined and image.backgroundColor is not empty %}
+{% set hasImageSrc = image.src is defined and image.src is not empty %}
+{% set hasLink = link is defined and link is not empty %}
+{% set hasTitle = title is defined and title is not empty %}
+{% set isFeatured = isFeatured|default(false) is same as(true) %}
+{% set isReversed = reversed|default(false) is same as(true) %}
+
 {# Default Variables #}
+{% set class = class|default("") %}
 {% set titleTag = titleTag|default("p") %}
 
+{# Arrays of Classes With Dynamic Elements #}
+{% set tilePostClasses = [
+  "bf-tile-post",
+  (isReversed ? "reversed"),
+  (class),
+] %}
+{% set titleClasses = [
+  "m-0",
+  (isFeatured ? "h2" : "h3"),
+] %}
+
+{# Arrays of Styles With Dynamic Elements #}
+{% set pictureStyles = [
+  "background-image: url(" ~ image.src ~ ");",
+  (hasImageBgColor ? "background-color: " ~ image.backgroundColor ~ ";"),
+] %}
+
 {# Template #}
-<div
-  class="bf-tile-post {{
-  reversed|default(false)
-    ? "reversed"
-  }} {{ class|default("") }}"
->
-  {% if image is defined and image and image.src is defined and image.src %}
-    <picture
-      class="d-block"
-      style="background-image: url({{ image.src }});
-        {{
-      image.backgroundColor is defined and image.backgroundColor
-        ? "background-color: " ~ image.backgroundColor ~ ";"
-      }}
-      "
-    >
-      <img
-        src="{{ image.src }}"
-        alt="{{ image.alt|default("") }}"
-        class="w-100"
-        loading="lazy"
-      />
+<div class="{{ tilePostClasses|join(' ')|trim }}">
+  {% if hasImageSrc %}
+    <picture {{ macros.addAttributes({
+      "class": "d-block",
+      "style": pictureStyles|join(' ')|trim,
+    }) }}>
+      <img {{ macros.addAttributes({
+        "src": image.src,
+        "alt": image.alt|default(""),
+        "class": "w-100",
+        "loading": "lazy",
+      }) }} />
     </picture>
   {% endif %}
 
   <div class="d-flex flex-column align-items-start gap-3 pt-3 pt-md-4">
-    {% if title is defined and title %}
+    {% if hasTitle %}
       {% embed "@bf-utils/custom-tag/twig/index.twig" with {
         customTag: titleTag,
         attr: {
-          "class": "m-0 " ~ isFeatured|default(false) ? "h2" : "h3"
+          "class": titleClasses|join(' ')|trim
         },
       } %}
         {% block customTagContent %}
@@ -41,11 +61,13 @@
       {% endembed %}
     {% endif %}
 
-    {% if description is defined and description %}
-      <p class="m-0">{{ description }}</p>
+    {% if hasDescription %}
+      <p class="m-0">
+        {{ description }}
+      </p>
     {% endif %}
 
-    {% if link is defined and link %}
+    {% if hasLink %}
       {% include "@bf-components/link/twig/index.twig" with {
         href: link.href|default(""),
         label: link.label|default(""),
