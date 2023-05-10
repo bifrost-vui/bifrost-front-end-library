@@ -38,8 +38,8 @@
   (class),
 ] %}
 
-{# Objects of Attributes With Dynamic Elements #}
-{% set linkAttributes = {
+{# Template #}
+<a {{ macros.addAttributes({
   "href": (isDisabled is same as(false) ? href),
   "class": linkClasses|join(' ')|trim,
   "title": (hasTitle ? title),
@@ -50,10 +50,7 @@
   "data-dismiss": (hasDataDismiss ? dataDismiss),
   "data-target": (hasDataTarget ? dataTarget),
   "data-toggle": (hasDataToggle ? dataToggle),
-} %}
-
-{# Template #}
-<a {{ macros.addAttributes(linkAttributes, extraAttribute) }}>
+}, extraAttribute) }}>
   <span class="d-flex align-items-center gap-1">
     {# Icon #}
     {% if hasIconName %}

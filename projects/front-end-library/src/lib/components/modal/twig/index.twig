@@ -39,7 +39,6 @@
 {% set modalTheme = modalTheme|default("light") %}
 {% set modalTitle = modalTitle|default("") %}
 
-
 {# Arrays of Classes With Dynamic Elements #}
 {% set modalContainerClasses = [
   "modal",
@@ -67,36 +66,32 @@
   modalBodyClass,
 ] %}
 
-{# Objects of Attributes With Dynamic Elements #}
-{% set modalContainerAttributes = {
+{# Template #}
+<div {{ macros.addAttributes({
   "class": modalContainerClasses|join(' ')|trim,
   "id": id,
   "tabindex": "-1",
   "role": "dialog",
   "aria-labelledby": modalLabelledBy,
   "aria-hidden": "true",
-} %}
-{% set modalContentAttributes = {
-  "class": modalContentClasses|join(' ')|trim,
-  "data-bg": (hasBgImage ? bgImage),
-  "data-md-bg": (hasBgImage ? bgMdImage|default(bgImage)),
-  "data-lg-bg": (hasBgImage ? bgLgImage|default(bgImage)),
-} %} {# TODO: "data-bg", "data-md-bg" and "data-lg-bg" doesn't seem to be used anywhere. Will have to check that eventually. #}
-
-{# Template #}
-<div {{ macros.addAttributes(modalContainerAttributes, extraAttribute) }}>
+}, extraAttribute) }}>
   <div
     class="{{ modalDialogClasses|join(' ')|trim }}"
     role="document"
   >
-    <div {{ macros.addAttributes(modalContentAttributes) }}>
-      <button
-        type="button"
-        class="close m-2 m-md-3 m-lg-4 p-3 position-absolute--top-right"
-        data-dismiss="modal"
-        aria-label="X"
-        {{ macros.addAttributes({}, extraAttributeCloseButton) }}
-      >
+    {# TODO: "data-bg", "data-md-bg" and "data-lg-bg" doesn't seem to be used anywhere. Will have to check that eventually. #}
+    <div {{ macros.addAttributes({
+      "class": modalContentClasses|join(' ')|trim,
+      "data-bg": (hasBgImage ? bgImage),
+      "data-md-bg": (hasBgImage ? bgMdImage|default(bgImage)),
+      "data-lg-bg": (hasBgImage ? bgLgImage|default(bgImage)),
+    }) }}>
+      <button {{ macros.addAttributes({
+        "class": "close m-2 m-md-3 m-lg-4 p-3 position-absolute--top-right",
+        "type": "button",
+        "data-dismiss": "modal",
+        "aria-label": "X",
+      }, extraAttributeCloseButton) }}>
         <span aria-hidden="true">
           {% include "@bf-components/icon/twig/index.twig" with {
             name: "x",

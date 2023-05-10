@@ -57,6 +57,10 @@
   (isChecked ? "checked"),
   (class),
 ] %}
+{% set selectionTileInnerClasses = [
+  "bf-selection-tile__inner",
+  (isDisabled ? "disabled"),
+] %}
 {% set selectionTileContentClasses = [
   "bf-selection-tile__content",
   (hasVisual is same as(false) ? "bf-selection-tile__no-visual"),
@@ -64,12 +68,7 @@
 
 {# Template #}
 <div class="{{ selectionTileClasses|join(' ')|trim }}">
-  <div
-    class="
-      bf-selection-tile__inner
-      {{ isDisabled ? "disabled" }}
-    "
-  >
+  <div class="{{ selectionTileInnerClasses|join(' ')|trim }}">
     <div class="bf-selection-tile__control">
       <input {{ macros.addAttributes({
         "type": type,

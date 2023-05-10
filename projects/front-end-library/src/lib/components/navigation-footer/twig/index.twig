@@ -13,14 +13,11 @@
   (isReversed ? "reversed"),
 ] %}
 
-{# Objects of Attributes With Dynamic Elements #}
-{% set footerAttributes = {
+{# Template #}
+<footer {{ macros.addAttributes({
   "class": footerClasses|join(' ')|trim,
   "data-theme": (hasTheme ? theme)
-} %}
-
-{# Template #}
-<footer {{ macros.addAttributes(footerAttributes) }}>
+}) }}>
   {% if isReduced is same as(false) %}
     {% include "@bf-components/navigation-footer/twig/footer-main.twig" %}
   {% endif %}

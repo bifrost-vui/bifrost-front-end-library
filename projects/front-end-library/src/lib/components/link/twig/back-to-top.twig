@@ -20,15 +20,12 @@
   (class),
 ] %}
 
-{# Objects of Attributes With Dynamic Elements #}
-{% set linkAttributes = {
+{# Template #}
+<a {{ macros.addAttributes({
   "href": href,
   "class": linkClasses|join(' ')|trim,
   "data-title": (hasLabel ? label|render|default("")),
-} %}
-
-{# Template #}
-<a {{ macros.addAttributes(linkAttributes, extraAttribute) }}>
+}, extraAttribute) }}>
     {{ label }}
     {% include '@bf-components/icon/twig/index.twig' with {
         name: 'chevron-up'
