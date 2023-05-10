@@ -10,7 +10,7 @@
   {% for index in [1, 2] %}
 
     {# In Loop : Boolean Variables #}
-    {% set isReversed = index == 2 and reversed is not defined %}
+    {% set isReversed = reversed|default(index == 2) %}
 
     {# In Loop : Arrays of Classes With Dynamic Elements #}
     {% set innerContainerClasses = [
