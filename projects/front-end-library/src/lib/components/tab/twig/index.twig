@@ -1,15 +1,40 @@
-<nav class="bf-tab nav {{ class|default("") }}">
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set itemClass = itemClass|default("") %}
+{% set sliderClass = sliderClass|default("") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set tabClasses = [
+  "bf-tab nav",
+  (class),
+] %}
+{% set tabSliderClasses = [
+  "bf-tab__slider list-reset",
+  (sliderClass),
+] %}
+
+{# Template #}
+<nav class="{{ tabClasses|join(' ')|trim }}">
   <div>
-    <ul class="bf-tab__slider list-reset {{ sliderClass|default("") }}">
+    <ul class="{{ tabSliderClasses|join(' ')|trim }}">
       {% for item in navItems %}
+
+        {# In Loop : Arrays of Classes With Dynamic Elements #}
+        {% set tabLinkClasses = [
+          "nav-link mr-lg-6 mr-4 my-0",
+          (itemClass),
+          (item.class|default("")),
+        ] %}
+
         <li>
-          <a
-            class="nav-link mr-lg-6 mr-4 my-0 {{ itemClass|default(
-              ""
-            ) }} {{ item.class|default("") }}"
-            href="{{ item.href|default("#") }}"
-            {{ item.extraAttribute }}
-          >
+          <a {{ macros.addAttributes({
+            "href": item.href|default("#"),
+            "class": tabLinkClasses|join(' ')|trim,
+
+          }, item.extraAttribute|default({})) }}>
             {{ item.label|default("") }}
           </a>
         </li>
