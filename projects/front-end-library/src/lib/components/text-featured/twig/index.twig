@@ -1,11 +1,23 @@
-<div
-  class="border-left--vui-yellow border-width-4 pl-{{ spacingLeft|default(
-    "3"
-  ) }} {{ class|default("") }}"
->
-  {% if block("textFeatured_content") is defined %}
+{# Boolean Variables #}
+{% set hasTextFeaturedContent = textFeatured_content is defined and textFeatured_content is not empty %}
+{% set isBlockTextFeaturedContentDefined = block("textFeatured_content") is defined %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set spacingLeft = spacingLeft|default("3") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set textFeaturedClasses = [
+  "border-left--vui-yellow border-width-4",
+  "pl-" ~ spacingLeft,
+  (class),
+] %}
+
+{# Template #}
+<div class="{{ textFeaturedClasses|join(' ')|trim }}">
+  {% if isBlockTextFeaturedContentDefined %}
     {{ block("textFeatured_content") }}
-  {% elseif textFeatured_content is defined %}
+  {% elseif hasTextFeaturedContent %}
     {{ textFeatured_content|raw }}
   {% endif %}
 </div>
