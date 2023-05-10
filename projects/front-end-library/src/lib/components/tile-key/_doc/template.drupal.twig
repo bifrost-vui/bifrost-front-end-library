@@ -1,17 +1,24 @@
+{# Default Variables (Props, Controls) #}
 {% set isClickable = isClickable|json_parse %}
 {% set icon = icon|json_parse %}
 {% set backgroundImage = backgroundImage|json_parse %}
 {% set isDisabled = isDisabled|json_parse %}
 {% set reversed = reversed|json_parse %}
 
+{# Template #}
 <div class="template-container">
   {% for index in [1, 2] %}
-    <div
-      class="flex-grow-1 d-flex align-items-center justify-content-center minh-100 p-4 {{
-      index == 2 and reversed is not defined
-        ? "reversed bf-color-bg-ground"
-      }}"
-    >
+
+    {# In Loop : Boolean Variables #}
+    {% set isReversed = index == 2 and reversed is not defined %}
+
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set innerContainerClasses = [
+      "flex-grow-1 d-flex align-items-center justify-content-center minh-100 p-4",
+      (isReversed ? "reversed bf-color-bg-ground"),
+    ] %}
+
+    <div class="{{ innerContainerClasses|join(' ')|trim }}">
       {% include "@bf-components/tile-key/twig/index.twig" %}
     </div>
   {% endfor %}
