@@ -10,7 +10,7 @@
 {% set isFeatured = isFeatured|default(false) is same as(true) %}
 {% set isReversed = reversed|default(false) is same as(true) %}
 
-{# Default Variables #}
+{# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}
 {% set titleTag = titleTag|default("p") %}
 
@@ -33,6 +33,8 @@
 
 {# Template #}
 <div class="{{ tilePostClasses|join(' ')|trim }}">
+
+  {# Image #}
   {% if hasImageSrc %}
     <picture {{ macros.addAttributes({
       "class": "d-block",
@@ -47,7 +49,10 @@
     </picture>
   {% endif %}
 
+  {# Content #}
   <div class="d-flex flex-column align-items-start gap-3 pt-3 pt-md-4">
+
+    {# Title #}
     {% if hasTitle %}
       {% embed "@bf-utils/custom-tag/twig/index.twig" with {
         customTag: titleTag,
@@ -61,12 +66,14 @@
       {% endembed %}
     {% endif %}
 
+    {# Description #}
     {% if hasDescription %}
       <p class="m-0">
         {{ description }}
       </p>
     {% endif %}
 
+    {# Link #}
     {% if hasLink %}
       {% include "@bf-components/link/twig/index.twig" with {
         href: link.href|default(""),
