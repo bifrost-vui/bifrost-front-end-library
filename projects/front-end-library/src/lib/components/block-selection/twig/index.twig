@@ -31,14 +31,14 @@
 {# Template #}
 <article class="{{ blockClasses|join(' ')|trim }}">
   {% if isCollapsableOnMobile %}
-    <button
-      class="{{ blockToggleClasses|join(' ')|trim }}"
-      type="button"
-      data-toggle="collapse"
-      data-target="#bf-block-collapse"
-      aria-expanded="{{ isCollapsedByDefaultOnMobile ? "false" : "true" }}"
-      aria-controls="bf-block-collapse"
-    >
+    <button {{ macros.addAttributes({
+      "class": blockToggleClasses|join(' ')|trim,
+      "type": "button",
+      "data-toggle": "collapse",
+      "data-target": "#bf-block-collapse",
+      "aria-expanded": (isCollapsedByDefaultOnMobile ? "false" : "true"),
+      "aria-controls": "bf-block-collapse",
+    }) }}>
       <div class="d-flex flex-row justify-content-between align-items-center p-3 p-sm-4">
         {% if hasTitle %}
           {% embed "@bf-utils/custom-tag/twig/index.twig" with {
@@ -66,11 +66,10 @@
     </button>
   {% endif %}
 
-  {% set blockContentAttributes = {
+  <div {{ macros.addAttributes({
     "class": blockContentClasses|join(' ')|trim,
     "id": (isCollapsableOnMobile ? "bf-block-collapse"),
-  } %}
-  <div {{ macros.addAttributes(blockContentAttributes) }}>
+  }) }}>
     <header class="d-flex justify-content-between mb-1">
       {% if hasTitle %}
         {% embed "@bf-utils/custom-tag/twig/index.twig" with {
@@ -86,10 +85,10 @@
       {% endif %}
 
       {% if hasTopLink %}
-        <a
-          href="{{ topLink.href }}"
-          class="bf-link bf-link--primary text-right mb-3"
-        >
+        <a {{ macros.addAttributes({
+          "href": topLink.href,
+          "class": "bf-link bf-link--primary text-right mb-3",
+        }) }}>
           {{ topLink.label }}
         </a>
       {% endif %}
@@ -124,10 +123,10 @@
             </div>
 
             {% if hasItemLink %}
-              <a
-                href="{{ item.link.href }}"
-                class="bf-link bf-link--primary text-right"
-              >
+              <a {{ macros.addAttributes({
+                "href": item.link.href,
+                "class": "bf-link bf-link--primary text-right",
+              }) }}>
                 {{ item.link.label }}
               </a>
             {% else %}

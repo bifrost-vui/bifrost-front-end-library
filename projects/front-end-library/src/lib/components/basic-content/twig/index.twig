@@ -1,48 +1,61 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set imagePosition = imagePosition|default("left") %}
+{% set textAlign = textAlign|default("left") %}
+
 {# Boolean Variables #}
 {% set hasButtons = buttons is defined and buttons is not empty %}
 {% set hasDescription = description is defined and description is not empty %}
-{% set hasIcon = image is defined and image.icon is not empty %}
+{% set hasIcon = image.icon is defined and image.icon is not empty %}
+{% set hasIconPosition = image.icon.position is defined and image.icon.position is not empty %}
 {% set hasImage = image is defined and image.src is not empty %}
 {% set hasLinks = links is defined and links is not empty %}
 {% set hasRowButtons = rowButtons is defined and rowButtons is not empty %}
 {% set hasTitle = title is defined and title is not empty %}
 {% set hasSubitle = subtitle is defined and subtitle is not empty %}
 {% set hasUpperTitle = upperTitle is defined and upperTitle is not empty %}
+{% set isImageIsFillFalse = image.isFill|default(false) is same as(false) %}
+{% set isImagePositionRight = imagePosition is same as("right") %}
+{% set isTextAlignCenter = textAlign is same as("center") %}
+{% set isReversed = reversed|default(false) is same as(true) %}
 
-{# Default Variables (Props, Controls) #}
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
+{% set background = background|default("ground") %}
 {% set class = class|default("") %}
-{% set iconPosition = hasIcon ? image.icon.position %}
-{% set imagePosition = imagePosition|default("left") %}
-{% set titleTag = titleTag|default("h1") %}
+{% set titleTag = titleTag|default("p") %}
+
+{# Classes Objects #}
+{% set backgroundClasses = {
+  ("ground"): "bf-color-bg-ground",
+  ("underground"): "bf-color-bg-underground",
+} %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set basicContentClasses = [
   "bf-basic-content d-block d-md-flex",
-  (textAlign == "center" ? "bf-basic-content--center"),
-  (
-    (background|default("ground")) == "ground"
-      ? "bf-color-bg-ground"
-      : "bf-color-bg-underground"
-  ),
-  (reversed ? "reversed"),
+  (isTextAlignCenter ? "bf-basic-content--center"),
+  (backgroundClasses[background]),
+  (isReversed ? "reversed"),
   (class),
 ] %}
 {% set basicContentVisualClasses = [
   "bf-basic-content__visual",
-  (imagePosition == "right" ? "order-0 order-md-1"),
+  (isImagePositionRight ? "order-0 order-md-1"),
   (hasIcon ? "bf-basic-content__visual--icon"),
-  (iconPosition ? "bf-basic-content__visual--icon-" ~ iconPosition),
-  (image.isFill|default(false) ?: "bf-basic-content__visual--fit"),
+  (hasIconPosition ? "bf-basic-content__visual--icon-" ~ image.icon.position),
+  (isImageIsFillFalse ? "bf-basic-content__visual--fit"),
 ] %}
 
 {# Template #}
 <article class="{{ basicContentClasses|join(' ')|trim }}">
   <div class="container-fluid d-flex flex-column flex-md-row gap-4">
     {% if hasImage %}
-      <div
-        class="{{ basicContentVisualClasses|join(' ')|trim }}"
-        style="background-image: url({{ image.src }})"
-      >
+      <div {{ macros.addAttributes({
+        "class": basicContentVisualClasses|join(' ')|trim,
+        "style": "background-image: url(" ~ image.src ~ ");",
+      }) }}>
         {% if hasIcon %}
           {% set icon =
             image.icon|merge({
@@ -109,10 +122,10 @@
           data-animate="fade-in"
         >
           {% for link in links %}
-            <a
-              href="{{ link.href|default("") }}"
-              class="bf-link bf-link--primary"
-            >
+            <a {{ macros.addAttributes({
+              "href": link.href|default(""),
+              "class": "bf-link bf-link--primary",
+            }) }}>
               {{ link.label|default("") }}
             </a>
           {% endfor %}
@@ -125,10 +138,7 @@
           data-animate="fade-in"
         >
           {% for button in buttons %}
-            {% set defaultHierarchy = loop.index == 1
-              ? "primary-alt"
-              : "secondary"
-            %}
+            {% set defaultHierarchy = loop.index == 1 ? "primary-alt" : "secondary" %}
             {% set button =
               button|merge({
                 hierarchy: button.hierarchy|default(defaultHierarchy),

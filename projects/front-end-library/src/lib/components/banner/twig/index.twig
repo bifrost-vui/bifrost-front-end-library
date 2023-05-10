@@ -1,3 +1,6 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
 {# Boolean Variables #}
 {% set hasHref = href is defined and href is not empty %}
 {% set hasImage = image.src is defined and image.src is not empty %}
@@ -40,12 +43,12 @@
     {% if hasVisual %}
       <div class="bf-banner__visual">
         {% if hasImage %}
-          <img
-            src="{{ image.src|default("") }}"
-            data-src="{{ image.dataSrc|default("") }}"
-            alt="{{ image.alt|default("") }}"
-            loading="lazy"
-          />
+          <img {{ macros.addAttributes({
+            "src": image.src|default(""),
+            "data-src": image.dataSrc|default(""),
+            "alt": image.alt|default(""),
+            "loading": "lazy",
+          }) }} />
         {% elseif hasIcon %}
           {% include "@bf-components/icon/twig/index.twig" with {
             name: iconName,
@@ -65,7 +68,10 @@
 
           {% if haslink and isClickable is same as(false) %}
             <br />
-            <a class="bf-link" href="{{ href }}">
+            <a {{ macros.addAttributes({
+              "href": href,
+              "class": "bf-link",
+            }) }}>
               {{ linkLabel }}
             </a>
           {% endif %}
@@ -74,9 +80,7 @@
     </div>
 
     {% if hasBadge %}
-      {% if badge is iterable %}
-        {% set badgeLabel = badge.label %}
-      {% else %}
+      {% if badge is not iterable %}
         {% set badge = {
           label: badge
         } %}

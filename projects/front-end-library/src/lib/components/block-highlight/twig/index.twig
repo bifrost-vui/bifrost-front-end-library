@@ -4,12 +4,20 @@
 {% set hasParagraph = paragraph is defined and paragraph is not empty %}
 {% set hasTitle = title is defined and title is not empty %}
 {% set hasVisualBackgroundColor = visualBackgroundColor is defined and visualBackgroundColor is not empty %}
+{% set isFeatured = isFeatured|default(false) is same as(true) %}
+{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isVisualBackgroundFill = isVisualBackgroundFill|default(true) is same as(true) %}
 
 {# Default Variables (Props, Controls) #}
+{% set blockBackgroundColor = blockBackgroundColor|default("ground") %}
 {% set class = class|default("") %}
-{% set isFeatured = isFeatured|default(false) %}
-{% set isVisualBackgroundFill = isVisualBackgroundFill|default(true) %}
 {% set titleTag = titleTag|default("p") %}
+
+{# Classes Objects #}
+{% set backgroundClasses = {
+  ("ground"): "bf-color-bg-ground",
+  ("underground"): "bf-color-bg-underground",
+} %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set blockClasses = [
@@ -17,12 +25,8 @@
   "d-flex flex-column flex-sm-row w-100 overflow-hidden",
   "bf-border-radius-medium border bf-border-color-secondary",
   (isFeatured ? "bf-block--featured"),
-  (
-    (blockBackgroundColor|default("ground")) == "underground"
-      ? "bf-color-bg-underground"
-      : "bf-color-bg-ground"
-  ),
-  (reversed ? "reversed"),
+  (backgroundClasses[blockBackgroundColor]),
+  (isReversed ? "reversed"),
   (class),
 ] %}
 {% set blockVisualClasses = [
@@ -71,9 +75,7 @@
       {% set button =
         button|merge({
           class: "mt-2 " ~ button.class,
-          hierarchy: button.hierarchy|default(
-            isFeatured ? "primary-alt" : "secondary"
-          )
+          hierarchy: button.hierarchy|default(isFeatured ? "primary-alt" : "secondary")
         })
       %}
       {% include "@bf-components/button/twig/index.twig" with button only %}
