@@ -1,3 +1,6 @@
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set size = size|default("large") %}
+
 {# Boolean Variables #}
 {% set hasAriaControls = ariaControls is defined and ariaControls is not empty %}
 {% set hasAriaExpanded = ariaExpanded is defined and ariaExpanded is not empty %}
@@ -12,14 +15,15 @@
 {% set hasParagraph = paragraph is defined and paragraph is not empty %}
 {% set hasTitle = title is defined and title is not empty %}
 {% set isLink = href is defined and href is not empty %}
+{% set isSizeLarge = size is same as("large") %}
+{% set isSizeSmall = size is same as("small") %}
 
 {# Boolean Variables - ORDER IS IMPORTANT #}
 {% set hasVisual = hasImage or hasIcon %}
 
-{# Default Variables (Props, Controls) #}
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set class = class|default("") %}
 {% set extraAttribute = extraAttribute|default({}) %}
-{% set size = size|default("large") %}
 {% set titleTag = titleTag|default("span") %}
 
 {# Variables #}
@@ -30,16 +34,16 @@
   "bf-row-button",
   "bf-row-button--" ~ size,
   "d-flex align-items-center w-100 px-3",
-  (size is same as("large") ? "py-4" : "py-3"),
+  (isSizeLarge ? "py-4" : "py-3"),
   (class),
 ] %}
 {% set titleClasses = [
   "d-block",
-  (size is same as("large") ? "h3 mb-1" : "h4 mb-0"),
+  (isSizeLarge ? "h3 mb-1" : "h4 mb-0"),
 ] %}
 {% set linkLabelClasses = [
   "d-block bf-text-interface-medium text-underline",
-  (size is not same as("small") ? "mt-1"),
+  (isSizeSmall is same as(false) ? "mt-1"),
 ] %}
 
 {# Objects of Attributes With Dynamic Elements #}

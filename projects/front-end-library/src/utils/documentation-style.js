@@ -1,5 +1,6 @@
 import { styled, css } from '@storybook/theming';
 
+// DO NOT REMOVE THIS "prettier-ignore". Thanks!
 // prettier-ignore
 export const Image = styled.img(props => ({
     width: props.width,

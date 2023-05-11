@@ -8,6 +8,7 @@
 {% set hasTotalPrice = totalPrice is defined and totalPrice is not empty %}
 {% set hasTotalPriceInfo = totalPrice.priceInfo is defined and totalPrice.priceInfo is not empty %}
 {% set isCollapsableOnMobile = isCollapsableOnMobile|default(false) is same as(true) %}
+{% set isCollapsedByDefaultOnMobile = isCollapsedByDefaultOnMobile|default(false) is same as(true) %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}
@@ -25,7 +26,7 @@
 ] %}
 {% set blockContentClasses = [
   "p-3 p-sm-4",
-  (isCollapsableOnMobile and isCollapsedByDefaultOnMobile ? "collapse" : "show"),
+  (isCollapsableOnMobile ? isCollapsedByDefaultOnMobile ? "collapse" : "show"),
 ] %}
 
 {# Template #}

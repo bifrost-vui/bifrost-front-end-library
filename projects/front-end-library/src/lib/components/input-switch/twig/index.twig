@@ -8,6 +8,7 @@
 {% set isChecked = isChecked|default(false) is same as(true) %}
 {% set isDisabled = isDisabled|default(false) is same as(true) %}
 {% set isLabelIterable = hasLabel and label is iterable %}
+{% set isLabelPositionRight = label.position|default("left") is same as("right") %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}
@@ -22,7 +23,7 @@
 ] %}
 {% set switchLabelTextClasses = [
   "bf-text-display-sub-medium bf-input-switch__label",
-  (label.position|default("right") is same as("right") ? "bf-input-switch__label--right"),
+  (isLabelPositionRight ? "bf-input-switch__label--right"),
   (label.class|default("")),
 ] %}
 

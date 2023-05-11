@@ -2,7 +2,7 @@
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
 {# Boolean Variables #}
-{% set hasBadge = badge.label is defined and badge.label is not empty %}
+{% set hasBadge = badge is defined and badge is not empty %}
 {% set hasButtons = buttons is defined and buttons is not empty %}
 {% set hasComboLabel = comboLabel is defined and comboLabel is not empty %}
 {% set hasContentBadges = contentBadges is defined and contentBadges is not empty %}
@@ -59,7 +59,7 @@
 {# Arrays of Styles With Dynamic Elements #}
 {# TODO: Create a macro for a better custom style management #}
 {% set cardVisualStyles = [
-  (hasVisualBackgroundColor ? 'background-color: ' ~ visualBackgroundColor ~ ';'),
+  (hasVisualBackgroundColor ? "background-color: " ~ visualBackgroundColor ~ ";"),
 ] %}
 
 {# Template #}
@@ -166,8 +166,13 @@
     {% endif %}
 
     {% if hasBadge %}
-      {% set badge =
-        badge|merge({
+      {% if badge is not iterable %}
+        {% set badge = {
+          label: badge
+        } %}
+      {% endif %}
+
+      {% set badge = badge|merge({
           hierarchy: badge.hierarchy|default("primary"),
           angle: badge.angle|default("left"),
           class: "bf-card__badge"
@@ -318,7 +323,7 @@
           {{ message }}
           {% if hasMessageLink %}
             <a {{ macros.addAttributes({
-              "href": messageLink.href|default('#'),
+              "href": messageLink.href|default("#"),
               "class": messageLinkClasses|join(' ')|trim,
             }) }}>
               {{ messageLink.label|default("") }}
