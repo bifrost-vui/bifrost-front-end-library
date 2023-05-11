@@ -3,21 +3,86 @@
 <br />
 <br />
 
-## [Next Version](https://bifrost-front-end-library-vui.vercel.app/)
+## [Next Version](https://bifrost-front-end-library-vui.vercel.app/) - _####-##-##_
 
-### ⚠️ Breaking Changes ⚠️
+see [github-release](#)
+
+### Breaking Changes
 
 -   None
 
-### 🐛 Bugs fixes 🐛
+### Bugs fixes
 
 -   None
 
 <br />
 
+## [v1.11.2](https://bifrost-front-end-library-git-v1-11-2-bifrost-vui.vercel.app/) - _2023-05-11_
+
+see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.11.2)
+
+This package cover changes for these tickets : **[DS-466](https://groupemedia.atlassian.net/browse/DS-466)**,
+ **[DS-468](https://groupemedia.atlassian.net/browse/DS-468)** and **[DS-469](https://groupemedia.atlassian.net/browse/DS-469)**.
+
+### Breaking Changes
+
+-   None
+
+### Bugs fixes
+
+-   **Hero (DS-468)**: Fix an issue where in some tablets view, when an image was present and at the same time in "splitted" & "height large" mode, this image was "duplicated" because of an error in responsive management.
+-   **Input-Slider (DS-469)**: Fix an issue coming from release 1.10.0 where the changes from *single-quote* to *double-quotes* broke the way the HTML was printed in the browser and created JavaScript errors at the same time.
+
+### Special mentions
+
+-   Code rewriting on all Twig files on all components for a better readability. No functionality has changed on the components, except for those mentioned in this release changelog.
+-   Adjust description for a lot of components' controls in `*.component.ts` files. JSDoc was already in use for the documentation, but the formatting was not right.
+-   Add description for other components' controls in `*.component.ts` files.
+-   Add a new Node package, `twig-drupal-filters`, that give the functionalities of Twig Drupal filters.
+
+#### Documentation
+
+-   Add a new **CODING** section.
+-   Add a [Standards](/?path=/story/coding-standards--page) page for coding standards.
+-   Add a [Documentation](/?path=/story/coding-documentation--page) page for coding documentation in Storybook.
+-   Update [Drupal - Filters](/?path=/docs/implementation-drupal-filters--page) page to include the added `twig-drupal-filters` Node package.
+-   Add a new **DEPRECATED** section.
+
+#### Utilities
+
+-   Create a new utility, a **macro** named `addAttributes()` to easily add and format attributes to an HTML tag.
+-   Create a new utility, a **macro** named `boolToString()` to convert a boolean value to a string.
+-   Adjust **custom-tag** utility to use the new `addAttributes()` macro.
+
+#### Deprecation
+
+-   Move **Image Lazy Load** component to the new **DEPRECATED** section.
+    -   It was not used in other components in Bifröst nor in Drupal templates.
+    -   See the [component docs page](/?path=/docs/deprecated-ui-kit-image-lazy-load--drupal) for more information.
+
+### Components
+
+#### Icon
+
+-   Removal of `components/icon/twig/index-pattern-lab.twig` as it was not used anymore since this [commit](https://github.com/bifrost-vui/bifrost-front-end-library/commit/a8e53ce8471bae219d1c55ac6c704cb7aed3f23d).
+
+#### Input-Slider
+
+-   Fix on the precision where a slider handle is "released". It was not always giving the right value the user chose.
+
+#### Modal
+
+-   Add `extraAttributeCloseButton` control variable.
+-   Replace `extraAttributeX` variable to `extraAttributeCloseButton`. The variable `extraAttributeX` was present in the code, but it was not added as a control.
+-   Kept `extraAttributeX` as a default value of `extraAttributeCloseButton` for legacy support.
+
+<br />
+
 ## [v1.11.1](https://bifrost-front-end-library-git-v1-11-1-bifrost-vui.vercel.app/) - _2023-04-05_
 
-This package cover changes for **[DS-458](https://groupemedia.atlassian.net/browse/DS-458)** ticket.
+see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.11.1)
+
+
 
 ### ⚠️ Breaking Changes ⚠️
 
@@ -115,6 +180,8 @@ This package cover changes for **[DS-458](https://groupemedia.atlassian.net/brow
 <br />
 
 ## [v1.11.0](https://bifrost-front-end-library-git-v1-11-0-bifrost-vui.vercel.app/) - _2023-03-24_
+
+see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.11.0)
 
 ### ⚠️ Breaking Changes ⚠️
 
