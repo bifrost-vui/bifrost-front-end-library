@@ -1,46 +1,67 @@
-{% set class = "bf-input-radio " ~ (class|default(null)) %}
-{% set isLabelLegend = true %}
-{% set areOptionTilesInline = areOptionTilesInline|default(false) %}
-{% set areOptionTilesLarge = areOptionTilesLarge|default(false) %}
+{# Boolean Variables #}
+{% set hasOptions = options is defined and options is not empty %}
+{% set areOptionTiles = areOptionTiles|default(false) is same as(true) %}
+{% set areOptionTilesInline = areOptionTilesInline|default(false) is same as(true) %}
+{% set areOptionTilesLarge = areOptionTilesLarge|default(false) is same as(true) %}
 
-{% extends "@bf-components/input/twig/index.twig" %}
-{% block inputContent %}
-  {% if options is defined and options is not empty %}
-    <ul
-      class="bf-input-radio__options list-unstyled {{
-      areOptionTiles and areOptionTilesInline
-        ? "bf-input-radio__options--inline"
-        : "d-flex flex-column flex-wrap"
-      }} gap-2 mb-0"
-    >
-      {% if areOptionTiles|default(false) %}
-        {% for option in options %}
-          {% set option =
-            option|merge({
-              type: "radio",
-              name: name,
-              isRequired: option.isRequired|default(isRequired)|default(false),
-              orientation: areOptionTilesInline ? "vertical" : "horizontal",
-              class: (option.class|default(""))
-                ~ (areOptionTilesLarge ? " bf-selection-tile--large" : ""),
-              fit: "content",
-              errorMessage: null
-            })
-          %}
-          {% include "@bf-components/selection-tile/twig/index.twig" with option only %}
-        {% endfor %}
-      {% else %}
-        {% for option in options %}
-          {# TODO: apply input id for name? #}
-          {% set option =
-            option|merge({
-              name: name,
-              isRequired: option.isRequired|default(isRequired)|default(false)
-            })
-          %}
-          {% include "@bf-components/input-radio-option/twig/index.twig" with option only %}
-        {% endfor %}
-      {% endif %}
-    </ul>
-  {% endif %}
-{% endblock %}
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set fieldsetClasses = [
+  "bf-input-radio",
+  (class),
+] %}
+{% set optionsContainerClasses = [
+  "bf-input-radio__options",
+  "gap-2 mb-0",
+  (areOptionTiles and areOptionTilesInline ? "bf-input-radio__options--inline" : "d-flex flex-column flex-wrap"),
+] %}
+
+{% embed "@bf-components/input/twig/index.twig" with {
+  class: fieldsetClasses|join(' ')|trim,
+  isLabelLegend: true,
+} %}
+  {% block inputContent %}
+    {% if hasOptions %}
+      <div class="{{ optionsContainerClasses|join(' ')|trim }}">
+        {% if areOptionTiles %}
+          {# Options are Selection Tiles #}
+          {% for option in options %}
+
+            {# In Loop - Arrays of Classes With Dynamic Elements #}
+            {% set optionClasses = [
+              (option.class|default("")),
+              (areOptionTilesLarge ? "bf-selection-tile--large"),
+            ] %}
+
+            {% set option =
+              option|merge({
+                type: "radio",
+                name: name,
+                isRequired: option.isRequired|default(isRequired)|default(false),
+                orientation: (areOptionTilesInline ? "vertical" : "horizontal"),
+                class: (optionClasses|join(' ')|trim),
+                fit: "content",
+                errorMessage: null
+              })
+            %}
+            {% include "@bf-components/selection-tile/twig/index.twig" with option only %}
+          {% endfor %}
+        {% else %}
+          {# Options are simple radio button #}
+          {% for option in options %}
+            {% set option =
+              option|merge({
+                name: name,
+                isRequired: option.isRequired|default(isRequired)|default(false)
+              })
+            %}
+            {% include "@bf-components/input-radio-option/twig/index.twig" with option only %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endblock %}
+{% endembed %}
+

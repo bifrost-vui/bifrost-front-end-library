@@ -1,9 +1,23 @@
 {# Boolean Variables #}
-{% set hasImage = image is defined and image.src %}
-{% set isFeatured = isFeatured|default(false) %}
+{% set hasButton = button is defined and button is not empty %}
+{% set hasImage = image is defined and image.src is not empty %}
+{% set hasParagraph = paragraph is defined and paragraph is not empty %}
+{% set hasTitle = title is defined and title is not empty %}
+{% set hasVisualBackgroundColor = visualBackgroundColor is defined and visualBackgroundColor is not empty %}
+{% set isFeatured = isFeatured|default(false) is same as(true) %}
+{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isVisualBackgroundFill = isVisualBackgroundFill|default(true) is same as(true) %}
 
-{# Default Variables #}
+{# Default Variables (Props, Controls) #}
+{% set blockBackgroundColor = blockBackgroundColor|default("ground") %}
+{% set class = class|default("") %}
 {% set titleTag = titleTag|default("p") %}
+
+{# Classes Objects #}
+{% set backgroundClasses = {
+  ("ground"): "bf-color-bg-ground",
+  ("underground"): "bf-color-bg-underground",
+} %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set blockClasses = [
@@ -11,17 +25,13 @@
   "d-flex flex-column flex-sm-row w-100 overflow-hidden",
   "bf-border-radius-medium border bf-border-color-secondary",
   (isFeatured ? "bf-block--featured"),
-  (
-    (blockBackgroundColor|default("ground")) == "underground"
-      ? "bf-color-bg-underground"
-      : "bf-color-bg-ground"
-  ),
-  (reversed is defined and reversed ? "reversed"),
-  (class|default("")),
+  (backgroundClasses[blockBackgroundColor]),
+  (isReversed ? "reversed"),
+  (class),
 ] %}
 {% set blockVisualClasses = [
   "bf-block__visual bf-color-bg-brand",
-  (isVisualBackgroundFill|default(true) ? "bf-block__visual--fill"),
+  (isVisualBackgroundFill ? "bf-block__visual--fill"),
 ] %}
 {% set blockContentClasses = [
   "d-flex flex-column p-4 p-sm-5",
@@ -31,10 +41,7 @@
 {# Arrays of Styles With Dynamic Elements #}
 {% set blockVisualStyles = [
   "background-image: url(" ~ image.src ~ ");",
-  (
-    visualBackgroundColor is defined and visualBackgroundColor
-      ? 'background-color: ' ~ visualBackgroundColor ~ ';'
-  ),
+  (hasVisualBackgroundColor ? "background-color: " ~ visualBackgroundColor ~ ";"),
 ] %}
 
 {# Template #}
@@ -47,7 +54,7 @@
   {% endif %}
 
   <div class="{{ blockContentClasses|join(' ')|trim }}">
-    {% if title is defined %}
+    {% if hasTitle %}
       {% embed "@bf-utils/custom-tag/twig/index.twig" with {
         customTag: titleTag,
         attr: {
@@ -59,16 +66,16 @@
         {% endblock %}
       {% endembed %}
     {% endif %}
-    {% if paragraph is defined %}
-      <p>{{ paragraph }}</p>
+    {% if hasParagraph %}
+      <p>
+        {{ paragraph }}
+      </p>
     {% endif %}
-    {% if button is defined %}
+    {% if hasButton %}
       {% set button =
         button|merge({
           class: "mt-2 " ~ button.class,
-          hierarchy: button.hierarchy|default(
-            isFeatured ? "primary-alt" : "secondary"
-          )
+          hierarchy: button.hierarchy|default(isFeatured ? "primary-alt" : "secondary")
         })
       %}
       {% include "@bf-components/button/twig/index.twig" with button only %}

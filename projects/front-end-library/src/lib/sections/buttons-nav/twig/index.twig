@@ -1,33 +1,60 @@
-{# Default Variables #}
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set background = background|default("ground") %}
+
+{# Boolean Variables #}
+{% set hasAsideSection = asideSection is defined and asideSection is not empty %}
+{% set hasAsideSectionDescription = asideSection.description is defined and asideSection.description is not empty %}
+{% set hasAsideSectionLink = asideSection.link is defined and asideSection.link is not empty %}
+{% set hasAsideSectionTitle = asideSection.title is defined and asideSection.title is not empty %}
+{% set hasButtons = buttons is defined and buttons is not empty %}
+{% set hasTitle = title is defined and title is not empty %}
+{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isBackgroundHighlight = background is same as("highlight") %}
+
+{# Boolean Variables - Special #}
+{% set hasDescription = false %}
+{% if hasButtons %}
+  {% for button in buttons %}
+    {% if button.description is defined and button.description %}
+      {% set hasDescription = true %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
+{% set class = class|default("") %}
+{% set extraAttribute = extraAttribute|default({}) %}
 {% set titleTag = titleTag|default("h1") %}
 
-{# Background Classes #}
-{% if background is defined and background == "underground" %}
-  {% set backgroundClass = "bf-color-bg-underground" %}
-{% elseif background is defined and background == "highlight" %}
-  {% set backgroundClass = "bf-color-bg-highlight highlight" %}
-  {% set buttonNavHighlight = true %}
-{% else %}
-  {% set backgroundClass = "bf-color-bg-ground" %}
-{% endif %}
+{# Classes Objects #}
+{% set backgroundClasses = {
+  ("ground"): "bf-color-bg-ground",
+  ("highlight"): "bf-color-bg-highlight highlight",
+  ("underground"): "bf-color-bg-underground",
+} %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set sectionButtonsNavClasses = [
   "bf-section-buttons-nav d-flex flex-column flex-lg-row",
-  backgroundClass,
-  (reversed|default(false) ? "reversed"),
-  (class|default("")),
+  (backgroundClasses[background]),
+  (isReversed ? "reversed"),
+  (class),
+] %}
+{% set sectionButtonsNavListClasses = [
+  "bf-section-buttons-nav__list",
+  "list gap-4",
+  (hasDescription ? "bf-section-buttons-nav__list--has-description"),
 ] %}
 
 {# Template #}
-<section
-  class="{{ sectionButtonsNavClasses|join(' ')|trim }}"
-  {{ extraAttribute|default(null) }}
->
-  <div
-    class="container-fluid-percentage d-flex flex-column align-items-center py-6 px-4"
-  >
-    {% if title is defined and title %}
+<section {{ macros.addAttributes({
+  "class": sectionButtonsNavClasses|join(' ')|trim,
+}, extraAttribute) }}>
+  <div class="container-fluid-percentage d-flex flex-column align-items-center py-6 px-4">
+    {% if hasTitle %}
       {% embed "@bf-utils/custom-tag/twig/index.twig" with {
         customTag: titleTag,
         attr: {
@@ -40,26 +67,14 @@
       {% endembed %}
     {% endif %}
 
-    {% if buttons is defined and buttons %}
-      {% set hasDescription = false %}
-      {% for button in buttons if not hasDescription %}
-        {% if button.description is defined and button.description %}
-          {% set hasDescription = true %}
-        {% endif %}
-      {% endfor %}
-
-      <ul
-        class="bf-section-buttons-nav__list {{
-        hasDescription
-          ? "bf-section-buttons-nav__list--has-description"
-        }} list gap-4"
-      >
+    {% if hasButtons %}
+      <ul class="{{ sectionButtonsNavListClasses|join(' ')|trim }}">
         {% for button in buttons %}
           <li class="bf-section-buttons-nav__item">
             {% set button =
               button|merge({
-                class: "h-100 align-items-start " ~ button.class,
-                highlight: buttonNavHighlight|default(false)
+                class: "h-100 align-items-start " ~ (button.class),
+                highlight: (isBackgroundHighlight)
               })
             %}
             {% include "@bf-components/button-nav/twig/index.twig" with button %}
@@ -69,19 +84,25 @@
     {% endif %}
   </div>
 
-  {% if asideSection is defined and asideSection is not empty %}
+  {% if hasAsideSection %}
     <div
-      class="bf-section-buttons-nav__right-section d-flex flex-column justify-content-center align-items-center bf-color-bg-underground text-center p-6"
+      class="
+        bf-section-buttons-nav__right-section d-flex flex-column justify-content-center
+        align-items-center bf-color-bg-underground text-center p-6
+      "
     >
       <div class="bf-section-buttons-nav__right-section__inner">
-        {% if asideSection.title is defined and asideSection.title %}
-          <h2>{{ asideSection.title }}</h2>
+        {% if hasAsideSectionTitle %}
+          <h2>
+            {{ asideSection.title }}
+          </h2>
         {% endif %}
-        {% if
-          asideSection.description is defined and asideSection.description %}
-          <p>{{ asideSection.description }}</p>
+        {% if hasAsideSectionDescription %}
+          <p>
+            {{ asideSection.description }}
+          </p>
         {% endif %}
-        {% if asideSection.link is defined and asideSection.link %}
+        {% if hasAsideSectionLink %}
           {% include "@bf-components/link/twig/index.twig" with asideSection.link only %}
         {% endif %}
       </div>

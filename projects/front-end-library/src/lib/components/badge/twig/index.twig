@@ -1,23 +1,34 @@
-{% set badgeAngleClass = "" %}
-{% if isRounded|default(false) %}
-  {% set badgeAngleClass = "bf-badge--rounded" %}
-{% elseif angle is defined and angle %}
-  {% set badgeAngleClass = "bf-badge--angle-" ~ angle %}
-{% endif %}
+{# Boolean Variables #}
+{% set hasIconName = iconName is defined and iconName is not empty %}
+{% set hasAngle = angle is defined and angle is not empty %}
 
-<div
-  class="bf-badge bf-badge--{{ hierarchy|default("secondary") }} {{
-  badgeAngleClass
-  }} {{ class|default("") }}"
->
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set isRounded = isRounded|default(false) %}
+{% set hierarchy = hierarchy|default("secondary") %}
+{% set label = label|default("") %}
+
+{# Variables #}
+{% set badgeAngleClass = isRounded ? "bf-badge--rounded" : hasAngle ? "bf-badge--angle-" ~ angle : "" %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set badgeClasses = [
+  "bf-badge",
+  "bf-badge--" ~ hierarchy,
+  (isRounded ? "bf-badge--rounded" : hasAngle ? "bf-badge--angle-" ~ angle : ""),
+  (class),
+] %}
+{% set badgeTextClasses = [
+  "bf-text-interface-small bf-badge__label",
+  "m-0",
+  (noUppercase ? "text-transform-initial"),
+] %}
+
+{# Template #}
+<div class="{{ badgeClasses|join(' ')|trim }}">
   <div class="bf-badge__inner position-relative d-flex align-items-center">
-    <p
-      class="bf-text-interface-small bf-badge__label {{
-      noUppercase
-        ? "text-transform-initial"
-      }} %} m-0"
-    >
-      {% if iconName is defined and iconName %}
+    <p class="{{ badgeTextClasses|join(' ')|trim }}">
+      {% if hasIconName %}
         {% include "@bf-components/icon/twig/index.twig" with {
           name: iconName,
           class: "mr-2",
@@ -25,7 +36,9 @@
         } only %}
       {% endif %}
 
-      <span class="bf-badge__label__text">{{ label|default("") }}</span>
+      <span class="bf-badge__label__text">
+        {{ label }}
+      </span>
     </p>
   </div>
 </div>

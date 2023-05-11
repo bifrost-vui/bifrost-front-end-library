@@ -30,22 +30,26 @@ export class RowButtonComponent implements OnInit {
     @Input() ariaControls: string;
     @Input() ariaLabel: string;
     /**
-     Can be a simple **string** or an **object**
-
-     _**String**_
-
-     Must be between double-quotes ("), so use single-quotes (') for attributes.
-     <pre style='font-size: 0.75rem; padding: 0.5rem; margin: 0.5rem 0; border: 1px solid currentColor'>
-        "id='lorem_ipsum' style='display: flex;'"
-     </pre>
-
-     _**Object**_
-     <pre style='font-size: 0.75rem; padding: 0.5rem; margin: 0.5rem 0; border: 1px solid currentColor'>
-        {
-            "data-test-1": "test-1",
-            "data-test-2": "test-2"
-        }
-     </pre>
+     * Can be a simple **string** or an **object**
+     *
+     * _**String**_
+     *
+     * Must be between double-quotes ("), so use single-quotes (') for attributes.
+     * <pre>
+     *    <code>
+     *        "id='lorem_ipsum' style='display: flex;'"
+     *    </code>
+     * </pre>
+     *
+     * _**Object**_
+     * <pre>
+     *    <code>
+     *        {
+     *            "data-test-1": "test-1",
+     *            "data-test-2": "test-2"
+     *        }
+     *    </code>
+     * </pre>
      */
     @Input() extraAttribute: string | object;
 

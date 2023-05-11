@@ -1,26 +1,31 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
 {# Boolean Variables #}
-{% set isLink = href is defined
-  and href is not empty
-  and (isClickable is not defined or isClickable is same as(true))
-%}
-{% set haslink = href is defined
-  and href is not empty
-  and linkLabel is defined
-  and linkLabel is not empty
-%}
+{% set hasHref = href is defined and href is not empty %}
 {% set hasImage = image.src is defined and image.src is not empty %}
 {% set hasIcon = iconName is defined and iconName is not empty %}
+{% set hasLinkLabel = linkLabel is defined and linkLabel is not empty %}
 {% set hasVisual = hasImage or hasIcon %}
+{% set hasDescription = description_html is defined and description_html is not empty %}
+{% set hasBadge = badge is defined and badge is not empty %}
+{% set isClickable = isClickable|default(false) is same as(true) %}
+
+{# Boolean Variables - ORDER IS IMPORTANT #}
+{% set isLink = hasHref and isClickable %}
+{% set haslink = hasHref and hasLinkLabel %}
 
 {# Default Variables #}
+{% set class = class|default("") %}
 {% set componentTag = isLink ? "a" : "div" %}
 {% set href = href|default("") %}
+{% set title = title|default("") %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set bannerClasses = [
   "bf-banner d-flex align-items-center",
   (hasVisual ? "bf-banner--has-visual"),
-  (class|default("")),
+  (class),
 ] %}
 
 {# Banner Attributes #}
@@ -38,12 +43,12 @@
     {% if hasVisual %}
       <div class="bf-banner__visual">
         {% if hasImage %}
-          <img
-            src="{{ image.src|default("") }}"
-            data-src="{{ image.dataSrc|default("") }}"
-            alt="{{ image.alt|default("") }}"
-            loading="lazy"
-          />
+          <img {{ macros.addAttributes({
+            "src": image.src|default(""),
+            "data-src": image.dataSrc|default(""),
+            "alt": image.alt|default(""),
+            "loading": "lazy",
+          }) }} />
         {% elseif hasIcon %}
           {% include "@bf-components/icon/twig/index.twig" with {
             name: iconName,
@@ -54,33 +59,34 @@
     {% endif %}
 
     <div class="bf-banner__content">
-      <p class="small font-weight-bold mb-1">{{ title|default("") }}</p>
-      {% if description_html is defined and description_html is not empty %}
+      <p class="small font-weight-bold mb-1">
+        {{ title }}
+      </p>
+      {% if hasDescription %}
         <div class="small children--mb-1 last-child--mb-0">
           {{ description_html }}
-          {%
-            if haslink
-            and isClickable is defined
-            and isClickable is same as(false)
-          %}
+
+          {% if haslink and isClickable is same as(false) %}
             <br />
-            <a class="bf-link" href="{{ href }}">{{ linkLabel }}</a>
+            <a {{ macros.addAttributes({
+              "href": href,
+              "class": "bf-link",
+            }) }}>
+              {{ linkLabel }}
+            </a>
           {% endif %}
         </div>
       {% endif %}
     </div>
 
-    {% if badge is defined and badge is not empty %}
-      {% if badge is iterable %}
-        {% set badgeLabel = badge.label %}
-      {% else %}
+    {% if hasBadge %}
+      {% if badge is not iterable %}
         {% set badge = {
           label: badge
         } %}
       {% endif %}
 
-      {% set badge =
-        badge|merge({
+      {% set badge = badge|merge({
           angle: badge.angle|default("left")
         })
       %}

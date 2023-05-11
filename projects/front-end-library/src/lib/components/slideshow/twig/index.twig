@@ -1,9 +1,15 @@
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set slideshowInnerClasses = [
+  "bf-slideshow__inner",
+  "js-bf-slideshow--hero-slideshow",
+  (class),
+] %}
+
 <div class="bf-slideshow">
-  <div
-    class="bf-slideshow__inner js-bf-slideshow--hero-slideshow {{ class|default(
-      ""
-    ) }}"
-  >
+  <div class="{{ slideshowInnerClasses|join(' ')|trim }}">
     {% for slide in slides %}
       {% include "@bf-components/hero/twig/index.twig" with slide only %}
     {% endfor %}

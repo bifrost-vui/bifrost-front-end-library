@@ -12,7 +12,7 @@ export class ImageLazyLoadComponent implements OnInit {
     @Input() alt: string;
     @Input() src: string;
 
-    /** Class override */
+    /** Class override. */
     @Input() class: string;
 
     ngOnInit() {

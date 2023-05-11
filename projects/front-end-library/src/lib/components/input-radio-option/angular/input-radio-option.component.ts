@@ -12,8 +12,9 @@ export class InputRadioOptionComponent implements OnInit {
     @Input() name: string;
     @Input() value: string;
     @Input() isChecked: boolean;
-    @Input() label: HTMLElement;
+    @Input() label: string;
     @Input() labelClass: string;
+    @Input() labelExtraAttribute: string;
     @Input() isRequired: boolean;
     @Input() isDisabled: boolean;
     @Input() isInvalid: boolean;

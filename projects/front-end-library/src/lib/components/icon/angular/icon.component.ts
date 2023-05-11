@@ -13,9 +13,9 @@ export class IconComponent implements OnChanges {
     @Input() name: string;
     @Input() size: 'xsmall' | 'small' | 'medium' | 'large' | 'huge';
     @Input() color: 'primary' | 'success' | 'neutral' | 'warning' | 'negative';
-    /** Angular only */
+    /** Angular only. */
     @Input() className: string;
-    /** Drupal only */
+    /** Drupal only. */
     @Input() class: string;
     @Input() reversed: boolean;
 

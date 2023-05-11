@@ -16,26 +16,27 @@ export class HeroComponent implements OnInit {
 
     @Input() breadcrumb: string;
     /**
-        You can pass directly the **label** as a **string** or an **object** based on [Badge](/?path=/docs/components-badge--drupal) component API.
-    */
+     * You can pass directly the **label** as a **string** or an **object** based on
+     * [Badge](/?path=/docs/components-badge--drupal) component API.
+     */
     @Input() badge: any;
     @Input() upperTitle: string;
     @Input() title: string;
     @Input() subtitle: string;
     @Input() description: string;
     /**
-   Insert buttons (max of 2 buttons). Explore its [Component API](/?path=/docs/components-button--drupal).
-   */
+     * - Insert buttons (max of 2 buttons).
+     * - Explore its [Component API](/?path=/docs/components-button--drupal).
+     */
     @Input() buttons: Array<object>[];
-    /**
-        [Price](/?path=/docs/components-price--drupal) component.
-    */
+    /** [Price](/?path=/docs/components-price--drupal) component. */
     @Input() price: IPrice;
     /** HTML string or TwigBlock. Will be displayed between the description and the buttons. */
     @Input() content: string | 'TwigBlock';
     /**
-     You can pass directly the **name** of the icon as a **string** or an **object** based on [Icon component API](/?path=/docs/components-icon--drupal).
-      The **size** is always override with **huge**
+     * - You can pass directly the **name** of the icon as a **string** or an **object**
+     * based on [Icon component API](/?path=/docs/components-icon--drupal).
+     * - The **size** is always override with **huge**.
      */
     @Input() icon: any;
     /** Add `isSplitted: true` to display the image on the right side only. */
@@ -43,11 +44,13 @@ export class HeroComponent implements OnInit {
     @Input() background: 'ground' | 'underground' | 'highlight';
 
     /**
-        Insert the component BlockSelection. Explore its [Component API](/?path=/docs/components-block--drupal-selection).
-    */
+     * - Does not work if there is an `image` and `image.isSplitted: true`.
+     * - Insert the component BlockSelection.
+     * - Explore its [Component API](/?path=/docs/components-block--drupal-selection).
+     */
     @Input() blockSelection: object | 'TwigBlock';
 
-    /** Class override */
+    /** Class override. */
     @Input() class: string;
     /** Note: height large will add a min-height of 60vh. */
     @Input() height: '' | 'large';

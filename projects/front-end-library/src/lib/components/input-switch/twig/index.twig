@@ -1,42 +1,54 @@
-{% if label is defined and label is not empty %}
-  {% if label is iterable %}
-    {% set labelText = label.text|default(null) %}
-    {% set labelPosition = label.position|default(null) %}
-  {% else %}
-    {% set labelText = label %}
-  {% endif %}
-{% endif %}
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
 
-<label
-  class="bf-input-switch {{
-  isDisabled is defined and isDisabled
-    ? "disabled"
-  }} {{ class|default("") }}"
->
-  <span
-    class="bf-text-display-sub-medium  bf-input-switch__label {{
-    (labelPosition|default(null)) == "right"
-      ? "bf-input-switch__label--right"
-    }} {{ label.class|default(null) }}"
-  >
-    {{ labelText }}
-  </span>
-  <input
-    id="{{ id }}"
-    name="{{ name }}"
-    type="checkbox"
-    {{
-    isDisabled is defined and isDisabled
-      ? " disabled aria-disabled='true'"
-    }}
-    {{ isChecked is defined and isChecked ? " checked" }}
-    {{
-    ariaLabel is defined and ariaLabel
-      ? " aria-label='" ~ ariaLabel ~ "'"
-      : ariaLabelledby is defined and ariaLabelledby
-        ? " aria-labelledby='" ~ ariaLabelledby ~ "'"
-    }}
-    {{ extraAttribute|default(null) }}
-  />
+{# Boolean Variables #}
+{% set hasAriaLabel = ariaLabel is defined and ariaLabel is not empty %}
+{% set hasAriaLabelledby = ariaLabelledby is defined and ariaLabelledby is not empty %}
+{% set hasLabel = label is defined and label is not empty %}
+{% set isChecked = isChecked|default(false) is same as(true) %}
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isLabelIterable = hasLabel and label is iterable %}
+{% set isLabelPositionRight = label.position|default("left") is same as("right") %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set labelText = isLabelIterable ? label.text|default("") : label|default("") %}
+{% set extraAttribute = extraAttribute|default({}) %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set switchLabelClasses = [
+  "bf-input-switch",
+  (isDisabled ? "disabled"),
+  (class),
+] %}
+{% set switchLabelTextClasses = [
+  "bf-text-display-sub-medium bf-input-switch__label",
+  (isLabelPositionRight ? "bf-input-switch__label--right"),
+  (label.class|default("")),
+] %}
+
+{# Template #}
+<label class="{{ switchLabelClasses|join(' ')|trim }}">
+
+  {# Label #}
+  {% if hasLabel %}
+    <span class="{{ switchLabelTextClasses|join(' ')|trim }}">
+      {{ labelText }}
+    </span>
+  {% endif %}
+
+  {# Input #}
+  <input {{ macros.addAttributes({
+    "id": id,
+    "name": name,
+    "type": "checkbox",
+    "checked": (isChecked ? "checked"),
+    "disabled": (isDisabled ? "disabled"),
+    "aria-disabled": (isDisabled ? "true"),
+    "aria-label": (hasAriaLabel ? ariaLabel),
+    "aria-labelledby": (hasAriaLabel is same as(false) and hasAriaLabelledby ? ariaLabelledby),
+  }, extraAttribute) }} />
+
+  {# Toggle button #}
   <span class="bf-input-switch__control"></span>
 </label>

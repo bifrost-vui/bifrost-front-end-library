@@ -1,13 +1,32 @@
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set size = size|default("large") %}
+
 {# Boolean Variables #}
-{% set isLink = href is defined and href is not empty %}
-{% set hasImage = image.src is defined and image.src is not empty %}
+{% set hasAriaControls = ariaControls is defined and ariaControls is not empty %}
+{% set hasAriaExpanded = ariaExpanded is defined and ariaExpanded is not empty %}
+{% set hasAriaLabel = ariaLabel is defined and ariaLabel is not empty %}
+{% set hasChevron = hasChevron|default(true) is same as(true) %}
+{% set hasDataDismiss = dataDismiss is defined and dataDismiss is not empty %}
+{% set hasDataTarget = dataTarget is defined and dataTarget is not empty %}
+{% set hasDataToggle = dataToggle is defined and dataToggle is not empty %}
 {% set hasIcon = iconName is defined and iconName is not empty %}
+{% set hasImage = image.src is defined and image.src is not empty %}
+{% set hasLinkLabel = linkLabel is defined and linkLabel is not empty %}
+{% set hasParagraph = paragraph is defined and paragraph is not empty %}
+{% set hasTitle = title is defined and title is not empty %}
+{% set isLink = href is defined and href is not empty %}
+{% set isSizeLarge = size is same as("large") %}
+{% set isSizeSmall = size is same as("small") %}
+
+{# Boolean Variables - ORDER IS IMPORTANT #}
 {% set hasVisual = hasImage or hasIcon %}
 
-{# Default Variables #}
-{% set titleTag = titleTag|default("span") %}
-{% set size = size|default("large") %}
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
+{% set class = class|default("") %}
 {% set extraAttribute = extraAttribute|default({}) %}
+{% set titleTag = titleTag|default("span") %}
+
+{# Variables #}
 {% set componentTag = isLink ? "a" : "button" %}
 
 {# Arrays of Classes With Dynamic Elements #}
@@ -15,37 +34,40 @@
   "bf-row-button",
   "bf-row-button--" ~ size,
   "d-flex align-items-center w-100 px-3",
-  (size == "large" ? "py-4" : "py-3"),
-  (class|default("")),
+  (isSizeLarge ? "py-4" : "py-3"),
+  (class),
+] %}
+{% set titleClasses = [
+  "d-block",
+  (isSizeLarge ? "h3 mb-1" : "h4 mb-0"),
+] %}
+{% set linkLabelClasses = [
+  "d-block bf-text-interface-medium text-underline",
+  (isSizeSmall is same as(false) ? "mt-1"),
 ] %}
 
-{# Row Button Attributes #}
+{# Objects of Attributes With Dynamic Elements #}
 {% set rowButtonAttributes = {
     "href": href,
     "class": rowButtonClasses|join(' ')|trim,
-    "data-dismiss": (dataDismiss is defined ? dataDismiss : null),
-    "data-toggle": (dataToggle is defined ? dataToggle : null),
-    "data-target": (dataTarget is defined ? dataTarget : null),
-    "aria-controls": (ariaControls is defined ? ariaControls : null),
-    "aria-expanded": (ariaExpanded is defined ? ariaExpanded : null),
-    "aria-label": (ariaLabel is defined ? ariaLabel : null),
+    "data-dismiss": (hasDataDismiss ? dataDismiss),
+    "data-toggle": (hasDataToggle ? dataToggle),
+    "data-target": (hasDataTarget ? dataTarget),
+    "aria-controls": (hasAriaControls ? ariaControls),
+    "aria-expanded": (hasAriaExpanded ? ariaExpanded),
+    "aria-label": (hasAriaLabel ? ariaLabel),
 } %}
-{% if extraAttribute is defined %}
-  {% if extraAttribute is iterable %}
-    {# is an object #}
-    {% set rowButtonAttributes = rowButtonAttributes|merge(extraAttribute) %}
-  {% else %}
-    {# is a string #}
-    {% set rowButtonAttributes = rowButtonAttributes|merge({"bfString": extraAttribute}) %}
-  {% endif %}
-{% endif %}
 
 {# Template #}
 {% embed "@bf-utils/custom-tag/twig/index.twig" with {
   customTag: componentTag,
   attr: rowButtonAttributes,
+  extraAttr: extraAttribute,
 } %}
   {% block customTagContent %}
+    {# Import macros #}
+    {% import "@bf-utils/macros/twig/index.twig" as macros %}
+
     {% if hasVisual %}
       <span class="bf-row-button__visual d-block mr-3">
         {% if hasIcon %}
@@ -54,22 +76,22 @@
             size: size
           } only %}
         {% elseif hasImage %}
-          <img
-            src="{{ image.src|default("") }}"
-            data-src="{{ image.dataSrc|default("") }}"
-            alt="{{ image.alt|default("") }}"
-            loading="lazy"
-          />
+          <img {{ macros.addAttributes({
+            "src": image.src|default(""),
+            "data-src": image.dataSrc|default(""),
+            "alt": image.alt|default(""),
+            "loading": "lazy",
+          }) }} />
         {% endif %}
       </span>
     {% endif %}
 
     <span class="bf-row-button__content d-block flex-grow-1">
-      {% if title is defined and title %}
+      {% if hasTitle %}
         {% embed "@bf-utils/custom-tag/twig/index.twig" with {
           customTag: titleTag,
           attr: {
-            "class": "d-block " ~ size == "large" ? "h3 mb-1" : "h4 mb-0"
+            "class": titleClasses|join(' ')|trim
           },
         } %}
           {% block customTagContent %}
@@ -77,23 +99,19 @@
           {% endblock %}
         {% endembed %}
       {% endif %}
-      {% if paragraph is defined and paragraph %}
-        <span class="d-block small">{{ paragraph }}</span>
+      {% if hasParagraph %}
+        <span class="d-block small">
+          {{ paragraph }}
+        </span>
       {% endif %}
-      {% if linkLabel is defined and linkLabel %}
-        <span
-          class="d-block bf-text-interface-medium text-underline {{
-          size != "small"
-            ? "mt-1"
-            : ""
-          }}"
-        >
+      {% if hasLinkLabel %}
+        <span class="{{ linkLabelClasses|join(' ')|trim }}">
           {{ linkLabel }}
         </span>
       {% endif %}
     </span>
 
-    {% if hasChevron|default(true) %}
+    {% if hasChevron %}
       {% include "@bf-components/icon/twig/index.twig" with {
         name: "chevron-right",
         size: "small",

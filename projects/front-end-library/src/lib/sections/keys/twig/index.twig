@@ -1,44 +1,46 @@
-{# Default Variables #}
-{% set titleTag = titleTag|default("h1") %}
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
 {% set align = align|default("left") %}
 
-{# Background Classes #}
-{% if background is defined and background == "highlight" %}
-  {% set backgroundClass = "bf-color-bg-highlight highlight" %}
-{% elseif background is defined and background == "underground" %}
-  {% set backgroundClass = "bf-color-bg-underground" %}
-{% else %}
-  {% set backgroundClass = "bf-color-bg-ground" %}
-{% endif %}
+{# Boolean Variables #}
+{% set hasDescription = description is defined and description is not empty %}
+{% set hasTitle = title is defined and title is not empty %}
+{% set isAlignCenter = align is same as("center") %}
+{% set isReversed = reversed|default(false) is same as(true) %}
+
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
+{% set background = background|default("ground") %}
+{% set class = class|default("") %}
+{% set titleTag = titleTag|default("h1") %}
+
+{# Classes Objects #}
+{% set backgroundClasses = {
+  ("ground"): "bf-color-bg-ground",
+  ("highlight"): "bf-color-bg-highlight highlight",
+  ("underground"): "bf-color-bg-underground",
+} %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set sectionKeysClasses = [
   "bf-section-keys py-6 px-4",
-  backgroundClass,
-  (reversed|default(false) ? "reversed"),
-  (class|default("")),
+  (backgroundClasses[background]),
+  (isReversed ? "reversed"),
+  (class),
 ] %}
 {% set sectionKeysContainerClasses = [
   "container-fluid d-flex flex-column gap-4",
-  (
-    align == "center"
-      ? "text-center align-items-stretch align-items-md-center"
-  ),
+  (isAlignCenter ? "text-center align-items-stretch align-items-md-center"),
 ] %}
 {% set sectionKeysListItemClasses = [
   "bf-section-keys__item d-flex flex-row flex-md-column align-items-start gap-4 p-0",
-  (
-    align == "center"
-      ? "text-left text-md-center align-items-md-center"
-  ),
+  (isAlignCenter ? "text-left text-md-center align-items-md-center"),
 ] %}
 
 {# Template #}
 <section class="{{ sectionKeysClasses|join(' ')|trim }}">
   <div class="{{ sectionKeysContainerClasses|join(' ')|trim }}">
-    {% if (title is defined and title) or (description is defined and description) %}
+    {% if hasTitle or hasDescription %}
       <header>
-        {% if title is defined and title %}
+        {% if hasTitle %}
           {% embed "@bf-utils/custom-tag/twig/index.twig" with {
             customTag: titleTag,
             attr: {
@@ -51,16 +53,24 @@
           {% endembed %}
         {% endif %}
 
-        {% if description is defined and description %}
-          <p class="mb-0 mt-2">{{ description }}</p>
+        {% if hasDescription %}
+          <p class="mb-0 mt-2">
+            {{ description }}
+          </p>
         {% endif %}
       </header>
     {% endif %}
 
     <ul class="list d-flex flex-column flex-md-row flex-wrap gap-4">
       {% for key in keys %}
+        {# In Loop : Boolean Variables #}
+        {% set hasKeyDescription = key.description is defined and key.description is not empty %}
+        {% set hasKeyIconName = key.iconName is defined and key.iconName is not empty %}
+        {% set hasKeyLink = key.link is defined and key.link is not empty %}
+        {% set hasKeyTitle = key.title is defined and key.title is not empty %}
+
         <li class="{{ sectionKeysListItemClasses|join(' ')|trim }}">
-          {% if key.iconName is defined and key.iconName %}
+          {% if hasKeyIconName %}
             {% include "@bf-components/icon/twig/index.twig" with {
               name: key.iconName,
               size: "large"
@@ -68,7 +78,7 @@
           {% endif %}
 
           <div>
-            {% if key.title is defined and key.title %}
+            {% if hasKeyTitle %}
               {% embed "@bf-utils/custom-tag/twig/index.twig" with {
                 customTag: key.titleTag|default("h2"),
                 attr: {
@@ -81,11 +91,13 @@
               {% endembed %}
             {% endif %}
 
-            {% if key.description is defined and key.description %}
-              <p class="small mb-0 mt-2">{{ key.description }}</p>
+            {% if hasKeyDescription %}
+              <p class="small mb-0 mt-2">
+                {{ key.description }}
+              </p>
             {% endif %}
 
-            {% if key.link is defined and key.link %}
+            {% if hasKeyLink %}
               {% set keyLink =
                 key.link|merge({
                   hierarchy: "primary",

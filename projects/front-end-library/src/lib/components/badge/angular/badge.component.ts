@@ -10,9 +10,9 @@ export class BadgeComponent implements OnInit, OnChanges {
     @Input() label: string;
     @Input() hierarchy: 'primary' | 'secondary' | 'tertiary' | 'tertiary-ground';
     @Input() noUppercase: boolean;
-    /** Displays an angle on a corner. Won't have any effect if `isRounded` is true*/
+    /** Displays an angle on a corner. Won't have any effect if `isRounded` is true. */
     @Input() angle: null | 'left' | 'right';
-    /** `isRounded` property has precedence over `angle`  */
+    /** This property has precedence over `angle`. */
     @Input() isRounded: boolean;
     @Input() iconName: string;
     /** Angular only */

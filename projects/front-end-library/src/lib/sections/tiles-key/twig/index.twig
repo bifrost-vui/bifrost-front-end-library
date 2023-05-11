@@ -1,15 +1,27 @@
-<section
-  class="bf-section-tiles-key bf-color-bg-ground
-  {{
-  hasFeaturedLayout|default(false)
-    ? "bf-section-tiles-key--featured-layout"
-  }}
-  {{ reversed|default(false) ? "reversed" }}
-  {{ class|default(null) }}"
->
+
+{# Boolean Variables #}
+{% set hasFeaturedLayout = hasFeaturedLayout|default(false) is same as(true) %}
+{% set hasTitle = title is defined and title is not empty %}
+{% set isReversed = reversed|default(false) is same as(true) %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set tilesKeyClasses = [
+  "bf-section-tiles-key bf-color-bg-ground",
+  (hasFeaturedLayout ? "bf-section-tiles-key--featured-layout"),
+  (isReversed ? "reversed"),
+  (class),
+] %}
+
+{# Template #}
+<section class="{{ tilesKeyClasses|join(' ')|trim }}">
   <div class="container-fluid py-6">
-    {% if title is defined and title %}
-      <h1 class="h2 mb-4 mb-md-5">{{ title }}</h1>
+    {% if hasTitle %}
+      <h1 class="h2 mb-4 mb-md-5">
+        {{ title }}
+      </h1>
     {% endif %}
 
     <ul class="bf-section-tiles-key__list list-unstyled">

@@ -5,6 +5,10 @@
 * ***************************************************************************** */
 
 .bf-input-slider {
+  --bf-input-slider-thumb-width: 1rem; // Must be in "rem", because a calculation is done in JavaScript
+  --bf-input-slider-thumb-height: 1rem;
+  --bf-input-slider-thumb-color-focus: var(--bf-color-bg-action-secondary-hover);
+
   /*----------------------------------------------*/
   /* Overlay of the input double slider
     /*----------------------------------------------*/
@@ -127,8 +131,8 @@
     /*------ THUMB ------*/
     &::-ms-thumb {
       pointer-events: all;
-      width: 1rem;
-      height: 1rem;
+      width: var(--bf-input-slider-thumb-width);
+      height: var(--bf-input-slider-thumb-height);
       border-radius: 50%;
       border: 0 none;
       -webkit-appearance: none;
@@ -136,8 +140,8 @@
     }
     &::-moz-range-thumb {
       pointer-events: all;
-      width: 1rem;
-      height: 1rem;
+      width: var(--bf-input-slider-thumb-width);
+      height: var(--bf-input-slider-thumb-height);
       border-radius: 50%;
       border: 0 none;
       -webkit-appearance: none;
@@ -145,12 +149,21 @@
     }
     &::-webkit-slider-thumb {
       pointer-events: all;
-      width: 1rem;
-      height: 1rem;
+      width: var(--bf-input-slider-thumb-width);
+      height: var(--bf-input-slider-thumb-height);
       border-radius: 50%;
       border: 0 none;
-      background: var(--bf-color-neutral-primary);
       -webkit-appearance: none;
+      background: var(--bf-color-neutral-primary);
+    }
+    &:focus::-ms-thumb {
+      background: var(--bf-input-slider-thumb-color-focus);
+    }
+    &:focus::-moz-range-thumb {
+      background: var(--bf-input-slider-thumb-color-focus);
+    }
+    &:focus::-webkit-slider-thumb {
+      background: var(--bf-input-slider-thumb-color-focus);
     }
     /*------ MS-fill  ------*/
     &::-ms-fill-lower {
@@ -171,3 +184,4 @@
     pointer-events: none;
   }
 }
+

@@ -1,26 +1,43 @@
-<a
-  href="{{ href|default("#") }}"
-  {{
-  linkLabel is not empty
-    ? "data-title='"
-      ~ (linkLabel
-        |render
-        |t(
-          [],
-          {
-            langcode: "EN",
-            context: "data-title-attribute"
-          }
-        ))
-      ~ "'"
-  }}
-  class="hover-translate pseudo-icon--arrow-right h{{ linkSize|default(
-    "4"
-  ) }} font-weight-{{ linkFontWeight|default(
-    "normal"
-  ) }} d-{{ linkDisplay|default("block") }} {{ linkClass|default("") }}"
-  {{ extraAttribute|default(null) }}
->
-  <span>{{ linkLabel|default("Link to next")|raw }}</span>
+{# TODO: Do not seem that this file is used anywhere. Check if it is really the case. #}
+
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasLabel = linkLabel is defined and linkLabel is not empty %}
+
+{# Default Variables (Props, Controls) #}
+{% set href = href|default("#") %}
+{% set linkClass = linkClass|default("") %}
+{% set linkDisplay = linkDisplay|default("block") %}
+{% set linkFontWeight = linkFontWeight|default("normal") %}
+{% set linkLabel = linkLabel|default("Link to next") %}
+{% set linkSize = linkSize|default("4") %}
+
+{# "data-title" Translation Filter Object #}
+{% set dataTitleTranslationObject = {
+  langcode: "EN",
+  context: "data-title-attribute"
+} %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set nextLinkClasses = [
+  "hover-translate pseudo-icon--arrow-right",
+  "h" ~ linkSize,
+  "font-weight-" ~ linkFontWeight,
+  "d-" ~ linkDisplay,
+  (linkClass),
+] %}
+
+{# Objects of Attributes With Dynamic Elements #}
+{% set nextLinkAttributes = {
+  "href": href,
+  "class": nextLinkClasses|join(' ')|trim,
+  "data-title": (hasLabel ? label|render|t([],dataTitleTranslationObject)),
+} %}
+
+{# Template #}
+<a {{ macros.addAttributes(nextLinkAttributes, extraAttribute) }}>
+  <span>{{ linkLabel }}</span>
   <span class="pseudo-icon--breaker">.</span>
 </a>

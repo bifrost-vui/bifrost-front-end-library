@@ -1,39 +1,65 @@
-<fieldset
-  class="bf-input {{ isInvalid|default(false) ? "bf-input--invalid" }} {{
-  isDisabled|default(false)
-    ? "bf-input--disabled"
-  }} {{ isReadOnly|default(false) ? "bf-input--readonly" }} {{ class|default(
-    null
-  ) }}"
->
-  {% if
-    (label is defined and label) or (description is defined and description) %}
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasDescription = description is defined and description is not empty %}
+{% set hasErrorMessage = errorMessage is defined and errorMessage is not empty %}
+{% set hasId = id is defined and id is not empty %}
+{% set hasInputContent = inputContent is defined and inputContent is not empty %}
+{% set hasLabel = label is defined and label is not empty %}
+{% set isBlockInputContentDefined = block("inputContent") is defined %}
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isInvalid = isInvalid|default(false) is same as(true) %}
+{% set isLabelLegend = isLabelLegend|default(false) is same as(true) %}
+{% set isReadOnly = isReadOnly|default(false) is same as(true) %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set fieldsetClasses = [
+  "bf-input",
+  (isInvalid ? "bf-input--invalid"),
+  (isDisabled ? "bf-input--disabled"),
+  (isReadOnly ? "bf-input--readonly"),
+  (class),
+] %}
+
+{# Template #}
+<fieldset class="{{ fieldsetClasses|join(' ')|trim }}">
+  {% if hasLabel or hasDescription %}
     <div class="mb-2">
-      {% if label is defined and label %}
-        {% if isLabelLegend|default(false) %}
-          <legend class="bf-input__label">{{ label }}</legend>
+      {% if hasLabel %}
+        {% if isLabelLegend %}
+          <legend class="bf-input__label">
+            {{ label }}
+          </legend>
         {% else %}
-          <label
-            class="bf-input__label"
-            {{ id is defined and id ? "for='" ~ id ~ "'" }}
-          >
+          <label {{ macros.addAttributes({
+            "class": "bf-input__label",
+            "for": (hasId ? id)
+          }) }}>
             {{ label }}
           </label>
         {% endif %}
       {% endif %}
-      {% if description is defined and description %}
-        <p class="bf-color-neutral-secondary mb-0">{{ description }}</p>
+      {% if hasDescription %}
+        <p class="bf-color-neutral-secondary mb-0">
+          {{ description }}
+        </p>
       {% endif %}
     </div>
   {% endif %}
 
-  {% if block("inputContent") is defined %}
+  {% if isBlockInputContentDefined %}
     {{ block("inputContent") }}
-  {% elseif inputContent is defined %}
+  {% elseif hasInputContent %}
     {{ inputContent }}
   {% endif %}
 
-  {% if errorMessage is defined and errorMessage %}
-    <p class="small bf-color-feedback-negative mb-0 mt-1">{{ errorMessage }}</p>
+  {% if hasErrorMessage %}
+    <p class="small bf-color-feedback-negative mb-0 mt-1">
+      {{ errorMessage }}
+    </p>
   {% endif %}
 </fieldset>

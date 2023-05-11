@@ -1,57 +1,71 @@
-<a
-  class="bf-link
-		{{
-  hierarchy is defined and hierarchy == "primary"
-    ? "bf-link--primary"
-    : "bf-link--native"
-  }}
-		{{
-  isUnderline is defined and isUnderline == false
-    ? "bf-link--no-underline"
-  }}
-		{{ label is defined and label is empty ? "bf-link--icon-only" }}
-		{{
-  isDisabled is defined and isDisabled
-    ? "disabled"
-  }}
-		{{ reversed is defined and reversed ? "reversed" }}
-		{{ class|default("") }}"
-  {{
-  isDisabled
-    ? "aria-disabled='true' role='link'"
-    : "href='" ~ (href|default("")) ~ "'"
-  }}
-  {{ title is defined and title ? "title='" ~ title ~ "'" }}
-  {{ ariaLabel is defined and ariaLabel ? "aria-label='" ~ ariaLabel ~ "'" }}
-  {{ rel is defined and rel ? "rel='" ~ rel ~ "'" }}
-  {{
-  dataDismiss is defined and dataDismiss
-    ? "data-dismiss='" ~ dataDismiss ~ "'"
-  }}
-  {{
-  dataToggle is defined and dataToggle
-    ? "data-toggle='" ~ dataToggle ~ "'"
-  }}
-  {{
-  dataTarget is defined and dataTarget
-    ? "data-target='" ~ dataTarget ~ "'"
-  }}
-  {{ extraAttribute|default(null) }}
->
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasAriaLabel = ariaLabel is defined and ariaLabel is not empty %}
+{% set hasDataDismiss = dataDismiss is defined and dataDismiss is not empty %}
+{% set hasDataTarget = dataTarget is defined and dataTarget is not empty %}
+{% set hasDataToggle = dataToggle is defined and dataToggle is not empty %}
+{% set hasHierarchy = hierarchy is defined and hierarchy is not empty %}
+{% set hasIconName = iconName is defined and iconName is not empty %}
+{% set hasIconPosition = iconPosition is defined and iconPosition is not empty %}
+{% set hasLabel = label is defined and label is not empty %}
+{% set hasTitle = title is defined and title is not empty %}
+{% set hasRel = rel is defined and rel is not empty %}
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isUnderline = isUnderline|default(true) is same as(true) %}
+
+{# Boolean Variables - ORDER IS IMPORTANT #}
+{% set isHierarchyPrimary = hasHierarchy and hierarchy is same as("primary") %}
+{% set isIconPositionRight = hasIconPosition and iconPosition is same as("right") %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set extraAttribute = extraAttribute|default({}) %}
+{% set href = href|default("") %}
+{% set label = label|default("") %}
+{% set labelClass = labelClass|default("") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set linkClasses = [
+  "bf-link",
+  (isHierarchyPrimary ? "bf-link--primary" : "bf-link--native"),
+  (isUnderline is same as(false) ? "bf-link--no-underline"),
+  (hasLabel is same as(false) and hasIconName ? "bf-link--icon-only"),
+  (isDisabled ? "disabled"),
+  (isReversed ? "reversed"),
+  (class),
+] %}
+
+{# Template #}
+<a {{ macros.addAttributes({
+  "href": (isDisabled is same as(false) ? href),
+  "class": linkClasses|join(' ')|trim,
+  "title": (hasTitle ? title),
+  "rel": (hasRel ? rel),
+  "role": (isDisabled ? "link"),
+  "aria-disabled": (isDisabled ? "true"),
+  "aria-label": (hasAriaLabel ? ariaLabel),
+  "data-dismiss": (hasDataDismiss ? dataDismiss),
+  "data-target": (hasDataTarget ? dataTarget),
+  "data-toggle": (hasDataToggle ? dataToggle),
+}, extraAttribute) }}>
   <span class="d-flex align-items-center gap-1">
-    {% if iconName is defined and iconName %}
-      {# prettier-ignore #}
-      {% set classPosition = (iconPosition is defined and iconPosition is same as("right") ? "order-2" : "") %}
+    {# Icon #}
+    {% if hasIconName %}
       {% include "@bf-components/icon/twig/index.twig" with {
         name: iconName,
-        size: hierarchy is defined and hierarchy == "primary"
-          ? "small"
-          : "xsmall",
-        class: classPosition
+        size: (isHierarchyPrimary ? "small" : "xsmall"),
+        class: (isIconPositionRight ? "order-2")
       } only %}
     {% endif %}
-    {% if label %}
-      <span class="{{ labelClass|default("") }}">{{ label|default("") }}</span>
+
+    {# Label #}
+    {% if hasLabel %}
+      <span class="{{ labelClass }}">
+        {{ label }}
+      </span>
     {% endif %}
   </span>
 </a>

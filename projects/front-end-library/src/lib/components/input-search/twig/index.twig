@@ -1,28 +1,54 @@
-{% set class = class ~ " w-100 form-group--search-input" %}
-{% set input =
-  input|merge({
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set input = input|default({}) %}
+
+{# Template #}
+{% embed "@bf-components/input-search/twig/input-with-icon.twig" with {
+  class: class ~ " w-100 form-group--search-input",
+  input: input|merge({
     class: input.class ~ " js-input-search",
     iconPosition: input.iconPosition ~ " pt-2",
     extraAttribute: input.extraAttribute ~ "autocomplete=off"
-  })
-%}
+  }),
+} %}
+  {% block icon_container %}
+    {# Import macros #}
+    {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
-{% extends "@bf-components/input-search/twig/input-with-icon.twig" %}
-{% block icon_container %}
-  <div class="position-relative pointer-none">
-    {% include "@bf-components/icon/twig/index.twig" with {
-      name: "search"
-    } only %}
-  </div>
+    <div class="position-relative pointer-none">
+      {% include "@bf-components/icon/twig/index.twig" with {
+        name: "search"
+      } only %}
+    </div>
 
-  <input
-    id="{{ inputSubmit.id|default("") }}"
-    class="btn h-100 m-0 p-0 position-absolute--center-right vui--style-reset w-100 sr-only"
-    type="submit"
-    id="{{ input.id }}"
-    name="{{ input.name }}"
-    placeholder="{{ input.placeholder|default("") }}"
-    value="{{ inputSubmit.value|default("search") }}"
-    {{ inputSubmit.extraAttribute|default(null) }}
-  />
-{% endblock %}
+    {#
+      Kept in a comment as reference for when a refactor will be done.
+      See "TODO" above in this file.
+
+      <input
+        id="{{ inputSubmit.id|default("") }}"
+        class="btn h-100 m-0 p-0 position-absolute--center-right vui--style-reset w-100 sr-only"
+        type="submit"
+        id="{{ input.id }}"
+        name="{{ input.name }}"
+        placeholder="{{ input.placeholder|default("") }}"
+        value="{{ inputSubmit.value|default("search") }}"
+        {{ inputSubmit.extraAttribute|default(null) }}
+      />
+    #}
+
+    {#
+      TODO: Refactor of the inputSubmit button. There are attributes that doesn't make sense.
+        - Why does it use variables from "input" object?
+        - Why does it have a "placeholder" and a "value"?
+    #}
+    <input {{ macros.addAttributes({
+      "type": "submit",
+      "id": inputSubmit.id|default(""),
+      "class": "btn h-100 m-0 p-0 position-absolute--center-right vui--style-reset w-100 sr-only",
+      "name": input.name,
+      "placeholder": input.placeholder|default(""),
+      "value": inputSubmit.value|default(""),
+    }, inputSubmit.extraAttribute) }}>
+  {% endblock %}
+{% endembed %}

@@ -11,6 +11,9 @@ $(function () {
         let maxValue, minValue;
 
         if (isRange) {
+            // HTML font-size value for rem calculation
+            const htmlFontSize = parseInt($('html').css('font-size'));
+
             // Inputs
             const $maxInput = $this.find('.bf-input-slider__input__max');
             const $minInput = $this.find('.bf-input-slider__input__min');
@@ -34,15 +37,22 @@ $(function () {
             const trackStart = parseInt(offsetTrack.left);
             const trackWidth = parseInt($track.css('width'));
 
+            // Slider Thumbs
+            const thumbWidthInRem = parseInt($track.css('--bf-input-slider-thumb-width'));
+            const thumbWidthInPx = parseInt(thumbWidthInRem * htmlFontSize);
+            const halfThumbWidth = thumbWidthInPx / 2;
+
             updateMinSlider();
             $this.on('input', '.bf-input-slider__input__min', updateMinSlider);
 
             updateMaxSlider();
             $this.on('input', '.bf-input-slider__input__max', updateMaxSlider);
 
-            $track.click(function (e) {
+            $track.mousedown(function (e) {
                 const clickX =
-                    parseInt(minValue) + ((parseInt(e.clientX) - trackStart) * (maxValue - minValue)) / trackWidth;
+                    parseInt(minValue) +
+                    ((parseInt(e.clientX) - trackStart - halfThumbWidth) * (maxValue - minValue)) /
+                        (trackWidth - halfThumbWidth);
 
                 const distMin = Math.abs(startValue - clickX);
                 const distMax = Math.abs(endValue - clickX);

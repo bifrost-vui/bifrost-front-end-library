@@ -1,71 +1,81 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
 {# Boolean Variables #}
-{% set isImageSplitted = image is defined and image.isSplitted is same as(true) %}
+{% set hasBadge = badge is defined and badge is not empty %}
+{% set hasBlockSelection = blockSelection is defined and blockSelection is not empty %}
+{% set hasBreadcrumb = breadcrumb is defined and breadcrumb is not empty %}
+{% set hasButtons = buttons is defined and buttons is not empty %}
+{% set hasContent = content is defined and content is not empty %}
+{% set hasDescription = description is defined and description is not empty %}
+{% set hasIcon = icon is defined and icon is not empty %}
+{% set hasImage = image is defined and image is not empty %}
+{% set hasPrice = price is defined and price is not empty %}
+{% set hasSubtitle = subtitle is defined and subtitle is not empty %}
+{% set hasTitle = title is defined and title is not empty %}
+{% set hasUpperTitle = upperTitle is defined and upperTitle is not empty %}
+{% set hasVisualBackgroundColor = visualBackgroundColor is defined and visualBackgroundColor is not empty %}
+{% set isBackgroundGround = background is defined and background is same as("ground") %}
+{% set isBackgroundHighlight = background is defined and background is same as("highlight") %}
+{% set isBlockBlockSelectionDefined = block("blockSelection") is defined %}
+{% set isBlockBreadcrumbDefined = block("breadcrumb") is defined %}
+{% set isBlockContentDefined = block("content") is defined %}
+{% set isHeightLarge = height is defined and height is same as("large") %}
+
+{# Boolean Variables - ORDER IS IMPORTANT #}
+{% set hasImageLarge = hasImage and image.lg is not empty %}
+{% set hasImageMedium = hasImage and image.md is not empty %}
+{% set hasImageSmall = hasImage and image.sm is not empty %}
+{% set isImageSplitted = hasImage and image.isSplitted is same as(true) %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set heroClasses = [
   "bf-hero d-flex flex-column",
   (reversed ? "reversed"),
-  (
-    background is defined
-    and background is same as("ground")
-      ? "bf-hero--bg-ground"
-  ),
-  (
-    background is defined
-    and background is same as("highlight")
-      ? "bf-hero--bg-highlight highlight"
-  ),
-  (
-    height is defined
-    and height is same as("large")
-      ? "bf-hero--height-large"
-  ),
+  (isBackgroundGround ? "bf-hero--bg-ground"),
+  (isBackgroundHighlight ? "bf-hero--bg-highlight highlight"),
+  (isHeightLarge ? "bf-hero--height-large"),
   (isImageSplitted ? " bf-hero--image-splitted"),
-  (class|default("")),
+  (class),
 ] %}
 
 {# Arrays of Styles With Dynamic Elements #}
 {% set heroStyles = [
-  (
-    visualBackgroundColor is defined
-    and visualBackgroundColor
-      ? 'background-color: ' ~ visualBackgroundColor ~ ';'
-  ),
-  (
-    image is defined
-    and image.lg is not empty
-    and image.isSplitted is not same as(true)
-      ? "background-image: url('" ~ image.lg ~ "');"|raw
-  ),
+  (hasVisualBackgroundColor ? 'background-color: ' ~ visualBackgroundColor ~ ';'),
+  (hasImageLarge and not isImageSplitted ? "background-image: url('" ~ image.lg ~ "');"|raw),
 ] %}
 
-<section
-  class="{{ heroClasses|join(' ')|trim }}"
-  style="{{ heroStyles|join(' ')|trim }}"
->
+{# Template #}
+<section {{ macros.addAttributes({
+  "class": heroClasses|join(' ')|trim,
+  "style": heroStyles|join(' ')|trim,
+}) }}>
   {% block hero_mobile_image %}{% endblock %}
-  {% if image is defined and image.sm is not empty %}
+  {% if hasImageSmall %}
     <picture>
-      {% if image.md is defined %}
-        <source
-          srcset="{{ image.md }}"
-          media="(max-width: 992px) and (min-width: 576px)"
-        />
+      {% if hasImageMedium %}
+        <source {{ macros.addAttributes({
+          "srcset": image.md,
+          "media": "(max-width: 992px) and (min-width: 576px)",
+        }) }}/>
       {% endif %}
-      <img
-        src="{{ image.sm }}"
-        alt="{{ image.alt|default('') }}"
-        class="bf-hero__image-sm w-100 d-block d-md-none"
-        loading="lazy"
-      />
+      <img {{ macros.addAttributes({
+        "src": image.sm,
+        "alt": image.alt|default(""),
+        "class": "bf-hero__image-sm w-100 d-block d-md-none",
+        "loading": "lazy",
+      }) }}/>
     </picture>
   {% endif %}
 
-  {% if block("blockSelection") is defined or blockSelection is defined %}
+  {% if isBlockBlockSelectionDefined or hasBlockSelection %}
     <div class="d-block d-md-none" data-animate="fade-in">
-      {% if block("blockSelection") is defined %}
+      {% if isBlockBlockSelectionDefined %}
         {{ block("blockSelection") }}
-      {% elseif blockSelection is defined and blockSelection is iterable %}
+      {% elseif hasBlockSelection and blockSelection is iterable %}
         {% set blockSelectionMobile =
           blockSelection|merge({
             isCollapsableOnMobile: true,
@@ -79,17 +89,17 @@
 
   <div
     class="container-fluid d-flex flex-column flex-md-row flex-grow-1"
-    data-animate-row=""
+    data-animate-row
   >
     <header class="bf-hero__header d-flex flex-column flex-grow-1 pb-2 pb-sm-4">
-      {% if block("breadcrumb") is defined %}
+      {% if isBlockBreadcrumbDefined %}
         {{ block("breadcrumb") }}
-      {% elseif breadcrumb is defined and breadcrumb %}
+      {% elseif hasBreadcrumb %}
         {{ breadcrumb }}
       {% endif %}
       <div class="d-flex flex-column justify-content-center h-100">
         <div class="bf-hero__content position-relative pb-5 pt-2 pt-md-5 mt-2">
-          {% if badge is defined and badge is not empty %}
+          {% if hasBadge %}
             {% if badge is not iterable %}
               {% set badge = {
                 label: badge
@@ -98,40 +108,51 @@
             {% set badge =
               badge|merge({
                 hierarchy: badge.hierarchy|default("primary"),
-                class: "position-relative position-md-absolute top-0 mb-3"
-                  ~ (badge.class|default(""))
+                class: "position-relative position-md-absolute top-0 mb-3" ~ (badge.class|default("")),
               })
             %}
             {% include "@bf-components/badge/twig/index.twig" with badge only %}
           {% endif %}
 
-          {% if upperTitle is defined and upperTitle is not empty %}
-            <p class="h5 mt-0 mb-2" data-animate="fade-in">
+          {% if hasUpperTitle %}
+            <p
+              class="h5 mt-0 mb-2"
+              data-animate="fade-in"
+            >
               {{ upperTitle }}
             </p>
           {% endif %}
-          {% if title is defined and title is not empty %}
-            <h1 class="mt-0" data-animate="fade-in">
+          {% if hasTitle %}
+            <h1
+              class="mt-0"
+              data-animate="fade-in"
+            >
               {{ title }}
             </h1>
           {% endif %}
-          {% if subtitle is defined and subtitle is not empty %}
-            <h2 class="h3 my-2" data-animate="fade-in">
+          {% if hasSubtitle %}
+            <h2
+              class="h3 my-2"
+              data-animate="fade-in"
+            >
               {{ subtitle }}
             </h2>
           {% endif %}
-          {% if description is defined and description is not empty %}
-            <p class="mt-2" data-animate="fade-in">
+          {% if hasDescription %}
+            <p
+              class="mt-2"
+              data-animate="fade-in"
+            >
               {{ description }}
             </p>
           {% endif %}
 
-          {% if block("content") is defined %}
+          {% if isBlockContentDefined %}
             {{ block("content") }}
-          {% elseif content is defined and content %}
+          {% elseif hasContent %}
             {{ content }}
           {% endif %}
-          {% if price is defined and price %}
+          {% if hasPrice %}
             {% set price =
               price|merge({
                 class: "w-100 mt-4 " ~ price.class,
@@ -140,7 +161,7 @@
             %}
             {% include "@bf-components/price/twig/index.twig" with price only %}
           {% endif %}
-          {% if buttons is defined and buttons %}
+          {% if hasButtons %}
             <div class="d-flex flex-wrap gap-3 mt-4" data-animate="fade-in">
               {% for button in buttons|slice(0, 2) %}
                 {% set defaultHierarchy = loop.index == 1
@@ -161,16 +182,16 @@
       </div>
     </header>
 
-    {% if isImageSplitted and image.lg is not empty %}
-      <span
-        class="bf-hero__image-splitted d-none d-md-block"
-        style="background-image: url({{ image.lg }})"
-        role="img"
-        aria-label="{{ image.alt|default('') }}"
-      ></span>
+    {% if isImageSplitted and hasImageLarge %}
+      <span {{ macros.addAttributes({
+        "class": "bf-hero__image-splitted",
+        "style": "background-image: url(" ~ image.lg ~ ")",
+        "role": "img",
+        "aria-label": image.alt|default(""),
+      }) }}></span>
     {% endif %}
 
-    {% if icon is defined and icon is not empty %}
+    {% if hasIcon %}
       {% if icon is not iterable %}
         {% set icon = {
           name: icon
@@ -185,11 +206,14 @@
       </div>
     {% endif %}
 
-    {% if block("blockSelection") is defined or blockSelection is defined %}
-      <div class="d-none d-md-flex align-items-center" data-animate="fade-in">
-        {% if block("blockSelection") is defined %}
+    {% if isBlockBlockSelectionDefined or hasBlockSelection %}
+      <div
+        class="d-none d-md-flex align-items-center"
+        data-animate="fade-in"
+      >
+        {% if isBlockBlockSelectionDefined %}
           {{ block("blockSelection") }}
-        {% elseif blockSelection is defined and blockSelection is iterable %}
+        {% elseif hasBlockSelection and blockSelection is iterable %}
           {% include "@bf-components/block-selection/twig/index.twig" with blockSelection only %}
         {% endif %}
       </div>

@@ -17,8 +17,23 @@ interface IProgressData {
 export class ProgressMultiComponent implements OnInit {
     constructor() {}
 
-    /** Array of object expected:<br>
-     [{ label: `string`, cssClass: `string`, percent: `number`, currentValue: `number`, minValue: `number`, maxValue: `number`}, {...}] */
+    /** Array of object. Expected format:
+     * <pre>
+     *     <code>
+     *         [
+     *             {
+     *                 "label": `string`,
+     *                 "cssClass": `string`,
+     *                 "percent": `number`,
+     *                 "currentValue": `number`,
+     *                 "minValue": `number`,
+     *                 "maxValue": `number`
+     *             },
+     *             {...},
+     *         ]
+     *     </code>
+     * </pre>
+     */
     @Input() progressDatas: IProgressData[];
     @Input() progressClass: string;
     @Input() legendClass: string;

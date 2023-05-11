@@ -20,7 +20,21 @@ export class SectionButtonsNavComponent implements OnInit {
     @Input() buttons: IButtonNav[];
     @Input() isFeatured: boolean;
     @Input() background: 'ground' | 'underground' | 'highlight';
-    /** Add a section at the right. `{ title, description, link }` */
+    /** Add a section on the right. `{ title, description, link }` */
+    /**
+     * Add a section on the right.
+     *
+     * Expected format:
+     * <pre>
+     *     <code>
+     *         {
+     *             "title": `string`,
+     *             "description": `string`,
+     *             "link": `ILink` [see API](/?path=/docs/components-link--drupal#component-api)
+     *         }
+     *     </code>
+     * </pre>
+     */
     @Input() asideSection: IAsideSection;
 
     @Input() extraAttribute: string;

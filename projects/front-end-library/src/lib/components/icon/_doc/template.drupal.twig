@@ -1,8 +1,19 @@
+{# Default Variables (Props, Controls) #}
 {% set reversed = reversed|json_parse %}
 {% set icons = icons|json_parse %}
 {% set size = size|json_parse %}
 
-{% if size is same as(huge) %}
+{# Boolean Variables #}
+{% set isSizeHuge = size is same as("huge") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "pt-4 bf-color-bg-ground",
+  (reversed ? "reversed"),
+] %}
+
+{# Template #}
+{% if isSizeHuge %}
   <div class="bf-color-bg-underground p-4">
     <p class="small mb-0">
       <b>Huge icons</b> should only be displayed in <b>Hero components</b>. Do
@@ -11,27 +22,39 @@
   </div>
 {% endif %}
 
-<div class="pt-4 bf-color-bg-ground {{ reversed ? " reversed" }}">
-  {% if
-    name is defined
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
+  {% if name is defined
       and name is not same as("undefined")
-      and name is not same as("- All icons -") %}
+      and name is not same as("- All icons -")
+  %}
     <div class="d-flex flex-wrap flex-column align-items-center">
       {% include "@bf-components/icon/twig/index.twig" with {
         name: name,
         color: color,
         size: size,
-        class: class
+        class: class,
+        reversed: reversed
       } only %}
-      <p class="small bf-color-neutral-secondary pt-1">{{ name }}</p>
+      <p class="small bf-color-neutral-secondary pt-1">
+        {{ name }}
+      </p>
     </div>
   {% else %}
     <div class="container-fluid h-100">
       {% if icons is defined %}
         {% for category in icons %}
+
+          {# In Loop : Arrays of Classes With Dynamic Elements #}
+          {% set innerContainerClasses = [
+            "doc-list",
+            (isSizeHuge ? "doc-list--huge"),
+          ] %}
+
           <div class="d-flex flex-wrap align-content-start my-4">
-            <div class="w-100"><h4>{{ category.category }}</h4></div>
-            <div class="doc-list {{ size == "huge" ? " doc-list--huge" }}">
+            <h4 class="w-100">
+              {{ category.category }}
+            </h4>
+            <div class="{{ innerContainerClasses|join(' ')|trim }}">
               {% for iconName in category.list %}
                 <div
                   class="d-flex flex-column align-items-center p-3"
@@ -41,7 +64,8 @@
                     name: iconName,
                     color: color,
                     size: size,
-                    class: class
+                    class: class,
+                    reversed: reversed
                   } only %}
                   <p class="small bf-color-neutral-secondary text-center pt-1">
                     {{ iconName }}

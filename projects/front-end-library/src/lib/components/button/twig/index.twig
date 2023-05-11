@@ -1,108 +1,119 @@
-{% set isLoading = isLoading|default(false) %}
-{% set isDisabled = isDisabled|default(false) %}
+{# Boolean Variables #}
+{% set hasAriaControls = ariaControls is defined and ariaControls is not empty %}
+{% set hasAriaExpanded = ariaExpanded is defined and ariaExpanded is not empty %}
+{% set hasAriaLabel = ariaLabel is defined and ariaLabel is not empty %}
+{% set hasDataDismiss = dataDismiss is defined and dataDismiss is not empty %}
+{% set hasDataTarget = dataTarget is defined and dataTarget is not empty %}
+{% set hasDataToggle = dataToggle is defined and dataToggle is not empty %}
+{% set hasFormAction = formAction is defined and formAction is not empty %}
+{% set hasFormEncryptionType = formEncryptionType is defined and formEncryptionType is not empty %}
+{% set hasFormId = formId is defined and formId is not empty %}
+{% set hasFormMethod = formMethod is defined and formMethod is not empty %}
+{% set hasFormNoValidate = formNoValidate|default(false) is same as(true) %}
+{% set hasFormTarget = formTarget is defined and formTarget is not empty %}
+{% set hasHref = href is defined and href is not empty %}
+{% set hasIconName = iconName is defined and iconName is not empty %}
+{% set hasLabel = label is defined and label is not empty %}
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isFullWidth = fullWidth|default(false) is same as(true) %}
+{% set isLoading = isLoading|default(false) is same as(true) %}
+{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isIconPositionRight = iconPosition is defined and iconPosition is same as("right") %}
 
-{% set isSubmit = (isSubmit|default(false))
-  or (formNoValidate|default(false))
-  or (formId is defined and formId)
-  or (formAction is defined and formAction)
-  or (formEncryptionType is defined and formEncryptionType)
-  or (formTarget is defined and formTarget)
-  or (formMethod is defined and formMethod)
+
+{# Boolean Variables - ORDER IS IMPORTANT #}
+{% set isSubmit = isSubmit|default(false) is same as(true)
+    or hasFormId
+    or hasFormAction
+    or hasFormEncryptionType
+    or hasFormMethod
+    or hasFormNoValidate
+    or hasFormTarget
 %}
+{% set isLink = hasHref and not isSubmit and not isDisabled %}
 
-{% set isLink = href is defined
-  and href is not empty
-  and not isSubmit
-  and not isDisabled
-%}
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set content = content|default("") %}
+{% set extraAttribute = extraAttribute|default({}) %}
+{% set hierarchy = hierarchy|default("secondary") %}
+{% set href = href|default("#") %}
+{% set iconSize = iconSize|default("small") %}
 
-{{ isLink ? "<a" : "<button" }}
-{% if isLink is same as(true) %}
-  href="{{ href|default("#") }}"
-{% elseif isSubmit %}
-  type="submit"
-{% else %}
-  type="button"
-{% endif %}class="bf-button bf-button--{{ hierarchy|default("secondary") }}
-{% if reversed is same as(true) %} reversed{% endif %}
-{% if fullWidth is same as(true) %} bf-button--fullwidth{% endif %}
-{% if isDisabled is same as(true) %} disabled{% endif %}
-{% if isLoading is same as(true) %} loading{% endif %}
-{{ " " ~ (class|default("")) }}"{% if
-  isDisabled is same as(true) %}disabled="disabled"{% endif %}
-{% if label is not empty %}
-  data-title="{{
-    label
-      |render
-      |t(
-        [],
-        {
-          langcode: "EN",
-          context: "data-title-attribute"
-        }
-      )
-  }}"
-{% endif %}
-{% if dataDismiss is defined %}
-  data-dismiss="{{ dataDismiss|default(null) }}"
-{% endif %}
-{% if dataToggle is defined %}
-  data-toggle="{{ dataToggle|default(null) }}"
-{% endif %}
-{% if dataTarget is defined %}
-  data-target="{{ dataTarget|default(null) }}"
-{% endif %}
-{% if ariaControls is defined %}
-  aria-controls="{{ ariaControls|default(null) }}"
-{% endif %}
-{% if ariaExpanded is defined %}
-  aria-expanded="{{ ariaExpanded|default(null) }}"
-{% endif %}
-{% if ariaLabel is defined %}
-  aria-label="{{ ariaLabel|default(null) }}"
-{% endif %}
+{# Variables #}
+{% set componentTag = isLink ? "a" : "button" %}
 
-{% if isSubmit %}
-  {% if formId|default(null) %}
-    form="{{ formId }}"
-  {% endif %}
-  {% if formAction|default(null) %}
-    formaction="{{ formAction }}"
-  {% endif %}
-  {% if formEncryptionType|default(null) %}
-    formenctype="{{ formEncryptionType }}"
-  {% endif %}
-  {% if formTarget|default(null) %}
-    formtarget="{{ formTarget }}"
-  {% endif %}
-  {% if formMethod|default(null) %}
-    formmethod="{{ formMethod }}"
-  {% endif %}
-  {{ formNoValidate ? "formnovalidate" }}
-{% endif %}
+{# Arrays of Classes With Dynamic Elements #}
+{% set buttonClasses = [
+  "bf-button",
+  "bf-button--" ~ hierarchy,
+  (isReversed ? "reversed"),
+  (isFullWidth ? "bf-button--fullwidth"),
+  (isDisabled ? "disabled"),
+  (isLoading ? "loading"),
+  (class),
+] %}
 
-{{ extraAttribute|default(null) }}
->
-<span class="bf-button__inner">
-  {% if iconName is defined and iconName is not empty %}
-    {% include "@bf-components/icon/twig/index.twig" with {
-      name: iconName,
-      size: iconSize|default("small"),
-      class: iconPosition is same as("right") ? "bf-button__icon--right" : ""
-    } only %}
-  {% endif %}
+{# Button Attributes #}
+{% set buttonAttributes = {
+  "href": (isLink ? href),
+  "type": (isLink is same as(false) ? isSubmit ? "submit" : "button"),
+  "class": buttonClasses|join(' ')|trim,
+  "disabled": (isDisabled ? "disabled"),
+  "aria-controls": (hasAriaControls ? ariaControls),
+  "aria-expanded": (hasAriaExpanded ? ariaExpanded),
+  "aria-label": (hasAriaLabel ? ariaLabel),
+  "data-dismiss": (hasDataDismiss ? dataDismiss),
+  "data-target": (hasDataTarget ? dataTarget),
+  "data-toggle": (hasDataToggle ? dataToggle),
+  "data-title": (hasLabel ? label|render|t(
+    [],
+    {
+      langcode: "EN",
+      context: "data-title-attribute"
+    }
+  )),
+  "form": (isSubmit and hasFormId ? formId),
+  "formaction": (isSubmit and hasFormAction ? formAction),
+  "formenctype": (isSubmit and hasFormEncryptionType ? formEncryptionType),
+  "formmethod": (isSubmit and hasFormMethod ? formMethod),
+  "formNoValidate": (isSubmit and hasFormNoValidate ? "formnovalidate"),
+  "formtarget": (isSubmit and hasFormTarget ? formTarget),
+} %}
 
-  {% if label is defined and label %}
-    <span class="bf-button__label">{{ label }}</span>
-  {% endif %}
+{# Template #}
+{% embed "@bf-utils/custom-tag/twig/index.twig" with {
+  customTag: componentTag,
+  attr: buttonAttributes,
+  extraAttr: extraAttribute,
+} %}
+  {% block customTagContent %}
+    <span class="bf-button__inner">
+      {% if hasIconName %}
+        {% include "@bf-components/icon/twig/index.twig" with {
+          name: iconName,
+          size: iconSize,
+          class: (isIconPositionRight ? "bf-button__icon--right")
+        } only %}
+      {% endif %}
 
-  {{ content|default("") }}
-</span>
-{% if isLoading is same as(true) or hasLoading is same as(true) %}
-  <div class="bf-button__loading" role="decoration">
-    <i></i>
-    <i></i>
-    <i></i>
-  </div>
-{% endif %}
-{{ isLink ? "</a" : "</button" }}>
+      {% if hasLabel %}
+        <span class="bf-button__label">
+          {{ label }}
+        </span>
+      {% endif %}
+
+      {{ content }}
+    </span>
+    {% if isLoading %}
+      <div
+        class="bf-button__loading"
+        role="decoration"
+      >
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+    {% endif %}
+  {% endblock %}
+{% endembed %}

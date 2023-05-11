@@ -18,20 +18,35 @@ export class PriceComponent implements OnInit {
     @Input() cent: number;
     @Input() hasAsterisk: boolean;
 
-    /** promotion.direction = "vertical" | "horizontal" */
+    /** promotion.direction = `"vertical"` or `"horizontal"` */
     @Input() promotion: IPromotion;
 
-    /** **Deprecated** Use `promotion.priceStriked` instead. */
+    /**
+     * __\*Deprecated\*__
+     *
+     * Use `promotion.priceStriked` instead.
+     */
     @Input() dashed: string;
-    /** **Deprecated** Use `promotion.priceSaved` instead. */
+    /**
+     * __\*Deprecated\*__
+     *
+     * Use `promotion.priceSaved` instead.
+     */
     @Input() saved: string;
-    /** **Deprecated** Use `promotion.savedLabel` instead. */
+    /**
+     * __\*Deprecated\*__
+     *
+     * Use `promotion.savedLabel` instead.
+     */
     @Input() savedLabel: string;
     @Input() details: HTMLElement;
     @Input() message: HTMLElement;
 
     @Input() size: 'small' | 'medium' | 'large';
-    /** This will make width at 100% of the parent. This behavior is useful when you want `promotion.direction: horizontal`.  */
+    /**
+     * - This will make width at 100% of the parent.
+     * - This behavior is useful when you want `promotion.direction: horizontal`.
+     */
     @Input() fullWidth: boolean;
     @Input() class: string;
     @Input() reversed: boolean;

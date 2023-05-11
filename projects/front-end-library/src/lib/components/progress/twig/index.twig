@@ -1,20 +1,29 @@
+{# Boolean Variables #}
+{% set hasProgressValue = progressValue is defined and progressValue is not empty %}
+{% set isMonochromeColor = isMonochromeColor|default(false) is same as(true) %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set progressBarClass = progressBarClass|default("") %}
+
 {# for legacy purpose #}
 {% set minValue = progressMinValue|default(0) %}
 {% set maxValue = progressMaxValue|default(100) %}
-{% set percentValue =
-  (progressValue is defined and progressValue
+{% set percentValue = (
+  hasProgressValue
     ? progressValue / (maxValue - minValue) * 100
-    : progressPercentValue)|default(0)
-%}
+    : progressPercentValue
+)|default(0) %}
 {# Do no set progressValue if it's already defined #}
-{% set progressValue =
-  (progressValue is not defined or not progressValue
+{% set progressValue = (
+  hasProgressValue is same as(false)
     ? percentValue / 100 * (maxValue - minValue)
-    : progressValue)|default(0)
-%}
+    : progressValue
+)|default(0) %}
+
 
 {# Color settings #}
-{% if isMonochromeColor is defined and isMonochromeColor %}
+{% if isMonochromeColor %}
   {% set progressColor = "default" %}
 {% else %}
   {% if percentValue > 90 %}
@@ -26,15 +35,10 @@
   {% endif %}
 {% endif %}
 
-{% if isMonochromeColor is defined and isMonochromeColor is same as(true) %}
-  {% set progressColor = "default" %}
-{% endif %}
-
-<div class="progress {{ class|default("") }}">
+{# Template #}
+<div class="progress {{ class }}">
   <div
-    class="progress-bar bg-{{ progressColor }} {{ progressBarClass|default(
-      ""
-    ) }}"
+    class="progress-bar bg-{{ progressColor }} {{ progressBarClass }}"
     role="progressbar"
     style="width: {{ percentValue }}%"
     aria-valuenow="{{ progressValue }}"

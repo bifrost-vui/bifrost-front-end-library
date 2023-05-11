@@ -1,12 +1,32 @@
-<a
-    href="{{ href|default('javascript:window.scrollTo(top);') }}"
-    class="bf-link {{ class|default('') }}"
-    {% if label is not empty %}
-      data-title="{{ label|render|default(NULL) }}"
-    {% endif %}
-    {{ extraAttribute|default(NULL) }}
->
-    {{ label|default('Back to top') }}
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set extraAttribute = extraAttribute|default({}) %}
+{% set href = href|default('javascript:window.scrollTo(top);') %}
+{% set label = label|default("Back to top") %}
+
+{# Boolean Variables #}
+{% set hasLabel = label is defined and label is not empty %}
+
+{# Boolean Variables - ORDER IS IMPORTANT #}
+{% set isHierarchyPrimary = hasHierarchy and hierarchy is same as("primary") %}
+{% set isIconPositionRight = hasIconPosition and iconPosition is same as("right") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set linkClasses = [
+  "bf-link",
+  (class),
+] %}
+
+{# Template #}
+<a {{ macros.addAttributes({
+  "href": href,
+  "class": linkClasses|join(' ')|trim,
+  "data-title": (hasLabel ? label|render|default("")),
+}, extraAttribute) }}>
+    {{ label }}
     {% include '@bf-components/icon/twig/index.twig' with {
         name: 'chevron-up'
     } only %}

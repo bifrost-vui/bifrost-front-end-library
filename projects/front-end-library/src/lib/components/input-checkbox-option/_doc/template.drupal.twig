@@ -1,11 +1,18 @@
+{# Default Variables (Props, Controls) #}
 {% set isChecked = isChecked|json_parse %}
 {% set isRequired = isRequired|json_parse %}
 {% set isInvalid = isInvalid|json_parse %}
 {% set isDisabled = isDisabled|json_parse %}
 
-<div
-  class="container-fluid mt-6 px-2 d-flex flex-row flex-wrap {{ _background }}"
->
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "container-fluid mt-6 px-2",
+  "d-flex flex-row flex-wrap",
+  (_background),
+] %}
+
+{# Template #}
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
   <div class="p-3">
     {% include "@bf-components/input-checkbox-option/twig/index.twig" with {
       id: (id|default(inputId)) ~ 1

@@ -1,5 +1,13 @@
 import { styled, css } from '@storybook/theming';
 
+// DO NOT REMOVE THIS "prettier-ignore". Thanks!
+// prettier-ignore
+export const Image = styled.img(props => ({
+    width: props.width,
+    maxWidth: props.maxWidth ?? '100%',
+    height: 'auto',
+}));
+
 export const ImageBackground = styled.img`
     position: absolute;
     top: 0;
@@ -64,7 +72,7 @@ export const TileLink = styled.button`
     }
 `;
 
-export const Image = styled.img`
+export const TileLogo = styled.img`
     max-width: 4rem;
     max-height: 4rem;
 `;
@@ -82,72 +90,5 @@ export const Stack = styled.div`
 
     @media (max-width: 400px) {
         grid-template-columns: 1fr;
-    }
-`;
-
-export const Tile = styled.button`
-    position: relative;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    height: 12rem;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    background: #f5f7fb;
-    border: 1px solid #e6eaef;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: border-color 0.35s;
-    overflow: hidden;
-    cursor: pointer;
-
-    &:hover,
-    &:focus {
-        border-color: #cfd6e0;
-    }
-
-    &:before {
-        content: '';
-        display: none;
-        position: absolute;
-        top: 0.75rem;
-        left: 0.75rem;
-        width: 0.6rem;
-        height: 0.6rem;
-        border-radius: 50%;
-
-        ${(props) =>
-            props.status === 'complete' &&
-            css`
-                background: green !important;
-                box-shadow: 0 0 2px green;
-            `}
-
-        ${(props) =>
-            props.status === 'pending' &&
-            css`
-                background: orange !important;
-                box-shadow: 0 0 2px orange;
-            `}
-    }
-
-    &:after {
-        content: '';
-        position: absolute;
-        bottom: 0.75rem;
-        right: 0.75rem;
-        width: 2.25rem;
-        height: 1.125rem;
-        background: url('/logo/angular.svg') top left no-repeat, url('/logo/drupal.svg') top right no-repeat;
-    }
-
-    iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: calc(100% - 1rem);
-        border: 0;
-        pointer-events: none;
     }
 `;

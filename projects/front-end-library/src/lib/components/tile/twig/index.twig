@@ -1,26 +1,70 @@
+{# Boolean Variables #}
+{% set hasAriaControls = ariaControls is defined and ariaControls is not empty %}
+{% set hasAriaExpanded = ariaExpanded is defined and ariaExpanded is not empty %}
+{% set hasAriaLabel = ariaLabel is defined and ariaLabel is not empty %}
+{% set hasContent = content is defined and content is not empty %}
+{% set hasDataDismiss = dataDismiss is defined and dataDismiss is not empty %}
+{% set hasDataTarget = dataTarget is defined and dataTarget is not empty %}
+{% set hasDataToggle = dataToggle is defined and dataToggle is not empty %}
+{# {% set isBlockContentDefined = block("content") is defined %} #}
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
 {% set isLink = href is defined and href is not empty %}
+{% set isReversed = reversed|default(false) is same as(true) %}
 
-{{ isLink ? "<a" : "<button" }}
-{% if isLink is same as(true) %}
-  href="{{ href|default("#") }}"
-{% else %}
-  type="button"
-{% endif %}class="bf-tile
-{{ reversed is same as(true) ? "reversed" }}
-{{ isDisabled is same as(true) ? "disabled" }}
-{{ class|default("") }}" style="{{ style|default("") }}"
-{{ isDisabled is same as(true) ? "disabled='disabled'" }}
-{{ dataDismiss is defined
-  ? "data-dismiss='" ~ (dataDismiss|default(null)) ~ "'" }}
-{{ dataToggle is defined ? "data-toggle='" ~ (dataToggle|default(null)) ~ "'" }}
-{{ dataTarget is defined ? "data-target='" ~ (dataTarget|default(null)) ~ "'" }}
-{{ ariaControls is defined
-  ? "aria-controls='" ~ (ariaControls|default(null)) ~ "'" }}
-{{ ariaExpanded is defined
-  ? "aria-expanded='" ~ (ariaExpanded|default(null)) ~ "'" }}
-{{ ariaLabel is defined ? "aria-expanded='" ~ (ariaLabel|default(null)) ~ "'" }}
-{{ extraAttribute|default(null) }}
->{% block content %}
-  {{ content|default("") }}
-{% endblock %}
-{{ isLink ? "</a" : "</button" }}>
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set dataDismiss = dataDismiss|default(null) %}
+{% set dataToggle = dataToggle|default(null) %}
+{% set dataTarget = dataTarget|default(null) %}
+{% set ariaControls = ariaControls|default(null) %}
+{% set ariaExpanded = ariaExpanded|default(null) %}
+{% set ariaLabel = ariaLabel|default(null) %}
+{% set href = href|default("#") %}
+{% set style = style|default("") %}
+
+{# Variables #}
+{% set componentTag = isLink ? "a" : "button" %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set tileClasses = [
+  "bf-tile",
+  (isReversed ? "reversed"),
+  (isDisabled ? "disabled"),
+  (class),
+] %}
+
+{# Objects of Attributes With Dynamic Elements #}
+{% set tileAttributes = {
+    "href": (isLink ? href),
+    "type": (isLink is same as(false) ? "button"),
+    "class": tileClasses|join(' ')|trim,
+    "style": style,
+    "disabled": (isDisabled ? "disabled"),
+    "data-dismiss": (hasDataDismiss ? dataDismiss),
+    "data-toggle": (hasDataToggle ? dataToggle),
+    "data-target": (hasDataTarget ? dataTarget),
+    "aria-controls": (hasAriaControls ? ariaControls),
+    "aria-expanded": (hasAriaExpanded ? ariaExpanded),
+    "aria-label": (hasAriaLabel ? ariaLabel),
+} %}
+
+{# Template #}
+{% embed "@bf-utils/custom-tag/twig/index.twig" with {
+  customTag: componentTag,
+  attr: tileAttributes,
+  extraAttr: extraAttribute,
+} %}
+  {% block customTagContent %}
+    {# TODO: There is a conflict with this block within an embedded block, it's not showing #}
+    {# {% if isBlockContentDefined %}
+      {% block content %}
+        {{ content }}
+      {% endblock %}
+    {% elseif hasContent %}
+      {{ content }}
+    {% endif %} #}
+    {% if hasContent %}
+      {{ content }}
+    {% endif %}
+  {% endblock %}
+{% endembed %}

@@ -1,33 +1,56 @@
-{# Ui-Kit legacy fallback #}
-{% set id = id|default(inputId) %}
-{% set name = name|default(inputName) %}
-{% set labelClass = labelClass|default(labelTxtClass) %}
-{% set isInvalid = isInvalid|default(false) %}
-{% set isDisabled = isDisabled|default(false) %}
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
 
-<label
-  class="bf-input-radio-option {{
-  isInvalid
-    ? "bf-input-radio-option--invalid"
-  }} {{ isDisabled ? "bf-input-radio-option--disabled" }} {{ class|default(
-    null
-  ) }}"
->
-  <input
-    class="{{ isInvalid ? "invalid" }}"
-    type="radio"
-    {{ id|default(null) ? "id='" ~ id ~ "'" }}
-    {{ name|default(null) ? "name='" ~ name ~ "'" }}
-    {{ value|default(null) ? "value='" ~ value ~ "'" }}
-    {{ isChecked|default(false) ? "checked" }}
-    {{ isDisabled ? "disabled" }}
-    {{ isRequired|default(null) ? "required" }}
-    {{ ariaLabel|default(null) ? "aria-label='" ~ ariaLabel ~ "'" }}
-    {{ extraAttribute|default(null) }}
-  />
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set extraAttribute = extraAttribute|default(null) %}
+{% set id = id|default(inputId) %} {# inputId is Ui-Kit legacy #}
+{% set labelClass = labelClass|default(labelTxtClass)|default(null) %} {# inputId is Ui-Kit legacy #}
+{% set labelExtraAttribute = labelExtraAttribute|default(null) %}
+{% set name = name|default(inputName) %} {# inputId is Ui-Kit legacy #}
+
+{# Boolean Variables #}
+{% set hasAriaLabel = ariaLabel is defined and ariaLabel is not empty %}
+{% set hasLabel = label is defined and label is not empty %}
+{% set hasName = name is defined and name is not empty %}
+{% set hasValue = value is defined and value is not empty %}
+{% set isChecked = isChecked|default(false) is same as(true) %}
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isInvalid = isInvalid|default(false) is same as(true) %}
+{% set isRequired = isRequired|default(false) is same as(true) %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set containerClasses = [
+  "bf-input-radio-option",
+  (isInvalid ? "bf-input-radio-option--invalid"),
+  (isDisabled ? "bf-input-radio-option--disabled"),
+  (class),
+] %}
+{% set inputClasses = [
+  (isInvalid ? "invalid"),
+] %}
+{% set labelSecondSpanClasses = [
+  "bf-input-radio-option__label",
+  (labelClass),
+] %}
+
+<label class="{{ containerClasses|join(' ')|trim }}">
+  <input {{ macros.addAttributes({
+    "type": "radio",
+    "class": (isInvalid ? "invalid"),
+    "id": (id),
+    "name": (hasName ? name),
+    "value": (hasValue ? value),
+    "checked": (isChecked ? "checked"),
+    "disabled": (isDisabled ? "disabled"),
+    "required": (isRequired ? "required"),
+    "aria-label": (hasAriaLabel ? ariaLabel),
+  }, extraAttribute) }} />
   <span class="bf-input-radio-control"></span>
-  {% if label|default(null) %}
-    <span class="bf-input-radio-option__label {{ labelClass|default(null) }}">
+  {% if hasLabel %}
+    <span {{ macros.addAttributes({
+      "class": (labelSecondSpanClasses|join(' ')|trim),
+    }, labelExtraAttribute) }}>
       {{ label|raw }}
     </span>
   {% endif %}

@@ -1,0 +1,83 @@
+{#
+ # Print HTML attributes on a tag
+ #
+ # @param {object} htmlAttributes - HTML attributes
+ # @param {string|object} extraAttributes - HTML attributes
+ #
+ # Use example :
+ # {% set exampleAttributes = {
+ #   "class": "d-block mt-2",
+ #   "id": (hasId ? "example-id"),
+ # } %}
+ # <div {{ macros.addAttributes(exampleAttributes, extraAttributesVariable) }}>
+ #   I am a block
+ # </div>
+ #
+#}
+{% macro addAttributes(htmlAttributes, extraAttributes = null) %}
+
+  {# Boolean Variables #}
+  {% set hasAttributes = htmlAttributes is defined and htmlAttributes is not empty %}
+  {% set hasExtraAttributes = extraAttributes is defined and extraAttributes is not empty %}
+  {% set isExtraAttributesIterable = extraAttributes is iterable %}
+
+  {# Default variables #}
+  {% set htmlAttributes = htmlAttributes|default({}) %}
+  {% set compiledAttributes = [] %}
+
+  {# Create an array of HTML attributes #}
+  {% if hasAttributes or hasExtraAttributes %}
+
+    {# If there is "extraAttributes", we merge it with "htmlAttributes" #}
+    {% if hasExtraAttributes %}
+      {% if isExtraAttributesIterable %}
+        {# is an object #}
+        {% set htmlAttributes = htmlAttributes|merge(extraAttributes) %}
+      {% else %}
+        {# is a string #}
+        {% set htmlAttributes = htmlAttributes|merge({"bfString": extraAttributes|render}) %}
+      {% endif %}
+    {% endif %}
+
+    {# Format htmlAttributes object #}
+    {% for attrName, attrValue in htmlAttributes %}
+      {# If an attribute has no value, this attribute won't be printed #}
+      {% if attrValue is not empty or attrValue is same as(true) %}
+        {#
+          If an attribute name is "bfString", then it means that the value
+          already contains an attribute name and its value.
+          Example : attrValue : 'id="example-id"'
+
+          Else, it is a normal key and value
+        #}
+        {% if attrName == "bfString" %}
+          {% set compiledAttributes = compiledAttributes|merge([attrValue|render|raw]) %}
+        {% elseif attrValue is same as(true) %}
+          {% set compiledAttributes = compiledAttributes|merge([attrName]) %}
+        {% else %}
+          {% set compiledAttributes = compiledAttributes|merge([attrName ~ '="' ~ attrValue|render|raw ~ '"']) %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {# Return the value as a string #}
+  {{ compiledAttributes|join(' ')|trim|raw }}
+{% endmacro %}
+
+{#
+ # Transform boolean value to string
+ #
+ # @param {boolean} value - Boolean value
+ #
+ # Use example :
+ # {% set isInverted = isInverted|default(false) is same as(true) %}
+ # {% set exampleAttributes = {
+ #   "data-inverted": macros.boolToString(isInverted),
+ # } %}
+ #
+#}
+{% macro boolToString(value) %}
+  {%- set value = value ? "true" : "false" -%}
+  {{- value -}}
+{% endmacro %}

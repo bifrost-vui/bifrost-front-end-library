@@ -1,3 +1,4 @@
+{# Default Variables (Props, Controls) #}
 {% set options = options|json_parse %}
 {% set areOptionTiles = areOptionTiles|json_parse %}
 {% set areOptionTilesInline = areOptionTilesInline|json_parse %}
@@ -30,13 +31,17 @@
   }
 ] %}
 
+{# Template #}
 <div class="d-flex flex-column" style="min-height: 100vh">
   {% for _variant in _variants %}
-    <div
-      class="d-flex flex-column align-items-center {{
-      _variant.backgroundClass
-      }}"
-    >
+
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set variantContainerClasses = [
+      "d-flex flex-column align-items-center",
+      ( _variant.backgroundClass),
+    ] %}
+
+    <div class="{{ variantContainerClasses|join(' ')|trim }}">
       {% set loopIndexSuffix = "--" ~ loop.index %}
 
       {% set _variantProps =
@@ -85,6 +90,45 @@
           }),
           options[3]|merge({
             id: options[3].id ~ loopIndexSuffix
+          })
+        ] %}
+      {% elseif (options|length) == 5 %}
+        {% set options = [
+          options[0]|merge({
+            id: options[0].id ~ loopIndexSuffix
+          }),
+          options[1]|merge({
+            id: options[1].id ~ loopIndexSuffix
+          }),
+          options[2]|merge({
+            id: options[2].id ~ loopIndexSuffix
+          }),
+          options[3]|merge({
+            id: options[3].id ~ loopIndexSuffix
+          }),
+          options[4]|merge({
+            id: options[4].id ~ loopIndexSuffix
+          })
+        ] %}
+      {% elseif (options|length) == 6 %}
+        {% set options = [
+          options[0]|merge({
+            id: options[0].id ~ loopIndexSuffix
+          }),
+          options[1]|merge({
+            id: options[1].id ~ loopIndexSuffix
+          }),
+          options[2]|merge({
+            id: options[2].id ~ loopIndexSuffix
+          }),
+          options[3]|merge({
+            id: options[3].id ~ loopIndexSuffix
+          }),
+          options[4]|merge({
+            id: options[4].id ~ loopIndexSuffix
+          }),
+          options[5]|merge({
+            id: options[5].id ~ loopIndexSuffix
           })
         ] %}
       {% endif %}

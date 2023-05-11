@@ -1,32 +1,35 @@
-<nav
-  class="bf-footer__main navbar-expand-lg border-bottom border-top bf-border-color-secondary py-0 py-lg-5 py-md-5"
->
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasBackToTopLink = hasBackToTopLink|default(false) is same as(true) %}
+
+{# Template #}
+<nav class="bf-footer__main navbar-expand-lg border-bottom border-top bf-border-color-secondary py-0 py-lg-5 py-md-5">
   <div class="container-fluid">
     <div class="row">
       <div
         class="col-lg-10 order-2 order-lg-1 d-flex flex-column flex-lg-row"
-        data-animate-row=""
+        data-animate-row
       >
         {% for footerLink in links %}
           <div
             class="col-lg border-top border-top-lg--0 bf-border-color-secondary"
             data-animate="fade-in"
           >
-            <button
-              class="bf-footer__toggler px-0 py-3 w-100 d-flex justify-content-between align-items-center d-lg-none"
-              type="button"
-              data-toggle="collapse"
-              data-target="#bf-footer__nav--{{ footerLink.sectionTitle|replace({
-                " ": ""
-              }) }}"
-              aria-controls="bf-footer__nav--{{ footerLink.sectionTitle|replace({
-                " ": ""
-              }) }}"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
+            <button {{ macros.addAttributes({
+              "class": "bf-footer__toggler px-0 py-3 w-100 d-flex justify-content-between align-items-center d-lg-none",
+              "type": "button",
+              "data-toggle": "collapse",
+              "data-target": "#bf-footer__nav--" ~ (footerLink.sectionTitle|clean_id),
+              "aria-controls": "bf-footer__nav--" ~ (footerLink.sectionTitle|clean_id),
+              "aria-expanded": "false",
+              "aria-label": "Toggle navigation",
+            }) }}>
               <span class="bf-footer__toggler__title">
-                <span class="mb-0">{{ footerLink.sectionTitle }}</span>
+                <span class="mb-0">
+                  {{ footerLink.sectionTitle }}
+                </span>
               </span>
 
               {% include "@bf-components/icon/twig/index.twig" with {
@@ -38,12 +41,10 @@
               {{ footerLink.sectionTitle }}
             </p>
 
-            <ul
-              class="collapse navbar-collapse align-items-lg-start flex-lg-column mb-0 pl-0 list-reset"
-              id="bf-footer__nav--{{ footerLink.sectionTitle|replace({
-                " ": ""
-              }) }}"
-            >
+            <ul {{ macros.addAttributes({
+              "class": "collapse navbar-collapse align-items-lg-start flex-lg-column mb-0 pl-0 list-reset",
+              "id": "bf-footer__nav--" ~ footerLink.sectionTitle|clean_id,
+            }) }}>
               {% for link in footerLink.links %}
                 <li class="p-0 mb-2">
                   {% include "@bf-components/link/twig/index.twig" with {
@@ -51,7 +52,8 @@
                     label: link.label,
                     class: "d-block d-lg-inline py-2 py-lg-0 bf-color-neutral-secondary",
                     rel: link.rel|default("dofollow"),
-                    isUnderline: false
+                    isUnderline: false,
+                    extraAttribute: link.extraAttribute|default({})
                   } only %}
                 </li>
               {% endfor %}
@@ -60,7 +62,7 @@
         {% endfor %}
       </div>
 
-      {% if hasBackToTopLink is not same as(false) %}
+      {% if hasBackToTopLink %}
         <div
           class="col-lg-2 order-1 order-lg-2 py-3 py-lg-0 text-center text-sm-right"
           data-animate="fade-in"

@@ -1,19 +1,27 @@
+{# Default Variables (Props, Controls) #}
 {% set isDisabled = isDisabled|json_parse %}
 {% set reversed = reversed|json_parse %}
 
-<div
-  class="d-flex flex-column justify-content-center minh-100 {{
-  reversed
-    ? "reversed bf-color-bg-ground"
-  }}"
->
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "d-flex flex-column justify-content-center minh-100",
+  (reversed ? "reversed bf-color-bg-ground"),
+] %}
+
+{# Template #}
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
   {% for index in [1, 2] %}
-    <div
-      class="flex-grow-1 d-flex align-items-center justify-content-center minh-100 py-4 {{
-      index == 2 and reversed is not defined
-        ? "reversed bf-color-bg-ground"
-      }}"
-    >
+
+    {# In Loop : Boolean Variables #}
+    {% set isReversed = index == 2 and reversed is not defined %}
+
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set innerContainerClasses = [
+      "flex-grow-1 d-flex align-items-center justify-content-center minh-100 py-4",
+      (isReversed ? "reversed bf-color-bg-ground"),
+    ] %}
+
+    <div class="{{ innerContainerClasses|join(' ')|trim }}">
       {% include "@bf-components/tile/twig/index.twig" %}
 
       {% include "@bf-components/tile/twig/index.twig" with {

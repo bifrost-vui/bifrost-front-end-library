@@ -1,0 +1,166 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta
+    title="Coding/Standards"
+    parameters={{
+        layout: 'padded',
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true } },
+    }}
+/>
+
+# Coding Standards
+
+## Twig Official Standards
+
+Taken from [Twig v3 docs](https://twig.symfony.com/doc/3.x/coding_standards.html) and adjusted to our needs.
+When writing Twig templates, we recommend you to follow these official coding standards.
+
+Use double-quote (`"`) instead of single-quote (`'`) for strings:
+
+```twig
+{{ "foo" }}
+{{ foo|default("foo") }}
+{{ {"foo": "bar"} }}
+{% set foo = "foo" %}
+```
+
+Put one (and only one) space after the start of a delimiter (`{{`, `{%`, and `{#`) and before the end of a delimiter (`}}`, `%}`, and `#}`):
+
+```twig
+{{ foo }}
+{# comment #}
+{% if foo %}{% endif %}
+```
+
+When using the whitespace control character, do not put any spaces between it and the delimiter:
+
+```twig
+{{- foo -}}
+{#- comment -#}
+{%- if foo -%}{%- endif -%}
+```
+
+Put one (and only one) space before and after the following operators: comparison operators (`==`, `!=`, `<`, `>`, `>=`, `<=`), math operators (`+`, `-`, `/`, `*`, `%`, `//`, `**`), logic operators (`not`, `and`, `or`), `~`, `is`, `in`, and the ternary operator (`?:`):
+
+```twig
+{{ 1 + 2 }}
+{{ foo ~ bar }}
+{{ true ? true : false }}
+```
+
+Put one (and only one) space after the `:` sign in hashes and `,` in arrays and hashes:
+
+```twig
+{{ [1, 2, 3] }}
+{{ {"foo": "bar"} }}
+```
+
+Do not put any spaces after an opening parenthesis and before a closing parenthesis in expressions:
+
+```twig
+{{ 1 + (2 * 3) }}
+```
+
+Do not put any spaces before and after string delimiters:
+
+```twig
+{{ "foo" }}
+```
+
+Do not put any spaces before and after the following operators: `|`, `.`, `..`, `[]`:
+
+```twig
+{{ foo|upper|lower }}
+{{ user.name }}
+{{ user[name] }}
+{% for i in 1..12 %}{% endfor %}
+```
+
+Do not put any spaces before and after the parenthesis used for filter and function calls:
+
+```twig
+{{ foo|default("foo") }}
+{{ range(1..10) }}
+```
+
+Do not put any spaces before and after the opening and the closing of arrays and hashes:
+
+```twig
+{{ [1, 2, 3] }}
+{{ {"foo": "bar"} }}
+```
+
+Use lower camel case variable names:
+
+> Normally with Twig, it would be *lower cased and underscored variable names*,
+> but because we also have to support Angular, the choice made is to use lower camel case.
+> The project was started with this standard, so we will continue to use it.
+
+```twig
+{% set foo = "foo" %}
+{% set fooBar = "foo" %}
+```
+
+Indent your code inside tags (use the same indentation as the one used for the target language of the rendered template):
+
+> In the current project, we use two spaces for indentation.
+
+```twig
+{% block foo %}
+  {% if true %}
+    true
+  {% endif %}
+{% endblock %}
+```
+
+## Boolean Variable Names
+
+To be able to differenciate normal variables from boolean ones, here's the standards to use.
+It is inspired from these two articles:
+
+- https://www.samanthaming.com/tidbits/34-better-boolean-variable-names/
+- https://dev.to/michi/tips-on-naming-boolean-variables-cleaner-code-35ig
+
+```twig
+{# Better Boolean Variable Names #}
+
+{# ❌ bad #}
+{% set person = true %}
+{% set age = true %}
+{% set dance = true %}
+
+{# ✅ Prefix with: is, has, can #}
+{% set isPerson = true %}
+{% set hasAge = true %}
+{% set canDance = true %}
+```
+
+With this standard, it will be easier to see if a variable has a boolean value and to use them in conditional expressions.
+
+## Conditional Expressions
+
+### Variable `is defined` and has a value
+
+> Within Drupal, it crashes with `boolean` variable. So don't use with `boolean` variable.
+
+```twig
+{% set hasContent = contentVar is defined and contentVar is not empty %}
+{% if hasContent %}
+  ...
+{% endif %}
+```
+
+### Boolean variable is `true`
+
+To be sure that the value of a boolean variable is *true*, we first apply a `default` filter with a `false` value
+in case of the variable being not defined and then we check if the value is the same as `true`.
+
+The result will give us a real `true/false`.
+
+```twig
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% if isDisabled %}
+  ...
+{% endif %}
+```

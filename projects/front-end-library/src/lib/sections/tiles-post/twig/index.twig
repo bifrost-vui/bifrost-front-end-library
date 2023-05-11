@@ -1,25 +1,32 @@
+{# Boolean Variables #}
+{% set hasTitle = title is defined and title is not empty %}
+{% set isReversed = reversed|default(false) is same as(true) %}
+
 {# Default Variables #}
+{% set background = background|default("ground") %}
+{% set class = class|default("") %}
 {% set titleTag = titleTag|default("p") %}
 
-{# Background Classes #}
-{% if background is defined and background == "underground" %}
-  {% set backgroundClass = "bf-color-bg-underground" %}
-{% else %}
-  {% set backgroundClass = "bf-color-bg-ground" %}
-{% endif %}
+{# Classes Objects #}
+{% set backgroundClasses = {
+  ("ground"): "bf-color-bg-ground",
+  ("underground"): "bf-color-bg-underground",
+} %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set sectionTilesPostClasses = [
   "bf-section-tiles-post",
-  backgroundClass,
-  (reversed|default(false) ? "reversed"),
-  (class|default("")),
+  (backgroundClasses[background]),
+  (isReversed ? "reversed"),
+  (class),
 ] %}
 
 {# Template #}
 <section class="{{ sectionTilesPostClasses|join(' ')|trim }}">
   <div class="container-fluid py-5 py-md-7">
-    {% if title is defined and title %}
+
+    {# Title #}
+    {% if hasTitle %}
       {% embed "@bf-utils/custom-tag/twig/index.twig" with {
         customTag: titleTag,
         attr: {
@@ -31,17 +38,21 @@
         {% endblock %}
       {% endembed %}
     {% endif %}
+
+    {# Tiles #}
     <ul class="d-flex flex-column flex-md-row flex-wrap gap-4 list-unstyled">
       {% for tile in tiles %}
-        <li
-          class="
-            bf-section-tiles-post__item mb-4
-            {{
-              (tile.size|default("default")) == "large"
-                ? "bf-section-tiles-post__item--size-large"
-            }}
-          "
-        >
+
+        {# In Loop : Boolean Variables #}
+        {% set isTileSizeLarge = tile.size|default("default") is same as("large") %}
+
+        {# In Loop : Arrays of Classes With Dynamic Elements #}
+        {% set tileClasses = [
+          "bf-section-tiles-post__item mb-4",
+          (isTileSizeLarge ? "bf-section-tiles-post__item--size-large"),
+        ] %}
+
+        <li class="{{ tileClasses|join(' ')|trim }}">
           {% include "@bf-components/tile-post/twig/index.twig" with tile only %}
         </li>
       {% endfor %}
