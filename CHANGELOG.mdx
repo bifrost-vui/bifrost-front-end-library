@@ -17,6 +17,35 @@ see [github-release](#)
 
 <br />
 
+## [v1.11.3](https://bifrost-front-end-library-git-v1-11-3-bifrost-vui.vercel.app/) - _2023-05-12_
+
+see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.11.3)
+
+### Breaking Changes
+
+-   None
+
+### Bugs fixes
+
+#### Hero
+
+-   Rollback of a part of a CSS modification done in the last release.
+-   The issue was visible on the homepage slideshow, that uses the Hero component, where its height was smaller than before.
+
+#### Price
+
+-   Convert `number` variables to `string`. These numbers in Drupal data arrive as strings, not numbers.
+-   Fix an issue created in the last release where the `cent` value coming from the data, as a `string`, was breaking the validation done in the component and showed as only one zero (`0`) instead of two (`00`) when the `cent` value was equal to zero.
+
+### Components
+
+#### Price
+
+-   In the Twig component, both `cent` and `dollar` are strings and their default value as well.
+-   In the documentation, all `number` variables are now `string`.
+
+<br />
+
 ## [v1.11.2](https://bifrost-front-end-library-git-v1-11-2-bifrost-vui.vercel.app/) - _2023-05-11_
 
 see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.11.2)
@@ -30,8 +59,13 @@ This package cover changes for these tickets : **[DS-466](https://groupemedia.at
 
 ### Bugs fixes
 
--   **Hero (DS-468)**: Fix an issue where in some tablets view, when an image was present and at the same time in "splitted" & "height large" mode, this image was "duplicated" because of an error in responsive management.
--   **Input-Slider (DS-469)**: Fix an issue coming from release 1.10.0 where the changes from *single-quote* to *double-quotes* broke the way the HTML was printed in the browser and created JavaScript errors at the same time.
+#### Hero (DS-468)
+
+-   Fix an issue where in some tablets view, when an image was present and at the same time in "splitted" & "height large" mode, this image was "duplicated" because of an error in responsive management.
+
+#### Input-Slider (DS-469)
+
+-   Fix an issue coming from release 1.10.0 where the changes from *single-quote* to *double-quotes* broke the way the HTML was printed in the browser and created JavaScript errors at the same time.
 
 ### Special mentions
 
