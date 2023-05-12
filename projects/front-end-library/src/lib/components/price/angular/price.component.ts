@@ -9,17 +9,42 @@ import { IUpfront, IPromotion } from './api.model';
 export class PriceComponent implements OnInit {
     constructor() {}
 
-    @Input() upperTitle: string;
-
-    @Input() upfront: IUpfront;
-
-    @Input() dollar: number;
+    @Input() cent: string;
+    @Input() class: string;
+    @Input() details: HTMLElement;
+    @Input() dollar: string;
     @Input() dollarClass: string;
-    @Input() cent: number;
+    /**
+     * - This will make width at 100% of the parent.
+     * - This behavior is useful when you want `promotion.direction: horizontal`.
+     */
+    @Input() fullWidth: boolean;
     @Input() hasAsterisk: boolean;
-
+    @Input() language: 'en' | 'fr';
+    @Input() message: HTMLElement;
     /** promotion.direction = `"vertical"` or `"horizontal"` */
+    /** Expected format:
+     * <pre>
+     *     <code>
+     *         {
+     *             "direction": `string`,
+     *             "priceSaved": `number`,
+     *             "priceStriked": `number`,
+     *             "savedLabel": `string`,
+     *             "superscript": `string`,
+     *             "title": `string`
+     *         }
+     *     </code>
+     * </pre>
+     *
+     * Promotion direction choices:
+     * `promotion.direction: "vertical" | "horizontal"`
+     */
     @Input() promotion: IPromotion;
+    @Input() reversed: boolean;
+    @Input() size: 'small' | 'medium' | 'large';
+    @Input() upfront: IUpfront;
+    @Input() upperTitle: string;
 
     /**
      * __\*Deprecated\*__
@@ -39,19 +64,6 @@ export class PriceComponent implements OnInit {
      * Use `promotion.savedLabel` instead.
      */
     @Input() savedLabel: string;
-    @Input() details: HTMLElement;
-    @Input() message: HTMLElement;
-
-    @Input() size: 'small' | 'medium' | 'large';
-    /**
-     * - This will make width at 100% of the parent.
-     * - This behavior is useful when you want `promotion.direction: horizontal`.
-     */
-    @Input() fullWidth: boolean;
-    @Input() class: string;
-    @Input() reversed: boolean;
-
-    @Input() language: 'en' | 'fr';
 
     ngOnInit() {
         console.log('Price', this);

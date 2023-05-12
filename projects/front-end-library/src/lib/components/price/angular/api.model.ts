@@ -1,33 +1,33 @@
 export interface IUpfront {
+    dollar: string;
     label: string;
-    dollar: number;
 }
 
 export interface IPromotion {
-    title: string;
-    priceStriked: number;
-    priceSaved: number;
+    direction: string;
+    priceSaved: string;
+    priceStriked: string;
     savedLabel: string;
     superscript: string;
-    direction: string;
+    title: string;
 }
 
 export interface IPrice {
-    upperTitle: string;
-    upfront: IUpfront;
-    dollar: number;
+    cent: string;
+    class: string;
+    details: string;
+    dollar: string;
     dollarClass: string;
-    cent: number;
+    fullWidth: boolean;
     hasAsterisk: boolean;
+    language: 'en' | 'fr';
+    message: string;
     promotion: IPromotion;
+    reversed: boolean;
+    size: 'small' | 'medium' | 'large';
+    upfront: IUpfront;
+    upperTitle: string;
     dashed: string; // Deprecated: Use promotion.priceStriked instead.
     saved: string; // Deprecated: Use promotion.priceSaved instead.
     savedLabel: string; // Deprecated: Use promotion.savedLabel instead.
-    details: string;
-    message: string;
-    size: 'small' | 'medium' | 'large';
-    fullWidth: boolean;
-    class: string;
-    reversed: boolean;
-    language: 'en' | 'fr';
 }

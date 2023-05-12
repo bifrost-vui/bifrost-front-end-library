@@ -16,7 +16,7 @@ import { PriceComponent } from '../angular/price.component';
             table: { defaultValue: { summary: '0' } },
         },
         cent: {
-            table: { defaultValue: { summary: '0' } },
+            table: { defaultValue: { summary: '00' } },
         },
         size: {
             control: { type: 'select' },
@@ -55,28 +55,30 @@ import { PriceComponent } from '../angular/price.component';
 
 ```jsx
 {% include '@bf-components/price/twig/index.twig' with {
-    upperTitle      : 'From',
+    cent            : '99',
+    class           : '',
+    details         : '/month',
+    dollar          : '30',
+    dollarClass     : 'my-dollar-class',
+    fullWidth       : false,
+    hasAsterisk     : true,
+    language        : 'en',
+    message         : 'This is a message',
+    promotion       : {
+        direction       : 'horizontal',
+        priceSaved      : '10',
+        priceStriked    : '40,99',
+        savedLabel      : 'You saved:',
+        superscript     : '1',
+        title           : '<b>Promotion</b> test',
+    },
+    reversed        : false,
+    size            : 'small',
     upfront         : {
-        dollar          : 0
+        dollar          : '0',
         label           : 'upfront',
     },
-    dollar          : 30,
-    dollarClass     : 'my-dollar-class',
-    cent            : 99,
-    hasAsterisk     : true,
-    details         : '/month',
-    promotion       : {
-        title       : '<b>Promotion</b> test',
-        priceStriked: 40.99,
-        priceSaved  : 10,
-        savedLabel  : 'You saved:',
-        superscript : 1,
-        direction   : 'horizontal',
-    },
-    message         : 'This is a message',
-    class           : '',
-    size            : 'medium',
-    language        : 'en',
+    upperTitle      : 'From',
 } only %}
 ```
 
@@ -88,27 +90,27 @@ export const Drupal = (args) => ({
 });
 
 export const commonProps = {
-    upperTitle: 'Upper Title',
+    cent: '99',
+    class: 'p-3',
+    details: '/month',
+    dollar: '30',
+    dollarClass: '',
+    hasAsterisk: false,
+    message: 'This is a message.',
+    promotion: {
+        direction: 'horizontal',
+        priceSaved: '10',
+        priceStriked: '40,99',
+        savedLabel: 'You saved:',
+        superscript: '1',
+        title: ' <b>Promotion</b> test',
+    },
+    reversed: undefined,
     upfront: {
-        dollar: 0,
+        dollar: '0',
         label: 'upfront',
     },
-    dollar: 30,
-    dollarClass: '',
-    cent: 99,
-    hasAsterisk: false,
-    details: '/month',
-    promotion: {
-        title: ' <b>Promotion</b> test',
-        priceStriked: 40.99,
-        priceSaved: 10,
-        savedLabel: 'You saved:',
-        superscript: 1,
-        direction: 'horizontal',
-    },
-    message: 'This is a message.',
-    class: 'p-3',
-    reversed: undefined,
+    upperTitle: 'Upper Title',
 };
 
 <Canvas withSource="none">

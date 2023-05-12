@@ -1,13 +1,14 @@
 {# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set cent = cent|default("00") %}
 {% set class = class|default("") %}
-{% set dollar = dollar|default(0)|number_format %}
+{% set dollar = dollar|default("0") %}
 {% set dollarClass = dollarClass|default("") %}
 {% set language = language|default("en") %}
 {% set size = size|default("small") %}
 
 {# Boolean Variables #}
 {% set hasAsterisk = hasAsterisk|default(false) is same as(true) %}
-{% set hasCent = cent is defined and (cent is not empty and cent is not same as("NaN")) %}
+{% set hasCent = cent is defined and cent is not empty %}
 {% set hasDashed = dashed is defined and dashed is not empty %}
 {% set hasDetails = details is defined and details is not empty %}
 {% set hasMessage = message is defined and message is not empty %}
@@ -29,7 +30,6 @@
 {% set isPromotionDirectionHorizontal = hasPromotionDirection and promotion.direction is same as("horizontal") %}
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}
-{% set cent = hasCent ? cent|number_format : "00" %}
 {% set details = details|default("")|raw %}
 
 {# Arrays of Classes With Dynamic Elements #}
