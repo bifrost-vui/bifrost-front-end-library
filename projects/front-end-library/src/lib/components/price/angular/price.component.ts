@@ -22,14 +22,13 @@ export class PriceComponent implements OnInit {
     @Input() hasAsterisk: boolean;
     @Input() language: 'en' | 'fr';
     @Input() message: HTMLElement;
-    /** promotion.direction = `"vertical"` or `"horizontal"` */
     /** Expected format:
      * <pre>
      *     <code>
      *         {
      *             "direction": `string`,
-     *             "priceSaved": `number`,
-     *             "priceStriked": `number`,
+     *             "priceSaved": `string`,
+     *             "priceStriked": `string`,
      *             "savedLabel": `string`,
      *             "superscript": `string`,
      *             "title": `string`
@@ -37,12 +36,21 @@ export class PriceComponent implements OnInit {
      *     </code>
      * </pre>
      *
-     * Promotion direction choices:
-     * `promotion.direction: "vertical" | "horizontal"`
+     * Promotion direction choices: `promotion.direction: "vertical" | "horizontal"`
      */
     @Input() promotion: IPromotion;
     @Input() reversed: boolean;
     @Input() size: 'small' | 'medium' | 'large';
+    /** Expected format:
+     * <pre>
+     *     <code>
+     *         {
+     *             "dollar": `string`,
+     *             "label": `string`
+     *         }
+     *     </code>
+     * </pre>
+     */
     @Input() upfront: IUpfront;
     @Input() upperTitle: string;
 
