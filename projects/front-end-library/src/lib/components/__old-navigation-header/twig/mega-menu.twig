@@ -1,8 +1,9 @@
 {% for navItem in navItems %}
   <li
-    class="nav-item bf-old-megamenu__nav-item js-bf-old-megamenu__nav-item position-static {{
-    navItem.class
-    }}"
+    class="
+      nav-item bf-old-megamenu__nav-item js-bf-old-megamenu__nav-item position-static
+      {{ navItem.class }}
+    "
   >
     {% if not navItem.subItems and not navItem.subItemsMultiDropdown %}
       <a
@@ -141,21 +142,18 @@
                     {% if dropdownSubItem.mega is not empty %}
                       <div class="d-none d-lg-block mt-4 mt-lg-0">
                         <hr class="my-4" />
-
-                        <div class="">
-                          <div class="row">
-                            {% for item in dropdownSubItem.mega %}
-                              <div class="col-md-6 mb-3 mb-md-0">
-                                {% include "@bf-components/__old-navigation-header/twig/mega-menu-block.twig" with {
-                                  imgSrc: item.imgSrc,
-                                  imgAlt: item.imgAlt,
-                                  href: item.href,
-                                  title: item.title,
-                                  text: item.text
-                                } %}
-                              </div>
-                            {% endfor %}
-                          </div>
+                        <div class="row">
+                          {% for item in dropdownSubItem.mega %}
+                            <div class="col-md-6 mb-3 mb-md-0">
+                              {% include "@bf-components/__old-navigation-header/twig/mega-menu-block.twig" with {
+                                imgSrc: item.imgSrc,
+                                imgAlt: item.imgAlt,
+                                href: item.href,
+                                title: item.title,
+                                text: item.text
+                              } %}
+                            </div>
+                          {% endfor %}
                         </div>
                       </div>
                     {% endif %}
