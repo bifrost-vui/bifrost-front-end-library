@@ -16,20 +16,24 @@
 
 <header
   role="banner"
-  class="bf-header-business z-index-18 {{
-  reversed is defined and reversed is same as(true)
-    ? "reversed"
-  }}"
+  class="
+    bf-header-business z-index-18
+    {{ reversed is defined and reversed is same as(true) ? "reversed" }}
+  "
   {{ theme is defined ? "data-theme='" ~ theme ~ "'" }}
 >
   <nav
-    class="bf-header-business__nav w-100 border-bottom bf-border-color-secondary {{ class|default(
-      ""
-    ) }}"
+    class="
+      bf-header-business__nav w-100 border-bottom bf-border-color-secondary
+      {{ class|default("") }}
+    "
   >
     {# Logo #}
     <div class="bf-header-business__logo">
-      <a href="{{ logo.href|default("#") }}" class="d-flex">
+      <a
+        href="{{ logo.href|default("#") }}"
+        class="d-flex"
+      >
         {% include "@bf-components/logo/twig/index.twig" with {
           name: logo.name,
           size: "large",
@@ -51,15 +55,10 @@
     </div>
 
     {# Actions #}
-    <div
-      class="bf-header-business__actions d-flex align-items-center justify-content-end w-100 h-100 pr-3"
-    >
+    <div class="bf-header-business__actions d-flex align-items-center justify-content-end w-100 h-100 pr-3">
       <div class="d-flex d-lg-none align-items-center">
         {% for link in rigthIconLinks|default([])|slice(0, 5) %}
-          {% if
-            link is defined
-              and link.href is not empty
-              and link.icon is not empty %}
+          {% if link is defined and link.href is not empty and link.icon is not empty %}
             {% include "@bf-components/button-icon/twig/index.twig" with {
               href: link.href,
               icon: link.icon,
