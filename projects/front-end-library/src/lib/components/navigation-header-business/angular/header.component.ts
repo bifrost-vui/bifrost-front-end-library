@@ -7,7 +7,7 @@ interface ILogo {
 }
 
 @Component({
-    selector: 'bf-header-business',
+    selector: 'bf-header',
     templateUrl: './header.component.html',
     // styleUrls: ['../common/style.scss'],
 })

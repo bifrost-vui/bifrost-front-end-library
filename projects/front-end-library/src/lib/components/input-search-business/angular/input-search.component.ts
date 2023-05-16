@@ -29,7 +29,7 @@ interface ILabel {
 }
 
 @Component({
-    selector: 'bf-input-search-business',
+    selector: 'bf-input-search',
     templateUrl: './input-search.component.html',
     // styleUrls: ['../common/style.scss'],
 })
