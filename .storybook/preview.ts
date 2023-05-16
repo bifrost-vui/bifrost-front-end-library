@@ -38,7 +38,7 @@ export const argTypes = {
 addParameters({
     options: {
         storySort: {
-            order: ['*', 'UI-Kit', 'Deprecated'],
+            order: ['*', 'Legacy Support', 'UI-Kit', 'Deprecated'],
         },
         showPanel: true,
     },
