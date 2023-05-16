@@ -1,0 +1,31 @@
+{# Default Variables (Props, Controls) #}
+{% set input = input|json_parse %}
+{% set inputSubmit = inputSubmit|json_parse %}
+{% set label = label|json_parse %}
+{% set reversed = reversed|json_parse %}
+{% set isDisabled = isDisabled|json_parse %}
+{% set _isInvalid = _isInvalid|json_parse %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "px-7 d-flex align-items-center justify-content-center minh-100",
+  (reversed ? "reversed bf-color-bg-ground"),
+] %}
+
+{# Template #}
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
+  {% include "@bf-components/input-search-business/twig/index.twig" with {
+    input: input,
+    inputSubmit: inputSubmit,
+    label: label
+  } %}
+</div>
+
+{% if _isInvalid %}
+  <script>
+    function setInvalid() {
+      document.getElementsByClassName("form-group")[0].classList.add("is-invalid");
+    }
+    setInvalid();
+  </script>
+{% endif %}
