@@ -1,0 +1,35 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) #}
+{% set buttonClass = buttonClass|default("") %}
+{% set buttonDisplay = buttonDisplay|default("flex") %}
+{% set buttonPosition = buttonPosition|default("relative") %}
+{% set dataToggle = dataToggle|default("tooltip") %}
+{% set tooltipTxt = tooltipTxt|default("Tooltip on top") %}
+{% set iconColor = iconColor|default("") %}
+{% set iconClass = iconClass|default("") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set buttonClasses = [
+  "button-tooltip vui--style-reset align-items-center",
+  "d-" ~ buttonDisplay,
+  "position-" ~ buttonPosition,
+  (buttonClass),
+] %}
+
+{# Template #}
+<button {{ macros.addAttributes({
+  "type": "button",
+  "class": buttonClasses|join(' ')|trim,
+  "data-toggle": dataToggle,
+  "data-placement": "top",
+  "title": tooltipTxt,
+}, extraAttribute) }}>
+  {% include "@bf-components/icon/twig/index.twig" with {
+    name: "question-circle-outline",
+    color: iconColor,
+    size: "small",
+    class: "d-flex " ~ (iconClass)
+  } only %}
+</button>
