@@ -1,54 +1,127 @@
-{# Default Variables (Props, Controls) #}
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set buttonSubmit = buttonSubmit|default({
+  buttonIcon: {
+    ariaLabel: "Search"|t,
+    icon: "search",
+  },
+  isVisible: true,
+  position: "right"
+}) %}
+{% set hasButtonClear = hasButtonClear|default(true) %}
+
+{# Boolean Variables #}
+{% set hasButtonClear = hasButtonClear is same as(true) %}
+{% set hasInputId = input.id is defined and input.id is not empty %}
+{% set hasLabel = label.text is defined and label.text is not empty %}
+{% set isButtonSubmitVisible = buttonSubmit.isVisible is same as(true) %}
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isReversed = reversed|default(false) is same as(true) %}
+
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set class = class|default("") %}
 {% set input = input|default({}) %}
 
+{# Arrays of Classes With Dynamic Elements #}
+{% set containerClasses = [
+  "bf-input bf-input-search form-group",
+  "w-100 form-group--search-input",
+  (isReversed ? "reversed"),
+  (class),
+] %}
+{% set inputClasses = [
+  "form-control js-input-search",
+  (hasButtonClear ? "has-button-clear"),
+  (isButtonSubmitVisible ? "has-button-submit"),
+  (input.class|default("")),
+] %}
+{% set iconContainerClasses = [
+  "form-group__input-icon-container",
+  (input.iconPosition|default("")),
+] %}
+
 {# Template #}
-{% embed "@bf-components/input-search/twig/input-with-icon.twig" with {
-  class: class ~ " w-100 form-group--search-input",
-  input: input|merge({
-    class: input.class ~ " js-input-search",
-    iconPosition: input.iconPosition ~ " pt-2",
-    extraAttribute: input.extraAttribute ~ "autocomplete=off"
-  }),
-} %}
-  {% block icon_container %}
-    {# Import macros #}
-    {% import "@bf-utils/macros/twig/index.twig" as macros %}
+<div class="{{ containerClasses|join(' ')|trim }}">
+  {% if hasLabel %}
+    <label {{ macros.addAttributes({
+      "for": (hasInputId ? input.id),
+      "class": label.class|default(""),
+    }, label.extraAttribute) }}>
+      {{ label.value|default("Label") }}
+    </label>
+  {% endif %}
 
-    <div class="position-relative pointer-none">
-      {% include "@bf-components/icon/twig/index.twig" with {
-        name: "search"
-      } only %}
-    </div>
-
-    {#
-      Kept in a comment as reference for when a refactor will be done.
-      See "TODO" above in this file.
-
-      <input
-        id="{{ inputSubmit.id|default("") }}"
-        class="btn h-100 m-0 p-0 position-absolute--center-right vui--style-reset w-100 sr-only"
-        type="submit"
-        id="{{ input.id }}"
-        name="{{ input.name }}"
-        placeholder="{{ input.placeholder|default("") }}"
-        value="{{ inputSubmit.value|default("search") }}"
-        {{ inputSubmit.extraAttribute|default(null) }}
-      />
-    #}
-
-    {#
-      TODO: Refactor of the inputSubmit button. There are attributes that doesn't make sense.
-        - Why does it use variables from "input" object?
-        - Why does it have a "placeholder" and a "value"?
-    #}
+  <div class="position-relative">
     <input {{ macros.addAttributes({
-      "type": "submit",
-      "id": inputSubmit.id|default(""),
-      "class": "btn h-100 m-0 p-0 position-absolute--center-right vui--style-reset w-100 sr-only",
-      "name": input.name,
+      "type": "text",
+      "class": inputClasses|join(' ')|trim,
+      "id": (hasInputId ? input.id),
+      "name": input.name|default(""),
       "placeholder": input.placeholder|default(""),
-      "value": inputSubmit.value|default(""),
-    }, inputSubmit.extraAttribute) }}>
-  {% endblock %}
-{% endembed %}
+      "value": input.value|default(""),
+      "disabled": (isDisabled ? "disabled"),
+      "autocomplete": "off",
+    }, input.extraAttribute) }} />
+
+    {% if isButtonSubmitVisible or hasButtonClear %}
+      <div class="{{ iconContainerClasses|join(' ')|trim }}">
+        {% block icon_container %}
+          {# Import macros #}
+          {% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+          {% if hasButtonClear %}
+            {% include "@bf-components/button-icon/twig/index.twig" with {
+              icon: "x",
+              isDisabled: isDisabled,
+            } only %}
+          {% endif %}
+
+          {% if isButtonSubmitVisible %}
+            {% include "@bf-components/button-icon/twig/index.twig" with {
+              icon: "search",
+              isDisabled: isDisabled,
+            } only %}
+          {% endif %}
+
+          {# <div class="position-relative pointer-none">
+            {% include "@bf-components/icon/twig/index.twig" with {
+              name: "search"
+            } only %}
+          </div> #}
+
+          {#
+            Kept in a comment as reference for when a refactor will be done.
+            See "TODO" above in this file.
+
+            <input
+              id="{{ inputSubmit.id|default("") }}"
+              class="btn h-100 m-0 p-0 position-absolute--center-right vui--style-reset w-100 sr-only"
+              type="submit"
+              id="{{ input.id }}"
+              name="{{ input.name }}"
+              placeholder="{{ input.placeholder|default("") }}"
+              value="{{ inputSubmit.value|default("search") }}"
+              {{ inputSubmit.extraAttribute|default(null) }}
+            />
+          #}
+
+          {#
+            TODO: Refactor of the inputSubmit button. There are attributes that doesn't make sense.
+              - Why does it use variables from "input" object?
+              - Why does it have a "placeholder" and a "value"?
+          #}
+          {# <input {{ macros.addAttributes({
+            "type": "submit",
+            "id": buttonSubmit.id|default(""),
+            "class": "btn h-100 m-0 p-0 position-absolute--center-right vui--style-reset w-100 sr-only",
+            "name": input.name,
+            "placeholder": input.placeholder|default(""),
+            "value": buttonSubmit.value|default(""),
+          }, buttonSubmit.extraAttribute) }}> #}
+        {% endblock %}
+      </div>
+    {% endif %}
+  </div>
+</div>

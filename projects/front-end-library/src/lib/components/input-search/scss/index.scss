@@ -3,6 +3,43 @@
 *  Input Search
 *
 * ***************************************************************************** */
+$inputPaddingRight: 8px;
+$buttonWidth: 32px;
 
 .bf-input-search {
+
+  // Form Control (<input>)
+  .form-control {
+    padding-right: 1rem;
+
+    &.has-button-clear,
+    &.has-button-submit {
+      padding-right: calc(#{calculateRem($inputPaddingRight, 2)} + #{calculateRem($buttonWidth)});
+    }
+
+    &.has-button-clear.has-button-submit {
+      padding-right: calc(#{calculateRem($inputPaddingRight, 2)} + #{calculateRem($buttonWidth, 2)});
+    }
+  }
+
+  // Form Group
+  .form-group {
+
+    // Input's Icon Container
+    &__input-icon-container {
+      //top: 1px;
+      right: #{calculateRem($inputPaddingRight)};
+      //height: calc(100% - 2px);
+      padding: 0;
+    }
+  }
+
+  // Button-Icon
+  .bf-button-icon {
+
+    &__inner {
+      padding: var(--bf-spacer-1);
+      border-radius: var(--bf-border-radius-small);
+    }
+  }
 }
