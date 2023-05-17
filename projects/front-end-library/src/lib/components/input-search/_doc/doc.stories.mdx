@@ -1,12 +1,48 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
-import { InputSearchComponent } from '../angular/input-search.component';
+import { InputSearchComponent, DefaultButtonSubmitValue } from '../angular/input-search.component';
+import { ButtonSubmitDefaultValue, InputDefaultValue } from './doc.model';
 
 <Meta
     title="Components/Input Search"
     component={InputSearchComponent}
     decorators={[moduleMetadata({ declarations: [InputSearchComponent, TwigContainerComponent] })]}
+    argTypes={{
+        buttonSubmit: {
+            table: {
+                defaultValue: {
+                    summary: "Object",
+                    detail: ButtonSubmitDefaultValue
+                }
+            },
+        },
+        hasButtonClear: {
+            table: {
+                defaultValue: {
+                    summary: true,
+                }
+            },
+        },
+        input: {
+            table: {
+                defaultValue: {
+                    summary: "Object",
+                    detail: InputDefaultValue
+                }
+            },
+        },
+        label: {
+            table: {
+                defaultValue: {
+                    summary: "{}"
+                }
+            },
+        },
+        reversed: {
+            table: { defaultValue: { summary: 'false' } },
+        },
+    }}
 />
 
 # Input Search
@@ -21,33 +57,28 @@ import { InputSearchComponent } from '../angular/input-search.component';
 
 ```jsx
 {% include '@bf-components/input-search/twig/index.twig' with {
+    buttonSubmit: {
+        id: 'id',
+        extraAttribute: 'extraAttribute',
+    },
     class: 'class',
-    reversed: true,
-    buttonClass: 'buttonClass',
-    iconClass: 'iconClass',
-    invalidMsg: 'invalidMsg',
-    isDisabled: false,
+    hasButtonClear: true,
     input: {
         id: 'id',
         class: 'class',
-        iconPosition: 'right',
         type: 'text',
         placeholder: 'Placeholder',
         name: 'Name',
         value: 'Value',
         extraAttribute: 'extraAttribute',
     },
-    inputSubmit: {
-        id: 'id',
-        value: 'value',
-        extraAttribute: 'extraAttribute',
-    },
+    isDisabled: false,
     label: {
-        value: 'value',
+        text: 'text',
         class: 'class',
         extraAttribute: 'extraAttribute',
     },
-    mtValue: mtValue,
+    reversed: true,
 } only %}
 ```
 
@@ -64,13 +95,23 @@ export const Drupal = (args) => ({
         height="300px"
         args={{
             elementPath: 'components/input-search/_doc/template.drupal',
-            "label": {
-                "value": "Label",
+            "buttonSubmit": {
+                "buttonIcon": {
+                    "ariaLabel": "Search",
+                    "icon": "search",
+                },
+                "isVisible": true,
+                "position": "right",
             },
+            "hasButtonClear": true,
             "input": {
+                "id": "searchInput",
+                "name": "searchInput",
                 "placeholder": "What are you looking for?",
             },
-            _isInvalid: false,
+            "label": {
+                "text": "Label",
+            },
         }}
     >
         {Drupal.bind({})}

@@ -6,13 +6,21 @@
  *
  * Function for converting a px based size to rem.
  *
- * Usage:   --header-height: #{calculateRem(44px)};
- * Output:  --header-height: 2.75rem;
+ * @param {px} $size - Number of pixels
+ * @param {px} $multiplier - Multiplier to apply
+ *
+ * Without "multiplier" :
+ * Usage:   --height: #{calculateRem(16px)};
+ * Output:  --height: 1rem;
+ *
+ * With "multiplier" :
+ * Usage:   --height: #{calculateRem(16px, 3)};
+ * Output:  --height: 3rem;
  *
  * Then you can use it with any sizes property:
- * height: var(--header-height);
+ * height: var(--height);
  *
  ***************************************************************************** */
-@function calculateRem($size) {
-  @return math.div($size, $baseFontSize) * 1rem;
+@function calculateRem($size, $multiplier: 1) {
+  @return math.div($size, $baseFontSize) * 1rem * $multiplier;
 }
