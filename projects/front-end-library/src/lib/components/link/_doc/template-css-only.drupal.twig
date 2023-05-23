@@ -6,12 +6,13 @@
 {% set isUnderline = isUnderline|json_parse %}
 {% set isDisabled = isDisabled|json_parse %}
 {% set reversed = reversed|json_parse %}
+{% set hierarchyDefaultPrimary = hierarchy|default("primary") %}
 
 {# Boolean Variables #}
 {% set isDisabledTrue = isDisabled is same as(true) %}
 {% set isDisabledDefaultTrue = isDisabled|default(true) is same as(true) %}
 {% set isHierarchyPrimary = hierarchy is defined and hierarchy is same as("primary") %}
-{% set isHierarchyDefaultPrimary = hierarchy|default("primary") is defined and hierarchy|default("primary") is same as("primary") %}
+{% set isHierarchyDefaultPrimary = hierarchyDefaultPrimary is defined and hierarchyDefaultPrimary is same as("primary") %}
 
 {% set variants = [
   {
