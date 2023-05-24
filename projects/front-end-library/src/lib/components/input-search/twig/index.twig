@@ -24,6 +24,15 @@
 {% set class = class|default("") %}
 {% set input = input|default({}) %}
 
+{# If the input is disabled, the submit button has to be disabled too #}
+{% if isDisabled %}
+  {% set buttonSubmit = buttonSubmit|merge({
+    buttonIcon: buttonSubmit.buttonIcon|merge({
+      isDisabled: isDisabled,
+    }),
+  }) %}
+{% endif %}
+
 {# Arrays of Classes With Dynamic Elements #}
 {% set containerClasses = [
   "bf-input bf-input-search form-group",
@@ -32,7 +41,7 @@
   (class),
 ] %}
 {% set inputClasses = [
-  "form-control js-input-search",
+  "form-control js-bf-input-search",
   (hasButtonClear ? "has-button-clear"),
   (isButtonSubmitVisible ? "has-button-submit"),
   (input.class|default("")),
@@ -40,6 +49,12 @@
 {% set iconContainerClasses = [
   "form-group__input-icon-container",
   (input.iconPosition|default("")),
+] %}
+{% set buttonClearClasses = [
+  "bf-input-search__clear-button",
+  "js-bf-input-search-clear-button",
+  "bf-visibility-transition",
+  "d-none"
 ] %}
 
 {# Template #}
@@ -73,53 +88,15 @@
 
           {% if hasButtonClear %}
             {% include "@bf-components/button-icon/twig/index.twig" with {
+              class: buttonClearClasses|join(' ')|trim,
               icon: "x",
               isDisabled: isDisabled,
             } only %}
           {% endif %}
 
           {% if isButtonSubmitVisible %}
-            {% include "@bf-components/button-icon/twig/index.twig" with {
-              icon: "search",
-              isDisabled: isDisabled,
-            } only %}
+            {% include "@bf-components/button-icon/twig/index.twig" with buttonSubmit.buttonIcon only %}
           {% endif %}
-
-          {# <div class="position-relative pointer-none">
-            {% include "@bf-components/icon/twig/index.twig" with {
-              name: "search"
-            } only %}
-          </div> #}
-
-          {#
-            Kept in a comment as reference for when a refactor will be done.
-            See "TODO" above in this file.
-
-            <input
-              id="{{ inputSubmit.id|default("") }}"
-              class="btn h-100 m-0 p-0 position-absolute--center-right vui--style-reset w-100 sr-only"
-              type="submit"
-              id="{{ input.id }}"
-              name="{{ input.name }}"
-              placeholder="{{ input.placeholder|default("") }}"
-              value="{{ inputSubmit.value|default("search") }}"
-              {{ inputSubmit.extraAttribute|default(null) }}
-            />
-          #}
-
-          {#
-            TODO: Refactor of the inputSubmit button. There are attributes that doesn't make sense.
-              - Why does it use variables from "input" object?
-              - Why does it have a "placeholder" and a "value"?
-          #}
-          {# <input {{ macros.addAttributes({
-            "type": "submit",
-            "id": buttonSubmit.id|default(""),
-            "class": "btn h-100 m-0 p-0 position-absolute--center-right vui--style-reset w-100 sr-only",
-            "name": input.name,
-            "placeholder": input.placeholder|default(""),
-            "value": buttonSubmit.value|default(""),
-          }, buttonSubmit.extraAttribute) }}> #}
         {% endblock %}
       </div>
     {% endif %}
