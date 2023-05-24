@@ -44,10 +44,26 @@ body,
 }
 
 .bf-visibility-transition {
+  display: none;
   opacity: 0;
-  @include transitions(opacity $transition-time-medium);
 
   &.bf-visible {
+    display: block;
+    opacity: 1;
+    animation: visibility-transition $transition-time-medium;
+  }
+}
+
+@keyframes visibility-transition {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
   }
 }
