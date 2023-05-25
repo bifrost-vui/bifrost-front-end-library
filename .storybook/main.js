@@ -9,15 +9,15 @@ module.exports = {
         '@storybook/addon-postcss',
         {
             name: '@storybook/addon-postcss',
-              options: {
-               postcssLoaderOptions: {
-                  implementation: require('postcss'),
-             },
-          },
+            options: {
+                postcssLoaderOptions: {
+                    implementation: require('postcss'),
+                },
+            },
         },
         'storybook-dark-mode',
     ],
-  core: {
-    builder: 'webpack5',
-  },
+    core: {
+        builder: 'webpack5',
+    },
 };
