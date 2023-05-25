@@ -1,10 +1,10 @@
 import $ from 'jquery';
 import { throttle } from '../../../js/utils/debounce-throttle';
 import { updateLanguageSwitcherLinkLabel } from './language-switcher';
-import { BurgerMenu, toggleBurgerMenu, hideOrShowMainMenuContainer } from './burger-menu';
+import { toggleBurgerMenu } from './burger-menu';
+import { toggleSearchBar } from './search-bar';
 
 const resizeFunctions = () => {
-    hideOrShowMainMenuContainer();
     updateLanguageSwitcherLinkLabel();
 };
 
@@ -17,6 +17,6 @@ $(function () {
 
     // Call functions for the first time
     toggleBurgerMenu();
-    hideOrShowMainMenuContainer();
+    toggleSearchBar();
     updateLanguageSwitcherLinkLabel();
 });

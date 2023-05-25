@@ -1,62 +1,52 @@
 {# Import macros #}
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
+{# Boolean Variables #}
+{% set isReversed = reversed|default(false) is same as(true) %}
+
 {# Default Variables #}
 {% set langcode = langcode|default("EN") %}
-{% set logo     = logo|default({name: "videotron", href: "/"}) %}
-{% set reversed = reversed|default(false) %}
-{% set theme    = theme|default("videotron") %}
+{% set logo = logo|default({name: "videotron", href: "/"}) %}
+{% set search_placeholder = search_placeholder|default("What are you looking for?") %}
+{% set theme = theme|default("videotron") %}
 
 {# Dynamic Variables #}
 {% set langSwitchLabel = langcode == "EN" ? "FR" : "EN" %}
 
-{# Boolean Variables #}
-{% set isReversed = reversed is defined and reversed is same as(true) %}
-
 {# Arrays of Classes With Dynamic Elements #}
 {% set headerClasses = [
-  "bf-header",
+  "bf-nav-header",
   (isReversed ? "reversed"),
 ] %}
 {% set burgerMenuButtonClasses = [
   "bf-button-icon__inner",
-  "bf-header__main-menu__mobile-toggle__burger",
+  "bf-nav-header__main-menu__mobile-toggle__button",
   "js-bf-burger-menu-toggle",
 ] %}
+{% set searchBarButtonClasses = [
+  "bf-nav-header__functions__search-bar__mobile-toggle__button",
+  "js-bf-search-bar-toggle",
+] %}
 
-{# Objects of Attributes With Dynamic Elements #}
-{% set headerAttributes = {
+{# Template #}
+<header {{ macros.addAttributes({
   "role"      : "banner",
   "class"     : headerClasses|join(' ')|trim,
   "data-theme": (theme is defined ? theme),
-} %}
-{% set burgerMenuButtonAttributes = {
-  "type"            : "button",
-  "class"           : burgerMenuButtonClasses|join(' ')|trim,
-  "aria-label"      : "Open Main Menu"|t,
-  "data-label-open" : "Open Main Menu"|t,
-  "data-label-close": "Close Main Menu"|t,
-  "data-toggle"     : "collapse",
-  "data-target"     : "#mainMenuContainer",
-  "aria-controls"   : "mainMenuContainer",
-  "aria-expanded"   : "false",
-} %}
-
-{# Template #}
-<header {{ macros.addAttributes(headerAttributes) }}>
-	<nav class="bf-header__nav">
+}) }}>
+	<nav class="bf-nav-header__nav">
 
 		{# Logo #}
-		<div class="bf-header__logo">
+		<div class="bf-nav-header__logo">
 			<a href="{{ logo.href }}" class="d-flex">
-        <div class="bf-header__logo__desktop">
+        <div class="bf-nav-header__logo__desktop">
           {% include "@bf-components/logo/twig/index.twig" with {
             name: logo.name,
             size: "large",
             langcode: langcode
           } only %}
         </div>
-        <div class="bf-header__logo__mobile">
+        <div class="bf-nav-header__logo__mobile">
           {% include "@bf-components/logo/twig/index.twig" with {
             name: logo.name,
             size: "medium",
@@ -67,25 +57,36 @@
 		</div>
 
     {# Main menu (Mobile|Tablet: Burger Menu, Desktop: Full menu) #}
-    <div id="mainMenu" class="bf-header__main-menu">
+    <div id="mainMenu" class="bf-nav-header__main-menu">
 
       {# Burger menu button #}
-      <div class="bf-button-icon bf-header__main-menu__mobile-toggle">
-        <button {{ macros.addAttributes(burgerMenuButtonAttributes) }}>
+      <div class="bf-button-icon bf-nav-header__main-menu__mobile-toggle">
+        <button {{ macros.addAttributes({
+          "type"              : "button",
+          "class"             : burgerMenuButtonClasses|join(' ')|trim,
+          "aria-label"        : "Open Main Menu"|t,
+          "data-label-closed" : "Open Main Menu"|t,
+          "data-label-opened" : "Close Main Menu"|t,
+          "data-toggle"       : "collapse",
+          "data-target"       : "#mainMenuContainer",
+          "aria-controls"     : "mainMenuContainer",
+          "aria-expanded"     : "false",
+        }) }}>
           {% include '@bf-components/icon/twig/index.twig' with {
             name: "menu-burger",
             size: "small",
-            class: "",
+            class: "js-bf-burger-menu-toggle-closed",
           } only %}
           {% include '@bf-components/icon/twig/index.twig' with {
             name: "x",
             size: "small",
-            class: "d-none",
+            class: "d-none js-bf-burger-menu-toggle-opened",
           } only %}
         </button>
       </div>
 
-      <div id="mainMenuContainer" class="bf-header__main-menu__container collapse">
+      {# Main Menu Container #}
+      <div id="mainMenuContainer" class="bf-nav-header__main-menu__container bf-nav-header-absolute-collapsing collapse">
         {% include "@bf-components/navigation-header/twig/mega-menu.twig" with {
           navItems: navItems,
           reversed: reversed
@@ -94,23 +95,51 @@
     </div>
 
     {# Search + Account + Support #}
-    <div class="bf-header__functions">
+    <div class="bf-nav-header__functions">
+
       {# Search #}
-      <div class="bf-header__functions__search-bar">
+      <div class="bf-nav-header__functions__search-bar">
+
+        {# Search Bar button #}
         {% include "@bf-components/button-icon/twig/index.twig" with {
-          icon: "search"
+          icon: "search",
+          ariaControls: "searchContainer",
+          ariaExpanded: "false",
+          ariaLabel: "Open Search Bar"|t,
+          buttonClass: searchBarButtonClasses|join(' ')|trim,
+          class: "bf-nav-header__functions__search-bar__mobile-toggle",
+          dataTarget: "#searchContainer",
+          dataToggle: "collapse",
+          extraAttribute: {
+            "data-label-closed" : "Open Search Bar"|t,
+            "data-label-opened" : "Close Search Bar"|t,
+          },
         } only %}
+
+        <div id="searchContainer" class="bf-nav-header__functions__search-bar__container bf-nav-header-absolute-collapsing collapse">
+          {% block globalSearch %}
+            <div class="bf-nav-header__functions__search-bar__container__inner">
+              {% include "@bf-components/input-search/twig/index.twig" with {
+                class: "mb-0",
+                input: {
+                  placeholder: search_placeholder|t
+                },
+                reversed: reversed
+              } %}
+            </div>
+          {% endblock %}
+        </div>
       </div>
 
       {# My account #}
-      <div class="bf-header__functions__account">
+      <div class="bf-nav-header__functions__account">
         {% include "@bf-components/button-icon/twig/index.twig" with {
           icon: "my-account"
         } only %}
       </div>
 
       {# Support #}
-      <div class="bf-header__functions__support">
+      <div class="bf-nav-header__functions__support">
         {% include "@bf-components/button-icon/twig/index.twig" with {
           icon: "question-circle-outline"
         } only %}
@@ -118,20 +147,20 @@
     </div>
 
     {# Language Switcher #}
-    <div id="languageSwitcher" class="bf-header__language-switcher">
+    <div id="languageSwitcher" class="bf-nav-header__language-switcher">
       {# New way to do link, but for now I have no way to get what I need from Drupal #}
       {# {% include '@bf-components/button/twig/index.twig' with {
         label    : langSwitchLabel,
         hierarchy: 'tertiary',
         href     : "#",
-        class    : "bf-header__language-switcher__link",
+        class    : "bf-nav-header__language-switcher__link",
       } only %} #}
 
       {# Current way the link is rendered in Drupal #}
       {% block language_switcher_desktop %}
         <a
           href="#"
-          class="bf-button bf-button--tertiary bf-header__language-switcher__link js-bf-header__language-switcher__link"
+          class="bf-button bf-button--tertiary bf-nav-header__language-switcher__link js-bf-nav-header__language-switcher__link"
           title="Français"
           language="fr"
           hreflang="fr"
