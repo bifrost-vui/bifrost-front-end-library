@@ -30,8 +30,8 @@ export class InputSearchComponent implements OnInit {
      */
     @Input() buttonSubmit: IButtonSubmit;
     @Input() class: string;
-    /** Activate a button to clear search input. */
-    @Input() hasButtonClear: boolean;
+    /** Activate a button to clear search input. If `true`, when there is text in the search field, the clear button will be visible. */
+    @Input() hasButtonClear: boolean = true;
     /** Expected format:
      * <pre>
      *     <code>
@@ -47,7 +47,7 @@ export class InputSearchComponent implements OnInit {
      * </pre>
      */
     @Input() input: IInput;
-    @Input() isDisabled: boolean;
+    @Input() isDisabled: boolean = false;
     /** Expected format:
      * <pre>
      *     <code>
@@ -60,7 +60,7 @@ export class InputSearchComponent implements OnInit {
      * </pre>
      */
     @Input() label: ILabel;
-    @Input() reversed: boolean;
+    @Input() reversed: boolean = false;
 
     ngOnInit() {
         console.log('input-search', this);

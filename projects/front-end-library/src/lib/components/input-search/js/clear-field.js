@@ -57,4 +57,7 @@ export const clearSearchFieldInit = () => {
         'keyup',
         throttle(() => toggleButtonVisibility())
     );
+
+    // Init after load
+    toggleButtonVisibility();
 };
