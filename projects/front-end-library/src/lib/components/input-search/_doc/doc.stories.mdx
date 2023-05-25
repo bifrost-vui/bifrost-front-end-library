@@ -17,13 +17,6 @@ import { ButtonSubmitDefaultValue, InputDefaultValue } from './doc.model';
                 }
             },
         },
-        hasButtonClear: {
-            table: {
-                defaultValue: {
-                    summary: true,
-                }
-            },
-        },
         input: {
             table: {
                 defaultValue: {
@@ -58,31 +51,51 @@ import { ButtonSubmitDefaultValue, InputDefaultValue } from './doc.model';
 ```jsx
 {% include '@bf-components/input-search/twig/index.twig' with {
     buttonSubmit: {
-        id: 'id',
-        extraAttribute: 'extraAttribute',
+        buttonIcon: {
+            ariaLabel: "Search",
+            icon: "search",
+        },
+        isVisible: true,
+        position: "right",
     },
     class: 'class',
     hasButtonClear: true,
     input: {
-        id: 'id',
-        class: 'class',
-        type: 'text',
-        placeholder: 'Placeholder',
-        name: 'Name',
-        value: 'Value',
-        extraAttribute: 'extraAttribute',
+        class: "p-2",
+        extraAttribute: "data-demo-input-1='this is an extra attribute' data-demo-input-2='this is another extra attribute'",
+        id: "searchInput",
+        name: "searchInput",
+        placeholder: "What are you looking for?",
+        value: "search string",
     },
     isDisabled: false,
     label: {
-        text: 'text',
-        class: 'class',
-        extraAttribute: 'extraAttribute',
+        class: "ml-4",
+        extraAttribute: "data-demo-label='this is an extra attribute'",
+        text: "Label Text",
     },
     reversed: true,
 } only %}
 ```
 
 ## Drupal
+
+export const commonProps = {
+    buttonSubmit: {
+        buttonIcon: {
+            ariaLabel: 'Search',
+            icon: 'search',
+        },
+        isVisible: true,
+        position: 'right',
+    },
+    hasButtonClear: true,
+    input: {
+        id: 'searchInput',
+        name: 'searchInput',
+        placeholder: 'What are you looking for?',
+    },
+}
 
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
@@ -91,26 +104,28 @@ export const Drupal = (args) => ({
 
 <Canvas withSource="none">
     <Story
-        name="Drupal"
-        height="300px"
+        name="Drupal - Default"
+        height="150px"
         args={{
             elementPath: 'components/input-search/_doc/template.drupal',
-            "buttonSubmit": {
-                "buttonIcon": {
-                    "ariaLabel": "Search",
-                    "icon": "search",
-                },
-                "isVisible": true,
-                "position": "right",
-            },
-            "hasButtonClear": true,
-            "input": {
-                "id": "searchInput",
-                "name": "searchInput",
-                "placeholder": "What are you looking for?",
-            },
-            "label": {
-                "text": "Label",
+            ...commonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - With Label"
+        height="150px"
+        args={{
+            elementPath: 'components/input-search/_doc/template.drupal',
+            ...commonProps,
+            label: {
+                text: 'Label',
             },
         }}
     >
