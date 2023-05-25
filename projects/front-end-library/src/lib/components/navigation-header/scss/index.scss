@@ -13,7 +13,7 @@ $header_nav_pr_md: #{calculateRem(24px)};
 $header_nav_pr_xl: #{calculateRem(16px)};
 
 // Styles
-.bf-header {
+.bf-nav-header {
   @include media-scale(
     --header-height,
     #{calculateRem(44px)},
@@ -31,7 +31,7 @@ $header_nav_pr_xl: #{calculateRem(16px)};
     @include media-scale(
       grid-template-columns,
       min-content auto min-content,
-      $xlValue: min-content auto min-content min-content
+      $xlValue: min-content auto max-content min-content
     );
     align-items: center;
     @include media-scale(
@@ -86,11 +86,10 @@ $header_nav_pr_xl: #{calculateRem(16px)};
 
     // Main menu Container
     &__container {
+      // Temporary background, since the mobile mega menu will be done in another ticket
+      // Screen resolution under "lg" breakpoint
       @include media-breakpoint-down(lg) {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
+        background-color: red;
       }
     }
   }
@@ -107,6 +106,52 @@ $header_nav_pr_xl: #{calculateRem(16px)};
       $header_buttons_gap_md,
       $xlValue: $header_buttons_gap_xl
     );
+
+    // Search Bar
+    &__search-bar {
+      @include media-breakpoint-up(xl) {
+        margin-right: $header_buttons_gap_xl;
+      }
+
+      // Mobile Menu Toggle Button
+      &__mobile-toggle {
+        @include media-breakpoint-up(xl) {
+          display: none;
+        }
+      }
+
+      // Container
+      &__container {
+
+        // Inner container
+        &__inner {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          @include media-scale(
+            max-width,
+            none,
+            $xlValue: #{calculateRem(400px)}
+          );
+          @include media-scale(
+            padding,
+            #{calculateRem(12px)} #{calculateRem(16px)},
+            #{calculateRem(12px)} #{calculateRem(72px)},
+            $xlValue: 0 #{calculateRem(8px)}
+          );
+          @include media-scale(
+            border-top,
+            1px solid var(--bf-color-stroke-secondary),
+            $xlValue: none
+          );
+          @include media-scale(
+            background-color,
+            var(--bf-color-bg-underground),
+            $xlValue: transparent
+          );
+        }
+      }
+    }
   }
 
   // Language Switcher
@@ -122,6 +167,7 @@ $header_nav_pr_xl: #{calculateRem(16px)};
     // Temporary, until the mobile/tablet mega menu is done
     @include media-breakpoint-down(lg) {
       display: none;
+      visibility: hidden;
     }
 
     // Link
@@ -162,5 +208,22 @@ $header_nav_pr_xl: #{calculateRem(16px)};
       border: none;
       background: none;
     }
+  }
+}
+
+
+// Bootstrap collapse element with "position: absolute"
+.bf-nav-header-absolute-collapsing {
+  // Screen resolution under "lg" breakpoint
+  @include media-breakpoint-down(lg) {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+  }
+
+  // Screen resolution starting at "xl" breakpoint
+  @include media-breakpoint-up(xl) {
+    display: block;
   }
 }

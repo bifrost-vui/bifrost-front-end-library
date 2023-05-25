@@ -1,66 +1,88 @@
 import $ from 'jquery';
 import { _window } from '../../../js/utils/window';
-import { isDesktopXlUp } from '../../../js/utils/breakpoints';
+import { triggerCloseSearchBar } from './search-bar';
+
+// Variables
+const burgerMenuIconClosedSelector = '.js-bf-burger-menu-toggle-closed';
+const burgerMenuIconOpenedSelector = '.js-bf-burger-menu-toggle-opened';
+
+// Toggle burger menu button icons
+const toggleBurgerMenuIcon = (isMenuOpen) => {
+    // Get burger menu icons
+    const iconClosed = $(burgerMenuIconClosedSelector);
+    const iconOpened = $(burgerMenuIconOpenedSelector);
+
+    // Toggle icons depending of the menu state
+    if (isMenuOpen) {
+        iconClosed.addClass('d-none');
+        iconOpened.removeClass('d-none');
+    } else {
+        iconClosed.removeClass('d-none');
+        iconOpened.addClass('d-none');
+    }
+};
+
+// Toggle burger menu button aria-label
+const toggleBurgerMenuAriaLabel = (isMenuOpen) => {
+    // Get burger menu button
+    const button = $(burgerMenuButtonSelector);
+
+    // Get data labels
+    const buttonClosedLabel = button.data('label-closed');
+    const buttonOpenedLabel = button.data('label-opened');
+
+    // Toggle icons depending of the menu state
+    if (isMenuOpen) {
+        button.attr('aria-label', buttonOpenedLabel);
+    } else {
+        button.attr('aria-label', buttonClosedLabel);
+    }
+};
+
+/* ------------
+    EXPORTS
+------------ */
 
 // Namespace
 export let BurgerMenu = {
     isBurgerMenuOpen: false,
 };
 
-const burgerMenuButtonSelector = '.js-bf-burger-menu-toggle';
-const mainMenuContainerSelector = '#mainMenuContainer';
+// Variables
+export const burgerMenuButtonSelector = '.js-bf-burger-menu-toggle';
 
-// Functions to hide main menu container on mobile/tablet and show it on desktop
-const hideMainMenuOnMobileTablet = () => {
-    const menuContainer = $(mainMenuContainerSelector);
-    const hasCollapseClass = menuContainer.hasClass('collapse');
-
-    if (hasCollapseClass === false) {
-        menuContainer.addClass('collapse');
-        menuContainer.removeClass('bf-visible');
-    }
-};
-const showMainMenuOnDesktop = () => {
-    const menuContainer = $(mainMenuContainerSelector);
-    const hasCollapseClass = menuContainer.hasClass('collapse');
-
-    if (hasCollapseClass === true) {
-        menuContainer.removeClass('collapse');
-        menuContainer.addClass('bf-visible');
-    }
-};
-
-// Toggle burger menu button icons
-const toggleBurgerMenuIcon = () => {
-    // Get Burger Menu Button
+// Functions
+// Close Burger Menu
+export const triggerCloseBurgerMenu = () => {
+    // Get burger menu button
     const button = $(burgerMenuButtonSelector);
+
+    if (BurgerMenu.isBurgerMenuOpen) {
+        button.trigger('click');
+    }
 };
-
-// Add
-
-/* ------------
-    EXPORTS
------------- */
 
 // Toggle burger menu (mobile/tablet)
 export const toggleBurgerMenu = () => {
-    // Get Burger Menu Buttons
+    // Get burger menu button
     const button = $(burgerMenuButtonSelector);
 
+    // On Click
     button.on('click', () => {
-        toggleBurgerMenuIcon();
-
+        // Toggle the menu open state
         if (BurgerMenu.isBurgerMenuOpen) {
             _window.unfreeze();
             BurgerMenu.isBurgerMenuOpen = false;
         } else {
             _window.freeze();
             BurgerMenu.isBurgerMenuOpen = true;
+            triggerCloseSearchBar();
         }
-    });
-};
 
-export const hideOrShowMainMenuContainer = () => {
-    console.log('isDesktopXlUp', isDesktopXlUp());
-    !isDesktopXlUp() ? hideMainMenuOnMobileTablet() : showMainMenuOnDesktop();
+        // Toggle icons
+        toggleBurgerMenuIcon(BurgerMenu.isBurgerMenuOpen);
+
+        // Toggle button's aria-label
+        toggleBurgerMenuAriaLabel(BurgerMenu.isBurgerMenuOpen);
+    });
 };
