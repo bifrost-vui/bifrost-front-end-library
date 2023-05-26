@@ -3,17 +3,17 @@
 
 {# Template #}
 <ul class="bf-megamenu">
-  {% for navItem in navItems %}
+  {% for mainMenuItem in mainMenuItems %}
 
     {# In Loop - Arrays of Classes With Dynamic Elements #}
     {% set navItemClasses = [
       "bf-megamenu__nav-item",
       "js-bf-megamenu__nav-item",
-      navItem.class,
+      mainMenuItem.class,
     ] %}
     {% set navItemLinkClasses = [
       "bf-megamenu__nav-item__link",
-      navItem.class|default("")
+      mainMenuItem.class|default("")
     ] %}
     {% set navItemButtonClasses = [
       "bf-megamenu__nav-item__link",
@@ -22,28 +22,32 @@
 
     {# Main menu item #}
     <li class="{{ navItemClasses|join(' ')|trim }}">
-      {% if not navItem.subItems and not navItem.subItemsMultiDropdown %}
+      {% if not mainMenuItem.subItems and not mainMenuItem.subItemsMultiDropdown %}
         <a {{ macros.addAttributes({
-          "class": navItemLinkClasses|join(' ')|trim,
-          "href" : navItem.href|default("#"),
-          "rel"  : navItem.rel|default("dofollow")
+          "class": navItemLinkClasses|join(' ')|trim ~ " bf-megamenu__nav-item__link--a",
+          "href" : mainMenuItem.href|default("#"),
+          "rel"  : mainMenuItem.rel|default("dofollow"),
+          "style": (mainMenuItem.color ? "color: " ~ mainMenuItem.color ~ ";")
         }) }}>
-          {{ navItem.label }}
+          <span class="bf-megamenu__nav-item__link__text">
+            {{ mainMenuItem.label }}
+          </span>
         </a>
       {% else %}
         <button {{ macros.addAttributes({
-          "class"        : navItemButtonClasses|join(' ')|trim,
+          "class"        : navItemButtonClasses|join(' ')|trim ~ " bf-megamenu__nav-item__link--button",
           "type"         : "button",
           "id"           : "menuDropdown" ~ loop.index,
           "aria-expanded": "false",
           "aria-label"   : "Toggle navigation",
         }) }}>
-          <span class="mb-0">
-            {{ navItem.label }}
+          <span class="bf-megamenu__nav-item__link__text">
+            {{ mainMenuItem.label }}
           </span>
           {% include "@bf-components/icon/twig/index.twig" with {
+            class: "bf-megamenu__nav-item__link__icon d-none d-lg-block",
             name: "chevron-down",
-            class: "d-none d-lg-block ml-1"
+            size: "xsmall"
           } %}
         </button>
       {% endif %}
