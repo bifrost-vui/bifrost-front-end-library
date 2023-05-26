@@ -116,6 +116,7 @@ const colors = [
                 name: 'stroke-highlight',
                 hasUtilityClass: false,
                 UtilityClassName: 'bf-border-color-highlight',
+                note: 'In Figma, it is named "Stroke active" instead of "Stroke Highlight".',
             },
         ],
     },
