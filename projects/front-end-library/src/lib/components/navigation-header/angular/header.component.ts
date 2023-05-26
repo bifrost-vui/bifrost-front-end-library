@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
     @Input() langcode: 'EN' | 'FR';
 
-    @Input() navItems: any[];
+    @Input() mainMenuItems: any[];
 
     @Input() reversed: boolean;
 

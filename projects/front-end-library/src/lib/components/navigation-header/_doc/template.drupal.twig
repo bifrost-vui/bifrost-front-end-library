@@ -1,5 +1,5 @@
 {# Menu items array #}
-{% set navItems = [
+{% set mainMenuItems = [
   {
     label: "Internet",
     href: "#",
@@ -220,6 +220,12 @@
         ]
       },
     ],
+  },
+  {
+    label: "Moving",
+    href: "/",
+    class: "font-weight-bold",
+    color: "#0B8339",
   },
 ] %}
 
@@ -864,15 +870,15 @@
 
 {# Default variables #}
 {% set langcode = langcode|json_parse|default("EN") %}
-{% set logo     = logo|json_parse|default({}) %}
+{% set logo = logo|json_parse|default({}) %}
 {% set reversed = reversed|json_parse|default(false) %}
-{% set theme    = theme|json_parse|default("videotron") %}
+{% set theme = theme|json_parse|default("videotron") %}
 
 {# Template #}
 {% include "@bf-components/navigation-header/twig/index.twig" with {
   langcode: langcode,
   logo    : logo,
-  navItems: navItems,
+  mainMenuItems: mainMenuItems,
   reversed: reversed,
   theme   : theme,
 } only %}

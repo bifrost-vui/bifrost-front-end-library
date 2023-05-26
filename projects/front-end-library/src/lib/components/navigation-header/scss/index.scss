@@ -156,7 +156,7 @@ $header_nav_pr_xl: #{calculateRem(16px)};
 
   // Language Switcher
   &__language-switcher {
-    @extend .bf-visibility-transition;
+    @extend .bf-transition-visibility;
     @include media-scale(
       margin-left,
       $header_buttons_gap,
@@ -195,6 +195,7 @@ $header_nav_pr_xl: #{calculateRem(16px)};
 
     // Link
     &__link {
+      position: relative;
       display: flex;
       align-items: center;
       gap: $header_buttons_gap_xl;
@@ -202,11 +203,73 @@ $header_nav_pr_xl: #{calculateRem(16px)};
       height: 100%;
       padding: $header_buttons_gap_xl;
       font-family: $font-family-secondary;
-      font-size: 1.25rem;
       font-weight: 400;
       line-height: inherit;
       border: none;
       background: none;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+      }
+
+      &:focus {
+        outline: none;
+
+        &:focus-visible {
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100% - #{calculateRem(8px, 2)});
+            margin: #{calculateRem(8px)} 0;
+            border: 1px solid #0018FF;
+            border-radius: var(--bf-border-radius-small);
+          }
+        }
+      }
+
+      &:hover,
+      &:focus-visible {
+        &::after {
+          background-color: var(--bf-color-stroke-secondary);
+          animation: animation-transition-grow-ltr $transition-time-long;
+        }
+      }
+
+      &.active {
+        &::after {
+          background-color: var(--bf-color-stroke-highlight);
+        }
+      }
+
+      // <a>
+      &--a {
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      // <button>
+      &--button {
+
+      }
+
+      // Link text
+      &__text {
+        font-size: 1.25rem;
+      }
+
+      // Link icon
+      &__icon {
+
+      }
     }
   }
 }

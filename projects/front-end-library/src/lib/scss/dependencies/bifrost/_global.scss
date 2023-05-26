@@ -51,18 +51,19 @@ body,
   }
 }
 
-.bf-visibility-transition {
+// Transition / Animation
+.bf-transition-visibility {
   display: none;
   opacity: 0;
 
   &.bf-visible {
     display: block;
     opacity: 1;
-    animation: visibility-transition $transition-time-medium;
+    animation: animation-transition-visibility $transition-time-medium;
   }
 }
 
-@keyframes visibility-transition {
+@keyframes animation-transition-visibility {
   0% {
     display: none;
     opacity: 0;
@@ -72,6 +73,17 @@ body,
     opacity: 0;
   }
   100% {
+    opacity: 1;
+  }
+}
+
+@keyframes animation-transition-grow-ltr {
+  0% {
+    width: 0%;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
     opacity: 1;
   }
 }
