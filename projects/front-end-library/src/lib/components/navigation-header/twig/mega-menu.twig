@@ -25,8 +25,8 @@
       {% if not mainMenuItem.subItems and not mainMenuItem.subItemsMultiDropdown %}
         <a {{ macros.addAttributes({
           "class": navItemLinkClasses|join(' ')|trim ~ " bf-megamenu__nav-item__link--a",
-          "href" : mainMenuItem.href|default("#"),
-          "rel"  : mainMenuItem.rel|default("dofollow"),
+          "href": mainMenuItem.href|default("#"),
+          "rel": mainMenuItem.rel|default("dofollow"),
           "style": (mainMenuItem.color ? "color: " ~ mainMenuItem.color ~ ";")
         }) }}>
           <span class="bf-megamenu__nav-item__link__text">
@@ -35,11 +35,13 @@
         </a>
       {% else %}
         <button {{ macros.addAttributes({
-          "class"        : navItemButtonClasses|join(' ')|trim ~ " bf-megamenu__nav-item__link--button",
-          "type"         : "button",
-          "id"           : "menuDropdown" ~ loop.index,
+          "class": navItemButtonClasses|join(' ')|trim ~ " bf-megamenu__nav-item__link--button",
+          "type": "button",
+          "id": "menuDropdown" ~ loop.index,
           "aria-expanded": "false",
-          "aria-label"   : "Toggle navigation",
+          "aria-label": "Toggle navigation",
+        }, {
+          "data-menu-index": "index" ~ loop.index,
         }) }}>
           <span class="bf-megamenu__nav-item__link__text">
             {{ mainMenuItem.label }}
