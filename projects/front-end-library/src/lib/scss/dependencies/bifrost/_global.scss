@@ -69,13 +69,40 @@ body,
   }
 }
 
-@keyframes animation-transition-grow-ltr {
-  0% {
-    width: 0%;
-    opacity: 0;
-  }
-  100% {
+@mixin bf-transition-scaleX-ltr {
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    opacity: 1;
+    height: 3px;
+    background-color: var(--bf-color-stroke-secondary);
+    transform: scaleX(0);
+    transform-origin: left center;
+    will-change: transform;
+    transition: transform $transition-time-long ease-out;
   }
+
+  &:hover,
+  &:focus-visible {
+    &::after {
+      background-color: var(--bf-color-stroke-secondary);
+      transform: scaleX(1);
+      @include transitions(transform, background-color $transition-time-long ease-out);
+    }
+  }
+
+  &.active {
+    &::after {
+      background-color: var(--bf-color-stroke-highlight);
+      transform: scaleX(1);
+      will-change: background-color;
+      @include transitions(transform, background-color $transition-time-long ease-out);
+    }
+  }
+}
+
+.bf-transition-scaleX-ltr {
+  @include bf-transition-scaleX-ltr;
 }

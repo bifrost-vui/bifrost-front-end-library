@@ -4,13 +4,58 @@
 *
 * ***************************************************************************** */
 
-// Variables
+/* --------- */
+/* Variables */
+/* --------- */
 $header_buttons_gap: 0;
 $header_buttons_gap_md: #{calculateRem(4px)};
 $header_buttons_gap_xl: #{calculateRem(8px)};
 $header_nav_pr: #{calculateRem(8px)};
 $header_nav_pr_md: #{calculateRem(24px)};
 $header_nav_pr_xl: #{calculateRem(16px)};
+
+/* ------------ */
+/* Placeholders */
+/* ------------ */
+
+// Default desktop styles for first-level main menu & Account button
+%button-desktop-link {
+  @include media-breakpoint-up(xl) {
+    display: flex;
+    align-items: center;
+    gap: $header_buttons_gap_xl;
+    width: auto;
+    height: 100%;
+    padding: $header_buttons_gap_xl;
+    border: none;
+    background: none;
+  }
+}
+
+// Desktop states styles for first-level main menu & Account button
+%button-desktop-states {
+  @include media-breakpoint-up(xl) {
+    @include bf-transition-scaleX-ltr;
+
+    &:focus {
+      outline: none;
+
+      &:focus-visible {
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: calc(100% - #{calculateRem(8px, 2)});
+          margin: #{calculateRem(8px)} 0;
+          border: 1px solid #0018FF;
+          border-radius: var(--bf-border-radius-small);
+        }
+      }
+    }
+  }
+}
 
 // Styles
 .bf-nav-header {
@@ -25,6 +70,7 @@ $header_nav_pr_xl: #{calculateRem(16px)};
   height: var(--header-height);
   max-height: var(--header-height);
 
+  // <nav> container
   &__nav {
     display: grid;
     width: 100%;
@@ -99,6 +145,7 @@ $header_nav_pr_xl: #{calculateRem(16px)};
     display: flex;
     @include media-scale(grid-column, #{2 / 3}, $xlValue: #{3 / 4});
     grid-row: 1 / 2;
+    align-items: center;
     justify-self: end;
     @include media-scale(
       column-gap,
@@ -106,6 +153,10 @@ $header_nav_pr_xl: #{calculateRem(16px)};
       $header_buttons_gap_md,
       $xlValue: $header_buttons_gap_xl
     );
+
+    @include media-breakpoint-up(xl) {
+      height: 100%;
+    }
 
     // Search Bar
     &__search-bar {
@@ -152,6 +203,68 @@ $header_nav_pr_xl: #{calculateRem(16px)};
         }
       }
     }
+
+    // My Account
+    &__account {
+
+      @include media-breakpoint-up(xl) {
+        height: 100%;
+      }
+
+      // Button container
+      &__button-container {
+        @include media-breakpoint-up(xl) {
+          height: 100%;
+        }
+      }
+
+      // Button (anonymous or connected)
+      &__button {
+        @extend %button-desktop-link;
+        @extend %button-desktop-states;
+
+        // On desktop, remove button-icon default states styles
+        @include media-breakpoint-up(xl) {
+          &:hover {
+            background-color: transparent;
+          }
+        }
+
+        // Icon
+        &__icon {
+
+        }
+
+        // Text
+        &__text {
+          @include media-scale(
+            display,
+            none,
+            $xlValue: block
+          );
+          font-size: #{calculateRem(20px)};
+          line-height: 1.5;
+        }
+
+        // Connected Button
+        &--connected {
+
+          .bf-nav-header__functions__account__button__icon {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+          }
+
+          &__initials,
+          .bf-icon {
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+          }
+        }
+      }
+
+
+    }
   }
 
   // Language Switcher
@@ -196,58 +309,11 @@ $header_nav_pr_xl: #{calculateRem(16px)};
     // Link
     &__link {
       position: relative;
-      display: flex;
-      align-items: center;
-      gap: $header_buttons_gap_xl;
-      width: auto;
-      height: 100%;
-      padding: $header_buttons_gap_xl;
       font-family: $font-family-secondary;
       font-weight: 400;
       line-height: inherit;
-      border: none;
-      background: none;
-
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 3px;
-      }
-
-      &:focus {
-        outline: none;
-
-        &:focus-visible {
-          &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: calc(100% - #{calculateRem(8px, 2)});
-            margin: #{calculateRem(8px)} 0;
-            border: 1px solid #0018FF;
-            border-radius: var(--bf-border-radius-small);
-          }
-        }
-      }
-
-      &:hover,
-      &:focus-visible {
-        &::after {
-          background-color: var(--bf-color-stroke-secondary);
-          animation: animation-transition-grow-ltr $transition-time-long;
-        }
-      }
-
-      &.active {
-        &::after {
-          background-color: var(--bf-color-stroke-highlight);
-        }
-      }
+      @extend %button-desktop-link;
+      @extend %button-desktop-states;
 
       // <a>
       &--a {

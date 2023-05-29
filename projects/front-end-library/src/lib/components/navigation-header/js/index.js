@@ -3,6 +3,7 @@ import { throttle } from '../../../js/utils/debounce-throttle';
 import { updateLanguageSwitcherLinkLabel } from './language-switcher';
 import { toggleBurgerMenu } from './burger-menu';
 import { toggleSearchBar } from './search-bar';
+import { initMegaMenu } from './mega-menu';
 
 const resizeFunctions = () => {
     updateLanguageSwitcherLinkLabel();
@@ -16,6 +17,7 @@ $(function () {
     );
 
     // Call functions for the first time
+    initMegaMenu();
     toggleBurgerMenu();
     toggleSearchBar();
     updateLanguageSwitcherLinkLabel();
