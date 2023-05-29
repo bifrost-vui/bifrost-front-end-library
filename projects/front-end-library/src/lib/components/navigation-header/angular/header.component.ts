@@ -6,6 +6,27 @@ interface ILogo {
     name: string;
 }
 
+interface IMenuItems {
+    class?: string;
+    color?: string;
+    href: string;
+    label: string;
+    subItems?: IMenuItems[];
+}
+
+interface IAccount {
+    firstName: string;
+    lastName: string;
+    links: IAccountLink[];
+}
+
+interface IAccountLink {
+    href: string;
+    icon: string;
+    subtitle?: string;
+    title: string;
+}
+
 @Component({
     selector: 'bf-header',
     templateUrl: './header.component.html',
@@ -13,17 +34,13 @@ interface ILogo {
 export class HeaderComponent implements OnInit {
     constructor() {}
 
+    @Input() accountData: IAccount;
+    @Input() langcode: 'EN' | 'FR';
     /** See [Logo Component API](/?path=/docs/components-logo--drupal). E.g. `logo = { href: "#", name: "videotron" }` */
     @Input() logo: ILogo;
-
-    @Input() langcode: 'EN' | 'FR';
-
-    @Input() mainMenuItems: any[];
-
+    @Input() mainMenuItems: IMenuItems[];
     @Input() reversed: boolean;
-
     @Input() search_placeholder: string;
-
     @Input() theme: string;
 
     ngOnInit() {
