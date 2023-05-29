@@ -869,6 +869,7 @@
 ] %} #}
 
 {# Default variables #}
+{% set accountData = accountData|json_parse %}
 {% set langcode = langcode|json_parse|default("EN") %}
 {% set logo = logo|json_parse|default({}) %}
 {% set reversed = reversed|json_parse|default(false) %}
@@ -876,6 +877,7 @@
 
 {# Template #}
 {% include "@bf-components/navigation-header/twig/index.twig" with {
+  accountData: accountData,
   langcode: langcode,
   logo    : logo,
   mainMenuItems: mainMenuItems,

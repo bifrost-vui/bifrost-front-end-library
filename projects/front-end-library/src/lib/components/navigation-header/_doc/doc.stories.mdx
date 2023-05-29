@@ -59,7 +59,7 @@ export const Drupal = (args) => ({
 
 <Canvas withSource='none'>
     <Story
-        name='Drupal'
+        name='Drupal - Anonymous'
         height='300px'
         args={{
             elementPath : 'components/navigation-header/_doc/template.drupal',
@@ -67,6 +67,30 @@ export const Drupal = (args) => ({
                 name: 'videotron',
                 href: '/',
             },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Connected'
+        height='300px'
+        args={{
+            elementPath : 'components/navigation-header/_doc/template.drupal',
+            logo: {
+                name: 'videotron',
+                href: '/',
+            },
+            accountData: {
+                firstName: 'Jean-Yves',
+                lastName: 'Provencher',
+                links: [
+                    { href: '/', icon: 'my-account', subtitle: 'Helix billing and services', title: 'My Account' },
+                    { href: '/', icon: 'services', subtitle: 'illico, webmail and télé web', title: 'My Services' },
+                ],
+            }
         }}
     >
         {Drupal.bind({})}

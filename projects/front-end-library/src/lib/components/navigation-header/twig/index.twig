@@ -1,10 +1,14 @@
 {# Import macros #}
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set accountData = accountData|default({}) %}
+
 {# Boolean Variables #}
+{% set isAccountConnected = accountData is not empty %}
 {% set isReversed = reversed|default(false) is same as(true) %}
 
-{# Default Variables #}
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set langcode = langcode|default("EN") %}
 {% set logo = logo|default({name: "videotron", href: "/"}) %}
 {% set search_placeholder = search_placeholder|default("What are you looking for?") %}
@@ -133,9 +137,7 @@
 
       {# My account #}
       <div class="bf-nav-header__functions__account">
-        {% include "@bf-components/button-icon/twig/index.twig" with {
-          icon: "my-account"
-        } only %}
+        {% include "@bf-components/navigation-header/twig/account-menu.twig" %}
       </div>
 
       {# Support #}
