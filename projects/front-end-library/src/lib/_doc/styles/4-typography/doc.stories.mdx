@@ -108,13 +108,13 @@ export const smallParagraph =
 <Canvas withSource="none">
     <div className="p-4">
         {typographyInterface.map((t) => (
-            <div key={t.name} className="d-flex align-items-center gap-4 w-100">
+            <div key={t.name != '' ? t.name : 'default'} className="d-flex align-items-center gap-4 w-100">
                 <div className="w-35">
                     <h4 className="mb-0">Interface {t.name}</h4>
-                    <code>.bf-text-interface-{t.name}</code>
+                    <code>.bf-text-interface{t.name != '' ? `-${t.name}` : ''}</code>
                 </div>
                 <div className="w-75">
-                    <p className={`bf-text-interface-${t.name}`}>{paragraph}</p>
+                    <p className={`bf-text-interface${t.name != '' ? `-${t.name}` : ''}`}>{paragraph}</p>
                 </div>
             </div>
         ))}
@@ -126,13 +126,13 @@ export const smallParagraph =
 <Canvas withSource="none">
     <div className="d-flex flex-column gap-5 p-4">
         {typographyDisplay.map((t) => (
-            <div key={t.name} className="d-flex align-items-start gap-4 w-100">
+            <div key={t.name != '' ? t.name : 'default'} className="d-flex align-items-start gap-4 w-100">
                 <div className="w-35">
                     <h4 className="mb-0">Display {t.name}</h4>
-                    <code>.bf-text-display-{t.name}</code>
+                    <code>.bf-text-display{t.name != '' ? `-${t.name}` : ''}</code>
                 </div>
                 <div className="w-75">
-                    <p className={`bf-text-display-${t.name}`}>{smallParagraph}</p>
+                    <p className={`bf-text-display${t.name != '' ? `-${t.name}` : ''}`}>{smallParagraph}</p>
                 </div>
             </div>
         ))}
