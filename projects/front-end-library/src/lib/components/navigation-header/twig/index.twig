@@ -22,15 +22,6 @@
   "bf-nav-header",
   (isReversed ? "reversed"),
 ] %}
-{% set burgerMenuButtonClasses = [
-  "bf-button-icon__inner",
-  "bf-nav-header__main-menu__mobile-toggle__button",
-  "js-bf-burger-menu-toggle",
-] %}
-{% set searchBarButtonClasses = [
-  "bf-nav-header__functions__search-bar__mobile-toggle__button",
-  "js-bf-search-bar-toggle",
-] %}
 
 {# Template #}
 <header {{ macros.addAttributes({
@@ -61,89 +52,22 @@
 		</div>
 
     {# Main menu (Mobile|Tablet: Burger Menu, Desktop: Full menu) #}
-    <div id="mainMenu" class="bf-nav-header__main-menu">
-
-      {# Burger menu button #}
-      <div class="bf-button-icon bf-nav-header__main-menu__mobile-toggle">
-        <button {{ macros.addAttributes({
-          "type"              : "button",
-          "class"             : burgerMenuButtonClasses|join(' ')|trim,
-          "aria-label"        : "Open Main Menu"|t,
-          "data-label-closed" : "Open Main Menu"|t,
-          "data-label-opened" : "Close Main Menu"|t,
-          "data-toggle"       : "collapse",
-          "data-target"       : "#mainMenuContainer",
-          "aria-controls"     : "mainMenuContainer",
-          "aria-expanded"     : "false",
-        }) }}>
-          {% include '@bf-components/icon/twig/index.twig' with {
-            name: "menu-burger",
-            size: "small",
-            class: "js-bf-burger-menu-toggle-closed",
-          } only %}
-          {% include '@bf-components/icon/twig/index.twig' with {
-            name: "x",
-            size: "small",
-            class: "d-none js-bf-burger-menu-toggle-opened",
-          } only %}
-        </button>
-      </div>
-
-      {# Main Menu Container #}
-      <div id="mainMenuContainer" class="bf-nav-header__main-menu__container bf-nav-header-absolute-collapsing collapse">
-        {% include "@bf-components/navigation-header/twig/mega-menu.twig" with {
-          mainMenuItems: mainMenuItems,
-          reversed: reversed
-        } only %}
-      </div>
-    </div>
+    {% include "@bf-components/navigation-header/twig/_header-zone-main-menu.twig" %}
 
     {# Search + Account + Support #}
     <div class="bf-nav-header__functions">
 
       {# Search #}
-      <div class="bf-nav-header__functions__search-bar">
-
-        {# Search Bar button #}
-        {% include "@bf-components/button-icon/twig/index.twig" with {
-          icon: "search",
-          ariaControls: "searchContainer",
-          ariaExpanded: "false",
-          ariaLabel: "Open Search Bar"|t,
-          buttonClass: searchBarButtonClasses|join(' ')|trim,
-          class: "bf-nav-header__functions__search-bar__mobile-toggle",
-          dataTarget: "#searchContainer",
-          dataToggle: "collapse",
-          extraAttribute: {
-            "data-label-closed" : "Open Search Bar"|t,
-            "data-label-opened" : "Close Search Bar"|t,
-          },
-        } only %}
-
-        <div id="searchContainer" class="bf-nav-header__functions__search-bar__container bf-nav-header-absolute-collapsing collapse">
-          {% block globalSearch %}
-            <div class="bf-nav-header__functions__search-bar__container__inner">
-              {% include "@bf-components/input-search/twig/index.twig" with {
-                class: "mb-0",
-                input: {
-                  placeholder: search_placeholder|t
-                },
-                reversed: reversed
-              } %}
-            </div>
-          {% endblock %}
-        </div>
-      </div>
+      {% include "@bf-components/navigation-header/twig/_header-zone-search-bar.twig" %}
 
       {# My account #}
-      <div class="bf-nav-header__functions__account">
-        {% include "@bf-components/navigation-header/twig/account-menu.twig" %}
-      </div>
+      {% include "@bf-components/navigation-header/twig/_header-zone-account.twig" %}
 
       {# Support #}
       <div class="bf-nav-header__functions__support">
         {% include "@bf-components/button-icon/twig/index.twig" with {
-          icon: "question-circle-outline"
+          href: '/',
+          icon: "question-circle-outline",
         } only %}
       </div>
     </div>
@@ -172,6 +96,5 @@
         </a>
       {% endblock %}
     </div>
-
 	</nav>
 </header>

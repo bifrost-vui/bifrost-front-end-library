@@ -1,0 +1,50 @@
+/* ------------ */
+/* Placeholders */
+/* ------------ */
+
+// Default desktop styles for first-level main menu & Account button
+%button-desktop-link {
+  @include media-breakpoint-up(xl) {
+    display: flex;
+    align-items: center;
+    gap: $header_buttons_gap_xl;
+    width: auto;
+    height: 100%;
+    padding: $header_buttons_gap_xl;
+    border: none;
+    background: none;
+  }
+}
+
+// Desktop states styles for first-level main menu & Account button
+%button-desktop-states {
+  @include media-breakpoint-up(xl) {
+    @include bf-transition-scaleX-ltr;
+
+    &:focus {
+      outline: none;
+
+      &:focus-visible {
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: calc(100% - #{calculateRem(8px, 2)});
+          margin: #{calculateRem(8px)} 0;
+          border: 1px solid #0018FF;
+          border-radius: var(--bf-border-radius-small);
+        }
+      }
+    }
+  }
+}
+
+// Collapsable elements that will be positioned "absolute"
+@mixin collapsable-position-absolute {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+}
