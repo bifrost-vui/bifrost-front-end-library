@@ -876,7 +876,7 @@
 {% set theme = theme|json_parse|default("videotron") %}
 
 {# Template #}
-{% include "@bf-components/navigation-header/twig/index.twig" with {
+{% embed "@bf-components/navigation-header/twig/index.twig" with {
   accountData: accountData,
   langcode: langcode,
   logo    : logo,
@@ -884,6 +884,7 @@
   reversed: reversed,
   theme   : theme,
 } only %}
+{% endembed %}
 
 {# Empty block to adjust screen height to more than just the header #}
 <div style="height: 1000px; width: 100%;"></div>
