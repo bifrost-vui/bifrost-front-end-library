@@ -1,7 +1,10 @@
 import $ from 'jquery';
 import { toggleButtonAriaLabel, triggerClosePopOver, toggleBackgroundOverlay } from './_utils';
-import { triggerCloseBurgerMenu } from './burger-menu';
-import { triggerCloseAccountMenu } from './account-menu';
+import { BurgerMenu } from './burger-menu';
+import { AccountMenu } from './account-menu';
+
+// Variables
+const searchBarButtonSelector = '.js-bf-search-bar-toggle';
 
 /* ------------
     EXPORTS
@@ -10,17 +13,11 @@ import { triggerCloseAccountMenu } from './account-menu';
 // Namespace
 export let SearchBar = {
     isOpen: false,
-};
-
-// Variables
-export const searchBarButtonSelector = '.js-bf-search-bar-toggle';
-
-// Functions
-// Close Search Bar
-export const triggerCloseSearchBar = () => {
-    // Get search bar button
-    const button = $(searchBarButtonSelector);
-    triggerClosePopOver(button, SearchBar.isOpen);
+    closePopOver: function () {
+        // Get search bar button
+        const button = $(searchBarButtonSelector);
+        triggerClosePopOver(button, this.isOpen);
+    },
 };
 
 // Toggle search bar (mobile/tablet)
@@ -37,8 +34,8 @@ export const initSearchBar = () => {
             SearchBar.isOpen = true;
 
             // Close other popovers
-            triggerCloseBurgerMenu();
-            triggerCloseAccountMenu();
+            BurgerMenu.closePopOver();
+            AccountMenu.closePopOver();
         }
 
         // Toggle button's aria-label

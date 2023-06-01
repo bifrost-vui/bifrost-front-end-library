@@ -1,27 +1,12 @@
 import $ from 'jquery';
 import { toggleButtonAriaLabel, triggerClosePopOver, toggleBackgroundOverlay } from './_utils';
-import { triggerCloseSearchBar } from './search-bar';
-import { triggerCloseAccountMenu } from './account-menu';
+import { SearchBar } from './search-bar';
+import { AccountMenu } from './account-menu';
 
 // Variables
+const burgerMenuButtonSelector = '.js-bf-burger-menu-toggle';
 const burgerMenuIconClosedSelector = '.js-bf-burger-menu-toggle-closed';
 const burgerMenuIconOpenedSelector = '.js-bf-burger-menu-toggle-opened';
-
-// Toggle burger menu button icons
-const toggleBurgerMenuIcon = (isMenuOpen) => {
-    // Get burger menu icons
-    const iconClosed = $(burgerMenuIconClosedSelector);
-    const iconOpened = $(burgerMenuIconOpenedSelector);
-
-    // Toggle icons depending of the menu state
-    if (isMenuOpen) {
-        iconClosed.addClass('d-none');
-        iconOpened.removeClass('d-none');
-    } else {
-        iconClosed.removeClass('d-none');
-        iconOpened.addClass('d-none');
-    }
-};
 
 /* ------------
     EXPORTS
@@ -30,17 +15,25 @@ const toggleBurgerMenuIcon = (isMenuOpen) => {
 // Namespace
 export let BurgerMenu = {
     isOpen: false,
-};
+    closePopOver: function () {
+        // Get burger menu button
+        const button = $(burgerMenuButtonSelector);
+        triggerClosePopOver(button, this.isOpen);
+    },
+    toggleBurgerMenuIcon: function () {
+        // Get burger menu icons
+        const iconClosed = $(burgerMenuIconClosedSelector);
+        const iconOpened = $(burgerMenuIconOpenedSelector);
 
-// Variables
-export const burgerMenuButtonSelector = '.js-bf-burger-menu-toggle';
-
-// Functions
-// Close Burger Menu
-export const triggerCloseBurgerMenu = () => {
-    // Get burger menu button
-    const button = $(burgerMenuButtonSelector);
-    triggerClosePopOver(button, BurgerMenu.isOpen);
+        // Toggle icons depending of the menu state
+        if (this.isOpen) {
+            iconClosed.addClass('d-none');
+            iconOpened.removeClass('d-none');
+        } else {
+            iconClosed.removeClass('d-none');
+            iconOpened.addClass('d-none');
+        }
+    },
 };
 
 // Toggle burger menu (mobile/tablet)
@@ -57,12 +50,12 @@ export const initBurgerMenu = () => {
             BurgerMenu.isOpen = true;
 
             // Close other popovers
-            triggerCloseSearchBar();
-            triggerCloseAccountMenu();
+            SearchBar.closePopOver();
+            AccountMenu.closePopOver();
         }
 
         // Toggle icons
-        toggleBurgerMenuIcon(BurgerMenu.isOpen);
+        BurgerMenu.toggleBurgerMenuIcon();
 
         // Toggle button's aria-label
         toggleButtonAriaLabel(button, BurgerMenu.isOpen);

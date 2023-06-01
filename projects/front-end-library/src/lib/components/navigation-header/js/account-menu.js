@@ -1,11 +1,11 @@
 import $ from 'jquery';
 import { triggerClosePopOver, toggleBackgroundOverlay } from './_utils';
-import { triggerCloseMegaMenu } from './mega-menu';
-import { triggerCloseBurgerMenu } from './burger-menu';
-import { triggerCloseSearchBar } from './search-bar';
+import { MegaMenu } from './mega-menu';
+import { BurgerMenu } from './burger-menu';
+import { SearchBar } from './search-bar';
 
 // Variables
-export const accountMenuButtonSelector = '.js-bf-account-menu-toggle';
+const accountMenuButtonSelector = '.js-bf-account-menu-toggle';
 
 /* ------------
     EXPORTS
@@ -14,14 +14,21 @@ export const accountMenuButtonSelector = '.js-bf-account-menu-toggle';
 // Namespace
 export let AccountMenu = {
     isOpen: false,
-};
+    toggleActiveClass: function () {
+        // Get Mega Menu First-Level Items Button
+        const button = $(accountMenuButtonSelector);
 
-// Functions
-// Close Account Menu
-export const triggerCloseAccountMenu = () => {
-    // Get account menu button
-    const button = $(accountMenuButtonSelector);
-    triggerClosePopOver(button, AccountMenu.isOpen);
+        if (this.isOpen) {
+            button.addClass('active');
+        } else {
+            button.removeClass('active');
+        }
+    },
+    closePopOver: function () {
+        // Get account menu button
+        const button = $(accountMenuButtonSelector);
+        triggerClosePopOver(button, this.isOpen);
+    },
 };
 
 // Toggle account menu
@@ -38,10 +45,13 @@ export const initAccountMenu = () => {
             AccountMenu.isOpen = true;
 
             // Close other popovers
-            triggerCloseMegaMenu();
-            triggerCloseSearchBar();
-            triggerCloseBurgerMenu();
+            MegaMenu.closePopOver();
+            SearchBar.closePopOver();
+            BurgerMenu.closePopOver();
         }
+
+        // Toggle button's "active" class
+        AccountMenu.toggleActiveClass();
 
         // Toggle Background Overvay
         toggleBackgroundOverlay();

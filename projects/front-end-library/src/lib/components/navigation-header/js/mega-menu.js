@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import { toggleButtonAriaLabel, triggerClosePopOver, toggleBackgroundOverlay } from './_utils';
-import { triggerCloseAccountMenu } from './account-menu';
+import { AccountMenu } from './account-menu';
 
 // Variables
 const megaMenuFirstLevelButtonsSelector = '.js-bf-megamenu__nav-link';
@@ -45,15 +45,11 @@ export let MegaMenu = {
             activeMenu.addClass('active');
         }
     },
-};
-
-// Functions
-// Close Mega Menu
-export const triggerCloseMegaMenu = () => {
-    // Get current active menu button
-    const button = MegaMenu.getActiveMenuButton();
-    console.log('button', button);
-    triggerClosePopOver(button, MegaMenu.isOpen);
+    closePopOver: function () {
+        // Get current active menu button
+        const button = MegaMenu.getActiveMenuButton();
+        triggerClosePopOver(button, this.isOpen);
+    },
 };
 
 // Init Mega Menu
@@ -74,7 +70,7 @@ export const initMegaMenu = () => {
             MegaMenu.addActiveMenuIndex(clickedMenuIndex);
 
             // Close other popovers
-            triggerCloseAccountMenu();
+            AccountMenu.closePopOver();
         }
 
         // Toggle button's "active" class
