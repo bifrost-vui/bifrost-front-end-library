@@ -1,22 +1,9 @@
 import $ from 'jquery';
-import { _window } from '../../../js/utils/window';
+import { toggleButtonAriaLabel, triggerClosePopOver, toggleBackgroundOverlay } from './_utils';
+import { triggerCloseAccountMenu } from './account-menu';
 
 // Variables
 const megaMenuFirstLevelButtonsSelector = '.js-bf-megamenu__nav-link';
-
-// Toggle first-level button active class
-const toggleFirstLevelActiveClass = (index) => {
-    // Get Mega Menu First-Level Items Button
-    const buttons = $(megaMenuFirstLevelButtonsSelector);
-
-    // Remove "active" class on all first level buttons
-    buttons.removeClass('active');
-
-    if (index !== '') {
-        const activeMenu = $(megaMenuFirstLevelButtonsSelector + '[data-menu-index="' + index + '"]');
-        activeMenu.addClass('active');
-    }
-};
 
 /* ------------
     EXPORTS
@@ -24,14 +11,26 @@ const toggleFirstLevelActiveClass = (index) => {
 
 // Namespace
 export let MegaMenu = {
+    isOpen: false,
     activeMenuIndex: '',
+    lastMenuIndex: '',
+    getActiveMenuButton: function () {
+        return $(megaMenuFirstLevelButtonsSelector + '[data-menu-index="' + this.activeMenuIndex + '"]');
+    },
+    getLastMenuButton: function () {
+        return $(megaMenuFirstLevelButtonsSelector + '[data-menu-index="' + this.lastMenuIndex + '"]');
+    },
     isClickedMenuActive: function (index) {
         return this.activeMenuIndex === index;
     },
     removeActiveMenuIndex: function () {
+        this.isOpen = false;
+        this.lastMenuIndex = this.activeMenuIndex;
         this.activeMenuIndex = '';
     },
     addActiveMenuIndex: function (index) {
+        this.isOpen = true;
+        this.lastMenuIndex = this.activeMenuIndex;
         this.activeMenuIndex = index;
     },
     toggleFirstLevelActiveClass: function () {
@@ -42,12 +41,19 @@ export let MegaMenu = {
         buttons.removeClass('active');
 
         if (this.activeMenuIndex !== '') {
-            const activeMenu = $(
-                megaMenuFirstLevelButtonsSelector + '[data-menu-index="' + this.activeMenuIndex + '"]'
-            );
+            const activeMenu = MegaMenu.getActiveMenuButton();
             activeMenu.addClass('active');
         }
     },
+};
+
+// Functions
+// Close Mega Menu
+export const triggerCloseMegaMenu = () => {
+    // Get current active menu button
+    const button = MegaMenu.getActiveMenuButton();
+    console.log('button', button);
+    triggerClosePopOver(button, MegaMenu.isOpen);
 };
 
 // Init Mega Menu
@@ -63,13 +69,25 @@ export const initMegaMenu = () => {
 
         // Toggle the menu open state
         if (MegaMenu.isClickedMenuActive(clickedMenuIndex)) {
-            //_window.unfreeze();
             MegaMenu.removeActiveMenuIndex();
         } else {
-            //_window.freeze();
             MegaMenu.addActiveMenuIndex(clickedMenuIndex);
+
+            // Close other popovers
+            triggerCloseAccountMenu();
         }
 
+        // Toggle button's "active" class
         MegaMenu.toggleFirstLevelActiveClass();
+
+        // Toggle button's aria-label
+        toggleButtonAriaLabel(
+            clickedMenu,
+            MegaMenu.isOpen,
+            MegaMenu.getLastMenuButton().length > 0 ? MegaMenu.getLastMenuButton() : null
+        );
+
+        // Toggle Background Overvay
+        toggleBackgroundOverlay();
     });
 };

@@ -1,6 +1,7 @@
 import $ from 'jquery';
-import { _window } from '../../../js/utils/window';
+import { toggleButtonAriaLabel, triggerClosePopOver, toggleBackgroundOverlay } from './_utils';
 import { triggerCloseSearchBar } from './search-bar';
+import { triggerCloseAccountMenu } from './account-menu';
 
 // Variables
 const burgerMenuIconClosedSelector = '.js-bf-burger-menu-toggle-closed';
@@ -22,30 +23,13 @@ const toggleBurgerMenuIcon = (isMenuOpen) => {
     }
 };
 
-// Toggle burger menu button aria-label
-const toggleBurgerMenuAriaLabel = (isMenuOpen) => {
-    // Get burger menu button
-    const button = $(burgerMenuButtonSelector);
-
-    // Get data labels
-    const buttonClosedLabel = button.data('label-closed');
-    const buttonOpenedLabel = button.data('label-opened');
-
-    // Toggle icons depending of the menu state
-    if (isMenuOpen) {
-        button.attr('aria-label', buttonOpenedLabel);
-    } else {
-        button.attr('aria-label', buttonClosedLabel);
-    }
-};
-
 /* ------------
     EXPORTS
 ------------ */
 
 // Namespace
 export let BurgerMenu = {
-    isBurgerMenuOpen: false,
+    isOpen: false,
 };
 
 // Variables
@@ -56,33 +40,34 @@ export const burgerMenuButtonSelector = '.js-bf-burger-menu-toggle';
 export const triggerCloseBurgerMenu = () => {
     // Get burger menu button
     const button = $(burgerMenuButtonSelector);
-
-    if (BurgerMenu.isBurgerMenuOpen) {
-        button.trigger('click');
-    }
+    triggerClosePopOver(button, BurgerMenu.isOpen);
 };
 
 // Toggle burger menu (mobile/tablet)
-export const toggleBurgerMenu = () => {
+export const initBurgerMenu = () => {
     // Get burger menu button
     const button = $(burgerMenuButtonSelector);
 
     // On Click
     button.on('click', () => {
         // Toggle the menu open state
-        if (BurgerMenu.isBurgerMenuOpen) {
-            _window.unfreeze();
-            BurgerMenu.isBurgerMenuOpen = false;
+        if (BurgerMenu.isOpen) {
+            BurgerMenu.isOpen = false;
         } else {
-            _window.freeze();
-            BurgerMenu.isBurgerMenuOpen = true;
+            BurgerMenu.isOpen = true;
+
+            // Close other popovers
             triggerCloseSearchBar();
+            triggerCloseAccountMenu();
         }
 
         // Toggle icons
-        toggleBurgerMenuIcon(BurgerMenu.isBurgerMenuOpen);
+        toggleBurgerMenuIcon(BurgerMenu.isOpen);
 
         // Toggle button's aria-label
-        toggleBurgerMenuAriaLabel(BurgerMenu.isBurgerMenuOpen);
+        toggleButtonAriaLabel(button, BurgerMenu.isOpen);
+
+        // Toggle Background Overvay
+        toggleBackgroundOverlay();
     });
 };
