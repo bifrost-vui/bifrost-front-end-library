@@ -1,23 +1,7 @@
 import $ from 'jquery';
-import { _window } from '../../../js/utils/window';
+import { toggleButtonAriaLabel, triggerClosePopOver, toggleBackgroundOverlay } from './_utils';
 import { triggerCloseBurgerMenu } from './burger-menu';
-
-// Toggle search bar button aria-label
-const toggleSearchBarAriaLabel = (isSearchBarOpen) => {
-    // Get search bar button
-    const button = $(searchBarButtonSelector);
-
-    // Get data labels
-    const buttonClosedLabel = button.data('label-closed');
-    const buttonOpenedLabel = button.data('label-opened');
-
-    // Toggle icons depending of the menu state
-    if (isSearchBarOpen) {
-        button.attr('aria-label', buttonOpenedLabel);
-    } else {
-        button.attr('aria-label', buttonClosedLabel);
-    }
-};
+import { triggerCloseAccountMenu } from './account-menu';
 
 /* ------------
     EXPORTS
@@ -25,7 +9,7 @@ const toggleSearchBarAriaLabel = (isSearchBarOpen) => {
 
 // Namespace
 export let SearchBar = {
-    isSearchBarOpen: false,
+    isOpen: false,
 };
 
 // Variables
@@ -36,30 +20,31 @@ export const searchBarButtonSelector = '.js-bf-search-bar-toggle';
 export const triggerCloseSearchBar = () => {
     // Get search bar button
     const button = $(searchBarButtonSelector);
-
-    if (SearchBar.isSearchBarOpen) {
-        button.trigger('click');
-    }
+    triggerClosePopOver(button, SearchBar.isOpen);
 };
 
 // Toggle search bar (mobile/tablet)
-export const toggleSearchBar = () => {
+export const initSearchBar = () => {
     // Get search bar button
     const button = $(searchBarButtonSelector);
 
     // On Click
     button.on('click', () => {
         // Toggle the menu open state
-        if (SearchBar.isSearchBarOpen) {
-            _window.unfreeze();
-            SearchBar.isSearchBarOpen = false;
+        if (SearchBar.isOpen) {
+            SearchBar.isOpen = false;
         } else {
-            _window.freeze();
-            SearchBar.isSearchBarOpen = true;
+            SearchBar.isOpen = true;
+
+            // Close other popovers
             triggerCloseBurgerMenu();
+            triggerCloseAccountMenu();
         }
 
         // Toggle button's aria-label
-        toggleSearchBarAriaLabel(SearchBar.isSearchBarOpen);
+        toggleButtonAriaLabel(button, SearchBar.isOpen);
+
+        // Toggle Background Overvay
+        toggleBackgroundOverlay();
     });
 };
