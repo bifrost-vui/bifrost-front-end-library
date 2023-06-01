@@ -13,9 +13,21 @@
     $xlValue: #{calculateRem(72px)}
   );
   position: relative;
+  z-index: 20;
   width: 100%;
   height: var(--header-height);
   max-height: var(--header-height);
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 1px;
+    background-color: var(--bf-color-stroke-secondary);
+  }
 
   // <nav> container
   &__nav {
@@ -24,14 +36,14 @@
     @include media-scale(
       grid-template-columns,
       min-content auto min-content,
-      $xlValue: min-content auto max-content min-content
+      $xlValue: min-content max-content auto min-content
     );
     align-items: center;
     @include media-scale(
       padding-right,
-      $header_nav_pr,
-      $header_nav_pr_md,
-      $xlValue: $header_nav_pr_xl
+      #{calculateRem(8px)},
+      #{calculateRem(24px)},
+      $xlValue: #{calculateRem(16px)}
     );
     background-color: var(--bf-color-bg-ground);
   }
@@ -63,7 +75,7 @@
       margin-left,
       $header_buttons_gap,
       $header_buttons_gap_md,
-      $xlValue: $header_buttons_gap_xl
+      $xlValue: 0
     );
 
     @include media-breakpoint-up(xl) {
@@ -98,19 +110,25 @@
 
   // Functions (Search, Account, Support)
   &__functions {
-    display: flex;
     @include media-scale(grid-column, #{2 / 3}, $xlValue: #{3 / 4});
     grid-row: 1 / 2;
-    align-items: center;
     justify-self: end;
+    display: grid;
+    @include media-scale(
+      grid-template-columns,
+      repeat(3, 1fr),
+      $xlValue: auto max-content max-content
+    );
     @include media-scale(
       column-gap,
       $header_buttons_gap,
       $header_buttons_gap_md,
       $xlValue: $header_buttons_gap_xl
     );
+    align-items: center;
 
     @include media-breakpoint-up(xl) {
+      width: 100%;
       height: 100%;
     }
 
@@ -135,7 +153,9 @@
 
         // Screen resolution starting at "xl" breakpoint
         @include media-breakpoint-up(xl) {
-          display: block;
+          display: flex;
+          justify-content: flex-end;
+          margin-left: #{calculateRem(16px)};
         }
 
         // Inner container
@@ -153,11 +173,6 @@
             #{calculateRem(12px)} #{calculateRem(16px)},
             #{calculateRem(12px)} #{calculateRem(72px)},
             $xlValue: 0 #{calculateRem(8px)}
-          );
-          @include media-scale(
-            border-top,
-            1px solid var(--bf-color-stroke-secondary),
-            $xlValue: none
           );
           @include media-scale(
             background-color,
@@ -180,6 +195,12 @@
         @include media-breakpoint-up(xl) {
           height: 100%;
         }
+
+        &--anonymous {
+          @include media-breakpoint-up(xl) {
+            padding: 0 $header_buttons_gap_xl;
+          }
+        }
       }
 
       // Button (anonymous or connected)
@@ -192,11 +213,6 @@
           &:hover {
             background-color: transparent;
           }
-        }
-
-        // Icon
-        &__icon {
-
         }
 
         // Text
@@ -223,6 +239,13 @@
           .bf-icon {
             grid-column: 1 / 2;
             grid-row: 1 / 2;
+          }
+
+          &__initials {
+            position: relative;
+            top: -1px;
+            left: 1px;
+            letter-spacing: 1px;
           }
         }
       }
@@ -262,6 +285,8 @@
         width: #{calculateRem(40px)};
         height: #{calculateRem(40px)};
         padding: 0;
+        font-size: #{calculateRem(14px)};
+        line-height: #{calculateRem(16px)};
         border-radius: 100%;
       }
     }

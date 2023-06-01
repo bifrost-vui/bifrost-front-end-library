@@ -1,7 +1,11 @@
 .bf-megamenu {
   @extend .bf-list;
   display: flex;
-  gap: $header_buttons_gap_xl;
+  @include media-scale(
+    gap,
+    0,
+    $xlValue: calc($header_buttons_gap_xl + 1px)
+  );
   height: 100%;
 
   // Nav item
