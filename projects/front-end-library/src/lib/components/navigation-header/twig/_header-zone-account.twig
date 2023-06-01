@@ -1,5 +1,20 @@
 
 {# Arrays of Classes With Dynamic Elements #}
+{% set accountButtonContainerClasses = [
+  "bf-button-icon",
+  "bf-nav-header__functions__account__button-container",
+] %}
+
+{% set accountButtonContainerAnonymousClasses = [
+  accountButtonContainerClasses|join(' ')|trim,
+  "bf-nav-header__functions__account__button-container--anonymous",
+] %}
+
+{% set accountButtonContainerConnectedClasses = [
+  accountButtonContainerClasses|join(' ')|trim,
+  "bf-nav-header__functions__account__button-container--connected",
+] %}
+
 {% set accountButtonClasses = [
   "bf-button-icon__inner",
   "bf-nav-header__functions__account__button",
@@ -13,7 +28,7 @@
 {% set accountButtonConnectedClasses = [
   accountButtonClasses|join(' ')|trim,
   "bf-nav-header__functions__account__button--connected",
-  "js-bf-account-toggle",
+  "js-bf-account-menu-toggle",
 ] %}
 
 {# Template #}
@@ -26,7 +41,7 @@
     {% set userInitials = firstNameInitial ~ lastNameInitial %}
 
     {# Account Menu Toggle Button #}
-    <div class="bf-button-icon bf-nav-header__functions__account__button-container">
+    <div class="{{ accountButtonContainerConnectedClasses|join(' ')|trim }}">
       <button {{ macros.addAttributes({
         "type"              : "button",
         "class"             : accountButtonConnectedClasses|join(' ')|trim,
@@ -56,7 +71,7 @@
 
     {% set signInLabel = "Sign In"|t %}
 
-    <div class="bf-button-icon bf-nav-header__functions__account__button-container">
+    <div class="{{ accountButtonContainerAnonymousClasses|join(' ')|trim }}">
       <button {{ macros.addAttributes({
         "type"              : "button",
         "class"             : accountButtonAnonymousClasses|join(' ')|trim,
@@ -79,7 +94,7 @@
   {% endif %}
 
   {# Account Menu Container #}
-  <div id="accountMenu" class="bf-nav-header__functions__account__container collapse">
+  <div id="accountMenu" class="bf-account-menu bf-nav-header__functions__account__container collapse">
     This is the container of the account menu when a user is connected
   </div>
 </div>

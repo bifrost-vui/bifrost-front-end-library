@@ -13,10 +13,12 @@
     ] %}
     {% set navItemLinkClasses = [
       "bf-megamenu__nav-item__link",
+      "bf-megamenu__nav-item__link--a",
       mainMenuItem.class|default("")
     ] %}
     {% set navItemButtonClasses = [
       "bf-megamenu__nav-item__link",
+      "bf-megamenu__nav-item__link--button",
       "js-bf-megamenu__nav-link"
     ] %}
 
@@ -24,7 +26,7 @@
     <li class="{{ navItemClasses|join(' ')|trim }}">
       {% if not mainMenuItem.subItems and not mainMenuItem.subItemsMultiDropdown %}
         <a {{ macros.addAttributes({
-          "class": navItemLinkClasses|join(' ')|trim ~ " bf-megamenu__nav-item__link--a",
+          "class": navItemLinkClasses|join(' ')|trim,
           "href": mainMenuItem.href|default("#"),
           "rel": mainMenuItem.rel|default("dofollow"),
           "style": (mainMenuItem.color ? "color: " ~ mainMenuItem.color ~ ";")
@@ -35,11 +37,13 @@
         </a>
       {% else %}
         <button {{ macros.addAttributes({
-          "class": navItemButtonClasses|join(' ')|trim ~ " bf-megamenu__nav-item__link--button",
+          "class": navItemButtonClasses|join(' ')|trim,
           "type": "button",
           "id": "menuDropdown" ~ loop.index,
           "aria-expanded": "false",
-          "aria-label": "Toggle navigation",
+          "aria-label": "Open menu: "|t ~ mainMenuItem.label,
+          "data-label-closed" : "Open menu: "|t ~ mainMenuItem.label,
+          "data-label-opened" : "Close menu: "|t ~ mainMenuItem.label,
           "data-menu-index": "index" ~ loop.index,
         }) }}>
           <span class="bf-megamenu__nav-item__link__text">
