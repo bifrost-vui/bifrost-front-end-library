@@ -869,22 +869,50 @@
 ] %} #}
 
 {# Default variables #}
+{% set _top_bar_right_block = _top_bar_right_block|json_parse %}
 {% set accountData = accountData|json_parse %}
+{% set hasTopBar = hasTopBar|json_parse %}
 {% set langcode = langcode|json_parse|default("EN") %}
 {% set logo = logo|json_parse|default({}) %}
 {% set reversed = reversed|json_parse|default(false) %}
 {% set theme = theme|json_parse|default("videotron") %}
+{% set topBarData = topBarData|json_parse %}
 
-{# Template #}
-{% embed "@bf-components/navigation-header/twig/index.twig" with {
+{# Nav Header Props #}
+{% set navHeaderProps = {
   accountData: accountData,
+  hasTopBar: hasTopBar,
   langcode: langcode,
-  logo    : logo,
+  logo: logo,
   mainMenuItems: mainMenuItems,
   reversed: reversed,
-  theme   : theme,
-} only %}
-{% endembed %}
+  searchPlaceholder: searchPlaceholder,
+  theme: theme,
+  topBarData: topBarData,
+} %}
+
+{# Template #}
+{% if _top_bar_right_block is same as(true) %}
+  {% embed "@bf-components/navigation-header/twig/index.twig" with navHeaderProps only %}
+    {% block top_bar_right_nav %}
+      <ul class="list bf-top-bar__nav">
+        <li class="bf-top-bar__nav__item">
+          <a href="/" class="link bf-top-bar__nav__item__link">
+            Block Link #1
+          </a>
+        </li>
+        <li class="bf-top-bar__nav__item">
+          <a href="/" class="link bf-top-bar__nav__item__link">
+            Block Link #2
+          </a>
+        </li>
+      </ul>
+    {% endblock %}
+  {% endembed %}
+{% else %}
+  {% embed "@bf-components/navigation-header/twig/index.twig" with navHeaderProps only %}
+  {% endembed %}
+{% endif %}
 
 {# Empty block to adjust screen height to more than just the header #}
 <div style="height: 1000px; width: 100%;"></div>

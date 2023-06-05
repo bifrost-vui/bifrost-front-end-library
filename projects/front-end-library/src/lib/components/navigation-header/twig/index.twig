@@ -5,23 +5,46 @@
 {% set accountData = accountData|default({}) %}
 
 {# Boolean Variables #}
+{% set hasTopBar = hasTopBar is defined and hasTopBar is same as(true) %}
 {% set isAccountConnected = accountData is not empty %}
+{% set isBlockLanguageDefined = block("language_switcher_desktop") is defined and block("language_switcher_desktop") is not empty %}
+{% set isBlockTopBarLeftNavDefined = block("top_bar_left_nav") is defined and block("top_bar_left_nav") is not empty %}
+{% set isBlockTopBarRightNavDefined = block("top_bar_right_nav") is defined and block("top_bar_right_nav") is not empty %}
 {% set isReversed = reversed|default(false) is same as(true) %}
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set langcode = langcode|default("EN") %}
 {% set logo = logo|default({name: "videotron", href: "/"}) %}
-{% set search_placeholder = search_placeholder|default("What are you looking for?") %}
+{% set searchPlaceholder = searchPlaceholder|default("What are you looking for?") %}
 {% set theme = theme|default("videotron") %}
-
-{# Dynamic Variables #}
-{% set langSwitchLabel = langcode == "EN" ? "FR" : "EN" %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set headerClasses = [
   "bf-nav-header",
+  (hasTopBar ? "has-top-bar"),
   (isReversed ? "reversed"),
 ] %}
+
+{# If defined, override of "language_switcher_desktop" block #}
+{% if isBlockLanguageDefined %}
+    {% set overrideBlockLanguage %}
+        {% block language_switcher_desktop %}{% endblock %}
+    {% endset %}
+{% endif %}
+
+{# If defined, override of "top_bar_left_nav" block #}
+{% if isBlockTopBarLeftNavDefined %}
+    {% set overrideTopBarLeft %}
+        {% block top_bar_left_nav %}{% endblock %}
+    {% endset %}
+{% endif %}
+
+{# If defined, override of "top_bar_right_nav" block #}
+{% if isBlockTopBarRightNavDefined %}
+    {% set overrideTopBarRight %}
+        {% block top_bar_right_nav %}{% endblock %}
+    {% endset %}
+{% endif %}
 
 {# Template #}
 <div class="bf-background-overlay bf-transition-visibility js-bf-background-overlay"></div>
@@ -30,6 +53,18 @@
   "class"     : headerClasses|join(' ')|trim,
   "data-theme": (theme is defined ? theme),
 }) }}>
+
+  {# Top Bar #}
+  {% if hasTopBar %}
+    {% include "@bf-components/navigation-header/twig/top-bar.twig" with {
+      navLeftItems: topBarData.left,
+      navRightItems: topBarData.right,
+      overrideTopBarLeft: overrideTopBarLeft,
+      overrideTopBarRight: overrideTopBarRight,
+    } %}
+  {% endif %}
+
+  {# Main Navigation Bar #}
 	<nav class="bf-nav-header__nav">
 
 		{# Logo #}
@@ -74,28 +109,9 @@
     </div>
 
     {# Language Switcher #}
-    <div id="languageSwitcher" class="bf-nav-header__language-switcher">
-      {# New way to do link, but for now I have no way to get what I need from Drupal #}
-      {# {% include '@bf-components/button/twig/index.twig' with {
-        label    : langSwitchLabel,
-        hierarchy: 'tertiary',
-        href     : "#",
-        class    : "bf-nav-header__language-switcher__link",
-      } only %} #}
+    {% include "@bf-components/navigation-header/twig/_header-zone-language.twig" with {
+      overrideBlockLanguage: overrideBlockLanguage
+    } %}
 
-      {# Current way the link is rendered in Drupal #}
-      {% block language_switcher_desktop %}
-        <a
-          href="#"
-          class="bf-button bf-button--tertiary bf-nav-header__language-switcher__link js-bf-nav-header__language-switcher__link"
-          title="Français"
-          language="fr"
-          hreflang="fr"
-          data-drupal-link-system-path="node/8531"
-        >
-          Français
-        </a>
-      {% endblock %}
-    </div>
 	</nav>
 </header>

@@ -4,19 +4,28 @@
 *
 * ***************************************************************************** */
 
-// Styles
-.bf-nav-header {
+:root {
   @include media-scale(
     --header-height,
     #{calculateRem(44px)},
     #{calculateRem(56px)},
     $xlValue: #{calculateRem(72px)}
   );
+  --top-bar-height: #{calculateRem(32px)};
+}
+
+// Styles
+.bf-nav-header {
   position: relative;
   z-index: 20;
   width: 100%;
   height: var(--header-height);
   max-height: var(--header-height);
+
+  &.has-top-bar {
+    height: calc(var(--header-height) + var(--top-bar-height));
+    max-height: calc(var(--header-height) + var(--top-bar-height));
+  }
 
   &::after {
     content: "";
