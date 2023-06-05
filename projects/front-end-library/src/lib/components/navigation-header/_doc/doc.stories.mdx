@@ -20,6 +20,9 @@ import { HeaderTemplateComponent }        from './template.angular.component';
         },
     }}
     argTypes={{
+        hasTopBar: {
+            table: { defaultValue: { summary: 'true' } },
+        },
         langcode: {
             table: { defaultValue: { summary: 'EN' } },
             control: {
@@ -30,7 +33,7 @@ import { HeaderTemplateComponent }        from './template.angular.component';
         reversed: {
             table: { defaultValue: { summary: 'false' } },
         },
-        search_placeholder: {
+        searchPlaceholder: {
             table: { defaultValue: { summary: 'What are you looking for?' } },
         },
         theme: {
@@ -52,6 +55,26 @@ import { HeaderTemplateComponent }        from './template.angular.component';
 
 ## Drupal
 
+export const commonProps = {
+    hasTopBar: true,
+    logo: {
+        name: 'videotron',
+        href: '/',
+    },
+    topBarData: {
+        left: [
+            {
+                href: "/",
+                label: "Residential",
+            },
+            {
+                href: "/",
+                label: "Business",
+            }
+        ]
+    }
+};
+
 export const Drupal = (args) => ({
     component   : TwigContainerComponent,
     props       : args,
@@ -63,10 +86,7 @@ export const Drupal = (args) => ({
         height='300px'
         args={{
             elementPath : 'components/navigation-header/_doc/template.drupal',
-            logo: {
-                name: 'videotron',
-                href: '/',
-            },
+            ...commonProps,
         }}
     >
         {Drupal.bind({})}
@@ -79,10 +99,7 @@ export const Drupal = (args) => ({
         height='300px'
         args={{
             elementPath : 'components/navigation-header/_doc/template.drupal',
-            logo: {
-                name: 'videotron',
-                href: '/',
-            },
+            ...commonProps,
             accountData: {
                 firstName: 'Jean-Yves',
                 lastName: 'Provencher',
@@ -91,6 +108,70 @@ export const Drupal = (args) => ({
                     { href: '/', icon: 'services', subtitle: 'illico, webmail and télé web', title: 'My Services' },
                 ],
             }
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Top Bar with Links on the Right'
+        height='300px'
+        args={{
+            elementPath : 'components/navigation-header/_doc/template.drupal',
+            ...commonProps,
+            hasTopBar: true,
+            topBarData: {
+                left: commonProps.topBarData.left,
+                right: [
+                    {
+                        href: "/",
+                        label: "Demo link 1",
+                    },
+                    {
+                        href: "/",
+                        label: "Demo link 2",
+                    },
+                    {
+                        href: "/",
+                        label: "Demo link 3",
+                    },
+                    {
+                        href: "/",
+                        label: "Demo link 4",
+                    }
+                ]
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Top Bar with Links on the Right - With a Twig Block'
+        height='300px'
+        args={{
+            elementPath : 'components/navigation-header/_doc/template.drupal',
+            ...commonProps,
+            _top_bar_right_block: true,
+            hasTopBar: true,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Without Top Bar'
+        height='300px'
+        args={{
+            elementPath : 'components/navigation-header/_doc/template.drupal',
+            ...commonProps,
+            hasTopBar: false,
         }}
     >
         {Drupal.bind({})}

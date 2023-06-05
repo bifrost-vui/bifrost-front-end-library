@@ -1,0 +1,75 @@
+{# Import macros #}
+{% import _self as navMacro %}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set navLeftItems = navLeftItems|default([]) %}
+{% set navRightItems = navRightItems|default([]) %}
+{% set overrideTopBarLeft = overrideTopBarLeft|default(null) %}
+{% set overrideTopBarRight = overrideTopBarRight|default(null) %}
+
+{# Boolean Variables #}
+{% set hasNavLeftItems = navLeftItems is not empty %}
+{% set hasNavRightItems = navRightItems is not empty %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set topBarClasses = [
+  "bf-top-bar",
+  "bf-nav-header__top-bar",
+  "reversed",
+] %}
+
+{# Macro: Links Loop #}
+{% macro topBarLinksLoop(linksItems) %}
+  <ul class="list bf-top-bar__nav">
+    {% for item in linksItems %}
+
+      {# In Loop - Arrays of Classes With Dynamic Elements #}
+      {% set itemLinkClasses = [
+        "link bf-top-bar__nav__item__link",
+        (item.class)
+      ] %}
+
+      <li class="bf-top-bar__nav__item">
+        <a {{ macros.addAttributes({
+          "class": itemLinkClasses|join(' ')|trim,
+          "href": item.href|default("#"),
+          "rel": item.rel|default("dofollow"),
+        }) }}
+        >
+          {{ item.label }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{# Template #}
+<nav class="{{ topBarClasses|join(' ')|trim }}">
+
+  <div class="bf-top-bar__container">
+
+    {# Nav on the left #}
+    {% if overrideTopBarLeft is not empty %}
+      {% block top_bar_left_nav %}
+        {{ overrideTopBarLeft }}
+      {% endblock %}
+    {% else %}
+      {% if hasNavLeftItems %}
+        {{ navMacro.topBarLinksLoop(navLeftItems) }}
+      {% endif %}
+    {% endif %}
+
+    {# Nav on the right #}
+    {% if overrideTopBarRight is not empty %}
+      {% block top_bar_right_nav %}
+        {{ overrideTopBarRight }}
+      {% endblock %}
+    {% else %}
+      {% if hasNavRightItems %}
+        {{ navMacro.topBarLinksLoop(navRightItems) }}
+      {% endif %}
+    {% endif %}
+
+  </div>
+</nav>
