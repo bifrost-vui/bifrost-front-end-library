@@ -46,11 +46,18 @@
     {% endset %}
 {% endif %}
 
+{# Logo link title #}
+{% if logo.name is same as("videotron") %}
+  {% set logoLinkTitle = "Videotron"|t %}
+{% else %}
+  {% set logoLinkTitle = "Videotron Business"|t %}
+{% endif %}
+
 {# Template #}
 <div class="bf-background-overlay bf-transition-visibility js-bf-background-overlay"></div>
 <header {{ macros.addAttributes({
-  "role"      : "banner",
-  "class"     : headerClasses|join(' ')|trim,
+  "role": "banner",
+  "class": headerClasses|join(' ')|trim,
   "data-theme": (theme is defined ? theme),
 }) }}>
 
@@ -69,7 +76,11 @@
 
 		{# Logo #}
 		<div class="bf-nav-header__logo">
-			<a href="{{ logo.href }}" class="d-flex">
+			<a {{ macros.addAttributes({
+        "href": logo.href,
+        "class": "d-flex",
+        "title": logoLinkTitle,
+      }) }}>
         <div class="bf-nav-header__logo__desktop">
           {% include "@bf-components/logo/twig/index.twig" with {
             name: logo.name,
@@ -101,9 +112,11 @@
 
       {# Support #}
       <div class="bf-nav-header__functions__support">
+        {% set supportTitle = "Support"|t %}
         {% include "@bf-components/button-icon/twig/index.twig" with {
           href: '/',
           icon: "question-circle-outline",
+          extraAttribute: 'title="' ~ supportTitle ~ '"',
         } only %}
       </div>
     </div>
