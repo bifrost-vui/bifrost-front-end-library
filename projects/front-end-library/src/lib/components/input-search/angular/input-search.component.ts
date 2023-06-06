@@ -48,6 +48,7 @@ export class InputSearchComponent implements OnInit {
      */
     @Input() input: IInput;
     @Input() isDisabled: boolean = false;
+    @Input() isLabelVisible: boolean = false;
     /** Expected format:
      * <pre>
      *     <code>

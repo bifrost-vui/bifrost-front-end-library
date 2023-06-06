@@ -115,8 +115,6 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-
-
 <Canvas withSource="none">
     <Story
         name="Drupal - With Label"
@@ -125,7 +123,24 @@ export const Drupal = (args) => ({
             elementPath: 'components/input-search/_doc/template.drupal',
             ...commonProps,
             label: {
-                text: 'Label',
+                text: 'Lorem Ipsum',
+            },
+            isLabelVisible: true,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - With Hidden Label (Aria-Label)"
+        height="150px"
+        args={{
+            elementPath: 'components/input-search/_doc/template.drupal',
+            ...commonProps,
+            label: {
+                text: 'Lorem Ipsum',
             },
         }}
     >
