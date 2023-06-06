@@ -13,3 +13,7 @@ export const InputDefaultValue = `{
     name: "searchInput",
     placeholder: "What are you looking for?",
 }`;
+
+export const LabelDefaultValue = `{
+    text: "Label Text",
+}`;

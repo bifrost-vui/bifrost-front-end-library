@@ -2,7 +2,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { InputSearchComponent, DefaultButtonSubmitValue } from '../angular/input-search.component';
-import { ButtonSubmitDefaultValue, InputDefaultValue } from './doc.model';
+import { ButtonSubmitDefaultValue, InputDefaultValue, LabelDefaultValue } from './doc.model';
 
 <Meta
     title="Components/Input Search"
@@ -28,7 +28,8 @@ import { ButtonSubmitDefaultValue, InputDefaultValue } from './doc.model';
         label: {
             table: {
                 defaultValue: {
-                    summary: "{}"
+                    summary: "Object",
+                    detail: LabelDefaultValue
                 }
             },
         },
@@ -69,6 +70,7 @@ import { ButtonSubmitDefaultValue, InputDefaultValue } from './doc.model';
         value: "search string",
     },
     isDisabled: false,
+    isLabelVisible: false,
     label: {
         class: "ml-4",
         extraAttribute: "data-demo-label='this is an extra attribute'",
@@ -94,6 +96,10 @@ export const commonProps = {
         id: 'searchInput',
         name: 'searchInput',
         placeholder: 'What are you looking for?',
+    },
+    isLabelVisible: false,
+    label: {
+        text: 'Lorem Ipsum',
     },
 }
 
@@ -122,26 +128,7 @@ export const Drupal = (args) => ({
         args={{
             elementPath: 'components/input-search/_doc/template.drupal',
             ...commonProps,
-            label: {
-                text: 'Lorem Ipsum',
-            },
             isLabelVisible: true,
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
-
-<Canvas withSource="none">
-    <Story
-        name="Drupal - With Hidden Label (Aria-Label)"
-        height="150px"
-        args={{
-            elementPath: 'components/input-search/_doc/template.drupal',
-            ...commonProps,
-            label: {
-                text: 'Lorem Ipsum',
-            },
         }}
     >
         {Drupal.bind({})}
