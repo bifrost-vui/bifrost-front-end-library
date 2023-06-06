@@ -16,7 +16,7 @@ export interface IInput {
 }
 
 export interface ILabel {
-    class: string;
-    extraAttribute: string;
+    class?: string;
+    extraAttribute?: string;
     text: string;
 }

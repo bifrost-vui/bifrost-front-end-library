@@ -18,6 +18,7 @@
 {% set hasLabel = label.text is defined and label.text is not empty %}
 {% set isButtonSubmitVisible = buttonSubmit.isVisible is same as(true) %}
 {% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isLabelVisible = isLabelVisible|default(false) is same as(true) %}
 {% set isReversed = reversed|default(false) is same as(true) %}
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}
@@ -39,6 +40,10 @@
   "w-100 form-group--search-input",
   (isReversed ? "reversed"),
   (class),
+] %}
+{% set labelClasses = [
+  (isLabelVisible is same as(false) ? "d-none"),
+  (label.class|default("")),
 ] %}
 {% set inputClasses = [
   "form-control js-bf-input-search",
@@ -62,9 +67,9 @@
   {% if hasLabel %}
     <label {{ macros.addAttributes({
       "for": (hasInputId ? input.id),
-      "class": label.class|default(""),
+      "class": labelClasses|join(' ')|trim,
     }, label.extraAttribute) }}>
-      {{ label.value|default("Label") }}
+      {{ label.text|default("Label") }}
     </label>
   {% endif %}
 
@@ -88,6 +93,7 @@
 
           {% if hasButtonClear %}
             {% include "@bf-components/button-icon/twig/index.twig" with {
+              ariaLabel: "Reset search field"|t,
               class: buttonClearClasses|join(' ')|trim,
               icon: "x",
               isDisabled: isDisabled,
