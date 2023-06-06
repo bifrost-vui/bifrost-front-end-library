@@ -59,6 +59,8 @@ export class InputSearchComponent implements OnInit {
      *         }
      *     </code>
      * </pre>
+     *
+     * `label.text` is __mandatory__
      */
     @Input() label: ILabel;
     @Input() reversed: boolean = false;
