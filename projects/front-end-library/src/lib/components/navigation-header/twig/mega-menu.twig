@@ -2,7 +2,7 @@
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
 {# Template #}
-<ul class="bf-megamenu">
+<ul class="bf-megamenu" role="menu">
   {% for mainMenuItem in mainMenuItems %}
 
     {# In Loop - Arrays of Classes With Dynamic Elements #}
@@ -23,13 +23,14 @@
     ] %}
 
     {# Main menu item #}
-    <li class="{{ navItemClasses|join(' ')|trim }}">
+    <li class="{{ navItemClasses|join(' ')|trim }}" role="presentation">
       {% if not mainMenuItem.subItems and not mainMenuItem.subItemsMultiDropdown %}
         <a {{ macros.addAttributes({
           "class": navItemLinkClasses|join(' ')|trim,
           "href": mainMenuItem.href|default("#"),
           "rel": mainMenuItem.rel|default("dofollow"),
-          "style": (mainMenuItem.color ? "color: " ~ mainMenuItem.color ~ ";")
+          "style": (mainMenuItem.color ? "color: " ~ mainMenuItem.color ~ ";"),
+          "role": "menuitem",
         }) }}>
           <span class="bf-megamenu__nav-item__link__text">
             {{ mainMenuItem.label }}
@@ -41,15 +42,18 @@
           "type": "button",
           "id": "menuDropdown" ~ loop.index,
           "aria-expanded": "false",
+          "aria-haspopup": "menu",
           "aria-label": "Open menu: "|t ~ mainMenuItem.label,
           "data-label-closed" : "Open menu: "|t ~ mainMenuItem.label,
           "data-label-opened" : "Close menu: "|t ~ mainMenuItem.label,
           "data-menu-index": "index" ~ loop.index,
+          "role": "menuitem",
         }) }}>
           <span class="bf-megamenu__nav-item__link__text">
             {{ mainMenuItem.label }}
           </span>
           {% include "@bf-components/icon/twig/index.twig" with {
+            ariaLabel: "Closed Menu Icon"|t,
             class: "bf-megamenu__nav-item__link__icon d-none d-lg-block",
             name: "chevron-down",
             size: "xsmall"

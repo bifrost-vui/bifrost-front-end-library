@@ -21,7 +21,7 @@
 
 {# Macro: Links Loop #}
 {% macro topBarLinksLoop(linksItems) %}
-  <ul class="list bf-top-bar__nav">
+  <ul class="list bf-top-bar__nav" role="menu">
     {% for item in linksItems %}
 
       {# In Loop - Arrays of Classes With Dynamic Elements #}
@@ -30,13 +30,13 @@
         (item.class)
       ] %}
 
-      <li class="bf-top-bar__nav__item">
+      <li class="bf-top-bar__nav__item" role="presentation">
         <a {{ macros.addAttributes({
           "class": itemLinkClasses|join(' ')|trim,
           "href": item.href|default("#"),
           "rel": item.rel|default("dofollow"),
-        }) }}
-        >
+          "role": "menuitem",
+        }) }}>
           {{ item.label }}
         </a>
       </li>
@@ -45,7 +45,11 @@
 {% endmacro %}
 
 {# Template #}
-<nav class="{{ topBarClasses|join(' ')|trim }}">
+<nav {{ macros.addAttributes({
+  "class": topBarClasses|join(' ')|trim,
+  "aria-label": "Top Bar Navigation"|t,
+  "role": "navigation",
+}) }}>
 
   <div class="bf-top-bar__container">
 

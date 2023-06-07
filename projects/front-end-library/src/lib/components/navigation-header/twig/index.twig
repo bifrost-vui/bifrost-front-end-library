@@ -72,7 +72,11 @@
   {% endif %}
 
   {# Main Navigation Bar #}
-	<nav class="bf-nav-header__nav">
+	<nav {{ macros.addAttributes({
+    "class": "bf-nav-header__nav",
+    "aria-label": "Main Navigation"|t,
+    "role": "navigation",
+  }) }}>
 
 		{# Logo #}
 		<div class="bf-nav-header__logo">
@@ -114,6 +118,7 @@
       <div class="bf-nav-header__functions__support">
         {% set supportTitle = "Support"|t %}
         {% include "@bf-components/button-icon/twig/index.twig" with {
+          ariaLabel: "Support Icon"|t,
           href: '/',
           icon: "question-circle-outline",
           extraAttribute: 'title="' ~ supportTitle ~ '"',
