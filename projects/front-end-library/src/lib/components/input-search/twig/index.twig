@@ -5,7 +5,10 @@
 {% set buttonSubmit = buttonSubmit|default({
   buttonIcon: {
     ariaLabel: "Search"|t,
-    icon: "search",
+    icon: {
+      ariaLabel: "Search Icon"|t,
+      name: "search",
+    },
   },
   isVisible: true,
   position: "right"
@@ -95,7 +98,10 @@
             {% include "@bf-components/button-icon/twig/index.twig" with {
               ariaLabel: "Reset search field"|t,
               class: buttonClearClasses|join(' ')|trim,
-              icon: "x",
+              icon: {
+                ariaLabel: "Reset search field icon"|t,
+                name: "x",
+              },
               isDisabled: isDisabled,
             } only %}
           {% endif %}
