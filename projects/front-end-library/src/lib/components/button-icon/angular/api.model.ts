@@ -1,3 +1,5 @@
+import { IIcon } from '../../icon/angular/api.model';
+
 export interface IButtonIcon {
     ariaControls: string;
     ariaExpanded: string;
@@ -10,7 +12,7 @@ export interface IButtonIcon {
     dataToggle: string;
     extraAttribute: string | object;
     href: string;
-    icon: string;
+    icon: string | IIcon;
     isDisabled: boolean;
     label: string;
 }

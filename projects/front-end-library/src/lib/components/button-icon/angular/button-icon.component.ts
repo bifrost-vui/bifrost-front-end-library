@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IIcon } from '../../icon/angular/api.model';
 
 /**
  * API is the same between **Angular** and **Drupal**.
@@ -47,7 +48,11 @@ export class ButtonIconComponent implements OnInit {
     @Input() extraAttribute: string | object;
     /** A button will become a link if `href` is defined as long as it's not disabled. */
     @Input() href: string;
-    @Input() icon: string;
+    /**
+     * You can pass directly the **icon name** in string format or an object
+     * based on [Icon](/?path=/docs/components-icon--drupal) component API.
+     */
+    @Input() icon: string | IIcon;
     @Input() isDisabled: boolean;
     /** Display a `data-title` attribute.  */
     @Input() label: string;

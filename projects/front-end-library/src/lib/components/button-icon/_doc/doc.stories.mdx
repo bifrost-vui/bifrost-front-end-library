@@ -8,20 +8,6 @@ import { ButtonIconComponent } from '../angular/button-icon.component';
     title="Components/Button Icon"
     component={ButtonIconComponent}
     decorators={[moduleMetadata({ declarations: [ButtonIconComponent, TwigContainerComponent] })]}
-    argTypes={{
-        icon: {
-            control: {
-                type: 'select',
-                options: [
-                    '',
-                    ...interfaceIcons
-                        .map((a) => a.list)
-                        .flat()
-                        .sort(),
-                ],
-            },
-        },
-    }}
 />
 
 # Button Icon
@@ -36,22 +22,24 @@ import { ButtonIconComponent } from '../angular/button-icon.component';
 
 ```jsx
 {% include '@bf-components/button-icon/twig/index.twig' with {
-    icon : 'placeholder'
+    icon: {
+        name: 'placeholder'
+    }
 } only %}
 
 // With a badge
 {% include '@bf-components/button-icon/twig/index.twig' with {
-    badgeLabel : '3'
+    badgeLabel: '3'
 } only %}
 
 // With a link instead of a button
 {% include '@bf-components/button-icon/twig/index.twig' with {
-    href : '#'
+    href: '#'
 } %}
 
 // Disabled
 {% include '@bf-components/button-icon/twig/index.twig' with {
-    isDisabled : true
+    isDisabled: true
 } %}
 ```
 
@@ -68,7 +56,9 @@ export const Drupal = (args) => ({
         height="300px"
         args={{
             elementPath: 'components/button-icon/_doc/template.drupal',
-            icon: 'cart',
+            icon: {
+                name: 'cart'
+            },
             isDisabled: undefined,
         }}
     >

@@ -1,3 +1,6 @@
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set icon = icon|default("placeholder") %}
+
 {# Boolean Variables #}
 {% set hasAriaControls = ariaControls is defined and ariaControls is not empty %}
 {% set hasAriaExpanded = ariaExpanded is defined and ariaExpanded is not empty %}
@@ -9,16 +12,23 @@
 {% set hasHref = href is defined and href is not empty %}
 {% set hasLabel = label is defined and label is not empty %}
 {% set isDisabled = (isDisabled ?? false) is same as(true) %}
+{% set isIconIterable = icon is iterable %}
 {% set isReversed = (reversed ?? false) is same as(true) %}
 
 {# Boolean Variables - ORDER IS IMPORTANT #}
 {% set isLink = hasHref and not isDisabled %}
 
-{# Default Variables (Props, Controls) #}
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set buttonClass = buttonClass|default("") %}
 {% set class = class|default("") %}
 {% set extraAttribute = extraAttribute|default({}) %}
-{% set icon = icon|default("placeholder") %}
+
+{# If "icon" is a string, then make it an object #}
+{% if isIconIterable is same as(false) %}
+  {% set icon = {
+    name: icon
+  } %}
+{% endif %}
 
 {# Variables #}
 {% set componentTag = isLink ? "a" : "button" %}
@@ -67,7 +77,8 @@
   } %}
     {% block customTagContent %}
       {% include "@bf-components/icon/twig/index.twig" with {
-        name: icon,
+        ariaLabel: icon.ariaLabel|default(null),
+        name: icon.name,
         size: "small"
       } only %}
     {% endblock %}
