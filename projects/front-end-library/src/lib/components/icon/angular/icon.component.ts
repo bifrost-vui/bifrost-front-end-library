@@ -10,13 +10,14 @@ import iconList from '../svg/svg';
 export class IconComponent implements OnChanges {
     constructor(private element: ElementRef, private sanitizer: DomSanitizer) {}
 
-    @Input() name: string;
-    @Input() size: 'xsmall' | 'small' | 'medium' | 'large' | 'huge';
-    @Input() color: 'primary' | 'success' | 'neutral' | 'warning' | 'negative';
-    /** Angular only. */
-    @Input() className: string;
+    @Input() ariaLabel: string;
     /** Drupal only. */
     @Input() class: string;
+    /** Angular only. */
+    @Input() className: string;
+    @Input() color: 'primary' | 'success' | 'neutral' | 'warning' | 'negative';
+    @Input() name: string;
+    @Input() size: 'xsmall' | 'small' | 'medium' | 'large' | 'huge';
     @Input() reversed: boolean;
 
     public svg: SafeHtml;
