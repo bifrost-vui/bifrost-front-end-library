@@ -13,12 +13,11 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } fro
 export class LogoComponent implements OnInit {
     constructor() {}
 
-    @Input() name: 'videotron' | 'business';
-    @Input() size: 'large' | 'medium' | 'small';
-
-    @Input() reversed: boolean;
     /** In order to ensure backward compatibility, it accepts 'EN' and 'FR' as well. */
     @Input() langcode: 'en' | 'fr';
+    @Input() name: 'videotron' | 'business';
+    @Input() reversed: boolean;
+    @Input() size: 'large' | 'medium' | 'small';
 
     ngOnInit() {
         console.log('logo', this);

@@ -1,9 +1,11 @@
-import { moduleMetadata }                 from '@storybook/angular';
+import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import { withDesign }                     from 'storybook-addon-designs'
-import { TwigContainerComponent }         from '../../../../utils/twig-container/twig-container.component';
-import { HeaderComponent }                from '../angular/header.component';
-import { HeaderTemplateComponent }        from './template.angular.component';
+import { withDesign } from 'storybook-addon-designs'
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { HeaderComponent } from '../angular/header.component';
+import { HeaderTemplateComponent } from './template.angular.component';
+import { IconDefaultValue } from './doc.model';
+import { accountData, mainMenuData, topBarData } from './doc.data';
 
 <Meta
     title='Components/Navigation Header'
@@ -20,28 +22,24 @@ import { HeaderTemplateComponent }        from './template.angular.component';
         },
     }}
     argTypes={{
-        hasTopBar: {
-            table: { defaultValue: { summary: 'true' } },
-        },
         langcode: {
-            table: { defaultValue: { summary: 'EN' } },
-            control: {
-                type: 'select',
-                options: ['EN', 'FR'],
+            control: { type: 'select' },
+        },
+        logo: {
+            table: {
+                defaultValue: {
+                    summary: "Object",
+                    detail: IconDefaultValue
+                }
             },
         },
-        reversed: {
-            table: { defaultValue: { summary: 'false' } },
-        },
-        searchPlaceholder: {
-            table: { defaultValue: { summary: 'What are you looking for?' } },
-        },
+        /*
+        Commented for now as the "Business" theme is separated in another component,
+        using the old Navigation Header component. The "Business" theme will
+        eventually be integrated in this new Navigation Header component in the future.        
         theme: {
-            type: { name: 'string', required: false },
-            description: "Header's `data-theme` attribute",
-            table: { type: { summary: 'string' }, defaultValue: { summary: 'videotron' } },
-            control: { type: 'select', options: ['videotron', 'business'] },
-        },
+            control: { type: 'select' },
+        },*/
     }}
 />
 
@@ -49,8 +47,115 @@ import { HeaderTemplateComponent }        from './template.angular.component';
 
 <br />
 
-**// TODO** Write a description of your component.
-> **// TODO**: Add a link to component in **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)**
+## Component API
+
+<ArgsTable of={HeaderComponent} />
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/navigation-header/twig/index.twig' with {
+    accountData: {{
+        firstName: 'John',
+        lastName: 'Doe',
+        links: [
+            { href: '/', icon: 'my-account', subtitle: 'Helix billing and services', title: 'My Account' },
+            { href: '/', icon: 'services', subtitle: 'illico, webmail and web tele', title: 'My Services' },
+        ],
+    }},
+    hasTopBar: true,
+    langcode: 'en',
+    logo: {
+        href: '/',
+        name: 'business',
+    },
+    mainMenuData: [
+        {
+            href: '/',
+            label: 'Internet',
+            subItems: [
+                {
+                    label: 'Shop Helix',
+                    subItems: [
+                        {
+                            label: 'Internet plans',
+                            href: '/',
+                        },
+                        {
+                            label: 'Create your plan',
+                            href: '/',
+                        },
+                        {
+                            label: 'Offers',
+                            href: '/',
+                        },
+                    ],
+                },
+                {
+                    label: 'Discover Videotron Home Internet',
+                    subItems: [
+                        {
+                            label: 'Why choose Videotron?',
+                            href: '/',
+                        },
+                        {
+                            label: 'Support',
+                            href: '/',
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            label: 'Tv',
+            subItems: [
+                {...}
+            ],,
+        },
+        {
+            label: 'Mobility',
+            subItems: [
+                {...}
+            ],,
+
+        },
+        {
+            label: 'Entertainment',
+            subItems: [
+                {...}
+            ],
+        },
+        {
+            label: 'Moving',
+            href: '/',
+            class: 'font-weight-bold',
+            color: '0B8339',
+        },
+    ],
+    reversed: false,
+    search: {
+        placeholder: 'What are you looking for?'
+    },
+    topBar: {
+        left: [
+            {
+                class: 'active',
+                href: '/',
+                label: 'Residential',
+                rel: 'dofollow',
+            },
+            {
+                href: '/',
+                label: 'Business',
+                rel: 'dofollow',
+            },
+        ],
+        right: [
+            {...}
+        ],
+    },
+} only %}
+```
 
 
 ## Drupal
@@ -58,21 +163,11 @@ import { HeaderTemplateComponent }        from './template.angular.component';
 export const commonProps = {
     hasTopBar: true,
     logo: {
-        name: 'videotron',
         href: '/',
+        name: 'videotron',
     },
-    topBarData: {
-        left: [
-            {
-                href: "/",
-                label: "Residential",
-            },
-            {
-                href: "/",
-                label: "Business",
-            }
-        ]
-    }
+    mainMenuData: mainMenuData,
+    topBarData: topBarData
 };
 
 export const Drupal = (args) => ({
@@ -100,14 +195,7 @@ export const Drupal = (args) => ({
         args={{
             elementPath : 'components/navigation-header/_doc/template.drupal',
             ...commonProps,
-            accountData: {
-                firstName: 'Jean-Yves',
-                lastName: 'Provencher',
-                links: [
-                    { href: '/', icon: 'my-account', subtitle: 'Helix billing and services', title: 'My Account' },
-                    { href: '/', icon: 'services', subtitle: 'illico, webmail and télé web', title: 'My Services' },
-                ],
-            }
+            accountData: accountData
         }}
     >
         {Drupal.bind({})}
@@ -178,46 +266,40 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
+<!-- Angular commented for now -->
+<!--
 
-## Drupal implementation example
+    ## Angular
 
-```jsx
-{% include '@bf-components/navigation-header/twig/index.twig' with {
-    // Add relevant props here
-} only %}
-```
+    export const Angular = (args) => ({
+    component: HeaderTemplateComponent,
+    props: args,
+    });
 
+    <Canvas withSource='none'>
+        <Story
+            name='Angular - Not developed yet'
+            args={{
+                label: 'Header'
+            }}
+        >
+            {Angular.bind({})}
+        </Story>
+    </Canvas>
 
-## Angular
+    ## Angular implementation example
 
-export const Angular = (args) => ({
-  component: HeaderTemplateComponent,
-  props: args,
-});
-
-<Canvas withSource='none'>
-    <Story
-        name='Angular - Not developed yet'
-        args={{
-            label: 'Header'
-        }}
-    >
-        {Angular.bind({})}
-    </Story>
-</Canvas>
-
-## Angular implementation example
-
-Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
+    Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
 
 
-**// TODO**: Add Stories (variants of your component) as much as you want.
+    __// TODO__: Add Stories (variants of your component) as much as you want.
 
 
-## Component API
+    ## Component API
 
-<ArgsTable of={HeaderComponent} />
+    <ArgsTable of={HeaderComponent} />
 
+-->
 
 ## Design Guidelines
 
