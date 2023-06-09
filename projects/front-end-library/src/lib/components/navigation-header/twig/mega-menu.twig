@@ -3,7 +3,17 @@
 
 {# Template #}
 <ul class="bf-megamenu" role="menu">
-  {% for mainMenuItem in mainMenuItems %}
+  {% for mainMenuItem in mainMenuData %}
+
+    {# In Loop - Boolean Variables #}
+    {% set hasColor = mainMenuItem.color is defined and mainMenuItem.color is not empty %}
+    {% set hasColorHashtag = hasColor and mainMenuItem.color starts with "#" %}
+
+    {# If color string does not starts with an hashtag (#), then we apply one in front of it #}
+    {% set mainMenuItemColor = mainMenuItem.color %}
+    {% if hasColorHashtag is same as(false) %}
+      {% set mainMenuItemColor = "#" ~ mainMenuItemColor %}
+    {% endif %}
 
     {# In Loop - Arrays of Classes With Dynamic Elements #}
     {% set navItemClasses = [
@@ -29,7 +39,7 @@
           "class": navItemLinkClasses|join(' ')|trim,
           "href": mainMenuItem.href|default("#"),
           "rel": mainMenuItem.rel|default("dofollow"),
-          "style": (mainMenuItem.color ? "color: " ~ mainMenuItem.color ~ ";"),
+          "style": (hasColor ? "color: " ~ mainMenuItemColor ~ ";"),
           "role": "menuitem",
         }) }}>
           <span class="bf-megamenu__nav-item__link__text">

@@ -1,44 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ILink } from '../../../components/link/angular/api.model';
-
-interface ITopBarMenuItems {
-    class?: string;
-    href: string;
-    label: string;
-    rel?: string;
-}
-
-interface ITopBar {
-    left?: ITopBarMenuItems[];
-    right?: ITopBarMenuItems[];
-}
-
-interface ILogo {
-    href: string;
-    name: string;
-}
-
-interface IMenuItems {
-    class?: string;
-    color?: string;
-    href: string;
-    label: string;
-    subItems?: IMenuItems[];
-}
-
-interface IAccount {
-    firstName: string;
-    lastName: string;
-    links: IAccountLink[];
-}
-
-interface IAccountLink {
-    href: string;
-    icon: string;
-    subtitle?: string;
-    title: string;
-}
-
+import { IAccount, IHeaderLogo, IMenuItems, ITopBar } from './api.model';
 @Component({
     selector: 'bf-header',
     templateUrl: './header.component.html',
@@ -46,15 +7,82 @@ interface IAccountLink {
 export class HeaderComponent implements OnInit {
     constructor() {}
 
-    @Input() accountData: IAccount;
+    /** Expected format:
+     * <pre>
+     *    <code>
+     *        {
+     *            "firstName": `string`,
+     *            "lastName": `string`,
+     *            "links": [
+     *                {
+     *                    "href": `string`,
+     *                    "icon": `string`,
+     *                    "subtitle": `string`,
+     *                    "title": `string`
+     *                },
+     *                ...
+     *            ]
+     *        }
+     *    </code>
+     * </pre>
+     *
+     * For `links.icon`, see [Icon Interface List](/?path=/story/components-icon--drupal-interface).
+     */
+    @Input() accountData: IAccount = null;
     @Input() hasTopBar: boolean = true;
-    @Input() langcode: 'EN' | 'FR';
-    /** See [Logo Component API](/?path=/docs/components-logo--drupal). E.g. `logo = { href: "#", name: "videotron" }` */
-    @Input() logo: ILogo;
-    @Input() mainMenuItems: IMenuItems[];
+    @Input() langcode: 'en' | 'fr' = 'en';
+    /** Expected format:
+     * <pre>
+     *    <code>
+     *        {
+     *            "href": `string`,
+     *            "name": `ILogo['name']`,
+     *        }
+     *    </code>
+     * </pre>
+     *
+     * For the `name`, see [Logo Component API](/?path=/docs/components-logo--drupal).
+     */
+    @Input() logo: IHeaderLogo;
+    /** Expected format:
+     * <pre>
+     *     <code>
+     *         [
+     *             {
+     *                 "class": `string`,
+     *                 "color": `string`,
+     *                 "href": `string`,
+     *                 "label": `string`,
+     *                 "subItems": `IMenuItems[]`,
+     *             },
+     *             {...},
+     *         ]
+     *     </code>
+     * </pre>
+     */
+    @Input() mainMenuData: IMenuItems[];
     @Input() reversed: boolean = false;
-    @Input() searchPlaceholder: string;
-    @Input() theme: string;
+    @Input() searchPlaceholder: string = 'What are you looking for?';
+    /**
+     * Header's `data-theme` attribute
+     * @ignore
+     */
+    @Input() theme: 'videotron' | 'business' = 'videotron';
+    /** Expected format:
+     * <pre>
+     *     <code>
+     *         [
+     *             {
+     *                 "class": `string`,
+     *                 "href": `string`,
+     *                 "label": `string`,
+     *                 "rel": `string`,
+     *             },
+     *             {...},
+     *         ]
+     *     </code>
+     * </pre>
+     */
     @Input() topBarData: ITopBar;
 
     ngOnInit() {
