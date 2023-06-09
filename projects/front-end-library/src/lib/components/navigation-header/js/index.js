@@ -1,23 +1,37 @@
 import $ from 'jquery';
 import { throttle } from '../../../js/utils/debounce-throttle';
+import { isDesktopXlUp } from '../../../js/utils/breakpoints';
 import { updateLanguageSwitcherLinkLabel } from './language-switcher';
-import { initMegaMenu } from './mega-menu';
-import { initBurgerMenu } from './burger-menu';
-import { initSearchBar } from './search-bar';
+import { MegaMenu, initMegaMenu } from './mega-menu';
+import { BurgerMenu, initBurgerMenu } from './burger-menu';
+import { SearchBar, initSearchBar } from './search-bar';
 import { initAccountMenu } from './account-menu';
 
-const resizeFunctions = () => {
-    updateLanguageSwitcherLinkLabel();
+/* Close the different popovers according to different screen resolutions */
+const closePopOversOnResize = () => {
+    if (isDesktopXlUp()) {
+        BurgerMenu.closePopOver();
+        SearchBar.closePopOver();
+    } else {
+        MegaMenu.closePopOver();
+    }
 };
 
+/* Functions to execute on screen resize */
+const resizeFunctions = () => {
+    updateLanguageSwitcherLinkLabel();
+    closePopOversOnResize();
+};
+
+/* Dom Ready */
 $(function () {
-    // Window Events
+    // Screen Resize Event
     $(window).on(
         'resize',
         throttle(() => resizeFunctions())
     );
 
-    // Call functions for the first time
+    // Init functions
     initMegaMenu();
     initBurgerMenu();
     initSearchBar();
