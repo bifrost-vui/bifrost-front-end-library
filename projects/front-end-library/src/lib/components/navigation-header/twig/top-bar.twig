@@ -24,21 +24,47 @@
   <ul class="list bf-top-bar__nav" role="menu">
     {% for item in linksItems %}
 
+      {# In Loop - Variables #}
+      {% set itemIsActive = item.isActive|default(false) %}
+
+      {# In Loop - Boolean Variables #}
+      {% set itemIsActive = itemIsActive is same as(true) %}
+
       {# In Loop - Arrays of Classes With Dynamic Elements #}
-      {% set itemLinkClasses = [
-        "link bf-top-bar__nav__item__link",
+      {% set itemLinkDefaultClasses = [
+        "bf-top-bar__nav__item__link",
         (item.class)
       ] %}
 
+      {% set itemLinkActiveClasses = [
+        "active",
+        itemLinkDefaultClasses|join(' ')|trim
+      ] %}
+
+      {% set itemLinkClasses = [
+        "link",
+        itemLinkDefaultClasses|join(' ')|trim
+      ] %}
+
       <li class="bf-top-bar__nav__item" role="presentation">
-        <a {{ macros.addAttributes({
-          "class": itemLinkClasses|join(' ')|trim,
-          "href": item.href|default("#"),
-          "rel": item.rel|default("dofollow"),
-          "role": "menuitem",
-        }) }}>
-          {{ item.label }}
-        </a>
+
+        {% if itemIsActive %}
+          <span {{ macros.addAttributes({
+            "class": itemLinkActiveClasses|join(' ')|trim,
+            "role": "presentation",
+          }) }}>
+            {{ item.label }}
+          </span>
+        {% else %}
+          <a {{ macros.addAttributes({
+            "class": itemLinkClasses|join(' ')|trim,
+            "href": item.href|default("#"),
+            "rel": item.rel|default("dofollow"),
+            "role": "menuitem",
+          }) }}>
+            {{ item.label }}
+          </a>
+        {% endif %}
       </li>
     {% endfor %}
   </ul>

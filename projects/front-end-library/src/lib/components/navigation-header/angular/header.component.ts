@@ -75,6 +75,7 @@ export class HeaderComponent implements OnInit {
      *             {
      *                 "class": `string`,
      *                 "href": `string`,
+     *                 "isActive": `boolean`,
      *                 "label": `string`,
      *                 "rel": `string`,
      *             },
