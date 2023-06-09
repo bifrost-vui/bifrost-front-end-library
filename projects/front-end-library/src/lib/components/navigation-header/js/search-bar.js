@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { toggleButtonAriaLabel, triggerClosePopOver, toggleBackgroundOverlay } from './_utils';
+import { MegaMenu } from './mega-menu';
 import { BurgerMenu } from './burger-menu';
 import { AccountMenu } from './account-menu';
 
@@ -34,6 +35,7 @@ export const initSearchBar = () => {
             SearchBar.isOpen = true;
 
             // Close other popovers
+            MegaMenu.closePopOver();
             BurgerMenu.closePopOver();
             AccountMenu.closePopOver();
         }
