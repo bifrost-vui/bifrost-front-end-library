@@ -5,6 +5,7 @@ import { ILogo } from '../../../components/logo/angular/api.model';
 interface ITopBarMenuItems {
     class?: string;
     href: string;
+    isActive?: boolean;
     label: string;
     rel?: string;
 }

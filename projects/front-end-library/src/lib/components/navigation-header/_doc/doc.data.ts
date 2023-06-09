@@ -199,8 +199,8 @@ export const mainMenuData = [
 export const topBarData = {
     left: [
         {
-            class: 'active',
             href: '/',
+            isActive: true,
             label: 'Residential',
             rel: 'dofollow',
         },
