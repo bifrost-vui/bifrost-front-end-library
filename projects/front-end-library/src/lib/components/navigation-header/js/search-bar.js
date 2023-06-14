@@ -1,5 +1,6 @@
 import $ from 'jquery';
-import { toggleButtonAriaLabel, triggerClosePopOver, toggleBackgroundOverlay } from './_utils';
+import { throttle } from '../../../js/utils/debounce-throttle';
+import { triggerClosePopOver, toggleBackgroundOverlay } from './_utils';
 import { MegaMenu } from './mega-menu';
 import { BurgerMenu } from './burger-menu';
 import { AccountMenu } from './account-menu';
@@ -27,23 +28,23 @@ export const initSearchBar = () => {
     const button = $(searchBarButtonSelector);
 
     // On Click
-    button.on('click', () => {
-        // Toggle the menu open state
-        if (SearchBar.isOpen) {
-            SearchBar.isOpen = false;
-        } else {
-            SearchBar.isOpen = true;
+    button.on(
+        'click',
+        throttle(() => {
+            // Toggle the menu open state
+            if (SearchBar.isOpen) {
+                SearchBar.isOpen = false;
+            } else {
+                SearchBar.isOpen = true;
 
-            // Close other popovers
-            MegaMenu.closePopOver();
-            BurgerMenu.closePopOver();
-            AccountMenu.closePopOver();
-        }
+                // Close other popovers
+                MegaMenu.closePopOver();
+                BurgerMenu.closePopOver();
+                AccountMenu.closePopOver();
+            }
 
-        // Toggle button's aria-label
-        toggleButtonAriaLabel(button, SearchBar.isOpen);
-
-        // Toggle Background Overvay
-        toggleBackgroundOverlay();
-    });
+            // Toggle Background Overvay
+            toggleBackgroundOverlay();
+        }, 250)
+    );
 };

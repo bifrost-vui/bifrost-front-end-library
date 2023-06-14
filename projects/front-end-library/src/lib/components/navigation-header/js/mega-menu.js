@@ -1,5 +1,6 @@
 import $ from 'jquery';
-import { toggleButtonAriaLabel, triggerClosePopOver, toggleBackgroundOverlay } from './_utils';
+import { throttle } from '../../../js/utils/debounce-throttle';
+import { triggerClosePopOver, toggleBackgroundOverlay } from './_utils';
 import { AccountMenu } from './account-menu';
 
 // Variables
@@ -13,24 +14,24 @@ const megaMenuFirstLevelButtonsSelector = '.js-bf-megamenu__nav-link';
 export let MegaMenu = {
     isOpen: false,
     activeMenuIndex: '',
-    lastMenuIndex: '',
+    previousActiveMenuIndex: '',
     getActiveMenuButton: function () {
         return $(megaMenuFirstLevelButtonsSelector + '[data-menu-index="' + this.activeMenuIndex + '"]');
     },
-    getLastMenuButton: function () {
-        return $(megaMenuFirstLevelButtonsSelector + '[data-menu-index="' + this.lastMenuIndex + '"]');
+    getPreviousActiveMenuButton: function () {
+        return $(megaMenuFirstLevelButtonsSelector + '[data-menu-index="' + this.previousActiveMenuIndex + '"]');
     },
     isClickedMenuActive: function (index) {
         return this.activeMenuIndex === index;
     },
     removeActiveMenuIndex: function () {
         this.isOpen = false;
-        this.lastMenuIndex = this.activeMenuIndex;
+        this.previousActiveMenuIndex = '';
         this.activeMenuIndex = '';
     },
     addActiveMenuIndex: function (index) {
         this.isOpen = true;
-        this.lastMenuIndex = this.activeMenuIndex;
+        this.previousActiveMenuIndex = this.activeMenuIndex != '' ? this.activeMenuIndex : index;
         this.activeMenuIndex = index;
     },
     toggleFirstLevelActiveClass: function () {
@@ -41,7 +42,7 @@ export let MegaMenu = {
         buttons.removeClass('active');
 
         if (this.activeMenuIndex !== '') {
-            const activeMenu = MegaMenu.getActiveMenuButton();
+            const activeMenu = this.getActiveMenuButton();
             activeMenu.addClass('active');
         }
     },
@@ -58,32 +59,34 @@ export const initMegaMenu = () => {
     const buttons = $(megaMenuFirstLevelButtonsSelector);
 
     // On Click
-    buttons.on('click', (e) => {
-        // Get button index
-        const clickedMenu = $(e.currentTarget);
-        const clickedMenuIndex = clickedMenu.data('menu-index');
+    buttons.on(
+        'click',
+        throttle((e) => {
+            // Get button index
+            const clickedMenu = $(e.currentTarget);
+            const clickedMenuIndex = clickedMenu.data('menu-index');
 
-        // Toggle the menu open state
-        if (MegaMenu.isClickedMenuActive(clickedMenuIndex)) {
-            MegaMenu.removeActiveMenuIndex();
-        } else {
-            MegaMenu.addActiveMenuIndex(clickedMenuIndex);
+            // Toggle the menu open state
+            if (MegaMenu.isClickedMenuActive(clickedMenuIndex)) {
+                MegaMenu.removeActiveMenuIndex();
+            } else {
+                // If there is a submenu already open, close it
+                if (MegaMenu.previousActiveMenuIndex !== '') {
+                    // TODO: Find a better way to close
+                    MegaMenu.closePopOver();
+                }
 
-            // Close other popovers
-            AccountMenu.closePopOver();
-        }
+                MegaMenu.addActiveMenuIndex(clickedMenuIndex);
 
-        // Toggle button's "active" class
-        MegaMenu.toggleFirstLevelActiveClass();
+                // Close other popovers
+                AccountMenu.closePopOver();
+            }
 
-        // Toggle button's aria-label
-        toggleButtonAriaLabel(
-            clickedMenu,
-            MegaMenu.isOpen,
-            MegaMenu.getLastMenuButton().length > 0 ? MegaMenu.getLastMenuButton() : null
-        );
+            // Toggle button's "active" class
+            MegaMenu.toggleFirstLevelActiveClass();
 
-        // Toggle Background Overvay
-        toggleBackgroundOverlay();
-    });
+            // Toggle Background Overvay
+            toggleBackgroundOverlay();
+        }, 250)
+    );
 };
