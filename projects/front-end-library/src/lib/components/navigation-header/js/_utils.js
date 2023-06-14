@@ -6,30 +6,6 @@ import { SearchBar } from './search-bar';
 import { AccountMenu } from './account-menu';
 
 /**
- * Toggle Button Aria-Label
- *
- * @param {jQuery object} button - Button element
- * @param {boolean} isOpen - Button's target open state
- */
-export const toggleButtonAriaLabel = (button, isOpen, otherButtonToToggleFalse = null) => {
-    // Get data labels
-    const buttonClosedLabel = button.data('label-closed');
-    const buttonOpenedLabel = button.data('label-opened');
-
-    // Toggle icons depending of the menu state
-    if (isOpen) {
-        button.attr('aria-label', buttonOpenedLabel);
-    } else {
-        button.attr('aria-label', buttonClosedLabel);
-    }
-
-    // If there is another button to toggle the "aria-label" to its false state
-    if (otherButtonToToggleFalse !== null) {
-        toggleButtonAriaLabel(otherButtonToToggleFalse, false);
-    }
-};
-
-/**
  * Close Popover
  */
 export const triggerClosePopOver = (button, isOpen) => {

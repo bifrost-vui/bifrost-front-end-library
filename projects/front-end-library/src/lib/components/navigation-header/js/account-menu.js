@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { throttle } from '../../../js/utils/debounce-throttle';
 import { triggerClosePopOver, toggleBackgroundOverlay } from './_utils';
 import { MegaMenu } from './mega-menu';
 import { BurgerMenu } from './burger-menu';
@@ -37,23 +38,26 @@ export const initAccountMenu = () => {
     const button = $(accountMenuButtonSelector);
 
     // On Click
-    button.on('click', () => {
-        // Toggle the menu open state
-        if (AccountMenu.isOpen) {
-            AccountMenu.isOpen = false;
-        } else {
-            AccountMenu.isOpen = true;
+    button.on(
+        'click',
+        throttle(() => {
+            // Toggle the menu open state
+            if (AccountMenu.isOpen) {
+                AccountMenu.isOpen = false;
+            } else {
+                AccountMenu.isOpen = true;
 
-            // Close other popovers
-            MegaMenu.closePopOver();
-            SearchBar.closePopOver();
-            BurgerMenu.closePopOver();
-        }
+                // Close other popovers
+                MegaMenu.closePopOver();
+                SearchBar.closePopOver();
+                BurgerMenu.closePopOver();
+            }
 
-        // Toggle button's "active" class
-        AccountMenu.toggleActiveClass();
+            // Toggle button's "active" class
+            AccountMenu.toggleActiveClass();
 
-        // Toggle Background Overvay
-        toggleBackgroundOverlay();
-    });
+            // Toggle Background Overvay
+            toggleBackgroundOverlay();
+        }, 250)
+    );
 };
