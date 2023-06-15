@@ -38,7 +38,9 @@ import colors from './colors';
                                 <div className="d-flex flex-column nowrap">
                                     <code>--bf-color-{c.name}</code>
                                     {c.hasUtilityClass !== false && <code>.bf-color-{c.name}</code>}
-                                    {c.UtilityClassName && <code>.{c.UtilityClassName}</code>}
+                                    {c.UtilityClassName !== undefined && c.UtilityClassName.map(utilityClass => (
+                                        <code>.{utilityClass}</code>
+                                    ))}
                                     {c.note && <blockquote className="mt-2 sbdocs sbdocs-blockquote" style={{ fontSize: '14px', color: 'black' }}>{c.note}</blockquote>}
                                 </div>
                             </div>

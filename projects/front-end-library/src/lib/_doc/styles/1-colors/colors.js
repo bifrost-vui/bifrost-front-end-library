@@ -18,7 +18,6 @@ const colors = [
             {
                 label: 'Highlight',
                 name: 'highlight',
-                hasUtilityClass: false,
             },
             {
                 label: 'Brand',
@@ -45,12 +44,10 @@ const colors = [
             {
                 label: 'Overlay black 20%',
                 name: 'bg-overlay-black-20prct',
-                hasUtilityClass: false,
             },
             {
                 label: 'Overlay black 50%',
                 name: 'bg-overlay-black-50prct',
-                hasUtilityClass: false,
             },
         ],
     },
@@ -97,25 +94,25 @@ const colors = [
                 label: 'Primary',
                 name: 'stroke-primary',
                 hasUtilityClass: false,
-                UtilityClassName: 'bf-border-color-primary',
+                UtilityClassName: ['bf-border-color-primary'],
             },
             {
                 label: 'Secondary',
                 name: 'stroke-secondary',
                 hasUtilityClass: false,
-                UtilityClassName: 'bf-border-color-secondary',
+                UtilityClassName: ['bf-border-color-secondary'],
             },
             {
                 label: 'Tertiary',
                 name: 'stroke-tertiary',
                 hasUtilityClass: false,
-                UtilityClassName: 'bf-border-color-tertiary',
+                UtilityClassName: ['bf-border-color-tertiary'],
             },
             {
                 label: 'Highlight',
                 name: 'stroke-highlight',
                 hasUtilityClass: false,
-                UtilityClassName: 'bf-border-color-highlight',
+                UtilityClassName: ['bf-border-color-highlight'],
                 note: 'In Figma, it is named "Stroke active" instead of "Stroke Highlight".',
             },
         ],
@@ -127,22 +124,22 @@ const colors = [
             {
                 label: 'Neutral',
                 name: 'feedback-neutral',
-                hasUtilityClass: false,
+                UtilityClassName: ['bf-color-bg-feedback-neutral', 'bf-border-feedback-neutral'],
             },
             {
                 label: 'Success',
                 name: 'feedback-success',
-                hasUtilityClass: false,
+                UtilityClassName: ['bf-color-bg-feedback-success', 'bf-border-feedback-success'],
             },
             {
                 label: 'Warning',
                 name: 'feedback-warning',
-                hasUtilityClass: false,
+                UtilityClassName: ['bf-color-bg-feedback-warning', 'bf-border-feedback-warning'],
             },
             {
                 label: 'Negative',
                 name: 'feedback-negative',
-                hasUtilityClass: false,
+                UtilityClassName: ['bf-color-bg-feedback-negative', 'bf-border-feedback-negative'],
             },
         ],
     },
