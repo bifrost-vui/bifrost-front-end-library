@@ -2,34 +2,43 @@ import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { PriceComponent } from '../angular/price.component';
+import { PromotionDefaultValue } from './doc.model';
 
 <Meta
     title="Components/Price"
     component={PriceComponent}
     decorators={[moduleMetadata({ declarations: [PriceComponent, TwigContainerComponent] })]}
     argTypes={{
-        language: {
-            control: { type: 'select' },
-            table: { defaultValue: { summary: 'en' } },
+        cent: {
+            table: { defaultValue: { summary: '00' } },
         },
         dollar: {
             table: { defaultValue: { summary: '0' } },
         },
-        cent: {
-            table: { defaultValue: { summary: '00' } },
-        },
-        size: {
-            control: { type: 'select' },
-            table: { defaultValue: { summary: 'small' } },
+        fullWidth: {
+            table: { defaultValue: { summary: false } },
         },
         hasAsterisk: {
             table: { defaultValue: { summary: false } },
         },
-        fullWidth: {
-            table: { defaultValue: { summary: false } },
+        language: {
+            control: { type: 'select' },
+            table: { defaultValue: { summary: 'en' } },
+        },
+        promotion: {
+            table: {
+                defaultValue: {
+                    summary: "Object",
+                    detail: PromotionDefaultValue
+                }
+            },
         },
         reversed: {
             table: { defaultValue: { summary: false } },
+        },
+        size: {
+            control: { type: 'select' },
+            table: { defaultValue: { summary: 'small' } },
         },
         dashed: {
             table: { category: 'Deprecated Inputs' },
@@ -66,6 +75,7 @@ import { PriceComponent } from '../angular/price.component';
     message         : 'This is a message',
     promotion       : {
         direction       : 'horizontal',
+        isDisplayed     : true,
         priceSaved      : '10',
         priceStriked    : '40,99',
         savedLabel      : 'You saved:',
@@ -99,6 +109,7 @@ export const commonProps = {
     message: 'This is a message.',
     promotion: {
         direction: 'horizontal',
+        isDisplayed: true,
         priceSaved: '10',
         priceStriked: '40,99',
         savedLabel: 'You saved:',
