@@ -3,14 +3,14 @@
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
 {# Default Variables (Props, Controls) - Pre Boolean Variables #}
-{% set navLeftItems = navLeftItems|default([]) %}
-{% set navRightItems = navRightItems|default([]) %}
+{% set navLeftData = navLeftData|default(null) %}
+{% set navRightData = navRightData|default(null) %}
 {% set overrideTopBarLeft = overrideTopBarLeft|default(null) %}
 {% set overrideTopBarRight = overrideTopBarRight|default(null) %}
 
 {# Boolean Variables #}
-{% set hasNavLeftItems = navLeftItems is not empty %}
-{% set hasNavRightItems = navRightItems is not empty %}
+{% set hasNavLeftData = navLeftData is not empty %}
+{% set hasNavRightData = navRightData is not empty %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set topBarClasses = [
@@ -20,15 +20,23 @@
 ] %}
 
 {# Macro: Links Loop #}
-{% macro topBarLinksLoop(linksItems) %}
-  <ul class="list bf-top-bar__nav" role="menu">
-    {% for item in linksItems %}
-
-      {# In Loop - Variables #}
-      {% set itemIsActive = item.isActive|default(false) %}
+{% macro topBarLinks(navData) %}
+  <ul {{ macros.addAttributes({
+    "aria-label": navData.description,
+    "class": "list bf-top-bar__nav",
+    "role": "menubar",
+  }) }}>
+    {% for item in navData.items %}
 
       {# In Loop - Boolean Variables #}
-      {% set itemIsActive = itemIsActive is same as(true) %}
+      {% set itemIsActive = item.isActive|default(false) is same as(true) %}
+      {% set itemIsActiveLinkClickable = item.isActiveLinkClickable|default(true) is same as(true) %}
+
+      {# In Loop - Boolean Variables - ORDER IS IMPORTANT #}
+      {% set hasActiveInvisibleMessage =
+        itemIsActiveLinkClickable is same as(false)
+        and item.activeParams.unclickableInvisibleMessageBeforeItemLabel is not empty
+      %}
 
       {# In Loop - Arrays of Classes With Dynamic Elements #}
       {% set itemLinkDefaultClasses = [
@@ -51,8 +59,12 @@
         {% if itemIsActive %}
           <span {{ macros.addAttributes({
             "class": itemLinkActiveClasses|join(' ')|trim,
-            "role": "presentation",
           }) }}>
+            {% if hasActiveInvisibleMessage %}
+              <span class="sr-only">
+                {{ item.activeParams.unclickableInvisibleMessageBeforeItemLabel }}
+              </span>
+            {% endif %}
             {{ item.label }}
           </span>
         {% else %}
@@ -73,8 +85,8 @@
 {# Template #}
 <nav {{ macros.addAttributes({
   "class": topBarClasses|join(' ')|trim,
-  "aria-label": "Top Bar Navigation"|t,
-  "role": "navigation",
+  "aria-label": "Top Bar"|t,
+  "role": "navigation"
 }) }}>
 
   <div class="bf-top-bar__container">
@@ -85,8 +97,8 @@
         {{ overrideTopBarLeft }}
       {% endblock %}
     {% else %}
-      {% if hasNavLeftItems %}
-        {{ navMacro.topBarLinksLoop(navLeftItems) }}
+      {% if hasNavLeftData %}
+        {{ navMacro.topBarLinks(navLeftData) }}
       {% endif %}
     {% endif %}
 
@@ -96,8 +108,8 @@
         {{ overrideTopBarRight }}
       {% endblock %}
     {% else %}
-      {% if hasNavRightItems %}
-        {{ navMacro.topBarLinksLoop(navRightItems) }}
+      {% if hasNavRightData %}
+        {{ navMacro.topBarLinks(navRightData) }}
       {% endif %}
     {% endif %}
 

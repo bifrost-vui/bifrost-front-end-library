@@ -45,7 +45,7 @@
   (class),
 ] %}
 {% set labelClasses = [
-  (isLabelVisible is same as(false) ? "d-none"),
+  (isLabelVisible is same as(false) ? "sr-only"),
   (label.class|default("")),
 ] %}
 {% set inputClasses = [
@@ -78,7 +78,8 @@
 
   <div class="position-relative">
     <input {{ macros.addAttributes({
-      "type": "text",
+      "aria-placeholder": input.placeholder|default(""),
+      "type": "search",
       "class": inputClasses|join(' ')|trim,
       "id": (hasInputId ? input.id),
       "name": input.name|default(""),

@@ -38,20 +38,20 @@
     {# Connected Account User's Initials #}
     {% set firstNameInitial = accountData.firstName|slice(0,1) %}
     {% set lastNameInitial = accountData.lastName|slice(0,1) %}
+    {% set fullName = accountData.firstName ~ " " ~ accountData.lastName %}
     {% set userInitials = firstNameInitial ~ lastNameInitial %}
 
     {# Account Menu Toggle Button #}
     <div class="{{ accountButtonContainerConnectedClasses|join(' ')|trim }}">
       <button {{ macros.addAttributes({
-        "type"              : "button",
-        "class"             : accountButtonConnectedClasses|join(' ')|trim,
-        "aria-label"        : "Open Account Menu"|t,
-        "data-label-closed" : "Open Account Menu"|t,
-        "data-label-opened" : "Close Account Menu"|t,
-        "data-toggle"       : "collapse",
-        "data-target"       : "#accountMenu",
-        "aria-controls"     : "accountMenu",
-        "aria-expanded"     : "false",
+        "type": "button",
+        "class": accountButtonConnectedClasses|join(' ')|trim,
+        "aria-label": "Account of"|t ~ fullName,
+        "data-toggle": "collapse",
+        "data-target": "#accountMenu",
+        "aria-controls": "accountMenu",
+        "aria-expanded": "false",
+        "aria-haspopup": "true",
       }) }}>
         <div class="bf-nav-header__functions__account__button__icon">
           <span class="bf-nav-header__functions__account__button--connected__initials bf-text-display-sub-small font-weight-bold">
@@ -73,15 +73,12 @@
     {% set signInLabel = "Sign In"|t %}
 
     <div class="{{ accountButtonContainerAnonymousClasses|join(' ')|trim }}">
-      <button {{ macros.addAttributes({
-        "type"              : "button",
-        "class"             : accountButtonAnonymousClasses|join(' ')|trim,
-        "aria-label"        : signInLabel,
+      <a {{ macros.addAttributes({
+        "href": accountSignInURL,
+        "class": accountButtonAnonymousClasses|join(' ')|trim,
+        "aria-label": "Account"|t ~ signInLabel,
       }) }}>
         <div class="bf-nav-header__functions__account__button__icon">
-          <span class="bf-nav-header__functions__account__connected-button__initials bf-text-display-sub-small font-weight-bold">
-            {{ userInitials }}
-          </span>
           {% include '@bf-components/icon/twig/index.twig' with {
             ariaLabel: "My Account Icon"|t,
             name: "my-account",
@@ -91,7 +88,7 @@
         <div class="bf-nav-header__functions__account__button__text bf-text-display">
           {{ signInLabel }}
         </div>
-      </button>
+      </a>
     </div>
   {% endif %}
 

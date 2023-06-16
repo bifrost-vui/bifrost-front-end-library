@@ -2,20 +2,33 @@
 import { ILogo } from '../../../components/logo/angular/api.model';
 
 /* Local Interfaces */
-interface ITopBarMenuItems {
-    class?: string;
-    href: string;
-    isActive?: boolean;
-    label: string;
-    rel?: string;
-}
-
 interface IAccountLink {
     href: string;
     icon: string;
     subtitle?: string;
     title: string;
 }
+
+interface IActiveMenuItemParams {
+    unclickableInvisibleMessageBeforeItemLabel?: string;
+}
+
+interface IDefaultMenuItem {
+    activeParams?: IActiveMenuItemParams;
+    class?: string;
+    href?: string;
+    isActive?: boolean;
+    isActiveLinkClickable?: boolean;
+    label: string;
+    rel?: string;
+}
+
+interface ITopBarSection {
+    description?: string;
+    items: ITopBarMenuItems[];
+}
+
+interface ITopBarMenuItems extends IDefaultMenuItem {}
 
 /* Export Interfaces */
 export interface IAccount {
@@ -29,15 +42,12 @@ export interface IHeaderLogo {
     name: ILogo['name'];
 }
 
-export interface IMenuItems {
-    class?: string;
+export interface IMenuItems extends IDefaultMenuItem {
     color?: string;
-    href?: string;
-    label: string;
     subItems?: IMenuItems[];
 }
 
 export interface ITopBar {
-    left?: ITopBarMenuItems[];
-    right?: ITopBarMenuItems[];
+    left?: ITopBarSection;
+    right?: ITopBarSection;
 }

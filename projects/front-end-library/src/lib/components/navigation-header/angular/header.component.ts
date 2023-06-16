@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
      * For `links.icon`, see [Icon Interface List](/?path=/story/components-icon--drupal-interface).
      */
     @Input() accountData: IAccount = null;
+    @Input() accountSignInURL: string = '/';
     @Input() hasTopBar: boolean = true;
     @Input() langcode: 'en' | 'fr' = 'en';
     /** Expected format:
@@ -73,9 +74,11 @@ export class HeaderComponent implements OnInit {
      *     <code>
      *         [
      *             {
+     *                 "activeParams": `IActiveMenuItemParams`,
      *                 "class": `string`,
      *                 "href": `string`,
      *                 "isActive": `boolean`,
+     *                 "isActiveLinkClickable": `boolean`,
      *                 "label": `string`,
      *                 "rel": `string`,
      *             },

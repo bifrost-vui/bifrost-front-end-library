@@ -13,6 +13,7 @@
 {% set isReversed = reversed|default(false) is same as(true) %}
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}
+{% set accountSignInURL = accountSignInURL|default("/") %}
 {% set langcode = langcode|default("en")|lower %}
 {% set logo = logo|default({name: "videotron", href: "/"}) %}
 {% set searchPlaceholder = searchPlaceholder|default("What are you looking for?") %}
@@ -64,8 +65,8 @@
   {# Top Bar #}
   {% if hasTopBar %}
     {% include "@bf-components/navigation-header/twig/top-bar.twig" with {
-      navLeftItems: topBarData.left,
-      navRightItems: topBarData.right,
+      navLeftData: topBarData.left,
+      navRightData: topBarData.right,
       overrideTopBarLeft: overrideTopBarLeft,
       overrideTopBarRight: overrideTopBarRight,
     } %}
@@ -74,13 +75,13 @@
   {# Main Navigation Bar #}
 	<nav {{ macros.addAttributes({
     "class": "bf-nav-header__nav",
-    "aria-label": "Main Navigation"|t,
-    "role": "navigation",
+    "aria-label": "Main"|t,
   }) }}>
 
 		{# Logo #}
 		<div class="bf-nav-header__logo">
 			<a {{ macros.addAttributes({
+        "aria-label": "Homepage"|t,
         "href": logo.href,
         "class": "bf-nav-header__logo__link",
         "title": logoLinkTitle,
@@ -118,9 +119,12 @@
       <div class="bf-nav-header__functions__support">
         {% set supportTitle = "Support"|t %}
         {% include "@bf-components/button-icon/twig/index.twig" with {
-          ariaLabel: "Support Icon"|t,
+          ariaLabel: "Support"|t,
           href: '/',
-          icon: "question-circle-outline",
+          icon: {
+            ariaLabel: "Support Icon",
+            name: "question-circle-outline",
+          },
           extraAttribute: 'title="' ~ supportTitle ~ '"',
         } only %}
       </div>

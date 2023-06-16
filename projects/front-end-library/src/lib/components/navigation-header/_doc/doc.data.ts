@@ -1,4 +1,6 @@
-export const accountData = {
+import { IAccount, IMenuItems, ITopBar } from '../angular/api.model';
+
+export const accountData: IAccount = {
     firstName: 'Jean-Yves',
     lastName: 'Provencher',
     links: [
@@ -17,7 +19,7 @@ export const accountData = {
     ],
 };
 
-export const mainMenuData = [
+export const mainMenuData: IMenuItems[] = [
     {
         href: '/',
         label: 'Internet',
@@ -196,18 +198,25 @@ export const mainMenuData = [
     },
 ];
 
-export const topBarData = {
-    left: [
-        {
-            href: '/',
-            isActive: true,
-            label: 'Residential',
-            rel: 'dofollow',
-        },
-        {
-            href: '/',
-            label: 'Business',
-            rel: 'dofollow',
-        },
-    ],
+export const topBarData: ITopBar = {
+    left: {
+        description: 'Website Selection',
+        items: [
+            {
+                activeParams: {
+                    unclickableInvisibleMessageBeforeItemLabel: 'Current website:',
+                },
+                href: '/',
+                isActive: true,
+                isActiveLinkClickable: false,
+                label: 'Residential',
+                rel: 'dofollow',
+            },
+            {
+                href: '/',
+                label: 'Business',
+                rel: 'dofollow',
+            },
+        ],
+    },
 };

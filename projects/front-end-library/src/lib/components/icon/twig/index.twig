@@ -2,6 +2,7 @@
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
 {# Default Variables (Props, Controls) #}
+{% set ariaHidden = ariaHidden|default(false) %}
 {% set class = class|default("") %}
 {% set name = name|default("placeholder") %}
 {% set size = size|default("small") %}
@@ -29,6 +30,7 @@
 
 {# Template #}
 <span {{ macros.addAttributes({
+  "aria-hidden": ariaHidden,
   "class": iconClasses|join(' ')|trim,
   "role": "presentation",
 }) }}>
