@@ -27,6 +27,7 @@ export class PriceComponent implements OnInit {
      *     <code>
      *         {
      *             "direction": `string`,
+     *             "isDisplayed": `boolean`,
      *             "priceSaved": `string`,
      *             "priceStriked": `string`,
      *             "savedLabel": `string`,
@@ -51,7 +52,7 @@ export class PriceComponent implements OnInit {
      *     </code>
      * </pre>
      */
-    @Input() upfront: IUpfront;
+    @Input() upfront: IUpfront = {};
     @Input() upperTitle: string;
 
     /**

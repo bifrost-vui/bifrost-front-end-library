@@ -27,6 +27,7 @@
 {% set isFullWidth = fullWidth|default(false) is same as(true) %}
 {% set isLanguageEN = language is same as("en") %}
 {% set isLanguageFR = language is same as("fr") %}
+{% set isPromotionDisplayed = promotion.isDisplayed|default(true) is same as(true) %}
 {% set isPromotionDirectionHorizontal = hasPromotionDirection and promotion.direction is same as("horizontal") %}
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}
@@ -149,7 +150,7 @@
             </p>
           {% endif %}
 
-          {% if hasPromotionSavedLabel or hasPromotionPriceSaved or hasPromotionSuperscript %}
+          {% if (hasPromotionSavedLabel or hasPromotionPriceSaved or hasPromotionSuperscript) and isPromotionDisplayed %}
             <p class="small bf-display-highlight mb-0">
               {% if hasPromotionSavedLabel %}
                 <span class="mr-1">

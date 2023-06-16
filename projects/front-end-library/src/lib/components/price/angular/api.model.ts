@@ -1,15 +1,16 @@
 export interface IUpfront {
-    dollar: string;
-    label: string;
+    dollar?: string;
+    label?: string;
 }
 
 export interface IPromotion {
-    direction: string;
-    priceSaved: string;
-    priceStriked: string;
-    savedLabel: string;
-    superscript: string;
-    title: string;
+    direction?: string;
+    isDisplayed?: boolean;
+    priceSaved?: string;
+    priceStriked?: string;
+    savedLabel?: string;
+    superscript?: string;
+    title?: string;
 }
 
 export interface IPrice {
