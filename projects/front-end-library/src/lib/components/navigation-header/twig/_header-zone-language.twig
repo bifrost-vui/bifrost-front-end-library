@@ -12,13 +12,13 @@
     class    : "bf-nav-header__language-switcher__link",
   } only %} #}
 
-  {# Current way the link is rendered in Drupal #}
-
   {% if overrideBlockLanguage is not empty %}
     {% block language_switcher_desktop %}
       {{ overrideBlockLanguage }}
     {% endblock %}
   {% else %}
+    {# Current way the link is rendered in Drupal, we will have to look for a way to render it better #}
+    {# Currently not optimal for WCAG Accessibility #}
     <a
       href="#"
       class="bf-button bf-button--tertiary bf-nav-header__language-switcher__link js-bf-nav-header__language-switcher__link"

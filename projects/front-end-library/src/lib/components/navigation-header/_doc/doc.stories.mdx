@@ -63,6 +63,7 @@ import { accountData, mainMenuData, topBarData } from './doc.data';
             { href: '/', icon: 'services', subtitle: 'illico, webmail and web tele', title: 'My Services' },
         ],
     }},
+    accountSignInURL: '/signin',
     hasTopBar: true,
     langcode: 'en',
     logo: {
@@ -137,22 +138,28 @@ import { accountData, mainMenuData, topBarData } from './doc.data';
         placeholder: 'What are you looking for?'
     },
     topBar: {
-        left: [
-            {
-                href: '/',
-                isActive: true,
-                label: 'Residential',
-                rel: 'dofollow',
-            },
-            {
-                href: '/',
-                label: 'Business',
-                rel: 'dofollow',
-            },
-        ],
-        right: [
-            {...}
-        ],
+        left: {
+            description: 'Website Selection',
+            items: [
+                {
+                    href: '/',
+                    isActive: true,
+                    label: 'Residential',
+                    rel: 'dofollow',
+                },
+                {
+                    href: '/',
+                    label: 'Business',
+                    rel: 'dofollow',
+                },
+            ],
+        },
+        right: {
+            description: "...",
+            items: [
+                {...},
+            ],
+        },
     },
 } only %}
 ```
@@ -161,6 +168,7 @@ import { accountData, mainMenuData, topBarData } from './doc.data';
 ## Drupal
 
 export const commonProps = {
+    accountSignInURL: '/signin',
     hasTopBar: true,
     logo: {
         href: '/',
@@ -212,24 +220,27 @@ export const Drupal = (args) => ({
             hasTopBar: true,
             topBarData: {
                 left: commonProps.topBarData.left,
-                right: [
-                    {
-                        href: "/",
-                        label: "Demo link 1",
-                    },
-                    {
-                        href: "/",
-                        label: "Demo link 2",
-                    },
-                    {
-                        href: "/",
-                        label: "Demo link 3",
-                    },
-                    {
-                        href: "/",
-                        label: "Demo link 4",
-                    }
-                ]
+                right: {
+                    description: "Extra Top Bar Links",
+                    items: [
+                        {
+                            href: "/",
+                            label: "Demo link 1",
+                        },
+                        {
+                            href: "/",
+                            label: "Demo link 2",
+                        },
+                        {
+                            href: "/",
+                            label: "Demo link 3",
+                        },
+                        {
+                            href: "/",
+                            label: "Demo link 4",
+                        }
+                    ],
+                },
             },
         }}
     >

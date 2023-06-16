@@ -2,7 +2,7 @@
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
 {# Template #}
-<ul class="bf-megamenu" role="menu">
+<ul class="bf-megamenu" role="menu" aria-label="Main">
   {% for mainMenuItem in mainMenuData %}
 
     {# In Loop - Boolean Variables #}
@@ -51,24 +51,35 @@
           "class": navItemButtonClasses|join(' ')|trim,
           "type": "button",
           "id": "menuDropdown" ~ loop.index,
+          "aria-controls": "submenu" ~ loop.index,
           "aria-expanded": "false",
-          "aria-haspopup": "menu",
-          "aria-label": "Open menu: "|t ~ mainMenuItem.label,
-          "data-label-closed" : "Open menu: "|t ~ mainMenuItem.label,
-          "data-label-opened" : "Close menu: "|t ~ mainMenuItem.label,
+          "aria-haspopup": "true",
+          "aria-label": mainMenuItem.label,
           "data-menu-index": "index" ~ loop.index,
+          "data-target": "#submenu" ~ loop.index,
+          "data-toggle": "collapse",
           "role": "menuitem",
         }) }}>
           <span class="bf-megamenu__nav-item__link__text">
-            {{ mainMenuItem.label }}
+            {{- mainMenuItem.label -}}
           </span>
           {% include "@bf-components/icon/twig/index.twig" with {
+            ariaHidden: "true",
             ariaLabel: "Closed Menu Icon"|t,
             class: "bf-megamenu__nav-item__link__icon d-none d-lg-block",
             name: "chevron-down",
             size: "xsmall"
           } %}
         </button>
+        {# Container for submenu. To be done in another Jira ticket #}
+        {# <ul {{ macros.addAttributes({
+          "class": "collapse",
+          "id": "submenu" ~ loop.index,
+          "aria-labelledby": "menuDropdown" ~ loop.index,
+          "role": "menu",
+        }) }}>
+          <li>asd</li>
+        </ul> #}
       {% endif %}
     </li>
   {% endfor %}
