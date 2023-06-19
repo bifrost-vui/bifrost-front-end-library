@@ -1,6 +1,11 @@
 {# Import macros #}
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% if isUnderline is not defined %}
+  {% set isUnderline = true %}
+{% endif %}
+
 {# Boolean Variables #}
 {% set hasAriaLabel = ariaLabel is defined and ariaLabel is not empty %}
 {% set hasDataDismiss = dataDismiss is defined and dataDismiss is not empty %}
@@ -14,13 +19,13 @@
 {% set hasRel = rel is defined and rel is not empty %}
 {% set isDisabled = isDisabled|default(false) is same as(true) %}
 {% set isReversed = reversed|default(false) is same as(true) %}
-{% set isUnderline = isUnderline|default(true) is same as(true) %}
+{% set isUnderline = isUnderline is same as(true) %}
 
 {# Boolean Variables - ORDER IS IMPORTANT #}
 {% set isHierarchyPrimary = hasHierarchy and hierarchy is same as("primary") %}
 {% set isIconPositionRight = hasIconPosition and iconPosition is same as("right") %}
 
-{# Default Variables (Props, Controls) #}
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set class = class|default("") %}
 {% set extraAttribute = extraAttribute|default({}) %}
 {% set href = href|default("") %}

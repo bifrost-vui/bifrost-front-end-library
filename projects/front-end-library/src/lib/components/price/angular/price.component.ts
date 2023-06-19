@@ -39,7 +39,9 @@ export class PriceComponent implements OnInit {
      *
      * Promotion direction choices: `promotion.direction: "vertical" | "horizontal"`
      */
-    @Input() promotion: IPromotion;
+    @Input() promotion: IPromotion = {
+        isDisplayed: true,
+    };
     @Input() reversed: boolean;
     @Input() size: 'small' | 'medium' | 'large';
     /** Expected format:

@@ -1,11 +1,14 @@
 {# Default Variables (Props, Controls) - Pre Boolean Variables #}
 {% set size = size|default("large") %}
+{% if hasChevron is not defined %}
+  {% set hasChevron = true %}
+{% endif %}
 
 {# Boolean Variables #}
 {% set hasAriaControls = ariaControls is defined and ariaControls is not empty %}
 {% set hasAriaExpanded = ariaExpanded is defined and ariaExpanded is not empty %}
 {% set hasAriaLabel = ariaLabel is defined and ariaLabel is not empty %}
-{% set hasChevron = hasChevron|default(true) is same as(true) %}
+{% set hasChevron = hasChevron is same as(true) %}
 {% set hasDataDismiss = dataDismiss is defined and dataDismiss is not empty %}
 {% set hasDataTarget = dataTarget is defined and dataTarget is not empty %}
 {% set hasDataToggle = dataToggle is defined and dataToggle is not empty %}

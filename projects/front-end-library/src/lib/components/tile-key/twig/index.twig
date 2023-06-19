@@ -1,6 +1,11 @@
 {# Import macros #}
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% if isClickable is not defined %}
+  {% set isClickable = true %}
+{% endif %}
+
 {# Boolean Variables #}
 {% set hasBackgroundImageSrc = backgroundImage.src is defined and backgroundImage.src is not empty %}
 {% set hasBackgroundImageTextColor = backgroundImage.textColor is defined and backgroundImage.textColor is not empty %}
@@ -10,13 +15,13 @@
 {% set hasLinkLabel = linkLabel is defined and linkLabel is not empty %}
 {% set hasTitle = title is defined and title is not empty %}
 {% set isBackgroundImageTextColorLight = hasBackgroundImageTextColor and backgroundImage.textColor is same as("light") %}
-{% set isClickable = isClickable|default(true) is same as(true) %}
+{% set isClickable = isClickable is same as(true) %}
 {% set isReversed = reversed|default(false) is same as(true) %}
 
 {# Boolean Variables - ORDER IS IMPORTANT #}
 {% set isLink = hasHref and isClickable %}
 
-{# Default Variables (Props, Controls) #}
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set backgroundColor = backgroundColor|default("underground") %}
 {% set class = class|default("") %}
 {% set titleTag = titleTag|default("p") %}

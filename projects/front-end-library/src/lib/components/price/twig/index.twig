@@ -5,6 +5,11 @@
 {% set dollarClass = dollarClass|default("") %}
 {% set language = language|default("en") %}
 {% set size = size|default("small") %}
+{% if promotion.isDisplayed is defined %}
+  {% set isPromotionDisplayed = promotion.isDisplayed %}
+{% else %}
+  {% set isPromotionDisplayed = true %}
+{% endif %}
 
 {# Boolean Variables #}
 {% set hasAsterisk = hasAsterisk|default(false) is same as(true) %}
@@ -27,7 +32,7 @@
 {% set isFullWidth = fullWidth|default(false) is same as(true) %}
 {% set isLanguageEN = language is same as("en") %}
 {% set isLanguageFR = language is same as("fr") %}
-{% set isPromotionDisplayed = promotion.isDisplayed|default(true) is same as(true) %}
+{% set isPromotionDisplayed = isPromotionDisplayed is same as(true) %}
 {% set isPromotionDirectionHorizontal = hasPromotionDirection and promotion.direction is same as("horizontal") %}
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}

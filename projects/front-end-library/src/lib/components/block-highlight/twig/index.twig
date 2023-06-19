@@ -1,3 +1,8 @@
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% if isVisualBackgroundFill is not defined %}
+  {% set isVisualBackgroundFill = true %}
+{% endif %}
+
 {# Boolean Variables #}
 {% set hasButton = button is defined and button is not empty %}
 {% set hasImage = image is defined and image.src is not empty %}
@@ -6,9 +11,9 @@
 {% set hasVisualBackgroundColor = visualBackgroundColor is defined and visualBackgroundColor is not empty %}
 {% set isFeatured = isFeatured|default(false) is same as(true) %}
 {% set isReversed = reversed|default(false) is same as(true) %}
-{% set isVisualBackgroundFill = isVisualBackgroundFill|default(true) is same as(true) %}
+{% set isVisualBackgroundFill = isVisualBackgroundFill is same as(true) %}
 
-{# Default Variables (Props, Controls) #}
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set blockBackgroundColor = blockBackgroundColor|default("ground") %}
 {% set class = class|default("") %}
 {% set titleTag = titleTag|default("p") %}

@@ -9,7 +9,7 @@ import { IImage } from './api.model';
 export class TileKeyComponent implements OnInit {
     constructor() {}
 
-    @Input() isClickable: boolean;
+    @Input() isClickable: boolean = true;
     @Input() href: string;
     @Input() title: string;
     @Input() titleTag: string;

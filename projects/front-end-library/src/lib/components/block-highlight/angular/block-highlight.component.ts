@@ -14,7 +14,7 @@ export class BlockHighlightComponent implements OnInit {
 
     @Input() image: IImage;
     @Input() visualBackgroundColor: string;
-    @Input() isVisualBackgroundFill: boolean;
+    @Input() isVisualBackgroundFill: boolean = true;
     @Input() blockBackgroundColor: 'ground' | 'underground';
 
     @Input() title: string;
