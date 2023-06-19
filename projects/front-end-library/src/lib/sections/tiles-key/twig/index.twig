@@ -1,8 +1,8 @@
 
 {# Boolean Variables #}
-{% set hasFeaturedLayout = hasFeaturedLayout|default(false) is same as(true) %}
+{% set hasFeaturedLayout = (hasFeaturedLayout ?? false) is same as(true) %}
 {% set hasTitle = title is defined and title is not empty %}
-{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isReversed = (reversed ?? false) is same as(true) %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}

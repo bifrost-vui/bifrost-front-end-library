@@ -21,11 +21,11 @@
 {% set hasImageAlt = image.alt is defined and image.alt is not empty %}
 {% set hasLabel = label is defined and label is not empty %}
 {% set isBlockContentDefined = block("content") is defined %}
-{% set isChecked = isChecked|default(false) is same as(true) %}
-{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isChecked = (isChecked ?? false) is same as(true) %}
+{% set isDisabled = (isDisabled ?? false) is same as(true) %}
 {% set isFitContainer = fit is same as("container") %}
 {% set isFitContent = fit is same as("content") %}
-{% set isInvalid = isInvalid|default(false) is same as(true) %}
+{% set isInvalid = (isInvalid ?? false) is same as(true) %}
 {% set isOrientationHorizontal = orientation is same as("horizontal") %}
 {% set isOrientationVertical = orientation is same as("vertical") %}
 

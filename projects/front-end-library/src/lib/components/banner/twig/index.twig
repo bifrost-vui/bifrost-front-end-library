@@ -9,7 +9,7 @@
 {% set hasVisual = hasImage or hasIcon %}
 {% set hasDescription = description_html is defined and description_html is not empty %}
 {% set hasBadge = badge is defined and badge is not empty %}
-{% set isClickable = isClickable|default(false) is same as(true) %}
+{% set isClickable = (isClickable ?? false) is same as(true) %}
 
 {# Boolean Variables - ORDER IS IMPORTANT #}
 {% set isLink = hasHref and isClickable %}

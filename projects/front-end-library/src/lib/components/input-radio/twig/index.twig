@@ -1,8 +1,9 @@
 {# Boolean Variables #}
 {% set hasOptions = options is defined and options is not empty %}
-{% set areOptionTiles = areOptionTiles|default(false) is same as(true) %}
-{% set areOptionTilesInline = areOptionTilesInline|default(false) is same as(true) %}
-{% set areOptionTilesLarge = areOptionTilesLarge|default(false) is same as(true) %}
+{% set areOptionTiles = (areOptionTiles ?? false) is same as(true) %}
+{% set areOptionTilesInline = (areOptionTilesInline ?? false) is same as(true) %}
+{% set areOptionTilesLarge = (areOptionTilesLarge ?? false) is same as(true) %}
+{% set isRequired = (isRequired ?? false) is same as(true) %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}
@@ -39,7 +40,7 @@
               option|merge({
                 type: "radio",
                 name: name,
-                isRequired: option.isRequired|default(isRequired)|default(false),
+                isRequired: option.isRequired|default(isRequired),
                 orientation: (areOptionTilesInline ? "vertical" : "horizontal"),
                 class: (optionClasses|join(' ')|trim),
                 fit: "content",
@@ -54,7 +55,7 @@
             {% set option =
               option|merge({
                 name: name,
-                isRequired: option.isRequired|default(isRequired)|default(false)
+                isRequired: option.isRequired|default(isRequired)
               })
             %}
             {% include "@bf-components/input-radio-option/twig/index.twig" with option only %}

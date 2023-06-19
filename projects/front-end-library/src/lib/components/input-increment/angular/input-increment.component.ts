@@ -14,10 +14,10 @@ export class InputIncrementComponent implements OnInit {
     /** Number must be higher than `min` value */
     @Input() max?: number;
     @Input() ariaLabel: string;
-    @Input() isReadOnly: boolean;
-    @Input() isDisabled: boolean;
+    @Input() isReadOnly: boolean = false;
+    @Input() isDisabled: boolean = false;
     /** Set the input as required in the form */
-    @Input() isRequired: boolean;
+    @Input() isRequired: boolean = true;
     /** Should always be defined if a `min` or a `max` value is defined */
     @Input() errorMessage: string;
     @Input() class: string;

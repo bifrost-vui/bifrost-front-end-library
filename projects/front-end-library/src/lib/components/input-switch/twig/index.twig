@@ -5,8 +5,8 @@
 {% set hasAriaLabel = ariaLabel is defined and ariaLabel is not empty %}
 {% set hasAriaLabelledby = ariaLabelledby is defined and ariaLabelledby is not empty %}
 {% set hasLabel = label is defined and label is not empty %}
-{% set isChecked = isChecked|default(false) is same as(true) %}
-{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isChecked = (isChecked ?? false) is same as(true) %}
+{% set isDisabled = (isDisabled ?? false) is same as(true) %}
 {% set isLabelIterable = hasLabel and label is iterable %}
 {% set isLabelPositionRight = label.position|default("left") is same as("right") %}
 

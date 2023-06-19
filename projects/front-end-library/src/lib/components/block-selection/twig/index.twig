@@ -7,8 +7,8 @@
 {% set hasTopLink = topLink is defined and topLink is not empty %}
 {% set hasTotalPrice = totalPrice is defined and totalPrice is not empty %}
 {% set hasTotalPriceInfo = totalPrice.priceInfo is defined and totalPrice.priceInfo is not empty %}
-{% set isCollapsableOnMobile = isCollapsableOnMobile|default(false) is same as(true) %}
-{% set isCollapsedByDefaultOnMobile = isCollapsedByDefaultOnMobile|default(false) is same as(true) %}
+{% set isCollapsableOnMobile = (isCollapsableOnMobile ?? false) is same as(true) %}
+{% set isCollapsedByDefaultOnMobile = (isCollapsedByDefaultOnMobile ?? false) is same as(true) %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}

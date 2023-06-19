@@ -4,7 +4,7 @@
 {# Boolean Variables #}
 {% set hasLanguageBlock = languageBlock is defined and languageBlock is not empty %}
 {% set isLangcodeEN = langcode is same as("EN") %}
-{% set isReduced = isReduced|default(false) is same as(true) %}
+{% set isReduced = (isReduced ?? false) is same as(true) %}
 
 {# Template #}
 <nav class="bf-footer__legal d-flex align-items-center py-4">

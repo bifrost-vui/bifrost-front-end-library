@@ -6,10 +6,10 @@
 {% set hasErrorMessage = errorMessage is defined and errorMessage is not empty %}
 {% set hasMin = min is defined and min is not same as("NaN") %}
 {% set hasMax = max is defined and max is not same as("NaN") %}
-{% set isDisabled = isDisabled|default(false) is same as(true) %}
-{% set isInvalid = isInvalid|default(false) is same as(true) %}
-{% set isReadOnly = isReadOnly|default(false) is same as(true) %}
-{% set isRequired = isRequired is not defined ? true : isRequired %}
+{% set isDisabled = (isDisabled ?? false) is same as(true) %}
+{% set isReadOnly = (isReadOnly ?? false) is same as(true) %}
+{% set isRequired = (isRequired ?? true) is same as(true) %}
+
 
 {# Default Variables #}
 {% set class = class|default("") %}
@@ -18,7 +18,6 @@
 {# Arrays of Classes With Dynamic Elements #}
 {% set containerClasses = [
   "bf-input-increment js-bf-input-increment flex-wrap",
-  (isInvalid ? "is-invalid"),
   (isDisabled ? "disabled"),
   (class),
 ] %}

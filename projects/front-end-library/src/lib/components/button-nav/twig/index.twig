@@ -1,8 +1,7 @@
 {# Boolean Variables #}
 {% set hasDescription = description is defined and description is not empty %}
-{% set hasHighlight = highlight|default(false) is same as(true) %}
-{% set isFeatured = isFeatured|default(false) is same as(true) or isFeatured|default(false) is same as("true") %}
-
+{% set hasHighlight = (highlight ?? false) is same as(true) %}
+{% set isFeatured = (isFeatured ?? false) is same as(true) or (isFeatured ?? false) is same as("true") %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}

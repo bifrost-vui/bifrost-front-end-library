@@ -27,7 +27,7 @@
 {% set hasUpperTitle = upperTitle is defined and upperTitle is not empty %}
 {% set hasVisualBackgroundColor = visualBackgroundColor is defined and visualBackgroundColor is not empty %}
 {% set isBlockButtonsDefined = block("buttons") is defined %}
-{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isDisabled = (isDisabled ?? false) is same as(true) %}
 
 {# Boolean Variables - ORDER IS IMPORTANT #}
 {% set hasVisual = hasImage or hasIcon %}

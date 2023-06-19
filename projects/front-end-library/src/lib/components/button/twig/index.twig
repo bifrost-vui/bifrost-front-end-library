@@ -9,20 +9,19 @@
 {% set hasFormEncryptionType = formEncryptionType is defined and formEncryptionType is not empty %}
 {% set hasFormId = formId is defined and formId is not empty %}
 {% set hasFormMethod = formMethod is defined and formMethod is not empty %}
-{% set hasFormNoValidate = formNoValidate|default(false) is same as(true) %}
+{% set hasFormNoValidate = (formNoValidate ?? false) is same as(true) %}
 {% set hasFormTarget = formTarget is defined and formTarget is not empty %}
 {% set hasHref = href is defined and href is not empty %}
 {% set hasIconName = iconName is defined and iconName is not empty %}
 {% set hasLabel = label is defined and label is not empty %}
-{% set isDisabled = isDisabled|default(false) is same as(true) %}
-{% set isFullWidth = fullWidth|default(false) is same as(true) %}
-{% set isLoading = isLoading|default(false) is same as(true) %}
-{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isDisabled = (isDisabled ?? false) is same as(true) %}
+{% set isFullWidth = (fullWidth ?? false) is same as(true) %}
+{% set isLoading = (isLoading ?? false) is same as(true) %}
+{% set isReversed = (reversed ?? false) is same as(true) %}
 {% set isIconPositionRight = iconPosition is defined and iconPosition is same as("right") %}
 
-
 {# Boolean Variables - ORDER IS IMPORTANT #}
-{% set isSubmit = isSubmit|default(false) is same as(true)
+{% set isSubmit = (isSubmit ?? false) is same as(true)
     or hasFormId
     or hasFormAction
     or hasFormEncryptionType

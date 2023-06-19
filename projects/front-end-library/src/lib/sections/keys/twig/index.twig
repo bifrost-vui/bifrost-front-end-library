@@ -5,7 +5,7 @@
 {% set hasDescription = description is defined and description is not empty %}
 {% set hasTitle = title is defined and title is not empty %}
 {% set isAlignCenter = align is same as("center") %}
-{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isReversed = (reversed ?? false) is same as(true) %}
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set background = background|default("ground") %}

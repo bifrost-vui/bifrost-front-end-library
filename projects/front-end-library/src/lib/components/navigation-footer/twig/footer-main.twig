@@ -2,7 +2,7 @@
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
 {# Boolean Variables #}
-{% set hasBackToTopLink = hasBackToTopLink|default(false) is same as(true) %}
+{% set hasBackToTopLink = (hasBackToTopLink ?? false) is same as(true) %}
 
 {# Template #}
 <nav class="bf-footer__main navbar-expand-lg border-bottom border-top bf-border-color-secondary py-0 py-lg-5 py-md-5">
