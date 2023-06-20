@@ -7,9 +7,9 @@
 {% set hasDataTarget = dataTarget is defined and dataTarget is not empty %}
 {% set hasDataToggle = dataToggle is defined and dataToggle is not empty %}
 {# {% set isBlockContentDefined = block("content") is defined %} #}
-{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isDisabled = (isDisabled ?? false) is same as(true) %}
 {% set isLink = href is defined and href is not empty %}
-{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isReversed = (reversed ?? false) is same as(true) %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}

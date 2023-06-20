@@ -7,7 +7,7 @@
 {% set size = size|default("small") %}
 
 {# Boolean Variables #}
-{% set hasAsterisk = hasAsterisk|default(false) is same as(true) %}
+{% set hasAsterisk = (hasAsterisk ?? false) is same as(true) %}
 {% set hasCent = cent is defined and cent is not empty %}
 {% set hasDashed = dashed is defined and dashed is not empty %}
 {% set hasDetails = details is defined and details is not empty %}
@@ -24,10 +24,10 @@
 {% set hasUpfrontDollar = upfront.dollar is defined and upfront.dollar is not empty %}
 {% set hasUpfrontLabel = upfront.label is defined and upfront.label is not empty %}
 {% set hasUpperTitle = upperTitle is defined and upperTitle is not empty %}
-{% set isFullWidth = fullWidth|default(false) is same as(true) %}
+{% set isFullWidth = (isFullWidth ?? false) is same as(true) %}
 {% set isLanguageEN = language is same as("en") %}
 {% set isLanguageFR = language is same as("fr") %}
-{% set isPromotionDisplayed = promotion.isDisplayed|default(true) is same as(true) %}
+{% set isPromotionDisplayed = (promotion.isDisplayed ?? true) is same as(true) %}
 {% set isPromotionDirectionHorizontal = hasPromotionDirection and promotion.direction is same as("horizontal") %}
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}

@@ -16,10 +16,10 @@
 {% set hasTitle = title is defined and title is not empty %}
 {% set hasSubitle = subtitle is defined and subtitle is not empty %}
 {% set hasUpperTitle = upperTitle is defined and upperTitle is not empty %}
-{% set isImageIsFillFalse = image.isFill|default(false) is same as(false) %}
+{% set isImageIsFillFalse = (image.isFill ?? false) is same as(false) %}
 {% set isImagePositionRight = imagePosition is same as("right") %}
 {% set isTextAlignCenter = textAlign is same as("center") %}
-{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isReversed = (reversed ?? false) is same as(true) %}
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set background = background|default("ground") %}

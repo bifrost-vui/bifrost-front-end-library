@@ -3,8 +3,8 @@
 
 {# Boolean Variables #}
 {% set hasTheme = theme is defined and theme is not empty %}
-{% set isReduced = isReduced|default(false) is same as(true) %}
-{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isReduced = (isReduced ?? false) is same as(true) %}
+{% set isReversed = (reversed ?? false) is same as(true) %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set footerClasses = [

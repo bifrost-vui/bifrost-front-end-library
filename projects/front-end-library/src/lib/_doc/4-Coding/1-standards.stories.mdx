@@ -151,16 +151,31 @@ With this standard, it will be easier to see if a variable has a boolean value a
 {% endif %}
 ```
 
-### Boolean variable is `true`
+### Boolean variable
 
-To be sure that the value of a boolean variable is *true*, we first apply a `default` filter with a `false` value
-in case of the variable being not defined and then we check if the value is the same as `true`.
+To be sure that the value of a boolean variable is really a boolean, we need to check the value against `is same as(true)`.
 
-The result will give us a real `true/false`.
+If the value comes from PHP and is passed to a prop, in a Twig `include` for example, then it will be considered as being `not defined` or `empty`.
+
+So, the `default` filter will not work here. To remedy for that, as per the
+[Default filter docs (Twig v2)](https://twig.symfony.com/doc/2.x/filters/default.html), we have to do it like this:
+
+#### Value is by default `false`
 
 ```twig
-{% set isDisabled = isDisabled|default(false) is same as(true) %}
+{% set isDisabled = (isDisabled ?? false) is same as(true) %}
 {% if isDisabled %}
   ...
 {% endif %}
 ```
+
+#### Value is by default `true`
+
+```twig
+{% set isDisabled = (isDisabled ?? true) is same as(true) %}
+{% if isDisabled %}
+  ...
+{% endif %}
+```
+
+The result will give us a real `true/false`.

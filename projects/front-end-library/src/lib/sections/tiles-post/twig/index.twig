@@ -1,6 +1,6 @@
 {# Boolean Variables #}
 {% set hasTitle = title is defined and title is not empty %}
-{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isReversed = (reversed ?? false) is same as(true) %}
 
 {# Default Variables #}
 {% set background = background|default("ground") %}

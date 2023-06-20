@@ -6,10 +6,10 @@
 {% set hasLabel = label is defined and label is not empty %}
 {% set hasName = name is defined and name is not empty %}
 {% set hasValue = value is defined and value is not empty %}
-{% set isChecked = isChecked|default(false) is same as(true) %}
-{% set isDisabled = isDisabled|default(false) is same as(true) %}
-{% set isInvalid = isInvalid|default(false) is same as(true) %}
-{% set isRequired = isRequired|default(false) is same as(true) %}
+{% set isChecked = (isChecked ?? false) is same as(true) %}
+{% set isDisabled = (isDisabled ?? false) is same as(true) %}
+{% set isInvalid = (isInvalid ?? false) is same as(true) %}
+{% set isRequired = (isRequired ?? false) is same as(true) %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}

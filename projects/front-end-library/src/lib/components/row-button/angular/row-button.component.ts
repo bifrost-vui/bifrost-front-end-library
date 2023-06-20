@@ -21,7 +21,7 @@ export class RowButtonComponent implements OnInit {
 
     @Input() image: object;
     @Input() iconName: string;
-    @Input() hasChevron: boolean;
+    @Input() hasChevron: boolean = true;
     @Input() size: 'small' | 'medium' | 'large';
 
     @Input() dataDismiss: string;

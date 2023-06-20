@@ -1,8 +1,8 @@
 {# Boolean Variables #}
 {% set hasOptions = options is defined and options is not empty %}
-{% set areOptionTiles = areOptionTiles|default(false) is same as(true) %}
-{% set areOptionTilesInline = areOptionTilesInline|default(false) is same as(true) %}
-{% set areOptionTilesLarge = areOptionTilesLarge|default(false) is same as(true) %}
+{% set areOptionTiles = (areOptionTiles ?? false) is same as(true) %}
+{% set areOptionTilesInline = (areOptionTilesInline ?? false) is same as(true) %}
+{% set areOptionTilesLarge = (areOptionTilesLarge ?? false) is same as(true) %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}

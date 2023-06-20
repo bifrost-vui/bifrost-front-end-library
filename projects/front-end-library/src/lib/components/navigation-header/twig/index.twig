@@ -2,7 +2,7 @@
   {% include "@bf-components/navigation-header/twig/top-bar.twig" with {
     items: topBar.items|default([]),
     secondaryItems: topBar.secondaryItems|default([]),
-    isConnected: isConnected|default(false),
+    isConnected: isConnected ?? false,
     accountHello: accountHello|default("Hello"),
     accountName: accountName|default(""),
     accountLink: accountLink,
@@ -10,7 +10,7 @@
     labelLogOut: labelLogOut|default("Logout"),
     hrefConnexion: hrefConnexion|default("#"),
     labelConnexion: labelConnexion|default("My Customer Centre"),
-    reversed: reversed|default(false)
+    reversed: reversed ?? false
   } only %}
 {% endif %}
 

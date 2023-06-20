@@ -8,8 +8,8 @@
 {% set hasDataToggle = dataToggle is defined and dataToggle is not empty %}
 {% set hasHref = href is defined and href is not empty %}
 {% set hasLabel = label is defined and label is not empty %}
-{% set isDisabled = isDisabled|default(false) is same as(true) %}
-{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isDisabled = (isDisabled ?? false) is same as(true) %}
+{% set isReversed = (reversed ?? false) is same as(true) %}
 
 {# Boolean Variables - ORDER IS IMPORTANT #}
 {% set isLink = hasHref and not isDisabled %}

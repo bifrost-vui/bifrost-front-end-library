@@ -13,7 +13,7 @@ export class LinkComponent implements OnInit {
     @Input() hierarchy: 'native' | 'primary';
     @Input() iconName: string;
     @Input() iconPosition: 'left' | 'right';
-    @Input() isUnderline: boolean;
+    @Input() isUnderline: boolean = true;
     @Input() isDisabled: boolean;
     @Input() title: string;
     @Input() ariaLabel: string;

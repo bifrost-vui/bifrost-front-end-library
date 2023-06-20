@@ -15,8 +15,8 @@
 {% set hasUnitLabel = unitLabel is defined and unitLabel is not empty %}
 {% set hasValue0 = value[0] is defined and value[0] is not empty %}
 {% set hasValue1 = value[1] is defined and value[1] is not empty %}
-{% set isInverted = isInverted|default(false) is same as(true) %}
-{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isInverted = (isInverted ?? false) is same as(true) %}
+{% set isReversed = (reversed ?? false) is same as(true) %}
 {% set isUnitPositionEnd = unitPosition is same as("end") %}
 {% set isUnitPositionStart = unitPosition is same as("start") %}
 

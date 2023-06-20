@@ -8,10 +8,10 @@
 {% set hasInputContent = inputContent is defined and inputContent is not empty %}
 {% set hasLabel = label is defined and label is not empty %}
 {% set isBlockInputContentDefined = block("inputContent") is defined %}
-{% set isDisabled = isDisabled|default(false) is same as(true) %}
-{% set isInvalid = isInvalid|default(false) is same as(true) %}
-{% set isLabelLegend = isLabelLegend|default(false) is same as(true) %}
-{% set isReadOnly = isReadOnly|default(false) is same as(true) %}
+{% set isDisabled = (isDisabled ?? false) is same as(true) %}
+{% set isInvalid = (isInvalid ?? false) is same as(true) %}
+{% set isLabelLegend = (isLabelLegend ?? false) is same as(true) %}
+{% set isReadOnly = (isReadOnly ?? false) is same as(true) %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}

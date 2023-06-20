@@ -21,19 +21,19 @@ export class InputRadioComponent implements OnInit {
      * Transform options as tiles. Then use options from
      * [Selection Tile API](?path=/story/components-selection-tile--drupal-selection-tile-vertical).
      */
-    @Input() areOptionTiles: boolean;
+    @Input() areOptionTiles: boolean = false;
     /**
      * - Define direction of the option list.
      * - Has effect only if `areOptionTiles = true`.
      */
-    @Input() areOptionTilesInline: boolean;
+    @Input() areOptionTilesInline: boolean = false;
     /**
      * - Define if optionTiles height are small (default) or large.
      * - Has effect only if `areOptionTiles = true`.
      */
-    @Input() areOptionTilesLarge: boolean;
+    @Input() areOptionTilesLarge: boolean = false;
     @Input() errorMessage: string;
-    @Input() isRequired: boolean;
+    @Input() isRequired: boolean = false;
 
     @Input() class: string;
 

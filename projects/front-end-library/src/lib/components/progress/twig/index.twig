@@ -1,6 +1,6 @@
 {# Boolean Variables #}
 {% set hasProgressValue = progressValue is defined and progressValue is not empty %}
-{% set isMonochromeColor = isMonochromeColor|default(false) is same as(true) %}
+{% set isMonochromeColor = (isMonochromeColor ?? false) is same as(true) %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}
