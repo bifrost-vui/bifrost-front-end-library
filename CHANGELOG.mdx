@@ -17,6 +17,39 @@ see [github-release](#)
 
 <br />
 
+## [v1.11.6](https://bifrost-front-end-library-git-v1-11-6-bifrost-vui.vercel.app/) - _2023-06-20_
+
+see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.11.6)
+
+### Breaking Changes
+
+- None
+
+### Bugs fixes
+
+#### `|default(true)` issues
+
+When a boolean `false` value comes from PHP and is passed to a prop in a Twig `include`, this value is considered as being `not defined` or `empty`.
+So, for components that had a variable with a `|default(true)` filter, when the value `false` was passed, it always returned `true` because of the filter.
+The fix is documented in the updated [Boolean variable](?path=/docs/coding-standards--page#boolean-variable) in Coding Standards docs.
+The list of components fixed are: 
+
+-   [Block Highlight](?path=/story/components-block-highlight--drupal)
+-   [Link](?path=/story/components-link--drupal)
+-   [Price](?path=/story/components-price--drupal)
+-   [Row Button](?path=/story/components-row-button--drupal)
+-   [Tile Key](?path=/story/components-tile-key--drupal)
+
+### Special mentions
+
+-   Adjust documentation for [Boolean variable](?path=/docs/coding-standards--page#boolean-variable) in Coding Standards docs.
+
+### Components
+
+-   A lot of components has been updated to reflect the right way to code `boolean` variables.
+
+<br />
+
 ## [v1.11.5](https://bifrost-front-end-library-git-v1-11-5-bifrost-vui.vercel.app/) - _2023-06-16_
 
 see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.11.5)
@@ -115,9 +148,9 @@ This package cover changes for these tickets : **[DS-466](https://groupemedia.at
 #### Documentation
 
 -   Add a new **CODING** section.
--   Add a [Standards](/?path=/story/coding-standards--page) page for coding standards.
--   Add a [Documentation](/?path=/story/coding-documentation--page) page for coding documentation in Storybook.
--   Update [Drupal - Filters](/?path=/docs/implementation-drupal-filters--page) page to include the added `twig-drupal-filters` Node package.
+-   Add a [Standards](?path=/story/coding-standards--page) page for coding standards.
+-   Add a [Documentation](?path=/story/coding-documentation--page) page for coding documentation in Storybook.
+-   Update [Drupal - Filters](?path=/docs/implementation-drupal-filters--page) page to include the added `twig-drupal-filters` Node package.
 -   Add a new **DEPRECATED** section.
 
 #### Utilities
@@ -130,7 +163,7 @@ This package cover changes for these tickets : **[DS-466](https://groupemedia.at
 
 -   Move **Image Lazy Load** component to the new **DEPRECATED** section.
     -   It was not used in other components in Bifröst nor in Drupal templates.
-    -   See the [component docs page](/?path=/docs/deprecated-ui-kit-image-lazy-load--drupal) for more information.
+    -   See the [component docs page](?path=/docs/deprecated-ui-kit-image-lazy-load--drupal) for more information.
 
 ### Components
 
@@ -586,7 +619,7 @@ see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/re
 
 ### Selection Tile
 
--   New Selection Tile component (see [Component API](/?path=/story/components-selection-tile--drupal)).
+-   New Selection Tile component (see [Component API](?path=/story/components-selection-tile--drupal)).
 
 ### Cards
 
