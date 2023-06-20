@@ -1,3 +1,11 @@
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set accountData = accountData|default({}) %}
+
+{# Boolean Variables #}
+{% set isAccountConnected = accountData is not empty %}
+
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
+{% set accountSignInURL = accountSignInURL|default("/") %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set accountButtonContainerClasses = [

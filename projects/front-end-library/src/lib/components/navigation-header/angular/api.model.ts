@@ -2,12 +2,6 @@
 import { ILogo } from '../../../components/logo/angular/api.model';
 
 /* Local Interfaces */
-interface IAccountLink {
-    href: string;
-    icon: string;
-    subtitle?: string;
-    title: string;
-}
 
 interface IActiveMenuItemParams {
     unclickableInvisibleMessageBeforeItemLabel?: string;
@@ -35,6 +29,13 @@ export interface IAccount {
     firstName: string;
     lastName: string;
     links: IAccountLink[];
+}
+
+export interface IAccountLink {
+    href: string;
+    icon: string;
+    subtitle?: string;
+    title: string;
 }
 
 export interface IHeaderLogo {

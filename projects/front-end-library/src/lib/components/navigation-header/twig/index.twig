@@ -1,22 +1,16 @@
 {# Import macros #}
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
-{# Default Variables (Props, Controls) - Pre Boolean Variables #}
-{% set accountData = accountData|default({}) %}
-
 {# Boolean Variables #}
 {% set hasTopBar = hasTopBar is defined and hasTopBar is same as(true) %}
-{% set isAccountConnected = accountData is not empty %}
 {% set isBlockLanguageDefined = block("language_switcher_desktop") is defined and block("language_switcher_desktop") is not empty %}
 {% set isBlockTopBarLeftNavDefined = block("top_bar_left_nav") is defined and block("top_bar_left_nav") is not empty %}
 {% set isBlockTopBarRightNavDefined = block("top_bar_right_nav") is defined and block("top_bar_right_nav") is not empty %}
 {% set isReversed = reversed|default(false) is same as(true) %}
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}
-{% set accountSignInURL = accountSignInURL|default("/") %}
 {% set langcode = langcode|default("en")|lower %}
 {% set logo = logo|default({name: "videotron", href: "/"}) %}
-{% set searchPlaceholder = searchPlaceholder|default("What are you looking for?") %}
 {% set theme = theme|default("videotron") %}
 
 {# Arrays of Classes With Dynamic Elements #}
@@ -104,16 +98,16 @@
 		</div>
 
     {# Main menu (Mobile|Tablet: Burger Menu, Desktop: Full menu) #}
-    {% include "@bf-components/navigation-header/twig/_header-zone-main-menu.twig" %}
+    {% include "@bf-components/navigation-header/twig/_header-main-menu.twig" %}
 
     {# Search + Account + Support #}
     <div class="bf-nav-header__functions">
 
       {# Search #}
-      {% include "@bf-components/navigation-header/twig/_header-zone-search-bar.twig" %}
+      {% include "@bf-components/navigation-header/twig/_header-search-bar.twig" %}
 
       {# My account #}
-      {% include "@bf-components/navigation-header/twig/_header-zone-account.twig" %}
+      {% include "@bf-components/navigation-header/twig/_header-account.twig" %}
 
       {# Support #}
       <div class="bf-nav-header__functions__support">
@@ -131,7 +125,7 @@
     </div>
 
     {# Language Switcher #}
-    {% include "@bf-components/navigation-header/twig/_header-zone-language.twig" with {
+    {% include "@bf-components/navigation-header/twig/_header-language.twig" with {
       overrideBlockLanguage: overrideBlockLanguage
     } %}
 

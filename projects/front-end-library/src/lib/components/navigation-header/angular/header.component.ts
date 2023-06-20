@@ -7,42 +7,22 @@ import { IAccount, IHeaderLogo, IMenuItems, ITopBar } from './api.model';
 export class HeaderComponent implements OnInit {
     constructor() {}
 
-    /** Expected format:
-     * <pre>
-     *    <code>
-     *        {
-     *            "firstName": `string`,
-     *            "lastName": `string`,
-     *            "links": [
-     *                {
-     *                    "href": `string`,
-     *                    "icon": `string`,
-     *                    "subtitle": `string`,
-     *                    "title": `string`
-     *                },
-     *                ...
-     *            ]
-     *        }
-     *    </code>
-     * </pre>
-     *
-     * For `links.icon`, see [Icon Interface List](/?path=/story/components-icon--drupal-interface).
+    /**
+     * See IAccount <a href="/?path=/docs/components-navigation-header-api--page#iaccount-api" target="_blank">API</a>
+     *  and <a href="/?path=/docs/components-navigation-header-api--page#iaccount-format" target="_blank">expected format</a>.
      */
     @Input() accountData: IAccount = null;
-    @Input() accountSignInURL: string = '/';
+    /**
+     * When anonymously browsing, meaning without being connected to an account,
+     * this is the link on the "Sign In" button to access the login form.
+     */
+    @Input() accountSignInURL: string;
+    /** Display or not the top bar above main header bar */
     @Input() hasTopBar: boolean = true;
     @Input() langcode: 'en' | 'fr' = 'en';
-    /** Expected format:
-     * <pre>
-     *    <code>
-     *        {
-     *            "href": `string`,
-     *            "name": `ILogo['name']`,
-     *        }
-     *    </code>
-     * </pre>
-     *
-     * For the `name`, see [Logo Component API](/?path=/docs/components-logo--drupal).
+    /**
+     * See IHeaderLogo <a href="/?path=/docs/components-navigation-header-api--page#iheaderlogo-api" target="_blank">API</a>
+     *  and <a href="/?path=/docs/components-navigation-header-api--page#iheaderlogo-format" target="_blank">expected format</a>.
      */
     @Input() logo: IHeaderLogo;
     /** Expected format:
