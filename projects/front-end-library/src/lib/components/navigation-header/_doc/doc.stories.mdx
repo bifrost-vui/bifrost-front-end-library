@@ -57,10 +57,20 @@ import { accountData, mainMenuData, topBarData } from './doc.data';
 {% include '@bf-components/navigation-header/twig/index.twig' with {
     accountData: {{
         firstName: 'John',
-        lastName: 'Doe',
+        lastName: 'Smith',
         links: [
-            { href: '/', icon: 'my-account', subtitle: 'Helix billing and services', title: 'My Account' },
-            { href: '/', icon: 'services', subtitle: 'illico, webmail and web tele', title: 'My Services' },
+            {
+                href: '/',
+                icon: 'my-account',
+                subtitle: 'Helix billing and services',
+                title: 'My Account'
+            },
+            {
+                href: '/',
+                icon: 'services',
+                subtitle: 'illico, webmail and web tele',
+                title: 'My Services'
+            },
         ],
     }},
     accountSignInURL: '/signin',
@@ -68,11 +78,10 @@ import { accountData, mainMenuData, topBarData } from './doc.data';
     langcode: 'en',
     logo: {
         href: '/',
-        name: 'business',
+        name: 'videotron',
     },
     mainMenuData: [
         {
-            href: '/',
             label: 'Internet',
             subItems: [
                 {
@@ -127,30 +136,31 @@ import { accountData, mainMenuData, topBarData } from './doc.data';
             ],
         },
         {
+            class: 'font-weight-bold',
+            color: '#0B8339',
             label: 'Moving',
             href: '/',
-            class: 'font-weight-bold',
-            color: '0B8339',
+            rel: 'dofollow',
         },
     ],
     reversed: false,
-    search: {
-        placeholder: 'What are you looking for?'
-    },
-    topBar: {
+    searchPlaceholder: 'What are you looking for?',
+    topBarData: {
         left: {
             description: 'Website Selection',
             items: [
                 {
-                    href: '/',
+                    href: "/",
                     isActive: true,
-                    label: 'Residential',
-                    rel: 'dofollow',
+                    isActiveLinkClickable: false,
+                    label: "Residential",
+                    rel: "dofollow",
+                    unclickableActiveMenuItemScreenReaderMessage: "Current website:",
                 },
                 {
-                    href: '/',
-                    label: 'Business',
-                    rel: 'dofollow',
+                    href: "/",
+                    label: "Business",
+                    rel: "dofollow",
                 },
             ],
         },
@@ -179,8 +189,8 @@ export const commonProps = {
 };
 
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    component: TwigContainerComponent,
+    props: args,
 });
 
 <Canvas withSource='none'>
@@ -188,7 +198,7 @@ export const Drupal = (args) => ({
         name='Drupal - Anonymous'
         height='300px'
         args={{
-            elementPath : 'components/navigation-header/_doc/template.drupal',
+            elementPath: 'components/navigation-header/_doc/template.drupal',
             ...commonProps,
         }}
     >
@@ -201,7 +211,7 @@ export const Drupal = (args) => ({
         name='Drupal - Connected'
         height='300px'
         args={{
-            elementPath : 'components/navigation-header/_doc/template.drupal',
+            elementPath: 'components/navigation-header/_doc/template.drupal',
             ...commonProps,
             accountData: accountData
         }}
@@ -215,7 +225,7 @@ export const Drupal = (args) => ({
         name='Drupal - Top Bar with Links on the Right'
         height='300px'
         args={{
-            elementPath : 'components/navigation-header/_doc/template.drupal',
+            elementPath: 'components/navigation-header/_doc/template.drupal',
             ...commonProps,
             hasTopBar: true,
             topBarData: {
@@ -253,7 +263,7 @@ export const Drupal = (args) => ({
         name='Drupal - Top Bar with Links on the Right - With a Twig Block'
         height='300px'
         args={{
-            elementPath : 'components/navigation-header/_doc/template.drupal',
+            elementPath: 'components/navigation-header/_doc/template.drupal',
             ...commonProps,
             _top_bar_right_block: true,
             hasTopBar: true,
@@ -268,7 +278,7 @@ export const Drupal = (args) => ({
         name='Drupal - Without Top Bar'
         height='300px'
         args={{
-            elementPath : 'components/navigation-header/_doc/template.drupal',
+            elementPath: 'components/navigation-header/_doc/template.drupal',
             ...commonProps,
             hasTopBar: false,
         }}
