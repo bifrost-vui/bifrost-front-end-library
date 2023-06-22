@@ -20,10 +20,10 @@
 ] %}
 
 {# Macro: Links Loop #}
-{% macro topBarLinks(navData) %}
+{% macro topBarLinks(navData, positionClass) %}
   <ul {{ macros.addAttributes({
     "aria-label": navData.description,
-    "class": "list bf-top-bar__nav",
+    "class": "list bf-top-bar__nav bf-top-bar__nav--" ~ positionClass,
     "role": "menubar",
   }) }}>
     {% for item in navData.items %}
@@ -98,7 +98,7 @@
       {% endblock %}
     {% else %}
       {% if hasNavLeftData %}
-        {{ navMacro.topBarLinks(navLeftData) }}
+        {{ navMacro.topBarLinks(navLeftData, "left") }}
       {% endif %}
     {% endif %}
 
@@ -109,7 +109,7 @@
       {% endblock %}
     {% else %}
       {% if hasNavRightData %}
-        {{ navMacro.topBarLinks(navRightData) }}
+        {{ navMacro.topBarLinks(navRightData, "right") }}
       {% endif %}
     {% endif %}
 

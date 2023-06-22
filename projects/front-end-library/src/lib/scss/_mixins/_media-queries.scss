@@ -31,9 +31,20 @@
         }
 */
 
-@mixin media-scale($elem, $defaultValue, $mdValue: $defaultValue, $lgValue: $mdValue, $xlValue: $lgValue, $xxlValue: $xlValue) {
+@mixin media-scale(
+  $elem,
+  $defaultValue,
+  $smValue: $defaultValue,
+  $mdValue: $smValue,
+  $lgValue: $mdValue,
+  $xlValue: $lgValue,
+  $xxlValue: $xlValue
+) {
   #{$elem}: $defaultValue;
 
+  @include media-breakpoint-up(sm) {
+    #{$elem}: $smValue;
+  }
   @include media-breakpoint-up(md) {
     #{$elem}: $mdValue;
   }
