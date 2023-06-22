@@ -1,30 +1,6 @@
 /* Import */
 import { ILogo } from '../../../components/logo/angular/api.model';
 
-/* Local Interfaces */
-
-interface IActiveMenuItemParams {
-    unclickableInvisibleMessageBeforeItemLabel?: string;
-}
-
-interface IDefaultMenuItem {
-    activeParams?: IActiveMenuItemParams;
-    class?: string;
-    href?: string;
-    isActive?: boolean;
-    isActiveLinkClickable?: boolean;
-    label: string;
-    rel?: string;
-}
-
-interface ITopBarSection {
-    description?: string;
-    items: ITopBarMenuItems[];
-}
-
-interface ITopBarMenuItems extends IDefaultMenuItem {}
-
-/* Export Interfaces */
 export interface IAccount {
     firstName: string;
     lastName: string;
@@ -38,17 +14,34 @@ export interface IAccountLink {
     title: string;
 }
 
+export interface IDefaultMenuItem {
+    class?: string;
+    href?: string;
+    isActive?: boolean;
+    isActiveLinkClickable?: boolean;
+    label: string;
+    rel?: string;
+    unclickableActiveMenuItemScreenReaderMessage?: string;
+}
+
 export interface IHeaderLogo {
     href: string;
     name: ILogo['name'];
 }
 
-export interface IMenuItems extends IDefaultMenuItem {
+export interface IMenuItem extends IDefaultMenuItem {
     color?: string;
-    subItems?: IMenuItems[];
+    subItems?: IMenuItem[];
 }
 
 export interface ITopBar {
     left?: ITopBarSection;
     right?: ITopBarSection;
+}
+
+export interface ITopBarMenuItem extends IDefaultMenuItem {}
+
+export interface ITopBarSection {
+    description?: string;
+    items: ITopBarMenuItem[];
 }
