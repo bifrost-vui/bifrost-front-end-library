@@ -14,7 +14,7 @@
     @include media-scale(
       padding,
       #{calculateRem(8px)},
-      #{calculateRem(8px)} #{calculateRem(16px)}
+      $mdValue: #{calculateRem(8px)} #{calculateRem(16px)}
     );
   }
 
@@ -51,6 +51,17 @@
         &.active {
           font-weight: bold;
         }
+      }
+    }
+
+    /* Right nav */
+    &--right {
+      .bf-top-bar__nav__item:last-child {
+        @include media-scale(
+          margin-right,
+          #{calculateRem(8px)},
+          0
+        );
       }
     }
   }
