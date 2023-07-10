@@ -18,8 +18,9 @@ export class PriceComponent implements OnInit {
      * - This will make width at 100% of the parent.
      * - This behavior is useful when you want `promotion.direction: horizontal`.
      */
-    @Input() fullWidth: boolean;
-    @Input() hasAsterisk: boolean;
+    @Input() fullWidth: boolean = false;
+    @Input() hasAsterisk: boolean = false;
+    @Input() isPriceBoxDisplayed: boolean = true;
     @Input() language: 'en' | 'fr';
     @Input() message: HTMLElement;
     /** Expected format:
@@ -42,7 +43,8 @@ export class PriceComponent implements OnInit {
     @Input() promotion: IPromotion = {
         isDisplayed: true,
     };
-    @Input() reversed: boolean;
+    /** Only for Storybook, to simulate a parent container having the `reversed` HTML class. */
+    @Input() reversed: boolean = false;
     @Input() size: 'small' | 'medium' | 'large';
     /** Expected format:
      * <pre>
