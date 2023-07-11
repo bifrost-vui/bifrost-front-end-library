@@ -24,9 +24,10 @@
 {% set hasUpfrontDollar = upfront.dollar is defined and upfront.dollar is not empty %}
 {% set hasUpfrontLabel = upfront.label is defined and upfront.label is not empty %}
 {% set hasUpperTitle = upperTitle is defined and upperTitle is not empty %}
-{% set isFullWidth = (isFullWidth ?? false) is same as(true) %}
+{% set isFullWidth = (fullWidth ?? false) is same as(true) %}
 {% set isLanguageEN = language is same as("en") %}
 {% set isLanguageFR = language is same as("fr") %}
+{% set isPriceBoxDisplayed = (isPriceBoxDisplayed ?? true) is same as(true) %}
 {% set isPromotionDisplayed = (promotion.isDisplayed ?? true) is same as(true) %}
 {% set isPromotionDirectionHorizontal = hasPromotionDirection and promotion.direction is same as("horizontal") %}
 
@@ -92,91 +93,93 @@
     </p>
   {% endif %}
 
-  <div class="{{ promotionContainerClasses|join(' ')|trim }}">
-    <div class="bf-price__infos">
-      {% if isLanguageEN %}
-        <sup class="bf-price__dollarsign mt-n1">$</sup>
-      {% endif %}
+  {% if isPriceBoxDisplayed %}
+    <div class="{{ promotionContainerClasses|join(' ')|trim }}">
+      <div class="bf-price__infos">
+        {% if isLanguageEN %}
+          <sup class="bf-price__dollarsign mt-n1">$</sup>
+        {% endif %}
 
-      <div
-        class="d-flex"
-        aria-label="$ {{ dollar }}.{{ cent }} {{ details }}"
-        role="contentinfo"
-      >
-        <span
-          class="bf-price__dollar {{ dollarClass }}"
+        <div
+          class="d-flex"
+          aria-label="$ {{ dollar }}.{{ cent }} {{ details }}"
           role="contentinfo"
         >
-          {{ dollar }}
-        </span>
+          <span
+            class="bf-price__dollar {{ dollarClass }}"
+            role="contentinfo"
+          >
+            {{ dollar }}
+          </span>
 
-        <div class="d-block flex-column justify-content-between">
-          <div class="d-flex align-items-start">
-            {% if hasCent %}
-              <span class="bf-price__cent ml-1">
-                {{ cent }}
-              </span>
-            {% endif %}
-            {% if isLanguageFR %}
-              <sup class="bf-price__dollarsign ml-1">$</sup>
-            {% endif %}
-            {% if hasAsterisk %}
-              <sup class="bf-price__asterisk">*</sup>
-            {% endif %}
-          </div>
-
-          {% if hasDetails %}
-            <span class="bf-price__details ml-1">
-              {{ details }}
-            </span>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-
-    {% if hasPromotion %}
-      <div class="d-flex flex-column">
-        {% if hasPromotionTitle %}
-          <p class="small mb-1">
-            {{ promotion.title }}
-          </p>
-        {% endif %}
-        <div class="d-inline-flex">
-          {% if hasPromotionPriceStriked %}
-            <p class="small text-strike mr-2 mb-0">
-              {% if isLanguageEN %}${% endif %}
-              {{- promotion.priceStriked -}}
-              {% if isLanguageFR %}&nbsp;${% endif %}
-            </p>
-          {% endif %}
-
-          {% if (hasPromotionSavedLabel or hasPromotionPriceSaved or hasPromotionSuperscript) and isPromotionDisplayed %}
-            <p class="small bf-display-highlight mb-0">
-              {% if hasPromotionSavedLabel %}
-                <span class="mr-1">
-                  {{ promotion.savedLabel }}
+          <div class="d-block flex-column justify-content-between">
+            <div class="d-flex align-items-start">
+              {% if hasCent %}
+                <span class="bf-price__cent ml-1">
+                  {{ cent }}
                 </span>
               {% endif %}
-              <span class="price-superscript">
-                {% if hasPromotionPriceSaved %}
-                  <span class="font-weight-bold">
-                    {% if isLanguageEN %}${% endif %}
-                    {{- promotion.priceSaved -}}
-                    {% if isLanguageFR %}&nbsp;${% endif %}
-                  </span>
-                {% endif %}
-                {% if hasPromotionSuperscript %}
-                  <sup class="bf-price__superscript">
-                    {{ promotion.superscript }}
-                  </sup>
-                {% endif %}
+              {% if isLanguageFR %}
+                <sup class="bf-price__dollarsign ml-1">$</sup>
+              {% endif %}
+              {% if hasAsterisk %}
+                <sup class="bf-price__asterisk">*</sup>
+              {% endif %}
+            </div>
+
+            {% if hasDetails %}
+              <span class="bf-price__details ml-1">
+                {{ details }}
               </span>
-            </p>
-          {% endif %}
+            {% endif %}
+          </div>
         </div>
       </div>
-    {% endif %}
-  </div>
+
+      {% if hasPromotion %}
+        <div class="d-flex flex-column">
+          {% if hasPromotionTitle %}
+            <p class="small mb-1">
+              {{ promotion.title }}
+            </p>
+          {% endif %}
+          <div class="d-inline-flex">
+            {% if hasPromotionPriceStriked %}
+              <p class="small text-strike mr-2 mb-0">
+                {% if isLanguageEN %}${% endif %}
+                {{- promotion.priceStriked -}}
+                {% if isLanguageFR %}&nbsp;${% endif %}
+              </p>
+            {% endif %}
+
+            {% if (hasPromotionSavedLabel or hasPromotionPriceSaved or hasPromotionSuperscript) and isPromotionDisplayed %}
+              <p class="small bf-display-highlight mb-0">
+                {% if hasPromotionSavedLabel %}
+                  <span class="mr-1">
+                    {{ promotion.savedLabel }}
+                  </span>
+                {% endif %}
+                <span class="price-superscript">
+                  {% if hasPromotionPriceSaved %}
+                    <span class="font-weight-bold">
+                      {% if isLanguageEN %}${% endif %}
+                      {{- promotion.priceSaved -}}
+                      {% if isLanguageFR %}&nbsp;${% endif %}
+                    </span>
+                  {% endif %}
+                  {% if hasPromotionSuperscript %}
+                    <sup class="bf-price__superscript">
+                      {{ promotion.superscript }}
+                    </sup>
+                  {% endif %}
+                </span>
+              </p>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
 
   {% if hasMessage %}
     <p class="small bf-color-neutral-secondary mb-0 mt-1">

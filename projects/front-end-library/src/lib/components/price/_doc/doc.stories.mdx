@@ -15,12 +15,6 @@ import { PromotionDefaultValue } from './doc.model';
         dollar: {
             table: { defaultValue: { summary: '0' } },
         },
-        fullWidth: {
-            table: { defaultValue: { summary: false } },
-        },
-        hasAsterisk: {
-            table: { defaultValue: { summary: false } },
-        },
         language: {
             control: { type: 'select' },
             table: { defaultValue: { summary: 'en' } },
@@ -32,9 +26,6 @@ import { PromotionDefaultValue } from './doc.model';
                     detail: PromotionDefaultValue
                 }
             },
-        },
-        reversed: {
-            table: { defaultValue: { summary: false } },
         },
         size: {
             control: { type: 'select' },
@@ -64,31 +55,32 @@ import { PromotionDefaultValue } from './doc.model';
 
 ```jsx
 {% include '@bf-components/price/twig/index.twig' with {
-    cent            : '99',
-    class           : '',
-    details         : '/month',
-    dollar          : '30',
-    dollarClass     : 'my-dollar-class',
-    fullWidth       : false,
-    hasAsterisk     : true,
-    language        : 'en',
-    message         : 'This is a message',
-    promotion       : {
-        direction       : 'horizontal',
-        isDisplayed     : true,
-        priceSaved      : '10',
-        priceStriked    : '40,99',
-        savedLabel      : 'You saved:',
-        superscript     : '1',
-        title           : '<b>Promotion</b> test',
+    cent                : '99',
+    class               : '',
+    details             : '/month',
+    dollar              : '30',
+    dollarClass         : 'my-dollar-class',
+    fullWidth           : false,
+    hasAsterisk         : true,
+    isPriceBoxDisplayed : true,
+    language            : 'en',
+    message             : 'This is a message',
+    promotion           : {
+        direction           : 'horizontal',
+        isDisplayed         : true,
+        priceSaved          : '10',
+        priceStriked        : '40,99',
+        savedLabel          : 'You saved:',
+        superscript         : '1',
+        title               : '<b>Promotion</b> test',
     },
-    reversed        : false,
-    size            : 'small',
-    upfront         : {
-        dollar          : '0',
-        label           : 'upfront',
+    reversed            : false,
+    size                : 'small',
+    upfront             : {
+        dollar              : '0',
+        label               : 'upfront',
     },
-    upperTitle      : 'From',
+    upperTitle          : 'From',
 } only %}
 ```
 
@@ -106,6 +98,7 @@ export const commonProps = {
     dollar: '30',
     dollarClass: '',
     hasAsterisk: false,
+    isPriceBoxDisplayed: true,
     message: 'This is a message.',
     promotion: {
         direction: 'horizontal',
