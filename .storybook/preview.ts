@@ -21,6 +21,10 @@ export const argTypes = {
         table: { defaultValue: { summary: 'videotron' } },
         control: { type: 'select', options: ['videotron', 'business'] },
     },
+    _reversed: {
+        table: { defaultValue: { summary: false } },
+        control: { type: 'boolean' },
+    },
 };
 
 addParameters({

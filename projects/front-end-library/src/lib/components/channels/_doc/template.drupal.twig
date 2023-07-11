@@ -1,0 +1,28 @@
+{# Default Variables (Props, Controls) #}
+{% set channelsData = channelsData|json_parse %}
+{% set class = class|json_parse %}
+{% set size = size|json_parse %}
+{% set _reversed = _reversed|json_parse %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "pt-4 bf-color-bg-ground",
+  (_reversed ? "reversed"),
+] %}
+
+{# Template #}
+<div class="bf-color-bg-underground p-4">
+  <p class="small mb-0">
+    There is no <u>Full List</u> or <u>Limited List</u> per se, the only thing that control the size is the number of elements in <strong>channelsData</strong> array. So these stories are just to show the difference.
+  </p>
+</div>
+
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
+  <div class="container-fluid h-100">
+    {% include "@bf-components/channels/twig/index.twig" with {
+        channelsData: channelsData|default([]),
+        class: class,
+        size: size,
+    } only %}
+  </div>
+</div>
