@@ -133,6 +133,114 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
+### Interface Icons - All Sizes
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Interface - All Sizes"
+        height="700px"
+        args={{
+            elementPath: 'components/icon/_doc/template.sizes.drupal',
+            icons: interfaceIcons,
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: [
+                        '- All icons -',
+                        ...interfaceIcons
+                            .map((a) => a.list)
+                            .flat()
+                            .sort(),
+                    ],
+                },
+            },
+            size: {
+                description: 'recommended : xsmall | small',
+                table: {
+                    disable: true,
+                }
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+### Interface Icons - Huge Size
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Interface - Huge Size"
+        height="700px"
+        args={{
+            elementPath: 'components/icon/_doc/template.drupal',
+            icons: interfaceIcons,
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: [
+                        '- All icons -',
+                        ...interfaceIcons
+                            .map((a) => a.list)
+                            .flat()
+                            .sort(),
+                    ],
+                },
+            },
+            size: {
+                defaultValue: 'huge',
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+### Interface Icons - All Colors
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Interface - All Colors"
+        height="700px"
+        args={{
+            elementPath: 'components/icon/_doc/template.colors.drupal',
+            icons: interfaceIcons,
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: [
+                        '- All icons -',
+                        ...interfaceIcons
+                            .map((a) => a.list)
+                            .flat()
+                            .sort(),
+                    ],
+                },
+            },
+            color: {
+                table: {
+                    disable: true,
+                }
+            },
+            size: {
+                defaultValue: 'small',
+                description: 'recommended : xsmall | small',
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
 ### Illustrations Icons
 
 <Canvas withSource="none">
@@ -167,11 +275,47 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-### Illustration Huge Icons
+### Illustration Icons - All Sizes
 
 <Canvas withSource="none">
     <Story
-        name="Drupal - Illustration Huge"
+        name="Drupal - Illustration - All Sizes"
+        height="700px"
+        args={{
+            elementPath: 'components/icon/_doc/template.sizes.drupal',
+            icons: illustrationIcons,
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: [
+                        '- All icons -',
+                        ...illustrationIcons
+                            .map((a) => a.list)
+                            .flat()
+                            .sort(),
+                    ],
+                },
+            },
+            size: {
+                description: 'recommended : small | medium | large',
+                table: {
+                    disable: true,
+                }
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+### Illustration Icons - Huge Size
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Illustration - Huge Size"
         height="700px"
         args={{
             elementPath: 'components/icon/_doc/template.drupal',
@@ -193,7 +337,45 @@ export const Drupal = (args) => ({
             },
             size: {
                 defaultValue: 'huge',
-                description: 'recommended : huge',
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+### Illustrations Icons - All Colors
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Illustration - All Colors"
+        height="700px"
+        args={{
+            elementPath: 'components/icon/_doc/template.colors.drupal',
+            icons: illustrationIcons,
+        }}
+        argTypes={{
+            name: {
+                defaultValue: '',
+                control: {
+                    type: 'select',
+                    options: [
+                        '- All icons -',
+                        ...illustrationIcons
+                            .map((a) => a.list)
+                            .flat()
+                            .sort(),
+                    ],
+                },
+            },
+            color: {
+                table: {
+                    disable: true,
+                }
+            },
+            size: {
+                defaultValue: 'large',
+                description: 'recommended : small | medium | large',
             },
         }}
     >
