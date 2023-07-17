@@ -1,0 +1,81 @@
+{# Import Macro #}
+{% import _self as macroSizes %}
+
+{# Default Variables (Props, Controls) #}
+{% set reversed = reversed|json_parse %}
+{% set icons = icons|json_parse %}
+{% set size = size|json_parse %}
+
+{# All sizes #}
+{% set allColors = ['primary', 'success', 'neutral', 'warning', 'negative'] %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "pt-4 bf-color-bg-ground",
+  (reversed ? "reversed"),
+] %}
+
+{# Macros - Sizes #}
+{% macro printIconInAllColors(name, class, size, reversed) %}
+  <div class="border p-2">
+    <h4 class="w-100">
+      {{ name }}
+    </h4>
+    <div class="d-flex flex-wrap flex-row justify-content-center" style="gap: 3rem;">
+      {% for color in allColors %}
+        <div class="d-flex flex-wrap flex-column align-items-center justify-content-end">
+          <div class="d-flex flex-wrap flex-column align-items-center">
+            {% include "@bf-components/icon/twig/index.twig" with {
+              name: name,
+              color: color,
+              size: size,
+              class: class,
+              reversed: reversed
+            } only %}
+          </div>
+          <div class="d-flex flex-wrap flex-column align-items-center small mt-2">
+            {{ color }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endmacro %}
+
+{# Template #}
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
+  {% if name is defined
+      and name is not same as("undefined")
+      and name is not same as("- All icons -")
+  %}
+    <div class="container-fluid h-100">
+      {{ macroSizes.printIconInAllColors(name, class, size, reversed) }}
+    </div>
+  {% else %}
+    <div class="container-fluid h-100">
+      {% if icons is defined %}
+        {% for category in icons %}
+          <div class="d-flex flex-wrap align-content-start my-4">
+            <h3 class="w-100">
+              {{ category.category }}
+            </h3>
+            <div class="d-flex flex-wrap flex-row align-items-start justify-content-start" style="gap: 1rem;">
+              {% for iconName in category.list %}
+                {{ macroSizes.printIconInAllColors(iconName, class, size, reversed) }}
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
+<style>
+  /** FOR DEMO ONLY */ .doc-list { --minmax: 120px; display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--minmax), 1fr)); width:
+  100%; }
+
+  .doc-list--huge { --minmax: 300px; grid-template-columns: repeat(auto-fill,
+  minmax(var(--minmax), 1fr)); }
+</style>
