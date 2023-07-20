@@ -1,0 +1,42 @@
+{# Default Variables (Props, Controls) #}
+{% set channelsData = channelsData|json_parse %}
+{% set class = class|json_parse %}
+{% set _reversed = _reversed|json_parse %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "pt-4 bf-color-bg-ground",
+  (_reversed ? "reversed"),
+] %}
+
+{# Template #}
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
+  <div class="container-fluid h-100">
+
+    <h2>Small</h2>
+
+    {% include "@bf-components/channels/twig/index.twig" with {
+        channelsData: channelsData|default([]),
+        class: class,
+        size: "small",
+    } only %}
+
+    <h2>Medium</h2>
+
+    {% include "@bf-components/channels/twig/index.twig" with {
+        channelsData: channelsData|default([]),
+        class: class,
+        size: "medium",
+    } only %}
+
+    <h2>Large</h2>
+
+    {% include "@bf-components/channels/twig/index.twig" with {
+        channelsData: channelsData|default([]),
+        class: class,
+        size: "large",
+    } only %}
+
+
+  </div>
+</div>

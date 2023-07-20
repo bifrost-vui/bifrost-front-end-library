@@ -1,0 +1,29 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set size = size|default("medium") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set channelClasses = [
+  "bf-channels",
+  "bf-channels--" ~ (size),
+  (class),
+] %}
+
+{# Template #}
+<div class="{{ channelClasses|join(' ')|trim }}">
+    <ul class="list bf-channels__container">
+      {% for channel in channelsData %}
+        <li class="bf-channels__item">
+          <img {{ macros.addAttributes({
+            "src": channel.imageSrc,
+            "alt": channel.name,
+            "class": "img-fluid bf-channels__img",
+            "loading": "lazy",
+          }) }}/>
+        </li>
+      {% endfor %}
+    </ul>
+</div>

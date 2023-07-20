@@ -1,0 +1,147 @@
+import { moduleMetadata }                           from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }           from '@storybook/addon-docs';
+import { withDesign }                               from 'storybook-addon-designs';
+import { channelsDataLimited, channelsDataFull }    from './data';
+import { TwigContainerComponent }                   from '../../../../utils/twig-container/twig-container.component';
+import { ChannelsComponent }                        from '../angular/channels.component';
+import { ChannelsTemplateComponent }                from './template.angular.component';
+
+<Meta
+    title='Components/Channels'
+    component={ChannelsComponent}
+    decorators={[
+        moduleMetadata({ declarations: [ChannelsComponent, ChannelsTemplateComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type    : 'figma',
+            url     : 'https://www.figma.com/file/d5aKXHB3tU37zKGMt4Rqqu/SN-6168-Test-AB-Ajouter-chaines-TV?type=design&node-id=0-1&mode=design&t=RQtI8PaCDmqK2ysX-0',
+            disable : false
+        },
+    }}
+    argTypes={{}}
+/>
+
+# Channels
+
+This component is a list of channels logo. These are a simple images with the channel name in its `alt` attribute.
+
+## Component API
+
+<ArgsTable of={ChannelsComponent} />
+
+## Drupal implementation example
+
+```jsx
+{% include "@bf-components/channels/twig/index.twig" with {
+    channelsData: [
+        {
+            name: 'TVA',
+            imageSrc: 'https://videotron.com/sites/default/files/styles/original/public/dxp-channels/media/logo/CFCMH.webp',
+        },
+        {
+            name: 'RDS',
+            imageSrc: 'https://videotron.com/sites/default/files/styles/original/public/dxp-channels/media/logo/RDS.webp',
+        },
+        {
+            name: 'YOOHD',
+            imageSrc: 'https://videotron.com/sites/default/files/styles/original/public/dxp-channels/media/logo/YOOHD.webp',
+        },
+        {
+            name: 'ABC',
+            imageSrc: 'https://videotron.com/sites/default/files/styles/original/public/dxp-channels/media/logo/ABCHD.webp',
+        },
+        {
+            name: 'CTVHD',
+            imageSrc: 'https://videotron.com/sites/default/files/styles/original/public/dxp-channels/media/logo/CTVHD.webp',
+        },
+    ],
+    class: "",
+    size: "medium",
+} only %}
+```
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+### Drupal - Full List
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Full List'
+        height='300px'
+        args={{
+            elementPath: 'components/channels/_doc/template.drupal',
+            channelsData: channelsDataFull,
+            size: 'medium',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+### Drupal - Limited List
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Limited List'
+        height='300px'
+        args={{
+            elementPath: 'components/channels/_doc/template.drupal',
+            channelsData: channelsDataLimited,
+            size: 'small',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+### Drupal - All Sizes
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - All Sizes'
+        height='300px'
+        args={{
+            elementPath: 'components/channels/_doc/template.sizes.drupal',
+            channelsData: channelsDataLimited,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+<!--
+## Angular
+
+export const Angular = (args) => ({
+  component: ChannelsTemplateComponent,
+  props: args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Angular'
+        args={{
+            label: 'Channels'
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+## Angular implementation example
+
+Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
+-->
+
+
+## Design Guidelines
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fd5aKXHB3tU37zKGMt4Rqqu%2FSN-6168-Test-AB-Ajouter-chaines-TV%3Ftype%3Ddesign%26node-id%3D0-1%26mode%3Ddesign%26t%3DRQtI8PaCDmqK2ysX-0&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>
