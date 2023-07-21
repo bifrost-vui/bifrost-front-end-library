@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import illustrationIcons from '../../../../../../../public/icons/list/illustrations.json';
-import { contentLists, contentListsNoTitle } from './data';
+import { contentLists, contentListsWithChannels, contentListsNoTitle } from './data';
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { CardComponent } from '../angular/card.component';
 
@@ -10,16 +10,13 @@ import { CardComponent } from '../angular/card.component';
     component={CardComponent}
     decorators={[moduleMetadata({ declarations: [CardComponent, TwigContainerComponent] })]}
     argTypes={{
-        cardVariant: {
+        _cardVariant: {
             table: { disable: true },
         },
         titleTag: {
             table: { defaultValue: { summary: 'h1' } },
         },
         isDisabled: {
-            table: { defaultValue: { summary: false } },
-        },
-        reversed: {
             table: { defaultValue: { summary: false } },
         },
         language: {
@@ -248,42 +245,8 @@ To override available block you need to embed the main index.twig
 ### Plan card
 
 export const commonProps = {
-    isDisabled: false,
-    upperTitle: 'upperTitle',
-    subtitle: 'Lorem ipsum subtitle',
-    title: 'All-Inclusive 12 GB Mobile',
-    description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
-    link: {
-        label: 'Learn more',
-        href: 'www.videotron.com',
-    },
     badge: {
         label: 'PROMOTION',
-    },
-    contentLists: contentLists,
-    promotionBadges: [
-        {
-            label: 'Free Galaxy Buds Live',
-            iconName: '',
-        },
-        {
-            label: '0$ Welcome credit',
-            iconName: 'credit-welcome',
-        },
-    ],
-    price: {
-        upperTitle: 'From',
-        dollar: 86,
-        cent: 99,
-        details: '/month',
-        promotion: {
-            title: '<b>Promotion</b> test',
-            priceStriked: 40.99,
-            priceSaved: 10,
-            savedLabel: 'You saved :',
-            superscript: 1,
-            direction: 'horizontal',
-        },
     },
     buttons: [
         {
@@ -298,8 +261,42 @@ export const commonProps = {
             href: 'www.videotron.com',
         },
     ],
-    message: 'Only plans with a minimum of $40.00 per month are available with that phone.',
+    contentLists: contentLists,
+    description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
+    isDisabled: false,
     language: 'en',
+    link: {
+        label: 'Learn more',
+        href: 'www.videotron.com',
+    },
+    message: 'Only plans with a minimum of $40.00 per month are available with that phone.',
+    price: {
+        upperTitle: 'From',
+        dollar: 86,
+        cent: 99,
+        details: '/month',
+        promotion: {
+            title: '<b>Promotion</b> test',
+            priceStriked: 40.99,
+            priceSaved: 10,
+            savedLabel: 'You saved :',
+            superscript: 1,
+            direction: 'horizontal',
+        },
+    },
+    promotionBadges: [
+        {
+            label: 'Free Galaxy Buds Live',
+            iconName: '',
+        },
+        {
+            label: '0$ Welcome credit',
+            iconName: 'credit-welcome',
+        },
+    ],
+    subtitle: 'Lorem ipsum subtitle',
+    title: 'All-Inclusive 12 GB Mobile',
+    upperTitle: 'upperTitle',
 };
 
 export const Drupal = (args) => ({
@@ -316,13 +313,12 @@ export const Drupal = (args) => ({
         args={{
             elementPath: 'components/card/_doc/template.drupal',
             ...commonProps,
-            cardVariant: 'plan',
+            _cardVariant: 'plan',
             title: {
                 category: 'CellPhone plan',
                 detail: '40GB - All inclusive Canada',
             },
             isDisabled: false,
-            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
@@ -334,13 +330,12 @@ export const Drupal = (args) => ({
         name="Drupal - Plan Disabled"
         args={{
             ...commonProps,
-            cardVariant: 'plan',
+            _cardVariant: 'plan',
             title: {
                 category: 'CellPhone plan',
                 detail: '40GB - All inclusive Canada',
             },
             isDisabled: true,
-            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
@@ -352,7 +347,7 @@ export const Drupal = (args) => ({
         name="Drupal - Plan Selected"
         args={{
             ...commonProps,
-            cardVariant: 'plan',
+            _cardVariant: 'plan',
             upperTitle: undefined,
             title: {
                 category: 'CellPhone plan',
@@ -367,7 +362,50 @@ export const Drupal = (args) => ({
                 },
             ],
             message: undefined,
-            reversed: undefined,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+### Plan w/ channels
+
+<Canvas withSource="none" style={{ height: '900px' }}>
+    <Story
+        name="Drupal - Plan w/ channels"
+        args={{
+            elementPath: 'components/card/_doc/template.drupal',
+            ...commonProps,
+            _cardVariant: 'plan',
+            badge: {
+                hierarchy: 'secondary',
+                label: 'POPULAR OFFER',
+            },
+            buttons: [
+                {
+                    label: 'Check the availability',
+                    hierarchy: 'primary-alt',
+                    href: 'https://www.videotron.com',
+                },
+            ],
+            contentLists: contentListsWithChannels,
+            description_html: undefined,
+            link: undefined,
+            message: undefined,
+						note: '<a href="https://www.videotron.com" class="bf-link bf-link--native">Terms and conditions</a>',
+            price: {
+                details: '/month',
+                dollar: '115',
+                message: 'One Helix Fi gateway and one Helix TV terminal included*',
+                promotion: undefined,
+            },
+            promotionBadges: undefined,
+            subtitle: undefined,
+            title: {
+                category: 'Duo',
+                detail: 'TV 5 choices + Internet GIGA',
+            },
+            upperTitle: undefined,
         }}
     >
         {Drupal.bind({})}
@@ -444,9 +482,8 @@ export const phoneCommonProps = {
         name="Drupal - Phone"
         args={{
             elementPath: 'components/card/_doc/template.drupal',
-            cardVariant: 'phone',
+            _cardVariant: 'phone',
             ...phoneCommonProps,
-            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
@@ -458,7 +495,7 @@ export const phoneCommonProps = {
         name="Drupal - Phone Disabled"
         args={{
             elementPath: 'components/card/_doc/template.drupal',
-            cardVariant: 'phone',
+            _cardVariant: 'phone',
             ...phoneCommonProps,
             isDisabled: true,
             message: 'Not available with this plan.',
@@ -467,7 +504,6 @@ export const phoneCommonProps = {
                 label: 'Choose another Plan',
                 class: '',
             },
-            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
@@ -481,7 +517,7 @@ export const phoneCommonProps = {
         name="Drupal - Protection"
         args={{
             elementPath: 'components/card/_doc/template.drupal',
-            cardVariant: 'protection',
+            _cardVariant: 'protection',
             badge: {
                 label: 'Promotion',
             },
@@ -521,7 +557,6 @@ export const phoneCommonProps = {
                     href: 'www.videotron.com',
                 },
             ],
-            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
@@ -535,7 +570,7 @@ export const phoneCommonProps = {
         name="Drupal - Increment"
         args={{
             elementPath: 'components/card/_doc/template.drupal',
-            cardVariant: 'increment',
+            _cardVariant: 'increment',
             title: 'Label Ipsum',
             subtitle: 'Lorem ipsum subtitle',
             description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
@@ -579,7 +614,6 @@ export const phoneCommonProps = {
                     href: 'www.videotron.com',
                 },
             ],
-            reversed: undefined,
         }}
     >
         {Drupal.bind({})}
@@ -649,9 +683,8 @@ export const comboCommonProps = {
         name="Drupal - Combo"
         args={{
             elementPath: 'components/card/_doc/template.drupal',
-            cardVariant: 'combo',
+            _cardVariant: 'combo',
             ...comboCommonProps,
-            reversed: undefined,
         }}
     >
         {Drupal.bind({})}

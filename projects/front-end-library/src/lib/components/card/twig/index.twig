@@ -213,6 +213,16 @@
                 </li>
               {% endfor %}
             </ul>
+
+            {% if list.channels is not empty %}
+              {% if list.channels.limited is not empty %}
+                {% include "@bf-components/channels/twig/index.twig" with {
+                  channelsData: list.channels.limited,
+                  class: "mt-2",
+                  size: "small",
+                } only %}
+              {% endif %}
+            {% endif %}
           </div>
         {% endfor %}
       {% endif %}
