@@ -1,25 +1,49 @@
 import { Component, ElementRef, OnInit, OnChanges, Input } from '@angular/core';
+import { IBadge } from './api.model';
 
 @Component({
     selector: 'bf-badge',
     templateUrl: './badge.component.html',
 })
-export class BadgeComponent implements OnInit, OnChanges {
+export class BadgeComponent implements IBadge, OnInit, OnChanges {
     constructor() {}
 
-    @Input() label: string;
-    @Input() hierarchy: 'primary' | 'secondary' | 'tertiary' | 'tertiary-ground';
-    @Input() noUppercase: boolean;
-    /** Displays an angle on a corner. Won't have any effect if `isRounded` is true. */
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Displays an angle on a corner. Won't have any effect if `isRounded` is true.
+     */
     @Input() angle: null | 'left' | 'right';
-    /** This property has precedence over `angle`. */
-    @Input() isRounded: boolean;
-    @Input() iconName: string;
-    /** Angular only */
-    @Input() className: string;
-    /** Drupal only */
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Drupal only
+     */
     @Input() class: string;
-    @Input() reversed: boolean;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Angular only
+     */
+    @Input() className: string;
+    /** <span style="color: orange;">__Optional__</span> */
+    @Input() hierarchy: 'primary' | 'secondary' | 'tertiary' | 'tertiary-ground' = 'secondary';
+    /** <span style="color: orange;">__Optional__</span> */
+    @Input() iconName: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * This property has precedence over `angle`.
+     */
+    @Input() isRounded: boolean = false;
+    /**
+     * <span style="color: red;">__Required__</span>
+     *
+     * @required
+     */
+    @Input() label: string;
+    /** <span style="color: orange;">__Optional__</span> */
+    @Input() noUppercase: boolean = false;
 
     public ngClasses: string[] = [];
 
@@ -38,7 +62,6 @@ export class BadgeComponent implements OnInit, OnChanges {
             this.hierarchy ? 'bf-badge--' + this.hierarchy : 'bf-badge--secondary',
             this.angle && !this.isRounded ? 'bf-badge--angle-' + this.angle : '',
             this.isRounded ? 'bf-badge--rounded' : '',
-            this.reversed ? `reversed` : '',
         ];
     }
 }

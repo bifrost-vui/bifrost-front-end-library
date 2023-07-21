@@ -1,6 +1,9 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IPrice } from '../../price/angular/api.model';
-import { IImage, ILink, IBadge, IButton, IInputIncrement } from './api.model';
+import { IImage, ILink, IContentLists, IDetailsColors } from './api.model';
+import { IBadge } from '../../badge/angular/api.model';
+import { IButton } from '../../button/angular/api.model';
+import { IInputIncrement } from '../../input-increment/angular/api.model';
 
 @Component({
     selector: 'bf-card',
@@ -11,97 +14,197 @@ export class CardComponent implements OnInit {
     constructor() {}
 
     /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * - This badge displays in the card header.
-     * - You can pass directly the `label` as a **string** or an **object**.
-     * - Based on [Badge](/?path=/docs/components-badge--drupal) component API.
+     * - See Badge Component [API](/?path=/docs/components-badge--drupal).
      */
-    @Input() badge: any;
+    @Input() badge: IBadge;
     /**
-     * Array of [Button](/?path=/docs/components-button--drupal) component
-     * or extends with a block: `{% block buttons %} ... {% endblock %}`.
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Array of button(s). See Button Component [API](/?path=/docs/components-button--drupal)
+     * - Or, extends with a block: `{% block buttons %} ... {% endblock %}`.
      */
     @Input() buttons: IButton[];
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Custom classes on the card main element.
+     */
     @Input() class: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Only available in the __combo__ card.
+     * - This is a string of text that displays below the SIM card icon in the image area.
+     * - If `comboLabel` is empty, the SIM card icon won't show.
+     */
     @Input() comboLabel: string;
     /**
-     * - This badge displays in the phone card content above the price and the promotion badges.
-     * - Based on [Badge](/?path=/docs/components-badge--drupal) component API.
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Only available in the __phone__ and __combo__ cards.
+     * - This badge displays in these cards content above the price and the promotion badges.
+     * - See Badge Component [API](/?path=/docs/components-badge--drupal).
      */
     @Input() contentBadges: IBadge[];
-    /** Array of object. Expected format:
-     * <pre>
-     *     <code>
-     *         [
-     *             {
-     *                 "title": `string`,
-     *                 "description": `string`,
-     *                 "content": [
-     *                     {
-     *                         "label": `string`,
-     *                         "icon": `string`
-     *                     },
-     *                     {...},
-     *                 ]
-     *             },
-     *             {...},
-     *         ]
-     *     </code>
-     * </pre>
-     */
-    @Input() contentLists: object[];
     /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Available in every card type but `combo`.
+     * - This content displays under the card header.
+     * - Each object in this array is a content section separated by a line.
+     * - See IContentLists <a href="/?path=/docs/components-card-api--page#icontentlists-api" target="_blank">API</a>
+     *    and <a href="/?path=/docs/components-card-api--page#icontentlists-format" target="_blank">expected format</a>.
+     */
+    @Input() contentLists: IContentLists[];
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * Note: Wrap your data with a semantic HTML tag.
      *
      * E.g. `description_html: "<p>this is a description</p>"`.
      */
     @Input() description_html: HTMLElement;
-    @Input() detailsColors: object;
-    @Input() detailsStorage: object;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Only available in the __phone__ card.
+     * - It displays circles of available colors model for phones.
+     * - See IDetailsColors <a href="/?path=/docs/components-card-api--page#idetailscolors-api" target="_blank">API</a>
+     *    and <a href="/?path=/docs/components-card-api--page#idetailscolors-format" target="_blank">expected format</a>.
+     */
+    @Input() detailsColors: IDetailsColors[];
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Only available in the __phone__ card.
+     * - It displays a list of available storage sizes.
+     * - It is an array of strings.
+     * - Expected format: `["128 Go", "256 Go"]`
+     */
+    @Input() detailsStorage: string[];
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Only available in the __protection__, __increment__ and __combo__ cards.
+     * - It displays an icon in the image area.
+     * - See [Icons - Illustration List](/?path=/story/components-icon--drupal-illustration) for icon names.
+     */
     @Input() iconName: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Only available in the __phone__ and __combo__ cards.
+     * - It displays an image in the image area of the card.
+     * - If `badgeIconName` is provided with an Icon name, it will show up in the bottom right corner of the image area.
+     * - See IImage <a href="/?path=/docs/components-card-api--page#iimage-api" target="_blank">API</a>
+     *    and <a href="/?path=/docs/components-card-api--page#iimage-format" target="_blank">expected format</a>.
+     */
     @Input() image: IImage;
-    /** [inputIncrement](/?path=/docs/components-input-increment--drupal) component. */
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Only available in the __increment__ card.
+     * - See Input Increment Component [API](/?path=/docs/components-input-increment--drupal).
+     */
     @Input() inputIncrement: IInputIncrement;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * If `true`, the card will be disabled.
+     */
     @Input() isDisabled: boolean;
-    @Input() language: 'en' | 'fr';
-    /** Expected format:
-     * <pre>
-     *     <code>
-     *         {
-     *             "label": `string`,
-     *             "href": `string`
-     *         }
-     *     </code>
-     * </pre>
+    /**
+     * <span style="color: red;">__Required__</span>
+     * <br><br>
+     * For `price` component `language` parameter.
+     *
+     * @required
+     */
+    @Input() language: 'en' | 'fr' = 'en';
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - It is displayed below the subtitle.
+     * - See ILink <a href="/?path=/docs/components-card-api--page#ilink-api" target="_blank">API</a>
+     *    and <a href="/?path=/docs/components-card-api--page#ilink-format" target="_blank">expected format</a>.
      */
     @Input() link: ILink;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * It is displayed in the card footer, completely at the end.
+     */
     @Input() message: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - It is displayed just after a `message`.
+     * - See ILink <a href="/?path=/docs/components-card-api--page#ilink-api" target="_blank">API</a>
+     *    and <a href="/?path=/docs/components-card-api--page#ilink-format" target="_blank">expected format</a>.
+     */
     @Input() messageLink: ILink;
     /** Note: Can contains html. */
-    @Input() note: string;
-    /** [Price](/?path=/docs/components-price--drupal) component. */
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - It is displayed between the `price` and `buttons` components.
+     * - Can be a simple string of text or it can contains html.
+     */
+    @Input() note: string | HTMLElement;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - It displays the `price` component in the footer.
+     * - See Price Component [API](/?path=/docs/components-price--drupal).
+     */
     @Input() price: IPrice;
     /**
-     * - Theses Badges display in the phone card content above the price.
-     * - Array of Badges based on [Badge](/?path=/docs/components-badge--drupal) component API.
-     * - Will only accept the Badge `Label` and `iconName` properties.
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - It displays badges between `contentLists` and `price`.
+     * - Will only accept the Badge `label` and `iconName` properties.
+     * - See Badge Component [API](/?path=/docs/components-badge--drupal).
      */
     @Input() promotionBadges: IBadge[];
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * It is displayed in the header area below the card's title.
+     */
     @Input() subtitle: string;
     /**
-     * Can be a simple **string** or an **object**
-     * <pre>
-     *     <code>
-     *         {
-     *             category: "Category Title",
-     *             detail: "Some descriptive title",
-     *         }
-     *     </code>
-     * </pre>
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - It is displayed in the header area between the `upperTitle` and `subtitle`.
+     * - See ITitle <a href="/?path=/docs/components-card-api--page#ititle-api" target="_blank">API</a>
+     *    and <a href="/?path=/docs/components-card-api--page#ititle-format" target="_blank">expected format</a>.
      */
     @Input() title: any;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Title's HTML tag.
+     */
     @Input() titleTag: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - __Not__ available in the __increment__ card.
+     * - It is displayed in the header area above the card's title.
+     */
     @Input() upperTitle: string;
-    /** E.g. `#F6F6F6` */
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Only available in the __phone__, __protection__ and __combo__ cards.
+     * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
+     * - It changes the color of the normally grey background behind the image or icon.
+     * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
+          To test this props, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+     */
     @Input() visualBackgroundColor: string;
 
     ngOnInit() {

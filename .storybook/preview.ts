@@ -18,11 +18,17 @@ export const argTypes = {
     ngOnInit: { table: { disable: true } },
     ngOnChanges: { table: { disable: true } },
     _theme: {
-        table: { defaultValue: { summary: 'videotron' } },
+        table: {
+            category: 'Container (Not in the component)',
+            defaultValue: { summary: 'videotron' },
+        },
         control: { type: 'select', options: ['videotron', 'business'] },
     },
     _reversed: {
-        table: { defaultValue: { summary: false } },
+        table: {
+            category: 'Container (Not in the component)',
+            defaultValue: { summary: false },
+        },
         control: { type: 'boolean' },
     },
 };

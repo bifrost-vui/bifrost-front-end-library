@@ -47,6 +47,42 @@ import { CardComponent } from '../angular/card.component';
 
 <ArgsTable of={CardComponent} />
 
+## API Props Availability per Card Type
+
+It is not all API props that are available in each card type.
+
+This table below lists all props [found above](#component-api)
+and for each card type it displays a checkmark if the prop is available.
+
+| Prop Name             | Plan | Phone | Protection | Increment | Combo |
+| --------------------- |:----:|:-----:|:----------:|:---------:|:-----:|
+| badge					| ✓    | ✓     | ✓          | ✓         | ✓     |
+| buttons				| ✓    | ✓     | ✓          | ✓         | ✓     |
+| class					| ✓    | ✓     | ✓          | ✓         | ✓     |
+| comboLabel			|      |       |            |           | ✓     |
+| contentBadges			|      | ✓     |            |           | ✓     |
+| contentLists			| ✓    | ✓     | ✓          | ✓         |       |
+| description_html		| ✓    | ✓     | ✓          | ✓         | ✓     |
+| detailsColors			|      | ✓     |            |           |       |
+| detailsStorage		|      | ✓     |            |           |       |
+| iconName				|      |       | ✓          | ✓         | ✓     |
+| image					|      | ✓     |            |           | ✓     |
+| inputIncrement		|      |       |            | ✓         |       |
+| isDisabled			| ✓    | ✓     | ✓          | ✓         | ✓     |
+| language				| ✓    | ✓     | ✓          | ✓         | ✓     |
+| link					| ✓    | ✓     | ✓          | ✓         | ✓     |
+| message				| ✓    | ✓     | ✓          | ✓         | ✓     |
+| messageLink			| ✓    | ✓     | ✓          | ✓         | ✓     |
+| note					| ✓    | ✓     | ✓          | ✓         | ✓     |
+| price					| ✓    | ✓     | ✓          | ✓         | ✓     |
+| promotionBadges		| ✓    | ✓     | ✓          | ✓         | ✓     |
+| subtitle				| ✓    | ✓     | ✓          | ✓         | ✓     |
+| title					| ✓    | ✓     | ✓          | ✓         | ✓     |
+| titleTag				| ✓    | ✓     | ✓          | ✓         | ✓     |
+| upperTitle			| ✓    | ✓     | ✓          |           | ✓     |
+| visualBackgroundColor	|      | ✓     | ✓          |           | ✓     |
+
+
 ## Drupal implementation example
 
 ```jsx
@@ -67,7 +103,7 @@ import { CardComponent } from '../angular/card.component';
     description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
     link            : {
         label           : 'Learn more',
-        href            : 'www.videotron.com',
+        href            : 'https://www.videotron.com',
     },
     badge           : {
         label           : 'PROMOTION',
@@ -140,13 +176,12 @@ import { CardComponent } from '../angular/card.component';
         {
             label       : 'Add a phone with this plan',
             hierarchy   : 'primary-alt',
-            reverse     : true,
-            href        : 'www.videotron.com',
+            href        : 'https://www.videotron.com',
         },
         {
             label       : 'BUY only this PLAN',
             hierarchy   : 'tertiary',
-            href        : 'www.videotron.com',
+            href        : 'https://www.videotron.com',
         }
     ],
     message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
@@ -210,7 +245,7 @@ To override available block you need to embed the main index.twig
     description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
     link            : {
         label           : 'Learn more',
-        href            : 'www.videotron.com',
+        href            : 'https://www.videotron.com',
     },
     badge           : 'PROMOTION',
     contentLists    : contentLists,
@@ -252,13 +287,12 @@ export const commonProps = {
         {
             label: 'Add a phone with this plan',
             hierarchy: 'primary-alt',
-            reverse: true,
-            href: 'www.videotron.com',
+            href: 'https://www.videotron.com',
         },
         {
             label: 'BUY only this PLAN',
             hierarchy: 'tertiary',
-            href: 'www.videotron.com',
+            href: 'https://www.videotron.com',
         },
     ],
     contentLists: contentLists,
@@ -267,7 +301,7 @@ export const commonProps = {
     language: 'en',
     link: {
         label: 'Learn more',
-        href: 'www.videotron.com',
+        href: 'https://www.videotron.com',
     },
     message: 'Only plans with a minimum of $40.00 per month are available with that phone.',
     price: {
@@ -358,7 +392,7 @@ export const Drupal = (args) => ({
                 {
                     label: 'Choose this plan',
                     hierarchy: 'primary-alt',
-                    href: 'www.videotron.com',
+                    href: 'https://www.videotron.com',
                 },
             ],
             message: undefined,
@@ -472,7 +506,7 @@ export const phoneCommonProps = {
         {
             label: 'Configurate',
             hierarchy: 'primary-alt',
-            href: 'www.videotron.com',
+            href: 'https://www.videotron.com',
         },
     ],
 };
@@ -500,7 +534,7 @@ export const phoneCommonProps = {
             isDisabled: true,
             message: 'Not available with this plan.',
             messageLink: {
-                url: '',
+                href: 'https://www.videotron.com',
                 label: 'Choose another Plan',
                 class: '',
             },
@@ -554,7 +588,7 @@ export const phoneCommonProps = {
                 {
                     label: 'Add this protection',
                     hierarchy: 'primary-alt',
-                    href: 'www.videotron.com',
+                    href: 'https://www.videotron.com',
                 },
             ],
         }}
@@ -611,7 +645,7 @@ export const phoneCommonProps = {
                 {
                     label: 'Add to plan',
                     hierarchy: 'primary-alt',
-                    href: 'www.videotron.com',
+                    href: 'https://www.videotron.com',
                 },
             ],
         }}
@@ -673,7 +707,7 @@ export const comboCommonProps = {
         {
             label: 'Configurate',
             hierarchy: 'primary-alt',
-            href: 'www.videotron.com',
+            href: 'https://www.videotron.com',
         },
     ],
 };

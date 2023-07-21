@@ -1,0 +1,130 @@
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Meta } from '@storybook/addon-docs';
+import {
+    ContentAPI,
+    ContentListsAPI,
+    DetailsColorsAPI,
+    ImageAPI,
+    LinkAPI,
+    TitleAPI
+} from '../angular/api.component';
+
+<Meta
+    title='Components/Card/API'
+    parameters={{
+        viewMode: 'docs',
+        previewTabs: {
+            canvas: { hidden: true }
+        },
+    }}
+/>
+
+# Card API
+
+## Table of content
+
+- <a href="#icontent" target="_self">IContent</a>
+- <a href="#icontentlists" target="_self">IContentLists</a>
+- <a href="#idetailscolors" target="_self">IDetailsColors</a>
+- <a href="#iimage" target="_self">IImage</a>
+- <a href="#ilink" target="_self">ILink</a>
+- <a href="#ititle" target="_self">ITitle</a>
+
+## IContent
+
+<h3 id="icontent-api">API</h3>
+
+<ArgsTable of={ContentAPI} />
+
+<h3 id="icontent-format">Expected format</h3>
+
+```jsx
+{
+    "icon": "unlimited",
+    "label": "Free and Unlimited Go after 10Go",
+}
+```
+
+## IContentLists
+
+<h3 id="icontentlists-api">API</h3>
+
+<ArgsTable of={ContentListsAPI} />
+
+<h3 id="icontentlists-format">Expected format</h3>
+
+```jsx
+{
+    "content": [
+        {
+            "icon": "unlimited",
+            "label": "Free and Unlimited Go after 10Go",
+        },
+        {...},
+    ],
+    "title": "TV",
+    "description": "40 channels",
+}
+```
+
+## IDetailsColors
+
+<h3 id="idetailscolors-api">API</h3>
+
+<ArgsTable of={DetailsColorsAPI} />
+
+<h3 id="idetailscolors-format">Expected format</h3>
+
+```jsx
+{
+    "name": "Phantom Black",
+    "value": "000000",
+}
+```
+
+## IImage
+
+<h3 id="iimage-api">API</h3>
+
+<ArgsTable of={ImageAPI} />
+
+<h3 id="iimage-format">Expected format</h3>
+
+```jsx
+{
+    "alt": "iPhone 12 Mini",
+    "badgeIconName": "security",
+    "src": "/images/_docs/iphone-12-pro-max.png",
+}
+```
+
+## ILink
+
+<h3 id="ilink-api">API</h3>
+
+<ArgsTable of={LinkAPI} />
+
+<h3 id="ilink-format">Expected format</h3>
+
+```jsx
+{
+    "class": "custom-class",
+    "href": "https://www.videotron.com",
+    "label": "Learn more"
+}
+```
+
+## ITitle
+
+<h3 id="ititle-api">API</h3>
+
+<ArgsTable of={TitleAPI} />
+
+<h3 id="ititle-format">Expected format</h3>
+
+```jsx
+{
+  "category": "CellPhone plan",
+  "detail": "40GB - All inclusive Canada"
+}
+```

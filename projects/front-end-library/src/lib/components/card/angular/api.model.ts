@@ -1,19 +1,23 @@
-export interface IBadge {
-    iconName: string;
+export interface IContent {
+    icon: string;
     label: string;
 }
 
-export interface IButton {
-    hierarchy: string;
-    href: string;
-    label: string;
-    reverse: boolean;
+export interface IContentLists {
+    content: IContent[];
+    description: string;
+    title: string;
+}
+
+export interface IDetailsColors {
+    name: string;
+    value: string;
 }
 
 export interface IImage {
     alt: string;
-    badgeIconName: string;
-    script: string;
+    badgeIconName?: string;
+    src: string;
 }
 
 export interface IInputIncrement {
@@ -29,7 +33,12 @@ export interface IInputIncrement {
 }
 
 export interface ILink {
-    class: string;
+    class?: string;
     href: string;
     label: string;
+}
+
+export interface ITitle {
+    category?: string;
+    detail: string;
 }

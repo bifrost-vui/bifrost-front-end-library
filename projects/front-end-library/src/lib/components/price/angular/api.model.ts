@@ -16,13 +16,14 @@ export interface IPromotion {
 export interface IPrice {
     cent: string;
     class: string;
-    details: string;
+    details: HTMLElement;
     dollar: string;
     dollarClass: string;
     fullWidth: boolean;
     hasAsterisk: boolean;
+    isPriceBoxDisplayed: boolean;
     language: 'en' | 'fr';
-    message: string;
+    message: HTMLElement;
     promotion: IPromotion;
     reversed: boolean;
     size: 'small' | 'medium' | 'large';

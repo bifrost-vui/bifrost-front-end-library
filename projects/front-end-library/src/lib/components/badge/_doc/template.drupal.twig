@@ -1,12 +1,12 @@
 {# Default Variables (Props, Controls) #}
 {% set noUppercase = noUppercase|json_parse %}
 {% set isRounded = isRounded|json_parse %}
-{% set reversed = reversed|json_parse %}
+{% set _reversed = _reversed|json_parse %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set mainContainerClasses = [
   "d-flex flex-column justify-content-center",
-  (reversed ? "reversed bf-color-bg-ground"),
+  (_reversed ? "reversed bf-color-bg-ground"),
   (_disabled ? "disabled"),
 ] %}
 
@@ -15,7 +15,7 @@
   {% for index in [1, 2] %}
 
     {# In Loop : Boolean Variables #}
-    {% set isReversed = index == 2 and reversed is not defined %}
+    {% set isReversed = index == 2 and _reversed is not defined %}
 
     {# In Loop : Arrays of Classes With Dynamic Elements #}
     {% set innerContainerClasses = [
