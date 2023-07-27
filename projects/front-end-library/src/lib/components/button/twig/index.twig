@@ -17,7 +17,6 @@
 {% set isDisabled = (isDisabled ?? false) is same as(true) %}
 {% set isFullWidth = (fullWidth ?? false) is same as(true) %}
 {% set isLoading = (isLoading ?? false) is same as(true) %}
-{% set isReversed = (reversed ?? false) is same as(true) %}
 {% set isIconPositionRight = iconPosition is defined and iconPosition is same as("right") %}
 
 {# Boolean Variables - ORDER IS IMPORTANT #}
@@ -37,7 +36,7 @@
 {% set extraAttribute = extraAttribute|default({}) %}
 {% set hierarchy = hierarchy|default("secondary") %}
 {% set href = href|default("#") %}
-{% set iconSize = iconSize|default("small") %}
+{% set id = id|default("") %}
 
 {# Variables #}
 {% set componentTag = isLink ? "a" : "button" %}
@@ -46,7 +45,6 @@
 {% set buttonClasses = [
   "bf-button",
   "bf-button--" ~ hierarchy,
-  (isReversed ? "reversed"),
   (isFullWidth ? "bf-button--fullwidth"),
   (isDisabled ? "disabled"),
   (isLoading ? "loading"),
@@ -57,6 +55,7 @@
 {% set buttonAttributes = {
   "href": (isLink ? href),
   "type": (isLink is same as(false) ? isSubmit ? "submit" : "button"),
+  "id": id,
   "class": buttonClasses|join(' ')|trim,
   "disabled": (isDisabled ? "disabled"),
   "aria-controls": (hasAriaControls ? ariaControls),
@@ -91,7 +90,7 @@
       {% if hasIconName %}
         {% include "@bf-components/icon/twig/index.twig" with {
           name: iconName,
-          size: iconSize,
+          size: "small",
           class: (isIconPositionRight ? "bf-button__icon--right")
         } only %}
       {% endif %}

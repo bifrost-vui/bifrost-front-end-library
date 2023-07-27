@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IUpfront, IPromotion } from './api.model';
+import { IUpfront, IPromotion, IPrice } from './api.model';
 
 @Component({
     selector: 'bf-price',
     templateUrl: './price.component.html',
     // styleUrls: ['../common/style.scss'],
 })
-export class PriceComponent implements OnInit {
+export class PriceComponent implements IPrice, OnInit {
     constructor() {}
 
     @Input() cent: string;

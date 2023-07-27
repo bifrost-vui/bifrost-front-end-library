@@ -5,8 +5,16 @@ import { IChannelsData } from './api.model';
     selector: '',
 })
 export class ChannelsDataAPI implements IChannelsData {
-    /** <span style="color: red;">__Required__</span> */
+    /**
+     * <span style="color: red;">__Required__</span>
+     *
+     * @required
+     */
     @Input() imageSrc: string;
-    /** <span style="color: red;">__Required__</span> */
+    /**
+     * <span style="color: red;">__Required__</span>
+     *
+     * @required
+     */
     @Input() name: string;
 }

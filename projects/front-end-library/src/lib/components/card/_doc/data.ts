@@ -33,6 +33,61 @@ export const contentLists = [
     },
 ];
 
+export const contentListsWithChannels = [
+    {
+        title: 'TV 5 choices',
+        description: '28 channels',
+        content: [
+            {
+                label: '23 basic HD channels',
+                icon: 'helix-tv',
+            },
+            {
+                label: '5 Popular channels of your choice',
+                icon: 'tv-plan-showtime',
+            },
+        ],
+        channels: {
+            limited: [
+                {
+                    name: 'TVA',
+                    imageSrc: '/images/_docs/channels/CFCMH.webp',
+                },
+                {
+                    name: 'RDS',
+                    imageSrc: '/images/_docs/channels/RDS.webp',
+                },
+                {
+                    name: 'YOOHD',
+                    imageSrc: '/images/_docs/channels/YOOHD.webp',
+                },
+                {
+                    name: 'ABC',
+                    imageSrc: '/images/_docs/channels/ABCHD.webp',
+                },
+                {
+                    name: 'CTVHD',
+                    imageSrc: '/images/_docs/channels/CTVHD.webp',
+                },
+            ],
+        },
+    },
+    {
+        title: 'Internet GIGA',
+        description: '940 Unlimited',
+        content: [
+            {
+                label: 'Download speed up to 940 mbps',
+                icon: 'download-speed',
+            },
+            {
+                label: 'Data Included Unlimited',
+                icon: 'unlimited',
+            },
+        ],
+    },
+];
+
 export const contentListsNoTitle = [
     {
         content: [

@@ -159,7 +159,7 @@
     {% if hasLink %}
       <a {{ macros.addAttributes({
         "href": link.href|default(""),
-        "class": "bf-link",
+        "class": ["bf-link", link.class|default("")]|join(' ')|trim,
       }) }}>
         {{ link.label|default("") }}
       </a>
@@ -175,7 +175,7 @@
       {% set badge = badge|merge({
           hierarchy: badge.hierarchy|default("primary"),
           angle: badge.angle|default("left"),
-          class: "bf-card__badge"
+          class: ["bf-card__badge", badge.class|default("")]|join(' ')|trim
         })
       %}
       {% include "@bf-components/badge/twig/index.twig" with badge only %}
@@ -213,6 +213,16 @@
                 </li>
               {% endfor %}
             </ul>
+
+            {% if list.channels is not empty %}
+              {% if list.channels.limited is not empty %}
+                {% include "@bf-components/channels/twig/index.twig" with {
+                  channelsData: list.channels.limited,
+                  class: "mt-2",
+                  size: "small",
+                } only %}
+              {% endif %}
+            {% endif %}
           </div>
         {% endfor %}
       {% endif %}
@@ -225,7 +235,11 @@
                 <li {{ macros.addAttributes({
                   "style": "background-color: #" ~ color.value,
                   "title": "Color " ~ color.name,
-                }) }}></li>
+                }) }}>
+                  <span class="sr-only">
+                    Color {{ color.name }}
+                  </span>
+                </li>
               {% endfor %}
             </ul>
           {% endif %}
@@ -284,9 +298,9 @@
     {% endif %}
 
     {% if hasNote %}
-      <p class="small bf-color-neutral-secondary mb-0">
+      <div class="small bf-color-neutral-secondary mb-0">
         {{ note }}
-      </p>
+      </div>
     {% endif %}
 
     {% if hasInputIncrement %}

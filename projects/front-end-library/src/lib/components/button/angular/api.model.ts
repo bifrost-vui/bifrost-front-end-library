@@ -1,22 +1,26 @@
 export interface IButton {
+    ariaControls?: string;
+    ariaExpanded?: string;
+    ariaLabel?: string;
+    class?: string;
+    dataDismiss?: string;
+    dataTarget?: string;
+    dataToggle?: string;
+    extraAttribute?: string;
+    formAction?: string;
+    formEncryptionType?: null | 'application/x-www-form-urlencoded' | 'multipart/form-data' | 'text/plain';
+    formId?: string;
+    formMethod?: string;
+    formNoValidate?: boolean;
+    formTarget?: null | '_self' | '_blank' | '_parent' | '_top';
+    fullWidth?: boolean;
+    hierarchy?: 'primary' | 'primary-alt' | 'secondary' | 'tertiary';
+    href?: string;
+    iconName?: string;
+    iconPosition?: 'left' | 'right';
+    id?: string;
+    isDisabled?: boolean;
+    isLoading?: boolean;
+    isSubmit?: boolean;
     label: string;
-    href: string;
-    hierarchy: string;
-    isDisabled: boolean;
-    isLoading: boolean;
-    fullWidth: boolean;
-
-    iconName: string;
-    iconSize: string;
-    iconPosition: string;
-
-    dataDismiss: string;
-    dataToggle: string;
-    dataTarget: string;
-    ariaControls: string;
-    ariaExpanded: string;
-    ariaLabel: string;
-
-    extraAttribute: string;
-    class: string;
 }

@@ -11,7 +11,7 @@
 {% set inputIncrement = inputIncrement|json_parse %}
 {% set isDisabled = isDisabled|json_parse %}
 {% set messageLink = messageLink|json_parse %}
-{% set reversed = reversed|json_parse %}
+{% set _reversed = _reversed|json_parse %}
 {% set iconName = iconName|json_parse %}
 {% set contentBadges = contentBadges|json_parse %}
 {% set promotionBadges = promotionBadges|json_parse %}
@@ -20,7 +20,7 @@
 {# Arrays of Classes With Dynamic Elements #}
 {% set mainContainerClasses = [
   "d-flex flex-column flex-sm-row justify-content-center minh-100",
-  (reversed ? "reversed bf-color-bg-ground"),
+  (_reversed ? "reversed bf-color-bg-ground"),
 ] %}
 
 {# Template #}
@@ -28,7 +28,7 @@
   {% for index in [1, 2] %}
 
     {# In Loop : Boolean Variables #}
-    {% set isReversed = index == 2 and reversed is not defined %}
+    {% set isReversed = index == 2 and _reversed is not defined %}
 
     {# In Loop : Arrays of Classes With Dynamic Elements #}
     {% set innerContainerClasses = [
@@ -37,7 +37,7 @@
     ] %}
 
     <div class="{{ innerContainerClasses|join(' ')|trim }}">
-      {% include "@bf-components/card/twig/" ~ (cardVariant|default("index")) ~ ".twig" %}
+      {% include "@bf-components/card/twig/" ~ (_cardVariant|default("index")) ~ ".twig" %}
     </div>
   {% endfor %}
 </div>

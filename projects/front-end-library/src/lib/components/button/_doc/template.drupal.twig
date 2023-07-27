@@ -23,31 +23,24 @@
   {
     _name: "Ground + Reversed",
     _backgroundClass: "bf-color-bg-ground reversed",
-    reversed: true
   },
   {
     _name: "Underground + Reversed",
     _backgroundClass: "bf-color-bg-underground reversed",
-    reversed: true
   },
   {
     _name: "Highlight",
     _backgroundClass: "bf-color-bg-highlight highlight",
-    highlight: true
   },
   {
     _name: "Highlight + Reversed",
     _backgroundClass: "bf-color-bg-highlight reversed highlight",
-    reversed: true,
-    highlight: true
   }
 ] %}
 
 {# Template #}
 <div class="d-flex flex-column minh-100">
   {% for _variant in _variants %}
-    {% set reversed = reversed|default(_variant.reversed) %}
-    {% set highlight = highlight|default(_variant.highlight) %}
 
     {# In Loop : Arrays of Classes With Dynamic Elements #}
     {% set variantContainerClasses = [

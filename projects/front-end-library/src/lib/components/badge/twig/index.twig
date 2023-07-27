@@ -1,10 +1,11 @@
 {# Boolean Variables #}
 {% set hasIconName = iconName is defined and iconName is not empty %}
 {% set hasAngle = angle is defined and angle is not empty %}
+{% set isNoUppercase = (noUppercase ?? false) is same as(true) %}
+{% set isRounded = (isRounded ?? false) is same as(true) %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}
-{% set isRounded = isRounded ?? false %}
 {% set hierarchy = hierarchy|default("secondary") %}
 {% set label = label|default("") %}
 
@@ -21,7 +22,7 @@
 {% set badgeTextClasses = [
   "bf-text-interface-small bf-badge__label",
   "m-0",
-  (noUppercase ? "text-transform-initial"),
+  (isNoUppercase ? "text-transform-initial"),
 ] %}
 
 {# Template #}
