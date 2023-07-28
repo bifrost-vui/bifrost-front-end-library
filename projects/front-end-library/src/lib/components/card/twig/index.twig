@@ -215,13 +215,45 @@
             </ul>
 
             {% if list.channels is not empty %}
-              {% if list.channels.limited is not empty %}
-                {% include "@bf-components/channels/twig/index.twig" with {
-                  channelsData: list.channels.limited,
-                  class: "mt-2",
-                  size: "small",
-                } only %}
-              {% endif %}
+              <div class="bf-card__channels">
+                {% if list.channels.limited is not empty %}
+                  {% include "@bf-components/channels/twig/index.twig" with {
+                    channelsData: list.channels.limited,
+                    class: "mt-2",
+                    size: "small",
+                  } only %}
+                {% endif %}
+
+                {% if list.channels.full is not empty %}
+                  <div class="mt-2">
+                    {% include '@bf-components/link/twig/index.twig' with {
+                        label: 'See Channels',
+                    } only %}
+                  </div>
+                  {% embed "@bf-components/modal/twig/index.twig" with {
+                      id: "channelsListModal",
+                  } %}
+                      {% block modal_header %}
+                          <h2>
+                            {{ "List of channels"|t }}
+                          </h2>
+
+                          {% include '@bf-components/tab/twig/index.twig' with {
+                            navItems: oemFilters,
+                            itemClass: 'bf-font-size-5 font-weight-normal',
+                          } only %}
+                      {% endblock %}
+
+                      {% block modal_body_scroll_container %}
+                          // insert html or Twig Block here
+                      {% endblock %}
+
+                      {% block modal_footer %}
+                          // insert html or Twig Block here
+                      {% endblock %}
+                  {% endembed %}
+                {% endif %}
+              </div>
             {% endif %}
           </div>
         {% endfor %}

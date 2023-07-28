@@ -1,4 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ILink } from '../../link/angular/api.model';
+import { INavItems } from './api.model';
 
 /**
  * API is the same between **Angular** and **Drupal**.
@@ -13,10 +15,33 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } fro
 export class TabComponent implements OnInit {
     constructor() {}
 
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Custom classes on the tab component main container.
+     */
     @Input() class: string;
-    @Input() sliderClass: string;
-    @Input() navItems: object;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Custom classes on each tab navigation button.
+     */
     @Input() itemClass: string;
+    /**
+     * <span style="color: red;">__Required__</span>
+     * <br><br>
+     * - Tab navigation buttons.
+     * - See Link Component [API](/?path=/docs/components-link--drupal).
+     *
+     * @required
+     */
+    @Input() navItems: INavItems[];
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Custom classes on the container of the tab items.
+     */
+    @Input() sliderClass: string;
 
     ngOnInit() {
         console.log('Tab', this);
