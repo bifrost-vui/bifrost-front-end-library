@@ -36,6 +36,7 @@
 {% set extraAttribute = extraAttribute|default({}) %}
 {% set hierarchy = hierarchy|default("secondary") %}
 {% set href = href|default("#") %}
+{% set iconSize = iconSize|default("small") %}
 {% set id = id|default("") %}
 
 {# Variables #}
@@ -90,7 +91,7 @@
       {% if hasIconName %}
         {% include "@bf-components/icon/twig/index.twig" with {
           name: iconName,
-          size: "small",
+          size: iconSize,
           class: (isIconPositionRight ? "bf-button__icon--right")
         } only %}
       {% endif %}
