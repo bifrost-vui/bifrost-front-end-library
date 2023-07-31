@@ -1,35 +1,56 @@
 {# Default Variables (Props, Controls) #}
+{% set _isFunctionalityTemplate = _isFunctionalityTemplate|json_parse %}
 {% set navItems = navItems|json_parse %}
 {% set reversed = reversed|json_parse %}
 
 {# Template #}
 <div class="d-flex flex-column justify-content-center minh-100">
-  {% for index in [1, 2] %}
-
-    {# In Loop : Boolean Variables #}
-    {% set isReversed = index == 2 and reversed is not defined %}
-
-    {# In Loop : Arrays of Classes With Dynamic Elements #}
-    {% set row1Classes = [
-      "flex-grow-1 d-flex align-items-center justify-content-center minh-100 py-4 bf-color-bg-ground",
-      (isReversed ? "reversed"),
-    ] %}
-    {% set row2Classes = [
-      "flex-grow-1 d-flex align-items-center justify-content-center minh-100 py-4 bf-color-bg-underground",
-      (isReversed ? "reversed"),
-    ] %}
-
-    <div class="{{ row1Classes|join(' ')|trim }}">
-      {% include "@bf-components/tab/twig/index.twig" %}
+  {% if _isFunctionalityTemplate is same as(true) %}
+    <div class="flex-grow-1 d-flex align-items-center justify-content-center minh-100 py-4 bf-color-bg-ground">
+      {% include "@bf-components/tab/twig/real-tab.twig" %}
     </div>
-    <div class="{{ row2Classes|join(' ')|trim }}">
-      {% include "@bf-components/tab/twig/index.twig" %}
+  {% else %}
+    {% for index in [1, 2] %}
+
+      {# In Loop : Boolean Variables #}
+      {% set isReversed = index == 2 and reversed is not defined %}
+
+      {# In Loop : Arrays of Classes With Dynamic Elements #}
+      {% set row1Classes = [
+        "flex-grow-1 d-flex align-items-center justify-content-center minh-100 py-4 bf-color-bg-ground",
+        (isReversed ? "reversed"),
+      ] %}
+      {% set row2Classes = [
+        "flex-grow-1 d-flex align-items-center justify-content-center minh-100 py-4 bf-color-bg-underground",
+        (isReversed ? "reversed"),
+      ] %}
+
+      <div class="{{ row1Classes|join(' ')|trim }}">
+        {% include "@bf-components/tab/twig/real-tab.twig" %}
+      </div>
+      <div class="{{ row2Classes|join(' ')|trim }}">
+        {% include "@bf-components/tab/twig/real-tab.twig" %}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {% if _isFunctionalityTemplate is same as(true) %}
+    <div class="bf-tab-content tab-content">
+      <div id="tabContentChannel" class="tab-pane fade show active" role="tabpanel" aria-labelledby="tabChannel">
+        <p>Tab content for <strong>Channel selection</strong></p>
+      </div>
+
+      <div id="tabContentPremium" class="tab-pane fade" role="tabpanel" aria-labelledby="tabPremium">
+        <p>Tab content for <strong>Premium and speciality channels</strong></p>
+      </div>
+
+      <div id="tabContentRemote" class="tab-pane fade" role="tabpanel" aria-labelledby="tabRemote">
+        <p>Tab content for <strong>Remote control</strong></p>
+      </div>
+
+      <div id="tabContentHome" class="tab-pane fade" role="tabpanel" aria-labelledby="tabHome">
+        <p>Tab content for <strong>Home network</strong></p>
+      </div>
     </div>
-  {% endfor %}
+  {% endif %}
 </div>
-
-<script>
-  function init() { document.querySelectorAll(".nav-link").forEach(item => {
-  item.addEventListener("click", event => { event.preventDefault(); }) }) }
-  init();
-</script>

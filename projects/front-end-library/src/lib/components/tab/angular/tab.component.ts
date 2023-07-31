@@ -30,8 +30,9 @@ export class TabComponent implements OnInit {
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
-     * - Tab navigation buttons.
-     * - See Link Component [API](/?path=/docs/components-link--drupal).
+     * - Tab items.
+     * - See INavItems <a href="/?path=/docs/components-tab-api--page#inavitems-api" target="_blank">API</a>
+     *    and <a href="/?path=/docs/components-tab-api--page#inavitems-format" target="_blank">expected format</a>.
      *
      * @required
      */

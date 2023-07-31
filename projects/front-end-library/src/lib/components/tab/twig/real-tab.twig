@@ -8,7 +8,7 @@
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set tabClasses = [
-  "bf-tab nav",
+  "bf-tab js-bf-tab nav",
   (class),
 ] %}
 {% set tabSliderClasses = [
@@ -30,13 +30,16 @@
         ] %}
 
         <li>
+          {% if item.dataTarget starts with "#" == false %}
+            {% set fixDataTarget = "#" ~ item.dataTarget %}
+          {% endif %}
+
           <a {{ macros.addAttributes({
             "aria-controls": item.ariaControls,
             "aria-selected": item.ariaSelected,
             "class": tabLinkClasses|join(' ')|trim,
-            "data-target": item.dataTarget,
+            "data-target": fixDataTarget|default(item.dataTarget),
             "data-toggle": "tab",
-            "href": item.href|default("#"),
             "id": item.id,
             "role": "tab",
           }, item.extraAttribute|default({})) }}>
