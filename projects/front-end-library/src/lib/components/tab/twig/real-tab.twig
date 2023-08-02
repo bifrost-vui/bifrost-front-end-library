@@ -24,22 +24,22 @@
 
         {# In Loop : Arrays of Classes With Dynamic Elements #}
         {% set tabLinkClasses = [
-          "nav-link mr-lg-6 mr-4 my-0",
+          "nav-link my-0",
           (itemClass),
           (item.class|default("")),
         ] %}
 
         <li>
-          {% if item.dataTarget starts with "#" == false %}
-            {% set fixDataTarget = "#" ~ item.dataTarget %}
+          {% if item.href starts with "#" == false %}
+            {% set fixHref = "#" ~ item.href %}
           {% endif %}
 
           <a {{ macros.addAttributes({
             "aria-controls": item.ariaControls,
             "aria-selected": item.ariaSelected,
             "class": tabLinkClasses|join(' ')|trim,
-            "data-target": fixDataTarget|default(item.dataTarget),
             "data-toggle": "tab",
+            "href": fixHref|default(item.href),
             "id": item.id,
             "role": "tab",
           }, item.extraAttribute|default({})) }}>

@@ -225,32 +225,63 @@
                 {% endif %}
 
                 {% if list.channels.full is not empty %}
+                  {% set tabsNavItems = [] %}
+                  {% for channelsFull in list.channels.full %}
+                    {% set tabsNavItems = tabsNavItems|merge([channelsFull.tabData]) %}
+                  {% endfor %}
+
                   <div class="mt-2">
                     {% include '@bf-components/link/twig/index.twig' with {
+                        dataTarget: '#channelsListModal',
+                        dataToggle: 'modal',
+                        href: '#channelsListModal',
                         label: 'See Channels',
                     } only %}
                   </div>
                   {% embed "@bf-components/modal/twig/index.twig" with {
+                      class: "pr-3 pr-md-0",
                       id: "channelsListModal",
                   } %}
-                      {% block modal_header %}
-                          <h2>
-                            {{ "List of channels"|t }}
-                          </h2>
+                    {# Import macros #}
+                    {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
-                          {% include '@bf-components/tab/twig/index.twig' with {
-                            navItems: oemFilters,
-                            itemClass: 'bf-font-size-5 font-weight-normal',
-                          } only %}
-                      {% endblock %}
+                    {% block modal_header %}
+                      <div class="w-100 text-left">
+                        <p class="modal-title">
+                          {{ "List of channels"|t }}
+                        </p>
+                      </div>
+                      {% include "@bf-components/tab/twig/real-tab.twig" with {
+                        navItems: tabsNavItems,
+                        itemClass: "bf-font-size-5 font-weight-normal",
+                      } only %}
+                    {% endblock %}
 
-                      {% block modal_body_scroll_container %}
-                          // insert html or Twig Block here
-                      {% endblock %}
+                    {% block modal_body_scroll_container %}
+                      <div class="bf-tab-content tab-content">
+                        {% for channelsFull in list.channels.full %}
+                          {% set tabContentClasses = [
+                            "tab-pane fade",
+                            (channelsFull.tabContent.class),
+                          ] %}
 
-                      {% block modal_footer %}
-                          // insert html or Twig Block here
-                      {% endblock %}
+                          <div {{ macros.addAttributes({
+                            "aria-labelledby": channelsFull.tabContent.ariaLabelledby,
+                            "class": tabContentClasses|join(' ')|trim,
+                            "id": channelsFull.tabContent.id,
+                            "role": "tabpanel",
+                          }) }}>
+                            <div class="mt-2">
+                              {{ channelsFull.tabContent.description }}
+                            </div>
+                            {% include "@bf-components/channels/twig/index.twig" with {
+                              channelsData: channelsFull.tabContent.channelsList,
+                              size: "large",
+                            } only %}
+                          </div>
+                        {% endfor %}
+                      </div>
+                    {% endblock %}
                   {% endembed %}
                 {% endif %}
               </div>

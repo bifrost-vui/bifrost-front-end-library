@@ -42,11 +42,20 @@
   &__slider {
     display: flex;
     flex: 1;
+    gap: 1.5rem;
     width: 100%;
     white-space: nowrap;
     margin: 0;
     padding: 0;
     border-bottom: 1px solid var(--bf-color-stroke-secondary);
+
+    @include media-breakpoint-up(lg) {
+      gap: 3rem;
+    }
+
+    & > li:last-of-type .nav-link {
+      margin-right: 0.5rem;
+    }
   }
   .nav-link {
     @extend .h3;
@@ -61,6 +70,7 @@
 
     &.active,
     &:hover {
+      font-weight: 700;
       color: inherit;
 
       &:before {
@@ -74,9 +84,4 @@
 
 .bf-color-bg-underground .bf-tab > div:before {
   background-image: var(--bf-color-bg-linear-underground-x);
-}
-
-// Styles for content shown in the container the tab opens
-.bf-tab-content {
-  padding: 0 2.5rem var(--bf-spacer-2);
 }
