@@ -55,7 +55,8 @@ export class CardComponent implements OnInit {
      * - Available in every card type but `combo`.
      * - This content displays under the card header.
      * - Each object in this array is a content section separated by a line.
-     * - See IContentLists <a href="/?path=/docs/components-card-api--page#icontentlists-api" target="_blank">API</a>
+     * - See `IContentLists`
+     *    <a href="/?path=/docs/components-card-api--page#icontentlists-api" target="_blank">API</a>
      *    and <a href="/?path=/docs/components-card-api--page#icontentlists-format" target="_blank">expected format</a>.
      */
     @Input() contentLists: IContentLists[];
@@ -72,7 +73,8 @@ export class CardComponent implements OnInit {
      * <br><br>
      * - Only available in the __phone__ card.
      * - It displays circles of available colors model for phones.
-     * - See IDetailsColors <a href="/?path=/docs/components-card-api--page#idetailscolors-api" target="_blank">API</a>
+     * - See `IDetailsColors`
+     *    <a href="/?path=/docs/components-card-api--page#idetailscolors-api" target="_blank">API</a>
      *    and <a href="/?path=/docs/components-card-api--page#idetailscolors-format" target="_blank">expected format</a>.
      */
     @Input() detailsColors: IDetailsColors[];
@@ -99,7 +101,8 @@ export class CardComponent implements OnInit {
      * - Only available in the __phone__ and __combo__ cards.
      * - It displays an image in the image area of the card.
      * - If `badgeIconName` is provided with an Icon name, it will show up in the bottom right corner of the image area.
-     * - See IImage <a href="/?path=/docs/components-card-api--page#iimage-api" target="_blank">API</a>
+     * - See `IImage`
+     *    <a href="/?path=/docs/components-card-api--page#iimage-api" target="_blank">API</a>
      *    and <a href="/?path=/docs/components-card-api--page#iimage-format" target="_blank">expected format</a>.
      */
     @Input() image: IImage;
@@ -128,7 +131,8 @@ export class CardComponent implements OnInit {
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
      * - It is displayed below the subtitle.
-     * - See ILink <a href="/?path=/docs/components-card-api--page#ilink-api" target="_blank">API</a>
+     * - See `ILink`
+     *    <a href="/?path=/docs/components-card-api--page#ilink-api" target="_blank">API</a>
      *    and <a href="/?path=/docs/components-card-api--page#ilink-format" target="_blank">expected format</a>.
      */
     @Input() link: ILink;
@@ -142,7 +146,8 @@ export class CardComponent implements OnInit {
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
      * - It is displayed just after a `message`.
-     * - See ILink <a href="/?path=/docs/components-card-api--page#ilink-api" target="_blank">API</a>
+     * - See `ILink`
+     *    <a href="/?path=/docs/components-card-api--page#ilink-api" target="_blank">API</a>
      *    and <a href="/?path=/docs/components-card-api--page#ilink-format" target="_blank">expected format</a>.
      */
     @Input() messageLink: ILink;
@@ -179,7 +184,8 @@ export class CardComponent implements OnInit {
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
      * - It is displayed in the header area between the `upperTitle` and `subtitle`.
-     * - See ITitle <a href="/?path=/docs/components-card-api--page#ititle-api" target="_blank">API</a>
+     * - See `ITitle`
+     *    <a href="/?path=/docs/components-card-api--page#ititle-api" target="_blank">API</a>
      *    and <a href="/?path=/docs/components-card-api--page#ititle-format" target="_blank">expected format</a>.
      */
     @Input() title: any;

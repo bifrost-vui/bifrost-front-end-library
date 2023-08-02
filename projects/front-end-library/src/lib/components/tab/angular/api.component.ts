@@ -23,6 +23,7 @@ export class NavItemsAPI implements INavItems {
      * - `aria-selected` is an accessibility attribute.
      * - It is used by screen reader to know if the targeted element is active.
      * - It is not a `boolean` type, because the value has to be a `string` since it is an HTML attribute value.
+     * - The active tab should be `"true"` and the other tabs `"false"`.
      */
     @Input() ariaSelected: 'true' | 'false' = 'false';
     /**
@@ -31,15 +32,6 @@ export class NavItemsAPI implements INavItems {
      * Custom classes on the tab item.
      */
     @Input() class: string;
-    /**
-     * <span style="color: orange;">__Optional__</span>: Unneeded on Tab-like Nav
-     * <br>
-     * <span style="color: red;">__Required__</span>: Real tab functionality
-     * <br><br>
-     * - `data-target` is an attribute used for JavaScript to know which element to open/target when this tab is clicked on.
-     * - It will normally be the same as the `id` of the targeted element, but with a `#` in front of it.
-     */
-    @Input() dataTarget: string;
     /**
      * <span style="color: orange;">__Optional__</span>: Unneeded on Tab-like Nav
      * <br>
@@ -60,12 +52,16 @@ export class NavItemsAPI implements INavItems {
      */
     @Input() extraAttribute: string | object;
     /**
-     * <span style="color: red;">__Required__</span>: Tab-like Nav
-     * <br>
-     * <span style="color: orange;">__Optional__</span>: Unneeded on Real tab functionality
+     * <span style="color: red;">__Required__</span>: Real tab functionality
      * <br><br>
+     * __Tab-like Nav__
      * - URL of the link.
-     * - Only needed when the component is used as a tab-like navigation.
+     *
+     * __Real tab functionality__
+     * - It is used for JavaScript to know which element to open when this tab is clicked on.
+     * - It will normally be the same as the `id` of the targeted element, but with a `#` in front of it.
+     *
+     * __Note__: In Storybook mock data, because of an issue, you can't put the `#` before the `href`. It will make the app crash.
      */
     @Input() href: string;
     /**

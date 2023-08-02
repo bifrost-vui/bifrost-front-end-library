@@ -11,7 +11,8 @@ export class ChannelsComponent implements OnInit {
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
-     * See IChannelsData <a href="/?path=/docs/components-channels-api--page#ichannelsdata-api" target="_blank">API</a>
+     * See `IChannelsData`
+     *  <a href="/?path=/docs/components-channels-api--page#ichannelsdata-api" target="_blank">API</a>
      *  and <a href="/?path=/docs/components-channels-api--page#ichannelsdata-format" target="_blank">expected format</a>.
      *
      * @required
