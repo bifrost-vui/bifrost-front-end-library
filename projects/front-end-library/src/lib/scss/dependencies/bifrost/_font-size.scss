@@ -1,0 +1,10 @@
+.bf-font-size {
+  @each $fs in $videotronFontSizes {
+    $i: index($videotronFontSizes, $fs);
+    $fsRem: calculateRem($fs);
+
+    &-#{$i} {
+      font-size: #{$fsRem};
+    }
+  }
+}

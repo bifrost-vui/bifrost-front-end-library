@@ -12,6 +12,18 @@ import { TabComponent } from '../angular/tab.component';
 
 # Tab
 
+As per release version `1.12.0`, the component as a new functionality, the one of real tabs to open its
+associated content. Before that version, the component was mostly used as a navigation with tabs as links.
+It was possible to have a real tabs functionality by adding custom attributes and all, but since version `1.12.0`,
+it is now included within this component.
+
+There is two separate ways to use each tab component functionalities:
+
+1. [Tab-like Nav](#tab-like-nav): Unchanged tab component
+2. [Real Tab Functionality](#real-tab-functionality): New, real tab functionality component
+
+> Be sure to understand that to use the new `Real Tab Functionality`, the file to `include` is not the same as the `Tab-like Nav`.
+
 <br />
 
 ## Component API
@@ -25,9 +37,41 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+### Tab-like Nav
+
+```jsx
+{% include '@bf-components/tab/twig/index.twig' with {
+    'class': 'example-class',
+    'itemClass': 'example-item-class',
+    'navItems': [
+        {
+            'label': 'Channel selection',
+            'href': '/channelSelection',
+            'class': 'active'
+        },
+        {
+            'label': 'Premium and speciality channels',
+            'href': '/premiumChannels',
+            'class': ''
+        },
+        {
+            'label': 'Remote control',
+            'href': '/remoteControl',
+            'class': ''
+        },
+        {
+            'label': 'Home network',
+            'href': '/homeNetwork',
+            'class': ''
+        },
+    ],
+    'sliderClass': 'example-slider-class',
+} %}
+```
+
 <Canvas withSource="none">
     <Story
-        name="Drupal"
+        name="Drupal - Tab-like Nav"
         height="300px"
         args={{
             elementPath: 'components/tab/_doc/template.drupal',
@@ -45,11 +89,153 @@ export const Drupal = (args) => ({
 
 <Canvas withSource="none">
     <Story
-        name="Drupal - Single Tab"
+        name="Drupal - Tab-like Nav - Single Tab"
         height="300px"
         args={{
             elementPath: 'components/tab/_doc/template.drupal',
             navItems: [{ label: 'Channel selection', href: '/channelSelection', class: 'active' }],
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+### Real Tab Functionality
+
+```jsx
+{% include '@bf-components/tab/twig/real-tab.twig' with {
+    'class': 'example-class',
+    'itemClass': 'example-item-class',
+    'navItems': [
+        {
+            'ariaControls': 'tabContentChannel',
+            'ariaSelected': 'true',
+            'class': 'active',
+            'extraAttribute': {
+                'data-example-1': 'exampleValue-1',
+                'data-example-2': 'exampleValue-2'
+            },
+            'href': '#tabContentChannel',
+            'id': 'tabChannel',
+            'label': 'Channel selection'
+        },
+        {
+            'ariaControls': 'tabContentPremium',
+            'ariaSelected': 'false',
+            'class': '',
+            'href': '#tabContentPremium',
+            'id': 'tabPremium',
+            'label': 'Premium and speciality channels'
+        },
+        {
+            'ariaControls': 'tabContentRemote',
+            'ariaSelected': 'false',
+            'class': '',
+            'href': '#tabContentRemote',
+            'id': 'tabRemote',
+            'label': 'Remote control'
+        },
+        {
+            'ariaControls': 'tabContentHome',
+            'ariaSelected': 'false',
+            'class': '',
+            'href': '#tabContentHome',
+            'id': 'tabHome',
+            'label': 'Home network'
+        },
+    ],
+    'sliderClass': 'example-slider-class',
+} %}
+```
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Real Tab - Look"
+        height="300px"
+        args={{
+            elementPath: 'components/tab/_doc/real-tab-template.drupal',
+            _isFunctionalityTemplate: false,
+            navItems: [
+                {
+                    ariaControls: 'tabContentChannel',
+                    ariaSelected: 'true',
+                    class: 'active',
+                    href: 'tabContentChannel',
+                    id: 'tabChannel',
+                    label: 'Channel selection'
+                },
+                {
+                    ariaControls: 'tabContentPremium',
+                    ariaSelected: 'false',
+                    class: '',
+                    href: 'tabContentPremium',
+                    id: 'tabPremium',
+                    label: 'Premium and speciality channels'
+                },
+                {
+                    ariaControls: 'tabContentRemote',
+                    ariaSelected: 'false',
+                    class: '',
+                    href: 'tabContentRemote',
+                    id: 'tabRemote',
+                    label: 'Remote control'
+                },
+                {
+                    ariaControls: 'tabContentHome',
+                    ariaSelected: 'false',
+                    class: '',
+                    href: 'tabContentHome',
+                    id: 'tabHome',
+                    label: 'Home network'
+                },
+            ],
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Real Tab - Functionality"
+        height="300px"
+        args={{
+            elementPath: 'components/tab/_doc/real-tab-template.drupal',
+            _isFunctionalityTemplate: true,
+            navItems: [
+                {
+                    ariaControls: 'tabContentChannel',
+                    ariaSelected: 'true',
+                    class: 'active',
+                    href: 'tabContentChannel',
+                    id: 'tabChannel',
+                    label: 'Channel selection'
+                },
+                {
+                    ariaControls: 'tabContentPremium',
+                    ariaSelected: 'false',
+                    class: '',
+                    href: 'tabContentPremium',
+                    id: 'tabPremium',
+                    label: 'Premium and speciality channels'
+                },
+                {
+                    ariaControls: 'tabContentRemote',
+                    ariaSelected: 'false',
+                    class: '',
+                    href: 'tabContentRemote',
+                    id: 'tabRemote',
+                    label: 'Remote control'
+                },
+                {
+                    ariaControls: 'tabContentHome',
+                    ariaSelected: 'false',
+                    class: '',
+                    href: 'tabContentHome',
+                    id: 'tabHome',
+                    label: 'Home network'
+                },
+            ],
         }}
     >
         {Drupal.bind({})}

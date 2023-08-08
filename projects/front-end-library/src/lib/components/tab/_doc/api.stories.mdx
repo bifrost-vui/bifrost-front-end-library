@@ -1,0 +1,58 @@
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Meta } from '@storybook/addon-docs';
+import { NavItemsAPI } from '../angular/api.component';
+
+<Meta
+    title='Components/Tab/API'
+    parameters={{
+        viewMode: 'docs',
+        previewTabs: {
+            canvas: { hidden: true }
+        },
+    }}
+/>
+
+# Tab API
+
+## Table of content
+
+- <a href="#inavitems" target="_self">INavItems</a>
+
+## INavItems
+
+<h3 id="inavitems-api">API</h3>
+
+<ArgsTable of={NavItemsAPI} />
+
+<h3 id="inavitems-format">Expected format</h3>
+
+#### Tab-like Nav
+
+```jsx
+{
+    "class": "active",
+    "extraAttribute": {
+        "data-example-1": "exampleValue-1",
+        "data-example-2": "exampleValue-2"
+    },
+    "href": "/channelSelection",
+    "label": "Channel selection"
+}
+```
+
+#### Real tab functionality
+
+```jsx
+{
+    "ariaControls": "tabContentChannel",
+    "ariaSelected": "true",
+    "class": "active",
+    "extraAttribute": {
+        "data-example-1": "exampleValue-1",
+        "data-example-2": "exampleValue-2"
+    },
+    "href": "#tabContentChannel",
+    "id": "tabChannel",
+    "label": "Channel selection"
+}
+```

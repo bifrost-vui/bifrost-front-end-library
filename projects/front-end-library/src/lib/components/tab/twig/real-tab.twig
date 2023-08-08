@@ -8,7 +8,7 @@
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set tabClasses = [
-  "bf-tab nav",
+  "bf-tab js-bf-tab nav",
   (class),
 ] %}
 {% set tabSliderClasses = [
@@ -17,9 +17,9 @@
 ] %}
 
 {# Template #}
-<nav class="{{ tabClasses|join(' ')|trim }}">
+<div class="{{ tabClasses|join(' ')|trim }}">
   <div>
-    <ul class="{{ tabSliderClasses|join(' ')|trim }}">
+    <ul role="tablist" class="{{ tabSliderClasses|join(' ')|trim }}">
       {% for item in navItems %}
 
         {# In Loop : Arrays of Classes With Dynamic Elements #}
@@ -30,10 +30,18 @@
         ] %}
 
         <li>
-          <a {{ macros.addAttributes({
-            "href": item.href|default("#"),
-            "class": tabLinkClasses|join(' ')|trim,
+          {% if item.href starts with "#" == false %}
+            {% set fixHref = "#" ~ item.href %}
+          {% endif %}
 
+          <a {{ macros.addAttributes({
+            "aria-controls": item.ariaControls,
+            "aria-selected": item.ariaSelected,
+            "class": tabLinkClasses|join(' ')|trim,
+            "data-toggle": "tab",
+            "href": fixHref|default(item.href),
+            "id": item.id,
+            "role": "tab",
           }, item.extraAttribute|default({})) }}>
             {{ item.label|default("") }}
           </a>
@@ -41,4 +49,4 @@
       {% endfor %}
     </ul>
   </div>
-</nav>
+</div>

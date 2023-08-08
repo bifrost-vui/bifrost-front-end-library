@@ -1,6 +1,9 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Meta } from '@storybook/addon-docs';
 import {
+    ChannelsAPI,
+    ChannelsFullAPI,
+    ChannelsFullTabContentAPI,
     ContentAPI,
     ContentListsAPI,
     DetailsColorsAPI,
@@ -23,12 +26,94 @@ import {
 
 ## Table of content
 
+- <a href="#ichannels" target="_self">IChannels</a>
+- <a href="#ichannelsfull" target="_self">IChannelsFull</a>
+- <a href="#ichannelsfulltabcontent" target="_self">IChannelsFullTabContent</a>
 - <a href="#icontent" target="_self">IContent</a>
 - <a href="#icontentlists" target="_self">IContentLists</a>
 - <a href="#idetailscolors" target="_self">IDetailsColors</a>
 - <a href="#iimage" target="_self">IImage</a>
 - <a href="#ilink" target="_self">ILink</a>
 - <a href="#ititle" target="_self">ITitle</a>
+
+## IChannels
+
+<h3 id="ichannels-api">API</h3>
+
+<ArgsTable of={ChannelsAPI} />
+
+<h3 id="ichannels-format">Expected format</h3>
+
+```jsx
+{
+    "full": [],
+    "limited": [
+        {
+            "imageSrc": "/images/_docs/channels/CFCMH.webp",
+            "name": "TVA",
+        },
+        {...}
+    ],
+}
+```
+
+## IChannelsFull
+
+<h3 id="ichannelsfull-api">API</h3>
+
+<ArgsTable of={ChannelsFullAPI} />
+
+<h3 id="ichannelsfull-format">Expected format</h3>
+
+```jsx
+{
+    "tabContent": {
+        "ariaLabelledby": "tabIncluded",
+        "channelsList": [
+            {
+                "imageSrc": "/images/_docs/channels/CFCMH.webp",
+                "name": "TVA",
+            },
+            {...}
+        ],
+        "class": "show active",
+        "description": "<p><strong>23 channels included</strong></p>",
+        "id": "tabContentIncluded",
+    },
+    "tabData": {
+        "ariaControls": "tabContentIncluded",
+        "ariaSelected": "true",
+        "class": "active",
+        "href": "tabContentIncluded",
+        "id": "tabIncluded",
+        "label": "Included",
+    },
+}
+```
+
+## IChannelsFullTabContent
+
+<h3 id="ichannelsfulltabcontent-api">API</h3>
+
+<ArgsTable of={ChannelsFullTabContentAPI} />
+
+<h3 id="ichannelsfulltabcontent-format">Expected format</h3>
+
+```jsx
+{
+    "ariaLabelledby": "tabIncluded",
+    "channelsList": [
+        {
+            "imageSrc": "/images/_docs/channels/CFCMH.webp",
+            "name": "TVA",
+        },
+        {...}
+    ],
+    "class": "show active",
+    "description": "<p><strong>23 channels included</strong></p>",
+    "id": "tabContentIncluded",
+}
+```
 
 ## IContent
 
@@ -55,6 +140,41 @@ import {
 
 ```jsx
 {
+    "channels": {
+        full: [
+            {
+                "tabContent": {
+                    "ariaLabelledby": "tabIncluded",
+                    "channelsList": [
+                        {
+                            "imageSrc": "/images/_docs/channels/CFCMH.webp",
+                            "name": "TVA",
+                        },
+                        {...}
+                    ],
+                    "class": "show active",
+                    "description": "<p><strong>23 channels included</strong></p>",
+                    "id": "tabContentIncluded",
+                },
+                "tabData": {
+                    "ariaControls": "tabContentIncluded",
+                    "ariaSelected": "true",
+                    "class": "active",
+                    "href": "tabContentIncluded",
+                    "id": "tabIncluded",
+                    "label": "Included",
+                },
+            },
+            {...}
+        ],
+        limited: [
+            {
+                "imageSrc": "/images/_docs/channels/CFCMH.webp",
+                "name": "TVA",
+            },
+            {...}
+        ],
+    },
     "content": [
         {
             "icon": "unlimited",
