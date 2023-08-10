@@ -6,7 +6,7 @@ export interface IBlockSelection {
     title?: string;
     titleTag?: string;
     topLink?: ILink;
-    totalPrice?: object;
+    totalPrice?: ITotalPrice;
 }
 
 export interface IContentLists {
