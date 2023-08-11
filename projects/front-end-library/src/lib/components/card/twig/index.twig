@@ -354,7 +354,7 @@
       {% set price =
         price|merge({
           class: "w-100 " ~ price.class,
-          language: language
+          language: price.language|default(language)
         })
       %}
       {% include "@bf-components/price/twig/index.twig" with price only %}
