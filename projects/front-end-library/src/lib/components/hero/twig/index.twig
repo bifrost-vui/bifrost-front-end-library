@@ -21,6 +21,7 @@
 {% set isBlockBreadcrumbDefined = block("breadcrumb") is defined %}
 {% set isBlockContentDefined = block("content") is defined %}
 {% set isHeightLarge = height is defined and height is same as("large") %}
+{% set isReversed = (reversed ?? false) is same as(true) %}
 
 {# Boolean Variables - ORDER IS IMPORTANT #}
 {% set hasImageLarge = hasImage and image.lg is not empty %}
@@ -30,11 +31,12 @@
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}
+{% set language = language|default("en") %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set heroClasses = [
   "bf-hero d-flex flex-column",
-  (reversed ? "reversed"),
+  (isReversed ? "reversed"),
   (isBackgroundGround ? "bf-hero--bg-ground"),
   (isBackgroundHighlight ? "bf-hero--bg-highlight highlight"),
   (isHeightLarge ? "bf-hero--height-large"),

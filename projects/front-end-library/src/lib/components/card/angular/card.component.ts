@@ -206,6 +206,8 @@ export class CardComponent implements OnInit {
     @Input() visualBackgroundColor: string;
 
     /**
+     * __\*Deprecated\*__
+     *
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
      * - Use `price.language` instead
