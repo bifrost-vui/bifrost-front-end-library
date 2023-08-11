@@ -12,6 +12,8 @@ export interface IHero {
     buttons?: IButton[];
     class?: string;
     content?: HTMLElement | 'TwigBlock';
+    customBgColor?: string;
+    customFontColor?: string;
     description?: string;
     height?: 'automatic' | 'large';
     icon?: string | IIcon;

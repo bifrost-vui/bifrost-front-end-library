@@ -70,6 +70,25 @@ export class HeroComponent implements IHero, OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
+     * - It will change the `background-color` of the hero.
+     * - Even if `background` prop is provided, this prop will have priority if a custom color is provided.
+     * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
+     * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
+         To test this props, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+     */
+    @Input() customBgColor: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - It will change the text `color` of the hero.
+     * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
+     * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
+         To test this props, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+     */
+    @Input() customFontColor: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * It displays between the `subtitle` and the `description`.
      */
     @Input() description: string;
@@ -112,7 +131,10 @@ export class HeroComponent implements IHero, OnInit {
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
      * - It reverses the `background` and the text color if the prop is set as `true`.
-     * - It won't work if `customBgColor` and `customFontColor` are provided.
+     * - If `customBgColor` is provided, the only things that will reverse is the color of
+         all texts in the hero and the `background-color` of the `badge` and the first `button`.
+     * - If `customFontColor` is provided, only the color of the text inside the `badge`
+         and the first `button` will be reversed.
      */
     @Input() reversed: boolean = false;
     /**

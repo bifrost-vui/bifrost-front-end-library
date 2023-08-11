@@ -51,40 +51,66 @@ import { HeroComponent } from '../angular/hero.component';
         angle: '',
         iconName: ''
     },
+    blockSelection: {
+        title: 'My selection',
+        month: 'month',
+        contentLists: [
+            {
+                description: 'Navy Blue, 128 Go',
+                fullPrice: '$150.00',
+                price: '$24.00',
+                saving: '$30.00',
+                title: 'Samsung Galaxy Note 20 Utra 5G',
+            },
+            {
+                description: 'Lorem ipsum',
+                price: '$55.00',
+                title: 'All-inclusive 12 GB Mobile',
+            }
+        ]
+    },
     breadcrumb: `<nav aria-label='breadcrumb'><ol class='breadcrumb pl-0 mb-0'><li class='breadcrumb-item'><a href=''>Home</a></li><li class='breadcrumb-item active' aria-current='page'>Library</li></ol></nav>`,
     buttons: [
         {
-            label       : 'Main action',
-            hierarchy   : '',
-            class       : ''
+            class: '',
+            hierarchy: '',
+            label: 'Main action',
         },
         {
-            label       : 'Secondary action',
-            hierarchy   : '',
-            class       : ''
+            class: '',
+            hierarchy: '',
+            label: 'Secondary action',
         }
     ],
+    class: 'my-custom-class',
+    content: '<p>The property <b>content</b> could be a string or a TwigBlock.</p>',
+    customBgColor: '#191970',
+    customFontColor: '#daa520',
     description: 'After checking to see if Helix services are available at your address, we will suggest the best Helix packages and promotions for you.',
     height: 'large',
+    icon: 'placeholder',
     image: {
-        lg      : '/images/_docs/hero-helix.png',
-        md      : '/images/_docs/hero-helix-tablet.png', // Only used if isSplitted: true
-        sm      : '/images/_docs/hero-helix-mobile.png',
-        alt     : 'Helix'
+        alt: 'Helix',
+        isSplitted: false,
+        lg: '/images/_docs/hero-helix.png',
+        md: '/images/_docs/hero-helix-tablet.png',
+        sm: '/images/_docs/hero-helix-mobile.png',
     },
     price: {
-        upperTitle      : 'From',
-        dollar          : 86,
-        cent            : 99,
-        details         : '/month',
-        promotion       : {
-            priceStriked    : 40.99,
-            priceSaved      : 10,
-            savedLabel      : 'You saved :',
-            superscript     : 1,
-            direction       : 'horizontal',
-        }
+        cent: 99,
+        details: '/month',
+        dollar: 86,
+        language: 'en',
+        promotion: {
+            direction: 'horizontal',
+            priceSaved: 10,
+            priceStriked: 40.99,
+            savedLabel: 'You saved :',
+            superscript: 1,
+        },
+        upperTitle: 'From',
     },
+    reversed: false,
     subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title: 'Discover our best Helix Internet and TV packages',
     upperTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -139,6 +165,21 @@ export const Drupal = (args) => ({
 </Canvas>
 
 ## Drupal Example
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - With custom background and text color"
+        height="500px"
+        args={{
+            elementPath: 'components/hero/_doc/template.drupal',
+            ...commonProps,
+            customBgColor: 'midnightblue',
+            customFontColor: 'goldenrod',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
 
 <Canvas withSource="none">
     <Story
