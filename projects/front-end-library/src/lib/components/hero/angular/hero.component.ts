@@ -130,7 +130,8 @@ export class HeroComponent implements IHero, OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * - It reverses the `background` and the text color if the prop is set as `true`.
+     * - It reverses the `background` and the text color if the prop is set as `true`,
+         but not for `background` value `highlight`.
      * - If `customBgColor` is provided, the only things that will reverse is the color of
          all texts in the hero and the `background-color` of the `badge` and the first `button`.
      * - If `customFontColor` is provided, only the color of the text inside the `badge`
