@@ -1,6 +1,3 @@
-{# Import macros #}
-{% import "@bf-utils/macros/twig/index.twig" as macros %}
-
 {# Boolean Variables #}
 {% set hasBackgroundImageSrc = backgroundImage.src is defined and backgroundImage.src is not empty %}
 {% set hasBackgroundImageTextColor = backgroundImage.textColor is defined and backgroundImage.textColor is not empty %}
@@ -53,6 +50,9 @@
   attr: tileKeyAttributes,
 } %}
   {% block customTagContent %}
+
+    {# Import macros #}
+    {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
     {# Background Image #}
     {% if hasBackgroundImageSrc %}

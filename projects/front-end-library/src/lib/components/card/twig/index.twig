@@ -242,9 +242,6 @@
                       class: "pr-3 pr-md-0",
                       id: "channelsListModal",
                   } %}
-                    {# Import macros #}
-                    {% import "@bf-utils/macros/twig/index.twig" as macros %}
-
                     {% block modal_header %}
                       <div class="w-100 text-left">
                         <p class="modal-title">
@@ -258,6 +255,10 @@
                     {% endblock %}
 
                     {% block modal_body_scroll_container %}
+
+                      {# Import macros #}
+                      {% import "@bf-utils/macros/twig/index.twig" as macros %}
+
                       <div class="bf-tab-content tab-content">
                         {% for channelsFull in list.channels.full %}
                           {% set tabContentClasses = [
