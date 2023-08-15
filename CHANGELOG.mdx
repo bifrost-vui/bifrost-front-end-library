@@ -3,6 +3,7 @@
 <br />
 <br />
 
+<!-- COPY THIS SECTION TO ADD A NEW RELEASE LOG
 ## [Next Version](https://bifrost-front-end-library-vui.vercel.app/) - _####-##-##_
 
 see [github-release](#)
@@ -14,6 +15,53 @@ see [github-release](#)
 ### Bugs fixes
 
 -   None
+
+<br />
+-->
+
+## [v1.12.1](https://bifrost-front-end-library-git-v1-12-1-bifrost-vui.vercel.app/) - _2023-08-15_
+
+see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.12.1)
+
+### Breaking Changes
+
+-   None
+
+### Bugs fixes
+
+#### JavaScript / Bootstrap
+
+-   In the development of the `real tab functionality` in the last release, in the JS file there was a
+    `import 'bootstrap';` used for the functionality. Since this import was also done in another file elsewhere,
+    it caused other Bootstrap JavaScript functionalities to being called twice when triggered. For example,
+    for `Block Selection` on mobile resolution it can be collapse like an accordion. But with this issue,
+    it was not closing. Fixing this issue fixes that bug and probably others not found yet.
+
+### Components
+
+#### Block Selection
+
+-   Adjust API documentation.
+-   Add an internal API page.
+
+#### Card
+
+-   Adjust documentation.
+-   Deprecation of the `language` prop.
+    -   The prop was used only for the `price` component.
+    -   It is kept in the code for legacy purpose.
+
+#### Hero
+
+-   Adjust API documentation.
+    -   Adjust documentation uses of `Badge`, `Block Selection`, `Button` and `Icon` APIs.
+-   Add an internal API page.
+-   Deprecation of the `language` prop.
+    -   The prop was used only for the `price` component.
+    -   It is kept in the code for legacy purpose.
+-   Add custom background color and font color functionalities.
+    -   Add `customBgColor` and `customFontColor` props.
+    -   Adjust CSS for the hero to take the new custom colors.
 
 <br />
 
