@@ -1,6 +1,3 @@
-{# Import macros #}
-{% import "@bf-utils/macros/twig/index.twig" as macros %}
-
 {# Boolean Variables #}
 {% set hasHref = href is defined and href is not empty %}
 {% set hasImage = image.src is defined and image.src is not empty %}
@@ -40,6 +37,10 @@
   attr: bannerAttributes,
 } %}
   {% block customTagContent %}
+
+    {# Import macros #}
+    {% import "@bf-utils/macros/twig/index.twig" as macros %}
+
     {% if hasVisual %}
       <div class="bf-banner__visual">
         {% if hasImage %}
