@@ -120,14 +120,6 @@ export class CardComponent implements OnInit {
      */
     @Input() isDisabled: boolean;
     /**
-     * <span style="color: red;">__Required__</span>
-     * <br><br>
-     * For `price` component `language` parameter.
-     *
-     * @required
-     */
-    @Input() language: 'en' | 'fr' = 'en';
-    /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
      * - It is displayed below the subtitle.
@@ -212,6 +204,16 @@ export class CardComponent implements OnInit {
           To test this props, use a color name like `red`, `blue`, `yellow`, `black`, etc.
      */
     @Input() visualBackgroundColor: string;
+
+    /**
+     * __\*Deprecated\*__
+     *
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Use `price.language` instead
+     * - If `price.language` is not provided, it will use this prop instead.
+     */
+    @Input() language: 'en' | 'fr' = 'en';
 
     ngOnInit() {
         console.log('card', this);

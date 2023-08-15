@@ -29,3 +29,11 @@ export const contentListsData = [
         },
     },
 ];
+
+export const totalPriceData = {
+    details: 'Plus applicable taxes',
+    label: 'Total',
+    price: '$80.00',
+    priceDetails: '(for 24 month)',
+    priceInfo: '/ month',
+};

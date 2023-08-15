@@ -7,6 +7,8 @@
 {% set hasBreadcrumb = breadcrumb is defined and breadcrumb is not empty %}
 {% set hasButtons = buttons is defined and buttons is not empty %}
 {% set hasContent = content is defined and content is not empty %}
+{% set hasCustomBgColor = customBgColor is defined and customBgColor is not empty %}
+{% set hasCustomFontColor = customFontColor is defined and customFontColor is not empty %}
 {% set hasDescription = description is defined and description is not empty %}
 {% set hasIcon = icon is defined and icon is not empty %}
 {% set hasImage = image is defined and image is not empty %}
@@ -14,13 +16,13 @@
 {% set hasSubtitle = subtitle is defined and subtitle is not empty %}
 {% set hasTitle = title is defined and title is not empty %}
 {% set hasUpperTitle = upperTitle is defined and upperTitle is not empty %}
-{% set hasVisualBackgroundColor = visualBackgroundColor is defined and visualBackgroundColor is not empty %}
 {% set isBackgroundGround = background is defined and background is same as("ground") %}
 {% set isBackgroundHighlight = background is defined and background is same as("highlight") %}
 {% set isBlockBlockSelectionDefined = block("blockSelection") is defined %}
 {% set isBlockBreadcrumbDefined = block("breadcrumb") is defined %}
 {% set isBlockContentDefined = block("content") is defined %}
 {% set isHeightLarge = height is defined and height is same as("large") %}
+{% set isReversed = (reversed ?? false) is same as(true) or reversed is same as("1") %}
 
 {# Boolean Variables - ORDER IS IMPORTANT #}
 {% set hasImageLarge = hasImage and image.lg is not empty %}
@@ -30,11 +32,12 @@
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}
+{% set language = language|default("en") %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set heroClasses = [
   "bf-hero d-flex flex-column",
-  (reversed ? "reversed"),
+  (isReversed ? "reversed"),
   (isBackgroundGround ? "bf-hero--bg-ground"),
   (isBackgroundHighlight ? "bf-hero--bg-highlight highlight"),
   (isHeightLarge ? "bf-hero--height-large"),
@@ -44,7 +47,8 @@
 
 {# Arrays of Styles With Dynamic Elements #}
 {% set heroStyles = [
-  (hasVisualBackgroundColor ? 'background-color: ' ~ visualBackgroundColor ~ ';'),
+  (hasCustomBgColor ? '--bf-hero-bg-color: ' ~ customBgColor ~ ';'),
+  (hasCustomFontColor ? '--bf-hero-font-color: ' ~ customFontColor ~ ';'),
   (hasImageLarge and not isImageSplitted ? "background-image: url('" ~ image.lg ~ "');"|raw),
 ] %}
 

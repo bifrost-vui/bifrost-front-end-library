@@ -1,0 +1,83 @@
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Meta } from '@storybook/addon-docs';
+import { ContentListsAPI, LinkAPI, TotalPriceAPI } from '../angular/api.component';
+
+<Meta
+    title='Components/Block Selection/API'
+    parameters={{
+        viewMode: 'docs',
+        previewTabs: {
+            canvas: { hidden: true }
+        },
+    }}
+/>
+
+# Block Selection API
+
+## Table of content
+
+- <a href="#icontentlists" target="_self">IContentLists</a>
+- <a href="#ilink" target="_self">ILink</a>
+- <a href="#itotalprice" target="_self">ITotalPrice</a>
+
+## IContentLists
+
+<h3 id="icontentlists-api">API</h3>
+
+<ArgsTable of={ContentListsAPI} />
+
+<h3 id="icontentlists-format">Expected format</h3>
+
+```jsx
+{
+    "btnDelete": {
+        "href": "/delete",
+    },
+    "btnModify": {
+        "href": "/modify",
+    },
+    "description": "Navy Blue, 128 Go",
+    "fullPrice": "$150.00",
+    "link": {
+        "href": "www.videotron.com",
+        "label": "ADD A PHONE",
+    },
+    "price": "$24.00",
+    "priceInfo": "/ month",
+    "saving": "$30.00",
+    "title": "Samsung Galaxy Note 20 Utra 5G",
+}
+```
+
+## ILink
+
+<h3 id="ilink-api">API</h3>
+
+<ArgsTable of={LinkAPI} />
+
+<h3 id="ilink-format">Expected format</h3>
+
+```jsx
+{
+    "href": "www.videotron.com",
+    "label": "ADD A PHONE",
+}
+```
+
+## ITotalPrice
+
+<h3 id="itotalprice-api">API</h3>
+
+<ArgsTable of={TotalPriceAPI} />
+
+<h3 id="itotalprice-format">Expected format</h3>
+
+```jsx
+{
+    "details": "Plus applicable taxes",
+    "label": "Total",
+    "price": "$80.00",
+    "priceDetails": "(for 24 month)",
+    "priceInfo": "/ month",
+}
+```
