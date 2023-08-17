@@ -1,0 +1,96 @@
+import { moduleMetadata }                       from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
+import { withDesign }                           from 'storybook-addon-designs'
+import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
+import { StickyBarComponent }             from '../angular/sticky-bar.component';
+import { StickyBarTemplateComponent }     from './template.angular.component';
+
+<Meta
+    title='Components/Sticky Bar'
+    component={StickyBarComponent}
+    decorators={[
+        moduleMetadata({ declarations: [StickyBarComponent, StickyBarTemplateComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type    : 'figma',
+            url     : 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            disable : false
+        },
+    }}
+    argTypes={{}}
+/>
+
+# Sticky Bar
+
+**// TODO** Write a description of your component.
+> **// TODO**: Add a link to component in **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)**
+
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component   : TwigContainerComponent,
+    props       : args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal'
+        height='300px'
+        args={{
+            elementPath : 'components/sticky-bar/_doc/template.drupal',
+            label       : 'Sticky Bar',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/sticky-bar/twig/index.twig' with {
+    // Add relevant props here
+} only %}
+```
+
+
+## Angular
+
+export const Angular = (args) => ({
+  component: StickyBarTemplateComponent,
+  props: args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Angular'
+        args={{
+            label: 'Sticky Bar'
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+## Angular implementation example
+
+Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
+
+
+**// TODO**: Add Stories (variants of your component) as much as you want.
+
+
+## Component API
+
+<ArgsTable of={StickyBarComponent} />
+
+
+## Design Guidelines
+
+**// TODO**: Add a link to the component in Figma file.
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>
