@@ -1,12 +1,119 @@
-{#
-    Edit this component and don't forget to delete this comment.
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
 
-    In your component, the file /common/style.scss is aimed to share styles across Twig and Angular.
-    Try to use it as much as possible, in order to avoid styles for specific framework.
+{# Boolean Variables #}
+{% set hasTitle = title is defined and title is not empty %}
+{% set isReversed = (isReversed ?? true) is same as(true) %}
 
-    Enjoy :)
-#}
+{# Default Variables (Props, Controls) #}
+{% set class = class|default("") %}
+{% set zIndex = zIndex|default("1030") %}
 
-<div class="bf-sticky-bar {{ class|default("") }}">
-    {{ label|default("Label") }}
+{# Arrays of Classes With Dynamic Elements #}
+{% set stickyBarClasses = [
+  "bf-sticky-bar",
+  (isReversed ? "reversed"),
+  (class),
+] %}
+
+{# Arrays of Styles With Dynamic Elements #}
+{% set stickyBarStyles = [
+  "z-index: " ~ zIndex ~ ";",
+] %}
+
+
+
+<div {{ macros.addAttributes({
+  "class": stickyBarClasses|join(' ')|trim,
+  "style": stickyBarStyles|join(' ')|trim,
+ }) }}>
+  <div class="bf-sticky-bar__container container-fluid">
+
+    {# Title #}
+    {% if hasTitle %}
+      <div class="bf-sticky-bar__title">
+        {{ title }}
+      </div>
+    {% endif %}
+
+    <div class="bf-sticky-bar__price-and-button">
+
+      {# Price #}
+      <div class="bf-sticky-bar__price">
+        {% include "@bf-components/price/twig/index.twig" with price only %}
+      </div>
+
+      {# Button #}
+      <div class="bf-sticky-bar__price">
+        {% include "@bf-components/button/twig/index.twig" with button only %}
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
+{# <div class="sticky-bar-custom">
+  <div class="mobile-sticky-bar">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="d-none d-md-block col-md-6 col-lg-8 mobile-sticky-bar-left"><strong>Samsung Galaxy Z Flip5</strong></div>
+        <div class="col-12 col-md-6 col-lg-4 mt-md-0 text-right mobile-sticky-bar-right">
+          <div class="row align-items-center">
+            <div class="col-6 first-col-sticky">
+              <div>
+                <div class="promotion-container flex-column">
+                  <div class="bf-price__infos">
+                    <div class="d-flex" aria-label="$ 25.00 /mois" role="contentinfo">
+                      <span class="bf-price__dollar " role="contentinfo">
+                      25
+                      </span>
+                      <div class="d-block flex-column justify-content-between">
+                        <div class="d-flex align-items-start">
+                          <span class="bf-price__cent ml-1">
+                          00
+                          </span>
+                          <sup class="bf-price__dollarsign ml-1">$</sup>
+                        </div>
+                        <span class="bf-price__details ml-1">
+                        /mois
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <div class="d-inline-flex">
+                      <p class="small text-strike mr-2 mb-0">
+                        54,00&nbsp;$
+                      </p>
+                      <p class="small bf-display-highlight mb-0">
+                        <span class="mr-1">
+                        Économie mensuelle
+                        </span>
+                        <span class="price-superscript">
+                        <span class="font-weight-bold">
+                        29,00&nbsp;$                    </span>
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <p class="small bf-color-neutral-secondary mb-0 mt-1">
+                  Pendant 24 mois
+                </p>
+              </div>
+            </div>
+            <div class="col-6 second-col-sticky"><input class="bf-button bf-button--primary w-100 mb-2 button button--primary js-form-submit form-submit btn" data-button-label="Select this phone" data-product-id="11131" data-product-name="Samsung Galaxy Z Flip5" data-product-price="1296.00" data-product-promotion="New" data-product-manufacturer="Samsung" data-product-promotion-status="promotion" data-product-category="device" data-product-color="Graphite" data-product-payment-type="Monthly payment with Take-back Credit" data-product-availability="available" data-product-status="New" data-product-stockage="256 Go" data-product-variant="Graphite 256 Go" data-product-condition="New" data-drupal-selector="edit-submit" data-disable-refocus="true" type="submit" id="edit-submit" name="op" value="Continuer" data-once="drupal-ajax"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="bf-icon size-small d-lg-block ml-1 icon-testAB" role="presentation">
+        <svg role="img" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M18.3536 9.64645C18.5488 9.84171 18.5488 10.1583 18.3536 10.3536L12.3536 16.3536C12.2598 16.4473 12.1326 16.5 12 16.5C11.8674 16.5 11.7402 16.4473 11.6464 16.3536L5.64645 10.3536C5.45118 10.1583 5.45118 9.84171 5.64645 9.64645C5.84171 9.45118 6.15829 9.45118 6.35355 9.64645L12 15.2929L17.6464 9.64645C17.8417 9.45119 18.1583 9.45118 18.3536 9.64645Z" fill="currentColor"></path>
+        </svg>
+      </span>
+    </div>
+  </div>
+</div> #}

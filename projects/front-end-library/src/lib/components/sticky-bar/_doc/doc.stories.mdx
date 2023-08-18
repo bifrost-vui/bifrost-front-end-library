@@ -1,9 +1,10 @@
-import { moduleMetadata }                       from '@storybook/angular';
-import { ArgsTable, Canvas, Meta, Story }       from '@storybook/addon-docs';
-import { withDesign }                           from 'storybook-addon-designs'
-import { TwigContainerComponent }               from '../../../../utils/twig-container/twig-container.component';
-import { StickyBarComponent }             from '../angular/sticky-bar.component';
-import { StickyBarTemplateComponent }     from './template.angular.component';
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs'
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { StickyBarComponent } from '../angular/sticky-bar.component';
+import { StickyBarTemplateComponent } from './template.angular.component';
+import { oneTimePayment, monthlyPayment } from './data';
 
 <Meta
     title='Components/Sticky Bar'
@@ -15,33 +16,50 @@ import { StickyBarTemplateComponent }     from './template.angular.component';
     parameters={{
         design: {
             type    : 'figma',
-            url     : 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            url     : 'https://www.figma.com/file/Fga3I6FnoEIMFbxbHMroSq/SN-6928-Test-AB---Sticky-bar?type=design&node-id=143-33072&mode=design&t=aEv91OtWiIyKNfzR-4',
             disable : false
         },
     }}
-    argTypes={{}}
+    argTypes={{
+        _reversed: {
+            table: { disable: true },
+        },
+    }}
 />
 
 # Sticky Bar
 
-**// TODO** Write a description of your component.
-> **// TODO**: Add a link to component in **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)**
+## Component API
 
+<ArgsTable of={StickyBarComponent} />
 
 ## Drupal
 
+export const commonProps = {
+    button: {
+        hierarchy: 'primary',
+        href: 'https://www.videotron.com',
+        id: 'id_button',
+        label: 'Continue',
+    },
+    isReversed: true,
+    title: 'Your phone',
+    zIndex: '1030',
+}
+
 export const Drupal = (args) => ({
-    component   : TwigContainerComponent,
-    props       : args,
+    component: TwigContainerComponent,
+    props: args,
 });
 
 <Canvas withSource='none'>
     <Story
-        name='Drupal'
+        name='Drupal - One-time Payment'
         height='300px'
         args={{
-            elementPath : 'components/sticky-bar/_doc/template.drupal',
-            label       : 'Sticky Bar',
+            elementPath: 'components/sticky-bar/_doc/template.drupal',
+            ...commonProps,
+            price: oneTimePayment,
         }}
     >
         {Drupal.bind({})}
@@ -57,7 +75,7 @@ export const Drupal = (args) => ({
 } only %}
 ```
 
-
+<!--
 ## Angular
 
 export const Angular = (args) => ({
@@ -80,17 +98,24 @@ export const Angular = (args) => ({
 
 Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
 
-
-**// TODO**: Add Stories (variants of your component) as much as you want.
-
-
-## Component API
-
-<ArgsTable of={StickyBarComponent} />
+-->
 
 
 ## Design Guidelines
 
-**// TODO**: Add a link to the component in Figma file.
+### Mobile
 
-<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>
+#### One-time Payment
+
+<iframe width='100%' height='200' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFga3I6FnoEIMFbxbHMroSq%2FSN-6928-Test-AB---Sticky-bar%3Ftype%3Ddesign%26node-id%3D182-32549%26mode%3Ddesign%26t%3DaEv91OtWiIyKNfzR-4' frameBorder='0' allowFullScreen></iframe>
+
+#### Monthly Payment
+
+<iframe width='100%' height='200' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFga3I6FnoEIMFbxbHMroSq%2FSN-6928-Test-AB---Sticky-bar%3Ftype%3Ddesign%26node-id%3D182-32568%26mode%3Ddesign%26t%3DaEv91OtWiIyKNfzR-4' frameBorder='0' allowFullScreen></iframe>
+
+### Desktop
+
+There is only one example for desktop resolution, but since the __Price__ component is used,
+the desktop version can also have all the different kinds of payment as the mobile version has.
+
+<iframe width='100%' height='300' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFga3I6FnoEIMFbxbHMroSq%2FSN-6928-Test-AB---Sticky-bar%3Ftype%3Ddesign%26node-id%3D182-33262%26mode%3Ddesign%26t%3DaEv91OtWiIyKNfzR-4' frameBorder='0' allowFullScreen></iframe>
