@@ -5,12 +5,15 @@
 * ***************************************************************************** */
 
 /**
-      @mixin media-scale($elem, $defaultValue, $mdValue, $lgValue)
+      @mixin media-scale($elem, $defaultValue, $smValue, $mdValue, $lgValue, $xlValue, $xxlValue)
 
       $elem             The CSS property
       $defaultValue     The default mobile first value of the property
+      $smValue          The value of the property after the sm breakpoint
       $mdValue          The value of the property after the md breakpoint
       $lgValue          The value of the property after the lg breakpoint
+      $xlValue          The value of the property after the xl breakpoint
+      $xxlValue         The value of the property after the xxl breakpoint
 
       -------------------------------------------------------------
 
@@ -29,9 +32,20 @@
         }
 */
 
-@mixin media-scale($elem, $defaultValue, $mdValue: $defaultValue, $lgValue: $mdValue, $xlValue: $lgValue) {
+@mixin media-scale(
+  $elem,
+  $defaultValue,
+  $smValue: $defaultValue,
+  $mdValue: $smValue,
+  $lgValue: $mdValue,
+  $xlValue: $lgValue,
+  $xxlValue: $xlValue
+) {
   #{$elem}: $defaultValue;
 
+  @include media-breakpoint-up(sm) {
+    #{$elem}: $smValue;
+  }
   @include media-breakpoint-up(md) {
     #{$elem}: $mdValue;
   }
@@ -40,6 +54,9 @@
   }
   @include media-breakpoint-up(xl) {
     #{$elem}: $xlValue;
+  }
+  @include media-breakpoint-up(xxl) {
+    #{$elem}: $xxlValue;
   }
 }
 
