@@ -1,0 +1,79 @@
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Meta } from '@storybook/addon-docs';
+import {
+    PromotionAPI,
+    SizeAPI,
+    UpfrontAPI
+} from '../angular/api.component';
+
+<Meta
+    title='Components/Price/API'
+    parameters={{
+        viewMode: 'docs',
+        previewTabs: {
+            canvas: { hidden: true }
+        },
+    }}
+/>
+
+# Price API
+
+## Table of content
+
+- <a href="#ipromotion" target="_self">IPromotion</a>
+- <a href="#isize" target="_self">ISize</a>
+- <a href="#iupfront" target="_self">IUpfront</a>
+
+## IPromotion
+
+<h3 id="ipromotion-api">API</h3>
+
+<ArgsTable of={PromotionAPI} />
+
+<h3 id="ipromotion-format">Expected format</h3>
+
+```jsx
+{
+    "direction": "horizontal",
+    "isDisplayed": true,
+    "priceSaved": "10",
+    "priceStriked": "40,99",
+    "savedLabel": "You saved:",
+    "superscript": "1",
+    "title": "<b>Promotion</b> test",
+}
+```
+
+## ISize
+
+<h3 id="isize-api">API</h3>
+
+<ArgsTable of={SizeAPI} />
+
+<h3 id="isize-format">Expected format</h3>
+
+```jsx
+{
+    "default": "small",
+    "sm": "small",
+    "md": "medium",
+    "lg": "medium",
+    "xl": "large",
+    "xxl": "large"
+}
+```
+
+## IUpfront
+
+<h3 id="iupfront-api">API</h3>
+
+<ArgsTable of={UpfrontAPI} />
+
+<h3 id="iupfront-format">Expected format</h3>
+
+```jsx
+{
+    "dollar": "0",
+    "label": "upfront",
+}
+```
