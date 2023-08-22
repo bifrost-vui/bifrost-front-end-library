@@ -40,6 +40,17 @@
 
       {# Price #}
       <div class="bf-sticky-bar__price">
+        {% set price =
+          price|merge({
+            promotion: price.promotion|default({})|merge({
+                direction: 'horizontal',
+            }),
+            size: price.size|default({
+                default: "small",
+                md: "medium",
+            })
+          })
+        %}
         {% include "@bf-components/price/twig/index.twig" with price only %}
       </div>
 

@@ -3,7 +3,6 @@ export const oneTimePayment = {
     cent: '00',
     promotion: {
         priceStriked: '1150,00',
-        direction: 'horizontal',
     },
 };
 
@@ -14,6 +13,5 @@ export const monthlyPayment = {
     message: 'For 24 months',
     promotion: {
         priceStriked: '65,00',
-        direction: 'horizontal',
     },
 };
