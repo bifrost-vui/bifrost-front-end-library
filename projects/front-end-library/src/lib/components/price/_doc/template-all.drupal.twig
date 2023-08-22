@@ -15,6 +15,14 @@
 {% set upfront = upfront|json_parse %}
 {% set upperTitle = upperTitle|json_parse %}
 
+{% set isSizeIsAnObject = size is defined and size is iterable and size.default is not empty %}
+
+{% if isSizeIsAnObject %}
+  {% set sizeDefault = size.default %}
+{% else %}
+  {% set sizeDefault = size %}
+{% endif %}
+
 {# Arrays of Classes With Dynamic Elements #}
 {% set mainContainerClasses = [
   "d-flex flex-column flex-sm-row justify-content-center minh-100",
@@ -36,9 +44,9 @@
 
     <div class="{{ innerContainerClasses|join(' ')|trim }}">
       <div class="w-100">
-        {% if size is defined and size is not empty %}
+        {% if sizeDefault is defined and sizeDefault is not empty %}
           <h3 class="mt-5 ml-3">
-            Size "{{ size }}"
+            Size "{{ sizeDefault }}"
           </h3>
           <div class="d-flex flex-column flex-lg-row border-bottom bf-border-color-tertiary">
             {% include "@bf-components/price/twig/index.twig" %}
@@ -71,13 +79,13 @@
             <div class="w-100 w-lg-50">
               <div class="small py-1 px-3 bf-color-bg-underground">English CAD Format</div>
               {% include "@bf-components/price/twig/index.twig" with {
-                size: size|default("medium")
+                size: sizeDefault|default("medium")
               } %}
             </div>
             <div class="w-100 w-lg-50">
               <div class="small py-1 px-3 bf-color-bg-underground">French CAD Format</div>
               {% include "@bf-components/price/twig/index.twig" with {
-                size: size|default("medium"),
+                size: sizeDefault|default("medium"),
                 language: language|default("fr")
               } %}
             </div>
@@ -90,13 +98,13 @@
             <div class="w-100 w-lg-50">
               <div class="small py-1 px-3 bf-color-bg-underground">English CAD Format</div>
               {% include "@bf-components/price/twig/index.twig" with {
-                size: size|default("large")
+                size: sizeDefault|default("large")
               } %}
             </div>
             <div class="w-100 w-lg-50">
               <div class="small py-1 px-3 bf-color-bg-underground">French CAD Format</div>
               {% include "@bf-components/price/twig/index.twig" with {
-                size: size|default("large"),
+                size: sizeDefault|default("large"),
                 language: language|default("fr")
               } %}
             </div>
