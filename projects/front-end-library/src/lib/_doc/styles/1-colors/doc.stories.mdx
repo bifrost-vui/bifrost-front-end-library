@@ -12,7 +12,39 @@ import colors from './colors';
 
 # Colors
 
-> Bifröst defines 5 groups of colors: **Content, Background, Background Action, Stroke** and **Feedback**.
+Bifröst defines 5 groups of colors: **Content, Background, Background Action, Stroke** and **Feedback**.
+
+These colors has a default color and some of them has a `reversed` color.
+
+The `reversed` color will be automatically used if the component or its parent has the `.reversed` class.
+We can call that the _**reversed mode**_.
+
+If there is no `reversed` color, the default color will be used instead in the `reversed` mode.
+
+## CSS Variables
+
+CSS variables are available on the `:root` of the CSS file. They can be used in any CSS property
+that contains a color value.
+
+An example would be: `color: var(--bf-color-highlight);`.
+
+If a color has a `reversed` value, a CSS variable with the suffix `-reversed` will be available.
+It can be useful to have access to the `reversed` value of a color when in _**default mode**_
+and the same thing in _**reversed mode**_.
+
+### Values of variables in _Default Mode_ and in _Reversed Mode_
+
+Say that we take the variables `--bf-color-highlight` and `--bf-color-highlight-reversed`.
+
+In the **default mode**:
+- the value of `--bf-color-highlight` is **`#050504`**;
+- the value of `--bf-color-highlight-reversed` is **`#ffd200`**.
+
+In the **reversed mode**:
+- the value of `--bf-color-highlight` is **`#ffd200`**;
+- the value of `--bf-color-highlight-reversed` is **`#050504`**.
+
+## Colors Table
 
 <Canvas withSource="none">
     <div className="d-flex flex-column gap-5">
@@ -30,26 +62,30 @@ import colors from './colors';
                 </header>
                 <ul className="list-unstyled">
                     {category.list.map((c) => (
-                        <li key={c.name} className="d-flex align-items-center gap-4 w-100 border-top">
-                            <div className="w-75 d-flex align-items-center gap-4">
+                        <li key={c.name} className="d-flex align-items-start gap-4 w-100 py-2 border-top">
+                            <div className="w-75 d-flex align-items-start gap-4">
                                 <h4 className="mb-0" style={{ width: '13rem' }}>
                                     {c.label}
                                 </h4>
                                 <div className="d-flex flex-column nowrap">
+                                    <h5>CSS Variable(s)</h5>
                                     <code>--bf-color-{c.name}</code>
+                                    {c.reversed !== false && <code>--bf-color-{c.name}-reversed</code>}
+                                    {(c.hasUtilityClass !== false || c.UtilityClassName !== undefined) && <h5>CSS Class(es)</h5>}
                                     {c.hasUtilityClass !== false && <code>.bf-color-{c.name}</code>}
-                                    {c.UtilityClassName && <code>.{c.UtilityClassName}</code>}
+                                    {c.UtilityClassName !== undefined && c.UtilityClassName.map(utilityClass => (
+                                        <code>.{utilityClass}</code>
+                                    ))}
+                                    {c.note && <h5>Note</h5>}
+                                    {c.note && <blockquote className="mt-2 sbdocs sbdocs-blockquote" style={{ fontSize: '14px', color: 'black' }}>{c.note}</blockquote>}
                                 </div>
                             </div>
-                            <div className="w-25 d-flex align-items-center">
+                            <div className="w-25 d-flex align-items-start">
                                 <div
                                     className="pr-6 pb-6 my-2 mr-1"
-                                    style={{ backgroundColor: `var(--bf-color-${c.name})` }}
+                                    style={{ backgroundColor: `var(--bf-color-${c.name})`, border: `1px solid grey` }}
                                 />
-                                <div
-                                    className="pr-6 pb-6 my-2 reversed"
-                                    style={{ backgroundColor: `var(--bf-color-${c.name})` }}
-                                />
+                                {c.reversed !== false && <div className="pr-6 pb-6 my-2 reversed" style={{ backgroundColor: `var(--bf-color-${c.name})`, border: `1px solid grey` }} />}
                             </div>
                         </li>
                     ))}

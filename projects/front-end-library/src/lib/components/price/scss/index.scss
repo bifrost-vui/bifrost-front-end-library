@@ -4,33 +4,103 @@
 *
 * ***************************************************************************** */
 
+/* Sizes */
+@mixin bf-price-small {
+  .bf-price__dollar {
+    font-size: $bf-text-display-small-fs;
+    line-height: $bf-text-display-small-lh;
+  }
+
+  .bf-price__dollarsign,
+  .bf-price__cent {
+    font-size: $bf-text-display-sub-small-fs;
+    line-height: $bf-text-display-sub-small-lh;
+  }
+
+  .bf-price__details {
+    position: relative;
+    top: 0;
+  }
+
+  .promotion-container {
+    .bf-price__infos sup.bf-price__asterisk {
+      top: 0.35rem;
+    }
+  }
+}
+
+@mixin bf-price-medium {
+  .bf-price__dollar {
+    font-size: $bf-text-display-medium-fs;
+    line-height: $bf-text-display-medium-lh;
+  }
+
+  .bf-price__dollarsign,
+  .bf-price__cent {
+    font-size: $bf-text-display-sub-medium-fs;
+    line-height: $bf-text-display-sub-medium-lh;
+  }
+
+  .bf-price__details {
+    position: relative;
+    top: 0.25rem;
+  }
+
+  .promotion-container {
+    .bf-price__infos sup.bf-price__asterisk {
+      top: 0.55rem;
+    }
+  }
+}
+
+@mixin bf-price-large {
+  .bf-price__dollar {
+    font-size: $bf-text-display-large-fs;
+    line-height: $bf-text-display-large-lh;
+  }
+
+  .bf-price__dollarsign,
+  .bf-price__cent {
+    font-size: $bf-text-display-sub-large-fs;
+    line-height: $bf-text-display-sub-large-lh;
+  }
+
+  .bf-price__details {
+    font-size: $bf-text-display-sub-medium-fs;
+    line-height: $bf-text-display-sub-medium-lh;
+  }
+
+  .promotion-container {
+    .bf-price__infos sup.bf-price__asterisk {
+      top: 0.4rem;
+    }
+  }
+}
+
 .bf-price {
   width: fit-content;
 
-  &__dollar {
-    @extend .bf-text-display-small;
-  }
-
+  &__dollar,
   &__dollarsign,
   &__cent,
   &__details {
-    @extend .bf-text-display-sub-small;
+    font-family: $bf-text-display-ff;
   }
 
   &__details {
-    @extend .mt-minus-2;
+    font-size: $bf-text-display-sub-small-fs;
+    line-height: $bf-text-display-sub-small-lh;
   }
+
   .promotion-container {
     display: flex;
     gap: 0.5rem;
+
     .bf-price__infos {
       display: inline-flex;
       font-family: $font-family-secondary;
-
-      sup.bf-price__asterisk {
-        top: 0.35rem;
-      }
     }
+
     .small.bf-display-highlight {
       .price-superscript {
         white-space: nowrap;
@@ -43,46 +113,81 @@
     }
   }
 
+  &--small {
+    @include bf-price-small;
+  }
+
   &--medium {
-    .bf-price__dollar {
-      @extend .bf-text-display-medium;
-    }
-
-    .bf-price__dollarsign,
-    .bf-price__cent {
-      @extend .bf-text-display-sub-medium;
-    }
-
-    .bf-price__details {
-      position: relative;
-      top: -0.5rem;
-    }
-    .promotion-container {
-      .bf-price__infos sup.bf-price__asterisk {
-        top: 0.8rem;
-      }
-    }
-    .mt-n1 {
-      margin-top: -0.25rem;
-    }
+    @include bf-price-medium;
   }
 
   &--large {
-    .bf-price__dollar {
-      @extend .bf-text-display-large;
-    }
-    .bf-price__dollarsign,
-    .bf-price__cent {
-      @extend .bf-text-display-sub-large;
-    }
+    @include bf-price-large;
+  }
 
-    .bf-price__details {
-      @extend .bf-text-display-sub-medium;
-      @extend .mt-minus-1;
+  // Sizes per breakpoints
+  @include media-breakpoint-up(sm) {
+    &--sm {
+      &--small {
+        @include bf-price-small;
+      }
+      &--medium {
+        @include bf-price-medium;
+      }
+      &--large {
+        @include bf-price-large;
+      }
     }
-    .promotion-container {
-      .bf-price__infos sup.bf-price__asterisk {
-        top: 0.4rem;
+  }
+  @include media-breakpoint-up(md) {
+    &--md {
+      &--small {
+        @include bf-price-small;
+      }
+      &--medium {
+        @include bf-price-medium;
+      }
+      &--large {
+        @include bf-price-large;
+      }
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    &--lg {
+      &--small {
+        @include bf-price-small;
+      }
+      &--medium {
+        @include bf-price-medium;
+      }
+      &--large {
+        @include bf-price-large;
+      }
+    }
+  }
+  @include media-breakpoint-up(xl) {
+    &--xl {
+      &--small {
+        @include bf-price-small;
+      }
+      &--medium {
+        @include bf-price-medium;
+      }
+      &--large {
+        @include bf-price-large;
+      }
+    }
+  }
+  @include media-breakpoint-up(xxl) {
+    &--xxl {
+      &--small {
+        @include bf-price-small;
+      }
+      &--medium {
+        @include bf-price-medium;
+      }
+      &--large {
+        @include bf-price-large;
       }
     }
   }

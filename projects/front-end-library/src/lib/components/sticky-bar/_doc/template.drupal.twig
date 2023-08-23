@@ -1,0 +1,47 @@
+{% set _reversed = _reversed|json_parse %}
+{% set button = button|json_parse %}
+{% set class = class|json_parse %}
+{% set isReversed = isReversed|json_parse %}
+{% set price = price|json_parse %}
+{% set title = title|json_parse %}
+{% set zIndex = zIndex|json_parse %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "pt-4 bf-color-bg-ground",
+  (_reversed ? "reversed"),
+] %}
+
+{# Template #}
+<div class="bf-color-bg-underground p-4">
+  <p class="small mb-0">
+    The placeholder content is not a part of the component. It is just there to adjust
+    the window height to see correctly the sticky functionality.
+  </p>
+</div>
+
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
+  {# Content block to adjust screen height to see correctly the sticky functionality #}
+  <div class="container-fluid">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed orci convallis, euismod odio vel, maximus enim. Vivamus porttitor sem lectus. Donec vestibulum ornare turpis. Etiam efficitur finibus massa. Mauris vel arcu eu risus dictum semper. Proin at mauris commodo, placerat tortor ut, mattis quam. Donec eget laoreet arcu. Curabitur auctor quam nulla, in rhoncus nisi vestibulum eget. Quisque ornare felis sit amet ligula efficitur cursus.</p>
+    <p>Sed a lobortis lacus, ac semper dolor. Nullam semper aliquet arcu sit amet malesuada. Mauris mi ligula, egestas sed aliquam a, ornare ut nunc. Proin ut pretium quam, nec lobortis dui. Fusce sit amet dui vitae elit venenatis molestie. Ut nec euismod enim. Duis sed laoreet eros. In eget quam vitae ante tempus pulvinar sed id magna. Donec pharetra pharetra enim, a posuere ante feugiat nec. Phasellus finibus varius nisi. Cras ac risus ac risus efficitur vulputate. Morbi vitae massa at lacus sagittis scelerisque. Maecenas gravida ultrices nulla, id lacinia urna laoreet sit amet.</p>
+    <p>Phasellus ac finibus neque. Ut sit amet lacus elit. Morbi ex erat, pellentesque finibus tempus vel, tincidunt eu lacus. Fusce dapibus sapien lacinia ipsum blandit viverra. Sed nec risus porttitor, tempus ligula ac, iaculis nisl. Praesent sagittis lorem sed libero rhoncus, vel dictum dolor accumsan. Nam urna leo, tincidunt sed sapien quis, imperdiet lacinia ante. Fusce consectetur risus a tincidunt gravida. Vivamus nec lacus at augue volutpat molestie. Curabitur in aliquam ex. Integer eget orci sem. Donec sit amet erat elit. Sed condimentum, augue non ultricies sagittis, odio leo sollicitudin enim, vel accumsan magna quam et augue. Sed aliquam ipsum eget mi venenatis rutrum. Nam non feugiat justo, vitae rutrum nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+    <p>Aenean malesuada faucibus urna, sit amet pellentesque sem scelerisque in. Mauris lobortis venenatis tempus. Suspendisse quis commodo ante. Donec placerat dolor et sem fermentum, sed molestie nulla feugiat. Fusce tempus, dui non molestie congue, metus diam varius nisl, vitae placerat nisl justo id massa. Donec auctor tortor sed viverra facilisis. Pellentesque imperdiet turpis elit, id efficitur neque tempus a. Nunc hendrerit vestibulum purus sit amet commodo. Integer vehicula orci vel venenatis bibendum. Pellentesque est metus, scelerisque et pulvinar id, tempor id nisl. Etiam id pellentesque eros. Donec venenatis pellentesque metus, a interdum eros mollis non. Quisque a eros lectus. In molestie arcu sit amet orci tincidunt pulvinar.</p>
+    <p>Mauris imperdiet ipsum dui, quis euismod neque condimentum at. Quisque rutrum commodo molestie. Phasellus congue vitae ipsum ut rutrum. Sed placerat rutrum risus id fermentum. Nullam rutrum ultricies mattis. Suspendisse quam ante, egestas vitae enim a, molestie lacinia arcu. Nulla molestie velit varius ipsum tempus, vel ultricies leo finibus. Vivamus mauris mi, tincidunt ut neque in, pretium sagittis ante. Duis cursus dolor justo, sit amet dapibus nulla rhoncus in. Cras vitae ornare ligula, quis eleifend odio. Nullam sed quam non lorem aliquam mollis vitae eu odio.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed orci convallis, euismod odio vel, maximus enim. Vivamus porttitor sem lectus. Donec vestibulum ornare turpis. Etiam efficitur finibus massa. Mauris vel arcu eu risus dictum semper. Proin at mauris commodo, placerat tortor ut, mattis quam. Donec eget laoreet arcu. Curabitur auctor quam nulla, in rhoncus nisi vestibulum eget. Quisque ornare felis sit amet ligula efficitur cursus.</p>
+    <p>Sed a lobortis lacus, ac semper dolor. Nullam semper aliquet arcu sit amet malesuada. Mauris mi ligula, egestas sed aliquam a, ornare ut nunc. Proin ut pretium quam, nec lobortis dui. Fusce sit amet dui vitae elit venenatis molestie. Ut nec euismod enim. Duis sed laoreet eros. In eget quam vitae ante tempus pulvinar sed id magna. Donec pharetra pharetra enim, a posuere ante feugiat nec. Phasellus finibus varius nisi. Cras ac risus ac risus efficitur vulputate. Morbi vitae massa at lacus sagittis scelerisque. Maecenas gravida ultrices nulla, id lacinia urna laoreet sit amet.</p>
+    <p>Phasellus ac finibus neque. Ut sit amet lacus elit. Morbi ex erat, pellentesque finibus tempus vel, tincidunt eu lacus. Fusce dapibus sapien lacinia ipsum blandit viverra. Sed nec risus porttitor, tempus ligula ac, iaculis nisl. Praesent sagittis lorem sed libero rhoncus, vel dictum dolor accumsan. Nam urna leo, tincidunt sed sapien quis, imperdiet lacinia ante. Fusce consectetur risus a tincidunt gravida. Vivamus nec lacus at augue volutpat molestie. Curabitur in aliquam ex. Integer eget orci sem. Donec sit amet erat elit. Sed condimentum, augue non ultricies sagittis, odio leo sollicitudin enim, vel accumsan magna quam et augue. Sed aliquam ipsum eget mi venenatis rutrum. Nam non feugiat justo, vitae rutrum nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+    <p>Aenean malesuada faucibus urna, sit amet pellentesque sem scelerisque in. Mauris lobortis venenatis tempus. Suspendisse quis commodo ante. Donec placerat dolor et sem fermentum, sed molestie nulla feugiat. Fusce tempus, dui non molestie congue, metus diam varius nisl, vitae placerat nisl justo id massa. Donec auctor tortor sed viverra facilisis. Pellentesque imperdiet turpis elit, id efficitur neque tempus a. Nunc hendrerit vestibulum purus sit amet commodo. Integer vehicula orci vel venenatis bibendum. Pellentesque est metus, scelerisque et pulvinar id, tempor id nisl. Etiam id pellentesque eros. Donec venenatis pellentesque metus, a interdum eros mollis non. Quisque a eros lectus. In molestie arcu sit amet orci tincidunt pulvinar.</p>
+    <p>Mauris imperdiet ipsum dui, quis euismod neque condimentum at. Quisque rutrum commodo molestie. Phasellus congue vitae ipsum ut rutrum. Sed placerat rutrum risus id fermentum. Nullam rutrum ultricies mattis. Suspendisse quam ante, egestas vitae enim a, molestie lacinia arcu. Nulla molestie velit varius ipsum tempus, vel ultricies leo finibus. Vivamus mauris mi, tincidunt ut neque in, pretium sagittis ante. Duis cursus dolor justo, sit amet dapibus nulla rhoncus in. Cras vitae ornare ligula, quis eleifend odio. Nullam sed quam non lorem aliquam mollis vitae eu odio.</p>
+  </div>
+
+  {# Component #}
+  {% include "@bf-components/sticky-bar/twig/index.twig" with {
+    button: button,
+    class: class,
+    isReversed: isReversed,
+    price: price,
+    title: title,
+    zIndex: zIndex,
+  } only %}
+</div>

@@ -1,10 +1,25 @@
-export interface IUpfront {
+export interface IPrice {
+    cent?: string;
+    class?: string;
+    details?: HTMLElement;
     dollar?: string;
-    label?: string;
+    dollarClass?: string;
+    fullWidth?: boolean;
+    hasAsterisk?: boolean;
+    isPriceBoxDisplayed?: boolean;
+    language?: 'en' | 'fr';
+    message?: HTMLElement;
+    promotion?: IPromotion;
+    size?: 'small' | 'medium' | 'large' | ISize;
+    upfront?: IUpfront;
+    upperTitle?: string;
+    dashed?: string; // Deprecated: Use promotion.priceStriked instead.
+    saved?: string; // Deprecated: Use promotion.priceSaved instead.
+    savedLabel?: string; // Deprecated: Use promotion.savedLabel instead.
 }
 
 export interface IPromotion {
-    direction?: string;
+    direction?: 'vertical' | 'horizontal';
     isDisplayed?: boolean;
     priceSaved?: string;
     priceStriked?: string;
@@ -13,23 +28,16 @@ export interface IPromotion {
     title?: string;
 }
 
-export interface IPrice {
-    cent: string;
-    class: string;
-    details: HTMLElement;
-    dollar: string;
-    dollarClass: string;
-    fullWidth: boolean;
-    hasAsterisk: boolean;
-    isPriceBoxDisplayed: boolean;
-    language: 'en' | 'fr';
-    message: HTMLElement;
-    promotion: IPromotion;
-    reversed: boolean;
-    size: 'small' | 'medium' | 'large';
-    upfront: IUpfront;
-    upperTitle: string;
-    dashed: string; // Deprecated: Use promotion.priceStriked instead.
-    saved: string; // Deprecated: Use promotion.priceSaved instead.
-    savedLabel: string; // Deprecated: Use promotion.savedLabel instead.
+export interface ISize {
+    default: 'small' | 'medium' | 'large';
+    sm?: 'small' | 'medium' | 'large';
+    md?: 'small' | 'medium' | 'large';
+    lg?: 'small' | 'medium' | 'large';
+    xl?: 'small' | 'medium' | 'large';
+    xxl?: 'small' | 'medium' | 'large';
+}
+
+export interface IUpfront {
+    dollar?: string;
+    label?: string;
 }
