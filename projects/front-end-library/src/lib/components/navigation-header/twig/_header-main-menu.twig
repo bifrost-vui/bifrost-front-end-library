@@ -1,0 +1,45 @@
+{# Arrays of Classes With Dynamic Elements #}
+{% set burgerMenuButtonClasses = [
+  "bf-button-icon__inner",
+  "bf-nav-header__main-menu__mobile-toggle__button",
+  "js-bf-burger-menu-toggle",
+] %}
+
+{# Template #}
+<div id="mainMenu" class="bf-nav-header__main-menu">
+  {# Burger menu button #}
+  <div class="bf-button-icon bf-nav-header__main-menu__mobile-toggle">
+    <button {{ macros.addAttributes({
+      "type"              : "button",
+      "class"             : burgerMenuButtonClasses|join(' ')|trim,
+      "aria-label"        : "Open Main Menu"|t,
+      "data-label-closed" : "Open Main Menu"|t,
+      "data-label-opened" : "Close Main Menu"|t,
+      "data-toggle"       : "collapse",
+      "data-target"       : "#mainMenuContainer",
+      "aria-controls"     : "mainMenuContainer",
+      "aria-expanded"     : "false",
+    }) }}>
+      {% include '@bf-components/icon/twig/index.twig' with {
+        ariaLabel: "Open Main Menu Icon"|t,
+        name: "menu-burger",
+        size: "small",
+        class: "js-bf-burger-menu-toggle-closed",
+      } only %}
+      {% include '@bf-components/icon/twig/index.twig' with {
+        ariaLabel: "Close Main Menu Icon"|t,
+        name: "x",
+        size: "small",
+        class: "d-none js-bf-burger-menu-toggle-opened",
+      } only %}
+    </button>
+  </div>
+
+  {# Main Menu Container #}
+  <div id="mainMenuContainer" class="bf-nav-header__main-menu__container collapse">
+    {% include "@bf-components/navigation-header/twig/mega-menu.twig" with {
+      mainMenuData: mainMenuData,
+      reversed: reversed
+    } only %}
+  </div>
+</div>

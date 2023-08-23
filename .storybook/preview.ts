@@ -22,6 +22,8 @@ export const argTypes = {
             category: 'Container (Not in the component)',
             defaultValue: { summary: 'videotron' },
         },
+        type: { name: 'string', required: false },
+        description: 'Storybook canvas `<body>` `data-theme` attribute',
         control: { type: 'select', options: ['videotron', 'business'] },
     },
     _reversed: {
@@ -36,7 +38,7 @@ export const argTypes = {
 addParameters({
     options: {
         storySort: {
-            order: ['*', 'UI-Kit', 'Deprecated'],
+            order: ['*', 'Legacy Support', 'UI-Kit', 'Deprecated'],
         },
         showPanel: true,
     },

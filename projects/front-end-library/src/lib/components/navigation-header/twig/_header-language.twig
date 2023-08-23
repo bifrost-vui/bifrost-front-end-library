@@ -1,0 +1,33 @@
+{# Variables #}
+{% set langSwitchLabel = langcode == "EN" ? "FR" : "EN" %}
+{% set overrideBlockLanguage = overrideBlockLanguage|default(null) %}
+
+{# Template #}
+<div id="languageSwitcher" class="bf-nav-header__language-switcher">
+  {# New way to do link, but for now I have no way to get what I need from Drupal #}
+  {# {% include '@bf-components/button/twig/index.twig' with {
+    label    : langSwitchLabel,
+    hierarchy: 'tertiary',
+    href     : "#",
+    class    : "bf-nav-header__language-switcher__link",
+  } only %} #}
+
+  {% if overrideBlockLanguage is not empty %}
+    {% block language_switcher_desktop %}
+      {{ overrideBlockLanguage }}
+    {% endblock %}
+  {% else %}
+    {# Current way the link is rendered in Drupal, we will have to look for a way to render it better #}
+    {# Currently not optimal for WCAG Accessibility #}
+    <a
+      href="#"
+      class="bf-button bf-button--tertiary bf-nav-header__language-switcher__link js-bf-nav-header__language-switcher__link"
+      title="Français"
+      language="fr"
+      hreflang="fr"
+      data-drupal-link-system-path="node/8531"
+    >
+      Français
+    </a>
+  {% endif %}
+</div>

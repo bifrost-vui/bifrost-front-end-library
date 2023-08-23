@@ -1,32 +1,10 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IButtonSubmit, IInput, ILabel } from './api.model';
 
 /**
  * API is the same between **Angular** and **Drupal**.
  *
  */
-
-interface IInput {
-    id: string;
-    class: string;
-    iconPosition: string;
-    type: string;
-    placeholder: string;
-    name: string;
-    value: string;
-    extraAttribute: string;
-}
-
-interface IInputSubmit {
-    id: string;
-    value: string;
-    extraAttribute: string;
-}
-
-interface ILabel {
-    value: string;
-    class: string;
-    extraAttribute: string;
-}
 
 @Component({
     selector: 'bf-input-search',
@@ -38,25 +16,54 @@ export class InputSearchComponent implements OnInit {
 
     // TODO: It seems there is some control here that is not used anymore, like "iconClass". A checkup will be necessary.
 
-    @Input() reversed: boolean;
+    /** Expected format:
+     * <pre>
+     *     <code>
+     *         {
+     *             "buttonIcon": `IButtonIcon`,
+     *             "isVisible": `boolean`,
+     *             "position": `"left" | "right"`,
+     *         }
+     *     </code>
+     * </pre>
+     * <p>Check [IButtonIcon](?path=/docs/components-button-icon--drupal#component-api) component API for more details.</p>
+     */
+    @Input() buttonSubmit: IButtonSubmit;
     @Input() class: string;
-
-    /** You could use this attribute, or just add `.is-invalid` class to element `.form-control`. */
-    @Input() isDisabled: boolean;
-
-    @Input() label: ILabel;
-
+    /** Activate a button to clear search input. If `true`, when there is text in the search field, the clear button will be visible. */
+    @Input() hasButtonClear: boolean = true;
+    /** Expected format:
+     * <pre>
+     *     <code>
+     *         {
+     *             "class": `string`,
+     *             "extraAttribute": `string`,
+     *             "id": `string`,
+     *             "name": `string`,
+     *             "placeholder": `string`,
+     *             "value": `string`,
+     *         }
+     *     </code>
+     * </pre>
+     */
     @Input() input: IInput;
-
-    @Input() iconColor: string;
-    @Input() iconClass: string;
-
-    @Input() inputSubmit: IInputSubmit;
-
-    @Input() mtValue: number = 1;
-
-    @Input() buttonClass: string;
-    @Input() invalidMsg: string;
+    @Input() isDisabled: boolean = false;
+    @Input() isLabelVisible: boolean = false;
+    /** Expected format:
+     * <pre>
+     *     <code>
+     *         {
+     *             "class": `string`,
+     *             "extraAttribute": `string`,
+     *             "text": `string`,
+     *         }
+     *     </code>
+     * </pre>
+     *
+     * `label.text` is __mandatory__
+     */
+    @Input() label: ILabel;
+    @Input() reversed: boolean = false;
 
     ngOnInit() {
         console.log('input-search', this);

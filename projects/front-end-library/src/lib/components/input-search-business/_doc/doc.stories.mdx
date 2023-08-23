@@ -1,0 +1,87 @@
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { InputSearchBusinessComponent } from '../angular/input-search.component';
+
+<Meta
+    title="Legacy Support/Input Search Business"
+    component={InputSearchBusinessComponent}
+    decorators={[moduleMetadata({ declarations: [InputSearchBusinessComponent, TwigContainerComponent] })]}
+/>
+
+# Input Search Business
+
+> This component is the same as the old **Input Search**.
+It is renamed as **Input Search Business** because we still need
+to support the [Business](https://videotron.com/en/business) section
+of the website. The new [Input Search](/story/components-input-search--drupal)
+component will only support the [Residential](https://videotron.com/en) section at first.
+Eventually, in a second phase, when the [Navigation Header Business](/story/components-navigation-header-business--drupal)
+component functionalities will be integrated in the new [Navigation Header](/story/components-navigation-header--drupal),
+this **Input Search Business** component will be deprecated and unused.
+
+<br />
+
+## Component API
+
+<ArgsTable of={InputSearchBusinessComponent} />
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/input-search-business/twig/index.twig' with {
+    class: 'class',
+    reversed: true,
+    buttonClass: 'buttonClass',
+    iconClass: 'iconClass',
+    invalidMsg: 'invalidMsg',
+    isDisabled: false,
+    input: {
+        id: 'id',
+        class: 'class',
+        iconPosition: 'right',
+        type: 'text',
+        placeholder: 'Placeholder',
+        name: 'Name',
+        value: 'Value',
+        extraAttribute: 'extraAttribute',
+    },
+    inputSubmit: {
+        id: 'id',
+        value: 'value',
+        extraAttribute: 'extraAttribute',
+    },
+    label: {
+        value: 'value',
+        class: 'class',
+        extraAttribute: 'extraAttribute',
+    },
+    mtValue: mtValue,
+} only %}
+```
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal"
+        height="300px"
+        args={{
+            elementPath: 'components/input-search/_doc/template.drupal',
+            "label": {
+                "value": "Label",
+            },
+            "input": {
+                "placeholder": "What are you looking for?",
+            },
+            _isInvalid: false,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>

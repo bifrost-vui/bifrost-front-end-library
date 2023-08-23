@@ -1,0 +1,107 @@
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set accountData = accountData|default({}) %}
+
+{# Boolean Variables #}
+{% set isAccountConnected = accountData is not empty %}
+
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
+{% set accountSignInURL = accountSignInURL|default("/") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set accountButtonContainerClasses = [
+  "bf-button-icon",
+  "bf-nav-header__functions__account__button-container",
+] %}
+
+{% set accountButtonContainerAnonymousClasses = [
+  accountButtonContainerClasses|join(' ')|trim,
+  "bf-nav-header__functions__account__button-container--anonymous",
+] %}
+
+{% set accountButtonContainerConnectedClasses = [
+  accountButtonContainerClasses|join(' ')|trim,
+  "bf-nav-header__functions__account__button-container--connected",
+] %}
+
+{% set accountButtonClasses = [
+  "bf-button-icon__inner",
+  "bf-nav-header__functions__account__button",
+] %}
+
+{% set accountButtonAnonymousClasses = [
+  accountButtonClasses|join(' ')|trim,
+  "bf-nav-header__functions__account__button--anonymous",
+] %}
+
+{% set accountButtonConnectedClasses = [
+  accountButtonClasses|join(' ')|trim,
+  "bf-nav-header__functions__account__button--connected",
+  "js-bf-account-menu-toggle",
+] %}
+
+{# Template #}
+<div class="bf-nav-header__functions__account">
+  {% if isAccountConnected %}
+
+    {# Connected Account User's Initials #}
+    {% set firstNameInitial = accountData.firstName|slice(0,1) %}
+    {% set lastNameInitial = accountData.lastName|slice(0,1) %}
+    {% set fullName = accountData.firstName ~ " " ~ accountData.lastName %}
+    {% set userInitials = firstNameInitial ~ lastNameInitial %}
+
+    {# Account Menu Toggle Button #}
+    <div class="{{ accountButtonContainerConnectedClasses|join(' ')|trim }}">
+      <button {{ macros.addAttributes({
+        "type": "button",
+        "class": accountButtonConnectedClasses|join(' ')|trim,
+        "aria-label": "Account of"|t ~ fullName,
+        "data-toggle": "collapse",
+        "data-target": "#accountMenu",
+        "aria-controls": "accountMenu",
+        "aria-expanded": "false",
+        "aria-haspopup": "true",
+      }) }}>
+        <div class="bf-nav-header__functions__account__button__icon">
+          <span class="bf-nav-header__functions__account__button--connected__initials bf-text-display-sub-small font-weight-bold">
+            {{ userInitials }}
+          </span>
+          {% include '@bf-components/icon/twig/index.twig' with {
+            ariaLabel: "Circle Icon"|t,
+            name: "circle-outline",
+            size: "small",
+          } only %}
+        </div>
+        <div class="bf-nav-header__functions__account__button__text bf-text-display">
+          {{ accountData.firstName }} {{ lastNameInitial }}
+        </div>
+      </button>
+    </div>
+  {% else %}
+
+    {% set signInLabel = "Sign In"|t %}
+
+    <div class="{{ accountButtonContainerAnonymousClasses|join(' ')|trim }}">
+      <a {{ macros.addAttributes({
+        "href": accountSignInURL,
+        "class": accountButtonAnonymousClasses|join(' ')|trim,
+        "aria-label": "Account"|t ~ signInLabel,
+      }) }}>
+        <div class="bf-nav-header__functions__account__button__icon">
+          {% include '@bf-components/icon/twig/index.twig' with {
+            ariaLabel: "My Account Icon"|t,
+            name: "my-account",
+            size: "small",
+          } only %}
+        </div>
+        <div class="bf-nav-header__functions__account__button__text bf-text-display">
+          {{ signInLabel }}
+        </div>
+      </a>
+    </div>
+  {% endif %}
+
+  {# Account Menu Container #}
+  <div id="accountMenu" class="bf-account-menu bf-nav-header__functions__account__container collapse">
+    This is the container of the account menu when a user is connected
+  </div>
+</div>

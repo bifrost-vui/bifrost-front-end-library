@@ -4,8 +4,8 @@
 {# Boolean Variables #}
 {% set hasInputId = input.id is defined and input.id is not empty %}
 {% set hasLabel = label.value is defined and label.value is not empty %}
-{% set isReversed = (reversed ?? false) is same as(true) %}
-{% set isDisabled = (isDisabled ?? false) is same as(true) %}
+{% set isReversed = reversed|default(false) is same as(true) %}
+{% set isDisabled = isDisabled|default(false) is same as(true) %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}
@@ -52,7 +52,7 @@
 
     <div class="{{ iconContainerClasses|join(' ')|trim }}">
       {% block icon_container %}
-        {% include "@bf-components/input-search/twig/button-tooltip.twig" with {
+        {% include "@bf-components/input-search-business/twig/button-tooltip.twig" with {
           buttonClass: "p-0"
         } %}
       {% endblock %}

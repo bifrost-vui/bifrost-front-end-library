@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IIcon } from '../../icon/angular/api.model';
 
 /**
  * API is the same between **Angular** and **Drupal**.
@@ -12,24 +13,49 @@ import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } fro
 export class ButtonIconComponent implements OnInit {
     constructor() {}
 
-    @Input() icon: string;
-    /** Display a `data-title` attribute.  */
-    @Input() label: string;
-    /** A button will become a link if `href` is defined as long as it's not disabled. */
-    @Input() href: string;
-    @Input() isDisabled: boolean;
-    @Input() dataDismiss: string;
-    @Input() dataToggle: string;
-    @Input() dataTarget: string;
     @Input() ariaControls: string;
     @Input() ariaExpanded: string;
     @Input() ariaLabel: string;
-    @Input() extraAttribute: string;
     @Input() badgeLabel: string;
-
-    @Input() class: string;
     /** Classes for `<button>` tag. */
     @Input() buttonClass: string;
+    @Input() class: string;
+    @Input() dataDismiss: string;
+    @Input() dataTarget: string;
+    @Input() dataToggle: string;
+    /**
+     * Can be a simple **string** or an **object**
+     *
+     * _**String**_
+     *
+     * Must be between double-quotes ("), so use single-quotes (') for attributes.
+     * <pre>
+     *    <code>
+     *        "id='lorem_ipsum' style='display: flex;'"
+     *    </code>
+     * </pre>
+     *
+     * _**Object**_
+     * <pre>
+     *    <code>
+     *        {
+     *            "data-test-1": "test-1",
+     *            "data-test-2": "test-2"
+     *        }
+     *    </code>
+     * </pre>
+     */
+    @Input() extraAttribute: string | object;
+    /** A button will become a link if `href` is defined as long as it's not disabled. */
+    @Input() href: string;
+    /**
+     * You can pass directly the **icon name** in string format or an object
+     * based on [Icon](/?path=/docs/components-icon--drupal) component API.
+     */
+    @Input() icon: string | IIcon;
+    @Input() isDisabled: boolean;
+    /** Display a `data-title` attribute.  */
+    @Input() label: string;
 
     ngOnInit() {
         console.log('button-icon', this);

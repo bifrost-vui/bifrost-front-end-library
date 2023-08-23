@@ -12,6 +12,9 @@ export const typographyInterface = [
 
 export const typographyDisplay = [
     {
+        name: '',
+    },
+    {
         name: 'sub-small',
     },
     {

@@ -21,6 +21,17 @@ body,
   }
 }
 
+// Background Overlay
+.bf-background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.2);
+}
+
 // Utils
 
 .flex-1 {
@@ -41,4 +52,79 @@ body,
       @extend .mb-0;
     }
   }
+}
+
+// Element State (ex.: hover, focus, etc.) Transitions / Animations
+@mixin bf-transition-opacity($elementState, $opacityValue) {
+  opacity: 1;
+  transition: opacity $transition-time-long ease-out;
+
+  &:#{$elementState} {
+    opacity: $opacityValue;
+  }
+}
+
+// Transitions / Animations
+.bf-transition-visibility {
+  display: none;
+  opacity: 0;
+
+  &.bf-visible {
+    display: block;
+    opacity: 1;
+    animation: animation-transition-visibility $transition-time-medium;
+  }
+}
+
+@keyframes animation-transition-visibility {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@mixin bf-transition-scaleX-ltr {
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    height: 3px;
+    background-color: var(--bf-color-stroke-secondary);
+    transform: scaleX(0);
+    transform-origin: left center;
+    will-change: transform;
+    transition: transform $transition-time-long ease-out;
+  }
+
+  &:hover,
+  &:focus-visible {
+    &::after {
+      background-color: var(--bf-color-stroke-secondary);
+      transform: scaleX(1);
+      @include transitions(transform, background-color $transition-time-long ease-out);
+    }
+  }
+
+  &.active {
+    &::after {
+      background-color: var(--bf-color-stroke-highlight);
+      transform: scaleX(1);
+      will-change: background-color;
+      @include transitions(transform, background-color $transition-time-long ease-out);
+    }
+  }
+}
+
+.bf-transition-scaleX-ltr {
+  @include bf-transition-scaleX-ltr;
 }

@@ -1,33 +1,45 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import { topBar_items, topBar_secondaryItems, rigthIconLinks } from './data';
+import { withDesign } from 'storybook-addon-designs'
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { HeaderComponent } from '../angular/header.component';
+import { HeaderTemplateComponent } from './template.angular.component';
+import { IconDefaultValue } from './doc.model';
+import { accountData, mainMenuData, topBarData } from './doc.data';
 
 <Meta
-    title="Components/Navigation Header"
+    title='Components/Navigation Header'
     component={HeaderComponent}
-    decorators={[moduleMetadata({ declarations: [HeaderComponent, TwigContainerComponent] })]}
+    decorators={[
+        moduleMetadata({ declarations: [HeaderComponent, HeaderTemplateComponent, TwigContainerComponent]}),
+        withDesign
+    ]}
+    parameters={{
+        design: {
+            type    : 'figma',
+            url     : 'https://www.figma.com/file/HhO60HUBEv6l91zMNj48nO/DWN-1046---Navigation?node-id=3901-270978&t=rAxpowc7lwvXquaP-0',
+            disable : false
+        },
+    }}
     argTypes={{
-        accountHello: {
-            table: { defaultValue: { summary: 'Hello' } },
-        },
-        accountName: {
-            table: { category: 'Deprecated Inputs' },
-        },
         langcode: {
-            table: { defaultValue: { summary: 'EN' } },
-            control: {
-                type: 'select',
-                options: ['EN', 'FR'],
+            control: { type: 'select' },
+        },
+        logo: {
+            table: {
+                defaultValue: {
+                    summary: "Object",
+                    detail: IconDefaultValue
+                }
             },
         },
-        hasTopBar: {
-            table: { defaultValue: { summary: 'true' } },
-        },
-        reversed: {
-            table: { defaultValue: { summary: 'false' } },
-        },
+        /*
+        Commented for now as the "Business" theme is separated in another component,
+        using the old Navigation Header component. The "Business" theme will
+        eventually be integrated in this new Navigation Header component in the future.        
+        theme: {
+            control: { type: 'select' },
+        },*/
     }}
 />
 
@@ -35,116 +47,281 @@ import { HeaderComponent } from '../angular/header.component';
 
 <br />
 
-## Drupal implementation example
-
-```jsx
-{% include '@bf-components/navigation-header/twig/index.twig' with {
-    hasTopBar: true,
-    topBar: {
-        items: [
-            { label: 'Personal',    href: '', class: 'active',  },
-            { label: 'Business',    href: '', class: '' },
-        ],
-        secondaryItems: [
-            { label: 'Webmail',     href: '', class: '' },
-            { label: 'illico.tv',   href: '', class: '' },
-            { label: 'Locate',      href: '', class: '' }
-        ],
-    },
-    logo: {
-        name: 'business',
-    },
-    navItems: [
-        {
-            label: 'Shop', href: '', class: '',
-            subItemsMultiDropdown: [
-                {
-                    label: 'Helix plans', href: '', class: '',
-                    listItems: [
-                        { label: 'The Helix experience',   href: '', class: '' },
-                        { label: 'Helix TV',               href: '', class: '' },
-                        { label: 'Helix Internet',         href: '', class: '' },
-                    ]
-                },
-                {
-                    label: 'Other custom bundles', href: '', class: '',
-                    listItems: []
-                },
-            ],
-            mega: [
-                { imgSrc: 'https://source.unsplash.com/400x250/?nature', imgAlt: 'Thumbnail', href: '#', title: '', text: '' },
-                { imgSrc: 'https://source.unsplash.com/400x250/?nature', imgAlt: 'Thumbnail', href: '#', title: '', text: '' },
-            ]
-        },
-        {
-            label: 'Support', href: '#', class: '',
-            subItemsMultiDropdown: [...],
-            mega: [...],
-        }
-        ...
-    ],
-    rigthIconLinks: [
-        { icon: 'email',   href: ' ', class: '' },
-        { icon: 'pin',     href: ' ', class: '' },
-    ],
-    hasAccountBtn: true,
-    isConnected: true,
-    hrefLogOut: '#',
-    labelLogOut: 'Log out',
-    hrefConnexion: '#',
-    labelConnexion: 'Connexion',
-
-    search: {
-        placeholder: 'What are you looking for?'
-    },
-    reversed: true,
-} only %}
-```
-
 ## Component API
 
 <ArgsTable of={HeaderComponent} />
 
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/navigation-header/twig/index.twig' with {
+    accountData: {{
+        firstName: 'John',
+        lastName: 'Smith',
+        links: [
+            {
+                href: '/',
+                icon: 'my-account',
+                subtitle: 'Helix billing and services',
+                title: 'My Account'
+            },
+            {
+                href: '/',
+                icon: 'services',
+                subtitle: 'illico, webmail and web tele',
+                title: 'My Services'
+            },
+        ],
+    }},
+    accountSignInURL: '/signin',
+    hasTopBar: true,
+    langcode: 'en',
+    logo: {
+        href: '/',
+        name: 'videotron',
+    },
+    mainMenuData: [
+        {
+            label: 'Internet',
+            subItems: [
+                {
+                    label: 'Shop Helix',
+                    subItems: [
+                        {
+                            label: 'Internet plans',
+                            href: '/',
+                        },
+                        {
+                            label: 'Create your plan',
+                            href: '/',
+                        },
+                        {
+                            label: 'Offers',
+                            href: '/',
+                        },
+                    ],
+                },
+                {
+                    label: 'Discover Videotron Home Internet',
+                    subItems: [
+                        {
+                            label: 'Why choose Videotron?',
+                            href: '/',
+                        },
+                        {
+                            label: 'Support',
+                            href: '/',
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            label: 'Tv',
+            subItems: [
+                {...}
+            ],,
+        },
+        {
+            label: 'Mobility',
+            subItems: [
+                {...}
+            ],,
+
+        },
+        {
+            label: 'Entertainment',
+            subItems: [
+                {...}
+            ],
+        },
+        {
+            class: 'font-weight-bold',
+            color: '#0B8339',
+            label: 'Moving',
+            href: '/',
+            rel: 'dofollow',
+        },
+    ],
+    reversed: false,
+    searchPlaceholder: 'What are you looking for?',
+    topBarData: {
+        left: {
+            description: 'Website Selection',
+            items: [
+                {
+                    href: "/",
+                    isActive: true,
+                    isActiveLinkClickable: false,
+                    label: "Residential",
+                    rel: "dofollow",
+                    unclickableActiveMenuItemScreenReaderMessage: "Current website:",
+                },
+                {
+                    href: "/",
+                    label: "Business",
+                    rel: "dofollow",
+                },
+            ],
+        },
+        right: {
+            description: "...",
+            items: [
+                {...},
+            ],
+        },
+    },
+} only %}
+```
+
+
 ## Drupal
+
+export const commonProps = {
+    accountSignInURL: '/signin',
+    hasTopBar: true,
+    logo: {
+        href: '/',
+        name: 'videotron',
+    },
+    mainMenuData: mainMenuData,
+    topBarData: topBarData
+};
 
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
     props: args,
 });
 
-<Canvas withSource="none">
+<Canvas withSource='none'>
     <Story
-        name="Drupal"
+        name='Drupal - Anonymous'
+        height='300px'
         args={{
             elementPath: 'components/navigation-header/_doc/template.drupal',
-            topBar_items,
-            topBar_secondaryItems,
-            logo: {
-                name: 'videotron',
-                href: '/',
-            },
-            rigthIconLinks,
+            ...commonProps,
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
 
-<Canvas withSource="none">
+<Canvas withSource='none'>
     <Story
-        name="Drupal - business"
+        name='Drupal - Connected'
+        height='300px'
         args={{
             elementPath: 'components/navigation-header/_doc/template.drupal',
-            topBar_items,
-            topBar_secondaryItems,
-            logo: {
-                name: 'business',
-                href: '/',
-            },
-            reversed: 'true',
-            rigthIconLinks,
+            ...commonProps,
+            accountData: accountData
         }}
     >
         {Drupal.bind({})}
     </Story>
 </Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Top Bar with Links on the Right'
+        height='300px'
+        args={{
+            elementPath: 'components/navigation-header/_doc/template.drupal',
+            ...commonProps,
+            hasTopBar: true,
+            topBarData: {
+                left: commonProps.topBarData.left,
+                right: {
+                    description: "Extra Top Bar Links",
+                    items: [
+                        {
+                            href: "/",
+                            label: "Demo link 1",
+                        },
+                        {
+                            href: "/",
+                            label: "Demo link 2",
+                        },
+                        {
+                            href: "/",
+                            label: "Demo link 3",
+                        },
+                        {
+                            href: "/",
+                            label: "Demo link 4",
+                        }
+                    ],
+                },
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Top Bar with Links on the Right - With a Twig Block'
+        height='300px'
+        args={{
+            elementPath: 'components/navigation-header/_doc/template.drupal',
+            ...commonProps,
+            _top_bar_right_block: true,
+            hasTopBar: true,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource='none'>
+    <Story
+        name='Drupal - Without Top Bar'
+        height='300px'
+        args={{
+            elementPath: 'components/navigation-header/_doc/template.drupal',
+            ...commonProps,
+            hasTopBar: false,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<!-- Angular commented for now -->
+<!--
+
+    ## Angular
+
+    export const Angular = (args) => ({
+    component: HeaderTemplateComponent,
+    props: args,
+    });
+
+    <Canvas withSource='none'>
+        <Story
+            name='Angular - Not developed yet'
+            args={{
+                label: 'Header'
+            }}
+        >
+            {Angular.bind({})}
+        </Story>
+    </Canvas>
+
+    ## Angular implementation example
+
+    Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
+
+
+    __// TODO__: Add Stories (variants of your component) as much as you want.
+
+
+    ## Component API
+
+    <ArgsTable of={HeaderComponent} />
+
+-->
+
+## Design Guidelines
+
+<iframe width='100%' height='450' src='https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FHhO60HUBEv6l91zMNj48nO%2FDWN-1046---Navigation%3Fnode-id%3D3901-270978%26t%3DrAxpowc7lwvXquaP-0&chrome=DOCUMENTATION' frameBorder='0' allowFullScreen></iframe>

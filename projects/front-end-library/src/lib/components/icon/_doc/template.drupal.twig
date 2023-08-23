@@ -29,10 +29,11 @@
   %}
     <div class="d-flex flex-wrap flex-column align-items-center">
       {% include "@bf-components/icon/twig/index.twig" with {
-        name: name,
-        color: color,
-        size: size,
+        ariaLabel: ariaLabel,
         class: class,
+        color: color,
+        name: name,
+        size: size,
         reversed: reversed
       } only %}
       <p class="small bf-color-neutral-secondary pt-1">
@@ -58,13 +59,13 @@
               {% for iconName in category.list %}
                 <div
                   class="d-flex flex-column align-items-center p-3"
-                  title="{{ iconName }}"
                 >
                   {% include "@bf-components/icon/twig/index.twig" with {
-                    name: iconName,
-                    color: color,
-                    size: size,
+                    ariaLabel: ariaLabel,
                     class: class,
+                    color: color,
+                    name: iconName,
+                    size: size,
                     reversed: reversed
                   } only %}
                   <p class="small bf-color-neutral-secondary text-center pt-1">

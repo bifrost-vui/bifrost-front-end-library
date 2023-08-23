@@ -1,0 +1,50 @@
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
+{% set searchPlaceholder = searchPlaceholder|default("What are you looking for?") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set searchBarButtonClasses = [
+  "bf-nav-header__functions__search-bar__mobile-toggle__button",
+  "js-bf-search-bar-toggle",
+] %}
+
+{# Template #}
+<div class="bf-nav-header__functions__search-bar">
+
+  {# Search Bar Button #}
+  {% include "@bf-components/button-icon/twig/index.twig" with {
+    icon: "search",
+    ariaControls: "searchContainer",
+    ariaExpanded: "false",
+    ariaLabel: "Open Search Bar"|t,
+    buttonClass: searchBarButtonClasses|join(' ')|trim,
+    class: "bf-nav-header__functions__search-bar__mobile-toggle",
+    dataTarget: "#searchContainer",
+    dataToggle: "collapse",
+    extraAttribute: {
+      "data-label-closed" : "Open Search Bar"|t,
+      "data-label-opened" : "Close Search Bar"|t,
+    },
+  } only %}
+
+  {# Search Bar Container #}
+  <div id="searchContainer" class="bf-nav-header__functions__search-bar__container collapse">
+    {% block globalSearch %}
+      <div class="bf-nav-header__functions__search-bar__container__inner">
+        {% include "@bf-components/input-search/twig/index.twig" with {
+          class: "mb-0",
+          input: {
+            ariaLAbel: searchPlaceholder|t,
+            id: "global_search",
+            name: "global_search",
+            placeholder: searchPlaceholder|t
+          },
+          isLabelVisible: false,
+          label: {
+            text: "Website Search Field"|t
+          },
+          reversed: reversed
+        } %}
+      </div>
+    {% endblock %}
+  </div>
+</div>

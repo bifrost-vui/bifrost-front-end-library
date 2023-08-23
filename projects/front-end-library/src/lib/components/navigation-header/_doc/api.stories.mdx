@@ -1,0 +1,243 @@
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Meta } from '@storybook/addon-docs';
+import {
+    AccountAPI,
+    AccountLinkAPI,
+    DefaultMenuItemAPI,
+    HeaderLogoAPI,
+    MenuItemAPI,
+    TopBarAPI,
+    TopBarMenuItemAPI,
+    TopBarSectionAPI
+} from '../angular/api.component';
+
+<Meta
+    title='Components/Navigation Header/API'
+    parameters={{
+        viewMode: 'docs',
+        previewTabs: { 
+            canvas: { hidden: true } 
+        },
+    }}
+/>
+
+# Header API
+
+## Table of content
+
+- <a href="#iaccount" target="_self">IAccount</a>
+- <a href="#iaccountlink" target="_self">IAccountLink</a>
+- <a href="#idefaultmenuitem" target="_self">IDefaultMenuItem</a>
+- <a href="#iheaderlogo" target="_self">IHeaderLogo</a>
+- <a href="#imenuitem" target="_self">IMenuItem</a> (extends IDefaultMenuItem)
+- <a href="#itopbar" target="_self">ITopBar</a>
+- <a href="#itopbarmenuitem" target="_self">ITopBarMenuItem</a> (extends IDefaultMenuItem)
+- <a href="#itopbarsection" target="_self">ITopBarSection</a>
+
+## IAccount
+
+<h3 id="iaccount-api">API</h3>
+
+<ArgsTable of={AccountAPI} />
+
+<h3 id="iaccount-format">Expected format</h3>
+
+```jsx
+{
+    "firstName": "John",
+    "lastName": "Smith",
+    "links": [
+        {
+            "href": "/my-account",
+            "icon": "my-account",
+            "subtitle": "Helix billing and services",
+            "title": "My account",
+        },
+        {...},
+    ],
+},
+```
+
+
+## IAccountLink
+
+<h3 id="iaccountlink-api">API</h3>
+
+<ArgsTable of={AccountLinkAPI} />
+
+<h3 id="iaccountlink-format">Expected format</h3>
+
+```jsx
+{
+    "href": "/my-account",
+    "icon": "my-account",
+    "subtitle": "Helix billing and services",
+    "title": "My account",
+},
+```
+
+
+## IDefaultMenuItem
+
+This API is extended by <a href="#imenuitem" target="_self">IMenuItem</a> and ITopBarMenuItem.
+
+<h3 id="idefaultmenuitem-api">API</h3>
+
+<ArgsTable of={DefaultMenuItemAPI} />
+
+<h3 id="idefaultmenuitem-format">Expected format</h3>
+
+```jsx
+{
+    "class": "class-name",
+    "href": "/moving",
+    "isActive": false,
+    "isActiveLinkClickable": false,
+    "label": "Moving",
+    "rel": "dofollow",
+    "unclickableActiveMenuItemScreenReaderMessage": "Current page: ",
+}
+```
+
+
+## IHeaderLogo
+
+<h3 id="iheaderlogo-api">API</h3>
+
+<ArgsTable of={HeaderLogoAPI} />
+
+<h3 id="iheaderlogo-format">Expected format</h3>
+
+```jsx
+{
+    "href": "/",
+    "name": "videotron",
+}
+```
+
+
+## IMenuItem
+
+This API extends <a href="#idefaultmenuitem-api" target="_self">IDefaultMenuItem API</a>.
+All props from IDefaultMenuItem API are available, plus the ones below.
+
+<h3 id="imenuitem-api">API</h3>
+
+<ArgsTable of={MenuItemAPI} />
+
+<h3 id="imenuitem-format">Expected format</h3>
+
+```jsx
+{
+    "color": "#FF0000",
+    "class": "class-name",
+    "href": "/moving",
+    "isActive": false,
+    "isActiveLinkClickable": false,
+    "label": "Moving",
+    "rel": "dofollow",
+    "subItems": [
+        {
+            "class": "other-class-name",
+            "color": "#00FF00",
+            "href": "/lorem-ipsum",
+            "isActive": false,
+            "isActiveLinkClickable": false,
+            "label": "Lorem Ipsum",
+            "rel": "dofollow",
+            "unclickableActiveMenuItemScreenReaderMessage": "Current page: ",
+        },
+        {...},
+    ],
+    "unclickableActiveMenuItemScreenReaderMessage": "Current page: ",
+}
+```
+
+
+## ITopBar
+
+<h3 id="itopbar-api">API</h3>
+
+<ArgsTable of={TopBarAPI} />
+
+<h3 id="itopbar-format">Expected format</h3>
+
+```jsx
+{
+    "left": {
+        "description": "Website Selection",
+        "items": [
+            {
+                "href": "/",
+                "isActive": true,
+                "isActiveLinkClickable": false,
+                "label": "Residential",
+                "rel": "dofollow",
+                "unclickableActiveMenuItemScreenReaderMessage": "Current website:",
+            },
+            {
+                "href": "/",
+                "label": "Business",
+                "rel": "dofollow",
+            },
+            {...},
+        ],
+    },
+    "right": {
+        "description": "Other links",
+        "items": [
+            {
+                "href": "/",
+                "label": "Other link #1",
+                "rel": "dofollow",
+            },
+            {
+                "href": "/",
+                "label": "Other link #2",
+                "rel": "dofollow",
+            },
+            {...},
+        ],
+    },
+}
+```
+
+
+## ITopBarMenuItem
+
+This API extends <a href="#idefaultmenuitem-api" target="_self">IDefaultMenuItem API</a>.
+All props from IDefaultMenuItem API are available.
+
+<h3 id="itopbarmenuitem-api">API</h3>
+
+See <a href="#idefaultmenuitem-api" target="_self">IDefaultMenuItem API</a>.
+
+<h3 id="itopbarmenuitem-format">Expected format</h3>
+
+See <a href="#idefaultmenuitem-format" target="_self">IDefaultMenuItem expected format</a>.
+
+
+## ITopBarSection
+
+<h3 id="itopbarsection-api">API</h3>
+
+<ArgsTable of={TopBarSectionAPI} />
+
+<h3 id="itopbarsection-format">Expected format</h3>
+
+```jsx
+{
+    "description": "Website Selection",
+    "items": [
+        {
+            "href": "/",
+            "isActive": true,
+            "isActiveLinkClickable": false,
+            "label": "Residential",
+            "rel": "dofollow",
+            "unclickableActiveMenuItemScreenReaderMessage": "Current website:",
+        },
+        {...},
+    ],
+},
+```

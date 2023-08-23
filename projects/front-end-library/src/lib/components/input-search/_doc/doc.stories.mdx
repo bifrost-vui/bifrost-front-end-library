@@ -1,12 +1,42 @@
 import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
-import { InputSearchComponent } from '../angular/input-search.component';
+import { InputSearchComponent, DefaultButtonSubmitValue } from '../angular/input-search.component';
+import { ButtonSubmitDefaultValue, InputDefaultValue, LabelDefaultValue } from './doc.model';
 
 <Meta
     title="Components/Input Search"
     component={InputSearchComponent}
     decorators={[moduleMetadata({ declarations: [InputSearchComponent, TwigContainerComponent] })]}
+    argTypes={{
+        buttonSubmit: {
+            table: {
+                defaultValue: {
+                    summary: "Object",
+                    detail: ButtonSubmitDefaultValue
+                }
+            },
+        },
+        input: {
+            table: {
+                defaultValue: {
+                    summary: "Object",
+                    detail: InputDefaultValue
+                }
+            },
+        },
+        label: {
+            table: {
+                defaultValue: {
+                    summary: "Object",
+                    detail: LabelDefaultValue
+                }
+            },
+        },
+        reversed: {
+            table: { defaultValue: { summary: 'false' } },
+        },
+    }}
 />
 
 # Input Search
@@ -21,37 +51,57 @@ import { InputSearchComponent } from '../angular/input-search.component';
 
 ```jsx
 {% include '@bf-components/input-search/twig/index.twig' with {
+    buttonSubmit: {
+        buttonIcon: {
+            ariaLabel: "Search",
+            icon: "search",
+        },
+        isVisible: true,
+        position: "right",
+    },
     class: 'class',
-    reversed: true,
-    buttonClass: 'buttonClass',
-    iconClass: 'iconClass',
-    invalidMsg: 'invalidMsg',
-    isDisabled: false,
+    hasButtonClear: true,
     input: {
-        id: 'id',
-        class: 'class',
-        iconPosition: 'right',
-        type: 'text',
-        placeholder: 'Placeholder',
-        name: 'Name',
-        value: 'Value',
-        extraAttribute: 'extraAttribute',
+        class: "p-2",
+        extraAttribute: "data-demo-input-1='this is an extra attribute' data-demo-input-2='this is another extra attribute'",
+        id: "searchInput",
+        name: "searchInput",
+        placeholder: "What are you looking for?",
+        value: "search string",
     },
-    inputSubmit: {
-        id: 'id',
-        value: 'value',
-        extraAttribute: 'extraAttribute',
-    },
+    isDisabled: false,
+    isLabelVisible: false,
     label: {
-        value: 'value',
-        class: 'class',
-        extraAttribute: 'extraAttribute',
+        class: "ml-4",
+        extraAttribute: "data-demo-label='this is an extra attribute'",
+        text: "Label Text",
     },
-    mtValue: mtValue,
+    reversed: true,
 } only %}
 ```
 
 ## Drupal
+
+export const commonProps = {
+    buttonSubmit: {
+        buttonIcon: {
+            ariaLabel: 'Search',
+            icon: 'search',
+        },
+        isVisible: true,
+        position: 'right',
+    },
+    hasButtonClear: true,
+    input: {
+        id: 'searchInput',
+        name: 'searchInput',
+        placeholder: 'What are you looking for?',
+    },
+    isLabelVisible: false,
+    label: {
+        text: 'Lorem Ipsum',
+    },
+}
 
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
@@ -60,17 +110,25 @@ export const Drupal = (args) => ({
 
 <Canvas withSource="none">
     <Story
-        name="Drupal"
-        height="300px"
+        name="Drupal - Default"
+        height="150px"
         args={{
             elementPath: 'components/input-search/_doc/template.drupal',
-            "label": {
-                "value": "Label",
-            },
-            "input": {
-                "placeholder": "What are you looking for?",
-            },
-            _isInvalid: false,
+            ...commonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - With Label"
+        height="150px"
+        args={{
+            elementPath: 'components/input-search/_doc/template.drupal',
+            ...commonProps,
+            isLabelVisible: true,
         }}
     >
         {Drupal.bind({})}

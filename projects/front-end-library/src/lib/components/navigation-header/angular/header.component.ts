@@ -1,66 +1,68 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ILink } from '../../../components/link/angular/api.model';
-
-interface ILogo {
-    href: string;
-    name: string;
-}
-
+import { IAccount, IHeaderLogo, IMenuItem, ITopBar } from './api.model';
 @Component({
     selector: 'bf-header',
     templateUrl: './header.component.html',
-    // styleUrls: ['../common/style.scss'],
 })
 export class HeaderComponent implements OnInit {
     constructor() {}
 
-    @Input() reversed: boolean;
-
     /**
-     * - See [Logo Component API](/?path=/docs/components-logo--drupal).
-     * - E.g. `logo = { href: "#", name: "videotron" }`.
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * See IAccount <a href="/?path=/docs/components-navigation-header-api--page#iaccount-api" target="_blank">API</a>
+     *  and <a href="/?path=/docs/components-navigation-header-api--page#iaccount-format" target="_blank">expected format</a>.
      */
-    @Input() logo: ILogo;
-
-    @Input() search_placeholder: string;
-
-    /** Note: TopBar is only visible on desktop. */
-    @Input() hasTopBar: boolean;
-    @Input() topBar_items: any[];
-    @Input() topBar_secondaryItems: any[];
-
-    @Input() navItems: any[];
-    /** Maximum 5 first element of the list will be display. */
-    @Input() rigthIconLinks: any[];
-    /** In Mobile only, display the myAccount buttonIcon. */
-    @Input() hasAccountBtn: boolean;
-    /** In Mobile only, display the LogOut buttonIcon. */
-    @Input() isConnected: boolean;
-
-    /** Property of topBar in Desktop or the logOut buttonIcon in Mobile. */
-    @Input() hrefLogOut: string;
-    /** Property of topBar in Desktop or the logOut buttonIcon in Mobile. */
-    @Input() labelLogOut: string;
-    /** Property of topBar in Desktop or the myAccount buttonIcon in Mobile. */
-    @Input() hrefConnexion: string;
-    /** Property of topBar in Desktop or the myAccount buttonIcon in Mobile. */
-    @Input() labelConnexion: string;
-
-    /** String displayed before `accountLink` in the Top Bar, when connected. */
-    @Input() accountHello: string;
+    @Input() accountData: IAccount = null;
     /**
-     * __\*Deprecated\*__
-     *
-     * - Use `accountLink` instead.
-     * - Name of the user, displayed in the Top Bar when connected.
+     * <span style="color: red;">__Required__</span>
+     * <br><br>
+     * When anonymously browsing, meaning without being connected to an account,
+     * this is the link on the "Sign In" button to access the login form.
      */
-    @Input() accountName: string;
-    /** Link and Name of the user, displayed in the Top Bar when connected. */
-    @Input() accountLink: ILink;
-
-    // @Input() hasMiniCartBtn: boolean;
-    @Input() hasNoSearchBtn: boolean;
-    @Input() langcode: 'EN' | 'FR';
+    @Input() accountSignInURL: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Display or not the top bar above main header bar
+     */
+    @Input() hasTopBar: boolean = true;
+    /** <span style="color: orange;">__Optional__</span> */
+    @Input() langcode: 'en' | 'fr' = 'en';
+    /**
+     * <span style="color: red;">__Required__</span>
+     * <br><br>
+     * See IHeaderLogo <a href="/?path=/docs/components-navigation-header-api--page#iheaderlogo-api" target="_blank">API</a>
+     *  and <a href="/?path=/docs/components-navigation-header-api--page#iheaderlogo-format" target="_blank">expected format</a>.
+     */
+    @Input() logo: IHeaderLogo;
+    /**
+     * <span style="color: red;">__Required__</span>
+     * <br><br>
+     * See IMenuItem <a href="/?path=/docs/components-navigation-header-api--page#imenuitem-api" target="_blank">API</a>
+     *  and <a href="/?path=/docs/components-navigation-header-api--page#imenuitem-format" target="_blank">expected format</a>.
+     */
+    @Input() mainMenuData: IMenuItem[];
+    /** <span style="color: orange;">__Optional__</span> */
+    @Input() reversed: boolean = false;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Search field placeholder text
+     */
+    @Input() searchPlaceholder: string = 'What are you looking for?';
+    /**
+     * Header's `data-theme` attribute
+     * @ignore
+     */
+    @Input() theme: 'videotron' | 'business' = 'videotron';
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * See ITopBar <a href="/?path=/docs/components-navigation-header-api--page#itopbar-api" target="_blank">API</a>
+     *  and <a href="/?path=/docs/components-navigation-header-api--page#itopbar-format" target="_blank">expected format</a>.
+     */
+    @Input() topBarData: ITopBar;
 
     ngOnInit() {
         console.log('Header', this);
