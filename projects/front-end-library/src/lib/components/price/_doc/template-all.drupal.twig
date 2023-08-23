@@ -1,16 +1,32 @@
 {# Default Variables (Props, Controls) #}
-{% set upfront = upfront|json_parse %}
-{% set hasAsterisk = hasAsterisk|json_parse %}
-{% set promotion = promotion|json_parse %}
-{% set dollar = dollar|json_parse %}
+{% set _reversed = _reversed|json_parse %}
 {% set cent = cent|json_parse %}
-{% set reversed = reversed|json_parse %}
+{% set class = class|json_parse %}
+{% set details = details|json_parse %}
+{% set dollar = dollar|json_parse %}
+{% set dollarClass = dollarClass|json_parse %}
 {% set fullWidth = fullWidth|json_parse %}
+{% set hasAsterisk = hasAsterisk|json_parse %}
+{% set isPriceBoxDisplayed = isPriceBoxDisplayed|json_parse %}
+{% set language = language|json_parse %}
+{% set message = message|json_parse %}
+{% set promotion = promotion|json_parse %}
+{% set size = size|json_parse %}
+{% set upfront = upfront|json_parse %}
+{% set upperTitle = upperTitle|json_parse %}
+
+{% set isSizeIsAnObject = size is defined and size is iterable and size.default is not empty %}
+
+{% if isSizeIsAnObject %}
+  {% set sizeDefault = size.default %}
+{% else %}
+  {% set sizeDefault = size %}
+{% endif %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set mainContainerClasses = [
   "d-flex flex-column flex-sm-row justify-content-center minh-100",
-  (reversed ? "reversed bf-color-bg-ground"),
+  (_reversed ? "reversed bf-color-bg-ground"),
 ] %}
 
 {# Template #}
@@ -18,7 +34,7 @@
   {% for index in [1, 2] %}
 
     {# In Loop : Boolean Variables #}
-    {% set isReversed = index == 2 and reversed is not defined %}
+    {% set isReversed = index == 2 and _reversed is not defined %}
 
     {# In Loop : Arrays of Classes With Dynamic Elements #}
     {% set innerContainerClasses = [
@@ -28,9 +44,9 @@
 
     <div class="{{ innerContainerClasses|join(' ')|trim }}">
       <div class="w-100">
-        {% if size is defined and size is not empty %}
+        {% if sizeDefault is defined and sizeDefault is not empty %}
           <h3 class="mt-5 ml-3">
-            Size "{{ size }}"
+            Size "{{ sizeDefault }}"
           </h3>
           <div class="d-flex flex-column flex-lg-row border-bottom bf-border-color-tertiary">
             {% include "@bf-components/price/twig/index.twig" %}
@@ -44,39 +60,54 @@
             Size "small" (default)
           </h3>
           <div class="d-flex flex-column flex-lg-row border-bottom bf-border-color-tertiary">
-            {% include "@bf-components/price/twig/index.twig" %}
-
-            {% include "@bf-components/price/twig/index.twig" with {
-              language: language|default("fr")
-            } %}
+            <div class="w-100 w-lg-50">
+              <div class="small py-1 px-3 bf-color-bg-underground">English CAD Format</div>
+              {% include "@bf-components/price/twig/index.twig" %}
+            </div>
+            <div class="w-100 w-lg-50">
+              <div class="small py-1 px-3 bf-color-bg-underground">French CAD Format</div>
+              {% include "@bf-components/price/twig/index.twig" with {
+                language: language|default("fr")
+              } %}
+            </div>
           </div>
 
           <h3 class="mt-5 ml-3">
             Size "medium"
           </h3>
           <div class="d-flex flex-column flex-lg-row border-bottom bf-border-color-tertiary">
-            {% include "@bf-components/price/twig/index.twig" with {
-              size: size|default("medium")
-            } %}
-
-            {% include "@bf-components/price/twig/index.twig" with {
-              size: size|default("medium"),
-              language: language|default("fr")
-            } %}
+            <div class="w-100 w-lg-50">
+              <div class="small py-1 px-3 bf-color-bg-underground">English CAD Format</div>
+              {% include "@bf-components/price/twig/index.twig" with {
+                size: sizeDefault|default("medium")
+              } %}
+            </div>
+            <div class="w-100 w-lg-50">
+              <div class="small py-1 px-3 bf-color-bg-underground">French CAD Format</div>
+              {% include "@bf-components/price/twig/index.twig" with {
+                size: sizeDefault|default("medium"),
+                language: language|default("fr")
+              } %}
+            </div>
           </div>
 
           <h3 class="mt-5 ml-3">
             Size "large"
           </h3>
-          <div class="d-flex flex-column">
-            {% include "@bf-components/price/twig/index.twig" with {
-              size: size|default("large")
-            } %}
-
-            {% include "@bf-components/price/twig/index.twig" with {
-              size: size|default("large"),
-              language: language|default("fr")
-            } %}
+          <div class="d-flex flex-column flex-lg-row">
+            <div class="w-100 w-lg-50">
+              <div class="small py-1 px-3 bf-color-bg-underground">English CAD Format</div>
+              {% include "@bf-components/price/twig/index.twig" with {
+                size: sizeDefault|default("large")
+              } %}
+            </div>
+            <div class="w-100 w-lg-50">
+              <div class="small py-1 px-3 bf-color-bg-underground">French CAD Format</div>
+              {% include "@bf-components/price/twig/index.twig" with {
+                size: sizeDefault|default("large"),
+                language: language|default("fr")
+              } %}
+            </div>
           </div>
         {% endif %}
       </div>

@@ -42,7 +42,7 @@ html {
     opacity: 1 !important;
   }
 
-  @include media-breakpoint-up(xl) {
+  @include media-breakpoint-up(xxl) {
     $border-width: 0.05rem;
     font-size: $baseFontSizeXXL;
   }
@@ -62,7 +62,7 @@ html {
     //}
 
     .container-fluid {
-      @include media-scale(max-width, 93vw, 93vw, 75vw, 77vw);
+      @include media-scale(max-width, 93vw, $lgValue: 75vw, $xxlValue: 77vw);
 
       @include media-breakpoint-up(lg) {
         min-width: 1200px;
@@ -72,6 +72,6 @@ html {
 
   .container-fluid-percentage {
     margin: auto;
-    @include media-scale(max-width, 93%, 93%, 75%, 77%);
+    @include media-scale(max-width, 93%, $lgValue: 75%, $xxlValue: 77%);
   }
 }

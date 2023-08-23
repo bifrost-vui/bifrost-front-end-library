@@ -23,7 +23,7 @@ export class CardComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * - Array of button(s). See Button Component [API](/?path=/docs/components-button--drupal)
+     * - Array of button(s). See Button Component [API](/?path=/docs/components-button--drupal#component-api)
      * - Or, extends with a block: `{% block buttons %} ... {% endblock %}`.
      */
     @Input() buttons: IButton[];

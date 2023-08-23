@@ -2,34 +2,14 @@ import { moduleMetadata } from '@storybook/angular';
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { PriceComponent } from '../angular/price.component';
-import { PromotionDefaultValue } from './doc.model';
 
 <Meta
     title="Components/Price"
     component={PriceComponent}
     decorators={[moduleMetadata({ declarations: [PriceComponent, TwigContainerComponent] })]}
     argTypes={{
-        cent: {
-            table: { defaultValue: { summary: '00' } },
-        },
-        dollar: {
-            table: { defaultValue: { summary: '0' } },
-        },
         language: {
             control: { type: 'select' },
-            table: { defaultValue: { summary: 'en' } },
-        },
-        promotion: {
-            table: {
-                defaultValue: {
-                    summary: "Object",
-                    detail: PromotionDefaultValue
-                }
-            },
-        },
-        size: {
-            control: { type: 'select' },
-            table: { defaultValue: { summary: 'small' } },
         },
         dashed: {
             table: { category: 'Deprecated Inputs' },
@@ -74,8 +54,9 @@ import { PromotionDefaultValue } from './doc.model';
         superscript         : '1',
         title               : '<b>Promotion</b> test',
     },
-    reversed            : false,
-    size                : 'small',
+    size:                 {
+        default             : "small"
+    },
     upfront             : {
         dollar              : '0',
         label               : 'upfront',
@@ -109,7 +90,9 @@ export const commonProps = {
         superscript: '1',
         title: ' <b>Promotion</b> test',
     },
-    reversed: undefined,
+    size: {
+        "default": "small"
+    },
     upfront: {
         dollar: '0',
         label: 'upfront',
@@ -132,11 +115,34 @@ export const commonProps = {
 
 <Canvas withSource="none">
     <Story
+        name="Drupal - Size per breakpoint"
+        height="200px"
+        args={{
+            elementPath: 'components/price/_doc/template.drupal',
+            ...commonProps,
+            size: {
+                "default": "large",
+                "sm": "small",
+                "md": "medium",
+                "lg": "small",
+                "xl": "large",
+                "xxl": "medium"
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
         name="Drupal - All Prices"
         height="800px"
         args={{
             elementPath: 'components/price/_doc/template-all.drupal',
             ...commonProps,
+            language: undefined,
+            size: undefined,
         }}
     >
         {Drupal.bind({})}

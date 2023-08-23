@@ -30,14 +30,31 @@
 {% set isPriceBoxDisplayed = (isPriceBoxDisplayed ?? true) is same as(true) %}
 {% set isPromotionDisplayed = (promotion.isDisplayed ?? true) is same as(true) %}
 {% set isPromotionDirectionHorizontal = hasPromotionDirection and promotion.direction is same as("horizontal") %}
+{% set isSizeIsAnObject = size is defined and size is iterable and size.default is not empty %}
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set details = details|default("")|raw %}
 
+{% if isSizeIsAnObject %}
+  {% set sizeDefault = size.default %}
+  {% set sizeSM = size.sm|default("") %}
+  {% set sizeMD = size.md|default("") %}
+  {% set sizeLG = size.lg|default("") %}
+  {% set sizeXL = size.xl|default("") %}
+  {% set sizeXXL = size.xxl|default("") %}
+{% else %}
+  {% set sizeDefault = size %}
+{% endif %}
+
 {# Arrays of Classes With Dynamic Elements #}
 {% set priceContainerClasses = [
   "bf-price",
-  "bf-price--" ~ size,
+  "bf-price--" ~ sizeDefault,
+  (sizeSM is not empty ? "bf-price--sm--" ~ sizeSM),
+  (sizeMD is not empty ? "bf-price--md--" ~ sizeMD),
+  (sizeLG is not empty ? "bf-price--lg--" ~ sizeLG),
+  (sizeXL is not empty ? "bf-price--xl--" ~ sizeXL),
+  (sizeXXL is not empty ? "bf-price--xxl--" ~ sizeXXL),
   "d-flex flex-column",
   (isFullWidth ? "w-100"),
   (class),
@@ -97,7 +114,7 @@
     <div class="{{ promotionContainerClasses|join(' ')|trim }}">
       <div class="bf-price__infos">
         {% if isLanguageEN %}
-          <sup class="bf-price__dollarsign mt-n1">$</sup>
+          <sup class="bf-price__dollarsign">$</sup>
         {% endif %}
 
         <div
@@ -112,7 +129,7 @@
             {{ dollar }}
           </span>
 
-          <div class="d-block flex-column justify-content-between">
+          <div class="d-flex flex-column">
             <div class="d-flex align-items-start">
               {% if hasCent %}
                 <span class="bf-price__cent ml-1">
@@ -137,7 +154,7 @@
       </div>
 
       {% if hasPromotion %}
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column justify-content-center">
           {% if hasPromotionTitle %}
             <p class="small mb-1">
               {{ promotion.title }}
@@ -146,9 +163,27 @@
           <div class="d-inline-flex">
             {% if hasPromotionPriceStriked %}
               <p class="small text-strike mr-2 mb-0">
-                {% if isLanguageEN %}${% endif %}
-                {{- promotion.priceStriked -}}
-                {% if isLanguageFR %}&nbsp;${% endif %}
+                {# If the decimal separator is a "comma", then the price was set in english #}
+                {% set priceStrikedComma = promotion.priceStriked|split(',') %}
+                {# If the decimal separator is a "dot", then the price was set in french #}
+                {% set priceStrikedDot = promotion.priceStriked|split('.') %}
+
+                {% if isLanguageEN %}
+                  {% if priceStrikedDot|length > 1 %}
+                    {% set reconstructedPrice = priceStrikedDot[0] ~ "," ~ priceStrikedDot[1] %}
+                    ${{ reconstructedPrice }}
+                  {% else %}
+                    ${{- promotion.priceStriked|replace({'.', ','}) -}}
+                  {% endif %}
+                {% endif %}
+                {% if isLanguageFR %}
+                  {% if priceStrikedComma|length > 1 %}
+                    {% set reconstructedPrice = priceStrikedComma[0] ~ "." ~ priceStrikedComma[1] %}
+                    {{ reconstructedPrice }}&nbsp;$
+                  {% else %}
+                    {{- promotion.priceStriked|replace({',', '.'}) -}}&nbsp;$
+                  {% endif %}
+                {% endif %}
               </p>
             {% endif %}
 
