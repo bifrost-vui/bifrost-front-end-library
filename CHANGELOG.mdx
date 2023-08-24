@@ -19,6 +19,66 @@ see [github-release](#)
 <br />
 -->
 
+## [v1.13.0](https://bifrost-front-end-library-git-v1-13-0-bifrost-vui.vercel.app/) - _2023-08-24_
+
+see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.13.0)
+
+### Breaking Changes
+
+-   None
+
+### Bugs fixes
+
+#### Slideshow
+
+-   Fix alignment issue with arrows and dots navigation.
+
+#### Price
+
+-   Fix "All Price" story.
+-   Fix visual issue with main price `dollar`, `cent` and `details` for all three sizes.
+-   Fix `promotion.priceStriked` format depending of language.
+    -   Before the fix, if it was written
+        with the English format system (e.g. `22,50`), it would show like that even on French pages.
+        It was the same thing on English pages if it was written with the French system (e.g. `22.50`).
+    -   Now, it will change the decimal separator (i.e. `.` in French and `,` in English)
+        depending on the language value passed in `language` prop.
+
+### Special mentions
+
+#### Overhaul of the color system
+
+-   Add a "reversed" CSS variable.
+-   Optimize colors SCSS file.
+-   Adjust documentation.
+
+#### Breakpoints
+
+-   Add a new breakpoint `xl` (1440px) between `lg` (1200px) & `xxl` (1920px).
+-   Adjust files that used the `xl` breakpoint to now use `xxl`.
+-   Adjust `media-scale` mixin to add `sm` and `xxl` values.
+-   Adjust CSS files that uses `media-scale` mixin.
+
+### Components
+
+#### Card
+
+-   Adjust Card documentation.
+
+#### Price
+
+-   Adjust Price promotion block alignment.
+-   Add a system to set different size for each breakpoint and adjust CSS to reflect that.
+-   Adjust overall documentation.
+-   Add internal API documentation page.
+
+#### Sticky Bar __(NEW)__
+
+-   This new component displays a sticky bar with a title, a price information and a button.
+-   This component uses `Button` and `Price` components.
+
+<br />
+
 ## [v1.12.2](https://bifrost-front-end-library-git-v1-12-2-bifrost-vui.vercel.app/) - _2023-08-15_
 
 see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.12.2)
