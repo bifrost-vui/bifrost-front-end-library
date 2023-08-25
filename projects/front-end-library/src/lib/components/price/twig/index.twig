@@ -173,7 +173,7 @@
                     {% set reconstructedPrice = priceStrikedDot[0] ~ "," ~ priceStrikedDot[1] %}
                     ${{ reconstructedPrice }}
                   {% else %}
-                    ${{- promotion.priceStriked|replace({'.', ','}) -}}
+                    ${{- promotion.priceStriked|replace({'.': ','}) -}}
                   {% endif %}
                 {% endif %}
                 {% if isLanguageFR %}
@@ -181,7 +181,7 @@
                     {% set reconstructedPrice = priceStrikedComma[0] ~ "." ~ priceStrikedComma[1] %}
                     {{ reconstructedPrice }}&nbsp;$
                   {% else %}
-                    {{- promotion.priceStriked|replace({',', '.'}) -}}&nbsp;$
+                    {{- promotion.priceStriked|replace({',': '.'}) -}}&nbsp;$
                   {% endif %}
                 {% endif %}
               </p>
