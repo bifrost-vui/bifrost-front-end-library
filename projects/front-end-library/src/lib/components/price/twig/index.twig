@@ -1,3 +1,6 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
 {# Default Variables (Props, Controls) - Pre Boolean Variables #}
 {% set cent = cent|default("00") %}
 {% set class = class|default("") %}
@@ -163,27 +166,10 @@
           <div class="d-inline-flex">
             {% if hasPromotionPriceStriked %}
               <p class="small text-strike mr-2 mb-0">
-                {# If the decimal separator is a "comma", then the price was set in english #}
-                {% set priceStrikedComma = promotion.priceStriked|split(',') %}
-                {# If the decimal separator is a "dot", then the price was set in french #}
-                {% set priceStrikedDot = promotion.priceStriked|split('.') %}
-
-                {% if isLanguageEN %}
-                  {% if priceStrikedDot|length > 1 %}
-                    {% set reconstructedPrice = priceStrikedDot[0] ~ "," ~ priceStrikedDot[1] %}
-                    ${{ reconstructedPrice }}
-                  {% else %}
-                    ${{- promotion.priceStriked|replace({'.': ','}) -}}
-                  {% endif %}
-                {% endif %}
-                {% if isLanguageFR %}
-                  {% if priceStrikedComma|length > 1 %}
-                    {% set reconstructedPrice = priceStrikedComma[0] ~ "." ~ priceStrikedComma[1] %}
-                    {{ reconstructedPrice }}&nbsp;$
-                  {% else %}
-                    {{- promotion.priceStriked|replace({',': '.'}) -}}&nbsp;$
-                  {% endif %}
-                {% endif %}
+                {%- set priceStrikedValue = macros.formatDecimalNumberToLanguage(promotion.priceStriked, language) -%}
+                {% if isLanguageEN %}${% endif %}
+                {{- priceStrikedValue|trim -}}
+                {% if isLanguageFR %}&nbsp;${% endif %}
               </p>
             {% endif %}
 
@@ -197,8 +183,9 @@
                 <span class="price-superscript">
                   {% if hasPromotionPriceSaved %}
                     <span class="font-weight-bold">
+                      {%- set priceSavedValue = macros.formatDecimalNumberToLanguage(promotion.priceSaved, language) -%}
                       {% if isLanguageEN %}${% endif %}
-                      {{- promotion.priceSaved -}}
+                      {{- priceSavedValue|trim -}}
                       {% if isLanguageFR %}&nbsp;${% endif %}
                     </span>
                   {% endif %}

@@ -81,3 +81,29 @@
   {%- set value = value ? "true" : "false" -%}
   {{- value -}}
 {% endmacro %}
+
+{#
+ # Format number value with decimal depending of the language
+ #
+ # @param {number|string} value - Number or String value
+ # @param {string} language - Language String
+ #
+ # Use example :
+ # {%- set priceStrikedValue = macros.formatDecimalNumberToLanguage(promotion.priceStriked, language) -%}
+ #
+#}
+{% macro formatDecimalNumberToLanguage(value, language) %}
+  {% set isLanguageEN = language is same as("en") %}
+  {% set isLanguageFR = language is same as("fr") %}
+
+  {# Transform value to a string #}
+  {%- set value = [value]|join -%}
+
+  {% if isLanguageEN %}
+    {{- value|replace({',': '.'}) -}}
+  {% endif %}
+
+  {% if isLanguageFR %}
+    {{- value|replace({'.': ','}) -}}
+  {% endif %}
+{% endmacro %}
