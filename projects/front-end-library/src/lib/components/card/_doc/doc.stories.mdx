@@ -292,6 +292,13 @@ To override available block you need to embed the main index.twig
 
 ## Drupal
 
+export const customColorsProps = {
+    badgeCustomBgColor: 'goldenrod',
+    badgeCustomFontColor: 'midnightblue',
+    headerCustomBgColor: 'midnightblue',
+    headerCustomFontColor: 'goldenrod',
+}
+
 ### Plan card
 
 export const commonProps = {
@@ -417,8 +424,6 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-### Plan w/ channels
-
 <Canvas withSource="none" style={{ height: '900px' }}>
     <Story
         name="Drupal - Plan w/ channels"
@@ -455,6 +460,25 @@ export const Drupal = (args) => ({
                 detail: 'TV 5 choices + Internet GIGA',
             },
             upperTitle: undefined,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none" style={{ height: '900px' }}>
+    <Story
+        name="Drupal - Plan - Custom colors"
+        args={{
+            elementPath: 'components/card/_doc/template.drupal',
+            _cardVariant: 'plan',
+            ...commonProps,
+            ...customColorsProps,
+            isDisabled: false,
+            title: {
+                category: 'CellPhone plan',
+                detail: '40GB - All inclusive Canada',
+            },
         }}
     >
         {Drupal.bind({})}
@@ -559,7 +583,63 @@ export const phoneCommonProps = {
     </Story>
 </Canvas>
 
+<Canvas withSource="none" style={{ height: '900px' }}>
+    <Story
+        name="Drupal - Phone - Custom colors"
+        args={{
+            elementPath: 'components/card/_doc/template.drupal',
+            _cardVariant: 'phone',
+            ...phoneCommonProps,
+            ...customColorsProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
 ### Protection card
+
+export const protectionCommonProps = {
+    badge: {
+        label: 'Promotion',
+    },
+    buttons: [
+        {
+            hierarchy: 'primary-alt',
+            href: 'https://www.videotron.com',
+            label: 'Add this protection',
+        },
+    ],
+    iconName: 'apple',
+    message: 'Lorem ipsum dolor this protection.',
+    price: {
+        cent: '99',
+        details: '/month',
+        dollar: '86',
+        promotion: {
+            direction: 'horizontal',
+            priceSaved: '10.00',
+            priceStriked: '40.99',
+            savedLabel: 'You saved :',
+            superscript: '1',
+            title: '<b>Promotion</b> test',
+        },
+        upperTitle: 'From',
+    },
+    promotionBadges: [
+        {
+            iconName: '',
+            label: 'Free Galaxy Buds Live',
+        },
+        {
+            iconName: 'credit-welcome',
+            label: '0$ Welcome credit',
+        },
+    ],
+    subtitle: 'Lorem ipsum subtitle',
+    title: 'Apple Care+ for iPhone',
+    visualBackgroundColor: '',
+};
 
 <Canvas withSource="none" style={{ height: '900px' }}>
     <Story
@@ -567,45 +647,21 @@ export const phoneCommonProps = {
         args={{
             elementPath: 'components/card/_doc/template.drupal',
             _cardVariant: 'protection',
-            badge: {
-                label: 'Promotion',
-            },
-            buttons: [
-                {
-                    hierarchy: 'primary-alt',
-                    href: 'https://www.videotron.com',
-                    label: 'Add this protection',
-                },
-            ],
-            iconName: 'apple',
-            message: 'Lorem ipsum dolor this protection.',
-            price: {
-                cent: '99',
-                details: '/month',
-                dollar: '86',
-                promotion: {
-                    direction: 'horizontal',
-                    priceSaved: '10.00',
-                    priceStriked: '40.99',
-                    savedLabel: 'You saved :',
-                    superscript: '1',
-                    title: '<b>Promotion</b> test',
-                },
-                upperTitle: 'From',
-            },
-            promotionBadges: [
-                {
-                    iconName: '',
-                    label: 'Free Galaxy Buds Live',
-                },
-                {
-                    iconName: 'credit-welcome',
-                    label: '0$ Welcome credit',
-                },
-            ],
-            subtitle: 'Lorem ipsum subtitle',
-            title: 'Apple Care+ for iPhone',
-            visualBackgroundColor: '',
+            ...protectionCommonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none" style={{ height: '900px' }}>
+    <Story
+        name="Drupal - Protection - Custom colors"
+        args={{
+            elementPath: 'components/card/_doc/template.drupal',
+            _cardVariant: 'protection',
+            ...protectionCommonProps,
+            ...customColorsProps,
         }}
     >
         {Drupal.bind({})}
@@ -614,55 +670,73 @@ export const phoneCommonProps = {
 
 ### Increment card
 
+export const incrementCommonProps = {
+    buttons: [
+        {
+            hierarchy: 'primary-alt',
+            href: 'https://www.videotron.com',
+            label: 'Add to plan',
+        },
+    ],
+    description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
+    inputIncrement: {
+        ariaLabel: 'my aria-label',
+        errorMessage: 'Value should be between 0 and 5',
+        inputId: 'my-input-id',
+        min: 0,
+        max: 5,
+        value: 0,
+    },
+    message: 'Lorem ipsum dolor this message.',
+    price: {
+        cent: '99',
+        details: '/month',
+        dollar: '86',
+        promotion: {
+            direction: 'horizontal',
+            priceSaved: '10.00',
+            priceStriked: '40.99',
+            savedLabel: 'You saved :',
+            superscript: '1',
+            title: '<b>Promotion</b> test',
+        },
+        upperTitle: 'From',
+    },
+    promotionBadges: [
+        {
+            iconName: '',
+            label: 'Free Galaxy Buds Live',
+        },
+        {
+            iconName: 'credit-welcome',
+            label: '0$ Welcome credit',
+        },
+    ],
+    subtitle: 'Lorem ipsum subtitle',
+    title: 'Label Ipsum',
+};
+
 <Canvas withSource="none" style={{ height: '900px' }}>
     <Story
         name="Drupal - Increment"
         args={{
             elementPath: 'components/card/_doc/template.drupal',
             _cardVariant: 'increment',
-            buttons: [
-                {
-                    hierarchy: 'primary-alt',
-                    href: 'https://www.videotron.com',
-                    label: 'Add to plan',
-                },
-            ],
-            description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
-            inputIncrement: {
-                ariaLabel: 'my aria-label',
-                errorMessage: 'Value should be between 0 and 5',
-                inputId: 'my-input-id',
-                min: 0,
-                max: 5,
-                value: 0,
-            },
-            message: 'Lorem ipsum dolor this message.',
-            price: {
-                cent: '99',
-                details: '/month',
-                dollar: '86',
-                promotion: {
-                    direction: 'horizontal',
-                    priceSaved: '10.00',
-                    priceStriked: '40.99',
-                    savedLabel: 'You saved :',
-                    superscript: '1',
-                    title: '<b>Promotion</b> test',
-                },
-                upperTitle: 'From',
-            },
-            promotionBadges: [
-                {
-                    iconName: '',
-                    label: 'Free Galaxy Buds Live',
-                },
-                {
-                    iconName: 'credit-welcome',
-                    label: '0$ Welcome credit',
-                },
-            ],
-            subtitle: 'Lorem ipsum subtitle',
-            title: 'Label Ipsum',
+            ...incrementCommonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none" style={{ height: '900px' }}>
+    <Story
+        name="Drupal - Increment - Custom colors"
+        args={{
+            elementPath: 'components/card/_doc/template.drupal',
+            _cardVariant: 'increment',
+            ...incrementCommonProps,
+            ...customColorsProps,
         }}
     >
         {Drupal.bind({})}
@@ -734,6 +808,20 @@ export const comboCommonProps = {
             elementPath: 'components/card/_doc/template.drupal',
             _cardVariant: 'combo',
             ...comboCommonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none" style={{ height: '900px' }}>
+    <Story
+        name="Drupal - Combo - Custom colors"
+        args={{
+            elementPath: 'components/card/_doc/template.drupal',
+            _cardVariant: 'combo',
+            ...comboCommonProps,
+            ...customColorsProps,
         }}
     >
         {Drupal.bind({})}
