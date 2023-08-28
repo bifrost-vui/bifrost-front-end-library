@@ -57,6 +57,8 @@ and for each card type it displays a checkmark if the prop is available.
 | Prop Name             | Plan | Phone | Protection | Increment | Combo |
 | --------------------- |:----:|:-----:|:----------:|:---------:|:-----:|
 | badge					| ✓    | ✓     | ✓          | ✓         | ✓     |
+| badgeCustomBgColor	| ✓    | ✓     | ✓          | ✓         | ✓     |
+| badgeCustomFontColor	| ✓    | ✓     | ✓          | ✓         | ✓     |
 | buttons				| ✓    | ✓     | ✓          | ✓         | ✓     |
 | class					| ✓    | ✓     | ✓          | ✓         | ✓     |
 | comboLabel			|      |       |            |           | ✓     |
@@ -65,6 +67,8 @@ and for each card type it displays a checkmark if the prop is available.
 | description_html		| ✓    | ✓     | ✓          | ✓         | ✓     |
 | detailsColors			|      | ✓     |            |           |       |
 | detailsStorage		|      | ✓     |            |           |       |
+| headerCustomBgColor	| ✓    | ✓     | ✓          | ✓         | ✓     |
+| headerCustomFontColor	| ✓    | ✓     | ✓          | ✓         | ✓     |
 | iconName				|      |       | ✓          | ✓         | ✓     |
 | image					|      | ✓     |            |           | ✓     |
 | inputIncrement		|      |       |            | ✓         |       |
@@ -93,139 +97,156 @@ and for each card type it displays a checkmark if the prop is available.
 
 // Card Plan example:
 {% include '@bf-components/card/twig/plan.twig' with {
-    isDisabled      : false,
-    upperTitle      : 'upperTitle',
-    subtitle        : 'Lorem ipsum subtitle',
-    title           : {
-        category: 'CellPhone plan',
-        detail: '40GB - All inclusive Canada'
+    badge: {
+        hierarchy: 'primary',
+        label: 'PROMOTION',
+        noUppercase: false,
     },
-    description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
-    link            : {
-        label           : 'Learn more',
-        href            : 'https://www.videotron.com',
-    },
-    badge           : {
-        label           : 'PROMOTION',
-        hierarchy       : 'primary',
-        noUppercase     : false,
-    },
-    // Or use the shortcut:
-    // Note: To do that in Storybook `Badge` controls, you have to write double quotes around your string.
-    // badge           : 'PROMOTION',
-    contentLists    : [
+    badgeCustomBgColor: '#ff0000',
+    badgeCustomFontColor: '#ffffff',
+    buttons: [
         {
-            title       : 'TV',
-            description : '40 channels',
-            content     : [
-                {
-                    label: 'Free and Unlimited Go after 10Go',
-                    icon: 'unlimited',
-                },
-                {
-                    label: '100 GB annual data in Canada',
-                    icon: 'support',
-                },
-                {
-                    label: 'Club illico included',
-                    icon: 'forfait-tv-le-fan-de-films-et-series',
-                },
-            ],
+            hierarchy: 'primary-alt',
+            href: 'https://www.videotron.com',
+            label: 'Add a phone with this plan',
         },
         {
-            title       : 'Internet',
-            description : 'Unlimited',
-            content     : [
+            hierarchy: 'tertiary',
+            href: 'https://www.videotron.com',
+            label: 'BUY only this PLAN',
+        }
+    ],
+    class: '',
+    contentLists: [
+        {
+            content: [
                 {
-                    label: 'Utilisation illimité',
-                    icon: 'forfait-tv-le-fan-de-films-et-series',
+                    icon: 'unlimited',
+                    label: 'Free and Unlimited Go after 10Go',
                 },
                 {
-                    label: 'Vitesse de téléchargement jusqu\'à 100mbit/s',
+                    icon: 'support',
+                    label: '100 GB annual data in Canada',
+                },
+                {
                     icon: 'forfait-tv-le-fan-de-films-et-series',
+                    label: 'Club illico included',
+                },
+            ],
+            description: '40 channels',
+            title: 'TV',
+        },
+        {
+            content: [
+                {
+                    icon: 'forfait-tv-le-fan-de-films-et-series',
+                    label: 'Utilisation illimité',
+                },
+                {
+                    icon: 'forfait-tv-le-fan-de-films-et-series',
+                    label: 'Vitesse de téléchargement jusqu\'à 100mbit/s',
                 },
 
             ],
+            description: 'Unlimited',
+            title: 'Internet',
         }
     ],
-    promotionBadges : [
-        {
-            label    :'Free Galaxy Buds Live',
-            iconName : '',
-        },
-        {
-            label    : '0$ Welcome credit',
-            iconName : 'credit-welcome',
-        }
-    ],
-    price           : {
-        upperTitle      : 'From',
-        dollar          : '86',
-        cent            : '99',
-        details         : '/month',
-        promotion       : {
-            title       : '<b>Promotion</b> test',
-            priceStriked: '40.99',
-            priceSaved  : '10.00',
-            savedLabel  : 'You saved :',
-            superscript : '1',
-            direction   : 'horizontal',
-        }
+    description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
+    headerCustomBgColor: '#ff0000',
+    headerCustomFontColor: '#ffffff',
+    isDisabled: false,
+    language: 'en',
+    link: {
+        href: 'https://www.videotron.com',
+        label: 'Learn more',
     },
-    buttons         : [
+    message: 'Only plans with a minimum of $40.00 per month are available with that phone.',
+    price: {
+        cent: '99',
+        details: '/month',
+        dollar: '86',
+        promotion: {
+            direction: 'horizontal',
+            priceSaved: '10.00',
+            priceStriked: '40.99',
+            savedLabel: 'You saved :',
+            superscript: '1',
+            title: '<b>Promotion</b> test',
+        },
+        upperTitle: 'From',
+    },
+    promotionBadges: [
         {
-            label       : 'Add a phone with this plan',
-            hierarchy   : 'primary-alt',
-            href        : 'https://www.videotron.com',
+            iconName: '',
+            label:'Free Galaxy Buds Live',
         },
         {
-            label       : 'BUY only this PLAN',
-            hierarchy   : 'tertiary',
-            href        : 'https://www.videotron.com',
+            iconName: 'credit-welcome',
+            label: '0$ Welcome credit',
         }
     ],
-    message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
-    language            : 'en'
+    subtitle: 'Lorem ipsum subtitle',
+    title: {
+        category: 'CellPhone plan',
+        detail: '40GB - All inclusive Canada'
+    },
+    upperTitle: 'upperTitle',
 } only %}
 
 // Card Phone example:
 {% include '@bf-components/card/twig/phone.twig' with {
     ...
-    image : {
-        src             : '/images/_docs/iphone-12-pro-max.png',
-        alt             : 'iPhone 12 Mini',
-        badgeIconName   : 'security'
-    },
-    title : 'iPhone 12 Mini',
-    detailsColors : [
-        { value :'4B4A46', name : 'Lorem' },
-        { value :'2C4651', name : 'Ipsum' },
-        { value :'D4BBA5', name : 'Dolor' },
-        { value :'C0C0C0', name : 'Amet' },
+    contentBadges: [{
+        iconName: '',
+        label: 'Lorem Ipsum',
+    }],
+    detailsColors: [
+        {
+            name: 'Lorem',
+            value:'4B4A46',
+        },
+        {
+            name: 'Ipsum',
+            value:'2C4651',
+        },
+        {
+            name: 'Dolor',
+            value:'D4BBA5',
+        },
+        {
+            name: 'Amet',
+            value:'C0C0C0',
+        },
     ],
-    detailsStorage : ['128 Go', '256 Go'],
-    messageLink : {
-        href            : '',
-        label           : 'Choose another Plan',
-        class           : ''
-    }
-    contentBadges : [{
-            label       : 'Lorem Ipsum',
-            iconName    : '',
-    }]
+    detailsStorage: [
+        '128 Go',
+        '256 Go'
+    ],
+    image: {
+        alt: 'iPhone 12 Mini',
+        badgeIconName: 'security',
+        src: '/images/_docs/iphone-12-pro-max.png',
+    },
+    messageLink: {
+        class: '',
+        href: '',
+        label: 'Choose another Plan',
+    },
+    title: 'iPhone 12 Mini',
     ...
 } only %}
 
 // Card Combo example:
 {% include '@bf-components/card/twig/combo.twig' with {
     ...
-    image : {
-        src : '/images/_docs/iphone-12-pro-max.png',
-        alt : 'iPhone 12 Mini',
+    comboLabel: '250 Go',
+    image: {
+        alt: 'iPhone 12 Mini',
+        src: '/images/_docs/iphone-12-pro-max.png',
     },
-    comboLabel      : '250 Go',
-    title           : 'iPhone 12 Mini',
-    subtitle        : 'Lorem ipsum subtitle',
+    subtitle: 'Lorem ipsum subtitle',
+    title: 'iPhone 12 Mini',
     ...
 } only %}
 ```
@@ -236,34 +257,33 @@ To override available block you need to embed the main index.twig
 
 ```jsx
 {% embed '@bf-components/card/twig/index.twig' with {
-    class           : 'm-3',
-    isDisabled      : false,
-    upperTitle      : 'upperTitle',
-    title           : 'All-Inclusive 12 GB Mobile',
-    description     : 'So you can do what you want, when you want, without worrying about your data.',
+    badge: 'PROMOTION',
+    class: 'm-3',
+    contentLists: contentLists,
     description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
-    link            : {
-        label           : 'Learn more',
-        href            : 'https://www.videotron.com',
+    isDisabled: false,
+    language: 'en',
+    link: {
+        label: 'Learn more',
+        href: 'https://www.videotron.com',
     },
-    badge           : 'PROMOTION',
-    contentLists    : contentLists,
-    price           : {
-        upperTitle      : 'From',
-        dollar          : '86',
-        cent            : '99',
-        details         : '/month',
-        promotion       : {
-            title       : '<b>Promotion</b> test',
+    message: 'Only plans with a minimum of $40.00 per month are available with that phone.',
+    price: {
+        cent: '99',
+        details: '/month',
+        dollar: '86',
+        promotion: {
+            direction: 'horizontal',
+            priceSaved: '10.00',
             priceStriked: '40.99',
-            priceSaved  : '10.00',
-            savedLabel  : 'You saved :',
-            superscript : '1',
-            direction   : 'horizontal',
-        }
+            savedLabel: 'You saved :',
+            superscript  '1',
+            title: '<b>Promotion</b> test',
+        },
+        upperTitle: 'From',
     },
-    message             : 'Only plans with a minimum of $40.00 per month are available with that phone.',
-    language            : 'en',
+    title: 'All-Inclusive 12 GB Mobile',
+    upperTitle: 'upperTitle',
 } %}
     {% block card_body %}
         ..override of the block..
@@ -275,6 +295,13 @@ To override available block you need to embed the main index.twig
 ```
 
 ## Drupal
+
+export const customColorsProps = {
+    badgeCustomBgColor: 'goldenrod',
+    badgeCustomFontColor: 'midnightblue',
+    headerCustomBgColor: 'midnightblue',
+    headerCustomFontColor: 'goldenrod',
+}
 
 ### Plan card
 
@@ -401,8 +428,6 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
-### Plan w/ channels
-
 <Canvas withSource="none" style={{ height: '900px' }}>
     <Story
         name="Drupal - Plan w/ channels"
@@ -445,69 +470,88 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
+<Canvas withSource="none" style={{ height: '900px' }}>
+    <Story
+        name="Drupal - Plan - Custom colors"
+        args={{
+            elementPath: 'components/card/_doc/template.drupal',
+            _cardVariant: 'plan',
+            ...commonProps,
+            ...customColorsProps,
+            isDisabled: false,
+            title: {
+                category: 'CellPhone plan',
+                detail: '40GB - All inclusive Canada',
+            },
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
 ### Phone card
 
 export const phoneCommonProps = {
     badge: {
         label: 'Promotion',
     },
-    image: {
-        src: '/images/_docs/iphone-12-pro-max.png',
-        alt: 'iPhone 12 Mini',
-        badgeIconName: 'security',
-    },
-    visualBackgroundColor: '',
-    title: 'iPhone 12 Mini',
-    subtitle: 'Discover the power of the phone',
-    detailsColors: [
-        { value: '4B4A46', name: 'Lorem' },
-        { value: '2C4651', name: 'Ipsum' },
-        { value: 'D4BBA5', name: 'Dolor' },
-        { value: 'C0C0C0', name: 'Amet' },
-    ],
-    detailsStorage: ['128 Go', '256 Go'],
-    contentBadges: [
-        {
-            label: 'credit return',
-            iconName: 'credit-return',
-        },
-        {
-            label: 'refurbish available',
-            iconName: 'check-circle-outline',
-        },
-    ],
-    promotionBadges: [
-        {
-            label: 'Free Galaxy Buds Live',
-            iconName: '',
-        },
-        {
-            label: '0$ Welcome credit',
-            iconName: 'credit-welcome',
-        },
-    ],
-    price: {
-        upperTitle: 'From',
-        dollar: '86',
-        cent: '99',
-        details: '/month',
-        promotion: {
-            title: '<b>Promotion</b> test',
-            priceStriked: '40.99',
-            priceSaved: '10.00',
-            savedLabel: 'You saved :',
-            superscript: '1',
-            direction: 'horizontal',
-        },
-    },
-    note: 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
     buttons: [
         {
-            label: 'Configurate',
             hierarchy: 'primary-alt',
             href: 'https://www.videotron.com',
+            label: 'Configurate',
         },
     ],
+    contentBadges: [
+        {
+            iconName: 'credit-return',
+            label: 'credit return',
+        },
+        {
+            iconName: 'check-circle-outline',
+            label: 'refurbish available',
+        },
+    ],
+    detailsColors: [
+        { name: 'Lorem', value: '4B4A46' },
+        { name: 'Ipsum', value: '2C4651' },
+        { name: 'Dolor', value: 'D4BBA5' },
+        { name: 'Amet', value: 'C0C0C0' },
+    ],
+    detailsStorage: ['128 Go', '256 Go'],
+    image: {
+        alt: 'iPhone 12 Mini',
+        badgeIconName: 'security',
+        src: '/images/_docs/iphone-12-pro-max.png',
+    },
+    note: 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
+    price: {
+        cent: '99',
+        details: '/month',
+        dollar: '86',
+        promotion: {
+            direction: 'horizontal',
+            priceSaved: '10.00',
+            priceStriked: '40.99',
+            savedLabel: 'You saved :',
+            superscript: '1',
+            title: '<b>Promotion</b> test',
+        },
+        upperTitle: 'From',
+    },
+    promotionBadges: [
+        {
+            iconName: '',
+            label: 'Free Galaxy Buds Live',
+        },
+        {
+            iconName: 'credit-welcome',
+            label: '0$ Welcome credit',
+        },
+    ],
+    subtitle: 'Discover the power of the phone',
+    title: 'iPhone 12 Mini',
+    visualBackgroundColor: '',
 };
 
 <Canvas withSource="none" style={{ height: '900px' }}>
@@ -543,7 +587,63 @@ export const phoneCommonProps = {
     </Story>
 </Canvas>
 
+<Canvas withSource="none" style={{ height: '900px' }}>
+    <Story
+        name="Drupal - Phone - Custom colors"
+        args={{
+            elementPath: 'components/card/_doc/template.drupal',
+            _cardVariant: 'phone',
+            ...phoneCommonProps,
+            ...customColorsProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
 ### Protection card
+
+export const protectionCommonProps = {
+    badge: {
+        label: 'Promotion',
+    },
+    buttons: [
+        {
+            hierarchy: 'primary-alt',
+            href: 'https://www.videotron.com',
+            label: 'Add this protection',
+        },
+    ],
+    iconName: 'apple',
+    message: 'Lorem ipsum dolor this protection.',
+    price: {
+        cent: '99',
+        details: '/month',
+        dollar: '86',
+        promotion: {
+            direction: 'horizontal',
+            priceSaved: '10.00',
+            priceStriked: '40.99',
+            savedLabel: 'You saved :',
+            superscript: '1',
+            title: '<b>Promotion</b> test',
+        },
+        upperTitle: 'From',
+    },
+    promotionBadges: [
+        {
+            iconName: '',
+            label: 'Free Galaxy Buds Live',
+        },
+        {
+            iconName: 'credit-welcome',
+            label: '0$ Welcome credit',
+        },
+    ],
+    subtitle: 'Lorem ipsum subtitle',
+    title: 'Apple Care+ for iPhone',
+    visualBackgroundColor: '',
+};
 
 <Canvas withSource="none" style={{ height: '900px' }}>
     <Story
@@ -551,45 +651,21 @@ export const phoneCommonProps = {
         args={{
             elementPath: 'components/card/_doc/template.drupal',
             _cardVariant: 'protection',
-            badge: {
-                label: 'Promotion',
-            },
-            iconName: 'apple',
-            visualBackgroundColor: '',
-            title: 'Apple Care+ for iPhone',
-            subtitle: 'Lorem ipsum subtitle',
-            promotionBadges: [
-                {
-                    label: 'Free Galaxy Buds Live',
-                    iconName: '',
-                },
-                {
-                    label: '0$ Welcome credit',
-                    iconName: 'credit-welcome',
-                },
-            ],
-            price: {
-                upperTitle: 'From',
-                dollar: '86',
-                cent: '99',
-                details: '/month',
-                promotion: {
-                    title: '<b>Promotion</b> test',
-                    priceStriked: '40.99',
-                    priceSaved: '10.00',
-                    savedLabel: 'You saved :',
-                    superscript: '1',
-                    direction: 'horizontal',
-                },
-            },
-            message: 'Lorem ipsum dolor this protection.',
-            buttons: [
-                {
-                    label: 'Add this protection',
-                    hierarchy: 'primary-alt',
-                    href: 'https://www.videotron.com',
-                },
-            ],
+            ...protectionCommonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none" style={{ height: '900px' }}>
+    <Story
+        name="Drupal - Protection - Custom colors"
+        args={{
+            elementPath: 'components/card/_doc/template.drupal',
+            _cardVariant: 'protection',
+            ...protectionCommonProps,
+            ...customColorsProps,
         }}
     >
         {Drupal.bind({})}
@@ -598,55 +674,73 @@ export const phoneCommonProps = {
 
 ### Increment card
 
+export const incrementCommonProps = {
+    buttons: [
+        {
+            hierarchy: 'primary-alt',
+            href: 'https://www.videotron.com',
+            label: 'Add to plan',
+        },
+    ],
+    description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
+    inputIncrement: {
+        ariaLabel: 'my aria-label',
+        errorMessage: 'Value should be between 0 and 5',
+        inputId: 'my-input-id',
+        min: 0,
+        max: 5,
+        value: 0,
+    },
+    message: 'Lorem ipsum dolor this message.',
+    price: {
+        cent: '99',
+        details: '/month',
+        dollar: '86',
+        promotion: {
+            direction: 'horizontal',
+            priceSaved: '10.00',
+            priceStriked: '40.99',
+            savedLabel: 'You saved :',
+            superscript: '1',
+            title: '<b>Promotion</b> test',
+        },
+        upperTitle: 'From',
+    },
+    promotionBadges: [
+        {
+            iconName: '',
+            label: 'Free Galaxy Buds Live',
+        },
+        {
+            iconName: 'credit-welcome',
+            label: '0$ Welcome credit',
+        },
+    ],
+    subtitle: 'Lorem ipsum subtitle',
+    title: 'Label Ipsum',
+};
+
 <Canvas withSource="none" style={{ height: '900px' }}>
     <Story
         name="Drupal - Increment"
         args={{
             elementPath: 'components/card/_doc/template.drupal',
             _cardVariant: 'increment',
-            title: 'Label Ipsum',
-            subtitle: 'Lorem ipsum subtitle',
-            description_html: '<p>Empty <i>description</i> property to display this <strong>html content</strong>.</p>',
-            promotionBadges: [
-                {
-                    label: 'Free Galaxy Buds Live',
-                    iconName: '',
-                },
-                {
-                    label: '0$ Welcome credit',
-                    iconName: 'credit-welcome',
-                },
-            ],
-            price: {
-                upperTitle: 'From',
-                dollar: '86',
-                cent: '99',
-                details: '/month',
-                promotion: {
-                    title: '<b>Promotion</b> test',
-                    priceStriked: '40.99',
-                    priceSaved: '10.00',
-                    savedLabel: 'You saved :',
-                    superscript: '1',
-                    direction: 'horizontal',
-                },
-            },
-            message: 'Lorem ipsum dolor this message.',
-            inputIncrement: {
-                min: 0,
-                max: 5,
-                value: 0,
-                inputId: 'my-input-id',
-                ariaLabel: 'my aria-label',
-                errorMessage: 'Value should be between 0 and 5',
-            },
-            buttons: [
-                {
-                    label: 'Add to plan',
-                    hierarchy: 'primary-alt',
-                    href: 'https://www.videotron.com',
-                },
-            ],
+            ...incrementCommonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none" style={{ height: '900px' }}>
+    <Story
+        name="Drupal - Increment - Custom colors"
+        args={{
+            elementPath: 'components/card/_doc/template.drupal',
+            _cardVariant: 'increment',
+            ...incrementCommonProps,
+            ...customColorsProps,
         }}
     >
         {Drupal.bind({})}
@@ -659,56 +753,56 @@ export const comboCommonProps = {
     badge: {
         label: 'Promotion',
     },
-    image: {
-        src: '/images/_docs/iphone-12-pro-max.png',
-        alt: 'iPhone 12 Mini',
-    },
-    comboLabel: '250 Go',
-    visualBackgroundColor: '',
-    title: 'iPhone 12 Mini',
-    subtitle: 'Discover the power of the phone',
-    contentBadges: [
-        {
-            label: 'credit return',
-            iconName: 'credit-return',
-        },
-        {
-            label: 'refurbish available',
-            iconName: 'check-circle-outline',
-        },
-    ],
-    promotionBadges: [
-        {
-            label: 'Free Galaxy Buds Live',
-            iconName: '',
-        },
-        {
-            label: '0$ Welcome credit',
-            iconName: 'credit-welcome',
-        },
-    ],
-    price: {
-        upperTitle: 'From',
-        dollar: '86',
-        cent: '99',
-        details: '/month',
-        promotion: {
-            title: '<b>Promotion</b> test',
-            priceStriked: '40.99',
-            priceSaved: '10.00',
-            savedLabel: 'You saved :',
-            superscript: '1',
-            direction: 'horizontal',
-        },
-    },
-    note: 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
     buttons: [
         {
-            label: 'Configurate',
             hierarchy: 'primary-alt',
             href: 'https://www.videotron.com',
+            label: 'Configurate',
         },
     ],
+    comboLabel: '250 Go',
+    contentBadges: [
+        {
+            iconName: 'credit-return',
+            label: 'credit return',
+        },
+        {
+            iconName: 'check-circle-outline',
+            label: 'refurbish available',
+        },
+    ],
+    image: {
+        alt: 'iPhone 12 Mini',
+        src: '/images/_docs/iphone-12-pro-max.png',
+    },
+    note: 'Plan + Phone: from $150/month (24 months)<br/>No upfront payment',
+    price: {
+        cent: '99',
+        details: '/month',
+        dollar: '86',
+        promotion: {
+            direction: 'horizontal',
+            priceSaved: '10.00',
+            priceStriked: '40.99',
+            savedLabel: 'You saved :',
+            superscript: '1',
+            title: '<b>Promotion</b> test',
+        },
+        upperTitle: 'From',
+    },
+    promotionBadges: [
+        {
+            iconName: '',
+            label: 'Free Galaxy Buds Live',
+        },
+        {
+            iconName: 'credit-welcome',
+            label: '0$ Welcome credit',
+        },
+    ],
+    subtitle: 'Discover the power of the phone',
+    title: 'iPhone 12 Mini',
+    visualBackgroundColor: '',
 };
 
 <Canvas withSource="none" style={{ height: '900px' }}>
@@ -718,6 +812,20 @@ export const comboCommonProps = {
             elementPath: 'components/card/_doc/template.drupal',
             _cardVariant: 'combo',
             ...comboCommonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none" style={{ height: '900px' }}>
+    <Story
+        name="Drupal - Combo - Custom colors"
+        args={{
+            elementPath: 'components/card/_doc/template.drupal',
+            _cardVariant: 'combo',
+            ...comboCommonProps,
+            ...customColorsProps,
         }}
     >
         {Drupal.bind({})}

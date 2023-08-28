@@ -1,4 +1,9 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
 {# Boolean Variables #}
+{% set hasCustomBgColor = customBgColor is defined and customBgColor is not empty %}
+{% set hasCustomFontColor = customFontColor is defined and customFontColor is not empty %}
 {% set hasIconName = iconName is defined and iconName is not empty %}
 {% set hasAngle = angle is defined and angle is not empty %}
 {% set isNoUppercase = (noUppercase ?? false) is same as(true) %}
@@ -25,9 +30,18 @@
   (isNoUppercase ? "text-transform-initial"),
 ] %}
 
+{# Arrays of Styles With Dynamic Elements #}
+{% set badgeInnerStyles = [
+  (hasCustomBgColor ? '--bf-badge-bg-color: ' ~ customBgColor ~ ';'),
+  (hasCustomFontColor ? '--bf-badge-font-color: ' ~ customFontColor ~ ';'),
+] %}
+
 {# Template #}
 <div class="{{ badgeClasses|join(' ')|trim }}">
-  <div class="bf-badge__inner position-relative d-flex align-items-center">
+  <div {{ macros.addAttributes({
+    "class": "bf-badge__inner position-relative d-flex align-items-center",
+    "style": badgeInnerStyles|join(' ')|trim,
+  }) }}>
     <p class="{{ badgeTextClasses|join(' ')|trim }}">
       {% if hasIconName %}
         {% include "@bf-components/icon/twig/index.twig" with {

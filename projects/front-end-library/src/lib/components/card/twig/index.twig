@@ -3,6 +3,8 @@
 
 {# Boolean Variables #}
 {% set hasBadge = badge is defined and badge is not empty %}
+{% set hasBadgeCustomBgColor = badgeCustomBgColor is defined and badgeCustomBgColor is not empty %}
+{% set hasBadgeCustomFontColor = badgeCustomFontColor is defined and badgeCustomFontColor is not empty %}
 {% set hasButtons = buttons is defined and buttons is not empty %}
 {% set hasComboLabel = comboLabel is defined and comboLabel is not empty %}
 {% set hasContentBadges = contentBadges is defined and contentBadges is not empty %}
@@ -10,6 +12,8 @@
 {% set hasDescription = description_html is defined and description_html is not empty %}
 {% set hasDetailsColors = detailsColors is defined and detailsColors is not empty %}
 {% set hasDetailsStorage = detailsStorage is defined and detailsStorage is not empty %}
+{% set hasHeaderCustomBgColor = headerCustomBgColor is defined and headerCustomBgColor is not empty %}
+{% set hasHeaderCustomFontColor = headerCustomFontColor is defined and headerCustomFontColor is not empty %}
 {% set hasIcon = iconName is defined and iconName is not empty %}
 {% set hasImage = image.src is defined and image.src is not empty %}
 {% set hasInputIncrement = inputIncrement is defined and inputIncrement is not empty %}
@@ -48,7 +52,6 @@
 {% set cardVisualClasses = [
   "bf-card__visual",
   (hasVisualCombo ? "bf-card__visual--combo"),
-  "bf-color-bg-underground",
   "d-flex justify-content-center align-items-center p-3 p-sm-4",
 ] %}
 {% set messageLinkClasses = [
@@ -58,12 +61,21 @@
 
 {# Arrays of Styles With Dynamic Elements #}
 {# TODO: Create a macro for a better custom style management #}
+{% set cardStyles = [
+  (hasBadgeCustomBgColor ? '--bf-card-badge-icon-bg-color: ' ~ badgeCustomBgColor ~ ';'),
+  (hasBadgeCustomFontColor ? '--bf-card-badge-icon-font-color: ' ~ badgeCustomFontColor ~ ';'),
+  (hasHeaderCustomBgColor ? '--bf-card-header-bg-color: ' ~ headerCustomBgColor ~ ';'),
+  (hasHeaderCustomFontColor ? '--bf-card-header-font-color: ' ~ headerCustomFontColor ~ ';'),
+] %}
 {% set cardVisualStyles = [
   (hasVisualBackgroundColor ? "background-color: " ~ visualBackgroundColor ~ ";"),
 ] %}
 
 {# Template #}
-<article class="{{ cardClasses|join(' ')|trim }}">
+<article {{ macros.addAttributes({
+  "class": cardClasses|join(' ')|trim,
+  "style": cardStyles|join(' ')|trim,
+}) }}>
 
   {# Image #}
   {% if hasVisual %}
@@ -173,11 +185,26 @@
       {% endif %}
 
       {% set badge = badge|merge({
-          hierarchy: badge.hierarchy|default("primary"),
           angle: badge.angle|default("left"),
-          class: ["bf-card__badge", badge.class|default("")]|join(' ')|trim
+          class: ["bf-card__badge", badge.class|default("")]|join(' ')|trim,
+          hierarchy: badge.hierarchy|default("primary"),
         })
       %}
+
+      {% if hasBadgeCustomBgColor %}
+        {% set badge = badge|merge({
+            customBgColor: badgeCustomBgColor
+          })
+        %}
+      {% endif %}
+
+      {% if hasBadgeCustomFontColor %}
+        {% set badge = badge|merge({
+            customFontColor: badgeCustomFontColor
+          })
+        %}
+      {% endif %}
+
       {% include "@bf-components/badge/twig/index.twig" with badge only %}
     {% endif %}
   </header>

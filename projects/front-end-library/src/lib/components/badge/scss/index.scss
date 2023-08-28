@@ -8,30 +8,30 @@
   display: flex;
 
   &--primary .bf-badge__inner {
-    --color: var(--bf-color-bg-ground);
-    --bg-color: var(--bf-color-neutral-primary);
+    --bf-badge-font-color: var(--bf-color-bg-ground);
+    --bf-badge-bg-color: var(--bf-color-neutral-primary);
     .bf-icon svg {
-      color: var(--bf-color-bg-ground);
+      color: var(--bf-badge-font-color);
     }
   }
 
   &--secondary .bf-badge__inner {
-    --bg-color: var(--bf-color-feedback-neutral);
+    --bf-badge-bg-color: var(--bf-color-feedback-neutral);
     @at-root .reversed.bf-badge--secondary,
       .reversed .bf-badge--secondary {
-      --color: var(--bf-color-primary-irreversible);
+      --bf-badge-font-color: var(--bf-color-primary-irreversible);
       .bf-icon svg {
-        color: var(--bf-color-primary-irreversible);
+        color: var(--bf-badge-font-color);
       }
     }
   }
 
   &--tertiary .bf-badge__inner {
-    --bg-color: var(--bf-color-bg-underground);
+    --bf-badge-bg-color: var(--bf-color-bg-underground);
   }
 
   &--tertiary-ground .bf-badge__inner {
-    --bg-color: var(--bf-color-bg-ground);
+    --bf-badge-bg-color: var(--bf-color-bg-ground);
   }
 
   &__inner {
@@ -40,8 +40,12 @@
     align-items: center;
     padding: 0 0.5rem;
     min-height: 1.5rem;
-    color: var(--color);
-    background-color: var(--bg-color);
+    color: var(--bf-badge-font-color);
+    background-color: var(--bf-badge-bg-color);
+
+    .bf-icon svg {
+      color: var(--bf-badge-font-color);
+    }
   }
   &__label {
     display: flex;
@@ -109,7 +113,7 @@
     color: var(--bf-color-primary-irreversible);
   }
   &--dark {
-    --bg-color: var(--bf-color-neutral-primary);
+    --bf-badge-bg-color: var(--bf-color-neutral-primary);
   }
 }
 

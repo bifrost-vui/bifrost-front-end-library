@@ -23,6 +23,28 @@ export class CardComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
+     * - It will change the `background-color` of the badge.
+     * - If on __phone__ or __combo__ card type and `image.badgeIconName` has a value,
+         it will change the `background-color` of the `badge icon` in the lower right of the header.
+     * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
+     * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
+         To test this props, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+     */
+    @Input() badgeCustomBgColor: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - It will change the text `color` of the badge.
+     * - If on __phone__ or __combo__ card type and `image.badgeIconName` has a value,
+         it will change the `color` of the `badge icon` in the lower right of the header.
+     * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
+     * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
+         To test this props, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+     */
+    @Input() badgeCustomFontColor: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * - Array of button(s). See Button Component [API](/?path=/docs/components-button--drupal#component-api)
      * - Or, extends with a block: `{% block buttons %} ... {% endblock %}`.
      */
@@ -87,6 +109,24 @@ export class CardComponent implements OnInit {
      * - Expected format: `["128 Go", "256 Go"]`
      */
     @Input() detailsStorage: string[];
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - It will change the `background-color` of the card's header.
+     * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
+     * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
+         To test this props, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+     */
+    @Input() headerCustomBgColor: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - It will change the text `color` of the card's header.
+     * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
+     * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
+         To test this props, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+     */
+    @Input() headerCustomFontColor: string;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>

@@ -5,6 +5,11 @@
 * ***************************************************************************** */
 
 .bf-card {
+  --bf-card-badge-icon-font-color: inherit;
+  --bf-card-badge-icon-bg-color: var(--bf-color-bg-ground);
+  --bf-card-header-font-color: inherit;
+  --bf-card-header-bg-color: var(--bf-color-bg-underground);
+
   position: relative;
   width: 100%;
   max-width: 30rem;
@@ -79,6 +84,9 @@
   &__visual {
     position: relative;
     min-height: 9rem;
+    color: var(--bf-card-header-font-color);
+    background-color: var(--bf-card-header-bg-color);
+
     img {
       max-height: 18rem;
     }
@@ -87,7 +95,8 @@
       bottom: 1rem;
       right: 1rem;
       padding: 0.5rem;
-      background-color: var(--bf-color-bg-ground);
+      color: var(--bf-card-badge-icon-font-color);
+      background-color: var(--bf-card-badge-icon-bg-color);
       border-radius: 50%;
       z-index: 1;
       .bf-icon {
@@ -112,8 +121,11 @@
       @extend .h4;
     }
   }
+  &:not(.bf-card--has-visual) &__header {
+    color: var(--bf-card-header-font-color);
+    background-color: var(--bf-card-header-bg-color);
+  }
   &__header {
-    @extend .bf-color-bg-underground;
     p.bf-card__description,
     .bf-card__description p {
       @extend .mb-1;

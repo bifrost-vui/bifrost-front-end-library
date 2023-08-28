@@ -1,7 +1,14 @@
 {# Default Variables (Props, Controls) #}
-{% set noUppercase = noUppercase|json_parse %}
-{% set isRounded = isRounded|json_parse %}
 {% set _reversed = _reversed|json_parse %}
+{% set angle = angle|json_parse %}
+{% set class = class|json_parse %}
+{% set customBgColor = customBgColor|json_parse %}
+{% set customFontColor = customFontColor|json_parse %}
+{% set hierarchy = hierarchy|json_parse %}
+{% set iconName = iconName|json_parse %}
+{% set isRounded = isRounded|json_parse %}
+{% set label = label|json_parse %}
+{% set noUppercase = noUppercase|json_parse %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set mainContainerClasses = [
@@ -28,106 +35,208 @@
         <p class="small">hierarchy</p>
 
         {% include "@bf-components/badge/twig/index.twig" with {
+          angle: angle,
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
+          hierarchy: hierarchy|default("primary"),
+          iconName: iconName,
+          isRounded: isRounded,
           label: label|default("primary"),
-          hierarchy: hierarchy|default("primary")
-        } %}
+          noUppercase: noUppercase,
+        } only %}
 
         {% include "@bf-components/badge/twig/index.twig" with {
+          angle: angle,
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
+          hierarchy: hierarchy|default("secondary"),
+          iconName: iconName,
+          isRounded: isRounded,
           label: label|default("secondary"),
-          hierarchy: hierarchy|default("secondary")
-        } %}
+          noUppercase: noUppercase,
+        } only %}
 
         {% include "@bf-components/badge/twig/index.twig" with {
+          angle: angle,
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
+          hierarchy: hierarchy|default("tertiary"),
+          iconName: iconName,
+          isRounded: isRounded,
           label: label|default("tertiary"),
-          hierarchy: hierarchy|default("tertiary")
-        } %}
+          noUppercase: noUppercase,
+        } only %}
 
         {% include "@bf-components/badge/twig/index.twig" with {
+          angle: angle,
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
+          hierarchy: hierarchy|default("tertiary-ground"),
+          iconName: iconName,
+          isRounded: isRounded,
           label: label|default("tertiary-ground"),
-          hierarchy: hierarchy|default("tertiary-ground")
-        } %}
+          noUppercase: noUppercase,
+        } only %}
       </div>
 
       <div class="d-flex flex-column align-items-start py-2">
         <p class="small">iconName</p>
 
         {% include "@bf-components/badge/twig/index.twig" with {
-          label: label|default("primary"),
+          angle: angle,
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
           hierarchy: hierarchy|default("primary"),
-          iconName: iconName|default("camera")
-        } %}
+          iconName: iconName|default("camera"),
+          isRounded: isRounded,
+          label: label|default("primary"),
+          noUppercase: noUppercase,
+        } only %}
 
         {% include "@bf-components/badge/twig/index.twig" with {
-          label: label|default("secondary"),
+          angle: angle,
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
           hierarchy: hierarchy|default("secondary"),
-          iconName: iconName|default("camera")
-        } %}
+          iconName: iconName|default("camera"),
+          isRounded: isRounded,
+          label: label|default("secondary"),
+          noUppercase: noUppercase,
+        } only %}
 
         {% include "@bf-components/badge/twig/index.twig" with {
-          label: label|default("tertiary"),
+          angle: angle,
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
           hierarchy: hierarchy|default("tertiary"),
-          iconName: iconName|default("camera")
-        } %}
+          iconName: iconName|default("camera"),
+          isRounded: isRounded,
+          label: label|default("tertiary"),
+          noUppercase: noUppercase,
+        } only %}
 
         {% include "@bf-components/badge/twig/index.twig" with {
-          label: label|default("tertiary-ground"),
+          angle: angle,
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
           hierarchy: hierarchy|default("tertiary-ground"),
-          iconName: iconName|default("camera")
-        } %}
+          iconName: iconName|default("camera"),
+          isRounded: isRounded,
+          label: label|default("tertiary-ground"),
+          noUppercase: noUppercase,
+        } only %}
       </div>
 
       <div class="d-flex flex-column align-items-start py-2">
         <p class="small">angle</p>
 
         {% include "@bf-components/badge/twig/index.twig" with {
-          label: label|default("Angle left"),
-          angle: angle|default("left")
-        } %}
-
-        {% include "@bf-components/badge/twig/index.twig" with {
-          label: label|default("Angle right"),
-          angle: angle|default("right")
-        } %}
-
-        {% include "@bf-components/badge/twig/index.twig" with {
-          label: label|default("Angle left"),
           angle: angle|default("left"),
-          iconName: iconName|default("camera")
-        } %}
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
+          hierarchy: hierarchy,
+          iconName: iconName,
+          isRounded: isRounded,
+          label: label|default("Angle left"),
+          noUppercase: noUppercase,
+        } only %}
 
         {% include "@bf-components/badge/twig/index.twig" with {
-          label: label|default("Angle right"),
           angle: angle|default("right"),
-          iconName: iconName|default("camera")
-        } %}
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
+          hierarchy: hierarchy,
+          iconName: iconName,
+          isRounded: isRounded,
+          label: label|default("Angle right"),
+          noUppercase: noUppercase,
+        } only %}
+
+        {% include "@bf-components/badge/twig/index.twig" with {
+          angle: angle|default("left"),
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
+          hierarchy: hierarchy,
+          iconName: iconName|default("camera"),
+          isRounded: isRounded,
+          label: label|default("Angle left"),
+          noUppercase: noUppercase,
+        } only %}
+
+        {% include "@bf-components/badge/twig/index.twig" with {
+          angle: angle|default("right"),
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
+          hierarchy: hierarchy,
+          iconName: iconName|default("camera"),
+          isRounded: isRounded,
+          label: label|default("Angle right"),
+          noUppercase: noUppercase,
+        } only %}
       </div>
 
       <div class="d-flex flex-column align-items-start py-2">
         <p class="small">noUppercase & isRounded</p>
 
         {% include "@bf-components/badge/twig/index.twig" with {
+          angle: angle,
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
+          hierarchy: hierarchy,
+          iconName: iconName,
+          isRounded: isRounded,
           label: label|default("noUppercase"),
-          noUppercase: noUppercase|default(true)
-        } %}
+          noUppercase: noUppercase|default(true),
+        } only %}
 
         {% include "@bf-components/badge/twig/index.twig" with {
+          angle: angle,
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
+          hierarchy: hierarchy,
+          iconName: iconName,
+          isRounded: isRounded|default(true),
           label: label|default("isRounded"),
           noUppercase: noUppercase|default(true),
-          isRounded: isRounded|default(true)
-        } %}
+        } only %}
 
         {% include "@bf-components/badge/twig/index.twig" with {
+          angle: angle,
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
+          hierarchy: hierarchy,
+          iconName: iconName|default("camera"),
+          isRounded: isRounded,
           label: label|default("noUppercase"),
-          iconName: iconName|default("camera"),
-          noUppercase: noUppercase|default(true)
-        } %}
+          noUppercase: noUppercase|default(true),
+        } only %}
 
         {% include "@bf-components/badge/twig/index.twig" with {
-          label: label|default("isRounded"),
+          angle: angle,
+          class: class,
+          customBgColor: customBgColor,
+          customFontColor: customFontColor,
+          hierarchy: hierarchy,
           iconName: iconName|default("camera"),
+          isRounded: isRounded|default(true),
+          label: label|default("isRounded"),
           noUppercase: noUppercase|default(true),
-          isRounded: isRounded|default(true)
-        } %}
+        } only %}
       </div>
     </div>
   {% endfor %}

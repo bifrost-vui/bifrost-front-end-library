@@ -57,10 +57,15 @@ import { BadgeTemplateComponent } from './template.angular.component';
 
 ```jsx
 {% include '@bf-components/badge/twig/index.twig' with {
-    label: 'Free',
+    angle: 'left',
     class: 'my-2',
+    customBgColor: '#ff0000',
+    customFontColor: '#ffffff',
     hierarchy: 'primary',
-    iconName: 'camera'
+    iconName: 'camera',
+    isRounded: false,
+    label: 'Free',
+    noUppercase: false,
 } only %}
 ```
 
@@ -109,6 +114,23 @@ export const Drupal = (args) => ({
             elementPath: 'components/badge/_doc/template.drupal',
             class: 'my-2',
             _disabled: true,
+            hierarchy: undefined,
+            noUppercase: undefined,
+            isRounded: undefined,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none" style={{ height: '600px' }}>
+    <Story
+        name="Drupal - Custom colors"
+        args={{
+            elementPath: 'components/badge/_doc/template.drupal',
+            class: 'my-2',
+            customBgColor: 'midnightblue',
+            customFontColor: 'goldenrod',
             hierarchy: undefined,
             noUppercase: undefined,
             isRounded: undefined,
