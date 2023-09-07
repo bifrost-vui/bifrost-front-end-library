@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IButton, IImage } from './api.model';
+import { TButtonHierarchy } from '../../button/angular/api.model';
 
 @Component({
     selector: 'bf-block-highlight',
@@ -27,6 +28,15 @@ export class BlockHighlightComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
+     * - It applies the defined value to the `Button` component `hierarchy` property.
+     * - If a value is NOT defined, the default value for a normal block is `secondary`
+         and the default value is `primary-alt` when `isFeatured` is set to `true`.
+     * - See Button Component [API](/?path=/docs/components-button--drupal#component-api) `hierarchy` property.
+     */
+    @Input() buttonHierarchy: TButtonHierarchy;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * Custom classes on the block main element.
      */
     @Input() class: string;
@@ -43,9 +53,15 @@ export class BlockHighlightComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
+     * When the value is `true`, the block's content will be centered vertically.
+     */
+    @Input() isContentCentered: boolean = false;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * - When the value is `true`:
      *   - the CSS `min-height` value of the block is higher.
-     *   - the content is vertically centered.
+     *   - the content is vertically centered, even if `isContentCentered` is set to `false`.
      *   - the title has a style of a `h2` instead of a `h3`.
      *   - the button's `hierarchy` property is `primary-alt` instead of `secondary`.
      */
