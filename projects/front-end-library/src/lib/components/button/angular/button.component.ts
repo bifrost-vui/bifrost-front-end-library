@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IButton } from './api.model';
+import { IButton, TButtonHierarchy } from './api.model';
 
 /**
  * API is the same between **Angular** and **Drupal**.
@@ -44,8 +44,16 @@ export class ButtonComponent implements IButton, OnInit {
     @Input() formTarget: null | '_self' | '_blank' | '_parent' | '_top';
     /** <span style="color: orange;">__Optional__</span> */
     @Input() fullWidth: boolean;
-    /** <span style="color: orange;">__Optional__</span> */
-    @Input() hierarchy: 'primary' | 'primary-alt' | 'secondary' | 'tertiary' = 'secondary';
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * The possible values for `TButtonHierarchy` are:
+     * - `primary`
+     * - `primary-alt`
+     * - `secondary`
+     * - `tertiary`
+     */
+    @Input() hierarchy: TButtonHierarchy = 'secondary';
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>

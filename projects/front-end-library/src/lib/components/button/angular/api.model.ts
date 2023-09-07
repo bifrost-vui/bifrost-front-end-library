@@ -14,7 +14,7 @@ export interface IButton {
     formNoValidate?: boolean;
     formTarget?: null | '_self' | '_blank' | '_parent' | '_top';
     fullWidth?: boolean;
-    hierarchy?: 'primary' | 'primary-alt' | 'secondary' | 'tertiary';
+    hierarchy?: TButtonHierarchy;
     href?: string;
     iconName?: string;
     iconPosition?: 'left' | 'right';
@@ -24,3 +24,5 @@ export interface IButton {
     isSubmit?: boolean;
     label: string;
 }
+
+export type TButtonHierarchy = 'primary' | 'primary-alt' | 'secondary' | 'tertiary';
