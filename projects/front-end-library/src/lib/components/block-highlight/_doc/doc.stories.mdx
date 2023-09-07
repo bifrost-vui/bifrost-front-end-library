@@ -8,9 +8,6 @@ import { BlockHighlightComponent } from '../angular/block-highlight.component';
     component={BlockHighlightComponent}
     decorators={[moduleMetadata({ declarations: [BlockHighlightComponent, TwigContainerComponent] })]}
     argTypes={{
-        titleTag: {
-            table: { defaultValue: { summary: 'p' } },
-        },
         blockBackgroundColor: {
             table: { defaultValue: { summary: 'ground' } },
             control: {
@@ -45,14 +42,14 @@ import { BlockHighlightComponent } from '../angular/block-highlight.component';
     blockBackgroundColor    : 'underground',
     title                   : 'All the mobile accessories',
     titleTag                : 'h2',
-    paragraph               : 'Find the perfect accessories for your device.',
+    paragraph               : '<p>Find the perfect accessories for your device.</p>',
     button                  : {
         label : 'Shop',
         class : ''
     },
     isVisualBackgroundFill  : true,
     isFeatured              : false,
-    reversed                : false,
+    isReversed              : false,
     class                   : ''
 } only %}
 ```
@@ -69,7 +66,7 @@ export const commonProps = {
         // src: 'https://i.stack.imgur.com/y9DpT.jpg'
     },
     title: 'All the mobile accessories',
-    paragraph: 'Find the perfect accessories for your device.',
+    paragraph: '<p>Find the perfect accessories for your device.</p>',
     button: {
         label: 'Shop',
         class: '',
@@ -85,7 +82,7 @@ export const commonProps = {
         height="800px"
         args={{
             ...commonProps,
-            reversed: undefined,
+            isReversed: undefined,
         }}
     >
         {Drupal.bind({})}
@@ -101,7 +98,7 @@ export const commonProps = {
             ...commonProps,
             elementPath: 'components/block-highlight/_doc/template-usage-example.drupal',
             image: null,
-            reversed: undefined,
+            isReversed: undefined,
         }}
     >
         {Drupal.bind({})}

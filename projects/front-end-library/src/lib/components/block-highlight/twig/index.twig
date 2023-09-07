@@ -5,7 +5,7 @@
 {% set hasTitle = title is defined and title is not empty %}
 {% set hasVisualBackgroundColor = visualBackgroundColor is defined and visualBackgroundColor is not empty %}
 {% set isFeatured = (isFeatured ?? false) is same as(true) %}
-{% set isReversed = (reversed ?? false) is same as(true) %}
+{% set isReversed = (isReversed ?? false) is same as(true) %}
 {% set isVisualBackgroundFill = (isVisualBackgroundFill ?? true) is same as(true) %}
 
 {# Default Variables (Props, Controls) #}
@@ -67,9 +67,7 @@
       {% endembed %}
     {% endif %}
     {% if hasParagraph %}
-      <p>
-        {{ paragraph }}
-      </p>
+      {{ paragraph }}
     {% endif %}
     {% if hasButton %}
       {% set button =
