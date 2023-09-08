@@ -1,21 +1,30 @@
 {# Default Variables (Props, Controls) #}
+{% set _reversed = _reversed|json_parse %}
+{% set blockBackgroundColor = blockBackgroundColor|json_parse %}
 {% set button = button|json_parse %}
+{% set buttonHierarchy = buttonHierarchy|json_parse %}
+{% set class = class|json_parse %}
 {% set image = image|json_parse %}
+{% set isContentCentered = isContentCentered|json_parse %}
 {% set isFeatured = isFeatured|json_parse %}
+{% set isReversed = isReversed|json_parse %}
 {% set isVisualBackgroundFill = isVisualBackgroundFill|json_parse %}
-{% set reversed = reversed|json_parse %}
+{% set paragraph = paragraph|json_parse %}
+{% set title = title|json_parse %}
+{% set titleTag = titleTag|json_parse %}
+{% set visualBackgroundColor = visualBackgroundColor|json_parse %}
 
 {# Template #}
 <div class="d-flex flex-column justify-content-center minh-100">
   {% for index in [1, 2] %}
 
     {# In Loop : Boolean Variables #}
-    {% set isReversed = reversed|default(index == 2) %}
+    {% set _reversed = _reversed|default(index == 2) %}
 
     {# In Loop : Arrays of Classes With Dynamic Elements #}
     {% set innerContainerClasses = [
       "flex-grow-1 d-flex flex-column align-items-center justify-content-center minh-100 p-4",
-      (isReversed ? "reversed bf-color-bg-ground"),
+      (_reversed ? "reversed bf-color-bg-ground"),
     ] %}
 
     <div class="{{ innerContainerClasses|join(' ')|trim }}">

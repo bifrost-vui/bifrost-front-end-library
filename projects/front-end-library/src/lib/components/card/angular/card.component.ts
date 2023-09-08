@@ -28,7 +28,7 @@ export class CardComponent implements OnInit {
          it will change the `background-color` of the `badge icon` in the lower right of the header.
      * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
      * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
-         To test this props, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+         To test this property, use a color name like `red`, `blue`, `yellow`, `black`, etc.
      */
     @Input() badgeCustomBgColor: string;
     /**
@@ -39,7 +39,7 @@ export class CardComponent implements OnInit {
          it will change the `color` of the `badge icon` in the lower right of the header.
      * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
      * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
-         To test this props, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+         To test this property, use a color name like `red`, `blue`, `yellow`, `black`, etc.
      */
     @Input() badgeCustomFontColor: string;
     /**
@@ -115,7 +115,7 @@ export class CardComponent implements OnInit {
      * - It will change the `background-color` of the card's header.
      * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
      * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
-         To test this props, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+         To test this property, use a color name like `red`, `blue`, `yellow`, `black`, etc.
      */
     @Input() headerCustomBgColor: string;
     /**
@@ -124,7 +124,7 @@ export class CardComponent implements OnInit {
      * - It will change the text `color` of the card's header.
      * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
      * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
-         To test this props, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+         To test this property, use a color name like `red`, `blue`, `yellow`, `black`, etc.
      */
     @Input() headerCustomFontColor: string;
     /**
@@ -241,7 +241,7 @@ export class CardComponent implements OnInit {
      * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
      * - It changes the color of the normally grey background behind the image or icon.
      * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
-          To test this props, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+          To test this property, use a color name like `red`, `blue`, `yellow`, `black`, etc.
      */
     @Input() visualBackgroundColor: string;
 

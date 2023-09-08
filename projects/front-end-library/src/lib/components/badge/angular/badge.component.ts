@@ -33,7 +33,7 @@ export class BadgeComponent implements IBadge, OnInit, OnChanges {
      * - Even if `hierarchy` prop is provided, this prop will have priority if a custom color is provided.
      * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
      * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
-         To test this props, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+         To test this property, use a color name like `red`, `blue`, `yellow`, `black`, etc.
      */
     @Input() customBgColor: string;
     /**
@@ -42,7 +42,7 @@ export class BadgeComponent implements IBadge, OnInit, OnChanges {
      * - It will change the text `color` of the badge.
      * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
      * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
-         To test this props, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+         To test this property, use a color name like `red`, `blue`, `yellow`, `black`, etc.
      */
     @Input() customFontColor: string;
     /** <span style="color: orange;">__Optional__</span> */

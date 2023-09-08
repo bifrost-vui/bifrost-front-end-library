@@ -8,14 +8,16 @@ import { BlockHighlightComponent } from '../angular/block-highlight.component';
     component={BlockHighlightComponent}
     decorators={[moduleMetadata({ declarations: [BlockHighlightComponent, TwigContainerComponent] })]}
     argTypes={{
-        titleTag: {
-            table: { defaultValue: { summary: 'p' } },
-        },
         blockBackgroundColor: {
             table: { defaultValue: { summary: 'ground' } },
             control: {
                 type: 'select',
                 defaultValue: 'ground',
+            },
+        },
+        buttonHierarchy: {
+            control: {
+                type: 'select',
             },
         },
         isVisualBackgroundFill: {
@@ -38,22 +40,24 @@ import { BlockHighlightComponent } from '../angular/block-highlight.component';
 
 ```jsx
 {% include '@bf-components/block-highlight/twig/index.twig' with {
-    image                   : {
-        src : '/images/assets/helix-equipment.png'
+    blockBackgroundColor: 'underground',
+    button: {
+        href: 'https://www.videotron.com',
+        label: 'Shop',
     },
-    visualBackgroundColor   : '#ff00ff',
-    blockBackgroundColor    : 'underground',
-    title                   : 'All the mobile accessories',
-    titleTag                : 'h2',
-    paragraph               : 'Find the perfect accessories for your device.',
-    button                  : {
-        label : 'Shop',
-        class : ''
+    buttonHierarchy: 'secondary',
+    class: '',
+    image: {
+        src: '/images/assets/helix-equipment.png',
     },
-    isVisualBackgroundFill  : true,
-    isFeatured              : false,
-    reversed                : false,
-    class                   : ''
+    isContentCentered: true,
+    isFeatured: false,
+    isReversed: false,
+    isVisualBackgroundFill: true,
+    paragraph: '<p>Find the perfect accessories for your device.</p>',
+    title: 'All the mobile accessories',
+    titleTag: 'h2',
+    visualBackgroundColor: '#ff00ff',
 } only %}
 ```
 
@@ -64,19 +68,24 @@ export const Drupal = (args) => ({
 
 export const commonProps = {
     elementPath: 'components/block-highlight/_doc/template.drupal',
+    blockBackgroundColor: 'ground',
+    button: {
+        href: 'https://www.videotron.com',
+        label: 'Shop',
+    },
+    buttonHierarchy: undefined,
+    class: '',
     image: {
         src: window.location.origin + '/images/placeholder/800x600.png',
-        // src: 'https://i.stack.imgur.com/y9DpT.jpg'
     },
-    title: 'All the mobile accessories',
-    paragraph: 'Find the perfect accessories for your device.',
-    button: {
-        label: 'Shop',
-        class: '',
-    },
-    isVisualBackgroundFill: true,
+    isContentCentered: false,
     isFeatured: false,
-    class: '',
+    isReversed: false,
+    isVisualBackgroundFill: true,
+    paragraph: '<p>Find the perfect accessories for your device.</p>',
+    title: 'All the mobile accessories',
+    titleTag: 'h2',
+    visualBackgroundColor: '#ff00ff',
 };
 
 <Canvas withSource="none">
@@ -85,7 +94,7 @@ export const commonProps = {
         height="800px"
         args={{
             ...commonProps,
-            reversed: undefined,
+            isReversed: undefined,
         }}
     >
         {Drupal.bind({})}
@@ -101,7 +110,7 @@ export const commonProps = {
             ...commonProps,
             elementPath: 'components/block-highlight/_doc/template-usage-example.drupal',
             image: null,
-            reversed: undefined,
+            isReversed: undefined,
         }}
     >
         {Drupal.bind({})}
