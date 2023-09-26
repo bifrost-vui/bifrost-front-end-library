@@ -20,9 +20,12 @@ export class GoodToKnowComponent implements OnInit {
     /**
      * It displays after `title`.
      */
-    @Input() description: string;
+    @Input() description_html: HTMLElement;
 
     @Input() icon: string;
+
+    /** Class override */
+    @Input() id: string;
 
     /**
      * It displays before `description`.

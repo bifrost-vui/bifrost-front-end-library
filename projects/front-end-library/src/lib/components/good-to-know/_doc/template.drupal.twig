@@ -1,8 +1,9 @@
 {% set _reversed = _reversed|json_parse %}
 {% set background = background|json_parse %}
 {% set class = class|json_parse %}
-{% set description = description|json_parse %}
+{% set description_html = description_html|json_parse %}
 {% set icon = icon|json_parse %}
+{% set id = id|json_parse %}
 {% set title = title|json_parse %}
 
 <div class="pt-4 {% if _reversed %}reversed bf-color-bg-ground{% endif %}">
@@ -10,8 +11,9 @@
     {% include "@bf-components/good-to-know/twig/index.twig" with {
         background: background,
         class: class,
-        description: description,
+        description_html: description_html,
         icon: icon,
+        id: id,
         title: title,
     } only %}
 

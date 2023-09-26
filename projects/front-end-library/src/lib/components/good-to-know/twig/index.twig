@@ -6,7 +6,7 @@
 {% set title = title|default("Bon à savoir") %}
 
 {# Boolean Variables #}
-{% set hasDescription = description is defined and description is not empty %}
+{% set hasDescription = description_html is defined and description_html is not empty %}
 {% set hasTitle = title is defined and title is not empty %}
 {% set isBackgroundGround = background is defined and background is same as("ground") %}
 {% set isBackgroundUnderground = background is defined and background is same as("underground") %}
@@ -15,8 +15,10 @@
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set class = class|default("") %}
-{% set language = language|default("fr") %}
 {% set icon = icon|default("placeholder") %}
+{% set id = id|default("") %}
+{% set language = language|default("fr") %}
+
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set heroClasses = [
@@ -31,6 +33,7 @@
 {# Template #}
 <div {{ macros.addAttributes({
   "class": heroClasses|join(' ')|trim,
+  "id":(id),
 }) }}>
 
   <div
@@ -58,7 +61,7 @@
           class="field-rich-text-block"
           >
             <p>
-              {{ description }}
+              {{ description_html }}
             </p>
           </div>
         </div>
