@@ -1,0 +1,69 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set background = background|default("underground") %}
+{% set title = title|default("Bon à savoir") %}
+
+{# Boolean Variables #}
+{% set hasDescription = description is defined and description is not empty %}
+{% set hasTitle = title is defined and title is not empty %}
+{% set isBackgroundGround = background is defined and background is same as("ground") %}
+{% set isBackgroundUnderground = background is defined and background is same as("underground") %}
+{% set isBackgroundHighlight = background is defined and background is same as("highlight") %}
+{% set isBackgroundBlack = background is defined and background is same as("dark") %}
+
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
+{% set class = class|default("") %}
+{% set language = language|default("fr") %}
+{% set icon = icon|default("placeholder") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set heroClasses = [
+  "p-4 d-flex align-items-center bf-good-to-know",
+  (isBackgroundBlack ? "bf-good-to-know--bg-dark"),
+  (isBackgroundUnderground ? "bf-good-to-know--bg-underground"),
+  (isBackgroundGround ? "bf-good-to-know--bg-ground"),
+  (isBackgroundHighlight ? "bf-good-to-know--bg-highlight"),
+  (class),
+] %}
+
+{# Template #}
+<div {{ macros.addAttributes({
+  "class": heroClasses|join(' ')|trim,
+}) }}>
+
+  <div
+    class="mb-2 mb-md-0 mr-4"
+      >
+      {% include "@bf-components/icon/twig/index.twig" with {
+        name: icon,
+        size: "large"
+      } only %}
+  </div>
+  <div>
+     {% if hasTitle %}
+        <p
+          class="font-weight-bold mb-0"
+        >
+          {{ title }}
+        </p>
+      {% endif %}
+
+      {% if hasDescription %}
+      <div
+        class="field field--name-body field--type-text-with-summary field--label-hidden field__item"
+        >
+        <div
+          class="field-rich-text-block"
+          >
+            <p>
+              {{ description }}
+            </p>
+          </div>
+        </div>
+      {% endif %}
+  </div>
+</div>
+
+

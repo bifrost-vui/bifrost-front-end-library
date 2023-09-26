@@ -1,0 +1,109 @@
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { GoodToKnowComponent } from '../angular/good-to-know.component';
+import { GoodToKnowTemplateComponent } from './template.angular.component';
+import illustrationsIcons from '../../../../../../../public/icons/list/illustrations.json';
+
+<Meta
+    title="Components/Good To Know"
+    component={GoodToKnowComponent}
+    decorators={[
+        moduleMetadata({ declarations: [GoodToKnowComponent, GoodToKnowTemplateComponent, TwigContainerComponent] }),
+        withDesign,
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            disable: false,
+        },
+    }}
+    argTypes={{
+        icon: {
+            control: {
+                type: 'select',
+                options: [
+                    '',
+                    ...illustrationsIcons
+                        .map((a) => a.list)
+                        .flat()
+                        .sort(),
+                ],
+            },
+        },
+    }}
+/>
+
+## Drupal
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal"
+        height="300px"
+        args={{
+            elementPath: 'components/good-to-know/_doc/template.drupal',
+            label: 'Good To Know',
+            title: 'Bon à savoir',
+            icon: 'innovation',
+            description:
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/good-to-know/twig/index.twig' with {
+    icon : 'innovation',
+    title: 'Bon à savoir'
+} only %}
+```
+
+<!--
+## Angular
+
+export const Angular = (args) => ({
+    component: GoodToKnowTemplateComponent,
+    props: args,
+});
+
+<Canvas withSource="none">
+    <Story
+        name="Angular"
+        args={{
+            label: 'Good To Know',
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+## Angular implementation example
+
+Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
+
+-->
+
+## Component API
+
+<ArgsTable of={GoodToKnowComponent} />
+
+## Design Guidelines
+
+<iframe
+    width="100%"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION"
+    frameBorder="0"
+    allowFullScreen
+></iframe>
