@@ -1,3 +1,5 @@
+/* API file for Vercel */
+
 module.exports = (req, res) => {
     var Twig = require('twig'),
         twigDrupal = require('twig-drupal-filters'),
