@@ -4,7 +4,7 @@ import {
     IChannelsFull,
     IChannelsFullTabContent,
     IContent,
-    IContentLists,
+    IContentListsCard,
     IDetailsColors,
     IImage,
     ILink,
@@ -144,7 +144,7 @@ export class ContentAPI implements IContent {
 @Component({
     selector: '',
 })
-export class ContentListsAPI implements IContentLists {
+export class ContentListsCardAPI implements IContentListsCard {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
