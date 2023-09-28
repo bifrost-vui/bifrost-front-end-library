@@ -138,6 +138,12 @@ export class CardComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
+     * Card's main element `id` attribute.
+     */
+    @Input() id: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * - Only available in the __phone__ and __combo__ cards.
      * - It displays an image in the image area of the card.
      * - If `badgeIconName` is provided with an Icon name, it will show up in the bottom right corner of the image area.
