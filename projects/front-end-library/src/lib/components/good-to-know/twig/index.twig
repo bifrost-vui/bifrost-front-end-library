@@ -15,7 +15,7 @@
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set class = class|default("") %}
-{% set icon = icon|default("placeholder") %}
+{% set icon = icon|default("innovation") %}
 {% set id = id|default("") %}
 {% set language = language|default("fr") %}
 
@@ -38,7 +38,7 @@
 
   <div
     class="mb-2 mb-md-0 mr-4"
-      >
+  >
       {% include "@bf-components/icon/twig/index.twig" with {
         name: icon,
         size: "large"
@@ -47,23 +47,17 @@
   <div>
      {% if hasTitle %}
         <p
-          class="font-weight-bold mb-0"
+          class="mb-0"
         >
-          {{ title }}
+          <strong>
+            {{ title }}
+          </strong>
         </p>
       {% endif %}
 
       {% if hasDescription %}
-      <div
-        class="field field--name-body field--type-text-with-summary field--label-hidden field__item"
-        >
-        <div
-          class="field-rich-text-block"
-          >
-            <p>
-              {{ description_html }}
-            </p>
-          </div>
+      <div>
+          {{ description_html }}
         </div>
       {% endif %}
   </div>
