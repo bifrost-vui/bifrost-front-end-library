@@ -91,7 +91,7 @@ export class HeroComponent implements IHero, OnInit {
      * <br><br>
      * It displays between the `subtitle` and the `description`.
      */
-    @Input() description: string;
+    @Input() description: string | HTMLElement;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>

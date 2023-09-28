@@ -99,7 +99,7 @@
       {% if isBlockBreadcrumbDefined %}
         {{ block("breadcrumb") }}
       {% elseif hasBreadcrumb %}
-        {{ breadcrumb }}
+        {{ breadcrumb|raw }}
       {% endif %}
       <div class="d-flex flex-column justify-content-center h-100">
         <div class="bf-hero__content position-relative pb-5 pt-2 pt-md-5 mt-2">
@@ -123,7 +123,7 @@
               class="h5 mt-0 mb-2"
               data-animate="fade-in"
             >
-              {{ upperTitle }}
+              {{ upperTitle|raw }}
             </p>
           {% endif %}
           {% if hasTitle %}
@@ -131,7 +131,7 @@
               class="mt-0"
               data-animate="fade-in"
             >
-              {{ title }}
+              {{ title|raw }}
             </h1>
           {% endif %}
           {% if hasSubtitle %}
@@ -139,22 +139,33 @@
               class="h3 my-2"
               data-animate="fade-in"
             >
-              {{ subtitle }}
+              {{ subtitle|raw }}
             </h2>
           {% endif %}
           {% if hasDescription %}
-            <p
-              class="mt-2"
-              data-animate="fade-in"
-            >
-              {{ description }}
-            </p>
+            {# If description is an HTMLElement #}
+            {% if '</' in description %}
+               <div
+                  class="mt-2"
+                  data-animate="fade-in"
+                >
+                  {{ description|raw }}
+                </div>
+            {% else %}
+              {# If description is only a string #}
+               <p
+                  class="mt-2"
+                  data-animate="fade-in"
+                >
+                  {{ description|raw }}
+                </p>
+            {% endif %}
           {% endif %}
 
           {% if isBlockContentDefined %}
             {{ block("content") }}
           {% elseif hasContent %}
-            {{ content }}
+            {{ content|raw }}
           {% endif %}
           {% if hasPrice %}
             {% set price =

@@ -300,7 +300,7 @@
                             "role": "tabpanel",
                           }) }}>
                             <div class="mt-2">
-                              {{ channelsFull.tabContent.description }}
+                              {{ channelsFull.tabContent.description|raw }}
                             </div>
                             {% include "@bf-components/channels/twig/index.twig" with {
                               channelsData: channelsFull.tabContent.channelsList,
@@ -390,7 +390,7 @@
 
     {% if hasNote %}
       <div class="small bf-color-neutral-secondary mb-0">
-        {{ note }}
+        {{ note|raw }}
       </div>
     {% endif %}
 
