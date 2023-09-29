@@ -6,7 +6,7 @@
 {% set title = title|default("Bon à savoir") %}
 
 {# Boolean Variables #}
-{% set hasDescription = description_html is defined and description_html is not empty %}
+{% set hasDescription = description is defined and description is not empty %}
 {% set hasTitle = title is defined and title is not empty %}
 {% set isBackgroundGround = background is defined and background is same as("ground") %}
 {% set isBackgroundUnderground = background is defined and background is same as("underground") %}
@@ -21,7 +21,7 @@
 
 
 {# Arrays of Classes With Dynamic Elements #}
-{% set heroClasses = [
+{% set goodToKnowClasses = [
   "p-4 d-flex align-items-center bf-good-to-know",
   (isBackgroundBlack ? "bf-good-to-know--bg-dark"),
   (isBackgroundUnderground ? "bf-good-to-know--bg-underground"),
@@ -32,34 +32,36 @@
 
 {# Template #}
 <div {{ macros.addAttributes({
-  "class": heroClasses|join(' ')|trim,
+  "class": goodToKnowClasses|join(' ')|trim,
   "id":(id),
 }) }}>
 
-  <div
-    class="mb-2 mb-md-0 mr-4"
-  >
-      {% include "@bf-components/icon/twig/index.twig" with {
-        name: icon,
-        size: "large"
-      } only %}
+  <div class="mb-2 mb-md-0 mr-4">
+    {% if icon is not iterable %}
+      {% set icon = {
+          name: icon
+      } %}
+    {% endif %}
+    {% set icon = icon|merge({
+      size: "large"
+    }) %}
+
+    {% include "@bf-components/icon/twig/index.twig" with icon only %}
   </div>
   <div>
-     {% if hasTitle %}
-        <p
-          class="mb-0"
-        >
-          <strong>
-            {{ title }}
-          </strong>
-        </p>
-      {% endif %}
+    {% if hasTitle %}
+      <p class="mb-0">
+        <strong>
+          {{ title }}
+        </strong>
+      </p>
+    {% endif %}
 
-      {% if hasDescription %}
+    {% if hasDescription %}
       <div>
-          {{ description_html }}
-        </div>
-      {% endif %}
+          {{ description }}
+      </div>
+    {% endif %}
   </div>
 </div>
 

@@ -25,7 +25,7 @@ export class GoodToKnowComponent implements OnInit {
      * <br><br>
      * It displays after `title`.
      */
-    @Input() description_html: string | HTMLElement;
+    @Input() description: string | HTMLElement;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>

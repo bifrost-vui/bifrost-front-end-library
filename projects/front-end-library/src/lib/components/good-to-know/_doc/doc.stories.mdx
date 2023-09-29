@@ -21,6 +21,9 @@ import illustrationsIcons from '../../../../../../../public/icons/list/illustrat
         },
     }}
     argTypes={{
+        _reversed: {
+            table: { disable: true },
+        },
         icon: {
             control: {
                 type: 'select',
@@ -45,6 +48,7 @@ import illustrationsIcons from '../../../../../../../public/icons/list/illustrat
 ```jsx
 {% include '@bf-components/good-to-know/twig/index.twig' with {
     background: 'underground',
+    class: 'good-to-know',
     description: 'Lorem ipsum',
     icon: 'innovation',
     id:'good-to-know',
@@ -53,6 +57,13 @@ import illustrationsIcons from '../../../../../../../public/icons/list/illustrat
 ```
 
 ## Drupal
+
+export const commonProps = {
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis wostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non`,
+    icon: 'innovation',
+    id: 'good-to-know',
+    title: 'Bon à savoir',
+};
 
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
@@ -65,12 +76,22 @@ export const Drupal = (args) => ({
         height="300px"
         args={{
             elementPath: 'components/good-to-know/_doc/template.drupal',
-            label: 'Good To Know',
-            title: 'Bon à savoir',
-            icon: 'innovation',
-            id: 'good-to-know',
-            description_html:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis wostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non',
+            ...commonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Highlight"
+        height="300px"
+        args={{
+            elementPath: 'components/good-to-know/_doc/template.drupal',
+            ...commonProps,
+            background: 'highlight',
+            icon: 'helix-tv',
         }}
     >
         {Drupal.bind({})}
@@ -104,10 +125,4 @@ Please, read the [Implementation Page](/?path=/docs/implementation-angular--page
 
 ## Design Guidelines
 
-<iframe
-    width="100%"
-    height="450"
-    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION"
-    frameBorder="0"
-    allowFullScreen
-></iframe>
+No design Figma
