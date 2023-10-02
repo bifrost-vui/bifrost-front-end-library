@@ -33,7 +33,7 @@ export class GoodToKnowComponent implements OnInit {
      * - The `icon.size` is always overrided with a custom value `large` : 5.5rem.
      * - You can use the Icon Component [API](/?path=/docs/components-icon--drupal-illustration#illustration-icons).
      */
-    @Input() icon: string | IIcon = 'innovation';
+    @Input() icon: string | IIcon = '{ "name": "innovation" }';
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>

@@ -4,7 +4,6 @@ import { withDesign } from 'storybook-addon-designs';
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { GoodToKnowComponent } from '../angular/good-to-know.component';
 import { GoodToKnowTemplateComponent } from './template.angular.component';
-import illustrationsIcons from '../../../../../../../public/icons/list/illustrations.json';
 
 <Meta
     title="Components/Good To Know"
@@ -24,18 +23,6 @@ import illustrationsIcons from '../../../../../../../public/icons/list/illustrat
         _reversed: {
             table: { disable: true },
         },
-        icon: {
-            control: {
-                type: 'select',
-                options: [
-                    '',
-                    ...illustrationsIcons
-                        .map((a) => a.list)
-                        .flat()
-                        .sort(),
-                ],
-            },
-        },
     }}
 />
 
@@ -50,8 +37,10 @@ import illustrationsIcons from '../../../../../../../public/icons/list/illustrat
     background: 'underground',
     class: 'good-to-know',
     description: 'Lorem ipsum',
-    icon: 'innovation',
-    id:'good-to-know',
+    icon: {
+        name: 'innovation',
+    },
+    id: 'good-to-know',
     title: 'Bon à savoir'
 } only %}
 ```
@@ -60,7 +49,9 @@ import illustrationsIcons from '../../../../../../../public/icons/list/illustrat
 
 export const commonProps = {
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis wostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non`,
-    icon: 'innovation',
+    icon: {
+        name: 'innovation',
+    },
     id: 'good-to-know',
     title: 'Bon à savoir',
 };
@@ -77,21 +68,6 @@ export const Drupal = (args) => ({
         args={{
             elementPath: 'components/good-to-know/_doc/template.drupal',
             ...commonProps,
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
-
-<Canvas withSource="none">
-    <Story
-        name="Drupal - Highlight"
-        height="300px"
-        args={{
-            elementPath: 'components/good-to-know/_doc/template.drupal',
-            ...commonProps,
-            background: 'highlight',
-            icon: 'helix-tv',
         }}
     >
         {Drupal.bind({})}
