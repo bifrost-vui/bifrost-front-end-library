@@ -15,6 +15,7 @@
 {% set hasHeaderCustomBgColor = headerCustomBgColor is defined and headerCustomBgColor is not empty %}
 {% set hasHeaderCustomFontColor = headerCustomFontColor is defined and headerCustomFontColor is not empty %}
 {% set hasIcon = iconName is defined and iconName is not empty %}
+{% set hasId = id is defined and id is not empty %}
 {% set hasImage = image.src is defined and image.src is not empty %}
 {% set hasInputIncrement = inputIncrement is defined and inputIncrement is not empty %}
 {% set hasImageBadgeIconName = image.badgeIconName is defined and image.badgeIconName is not empty %}
@@ -41,6 +42,9 @@
 {% set class = class|default("") %}
 {% set language = language|default("en") %}
 {% set titleTag = titleTag|default("h1") %}
+
+{# Local variables #}
+{% set idAsSuffix = (hasId ? "_" ~ id : "") %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set cardClasses = [
@@ -74,6 +78,7 @@
 {# Template #}
 <article {{ macros.addAttributes({
   "class": cardClasses|join(' ')|trim,
+  "id": (hasId ? id),
   "style": cardStyles|join(' ')|trim,
 }) }}>
 
@@ -258,16 +263,16 @@
                   {% endfor %}
 
                   <div class="mt-2">
-                    {% include '@bf-components/link/twig/index.twig' with {
-                        dataTarget: '#channelsListModal',
-                        dataToggle: 'modal',
-                        href: '#channelsListModal',
-                        label: 'See Channels',
+                    {% include "@bf-components/link/twig/index.twig" with {
+                        dataTarget: "#channelsListModal" ~ idAsSuffix,
+                        dataToggle: "modal",
+                        href: "#channelsListModal" ~ idAsSuffix,
+                        label: "See Channels"|t,
                     } only %}
                   </div>
                   {% embed "@bf-components/modal/twig/index.twig" with {
-                      class: "pr-3 pr-md-0",
-                      id: "channelsListModal",
+                      class: "bf-card__channels__modal pr-3 pr-md-0",
+                      id: "channelsListModal" ~ idAsSuffix,
                   } %}
                     {% block modal_header %}
                       <div class="w-100 text-left">
@@ -300,7 +305,7 @@
                             "role": "tabpanel",
                           }) }}>
                             <div class="mt-2">
-                              {{ channelsFull.tabContent.description }}
+                              {{ channelsFull.tabContent.description|raw }}
                             </div>
                             {% include "@bf-components/channels/twig/index.twig" with {
                               channelsData: channelsFull.tabContent.channelsList,
@@ -390,7 +395,7 @@
 
     {% if hasNote %}
       <div class="small bf-color-neutral-secondary mb-0">
-        {{ note }}
+        {{ note|raw }}
       </div>
     {% endif %}
 

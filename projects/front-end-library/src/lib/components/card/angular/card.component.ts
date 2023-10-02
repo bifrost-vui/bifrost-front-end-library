@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IPrice } from '../../price/angular/api.model';
-import { IImage, ILink, IContentLists, IDetailsColors } from './api.model';
+import { IImage, ILink, IContentListsCard, IDetailsColors } from './api.model';
 import { IBadge } from '../../badge/angular/api.model';
 import { IButton } from '../../button/angular/api.model';
 import { IInputIncrement } from '../../input-increment/angular/api.model';
@@ -77,11 +77,11 @@ export class CardComponent implements OnInit {
      * - Available in every card type but `combo`.
      * - This content displays under the card header.
      * - Each object in this array is a content section separated by a line.
-     * - See `IContentLists`
-     *    <a href="/?path=/docs/components-card-api--page#icontentlists-api" target="_blank">API</a>
-     *    and <a href="/?path=/docs/components-card-api--page#icontentlists-format" target="_blank">expected format</a>.
+     * - See `IContentListsCard`
+     *    <a href="/?path=/docs/components-card-api--page#icontentlistscard-api" target="_blank">API</a>
+     *    and <a href="/?path=/docs/components-card-api--page#icontentlistscard-format" target="_blank">expected format</a>.
      */
-    @Input() contentLists: IContentLists[];
+    @Input() contentLists: IContentListsCard[];
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
@@ -135,6 +135,12 @@ export class CardComponent implements OnInit {
      * - See [Icons - Illustration List](/?path=/story/components-icon--drupal-illustration) for icon names.
      */
     @Input() iconName: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Card's main element `id` attribute.
+     */
+    @Input() id: string;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>

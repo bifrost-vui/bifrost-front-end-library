@@ -24,7 +24,7 @@ export interface IContent {
     label: string;
 }
 
-export interface IContentLists {
+export interface IContentListsCard {
     channels: IChannels;
     content: IContent[];
     description: string;
