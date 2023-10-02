@@ -1,0 +1,21 @@
+{# Default Variables (Props, Controls) #}
+{% set background = background|json_parse %}
+{% set class = class|json_parse %}
+{% set description = description|json_parse %}
+{% set icon = icon|json_parse %}
+{% set id = id|json_parse %}
+{% set title = title|json_parse %}
+
+{# Template #}
+<div class="pt-4 bf-color-bg-ground">
+
+    {% include "@bf-components/good-to-know/twig/index.twig" with {
+        background: background,
+        class: class,
+        description: description,
+        icon: icon,
+        id: id,
+        title: title,
+    } only %}
+
+</div>

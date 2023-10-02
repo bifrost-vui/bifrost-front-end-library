@@ -1,0 +1,68 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set background = background|default("underground") %}
+{% set title = title|default("Bon à savoir") %}
+
+{# Boolean Variables #}
+{% set hasDescription = description is defined and description is not empty %}
+{% set hasTitle = title is defined and title is not empty %}
+{% set isBackgroundGround = background is defined and background is same as("ground") %}
+{% set isBackgroundUnderground = background is defined and background is same as("underground") %}
+{% set isBackgroundHighlight = background is defined and background is same as("highlight") %}
+{% set isBackgroundBlack = background is defined and background is same as("dark") %}
+
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
+{% set class = class|default("") %}
+{% set icon = icon|default("innovation") %}
+{% set id = id|default("") %}
+{% set language = language|default("fr") %}
+
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set goodToKnowClasses = [
+  "p-4 bf-good-to-know",
+  (isBackgroundBlack ? "bf-good-to-know--bg-dark"),
+  (isBackgroundUnderground ? "bf-good-to-know--bg-underground"),
+  (isBackgroundGround ? "bf-good-to-know--bg-ground"),
+  (isBackgroundHighlight ? "bf-good-to-know--bg-highlight"),
+  (class),
+] %}
+
+{# Template #}
+<div {{ macros.addAttributes({
+  "class": goodToKnowClasses|join(' ')|trim,
+  "id":(id),
+}) }}>
+
+  <div class="mb-2 mb-md-0 mr-4">
+    {% if icon is not iterable %}
+      {% set icon = {
+          name: icon
+      } %}
+    {% endif %}
+    {% set icon = icon|merge({
+      size: "large"
+    }) %}
+
+    {% include "@bf-components/icon/twig/index.twig" with icon only %}
+  </div>
+  <div>
+    {% if hasTitle %}
+      <p class="mb-0">
+        <strong>
+          {{ title }}
+        </strong>
+      </p>
+    {% endif %}
+
+    {% if hasDescription %}
+      <div>
+          {{ description }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+
