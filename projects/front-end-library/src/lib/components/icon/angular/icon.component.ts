@@ -10,14 +10,13 @@ import iconList from '../svg/svg';
 export class IconComponent implements OnChanges {
     constructor(private element: ElementRef, private sanitizer: DomSanitizer) {}
 
-    @Input() name: string;
-    @Input() size: 'xsmall' | 'small' | 'medium' | 'large' | 'huge';
-    @Input() color: 'primary' | 'success' | 'neutral' | 'warning' | 'negative';
-    /** Angular only. */
-    @Input() className: string;
     /** Drupal only. */
     @Input() class: string;
-    @Input() reversed: boolean;
+    /** Angular only. */
+    @Input() className: string;
+    @Input() color: 'primary' | 'success' | 'neutral' | 'warning' | 'negative';
+    @Input() name: string;
+    @Input() size: 'xsmall' | 'small' | 'medium' | 'large' | 'huge';
 
     public svg: SafeHtml;
     public ngClasses: string[] = [];
@@ -45,8 +44,7 @@ export class IconComponent implements OnChanges {
         this.ngClasses = [
             this.className ? String(this.className) : '',
             this.size ? `size-${this.size}` : 'size-small',
-            this.color && this.color !== 'primary' ? `color-${this.color}` : '',
-            this.reversed ? `reversed` : '',
+            this.color ? `color-${this.color}` : '',
         ];
     }
 }
