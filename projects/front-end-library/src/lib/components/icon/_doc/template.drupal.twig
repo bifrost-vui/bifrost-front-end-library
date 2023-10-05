@@ -1,5 +1,5 @@
 {# Default Variables (Props, Controls) #}
-{% set reversed = reversed|json_parse %}
+{% set _reversed = _reversed|json_parse %}
 {% set icons = icons|json_parse %}
 {% set size = size|json_parse %}
 
@@ -9,7 +9,7 @@
 {# Arrays of Classes With Dynamic Elements #}
 {% set mainContainerClasses = [
   "pt-4 bf-color-bg-ground",
-  (reversed ? "reversed"),
+  (_reversed ? "reversed"),
 ] %}
 
 {# Template #}
@@ -29,11 +29,10 @@
   %}
     <div class="d-flex flex-wrap flex-column align-items-center">
       {% include "@bf-components/icon/twig/index.twig" with {
-        name: name,
-        color: color,
-        size: size,
         class: class,
-        reversed: reversed
+        color: color,
+        name: name,
+        size: size
       } only %}
       <p class="small bf-color-neutral-secondary pt-1">
         {{ name }}
@@ -61,11 +60,10 @@
                   title="{{ iconName }}"
                 >
                   {% include "@bf-components/icon/twig/index.twig" with {
-                    name: iconName,
-                    color: color,
-                    size: size,
                     class: class,
-                    reversed: reversed
+                    color: color,
+                    name: iconName,
+                    size: size,
                   } only %}
                   <p class="small bf-color-neutral-secondary text-center pt-1">
                     {{ iconName }}

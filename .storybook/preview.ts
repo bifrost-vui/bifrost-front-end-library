@@ -18,18 +18,21 @@ export const argTypes = {
     ngOnInit: { table: { disable: true } },
     ngOnChanges: { table: { disable: true } },
     _theme: {
+        control: { type: 'select', options: ['videotron', 'business'] },
+        description: '**Storybook only**<br> Apply a `data-theme` attribute on the `<body>`.',
         table: {
             category: 'Container (Not in the component)',
             defaultValue: { summary: 'videotron' },
         },
-        control: { type: 'select', options: ['videotron', 'business'] },
     },
     _reversed: {
+        control: { type: 'boolean' },
+        description:
+            "**Storybook only**<br> Apply a `reversed` class on a component's parent to simulate a `reversed` state.",
         table: {
             category: 'Container (Not in the component)',
             defaultValue: { summary: false },
         },
-        control: { type: 'boolean' },
     },
 };
 

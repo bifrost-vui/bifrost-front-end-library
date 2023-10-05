@@ -9,8 +9,14 @@
   border-color: currentColor;
   vertical-align: middle;
   svg {
+    --bf-icon-default-color: var(--bf-color-primary-irreversible);
+    --bf-icon-default-bg: var(--bf-color-bg-action-primary);
     width: 100%;
     height: 100%;
+
+    &:not(.fill-highlight) {
+      --bf-icon-default-color: var(--bf-color-neutral-primary);
+    }
 
     path,
     circle,
@@ -19,55 +25,67 @@
       vector-effect: non-scaling-stroke;
     }
   }
+
   // Sizes
-  &.size-large {
-    width: 4.5rem;
-    height: 4.5rem;
-    min-width: 4.5rem;
-  }
-  &.size-medium {
-    width: 3rem;
-    height: 3rem;
-    min-width: 3rem;
-  }
-  &.size-small {
-    width: 1.5rem;
-    height: 1.5rem;
-    min-width: 1.5rem;
-  }
-  &.size-xsmall {
-    width: 1rem;
-    height: 1rem;
-    min-width: 1rem;
-  }
-  &.size-huge {
-    width: 18rem;
-    height: 18rem;
-    @include media-breakpoint-down(md) {
-      width: 15rem;
-      height: 15rem;
+  &.size {
+    &-large {
+      width: 4.5rem;
+      height: 4.5rem;
+      min-width: 4.5rem;
     }
-    @include media-breakpoint-down(sm) {
-      width: 10rem;
-      height: 10rem;
+    &-medium {
+      width: 3rem;
+      height: 3rem;
+      min-width: 3rem;
+    }
+    &-small {
+      width: 1.5rem;
+      height: 1.5rem;
+      min-width: 1.5rem;
+    }
+    &-xsmall {
+      width: 1rem;
+      height: 1rem;
+      min-width: 1rem;
+    }
+    &-huge {
+      width: 18rem;
+      height: 18rem;
+      @include media-breakpoint-down(md) {
+        width: 15rem;
+        height: 15rem;
+      }
+      @include media-breakpoint-down(sm) {
+        width: 10rem;
+        height: 10rem;
+      }
     }
   }
+
   // Color varitions
   .inversed {
     stroke: var(--bf-color-bg-ground);
   }
-  .fill-highlight {
-    color: var(--bf-color-primary-irreversible);
-    circle,
-    path.path-highlight {
-      fill: var(--bf-color-bg-action-primary);
+  @at-root .color-primary,
+    &.color-primary {
+    svg {
+      color: var(--bf-icon-default-color);
+    }
+    .fill-highlight circle,
+    .fill-highlight path.path-highlight {
+      fill: var(--bf-icon-default-bg);
     }
     circle.fill-highlight-on-reversed,
     path.path-highlight.fill-highlight-on-reversed {
-      fill: var(--bf-color-primary-irreversible);
+      fill: var(--bf-icon-default-color);
     }
   }
-  @at-root .color-succes,
+  &:not(.color-primary) {
+    .fill-highlight {
+      color: var(--bf-color-primary-irreversible);
+    }
+  }
+  @at-root .color-success,
     &.color-success {
     color: var(--bf-color-feedback-success);
     .fill-highlight circle,

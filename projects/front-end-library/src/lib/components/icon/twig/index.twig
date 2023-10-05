@@ -3,17 +3,13 @@
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}
+{% set color = color|default("primary") %}
 {% set name = name|default("placeholder") %}
 {% set size = size|default("small") %}
 
 {# Boolean Variables #}
-{% set hasColor = color is defined and color is not empty %}
-{% set isReversed = (reversed ?? false) is same as(true) %}
 {% set isSizeSmall = size is defined and size is same as("small") %}
 {% set isSizeXSmall = size is defined and size is same as("xsmall") %}
-
-{# Boolean Variables - ORDER IS IMPORTANT #}
-{% set isColorPrimary = hasColor and color is same as("primary") %}
 
 {# Variables #}
 {% set sizeSuffix = isSizeXSmall or isSizeSmall ? "sm" : "lg" %}
@@ -22,8 +18,7 @@
 {% set iconClasses = [
   "bf-icon",
   "size-" ~ size,
-  (isReversed ? "reversed"),
-  (hasColor and not isColorPrimary ? "color-" ~ color),
+  "color-" ~ color,
   (class),
 ] %}
 
