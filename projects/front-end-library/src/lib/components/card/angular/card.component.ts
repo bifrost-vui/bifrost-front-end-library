@@ -1,9 +1,10 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IPrice } from '../../price/angular/api.model';
-import { IImage, ILink, IContentListsCard, IDetailsColors } from './api.model';
+import { ICardImage, ICardLink, ICardContentLists, ICardDetailsColors } from './api.model';
 import { IBadge } from '../../badge/angular/api.model';
 import { IButton } from '../../button/angular/api.model';
 import { IInputIncrement } from '../../input-increment/angular/api.model';
+import { IIcon } from '../../icon/angular/api.model';
 
 @Component({
     selector: 'bf-card',
@@ -77,11 +78,11 @@ export class CardComponent implements OnInit {
      * - Available in every card type but `combo`.
      * - This content displays under the card header.
      * - Each object in this array is a content section separated by a line.
-     * - See `IContentListsCard`
-     *    <a href="/?path=/docs/components-card-api--page#icontentlistscard-api" target="_blank">API</a>
-     *    and <a href="/?path=/docs/components-card-api--page#icontentlistscard-format" target="_blank">expected format</a>.
+     * - See `ICardContentLists`
+     *    <a href="/?path=/docs/components-card-api--page#icardcontentlists-api" target="_blank">API</a>
+     *    and <a href="/?path=/docs/components-card-api--page#icardcontentlists-format" target="_blank">expected format</a>.
      */
-    @Input() contentLists: IContentListsCard[];
+    @Input() contentLists: ICardContentLists[];
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
@@ -95,11 +96,11 @@ export class CardComponent implements OnInit {
      * <br><br>
      * - Only available in the __phone__ card.
      * - It displays circles of available colors model for phones.
-     * - See `IDetailsColors`
-     *    <a href="/?path=/docs/components-card-api--page#idetailscolors-api" target="_blank">API</a>
-     *    and <a href="/?path=/docs/components-card-api--page#idetailscolors-format" target="_blank">expected format</a>.
+     * - See `ICardDetailsColors`
+     *    <a href="/?path=/docs/components-card-api--page#icarddetailscolors-api" target="_blank">API</a>
+     *    and <a href="/?path=/docs/components-card-api--page#icarddetailscolors-format" target="_blank">expected format</a>.
      */
-    @Input() detailsColors: IDetailsColors[];
+    @Input() detailsColors: ICardDetailsColors[];
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
@@ -146,12 +147,34 @@ export class CardComponent implements OnInit {
      * <br><br>
      * - Only available in the __phone__ and __combo__ cards.
      * - It displays an image in the image area of the card.
-     * - If `badgeIconName` is provided with an Icon name, it will show up in the bottom right corner of the image area.
-     * - See `IImage`
-     *    <a href="/?path=/docs/components-card-api--page#iimage-api" target="_blank">API</a>
-     *    and <a href="/?path=/docs/components-card-api--page#iimage-format" target="_blank">expected format</a>.
+     * - See `ICardImage`
+     *    <a href="/?path=/docs/components-card-api--page#icardimage-api" target="_blank">API</a>
+     *    and <a href="/?path=/docs/components-card-api--page#icardimage-format" target="_blank">expected format</a>.
+     *
+     * <br>
+     * __\*Deprecated, but still supported\*__
+     * - If `badgeIconName` is provided with an Icon name,
+         it will show up in the bottom right corner of the image area.
      */
-    @Input() image: IImage;
+    @Input() image: ICardImage;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Only available in the __phone__ and __combo__ cards.
+     * - It displays an icon on the bottom right of the image area of the card.
+     * - See Icon Component [API](/?path=/docs/components-icon--drupal-interface#component-api).
+     */
+    @Input() imageIcon: IIcon;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Only available in the __phone__ and __combo__ cards.
+     * - If `false` (default value), `imageIcon` is a small icon in a white circle.
+     * - If `true`, `imageIcon` will take the full size that the white circle has. This property is available
+         for icons that has by default a background color like, an example, `refurbished-green`. It is not to be use
+         with normal icons without a background color.
+     */
+    @Input() imageIconFullSize: boolean = false;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
@@ -169,11 +192,11 @@ export class CardComponent implements OnInit {
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
      * - It is displayed below the subtitle.
-     * - See `ILink`
-     *    <a href="/?path=/docs/components-card-api--page#ilink-api" target="_blank">API</a>
-     *    and <a href="/?path=/docs/components-card-api--page#ilink-format" target="_blank">expected format</a>.
+     * - See `ICardLink`
+     *    <a href="/?path=/docs/components-card-api--page#icardlink-api" target="_blank">API</a>
+     *    and <a href="/?path=/docs/components-card-api--page#icardlink-format" target="_blank">expected format</a>.
      */
-    @Input() link: ILink;
+    @Input() link: ICardLink;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
@@ -184,11 +207,11 @@ export class CardComponent implements OnInit {
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
      * - It is displayed just after a `message`.
-     * - See `ILink`
-     *    <a href="/?path=/docs/components-card-api--page#ilink-api" target="_blank">API</a>
-     *    and <a href="/?path=/docs/components-card-api--page#ilink-format" target="_blank">expected format</a>.
+     * - See `ICardLink`
+     *    <a href="/?path=/docs/components-card-api--page#icardlink-api" target="_blank">API</a>
+     *    and <a href="/?path=/docs/components-card-api--page#icardlink-format" target="_blank">expected format</a>.
      */
-    @Input() messageLink: ILink;
+    @Input() messageLink: ICardLink;
     /** Note: Can contains html. */
     /**
      * <span style="color: orange;">__Optional__</span>
