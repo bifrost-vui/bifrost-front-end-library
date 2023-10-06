@@ -131,7 +131,7 @@ export class CardComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * - Only available in the __protection__, __increment__ and __combo__ cards.
+     * - Only available in the __protection__ and __increment__.
      * - It displays an icon in the image area.
      * - See [Icons - Illustration List](/?path=/story/components-icon--drupal-illustration) for icon names.
      */
@@ -164,17 +164,17 @@ export class CardComponent implements OnInit {
      * - It displays an icon on the bottom right of the image area of the card.
      * - See Icon Component [API](/?path=/docs/components-icon--drupal-interface#component-api).
      */
-    @Input() imageIcon: IIcon;
+    @Input() imageBadgeIcon: IIcon;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
      * - Only available in the __phone__ and __combo__ cards.
-     * - If `false` (default value), `imageIcon` is a small icon in a white circle.
-     * - If `true`, `imageIcon` will take the full size that the white circle has. This property is available
+     * - If `false` (default value), `imageBadgeIcon` is a small icon in a white circle.
+     * - If `true`, `imageBadgeIcon` will take the full size that the white circle has. This property is available
          for icons that has by default a background color like, an example, `refurbished-green`. It is not to be use
          with normal icons without a background color.
      */
-    @Input() imageIconFullSize: boolean = false;
+    @Input() imageBadgeIconFullSize: boolean = false;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
