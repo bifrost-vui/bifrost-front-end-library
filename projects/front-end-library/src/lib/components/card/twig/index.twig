@@ -17,8 +17,8 @@
 {% set hasIcon = iconName is defined and iconName is not empty %}
 {% set hasId = id is defined and id is not empty %}
 {% set hasImage = image.src is defined and image.src is not empty %}
+{% set hasImageBadgeIcon = imageBadgeIcon.name is defined and imageBadgeIcon.name is not empty %}
 {% set hasInputIncrement = inputIncrement is defined and inputIncrement is not empty %}
-{% set hasImageBadgeIconName = image.badgeIconName is defined and image.badgeIconName is not empty %}
 {% set hasLink = link.href is defined and link.href is not empty %}
 {% set hasMessage = message is defined and message is not empty %}
 {% set hasMessageLink = messageLink is defined and messageLink is not empty %}
@@ -33,6 +33,14 @@
 {% set hasVisualBackgroundColor = visualBackgroundColor is defined and visualBackgroundColor is not empty %}
 {% set isBlockButtonsDefined = block("buttons") is defined %}
 {% set isDisabled = (isDisabled ?? false) is same as(true) %}
+{% set isImageBadgeIconFullSize = (imageBadgeIconFullSize ?? false) is same as(true) %}
+
+{# Boolean Variables - Deprecation support #}
+{% set hasImageBadgeIconDeprecationSupport = image.badgeIconName is defined and image.badgeIconName is not empty %}
+{% if hasImageBadgeIcon is same as(false) and hasImageBadgeIconDeprecationSupport is same as(true) %}
+  {% set hasImageBadgeIcon = true %}
+  {% set imageBadgeIcon = image.badgeIconName %}
+{% endif %}
 
 {# Boolean Variables - ORDER IS IMPORTANT #}
 {% set hasVisual = hasImage or hasIcon %}
@@ -57,6 +65,10 @@
   "bf-card__visual",
   (hasVisualCombo ? "bf-card__visual--combo"),
   "d-flex justify-content-center align-items-center p-3 p-sm-4",
+] %}
+{% set cardImageBadgeIconClasses = [
+  "bf-badge-icon z-index-1",
+  (isImageBadgeIconFullSize ? "bf-badge-icon--full-size"),
 ] %}
 {% set messageLinkClasses = [
   "bf-link",
@@ -96,12 +108,20 @@
           "class": (hasVisualCombo is same as(false) ? "mw-100"),
           "loading": "lazy",
         }) }}/>
-        {% if hasImageBadgeIconName %}
-          <div class="bf-badge-icon z-index-1">
-            {% include "@bf-components/icon/twig/index.twig" with {
-              name: image.badgeIconName,
+        {% if hasImageBadgeIcon %}
+          {% if imageBadgeIcon is not iterable %}
+            {% set imageBadgeIcon = {
+              name: imageBadgeIcon
+            } %}
+          {% endif %}
+
+          {% set imageBadgeIcon = imageBadgeIcon|merge({
               size: "medium"
-            } only %}
+            })
+          %}
+
+          <div class="{{ cardImageBadgeIconClasses|join(' ')|trim }}">
+            {% include "@bf-components/icon/twig/index.twig" with imageBadgeIcon only %}
           </div>
         {% endif %}
       {% elseif hasIcon %}

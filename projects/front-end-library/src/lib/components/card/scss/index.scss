@@ -90,6 +90,8 @@
     img {
       max-height: 18rem;
     }
+
+    /* Image Badge Icon (bottom right of the image zone) */
     .bf-badge-icon {
       position: absolute;
       bottom: 1rem;
@@ -99,10 +101,24 @@
       background-color: var(--bf-card-badge-icon-bg-color);
       border-radius: 50%;
       z-index: 1;
+
       .bf-icon {
         width: 2rem;
         height: 2rem;
         min-width: 2rem;
+      }
+
+      /* Full Size */
+      &--full-size {
+        --bf-card-badge-icon-font-color: transparent;
+        --bf-card-badge-icon-bg-color: transparent;
+        padding: 0;
+
+        .bf-icon {
+          width: 3rem;
+          height: 3rem;
+          min-width: 3rem;
+        }
       }
     }
     &--combo {
@@ -203,7 +219,6 @@
 
       /* Tabs */
       .bf-tab {
-
         & > div {
           padding-right: 0;
           padding-left: 0;
@@ -221,10 +236,8 @@
 
       /* Tab Content */
       .bf-tab-content {
-
         /* Channels */
         .bf-channels {
-
           /* Container */
           &__container {
             --columns: 5;
@@ -232,7 +245,9 @@
 
           /* Item */
           &__item {
-            width: calc((100% / var(--columns)) - var(--channer-container-gap) + (var(--channer-container-gap) / var(--columns)));
+            width: calc(
+              (100% / var(--columns)) - var(--channer-container-gap) + (var(--channer-container-gap) / var(--columns))
+            );
           }
         }
       }
