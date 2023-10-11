@@ -281,8 +281,10 @@ export class CardComponent implements OnInit {
      * <br><br>
      * - Use `price.language` instead
      * - If `price.language` is not provided, it will use this prop instead.
+     *
+     * @deprecated Use `price.language` instead
      */
-    @Input() language: 'en' | 'fr' = 'en';
+    @Input() language: 'en' | 'fr';
 
     ngOnInit() {
         console.log('card', this);
