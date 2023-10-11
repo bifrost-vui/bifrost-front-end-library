@@ -17,35 +17,6 @@ export class CardComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * - This badge displays in the card header.
-     * - See Badge Component [API](/?path=/docs/components-badge--drupal).
-     */
-    @Input() badge: IBadge;
-    /**
-     * <span style="color: orange;">__Optional__</span>
-     * <br><br>
-     * - It will change the `background-color` of the badge.
-     * - If on __phone__ or __combo__ card type and `image.badgeIconName` has a value,
-         it will change the `background-color` of the `badge icon` in the lower right of the header.
-     * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
-     * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
-         To test this property, use a color name like `red`, `blue`, `yellow`, `black`, etc.
-     */
-    @Input() badgeCustomBgColor: string;
-    /**
-     * <span style="color: orange;">__Optional__</span>
-     * <br><br>
-     * - It will change the text `color` of the badge.
-     * - If on __phone__ or __combo__ card type and `image.badgeIconName` has a value,
-         it will change the `color` of the `badge icon` in the lower right of the header.
-     * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
-     * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
-         To test this property, use a color name like `red`, `blue`, `yellow`, `black`, etc.
-     */
-    @Input() badgeCustomFontColor: string;
-    /**
-     * <span style="color: orange;">__Optional__</span>
-     * <br><br>
      * - Array of button(s). See Button Component [API](/?path=/docs/components-button--drupal#component-api)
      * - Or, extends with a block: `{% block buttons %} ... {% endblock %}`.
      */
@@ -128,6 +99,35 @@ export class CardComponent implements OnInit {
          To test this property, use a color name like `red`, `blue`, `yellow`, `black`, etc.
      */
     @Input() headerCustomFontColor: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - This badge displays in the card header.
+     * - See Badge Component [API](/?path=/docs/components-badge--drupal).
+     */
+    @Input() headerPromoBadge: IBadge;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - It will change the `background-color` of the badge.
+     * - If on __phone__ or __combo__ card type and `image.badgeIconName` has a value,
+         it will change the `background-color` of the `badge icon` in the lower right of the header.
+     * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
+     * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
+         To test this property, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+     */
+    @Input() headerPromoBadgeCustomBgColor: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - It will change the text `color` of the badge.
+     * - If on __phone__ or __combo__ card type and `image.badgeIconName` has a value,
+         it will change the `color` of the `badge icon` in the lower right of the header.
+     * - The string needs to be a color name or an hexadecimal color code (ex.: #F6F6F6).
+     * - In Storybook, there is an issue with the `#` character, so it breaks the rendering of the component.
+         To test this property, use a color name like `red`, `blue`, `yellow`, `black`, etc.
+     */
+    @Input() headerPromoBadgeCustomFontColor: string;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>

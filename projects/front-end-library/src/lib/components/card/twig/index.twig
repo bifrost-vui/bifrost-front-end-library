@@ -2,9 +2,6 @@
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
 {# Boolean Variables #}
-{% set hasBadge = badge is defined and badge is not empty %}
-{% set hasBadgeCustomBgColor = badgeCustomBgColor is defined and badgeCustomBgColor is not empty %}
-{% set hasBadgeCustomFontColor = badgeCustomFontColor is defined and badgeCustomFontColor is not empty %}
 {% set hasButtons = buttons is defined and buttons is not empty %}
 {% set hasComboLabel = comboLabel is defined and comboLabel is not empty %}
 {% set hasContentBadges = contentBadges is defined and contentBadges is not empty %}
@@ -14,6 +11,9 @@
 {% set hasDetailsStorage = detailsStorage is defined and detailsStorage is not empty %}
 {% set hasHeaderCustomBgColor = headerCustomBgColor is defined and headerCustomBgColor is not empty %}
 {% set hasHeaderCustomFontColor = headerCustomFontColor is defined and headerCustomFontColor is not empty %}
+{% set hasHeaderPromoBadge = headerPromoBadge is defined and headerPromoBadge is not empty %}
+{% set hasHeaderPromoBadgeCustomBgColor = headerPromoBadgeCustomBgColor is defined and headerPromoBadgeCustomBgColor is not empty %}
+{% set hasHeaderPromoBadgeCustomFontColor = headerPromoBadgeCustomFontColor is defined and headerPromoBadgeCustomFontColor is not empty %}
 {% set hasIcon = iconName is defined and iconName is not empty %}
 {% set hasId = id is defined and id is not empty %}
 {% set hasImage = image.src is defined and image.src is not empty %}
@@ -78,8 +78,8 @@
 {# Arrays of Styles With Dynamic Elements #}
 {# TODO: Create a macro for a better custom style management #}
 {% set cardStyles = [
-  (hasBadgeCustomBgColor ? '--bf-card-badge-icon-bg-color: ' ~ badgeCustomBgColor ~ ';'),
-  (hasBadgeCustomFontColor ? '--bf-card-badge-icon-font-color: ' ~ badgeCustomFontColor ~ ';'),
+  (hasHeaderPromoBadgeCustomBgColor ? '--bf-card-badge-icon-bg-color: ' ~ headerPromoBadgeCustomBgColor ~ ';'),
+  (hasHeaderPromoBadgeCustomFontColor ? '--bf-card-badge-icon-font-color: ' ~ headerPromoBadgeCustomFontColor ~ ';'),
   (hasHeaderCustomBgColor ? '--bf-card-header-bg-color: ' ~ headerCustomBgColor ~ ';'),
   (hasHeaderCustomFontColor ? '--bf-card-header-font-color: ' ~ headerCustomFontColor ~ ';'),
 ] %}
@@ -202,35 +202,35 @@
       </a>
     {% endif %}
 
-    {% if hasBadge %}
-      {% if badge is not iterable %}
-        {% set badge = {
-          label: badge
+    {% if hasHeaderPromoBadge %}
+      {% if headerPromoBadge is not iterable %}
+        {% set headerPromoBadge = {
+          label: headerPromoBadge
         } %}
       {% endif %}
 
-      {% set badge = badge|merge({
-          angle: badge.angle|default("left"),
-          class: ["bf-card__badge", badge.class|default("")]|join(' ')|trim,
-          hierarchy: badge.hierarchy|default("primary"),
+      {% set headerPromoBadge = headerPromoBadge|merge({
+          angle: headerPromoBadge.angle|default("left"),
+          class: ["bf-card__badge", headerPromoBadge.class|default("")]|join(' ')|trim,
+          hierarchy: headerPromoBadge.hierarchy|default("primary"),
         })
       %}
 
-      {% if hasBadgeCustomBgColor %}
-        {% set badge = badge|merge({
-            customBgColor: badgeCustomBgColor
+      {% if hasHeaderPromoBadgeCustomBgColor %}
+        {% set headerPromoBadge = headerPromoBadge|merge({
+            customBgColor: headerPromoBadgeCustomBgColor
           })
         %}
       {% endif %}
 
-      {% if hasBadgeCustomFontColor %}
-        {% set badge = badge|merge({
-            customFontColor: badgeCustomFontColor
+      {% if hasHeaderPromoBadgeCustomFontColor %}
+        {% set headerPromoBadge = headerPromoBadge|merge({
+            customFontColor: headerPromoBadgeCustomFontColor
           })
         %}
       {% endif %}
 
-      {% include "@bf-components/badge/twig/index.twig" with badge only %}
+      {% include "@bf-components/badge/twig/index.twig" with headerPromoBadge only %}
     {% endif %}
   </header>
 
