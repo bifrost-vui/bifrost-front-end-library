@@ -10,6 +10,7 @@
   --bf-card-header-font-color: var(--bf-color-neutral-primary);
   --bf-card-header-bg-color: var(--bf-color-bg-underground);
 
+  container: card / inline-size;
   position: relative;
   width: 100%;
   max-width: 30rem;
@@ -125,6 +126,12 @@
       }
     }
     &--combo {
+      padding: 1rem;
+
+      @include media-breakpoint-up(sm) {
+        padding: 1.5rem;
+      }
+
       img {
         max-width: 8rem;
         max-height: 8rem;
@@ -133,6 +140,13 @@
         width: 8rem;
         height: 8rem;
         max-width: 8rem;
+      }
+
+      // Has also an image Badge Icon
+      @container card (max-width: 375px) {
+        &--plus-badge-icon {
+          padding-bottom: 4rem;
+        }
       }
     }
     &__label {
