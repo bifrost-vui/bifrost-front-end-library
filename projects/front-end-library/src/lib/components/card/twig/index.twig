@@ -18,6 +18,8 @@
 {% set hasId = id is defined and id is not empty %}
 {% set hasImage = image.src is defined and image.src is not empty %}
 {% set hasImageBadgeIcon = imageBadgeIcon.name is defined and imageBadgeIcon.name is not empty %}
+{% set hasImageBadgeIconCustomBgColor = imageBadgeIconCustomBgColor is defined and imageBadgeIconCustomBgColor is not empty %}
+{% set hasImageBadgeIconCustomFontColor = imageBadgeIconCustomFontColor is defined and imageBadgeIconCustomFontColor is not empty %}
 {% set hasInputIncrement = inputIncrement is defined and inputIncrement is not empty %}
 {% set hasLink = link.href is defined and link.href is not empty %}
 {% set hasMessage = message is defined and message is not empty %}
@@ -78,10 +80,10 @@
 {# Arrays of Styles With Dynamic Elements #}
 {# TODO: Create a macro for a better custom style management #}
 {% set cardStyles = [
-  (hasHeaderPromoBadgeCustomBgColor ? '--bf-card-badge-icon-bg-color: ' ~ headerPromoBadgeCustomBgColor ~ ';'),
-  (hasHeaderPromoBadgeCustomFontColor ? '--bf-card-badge-icon-font-color: ' ~ headerPromoBadgeCustomFontColor ~ ';'),
   (hasHeaderCustomBgColor ? '--bf-card-header-bg-color: ' ~ headerCustomBgColor ~ ';'),
   (hasHeaderCustomFontColor ? '--bf-card-header-font-color: ' ~ headerCustomFontColor ~ ';'),
+  (hasImageBadgeIconCustomBgColor ? '--bf-card-badge-icon-bg-color: ' ~ imageBadgeIconCustomBgColor ~ ';'),
+  (hasImageBadgeIconCustomFontColor ? '--bf-card-badge-icon-font-color: ' ~ imageBadgeIconCustomFontColor ~ ';'),
 ] %}
 {% set cardVisualStyles = [
   (hasVisualBackgroundColor ? "background-color: " ~ visualBackgroundColor ~ ";"),
