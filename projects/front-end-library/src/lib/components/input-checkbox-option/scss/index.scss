@@ -57,7 +57,12 @@
     }
   }
   &:disabled {
-    + .bf-checkbox__control {
+    + label {
+      color: var(--bf-color-neutral-tertiary);
+      pointer-events: none;
+    }
+
+    + label .bf-checkbox__control {
       border: 1px solid var(--bf-color-stroke-secondary);
       color: var(--bf-color-bg-action-disabled);
       background-color: var(--bf-color-bg-action-disabled);
@@ -66,11 +71,6 @@
       &::before {
         filter: opacity(0.3);
       }
-    }
-
-    + label {
-      color: var(--bf-color-neutral-tertiary);
-      pointer-events: none;
     }
   }
 
