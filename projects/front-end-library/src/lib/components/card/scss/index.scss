@@ -61,14 +61,24 @@
     cursor: default;
     color: var(--bf-color-neutral-tertiary);
     border-color: var(--bf-color-stroke-secondary);
-    .bf-card__visual img {
-      opacity: 0.4;
+    .bf-card__visual {
+      img {
+        opacity: 0.4;
+      }
+      .bf-badge-icon .bf-icon {
+        svg {
+          --bf-icon-default-color: var(--bf-color-neutral-secondary);
+          --bf-icon-default-bg: var(--bf-color-neutral-tertiary);
+        }
+        svg:not(.fill-highlight) {
+          --bf-icon-default-color: var(--bf-color-neutral-tertiary);
+        }
+      }
     }
     .bf-card__details-colors {
       opacity: 0.4;
     }
-    .bf-color-neutral-secondary,
-    .bf-icon {
+    .bf-color-neutral-secondary {
       color: var(--bf-color-neutral-tertiary);
     }
     .bf-card__controls {
