@@ -131,7 +131,7 @@ export class CardComponent implements OnInit {
      * - It displays an icon in the image area.
      * - See [Icons - Illustration List](/?path=/story/components-icon--drupal-illustration) for icon names.
      */
-    @Input() iconName: string;
+    @Input() headerMainIconName: string;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>

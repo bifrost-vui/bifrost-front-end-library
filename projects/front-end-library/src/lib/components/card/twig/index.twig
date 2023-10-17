@@ -11,10 +11,10 @@
 {% set hasDetailsStorage = detailsStorage is defined and detailsStorage is not empty %}
 {% set hasHeaderCustomBgColor = headerCustomBgColor is defined and headerCustomBgColor is not empty %}
 {% set hasHeaderCustomFontColor = headerCustomFontColor is defined and headerCustomFontColor is not empty %}
+{% set hasHeaderMainIconName = headerMainIconName is defined and headerMainIconName is not empty %}
 {% set hasHeaderPromoBadge = headerPromoBadge is defined and headerPromoBadge is not empty %}
 {% set hasHeaderPromoBadgeCustomBgColor = headerPromoBadgeCustomBgColor is defined and headerPromoBadgeCustomBgColor is not empty %}
 {% set hasHeaderPromoBadgeCustomFontColor = headerPromoBadgeCustomFontColor is defined and headerPromoBadgeCustomFontColor is not empty %}
-{% set hasIcon = iconName is defined and iconName is not empty %}
 {% set hasId = id is defined and id is not empty %}
 {% set hasImage = image.src is defined and image.src is not empty %}
 {% set hasImageBadgeIcon = imageBadgeIcon.name is defined and imageBadgeIcon.name is not empty %}
@@ -45,7 +45,7 @@
 {% endif %}
 
 {# Boolean Variables - ORDER IS IMPORTANT #}
-{% set hasVisual = hasImage or hasIcon %}
+{% set hasVisual = hasImage or hasHeaderMainIconName %}
 {% set hasVisualCombo = hasVisual and hasComboLabel %}
 
 {# Default Variables #}
@@ -127,9 +127,9 @@
             {% include "@bf-components/icon/twig/index.twig" with imageBadgeIcon only %}
           </div>
         {% endif %}
-      {% elseif hasIcon %}
+      {% elseif hasHeaderMainIconName %}
         {% include "@bf-components/icon/twig/index.twig" with {
-          name: iconName,
+          name: headerMainIconName,
           size: "large",
           class: (hasVisualCombo ? "combo")
         } only %}
