@@ -19,6 +19,95 @@ see [github-release](#)
 <br />
 -->
 
+## [v1.15.2](https://bifrost-front-end-library-git-v1-15-2-bifrost-vui.vercel.app/) - _2023-10-18_
+
+see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.15.2)
+
+### Breaking Changes
+
+#### Card
+
+-   Some properties have been renamed, so it must be updated in Drupal templates that include this component.
+    -   `iconName` ----> `headerMainIconName`
+    -   `badge` ----> `headerPromoBadge`
+    -   `badgeCustomBgColor` ----> `headerPromoBadgeCustomBgColor`
+    -   `badgeCustomFontColor` ----> `headerPromoBadgeCustomFontColor`
+
+### Bugs fixes
+
+#### Badge
+
+-   Fix icon custom color only on `svg:not(.fill-highlight)`
+
+#### Basic Content
+
+-   Fix icon color on dark image
+
+#### Button
+
+-   Fix default & disabled icon color
+
+#### Button Icon
+
+-   Fix disabled icon color
+
+#### Card
+
+-   Fix disabled `imageBadgeIcon`
+-   Fix `headerMainIconName` custom color in `protection` & `increment` types
+-   Fix disabled icon color in `protection` & `increment` types
+
+#### Good to know
+
+-   Fix icon color when it is displayed on dark background
+-   Fix breakpoint in stylesheet
+
+#### Link
+
+-   Fix disabled icon color
+
+#### Input Checkbox
+
+-   Fix disabled checkbox color
+
+#### Selection Tile
+
+-   Fix disabled icon color
+
+#### Tile Key
+
+-   Fix icon color
+-   Fix link's hover & focus background-color
+
+### Components
+
+#### Card
+
+-   Add new properties
+    -   `imageBadgeIcon`
+    -   `imageBadgeIconCustomBgColor`
+    -   `imageBadgeIconCustomFontColor`
+    -   `imageBadgeIconFullSize`
+-   Rename properties
+    -   `iconName` ----> `headerMainIconName`
+    -   `badge` ----> `headerPromoBadge`
+    -   `badgeCustomBgColor` ----> `headerPromoBadgeCustomBgColor`
+    -   `badgeCustomFontColor` ----> `headerPromoBadgeCustomFontColor`
+-   Deprecate `image.badgeIconName` in favor of `imageBadgeIcon`
+    -   Adjust `index.twig` to support this deprecation
+-   Documentation
+    -   Remove `Combo` card type from `headerMainIconName`
+    -   Adjust internal API to fix conflicts with other identical class name
+-   Adjust and set `language` default value in Twig file to `en`
+-   Add an option to display `imageBadgeIcon` at "full size"
+    -   Add a class when `imageBadgeIconFullSize` value is `true`
+    -   Adjust CSS to render full size badge icon when prop is set to `true`
+-   Adjust `imageBadgeIcon` styles to enable `imageBadgeIconCustomBgColor` and `imageBadgeIconCustomFontColor`
+-   Adjust styles when `combo` card type contains an `imageBadgeIcon`
+-   Add an icon in `headerPromoBadge` to be able to validate icon styles
+
+<br />
+
 ## [v1.15.1](https://bifrost-front-end-library-git-v1-15-1-bifrost-vui.vercel.app/) - _2023-10-05_
 
 see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.15.1)
