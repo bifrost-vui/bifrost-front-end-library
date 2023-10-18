@@ -1,14 +1,14 @@
 import { Component, Input } from '@angular/core';
 import {
-    IChannels,
-    IChannelsFull,
-    IChannelsFullTabContent,
-    IContent,
-    IContentListsCard,
-    IDetailsColors,
-    IImage,
-    ILink,
-    ITitle,
+    ICardChannels,
+    ICardChannelsFull,
+    ICardChannelsFullTabContent,
+    ICardContent,
+    ICardContentLists,
+    ICardDetailsColors,
+    ICardImage,
+    ICardLink,
+    ICardTitle,
 } from './api.model';
 import { IChannelsData } from '../../channels/angular/api.model';
 import { INavItems } from '../../tab/angular/api.model';
@@ -16,7 +16,7 @@ import { INavItems } from '../../tab/angular/api.model';
 @Component({
     selector: '',
 })
-export class ChannelsAPI implements IChannels {
+export class CardChannelsAPI implements ICardChannels {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
@@ -26,7 +26,7 @@ export class ChannelsAPI implements IChannels {
      *    <a href="#ichannelsfull-api" target="_self">API</a>
      *    and <a href="#ichannelsfull-format" target="_self">expected format</a>.
      */
-    @Input() full: IChannelsFull[];
+    @Input() full: ICardChannelsFull[];
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
@@ -45,7 +45,7 @@ export class ChannelsAPI implements IChannels {
 @Component({
     selector: '',
 })
-export class ChannelsFullAPI implements IChannelsFull {
+export class CardChannelsFullAPI implements ICardChannelsFull {
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
@@ -56,7 +56,7 @@ export class ChannelsFullAPI implements IChannelsFull {
      *
      * @required
      */
-    @Input() tabContent: IChannelsFullTabContent;
+    @Input() tabContent: ICardChannelsFullTabContent;
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
@@ -73,7 +73,7 @@ export class ChannelsFullAPI implements IChannelsFull {
 @Component({
     selector: '',
 })
-export class ChannelsFullTabContentAPI implements IChannelsFullTabContent {
+export class CardChannelsFullTabContentAPI implements ICardChannelsFullTabContent {
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
@@ -124,7 +124,7 @@ export class ChannelsFullTabContentAPI implements IChannelsFullTabContent {
 @Component({
     selector: '',
 })
-export class ContentAPI implements IContent {
+export class CardContentAPI implements ICardContent {
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
@@ -144,7 +144,7 @@ export class ContentAPI implements IContent {
 @Component({
     selector: '',
 })
-export class ContentListsCardAPI implements IContentListsCard {
+export class CardContentListsAPI implements ICardContentLists {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
@@ -153,7 +153,7 @@ export class ContentListsCardAPI implements IContentListsCard {
      *    <a href="#ichannels-api" target="_self">API</a>
      *    and <a href="#ichannels-format" target="_self">expected format</a>.
      */
-    @Input() channels: IChannels;
+    @Input() channels: ICardChannels;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
@@ -161,7 +161,7 @@ export class ContentListsCardAPI implements IContentListsCard {
      *  <a href="#icontent-api" target="_self">API</a>
      *  and <a href="#icontent-format" target="_self">expected format</a>.
      */
-    @Input() content: IContent[];
+    @Input() content: ICardContent[];
     /**
      * <span style="color: red;">__Required__</span>
      *
@@ -179,7 +179,7 @@ export class ContentListsCardAPI implements IContentListsCard {
 @Component({
     selector: '',
 })
-export class DetailsColorsAPI implements IDetailsColors {
+export class CardDetailsColorsAPI implements ICardDetailsColors {
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
@@ -201,7 +201,7 @@ export class DetailsColorsAPI implements IDetailsColors {
 @Component({
     selector: '',
 })
-export class ImageAPI implements IImage {
+export class CardImageAPI implements ICardImage {
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
@@ -211,6 +211,8 @@ export class ImageAPI implements IImage {
      */
     @Input() alt: string;
     /**
+     * <span style="color: red;"><strong>DEPRECATED, but still supported</strong></span>
+     * <br><br>
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
      * See [Icons - Illustration List](/?path=/story/components-icon--drupal-illustration) for icon names.
@@ -229,7 +231,7 @@ export class ImageAPI implements IImage {
 @Component({
     selector: '',
 })
-export class LinkAPI implements ILink {
+export class CardLinkAPI implements ICardLink {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
@@ -257,7 +259,7 @@ export class LinkAPI implements ILink {
 @Component({
     selector: '',
 })
-export class TitleAPI implements ITitle {
+export class CardTitleAPI implements ICardTitle {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>

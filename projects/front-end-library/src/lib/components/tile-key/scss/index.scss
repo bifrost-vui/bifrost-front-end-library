@@ -5,12 +5,29 @@
 * ***************************************************************************** */
 
 .bf-tile-key {
+  --bf-tile-key-text-color: var(--bf-color-neutral-primary);
+  --bf-tile-key-text-color-rgb: var(--bf-color-neutral-primary-rgb);
+  --bf-link-hover-bg-opacity: 0.35;
   position: relative;
   display: block;
   transition: background-color 0.25s;
+  color: var(--bf-tile-key-text-color);
+
+  .bf-icon svg:not(.fill-highlight) {
+    --bf-icon-default-color: var(--bf-tile-key-text-color);
+  }
+
+  .bf-link {
+    color: var(--bf-tile-key-text-color);
+
+    &:hover,
+    &:focus {
+      background-color: rgba(var(--bf-tile-key-text-color-rgb), var(--bf-link-hover-bg-opacity));
+    }
+  }
 
   &--is-link:hover {
-    color: var(--bf-color-neutral-primary);
+    color: var(--bf-tile-key-text-color);
     text-decoration: none;
     background-color: var(--bf-color-bg-action-no-bg-hover);
 
@@ -24,11 +41,9 @@
   }
 
   &--text-color-dark {
-    color: var(--bf-color-primary-irreversible);
-
-    &.bf-tile-key--is-link:hover {
-      color: var(--bf-color-primary-irreversible);
-    }
+    --bf-tile-key-text-color: var(--bf-color-primary-irreversible);
+    --bf-tile-key-text-color-rgb: var(--bf-color-primary-irreversible-rgb);
+    --bf-link-hover-bg-opacity: 0.25;
   }
 
   &__visual {

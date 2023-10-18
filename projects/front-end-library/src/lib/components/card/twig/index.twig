@@ -2,9 +2,6 @@
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
 {# Boolean Variables #}
-{% set hasBadge = badge is defined and badge is not empty %}
-{% set hasBadgeCustomBgColor = badgeCustomBgColor is defined and badgeCustomBgColor is not empty %}
-{% set hasBadgeCustomFontColor = badgeCustomFontColor is defined and badgeCustomFontColor is not empty %}
 {% set hasButtons = buttons is defined and buttons is not empty %}
 {% set hasComboLabel = comboLabel is defined and comboLabel is not empty %}
 {% set hasContentBadges = contentBadges is defined and contentBadges is not empty %}
@@ -14,11 +11,16 @@
 {% set hasDetailsStorage = detailsStorage is defined and detailsStorage is not empty %}
 {% set hasHeaderCustomBgColor = headerCustomBgColor is defined and headerCustomBgColor is not empty %}
 {% set hasHeaderCustomFontColor = headerCustomFontColor is defined and headerCustomFontColor is not empty %}
-{% set hasIcon = iconName is defined and iconName is not empty %}
+{% set hasHeaderMainIconName = headerMainIconName is defined and headerMainIconName is not empty %}
+{% set hasHeaderPromoBadge = headerPromoBadge is defined and headerPromoBadge is not empty %}
+{% set hasHeaderPromoBadgeCustomBgColor = headerPromoBadgeCustomBgColor is defined and headerPromoBadgeCustomBgColor is not empty %}
+{% set hasHeaderPromoBadgeCustomFontColor = headerPromoBadgeCustomFontColor is defined and headerPromoBadgeCustomFontColor is not empty %}
 {% set hasId = id is defined and id is not empty %}
 {% set hasImage = image.src is defined and image.src is not empty %}
+{% set hasImageBadgeIcon = imageBadgeIcon.name is defined and imageBadgeIcon.name is not empty %}
+{% set hasImageBadgeIconCustomBgColor = imageBadgeIconCustomBgColor is defined and imageBadgeIconCustomBgColor is not empty %}
+{% set hasImageBadgeIconCustomFontColor = imageBadgeIconCustomFontColor is defined and imageBadgeIconCustomFontColor is not empty %}
 {% set hasInputIncrement = inputIncrement is defined and inputIncrement is not empty %}
-{% set hasImageBadgeIconName = image.badgeIconName is defined and image.badgeIconName is not empty %}
 {% set hasLink = link.href is defined and link.href is not empty %}
 {% set hasMessage = message is defined and message is not empty %}
 {% set hasMessageLink = messageLink is defined and messageLink is not empty %}
@@ -33,14 +35,22 @@
 {% set hasVisualBackgroundColor = visualBackgroundColor is defined and visualBackgroundColor is not empty %}
 {% set isBlockButtonsDefined = block("buttons") is defined %}
 {% set isDisabled = (isDisabled ?? false) is same as(true) %}
+{% set isImageBadgeIconFullSize = (imageBadgeIconFullSize ?? false) is same as(true) %}
+
+{# Boolean Variables - Deprecation support #}
+{% set hasImageBadgeIconDeprecationSupport = image.badgeIconName is defined and image.badgeIconName is not empty %}
+{% if hasImageBadgeIcon is same as(false) and hasImageBadgeIconDeprecationSupport is same as(true) %}
+  {% set hasImageBadgeIcon = true %}
+  {% set imageBadgeIcon = image.badgeIconName %}
+{% endif %}
 
 {# Boolean Variables - ORDER IS IMPORTANT #}
-{% set hasVisual = hasImage or hasIcon %}
+{% set hasVisual = hasImage or hasHeaderMainIconName %}
 {% set hasVisualCombo = hasVisual and hasComboLabel %}
 
 {# Default Variables #}
 {% set class = class|default("") %}
-{% set language = language|default("en") %}
+{% set language = language|default("en") %} {# DEPRECATED, but still supported #}
 {% set titleTag = titleTag|default("h1") %}
 
 {# Local variables #}
@@ -56,7 +66,12 @@
 {% set cardVisualClasses = [
   "bf-card__visual",
   (hasVisualCombo ? "bf-card__visual--combo"),
-  "d-flex justify-content-center align-items-center p-3 p-sm-4",
+  (hasVisualCombo and hasImageBadgeIcon ? "bf-card__visual--combo--plus-badge-icon"),
+  "d-flex justify-content-center align-items-center",
+] %}
+{% set cardImageBadgeIconClasses = [
+  "bf-badge-icon z-index-1",
+  (isImageBadgeIconFullSize ? "bf-badge-icon--full-size"),
 ] %}
 {% set messageLinkClasses = [
   "bf-link",
@@ -66,10 +81,10 @@
 {# Arrays of Styles With Dynamic Elements #}
 {# TODO: Create a macro for a better custom style management #}
 {% set cardStyles = [
-  (hasBadgeCustomBgColor ? '--bf-card-badge-icon-bg-color: ' ~ badgeCustomBgColor ~ ';'),
-  (hasBadgeCustomFontColor ? '--bf-card-badge-icon-font-color: ' ~ badgeCustomFontColor ~ ';'),
   (hasHeaderCustomBgColor ? '--bf-card-header-bg-color: ' ~ headerCustomBgColor ~ ';'),
   (hasHeaderCustomFontColor ? '--bf-card-header-font-color: ' ~ headerCustomFontColor ~ ';'),
+  (hasImageBadgeIconCustomBgColor ? '--bf-card-badge-icon-bg-color: ' ~ imageBadgeIconCustomBgColor ~ ';'),
+  (hasImageBadgeIconCustomFontColor ? '--bf-card-badge-icon-font-color: ' ~ imageBadgeIconCustomFontColor ~ ';'),
 ] %}
 {% set cardVisualStyles = [
   (hasVisualBackgroundColor ? "background-color: " ~ visualBackgroundColor ~ ";"),
@@ -96,17 +111,25 @@
           "class": (hasVisualCombo is same as(false) ? "mw-100"),
           "loading": "lazy",
         }) }}/>
-        {% if hasImageBadgeIconName %}
-          <div class="bf-badge-icon z-index-1">
-            {% include "@bf-components/icon/twig/index.twig" with {
-              name: image.badgeIconName,
+        {% if hasImageBadgeIcon %}
+          {% if imageBadgeIcon is not iterable %}
+            {% set imageBadgeIcon = {
+              name: imageBadgeIcon
+            } %}
+          {% endif %}
+
+          {% set imageBadgeIcon = imageBadgeIcon|merge({
               size: "medium"
-            } only %}
+            })
+          %}
+
+          <div class="{{ cardImageBadgeIconClasses|join(' ')|trim }}">
+            {% include "@bf-components/icon/twig/index.twig" with imageBadgeIcon only %}
           </div>
         {% endif %}
-      {% elseif hasIcon %}
+      {% elseif hasHeaderMainIconName %}
         {% include "@bf-components/icon/twig/index.twig" with {
-          name: iconName,
+          name: headerMainIconName,
           size: "large",
           class: (hasVisualCombo ? "combo")
         } only %}
@@ -182,35 +205,35 @@
       </a>
     {% endif %}
 
-    {% if hasBadge %}
-      {% if badge is not iterable %}
-        {% set badge = {
-          label: badge
+    {% if hasHeaderPromoBadge %}
+      {% if headerPromoBadge is not iterable %}
+        {% set headerPromoBadge = {
+          label: headerPromoBadge
         } %}
       {% endif %}
 
-      {% set badge = badge|merge({
-          angle: badge.angle|default("left"),
-          class: ["bf-card__badge", badge.class|default("")]|join(' ')|trim,
-          hierarchy: badge.hierarchy|default("primary"),
+      {% set headerPromoBadge = headerPromoBadge|merge({
+          angle: headerPromoBadge.angle|default("left"),
+          class: ["bf-card__badge", headerPromoBadge.class|default("")]|join(' ')|trim,
+          hierarchy: headerPromoBadge.hierarchy|default("primary"),
         })
       %}
 
-      {% if hasBadgeCustomBgColor %}
-        {% set badge = badge|merge({
-            customBgColor: badgeCustomBgColor
+      {% if hasHeaderPromoBadgeCustomBgColor %}
+        {% set headerPromoBadge = headerPromoBadge|merge({
+            customBgColor: headerPromoBadgeCustomBgColor
           })
         %}
       {% endif %}
 
-      {% if hasBadgeCustomFontColor %}
-        {% set badge = badge|merge({
-            customFontColor: badgeCustomFontColor
+      {% if hasHeaderPromoBadgeCustomFontColor %}
+        {% set headerPromoBadge = headerPromoBadge|merge({
+            customFontColor: headerPromoBadgeCustomFontColor
           })
         %}
       {% endif %}
 
-      {% include "@bf-components/badge/twig/index.twig" with badge only %}
+      {% include "@bf-components/badge/twig/index.twig" with headerPromoBadge only %}
     {% endif %}
   </header>
 

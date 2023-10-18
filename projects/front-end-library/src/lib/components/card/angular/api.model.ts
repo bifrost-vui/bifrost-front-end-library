@@ -1,17 +1,17 @@
 import { IChannelsData } from '../../channels/angular/api.model';
 import { INavItems } from '../../tab/angular/api.model';
 
-export interface IChannels {
-    full?: IChannelsFull[];
+export interface ICardChannels {
+    full?: ICardChannelsFull[];
     limited: IChannelsData[];
 }
 
-export interface IChannelsFull {
-    tabContent: IChannelsFullTabContent;
+export interface ICardChannelsFull {
+    tabContent: ICardChannelsFullTabContent;
     tabData: INavItems;
 }
 
-export interface IChannelsFullTabContent {
+export interface ICardChannelsFullTabContent {
     ariaLabelledby: string;
     channelsList: IChannelsData[];
     class?: string;
@@ -19,30 +19,30 @@ export interface IChannelsFullTabContent {
     id: string;
 }
 
-export interface IContent {
+export interface ICardContent {
     icon: string;
     label: string;
 }
 
-export interface IContentListsCard {
-    channels: IChannels;
-    content: IContent[];
+export interface ICardContentLists {
+    channels: ICardChannels;
+    content: ICardContent[];
     description: string;
     title: string;
 }
 
-export interface IDetailsColors {
+export interface ICardDetailsColors {
     name: string;
     value: string;
 }
 
-export interface IImage {
+export interface ICardImage {
     alt: string;
-    badgeIconName?: string;
+    badgeIconName?: string; // DEPRECATED
     src: string;
 }
 
-export interface IInputIncrement {
+export interface ICardInputIncrement {
     ariaLabel: string;
     class: string;
     errorMessage: string;
@@ -54,13 +54,13 @@ export interface IInputIncrement {
     value: number;
 }
 
-export interface ILink {
+export interface ICardLink {
     class?: string;
     href: string;
     label: string;
 }
 
-export interface ITitle {
+export interface ICardTitle {
     category?: string;
     detail: string;
 }

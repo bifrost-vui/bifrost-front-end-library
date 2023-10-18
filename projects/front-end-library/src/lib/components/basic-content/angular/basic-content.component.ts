@@ -6,6 +6,7 @@ import { IRowButton } from '../../row-button/angular/api.model';
 interface IImage {
     src: string;
     icon: object | string;
+    isDark: boolean;
     isFill: boolean;
 }
 
