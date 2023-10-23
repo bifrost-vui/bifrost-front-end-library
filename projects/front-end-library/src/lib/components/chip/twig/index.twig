@@ -1,0 +1,31 @@
+{#
+    Edit this component and don't forget to delete this comment.
+
+    In your component, the file /common/style.scss is aimed to share styles across Twig and Angular.
+    Try to use it as much as possible, in order to avoid styles for specific framework.
+
+    Enjoy :)
+#}
+
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasId = id is defined and id is not empty %}
+
+{# Default Variables #}
+{% set class = class|default("") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set chipClasses = [
+  "bf-chip",
+  (class),
+] %}
+
+{# Template #}
+<div {{ macros.addAttributes({
+  "class": chipClasses|join(' ')|trim,
+  "id": (hasId ? id),
+}) }}>
+    {{ label|default("Label") }}
+</div>
