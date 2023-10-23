@@ -1,9 +1,22 @@
-{% set reversed = reversed|json_parse %}
+{# Default Variables (Props, Controls) #}
+{% set _reversed = _reversed|json_parse %}
+{% set class = class|json_parse %}
+{% set id = id|json_parse %}
+{% set label = label|json_parse %}
 
-<div class="pt-4 {% if reversed %}reversed bf-color-bg-ground{% endif %}">
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "pt-4",
+  (_reversed ? "reversed bf-color-bg-ground"),
+] %}
+
+{# Template #}
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
 
     {% include "@bf-components/%component-name%/twig/index.twig" with {
-        label   : label|default(""),
+        class: class|default(""),
+        id: id|default(""),
+        label: label|default(""),
     } only %}
 
 </div>
