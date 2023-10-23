@@ -1,8 +1,12 @@
 {# Default Variables (Props, Controls) #}
 {% set _reversed = _reversed|json_parse %}
+{% set background = background|json_parse %}
 {% set class = class|json_parse %}
+{% set deleteButton = deleteButton|json_parse %}
 {% set id = id|json_parse %}
+{% set isDisabled = isDisabled|json_parse %}
 {% set label = label|json_parse %}
+{% set size = size|json_parse %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set mainContainerClasses = [
@@ -14,9 +18,13 @@
 <div class="{{ mainContainerClasses|join(' ')|trim }}">
 
     {% include "@bf-components/chip/twig/index.twig" with {
-        class: class|default(""),
-        id: id|default(""),
-        label: label|default(""),
+        background: background,
+        class: class,
+        deleteButton: deleteButton,
+        id: id,
+        isDisabled: isDisabled,
+        label: label,
+        size: size,
     } only %}
 
 </div>
