@@ -1,25 +1,38 @@
-{#
-    Edit this component and don't forget to delete this comment.
-
-    In your component, the file /common/style.scss is aimed to share styles across Twig and Angular.
-    Try to use it as much as possible, in order to avoid styles for specific framework.
-
-    Enjoy :)
-#}
-
 {# Import macros #}
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set background = background|default("underground") %}
+{% set size = size|default("medium") %}
+
 {# Boolean Variables #}
 {% set hasId = id is defined and id is not empty %}
+{% set isBackgroundGround = background is same as("ground") %}
+{% set isBackgroundUnderground = background is same as("underground") %}
+{% set isSizeLarge = size is same as("large") %}
+{% set isSizeMedium = size is same as("medium") %}
+{% set isSizeSmall = size is same as("small") %}
+{% set isUppercase = (isUppercase ?? true) is same as(true) %}
 
-{# Default Variables #}
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set class = class|default("") %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set chipClasses = [
   "bf-chip",
+  (isBackgroundGround ? "bf-chip--bg-ground"),
+  (isBackgroundUnderground ? "bf-chip--bg-underground"),
+  (isSizeLarge ? "bf-chip--large"),
+  (isSizeMedium ? "bf-chip--medium"),
+  (isSizeSmall ? "bf-chip--small"),
   (class),
+] %}
+{% set chipLabelClasses = [
+  "bf-chip__label",
+  (isSizeLarge ? "bf-text-interface-medium"),
+  (isSizeMedium ? "bf-text-interface-small"),
+  (isSizeSmall ? "bf-text-interface-small"),
+  (isUppercase ? "bf-chip__label--uppercase"),
 ] %}
 
 {# Template #}
@@ -27,5 +40,9 @@
   "class": chipClasses|join(' ')|trim,
   "id": (hasId ? id),
 }) }}>
-    {{ label|default("Label") }}
+    <span {{ macros.addAttributes({
+      "class": chipLabelClasses|join(' ')|trim,
+    }) }}>
+      {{ label }}
+    </span>
 </div>

@@ -10,14 +10,26 @@
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set mainContainerClasses = [
-  "pt-4",
+  "d-flex flex-column flex-sm-row justify-content-center minh-100",
   (_reversed ? "reversed bf-color-bg-ground"),
 ] %}
 
 {# Template #}
 <div class="{{ mainContainerClasses|join(' ')|trim }}">
 
-    {% include "@bf-components/chip/twig/index.twig" with {
+  {% for index in [1, 2] %}
+
+    {# In Loop : Boolean Variables #}
+    {% set isReversed = index == 2 and _reversed is not defined %}
+
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set innerContainerClasses = [
+      "flex-grow-1 d-flex flex-column align-items-center justify-content-center minh-100 py-4",
+      (isReversed ? "reversed bf-color-bg-ground"),
+    ] %}
+
+    <div class="{{ innerContainerClasses|join(' ')|trim }}">
+      {% include "@bf-components/chip/twig/index.twig" with {
         background: background,
         class: class,
         deleteButton: deleteButton,
@@ -25,6 +37,8 @@
         isDisabled: isDisabled,
         label: label,
         size: size,
-    } only %}
+      } only %}
+    </div>
+  {% endfor %}
 
 </div>

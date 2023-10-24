@@ -33,15 +33,21 @@ export class ChipComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * Chip main element's `id` attribute.
+     * Chip item's main element's `id` attribute.
      */
     @Input() id: string;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * Is the Chip element disabled?
+     * Is the Chip item disabled?
      */
-    @Input() isDisabled: boolean;
+    @Input() isDisabled: boolean = false;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Is the Chip item text all uppercase?
+     */
+    @Input() isUppercase: boolean = true;
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
@@ -55,7 +61,7 @@ export class ChipComponent implements OnInit {
      * <br><br>
      * Chip size.
      */
-    @Input() size: 'small' | 'medium' | 'large' = 'large';
+    @Input() size: 'small' | 'medium' | 'large' = 'medium';
 
     ngOnInit() {
         console.log('Chip', this);
