@@ -7,8 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class AccordionComponent implements OnInit {
     constructor() {}
 
-    /* In alphabetical order (remove this comment) */
-
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
@@ -16,18 +14,44 @@ export class AccordionComponent implements OnInit {
      */
     @Input() class: string;
     /**
+     * <span style="color: red;">__Required__</span>
+     * <br><br>
+     * - It is the content of the accordion.
+     * - This content is below the header zone of the accordion.
+     * - It is hidden or visible depending on the `collapse/extend` state.
+     *
+     * @required
+     */
+    @Input() content: HTMLElement | 'TwigBlock';
+    /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * - Emphasis content on the right of `title`.
+     * - Text or component used as emphasis to the accordion item.
+     * - It is displayed on the right of `title`.
      * - It can be a rich text string (HTMLElement) or a Twig Block.
      */
     @Input() emphasis: HTMLElement | 'TwigBlock';
     /**
-     * <span style="color: orange;">__Optional__</span>
+     * <span style="color: red;">__Required__</span>
      * <br><br>
-     * Accordion main element's `id` attribute.
+     * - Accordion main element's `id` attribute.
+     * - Needed to differentiate with other accordion items.
+     *
+     * @required
      */
     @Input() id: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Is the Accordion item disabled?
+     */
+    @Input() isDisabled: boolean = false;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Is the Accordion opened by default?
+     */
+    @Input() isOpenedByDefault: boolean = false;
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>

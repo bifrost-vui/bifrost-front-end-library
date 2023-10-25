@@ -3,11 +3,14 @@
 
 {# Boolean Variables #}
 {% set hasEmphasis = emphasis is defined and emphasis is not empty %}
-{% set hasId = id is defined and id is not empty %}
 {% set isBlockEmphasisDefined = block("emphasis") is defined %}
 
 {# Default Variables #}
 {% set class = class|default("") %}
+
+{# Component Variables #}
+{% set id = "bfAcccordion_" ~ id %}
+{% set idContent = id ~ "_content" %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set accordionClasses = [
@@ -18,9 +21,17 @@
 {# Template #}
 <div {{ macros.addAttributes({
   "class": accordionClasses|join(' ')|trim,
-  "id": (hasId ? id),
+  "id": id,
 }) }}>
-    <button class="bf-accordion__header">
+    <button {{ macros.addAttributes({
+      "type": "button",
+      "class": "bf-accordion__header",
+      "aria-label": "Expand Content"|t,
+      "data-toggle": "collapse",
+      "data-target": "#" ~ idContent,
+      "aria-controls": idContent,
+      "aria-expanded": "false",
+    }) }}>
       <span class="bf-accordion__header__title">
         {{ title }}
       </span>
@@ -29,10 +40,17 @@
         {{ block("emphasis") }}
       {% elseif hasEmphasis %}
         {{ emphasis|raw }}
-      {% else %}
-        {% block emphasis %}
-
-        {% endblock %}
       {% endif %}
     </button>
+
+    <div {{ macros.addAttributes({
+      "class": "collapse bf-accordion__content",
+      "id": idContent,
+    }) }}>
+      {% if isBlockContentDefined %}
+        {{ block("content") }}
+      {% else %}
+        {{ content }}
+      {% endif %}
+    </div>
 </div>

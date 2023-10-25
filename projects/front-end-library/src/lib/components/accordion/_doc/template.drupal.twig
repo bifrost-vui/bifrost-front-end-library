@@ -1,8 +1,11 @@
 {# Default Variables (Props, Controls) #}
 {% set _reversed = _reversed|json_parse %}
 {% set class = class|json_parse %}
+{% set content = content|json_parse %}
 {% set emphasis = emphasis|json_parse %}
 {% set id = id|json_parse %}
+{% set isDisabled = isDisabled|json_parse %}
+{% set isOpenedByDefault = isOpenedByDefault|json_parse %}
 {% set title = title|json_parse %}
 
 {# Arrays of Classes With Dynamic Elements #}
@@ -16,8 +19,11 @@
 
     {% embed "@bf-components/accordion/twig/index.twig" with {
         class: class,
+        content: content,
         emphasis: emphasis,
         id: id,
+        isDisabled: isDisabled,
+        isOpenedByDefault: isOpenedByDefault,
         title: title,
     } only %}
 
