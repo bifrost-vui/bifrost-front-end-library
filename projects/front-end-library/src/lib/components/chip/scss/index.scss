@@ -7,9 +7,10 @@
 .bf-chip {
   --bf-chip-bg-color: var(--bf-color-bg-underground);
   --bf-chip-border-color: var(--bf-color-stroke-secondary);
-  --bf-chip-padding: 0.125rem 0.375rem;
 
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   gap: 0.25rem;
   padding: var(--bf-chip-padding);
   color: var(--bf-color-neutral-secondary);
@@ -24,21 +25,19 @@
 
   /* Sizes */
   &--small {
-    --bf-chip-padding: 0 0.25rem;
+    --bf-chip-padding: 0.125rem 0.375rem;
   }
-  &--large {
+  &--medium {
     --bf-chip-padding: 0.5rem 0.625rem;
   }
 
   /* With delete button */
   &--with-button {
-    --bf-chip-padding: 0.125rem 0.125rem 0.125rem 0.375rem;
-
     /* Sizes */
     &.bf-chip--small {
-      --bf-chip-padding: 0 0.25rem;
+      --bf-chip-padding: 0.125rem 0.125rem 0.125rem 0.375rem;
     }
-    &.bf-chip--large {
+    &.bf-chip--medium {
       --bf-chip-padding: 0.5rem 0.375rem 0.5rem 0.625rem;
     }
   }
@@ -48,10 +47,38 @@
     // To remove the letter-spacing on the last letter of .bf-text-interface-small and .bf-text-interface-small
     // from /projects/front-end-library/src/lib/scss/dependencies/bifrost/_text-interface.scss
     margin-right: -1px;
+    text-transform: none;
 
     /* Uppercase */
     &--uppercase {
       text-transform: uppercase;
+    }
+  }
+
+  /* Delete Button */
+  &__button {
+    --bf-chip-button-circle-color: var(--bf-color-neutral-tertiary);
+    --bf-chip-button-stroke-color: white;
+    padding: 0;
+
+    .bf-icon,
+    .bf-icon svg {
+      display: block;
+    }
+
+    .bf-icon svg {
+      &.fill-highlight circle {
+        fill: var(--bf-chip-button-circle-color);
+        transition: fill $transition-time-medium;
+      }
+      path {
+        fill: var(--bf-chip-button-stroke-color);
+      }
+    }
+
+    &:hover,
+    &:focus-visible {
+      --bf-chip-button-circle-color: var(--bf-color-neutral-secondary);
     }
   }
 }

@@ -6,10 +6,10 @@
 {% set size = size|default("medium") %}
 
 {# Boolean Variables #}
+{% set hasDeleteButton = deleteButton is defined and deleteButton is not empty %}
 {% set hasId = id is defined and id is not empty %}
 {% set isBackgroundGround = background is same as("ground") %}
 {% set isBackgroundUnderground = background is same as("underground") %}
-{% set isSizeLarge = size is same as("large") %}
 {% set isSizeMedium = size is same as("medium") %}
 {% set isSizeSmall = size is same as("small") %}
 {% set isUppercase = (isUppercase ?? true) is same as(true) %}
@@ -22,17 +22,19 @@
   "bf-chip",
   (isBackgroundGround ? "bf-chip--bg-ground"),
   (isBackgroundUnderground ? "bf-chip--bg-underground"),
-  (isSizeLarge ? "bf-chip--large"),
   (isSizeMedium ? "bf-chip--medium"),
   (isSizeSmall ? "bf-chip--small"),
+  (hasDeleteButton ? "bf-chip--with-button"),
   (class),
 ] %}
 {% set chipLabelClasses = [
   "bf-chip__label",
-  (isSizeLarge ? "bf-text-interface-medium"),
   (isSizeMedium ? "bf-text-interface-small"),
   (isSizeSmall ? "bf-text-interface-small"),
   (isUppercase ? "bf-chip__label--uppercase"),
+] %}
+{% set chipDeleteButtonClasses = [
+  "bf-chip__button bf-button-icon__inner",
 ] %}
 
 {# Template #}
@@ -45,4 +47,16 @@
     }) }}>
       {{ label }}
     </span>
+
+    {% if hasDeleteButton %}
+      <button {{ macros.addAttributes({
+        "class": chipDeleteButtonClasses|join(' ')|trim,
+        "onclick": deleteButton
+      }) }}>
+        {% include "@bf-components/icon/twig/index.twig" with {
+          name: "x-circle-filled",
+          size: "xsmall",
+        } only %}
+      </button>
+    {% endif %}
 </div>

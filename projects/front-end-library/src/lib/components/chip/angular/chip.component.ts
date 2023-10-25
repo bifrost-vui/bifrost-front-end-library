@@ -23,13 +23,9 @@ export class ChipComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * - Array of objects containing one object per event type.
-     * - Each object contains a JavaScript function or code to execute when the related event is triggered.
-     * - See `IChipDeleteButton`
-     *    <a href="/?path=/docs/components-chip-api--page#ichipdeletebutton-api" target="_blank">API</a>
-     *    and <a href="/?path=/docs/components-chip-api--page#ichipdeletebutton-format" target="_blank">expected format</a>.
+     * String that contains a JavaScript function or code to execute when the button is clicked.
      */
-    @Input() deleteButton: IChipDeleteButton[];
+    @Input() deleteButton: string;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
@@ -61,7 +57,7 @@ export class ChipComponent implements OnInit {
      * <br><br>
      * Chip size.
      */
-    @Input() size: 'small' | 'medium' | 'large' = 'medium';
+    @Input() size: 'small' | 'medium' = 'medium';
 
     ngOnInit() {
         console.log('Chip', this);
