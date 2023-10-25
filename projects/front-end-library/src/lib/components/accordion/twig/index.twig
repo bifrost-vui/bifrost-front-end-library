@@ -1,17 +1,10 @@
-{#
-    Edit this component and don't forget to delete this comment.
-
-    In your component, the file /common/style.scss is aimed to share styles across Twig and Angular.
-    Try to use it as much as possible, in order to avoid styles for specific framework.
-
-    Enjoy :)
-#}
-
 {# Import macros #}
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
 {# Boolean Variables #}
+{% set hasEmphasis = emphasis is defined and emphasis is not empty %}
 {% set hasId = id is defined and id is not empty %}
+{% set isBlockEmphasisDefined = block("emphasis") is defined %}
 
 {# Default Variables #}
 {% set class = class|default("") %}
@@ -27,5 +20,19 @@
   "class": accordionClasses|join(' ')|trim,
   "id": (hasId ? id),
 }) }}>
-    {{ label|default("Label") }}
+    <button class="bf-accordion__header">
+      <span class="bf-accordion__header__title">
+        {{ title }}
+      </span>
+
+      {% if isBlockEmphasisDefined %}
+        {{ block("emphasis") }}
+      {% elseif hasEmphasis %}
+        {{ emphasis|raw }}
+      {% else %}
+        {% block emphasis %}
+
+        {% endblock %}
+      {% endif %}
+    </button>
 </div>

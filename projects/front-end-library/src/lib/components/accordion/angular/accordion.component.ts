@@ -18,17 +18,24 @@ export class AccordionComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
+     * - Emphasis content on the right of `title`.
+     * - It can be a rich text string (HTMLElement) or a Twig Block.
+     */
+    @Input() emphasis: HTMLElement | 'TwigBlock';
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * Accordion main element's `id` attribute.
      */
     @Input() id: string;
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
-     * The inner text.
+     * Title of the accordion.
      *
      * @required
      */
-    @Input() label: string;
+    @Input() title: string;
 
     ngOnInit() {
         console.log('Accordion', this);
