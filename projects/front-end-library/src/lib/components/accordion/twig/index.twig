@@ -1,21 +1,51 @@
 {# Import macros #}
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set iconPosition = iconPosition|default("right") %}
+{% set iconType = iconType|default("chevron") %}
+
 {# Boolean Variables #}
 {% set hasEmphasis = emphasis is defined and emphasis is not empty %}
+{% set hasIdParent = idParent is defined and idParent is not empty %}
 {% set isBlockEmphasisDefined = block("emphasis") is defined %}
+{% set isExpandedByDefault = (isExpandedByDefault ?? false) is same as(true) %}
+{% set isIconPositionLeft = iconPosition is same as("left") %}
+{% set isIconPositionRight = iconPosition is same as("right") %}
+{% set isIconTypeChevron = iconType is same as("chevron") %}
+{% set isIconTypePlusMinus = iconType is same as("plus-minus") %}
 
-{# Default Variables #}
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set class = class|default("") %}
 
 {# Component Variables #}
 {% set id = "bfAcccordion_" ~ id %}
 {% set idContent = id ~ "_content" %}
+{% if isIconTypeChevron %}
+  {% set buttonIcons = {
+    collapsed: "chevron-down",
+    expanded: "chevron-up",
+  } %}
+{% elseif isIconTypePlusMinus %}
+  {% set buttonIcons = {
+    collapsed: "plus",
+    expanded: "minus",
+  } %}
+{% endif %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set accordionClasses = [
   "bf-accordion",
   (class),
+] %}
+{% set accordionHeaderClasses = [
+  "bf-accordion__header js-bf-accordion-button",
+  (isIconPositionLeft ? "bf-accordion__header--icon-position--left"),
+  (isIconPositionRight ? "bf-accordion__header--icon-position--right"),
+] %}
+{% set accordionContentClasses = [
+  "bf-accordion__content collapse",
+  (isExpandedByDefault ? "show"),
 ] %}
 
 {# Template #}
@@ -25,12 +55,12 @@
 }) }}>
     <button {{ macros.addAttributes({
       "type": "button",
-      "class": "bf-accordion__header",
-      "aria-label": "Expand Content"|t,
-      "data-toggle": "collapse",
-      "data-target": "#" ~ idContent,
+      "class": accordionHeaderClasses|join(' ')|trim,
       "aria-controls": idContent,
-      "aria-expanded": "false",
+      "aria-expanded": (isExpandedByDefault ? "true" : "false"),
+      "aria-label": "Expand Content"|t,
+      "data-target": "#" ~ idContent,
+      "data-toggle": "collapse",
     }) }}>
       <span class="bf-accordion__header__title">
         {{ title }}
@@ -41,10 +71,24 @@
       {% elseif hasEmphasis %}
         {{ emphasis|raw }}
       {% endif %}
+
+      <div class="bf-accordion__header__icon">
+        {% include '@bf-components/icon/twig/index.twig' with {
+          name: buttonIcons.collapsed,
+          size: "small",
+          class: "bf-accordion__header__icon__collapsed",
+        } only %}
+        {% include '@bf-components/icon/twig/index.twig' with {
+          name: buttonIcons.expanded,
+          size: "small",
+          class: "bf-accordion__header__icon__expanded",
+        } only %}
+      </div>
     </button>
 
     <div {{ macros.addAttributes({
-      "class": "collapse bf-accordion__content",
+      "class": accordionContentClasses|join(' ')|trim,
+      "data-parent": (hasIdParent ? idParent),
       "id": idContent,
     }) }}>
       {% if isBlockContentDefined %}

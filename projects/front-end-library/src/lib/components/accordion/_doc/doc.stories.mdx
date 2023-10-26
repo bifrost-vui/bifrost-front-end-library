@@ -24,9 +24,39 @@ import { AccordionTemplateComponent } from './template.angular.component';
 
 # Accordion
 
-**// TODO** Write a description of your component.
+## Group of accordions
 
-> **// TODO**: Add a link to component in **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)**
+The base behavior of a group of accordions within one same container will be that all accordions can be opened
+at the same time. If the behavior needed is only one accordion opened at a time, then you must put an `id` attribute
+on the accordions container element and then reference that `id` in this component property `idParent`.
+
+Here's an example, the main focus in this code below is the `accordionsGroup` ID that is referenced in all three
+accordion items `idParent` property. This implementation will make the group open only one accordion at a time.
+
+```jsx
+<div id="accordionsGroup">
+    {# First accordion item #}
+    {% include '@bf-components/accordion/twig/index.twig' with {
+        id: 'accordionNumberOne',
+        idParent: 'accordionsGroup',
+        ...allOtherProps,
+    } only %}
+
+    {# Second accordion item #}
+    {% include '@bf-components/accordion/twig/index.twig' with {
+        id: 'accordionNumberTwo',
+        idParent: 'accordionsGroup',
+        ...allOtherProps,
+    } only %}
+
+    {# Third accordion item #}
+    {% include '@bf-components/accordion/twig/index.twig' with {
+        id: 'accordionNumberThree',
+        idParent: 'accordionsGroup',
+        ...allOtherProps,
+    } only %}
+</div>
+```
 
 <br />
 
@@ -44,6 +74,21 @@ import { AccordionTemplateComponent } from './template.angular.component';
 
 ## Drupal
 
+export const commonProps = {
+    content: `
+        <div>
+            <ul>
+                <li>Lorem ipsum dolor sit amet</li>
+                <li>Maecenas vitae molestie arcu</li>
+                <li>Duis congue id quam a luctus</li>
+                <li>Vestibulum ut scelerisque leo</li>
+            </ul>
+        </div>
+    `,
+    id: 'item_no_1',
+    title: 'Accordion Title',
+};
+
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
     props: args,
@@ -55,8 +100,7 @@ export const Drupal = (args) => ({
         height="300px"
         args={{
             elementPath: 'components/accordion/_doc/template.drupal',
-            id: 'item_no_1',
-            title: 'Accordion',
+            ...commonProps,
         }}
     >
         {Drupal.bind({})}

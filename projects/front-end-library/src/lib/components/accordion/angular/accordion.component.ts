@@ -32,6 +32,19 @@ export class AccordionComponent implements OnInit {
      */
     @Input() emphasis: HTMLElement | 'TwigBlock';
     /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Position of the icon relative to `title`.
+     */
+    @Input() iconPosition: 'left' | 'right' = 'right';
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Look of the icon.
+     * - Can be position on the left or on the right of `title` with `iconPosition` property.
+     */
+    @Input() iconType: 'chevron' | 'plus-minus' = 'chevron';
+    /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
      * - Accordion main element's `id` attribute.
@@ -43,15 +56,22 @@ export class AccordionComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
+     * - Accordions group container element `id` attribute.
+     * - See [Group of accordions](/?path=/docs/components-accordion--drupal#group-of-accordions) at the top of the page.
+     */
+    @Input() idParent: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * Is the Accordion item disabled?
      */
     @Input() isDisabled: boolean = false;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * Is the Accordion opened by default?
+     * Is the Accordion expanded by default?
      */
-    @Input() isOpenedByDefault: boolean = false;
+    @Input() isExpandedByDefault: boolean = false;
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>

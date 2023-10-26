@@ -5,5 +5,28 @@
 * ***************************************************************************** */
 
 .bf-accordion {
-    background-color: var(--bf-color-bg-action-primary);
+  background-color: var(--bf-color-bg-action-primary);
+
+  /* Header and Expand/collapse button */
+  &__header {
+    /* When the accordion item is collapsed */
+    &[aria-expanded='false'] {
+      .bf-accordion__header__icon__collapsed {
+        display: block;
+      }
+      .bf-accordion__header__icon__expanded {
+        display: none;
+      }
+    }
+
+    /* When the accordion item is expanded */
+    &[aria-expanded='true'] {
+      .bf-accordion__header__icon__collapsed {
+        display: none;
+      }
+      .bf-accordion__header__icon__expanded {
+        display: block;
+      }
+    }
+  }
 }
