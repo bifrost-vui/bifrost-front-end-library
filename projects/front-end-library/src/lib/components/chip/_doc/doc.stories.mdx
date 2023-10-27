@@ -24,10 +24,6 @@ import { ChipTemplateComponent } from './template.angular.component';
 
 # Chip
 
-**// TODO** Write a description of your component.
-
-> **// TODO**: Add a link to component in **[Design Documentation](https://zeroheight.com/79f1d3365/p/70ccb4--buttons)**
-
 <br />
 
 ## Component API
@@ -37,8 +33,16 @@ import { ChipTemplateComponent } from './template.angular.component';
 ## Drupal implementation example
 
 ```jsx
-{% include '@bf-components/chip/twig/index.twig' with {
-    // Add relevant props here
+{% include "@bf-components/chip/twig/index.twig" with {
+    background: "underground",
+    class: "custom-class",
+    deleteButton: "deleteChip()",
+    deleteButtonAriaLabel: "On a click, it will delete this chip.",
+    id: "chipOne",
+    isDisabled: false,
+    isUppercase: true,
+    label: "Chip label",
+    size: "medium",
 } only %}
 ```
 
@@ -75,7 +79,7 @@ export const Drupal = (args) => ({
             elementPath: 'components/chip/_doc/template.drupal',
             ...commonProps,
             deleteButton: "alert('You clicked the button')",
-            deleteButtonAriaLabel: 'Will delete this tag / filter.',
+            deleteButtonAriaLabel: 'On a click, it will open en alert box.',
         }}
     >
         {Drupal.bind({})}
