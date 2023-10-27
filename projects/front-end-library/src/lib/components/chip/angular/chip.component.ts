@@ -27,6 +27,15 @@ export class ChipComponent implements OnInit {
      */
     @Input() deleteButton: string;
     /**
+     * <span style="color: orange;">__Required conditionally__</span>
+     * Is __REQUIRED__ if `deleteButton` is used.
+     * <br><br>
+     * - Descriptive text for accessibility purpose.
+     * - Has to describe the action of the button since it is only an icon.
+     * - Will also add a `title` attribute on the button that will display this text in the default browser tooltip.
+     */
+    @Input() deleteButtonAriaLabel: string;
+    /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
      * Chip item's main element's `id` attribute.
