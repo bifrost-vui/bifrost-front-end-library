@@ -13,7 +13,7 @@
   justify-content: center;
   gap: 0.25rem;
   padding: var(--bf-chip-padding);
-  color: var(--bf-color-neutral-secondary);
+  color: var(--bf-color-neutral-primary);
   background-color: var(--bf-chip-bg-color);
   border: 1px solid var(--bf-chip-border-color);
   border-radius: 1.375rem;
@@ -28,7 +28,7 @@
     --bf-chip-padding: 0.125rem 0.375rem;
   }
   &--medium {
-    --bf-chip-padding: 0.5rem 0.625rem;
+    --bf-chip-padding: 0.5rem 0.75rem;
   }
 
   /* With delete button */
@@ -38,15 +38,17 @@
       --bf-chip-padding: 0.125rem 0.125rem 0.125rem 0.375rem;
     }
     &.bf-chip--medium {
-      --bf-chip-padding: 0.5rem 0.375rem 0.5rem 0.625rem;
+      --bf-chip-padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+    }
+
+    /* Chip's button is disabled */
+    &.bf-chip--disabled {
+      --bf-chip-border-color: var(--bf-color-stroke-tertiary);
     }
   }
 
   /* Label */
   &__label {
-    // To remove the letter-spacing on the last letter of .bf-text-interface-small and .bf-text-interface-small
-    // from /projects/front-end-library/src/lib/scss/dependencies/bifrost/_text-interface.scss
-    margin-right: -1px;
     text-transform: none;
 
     /* Uppercase */
@@ -57,8 +59,8 @@
 
   /* Delete Button */
   &__button {
-    --bf-chip-button-circle-color: var(--bf-color-neutral-tertiary);
-    --bf-chip-button-stroke-color: white;
+    --bf-chip-button-circle-color: var(--bf-color-bg-ground-reversed);
+    --bf-chip-button-stroke-color: var(--bf-color-bg-ground);
     padding: 0;
 
     .bf-icon,
@@ -72,13 +74,18 @@
         transition: fill $transition-time-medium;
       }
       path {
-        fill: var(--bf-chip-button-stroke-color);
+        stroke: var(--bf-chip-button-stroke-color);
       }
     }
 
     &:hover,
     &:focus-visible {
       --bf-chip-button-circle-color: var(--bf-color-neutral-secondary);
+    }
+
+    &[disabled] {
+      --bf-chip-button-circle-color: var(--bf-color-bg-action-disabled);
+      --bf-chip-button-stroke-color: var(--bf-color-neutral-tertiary);
     }
   }
 }

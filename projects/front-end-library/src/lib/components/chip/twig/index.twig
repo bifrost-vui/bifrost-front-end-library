@@ -10,6 +10,7 @@
 {% set hasId = id is defined and id is not empty %}
 {% set isBackgroundGround = background is same as("ground") %}
 {% set isBackgroundUnderground = background is same as("underground") %}
+{% set isDisabled = (isDisabled ?? false) is same as(true) %}
 {% set isSizeMedium = size is same as("medium") %}
 {% set isSizeSmall = size is same as("small") %}
 {% set isUppercase = (isUppercase ?? true) is same as(true) %}
@@ -22,6 +23,7 @@
   "bf-chip",
   (isBackgroundGround ? "bf-chip--bg-ground"),
   (isBackgroundUnderground ? "bf-chip--bg-underground"),
+  (isDisabled ? "bf-chip--disabled"),
   (isSizeMedium ? "bf-chip--medium"),
   (isSizeSmall ? "bf-chip--small"),
   (hasDeleteButton ? "bf-chip--with-button"),
@@ -29,7 +31,7 @@
 ] %}
 {% set chipLabelClasses = [
   "bf-chip__label",
-  (isSizeMedium ? "bf-text-interface-small"),
+  (isSizeMedium ? "bf-text-interface-medium"),
   (isSizeSmall ? "bf-text-interface-small"),
   (isUppercase ? "bf-chip__label--uppercase"),
 ] %}
@@ -51,7 +53,8 @@
     {% if hasDeleteButton %}
       <button {{ macros.addAttributes({
         "class": chipDeleteButtonClasses|join(' ')|trim,
-        "onclick": deleteButton
+        "disabled": (isDisabled ? "disabled"),
+        "onclick": deleteButton,
       }) }}>
         {% include "@bf-components/icon/twig/index.twig" with {
           name: "x-circle-filled",
