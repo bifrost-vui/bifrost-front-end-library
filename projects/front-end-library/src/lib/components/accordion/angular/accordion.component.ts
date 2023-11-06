@@ -34,6 +34,19 @@ export class AccordionComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
+     * - The emphasis block is always on the right of the `title` and its size is all the space available between the `title` and the `icon`.
+     * - This property is to set the position of its content inside the block.
+     */
+    @Input() emphasisPosition: 'left' | 'center' | 'right' = 'left';
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Does the Accordion have a border?
+     */
+    @Input() hasBorder: boolean = true;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * Position of the icon relative to `title`.
      */
     @Input() iconPosition: 'left' | 'right' = 'right';
@@ -63,6 +76,12 @@ export class AccordionComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
+     * Is the Accordion border, if `hasBorder` is set to `true`, rounded?
+     */
+    @Input() isBorderRounded: boolean = true;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * Is the Accordion item disabled?
      */
     @Input() isDisabled: boolean = false;
@@ -73,6 +92,18 @@ export class AccordionComponent implements OnInit {
      */
     @Input() isExpandedByDefault: boolean = false;
     /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Padding on the `x` axis (left & right).
+     */
+    @Input() paddingX: 'none' | 'small' | 'medium' | 'large' = 'medium';
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Padding on the `y` axis (top & bottom).
+     */
+    @Input() paddingY: 'none' | 'small' | 'medium' | 'large' = 'medium';
+    /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
      * Title of the accordion.
@@ -80,6 +111,24 @@ export class AccordionComponent implements OnInit {
      * @required
      */
     @Input() title: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Size of the `title`.
+     */
+    @Input() titleSize: 'normal' | 'h2' | 'h3' = 'normal';
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * HTML tag of the `title`.
+     */
+    @Input() titleTag: 'div' | 'h2' | 'h3' = 'div';
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Font-weight of the `title`.
+     */
+    @Input() titleWeight: 'normal' | 'bold' = 'bold';
 
     ngOnInit() {
         console.log('Accordion', this);

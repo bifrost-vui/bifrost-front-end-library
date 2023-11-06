@@ -85,8 +85,13 @@ export const commonProps = {
             </ul>
         </div>
     `,
+    iconPosition: 'right',
+    iconType: 'chevron',
     id: 'item_no_1',
     title: 'Accordion Title',
+    titleSize: 'normal',
+    titleTag: 'div',
+    titleWeight: 'bold',
 };
 
 export const Drupal = (args) => ({
@@ -101,6 +106,35 @@ export const Drupal = (args) => ({
         args={{
             elementPath: 'components/accordion/_doc/template.drupal',
             ...commonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - With emphasis"
+        height="300px"
+        args={{
+            elementPath: 'components/accordion/_doc/template.drupal',
+            ...commonProps,
+            emphasis: '<span style="background-color: red;">Lorem ipsum</span>',
+            emphasisPosition: 'left',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Expanded by default"
+        height="300px"
+        args={{
+            elementPath: 'components/accordion/_doc/template.drupal',
+            ...commonProps,
+            isExpandedByDefault: true,
         }}
     >
         {Drupal.bind({})}

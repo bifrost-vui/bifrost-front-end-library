@@ -2,21 +2,51 @@
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
 {# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set emphasisPosition = emphasisPosition|default("left") %}
 {% set iconPosition = iconPosition|default("right") %}
 {% set iconType = iconType|default("chevron") %}
+{% set paddingX = paddingX|default("medium") %}
+{% set paddingY = paddingY|default("medium") %}
+{% set titleSize = titleSize|default("normal") %}
+{% set titleTag = titleTag|default("div") %}
+{% set titleWeight = titleWeight|default("bold") %}
 
 {# Boolean Variables #}
+{% set hasBorder = (hasBorder ?? true) is same as(true) %}
 {% set hasEmphasis = emphasis is defined and emphasis is not empty %}
 {% set hasIdParent = idParent is defined and idParent is not empty %}
 {% set isBlockEmphasisDefined = block("emphasis") is defined %}
 {% set isExpandedByDefault = (isExpandedByDefault ?? false) is same as(true) %}
+{% set isEmphasisPositionLeft = emphasisPosition is same as("left") %}
+{% set isEmphasisPositionCenter = emphasisPosition is same as("center") %}
+{% set isEmphasisPositionRight = emphasisPosition is same as("right") %}
 {% set isIconPositionLeft = iconPosition is same as("left") %}
 {% set isIconPositionRight = iconPosition is same as("right") %}
 {% set isIconTypeChevron = iconType is same as("chevron") %}
 {% set isIconTypePlusMinus = iconType is same as("plus-minus") %}
+{% set isPaddingXLarge = paddingX is same as("large") %}
+{% set isPaddingXMedium = paddingX is same as("medium") %}
+{% set isPaddingXNone = paddingX is same as("none") %}
+{% set isPaddingXSmall = paddingX is same as("small") %}
+{% set isPaddingYLarge = paddingY is same as("large") %}
+{% set isPaddingYMedium = paddingY is same as("medium") %}
+{% set isPaddingYNone = paddingY is same as("none") %}
+{% set isPaddingYSmall = paddingY is same as("small") %}
+{% set isTitleSizeH2 = titleSize is same as("h2") %}
+{% set isTitleSizeH3 = titleSize is same as("h3") %}
+{% set isTitleSizeNormal = titleSize is same as("normal") %}
+{% set isTitleTagDiv = titleTag is same as("div") %}
+{% set isTitleTagH2 = titleTag is same as("h2") %}
+{% set isTitleTagH3 = titleTag is same as("h3") %}
+{% set isTitleWeightBold = titleWeight is same as("bold") %}
+{% set isTitleWeightNormal = titleWeight is same as("normal") %}
+
+{# Boolean Variables - ORDER IS IMPORTANT #}
+{% set isBorderRounded = hasBorder and ((isBorderRounded ?? true) is same as(true)) %}
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set class = class|default("") %}
+{% set titleTag = titleTag|default("div") %}
 
 {# Component Variables #}
 {% set id = "bfAcccordion_" ~ id %}
@@ -36,12 +66,34 @@
 {# Arrays of Classes With Dynamic Elements #}
 {% set accordionClasses = [
   "bf-accordion",
+  (hasBorder ? "bf-accordion--has-border"),
+  (isBorderRounded ? "bf-accordion--has-border--rounded"),
   (class),
 ] %}
 {% set accordionHeaderClasses = [
-  "bf-accordion__header js-bf-accordion-button",
+  "bf-accordion__header",
   (isIconPositionLeft ? "bf-accordion__header--icon-position--left"),
   (isIconPositionRight ? "bf-accordion__header--icon-position--right"),
+  (isPaddingXSmall ? "bf-accordion__header--px--sm"),
+  (isPaddingXMedium ? "bf-accordion__header--px--md"),
+  (isPaddingXLarge ? "bf-accordion__header--px--lg"),
+  (isPaddingYSmall ? "bf-accordion__header--py--sm"),
+  (isPaddingYMedium ? "bf-accordion__header--py--md"),
+  (isPaddingYLarge ? "bf-accordion__header--py--lg"),
+] %}
+{% set accordionHeaderTitleClasses = [
+  "bf-accordion__header__title",
+  (isTitleSizeH2 ? "h2"),
+  (isTitleSizeH3 ? "h3"),
+  (isTitleSizeNormal ? "bf-text"),
+  (isTitleWeightBold ? "font-weight-bold"),
+  (isTitleWeightNormal ? "font-weight-normal"),
+] %}
+{% set accordionHeaderEmphasisClasses = [
+  "bf-accordion__header__emphasis",
+  (isEmphasisPositionLeft ? "bf-accordion__header__emphasis--left"),
+  (isEmphasisPositionCenter ? "bf-accordion__header__emphasis--center"),
+  (isEmphasisPositionRight ? "bf-accordion__header__emphasis--right"),
 ] %}
 {% set accordionContentClasses = [
   "bf-accordion__content collapse",
@@ -62,14 +114,25 @@
       "data-target": "#" ~ idContent,
       "data-toggle": "collapse",
     }) }}>
-      <span class="bf-accordion__header__title">
-        {{ title }}
-      </span>
+      {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+        customTag: titleTag,
+        attr: {
+          "class": accordionHeaderTitleClasses|join(' ')|trim
+        },
+      } %}
+        {% block customTagContent %}
+          {{ title }}
+        {% endblock %}
+      {% endembed %}
 
       {% if isBlockEmphasisDefined %}
-        {{ block("emphasis") }}
+        <div class="{{ accordionHeaderEmphasisClasses|join(' ')|trim }}">
+          {{ block("emphasis") }}
+        </div>
       {% elseif hasEmphasis %}
-        {{ emphasis|raw }}
+        <div class="{{ accordionHeaderEmphasisClasses|join(' ')|trim }}">
+          {{ emphasis|raw }}
+        </div>
       {% endif %}
 
       <div class="bf-accordion__header__icon">

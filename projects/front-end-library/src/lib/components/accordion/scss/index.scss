@@ -5,10 +5,74 @@
 * ***************************************************************************** */
 
 .bf-accordion {
-  background-color: var(--bf-color-bg-action-primary);
+  /* Has Border */
+  &--has-border {
+    border: 1px solid var(--bf-color-stroke-secondary);
+
+    /* Is border rounded */
+    &--rounded {
+      border-radius: var(--bf-border-radius-small);
+    }
+  }
 
   /* Header and Expand/collapse button */
   &__header {
+    display: grid;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0;
+    color: var(--bf-color-neutral-primary);
+    background: none;
+    border: none;
+
+    /* Padding horizontal (x-axis) */
+    &--px {
+      &--sm {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      &--md {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      &--lg {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+    }
+
+    /* Padding vertical (y-axis) */
+    &--py {
+      &--sm {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+      &--md {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+      &--lg {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+    }
+
+    /* Icon position */
+    &--icon-position {
+      /* Left */
+      &--left {
+        grid-template-areas: 'icon title emphasis';
+        grid-template-columns: max-content max-content auto;
+      }
+
+      /* Right (default) */
+      &--right {
+        grid-template-areas: 'title emphasis icon';
+        grid-template-columns: max-content auto max-content;
+      }
+    }
+
     /* When the accordion item is collapsed */
     &[aria-expanded='false'] {
       .bf-accordion__header__icon__collapsed {
@@ -27,6 +91,36 @@
       .bf-accordion__header__icon__expanded {
         display: block;
       }
+    }
+
+    /* Title */
+    &__title {
+      grid-area: title;
+    }
+
+    /* Emphasis */
+    &__emphasis {
+      grid-area: emphasis;
+
+      /* Position: Left */
+      &--left {
+        justify-self: start;
+      }
+
+      /* Position: Center */
+      &--center {
+        justify-self: center;
+      }
+
+      /* Position: Right */
+      &--right {
+        justify-self: end;
+      }
+    }
+
+    /* Icon */
+    &__icon {
+      grid-area: icon;
     }
   }
 }
