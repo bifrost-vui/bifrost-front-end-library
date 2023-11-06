@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IChipDeleteButton } from './api.model';
 
 @Component({
     selector: 'bf-chip',
