@@ -7,6 +7,25 @@
     Enjoy :)
 #}
 
-<div class="bf-%component-name% {{ class|default("") }}">
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasId = id is defined and id is not empty %}
+
+{# Default Variables #}
+{% set class = class|default("") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set %componentName%Classes = [
+  "bf-%component-name%",
+  (class),
+] %}
+
+{# Template #}
+<div {{ macros.addAttributes({
+  "class": %componentName%Classes|join(' ')|trim,
+  "id": (hasId ? id),
+}) }}>
     {{ label|default("Label") }}
 </div>

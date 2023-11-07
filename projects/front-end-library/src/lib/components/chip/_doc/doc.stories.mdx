@@ -1,0 +1,125 @@
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { ChipComponent } from '../angular/chip.component';
+import { ChipTemplateComponent } from './template.angular.component';
+
+<Meta
+    title="Components/Chip"
+    component={ChipComponent}
+    decorators={[
+        moduleMetadata({ declarations: [ChipComponent, ChipTemplateComponent, TwigContainerComponent] }),
+        withDesign,
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?type=design&node-id=30603-15974',
+            disable: false,
+        },
+    }}
+    argTypes={{}}
+/>
+
+# Chip
+
+<br />
+
+## Component API
+
+<ArgsTable of={ChipComponent} />
+
+## Drupal implementation example
+
+```jsx
+{% include "@bf-components/chip/twig/index.twig" with {
+    background: "underground",
+    class: "custom-class",
+    deleteButton: "deleteChip()",
+    deleteButtonAriaLabel: "On a click, it will delete this chip.",
+    id: "chipOne",
+    isDisabled: false,
+    isUppercase: true,
+    label: "Chip label",
+    size: "medium",
+} only %}
+```
+
+## Drupal
+
+export const commonProps = {
+    label: 'Apple',
+    size: 'medium',
+};
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal"
+        height="300px"
+        args={{
+            elementPath: 'components/chip/_doc/template.drupal',
+            ...commonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - With delete button"
+        height="300px"
+        args={{
+            elementPath: 'components/chip/_doc/template.drupal',
+            ...commonProps,
+            deleteButton: "alert('You clicked the button')",
+            deleteButtonAriaLabel: 'On a click, it will open en alert box.',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+**// TODO**: Add Stories (variants of your component) as much as you want.
+
+<!--
+For now, Angular components ar not used, so it is hidden by default.
+
+## Angular
+
+export const Angular = (args) => ({
+  component: ChipTemplateComponent,
+  props: args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Angular'
+        args={{
+            label: 'Chip'
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+## Angular implementation example
+
+Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
+-->
+
+## Design Guidelines
+
+<iframe
+    width="100%"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Ftype%3Ddesign%26node-id%3D30603-15974%26mode%3Ddesign%26t%3DlMHjWwZqVvznn1cl-4"
+    frameBorder="0"
+    allowFullScreen
+></iframe>
