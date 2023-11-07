@@ -1,0 +1,40 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasChipsData = chipsData is defined and chipsData is not empty %}
+{% set hasId = id is defined and id is not empty %}
+{% set isBlockChipsBlockDefined = block("chipsBlock") is defined %}
+
+{# Default Variables #}
+{% set class = class|default("") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set chipsGroupClasses = [
+  "bf-chips-group",
+  (class),
+] %}
+
+{# Template #}
+<div {{ macros.addAttributes({
+  "class": chipsGroupClasses|join(' ')|trim,
+  "id": (hasId ? id),
+}) }}>
+    {% if isBlockChipsBlockDefined %}
+      {{ block("chipsBlock") }}
+    {% elseif hasChipsData %}
+      {% for chip in chipsData %}
+        {% include "@bf-components/chip/twig/index.twig" with {
+          background: chip.background,
+          class: chip.class,
+          deleteButton: chip.deleteButton,
+          deleteButtonAriaLabel: chip.deleteButtonAriaLabel,
+          id: chip.id,
+          isDisabled: chip.isDisabled,
+          isUppercase: chip.isUppercase,
+          label: chip.label,
+          size: chip.size,
+        } only %}
+      {% endfor %}
+    {% endif %}
+</div>
