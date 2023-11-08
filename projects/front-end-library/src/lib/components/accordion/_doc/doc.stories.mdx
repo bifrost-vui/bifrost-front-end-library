@@ -66,24 +66,105 @@ accordion items `idParent` property. This implementation will make the group ope
 
 ## Drupal implementation example
 
+### Use `content` and/or `emphasis` properties and no Twig blocks
+
 ```jsx
-{% include '@bf-components/accordion/twig/index.twig' with {
-    // Add relevant props here
+{% include "@bf-components/accordion/twig/index.twig" with {
+    class: "custom-classes",
+    content: `
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
+    `,
+    emphasis: `
+        <div class="px-1 bf-color-primary-irreversible bf-color-bg-highlight">
+            Lorem ipsum
+        </div>
+    `,
+    emphasisPosition: "left",
+    hasBorder: true,
+    iconPosition: "right",
+    iconType: "chevron",
+    id: "accordion-id",
+    idParent: "accordion-parent-id",
+    isBorderRounded: true,
+    isDisabled: false,
+    isExpandedByDefault: false,
+    paddingX: "medium",
+    paddingY: "medium",
+    title: "Accordion Title",
+    titleSize: "normal",
+    titleTag: "div",
+    titleWeight: "bold",
 } only %}
+```
+
+### Use `contentBlock` and/or `emphasisBlock` Twig blocks
+
+```jsx
+{% embed "@bf-components/accordion/twig/index.twig" with {
+    class: "custom-classes",
+    emphasisPosition: "left",
+    hasBorder: true,
+    iconPosition: "right",
+    iconType: "chevron",
+    id: "accordion-id",
+    idParent: "accordion-parent-id",
+    isBorderRounded: true,
+    isDisabled: false,
+    isExpandedByDefault: false,
+    paddingX: "medium",
+    paddingY: "medium",
+    title: "Accordion Title",
+    titleSize: "normal",
+    titleTag: "div",
+    titleWeight: "bold",
+} %}
+    {% block emphasisBlock %}
+        {% include '@bf-components/badge/twig/index.twig' with {
+            angle: 'left',
+            class: 'my-2',
+            customBgColor: '#ff0000',
+            customFontColor: '#ffffff',
+            hierarchy: 'primary',
+            iconName: 'camera',
+            isRounded: false,
+            label: 'Free',
+            noUppercase: false,
+        } only %}
+    {% endblock %}
+
+    {% block contentBlock %}
+        {# Div with content #}
+        <div>
+            <p>Mauris pulvinar ultrices quam eget sodales. Ut pellentesque nunc id ipsum imperdiet tristique.</p>
+            <p>Aliquam sit amet posuere justo. Etiam et ante elit. Curabitur vel dui dapibus orci euismod vehicula non a magna.</p>
+        </div>
+
+        {# Inclusion of another component #}
+        {% include '@bf-components/icon/twig/index.twig' with {
+            name: 'my-account',
+            size: 'large',
+        } only %}
+    {% endblock %}
+{% endembed %}
 ```
 
 ## Drupal
 
 export const commonProps = {
     content: `
-        <div>
-            <ul>
-                <li>Lorem ipsum dolor sit amet</li>
-                <li>Maecenas vitae molestie arcu</li>
-                <li>Duis congue id quam a luctus</li>
-                <li>Vestibulum ut scelerisque leo</li>
-            </ul>
-        </div>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Fusce elementum tortor quis libero volutpat, vulputate tincidunt turpis commodo.
+            Pellentesque blandit erat sed finibus ullamcorper.
+        </p>
+        <ul>
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Maecenas vitae molestie arcu</li>
+            <li>Duis congue id quam a luctus</li>
+            <li>Vestibulum ut scelerisque leo</li>
+        </ul>
     `,
     iconPosition: 'right',
     iconType: 'chevron',
@@ -119,7 +200,7 @@ export const Drupal = (args) => ({
         args={{
             elementPath: 'components/accordion/_doc/template.drupal',
             ...commonProps,
-            emphasis: '<span style="background-color: red;">Lorem ipsum</span>',
+            emphasis: '<div class="px-1 bf-color-primary-irreversible bf-color-bg-highlight">Lorem ipsum</div>',
             emphasisPosition: 'left',
         }}
     >

@@ -15,7 +15,8 @@
 {% set hasBorder = (hasBorder ?? true) is same as(true) %}
 {% set hasEmphasis = emphasis is defined and emphasis is not empty %}
 {% set hasIdParent = idParent is defined and idParent is not empty %}
-{% set isBlockEmphasisDefined = block("emphasis") is defined %}
+{% set isBlockContentBlockDefined = block("contentBlock") is defined %}
+{% set isBlockEmphasisBlockDefined = block("emphasisBlock") is defined %}
 {% set isExpandedByDefault = (isExpandedByDefault ?? false) is same as(true) %}
 {% set isEmphasisPositionLeft = emphasisPosition is same as("left") %}
 {% set isEmphasisPositionCenter = emphasisPosition is same as("center") %}
@@ -67,6 +68,12 @@
 {% set accordionClasses = [
   "bf-accordion",
   (hasBorder ? "bf-accordion--has-border"),
+  (isPaddingXSmall ? "bf-accordion--px--sm"),
+  (isPaddingXMedium ? "bf-accordion--px--md"),
+  (isPaddingXLarge ? "bf-accordion--px--lg"),
+  (isPaddingYSmall ? "bf-accordion--py--sm"),
+  (isPaddingYMedium ? "bf-accordion--py--md"),
+  (isPaddingYLarge ? "bf-accordion--py--lg"),
   (isBorderRounded ? "bf-accordion--has-border--rounded"),
   (class),
 ] %}
@@ -74,12 +81,6 @@
   "bf-accordion__header",
   (isIconPositionLeft ? "bf-accordion__header--icon-position--left"),
   (isIconPositionRight ? "bf-accordion__header--icon-position--right"),
-  (isPaddingXSmall ? "bf-accordion__header--px--sm"),
-  (isPaddingXMedium ? "bf-accordion__header--px--md"),
-  (isPaddingXLarge ? "bf-accordion__header--px--lg"),
-  (isPaddingYSmall ? "bf-accordion__header--py--sm"),
-  (isPaddingYMedium ? "bf-accordion__header--py--md"),
-  (isPaddingYLarge ? "bf-accordion__header--py--lg"),
 ] %}
 {% set accordionHeaderTitleClasses = [
   "bf-accordion__header__title",
@@ -125,9 +126,9 @@
         {% endblock %}
       {% endembed %}
 
-      {% if isBlockEmphasisDefined %}
+      {% if isBlockEmphasisBlockDefined %}
         <div class="{{ accordionHeaderEmphasisClasses|join(' ')|trim }}">
-          {{ block("emphasis") }}
+          {{ block("emphasisBlock") }}
         </div>
       {% elseif hasEmphasis %}
         <div class="{{ accordionHeaderEmphasisClasses|join(' ')|trim }}">
@@ -154,10 +155,12 @@
       "data-parent": (hasIdParent ? idParent),
       "id": idContent,
     }) }}>
-      {% if isBlockContentDefined %}
-        {{ block("content") }}
-      {% else %}
-        {{ content }}
-      {% endif %}
+      <div class="bf-accordion__content__container">
+        {% if isBlockContentBlockDefined %}
+          {{ block("contentBlock") }}
+        {% else %}
+          {{ content }}
+        {% endif %}
+      </div>
     </div>
 </div>
