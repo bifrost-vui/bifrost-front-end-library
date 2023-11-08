@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { IChip } from './api.model';
 
 @Component({
     selector: 'bf-chip',
     templateUrl: './chip.component.html',
 })
-export class ChipComponent implements OnInit {
+export class ChipComponent implements IChip, OnInit {
     constructor() {}
 
     /**
