@@ -9,9 +9,14 @@ const colors = [
                 reversed: false,
             },
             {
+                label: 'Primary Irreversible',
+                name: 'primary-irreversible',
+                reversed: false,
+                note: 'This color does not change in "reversed mode".',
+            },
+            {
                 label: 'Neutral Primary',
                 name: 'neutral-primary',
-                reversed: false,
             },
             {
                 label: 'Neutral Secondary',
