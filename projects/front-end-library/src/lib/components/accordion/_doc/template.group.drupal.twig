@@ -1,0 +1,84 @@
+{# Default Variables (Props, Controls) #}
+{% set _reversed = _reversed|json_parse %}
+{% set class = class|json_parse %}
+{% set content = content|json_parse %}
+{% set emphasis = emphasis|json_parse %}
+{% set emphasisPosition = emphasisPosition|json_parse %}
+{% set hasBorder = hasBorder|json_parse %}
+{% set iconPosition = iconPosition|json_parse %}
+{% set iconType = iconType|json_parse %}
+{% set id = id|json_parse %}
+{% set idParent = idParent|json_parse %}
+{% set isBorderRounded = isBorderRounded|json_parse %}
+{% set isDisabled = isDisabled|json_parse %}
+{% set isExpandedByDefault = isExpandedByDefault|json_parse %}
+{% set paddingX = paddingX|json_parse %}
+{% set paddingY = paddingY|json_parse %}
+{% set title = title|json_parse %}
+{% set titleSize = titleSize|json_parse %}
+{% set titleTag = titleTag|json_parse %}
+{% set titleWeight = titleWeight|json_parse %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "d-flex flex-column flex-sm-row justify-content-center minh-100",
+  (_reversed ? "reversed bf-color-bg-ground"),
+] %}
+
+{# Template #}
+<div class="bf-color-bg-underground p-4">
+  <p class="small mb-0">
+    <b>Note:</b>
+  </p>
+  <p class="small mb-0">
+    This is an example of multiple accordions one after another. The behavior here is only one accordion panel
+    can be opened at a time as described in the documentation section
+    <a class="bf-link" target="_top" href="http://{{ _rootPath }}/?path=/docs/components-accordion--drupal#group-of-accordions">Groups of accordions</a>.
+  </p>
+  <p class="small mb-0">
+    So, if you want the behavior to be that all panels can be opened at the same time, do not use the <strong>idParent</strong> property.
+  </p>
+</div>
+
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
+
+  {% for index in [1, 2] %}
+
+    {# In Loop : Boolean Variables #}
+    {% set isReversed = index == 2 and _reversed is not defined %}
+
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set innerContainerClasses = [
+      "w-100 p-4",
+      (isReversed ? "reversed bf-color-bg-ground"),
+    ] %}
+
+    <div class="{{ innerContainerClasses|join(' ')|trim }}">
+      <div id="{{ idParent is not empty ? idParent ~ index }}">
+        {% for indexAccordion in [1, 2, 3, 4] %}
+          {% include "@bf-components/accordion/twig/index.twig" with {
+              class: class,
+              content: content,
+              emphasis: emphasis,
+              emphasisPosition: emphasisPosition,
+              hasBorder: hasBorder,
+              iconPosition: iconPosition,
+              iconType: iconType,
+              id: id ~ index ~ indexAccordion,
+              idParent: idParent ~ index,
+              isBorderRounded: isBorderRounded,
+              isDisabled: isDisabled,
+              isExpandedByDefault: isExpandedByDefault,
+              paddingX: paddingX,
+              paddingY: paddingY,
+              title: title ~ " " ~ indexAccordion,
+              titleSize: titleSize,
+              titleTag: titleTag,
+              titleWeight: titleWeight,
+          } only %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+
+</div>
