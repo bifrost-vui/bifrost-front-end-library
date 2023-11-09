@@ -52,6 +52,7 @@
 {# Component Variables #}
 {% set id = "bfAcccordion_" ~ id %}
 {% set idContent = id ~ "_content" %}
+{% set idTitle = id ~ "_title" %}
 {% if isIconTypeChevron %}
   {% set buttonIcons = {
     collapsed: "chevron-down",
@@ -79,8 +80,12 @@
 ] %}
 {% set accordionHeaderClasses = [
   "bf-accordion__header",
-  (isIconPositionLeft ? "bf-accordion__header--icon-position--left"),
-  (isIconPositionRight ? "bf-accordion__header--icon-position--right"),
+  "bf-text font-weight-normal",
+] %}
+{% set accordionHeaderButtonClasses = [
+  "bf-accordion__header__button",
+  (isIconPositionLeft ? "bf-accordion__header__button--icon-position--left"),
+  (isIconPositionRight ? "bf-accordion__header__button--icon-position--right"),
 ] %}
 {% set accordionHeaderTitleClasses = [
   "bf-accordion__header__title",
@@ -106,61 +111,70 @@
   "class": accordionClasses|join(' ')|trim,
   "id": id,
 }) }}>
-    <button {{ macros.addAttributes({
-      "type": "button",
-      "class": accordionHeaderClasses|join(' ')|trim,
-      "aria-controls": idContent,
-      "aria-expanded": (isExpandedByDefault ? "true" : "false"),
-      "aria-label": "Expand Content"|t,
-      "data-target": "#" ~ idContent,
-      "data-toggle": "collapse",
-    }) }}>
-      {% embed "@bf-utils/custom-tag/twig/index.twig" with {
-        customTag: titleTag,
-        attr: {
-          "class": accordionHeaderTitleClasses|join(' ')|trim
-        },
-      } %}
-        {% block customTagContent %}
+  {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+    customTag: titleTag,
+    attr: {
+      "class": accordionHeaderClasses|join(' ')|trim
+    },
+  } %}
+    {% block customTagContent %}
+
+      <button {{ macros.addAttributes({
+        "type": "button",
+        "class": accordionHeaderButtonClasses|join(' ')|trim,
+        "aria-controls": idContent,
+        "aria-expanded": (isExpandedByDefault ? "true" : "false"),
+        "aria-label": "Expand Content"|t,
+        "data-target": "#" ~ idContent,
+        "data-toggle": "collapse",
+      }) }}>
+        <span {{ macros.addAttributes({
+          "class": accordionHeaderTitleClasses|join(' ')|trim,
+          "id": idTitle,
+        }) }}>
           {{ title }}
-        {% endblock %}
-      {% endembed %}
+        </span>
 
-      {% if isBlockEmphasisBlockDefined %}
-        <div class="{{ accordionHeaderEmphasisClasses|join(' ')|trim }}">
-          {{ block("emphasisBlock") }}
-        </div>
-      {% elseif hasEmphasis %}
-        <div class="{{ accordionHeaderEmphasisClasses|join(' ')|trim }}">
-          {{ emphasis|raw }}
-        </div>
-      {% endif %}
-
-      <div class="bf-accordion__header__icon">
-        {% include '@bf-components/icon/twig/index.twig' with {
-          name: buttonIcons.collapsed,
-          size: "small",
-          class: "bf-accordion__header__icon__collapsed",
-        } only %}
-        {% include '@bf-components/icon/twig/index.twig' with {
-          name: buttonIcons.expanded,
-          size: "small",
-          class: "bf-accordion__header__icon__expanded",
-        } only %}
-      </div>
-    </button>
-
-    <div {{ macros.addAttributes({
-      "class": accordionContentClasses|join(' ')|trim,
-      "data-parent": (hasIdParent ? idParent),
-      "id": idContent,
-    }) }}>
-      <div class="bf-accordion__content__container">
-        {% if isBlockContentBlockDefined %}
-          {{ block("contentBlock") }}
-        {% else %}
-          {{ content }}
+        {% if isBlockEmphasisBlockDefined %}
+          <div class="{{ accordionHeaderEmphasisClasses|join(' ')|trim }}">
+            {{ block("emphasisBlock") }}
+          </div>
+        {% elseif hasEmphasis %}
+          <div class="{{ accordionHeaderEmphasisClasses|join(' ')|trim }}">
+            {{ emphasis|raw }}
+          </div>
         {% endif %}
-      </div>
+
+        <div class="bf-accordion__header__icon">
+          {% include '@bf-components/icon/twig/index.twig' with {
+            name: buttonIcons.collapsed,
+            size: "small",
+            class: "bf-accordion__header__icon__collapsed",
+          } only %}
+          {% include '@bf-components/icon/twig/index.twig' with {
+            name: buttonIcons.expanded,
+            size: "small",
+            class: "bf-accordion__header__icon__expanded",
+          } only %}
+        </div>
+      </button>
+
+    {% endblock %}
+  {% endembed %}
+
+  <div {{ macros.addAttributes({
+    "class": accordionContentClasses|join(' ')|trim,
+    "data-parent": (hasIdParent ? idParent),
+    "id": idContent,
+    "role": "region",
+    "aria-labelledby": idTitle,
+  }) }}>
+    <div class="bf-accordion__content__container">
+      {% if isBlockContentBlockDefined %}
+        {{ block("contentBlock") }}
+      {% else %}
+        {{ content }}
+      {% endif %}
     </div>
+  </div>
 </div>

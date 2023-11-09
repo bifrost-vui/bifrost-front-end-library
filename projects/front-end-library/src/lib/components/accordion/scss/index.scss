@@ -46,50 +46,54 @@
 
   /* Header and Expand/collapse button */
   &__header {
-    display: grid;
-    align-items: center;
-    gap: 0.5rem;
-    width: 100%;
-    padding: var(--bf-accordion-padding-y) var(--bf-accordion-padding-x);
-    color: var(--bf-color-neutral-primary);
-    background: none;
-    border: none;
-    transition: padding-bottom 0.35s; // 0.35s is the same time as the accordion collapsing
+    margin-bottom: 0;
 
-    /* Icon position */
-    &--icon-position {
-      /* Left */
-      &--left {
-        grid-template-areas: 'icon title emphasis';
-        grid-template-columns: max-content max-content auto;
+    &__button {
+      display: grid;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: var(--bf-accordion-padding-y) var(--bf-accordion-padding-x);
+      color: var(--bf-color-neutral-primary);
+      background: none;
+      border: none;
+      transition: padding-bottom 0.35s; // 0.35s is the same time as the accordion collapsing
+
+      /* Icon position */
+      &--icon-position {
+        /* Left */
+        &--left {
+          grid-template-areas: 'icon title emphasis';
+          grid-template-columns: max-content max-content auto;
+        }
+
+        /* Right (default) */
+        &--right {
+          grid-template-areas: 'title emphasis icon';
+          grid-template-columns: max-content auto max-content;
+        }
       }
 
-      /* Right (default) */
-      &--right {
-        grid-template-areas: 'title emphasis icon';
-        grid-template-columns: max-content auto max-content;
+      /* When the accordion item is collapsed */
+      &[aria-expanded='false'] {
+        .bf-accordion__header__icon__collapsed {
+          display: block;
+        }
+        .bf-accordion__header__icon__expanded {
+          display: none;
+        }
       }
-    }
 
-    /* When the accordion item is collapsed */
-    &[aria-expanded='false'] {
-      .bf-accordion__header__icon__collapsed {
-        display: block;
-      }
-      .bf-accordion__header__icon__expanded {
-        display: none;
-      }
-    }
+      /* When the accordion item is expanded */
+      &[aria-expanded='true'] {
+        padding-bottom: 1rem;
 
-    /* When the accordion item is expanded */
-    &[aria-expanded='true'] {
-      padding-bottom: 1rem;
-
-      .bf-accordion__header__icon__collapsed {
-        display: none;
-      }
-      .bf-accordion__header__icon__expanded {
-        display: block;
+        .bf-accordion__header__icon__collapsed {
+          display: none;
+        }
+        .bf-accordion__header__icon__expanded {
+          display: block;
+        }
       }
     }
 
