@@ -7,42 +7,10 @@
 .bf-accordion {
   --bf-accordion-padding-x: 0;
   --bf-accordion-padding-y: 0;
+  --bf-accordion-bg-color: var(--bf-color-bg-ground);
 
-  /* Padding horizontal (x-axis) */
-  &--px {
-    &--sm {
-      --bf-accordion-padding-x: 0.5rem;
-    }
-    &--md {
-      --bf-accordion-padding-x: 1rem;
-    }
-    &--lg {
-      --bf-accordion-padding-x: 1.5rem;
-    }
-  }
-
-  /* Padding vertical (y-axis) */
-  &--py {
-    &--sm {
-      --bf-accordion-padding-y: 0.5rem;
-    }
-    &--md {
-      --bf-accordion-padding-y: 1rem;
-    }
-    &--lg {
-      --bf-accordion-padding-y: 1.5rem;
-    }
-  }
-
-  /* Has Border */
-  &--has-border {
-    border: 1px solid var(--bf-color-stroke-secondary);
-
-    /* Is border rounded */
-    &--rounded {
-      border-radius: var(--bf-border-radius-small);
-    }
-  }
+  color: var(--bf-color-neutral-primary);
+  background-color: var(--bf-accordion-bg-color);
 
   /* Header and Expand/collapse button */
   &__header {
@@ -142,6 +110,56 @@
       & *:last-child {
         margin-bottom: 0;
       }
+    }
+  }
+
+  /* Background colors */
+  &--bg-highlight {
+    --bf-accordion-bg-color: var(--bf-color-bg-highlight);
+
+    &,
+    & .bf-accordion__header__button,
+    & .bf-icon.color-primary svg {
+      color: var(--bf-color-primary-irreversible);
+    }
+  }
+  &--bg-underground {
+    --bf-accordion-bg-color: var(--bf-color-bg-underground);
+  }
+
+  /* Padding horizontal (x-axis) */
+  &--px {
+    &--sm {
+      --bf-accordion-padding-x: 0.5rem;
+    }
+    &--md {
+      --bf-accordion-padding-x: 1rem;
+    }
+    &--lg {
+      --bf-accordion-padding-x: 1.5rem;
+    }
+  }
+
+  /* Padding vertical (y-axis) */
+  &--py {
+    &--sm {
+      --bf-accordion-padding-y: 0.5rem;
+    }
+    &--md {
+      --bf-accordion-padding-y: 1rem;
+    }
+    &--lg {
+      --bf-accordion-padding-y: 1.5rem;
+    }
+  }
+
+  /* Has Border */
+  &--has-border {
+    border: 1px solid var(--bf-color-stroke-secondary);
+
+    /* Is border rounded */
+    &--rounded {
+      border-radius: var(--bf-border-radius-small);
     }
   }
 }

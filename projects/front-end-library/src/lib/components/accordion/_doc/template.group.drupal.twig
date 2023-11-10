@@ -1,5 +1,6 @@
 {# Default Variables (Props, Controls) #}
 {% set _reversed = _reversed|json_parse %}
+{% set background = background|json_parse %}
 {% set class = class|json_parse %}
 {% set content = content|json_parse %}
 {% set emphasis = emphasis|json_parse %}
@@ -57,6 +58,7 @@
       <div id="{{ idParent is not empty ? idParent ~ index }}">
         {% for indexAccordion in [1, 2, 3, 4] %}
           {% include "@bf-components/accordion/twig/index.twig" with {
+              background: background,
               class: class,
               content: content,
               emphasis: emphasis,

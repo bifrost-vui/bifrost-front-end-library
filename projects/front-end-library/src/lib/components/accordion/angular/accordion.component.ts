@@ -10,6 +10,12 @@ export class AccordionComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
+     * Background color of the Accordion element.
+     */
+    @Input() background: 'ground' | 'underground' | 'highlight' = 'ground';
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * Custom classes on Accordion main element.
      */
     @Input() class: string;

@@ -2,6 +2,7 @@
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
 {# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set background = background|default("ground") %}
 {% set emphasisPosition = emphasisPosition|default("left") %}
 {% set iconPosition = iconPosition|default("right") %}
 {% set iconType = iconType|default("chevron") %}
@@ -15,6 +16,9 @@
 {% set hasBorder = (hasBorder ?? true) is same as(true) %}
 {% set hasEmphasis = emphasis is defined and emphasis is not empty %}
 {% set hasIdParent = idParent is defined and idParent is not empty %}
+{% set isBackgroundGround = background is same as("ground") %}
+{% set isBackgroundHighlight = background is same as("highlight") %}
+{% set isBackgroundUnderground = background is same as("underground") %}
 {% set isBlockContentBlockDefined = block("contentBlock") is defined %}
 {% set isBlockEmphasisBlockDefined = block("emphasisBlock") is defined %}
 {% set isExpandedByDefault = (isExpandedByDefault ?? false) is same as(true) %}
@@ -69,6 +73,9 @@
 {% set accordionClasses = [
   "bf-accordion",
   (hasBorder ? "bf-accordion--has-border"),
+  (isBackgroundGround ? "bf-accordion--bg-ground"),
+  (isBackgroundHighlight ? "bf-accordion--bg-highlight"),
+  (isBackgroundUnderground ? "bf-accordion--bg-underground"),
   (isPaddingXSmall ? "bf-accordion--px--sm"),
   (isPaddingXMedium ? "bf-accordion--px--md"),
   (isPaddingXLarge ? "bf-accordion--px--lg"),

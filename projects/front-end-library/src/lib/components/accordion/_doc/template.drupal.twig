@@ -1,5 +1,6 @@
 {# Default Variables (Props, Controls) #}
 {% set _reversed = _reversed|json_parse %}
+{% set background = background|json_parse %}
 {% set class = class|json_parse %}
 {% set content = content|json_parse %}
 {% set emphasis = emphasis|json_parse %}
@@ -41,6 +42,7 @@
 
     <div class="{{ innerContainerClasses|join(' ')|trim }}">
       {% include "@bf-components/accordion/twig/index.twig" with {
+          background: background,
           class: class,
           content: content,
           emphasis: emphasis,
