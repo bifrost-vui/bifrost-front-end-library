@@ -1,0 +1,68 @@
+{# Default Variables (Props, Controls) #}
+{% set _reversed = _reversed|json_parse %}
+{% set background = background|json_parse %}
+{% set class = class|json_parse %}
+{% set content = content|json_parse %}
+{% set emphasis = emphasis|json_parse %}
+{% set emphasisPosition = emphasisPosition|json_parse %}
+{% set hasBorder = hasBorder|json_parse %}
+{% set iconPosition = iconPosition|json_parse %}
+{% set iconType = iconType|json_parse %}
+{% set id = id|json_parse %}
+{% set idParent = idParent|json_parse %}
+{% set isBorderRounded = isBorderRounded|json_parse %}
+{% set isDisabled = isDisabled|json_parse %}
+{% set isExpandedByDefault = isExpandedByDefault|json_parse %}
+{% set paddingX = paddingX|json_parse %}
+{% set paddingY = paddingY|json_parse %}
+{% set title = title|json_parse %}
+{% set titleSize = titleSize|json_parse %}
+{% set titleTag = titleTag|json_parse %}
+{% set titleWeight = titleWeight|json_parse %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "d-flex flex-column flex-sm-row justify-content-center minh-100",
+  (_reversed ? "reversed bf-color-bg-ground"),
+] %}
+
+{# Template #}
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
+
+  {% for index in [1, 2] %}
+
+    {# In Loop : Boolean Variables #}
+    {% set isReversed = index == 2 and _reversed is not defined %}
+
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set innerContainerClasses = [
+      "w-100 p-4",
+      (isReversed ? "reversed bf-color-bg-ground"),
+    ] %}
+
+    <div class="{{ innerContainerClasses|join(' ')|trim }}">
+      {% include "@bf-components/accordion/twig/index.twig" with {
+          background: background,
+          class: class,
+          content: content,
+          emphasis: emphasis,
+          emphasisPosition: emphasisPosition,
+          hasBorder: hasBorder,
+          iconPosition: iconPosition,
+          iconType: iconType,
+          id: id ~ index,
+          idParent: idParent,
+          isBorderRounded: isBorderRounded,
+          isDisabled: isDisabled,
+          isExpandedByDefault: isExpandedByDefault,
+          paddingX: paddingX,
+          paddingY: paddingY,
+          title: title,
+          titleSize: titleSize,
+          titleTag: titleTag,
+          titleWeight: titleWeight,
+      } only %}
+    </div>
+  {% endfor %}
+
+</div>

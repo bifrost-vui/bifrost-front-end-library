@@ -1,0 +1,275 @@
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { AccordionComponent } from '../angular/accordion.component';
+import { AccordionTemplateComponent } from './template.angular.component';
+
+<Meta
+    title="Components/Accordion"
+    component={AccordionComponent}
+    decorators={[
+        moduleMetadata({ declarations: [AccordionComponent, AccordionTemplateComponent, TwigContainerComponent] }),
+        withDesign,
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/FkPUN7xRQi0wJrXXdDIoO4/DS-Library-DONT-YOU-DARE-USING-IT?node-id=3240%3A619',
+            disable: false,
+        },
+    }}
+    argTypes={{}}
+/>
+
+# Accordion
+
+## Group of accordions
+
+The base behavior of a group of accordions within one same container will be that all accordions can be opened
+at the same time. If the behavior needed is only one accordion opened at a time, then you must put an `id` attribute
+on the accordions container element and then reference that `id` in this component property `idParent`.
+
+Here's an example, the main focus in this code below is the `accordionsGroup` ID that is referenced in all three
+accordion items `idParent` property. This implementation will make the group open only one accordion at a time.
+
+```jsx
+<div id="accordionsGroup">
+    {# First accordion item #}
+    {% include '@bf-components/accordion/twig/index.twig' with {
+        id: 'accordionNumberOne',
+        idParent: 'accordionsGroup',
+        ...allOtherProps,
+    } only %}
+
+    {# Second accordion item #}
+    {% include '@bf-components/accordion/twig/index.twig' with {
+        id: 'accordionNumberTwo',
+        idParent: 'accordionsGroup',
+        ...allOtherProps,
+    } only %}
+
+    {# Third accordion item #}
+    {% include '@bf-components/accordion/twig/index.twig' with {
+        id: 'accordionNumberThree',
+        idParent: 'accordionsGroup',
+        ...allOtherProps,
+    } only %}
+</div>
+```
+
+<br />
+
+## Component API
+
+<ArgsTable of={AccordionComponent} />
+
+## Drupal implementation example
+
+### Use `content` and/or `emphasis` properties and no Twig blocks
+
+```jsx
+{% include "@bf-components/accordion/twig/index.twig" with {
+    class: "custom-classes",
+    content: `
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
+    `,
+    emphasis: `
+        <div class="px-1 bf-color-primary-irreversible bf-color-bg-highlight">
+            Lorem ipsum
+        </div>
+    `,
+    emphasisPosition: "left",
+    hasBorder: true,
+    iconPosition: "right",
+    iconType: "chevron",
+    id: "accordion-id",
+    idParent: "accordion-parent-id",
+    isBorderRounded: true,
+    isDisabled: false,
+    isExpandedByDefault: false,
+    paddingX: "medium",
+    paddingY: "medium",
+    title: "Accordion Title",
+    titleSize: "normal",
+    titleTag: "div",
+    titleWeight: "bold",
+} only %}
+```
+
+### Use `contentBlock` and/or `emphasisBlock` Twig blocks
+
+```jsx
+{% embed "@bf-components/accordion/twig/index.twig" with {
+    class: "custom-classes",
+    emphasisPosition: "left",
+    hasBorder: true,
+    iconPosition: "right",
+    iconType: "chevron",
+    id: "accordion-id",
+    idParent: "accordion-parent-id",
+    isBorderRounded: true,
+    isDisabled: false,
+    isExpandedByDefault: false,
+    paddingX: "medium",
+    paddingY: "medium",
+    title: "Accordion Title",
+    titleSize: "normal",
+    titleTag: "div",
+    titleWeight: "bold",
+} %}
+    {% block emphasisBlock %}
+        {% include '@bf-components/badge/twig/index.twig' with {
+            angle: 'left',
+            class: 'my-2',
+            customBgColor: '#ff0000',
+            customFontColor: '#ffffff',
+            hierarchy: 'primary',
+            iconName: 'camera',
+            isRounded: false,
+            label: 'Free',
+            noUppercase: false,
+        } only %}
+    {% endblock %}
+
+    {% block contentBlock %}
+        {# Div with content #}
+        <div>
+            <p>Mauris pulvinar ultrices quam eget sodales. Ut pellentesque nunc id ipsum imperdiet tristique.</p>
+            <p>Aliquam sit amet posuere justo. Etiam et ante elit. Curabitur vel dui dapibus orci euismod vehicula non a magna.</p>
+        </div>
+
+        {# Inclusion of another component #}
+        {% include '@bf-components/icon/twig/index.twig' with {
+            name: 'my-account',
+            size: 'large',
+        } only %}
+    {% endblock %}
+{% endembed %}
+```
+
+## Drupal
+
+export const commonProps = {
+    content: `
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Fusce elementum tortor quis libero volutpat, vulputate tincidunt turpis commodo.
+            Pellentesque blandit erat sed finibus ullamcorper.
+        </p>
+        <ul>
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Maecenas vitae molestie arcu</li>
+            <li>Duis congue id quam a luctus</li>
+            <li>Vestibulum ut scelerisque leo</li>
+        </ul>
+    `,
+    iconPosition: 'right',
+    iconType: 'chevron',
+    id: 'item_no_1',
+    title: 'Accordion Title',
+    titleSize: 'normal',
+    titleTag: 'div',
+    titleWeight: 'bold',
+};
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal"
+        height="300px"
+        args={{
+            elementPath: 'components/accordion/_doc/template.drupal',
+            ...commonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - With emphasis"
+        height="300px"
+        args={{
+            elementPath: 'components/accordion/_doc/template.drupal',
+            ...commonProps,
+            emphasis: '<div class="px-1 bf-color-primary-irreversible bf-color-bg-highlight">Lorem ipsum</div>',
+            emphasisPosition: 'left',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Expanded by default"
+        height="300px"
+        args={{
+            elementPath: 'components/accordion/_doc/template.drupal',
+            ...commonProps,
+            isExpandedByDefault: true,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Group of accordions"
+        height="300px"
+        args={{
+            elementPath: 'components/accordion/_doc/template.group.drupal',
+            ...commonProps,
+            _rootPath: window.location.host,
+            idParent: 'accordionsGroup',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<!--
+For now, Angular components ar not used, so it is hidden by default.
+
+## Angular
+
+export const Angular = (args) => ({
+  component: AccordionTemplateComponent,
+  props: args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Angular'
+        args={{
+            label: 'Accordion'
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+## Angular implementation example
+
+Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
+
+
+## Design Guidelines
+
+<iframe
+    width="100%"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FFkPUN7xRQi0wJrXXdDIoO4%2FDS-Library-DONT-YOU-DARE-USING-IT%3Fnode-id%3D3240%253A619&chrome=DOCUMENTATION"
+    frameBorder="0"
+    allowFullScreen
+></iframe>
+-->
