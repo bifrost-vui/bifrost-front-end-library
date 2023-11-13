@@ -1,0 +1,59 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasId = id is defined and id is not empty %}
+{% set hasNumberOfSelections = numberOfSelections is defined and numberOfSelections is not empty %}
+
+{# Default Variables #}
+{% set class = class|default("") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set filterClasses = [
+  "bf-filter",
+  (class),
+] %}
+
+{# Template #}
+{% embed "@bf-components/accordion/twig/index.twig" with {
+  class: filterClasses|join(' ')|trim,
+  id: id,
+  idParent: idParent,
+  isDisabled: isDisabled,
+  isExpandedByDefault: isExpandedByDefault,
+  title: title,
+  background: "ground",
+  emphasisPosition: "left",
+  hasBorder: false,
+  iconPosition: "right",
+  iconType: "plus-minus",
+  isBorderRounded: false,
+  paddingX: "none",
+  paddingY: "large",
+  titleSize: "normal",
+  titleTag: "div",
+  titleWeight: "bold",
+} %}
+    {% block emphasisBlock %}
+      {% include '@bf-components/badge/twig/index.twig' with {
+          fontSize: "medium",
+          hierarchy: "tertiary",
+          isRounded: true,
+          label: numberOfSelections,
+      } only %}
+    {% endblock %}
+
+    {% block contentBlock %}
+        {# Div with content #}
+        <div>
+            <p>Mauris pulvinar ultrices quam eget sodales. Ut pellentesque nunc id ipsum imperdiet tristique.</p>
+            <p>Aliquam sit amet posuere justo. Etiam et ante elit. Curabitur vel dui dapibus orci euismod vehicula non a magna.</p>
+        </div>
+
+        {# Inclusion of another component #}
+        {% include '@bf-components/icon/twig/index.twig' with {
+            name: 'my-account',
+            size: 'large',
+        } only %}
+    {% endblock %}
+{% endembed %}

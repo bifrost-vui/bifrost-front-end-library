@@ -1,0 +1,103 @@
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { FilterComponent } from '../angular/filter.component';
+import { FilterTemplateComponent } from './template.angular.component';
+
+<Meta
+    title="Components/Filter"
+    component={FilterComponent}
+    decorators={[
+        moduleMetadata({ declarations: [FilterComponent, FilterTemplateComponent, TwigContainerComponent] }),
+        withDesign,
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/wyySEz6WHDO09OirHADRUT/TMO---PLP-Filtres---PDP-Ran---Explorations?type=design&node-id=1454-105722&mode=dev',
+            disable: false,
+        },
+    }}
+    argTypes={{}}
+/>
+
+# Filter
+
+<br />
+
+## Component API
+
+<ArgsTable of={FilterComponent} />
+
+## Drupal implementation example
+
+```jsx
+{% include '@bf-components/filter/twig/index.twig' with {
+    // Add relevant props here
+} only %}
+```
+
+## Drupal
+
+export const commonProps = {
+    id: 'filter_item_no_1',
+    isDisabled: false,
+    isExpandedByDefault: false,
+    numberOfSelections: '99 selections',
+    title: 'Title',
+};
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal"
+        height="300px"
+        args={{
+            elementPath: 'components/filter/_doc/template.drupal',
+            ...commonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<!--
+For now, Angular components ar not used, so it is hidden by default.
+
+## Angular
+
+export const Angular = (args) => ({
+  component: FilterTemplateComponent,
+  props: args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Angular'
+        args={{
+            label: 'Filter'
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+## Angular implementation example
+
+Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
+-->
+
+## Design Guidelines
+
+<iframe
+    width="100%"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FwyySEz6WHDO09OirHADRUT%2FTMO---PLP-Filtres---PDP-Ran---Explorations%3Ftype%3Ddesign%26node-id%3D1454-105722"
+    frameBorder="0"
+    allowFullScreen
+></iframe>
