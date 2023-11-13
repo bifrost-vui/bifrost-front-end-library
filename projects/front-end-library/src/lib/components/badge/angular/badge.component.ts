@@ -46,6 +46,8 @@ export class BadgeComponent implements IBadge, OnInit, OnChanges {
      */
     @Input() customFontColor: string;
     /** <span style="color: orange;">__Optional__</span> */
+    @Input() fontSize: 'small' | 'medium' = 'small';
+    /** <span style="color: orange;">__Optional__</span> */
     @Input() hierarchy: 'primary' | 'secondary' | 'tertiary' | 'tertiary-ground' = 'secondary';
     /** <span style="color: orange;">__Optional__</span> */
     @Input() iconName: string;

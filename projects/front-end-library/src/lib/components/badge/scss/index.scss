@@ -8,33 +8,23 @@
   display: flex;
 
   &--primary .bf-badge__inner {
-    --bf-badge-font-color: var(--bf-color-bg-ground);
-    --bf-badge-bg-color: var(--bf-color-neutral-primary);
-    .bf-icon svg:not(.fill-highlight) {
-      color: var(--bf-badge-font-color);
-    }
+    --bf-badge-default-font-color: var(--bf-color-bg-ground);
+    --bf-badge-default-bg-color: var(--bf-color-neutral-primary);
   }
 
   &--secondary .bf-badge__inner {
-    --bf-badge-bg-color: var(--bf-color-feedback-neutral);
-    --bf-badge-font-color: var(--bf-color-neutral-primary);
-    @at-root .reversed.bf-badge--secondary,
-      .reversed .bf-badge--secondary {
-      --bf-badge-font-color: var(--bf-color-primary-irreversible);
-      .bf-icon svg:not(.fill-highlight) {
-        color: var(--bf-badge-font-color);
-      }
-    }
+    --bf-badge-default-bg-color: var(--bf-color-feedback-neutral);
+    --bf-badge-default-font-color: var(--bf-color-neutral-primary);
   }
 
   &--tertiary .bf-badge__inner {
-    --bf-badge-bg-color: var(--bf-color-bg-underground);
-    --bf-badge-font-color: var(--bf-color-neutral-primary);
+    --bf-badge-default-bg-color: var(--bf-color-bg-underground);
+    --bf-badge-default-font-color: var(--bf-color-neutral-primary);
   }
 
   &--tertiary-ground .bf-badge__inner {
-    --bf-badge-bg-color: var(--bf-color-bg-ground);
-    --bf-badge-font-color: var(--bf-color-neutral-primary);
+    --bf-badge-default-bg-color: var(--bf-color-bg-ground);
+    --bf-badge-default-font-color: var(--bf-color-neutral-primary);
   }
 
   &__inner {
@@ -43,13 +33,25 @@
     align-items: center;
     padding: 0 0.5rem;
     min-height: 1.5rem;
-    color: var(--bf-badge-font-color);
-    background-color: var(--bf-badge-bg-color);
+    color: var(--bf-badge-default-font-color);
+    background-color: var(--bf-badge-default-bg-color);
 
     .bf-icon svg:not(.fill-highlight) {
+      color: var(--bf-badge-default-font-color);
+    }
+
+    @at-root .bf-badge--has-custom-bg-color & {
+      background-color: var(--bf-badge-bg-color);
+    }
+
+    @at-root .bf-badge--has-custom-font-color & {
       color: var(--bf-badge-font-color);
+      .bf-icon svg:not(.fill-highlight) {
+        color: var(--bf-badge-font-color);
+      }
     }
   }
+
   &__label {
     display: flex;
     flex-flow: row;
@@ -109,14 +111,11 @@
   }
 }
 
-// Apply White color when badge is dark and reversed.
+// Apply Black color when badge is highlight and reversed.
 .reversed .bf-badge,
 .reversed.bf-badge {
-  &--primary svg {
-    color: var(--bf-color-primary-irreversible);
-  }
-  &--dark {
-    --bf-badge-bg-color: var(--bf-color-neutral-primary);
+  &--secondary .bf-badge__inner {
+    --bf-badge-default-font-color: var(--bf-color-primary-irreversible);
   }
 }
 
