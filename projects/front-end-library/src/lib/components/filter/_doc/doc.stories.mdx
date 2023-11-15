@@ -4,6 +4,7 @@ import { withDesign } from 'storybook-addon-designs';
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { FilterComponent } from '../angular/filter.component';
 import { FilterTemplateComponent } from './template.angular.component';
+import { dataCheckboxes, dataSlider } from './data.ts';
 
 <Meta
     title="Components/Filter"
@@ -44,8 +45,8 @@ export const commonProps = {
     id: 'filter_item_no_1',
     isDisabled: false,
     isExpandedByDefault: false,
-    numberOfSelections: '99 selections',
-    title: 'Title',
+    numberOfSelections: '99',
+    title: 'Système d’exploitation',
 };
 
 export const Drupal = (args) => ({
@@ -55,7 +56,35 @@ export const Drupal = (args) => ({
 
 <Canvas withSource="none">
     <Story
-        name="Drupal"
+        name="Drupal - Checkboxes"
+        height="300px"
+        args={{
+            elementPath: 'components/filter/_doc/template.drupal',
+            ...commonProps,
+            dataCheckboxes: dataCheckboxes,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Input Slider"
+        height="300px"
+        args={{
+            elementPath: 'components/filter/_doc/template.drupal',
+            ...commonProps,
+            dataSlider: dataSlider,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Twig Block"
         height="300px"
         args={{
             elementPath: 'components/filter/_doc/template.drupal',

@@ -2,11 +2,19 @@
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
 {# Boolean Variables #}
+{% set hasDataCheckboxes = dataCheckboxes is defined and dataCheckboxes is not empty %}
+{% set hasDataSlider = dataSlider is defined and dataSlider is not empty %}
 {% set hasId = id is defined and id is not empty %}
 {% set hasNumberOfSelections = numberOfSelections is defined and numberOfSelections is not empty %}
+{% set isBlockFilterContentBlockDefined = block("filterContentBlock") is defined %}
 
 {# Default Variables #}
 {% set class = class|default("") %}
+
+{# Component Variables #}
+{% if isBlockFilterContentBlockDefined %}
+  {% set filterContentBlock = block("filterContentBlock") %}
+{% endif %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set filterClasses = [
@@ -44,16 +52,21 @@
     {% endblock %}
 
     {% block contentBlock %}
-        {# Div with content #}
-        <div>
-            <p>Mauris pulvinar ultrices quam eget sodales. Ut pellentesque nunc id ipsum imperdiet tristique.</p>
-            <p>Aliquam sit amet posuere justo. Etiam et ante elit. Curabitur vel dui dapibus orci euismod vehicula non a magna.</p>
-        </div>
 
-        {# Inclusion of another component #}
-        {% include '@bf-components/icon/twig/index.twig' with {
-            name: 'my-account',
-            size: 'large',
-        } only %}
+      {# Checkboxes filter #}
+      {% if hasDataCheckboxes %}
+        {% include '@bf-components/input-checkbox/twig/index.twig' with dataCheckboxes only %}
+      {% endif %}
+
+      {# Slider filter #}
+      {% if hasDataSlider %}
+        {% include '@bf-components/input-slider/twig/index.twig' with dataSlider only %}
+      {% endif %}
+
+      {# Other type filter #}
+      {% if isBlockFilterContentBlockDefined %}
+        {{ filterContentBlock }}
+      {% endif %}
+
     {% endblock %}
 {% endembed %}

@@ -1,12 +1,18 @@
 {# Default Variables (Props, Controls) #}
 {% set _reversed = _reversed|json_parse %}
 {% set class = class|json_parse %}
+{% set dataCheckboxes = dataCheckboxes|json_parse %}
+{% set dataSlider = dataSlider|json_parse %}
 {% set id = id|json_parse %}
 {% set idParent = idParent|json_parse %}
 {% set isDisabled = isDisabled|json_parse %}
 {% set isExpandedByDefault = isExpandedByDefault|json_parse %}
 {% set numberOfSelections = numberOfSelections|json_parse %}
 {% set title = title|json_parse %}
+
+{# Boolean Variables #}
+{% set hasDataCheckboxes = dataCheckboxes is defined and dataCheckboxes is not empty %}
+{% set hasDataSlider = dataSlider is defined and dataSlider is not empty %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set mainContainerClasses = [
@@ -29,15 +35,40 @@
     ] %}
 
     <div class="{{ innerContainerClasses|join(' ')|trim }}">
-      {% include "@bf-components/filter/twig/index.twig" with {
-        class: class,
-        id: id ~ index,
-        idParent: idParent,
-        isDisabled: isDisabled,
-        isExpandedByDefault: isExpandedByDefault,
-        numberOfSelections: numberOfSelections,
-        title: title,
-    } only %}
+
+      {% if hasDataCheckboxes or hasDataSlider %}
+        {# Checkboxes or Slider Filter #}
+        {% include "@bf-components/filter/twig/index.twig" with {
+          class: class,
+          dataCheckboxes: dataCheckboxes,
+          dataSlider: dataSlider,
+          id: id ~ index,
+          idParent: idParent,
+          isDisabled: isDisabled,
+          isExpandedByDefault: isExpandedByDefault,
+          numberOfSelections: numberOfSelections,
+          title: title,
+        } only %}
+      {% else %}
+        {# Twig Block --> filterContentBlock #}
+        {% embed "@bf-components/filter/twig/index.twig" with {
+          class: class,
+          dataCheckboxes: dataCheckboxes,
+          dataSlider: dataSlider,
+          id: id ~ index,
+          idParent: idParent,
+          isDisabled: isDisabled,
+          isExpandedByDefault: isExpandedByDefault,
+          numberOfSelections: numberOfSelections,
+          title: title,
+        } only %}
+          {% block filterContentBlock %}
+            <p>You can apply any type of content here using the Twig block:</p>
+            <pre class="d-inline-block bf-color-neutral-primary bf-color-bg-underground p-2">filterContentBlock</pre>
+          {% endblock %}
+        {% endembed %}
+      {% endif %}
+
     </div>
   {% endfor %}
 

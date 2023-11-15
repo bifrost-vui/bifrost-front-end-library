@@ -1,0 +1,81 @@
+export const dataCheckboxes = {
+    name: 'brand',
+    options: [
+        {
+            id: 'filter-1',
+            isChecked: true,
+            isDisabled: false,
+            label: 'Apple',
+            labelTypography: 'paragraph-default',
+            value: 'Apple',
+        },
+        {
+            id: 'filter-2',
+            isChecked: true,
+            isDisabled: false,
+            label: 'Samsung',
+            labelTypography: 'paragraph-default',
+            value: 'Samsung',
+        },
+        {
+            id: 'filter-3',
+            isChecked: false,
+            isDisabled: false,
+            label: 'Google',
+            labelTypography: 'paragraph-default',
+            value: 'Google',
+        },
+        {
+            id: 'filter-4',
+            isChecked: false,
+            isDisabled: false,
+            label: 'Motorola',
+            labelTypography: 'paragraph-default',
+            value: 'Motorola',
+        },
+        {
+            id: 'filter-5',
+            isChecked: false,
+            isDisabled: false,
+            label: 'TLC',
+            labelTypography: 'paragraph-default',
+            value: 'TLC',
+        },
+        {
+            id: 'filter-6',
+            isChecked: false,
+            isDisabled: false,
+            label: 'LG',
+            labelTypography: 'paragraph-default',
+            value: 'LG',
+        },
+        {
+            id: 'filter-7',
+            isChecked: false,
+            isDisabled: true,
+            label: 'Alcatel',
+            labelTypography: 'paragraph-default',
+            value: 'Alcatel',
+        },
+    ],
+};
+
+export const dataSlider = {
+    max: {
+        description: '$999/month',
+        inputId: 'inputIdMax',
+        legend: 'Maximum',
+        value: 999,
+    },
+    min: {
+        description: '$0/month',
+        inputId: 'inputIdMin',
+        legend: 'Minimum',
+        value: 0,
+    },
+    minimumGap: 20,
+    step: 10,
+    unitLabel: '$',
+    unitPosition: 'start',
+    value: [0, 999],
+};
