@@ -1,15 +1,16 @@
 export interface IInputCheckboxOption {
+    ariaLabel?: string;
+    class?: string;
+    extraAttribute?: string;
     id: string;
-    name: string;
-    value: string;
-    isChecked: boolean;
-    label: HTMLElement;
-    labelClass: string;
-    labelExtraAttribute: string;
-    isRequired: boolean;
-    isDisabled: boolean;
-    isInvalid: boolean;
-    ariaLabel: string;
-    extraAttribute: string;
-    class: string;
+    isChecked?: boolean;
+    isDisabled?: boolean;
+    isInvalid?: boolean;
+    isRequired?: boolean;
+    label?: HTMLElement;
+    labelClass?: string;
+    labelExtraAttribute?: string;
+    labelTypography?: 'paragraph-default' | 'display-sub-medium';
+    name?: string;
+    value?: string;
 }

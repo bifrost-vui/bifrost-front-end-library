@@ -122,6 +122,12 @@ export class InputCheckboxOptionComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
+     * Label's text typography style.
+     */
+    @Input() labelTypography: 'paragraph-default' | 'display-sub-medium' = 'display-sub-medium';
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * This value will be put in the `name` attribute on the `<input>` element.
      */
     @Input() name: string;
