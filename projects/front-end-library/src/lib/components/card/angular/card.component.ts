@@ -205,6 +205,14 @@ export class CardComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
+     * - Only available in the __phone__ card type.
+     * - Change the display of the card on mobile resolution only.
+     * - The image is in the left column and the rest is in the right column.
+     */
+    @Input() isTwoColsMobileVariant: boolean = false;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * - It is displayed below the subtitle.
      * - See `ICardLink`
      *    <a href="/?path=/docs/components-card-api--page#icardlink-api" target="_blank">API</a>
