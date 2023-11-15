@@ -1,8 +1,13 @@
 {# Default Variables (Props, Controls) #}
-{% set options = options|json_parse %}
 {% set areOptionTiles = areOptionTiles|json_parse %}
 {% set areOptionTilesInline = areOptionTilesInline|json_parse %}
 {% set areOptionTilesLarge = areOptionTilesLarge|json_parse %}
+{% set class = class|json_parse %}
+{% set description = description|json_parse %}
+{% set errorMessage = errorMessage|json_parse %}
+{% set label = label|json_parse %}
+{% set name = name|json_parse %}
+{% set options = options|json_parse %}
 
 {% set _variants = [
   {
@@ -44,11 +49,13 @@
     <div class="{{ variantContainerClasses|join(' ')|trim }}">
       {% set loopIndexSuffix = "--" ~ loop.index %}
 
-      {% set _variantProps =
-        _variant.props|merge({
-          name: name ~ loopIndexSuffix
-        })
-      %}
+      {% if name is defined and name is not empty %}
+        {% set _variantProps =
+          _variant.props|merge({
+            name: name ~ loopIndexSuffix
+          })
+        %}
+      {% endif %}
 
       {% if (options|length) == 1 %}
         {% set options = [
