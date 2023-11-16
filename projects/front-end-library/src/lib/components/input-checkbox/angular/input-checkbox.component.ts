@@ -51,6 +51,12 @@ export class InputCheckboxComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
+     * Component `id` attribute.
+     */
+    @Input() id: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * Component label / main title.
      */
     @Input() label: string;

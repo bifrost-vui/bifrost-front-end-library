@@ -1,4 +1,5 @@
 {# Boolean Variables #}
+{% set hasId = id is defined and id is not empty %}
 {% set hasName = name is defined and name is not empty %}
 {% set hasOptions = options is defined and options is not empty %}
 {% set areOptionTiles = (areOptionTiles ?? false) is same as(true) %}
@@ -22,6 +23,7 @@
 {# Template #}
 {% embed "@bf-components/input/twig/index.twig" with {
   class: fieldsetClasses|join(' ')|trim,
+  idFieldset: (hasId ? id),
   isLabelLegend: true,
 } %}
   {% block inputContent %}
