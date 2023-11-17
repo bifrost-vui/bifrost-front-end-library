@@ -1,12 +1,15 @@
 {# Import macros #}
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set numberOfCheckboxesToDisplay = numberOfCheckboxesToDisplay|default(8) %}
+
 {# Boolean Variables #}
 {% set hasDataCheckboxes = dataCheckboxes is defined and dataCheckboxes is not empty %}
 {% set hasDataSlider = dataSlider is defined and dataSlider is not empty %}
 {% set hasId = id is defined and id is not empty %}
-{% set hasNumberOfSelections = numberOfSelections is defined and numberOfSelections is not empty %}
 {% set isBlockFilterContentBlockDefined = block("filterContentBlock") is defined %}
+{% set isCheckboxesLengthHigherThanDisplay = dataCheckboxes.options|length > numberOfCheckboxesToDisplay %}
 
 {# Default Variables #}
 {% set class = class|default("") %}
@@ -18,8 +21,16 @@
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set filterClasses = [
-  "bf-filter",
+  "bf-filter js-bf-filter",
   (class),
+] %}
+{% set filterNumberSelectionsClasses = [
+  "bf-filter__nb-selection js-bf-filter__nb-selection",
+  (hasDataCheckboxes ? "bf-filter__nb-selection--zero"),
+] %}
+{% set filterCheckboxesClasses = [
+  "bf-filter__checkboxes js-bf-filter__checkboxes",
+  (isCheckboxesLengthHigherThanDisplay ? "bf-filter__checkboxes--limit-height"),
 ] %}
 
 {# Template #}
@@ -43,19 +54,45 @@
   titleWeight: "bold",
 } %}
     {% block emphasisBlock %}
-      {% include '@bf-components/badge/twig/index.twig' with {
-          fontSize: "medium",
-          hierarchy: "tertiary",
-          isRounded: true,
-          label: numberOfSelections,
-      } only %}
+      {% if hasDataCheckboxes %}
+        {% include '@bf-components/badge/twig/index.twig' with {
+            class: filterNumberSelectionsClasses|join(' ')|trim,
+            fontSize: "medium",
+            hierarchy: "tertiary",
+            isRounded: true,
+            label: "0",
+        } only %}
+      {% endif %}
     {% endblock %}
 
     {% block contentBlock %}
 
       {# Checkboxes filter #}
       {% if hasDataCheckboxes %}
+        {% set dataCheckboxes =
+          dataCheckboxes|merge({
+            class: filterCheckboxesClasses|join(' ')|trim,
+            extraAttribute: {
+              "data-nb-checkboxes-display": numberOfCheckboxesToDisplay|number_format
+            }
+          })
+        %}
         {% include '@bf-components/input-checkbox/twig/index.twig' with dataCheckboxes only %}
+
+        {% if isCheckboxesLengthHigherThanDisplay %}
+          <button {{ macros.addAttributes({
+            "aria-controls": dataCheckboxes.id,
+            "class": "bf-filter__checkboxes__toggle-height js-bf-filter__checkboxes__see-more bf-link bf-link--native",
+          }) }}>
+            {{ "See more"|t }}
+          </button>
+          <button {{ macros.addAttributes({
+            "aria-controls": dataCheckboxes.id,
+            "class": "bf-filter__checkboxes__toggle-height js-bf-filter__checkboxes__see-less d-none bf-link bf-link--native",
+          }) }}>
+            {{ "See less"|t }}
+          </button>
+        {% endif %}
       {% endif %}
 
       {# Slider filter #}

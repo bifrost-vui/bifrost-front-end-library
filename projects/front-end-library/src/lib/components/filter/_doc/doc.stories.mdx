@@ -4,7 +4,7 @@ import { withDesign } from 'storybook-addon-designs';
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { FilterComponent } from '../angular/filter.component';
 import { FilterTemplateComponent } from './template.angular.component';
-import { dataCheckboxes, dataSlider } from './data.ts';
+import { dataCheckboxes, dataCheckboxesMoreThanEight, dataSlider } from './data.ts';
 
 <Meta
     title="Components/Filter"
@@ -44,9 +44,7 @@ import { dataCheckboxes, dataSlider } from './data.ts';
 export const commonProps = {
     id: 'filter_item_no_1',
     isDisabled: false,
-    isExpandedByDefault: false,
-    numberOfSelections: '99',
-    title: 'Système d’exploitation',
+    isExpandedByDefault: true,
 };
 
 export const Drupal = (args) => ({
@@ -56,12 +54,42 @@ export const Drupal = (args) => ({
 
 <Canvas withSource="none">
     <Story
+        name="Drupal - Twig Block"
+        height="300px"
+        args={{
+            elementPath: 'components/filter/_doc/template.drupal',
+            ...commonProps,
+            title: 'Système d’exploitation',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
         name="Drupal - Checkboxes"
         height="300px"
         args={{
             elementPath: 'components/filter/_doc/template.drupal',
             ...commonProps,
             dataCheckboxes: dataCheckboxes,
+            title: 'Brand',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Checkboxes - More than eight"
+        height="300px"
+        args={{
+            elementPath: 'components/filter/_doc/template.drupal',
+            ...commonProps,
+            dataCheckboxes: dataCheckboxesMoreThanEight,
+            title: 'Color',
         }}
     >
         {Drupal.bind({})}
@@ -76,19 +104,7 @@ export const Drupal = (args) => ({
             elementPath: 'components/filter/_doc/template.drupal',
             ...commonProps,
             dataSlider: dataSlider,
-        }}
-    >
-        {Drupal.bind({})}
-    </Story>
-</Canvas>
-
-<Canvas withSource="none">
-    <Story
-        name="Drupal - Twig Block"
-        height="300px"
-        args={{
-            elementPath: 'components/filter/_doc/template.drupal',
-            ...commonProps,
+            title: 'Mensualité des appareils',
         }}
     >
         {Drupal.bind({})}

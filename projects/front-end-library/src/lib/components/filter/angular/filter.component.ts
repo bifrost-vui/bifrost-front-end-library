@@ -20,6 +20,7 @@ export class FilterComponent implements OnInit {
      * <br><br>
      * - If this filter is a collection of __checkboxes__, use this property to pass the data.
      * - See Input Checkbox component [API](/?path=/docs/components-input-checkbox--drupal).
+     *   - From this API above, `id`, `name` and `options` properties are mandatory.
      */
     @Input() dataCheckboxes: IInputCheckbox;
     /**
@@ -59,9 +60,10 @@ export class FilterComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * String containing the total number of selections selected in this filter.
+     * - Number of checkboxes to display before having a button "See more".
+     * - Works only for checkboxes filter type.
      */
-    @Input() numberOfSelections: string;
+    @Input() numberOfCheckboxesToDisplay: number = 8;
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>

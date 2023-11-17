@@ -7,7 +7,7 @@
 {% set idParent = idParent|json_parse %}
 {% set isDisabled = isDisabled|json_parse %}
 {% set isExpandedByDefault = isExpandedByDefault|json_parse %}
-{% set numberOfSelections = numberOfSelections|json_parse %}
+{% set numberOfCheckboxesToDisplay = numberOfCheckboxesToDisplay|json_parse %}
 {% set title = title|json_parse %}
 
 {# Boolean Variables #}
@@ -46,20 +46,17 @@
           idParent: idParent,
           isDisabled: isDisabled,
           isExpandedByDefault: isExpandedByDefault,
-          numberOfSelections: numberOfSelections,
+          numberOfCheckboxesToDisplay: numberOfCheckboxesToDisplay,
           title: title,
         } only %}
       {% else %}
         {# Twig Block --> filterContentBlock #}
         {% embed "@bf-components/filter/twig/index.twig" with {
           class: class,
-          dataCheckboxes: dataCheckboxes,
-          dataSlider: dataSlider,
           id: id ~ index,
           idParent: idParent,
           isDisabled: isDisabled,
           isExpandedByDefault: isExpandedByDefault,
-          numberOfSelections: numberOfSelections,
           title: title,
         } only %}
           {% block filterContentBlock %}
