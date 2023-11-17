@@ -51,6 +51,33 @@ export class InputCheckboxComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
+     * - Extra attributes on the component element.
+     * - Can be a simple **string** or an **object**
+     *
+     * <br>
+     * _**String**_
+     *
+     * Must be between double-quotes ("), so use single-quotes (') for attributes.
+     * <pre>
+     *    <code>
+     *        "style='display: flex;'"
+     *    </code>
+     * </pre>
+     * <br><br>
+     * _**Object**_
+     * <pre>
+     *    <code>
+     *        {
+     *            "data-test-1": "test-1",
+     *            "data-test-2": "test-2"
+     *        }
+     *    </code>
+     * </pre>
+     */
+    @Input() extraAttribute: string | object;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * Component `id` attribute.
      */
     @Input() id: string;
