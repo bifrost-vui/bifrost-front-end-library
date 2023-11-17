@@ -1,12 +1,3 @@
-{#
-    Edit this component and don't forget to delete this comment.
-
-    In your component, the file /common/style.scss is aimed to share styles across Twig and Angular.
-    Try to use it as much as possible, in order to avoid styles for specific framework.
-
-    Enjoy :)
-#}
-
 {# Import macros #}
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
@@ -22,10 +13,32 @@
   (class),
 ] %}
 
+{# Selected filter extraction for chips component #}
+
+
 {# Template #}
 <div {{ macros.addAttributes({
   "class": filtersClasses|join(' ')|trim,
   "id": (hasId ? id),
 }) }}>
-    {{ label|default("Label") }}
+
+  {# My Selection #}
+  <div class="bf-filters__selection">
+
+    {% include "@bf-components/chip/twig/index.twig" with {
+      class: "js-bf-filters-chip-template d-none",
+      deleteButton: "removeFilter()",
+      deleteButtonAriaLabel: "On a click, it will remove this filter.",
+      id: "%chip-id%",
+      isDisabled: true,
+      label: "%chip-label%",
+    } only %}
+
+  </div>
+
+  {# Filters Accordions #}
+  <div class="bf-filters__accordions">
+
+  </div>
+
 </div>

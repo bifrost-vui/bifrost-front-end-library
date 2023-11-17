@@ -1,8 +1,8 @@
 {# Default Variables (Props, Controls) #}
 {% set _reversed = _reversed|json_parse %}
 {% set class = class|json_parse %}
+{% set dataFilters = dataFilters|json_parse %}
 {% set id = id|json_parse %}
-{% set label = label|json_parse %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set mainContainerClasses = [
@@ -14,9 +14,9 @@
 <div class="{{ mainContainerClasses|join(' ')|trim }}">
 
     {% include "@bf-sections/filters/twig/index.twig" with {
-        class: class|default(""),
-        id: id|default(""),
-        label: label|default(""),
+        class: class,
+        dataFilters: dataFilters,
+        id: id,
     } only %}
 
 </div>

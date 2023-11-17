@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { IFilter } from '../../../components/filter/angular/api.model';
 
 @Component({
     selector: 'bf-filters',
@@ -12,23 +13,24 @@ export class FiltersComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * Custom classes on Filters main element.
+     * Custom classes on component main element.
      */
     @Input() class: string;
     /**
-     * <span style="color: orange;">__Optional__</span>
-     * <br><br>
-     * Filters main element's `id` attribute.
-     */
-    @Input() id: string;
-    /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
-     * The inner text.
+     * - Array of Filter component objects.
+     * - See Filter component [API](/?path=/docs/components-filter--drupal-twig-block#component-api).
      *
      * @required
      */
-    @Input() label: string;
+    @Input() dataFilters: IFilter[];
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Component main element's `id` attribute.
+     */
+    @Input() id: string;
 
     ngOnInit() {
         console.log('Filters', this);
