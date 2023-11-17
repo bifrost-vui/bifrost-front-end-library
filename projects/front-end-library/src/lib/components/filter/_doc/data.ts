@@ -178,7 +178,7 @@ export const dataSlider = {
         value: 0,
     },
     minimumGap: 20,
-    step: 10,
+    step: 1,
     unitLabel: '$',
     unitPosition: 'start',
     value: [0, 999],
