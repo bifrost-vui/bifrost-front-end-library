@@ -33,13 +33,66 @@ import { dataCheckboxes, dataCheckboxesMoreThanEight, dataSlider } from './data.
 
 ## Drupal implementation example
 
-### For checkboxes or slider filter
+### For checkboxes
 
 ```jsx
 {% include "@bf-components/filter/twig/index.twig" with {
     class: "custom-classes",
-    dataCheckboxes: dataCheckboxes,
-    dataSlider: dataSlider,
+    dataCheckboxes: {
+        id: 'brandFilter',
+        name: 'brand',
+        options: [
+            {
+                id: 'filter-1',
+                isChecked: true,
+                isDisabled: false,
+                label: 'Apple',
+                labelTypography: 'paragraph-default',
+                value: 'Apple',
+            },
+            {
+                id: 'filter-2',
+                isChecked: true,
+                isDisabled: false,
+                label: 'Samsung',
+                labelTypography: 'paragraph-default',
+                value: 'Samsung',
+            },
+        ],
+    },
+    id: "filter-id",
+    idParent: "accordion-group-id",
+    isDisabled: false,
+    isExpandedByDefault: true,
+    numberOfCheckboxesToDisplay: 8,
+    title: "Filter title",
+} only %}
+```
+
+### For slider filter
+
+```jsx
+{% include "@bf-components/filter/twig/index.twig" with {
+    class: "custom-classes",
+    dataSlider: {
+        max: {
+            description: '$999/month',
+            inputId: 'inputIdMax',
+            legend: 'Maximum',
+            value: 999,
+        },
+        min: {
+            description: '$0/month',
+            inputId: 'inputIdMin',
+            legend: 'Minimum',
+            value: 0,
+        },
+        minimumGap: 20,
+        step: 1,
+        unitLabel: '$',
+        unitPosition: 'start',
+        value: [0, 999],
+    },
     id: "filter-id",
     idParent: "accordion-group-id",
     isDisabled: false,
