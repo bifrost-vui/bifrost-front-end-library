@@ -39,6 +39,32 @@
   {# Filters Accordions #}
   <div class="bf-filters__accordions">
 
+    {% for dataFilter in dataFilters %}
+
+      {% set filterVars = {
+        class: dataFilter.class,
+        id: dataFilter.id,
+        idParent: id,
+        isDisabled: dataFilter.isDisabled|default(false),
+        isExpandedByDefault: dataFilter.isExpandedByDefault|default(true),
+        numberOfCheckboxesToDisplay: dataFilter.numberOfCheckboxesToDisplay,
+        title: dataFilter.title,
+      } %}
+
+      {% if dataFilter.dataCheckboxes is defined and dataFilter.dataCheckboxes is not empty %}
+        {% set filterVars = filterVars|merge([dataCheckboxes: dataFilter.dataCheckboxes]) %}
+      {% elseif dataFilter.dataSlider is defined and dataFilter.dataSlider is not empty %}
+        {% set filterVars = filterVars|merge([dataCheckboxes: dataFilter.dataCheckboxes]) %}
+      {% endif %}
+
+      {% embed "@bf-components/filter/twig/index.twig" with filterVars only %}
+          {% block filterContentBlock %}
+              <p>You can apply any type of content here using the Twig block:</p>
+              <pre class="d-inline-block bf-color-neutral-primary bf-color-bg-underground p-2">filterContentBlock</pre>
+          {% endblock %}
+      {% endembed %}
+    {% endfor %}
+
   </div>
 
 </div>
