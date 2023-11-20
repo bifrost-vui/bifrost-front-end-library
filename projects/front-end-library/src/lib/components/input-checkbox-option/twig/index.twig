@@ -1,6 +1,9 @@
 {# Import macros #}
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set labelTypography = labelTypography|default("display-sub-medium") %}
+
 {# Boolean Variables #}
 {% set hasAriaLabel = ariaLabel is defined and ariaLabel is not empty %}
 {% set hasLabel = label is defined and label is not empty %}
@@ -10,6 +13,8 @@
 {% set isDisabled = (isDisabled ?? false) is same as(true) %}
 {% set isInvalid = (isInvalid ?? false) is same as(true) %}
 {% set isRequired = (isRequired ?? false) is same as(true) %}
+{% set isLabelTypographyParagraphDefault = labelTypography is same as("paragraph-default") %}
+{% set isLabelTypographyDisplaySubMedium = labelTypography is same as("display-sub-medium") %}
 
 {# Default Variables (Props, Controls) #}
 {% set class = class|default("") %}
@@ -17,7 +22,7 @@
 {% set id = id|default(inputId) %} {# inputId is Ui-Kit legacy #}
 {% set labelClass = labelClass|default(null) %}
 {% set labelExtraAttribute = labelExtraAttribute|default(null) %}
-{% set name = name|default(inputName) %}
+{% set name = name|default(inputName) %} {# inputName is Ui-Kit legacy #}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set containerClasses = [
@@ -31,7 +36,8 @@
   (isInvalid ? "bf-input-checkbox-control--invalid"),
 ] %}
 {% set labelSecondSpanClasses = [
-  "bf-text-display-sub-medium",
+  (isLabelTypographyParagraphDefault ? "bf-text"),
+  (isLabelTypographyDisplaySubMedium ? "bf-text-display-sub-medium"),
   (labelClass),
 ] %}
 

@@ -1,6 +1,13 @@
 <div class="bf-badge" [ngClass]="ngClasses">
   <div class="bf-badge__inner position-relative d-flex align-items-center">
-    <p class="bf-text-interface-small bf-badge__label m-0" [ngClass]="noUppercase ? 'text-transform-initial' : ''">
+    <p
+      class="bf-badge__label m-0"
+      [ngClass]="{
+        'text-transform-initial': noUppercase,
+        'bf-text-interface-small': fontSize === 'small',
+        'bf-text-interface-medium': fontSize === 'medium'
+      }"
+    >
       <bf-icon *ngIf="iconName" [name]="iconName" size="small" className="mr-2"></bf-icon>
       <span class="bf-badge__label__text">
         {{ label }}

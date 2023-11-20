@@ -1,15 +1,20 @@
 {# Import macros #}
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set fontSize = fontSize|default("small") %}
+
 {# Boolean Variables #}
 {% set hasCustomBgColor = customBgColor is defined and customBgColor is not empty %}
 {% set hasCustomFontColor = customFontColor is defined and customFontColor is not empty %}
 {% set hasIconName = iconName is defined and iconName is not empty %}
 {% set hasAngle = angle is defined and angle is not empty %}
+{% set isFontSizeSmall = fontSize is same as("small") %}
+{% set isFontSizeMedium = fontSize is same as("medium") %}
 {% set isNoUppercase = (noUppercase ?? false) is same as(true) %}
 {% set isRounded = (isRounded ?? false) is same as(true) %}
 
-{# Default Variables (Props, Controls) #}
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set class = class|default("") %}
 {% set hierarchy = hierarchy|default("secondary") %}
 {% set label = label|default("") %}
@@ -22,11 +27,14 @@
   "bf-badge",
   "bf-badge--" ~ hierarchy,
   (isRounded ? "bf-badge--rounded" : hasAngle ? "bf-badge--angle-" ~ angle : ""),
+  (hasCustomBgColor ? "bf-badge--has-custom-bg-color"),
+  (hasCustomFontColor ? "bf-badge--has-custom-font-color"),
   (class),
 ] %}
 {% set badgeTextClasses = [
-  "bf-text-interface-small bf-badge__label",
-  "m-0",
+  "bf-badge__label m-0",
+  (isFontSizeSmall ? "bf-text-interface-small"),
+  (isFontSizeMedium ? "bf-text-interface-medium"),
   (isNoUppercase ? "text-transform-initial"),
 ] %}
 

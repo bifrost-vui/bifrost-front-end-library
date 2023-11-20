@@ -48,6 +48,13 @@
 
 {# Boolean Variables - ORDER IS IMPORTANT #}
 {% set isBorderRounded = hasBorder and ((isBorderRounded ?? true) is same as(true)) %}
+{% if isBlockEmphasisBlockDefined %}
+  {#
+    block("emphasisBlock") needs to be set in a variable
+    because its block is "printed" inside another block from "custom-tag" utilitary
+  #}
+  {% set blockEmphasis = block("emphasisBlock") %}
+{% endif %}
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set class = class|default("") %}
@@ -144,7 +151,7 @@
 
         {% if isBlockEmphasisBlockDefined %}
           <div class="{{ accordionHeaderEmphasisClasses|join(' ')|trim }}">
-            {{ block("emphasisBlock") }}
+            {{ blockEmphasis }}
           </div>
         {% elseif hasEmphasis %}
           <div class="{{ accordionHeaderEmphasisClasses|join(' ')|trim }}">

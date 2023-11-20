@@ -54,7 +54,7 @@
 <div {{ macros.addAttributes({
   "class": sliderContainerClasses|join(' ')|trim,
   "data-range": macros.boolToString(isRange),
-  "data-minimum-gap": minimumGap,
+  "data-minimum-gap": minimumGap|number_format,
   "data-inverted": (isRange is same as(false) ? macros.boolToString(isInverted))
 }) }}>
   {% if isRange %}

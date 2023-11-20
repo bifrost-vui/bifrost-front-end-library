@@ -5,6 +5,7 @@
 {% set hasDescription = description is defined and description is not empty %}
 {% set hasErrorMessage = errorMessage is defined and errorMessage is not empty %}
 {% set hasId = id is defined and id is not empty %}
+{% set hasIdFieldset = idFieldset is defined and idFieldset is not empty %}
 {% set hasInputContent = inputContent is defined and inputContent is not empty %}
 {% set hasLabel = label is defined and label is not empty %}
 {% set isBlockInputContentDefined = block("inputContent") is defined %}
@@ -26,7 +27,10 @@
 ] %}
 
 {# Template #}
-<fieldset class="{{ fieldsetClasses|join(' ')|trim }}">
+<fieldset {{ macros.addAttributes({
+  "class": fieldsetClasses|join(' ')|trim,
+  "id": (hasIdFieldset ? idFieldset)
+}, extraAttribute) }}>
   {% if hasLabel or hasDescription %}
     <div class="mb-2">
       {% if hasLabel %}

@@ -40,22 +40,31 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
 
 ```jsx
 {% include '@bf-components/input-checkbox/twig/index.twig' with {
-    label: 'Label',
+    areOptionTiles: false,
+    areOptionTilesInline: false,
+    areOptionTilesLarge: false,
+    class: 'p-4 w-100',
     description: 'Description',
+    errorMessage: 'This is an error message.',
+    extraAttribute: {
+        'data-custom-attr': 'lorem ipsum',
+    },
+    id: 'customId',
+    label: 'Label',
     name: 'name',
     options: [
         {
+            ariaLabel: 'ariaLabel',
+            class: '',
+            extraAttribute: 'data-extraAttribute="1"',
             id: 'id-1',
-            value: 'value-1',
+            isDisabled: false,
+            isInvalid: false,
+            isRequired: false,
             label: 'Option label',
             labelClass: 'labelClass',
             labelExtraAttribute: 'data-labelExtraAttribute="1"',
-            isRequired: false,
-            isDisabled: false,
-            isInvalid: false,
-            ariaLabel: 'ariaLabel',
-            extraAttribute: 'data-extraAttribute="1"',
-            class: '',
+            value: 'value-1',
         },
         {
             id: 'id-2',
@@ -66,11 +75,6 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
             value: 'value-3',
         }
     ],
-    areOptionTiles: false,
-    areOptionTilesInline: false,
-    areOptionTilesLarge: false,
-    errorMessage: 'This is an error message.',
-    class: 'p-4 w-100'
 } only %}
 ```
 
@@ -78,28 +82,37 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
 
 ```jsx
 {% include '@bf-components/input-checkbox/twig/index.twig' with {
-    label: 'Label',
+    areOptionTiles: true,
+    areOptionTilesInline: false,
+    areOptionTilesLarge: false,
+    class: 'p-4 w-100',
     description: 'Description',
+    errorMessage: 'This is an error message.',
+    extraAttribute: {
+        'data-custom-attr': 'lorem ipsum',
+    },
+    id: 'customId',
+    label: 'Label',
     name: 'name',
     options: [
         {
-            id: 'id-1',
-            value: 'value-1',
+            ariaLabel: 'ariaLabel',
+            class: '',
             content: null,
-            footer: null,
-            label: 'Option label',
             description: 'Option description',
-            info: 'Info',
-            image: {},
+            extraAttribute: 'data-extraAttribute="1"',
+            footer: null,
+            id: 'id-1',
             iconName: 'placeholder',
-            isRequired: false,
-            isSelected: false,
+            image: {},
+            info: 'Info',
             isDisabled: false,
             isInvalid: false,
-            ariaLabel: 'ariaLabel',
-            extraAttribute: 'data-extraAttribute="1"',
-            class: '',
+            isSelected: false,
+            isRequired: false,
+            label: 'Option label',
             reversed: false,
+            value: 'value-1',
         },
         {
             id: 'id-2',
@@ -110,49 +123,44 @@ import { InputCheckboxComponent } from '../angular/input-checkbox.component';
             value: 'value-3',
         }
     ],
-    areOptionTiles: true,
-    areOptionTilesInline: false,
-    areOptionTilesLarge: false,
-    errorMessage: 'This is an error message.',
-    class: 'p-4 w-100'
 } only %}
 ```
 
 export const optionProps = {
+    ariaLabel: 'ariaLabel',
+    class: '',
+    extraAttribute: 'data-extraAttribute="1"',
     id: 'id',
-    name: 'name',
-    value: 'value',
     isChecked: false,
-    isRequired: false,
     isDisabled: false,
     isInvalid: false,
+    isRequired: false,
     label: 'Option label',
     labelClass: 'labelClass',
     labelExtraAttribute: 'labelExtraAttribute="1"',
-    ariaLabel: 'ariaLabel',
-    extraAttribute: 'data-extraAttribute="1"',
-    class: '',
+    name: 'name',
+    value: 'value',
 };
 
 export const optionTileProps = {
-    id: 'id',
-    name: 'name',
-    value: 'value',
-    isChecked: false,
+    ariaLabel: 'ariaLabel',
+    class: '',
     content: null,
-    footer: null,
-    label: 'Option label',
     description: 'Option description',
-    info: 'Info', // TODO: Rename details. (info is not relevant since all is information).
-    image: {},
+    extraAttribute: 'data-extraAttribute="1"',
+    footer: null,
     iconName: 'placeholder',
-    isRequired: false,
+    id: 'id',
+    image: {},
+    info: 'Info', // TODO: Rename details. (info is not relevant since all is information).
+    isChecked: false,
     isDisabled: false,
     isInvalid: false,
-    ariaLabel: 'ariaLabel',
-    extraAttribute: 'data-extraAttribute="1"',
-    class: '',
+    isRequired: false,
+    label: 'Option label',
+    name: 'name',
     reversed: false, // TODO: Remove.
+    value: 'value',
 };
 
 export const optionsProps = [
@@ -164,14 +172,14 @@ export const optionsProps = [
     {
         ...optionTileProps,
         id: 'id-2',
-        value: 'value-2',
         isChecked: true,
+        value: 'value-2',
     },
     {
         ...optionTileProps,
         id: 'id-3',
-        value: 'value-3',
         isChecked: true,
+        value: 'value-3',
     },
     {
         ...optionTileProps,
@@ -181,29 +189,31 @@ export const optionsProps = [
     {
         ...optionTileProps,
         id: 'id-5',
-        value: 'value-5',
         isChecked: true,
+        value: 'value-5',
     },
     {
         ...optionTileProps,
         id: 'id-6',
-        value: 'value-6',
         isChecked: true,
+        value: 'value-6',
     },
 ];
 
 export const optionFooterProps = {
     description: `<p class='mb-0'>Save on your monthly payments now by <strong> returning your phone </strong> after 24 months.</p>`,
+    iconName: 'credit-return',
     link: {
         label: 'Learn more about Take-back Credit',
         href: 'https://example.com',
     },
-    iconName: 'credit-return',
 };
 
 export const commonProps = {
-    label: 'Label',
+    areOptionTiles: false,
+    class: 'p-4 w-100',
     description: 'Description',
+    label: 'Label',
     name: 'name',
     options: [
         {
@@ -221,8 +231,6 @@ export const commonProps = {
             isChecked: true,
         },
     ],
-    areOptionTiles: false,
-    class: 'p-4 w-100',
 };
 
 ## Drupal

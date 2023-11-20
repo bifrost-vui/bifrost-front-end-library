@@ -5,6 +5,7 @@
 * ***************************************************************************** */
 
 .bf-input-checkbox-option {
+  position: relative;
   input {
     &:required + label:after {
       display: inline;
@@ -15,6 +16,7 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
+    gap: var(--bf-spacer-2);
 
     line-height: $line-height-base;
     padding: 0;
@@ -31,17 +33,22 @@
 }
 
 .bf-input-checkbox-control {
-  position: fixed;
-  visibility: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  opacity: 0;
 
   + label .bf-checkbox__control {
-    flex: 0 0 1rem;
+    flex: 0 0 1.125rem;
     display: block;
     position: relative;
-    width: 1rem;
-    height: 1rem;
+    width: 1.125rem;
+    height: 1.125rem;
     min-width: 1rem;
-    margin-right: var(--bf-spacer-2);
     border: 1px solid var(--bf-color-stroke-primary);
     border-radius: 0.125rem;
     color: var(--bf-color-neutral-primary);
@@ -52,7 +59,7 @@
   &:focus-visible {
     outline: none;
 
-    + .bf-checkbox__control {
+    + label .bf-checkbox__control {
       box-shadow: 0 0 0 3px rgba(129, 194, 255, 0.5);
     }
   }
@@ -85,8 +92,8 @@
         z-index: 3;
         top: -1px;
         left: -1px;
-        width: 1rem;
-        height: 1rem;
+        width: 1.125rem;
+        height: 1.125rem;
         background: url('/images/icons/bifrost/check-bg.svg') center center no-repeat;
         background-size: contain;
         border-radius: inherit;

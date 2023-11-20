@@ -1,0 +1,51 @@
+/* *****************************************************************************
+*
+*  Filter
+*
+* ***************************************************************************** */
+
+.bf-filter {
+  // Number of selections
+  &__nb-selection {
+    opacity: 1;
+    transition: opacity $transition-time-medium ease-in-out;
+    .bf-badge__label__text {
+      letter-spacing: 0;
+    }
+
+    // Zero selection made
+    &--zero {
+      opacity: 0;
+      transition: opacity 0s;
+    }
+  }
+
+  // Checkboxes container
+  &__checkboxes {
+    // Height limitation
+    &--limit-height {
+      height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity $transition-time-medium ease-in-out, height $transition-time-medium ease-in-out;
+
+      // Loaded
+      &.loaded {
+        height: var(--filterCheckboxesMinHeight);
+        opacity: 1;
+      }
+
+      // Expanded
+      &.expanded {
+        height: var(--filterCheckboxesMaxHeight);
+      }
+    }
+
+    // Toggle Height Buttons
+    &__toggle-height {
+      padding: 0;
+      background-color: transparent;
+      border: none;
+    }
+  }
+}
