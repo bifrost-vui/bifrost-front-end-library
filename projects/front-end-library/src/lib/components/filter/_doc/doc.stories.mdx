@@ -33,10 +33,91 @@ import { dataCheckboxes, dataCheckboxesMoreThanEight, dataSlider } from './data.
 
 ## Drupal implementation example
 
+### For checkboxes
+
 ```jsx
-{% include '@bf-components/filter/twig/index.twig' with {
-    // Add relevant props here
+{% include "@bf-components/filter/twig/index.twig" with {
+    class: "custom-classes",
+    dataCheckboxes: {
+        id: 'brandFilter',
+        name: 'brand',
+        options: [
+            {
+                id: 'filter-1',
+                isChecked: true,
+                isDisabled: false,
+                label: 'Apple',
+                labelTypography: 'paragraph-default',
+                value: 'Apple',
+            },
+            {
+                id: 'filter-2',
+                isChecked: true,
+                isDisabled: false,
+                label: 'Samsung',
+                labelTypography: 'paragraph-default',
+                value: 'Samsung',
+            },
+        ],
+    },
+    id: "filter-id",
+    idParent: "accordion-group-id",
+    isDisabled: false,
+    isExpandedByDefault: true,
+    numberOfCheckboxesToDisplay: 8,
+    title: "Filter title",
 } only %}
+```
+
+### For slider filter
+
+```jsx
+{% include "@bf-components/filter/twig/index.twig" with {
+    class: "custom-classes",
+    dataSlider: {
+        max: {
+            description: '$999/month',
+            inputId: 'inputIdMax',
+            legend: 'Maximum',
+            value: 999,
+        },
+        min: {
+            description: '$0/month',
+            inputId: 'inputIdMin',
+            legend: 'Minimum',
+            value: 0,
+        },
+        minimumGap: 20,
+        step: 1,
+        unitLabel: '$',
+        unitPosition: 'start',
+        value: [0, 999],
+    },
+    id: "filter-id",
+    idParent: "accordion-group-id",
+    isDisabled: false,
+    isExpandedByDefault: true,
+    numberOfCheckboxesToDisplay: 8,
+    title: "Filter title",
+} only %}
+```
+
+### Other type, with a Twig Block
+
+```jsx
+{% embed "@bf-components/filter/twig/index.twig" with {
+    class: "custom-classes",
+    id: "filter-id",
+    idParent: "accordion-group-id",
+    isDisabled: false,
+    isExpandedByDefault: true,
+    title: "Filter title",
+} only %}
+    {% block filterContentBlock %}
+        <p>You can apply any type of content here using the Twig block:</p>
+        <pre class="d-inline-block bf-color-neutral-primary bf-color-bg-underground p-2">filterContentBlock</pre>
+    {% endblock %}
+{% endembed %}
 ```
 
 ## Drupal
@@ -52,6 +133,8 @@ export const Drupal = (args) => ({
     props: args,
 });
 
+### Drupal - Twig Block
+
 <Canvas withSource="none">
     <Story
         name="Drupal - Twig Block"
@@ -65,6 +148,8 @@ export const Drupal = (args) => ({
         {Drupal.bind({})}
     </Story>
 </Canvas>
+
+### Drupal - Checkboxes
 
 <Canvas withSource="none">
     <Story
@@ -81,6 +166,8 @@ export const Drupal = (args) => ({
     </Story>
 </Canvas>
 
+### Drupal - Checkboxes - More than eight
+
 <Canvas withSource="none">
     <Story
         name="Drupal - Checkboxes - More than eight"
@@ -95,6 +182,8 @@ export const Drupal = (args) => ({
         {Drupal.bind({})}
     </Story>
 </Canvas>
+
+### Drupal - Input Slider
 
 <Canvas withSource="none">
     <Story
