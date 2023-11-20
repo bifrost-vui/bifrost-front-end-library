@@ -1,0 +1,22 @@
+{# Default Variables (Props, Controls) #}
+{% set _reversed = _reversed|json_parse %}
+{% set class = class|json_parse %}
+{% set id = id|json_parse %}
+{% set label = label|json_parse %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "pt-4",
+  (_reversed ? "reversed bf-color-bg-ground"),
+] %}
+
+{# Template #}
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
+
+    {% include "@bf-sections/plp/twig/index.twig" with {
+        class: class|default(""),
+        id: id|default(""),
+        label: label|default(""),
+    } only %}
+
+</div>
