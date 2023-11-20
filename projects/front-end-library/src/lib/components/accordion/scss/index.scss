@@ -114,7 +114,7 @@
   }
 
   /* Background colors */
-  &--bg-highlight {
+  &--bg-highlight:not(.bf-accordion--disabled) {
     --bf-accordion-bg-color: var(--bf-color-bg-highlight);
 
     &,
@@ -125,6 +125,21 @@
   }
   &--bg-underground {
     --bf-accordion-bg-color: var(--bf-color-bg-underground);
+  }
+
+  /* Disabled */
+  &--disabled {
+    background-color: var(--bf-color-bg-action-disabled);
+
+    &,
+    & .bf-accordion__header__button,
+    & .bf-icon.color-primary svg {
+      color: var(--bf-color-neutral-tertiary);
+    }
+
+    .bf-accordion__header__emphasis {
+      opacity: 0.5;
+    }
   }
 
   /* Padding horizontal (x-axis) */
