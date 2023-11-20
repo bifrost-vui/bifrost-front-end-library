@@ -7,28 +7,26 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PlpComponent implements OnInit {
     constructor() {}
 
-    /* In alphabetical order (remove this comment) */
-
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * Custom classes on Plp main element.
+     * Custom classes on PLP main element.
      */
     @Input() class: string;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * Plp main element's `id` attribute.
+     * PLP main element's `id` attribute.
      */
     @Input() id: string;
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
-     * The inner text.
+     * Number of products results.
      *
      * @required
      */
-    @Input() label: string;
+    @Input() numberOfResults: number;
 
     ngOnInit() {
         console.log('Plp', this);
