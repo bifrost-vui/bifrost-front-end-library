@@ -8,9 +8,9 @@ const filterCheckboxesSeeMore = '.js-bf-filter__checkboxes__see-more';
 const filterCheckboxesSeeLess = '.js-bf-filter__checkboxes__see-less';
 
 /* Functions */
-const updateNumberSelectionsBadge = function ($checkboxesList) {
+const updateNumberSelectionsBadge = function ($filterItem, $checkboxesList) {
     const numberOfCheckboxesSelected = $checkboxesList.filter(':checked').length;
-    const $nbSelectionsBadge = $(filterNbSelections);
+    const $nbSelectionsBadge = $filterItem.find(filterNbSelections);
     const $nbSelectionsBadgeText = $nbSelectionsBadge.find('.bf-badge__label__text');
 
     if (numberOfCheckboxesSelected > 0) {
@@ -63,7 +63,7 @@ $(function () {
 
         if (hasFilterCheckboxes) {
             /* Initial execution */
-            updateNumberSelectionsBadge($checkboxesList);
+            updateNumberSelectionsBadge($filterItem, $checkboxesList);
             setCheckboxesHeight($filterCheckboxes);
 
             /* On checkbox status change, update the number of selections badge */
