@@ -69,7 +69,7 @@ $(function () {
             /* On checkbox status change, update the number of selections badge */
             $checkboxesList.each(function () {
                 $(this).on('change', function () {
-                    updateNumberSelectionsBadge($checkboxesList);
+                    updateNumberSelectionsBadge($filterItem, $checkboxesList);
                 });
             });
 
