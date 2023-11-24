@@ -1,6 +1,12 @@
 import $ from 'jquery';
+import { _window, currentWindowScroll } from '../../../js/utils/window';
+import { throttle } from '../../../js/utils/debounce-throttle';
 
 /* Variables */
+const nbResultsMobileSticky = '.js-bf-plp-nb-results-mobile-sticky';
+const filtersContainer = '#plpFiltersContainer';
+const filtersButtonOpen = '.js-bf-plp-filters-button-open';
+const filtersButtonClose = '.js-bf-plp-filters-button-close';
 const filterChipsGroup = '.js-bf-plp-filters-container-chips-group';
 const filterCheckboxes = '.js-bf-filter__checkboxes';
 
@@ -28,18 +34,38 @@ const toggleChip = function ($filterCheckbox) {
     }
 };
 
+const toggleStickyNbResultsAndMobileButton = function ($nbResultsMobileSticky, elemOffsetTop, $filtersContainer) {
+    const hasFiltersContainerCollapseClass = $filtersContainer.hasClass('collapse');
+
+    // "16" is 16px, or 1rem... it's for the padding top when the box is sticky
+    if (currentWindowScroll.top >= elemOffsetTop - 16) {
+        $nbResultsMobileSticky.addClass('sticky');
+    } else {
+        if (hasFiltersContainerCollapseClass) {
+            $nbResultsMobileSticky.removeClass('sticky');
+        }
+    }
+};
+
+/* Window Scope - Function to remove a filter from a "Chip" */
 window.removeFilter = function (idFilter) {
     const $filterItem = $('#' + idFilter);
 
     $filterItem.trigger('click');
-    console.log('$filterItem.prop("checked")', $filterItem.prop('checked'));
 };
 
 /* Dom Ready */
 $(function () {
     /* Selector Variables */
+    const $nbResultsMobileSticky = $(nbResultsMobileSticky);
+    const $filtersContainer = $(filtersContainer);
+    const $filtersButtonOpen = $(filtersButtonOpen);
+    const $filtersButtonClose = $(filtersButtonClose);
     const $filterCheckboxes = $(filterCheckboxes);
     const $checkboxesList = $filterCheckboxes.find('.bf-input-checkbox-control');
+
+    /* Value Variables */
+    const nbResultsMobileStickyOffsetTop = $nbResultsMobileSticky.offset().top;
 
     /* Boolean Variables */
     const hasFilterCheckboxes = $filterCheckboxes.length > 0;
@@ -53,4 +79,37 @@ $(function () {
             });
         });
     }
+
+    /*
+        On mobile resolution, when clicking on the "Filter" button
+        to open the filters container, add a "window freeze" to remove
+        scrolling outside of filters container.
+    */
+    $filtersButtonOpen.on('click', function () {
+        _window.freeze();
+    });
+
+    /*
+        On mobile resolution, when clicking on the "X" button
+        in the filters container, remove the "window freeze".
+    */
+    $filtersButtonClose.on('click', function () {
+        _window.unfreeze();
+    });
+
+    /*
+        On mobile, init the
+    */
+    toggleStickyNbResultsAndMobileButton($nbResultsMobileSticky, nbResultsMobileStickyOffsetTop, $filtersContainer);
+
+    $(window).on(
+        'scroll',
+        throttle(() =>
+            toggleStickyNbResultsAndMobileButton(
+                $nbResultsMobileSticky,
+                nbResultsMobileStickyOffsetTop,
+                $filtersContainer
+            )
+        )
+    );
 });

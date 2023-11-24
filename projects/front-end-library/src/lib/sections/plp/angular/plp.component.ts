@@ -37,6 +37,18 @@ export class PlpComponent implements OnInit {
      * @required
      */
     @Input() numberOfResults: number = 0;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Size of the number of products results.
+     */
+    @Input() numberOfResultsSize: 'normal' | 'h2' | 'h3' = 'h3';
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * HTML tag of the number of products results.
+     */
+    @Input() numberOfResultsTag: 'p' | 'h2' | 'h3' = 'h2';
 
     ngOnInit() {
         console.log('Plp', this);

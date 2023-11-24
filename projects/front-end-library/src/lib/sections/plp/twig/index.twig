@@ -1,8 +1,18 @@
 {# Import macros #}
 {% import "@bf-utils/macros/twig/index.twig" as macros %}
 
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set numberOfResultsSize = numberOfResultsSize|default("h3") %}
+{% set numberOfResultsTag = numberOfResultsTag|default("h2") %}
+
 {# Boolean Variables #}
 {% set hasId = id is defined and id is not empty %}
+{% set isNumberOfResultsSizeH2 = numberOfResultsSize is same as("h2") %}
+{% set isNumberOfResultsSizeH3 = numberOfResultsSize is same as("h3") %}
+{% set isNumberOfResultsSizeNormal = numberOfResultsSize is same as("normal") %}
+{% set isNumberOfResultsTagDiv = numberOfResultsTag is same as("div") %}
+{% set isNumberOfResultsTagH2 = numberOfResultsTag is same as("h2") %}
+{% set isNumberOfResultsTagH3 = numberOfResultsTag is same as("h3") %}
 
 {# Default Variables #}
 {% set class = class|default("") %}
@@ -11,6 +21,12 @@
 {% set plpClasses = [
   "bf-plp",
   (class),
+] %}
+{% set plpNumberOfResultsClasses = [
+  "bf-plp__nb-results-and-button__nb-results",
+  (isNumberOfResultsSizeH2 ? "h2"),
+  (isNumberOfResultsSizeH3 ? "h3"),
+  (isNumberOfResultsSizeNormal ? "bf-text"),
 ] %}
 
 {# Chips - Selected Filters #}
@@ -38,12 +54,53 @@
   "id": (hasId ? id),
 }) }}>
 
-  {# Number of products results #}
-  <p class="bf-plp__nb-results">
-    {{ numberOfResults|number_format ~ " " ~ "results"|t }}
-  </p>
+  <div class="bf-plp__nb-results-and-button js-bf-plp-nb-results-mobile-sticky">
+    {# Number of products results #}
+    {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+      customTag: titleTag,
+      attr: {
+        "class": plpNumberOfResultsClasses|join(' ')|trim
+      },
+    } %}
+      {% block customTagContent %}
+        {{ numberOfResults|number_format ~ " " ~ "results"|t }}
+      {% endblock %}
+    {% endembed %}
 
-  <div class="bf-plp__filters-container">
+    {# Mobile button to open filters container #}
+    <div class="bf-plp__nb-results-and-button__button">
+      {% include "@bf-components/button/twig/index.twig" with {
+        ariaControls: "plpFiltersContainer",
+        ariaExpanded: "false",
+        class: "js-bf-plp-filters-button-open",
+        dataTarget: "#plpFiltersContainer",
+        dataToggle: "collapse",
+        hierarchy: "secondary",
+        label: "Filter"|t,
+        iconName: "settings",
+        iconPosition: "right",
+      } only %}
+    </div>
+  </div>
+
+  <div id="plpFiltersContainer" class="bf-plp__filters-container collapse fade">
+    <div class="bf-plp__filters-container__mobile-infos">
+      <p class="h2">
+        {{ "Filter"|t }}
+      </p>
+
+      {% include "@bf-components/button-icon/twig/index.twig" with {
+        ariaControls: "plpFiltersContainer",
+        ariaExpanded: "true",
+        ariaLabel: "Close Filter Container"|t,
+        class: "js-bf-plp-filters-button-close",
+        dataTarget: "#plpFiltersContainer",
+        dataToggle: "collapse",
+        icon: "x",
+      } only %}
+    </div>
+
+    {# Chips #}
     <div class="bf-plp__filters-container__chips">
       {# Chip template - Always hidden #}
       {% include "@bf-components/chip/twig/index.twig" with {
@@ -56,7 +113,7 @@
       } only %}
 
       {# Filter Chips #}
-      {% include '@bf-components/chips-group/twig/index.twig' with {
+      {% include "@bf-components/chips-group/twig/index.twig" with {
           class: "bf-plp__filters-container__chips__group js-bf-plp-filters-container-chips-group",
           chipsData: selectedCheckboxes,
           id: "selectedFiltersChips",
@@ -87,6 +144,7 @@
       {% endfor %}
     </div>
 
+    {# Custom Filters #}
     {% block customFiltersBlock %}{% endblock %}
   </div>
 
