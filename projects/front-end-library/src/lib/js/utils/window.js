@@ -41,4 +41,14 @@ let isInViewport = function (elem) {
     );
 };
 
+const getCurrentWindowScroll = function () {
+    currentWindowScroll.top = $(window).scrollTop();
+    currentWindowScroll.left = $(window).scrollLeft();
+};
+
 export { _window, currentWindowScroll, isInViewport };
+
+/* Dom Ready */
+$(function () {
+    getCurrentWindowScroll();
+});
