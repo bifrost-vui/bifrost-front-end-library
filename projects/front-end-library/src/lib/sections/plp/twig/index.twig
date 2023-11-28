@@ -84,68 +84,70 @@
   </div>
 
   <div id="plpFiltersContainer" class="bf-plp__filters-container collapse fade">
-    <div class="bf-plp__filters-container__mobile-infos">
-      <p class="h2">
-        {{ "Filter"|t }}
-      </p>
+    <div class="js-bf-plp-filters-container-mobile">
+      <div class="bf-plp__filters-container__mobile-infos">
+        <p class="h2">
+          {{ "Filter"|t }}
+        </p>
 
-      {% include "@bf-components/button-icon/twig/index.twig" with {
-        ariaControls: "plpFiltersContainer",
-        ariaExpanded: "true",
-        ariaLabel: "Close Filter Container"|t,
-        class: "js-bf-plp-filters-button-close",
-        dataTarget: "#plpFiltersContainer",
-        dataToggle: "collapse",
-        icon: "x",
-      } only %}
+        {% include "@bf-components/button-icon/twig/index.twig" with {
+          ariaControls: "plpFiltersContainer",
+          ariaExpanded: "true",
+          ariaLabel: "Close Filter Container"|t,
+          class: "js-bf-plp-filters-button-close",
+          dataTarget: "#plpFiltersContainer",
+          dataToggle: "collapse",
+          icon: "x",
+        } only %}
+      </div>
+
+      {# Chips #}
+      <div class="bf-plp__filters-container__chips">
+        {# Chip template - Always hidden #}
+        {% include "@bf-components/chip/twig/index.twig" with {
+          class: "js-bf-filters-chip-template d-none",
+          deleteButton: "removeFilter()",
+          deleteButtonAriaLabel: "On a click, it will remove this filter."|t,
+          id: "chipTempId",
+          isDisabled: true,
+          label: "chipTempLabel",
+        } only %}
+
+        {# Filter Chips #}
+        {% include "@bf-components/chips-group/twig/index.twig" with {
+            class: "bf-plp__filters-container__chips__group js-bf-plp-filters-container-chips-group",
+            chipsData: selectedCheckboxes,
+            id: "selectedFiltersChips",
+        } only %}
+      </div>
+
+      {# Filters #}
+      <div class="bf-plp__filters-container__filters">
+        {% for dataFilter in dataFilters %}
+
+          {% set filterVars = {
+            class: dataFilter.class,
+            id: dataFilter.id,
+            idParent: id,
+            isDisabled: dataFilter.isDisabled|default(false),
+            isExpandedByDefault: dataFilter.isExpandedByDefault|default(true),
+            numberOfCheckboxesToDisplay: dataFilter.numberOfCheckboxesToDisplay,
+            title: dataFilter.title,
+          } %}
+
+          {% if dataFilter.dataCheckboxes is defined and dataFilter.dataCheckboxes is not empty %}
+            {% set filterVars = filterVars|merge({dataCheckboxes: dataFilter.dataCheckboxes}) %}
+          {% elseif dataFilter.dataSlider is defined and dataFilter.dataSlider is not empty %}
+            {% set filterVars = filterVars|merge({dataSlider: dataFilter.dataSlider}) %}
+          {% endif %}
+
+          {% include "@bf-components/filter/twig/index.twig" with filterVars only %}
+        {% endfor %}
+      </div>
+
+      {# Custom Filters #}
+      {% block customFiltersBlock %}{% endblock %}
     </div>
-
-    {# Chips #}
-    <div class="bf-plp__filters-container__chips">
-      {# Chip template - Always hidden #}
-      {% include "@bf-components/chip/twig/index.twig" with {
-        class: "js-bf-filters-chip-template d-none",
-        deleteButton: "removeFilter()",
-        deleteButtonAriaLabel: "On a click, it will remove this filter."|t,
-        id: "chipTempId",
-        isDisabled: true,
-        label: "chipTempLabel",
-      } only %}
-
-      {# Filter Chips #}
-      {% include "@bf-components/chips-group/twig/index.twig" with {
-          class: "bf-plp__filters-container__chips__group js-bf-plp-filters-container-chips-group",
-          chipsData: selectedCheckboxes,
-          id: "selectedFiltersChips",
-      } only %}
-    </div>
-
-    {# Filters #}
-    <div class="bf-plp__filters-container__filters">
-      {% for dataFilter in dataFilters %}
-
-        {% set filterVars = {
-          class: dataFilter.class,
-          id: dataFilter.id,
-          idParent: id,
-          isDisabled: dataFilter.isDisabled|default(false),
-          isExpandedByDefault: dataFilter.isExpandedByDefault|default(true),
-          numberOfCheckboxesToDisplay: dataFilter.numberOfCheckboxesToDisplay,
-          title: dataFilter.title,
-        } %}
-
-        {% if dataFilter.dataCheckboxes is defined and dataFilter.dataCheckboxes is not empty %}
-          {% set filterVars = filterVars|merge({dataCheckboxes: dataFilter.dataCheckboxes}) %}
-        {% elseif dataFilter.dataSlider is defined and dataFilter.dataSlider is not empty %}
-          {% set filterVars = filterVars|merge({dataSlider: dataFilter.dataSlider}) %}
-        {% endif %}
-
-        {% include "@bf-components/filter/twig/index.twig" with filterVars only %}
-      {% endfor %}
-    </div>
-
-    {# Custom Filters #}
-    {% block customFiltersBlock %}{% endblock %}
   </div>
 
   <div class="bf-plp__results">

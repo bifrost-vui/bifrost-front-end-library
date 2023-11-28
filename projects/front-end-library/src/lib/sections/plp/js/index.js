@@ -4,9 +4,10 @@ import { throttle } from '../../../js/utils/debounce-throttle';
 
 /* Variables */
 const nbResultsMobileSticky = '.js-bf-plp-nb-results-mobile-sticky';
-const filtersContainer = '#plpFiltersContainer';
 const filtersButtonOpen = '.js-bf-plp-filters-button-open';
 const filtersButtonClose = '.js-bf-plp-filters-button-close';
+const filtersContainer = '#plpFiltersContainer';
+const filtersContainerMobile = '.js-bf-plp-filters-container-mobile';
 const filterChipsGroup = '.js-bf-plp-filters-container-chips-group';
 const filterCheckboxes = '.js-bf-filter__checkboxes';
 
@@ -85,7 +86,8 @@ $(function () {
         to open the filters container, add a "window freeze" to remove
         scrolling outside of filters container.
     */
-    $filtersButtonOpen.on('click', function () {
+    $filtersContainer.on('shown.bs.collapse', function () {
+        $filtersContainer.find(filtersContainerMobile).addClass(['container', 'container-fluid']);
         _window.freeze();
     });
 
@@ -93,7 +95,8 @@ $(function () {
         On mobile resolution, when clicking on the "X" button
         in the filters container, remove the "window freeze".
     */
-    $filtersButtonClose.on('click', function () {
+    $filtersContainer.on('hide.bs.collapse', function () {
+        $filtersContainer.find(filtersContainerMobile).removeClass(['container', 'container-fluid']);
         _window.unfreeze();
     });
 
