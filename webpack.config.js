@@ -10,7 +10,6 @@ module.exports = () => {
     return [
         {
             entry: {
-                'bifrost-components': './projects/front-end-library/src/lib/js/bifrost-components.js',
                 'bifrost-demo': './projects/front-end-library/src/lib/js/demo/bifrost/carousel.js',
                 core: './projects/front-end-library/src/lib/js/index.js',
             },
