@@ -19,7 +19,7 @@
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set plpClasses = [
-  "bf-plp",
+  "bf-plp js-bf-plp",
   (class),
 ] %}
 {% set plpNumberOfResultsClasses = [
@@ -84,8 +84,8 @@
   </div>
 
   <div id="plpFiltersContainer" class="bf-plp__filters-container collapse fade">
-    <div class="js-bf-plp-filters-container-mobile">
-      <div class="bf-plp__filters-container__mobile-infos">
+    <div class="bf-plp__filters-container__inner js-bf-plp-filters-container-inner">
+      <div class="bf-plp__filters-container__mobile-title js-bf-plp-filters-container-mobile-title">
         <p class="h2">
           {{ "Filter"|t }}
         </p>
@@ -102,7 +102,7 @@
       </div>
 
       {# Chips #}
-      <div class="bf-plp__filters-container__chips">
+      <div class="bf-plp__filters-container__my-selection js-bf-plp-filters-container-my-selection">
         {# Chip template - Always hidden #}
         {% include "@bf-components/chip/twig/index.twig" with {
           class: "js-bf-filters-chip-template d-none",
@@ -113,9 +113,31 @@
           label: "chipTempLabel",
         } only %}
 
+        {# My Selection title + Delete all button #}
+        <div class="bf-plp__filters-container__my-selection__title-and-button js-bf-plp-my-selection-title-and-button-container">
+          {# My Selection title #}
+          <p class="bf-plp__filters-container__my-selection__title-and-button__title bf-text large">
+            <strong>
+              {{ "My Selection"|t }}
+            </strong>
+          </p>
+
+          {# Delete all button #}
+          {% set mySelectionButtonClasses = [
+            "bf-plp__filters-container__my-selection__title-and-button__delete-all",
+            "js-bf-plp-filters-my-selection-delete-all-button",
+            "bf-link bf-link--native"
+          ] %}
+          <button {{ macros.addAttributes({
+            "class": mySelectionButtonClasses|join(' ')|trim,
+          }) }}>
+            {{ "Delete all"|t }}
+          </button>
+        </div>
+
         {# Filter Chips #}
         {% include "@bf-components/chips-group/twig/index.twig" with {
-            class: "bf-plp__filters-container__chips__group js-bf-plp-filters-container-chips-group",
+            class: "bf-plp__filters-container__my-selection__group js-bf-plp-filters-container-chips-group",
             chipsData: selectedCheckboxes,
             id: "selectedFiltersChips",
         } only %}

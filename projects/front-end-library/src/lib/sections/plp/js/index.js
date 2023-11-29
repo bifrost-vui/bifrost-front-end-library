@@ -1,17 +1,28 @@
 import $ from 'jquery';
 import { _window, currentWindowScroll } from '../../../js/utils/window';
 import { throttle } from '../../../js/utils/debounce-throttle';
+import { isDesktopUp } from '../../../js/utils/breakpoints';
 
 /* Variables */
 const nbResultsMobileSticky = '.js-bf-plp-nb-results-mobile-sticky';
-const filtersButtonOpen = '.js-bf-plp-filters-button-open';
-const filtersButtonClose = '.js-bf-plp-filters-button-close';
 const filtersContainer = '#plpFiltersContainer';
-const filtersContainerMobile = '.js-bf-plp-filters-container-mobile';
+const filtersContainerInner = '.js-bf-plp-filters-container-inner';
+const filtersContainerMobileTitle = '.js-bf-plp-filters-container-mobile-title';
+const filtersMySelectionContainer = '.js-bf-plp-filters-container-my-selection';
+const filtersMySelectionTitleAndButtonContainer = '.js-bf-plp-my-selection-title-and-button-container';
+const filtersMySelectionDeleteAllButton = '.js-bf-plp-filters-my-selection-delete-all-button';
 const filterChipsGroup = '.js-bf-plp-filters-container-chips-group';
 const filterCheckboxes = '.js-bf-filter__checkboxes';
 
+let plpComponent = {
+    isMobileFiltersOpen: false,
+};
+
 /* Functions */
+const setIsMobileFiltersOpen = function (value) {
+    plpComponent.isMobileFiltersOpen = value;
+};
+
 const toggleChip = function ($filterCheckbox) {
     const checkboxId = $filterCheckbox.attr('id');
     const checkboxLabel = $filterCheckbox.next().find('span:last-child').text();
@@ -48,6 +59,44 @@ const toggleStickyNbResultsAndMobileButton = function ($nbResultsMobileSticky, e
     }
 };
 
+const moveDeleteAllButtonOnResize = function (elementToMove, appendToThisElementDesktop, appendToThisElementMobile) {
+    if (!plpComponent.isMobileFiltersOpen) {
+        if (isDesktopUp()) {
+            if (!elementToMove.closest(appendToThisElementDesktop).length) {
+                moveDeleteAllButton(elementToMove, appendToThisElementDesktop);
+            }
+        } else {
+            if (!elementToMove.closest(appendToThisElementMobile).length) {
+                moveDeleteAllButton(elementToMove, appendToThisElementMobile);
+            }
+        }
+    }
+};
+
+const moveDeleteAllButton = function (elementToMove, appendToThisElement) {
+    console.log('elementToMove', elementToMove);
+    console.log('appendToThisElement', appendToThisElement);
+    elementToMove.appendTo(appendToThisElement);
+};
+
+const moveMySelectionContainerOnResize = function (elementToMove, moveAfterElementOnDesktop, moveAfterElementOnMobile) {
+    if (!plpComponent.isMobileFiltersOpen) {
+        if (isDesktopUp()) {
+            if (!moveAfterElementOnDesktop.next().is(elementToMove)) {
+                moveMySelectionContainer(elementToMove, moveAfterElementOnDesktop);
+            }
+        } else {
+            if (!moveAfterElementOnMobile.next().is(elementToMove)) {
+                moveMySelectionContainer(elementToMove, moveAfterElementOnMobile);
+            }
+        }
+    }
+};
+
+const moveMySelectionContainer = function (elementToMove, moveAfterThisElement) {
+    elementToMove.insertAfter(moveAfterThisElement);
+};
+
 /* Window Scope - Function to remove a filter from a "Chip" */
 window.removeFilter = function (idFilter) {
     const $filterItem = $('#' + idFilter);
@@ -57,11 +106,14 @@ window.removeFilter = function (idFilter) {
 
 /* Dom Ready */
 $(function () {
+    // VARIABLES
+
     /* Selector Variables */
     const $nbResultsMobileSticky = $(nbResultsMobileSticky);
     const $filtersContainer = $(filtersContainer);
-    const $filtersButtonOpen = $(filtersButtonOpen);
-    const $filtersButtonClose = $(filtersButtonClose);
+    const $filtersContainerMobileTitle = $(filtersContainerMobileTitle);
+    const $filtersMySelectionContainer = $(filtersMySelectionContainer);
+    const $filtersMySelectionDeleteAllButton = $(filtersMySelectionDeleteAllButton);
     const $filterCheckboxes = $(filterCheckboxes);
     const $checkboxesList = $filterCheckboxes.find('.bf-input-checkbox-control');
 
@@ -71,8 +123,13 @@ $(function () {
     /* Boolean Variables */
     const hasFilterCheckboxes = $filterCheckboxes.length > 0;
 
+    /* Classes */
+    const mobileClasses = ['container', 'container-fluid'];
+
+    // EXECUTIONS ON DOM READY
+
+    /* On checkbox status change, add or remove chip */
     if (hasFilterCheckboxes) {
-        /* On checkbox status change, add or remove chip */
         $checkboxesList.each(function () {
             const $this = $(this);
             $this.on('change', function () {
@@ -86,25 +143,36 @@ $(function () {
         to open the filters container, add a "window freeze" to remove
         scrolling outside of filters container.
     */
-    $filtersContainer.on('shown.bs.collapse', function () {
-        $filtersContainer.find(filtersContainerMobile).addClass(['container', 'container-fluid']);
-        _window.freeze();
+    $filtersContainer.on('shown.bs.collapse', function (e) {
+        if ($(this).is(e.target)) {
+            plpComponent.isMobileFiltersOpen = true;
+            moveDeleteAllButton($filtersMySelectionDeleteAllButton, filtersMySelectionTitleAndButtonContainer);
+            moveMySelectionContainer($filtersMySelectionContainer, $filtersContainerMobileTitle);
+            $filtersContainer.find(filtersContainerInner).addClass(mobileClasses);
+            _window.freeze();
+        }
     });
 
     /*
         On mobile resolution, when clicking on the "X" button
         in the filters container, remove the "window freeze".
     */
-    $filtersContainer.on('hide.bs.collapse', function () {
-        $filtersContainer.find(filtersContainerMobile).removeClass(['container', 'container-fluid']);
-        _window.unfreeze();
+    $filtersContainer.on('hide.bs.collapse', function (e) {
+        if ($(this).is(e.target)) {
+            plpComponent.isMobileFiltersOpen = false;
+            moveDeleteAllButton($filtersMySelectionDeleteAllButton, filterChipsGroup);
+            moveMySelectionContainer($filtersMySelectionContainer, $nbResultsMobileSticky);
+            $filtersContainer.find(filtersContainerInner).removeClass(mobileClasses);
+            _window.unfreeze();
+        }
     });
 
     /*
-        On mobile, init the
+        On mobile, check the position of the scrollbar in relation to the container
+        for the number of results and filter open button. Apply the sticky state or not
+        depending of the position of the scrollbar.
     */
     toggleStickyNbResultsAndMobileButton($nbResultsMobileSticky, nbResultsMobileStickyOffsetTop, $filtersContainer);
-
     $(window).on(
         'scroll',
         throttle(() =>
@@ -114,5 +182,32 @@ $(function () {
                 $filtersContainer
             )
         )
+    );
+
+    moveMySelectionContainerOnResize(
+        $filtersMySelectionContainer,
+        $filtersContainerMobileTitle,
+        $nbResultsMobileSticky
+    );
+    moveDeleteAllButtonOnResize(
+        $filtersMySelectionDeleteAllButton,
+        filtersMySelectionTitleAndButtonContainer,
+        filterChipsGroup
+    );
+    // Screen Resize Event
+    $(window).on(
+        'resize',
+        throttle(() => {
+            moveMySelectionContainerOnResize(
+                $filtersMySelectionContainer,
+                $filtersContainerMobileTitle,
+                $nbResultsMobileSticky
+            );
+            moveDeleteAllButtonOnResize(
+                $filtersMySelectionDeleteAllButton,
+                filtersMySelectionTitleAndButtonContainer,
+                filterChipsGroup
+            );
+        })
     );
 });
