@@ -16,10 +16,12 @@ let currentWindowScroll = {
 
 let _window = {
     freezePos: 0,
+    isFreezed: false,
     freeze() {
         this.freezePos = currentWindowScroll.top;
         $('body').css('top', `-${this.freezePos}px`);
         $('body').addClass('js-vui--window-freeze');
+        this.isFreezed = true;
     },
     unfreeze() {
         $('body').removeClass('js-vui--window-freeze');
@@ -28,6 +30,8 @@ let _window = {
             window.scrollTo(0, this.freezePos);
             this.freezePos = 0;
         }
+
+        this.isFreezed = false;
     },
 };
 
