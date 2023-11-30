@@ -5,30 +5,6 @@
 {% set numberOfResultsSize = numberOfResultsSize|default("h3") %}
 {% set numberOfResultsTag = numberOfResultsTag|default("h2") %}
 
-{# Boolean Variables #}
-{% set hasId = id is defined and id is not empty %}
-{% set isNumberOfResultsSizeH2 = numberOfResultsSize is same as("h2") %}
-{% set isNumberOfResultsSizeH3 = numberOfResultsSize is same as("h3") %}
-{% set isNumberOfResultsSizeNormal = numberOfResultsSize is same as("normal") %}
-{% set isNumberOfResultsTagDiv = numberOfResultsTag is same as("div") %}
-{% set isNumberOfResultsTagH2 = numberOfResultsTag is same as("h2") %}
-{% set isNumberOfResultsTagH3 = numberOfResultsTag is same as("h3") %}
-
-{# Default Variables #}
-{% set class = class|default("") %}
-
-{# Arrays of Classes With Dynamic Elements #}
-{% set plpClasses = [
-  "bf-plp js-bf-plp",
-  (class),
-] %}
-{% set plpNumberOfResultsClasses = [
-  "bf-plp__nb-results-and-button__nb-results",
-  (isNumberOfResultsSizeH2 ? "h2"),
-  (isNumberOfResultsSizeH3 ? "h3"),
-  (isNumberOfResultsSizeNormal ? "bf-text"),
-] %}
-
 {# Chips - Selected Filters #}
 {% set selectedCheckboxes = [] %}
 {% for filterObj in dataFilters %}
@@ -48,13 +24,55 @@
   {% endif %}
 {% endfor %}
 
+{# Boolean Variables #}
+{% set hasChips = selectedCheckboxes is not empty and selectedCheckboxes is iterable %}
+{% set hasId = id is defined and id is not empty %}
+{% set isNumberOfResultsSizeH2 = numberOfResultsSize is same as("h2") %}
+{% set isNumberOfResultsSizeH3 = numberOfResultsSize is same as("h3") %}
+{% set isNumberOfResultsSizeNormal = numberOfResultsSize is same as("normal") %}
+{% set isNumberOfResultsTagDiv = numberOfResultsTag is same as("div") %}
+{% set isNumberOfResultsTagH2 = numberOfResultsTag is same as("h2") %}
+{% set isNumberOfResultsTagH3 = numberOfResultsTag is same as("h3") %}
+
+{# Default Variables #}
+{% set class = class|default("") %}
+{% set noFilterMessage = noFilterMessage|default("Filter our phones to find yours.") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set plpClasses = [
+  "bf-plp js-bf-plp",
+  (class),
+] %}
+{% set plpNumberOfResultsClasses = [
+  "bf-plp__nb-results-and-button__nb-results",
+  (isNumberOfResultsSizeH2 ? "h2"),
+  (isNumberOfResultsSizeH3 ? "h3"),
+  (isNumberOfResultsSizeNormal ? "bf-text"),
+] %}
+{% set mySelectionButtonClasses = [
+  "bf-plp__filters-container__my-selection__title-and-button__clear-all",
+  "js-bf-plp-filters-my-selection-clear-all-button",
+  "bf-link bf-link--native",
+  (hasChips is same as(false) ? "d-none")
+] %}
+{% set mySelectionChipsGroupClasses = [
+  "bf-plp__filters-container__my-selection__group",
+  "js-bf-plp-filters-container-my-selection-chips-group",
+  (hasChips is same as(false) ? "d-none")
+] %}
+{% set mySelectionEmptyMessageClasses = [
+  "mb-0 js-bf-plp-filters-container-my-selection-empty-message",
+  (hasChips ? "d-none")
+] %}
+
 {# Template #}
 <div {{ macros.addAttributes({
   "class": plpClasses|join(' ')|trim,
   "id": (hasId ? id),
 }) }}>
 
-  <div class="bf-plp__nb-results-and-button js-bf-plp-nb-results-mobile-sticky">
+  {# Number of results and Mobile button to open filters container #}
+  <div class="bf-plp__nb-results-and-button js-bf-plp-nb-results-container" style="--padding-when-sticky: 1rem;">
     {# Number of products results #}
     {% embed "@bf-utils/custom-tag/twig/index.twig" with {
       customTag: titleTag,
@@ -63,7 +81,8 @@
       },
     } %}
       {% block customTagContent %}
-        {{ numberOfResults|number_format ~ " " ~ "results"|t }}
+        <span class="bf-plp__nb-results-and-button__nb-results__number">{{ numberOfResults|number_format }}</span>
+        {{ "results"|t }}
       {% endblock %}
     {% endembed %}
 
@@ -83,13 +102,18 @@
     </div>
   </div>
 
+  {# Chips and Filters accordions container #}
   <div id="plpFiltersContainer" class="bf-plp__filters-container collapse fade">
     <div class="bf-plp__filters-container__inner js-bf-plp-filters-container-inner">
+
+      {# Mobile title + button to close filters container #}
       <div class="bf-plp__filters-container__mobile-title js-bf-plp-filters-container-mobile-title">
+        {# Title #}
         <p class="h2">
           {{ "Filter"|t }}
         </p>
 
+        {# Mobile button to close filters container #}
         {% include "@bf-components/button-icon/twig/index.twig" with {
           ariaControls: "plpFiltersContainer",
           ariaExpanded: "true",
@@ -101,7 +125,7 @@
         } only %}
       </div>
 
-      {# Chips #}
+      {# Chips Group #}
       <div class="bf-plp__filters-container__my-selection js-bf-plp-filters-container-my-selection">
         {# Chip template - Always hidden #}
         {% include "@bf-components/chip/twig/index.twig" with {
@@ -113,7 +137,7 @@
           label: "chipTempLabel",
         } only %}
 
-        {# My Selection title + Delete all button #}
+        {# My Selection title + Clear all button #}
         <div class="bf-plp__filters-container__my-selection__title-and-button js-bf-plp-my-selection-title-and-button-container">
           {# My Selection title #}
           <p class="bf-plp__filters-container__my-selection__title-and-button__title bf-text large">
@@ -122,25 +146,23 @@
             </strong>
           </p>
 
-          {# Delete all button #}
-          {% set mySelectionButtonClasses = [
-            "bf-plp__filters-container__my-selection__title-and-button__delete-all",
-            "js-bf-plp-filters-my-selection-delete-all-button",
-            "bf-link bf-link--native"
-          ] %}
+          {# Clear all button #}
           <button {{ macros.addAttributes({
             "class": mySelectionButtonClasses|join(' ')|trim,
           }) }}>
-            {{ "Delete all"|t }}
+            {{ "Clear all"|t }}
           </button>
         </div>
 
         {# Filter Chips #}
         {% include "@bf-components/chips-group/twig/index.twig" with {
-            class: "bf-plp__filters-container__my-selection__group js-bf-plp-filters-container-chips-group",
+            class: mySelectionChipsGroupClasses|join(' ')|trim,
             chipsData: selectedCheckboxes,
             id: "selectedFiltersChips",
         } only %}
+        <p class="{{ mySelectionEmptyMessageClasses|join(' ')|trim }}">
+          {{ noFilterMessage|t }}
+        </p>
       </div>
 
       {# Filters #}

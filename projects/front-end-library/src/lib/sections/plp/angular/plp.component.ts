@@ -30,6 +30,12 @@ export class PlpComponent implements OnInit {
      */
     @Input() id: string;
     /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * In Chips Group, if there is no filters selected, this message will be displayed.
+     */
+    @Input() noFilterMessage: string = 'Filter our phones to find yours.';
+    /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
      * Number of products results.

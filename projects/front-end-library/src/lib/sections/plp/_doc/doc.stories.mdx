@@ -4,7 +4,7 @@ import { withDesign } from 'storybook-addon-designs';
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { PlpComponent } from '../angular/plp.component';
 import { PlpTemplateComponent } from './template.angular.component';
-import { dataFilters } from './data.ts';
+import { dataFilters, dataFiltersNoSelection } from './data.ts';
 
 <Meta
     title="Sections/PLP"
@@ -48,7 +48,20 @@ export const Drupal = (args) => ({
 
 <Canvas withSource="none">
     <Story
-        name="Drupal"
+        name="Drupal - No filter selected"
+        height="300px"
+        args={{
+            elementPath: 'sections/plp/_doc/template.drupal',
+            dataFilters: dataFiltersNoSelection,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - With filters selected"
         height="300px"
         args={{
             elementPath: 'sections/plp/_doc/template.drupal',
