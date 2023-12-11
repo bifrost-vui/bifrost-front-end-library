@@ -142,20 +142,35 @@
 
   &__results {
     grid-area: results;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
 
-    @include media-breakpoint-up(sm) {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
+    &__empty {
+      text-align: center;
     }
 
-    @include media-breakpoint-up(md) {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    &__list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
 
-    @include media-breakpoint-up(lg) {
+      @include media-breakpoint-up(sm) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      @include media-breakpoint-up(md) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+
+  // "My selection" on mobile, when the filters box is not opened, remove the padding and hide the title
+  & > .bf-plp__filters-container__my-selection {
+    .bf-plp__filters-container__my-selection__title-and-button {
+      padding-bottom: 0;
+
+      &__title {
+        display: none;
+      }
     }
   }
 }

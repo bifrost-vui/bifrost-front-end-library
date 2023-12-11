@@ -6,6 +6,7 @@ import { isDesktopUp } from '../../../js/utils/breakpoints';
 
 /* VARIABLES */
 const nbResultsContainer = '.js-bf-plp-nb-results-container';
+const nbResultsNumberString = '.js-bf-plp-nb-results-number-string';
 const filtersContainer = '#plpFiltersContainer';
 const filtersContainerInner = '.js-bf-plp-filters-container-inner';
 const filtersContainerMobileTitle = '.js-bf-plp-filters-container-mobile-title';
@@ -16,6 +17,8 @@ const filterMySelectionChipsGroup = '.js-bf-plp-filters-container-my-selection-c
 const filterMySelectionEmptyMessage = '.js-bf-plp-filters-container-my-selection-empty-message';
 const filtersChips = '.js-bf-plp-filters-chip';
 const filterCheckboxes = '.js-bf-filter__checkboxes';
+const resultsList = '.js-bf-plp-results-list';
+const noResultMessage = '.js-bf-plp-results-empty';
 
 let plpComponent = {
     hasSelectedFilter: false,
@@ -65,6 +68,7 @@ const toggleChip = function (checkboxEl) {
         chipTemplate.find('.bf-chip__label').text(checkboxLabel);
         chipTemplate.find('.bf-chip__button').attr('onclick', "removeFilter('" + checkboxId + "')");
         chipTemplate.removeClass(['d-none', 'bf-chip--disabled', 'js-bf-filters-chip-template']);
+        chipTemplate.addClass(['js-bf-plp-filters-chip']);
         chipTemplate.find('.bf-chip__button').attr('disabled', false);
 
         // Append new chip inside Chips Group
@@ -208,10 +212,33 @@ const toggleFreezeWindowOnResize = function () {
  * Trigger a click on all Chip's delete (x) button
  */
 const clearAllFilters = function () {
-    const $filtersChipsDeleteButton = $(filtersChips).find('.bf-chip__button');
+    const $filtersChipsDeleteButton = $(filtersChips).find('.bf-chip__button:not([disabled])');
     $filtersChipsDeleteButton.each(function () {
         $(this).trigger('click');
     });
+};
+
+/**
+ * Window Scope
+ * Check the number of result that are not hidden, then it display the results or
+ * the "no result" message. Also, it updates the text showing the number of results
+ * above the filters column.
+ */
+window.checkNumberOfResults = function () {
+    const $nbResultsNumberString = $(nbResultsNumberString);
+    const resultsCount = $(resultsList).find('.bf-card:not(.d-none)').length;
+
+    // Display the results or the "no result" message depending of the number of results
+    if (resultsCount > 0) {
+        $(resultsList).removeClass('d-none');
+        $(noResultMessage).addClass('d-none');
+    } else {
+        $(resultsList).addClass('d-none');
+        $(noResultMessage).removeClass('d-none');
+    }
+
+    // Update the number of result string with the actual count
+    $nbResultsNumberString.text(resultsCount + ' '); // The space has to be added here -- DO NOT REMOVE
 };
 
 /**
@@ -330,4 +357,8 @@ $(function () {
     $filtersMySelectionClearAllButton.on('click', () => {
         clearAllFilters();
     });
+
+    // Check the number of result, then display or not the "no result" message
+    // and also update the text showing the number of results
+    window.checkNumberOfResults();
 });

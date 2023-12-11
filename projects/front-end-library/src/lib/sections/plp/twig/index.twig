@@ -16,7 +16,7 @@
           deleteButton: "removeFilter('" ~ option.id ~ "')"|raw,
           deleteButtonAriaLabel: "On a click, it will remove this filter."|t,
           id: option.id ~ "_chip",
-          isDisabled: false,
+          isDisabled: option.isDisabled|default(false),
           label: option.label,
         }]) %}
       {% endif %}
@@ -27,6 +27,7 @@
 {# Boolean Variables #}
 {% set hasChips = selectedCheckboxes is not empty and selectedCheckboxes is iterable %}
 {% set hasId = id is defined and id is not empty %}
+{% set isBlockEmptyResultBlockDefined = block("emptyResultBlock") is defined and block("emptyResultBlock") is not empty %}
 {% set isNumberOfResultsSizeH2 = numberOfResultsSize is same as("h2") %}
 {% set isNumberOfResultsSizeH3 = numberOfResultsSize is same as("h3") %}
 {% set isNumberOfResultsSizeNormal = numberOfResultsSize is same as("normal") %}
@@ -37,6 +38,7 @@
 {# Default Variables #}
 {% set class = class|default("") %}
 {% set noFilterMessage = noFilterMessage|default("Filter our phones to find yours.") %}
+{% set numberOfResults = numberOfResults|default(0) %}
 
 {# Arrays of Classes With Dynamic Elements #}
 {% set plpClasses = [
@@ -81,7 +83,9 @@
       },
     } %}
       {% block customTagContent %}
-        <span class="bf-plp__nb-results-and-button__nb-results__number">{{ numberOfResults|number_format }}</span>
+        <span class="bf-plp__nb-results-and-button__nb-results__number js-bf-plp-nb-results-number-string">
+          {{ numberOfResults|number_format }}
+        </span>
         {{ "results"|t }}
       {% endblock %}
     {% endembed %}
@@ -190,12 +194,28 @@
       </div>
 
       {# Custom Filters #}
-      {% block customFiltersBlock %}{% endblock %}
+      {{ block("customFiltersBlock") }}
     </div>
   </div>
 
   <div class="bf-plp__results">
-    {% block resultsBlock %}{% endblock %}
+
+    <div class="bf-plp__results__empty js-bf-plp-results-empty d-none">
+      {% if isBlockEmptyResultBlockDefined %}
+        {{ block("emptyResultBlock") }}
+      {% else %}
+        <p class="h3">
+          {{ "No result found."|t }}
+        </p>
+        <p>
+          {{ "Change your search criteria to see suggestions."|t}}
+        </p>
+      {% endif %}
+    </div>
+
+    <div class="bf-plp__results__list js-bf-plp-results-list">
+      {{ block("resultsBlock") }}
+    </div>
   </div>
 
 </div>

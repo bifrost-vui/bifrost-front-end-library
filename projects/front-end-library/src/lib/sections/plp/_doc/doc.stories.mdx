@@ -25,6 +25,23 @@ import { dataFilters, dataFiltersNoSelection } from './data.ts';
 
 # PLP
 
+## How to hide card(s) when applying a filter
+
+This component have a JavaScript function that checks the number of results to display or not
+the "no result" message. How it works is that it checks the count of card (`.bf-card`) that
+has not the class `d-none` (this class applying a `display: none;` to the element).
+
+-   If the count number is over 0, then there are results and the card(s) are displayed.
+-   If the count number equal to 0, then the "no result" message is displayed.
+
+This JavaScript function is executed on the page load. If the results are loaded via AJAX
+or something like that, the function will have to be executed manually on a filter change
+after the results loading is complete. The function to use is `window.checkNumberOfResults()`.
+It is on the `window` scope to be usable from anywhere.
+
+So, if you need to hide a card without removing the element from the DOM, then add the class `d-none`
+to the card main element (`.bf-card`). If you have to display a hidden card, then remove the `d-none` class.
+
 <br />
 
 ## Component API
@@ -41,6 +58,11 @@ import { dataFilters, dataFiltersNoSelection } from './data.ts';
 
 ## Drupal
 
+export const commonProps = {
+    _emptyResult: false,
+    dataFilters: dataFilters,
+};
+
 export const Drupal = (args) => ({
     component: TwigContainerComponent,
     props: args,
@@ -52,6 +74,7 @@ export const Drupal = (args) => ({
         height="300px"
         args={{
             elementPath: 'sections/plp/_doc/template.drupal',
+            ...commonProps,
             dataFilters: dataFiltersNoSelection,
         }}
     >
@@ -65,7 +88,21 @@ export const Drupal = (args) => ({
         height="300px"
         args={{
             elementPath: 'sections/plp/_doc/template.drupal',
-            dataFilters: dataFilters,
+            ...commonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - No result"
+        height="300px"
+        args={{
+            elementPath: 'sections/plp/_doc/template.drupal',
+            ...commonProps,
+            _emptyResult: true,
         }}
     >
         {Drupal.bind({})}

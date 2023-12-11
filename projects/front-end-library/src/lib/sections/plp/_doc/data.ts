@@ -7,7 +7,7 @@ export const dataFilters = [
                 {
                     id: 'brand_Apple',
                     isChecked: true,
-                    isDisabled: false,
+                    isDisabled: true,
                     label: 'Apple',
                     labelTypography: 'paragraph-default',
                     value: 'Apple',
@@ -200,7 +200,7 @@ export const dataFilters = [
                 {
                     id: 'color_Red',
                     isChecked: true,
-                    isDisabled: false,
+                    isDisabled: true,
                     label: 'Red',
                     labelTypography: 'paragraph-default',
                     value: 'Red',

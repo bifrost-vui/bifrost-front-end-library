@@ -36,23 +36,21 @@ export class PlpComponent implements OnInit {
      */
     @Input() noFilterMessage: string = 'Filter our phones to find yours.';
     /**
-     * <span style="color: red;">__Required__</span>
+     * <span style="color: orange;">__Optional__</span>
      * <br><br>
      * Number of products results.
-     *
-     * @required
      */
     @Input() numberOfResults: number = 0;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * Size of the number of products results.
+     * Size of the number of results string.
      */
     @Input() numberOfResultsSize: 'normal' | 'h2' | 'h3' = 'h3';
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * HTML tag of the number of products results.
+     * HTML tag of the number of results string.
      */
     @Input() numberOfResultsTag: 'p' | 'h2' | 'h3' = 'h2';
 
