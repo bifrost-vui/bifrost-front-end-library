@@ -4,7 +4,7 @@ import { withDesign } from 'storybook-addon-designs';
 import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
 import { PlpComponent } from '../angular/plp.component';
 import { PlpTemplateComponent } from './template.angular.component';
-import { dataFilters, dataFiltersNoSelection } from './data.ts';
+import { dataFilters, dataFiltersWithDisabledSelectedCheckboxes, dataFiltersNoSelection } from './data.ts';
 
 <Meta
     title="Sections/PLP"
@@ -70,7 +70,7 @@ export const Drupal = (args) => ({
 
 <Canvas withSource="none">
     <Story
-        name="Drupal - No filter selected"
+        name="Drupal - No selected filter"
         height="300px"
         args={{
             elementPath: 'sections/plp/_doc/template.drupal',
@@ -84,11 +84,25 @@ export const Drupal = (args) => ({
 
 <Canvas withSource="none">
     <Story
-        name="Drupal - With filters selected"
+        name="Drupal - With selected filters"
         height="300px"
         args={{
             elementPath: 'sections/plp/_doc/template.drupal',
             ...commonProps,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - With disabled selected filters"
+        height="300px"
+        args={{
+            elementPath: 'sections/plp/_doc/template.drupal',
+            ...commonProps,
+            dataFilters: dataFiltersWithDisabledSelectedCheckboxes,
         }}
     >
         {Drupal.bind({})}

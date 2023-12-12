@@ -32,18 +32,21 @@ let plpComponent = {
  * or the empty message depending of the case.
  */
 const checkNumberSelectedFilters = function () {
-    const checkboxElements = $(filterCheckboxes).find('.bf-input-checkbox-control');
-    const chipsGroupEl = $(filterMySelectionChipsGroup);
-    const emptyMessageEl = $(filterMySelectionEmptyMessage);
+    const $checkboxElements = $(filterCheckboxes).find('.bf-input-checkbox-control');
+    const $chipsGroupEl = $(filterMySelectionChipsGroup);
+    const $emptyMessageEl = $(filterMySelectionEmptyMessage);
+    const $filtersMySelectionClearAllButton = $(filtersMySelectionClearAllButton);
 
-    if (checkboxElements.filter(':checked').length > 0) {
+    if ($checkboxElements.filter(':checked').length > 0) {
         plpComponent.hasSelectedFilter = true;
-        chipsGroupEl.removeClass('d-none');
-        emptyMessageEl.addClass('d-none');
+        $chipsGroupEl.removeClass('d-none');
+        $emptyMessageEl.addClass('d-none');
+        $filtersMySelectionClearAllButton.removeClass('d-none');
     } else {
         plpComponent.hasSelectedFilter = false;
-        chipsGroupEl.addClass('d-none');
-        emptyMessageEl.removeClass('d-none');
+        $chipsGroupEl.addClass('d-none');
+        $emptyMessageEl.removeClass('d-none');
+        $filtersMySelectionClearAllButton.addClass('d-none');
     }
 };
 
@@ -279,6 +282,7 @@ $(function () {
 
     /* On checkbox status change, add or remove chip */
     if (hasFilterCheckboxes) {
+        // Add event listeners on checkbox filters
         $checkboxesList.each(function () {
             const $this = $(this);
             $this.on('change', function () {
