@@ -1,0 +1,59 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set loadingType = loadingType|default("plan") %}
+
+{# Boolean Variables #}
+{% set hasId = id is defined and id is not empty %}
+{% set isLoadingTypePlan = loadingType is same as("plan") %}
+{% set isLoadingTypePhone = loadingType is same as("phone") %}
+{% set isLoadingTypeProtection = loadingType is same as("protection") %}
+{% set isLoadingTypeIncrement = loadingType is same as("increment") %}
+{% set isLoadingTypeCombo = loadingType is same as("combo") %}
+{% set isTwoColsMobileVariant = (isTwoColsMobileVariant ?? false) is same as(true) %}
+
+{# Default Variables #}
+{% set class = class|default("") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set cardClasses = [
+  "bf-card bf-card--loading",
+  (isTwoColsMobileVariant ? "bf-card--two-cols-mobile"),
+  (class),
+] %}
+{% set cardVisualClasses = [
+  "bf-card__visual",
+] %}
+
+{# Template #}
+<article {{ macros.addAttributes({
+  "class": cardClasses|join(' ')|trim,
+  "id": (hasId ? id),
+}) }}>
+
+  {# Image #}
+  {% if isLoadingTypePhone or isLoadingTypeProtection or isLoadingTypeCombo %}
+    <div class="bf-card__visual">
+      <div class="bf-card--loading__animation"></div>
+    </div>
+  {% endif %}
+
+  <div class="bf-card__container">
+    <div class="bf-card--loading__title">
+      <div class="bf-card--loading__animation" style="height: 1.75rem;"></div>
+    </div>
+    <div class="bf-card--loading__badge">
+      <div class="bf-card--loading__animation" style="width: 70%; height: 0.875rem;"></div>
+      <div class="bf-card--loading__animation" style="width: 60%; height: 1.25rem; margin-top: 1rem;"></div>
+    </div>
+    <div class="bf-card--loading__price">
+      <div class="bf-card--loading__animation" style="width: 30%; height: 0.75rem;"></div>
+      <div class="bf-card--loading__animation" style="width: 50%; height: 4.5rem; margin-top: 0.5rem;"></div>
+    </div>
+    <div class="bf-card--loading__button">
+      <div class="bf-card--loading__animation" style="height: 2.75rem;"></div>
+    </div>
+  </div>
+
+</article>
