@@ -62,7 +62,8 @@
     }
   }
   &--two-cols-mobile {
-    &.bf-card--phone {
+    &.bf-card--phone,
+    &.bf-card--loading {
       @include media-breakpoint-down(sm) {
         flex-direction: row;
 
@@ -200,6 +201,28 @@
 
     &__button {
       margin-top: 2rem;
+    }
+
+    // Mobile Two Cols Variant
+    &.bf-card--two-cols-mobile {
+      @include media-breakpoint-down(sm) {
+        .bf-card__visual {
+          width: 100%;
+          padding: 0;
+
+          .bf-card--loading__animation {
+            height: 100%;
+          }
+        }
+
+        .bf-card__container {
+          padding: 1rem;
+        }
+
+        .bf-card--loading__title {
+          margin-top: 0;
+        }
+      }
     }
   }
 
