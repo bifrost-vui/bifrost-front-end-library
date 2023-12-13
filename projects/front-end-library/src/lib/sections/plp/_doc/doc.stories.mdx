@@ -84,6 +84,21 @@ export const Drupal = (args) => ({
 
 <Canvas withSource="none">
     <Story
+        name="Drupal - Loading cards"
+        height="300px"
+        args={{
+            elementPath: 'sections/plp/_doc/template.drupal',
+            ...commonProps,
+            _hasLoadingCards: true,
+            dataFilters: dataFiltersNoSelection,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<Canvas withSource="none">
+    <Story
         name="Drupal - With selected filters"
         height="300px"
         args={{

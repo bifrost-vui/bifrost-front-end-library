@@ -68,6 +68,7 @@
 
 {# Default Variables (Props, Controls) #}
 {% set _emptyResult = _emptyResult|json_parse %}
+{% set _hasLoadingCards = _hasLoadingCards|json_parse %}
 {% set _reversed = _reversed|json_parse %}
 {% set class = class|json_parse %}
 {% set dataFilters = dataFilters|json_parse %}
@@ -108,12 +109,19 @@
       {% if _emptyResult is same as(false) %}
         {% block resultsBlock %}
           {% for i in range(1, 12) %}
-            {% set cardClasses = i == 5 ? ["d-none"] : [] %}
-            {% set cardsObj = cardsObj|merge({
-                class: cardClasses|join(' ')|trim
-              })
-            %}
-            {% include '@bf-components/card/twig/phone.twig' with cardsObj only %}
+            {% if _hasLoadingCards %}
+              {% include '@bf-components/card/twig/loading.twig' with {
+                  isTwoColsMobileVariant: true,
+                  loadingType: 'phone',
+              } only %}
+            {% else %}
+              {% set cardClasses = i == 5 ? ["d-none"] : [] %}
+              {% set cardsObj = cardsObj|merge({
+                  class: cardClasses|join(' ')|trim
+                })
+              %}
+              {% include '@bf-components/card/twig/phone.twig' with cardsObj only %}
+            {% endif %}
           {% endfor %}
         {% endblock %}
       {% endif %}
