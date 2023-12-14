@@ -8,6 +8,8 @@ import { isDesktopUp } from '../../../js/utils/breakpoints';
 const bfPlp = '.js-bf-plp';
 const nbResultsContainer = '.js-bf-plp-nb-results-container';
 const nbResultsNumberString = '.js-bf-plp-nb-results-number-string';
+const nbResultsTextSingularString = '.js-bf-plp-nb-results-text-singular-string';
+const nbResultsTextPluralString = '.js-bf-plp-nb-results-text-plural-string';
 const filtersContainer = '#plpFiltersContainer';
 const filtersContainerInner = '.js-bf-plp-filters-container-inner';
 const filtersContainerButtonClearAll = '.js-bf-plp-filters-container-button-clear-all';
@@ -249,10 +251,14 @@ const toggleFiltersContainerInnerClassesOnResize = function ($filtersContainer) 
  * above the filters column.
  */
 window.checkNumberOfResults = function () {
+    /* Selector Variables */
     const $nbResultsNumberString = $(nbResultsNumberString);
+    const $nbResultsTextSingularString = $(nbResultsTextSingularString);
+    const $nbResultsTextPluralString = $(nbResultsTextPluralString);
     const $cards = $(resultsList).find('.bf-card:not(.d-none)');
     const $cardsNotLoading = $cards.filter(':not(.bf-card--loading)');
 
+    /* Value Variables */
     const cardsTotalCount = $cards.length;
     const cardsNotLoadingTotalCount = $cardsNotLoading.length;
 
@@ -267,6 +273,15 @@ window.checkNumberOfResults = function () {
 
     // Update the number of result string with the actual count
     $nbResultsNumberString.text(cardsNotLoadingTotalCount + ' '); // The space has to be added here -- DO NOT REMOVE
+
+    // If there is more than one result, display the plural text, else show the singular text
+    if (cardsNotLoadingTotalCount > 1) {
+        $nbResultsTextPluralString.removeClass('d-none');
+        $nbResultsTextSingularString.addClass('d-none');
+    } else {
+        $nbResultsTextPluralString.addClass('d-none');
+        $nbResultsTextSingularString.removeClass('d-none');
+    }
 };
 
 /**
