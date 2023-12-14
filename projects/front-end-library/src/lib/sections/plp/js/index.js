@@ -375,6 +375,7 @@ $(function () {
         )
     );
 
+    // On DOM loaded, execute a single time the functions that will also be executed on browser window resize
     moveMySelectionContainerOnResize($filtersMySelectionContainer, $filtersContainerMobileTitle, $nbResultsContainer);
     moveClearAllButtonOnResize(
         $filtersMySelectionClearAllButton,
@@ -383,7 +384,8 @@ $(function () {
     );
     toggleFiltersContainerInnerClassesOnResize($filtersContainer);
     toggleFreezeWindowOnResize();
-    // Screen Resize Event
+
+    // Browser Window Resize Event
     $(window).on(
         'resize',
         throttle(() => {
@@ -402,6 +404,7 @@ $(function () {
         })
     );
 
+    // On click on either "Clear all" button, it will remove all selected filters
     $bfPlp.on('click', `${filtersMySelectionClearAllButton}, ${filtersContainerButtonClearAll}`, () => {
         clearAllFilters();
     });
