@@ -22,6 +22,30 @@ const updateNumberSelectionsBadge = function ($filterItem, $checkboxesList) {
     $nbSelectionsBadgeText.text(numberOfCheckboxesSelected);
 };
 
+const getCheckboxHeight = function ($checkboxEl) {
+    if ($checkboxEl.length === 0) {
+        return null;
+    }
+
+    const $body = $('body');
+    let checkboxClone = $checkboxEl.first().clone();
+
+    checkboxClone.css({
+        opacity: 0,
+        position: 'absolute',
+        top: '-9999px',
+        left: '-9999px',
+    });
+
+    checkboxClone.appendTo($body);
+
+    const checkboxHeight = checkboxClone.get(0).offsetHeight;
+
+    checkboxClone.remove();
+
+    return checkboxHeight;
+};
+
 const setCheckboxesHeight = function ($filterCheckboxes) {
     // Selector Variables
     const $filterOptions = $filterCheckboxes.find('.bf-input-checkbox-option');
@@ -29,13 +53,14 @@ const setCheckboxesHeight = function ($filterCheckboxes) {
     // Value Variables
     const numberOfCheckboxesToDisplay = $filterCheckboxes.data('nb-checkboxes-display');
     const checkboxesTotalNumber = $filterOptions.length;
-    const singleCheckboxHeight = $filterOptions[0].offsetHeight;
-    const checkboxesContainerCssGapValue = parseInt(
-        $filterCheckboxes.find('.bf-input-checkbox__options').css('gap'),
-        10
-    );
 
-    if (checkboxesTotalNumber > 8) {
+    if (checkboxesTotalNumber > numberOfCheckboxesToDisplay) {
+        const singleCheckboxHeight = getCheckboxHeight($filterOptions);
+        const checkboxesContainerCssGapValue = parseInt(
+            $filterCheckboxes.find('.bf-input-checkbox__options').css('gap'),
+            10
+        );
+
         $filterCheckboxes.css({
             '--filterCheckboxesMinHeight':
                 numberOfCheckboxesToDisplay * (singleCheckboxHeight + checkboxesContainerCssGapValue) + 'px',
