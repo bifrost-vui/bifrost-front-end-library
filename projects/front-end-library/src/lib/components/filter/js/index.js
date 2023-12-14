@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { debounce } from '../../../js/utils/debounce-throttle';
 
 /* Variables */
 const filterItem = '.js-bf-filter';
@@ -109,6 +110,14 @@ $(function () {
                 $seeLessButton.addClass('d-none');
                 $filterCheckboxes.removeClass('expanded');
             });
+
+            // Screen Resize Event
+            $(window).on(
+                'resize',
+                debounce(() => {
+                    setCheckboxesHeight($filterCheckboxes);
+                })
+            );
         }
     });
 });
