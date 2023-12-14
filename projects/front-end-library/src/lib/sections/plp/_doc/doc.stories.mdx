@@ -25,19 +25,22 @@ import { dataFilters, dataFiltersWithDisabledSelectedCheckboxes, dataFiltersNoSe
 
 # PLP
 
-## How to hide card(s) when applying a filter
+## Updating the number of results
 
 This component have a JavaScript function that checks the number of results to display or not
 the "no result" message. How it works is that it checks the count of card (`.bf-card`) that
-has not the class `d-none` (this class applying a `display: none;` to the element).
+does not have the class `d-none` (this class applies a `display: none;` to the element).
 
 -   If the count number is over 0, then there are results and the card(s) are displayed.
 -   If the count number equal to 0, then the "no result" message is displayed.
 
-This JavaScript function is executed on the page load. If the results are loaded via AJAX
-or something like that, the function will have to be executed manually on a filter change
-after the results loading is complete. The function to use is `window.checkNumberOfResults()`.
-It is on the `window` scope to be usable from anywhere.
+This JavaScript function is executed when the DOM is loaded. If the results are loaded via AJAX
+or something like that, the function will have to be executed manually on when a filter is selected
+or unselected after the new results are loaded.
+
+The function to use is `window.checkNumberOfResults()`. It is on the `window` scope to be usable from anywhere.
+
+### How to hide card(s) when applying a filter
 
 So, if you need to hide a card without removing the element from the DOM, then add the class `d-none`
 to the card main element (`.bf-card`). If you have to display a hidden card, then remove the `d-none` class.

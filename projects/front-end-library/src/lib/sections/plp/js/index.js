@@ -23,6 +23,7 @@ const filtersChips = '.js-bf-plp-filters-chip';
 const filterCheckboxes = '.js-bf-filter__checkboxes';
 const resultsList = '.js-bf-plp-results-list';
 const noResultMessage = '.js-bf-plp-results-empty';
+const viewMoreButton = '#plpViewMoreButton';
 
 let plpComponent = {
     hasSelectedFilter: false,
@@ -252,11 +253,14 @@ const toggleFiltersContainerInnerClassesOnResize = function ($filtersContainer) 
  */
 window.checkNumberOfResults = function () {
     /* Selector Variables */
+    const $resultsList = $(resultsList);
+    const $noResultMessage = $(noResultMessage);
     const $nbResultsNumberString = $(nbResultsNumberString);
     const $nbResultsTextSingularString = $(nbResultsTextSingularString);
     const $nbResultsTextPluralString = $(nbResultsTextPluralString);
-    const $cards = $(resultsList).find('.bf-card:not(.d-none)');
+    const $cards = $resultsList.find('.bf-card:not(.d-none)');
     const $cardsNotLoading = $cards.filter(':not(.bf-card--loading)');
+    const $viewMoreButton = $(viewMoreButton);
 
     /* Value Variables */
     const cardsTotalCount = $cards.length;
@@ -264,11 +268,13 @@ window.checkNumberOfResults = function () {
 
     // Display the results or the "no result" message depending of the number of results
     if (cardsTotalCount > 0) {
-        $(resultsList).removeClass('d-none');
-        $(noResultMessage).addClass('d-none');
+        $resultsList.removeClass('d-none');
+        $noResultMessage.addClass('d-none');
+        $viewMoreButton.removeClass('d-none');
     } else {
-        $(resultsList).addClass('d-none');
-        $(noResultMessage).removeClass('d-none');
+        $resultsList.addClass('d-none');
+        $noResultMessage.removeClass('d-none');
+        $viewMoreButton.addClass('d-none');
     }
 
     // Update the number of result string with the actual count
