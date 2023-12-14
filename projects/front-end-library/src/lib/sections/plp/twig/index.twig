@@ -95,7 +95,6 @@
       {% include "@bf-components/button/twig/index.twig" with {
         ariaControls: "plpFiltersContainer",
         ariaExpanded: "false",
-        class: "js-bf-plp-filters-button-open",
         dataTarget: "#plpFiltersContainer",
         dataToggle: "collapse",
         hierarchy: "secondary",
@@ -195,6 +194,22 @@
 
       {# Custom Filters #}
       {{ block("customFiltersBlock") }}
+    </div>
+
+    <div class="bf-plp__filters-container__buttons">
+      {% include '@bf-components/button/twig/index.twig' with {
+        class: "js-bf-plp-filters-container-button-clear-all",
+        hierarchy: "secondary",
+        label: "Clear all"|t,
+      } only %}
+      {% include '@bf-components/button/twig/index.twig' with {
+        ariaControls: "plpFiltersContainer",
+        ariaExpanded: "false",
+        dataTarget: "#plpFiltersContainer",
+        dataToggle: "collapse",
+        hierarchy: "primary-alt",
+        label: "Apply"|t,
+      } only %}
     </div>
   </div>
 

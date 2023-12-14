@@ -5,10 +5,12 @@ import { throttle } from '../../../js/utils/debounce-throttle';
 import { isDesktopUp } from '../../../js/utils/breakpoints';
 
 /* VARIABLES */
+const bfPlp = '.js-bf-plp';
 const nbResultsContainer = '.js-bf-plp-nb-results-container';
 const nbResultsNumberString = '.js-bf-plp-nb-results-number-string';
 const filtersContainer = '#plpFiltersContainer';
 const filtersContainerInner = '.js-bf-plp-filters-container-inner';
+const filtersContainerButtonClearAll = '.js-bf-plp-filters-container-button-clear-all';
 const filtersContainerMobileTitle = '.js-bf-plp-filters-container-mobile-title';
 const filtersMySelectionContainer = '.js-bf-plp-filters-container-my-selection';
 const filtersMySelectionTitleAndButtonContainer = '.js-bf-plp-my-selection-title-and-button-container';
@@ -222,6 +224,25 @@ const clearAllFilters = function () {
 };
 
 /**
+ * Toggle classes on ".js-bf-plp-filters-container-inner" depending of the screen resolution
+ *
+ * @param {jQuery} $filtersContainer - Filters container element
+ */
+const toggleFiltersContainerInnerClassesOnResize = function ($filtersContainer) {
+    /* Classes */
+    const mobileClasses = ['container', 'container-fluid'];
+
+    // If the window is being resized to desktop resolution and over
+    if (isDesktopUp()) {
+        $filtersContainer.find(filtersContainerInner).removeClass(mobileClasses);
+    }
+    // If the window is being resized below desktop resolution
+    else {
+        $filtersContainer.find(filtersContainerInner).addClass(mobileClasses);
+    }
+};
+
+/**
  * Window Scope
  * Check the number of result that are not hidden, then it display the results or
  * the "no result" message. Also, it updates the text showing the number of results
@@ -258,6 +279,7 @@ $(function () {
     // VARIABLES
 
     /* Selector Variables */
+    const $bfPlp = $(bfPlp);
     const $nbResultsContainer = $(nbResultsContainer);
     const $filtersContainer = $(filtersContainer);
     const $filtersContainerMobileTitle = $(filtersContainerMobileTitle);
@@ -271,9 +293,6 @@ $(function () {
 
     /* Boolean Variables */
     const hasFilterCheckboxes = $filterCheckboxes.length > 0;
-
-    /* Classes */
-    const mobileClasses = ['container', 'container-fluid'];
 
     // EXECUTIONS ON DOM READY
 
@@ -301,7 +320,6 @@ $(function () {
             plpComponent.isMobileFiltersOpen = true;
             moveClearAllButton($filtersMySelectionClearAllButton, filtersMySelectionTitleAndButtonContainer);
             moveMySelectionContainer($filtersMySelectionContainer, $filtersContainerMobileTitle);
-            $filtersContainer.find(filtersContainerInner).addClass(mobileClasses);
             _window.freeze();
         }
     });
@@ -315,7 +333,6 @@ $(function () {
             plpComponent.isMobileFiltersOpen = false;
             moveClearAllButton($filtersMySelectionClearAllButton, filterMySelectionChipsGroup);
             moveMySelectionContainer($filtersMySelectionContainer, $nbResultsContainer);
-            $filtersContainer.find(filtersContainerInner).removeClass(mobileClasses);
             _window.unfreeze();
         }
     });
@@ -339,6 +356,7 @@ $(function () {
         filtersMySelectionTitleAndButtonContainer,
         filterMySelectionChipsGroup
     );
+    toggleFiltersContainerInnerClassesOnResize($filtersContainer);
     toggleFreezeWindowOnResize();
     // Screen Resize Event
     $(window).on(
@@ -354,11 +372,12 @@ $(function () {
                 filtersMySelectionTitleAndButtonContainer,
                 filterMySelectionChipsGroup
             );
+            toggleFiltersContainerInnerClassesOnResize($filtersContainer);
             toggleFreezeWindowOnResize();
         })
     );
 
-    $filtersMySelectionClearAllButton.on('click', () => {
+    $bfPlp.on('click', `${filtersMySelectionClearAllButton}, ${filtersContainerButtonClearAll}`, () => {
         clearAllFilters();
     });
 
