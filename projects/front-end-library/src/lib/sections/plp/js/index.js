@@ -250,10 +250,14 @@ const toggleFiltersContainerInnerClassesOnResize = function ($filtersContainer) 
  */
 window.checkNumberOfResults = function () {
     const $nbResultsNumberString = $(nbResultsNumberString);
-    const resultsCount = $(resultsList).find('.bf-card:not(.d-none)').length;
+    const $cards = $(resultsList).find('.bf-card:not(.d-none)');
+    const $cardsNotLoading = $cards.filter(':not(.bf-card--loading)');
+
+    const cardsTotalCount = $cards.length;
+    const cardsNotLoadingTotalCount = $cardsNotLoading.length;
 
     // Display the results or the "no result" message depending of the number of results
-    if (resultsCount > 0) {
+    if (cardsTotalCount > 0) {
         $(resultsList).removeClass('d-none');
         $(noResultMessage).addClass('d-none');
     } else {
@@ -262,7 +266,7 @@ window.checkNumberOfResults = function () {
     }
 
     // Update the number of result string with the actual count
-    $nbResultsNumberString.text(resultsCount + ' '); // The space has to be added here -- DO NOT REMOVE
+    $nbResultsNumberString.text(cardsNotLoadingTotalCount + ' '); // The space has to be added here -- DO NOT REMOVE
 };
 
 /**
