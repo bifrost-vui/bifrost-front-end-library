@@ -54,9 +54,99 @@ to the card main element (`.bf-card`). If you have to display a hidden card, the
 ## Drupal implementation example
 
 ```jsx
-{% include '@bf-sections/plp/twig/index.twig' with {
-    // Add relevant props here
-} only %}
+{% embed "@bf-sections/plp/twig/index.twig" with {
+    class: "custom-classes",
+    dataFilters: [
+        {
+            // Checkboxes filters
+            dataCheckboxes: {
+                id: 'brand_filter_options',
+                name: 'brand_filter_options',
+                options: [
+                    {
+                        id: 'brand_Apple',
+                        isChecked: true,
+                        isDisabled: false,
+                        label: 'Apple',
+                        labelTypography: 'paragraph-default',
+                        value: 'Apple',
+                    },
+                    // And more checkboxes
+                    {...}
+                ],
+            },
+            id: 'brand_filter',
+            isDisabled: false,
+            isExpandedByDefault: true,
+            title: 'Brand',
+        },
+        {
+            // Slider(s) filters
+            dataSlider: {
+                max: {
+                    description: '$999/month',
+                    inputId: 'inputIdMax',
+                    legend: 'Maximum',
+                    value: 999,
+                },
+                min: {
+                    description: '$0/month',
+                    inputId: 'inputIdMin',
+                    legend: 'Minimum',
+                    value: 0,
+                },
+                minimumGap: 10,
+                step: 1,
+                unitLabel: '$',
+                unitPosition: 'start',
+                value: [0, 999],
+            },
+            id: 'monthly_price_filter',
+            isDisabled: false,
+            isExpandedByDefault: true,
+            title: 'Monthly price',
+        },
+        // And more filters
+        {...}
+    ],
+    id: "uniqueId",
+    noFilterMessage: "Filter our phones to find yours.",
+    numberOfResults: 0,
+    numberOfResultsSize: "h3",
+    numberOfResultsTag: "h2",
+} %}
+
+    {# Custom Filters #}
+    {% block customFiltersBlock %}
+        // Add here some custom filters that are not "checkboxes" or "sliders"
+    {% endblock %}
+
+    {# Results #}
+    {% block resultsBlock %}
+        // Here you can build the results list in a loop with the data to use in the Card component
+        // Refer to the Card component API to build the data
+        {% for card in cardsData %}
+            // Phone card type
+            {% include '@bf-components/card/twig/phone.twig' with card only %}
+
+            // Plan card type
+            {% include '@bf-components/card/twig/plan.twig' with card only %}
+
+            // Combo card type
+            {% include '@bf-components/card/twig/combo.twig' with card only %}
+        {% endfor %}
+
+        // Also, for the loading card, you have to use the "loading" card type
+        // and if you want multiple instances, put it in a loop
+        {% for i in range(1, 12) %}
+            {% include '@bf-components/card/twig/loading.twig' with {
+                isTwoColsMobileVariant: true,
+                loadingType: 'phone',
+            } only %}
+        {% endfor %}
+    {% endblock %}
+
+{% endembed %}
 ```
 
 ## Drupal
