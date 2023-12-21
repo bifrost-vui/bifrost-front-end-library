@@ -19,6 +19,147 @@ see [github-release](#)
 <br />
 -->
 
+## [v1.16.0](https://bifrost-front-end-library-git-v1-16-0-bifrost-vui.vercel.app/) - _2023-12-21_
+
+see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.16.0)
+
+### Breaking Changes
+
+-   None
+
+### Bugs fixes
+
+#### Card
+
+-   Fix issue with channels modal
+    -   Move `container` CSS property to Combo type only
+-   Fix internal API broken links in documentation
+
+#### Navigation Header
+
+-   Fix `alt` attribute on images in mega menu block
+
+### Special mentions
+
+#### JavaScript
+
+-   Add a new JavaScript **debounce** and **throttle** utilities
+-   Adjust `_window` utility to make available the values of `currentWindowScroll` after DOM ready
+-   Adjust files compilation method
+    -   Remove loading of `bifrost-components.js` in `main.twig`
+    -   Remove compilation of `bifrost-components.js` in `webpack.config.js`
+    -   Add a `require` of `bifrost-components.js` in `lib/js/index.js`
+-   Adjust `breakpoints.js`
+    -   Add new breakpoint functions
+    -   Adjust `isMobileUp` function
+-   Add `isFreezed` property in `window.js`
+    -   Add the property in `_window` object
+    -   Set to `true` when `freeze()` is called
+    -   Set to `false` when `unfreeze()` is called
+
+#### SCSS
+
+-   Add `--bf-color-primary-irreversible` in color list and in CSS
+-   For form elements, adjust CSS to add a `box-shadow` style in a `focus-visible` selector to view the focus on keyboard navigation
+-   Adjust text selection styles on highlighted background color. It was yellow on yellow, so not visible at all.
+    -   Adjust styles on `.highlight` and its children
+    -   Adjust styles on `.bf-color-bg-highlight` and its children
+
+#### Storybook
+
+-   Adjust `CONTRIBUTING.mdx` file
+-   Adjust the "new component" generator template files to reflect the way the files are now structured.
+
+#### Typography / Headings
+
+-   Fix `letter-spacing` style in `.bf-text-interface`
+    -   Change base value from `px` unit to `rem` unit
+    -   Fix `small` text `letter-spacing` style from `1px` to `0.5px` in `rem` unit
+-   Add a `large` text style
+-   Fix the **h3** `font-size` value in the documentation
+
+### Components
+
+#### (NEW) Accordion
+
+-   Develop the new component
+-   Documentation of the component
+
+#### Badge
+
+-   Add `fontSize` property
+-   Adjust `background-color` and `color` styles
+
+#### Card
+
+-   Add a two columns variant on mobile only for `phone` card type
+-   Add a **Loading** card type
+
+#### (NEW) Chip
+
+-   Develop the new component
+-   Documentation of the component
+
+#### (NEW) Chips Group
+
+-   Develop the new component
+-   Documentation of the component
+
+#### (NEW) Filter
+
+-   Develop the new component
+-   Documentation of the component
+
+#### Icon
+
+-   Adjust these icons to use `stroke` instead of `fill` attribute:
+    -   `chevron-down`
+    -   `chevron-up`
+    -   `minus`
+    -   `plus`
+    -   `x-circle-filled`
+
+#### Input
+
+-   Add `idFieldset` property
+-   Add `id` attribute on fieldset that uses `idFieldset`
+-   Add `extraAttribute` property
+
+#### Input Checkbox
+
+-   Add an API model file
+-   Add documentation for API
+-   Adjust `name` property
+    -   If it is defined, pass it to `Input Checkbox Option` or `Selection Tile`
+-   Add properties:
+    -   `id`
+    -   `extraAttribute`
+
+#### Input Checkbox Option
+
+-   Replace `check-bg.svg` to a more visible one
+-   Adjust CSS to use new SVG
+-   Adjust CSS to fix keyboard navigation accessibilty
+-   Adjust CSS to limit the size of the component clicking zone
+-   Add `labelTypography` property
+
+#### Input Slider
+
+-   Add an API Model file
+-   Add an internal API documentation page
+-   Add documentation for component API
+-   Adjust template file for displaying the component on Storybook
+-   Add `number_format` Twig filter to `minimumGap`
+
+### Sections
+
+#### (NEW) Products Landing Page (PLP)
+
+-   Develop this new section
+-   Documentation of the section
+
+<br />
+
 ## [v1.15.2](https://bifrost-front-end-library-git-v1-15-2-bifrost-vui.vercel.app/) - _2023-10-18_
 
 see [github-release](https://github.com/bifrost-vui/bifrost-front-end-library/releases/tag/v1.15.2)
