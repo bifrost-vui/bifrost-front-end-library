@@ -205,12 +205,29 @@ export class CardComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
+     * - Only available in the __phone__ and __loading__ card types.
+     * - On the __loading__ card type, only works when used with the `phone` value on `loadingType` prop.
+     * - Change the display of the card on mobile resolution only.
+     * - The image is in the left column and the rest is in the right column.
+     */
+    @Input() isTwoColsMobileVariant: boolean = false;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
      * - It is displayed below the subtitle.
      * - See `ICardLink`
      *    <a href="/?path=/docs/components-card-api--page#icardlink-api" target="_blank">API</a>
      *    and <a href="/?path=/docs/components-card-api--page#icardlink-format" target="_blank">expected format</a>.
      */
     @Input() link: ICardLink;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Only available with __loading__ card type.
+     * - Only works with `loading.twig`.
+     * - This value will indicate to the loading card what to display.
+     */
+    @Input() loadingType: 'plan' | 'phone' | 'protection' | 'increment' | 'combo' = 'plan';
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>

@@ -1,0 +1,117 @@
+{% set cardsObj = {
+  buttons: [
+      {
+          hierarchy: 'primary-alt',
+          href: 'https://www.videotron.com',
+          label: 'Configurate',
+      },
+  ],
+  contentBadges: [
+      {
+          iconName: 'credit-return',
+          label: 'take-back credit',
+      },
+  ],
+  detailsColors: [
+      { name: 'Lorem', value: '4B4A46' },
+      { name: 'Ipsum', value: '2C4651' },
+      { name: 'Dolor', value: 'D4BBA5' },
+      { name: 'Amet', value: 'C0C0C0' },
+  ],
+  detailsStorage: ['128 Go', '256 Go'],
+  headerPromoBadge: {
+      iconName: 'payment',
+      label: 'Promotion',
+  },
+  image: {
+      alt: 'iPhone 12 Mini',
+      src: '/images/_docs/iphone-12-pro-max.png',
+  },
+  imageBadgeIcon: {
+      name: 'security',
+  },
+  isTwoColsMobileVariant: true,
+  price: {
+      cent: '99',
+      details: '/month',
+      dollar: '86',
+      language: 'en',
+      message: 'For 24 months',
+      promotion: {
+          direction: 'vertical',
+          priceSaved: '10.00',
+          priceStriked: '40.99',
+          savedLabel: 'You saved :',
+      },
+      upfront: {
+        dollar: "0",
+        label: "upfront"
+      },
+      upperTitle: 'From',
+  },
+  title: 'iPhone 12 Mini',
+} %}
+
+{# Default Variables (Props, Controls) #}
+{% set _emptyResult = _emptyResult|json_parse %}
+{% set _hasLoadingCards = _hasLoadingCards|json_parse %}
+{% set _reversed = _reversed|json_parse %}
+{% set class = class|json_parse %}
+{% set dataFilters = dataFilters|json_parse %}
+{% set id = id|json_parse %}
+{% set noFilterMessage = noFilterMessage|json_parse %}
+{% set numberOfResults = numberOfResults|json_parse %}
+{% set numberOfResultsSize = numberOfResultsSize|json_parse %}
+{% set numberOfResultsTag = numberOfResultsTag|json_parse %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "container container-fluid pt-4",
+  (_reversed ? "reversed bf-color-bg-ground"),
+] %}
+
+{# Template #}
+<div class="bf-color-bg-highlight d-flex" style="align-items: center; justify-content: center; min-height: 12rem; height: 30vh;">
+  <div class="container container-fluid h1 mb-0">
+    This zone is only a simulated height for Header + Hero
+  </div>
+</div>
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
+
+    {% embed "@bf-sections/plp/twig/index.twig" with {
+        class: class,
+        dataFilters: dataFilters,
+        id: id,
+        noFilterMessage: noFilterMessage,
+        numberOfResults: numberOfResults,
+        numberOfResultsSize: numberOfResultsSize,
+        numberOfResultsTag: numberOfResultsTag,
+    } %}
+
+      {# Custom Filters #}
+      {% block customFiltersBlock %}{% endblock %}
+
+      {# Results #}
+      {% if _emptyResult is same as(false) %}
+        {% block resultsBlock %}
+          {% for i in range(1, 12) %}
+            {% if _hasLoadingCards %}
+              {% include '@bf-components/card/twig/loading.twig' with {
+                  isTwoColsMobileVariant: true,
+                  loadingType: 'phone',
+              } only %}
+            {% else %}
+              {% set cardClasses = i == 5 ? ["d-none"] : [] %}
+              {% set cardsObj = cardsObj|merge({
+                  class: cardClasses|join(' ')|trim
+                })
+              %}
+              {% include '@bf-components/card/twig/phone.twig' with cardsObj only %}
+            {% endif %}
+          {% endfor %}
+        {% endblock %}
+      {% endif %}
+
+    {% endembed %}
+
+</div>

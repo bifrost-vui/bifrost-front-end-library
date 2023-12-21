@@ -1,0 +1,196 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set background = background|default("ground") %}
+{% set emphasisPosition = emphasisPosition|default("left") %}
+{% set iconPosition = iconPosition|default("right") %}
+{% set iconType = iconType|default("chevron") %}
+{% set paddingX = paddingX|default("medium") %}
+{% set paddingY = paddingY|default("medium") %}
+{% set titleSize = titleSize|default("normal") %}
+{% set titleTag = titleTag|default("div") %}
+{% set titleWeight = titleWeight|default("bold") %}
+
+{# Boolean Variables #}
+{% set hasBorder = (hasBorder ?? true) is same as(true) %}
+{% set hasEmphasis = emphasis is defined and emphasis is not empty %}
+{% set hasIdParent = idParent is defined and idParent is not empty %}
+{% set isBackgroundGround = background is same as("ground") %}
+{% set isBackgroundHighlight = background is same as("highlight") %}
+{% set isBackgroundUnderground = background is same as("underground") %}
+{% set isBlockContentBlockDefined = block("contentBlock") is defined %}
+{% set isBlockEmphasisBlockDefined = block("emphasisBlock") is defined %}
+{% set isDisabled = (isDisabled ?? false) is same as(true) %}
+{% set isExpandedByDefault = (isExpandedByDefault ?? false) is same as(true) %}
+{% set isEmphasisPositionLeft = emphasisPosition is same as("left") %}
+{% set isEmphasisPositionCenter = emphasisPosition is same as("center") %}
+{% set isEmphasisPositionRight = emphasisPosition is same as("right") %}
+{% set isIconPositionLeft = iconPosition is same as("left") %}
+{% set isIconPositionRight = iconPosition is same as("right") %}
+{% set isIconTypeChevron = iconType is same as("chevron") %}
+{% set isIconTypePlusMinus = iconType is same as("plus-minus") %}
+{% set isPaddingXLarge = paddingX is same as("large") %}
+{% set isPaddingXMedium = paddingX is same as("medium") %}
+{% set isPaddingXNone = paddingX is same as("none") %}
+{% set isPaddingXSmall = paddingX is same as("small") %}
+{% set isPaddingYLarge = paddingY is same as("large") %}
+{% set isPaddingYMedium = paddingY is same as("medium") %}
+{% set isPaddingYNone = paddingY is same as("none") %}
+{% set isPaddingYSmall = paddingY is same as("small") %}
+{% set isTitleSizeH2 = titleSize is same as("h2") %}
+{% set isTitleSizeH3 = titleSize is same as("h3") %}
+{% set isTitleSizeNormal = titleSize is same as("normal") %}
+{% set isTitleTagDiv = titleTag is same as("div") %}
+{% set isTitleTagH2 = titleTag is same as("h2") %}
+{% set isTitleTagH3 = titleTag is same as("h3") %}
+{% set isTitleWeightBold = titleWeight is same as("bold") %}
+{% set isTitleWeightNormal = titleWeight is same as("normal") %}
+
+{# Boolean Variables - ORDER IS IMPORTANT #}
+{% set isBorderRounded = hasBorder and ((isBorderRounded ?? true) is same as(true)) %}
+{% if isBlockEmphasisBlockDefined %}
+  {#
+    block("emphasisBlock") needs to be set in a variable
+    because its block is "printed" inside another block from "custom-tag" utilitary
+  #}
+  {% set blockEmphasis = block("emphasisBlock") %}
+{% endif %}
+
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
+{% set class = class|default("") %}
+
+{# Component Variables #}
+{% set id = "bfAcccordion_" ~ id %}
+{% set idContent = id ~ "_content" %}
+{% set idTitle = id ~ "_title" %}
+{% if isIconTypeChevron %}
+  {% set buttonIcons = {
+    collapsed: "chevron-down",
+    expanded: "chevron-up",
+  } %}
+{% elseif isIconTypePlusMinus %}
+  {% set buttonIcons = {
+    collapsed: "plus",
+    expanded: "minus",
+  } %}
+{% endif %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set accordionClasses = [
+  "bf-accordion",
+  (hasBorder ? "bf-accordion--has-border"),
+  (isBackgroundGround ? "bf-accordion--bg-ground"),
+  (isBackgroundHighlight ? "bf-accordion--bg-highlight"),
+  (isBackgroundUnderground ? "bf-accordion--bg-underground"),
+  (isPaddingXSmall ? "bf-accordion--px--sm"),
+  (isPaddingXMedium ? "bf-accordion--px--md"),
+  (isPaddingXLarge ? "bf-accordion--px--lg"),
+  (isPaddingYSmall ? "bf-accordion--py--sm"),
+  (isPaddingYMedium ? "bf-accordion--py--md"),
+  (isPaddingYLarge ? "bf-accordion--py--lg"),
+  (isBorderRounded ? "bf-accordion--has-border--rounded"),
+  (isDisabled ? "bf-accordion--disabled"),
+  (class),
+] %}
+{% set accordionHeaderClasses = [
+  "bf-accordion__header",
+  "bf-text font-weight-normal",
+] %}
+{% set accordionHeaderButtonClasses = [
+  "bf-accordion__header__button",
+  (isIconPositionLeft ? "bf-accordion__header__button--icon-position--left"),
+  (isIconPositionRight ? "bf-accordion__header__button--icon-position--right"),
+] %}
+{% set accordionHeaderTitleClasses = [
+  "bf-accordion__header__title",
+  (isTitleSizeH2 ? "h2"),
+  (isTitleSizeH3 ? "h3"),
+  (isTitleSizeNormal ? "bf-text"),
+  (isTitleWeightBold ? "font-weight-bold"),
+  (isTitleWeightNormal ? "font-weight-normal"),
+] %}
+{% set accordionHeaderEmphasisClasses = [
+  "bf-accordion__header__emphasis",
+  (isEmphasisPositionLeft ? "bf-accordion__header__emphasis--left"),
+  (isEmphasisPositionCenter ? "bf-accordion__header__emphasis--center"),
+  (isEmphasisPositionRight ? "bf-accordion__header__emphasis--right"),
+] %}
+{% set accordionContentClasses = [
+  "bf-accordion__content collapse",
+  (isExpandedByDefault ? "show"),
+] %}
+
+{# Template #}
+<div {{ macros.addAttributes({
+  "class": accordionClasses|join(' ')|trim,
+  "id": id,
+}) }}>
+  {% embed "@bf-utils/custom-tag/twig/index.twig" with {
+    customTag: titleTag,
+    attr: {
+      "class": accordionHeaderClasses|join(' ')|trim
+    },
+  } %}
+    {% block customTagContent %}
+
+      <button {{ macros.addAttributes({
+        "type": "button",
+        "class": accordionHeaderButtonClasses|join(' ')|trim,
+        "aria-controls": idContent,
+        "aria-expanded": (isExpandedByDefault ? "true" : "false"),
+        "aria-label": "Expand Content"|t,
+        "data-target": "#" ~ idContent,
+        "data-toggle": "collapse",
+        "disabled": (isDisabled ? "disabled"),
+      }) }}>
+        <span {{ macros.addAttributes({
+          "class": accordionHeaderTitleClasses|join(' ')|trim,
+          "id": idTitle,
+        }) }}>
+          {{ title }}
+        </span>
+
+        {% if isBlockEmphasisBlockDefined %}
+          <div class="{{ accordionHeaderEmphasisClasses|join(' ')|trim }}">
+            {{ blockEmphasis }}
+          </div>
+        {% elseif hasEmphasis %}
+          <div class="{{ accordionHeaderEmphasisClasses|join(' ')|trim }}">
+            {{ emphasis|raw }}
+          </div>
+        {% endif %}
+
+        <div class="bf-accordion__header__icon">
+          {% include '@bf-components/icon/twig/index.twig' with {
+            name: buttonIcons.collapsed,
+            size: "small",
+            class: "bf-accordion__header__icon__collapsed",
+          } only %}
+          {% include '@bf-components/icon/twig/index.twig' with {
+            name: buttonIcons.expanded,
+            size: "small",
+            class: "bf-accordion__header__icon__expanded",
+          } only %}
+        </div>
+      </button>
+
+    {% endblock %}
+  {% endembed %}
+
+  <div {{ macros.addAttributes({
+    "class": accordionContentClasses|join(' ')|trim,
+    "data-parent": (hasIdParent ? "#" ~ idParent),
+    "id": idContent,
+    "role": "region",
+    "aria-labelledby": idTitle,
+  }) }}>
+    <div class="bf-accordion__content__container">
+      {% if isBlockContentBlockDefined %}
+        {{ block("contentBlock") }}
+      {% else %}
+        {{ content }}
+      {% endif %}
+    </div>
+  </div>
+</div>

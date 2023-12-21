@@ -1,0 +1,237 @@
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { FilterComponent } from '../angular/filter.component';
+import { FilterTemplateComponent } from './template.angular.component';
+import { dataCheckboxes, dataCheckboxesMoreThanEight, dataSlider } from './data.ts';
+
+<Meta
+    title="Components/Filter"
+    component={FilterComponent}
+    decorators={[
+        moduleMetadata({ declarations: [FilterComponent, FilterTemplateComponent, TwigContainerComponent] }),
+        withDesign,
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/wyySEz6WHDO09OirHADRUT/TMO---PLP-Filtres---PDP-Ran---Explorations?type=design&node-id=1454-105722&mode=dev',
+            disable: false,
+        },
+    }}
+    argTypes={{}}
+/>
+
+# Filter
+
+<br />
+
+## Component API
+
+<ArgsTable of={FilterComponent} />
+
+## Drupal implementation example
+
+### For checkboxes
+
+```jsx
+{% include "@bf-components/filter/twig/index.twig" with {
+    class: "custom-classes",
+    dataCheckboxes: {
+        id: 'brandFilter',
+        name: 'brand',
+        options: [
+            {
+                id: 'filter-1',
+                isChecked: true,
+                isDisabled: false,
+                label: 'Apple',
+                labelTypography: 'paragraph-default',
+                value: 'Apple',
+            },
+            {
+                id: 'filter-2',
+                isChecked: true,
+                isDisabled: false,
+                label: 'Samsung',
+                labelTypography: 'paragraph-default',
+                value: 'Samsung',
+            },
+        ],
+    },
+    id: "filter-id",
+    idParent: "accordion-group-id",
+    isDisabled: false,
+    isExpandedByDefault: true,
+    numberOfCheckboxesToDisplay: 8,
+    title: "Filter title",
+} only %}
+```
+
+### For slider filter
+
+```jsx
+{% include "@bf-components/filter/twig/index.twig" with {
+    class: "custom-classes",
+    dataSlider: {
+        max: {
+            description: '$999/month',
+            inputId: 'inputIdMax',
+            legend: 'Maximum',
+            value: 999,
+        },
+        min: {
+            description: '$0/month',
+            inputId: 'inputIdMin',
+            legend: 'Minimum',
+            value: 0,
+        },
+        minimumGap: 20,
+        step: 1,
+        unitLabel: '$',
+        unitPosition: 'start',
+        value: [0, 999],
+    },
+    id: "filter-id",
+    idParent: "accordion-group-id",
+    isDisabled: false,
+    isExpandedByDefault: true,
+    numberOfCheckboxesToDisplay: 8,
+    title: "Filter title",
+} only %}
+```
+
+### Other type, with a Twig Block
+
+```jsx
+{% embed "@bf-components/filter/twig/index.twig" with {
+    class: "custom-classes",
+    id: "filter-id",
+    idParent: "accordion-group-id",
+    isDisabled: false,
+    isExpandedByDefault: true,
+    title: "Filter title",
+} only %}
+    {% block filterContentBlock %}
+        <p>You can apply any type of content here using the Twig block:</p>
+        <pre class="d-inline-block bf-color-neutral-primary bf-color-bg-underground p-2">filterContentBlock</pre>
+    {% endblock %}
+{% endembed %}
+```
+
+## Drupal
+
+export const commonProps = {
+    id: 'filter_item_no_1',
+    isDisabled: false,
+    isExpandedByDefault: true,
+};
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+### Drupal - Twig Block
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Twig Block"
+        height="300px"
+        args={{
+            elementPath: 'components/filter/_doc/template.drupal',
+            ...commonProps,
+            title: 'Système d’exploitation',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+### Drupal - Checkboxes
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Checkboxes"
+        height="300px"
+        args={{
+            elementPath: 'components/filter/_doc/template.drupal',
+            ...commonProps,
+            dataCheckboxes: dataCheckboxes,
+            title: 'Brand',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+### Drupal - Checkboxes - More than eight
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Checkboxes - More than eight"
+        height="300px"
+        args={{
+            elementPath: 'components/filter/_doc/template.drupal',
+            ...commonProps,
+            dataCheckboxes: dataCheckboxesMoreThanEight,
+            title: 'Color',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+### Drupal - Input Slider
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal - Input Slider"
+        height="300px"
+        args={{
+            elementPath: 'components/filter/_doc/template.drupal',
+            ...commonProps,
+            dataSlider: dataSlider,
+            title: 'Mensualité des appareils',
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<!--
+For now, Angular components ar not used, so it is hidden by default.
+
+## Angular
+
+export const Angular = (args) => ({
+  component: FilterTemplateComponent,
+  props: args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Angular'
+        args={{
+            label: 'Filter'
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+## Angular implementation example
+
+Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
+-->
+
+## Design Guidelines
+
+<iframe
+    width="100%"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FwyySEz6WHDO09OirHADRUT%2FTMO---PLP-Filtres---PDP-Ran---Explorations%3Ftype%3Ddesign%26node-id%3D1454-105722"
+    frameBorder="0"
+    allowFullScreen
+></iframe>

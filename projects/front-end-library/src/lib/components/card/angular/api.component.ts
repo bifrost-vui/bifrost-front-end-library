@@ -22,9 +22,9 @@ export class CardChannelsAPI implements ICardChannels {
      * <br><br>
      * - If it is not empty, in the card below the `limited` `channels` component, a link is displayed to open a `modal`.
      * - This `modal` contains a full list of channels, separated by tabs.
-     * - See `IChannelsFull`
-     *    <a href="#ichannelsfull-api" target="_self">API</a>
-     *    and <a href="#ichannelsfull-format" target="_self">expected format</a>.
+     * - See `ICardChannelsFull`
+     *    <a href="#icardchannelsfull-api" target="_self">API</a>
+     *    and <a href="#icardchannelsfull-format" target="_self">expected format</a>.
      */
     @Input() full: ICardChannelsFull[];
     /**
@@ -50,9 +50,9 @@ export class CardChannelsFullAPI implements ICardChannelsFull {
      * <span style="color: red;">__Required__</span>
      * <br><br>
      * - In the opened `modal`, it contains the data of each tab's content that will be displayed.
-     * - See `IChannelsFullTabContent`
-     *    <a href="#ichannelsfulltabcontent-api" target="_self">API</a>
-     *    and <a href="#ichannelsfulltabcontent-format" target="_self">expected format</a>.
+     * - See `ICardChannelsFullTabContent`
+     *    <a href="#icardchannelsfulltabcontent-api" target="_self">API</a>
+     *    and <a href="#icardchannelsfulltabcontent-format" target="_self">expected format</a>.
      *
      * @required
      */
@@ -79,8 +79,8 @@ export class CardChannelsFullTabContentAPI implements ICardChannelsFullTabConten
      * <br><br>
      * - `aria-labelledby` is an accessibility attribute.
      * - It is used by screen reader to know which element is labelling this element.
-     * - It will normally be the same as `tabData.id` in `IChannelsFull`
-     *    <a href="#ichannelsfull-api" target="_self">API</a>.
+     * - It will normally be the same as `tabData.id` in `ICardChannelsFull`
+     *    <a href="#icardchannelsfull-api" target="_self">API</a>.
      *
      * @required
      */
@@ -114,7 +114,7 @@ export class CardChannelsFullTabContentAPI implements ICardChannelsFullTabConten
      * <br><br>
      * - It is the tab content's `id` attribute.
      * - It is needed by the tab to know which content to target.
-     * - This is the value to use in `IChannelsFull` `tabData.ariaControls` and also in `tabData.href` preceded by a `#` character.
+     * - This is the value to use in `ICardChannelsFull` `tabData.ariaControls` and also in `tabData.href` preceded by a `#` character.
      *
      * @required
      */
@@ -149,17 +149,17 @@ export class CardContentListsAPI implements ICardContentLists {
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
      * - Only used with a TV __plan__ card.
-     * - See `IChannels`
-     *    <a href="#ichannels-api" target="_self">API</a>
-     *    and <a href="#ichannels-format" target="_self">expected format</a>.
+     * - See `ICardChannels`
+     *    <a href="#icardchannels-api" target="_self">API</a>
+     *    and <a href="#icardchannels-format" target="_self">expected format</a>.
      */
     @Input() channels: ICardChannels;
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * See `IContent`
-     *  <a href="#icontent-api" target="_self">API</a>
-     *  and <a href="#icontent-format" target="_self">expected format</a>.
+     * See `ICardContent`
+     *  <a href="#icardcontent-api" target="_self">API</a>
+     *  and <a href="#icardcontent-format" target="_self">expected format</a>.
      */
     @Input() content: ICardContent[];
     /**

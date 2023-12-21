@@ -1,0 +1,67 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set background = background|default("underground") %}
+{% set size = size|default("medium") %}
+
+{# Boolean Variables #}
+{% set hasDeleteButton = deleteButton is defined and deleteButton is not empty %}
+{% set hasId = id is defined and id is not empty %}
+{% set isBackgroundGround = background is same as("ground") %}
+{% set isBackgroundUnderground = background is same as("underground") %}
+{% set isDisabled = (isDisabled ?? false) is same as(true) %}
+{% set isSizeMedium = size is same as("medium") %}
+{% set isSizeSmall = size is same as("small") %}
+{% set isUppercase = (isUppercase ?? true) is same as(true) %}
+
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
+{% set class = class|default("") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set chipClasses = [
+  "bf-chip",
+  (isBackgroundGround ? "bf-chip--bg-ground"),
+  (isBackgroundUnderground ? "bf-chip--bg-underground"),
+  (isDisabled ? "bf-chip--disabled"),
+  (isSizeMedium ? "bf-chip--medium"),
+  (isSizeSmall ? "bf-chip--small"),
+  (hasDeleteButton ? "bf-chip--with-button"),
+  (class),
+] %}
+{% set chipLabelClasses = [
+  "bf-chip__label",
+  (isSizeMedium ? "bf-text-interface-medium"),
+  (isSizeSmall ? "bf-text-interface-small"),
+  (isUppercase ? "bf-chip__label--uppercase"),
+] %}
+{% set chipDeleteButtonClasses = [
+  "bf-chip__button bf-button-icon__inner",
+] %}
+
+{# Template #}
+<div {{ macros.addAttributes({
+  "class": chipClasses|join(' ')|trim,
+  "id": (hasId ? id),
+}) }}>
+    <span {{ macros.addAttributes({
+      "class": chipLabelClasses|join(' ')|trim,
+    }) }}>
+      {{ label }}
+    </span>
+
+    {% if hasDeleteButton %}
+      <button {{ macros.addAttributes({
+        "aria-label": deleteButtonAriaLabel,
+        "class": chipDeleteButtonClasses|join(' ')|trim,
+        "disabled": (isDisabled ? "disabled"),
+        "onclick": deleteButton,
+        "title": deleteButtonAriaLabel,
+      }) }}>
+        {% include "@bf-components/icon/twig/index.twig" with {
+          name: "x-circle-filled",
+          size: "xsmall",
+        } only %}
+      </button>
+    {% endif %}
+</div>

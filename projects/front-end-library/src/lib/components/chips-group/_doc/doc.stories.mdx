@@ -1,0 +1,185 @@
+import { moduleMetadata } from '@storybook/angular';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { withDesign } from 'storybook-addon-designs';
+import { TwigContainerComponent } from '../../../../utils/twig-container/twig-container.component';
+import { ChipsGroupComponent } from '../angular/chips-group.component';
+import { ChipsGroupTemplateComponent } from './template.angular.component';
+import { chipsData, chipsWithTwigBlock } from './data';
+
+<Meta
+    title="Components/Chips Group"
+    component={ChipsGroupComponent}
+    decorators={[
+        moduleMetadata({ declarations: [ChipsGroupComponent, ChipsGroupTemplateComponent, TwigContainerComponent] }),
+        withDesign,
+    ]}
+    parameters={{
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/7bTmk29aCBl7rCFszffYPr/DS---Components-%26-styles?type=design&node-id=30603-15974',
+            disable: false,
+        },
+    }}
+    argTypes={{
+        _chipsWithTwigBlock: {
+            table: { disable: true },
+        },
+    }}
+/>
+
+# Chips Group
+
+This components is only to be used with the `Chip` component. It is only useful to display a list of multiple chips.
+
+There is two ways to use this component:
+
+1. Use this component property's `chipsData`;
+2. Or, inject multiple `Chip` component instances inside the Twig block named `chipsBlock`.
+
+See [Drupal implementation example](#drupal-implementation-example) to see how to implement this component.
+
+<br />
+
+## Component API
+
+<ArgsTable of={ChipsGroupComponent} />
+
+## Drupal implementation example
+
+### Use `chipsData` property
+
+The value of this property will have to be an array of `Chip` objects. See `Chip` component [API](/docs/components-chip--drupal#component-api).
+
+```jsx
+{% set chipsArrayOfObject = [
+    {
+        ChipNumberOneData,
+        ChipNumberTwoData,
+        ChipNumberThreeData,
+        etc.
+    }
+] %}
+{% include '@bf-components/chips-group/twig/index.twig' with {
+    chipsData: chipsArrayOfObject,
+    class: "custom-classes",
+    id: "chipGroupId",
+} only %}
+```
+
+### Use `chipsBlock` Twig block
+
+#### Use a single `Chip` component inclusion per Chip
+
+```jsx
+{% embed "@bf-components/chips-group/twig/index.twig" with {
+    class: class,
+    id: id,
+} %}
+    {% block chipsBlock %}
+        {% include "@bf-components/chip/twig/index.twig" with {
+            ...ChipNumberOneData
+        } only %}
+        {% include "@bf-components/chip/twig/index.twig" with {
+            ...ChipNumberTwoData
+        } only %}
+        {% include "@bf-components/chip/twig/index.twig" with {
+            ...ChipNumberThreeData
+        } only %}
+    {% endblock %}
+{% endembed %}
+```
+
+#### Use a `for` loop
+
+```jsx
+{% set chipsArrayOfObject = [
+    {
+        ChipNumberOneData,
+        ChipNumberTwoData,
+        ChipNumberThreeData,
+        etc.
+    }
+] %}
+{% embed "@bf-components/chips-group/twig/index.twig" with {
+    class: class,
+    id: id,
+} %}
+    {% block chipsBlock %}
+        {% for chip in chipsArrayOfObject %}
+            {% include "@bf-components/chip/twig/index.twig" with {
+                background: chip.background,
+                class: chip.class,
+                deleteButton: chip.deleteButton,
+                deleteButtonAriaLabel: chip.deleteButtonAriaLabel,
+                id: chip.id,
+                isDisabled: chip.isDisabled,
+                isUppercase: chip.isUppercase,
+                label: chip.label,
+                size: chip.size,
+            } only %}
+        {% endfor %}
+    {% endblock %}
+{% endembed %}
+```
+
+## Drupal
+
+export const commonProps = {
+    chipsData: chipsData,
+    id: 'chipsGroup',
+};
+
+export const Drupal = (args) => ({
+    component: TwigContainerComponent,
+    props: args,
+});
+
+<Canvas withSource="none">
+    <Story
+        name="Drupal"
+        height="300px"
+        args={{
+            elementPath: 'components/chips-group/_doc/template.drupal',
+            ...commonProps,
+            _chipsWithTwigBlock: chipsWithTwigBlock,
+        }}
+    >
+        {Drupal.bind({})}
+    </Story>
+</Canvas>
+
+<!--
+For now, Angular components ar not used, so it is hidden by default.
+
+## Angular
+
+export const Angular = (args) => ({
+  component: ChipsGroupTemplateComponent,
+  props: args,
+});
+
+<Canvas withSource='none'>
+    <Story
+        name='Angular'
+        args={{
+            label: 'Chips Group'
+        }}
+    >
+        {Angular.bind({})}
+    </Story>
+</Canvas>
+
+## Angular implementation example
+
+Please, read the [Implementation Page](/?path=/docs/implementation-angular--page).
+-->
+
+## Design Guidelines
+
+<iframe
+    width="100%"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7bTmk29aCBl7rCFszffYPr%2FDS---Components-%2526-styles%3Ftype%3Ddesign%26node-id%3D30603-15974%26mode%3Ddesign%26t%3DlMHjWwZqVvznn1cl-4"
+    frameBorder="0"
+    allowFullScreen
+></iframe>

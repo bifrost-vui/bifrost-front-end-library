@@ -1,0 +1,180 @@
+/* *****************************************************************************
+*
+*  Accordion
+*
+* ***************************************************************************** */
+
+.bf-accordion {
+  --bf-accordion-padding-x: 0;
+  --bf-accordion-padding-y: 0;
+  --bf-accordion-bg-color: var(--bf-color-bg-ground);
+
+  color: var(--bf-color-neutral-primary);
+  background-color: var(--bf-accordion-bg-color);
+
+  /* Header and Expand/collapse button */
+  &__header {
+    margin-bottom: 0;
+
+    &__button {
+      display: grid;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: var(--bf-accordion-padding-y) var(--bf-accordion-padding-x);
+      color: var(--bf-color-neutral-primary);
+      background: none;
+      border: none;
+      transition: padding-bottom 0.35s; // 0.35s is the same time as the accordion collapsing
+
+      /* Icon position */
+      &--icon-position {
+        /* Left */
+        &--left {
+          grid-template-areas: 'icon title emphasis';
+          grid-template-columns: max-content max-content auto;
+        }
+
+        /* Right (default) */
+        &--right {
+          grid-template-areas: 'title emphasis icon';
+          grid-template-columns: max-content auto max-content;
+        }
+      }
+
+      /* When the accordion item is collapsed */
+      &[aria-expanded='false'] {
+        .bf-accordion__header__icon__collapsed {
+          display: block;
+        }
+        .bf-accordion__header__icon__expanded {
+          display: none;
+        }
+      }
+
+      /* When the accordion item is expanded */
+      &[aria-expanded='true'] {
+        padding-bottom: 1rem;
+
+        .bf-accordion__header__icon__collapsed {
+          display: none;
+        }
+        .bf-accordion__header__icon__expanded {
+          display: block;
+        }
+      }
+    }
+
+    /* Title */
+    &__title {
+      grid-area: title;
+      margin-bottom: 0;
+    }
+
+    /* Emphasis */
+    &__emphasis {
+      grid-area: emphasis;
+      overflow: hidden;
+      width: 100%;
+      max-width: max-content;
+
+      /* Position: Left */
+      &--left {
+        justify-self: start;
+      }
+
+      /* Position: Center */
+      &--center {
+        justify-self: center;
+      }
+
+      /* Position: Right */
+      &--right {
+        justify-self: end;
+      }
+    }
+
+    /* Icon */
+    &__icon {
+      grid-area: icon;
+    }
+  }
+
+  /* Content */
+  &__content {
+    /* Container - Padding has to be here for accordion collapsing transition be smooth */
+    &__container {
+      padding: var(--bf-accordion-padding-y) var(--bf-accordion-padding-x);
+      padding-top: 0;
+
+      & *:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  /* Background colors */
+  &--bg-highlight:not(.bf-accordion--disabled) {
+    --bf-accordion-bg-color: var(--bf-color-bg-highlight);
+
+    &,
+    & .bf-accordion__header__button,
+    & .bf-icon.color-primary svg {
+      color: var(--bf-color-primary-irreversible);
+    }
+  }
+  &--bg-underground {
+    --bf-accordion-bg-color: var(--bf-color-bg-underground);
+  }
+
+  /* Disabled */
+  &--disabled {
+    background-color: var(--bf-color-bg-action-disabled);
+
+    &,
+    & .bf-accordion__header__button,
+    & .bf-icon.color-primary svg {
+      color: var(--bf-color-neutral-tertiary);
+    }
+
+    .bf-accordion__header__emphasis {
+      opacity: 0.5;
+    }
+  }
+
+  /* Padding horizontal (x-axis) */
+  &--px {
+    &--sm {
+      --bf-accordion-padding-x: 0.5rem;
+    }
+    &--md {
+      --bf-accordion-padding-x: 1rem;
+    }
+    &--lg {
+      --bf-accordion-padding-x: 1.5rem;
+    }
+  }
+
+  /* Padding vertical (y-axis) */
+  &--py {
+    &--sm {
+      --bf-accordion-padding-y: 0.5rem;
+    }
+    &--md {
+      --bf-accordion-padding-y: 1rem;
+    }
+    &--lg {
+      --bf-accordion-padding-y: 1.5rem;
+    }
+  }
+
+  /* Has Border */
+  &--has-border {
+    border: 1px solid var(--bf-color-stroke-secondary);
+
+    /* Is border rounded */
+    &--rounded {
+      border-radius: var(--bf-border-radius-small);
+    }
+  }
+}

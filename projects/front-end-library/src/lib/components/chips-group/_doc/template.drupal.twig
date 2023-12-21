@@ -1,0 +1,64 @@
+{# Default Variables (Props, Controls) #}
+{% set _chipsWithTwigBlock = _chipsWithTwigBlock|json_parse %}
+{% set _reversed = _reversed|json_parse %}
+{% set chipsData = chipsData|json_parse %}
+{% set class = class|json_parse %}
+{% set id = id|json_parse %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "d-flex flex-column flex-sm-row justify-content-center minh-100",
+  (_reversed ? "reversed bf-color-bg-ground"),
+] %}
+
+{# Template #}
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
+
+  {% for index in [1, 2] %}
+
+    {# In Loop : Boolean Variables #}
+    {% set isReversed = index == 2 and _reversed is not defined %}
+
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set innerContainerClasses = [
+      "flex-grow-1 d-flex flex-column align-items-center justify-content-center minh-100 p-4 gap-6",
+      (isReversed ? "reversed bf-color-bg-ground"),
+    ] %}
+
+    <div class="{{ innerContainerClasses|join(' ')|trim }}">
+      <div class="w-100">
+        <div class="h3">With "chipsData" property</div>
+        {% include "@bf-components/chips-group/twig/index.twig" with {
+          chipsData: chipsData,
+          class: class,
+          id: id,
+        } only %}
+      </div>
+
+      <div class="w-100">
+        <div class="h3">With "chipsBlock" Twig block</div>
+        {% embed "@bf-components/chips-group/twig/index.twig" with {
+          class: class,
+          id: id,
+        } %}
+          {% block chipsBlock %}
+            {% for chip in _chipsWithTwigBlock %}
+              {% include "@bf-components/chip/twig/index.twig" with {
+                background: chip.background,
+                class: chip.class,
+                deleteButton: chip.deleteButton,
+                deleteButtonAriaLabel: chip.deleteButtonAriaLabel,
+                id: chip.id,
+                isDisabled: chip.isDisabled,
+                isUppercase: chip.isUppercase,
+                label: chip.label,
+                size: chip.size,
+              } only %}
+            {% endfor %}
+          {% endblock %}
+        {% endembed %}
+      </div>
+    </div>
+  {% endfor %}
+
+</div>

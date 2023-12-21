@@ -283,6 +283,7 @@ For Angular, don't forget to export your new module and/or component in `/lib/pu
 Create a branch and a Pull Request (when the branch will be pushed on Github) named after the version number and replace the dots with hyphens (eg: v1-1-1).
 
 Here's some infos:
+
 -   The replacement from dots to hyphens is for Vercel to format the right URL.
 -   The new Pull Request give us a space to work.
 -   For a Minor, work on last changes for the CHANGELOG and generate the version URL for it.
@@ -290,24 +291,30 @@ Here's some infos:
 
 On the branch version, increment the version in `projects/front-end-library/package.json` depending on the context of the version for the pattern: **MAJOR.MINOR.PATCH**.
 
-## 1) Create the new branch
+## 1) Before proceeding
 
-> **Change the version number in the example below for your version number**
-> _Don't forget to use hyphens here instead of dots_
+Now that you know what will be the **new package version number**, make sure that in your `.svg` and
+`.svg.twig` that has been added or modified you **have the right version number** in the `data-version` attribute.
+
+If you don't have any, skip this step.
+
+## 2) Create the new branch
+
+> **Change the version number in the example below for your version number** > _Don't forget to use hyphens here instead of dots_
 
 ```bash
 git checkout -b v1-1-1
 ```
 
-## 2) Before the commit
+## 3) Before the commit
 
 > **Don't forget to do these things**
 
 -   [ ] Update version number in `projects/front-end-library/package.json`
 -   [ ] CHANGELOG is properly written, explicit and understandable with new features and or bugs fix.
-	- For the Vercel link on the version number, just use the link for a past version and change the version number for yours
+    -   For the Vercel link on the version number, just use the link for a past version and change the version number for yours
 
-## 3) Commit, Push & create a Pull Request on GitHub
+## 4) Commit, Push & create a Pull Request on GitHub
 
 > **Be sure to be up to date with the `master` branch**
 
@@ -317,8 +324,9 @@ git pull
 ```
 
 > **Then commit and push**
-> - _Don't forget to change the version number in the example below_
-> - _Here, use **dots** for the version number_
+>
+> -   _Don't forget to change the version number in the example below_
+> -   _Here, use **dots** for the version number_
 
 ```bash
 git add CHANGELOG.mdx
@@ -329,9 +337,10 @@ git push
 
 > **Then, create a Pull Request**
 
-## 4) Create the new tag
+## 5) Create the new tag
 
-> **Change the version number in the example below for your version number**
+> **Change the version number in the example below for your version number**.
+>
 > _Here, use **dots** for the version number_
 
 ```bash
@@ -339,7 +348,7 @@ git tag v1.1.1
 git push --tags
 ```
 
-## 5) Make the NPM package
+## 6) Make the NPM package
 
 Only maintainer have the power to do this. You need to have access to the `videotron-ui` organization on [NPMJS](https://www.npmjs.com/). If you don't, you need to ask your manager for access.
 
@@ -359,12 +368,11 @@ npm run publish
 Your new package version is now available for everyone.
 You could check availability on the [NPM registry](https://www.npmjs.com/package/@videotron-ui/bifrost-front-end-library) page.
 
-
-## 6) Merge your PR into the `master` branch
+## 7) Merge your PR into the `master` branch
 
 Now that the NPM package is created, you can merge your PR into the `master` branch.
 
-## 7) Make the new Jira release
+## 8) Make the new Jira release
 
 1. If it's not already done, create a new release in [Jira release page](https://groupemedia.atlassian.net/projects/DS?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page). The Jira release number is the same as the version created in earlier steps. Then adjust the description to explain what was done in this new release.
 
@@ -384,12 +392,15 @@ Now that the NPM package is created, you can merge your PR into the `master` bra
 
 ```markdown
 ### Storybook changelog
+
 https://bifrost-front-end-library-git-v1-13-0-bifrost-vui.vercel.app/?path=/docs/changelog--page
 
 ### ChangeLog Jira
+
 https://groupemedia.atlassian.net/projects/DS/versions/38177/tab/release-report-all-issues
 
 ### NPM package
+
 https://www.npmjs.com/package/@videotron-ui/bifrost-front-end-library/v/1.13.0
 ```
 

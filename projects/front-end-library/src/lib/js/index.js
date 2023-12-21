@@ -44,3 +44,6 @@ require('./components/widgets-override/livechat-genesys.js');
 // require("./demo/etiya/index.js");
 
 require('./onload.js');
+
+// Bifröst  Theme
+require('./bifrost-components.js');

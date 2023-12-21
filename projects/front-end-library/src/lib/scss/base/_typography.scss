@@ -68,6 +68,11 @@ $headings: ('h1', 'h2', 'h3', 'h4', 'h5', 'h6');
 
 // Paragraph
 
+.large {
+  font-size: var(--bf-font-size-4);
+  line-height: var(--bf-font-size-9);
+}
+
 .bf-text,
 p,
 .p,
@@ -80,6 +85,11 @@ ol {
   &.small,
   .small & {
     font-size: $small-font-size;
+  }
+
+  &.large,
+  .large & {
+    @extend .large;
   }
 }
 

@@ -1,21 +1,32 @@
-{% if isSquareMode is defined and isSquareMode is same as(true) %}
-  {% set containerClass = "img-lazy-load-container--square" %}
-{% endif %}
-{% if src is not defined %}
-  {% set src = "https://source.unsplash.com/260x180/?nature" %}
-{% endif %}
-{# ------------------------------------------------------------------------------------------------------------------ #}
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
 
-<picture
-  class="img-lazy-load-container {{ containerClass|default(
-    ""
-  ) }} w-100 overflow-hidden bg-{{ bgColor|default(
-    "gray--1000"
-  ) }} position-{{ positionClass|default("relative") }} {{ class|default("") }}"
->
-  <img
-    class="img-lazy-load-container__img"
-    data-src="{{ src }}"
-    {{ alt is not empty ? "alt='" ~ (alt|default("")) ~ "'" }}
-  />
+{# Boolean Variables #}
+{% set isSquareMode = isSquareMode is defined and isSquareMode is same as(true) %}
+
+{# Default Variables (Props, Controls) #}
+{% set alt = alt|default("") %}
+{% set bgColor = bgColor|default("gray--1000") %}
+{% set class = class|default("") %}
+{% set positionClass = positionClass|default("relative") %}
+{% set src = src|default("https://source.unsplash.com/260x180/?nature") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set pictureClasses = [
+  "img-lazy-load-container w-100 overflow-hidden",
+  "bg-" ~ bgColor,
+  "position-" ~ positionClass,
+  (isSquareMode ? "img-lazy-load-container--square"),
+  (class),
+] %}
+
+{# Template #}
+<picture {{ macros.addAttributes({
+  "class": pictureClasses|join(' ')|trim,
+}) }}>
+  <img {{ macros.addAttributes({
+    "class": "img-lazy-load-container__img",
+    "data-src": src,
+    "alt": alt
+  }) }} />
 </picture>
