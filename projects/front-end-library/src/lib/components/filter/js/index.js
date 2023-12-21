@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { debounce } from '../../../js/utils/debounce-throttle';
 
 /* Variables */
 const filterItem = '.js-bf-filter';
@@ -8,9 +9,9 @@ const filterCheckboxesSeeMore = '.js-bf-filter__checkboxes__see-more';
 const filterCheckboxesSeeLess = '.js-bf-filter__checkboxes__see-less';
 
 /* Functions */
-const updateNumberSelectionsBadge = function ($checkboxesList) {
+const updateNumberSelectionsBadge = function ($filterItem, $checkboxesList) {
     const numberOfCheckboxesSelected = $checkboxesList.filter(':checked').length;
-    const $nbSelectionsBadge = $(filterNbSelections);
+    const $nbSelectionsBadge = $filterItem.find(filterNbSelections);
     const $nbSelectionsBadgeText = $nbSelectionsBadge.find('.bf-badge__label__text');
 
     if (numberOfCheckboxesSelected > 0) {
@@ -22,6 +23,30 @@ const updateNumberSelectionsBadge = function ($checkboxesList) {
     $nbSelectionsBadgeText.text(numberOfCheckboxesSelected);
 };
 
+const getCheckboxHeight = function ($checkboxEl) {
+    if ($checkboxEl.length === 0) {
+        return null;
+    }
+
+    const $body = $('body');
+    let checkboxClone = $checkboxEl.first().clone();
+
+    checkboxClone.css({
+        opacity: 0,
+        position: 'absolute',
+        top: '-9999px',
+        left: '-9999px',
+    });
+
+    checkboxClone.appendTo($body);
+
+    const checkboxHeight = checkboxClone.get(0).offsetHeight;
+
+    checkboxClone.remove();
+
+    return checkboxHeight;
+};
+
 const setCheckboxesHeight = function ($filterCheckboxes) {
     // Selector Variables
     const $filterOptions = $filterCheckboxes.find('.bf-input-checkbox-option');
@@ -29,13 +54,14 @@ const setCheckboxesHeight = function ($filterCheckboxes) {
     // Value Variables
     const numberOfCheckboxesToDisplay = $filterCheckboxes.data('nb-checkboxes-display');
     const checkboxesTotalNumber = $filterOptions.length;
-    const singleCheckboxHeight = $filterOptions[0].offsetHeight;
-    const checkboxesContainerCssGapValue = parseInt(
-        $filterCheckboxes.find('.bf-input-checkbox__options').css('gap'),
-        10
-    );
 
-    if (checkboxesTotalNumber > 8) {
+    if (checkboxesTotalNumber > numberOfCheckboxesToDisplay) {
+        const singleCheckboxHeight = getCheckboxHeight($filterOptions);
+        const checkboxesContainerCssGapValue = parseInt(
+            $filterCheckboxes.find('.bf-input-checkbox__options').css('gap'),
+            10
+        );
+
         $filterCheckboxes.css({
             '--filterCheckboxesMinHeight':
                 numberOfCheckboxesToDisplay * (singleCheckboxHeight + checkboxesContainerCssGapValue) + 'px',
@@ -63,13 +89,13 @@ $(function () {
 
         if (hasFilterCheckboxes) {
             /* Initial execution */
-            updateNumberSelectionsBadge($checkboxesList);
+            updateNumberSelectionsBadge($filterItem, $checkboxesList);
             setCheckboxesHeight($filterCheckboxes);
 
             /* On checkbox status change, update the number of selections badge */
             $checkboxesList.each(function () {
                 $(this).on('change', function () {
-                    updateNumberSelectionsBadge($checkboxesList);
+                    updateNumberSelectionsBadge($filterItem, $checkboxesList);
                 });
             });
 
@@ -84,6 +110,14 @@ $(function () {
                 $seeLessButton.addClass('d-none');
                 $filterCheckboxes.removeClass('expanded');
             });
+
+            // Screen Resize Event
+            $(window).on(
+                'resize',
+                debounce(() => {
+                    setCheckboxesHeight($filterCheckboxes);
+                })
+            );
         }
     });
 });

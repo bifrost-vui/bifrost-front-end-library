@@ -1,0 +1,31 @@
+{# Default Variables (Props, Controls) #}
+{% set _reversed = _reversed|json_parse %}
+{% set class = class|json_parse %}
+{% set id = id|json_parse %}
+{% set isTwoColsMobileVariant = isTwoColsMobileVariant|json_parse %}
+{% set loadingType = loadingType|json_parse %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "d-flex flex-column flex-md-row justify-content-center minh-100",
+  (_reversed ? "reversed bf-color-bg-ground"),
+] %}
+
+{# Template #}
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
+  {% for index in [1, 2] %}
+
+    {# In Loop : Boolean Variables #}
+    {% set isReversed = index == 2 and _reversed is not defined %}
+
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set innerContainerClasses = [
+      "flex-grow-1 d-flex align-items-center justify-content-center minh-100 p-3 p-sm-4",
+      (isReversed ? "reversed bf-color-bg-ground"),
+    ] %}
+
+    <div class="{{ innerContainerClasses|join(' ')|trim }}">
+      {% include "@bf-components/card/twig/loading.twig" %}
+    </div>
+  {% endfor %}
+</div>

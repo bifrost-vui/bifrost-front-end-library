@@ -21,6 +21,7 @@
 {% set isBackgroundUnderground = background is same as("underground") %}
 {% set isBlockContentBlockDefined = block("contentBlock") is defined %}
 {% set isBlockEmphasisBlockDefined = block("emphasisBlock") is defined %}
+{% set isDisabled = (isDisabled ?? false) is same as(true) %}
 {% set isExpandedByDefault = (isExpandedByDefault ?? false) is same as(true) %}
 {% set isEmphasisPositionLeft = emphasisPosition is same as("left") %}
 {% set isEmphasisPositionCenter = emphasisPosition is same as("center") %}
@@ -58,7 +59,6 @@
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set class = class|default("") %}
-{% set titleTag = titleTag|default("div") %}
 
 {# Component Variables #}
 {% set id = "bfAcccordion_" ~ id %}
@@ -90,6 +90,7 @@
   (isPaddingYMedium ? "bf-accordion--py--md"),
   (isPaddingYLarge ? "bf-accordion--py--lg"),
   (isBorderRounded ? "bf-accordion--has-border--rounded"),
+  (isDisabled ? "bf-accordion--disabled"),
   (class),
 ] %}
 {% set accordionHeaderClasses = [
@@ -141,6 +142,7 @@
         "aria-label": "Expand Content"|t,
         "data-target": "#" ~ idContent,
         "data-toggle": "collapse",
+        "disabled": (isDisabled ? "disabled"),
       }) }}>
         <span {{ macros.addAttributes({
           "class": accordionHeaderTitleClasses|join(' ')|trim,
