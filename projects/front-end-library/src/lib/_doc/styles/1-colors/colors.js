@@ -162,6 +162,33 @@ const colors = [
             },
         ],
     },
+    {
+        name: 'Marketing',
+        description:
+            'Meant to be used on non-interactive visual elements. CSS class will affect only the "background-color" property.',
+        list: [
+            {
+                label: 'Blue',
+                name: 'marketing-blue',
+                reversed: false,
+            },
+            {
+                label: 'Green',
+                name: 'marketing-green',
+                reversed: false,
+            },
+            {
+                label: 'Orange',
+                name: 'marketing-orange',
+                reversed: false,
+            },
+            {
+                label: 'Pink',
+                name: 'marketing-pink',
+                reversed: false,
+            },
+        ],
+    },
 ];
 
 export default colors;
