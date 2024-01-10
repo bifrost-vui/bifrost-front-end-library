@@ -34,7 +34,7 @@ export class ButtonIconComponent implements OnInit {
      * <br><br>
      * - `aria-label` is an accessibility attribute.
      * - Descriptive text that labels an interactive element.
-     * - Can be the same as `label` since the label is hidden for this component.
+     * - If there is no value for this property, then the `label` will be used.
      */
     @Input() ariaLabel: string;
     /**
@@ -121,11 +121,18 @@ export class ButtonIconComponent implements OnInit {
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
-     * Display a `data-title` attribute.
+     * - Put the value in a `data-title` attribute.
+     * - This `data-title` attribute is for SEO.
      *
      * @required
      */
     @Input() label: string;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * The button's size.
+     */
+    @Input() size: 'small' | 'medium' = 'medium';
 
     ngOnInit() {
         console.log('button-icon', this);
