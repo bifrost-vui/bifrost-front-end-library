@@ -7,8 +7,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TooltipComponent implements OnInit {
     constructor() {}
 
-    /* In alphabetical order (remove this comment) */
-
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * - Name of the icon in the button.
+     * - See [Icons - Interface List](/?path=/story/components-icon--drupal-interface)
+         or [Icons - Illustration List](/?path=/story/components-icon--drupal-illustration) for icon names.
+     */
+    @Input() buttonIcon: string = 'question-circle-outline';
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
@@ -22,13 +28,25 @@ export class TooltipComponent implements OnInit {
      */
     @Input() id: string;
     /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * If the value is `true`, then the color scheme of the tooltip will be the `reversed` one.
+     */
+    @Input() isReversed: boolean = false;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * The position of the tooltip relative to the button.
+     */
+    @Input() placement: 'auto' | 'top' | 'bottom' | 'right' | 'left' = 'auto';
+    /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
-     * The inner text.
+     * The tooltip text.
      *
      * @required
      */
-    @Input() label: string;
+    @Input() text: string;
 
     ngOnInit() {
         console.log('Tooltip', this);
