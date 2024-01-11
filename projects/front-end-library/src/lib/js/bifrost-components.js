@@ -28,7 +28,6 @@ require('../components/input-slider/js/index.js');
 require('../components/navigation-header/js/index.js');
 require('../components/slideshow/js/index.js');
 require('../components/tab/js/index.js');
-require('../components/tooltip/js/index.js');
 
 // Bifröst Sections
 require('../sections/plp/js/index.js');
