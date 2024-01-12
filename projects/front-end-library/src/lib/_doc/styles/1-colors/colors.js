@@ -170,21 +170,25 @@ const colors = [
             {
                 label: 'Blue',
                 name: 'marketing-blue',
+                UtilityClassName: ['bf-color-bg-marketing-blue', 'bf-border-marketing-blue'],
                 reversed: false,
             },
             {
                 label: 'Green',
                 name: 'marketing-green',
+                UtilityClassName: ['bf-color-bg-marketing-green', 'bf-border-marketing-green'],
                 reversed: false,
             },
             {
                 label: 'Orange',
                 name: 'marketing-orange',
+                UtilityClassName: ['bf-color-bg-marketing-orange', 'bf-border-marketing-orange'],
                 reversed: false,
             },
             {
                 label: 'Pink',
                 name: 'marketing-pink',
+                UtilityClassName: ['bf-color-bg-marketing-pink', 'bf-border-marketing-pink'],
                 reversed: false,
             },
         ],
