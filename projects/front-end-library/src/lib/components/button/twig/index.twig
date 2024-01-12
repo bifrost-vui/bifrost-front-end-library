@@ -61,17 +61,11 @@
   "disabled": (isDisabled ? "disabled"),
   "aria-controls": (hasAriaControls ? ariaControls),
   "aria-expanded": (hasAriaExpanded ? ariaExpanded),
-  "aria-label": (hasAriaLabel ? ariaLabel),
+  "aria-label": (hasAriaLabel ? ariaLabel|t : label|t),
   "data-dismiss": (hasDataDismiss ? dataDismiss),
   "data-target": (hasDataTarget ? dataTarget),
   "data-toggle": (hasDataToggle ? dataToggle),
-  "data-title": (hasLabel ? label|render|t(
-    [],
-    {
-      langcode: "EN",
-      context: "data-title-attribute"
-    }
-  )),
+  "data-title": (hasLabel ? label|t),
   "form": (isSubmit and hasFormId ? formId),
   "formaction": (isSubmit and hasFormAction ? formAction),
   "formenctype": (isSubmit and hasFormEncryptionType ? formEncryptionType),
