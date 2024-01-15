@@ -7,7 +7,6 @@
 * ***************************************************************************** */
 
 @mixin videotron-color {
-
   /**
    * Colors List
    *
@@ -60,13 +59,17 @@
     --bf-color-bg-action-no-bg-hover #e6e6e6 #1e1e1d,
     --bf-color-bg-action-disabled #f8f8f7 #171715,
     --bf-color-bg-action-selected #f8f8f7 #171715,
+
+    // Marketing
+    --bf-color-marketing-blue #26303e null,
+    --bf-color-marketing-green #54643c null,
+    --bf-color-marketing-orange #e06643 null,
+    --bf-color-marketing-pink #cc6896 null
   );
 
   & {
-
     // Default color variables
     @each $color-item in $colors-lists {
-
       // Default color variable
       #{nth($color-item, 1)}: #{nth($color-item, 2)};
 
@@ -92,10 +95,8 @@
   & .reversed.highlight,
   & .reversed .highlight,
   & .highlight .reversed {
-
     // Default color variables
     @each $color-item in $colors-lists {
-
       // Default color variable
       #{nth($color-item, 1)}: #{nth($color-item, 2)};
 
@@ -142,10 +143,8 @@
   }
 
   & .reversed {
-
     // Reversed color variables
     @each $color-item in $colors-lists {
-
       // Reversed color variable
       @if nth($color-item, 3) {
         #{nth($color-item, 1)}: #{nth($color-item, 3)};
