@@ -135,10 +135,12 @@ export class CardContentAPI implements ICardContent {
     @Input() icon: string;
     /**
      * <span style="color: red;">__Required__</span>
+     * <br><br>
+     * This text can be a simple string or an HTML element, ex.: `<p>This is a description</p>`.
      *
      * @required
      */
-    @Input() label: string;
+    @Input() label: string | HTMLElement;
 }
 
 @Component({
