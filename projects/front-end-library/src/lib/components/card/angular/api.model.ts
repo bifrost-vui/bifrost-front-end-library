@@ -21,7 +21,7 @@ export interface ICardChannelsFullTabContent {
 
 export interface ICardContent {
     icon: string;
-    label: string;
+    label: string | HTMLElement;
 }
 
 export interface ICardContentLists {
