@@ -305,111 +305,118 @@ $(function () {
 
     /* Selector Variables */
     const $bfPlp = $(bfPlp);
-    const $nbResultsContainer = $(nbResultsContainer);
-    const $filtersContainer = $(filtersContainer);
-    const $filtersContainerMobileTitle = $(filtersContainerMobileTitle);
-    const $filtersMySelectionContainer = $(filtersMySelectionContainer);
-    const $filtersMySelectionClearAllButton = $(filtersMySelectionClearAllButton);
-    const $filterCheckboxes = $(filterCheckboxes);
-    const $checkboxesList = $filterCheckboxes.find('.bf-input-checkbox-control');
 
-    /* Value Variables */
-    const nbResultsContainerOffsetTop = $nbResultsContainer.offset().top;
+    if ($bfPlp.length) {
+        const $nbResultsContainer = $(nbResultsContainer);
+        const $filtersContainer = $(filtersContainer);
+        const $filtersContainerMobileTitle = $(filtersContainerMobileTitle);
+        const $filtersMySelectionContainer = $(filtersMySelectionContainer);
+        const $filtersMySelectionClearAllButton = $(filtersMySelectionClearAllButton);
+        const $filterCheckboxes = $(filterCheckboxes);
+        const $checkboxesList = $filterCheckboxes.find('.bf-input-checkbox-control');
 
-    /* Boolean Variables */
-    const hasFilterCheckboxes = $filterCheckboxes.length > 0;
+        /* Value Variables */
+        const nbResultsContainerOffsetTop = $nbResultsContainer.offset().top;
 
-    // EXECUTIONS ON DOM READY
+        /* Boolean Variables */
+        const hasFilterCheckboxes = $filterCheckboxes.length > 0;
 
-    /* Check number of selected filters and display or not the chips group of the empty message */
-    checkNumberSelectedFilters();
+        // EXECUTIONS ON DOM READY
 
-    /* On checkbox status change, add or remove chip */
-    if (hasFilterCheckboxes) {
-        // Add event listeners on checkbox filters
-        $checkboxesList.each(function () {
-            const $this = $(this);
-            $this.on('change', function () {
-                toggleChip($this);
+        /* Check number of selected filters and display or not the chips group of the empty message */
+        checkNumberSelectedFilters();
+
+        /* On checkbox status change, add or remove chip */
+        if (hasFilterCheckboxes) {
+            // Add event listeners on checkbox filters
+            $checkboxesList.each(function () {
+                const $this = $(this);
+                $this.on('change', function () {
+                    toggleChip($this);
+                });
             });
+        }
+
+        /*
+            On mobile resolution, when clicking on the "Filter" button
+            to open the filters container, add a "window freeze" to remove
+            scrolling outside of filters container.
+        */
+        $filtersContainer.on('shown.bs.collapse', function (e) {
+            if ($(this).is(e.target)) {
+                plpComponent.isMobileFiltersOpen = true;
+                moveClearAllButton($filtersMySelectionClearAllButton, filtersMySelectionTitleAndButtonContainer);
+                moveMySelectionContainer($filtersMySelectionContainer, $filtersContainerMobileTitle);
+                _window.freeze();
+            }
         });
+
+        /*
+            On mobile resolution, when clicking on the "X" button
+            in the filters container, remove the "window freeze".
+        */
+        $filtersContainer.on('hide.bs.collapse', function (e) {
+            if ($(this).is(e.target)) {
+                plpComponent.isMobileFiltersOpen = false;
+                moveClearAllButton($filtersMySelectionClearAllButton, filterMySelectionChipsGroup);
+                moveMySelectionContainer($filtersMySelectionContainer, $nbResultsContainer);
+                _window.unfreeze();
+            }
+        });
+
+        /*
+            On mobile, check the position of the scrollbar in relation to the container
+            for the number of results and filter open button. Apply the sticky state or not
+            depending of the position of the scrollbar.
+        */
+        toggleNbResultsContainerStickyState($nbResultsContainer, nbResultsContainerOffsetTop, $filtersContainer);
+        $(window).on(
+            'scroll',
+            throttle(() =>
+                toggleNbResultsContainerStickyState($nbResultsContainer, nbResultsContainerOffsetTop, $filtersContainer)
+            )
+        );
+
+        // On DOM loaded, execute a single time the functions that will also be executed on browser window resize
+        moveMySelectionContainerOnResize(
+            $filtersMySelectionContainer,
+            $filtersContainerMobileTitle,
+            $nbResultsContainer
+        );
+        moveClearAllButtonOnResize(
+            $filtersMySelectionClearAllButton,
+            filtersMySelectionTitleAndButtonContainer,
+            filterMySelectionChipsGroup
+        );
+        toggleFiltersContainerInnerClassesOnResize($filtersContainer);
+        toggleFreezeWindowOnResize();
+
+        // Browser Window Resize Event
+        $(window).on(
+            'resize',
+            throttle(() => {
+                moveMySelectionContainerOnResize(
+                    $filtersMySelectionContainer,
+                    $filtersContainerMobileTitle,
+                    $nbResultsContainer
+                );
+                moveClearAllButtonOnResize(
+                    $filtersMySelectionClearAllButton,
+                    filtersMySelectionTitleAndButtonContainer,
+                    filterMySelectionChipsGroup
+                );
+                toggleFiltersContainerInnerClassesOnResize($filtersContainer);
+                toggleFreezeWindowOnResize();
+            })
+        );
+
+        // On click on either "Clear all" button, it will remove all selected filters
+        $bfPlp.on('click', `${filtersMySelectionClearAllButton}, ${filtersContainerButtonClearAll}`, () => {
+            clearAllFilters();
+        });
+
+        // Check the number of result, then display or not the "no result" message
+        // and also update the text showing the number of results
+        window.checkNumberOfResults();
     }
-
-    /*
-        On mobile resolution, when clicking on the "Filter" button
-        to open the filters container, add a "window freeze" to remove
-        scrolling outside of filters container.
-    */
-    $filtersContainer.on('shown.bs.collapse', function (e) {
-        if ($(this).is(e.target)) {
-            plpComponent.isMobileFiltersOpen = true;
-            moveClearAllButton($filtersMySelectionClearAllButton, filtersMySelectionTitleAndButtonContainer);
-            moveMySelectionContainer($filtersMySelectionContainer, $filtersContainerMobileTitle);
-            _window.freeze();
-        }
-    });
-
-    /*
-        On mobile resolution, when clicking on the "X" button
-        in the filters container, remove the "window freeze".
-    */
-    $filtersContainer.on('hide.bs.collapse', function (e) {
-        if ($(this).is(e.target)) {
-            plpComponent.isMobileFiltersOpen = false;
-            moveClearAllButton($filtersMySelectionClearAllButton, filterMySelectionChipsGroup);
-            moveMySelectionContainer($filtersMySelectionContainer, $nbResultsContainer);
-            _window.unfreeze();
-        }
-    });
-
-    /*
-        On mobile, check the position of the scrollbar in relation to the container
-        for the number of results and filter open button. Apply the sticky state or not
-        depending of the position of the scrollbar.
-    */
-    toggleNbResultsContainerStickyState($nbResultsContainer, nbResultsContainerOffsetTop, $filtersContainer);
-    $(window).on(
-        'scroll',
-        throttle(() =>
-            toggleNbResultsContainerStickyState($nbResultsContainer, nbResultsContainerOffsetTop, $filtersContainer)
-        )
-    );
-
-    // On DOM loaded, execute a single time the functions that will also be executed on browser window resize
-    moveMySelectionContainerOnResize($filtersMySelectionContainer, $filtersContainerMobileTitle, $nbResultsContainer);
-    moveClearAllButtonOnResize(
-        $filtersMySelectionClearAllButton,
-        filtersMySelectionTitleAndButtonContainer,
-        filterMySelectionChipsGroup
-    );
-    toggleFiltersContainerInnerClassesOnResize($filtersContainer);
-    toggleFreezeWindowOnResize();
-
-    // Browser Window Resize Event
-    $(window).on(
-        'resize',
-        throttle(() => {
-            moveMySelectionContainerOnResize(
-                $filtersMySelectionContainer,
-                $filtersContainerMobileTitle,
-                $nbResultsContainer
-            );
-            moveClearAllButtonOnResize(
-                $filtersMySelectionClearAllButton,
-                filtersMySelectionTitleAndButtonContainer,
-                filterMySelectionChipsGroup
-            );
-            toggleFiltersContainerInnerClassesOnResize($filtersContainer);
-            toggleFreezeWindowOnResize();
-        })
-    );
-
-    // On click on either "Clear all" button, it will remove all selected filters
-    $bfPlp.on('click', `${filtersMySelectionClearAllButton}, ${filtersContainerButtonClearAll}`, () => {
-        clearAllFilters();
-    });
-
-    // Check the number of result, then display or not the "no result" message
-    // and also update the text showing the number of results
-    window.checkNumberOfResults();
 });
