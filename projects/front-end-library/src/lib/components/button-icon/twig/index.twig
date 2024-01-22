@@ -1,3 +1,6 @@
+{# Default Variables (Props, Controls) - Pre Boolean Variables #}
+{% set size = size|default("medium") %}
+
 {# Boolean Variables #}
 {% set hasAriaControls = ariaControls is defined and ariaControls is not empty %}
 {% set hasAriaExpanded = ariaExpanded is defined and ariaExpanded is not empty %}
@@ -10,11 +13,13 @@
 {% set hasLabel = label is defined and label is not empty %}
 {% set isDisabled = (isDisabled ?? false) is same as(true) %}
 {% set isReversed = (reversed ?? false) is same as(true) %}
+{% set isSizeMedium = size is same as("medium") %}
+{% set isSizeSmall = size is same as("small") %}
 
 {# Boolean Variables - ORDER IS IMPORTANT #}
 {% set isLink = hasHref and not isDisabled %}
 
-{# Default Variables (Props, Controls) #}
+{# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set buttonClass = buttonClass|default("") %}
 {% set class = class|default("") %}
 {% set extraAttribute = extraAttribute|default({}) %}
@@ -26,6 +31,8 @@
 {# Arrays of Classes With Dynamic Elements #}
 {% set buttonContainerClasses = [
   "bf-button-icon",
+  (isSizeMedium ? "bf-button-icon--medium"),
+  (isSizeSmall ? "bf-button-icon--small"),
   (isDisabled ? "disabled"),
   (class),
 ] %}
@@ -45,17 +52,11 @@
   "aria-controls": (hasAriaControls ? ariaControls),
   "aria-disabled": (isDisabled ? "true"),
   "aria-expanded": (hasAriaExpanded ? ariaExpanded),
-  "aria-label": (hasAriaLabel ? ariaLabel),
+  "aria-label": (hasAriaLabel ? ariaLabel|t : label|t),
   "data-dismiss": (hasDataDismiss ? dataDismiss),
   "data-target": (hasDataTarget ? dataTarget),
   "data-toggle": (hasDataToggle ? dataToggle),
-  "data-title": (hasLabel ? label|render|t(
-      [],
-      {
-        langcode: "EN",
-        context: "data-title-attribute"
-      }
-  )),
+  "data-title": (hasLabel ? label|t),
 } %}
 
 {# Template #}
@@ -68,7 +69,7 @@
     {% block customTagContent %}
       {% include "@bf-components/icon/twig/index.twig" with {
         name: icon,
-        size: "small"
+        size: isSizeSmall ? "xsmall" : "small"
       } only %}
     {% endblock %}
   {% endembed %}
