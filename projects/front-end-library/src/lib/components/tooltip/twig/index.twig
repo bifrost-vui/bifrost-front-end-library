@@ -1,0 +1,47 @@
+{# Import macros #}
+{% import "@bf-utils/macros/twig/index.twig" as macros %}
+
+{# Boolean Variables #}
+{% set hasId = id is defined and id is not empty %}
+{% set isReversed = (isReversed ?? false) is same as(true) %}
+
+{# Default Variables #}
+{% set buttonIcon = buttonIcon|default("question-circle-outline") %}
+{% set class = class|default("") %}
+{% set placement = placement|default("auto") %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set tooltipClasses = [
+  "bf-tooltip js-bf-tooltip",
+  (class),
+] %}
+
+{% set tooltipBlockTemplate = '
+  <div class="tooltip bf-tooltip__popper' ~ (isReversed ? ' reversed') ~ '" role="tooltip">
+    <div class="arrow">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="10" viewBox="0 0 32 10" fill="none">
+        <path d="M16.5 2.68045L11.2788 7.5H21.7212L16.5 2.68045Z" class="arrow-stroke"/>
+        <path d="M10 9.29999H23L16.5 3.29999L10 9.29999Z" class="arrow-fill"/>
+      </svg>
+    </div>
+    <div class="tooltip-inner"></div>
+  </div>
+' %}
+
+{# Template #}
+<div {{ macros.addAttributes({
+  "class": tooltipClasses|join(' ')|trim,
+  "id": (hasId ? id),
+}) }}>
+    {% include '@bf-components/button-icon/twig/index.twig' with {
+      dataToggle: "tooltip",
+      extraAttribute: {
+        "data-placement": placement,
+        "data-template": tooltipBlockTemplate|escape("html"),
+        "title": text,
+      },
+      icon: buttonIcon,
+      size: "small",
+      text: text,
+    } only %}
+</div>

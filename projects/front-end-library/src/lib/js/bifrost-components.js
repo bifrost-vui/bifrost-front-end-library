@@ -21,11 +21,13 @@ window.bfTheme.breakpoints = {
     lg: 1200,
     xl: 1920,
 };
-// Bifröst  Components
+// Bifröst Components
 require('../components/filter/js/index.js');
 require('../components/input-increment/js/index.js');
 require('../components/input-slider/js/index.js');
 require('../components/navigation-header/js/index.js');
 require('../components/slideshow/js/index.js');
 require('../components/tab/js/index.js');
+
+// Bifröst Sections
 require('../sections/plp/js/index.js');
