@@ -1,0 +1,81 @@
+{# Default Variables (Props, Controls) #}
+{% set _reversed = _reversed|json_parse %}
+{% set buttons = buttons|json_parse %}
+{% set class = class|json_parse %}
+{% set comboLabel = comboLabel|json_parse %}
+{% set contentBadges = contentBadges|json_parse %}
+{% set contentLists = contentLists|json_parse %}
+{% set description_html = description_html|json_parse %}
+{% set detailsColors = detailsColors|default("")|json_parse %}
+{% set detailsStorage = detailsStorage|json_parse %}
+{% set headerCustomBgColor = headerCustomBgColor|json_parse %}
+{% set headerCustomFontColor = headerCustomFontColor|json_parse %}
+{% set headerMainIconName = headerMainIconName|json_parse %}
+{% set headerPromoBadge = headerPromoBadge|json_parse %}
+{% set headerPromoBadgeCustomBgColor = headerPromoBadgeCustomBgColor|json_parse %}
+{% set headerPromoBadgeCustomFontColor = headerPromoBadgeCustomFontColor|json_parse %}
+{% set id = id|json_parse %}
+{% set image = image|json_parse %}
+{% set imageBadgeIcon = imageBadgeIcon|json_parse %}
+{% set imageBadgeIconCustomBgColor = imageBadgeIconCustomBgColor|json_parse %}
+{% set imageBadgeIconCustomFontColor = imageBadgeIconCustomFontColor|json_parse %}
+{% set imageBadgeIconFullSize = imageBadgeIconFullSize|json_parse %}
+{% set inputIncrement = inputIncrement|json_parse %}
+{% set isDisabled = isDisabled|json_parse %}
+{% set isTwoColsMobileVariant = isTwoColsMobileVariant|json_parse %}
+{% set language = language|json_parse %}
+{% set link = link|json_parse %}
+{% set message = message|json_parse %}
+{% set messageLink = messageLink|json_parse %}
+{% set note = note|json_parse %}
+{% set price = price|json_parse %}
+{% set promotionBadges = promotionBadges|json_parse %}
+{% set subtitle = subtitle|json_parse %}
+{% set title = title|json_parse %}
+{% set titleTag = titleTag|json_parse %}
+{% set upperTitle = upperTitle|json_parse %}
+{% set visualBackgroundColor = visualBackgroundColor|json_parse %}
+
+{# Arrays of Classes With Dynamic Elements #}
+{% set mainContainerClasses = [
+  "d-flex flex-column flex-md-row justify-content-center minh-100",
+  (_reversed ? "reversed bf-color-bg-ground"),
+] %}
+
+{# Template #}
+<div class="{{ mainContainerClasses|join(' ')|trim }}">
+  {% for index in [1] %}
+
+    {# In Loop : Boolean Variables #}
+    {% set isReversed = index == 2 and _reversed is not defined %}
+
+    {# In Loop : Arrays of Classes With Dynamic Elements #}
+    {% set innerContainerClasses = [
+      "flex-grow-1 d-flex align-items-center justify-content-center minh-100 p-3 p-sm-4 gap-4",
+      (isReversed ? "reversed bf-color-bg-ground"),
+    ] %}
+
+    <div class="{{ innerContainerClasses|join(' ')|trim }}">
+      {% include "@bf-components/card/twig/" ~ (_cardVariant|default("index")) ~ ".twig" with {
+        price: {
+          "upperTitle": "From",
+          "dollar": "86",
+          "cent": "99",
+          "details": "/month",
+          "language": "en",
+          "promotion": {
+            "title": "<b>Promotion</b> test",
+            "priceStriked": "40.99",
+            "priceSaved": "10.00",
+            "savedLabel": "You saved :",
+            "superscript": "1",
+            "direction": "horizontal"
+          },
+          "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nibh magna, suscipit nec dui sed, facilisis iaculis quam. Aenean ac lorem fermentum, lobortis lacus nec, aliquam diam. Quisque pharetra massa lacus, vitae viverra diam interdum at."
+        }
+      } %}
+      {% include "@bf-components/card/twig/" ~ (_cardVariant|default("index")) ~ ".twig" %}
+      {% include "@bf-components/card/twig/" ~ (_cardVariant|default("index")) ~ ".twig" %}
+    </div>
+  {% endfor %}
+</div>
