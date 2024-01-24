@@ -32,7 +32,10 @@
 
   {# Label #}
   {% if hasLabel %}
-    <span class="{{ switchLabelTextClasses|join(' ')|trim }}">
+    <span {{ macros.addAttributes({
+      "class": switchLabelTextClasses|join(' ')|trim,
+      "id": id ~ "_textLabel",
+    }) }} >
       {{ labelText }}
     </span>
   {% endif %}

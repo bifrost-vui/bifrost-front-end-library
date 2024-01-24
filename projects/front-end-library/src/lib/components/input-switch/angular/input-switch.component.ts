@@ -35,32 +35,55 @@ export class InputSwitchComponent implements OnInit {
     /**
      * <span style="color: orange;">__Optional__</span>
      * <br><br>
-     * - Extra attributes on the `input` element.
-     * - It can be a `string` of attributes: `'data-test="value" data-test2="value2"'`
-     * - Or it can be an object of attributes name and their values, example:
+     * - Extra attributes on the `<input>` element.
+     * - Can be a simple **string** or an **object**
      *
+     * <br>
+     * _**String**_
+     *
+     * Must be between double-quotes ("), so use single-quotes (') for attributes.
      * <pre>
-     *     <code>
+     *    <code>
+     *        "onclick='alert(\`lorem ipsum\`);' style='display: flex;'"
+     *    </code>
+     * </pre>
+     * <br><br>
+     * _**Object**_
+     * <pre>
+     *    <code>
      *        {
-     *          "data-example-1": "exampleValue-1",
-     *          "data-example-2": "exampleValue-2",
+     *            "data-test-1": "test-1",
+     *            "data-test-2": "test-2"
      *        }
-     *     </code>
+     *    </code>
      * </pre>
      */
     @Input() extraAttribute: string;
     /**
      * <span style="color: red;">__Required__</span>
      * <br><br>
-     * - Input Switch main element's `id` attribute.
+     * - Input Switch `<input>`'s `id` attribute.
      * - Needed to differentiate with other Input Switch items.
      *
      * @required
      */
     @Input() id: string;
-    @Input() isDisabled: boolean;
-    @Input() isChecked: boolean;
-    /** Object expected format:
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Is the Input Switch item disabled?
+     */
+    @Input() isDisabled: boolean = false;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Is the Input Switch item checked?
+     */
+    @Input() isChecked: boolean = false;
+    /**
+     * <span style="color: orange;">__Optional__</span>
+     * <br><br>
+     * Object expected format:
      * <pre>
      *     <code>
      *        {
@@ -76,6 +99,13 @@ export class InputSwitchComponent implements OnInit {
      * - The label default position is left.
      */
     @Input() label: object;
+    /**
+     * <span style="color: red;">__Required__</span>
+     * <br><br>
+     * The Input Switch's `<input>` name attribute.
+     *
+     * @required
+     */
     @Input() name: string;
 
     ngOnInit() {
