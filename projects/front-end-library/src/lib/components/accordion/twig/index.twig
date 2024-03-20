@@ -134,6 +134,9 @@
   } %}
     {% block customTagContent %}
 
+      {# Import macros #}
+      {% import "@bf-utils/macros/twig/index.twig" as macros %}
+
       <button {{ macros.addAttributes({
         "type": "button",
         "class": accordionHeaderButtonClasses|join(' ')|trim,
@@ -153,7 +156,7 @@
 
         {% if isBlockEmphasisBlockDefined %}
           <div class="{{ accordionHeaderEmphasisClasses|join(' ')|trim }}">
-            {{ blockEmphasis }}
+            {{ blockEmphasis|raw }}
           </div>
         {% elseif hasEmphasis %}
           <div class="{{ accordionHeaderEmphasisClasses|join(' ')|trim }}">
