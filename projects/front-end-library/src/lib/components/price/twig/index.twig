@@ -8,6 +8,8 @@
 {% set dollarClass = dollarClass|default("") %}
 {% set language = language|default("en") %}
 {% set size = size|default("small") %}
+{% set centByod = byod_promotion.cent|default("00") %}
+{% set dollarByod = byod_promotion.dollar|default("0") %}
 
 {# Boolean Variables #}
 {% set hasAsterisk = (hasAsterisk ?? false) is same as(true) %}
@@ -34,6 +36,9 @@
 {% set isPromotionDisplayed = (promotion.isDisplayed ?? true) is same as(true) %}
 {% set isPromotionDirectionHorizontal = hasPromotionDirection and promotion.direction is same as("horizontal") %}
 {% set isSizeIsAnObject = size is defined and size is iterable and size.default is not empty %}
+{% set hasPromotionByod = byod_promotion.enabled is defined and (byod_promotion.enabled ?? true) is same as(true) %}
+{% set hasPromotionByodLabelOn = byod_promotion.label_on is defined and byod_promotion.label_on is not empty %}
+{% set hasPromotionByodLabelOff = byod_promotion.label_off is defined and byod_promotion.label_off is not empty %}
 
 {# Default Variables (Props, Controls) - Post Boolean Variables #}
 {% set details = details|default("")|raw %}
@@ -115,16 +120,19 @@
 
   {% if isPriceBoxDisplayed %}
     <div class="{{ promotionContainerClasses|join(' ')|trim }}">
-      <div class="bf-price__infos">
-        {% if isLanguageEN %}
-          <sup class="bf-price__dollarsign">$</sup>
-        {% endif %}
+      <div class="row">
+        <div class="col-6">
+          <div class="p-2 rounded">
+            <div class="bf-price__infos">
+              {% if isLanguageEN %}
+                <sup class="bf-price__dollarsign">$</sup>
+              {% endif %}
 
-        <div
-          class="d-flex"
-          aria-label="$ {{ dollar }}.{{ cent }} {{ details }}"
-          role="contentinfo"
-        >
+              <div
+                class="d-flex"
+                aria-label="$ {{ dollar }}.{{ cent }} {{ details }}"
+                role="contentinfo"
+              >
           <span
             class="bf-price__dollar {{ dollarClass }}"
             role="contentinfo"
@@ -132,47 +140,92 @@
             {{ dollar }}
           </span>
 
-          <div class="d-flex flex-column">
-            <div class="d-flex align-items-start">
-              {% if hasCent %}
-                <span class="bf-price__cent ml-1">
+                <div class="d-flex flex-column">
+                  <div class="d-flex align-items-start">
+                    {% if hasCent %}
+                      <span class="bf-price__cent ml-1">
                   {{ cent }}
                 </span>
-              {% endif %}
-              {% if isLanguageFR %}
-                <sup class="bf-price__dollarsign ml-1">$</sup>
-              {% endif %}
-              {% if hasAsterisk %}
-                <sup class="bf-price__asterisk">*</sup>
-              {% endif %}
-            </div>
+                    {% endif %}
+                    {% if isLanguageFR %}
+                      <sup class="bf-price__dollarsign ml-1">$</sup>
+                    {% endif %}
+                    {% if hasAsterisk %}
+                      <sup class="bf-price__asterisk">*</sup>
+                    {% endif %}
+                  </div>
 
-            {% if hasDetails %}
-              <span class="bf-price__details ml-1">
+                  {% if hasDetails %}
+                    <span class="bf-price__details ml-1">
                 {{ details }}
               </span>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            {% if hasPromotionByodLabelOff %}
+              <p class="small mb-1">
+                {{ byod_promotion.label_off }}
+              </p>
             {% endif %}
           </div>
         </div>
+        {% if hasPromotionByod %}
+          <div class="col-6">
+            <div class="bf-color-bg-underground p-2 rounded">
+              <div class="bf-price__infos">
+                {% if isLanguageEN %}
+                  <sup class="bf-price__dollarsign">$</sup>
+                {% endif %}
+
+                <div
+                  class="d-flex"
+                  aria-label="$ {{ dollarByod }}.{{ centByod }} {{ details }}"
+                  role="contentinfo"
+                >
+            <span
+              class="bf-price__dollar {{ dollarClass }}"
+              role="contentinfo"
+            >
+              {{ dollarByod }}
+            </span>
+
+                  <div class="d-flex flex-column">
+                    <div class="d-flex align-items-start">
+                      {% if hasCent %}
+                        <span class="bf-price__cent ml-1">
+                    {{ cent }}
+                  </span>
+                      {% endif %}
+                      {% if isLanguageFR %}
+                        <sup class="bf-price__dollarsign ml-1">$</sup>
+                      {% endif %}
+                      {% if hasAsterisk %}
+                        <sup class="bf-price__asterisk">*</sup>
+                      {% endif %}
+                    </div>
+
+                    {% if hasDetails %}
+                      <span class="bf-price__details ml-1">
+                      {{ details }}
+                    </span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              {% if hasPromotionByodLabelOn %}
+                <p class="small mb-1">
+                  {{ byod_promotion.label_on }}
+                </p>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
       </div>
 
       {% if hasPromotion %}
         <div class="bf-price__promotion d-flex flex-column justify-content-center">
-          {% if hasPromotionTitle %}
-            <p class="small mb-1">
-              {{ promotion.title }}
-            </p>
-          {% endif %}
           <div class="bf-price__promotion__infos d-inline-flex">
-            {% if hasPromotionPriceStriked %}
-              <p class="small text-strike mr-2 mb-0">
-                {%- set priceStrikedValue = macros.formatDecimalNumberToLanguage(promotion.priceStriked, language) -%}
-                {% if isLanguageEN %}${% endif %}
-                {{- priceStrikedValue|trim -}}
-                {% if isLanguageFR %}&nbsp;${% endif %}
-              </p>
-            {% endif %}
-
             {% if (hasPromotionSavedLabel or hasPromotionPriceSaved or hasPromotionSuperscript) and isPromotionDisplayed %}
               <p class="small bf-display-highlight mb-0">
                 {% if hasPromotionSavedLabel %}
