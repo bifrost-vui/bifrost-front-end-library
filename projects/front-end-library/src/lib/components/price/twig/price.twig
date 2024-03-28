@@ -1,0 +1,49 @@
+<div class="col-6">
+  <div class="{{ class }} p-2 rounded">
+    <div class="bf-price__infos">
+    {% if isLanguageEN %}
+      <sup class="bf-price__dollarsign">$</sup>
+    {% endif %}
+
+    <div
+      class="d-flex"
+      aria-label="$ {{ dollar }}.{{ cent }} {{ details }}"
+      role="contentinfo"
+    >
+      <span
+        class="bf-price__dollar {{ dollarClass }}"
+        role="contentinfo"
+      >
+        {{ dollar }}
+      </span>
+
+      <div class="d-flex flex-column">
+        <div class="d-flex align-items-start">
+          {% if hasCent %}
+            <span class="bf-price__cent ml-1">
+              {{ cent }}
+            </span>
+          {% endif %}
+          {% if isLanguageFR %}
+            <sup class="bf-price__dollarsign ml-1">$</sup>
+          {% endif %}
+          {% if hasAsterisk %}
+            <sup class="bf-price__asterisk">*</sup>
+          {% endif %}
+        </div>
+
+        {% if hasDetails %}
+          <span class="bf-price__details ml-1">
+              {{ details }}
+            </span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+    {% if hasPromotionByodLabel %}
+      <p class="small mb-1">
+        {{ label }}
+      </p>
+    {% endif %}
+  </div>
+</div>
