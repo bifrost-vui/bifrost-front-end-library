@@ -13,6 +13,26 @@ export const contentListsData = [
         priceInfo: '/ month',
         saving: '$30.00',
         fullPrice: '$150.00',
+        promotions: {
+            mpo: {
+                label: 'Discount with two services: Internet and Mobility',
+                discount: {
+                    string_wo_cur: '15.00',
+                    string_wi_cur: '$15.00',
+                    dollar: '15',
+                    cent: '00'
+                }
+            },
+            byod: {
+                label: 'Including discount, bring your phone',
+                discount: {
+                    string_wo_cur: '5.00',
+                    string_wi_cur: '$5.00',
+                    dollar: '5',
+                    cent: '00'
+                }
+            }
+        },
         btnDelete: {
             href: 'www.videotron.com',
         },

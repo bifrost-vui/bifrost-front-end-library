@@ -107,74 +107,90 @@
           {% set hasItemPriceInfo = item.priceInfo is defined and item.priceInfo is not empty %}
           {% set hasItemSaving = item.saving is defined and item.saving %}
           {% set hasItemTitle = item.title is defined and item.title %}
+          {% set hasItemFullPrice = item.fullPrice is defined and item.fullPrice %}
+          {% set hasItemPromotions = item.promotions is defined and item.promotions %}
 
-          <li class="bf-block__item d-flex justify-content-between align-items-center border-top bf-border-color-secondary pt-2 pb-3">
-            <div class="label mr-3">
-              {% if hasItemTitle %}
-                <p class="bf-text font-weight-bold mb-0">
-                  {{ item.title }}
-                </p>
-              {% endif %}
+          <li class="bf-block__item border-top bf-border-color-secondary pt-2 pb-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="label mr-3">
+                {% if hasItemTitle %}
+                  <p class="bf-text font-weight-bold mb-0">
+                    {{ item.title }}
+                  </p>
+                {% endif %}
+              </div>
 
-              {% if hasItemDescription %}
-                <p class="description bf-color-neutral-secondary mt-2 mb-0">
-                  {{ item.description }}
-                </p>
+              {% if hasItemLink %}
+                <a {{ macros.addAttributes({
+                  "href": item.link.href,
+                  "class": "bf-link bf-link--primary text-right",
+                }) }}>
+                  {{ item.link.label }}
+                </a>
+              {% else %}
+                <div>
+                  <div class="d-flex justify-content-end pb-1">
+                    {% block itemActionBlock %}
+                      {% if hasItemButtonDelete %}
+                        {% include "@bf-components/button-icon/twig/index.twig" with {
+                          icon: "delete",
+                          class: "ml-2",
+                          href: item.btnDelete.href
+                        } only %}
+                      {% endif %}
+                      {% if hasItemButtonModify %}
+                        {% include "@bf-components/button-icon/twig/index.twig" with {
+                          icon: "edit",
+                          class: "ml-2",
+                          href: item.btnModify.href
+                        } only %}
+                      {% endif %}
+                    {% endblock %}
+                  </div>
+
+                  <div class="text-right">
+                    <div class="d-md-inline-flex align-items-center">
+                      {% if hasItemFullPrice %}
+                        <p class="small text-strike bf-color-neutral-secondary mb-0 mr-1 lh-3">
+                          {{ item.fullPrice }}
+                        </p>
+                      {% endif %}
+                      <p class="d-block mb-0">
+                        {{ item.price }}
+                        {% if hasItemPriceInfo %}
+                          {{ item.priceInfo }}
+                        {% endif %}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               {% endif %}
             </div>
-
-            {% if hasItemLink %}
-              <a {{ macros.addAttributes({
-                "href": item.link.href,
-                "class": "bf-link bf-link--primary text-right",
-              }) }}>
-                {{ item.link.label }}
-              </a>
-            {% else %}
-              <div>
-                <div class="d-flex justify-content-end pb-1">
-                  {% block itemActionBlock %}
-                    {% if hasItemButtonDelete %}
-                      {% include "@bf-components/button-icon/twig/index.twig" with {
-                        icon: "delete",
-                        class: "ml-2",
-                        href: item.btnDelete.href
-                      } only %}
-                    {% endif %}
-                    {% if hasItemButtonModify %}
-                      {% include "@bf-components/button-icon/twig/index.twig" with {
-                        icon: "edit",
-                        class: "ml-2",
-                        href: item.btnModify.href
-                      } only %}
-                    {% endif %}
-                  {% endblock %}
-                </div>
-
-                <div class="text-right">
-                  <span class="d-block bf-color-neutral-secondary">
-                    {{ item.price }}
-                    {% if hasItemPriceInfo %}
-                      {{ item.priceInfo }}
-                    {% endif %}
-                  </span>
-                  {% if hasItemSaving %}
-                    <div class="d-inline-flex align-items-center mt-2">
-                      <p class="small text-strike mb-0">
-                        {{ item.fullPrice }}
+            {% if hasItemPromotions %}
+              {% for promo in item.promotions %}
+                {% set hasPromoLabel = promo.label is defined and promo.label %}
+                {% set hasPromoDiscount = promo.discount is defined and promo.discount %}
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <div class="label mr-3">
+                    {% if hasPromoLabel %}
+                      <p class="description bf-color-neutral-secondary mb-0">
+                        {{ promo.label }}
                       </p>
-                      <div class="bf-display-highlight d-inline-flex flex-wrap ml-2">
+                    {% endif %}
+                  </div>
+                  <div class="text-right">
+                    <div class="bf-display-highlight d-inline-flex flex-wrap ml-2">
+                      {% if hasPromoDiscount %}
                         <p class="mb-0">
-                          {{ item.savingLabel }}
                           <span class="font-weight-bold ml-1">
-                            {{ item.saving }}
+                            {{ promo.discount.string_wi_cur }}
                           </span>
                         </p>
-                      </div>
+                      {% endif %}
                     </div>
-                  {% endif %}
+                  </div>
                 </div>
-              </div>
+              {% endfor %}
             {% endif %}
           </li>
         {% endfor %}
